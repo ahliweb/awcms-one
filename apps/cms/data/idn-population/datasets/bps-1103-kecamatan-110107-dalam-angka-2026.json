@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1103-kecamatan-110107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.01.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sawang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Selatan",
+  "publisherDomain": "1103",
+  "publisherWebsite": "https://acehselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Selatan (https://acehselatankab.bps.go.id), publikasi \"Kecamatan Sawang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1103070",
+  "publicationNumber": "11030.26019",
+  "issn": "2830-7550",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehselatankab.bps.go.id/id/publication/2026/09/28/419b8e85158a3daf0445315c/kecamatan-sawang-dalam-angka-2026.html",
+  "sourceFileSha256": "d115e8725331dcf490e09a6508e349575d2a9690bc1339eb6ed9ecadcc5b949c",
+  "sourceFileBytes": 3813454,
+  "sourcePages": [21, 22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Selatan",
+  "csvPath": "datasets/bps-1103-kecamatan-110107-dalam-angka-2026.csv",
+  "csvSha256": "2c93ad59519197f3cffcd4f446679c133dfaba9b600dd11b5766c8318f89aa00",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sawang, 2025",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sawang, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Simpang III\": unmatched "
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3174-kecamatan-317301-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.73.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cengkareng Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Barat",
+  "publisherDomain": "3174",
+  "publisherWebsite": "https://jakbarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Barat (https://jakbarkota.bps.go.id), publikasi \"Kecamatan Cengkareng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3174070",
+  "publicationNumber": "31740.26011",
+  "issn": "0852-2227",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakbarkota.bps.go.id/id/publication/2026/09/28/505a8fc23cc4784751788aae/kecamatan-cengkareng-dalam-angka-2026.html",
+  "sourceFileSha256": "780d3cd4da5449225c38b72849cc30ec5b5cda6ae663e888512d2b9c4e96a392",
+  "sourceFileBytes": 5289430,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Barat",
+  "csvPath": "datasets/bps-3174-kecamatan-317301-dalam-angka-2026.csv",
+  "csvSha256": "f391c2f6d315c11bcf89f07041c9354a6f2fd5ccfa9326235959a1552d532f6e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cengkareng, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin Kecamatan Cengkareng, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Cengkareng 100%\": unmatched ",
+    "table 3.1: 4 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 50 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.1: the rows of region 31.73.01.1002 are not stored: sex split vs total: parts sum 102437.0000 != 102427.0000 (diff 10.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 31.73.01.1006 are not stored: sex split vs total: parts sum 103122.0000 != 103798.0000 (diff 676.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 31.73.01 are not stored: sex split vs total: parts sum 581788.0000 != 582026.0000 (diff 238.0000); the source itself is inconsistent"
+  ]
+}

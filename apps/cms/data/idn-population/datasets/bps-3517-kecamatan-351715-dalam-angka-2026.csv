@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.15.2001,4,Klitih,sex,laki_laki,,1813,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2001,4,Klitih,sex,perempuan,,1780,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2001,4,Klitih,total,total,,3593,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2002,4,Plabuhan,sex,laki_laki,,1369,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2002,4,Plabuhan,sex,perempuan,,1412,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2002,4,Plabuhan,total,total,,2781,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2003,4,Kampungbaru,sex,laki_laki,,1216,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2003,4,Kampungbaru,sex,perempuan,,1227,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2003,4,Kampungbaru,total,total,,2443,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2004,4,Gebang Bunder,sex,laki_laki,,1003,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2004,4,Gebang Bunder,sex,perempuan,,1043,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2004,4,Gebang Bunder,total,total,,2046,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2005,4,Jatimlerek,sex,laki_laki,,1069,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2005,4,Jatimlerek,sex,perempuan,,1059,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2005,4,Jatimlerek,total,total,,2128,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2006,4,Karang Mojo,sex,laki_laki,,1521,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2006,4,Karang Mojo,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2006,4,Karang Mojo,total,total,,3075,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2007,4,Plandaan,sex,laki_laki,,1288,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2007,4,Plandaan,sex,perempuan,,1328,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2007,4,Plandaan,total,total,,2616,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2008,4,Bangsri,sex,laki_laki,,1295,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2008,4,Bangsri,sex,perempuan,,1283,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2008,4,Bangsri,total,total,,2578,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2009,4,Purisemanding,sex,laki_laki,,1986,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2009,4,Purisemanding,sex,perempuan,,1963,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2009,4,Purisemanding,total,total,,3949,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2010,4,Tondowulan,sex,laki_laki,,1955,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2010,4,Tondowulan,sex,perempuan,,1945,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2010,4,Tondowulan,total,total,,3900,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2011,4,Darurejo,sex,laki_laki,,2617,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2011,4,Darurejo,sex,perempuan,,2563,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2011,4,Darurejo,total,total,,5180,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15.2012,4,Sumberjo,sex,laki_laki,,1355,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15.2012,4,Sumberjo,sex,perempuan,,1393,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15.2012,4,Sumberjo,total,total,,2748,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15,3,Kecamatan Plandaan,sex,laki_laki,,19456,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.15,3,Kecamatan Plandaan,sex,perempuan,,19516,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.15,3,Kecamatan Plandaan,total,total,,38972,jiwa,2025,registration,total_population,3.1,33,,
+35.17.15,3,Plandaan,age_group,0-4,laki_laki,887,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.17.15,3,Plandaan,age_group,0-4,perempuan,852,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.17.15,3,Plandaan,age_group,0-4,,1739,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.17.15,3,Plandaan,age_group,5-9,laki_laki,1244,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.17.15,3,Plandaan,age_group,5-9,perempuan,1175,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.17.15,3,Plandaan,age_group,5-9,,2419,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.17.15,3,Plandaan,age_group,10-14,laki_laki,1334,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.17.15,3,Plandaan,age_group,10-14,perempuan,1187,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.17.15,3,Plandaan,age_group,10-14,,2521,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.17.15,3,Plandaan,age_group,15-19,laki_laki,1329,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.17.15,3,Plandaan,age_group,15-19,perempuan,1244,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.17.15,3,Plandaan,age_group,15-19,,2573,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.17.15,3,Plandaan,age_group,20-24,laki_laki,1271,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.17.15,3,Plandaan,age_group,20-24,perempuan,1216,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.17.15,3,Plandaan,age_group,20-24,,2487,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.17.15,3,Plandaan,age_group,25-29,laki_laki,1340,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.17.15,3,Plandaan,age_group,25-29,perempuan,1175,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.17.15,3,Plandaan,age_group,25-29,,2515,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.17.15,3,Plandaan,age_group,30-34,laki_laki,1387,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.17.15,3,Plandaan,age_group,30-34,perempuan,1274,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.17.15,3,Plandaan,age_group,30-34,,2661,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.17.15,3,Plandaan,age_group,35-39,laki_laki,1353,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.17.15,3,Plandaan,age_group,35-39,perempuan,1305,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.17.15,3,Plandaan,age_group,35-39,,2658,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.17.15,3,Plandaan,age_group,40-44,laki_laki,1496,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.17.15,3,Plandaan,age_group,40-44,perempuan,1410,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.17.15,3,Plandaan,age_group,40-44,,2906,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.17.15,3,Plandaan,age_group,45-49,laki_laki,1353,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.17.15,3,Plandaan,age_group,45-49,perempuan,1443,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.17.15,3,Plandaan,age_group,45-49,,2796,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.17.15,3,Plandaan,age_group,50-54,laki_laki,1387,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.17.15,3,Plandaan,age_group,50-54,perempuan,1462,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.17.15,3,Plandaan,age_group,50-54,,2849,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.17.15,3,Plandaan,age_group,55-59,laki_laki,1311,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.17.15,3,Plandaan,age_group,55-59,perempuan,1365,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.17.15,3,Plandaan,age_group,55-59,,2676,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.17.15,3,Plandaan,age_group,60-64,laki_laki,1245,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.17.15,3,Plandaan,age_group,60-64,perempuan,1391,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.17.15,3,Plandaan,age_group,60-64,,2636,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.17.15,3,Plandaan,age_group,65-69,laki_laki,1082,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.17.15,3,Plandaan,age_group,65-69,perempuan,1163,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.17.15,3,Plandaan,age_group,65-69,,2245,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.17.15,3,Plandaan,age_group,70-74,laki_laki,715,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.17.15,3,Plandaan,age_group,70-74,perempuan,685,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.17.15,3,Plandaan,age_group,70-74,,1400,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.17.15,3,Plandaan,age_group,75+,laki_laki,722,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.15,3,Plandaan,age_group,75+,perempuan,1169,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.15,3,Plandaan,age_group,75+,,1891,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.15,3,Kecamatan Plandaan,sex,laki_laki,,19456,jiwa,2025,registration,total_population,3.2,35,,Laki-laki
+35.17.15,3,Kecamatan Plandaan,sex,perempuan,,19516,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.17.15,3,Kecamatan Plandaan,total,total,,38972,jiwa,2025,registration,total_population,3.2,35,,

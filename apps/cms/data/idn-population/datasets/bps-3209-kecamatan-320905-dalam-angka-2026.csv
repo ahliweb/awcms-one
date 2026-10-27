@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.05.2001,4,Cangkuang,sex,laki_laki,,3262,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2001,4,Cangkuang,sex,perempuan,,3135,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2001,4,Cangkuang,total,total,,6397,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2002,4,Serang Wetan,sex,laki_laki,,2158,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2002,4,Serang Wetan,sex,perempuan,,2197,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2002,4,Serang Wetan,total,total,,4355,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2008,4,Bojonggebang,sex,laki_laki,,2347,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2008,4,Bojonggebang,sex,perempuan,,2417,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2008,4,Bojonggebang,total,total,,4764,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2012,4,Kudukeras,sex,laki_laki,,2335,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2012,4,Kudukeras,sex,perempuan,,2347,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2012,4,Kudukeras,total,total,,4682,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2009,4,Sumber Kidul,sex,laki_laki,,2480,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2009,4,Sumber Kidul,sex,perempuan,,2517,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2009,4,Sumber Kidul,total,total,,4997,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2011,4,Kudumulya,sex,laki_laki,,1974,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2011,4,Kudumulya,sex,perempuan,,1957,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2011,4,Kudumulya,total,total,,3931,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2010,4,Sumber Lor,sex,laki_laki,,2601,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2010,4,Sumber Lor,sex,perempuan,,2555,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2010,4,Sumber Lor,total,total,,5156,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2007,4,Babakan,sex,laki_laki,,2496,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2007,4,Babakan,sex,perempuan,,2492,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2007,4,Babakan,total,total,,4988,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2013,4,Pakusamben,sex,laki_laki,,2820,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2013,4,Pakusamben,sex,perempuan,,2930,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2013,4,Pakusamben,total,total,,5750,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2014,4,Karangwangun,sex,laki_laki,,4099,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2014,4,Karangwangun,sex,perempuan,,4071,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2014,4,Karangwangun,total,total,,8170,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2006,4,Babakan Gebang,sex,laki_laki,,5155,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2006,4,Babakan Gebang,sex,perempuan,,5153,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2006,4,Babakan Gebang,total,total,,10308,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2005,4,Gembongan,sex,laki_laki,,2556,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2005,4,Gembongan,sex,perempuan,,2506,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2005,4,Gembongan,total,total,,5062,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2003,4,Serang Kulon,sex,laki_laki,,2035,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2003,4,Serang Kulon,sex,perempuan,,2038,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2003,4,Serang Kulon,total,total,,4073,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05.2004,4,Gembongan Mekar,sex,laki_laki,,3244,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05.2004,4,Gembongan Mekar,sex,perempuan,,3131,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05.2004,4,Gembongan Mekar,total,total,,6375,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05,3,Kecamatan Babakan,sex,laki_laki,,39562,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.05,3,Kecamatan Babakan,sex,perempuan,,39446,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.05,3,Kecamatan Babakan,total,total,,79008,jiwa,2025,registration,total_population,3.1,52,,
+32.09.05,3,Babakan,age_group,0-4,laki_laki,2447,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.05,3,Babakan,age_group,0-4,perempuan,2357,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.05,3,Babakan,age_group,0-4,,4804,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.05,3,Babakan,age_group,5-9,laki_laki,3179,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.05,3,Babakan,age_group,5-9,perempuan,3175,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.05,3,Babakan,age_group,5-9,,6354,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.05,3,Babakan,age_group,10-14,laki_laki,3447,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.05,3,Babakan,age_group,10-14,perempuan,3083,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.05,3,Babakan,age_group,10-14,,6530,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.05,3,Babakan,age_group,15-19,laki_laki,2782,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.05,3,Babakan,age_group,15-19,perempuan,2777,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.05,3,Babakan,age_group,15-19,,5559,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.05,3,Babakan,age_group,20-24,laki_laki,2950,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.05,3,Babakan,age_group,20-24,perempuan,2714,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.05,3,Babakan,age_group,20-24,,5664,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.05,3,Babakan,age_group,25-29,laki_laki,3407,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.05,3,Babakan,age_group,25-29,perempuan,3005,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.05,3,Babakan,age_group,25-29,,6412,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.05,3,Babakan,age_group,30-34,laki_laki,3169,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.05,3,Babakan,age_group,30-34,perempuan,2846,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.05,3,Babakan,age_group,30-34,,6015,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.05,3,Babakan,age_group,35-39,laki_laki,3016,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.05,3,Babakan,age_group,35-39,perempuan,2712,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.05,3,Babakan,age_group,35-39,,5728,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.05,3,Babakan,age_group,40-44,laki_laki,3230,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.05,3,Babakan,age_group,40-44,perempuan,3373,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.05,3,Babakan,age_group,40-44,,6603,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.05,3,Babakan,age_group,45-49,laki_laki,2898,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.05,3,Babakan,age_group,45-49,perempuan,3163,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.05,3,Babakan,age_group,45-49,,6061,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.05,3,Babakan,age_group,50-54,laki_laki,2514,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.05,3,Babakan,age_group,50-54,perempuan,2742,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.05,3,Babakan,age_group,50-54,,5256,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.05,3,Babakan,age_group,55-59,laki_laki,2163,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.05,3,Babakan,age_group,55-59,perempuan,2212,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.05,3,Babakan,age_group,55-59,,4375,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.05,3,Babakan,age_group,60-64,laki_laki,1395,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.05,3,Babakan,age_group,60-64,perempuan,1594,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.05,3,Babakan,age_group,60-64,,2989,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.05,3,Babakan,age_group,65-69,laki_laki,1233,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.05,3,Babakan,age_group,65-69,perempuan,1391,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.05,3,Babakan,age_group,65-69,,2624,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.05,3,Babakan,age_group,70-74,laki_laki,818,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.05,3,Babakan,age_group,70-74,perempuan,965,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.05,3,Babakan,age_group,70-74,,1783,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.05,3,Babakan,age_group,75+,laki_laki,914,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.05,3,Babakan,age_group,75+,perempuan,1337,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.05,3,Babakan,age_group,75+,,2251,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.05,3,Kecamatan Babakan,sex,laki_laki,,39562,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.05,3,Kecamatan Babakan,sex,perempuan,,39446,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.05,3,Kecamatan Babakan,total,total,,79008,jiwa,2025,registration,total_population,3.2,54,,

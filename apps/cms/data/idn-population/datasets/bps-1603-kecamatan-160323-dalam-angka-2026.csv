@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.23.2005,4,Berugo,sex,laki_laki,,476,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2005,4,Berugo,sex,perempuan,,437,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2005,4,Berugo,total,total,,913,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2001,4,Tanjung,sex,laki_laki,,759,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2001,4,Tanjung,sex,perempuan,,753,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2001,4,Tanjung,total,total,,1512,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2003,4,Cinta Kasih,sex,laki_laki,,2154,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2003,4,Cinta Kasih,sex,perempuan,,2151,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2003,4,Cinta Kasih,total,total,,4305,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2009,4,Darmo Kasih,sex,laki_laki,,765,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2009,4,Darmo Kasih,sex,perempuan,,725,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2009,4,Darmo Kasih,total,total,,1490,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2004,4,Teluk Lubuk,sex,laki_laki,,2542,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2004,4,Teluk Lubuk,sex,perempuan,,2336,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2004,4,Teluk Lubuk,total,total,,4878,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2006,4,Belimbing,sex,laki_laki,,1200,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2006,4,Belimbing,sex,perempuan,,1099,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2006,4,Belimbing,total,total,,2299,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2007,4,Bulang,sex,laki_laki,,1164,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2007,4,Bulang,sex,perempuan,,1119,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2007,4,Bulang,total,total,,2283,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2010,4,Dalam,sex,laki_laki,,2619,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2010,4,Dalam,sex,perempuan,,2517,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2010,4,Dalam,total,total,,5136,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2008,4,Belimbing Jaya,sex,laki_laki,,899,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2008,4,Belimbing Jaya,sex,perempuan,,838,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2008,4,Belimbing Jaya,total,total,,1737,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23.2002,4,Simpang Tanjung,sex,laki_laki,,1507,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23.2002,4,Simpang Tanjung,sex,perempuan,,1473,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23.2002,4,Simpang Tanjung,total,total,,2980,jiwa,2025,registration,total_population,1.1,7,,
+16.03.23,3,Belimbing,sex,laki_laki,,14085,jiwa,2025,registration,total_population,1.1,7,,Laki-Laki/Male
+16.03.23,3,Belimbing,sex,perempuan,,13448,jiwa,2025,registration,total_population,1.1,7,,Perempuan/Female
+16.03.23,3,Belimbing,total,total,,27533,jiwa,2025,registration,total_population,1.1,7,,

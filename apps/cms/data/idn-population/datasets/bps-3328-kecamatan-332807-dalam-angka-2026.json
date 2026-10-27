@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332807-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jatinegara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Jatinegara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328070",
+  "publicationNumber": "33280.26020",
+  "issn": "2621-1785",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/3d44cb4a77819f8310b1e95b/kecamatan-jatinegara-dalam-angka-2026.html",
+  "sourceFileSha256": "487908fc51e8c5938aa2ce64d38627068cb110f21e355143f2a64cbd58a3b99c",
+  "sourceFileBytes": 5555640,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332807-dalam-angka-2026.csv",
+  "csvSha256": "75f37f88e495a33381db8ba19e1c3eb0a4768f53af394a54369e03969f2ce206",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jatinegara, 2026",
+      "printedPages": [35, 36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jatinegara, 2026",
+      "printedPages": [37],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lembahsari\": unmatched ",
+    "table 3.1: row not stored: row \"Setail\": unmatched ",
+    "table 3.1: row not stored: row \"Lembahsari\": unmatched ",
+    "table 3.1: row not stored: row \"Setail\": unmatched "
+  ]
+}

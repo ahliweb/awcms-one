@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.18.2001,4,BRUMBUNGAN LOR,sex,laki_laki,,1419,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2001,4,BRUMBUNGAN LOR,sex,perempuan,,1440,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2001,4,BRUMBUNGAN LOR,total,total,,2859,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2002,4,JATIADI,sex,laki_laki,,1748,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2002,4,JATIADI,sex,perempuan,,1739,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2002,4,JATIADI,total,total,,3487,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2003,4,KLASEMAN,sex,laki_laki,,1154,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2003,4,KLASEMAN,sex,perempuan,,1227,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2003,4,KLASEMAN,total,total,,2381,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2004,4,PESISIR,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2004,4,PESISIR,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2004,4,PESISIR,total,total,,1259,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2005,4,BULANG,sex,laki_laki,,1724,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2005,4,BULANG,sex,perempuan,,1804,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2005,4,BULANG,total,total,,3528,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2006,4,RANDUPITU,sex,laki_laki,,828,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2006,4,RANDUPITU,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2006,4,RANDUPITU,total,total,,1648,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2007,4,PIKATAN,sex,laki_laki,,1235,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2007,4,PIKATAN,sex,perempuan,,1269,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2007,4,PIKATAN,total,total,,2504,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2008,4,SEBAUNG,sex,laki_laki,,3557,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2008,4,SEBAUNG,sex,perempuan,,3584,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2008,4,SEBAUNG,total,total,,7141,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2009,4,SUMBERKERANG,sex,laki_laki,,3021,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2009,4,SUMBERKERANG,sex,perempuan,,3096,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2009,4,SUMBERKERANG,total,total,,6117,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2010,4,BANYUANYAR LOR,sex,laki_laki,,1499,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2010,4,BANYUANYAR LOR,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2010,4,BANYUANYAR LOR,total,total,,3053,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2011,4,CURAHSAWO,sex,laki_laki,,911,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2011,4,CURAHSAWO,sex,perempuan,,919,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2011,4,CURAHSAWO,total,total,,1830,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2012,4,PAJURANGAN,sex,laki_laki,,1966,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2012,4,PAJURANGAN,sex,perempuan,,1913,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2012,4,PAJURANGAN,total,total,,3879,jiwa,2025,registration,total_population,3.1,25,,
+35.13.18.2013,4,GENDING,sex,laki_laki,,2025,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+35.13.18.2013,4,GENDING,sex,perempuan,,2073,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+35.13.18.2013,4,GENDING,total,total,,4098,jiwa,2025,registration,total_population,3.1,25,,

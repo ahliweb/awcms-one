@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.75.03.1006,4,Harapan Jaya,sex,laki_laki,,41788,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.03.1006,4,Harapan Jaya,sex,perempuan,,42498,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.03.1006,4,Harapan Jaya,total,total,,84286,jiwa,2025,registration,total_population,3.1,25,,
+32.75.03.1001,4,Kaliabang Tengah,sex,laki_laki,,48928,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.03.1001,4,Kaliabang Tengah,sex,perempuan,,48454,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.03.1001,4,Kaliabang Tengah,total,total,,97382,jiwa,2025,registration,total_population,3.1,25,,
+32.75.03.1002,4,Perwira,sex,laki_laki,,20358,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.03.1002,4,Perwira,sex,perempuan,,20240,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.03.1002,4,Perwira,total,total,,40598,jiwa,2025,registration,total_population,3.1,25,,
+32.75.03.1003,4,Harapan Baru,sex,laki_laki,,14564,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.03.1003,4,Harapan Baru,sex,perempuan,,14237,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.03.1003,4,Harapan Baru,total,total,,28801,jiwa,2025,registration,total_population,3.1,25,,
+32.75.03.1004,4,Teluk Pucung,sex,laki_laki,,35993,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.03.1004,4,Teluk Pucung,sex,perempuan,,35711,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.03.1004,4,Teluk Pucung,total,total,,71704,jiwa,2025,registration,total_population,3.1,25,,
+32.75.03.1005,4,Marga Mulya,sex,laki_laki,,12535,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.03.1005,4,Marga Mulya,sex,perempuan,,12381,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.03.1005,4,Marga Mulya,total,total,,24916,jiwa,2025,registration,total_population,3.1,25,,
+32.75.03,3,Bekasi Utara,sex,laki_laki,,174166,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.03,3,Bekasi Utara,sex,perempuan,,173521,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.03,3,Bekasi Utara,total,total,,347687,jiwa,2025,registration,total_population,3.1,25,,
+32.75.03,3,Bekasi Utara,age_group,0-4,laki_laki,11430,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.03,3,Bekasi Utara,age_group,0-4,perempuan,10488,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.03,3,Bekasi Utara,age_group,0-4,,21918,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.03,3,Bekasi Utara,age_group,5-9,laki_laki,14917,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.03,3,Bekasi Utara,age_group,5-9,perempuan,13977,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.03,3,Bekasi Utara,age_group,5-9,,28894,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.03,3,Bekasi Utara,age_group,10-14,laki_laki,14443,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.03,3,Bekasi Utara,age_group,10-14,perempuan,13496,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.03,3,Bekasi Utara,age_group,10-14,,27939,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.03,3,Bekasi Utara,age_group,15-19,laki_laki,13763,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.03,3,Bekasi Utara,age_group,15-19,perempuan,12649,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.03,3,Bekasi Utara,age_group,15-19,,26412,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.03,3,Bekasi Utara,age_group,20-24,laki_laki,14046,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.03,3,Bekasi Utara,age_group,20-24,perempuan,13415,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.03,3,Bekasi Utara,age_group,20-24,,27461,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.03,3,Bekasi Utara,age_group,25-29,laki_laki,14734,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.03,3,Bekasi Utara,age_group,25-29,perempuan,14458,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.03,3,Bekasi Utara,age_group,25-29,,29192,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.03,3,Bekasi Utara,age_group,30-34,laki_laki,14877,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.03,3,Bekasi Utara,age_group,30-34,perempuan,15037,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.03,3,Bekasi Utara,age_group,30-34,,29914,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.03,3,Bekasi Utara,age_group,35-39,laki_laki,13606,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.03,3,Bekasi Utara,age_group,35-39,perempuan,13235,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.03,3,Bekasi Utara,age_group,35-39,,26841,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.03,3,Bekasi Utara,age_group,40-44,laki_laki,13171,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.03,3,Bekasi Utara,age_group,40-44,perempuan,13320,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.03,3,Bekasi Utara,age_group,40-44,,26491,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.03,3,Bekasi Utara,age_group,45-49,laki_laki,11197,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.03,3,Bekasi Utara,age_group,45-49,perempuan,12267,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.03,3,Bekasi Utara,age_group,45-49,,23464,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.03,3,Bekasi Utara,age_group,50-54,laki_laki,10168,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.03,3,Bekasi Utara,age_group,50-54,perempuan,11432,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.03,3,Bekasi Utara,age_group,50-54,,21600,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.03,3,Bekasi Utara,age_group,55-59,laki_laki,9474,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.03,3,Bekasi Utara,age_group,55-59,perempuan,10885,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.03,3,Bekasi Utara,age_group,55-59,,20359,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.03,3,Bekasi Utara,age_group,60-64,laki_laki,7725,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.03,3,Bekasi Utara,age_group,60-64,perempuan,8834,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.03,3,Bekasi Utara,age_group,60-64,,16559,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.03,3,Bekasi Utara,age_group,65-69,laki_laki,5809,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.03,3,Bekasi Utara,age_group,65-69,perempuan,5503,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.03,3,Bekasi Utara,age_group,65-69,,11312,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.03,3,Bekasi Utara,age_group,70-74,laki_laki,3033,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.03,3,Bekasi Utara,age_group,70-74,perempuan,2440,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.03,3,Bekasi Utara,age_group,70-74,,5473,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.03,3,Bekasi Utara,age_group,75+,laki_laki,1773,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.03,3,Bekasi Utara,age_group,75+,perempuan,2085,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.03,3,Bekasi Utara,age_group,75+,,3858,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.03,3,Bekasi Utara,sex,laki_laki,,174166,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+32.75.03,3,Bekasi Utara,sex,perempuan,,173521,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+32.75.03,3,Bekasi Utara,total,total,,347687,jiwa,2025,registration,total_population,3.2,27,,

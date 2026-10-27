@@ -1,0 +1,48 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.05.05,3,Langgam,total,total,,39326,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.02,3,Pangkalan Kerinci,total,total,,114687,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.11,3,Bandar Sei Kijang,total,total,,23884,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.03,3,Pangkalan Kuras,total,total,,73513,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.01,3,Ukui,total,total,,46693,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.04,3,Pangkalan Lesung,total,total,,31784,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.08,3,Bunut,total,total,,17087,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.06,3,Pelalawan,total,total,,21897,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.12,3,Bandar Petalangan,total,total,,18187,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.10,3,Kuala Kampar,total,total,,18577,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.07,3,Kerumutan,total,total,,26980,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05.09,3,Teluk Meranti,total,total,,20052,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05,2,Pelalawan,total,total,,452667,jiwa,2025,registration,total_population,3.1.1,51,,
+14.05,2,Kabupaten Pelalawan,age_group,0-4,perempuan,14332,jiwa,2025,registration,total_population,3.1.2,54,,0–4
+14.05,2,Kabupaten Pelalawan,age_group,0-4,,29504,jiwa,2025,registration,total_population,3.1.2,54,,0–4
+14.05,2,Kabupaten Pelalawan,age_group,5-9,perempuan,22381,jiwa,2025,registration,total_population,3.1.2,54,,5–9
+14.05,2,Kabupaten Pelalawan,age_group,5-9,,46223,jiwa,2025,registration,total_population,3.1.2,54,,5–9
+14.05,2,Kabupaten Pelalawan,age_group,10-14,perempuan,23853,jiwa,2025,registration,total_population,3.1.2,54,,10–14
+14.05,2,Kabupaten Pelalawan,age_group,10-14,,49475,jiwa,2025,registration,total_population,3.1.2,54,,10–14
+14.05,2,Kabupaten Pelalawan,age_group,15-19,perempuan,20128,jiwa,2025,registration,total_population,3.1.2,54,,15–19
+14.05,2,Kabupaten Pelalawan,age_group,15-19,,41668,jiwa,2025,registration,total_population,3.1.2,54,,15–19
+14.05,2,Kabupaten Pelalawan,age_group,20-24,perempuan,18960,jiwa,2025,registration,total_population,3.1.2,54,,20–24
+14.05,2,Kabupaten Pelalawan,age_group,20-24,,39400,jiwa,2025,registration,total_population,3.1.2,54,,20–24
+14.05,2,Kabupaten Pelalawan,age_group,25-29,perempuan,18047,jiwa,2025,registration,total_population,3.1.2,54,,25–29
+14.05,2,Kabupaten Pelalawan,age_group,25-29,,36720,jiwa,2025,registration,total_population,3.1.2,54,,25–29
+14.05,2,Kabupaten Pelalawan,age_group,30-34,perempuan,17658,jiwa,2025,registration,total_population,3.1.2,54,,30–34
+14.05,2,Kabupaten Pelalawan,age_group,30-34,,35298,jiwa,2025,registration,total_population,3.1.2,54,,30–34
+14.05,2,Kabupaten Pelalawan,age_group,35-39,perempuan,18967,jiwa,2025,registration,total_population,3.1.2,54,,35–39
+14.05,2,Kabupaten Pelalawan,age_group,35-39,,37272,jiwa,2025,registration,total_population,3.1.2,54,,35–39
+14.05,2,Kabupaten Pelalawan,age_group,40-44,perempuan,18031,jiwa,2025,registration,total_population,3.1.2,54,,40–44
+14.05,2,Kabupaten Pelalawan,age_group,40-44,,36462,jiwa,2025,registration,total_population,3.1.2,54,,40–44
+14.05,2,Kabupaten Pelalawan,age_group,45-49,perempuan,15302,jiwa,2025,registration,total_population,3.1.2,54,,45–49
+14.05,2,Kabupaten Pelalawan,age_group,45-49,,32074,jiwa,2025,registration,total_population,3.1.2,54,,45–49
+14.05,2,Kabupaten Pelalawan,age_group,50-54,perempuan,11185,jiwa,2025,registration,total_population,3.1.2,54,,50–54
+14.05,2,Kabupaten Pelalawan,age_group,50-54,,23926,jiwa,2025,registration,total_population,3.1.2,54,,50–54
+14.05,2,Kabupaten Pelalawan,age_group,55-59,perempuan,8221,jiwa,2025,registration,total_population,3.1.2,54,,55–59
+14.05,2,Kabupaten Pelalawan,age_group,55-59,,17635,jiwa,2025,registration,total_population,3.1.2,54,,55–59
+14.05,2,Kabupaten Pelalawan,age_group,60-64,perempuan,5435,jiwa,2025,registration,total_population,3.1.2,54,,60–64
+14.05,2,Kabupaten Pelalawan,age_group,60-64,,11625,jiwa,2025,registration,total_population,3.1.2,54,,60–64
+14.05,2,Kabupaten Pelalawan,age_group,65-69,perempuan,3682,jiwa,2025,registration,total_population,3.1.2,54,,65–69
+14.05,2,Kabupaten Pelalawan,age_group,65-69,,7950,jiwa,2025,registration,total_population,3.1.2,54,,65–69
+14.05,2,Kabupaten Pelalawan,age_group,70-74,perempuan,1771,jiwa,2025,registration,total_population,3.1.2,54,,70–74
+14.05,2,Kabupaten Pelalawan,age_group,70-74,,3928,jiwa,2025,registration,total_population,3.1.2,54,,70–74
+14.05,2,Kabupaten Pelalawan,age_group,75+,perempuan,1689,jiwa,2025,registration,total_population,3.1.2,54,,75+
+14.05,2,Kabupaten Pelalawan,age_group,75+,,3507,jiwa,2025,registration,total_population,3.1.2,54,,75+
+14.05,2,Kabupaten Pelalawan,sex,perempuan,,219642,jiwa,2025,registration,total_population,3.1.2,54,,Perempuan
+14.05,2,Kabupaten Pelalawan,total,total,,452667,jiwa,2025,registration,total_population,3.1.2,54,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.17.2009,4,Pusakamulya,sex,laki_laki,,2722,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2009,4,Pusakamulya,sex,perempuan,,2525,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2009,4,Pusakamulya,total,total,,5247,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2003,4,Parakan Garokgek,sex,laki_laki,,1770,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2003,4,Parakan Garokgek,sex,perempuan,,1746,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2003,4,Parakan Garokgek,total,total,,3516,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2002,4,Ciracas,sex,laki_laki,,1557,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2002,4,Ciracas,sex,perempuan,,1474,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2002,4,Ciracas,total,total,,3031,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2001,4,Kiarapedes,sex,laki_laki,,1703,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2001,4,Kiarapedes,sex,perempuan,,1599,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2001,4,Kiarapedes,total,total,,3302,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2008,4,Cibeber,sex,laki_laki,,1341,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2008,4,Cibeber,sex,perempuan,,1221,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2008,4,Cibeber,total,total,,2562,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2010,4,Sumbersari,sex,laki_laki,,1070,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2010,4,Sumbersari,sex,perempuan,,1079,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2010,4,Sumbersari,total,total,,2149,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2005,4,Mekarjaya,sex,laki_laki,,1467,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2005,4,Mekarjaya,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2005,4,Mekarjaya,total,total,,2834,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2006,4,Margaluyu,sex,laki_laki,,1623,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2006,4,Margaluyu,sex,perempuan,,1571,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2006,4,Margaluyu,total,total,,3194,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2007,4,Gardu,sex,laki_laki,,1174,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2007,4,Gardu,sex,perempuan,,1124,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2007,4,Gardu,total,total,,2298,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17.2004,4,Taringgul Landeuh,sex,laki_laki,,1163,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17.2004,4,Taringgul Landeuh,sex,perempuan,,1080,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17.2004,4,Taringgul Landeuh,total,total,,2243,jiwa,2025,registration,total_population,3.1,22,,
+32.14.17,3,Kecamatan Kiarapedes,sex,laki_laki,,15590,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.17,3,Kecamatan Kiarapedes,sex,perempuan,,14786,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.17,3,Kecamatan Kiarapedes,total,total,,30376,jiwa,2025,registration,total_population,3.1,22,,

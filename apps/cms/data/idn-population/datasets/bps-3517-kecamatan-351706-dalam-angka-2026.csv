@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.06,3,Mojoagung,age_group,0-4,perempuan,2146,jiwa,2025,registration,total_population,3.2,36,,0–4
+35.17.06,3,Mojoagung,age_group,0-4,,4482,jiwa,2025,registration,total_population,3.2,36,,0–4
+35.17.06,3,Mojoagung,age_group,5-9,perempuan,3065,jiwa,2025,registration,total_population,3.2,36,,5–9
+35.17.06,3,Mojoagung,age_group,5-9,,6310,jiwa,2025,registration,total_population,3.2,36,,5–9
+35.17.06,3,Mojoagung,age_group,10-14,perempuan,3194,jiwa,2025,registration,total_population,3.2,36,,10–14
+35.17.06,3,Mojoagung,age_group,10-14,,6780,jiwa,2025,registration,total_population,3.2,36,,10–14
+35.17.06,3,Mojoagung,age_group,15-19,perempuan,3371,jiwa,2025,registration,total_population,3.2,36,,15–19
+35.17.06,3,Mojoagung,age_group,15-19,,6767,jiwa,2025,registration,total_population,3.2,36,,15–19
+35.17.06,3,Mojoagung,age_group,20-24,perempuan,3211,jiwa,2025,registration,total_population,3.2,36,,20–24
+35.17.06,3,Mojoagung,age_group,20-24,,6661,jiwa,2025,registration,total_population,3.2,36,,20–24
+35.17.06,3,Mojoagung,age_group,25-29,perempuan,2900,jiwa,2025,registration,total_population,3.2,36,,25–29
+35.17.06,3,Mojoagung,age_group,25-29,,6194,jiwa,2025,registration,total_population,3.2,36,,25–29
+35.17.06,3,Mojoagung,age_group,30-34,perempuan,2859,jiwa,2025,registration,total_population,3.2,36,,30–34
+35.17.06,3,Mojoagung,age_group,30-34,,6035,jiwa,2025,registration,total_population,3.2,36,,30–34
+35.17.06,3,Mojoagung,age_group,35-39,perempuan,2896,jiwa,2025,registration,total_population,3.2,36,,35–39
+35.17.06,3,Mojoagung,age_group,35-39,,5994,jiwa,2025,registration,total_population,3.2,36,,35–39
+35.17.06,3,Mojoagung,age_group,40-44,perempuan,3247,jiwa,2025,registration,total_population,3.2,36,,40–44
+35.17.06,3,Mojoagung,age_group,40-44,,6720,jiwa,2025,registration,total_population,3.2,36,,40–44
+35.17.06,3,Mojoagung,age_group,45-49,perempuan,2994,jiwa,2025,registration,total_population,3.2,36,,45–49
+35.17.06,3,Mojoagung,age_group,45-49,,6157,jiwa,2025,registration,total_population,3.2,36,,45–49
+35.17.06,3,Mojoagung,age_group,50-54,perempuan,2832,jiwa,2025,registration,total_population,3.2,36,,50–54
+35.17.06,3,Mojoagung,age_group,50-54,,5562,jiwa,2025,registration,total_population,3.2,36,,50–54
+35.17.06,3,Mojoagung,age_group,55-59,perempuan,2559,jiwa,2025,registration,total_population,3.2,36,,55–59
+35.17.06,3,Mojoagung,age_group,55-59,,4914,jiwa,2025,registration,total_population,3.2,36,,55–59
+35.17.06,3,Mojoagung,age_group,60-64,perempuan,2261,jiwa,2025,registration,total_population,3.2,36,,60–64
+35.17.06,3,Mojoagung,age_group,60-64,,4352,jiwa,2025,registration,total_population,3.2,36,,60–64
+35.17.06,3,Mojoagung,age_group,65-69,perempuan,1646,jiwa,2025,registration,total_population,3.2,36,,65–69
+35.17.06,3,Mojoagung,age_group,65-69,,3210,jiwa,2025,registration,total_population,3.2,36,,65–69
+35.17.06,3,Mojoagung,age_group,70-74,perempuan,996,jiwa,2025,registration,total_population,3.2,36,,70–74
+35.17.06,3,Mojoagung,age_group,70-74,,1915,jiwa,2025,registration,total_population,3.2,36,,70–74
+35.17.06,3,Mojoagung,age_group,75+,perempuan,1523,jiwa,2025,registration,total_population,3.2,36,,75+
+35.17.06,3,Mojoagung,age_group,75+,,2498,jiwa,2025,registration,total_population,3.2,36,,75+
+35.17.06,3,Kecamatan Mojoagung,sex,perempuan,,41700,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+35.17.06,3,Kecamatan Mojoagung,total,total,,84551,jiwa,2025,registration,total_population,3.2,36,,

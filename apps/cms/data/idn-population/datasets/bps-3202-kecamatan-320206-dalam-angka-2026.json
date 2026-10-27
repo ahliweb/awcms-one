@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3202-kecamatan-320206-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.02.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cikidang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi",
+  "publisherDomain": "3202",
+  "publisherWebsite": "https://sukabumikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi (https://sukabumikab.bps.go.id), publikasi \"Kecamatan Cikidang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3202280",
+  "publicationNumber": "32020.26032",
+  "issn": "2798-7574",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikab.bps.go.id/id/publication/2026/09/28/f125a14727be3ccf86550fdb/kecamatan-cikidang-dalam-angka-2026.html",
+  "sourceFileSha256": "162c10dbbfb6d401e4943339e938e5d971de7ecc135aa962adbdf0d5b93ddd2c",
+  "sourceFileBytes": 6642435,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sukabumi.",
+  "csvPath": "datasets/bps-3202-kecamatan-320206-dalam-angka-2026.csv",
+  "csvSha256": "8b05587494564eabaf953ca655740c8c32c84c782d7d20a51905a23ace3ff04b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cikidang, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Cikarae Thoyibah\": unmatched ",
+    "table 3.1: row not stored: row \"Cikarae Thoyibah\": unmatched "
+  ]
+}

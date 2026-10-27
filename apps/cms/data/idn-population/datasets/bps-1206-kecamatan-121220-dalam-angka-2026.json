@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1206-kecamatan-121220-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.12.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siantar Narumonda Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Toba",
+  "publisherDomain": "1206",
+  "publisherWebsite": "https://tobakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Toba (https://tobakab.bps.go.id), publikasi \"Kecamatan Siantar Narumonda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1206072",
+  "publicationNumber": "12060.26018",
+  "issn": "2461-0100",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tobakab.bps.go.id/id/publication/2026/09/28/95a41627ac3a3f52b7531c7d/kecamatan-siantar-narumonda-dalam-angka-2026.html",
+  "sourceFileSha256": "b06d63c5dc36e64c84e7735600c41b67c1ad03f4b383122c86aedcc896a44b74",
+  "sourceFileBytes": 5267198,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Toba.",
+  "csvPath": "datasets/bps-1206-kecamatan-121220-dalam-angka-2026.csv",
+  "csvSha256": "22180707eae7728b1f85915fca99a231fdf04c78c83893caaef98c53a08861fd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Siantar Narumonda, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siantar Narumonda, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

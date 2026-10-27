@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.30.2004,4,Taman sari,sex,laki_laki,,1223,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2004,4,Taman sari,sex,perempuan,,1194,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2004,4,Taman sari,total,total,,2417,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2002,4,Perhutaan Silau,sex,laki_laki,,1853,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2002,4,Perhutaan Silau,sex,perempuan,,1826,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2002,4,Perhutaan Silau,total,total,,3679,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2001,4,Sukadamai,sex,laki_laki,,1848,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2001,4,Sukadamai,sex,perempuan,,1799,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2001,4,Sukadamai,total,total,,3647,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2003,4,Tanah Rakyat,sex,laki_laki,,2254,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2003,4,Tanah Rakyat,sex,perempuan,,2130,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2003,4,Tanah Rakyat,total,total,,4384,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2005,4,Gedangan,sex,laki_laki,,2407,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2005,4,Gedangan,sex,perempuan,,2351,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2005,4,Gedangan,total,total,,4758,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2008,4,Sidomulyo,sex,laki_laki,,1737,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2008,4,Sidomulyo,sex,perempuan,,1670,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2008,4,Sidomulyo,total,total,,3407,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2007,4,Pulo Bandring,sex,laki_laki,,2073,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2007,4,Pulo Bandring,sex,perempuan,,2027,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2007,4,Pulo Bandring,total,total,,4100,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2006,4,Sukamakmur,sex,laki_laki,,1025,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2006,4,Sukamakmur,sex,perempuan,,988,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2006,4,Sukamakmur,total,total,,2013,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30.2009,4,Sukadamai Barat,sex,laki_laki,,1719,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30.2009,4,Sukadamai Barat,sex,perempuan,,1635,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30.2009,4,Sukadamai Barat,total,total,,3354,jiwa,2025,registration,total_population,3.1,24,,
+12.09.30,3,Pulo Bandring,sex,laki_laki,,18278,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.09.30,3,Pulo Bandring,sex,perempuan,,17623,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.09.30,3,Pulo Bandring,total,total,,35901,jiwa,2025,registration,total_population,3.1,24,,

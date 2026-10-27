@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.03.2001,4,Sidodadi,sex,laki_laki,,3495,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2001,4,Sidodadi,sex,perempuan,,3541,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2001,4,Sidodadi,total,total,,7036,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2002,4,Karang Malang,sex,laki_laki,,2544,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2002,4,Karang Malang,sex,perempuan,,2558,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2002,4,Karang Malang,total,total,,5102,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2003,4,Krebet,sex,laki_laki,,3062,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2003,4,Krebet,sex,perempuan,,2983,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2003,4,Krebet,total,total,,6045,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2004,4,Sepat,sex,laki_laki,,4366,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2004,4,Sepat,sex,perempuan,,4423,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2004,4,Sepat,total,total,,8789,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2005,4,Jirapan,sex,laki_laki,,3576,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2005,4,Jirapan,sex,perempuan,,3568,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2005,4,Jirapan,total,total,,7144,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2006,4,Gebang,sex,laki_laki,,3114,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2006,4,Gebang,sex,perempuan,,3157,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2006,4,Gebang,total,total,,6271,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2007,4,Dawungan,sex,laki_laki,,2429,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2007,4,Dawungan,sex,perempuan,,2468,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2007,4,Dawungan,total,total,,4897,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2008,4,Masaran,sex,laki_laki,,4296,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2008,4,Masaran,sex,perempuan,,4241,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2008,4,Masaran,total,total,,8537,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2009,4,Jati,sex,laki_laki,,2698,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2009,4,Jati,sex,perempuan,,2768,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2009,4,Jati,total,total,,5466,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2010,4,Kliwonan,sex,laki_laki,,3112,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2010,4,Kliwonan,sex,perempuan,,3084,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2010,4,Kliwonan,total,total,,6196,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2011,4,Pilang,sex,laki_laki,,3142,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2011,4,Pilang,sex,perempuan,,3064,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2011,4,Pilang,total,total,,6206,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2012,4,Pringanom,sex,laki_laki,,2670,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2012,4,Pringanom,sex,perempuan,,2597,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2012,4,Pringanom,total,total,,5267,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03.2013,4,Krikilan,sex,laki_laki,,2764,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03.2013,4,Krikilan,sex,perempuan,,2717,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03.2013,4,Krikilan,total,total,,5481,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03,3,Kecamatan Masaran,sex,laki_laki,,41268,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.03,3,Kecamatan Masaran,sex,perempuan,,41169,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.03,3,Kecamatan Masaran,total,total,,82437,jiwa,2025,registration,total_population,3.1,32,,
+33.14.03,3,Masaran,age_group,0-4,laki_laki,2510,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.03,3,Masaran,age_group,0-4,perempuan,2423,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.03,3,Masaran,age_group,0-4,,4933,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.03,3,Masaran,age_group,5-9,laki_laki,3262,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.03,3,Masaran,age_group,5-9,perempuan,3041,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.03,3,Masaran,age_group,5-9,,6303,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.03,3,Masaran,age_group,10-14,laki_laki,3341,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.03,3,Masaran,age_group,10-14,perempuan,3066,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.03,3,Masaran,age_group,10-14,,6407,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.03,3,Masaran,age_group,15-19,laki_laki,3469,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.03,3,Masaran,age_group,15-19,perempuan,3181,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.03,3,Masaran,age_group,15-19,,6650,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.03,3,Masaran,age_group,20-24,laki_laki,3268,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.03,3,Masaran,age_group,20-24,perempuan,3125,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.03,3,Masaran,age_group,20-24,,6393,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.03,3,Masaran,age_group,25-29,laki_laki,2995,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.03,3,Masaran,age_group,25-29,perempuan,2930,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.03,3,Masaran,age_group,25-29,,5925,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.03,3,Masaran,age_group,30-34,laki_laki,2740,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.03,3,Masaran,age_group,30-34,perempuan,2653,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.03,3,Masaran,age_group,30-34,,5393,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.03,3,Masaran,age_group,35-39,laki_laki,2533,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.03,3,Masaran,age_group,35-39,perempuan,2553,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.03,3,Masaran,age_group,35-39,,5086,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.03,3,Masaran,age_group,40-44,laki_laki,3200,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.03,3,Masaran,age_group,40-44,perempuan,3408,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.03,3,Masaran,age_group,40-44,,6608,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.03,3,Masaran,age_group,45-49,laki_laki,3144,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.03,3,Masaran,age_group,45-49,perempuan,3217,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.03,3,Masaran,age_group,45-49,,6361,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.03,3,Masaran,age_group,50-54,laki_laki,2629,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.03,3,Masaran,age_group,50-54,perempuan,2749,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.03,3,Masaran,age_group,50-54,,5378,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.03,3,Masaran,age_group,55-59,laki_laki,2422,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.03,3,Masaran,age_group,55-59,perempuan,2336,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.03,3,Masaran,age_group,55-59,,4758,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.03,3,Masaran,age_group,60-64,laki_laki,1753,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.03,3,Masaran,age_group,60-64,perempuan,2028,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.03,3,Masaran,age_group,60-64,,3781,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.03,3,Masaran,age_group,65-69,laki_laki,1664,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.03,3,Masaran,age_group,65-69,perempuan,1683,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.03,3,Masaran,age_group,65-69,,3347,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.03,3,Masaran,age_group,70-74,laki_laki,1065,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.03,3,Masaran,age_group,70-74,perempuan,1047,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.03,3,Masaran,age_group,70-74,,2112,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.03,3,Masaran,age_group,75+,laki_laki,1273,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.03,3,Masaran,age_group,75+,perempuan,1729,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.03,3,Masaran,age_group,75+,,3002,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.03,3,Kecamatan Masaran,sex,laki_laki,,41268,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+33.14.03,3,Kecamatan Masaran,sex,perempuan,,41169,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+33.14.03,3,Kecamatan Masaran,total,total,,82437,jiwa,2025,registration,total_population,3.2,34,,

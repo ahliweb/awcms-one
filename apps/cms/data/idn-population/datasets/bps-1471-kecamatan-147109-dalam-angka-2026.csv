@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.71.09.1002,4,Tangkerang Tengah,sex,laki_laki,,18936,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.09.1002,4,Tangkerang Tengah,sex,perempuan,,18594,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.09.1002,4,Tangkerang Tengah,total,total,,37530,jiwa,2025,registration,total_population,3.1,22,,
+14.71.09.1001,4,Tangkerang Barat,sex,laki_laki,,11981,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.09.1001,4,Tangkerang Barat,sex,perempuan,,11948,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.09.1001,4,Tangkerang Barat,total,total,,23929,jiwa,2025,registration,total_population,3.1,22,,
+14.71.09.1005,4,Maharatu,sex,laki_laki,,11071,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.09.1005,4,Maharatu,sex,perempuan,,10756,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.09.1005,4,Maharatu,total,total,,21827,jiwa,2025,registration,total_population,3.1,22,,
+14.71.09.1003,4,Sidomulyo Timur,sex,laki_laki,,18097,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.09.1003,4,Sidomulyo Timur,sex,perempuan,,18138,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.09.1003,4,Sidomulyo Timur,total,total,,36235,jiwa,2025,registration,total_population,3.1,22,,
+14.71.09.1004,4,Wonorejo,sex,laki_laki,,7289,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.09.1004,4,Wonorejo,sex,perempuan,,7393,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.09.1004,4,Wonorejo,total,total,,14682,jiwa,2025,registration,total_population,3.1,22,,
+14.71.09.1006,4,Perhentian Marpoyan,sex,laki_laki,,12466,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.09.1006,4,Perhentian Marpoyan,sex,perempuan,,12224,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.09.1006,4,Perhentian Marpoyan,total,total,,24690,jiwa,2025,registration,total_population,3.1,22,,
+14.71.09,3,Marpoyan Damai,sex,laki_laki,,79840,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.09,3,Marpoyan Damai,sex,perempuan,,79053,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.09,3,Marpoyan Damai,total,total,,158893,jiwa,2025,registration,total_population,3.1,22,,
+14.71.09,3,Marpoyan Damai,age_group,0-4,laki_laki,5952,jiwa,2025,registration,total_population,3.2,24,,0–4
+14.71.09,3,Marpoyan Damai,age_group,0-4,perempuan,5485,jiwa,2025,registration,total_population,3.2,24,,0–4
+14.71.09,3,Marpoyan Damai,age_group,0-4,,11437,jiwa,2025,registration,total_population,3.2,24,,0–4
+14.71.09,3,Marpoyan Damai,age_group,5-9,laki_laki,7623,jiwa,2025,registration,total_population,3.2,24,,5–9
+14.71.09,3,Marpoyan Damai,age_group,5-9,perempuan,7174,jiwa,2025,registration,total_population,3.2,24,,5–9
+14.71.09,3,Marpoyan Damai,age_group,5-9,,14797,jiwa,2025,registration,total_population,3.2,24,,5–9
+14.71.09,3,Marpoyan Damai,age_group,10-14,laki_laki,7612,jiwa,2025,registration,total_population,3.2,24,,10–14
+14.71.09,3,Marpoyan Damai,age_group,10-14,perempuan,7156,jiwa,2025,registration,total_population,3.2,24,,10–14
+14.71.09,3,Marpoyan Damai,age_group,10-14,,14768,jiwa,2025,registration,total_population,3.2,24,,10–14
+14.71.09,3,Marpoyan Damai,age_group,15-19,laki_laki,6946,jiwa,2025,registration,total_population,3.2,24,,15–19
+14.71.09,3,Marpoyan Damai,age_group,15-19,perempuan,6270,jiwa,2025,registration,total_population,3.2,24,,15–19
+14.71.09,3,Marpoyan Damai,age_group,15-19,,13216,jiwa,2025,registration,total_population,3.2,24,,15–19
+14.71.09,3,Marpoyan Damai,age_group,20-24,laki_laki,6597,jiwa,2025,registration,total_population,3.2,24,,20–24
+14.71.09,3,Marpoyan Damai,age_group,20-24,perempuan,6256,jiwa,2025,registration,total_population,3.2,24,,20–24
+14.71.09,3,Marpoyan Damai,age_group,20-24,,12853,jiwa,2025,registration,total_population,3.2,24,,20–24
+14.71.09,3,Marpoyan Damai,age_group,25-29,laki_laki,6458,jiwa,2025,registration,total_population,3.2,24,,25–29
+14.71.09,3,Marpoyan Damai,age_group,25-29,perempuan,6660,jiwa,2025,registration,total_population,3.2,24,,25–29
+14.71.09,3,Marpoyan Damai,age_group,25-29,,13118,jiwa,2025,registration,total_population,3.2,24,,25–29
+14.71.09,3,Marpoyan Damai,age_group,30-34,laki_laki,6412,jiwa,2025,registration,total_population,3.2,24,,30–34
+14.71.09,3,Marpoyan Damai,age_group,30-34,perempuan,6789,jiwa,2025,registration,total_population,3.2,24,,30–34
+14.71.09,3,Marpoyan Damai,age_group,30-34,,13201,jiwa,2025,registration,total_population,3.2,24,,30–34
+14.71.09,3,Marpoyan Damai,age_group,35-39,laki_laki,6346,jiwa,2025,registration,total_population,3.2,24,,35–39
+14.71.09,3,Marpoyan Damai,age_group,35-39,perempuan,6668,jiwa,2025,registration,total_population,3.2,24,,35–39
+14.71.09,3,Marpoyan Damai,age_group,35-39,,13014,jiwa,2025,registration,total_population,3.2,24,,35–39
+14.71.09,3,Marpoyan Damai,age_group,40-44,laki_laki,6162,jiwa,2025,registration,total_population,3.2,24,,40–44
+14.71.09,3,Marpoyan Damai,age_group,40-44,perempuan,6371,jiwa,2025,registration,total_population,3.2,24,,40–44
+14.71.09,3,Marpoyan Damai,age_group,40-44,,12533,jiwa,2025,registration,total_population,3.2,24,,40–44
+14.71.09,3,Marpoyan Damai,age_group,45-49,laki_laki,5529,jiwa,2025,registration,total_population,3.2,24,,45–49
+14.71.09,3,Marpoyan Damai,age_group,45-49,perempuan,5533,jiwa,2025,registration,total_population,3.2,24,,45–49
+14.71.09,3,Marpoyan Damai,age_group,45-49,,11062,jiwa,2025,registration,total_population,3.2,24,,45–49
+14.71.09,3,Marpoyan Damai,age_group,50-54,laki_laki,4578,jiwa,2025,registration,total_population,3.2,24,,50–54
+14.71.09,3,Marpoyan Damai,age_group,50-54,perempuan,4709,jiwa,2025,registration,total_population,3.2,24,,50–54
+14.71.09,3,Marpoyan Damai,age_group,50-54,,9287,jiwa,2025,registration,total_population,3.2,24,,50–54
+14.71.09,3,Marpoyan Damai,age_group,55-59,laki_laki,3481,jiwa,2025,registration,total_population,3.2,24,,55–59
+14.71.09,3,Marpoyan Damai,age_group,55-59,perempuan,3530,jiwa,2025,registration,total_population,3.2,24,,55–59
+14.71.09,3,Marpoyan Damai,age_group,55-59,,7011,jiwa,2025,registration,total_population,3.2,24,,55–59
+14.71.09,3,Marpoyan Damai,age_group,60-64,laki_laki,2614,jiwa,2025,registration,total_population,3.2,24,,60–64
+14.71.09,3,Marpoyan Damai,age_group,60-64,perempuan,2699,jiwa,2025,registration,total_population,3.2,24,,60–64
+14.71.09,3,Marpoyan Damai,age_group,60-64,,5313,jiwa,2025,registration,total_population,3.2,24,,60–64
+14.71.09,3,Marpoyan Damai,age_group,65-69,laki_laki,1819,jiwa,2025,registration,total_population,3.2,24,,65–69
+14.71.09,3,Marpoyan Damai,age_group,65-69,perempuan,1841,jiwa,2025,registration,total_population,3.2,24,,65–69
+14.71.09,3,Marpoyan Damai,age_group,65-69,,3660,jiwa,2025,registration,total_population,3.2,24,,65–69
+14.71.09,3,Marpoyan Damai,age_group,70-74,laki_laki,1024,jiwa,2025,registration,total_population,3.2,24,,70–74
+14.71.09,3,Marpoyan Damai,age_group,70-74,perempuan,1057,jiwa,2025,registration,total_population,3.2,24,,70–74
+14.71.09,3,Marpoyan Damai,age_group,70-74,,2081,jiwa,2025,registration,total_population,3.2,24,,70–74
+14.71.09,3,Marpoyan Damai,age_group,75+,laki_laki,687,jiwa,2025,registration,total_population,3.2,24,,75+
+14.71.09,3,Marpoyan Damai,age_group,75+,perempuan,855,jiwa,2025,registration,total_population,3.2,24,,75+
+14.71.09,3,Marpoyan Damai,age_group,75+,,1542,jiwa,2025,registration,total_population,3.2,24,,75+
+14.71.09,3,Marpoyan Damai,sex,laki_laki,,79840,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+14.71.09,3,Marpoyan Damai,sex,perempuan,,79053,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+14.71.09,3,Marpoyan Damai,total,total,,158893,jiwa,2025,registration,total_population,3.2,24,,

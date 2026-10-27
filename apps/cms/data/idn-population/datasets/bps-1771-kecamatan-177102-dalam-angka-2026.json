@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1771-kecamatan-177102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.71.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gading Cempaka Dalam Angka 2026",
+  "publisherName": "BPS Kota Bengkulu",
+  "publisherDomain": "1771",
+  "publisherWebsite": "https://bengkulukota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bengkulu (https://bengkulukota.bps.go.id), publikasi \"Kecamatan Gading Cempaka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1771020",
+  "publicationNumber": "17710.26008",
+  "issn": "2623-114X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bengkulukota.bps.go.id/id/publication/2026/09/28/1a82b585659ccd62e4b7a254/kecamatan-gading-cempaka-dalam-angka-2026.html",
+  "sourceFileSha256": "a5812770fc166d434b0a56cdf2c9bc143f78a7bc4040ba668595843cbf95f9bd",
+  "sourceFileBytes": 3901583,
+  "sourcePages": [24, 48],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bengkulu.",
+  "csvPath": "datasets/bps-1771-kecamatan-177102-dalam-angka-2026.csv",
+  "csvSha256": "788dc91c664a8ff47a0f62c1e923a670dfea5e3203c1ca18a75466bccb9413ed",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Jumlah KK, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Gading Cempaka, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Agama dan Kelurahan di Kecamatan Gading Cempaka, 2025",
+      "printedPages": [48],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "table 4.4.3 is not included: its published figures do not add up (religion/islam/- 2025: parts sum 36408.0000 != 5220.0000 (diff 31188.0000)); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,152 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.04.01,3,X Koto,total,total,,45.28,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.02,3,Batipuh,total,total,,31.68,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.14,3,Batipuah Selatan,total,total,,11.57,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.09,3,Pariangan,total,total,,21.17,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.03,3,Rambatan,total,total,,39.16,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.04,3,Lima Kaum,total,total,,41.41,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.05,3,Tanjung Emas,total,total,,25.80,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.11,3,Padang Ganting,total,total,,15.03,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.06,3,Lintau Buo,total,total,,20.55,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.13,3,Lintau Buo Utara,total,total,,39.19,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.07,3,Sungayang,total,total,,19.64,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.08,3,Sungai Tarab,total,total,,34.20,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.10,3,Salimpaung,total,total,,25.06,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.12,3,Tanjuang Baru,total,total,,14.97,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04,2,Tanah Datar,total,total,,384.69,ribu_jiwa,2025,registration,total_population,3.1.1,128,,
+13.04.01,3,X Koto,religion,islam,,45275,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.01,3,X Koto,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Protestan
+13.04.01,3,X Koto,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.01,3,X Koto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.01,3,X Koto,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,249,,Budha
+13.04.01,3,X Koto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.02,3,Batipuh,religion,islam,,31676,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.02,3,Batipuh,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Protestan
+13.04.02,3,Batipuh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.02,3,Batipuh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.02,3,Batipuh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.02,3,Batipuh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.14,3,Batipuah Selatan,religion,islam,,11571,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.14,3,Batipuah Selatan,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.14,3,Batipuah Selatan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.14,3,Batipuah Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.14,3,Batipuah Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.14,3,Batipuah Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.09,3,Pariangan,religion,islam,,21170,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.09,3,Pariangan,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Protestan
+13.04.09,3,Pariangan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.09,3,Pariangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.09,3,Pariangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.09,3,Pariangan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.03,3,Rambatan,religion,islam,,39160,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.03,3,Rambatan,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.03,3,Rambatan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.03,3,Rambatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.03,3,Rambatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.03,3,Rambatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.04,3,Lima Kaum,religion,islam,,41153,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.04,3,Lima Kaum,religion,kristen,,189,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.04,3,Lima Kaum,religion,katolik,,63,jiwa,2025,registration,total_population,4.3.1,249,,Katolik
+13.04.04,3,Lima Kaum,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.04,3,Lima Kaum,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,249,,Budha
+13.04.04,3,Lima Kaum,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.05,3,Tanjung Emas,religion,islam,,25795,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.05,3,Tanjung Emas,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.05,3,Tanjung Emas,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.05,3,Tanjung Emas,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.05,3,Tanjung Emas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.05,3,Tanjung Emas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.11,3,Padang Ganting,religion,islam,,15028,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.11,3,Padang Ganting,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Protestan
+13.04.11,3,Padang Ganting,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.11,3,Padang Ganting,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,249,,Hindu
+13.04.11,3,Padang Ganting,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.11,3,Padang Ganting,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.06,3,Lintau Buo,religion,islam,,20518,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.06,3,Lintau Buo,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.06,3,Lintau Buo,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,249,,Katolik
+13.04.06,3,Lintau Buo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.06,3,Lintau Buo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.06,3,Lintau Buo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.13,3,Lintau Buo Utara,religion,islam,,39154,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.13,3,Lintau Buo Utara,religion,kristen,,36,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.13,3,Lintau Buo Utara,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.13,3,Lintau Buo Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.13,3,Lintau Buo Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.13,3,Lintau Buo Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.07,3,Sungayang,religion,islam,,19633,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.07,3,Sungayang,religion,kristen,,3,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.07,3,Sungayang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.07,3,Sungayang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.07,3,Sungayang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.07,3,Sungayang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.08,3,Sungai Tarab,religion,islam,,34078,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.08,3,Sungai Tarab,religion,kristen,,61,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.08,3,Sungai Tarab,religion,katolik,,55,jiwa,2025,registration,total_population,4.3.1,249,,Katolik
+13.04.08,3,Sungai Tarab,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.08,3,Sungai Tarab,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,249,,Budha
+13.04.08,3,Sungai Tarab,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.10,3,Salimpaung,religion,islam,,25058,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.10,3,Salimpaung,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04.10,3,Salimpaung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.10,3,Salimpaung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.10,3,Salimpaung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.10,3,Salimpaung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04.12,3,Tanjuang Baru,religion,islam,,14968,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04.12,3,Tanjuang Baru,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Protestan
+13.04.12,3,Tanjuang Baru,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Katolik
+13.04.12,3,Tanjuang Baru,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Hindu
+13.04.12,3,Tanjuang Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Budha
+13.04.12,3,Tanjuang Baru,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04,2,Tanah Datar,religion,islam,,384237,jiwa,2025,registration,total_population,4.3.1,249,,Islam
+13.04,2,Tanah Datar,religion,kristen,,318,jiwa,2025,registration,total_population,4.3.1,249,,Protestan
+13.04,2,Tanah Datar,religion,katolik,,126,jiwa,2025,registration,total_population,4.3.1,249,,Katolik
+13.04,2,Tanah Datar,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,249,,Hindu
+13.04,2,Tanah Datar,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,249,,Budha
+13.04,2,Tanah Datar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,249,nil,Lainnya
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/padi_padian,,105313,rupiah,2024,survey_estimate,per_capita,10.1,470,,Padi-padian
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/padi_padian,,109576,rupiah,2025,survey_estimate,per_capita,10.1,470,,Padi-padian
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/umbi_umbian,,7659,rupiah,2024,survey_estimate,per_capita,10.1,470,,Umbi-umbian
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/umbi_umbian,,8767,rupiah,2025,survey_estimate,per_capita,10.1,470,,Umbi-umbian
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,68345,rupiah,2024,survey_estimate,per_capita,10.1,470,,Ikan/udang/cumi/kerang
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,71562,rupiah,2025,survey_estimate,per_capita,10.1,470,,Ikan/udang/cumi/kerang
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/daging,,34157,rupiah,2024,survey_estimate,per_capita,10.1,470,,Daging
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/daging,,36610,rupiah,2025,survey_estimate,per_capita,10.1,470,,Daging
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/telur_dan_susu,,35096,rupiah,2024,survey_estimate,per_capita,10.1,470,,Telur dan susu
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/telur_dan_susu,,37506,rupiah,2025,survey_estimate,per_capita,10.1,470,,Telur dan susu
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/sayur_sayuran,,78563,rupiah,2024,survey_estimate,per_capita,10.1,470,,Sayur-sayuran
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/sayur_sayuran,,69300,rupiah,2025,survey_estimate,per_capita,10.1,470,,Sayur-sayuran
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/kacang_kacangan,,9900,rupiah,2024,survey_estimate,per_capita,10.1,470,,Kacang-kacangan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/kacang_kacangan,,9508,rupiah,2025,survey_estimate,per_capita,10.1,470,,Kacang-kacangan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/buah_buahan,,38223,rupiah,2024,survey_estimate,per_capita,10.1,470,,Buah-buahan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/buah_buahan,,42084,rupiah,2025,survey_estimate,per_capita,10.1,470,,Buah-buahan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25571,rupiah,2024,survey_estimate,per_capita,10.1,470,,Minyak dan kelapa
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,29983,rupiah,2025,survey_estimate,per_capita,10.1,470,,Minyak dan kelapa
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/bahan_minuman,,16436,rupiah,2024,survey_estimate,per_capita,10.1,470,,Bahan minuman
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/bahan_minuman,,19542,rupiah,2025,survey_estimate,per_capita,10.1,470,,Bahan minuman
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/bumbu_bumbuan,,6432,rupiah,2024,survey_estimate,per_capita,10.1,470,,Bumbu-bumbuan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/bumbu_bumbuan,,7027,rupiah,2025,survey_estimate,per_capita,10.1,470,,Bumbu-bumbuan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/konsumsi_lainnya,,8897,rupiah,2024,survey_estimate,per_capita,10.1,470,,Konsumsi lainnya
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/konsumsi_lainnya,,11367,rupiah,2025,survey_estimate,per_capita,10.1,470,,Konsumsi lainnya
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,220738,rupiah,2024,survey_estimate,per_capita,10.1,470,,Makanan dan minuman jadi
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,236821,rupiah,2025,survey_estimate,per_capita,10.1,470,,Makanan dan minuman jadi
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/rokok_dan_tembakau,,97967,rupiah,2024,survey_estimate,per_capita,10.1,470,,Rokok dan tembakau
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/rokok_dan_tembakau,,93435,rupiah,2025,survey_estimate,per_capita,10.1,470,,Rokok dan tembakau
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/jumlah_makanan,,753297,rupiah,2024,survey_estimate,per_capita,10.1,470,,Jumlah makanan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/jumlah_makanan,,783087,rupiah,2025,survey_estimate,per_capita,10.1,470,,Jumlah makanan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,276311,rupiah,2024,survey_estimate,per_capita,10.1,470,,Perumahan dan fasilitas rumah tangga
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,269924,rupiah,2025,survey_estimate,per_capita,10.1,470,,Perumahan dan fasilitas rumah tangga
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,168376,rupiah,2024,survey_estimate,per_capita,10.1,470,,Aneka barang dan jasa
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,165537,rupiah,2025,survey_estimate,per_capita,10.1,470,,Aneka barang dan jasa
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,53305,rupiah,2024,survey_estimate,per_capita,10.1,470,,"Pakaian, alas kaki, dan tutup kepala"
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,46133,rupiah,2025,survey_estimate,per_capita,10.1,470,,"Pakaian, alas kaki, dan tutup kepala"
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/barang_tahan_lama,,35539,rupiah,2024,survey_estimate,per_capita,10.1,470,,Barang tahan lama
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/barang_tahan_lama,,38824,rupiah,2025,survey_estimate,per_capita,10.1,470,,Barang tahan lama
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,50960,rupiah,2024,survey_estimate,per_capita,10.1,470,,"Pajak, pungutan, dan asuransi"
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,65549,rupiah,2025,survey_estimate,per_capita,10.1,470,,"Pajak, pungutan, dan asuransi"
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24958,rupiah,2024,survey_estimate,per_capita,10.1,470,,Keperluan pesta dan upacara/kenduri
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,21429,rupiah,2025,survey_estimate,per_capita,10.1,470,,Keperluan pesta dan upacara/kenduri
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,609450,rupiah,2024,survey_estimate,per_capita,10.1,470,,Jumlah bukan makanan
+13.04,2,Kabupaten Tanah Datar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,607396,rupiah,2025,survey_estimate,per_capita,10.1,470,,Jumlah bukan makanan
+13.04,2,Kabupaten Tanah Datar,expenditure,total,,1362746,rupiah,2024,survey_estimate,per_capita,10.1,470,,
+13.04,2,Kabupaten Tanah Datar,expenditure,total,,1390483,rupiah,2025,survey_estimate,per_capita,10.1,470,,

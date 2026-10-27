@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-3600-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "36",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Banten Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Banten",
+  "publisherDomain": "3600",
+  "publisherWebsite": "https://banten.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Banten (https://banten.bps.go.id), publikasi \"Provinsi Banten Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.36",
+  "publicationNumber": "36000.26003",
+  "issn": "2088-4958",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://banten.bps.go.id/id/publication/2026/02/27/3346730ea6b65ef5c02faa10/provinsi-banten-dalam-angka-2026.html",
+  "sourceFileSha256": "d59879454ba33f1f0ce08606addc666b10e5999393eccb98f804ea52e1d48e8f",
+  "sourceFileBytes": 17656489,
+  "sourcePages": [117, 122],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Provinsi Banten.",
+  "csvPath": "datasets/bps-3600-dalam-angka-2026.csv",
+  "csvSha256": "9904a54b880479b2de6cec1b44d87a36a7270d116577f7b78f0dfaf5c4793cd4",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk per Tahun, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kabupaten/Kota di Provinsi Banten, 2020, 2025, dan 2026",
+      "printedPages": [117],
+      "referenceYears": [2020, 2026],
+      "figureBasis": "census+projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Provinsi Banten (ribu jiwa), 2025 dan 2026",
+      "printedPages": [122],
+      "referenceYears": [2025, 2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.2.14 (employed-by-industry) could not be read reliably and is not included (row \"Tangerang\": ambiguous 36.03,36.71)",
+    "table 3.2.21 (wage-by-industry) could not be read reliably and is not included (row \"Tangerang\": ambiguous 36.03,36.71)",
+    "table 3.2.22 (wage-by-age) could not be read reliably and is not included (no average column)"
+  ]
+}

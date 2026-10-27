@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351209-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mangaran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Mangaran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512110",
+  "publicationNumber": "35120.26013",
+  "issn": "2620-6986",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/5e3b656bcbf6f2c0cf2f718b/kecamatan-mangaran-dalam-angka-2026.html",
+  "sourceFileSha256": "5533481127acb315aecb764f8b2d2800dca6b93fb29d2b0f87c5fa785995c4c0",
+  "sourceFileBytes": 6039164,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351209-dalam-angka-2026.csv",
+  "csvSha256": "082c8ae197c66599aa7a2cdb60324650a3afc98a2507de44be526f213a264b73",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mangaran, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mangaran, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Confucian\" not recognised)",
+    "table 3.1: row not stored: row \"Tanjung Glugutr\": unmatched ",
+    "table 3.2: 47 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

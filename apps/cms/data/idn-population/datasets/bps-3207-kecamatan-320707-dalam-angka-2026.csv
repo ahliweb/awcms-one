@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.07.2001,4,Medanglayang,sex,laki_laki,,2971,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2001,4,Medanglayang,sex,perempuan,,2886,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2001,4,Medanglayang,total,total,,5857,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2002,4,Panumbangan,sex,laki_laki,,3169,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2002,4,Panumbangan,sex,perempuan,,3153,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2002,4,Panumbangan,total,total,,6322,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2008,4,Tanjungmulya,sex,laki_laki,,2452,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2008,4,Tanjungmulya,sex,perempuan,,2473,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2008,4,Tanjungmulya,total,total,,4925,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2011,4,Kertaraharja,sex,laki_laki,,1409,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2011,4,Kertaraharja,sex,perempuan,,1409,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2011,4,Kertaraharja,total,total,,2818,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2003,4,Sukakerta,sex,laki_laki,,1998,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2003,4,Sukakerta,sex,perempuan,,1939,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2003,4,Sukakerta,total,total,,3937,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2004,4,Golat,sex,laki_laki,,2170,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2004,4,Golat,sex,perempuan,,2118,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2004,4,Golat,total,total,,4288,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2005,4,Sindangherang,sex,laki_laki,,2657,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2005,4,Sindangherang,sex,perempuan,,2594,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2005,4,Sindangherang,total,total,,5251,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2012,4,Sindangmukti,sex,laki_laki,,1533,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2012,4,Sindangmukti,sex,perempuan,,1513,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2012,4,Sindangmukti,total,total,,3046,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2010,4,Jayagiri,sex,laki_laki,,2052,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2010,4,Jayagiri,sex,perempuan,,2112,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2010,4,Jayagiri,total,total,,4164,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2006,4,Banjarangsana,sex,laki_laki,,2383,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2006,4,Banjarangsana,sex,perempuan,,2406,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2006,4,Banjarangsana,total,total,,4789,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2009,4,Payungsari,sex,laki_laki,,2758,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2009,4,Payungsari,sex,perempuan,,2683,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2009,4,Payungsari,total,total,,5441,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2007,4,Payungagung,sex,laki_laki,,2555,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2007,4,Payungagung,sex,perempuan,,2558,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2007,4,Payungagung,total,total,,5113,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2013,4,Sindangbarang,sex,laki_laki,,2264,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2013,4,Sindangbarang,sex,perempuan,,2239,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2013,4,Sindangbarang,total,total,,4503,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07.2014,4,Buanamekar,sex,laki_laki,,1919,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07.2014,4,Buanamekar,sex,perempuan,,1857,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07.2014,4,Buanamekar,total,total,,3776,jiwa,2025,registration,total_population,3.1,36,,
+32.07.07,3,Kecamatan Panumbangan,sex,laki_laki,,32290,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.07.07,3,Kecamatan Panumbangan,sex,perempuan,,31940,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.07.07,3,Kecamatan Panumbangan,total,total,,64230,jiwa,2025,registration,total_population,3.1,36,,

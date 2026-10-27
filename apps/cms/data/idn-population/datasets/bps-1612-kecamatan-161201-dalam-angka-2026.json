@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-1612-kecamatan-161201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.12.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Talang Ubi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Penukal Abab Lematang Ilir",
+  "publisherDomain": "1612",
+  "publisherWebsite": "https://palikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Penukal Abab Lematang Ilir (https://palikab.bps.go.id), publikasi \"Kecamatan Talang Ubi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1612020",
+  "publicationNumber": "16120.26004",
+  "issn": "2745-3464",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://palikab.bps.go.id/id/publication/2026/09/28/a877b33227961ec43d8cd40b/kecamatan-talang-ubi-dalam-angka-2026.html",
+  "sourceFileSha256": "07a1abba2561765da2c77a49f553d132131dca7077a194890537609937352283",
+  "sourceFileBytes": 4404898,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Penukal Abab Lematang Ilir.",
+  "csvPath": "datasets/bps-1612-kecamatan-161201-dalam-angka-2026.csv",
+  "csvSha256": "f78dd42dc2a55bb2b7982ed1926455890b403329d433f8a504de4c3cafbbe79f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Talang Ubi, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kerta Dewa\": unmatched ",
+    "table 3.1: row not stored: row \"Handayani Mulia\": unmatched ",
+    "table 3.1: row not stored: row \"Kerta Dewa\": unmatched ",
+    "table 3.1: row not stored: row \"Handayani Mulia\": unmatched "
+  ]
+}

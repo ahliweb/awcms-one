@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.24.20.2002,4,Kedungsuren,sex,perempuan,,2954,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2002,4,Kedungsuren,total,total,,5911,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20.2001,4,Jerukgiling,sex,perempuan,,292,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2001,4,Jerukgiling,total,total,,620,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20.2003,4,Darupono,sex,perempuan,,1317,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2003,4,Darupono,total,total,,2640,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20.2004,4,Protomulyo,sex,perempuan,,6430,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2004,4,Protomulyo,total,total,,12993,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20.2005,4,Magelung,sex,perempuan,,5832,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2005,4,Magelung,total,total,,11779,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20.2006,4,Plantaran,sex,perempuan,,5634,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2006,4,Plantaran,total,total,,11299,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20.2007,4,Sukomulyo,sex,perempuan,,3002,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2007,4,Sukomulyo,total,total,,6183,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20.2008,4,Sidomakmur,sex,perempuan,,1603,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.20.2008,4,Sidomakmur,total,total,,3237,jiwa,2025,registration,total_population,3.1,27,,
+33.24.20,3,Kaliwungu Selatan,age_group,0-4,perempuan,1632,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.20,3,Kaliwungu Selatan,age_group,0-4,,3399,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.20,3,Kaliwungu Selatan,age_group,5-9,perempuan,2026,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.20,3,Kaliwungu Selatan,age_group,5-9,,4308,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.20,3,Kaliwungu Selatan,age_group,10-14,perempuan,2117,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.20,3,Kaliwungu Selatan,age_group,10-14,,4277,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.20,3,Kaliwungu Selatan,age_group,15-19,perempuan,2007,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.20,3,Kaliwungu Selatan,age_group,15-19,,4164,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.20,3,Kaliwungu Selatan,age_group,20-24,perempuan,1929,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.20,3,Kaliwungu Selatan,age_group,20-24,,3971,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.20,3,Kaliwungu Selatan,age_group,25-29,perempuan,2042,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.20,3,Kaliwungu Selatan,age_group,25-29,,4209,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.20,3,Kaliwungu Selatan,age_group,30-34,perempuan,2241,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.20,3,Kaliwungu Selatan,age_group,30-34,,4508,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.20,3,Kaliwungu Selatan,age_group,35-39,perempuan,2079,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.20,3,Kaliwungu Selatan,age_group,35-39,,4276,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.20,3,Kaliwungu Selatan,age_group,40-44,perempuan,2136,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.20,3,Kaliwungu Selatan,age_group,40-44,,4311,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.20,3,Kaliwungu Selatan,age_group,45-49,perempuan,2034,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.20,3,Kaliwungu Selatan,age_group,45-49,,4037,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.20,3,Kaliwungu Selatan,age_group,50-54,perempuan,1816,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.20,3,Kaliwungu Selatan,age_group,50-54,,3522,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.20,3,Kaliwungu Selatan,age_group,55-59,perempuan,1657,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.20,3,Kaliwungu Selatan,age_group,55-59,,3221,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.20,3,Kaliwungu Selatan,age_group,60-64,perempuan,1248,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.20,3,Kaliwungu Selatan,age_group,60-64,,2508,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.20,3,Kaliwungu Selatan,age_group,65-69,perempuan,943,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.20,3,Kaliwungu Selatan,age_group,65-69,,1858,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.20,3,Kaliwungu Selatan,age_group,70-74,perempuan,517,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.20,3,Kaliwungu Selatan,age_group,70-74,,1055,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.20,3,Kaliwungu Selatan,age_group,75+,perempuan,640,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.24.20,3,Kaliwungu Selatan,age_group,75+,,1038,jiwa,2025,registration,total_population,3.2,29,,> 75

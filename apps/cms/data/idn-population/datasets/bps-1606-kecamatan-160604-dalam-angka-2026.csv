@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.04,3,Batang Hari Leko,age_group,0-14,laki_laki,2865,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.04,3,Batang Hari Leko,age_group,0-14,perempuan,2732,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.04,3,Batang Hari Leko,age_group,0-14,,5597,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.04,3,Batang Hari Leko,age_group,15-64,laki_laki,7124,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.04,3,Batang Hari Leko,age_group,15-64,perempuan,6577,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.04,3,Batang Hari Leko,age_group,15-64,,13701,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.04,3,Batang Hari Leko,age_group,65+,laki_laki,489,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.04,3,Batang Hari Leko,age_group,65+,perempuan,475,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.04,3,Batang Hari Leko,age_group,65+,,964,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.04,3,Batanghari Leko,sex,laki_laki,,10478,jiwa,2026,projection,total_population,3.2,36,,Laki-Laki
+16.06.04,3,Batanghari Leko,sex,perempuan,,9784,jiwa,2026,projection,total_population,3.2,36,,Perempuan
+16.06.04,3,Batanghari Leko,total,total,,20262,jiwa,2026,projection,total_population,3.2,36,,

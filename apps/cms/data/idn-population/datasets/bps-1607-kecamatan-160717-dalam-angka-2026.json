@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160717-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sembawa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Sembawa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16070.26012",
+  "issn": "3064-5387",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/026520ab1fea06a40e2024fc/kecamatan-sembawa-dalam-angka-2026.html",
+  "sourceFileSha256": "6757307c7d229ba35551e06f0909815d2b80dd5e88f77e86333b98842abd443b",
+  "sourceFileBytes": 10546339,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160717-dalam-angka-2026.csv",
+  "csvSha256": "31158cda4b61f6325867e6b5c74cbf50e10e881ed94239f5a798f5e2a9d7ea78",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sembawa, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pulau Harapan 4.126\": unmatched ",
+    "table 3.1: row not stored: row \"Lalang Sembawa 4.322\": unmatched ",
+    "table 3.1: row not stored: row \"Rejodadi 2.477\": unmatched ",
+    "table 3.1: row not stored: row \"Mainan 2.600\": unmatched ",
+    "table 3.1: row not stored: row \"Limau 1.210\": unmatched ",
+    "table 3.1: row not stored: row \"Purwosari 1.535\": unmatched ",
+    "table 3.1: row not stored: row \"Limbang Mulya 186\": unmatched ",
+    "table 3.1: row not stored: row \"Sako Makmur 184\": unmatched ",
+    "table 3.1: row not stored: row \"Pulau Muning 135\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Damai 527\": unmatched ",
+    "table 3.1: row not stored: row \"Santan Sari 588\": unmatched ",
+    "table 3.1: row not stored: row \"Sembawa 17.890\": unmatched ",
+    "table 3.1: row not stored: row \"Limbang Mulya\": unmatched ",
+    "table 3.1: row not stored: row \"Desa persiapan Pulau Punjung\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Persiapan Sembawa Mulya\": unmatched ",
+    "table 3.1: row not stored: row \"Sembawa\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

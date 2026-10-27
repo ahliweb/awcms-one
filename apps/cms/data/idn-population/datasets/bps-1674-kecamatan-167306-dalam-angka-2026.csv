@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.73.06.1001,4,SIDOREJO,sex,laki_laki,,2220,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06.1001,4,SIDOREJO,sex,perempuan,,2188,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06.1001,4,SIDOREJO,total,total,,4408,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06.1003,4,TAPAK LEBAR,sex,laki_laki,,1015,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06.1003,4,TAPAK LEBAR,sex,perempuan,,1091,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06.1003,4,TAPAK LEBAR,total,total,,2106,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06.1002,4,ULAK LEBAR,sex,laki_laki,,2502,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06.1002,4,ULAK LEBAR,sex,perempuan,,2370,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06.1002,4,ULAK LEBAR,total,total,,4872,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06.1004,4,BANDUNG KANAN,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06.1004,4,BANDUNG KANAN,sex,perempuan,,575,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06.1004,4,BANDUNG KANAN,total,total,,1191,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06.1007,4,LUBUK LINGGAU ULU,sex,laki_laki,,1057,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06.1007,4,LUBUK LINGGAU ULU,sex,perempuan,,1043,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06.1007,4,LUBUK LINGGAU ULU,total,total,,2100,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06.1006,4,LUBUK LINGGAU ILIR,sex,laki_laki,,650,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06.1006,4,LUBUK LINGGAU ILIR,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06.1006,4,LUBUK LINGGAU ILIR,total,total,,1280,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06.1008,4,PASAR PERMIRI,sex,laki_laki,,1234,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06.1008,4,PASAR PERMIRI,sex,perempuan,,1211,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06.1008,4,PASAR PERMIRI,total,total,,2445,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06,3,Lubuk Linggau Barat II,sex,laki_laki,,10651,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.06,3,Lubuk Linggau Barat II,sex,perempuan,,10497,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.06,3,Lubuk Linggau Barat II,total,total,,21148,jiwa,2025,registration,total_population,3.1,26,,
+16.73.06,3,Lubuk Linggau Barat II,age_group,0-4,laki_laki,709,jiwa,2025,registration,total_population,3.2,28,,0-4
+16.73.06,3,Lubuk Linggau Barat II,age_group,0-4,perempuan,687,jiwa,2025,registration,total_population,3.2,28,,0-4
+16.73.06,3,Lubuk Linggau Barat II,age_group,0-4,,1396,jiwa,2025,registration,total_population,3.2,28,,0-4
+16.73.06,3,Lubuk Linggau Barat II,age_group,5-9,laki_laki,918,jiwa,2025,registration,total_population,3.2,28,,5-9
+16.73.06,3,Lubuk Linggau Barat II,age_group,5-9,perempuan,849,jiwa,2025,registration,total_population,3.2,28,,5-9
+16.73.06,3,Lubuk Linggau Barat II,age_group,5-9,,1767,jiwa,2025,registration,total_population,3.2,28,,5-9
+16.73.06,3,Lubuk Linggau Barat II,age_group,10-14,laki_laki,995,jiwa,2025,registration,total_population,3.2,28,,10-14
+16.73.06,3,Lubuk Linggau Barat II,age_group,10-14,perempuan,907,jiwa,2025,registration,total_population,3.2,28,,10-14
+16.73.06,3,Lubuk Linggau Barat II,age_group,10-14,,1902,jiwa,2025,registration,total_population,3.2,28,,10-14
+16.73.06,3,Lubuk Linggau Barat II,age_group,15-19,laki_laki,910,jiwa,2025,registration,total_population,3.2,28,,15-19
+16.73.06,3,Lubuk Linggau Barat II,age_group,15-19,perempuan,876,jiwa,2025,registration,total_population,3.2,28,,15-19
+16.73.06,3,Lubuk Linggau Barat II,age_group,15-19,,1786,jiwa,2025,registration,total_population,3.2,28,,15-19
+16.73.06,3,Lubuk Linggau Barat II,age_group,20-24,laki_laki,936,jiwa,2025,registration,total_population,3.2,28,,20-24
+16.73.06,3,Lubuk Linggau Barat II,age_group,20-24,perempuan,871,jiwa,2025,registration,total_population,3.2,28,,20-24
+16.73.06,3,Lubuk Linggau Barat II,age_group,20-24,,1807,jiwa,2025,registration,total_population,3.2,28,,20-24
+16.73.06,3,Lubuk Linggau Barat II,age_group,25-29,laki_laki,872,jiwa,2025,registration,total_population,3.2,28,,25-29
+16.73.06,3,Lubuk Linggau Barat II,age_group,25-29,perempuan,815,jiwa,2025,registration,total_population,3.2,28,,25-29
+16.73.06,3,Lubuk Linggau Barat II,age_group,25-29,,1687,jiwa,2025,registration,total_population,3.2,28,,25-29
+16.73.06,3,Lubuk Linggau Barat II,age_group,30-34,laki_laki,767,jiwa,2025,registration,total_population,3.2,28,,30-34
+16.73.06,3,Lubuk Linggau Barat II,age_group,30-34,perempuan,701,jiwa,2025,registration,total_population,3.2,28,,30-34
+16.73.06,3,Lubuk Linggau Barat II,age_group,30-34,,1468,jiwa,2025,registration,total_population,3.2,28,,30-34
+16.73.06,3,Lubuk Linggau Barat II,age_group,35-39,laki_laki,785,jiwa,2025,registration,total_population,3.2,28,,35-39
+16.73.06,3,Lubuk Linggau Barat II,age_group,35-39,perempuan,742,jiwa,2025,registration,total_population,3.2,28,,35-39
+16.73.06,3,Lubuk Linggau Barat II,age_group,35-39,,1527,jiwa,2025,registration,total_population,3.2,28,,35-39
+16.73.06,3,Lubuk Linggau Barat II,age_group,40-44,laki_laki,798,jiwa,2025,registration,total_population,3.2,28,,40-44
+16.73.06,3,Lubuk Linggau Barat II,age_group,40-44,perempuan,796,jiwa,2025,registration,total_population,3.2,28,,40-44
+16.73.06,3,Lubuk Linggau Barat II,age_group,40-44,,1594,jiwa,2025,registration,total_population,3.2,28,,40-44
+16.73.06,3,Lubuk Linggau Barat II,age_group,45-49,laki_laki,737,jiwa,2025,registration,total_population,3.2,28,,45-49
+16.73.06,3,Lubuk Linggau Barat II,age_group,45-49,perempuan,725,jiwa,2025,registration,total_population,3.2,28,,45-49
+16.73.06,3,Lubuk Linggau Barat II,age_group,45-49,,1462,jiwa,2025,registration,total_population,3.2,28,,45-49
+16.73.06,3,Lubuk Linggau Barat II,age_group,50-54,laki_laki,627,jiwa,2025,registration,total_population,3.2,28,,50-54
+16.73.06,3,Lubuk Linggau Barat II,age_group,50-54,perempuan,679,jiwa,2025,registration,total_population,3.2,28,,50-54
+16.73.06,3,Lubuk Linggau Barat II,age_group,50-54,,1306,jiwa,2025,registration,total_population,3.2,28,,50-54
+16.73.06,3,Lubuk Linggau Barat II,age_group,55-59,laki_laki,500,jiwa,2025,registration,total_population,3.2,28,,55-59
+16.73.06,3,Lubuk Linggau Barat II,age_group,55-59,perempuan,525,jiwa,2025,registration,total_population,3.2,28,,55-59
+16.73.06,3,Lubuk Linggau Barat II,age_group,55-59,,1025,jiwa,2025,registration,total_population,3.2,28,,55-59
+16.73.06,3,Lubuk Linggau Barat II,age_group,60-64,laki_laki,407,jiwa,2025,registration,total_population,3.2,28,,60-64
+16.73.06,3,Lubuk Linggau Barat II,age_group,60-64,perempuan,441,jiwa,2025,registration,total_population,3.2,28,,60-64
+16.73.06,3,Lubuk Linggau Barat II,age_group,60-64,,848,jiwa,2025,registration,total_population,3.2,28,,60-64
+16.73.06,3,Lubuk Linggau Barat II,age_group,65-69,laki_laki,323,jiwa,2025,registration,total_population,3.2,28,,65-69
+16.73.06,3,Lubuk Linggau Barat II,age_group,65-69,perempuan,386,jiwa,2025,registration,total_population,3.2,28,,65-69
+16.73.06,3,Lubuk Linggau Barat II,age_group,65-69,,709,jiwa,2025,registration,total_population,3.2,28,,65-69
+16.73.06,3,Lubuk Linggau Barat II,age_group,70-74,laki_laki,204,jiwa,2025,registration,total_population,3.2,28,,70-74
+16.73.06,3,Lubuk Linggau Barat II,age_group,70-74,perempuan,216,jiwa,2025,registration,total_population,3.2,28,,70-74
+16.73.06,3,Lubuk Linggau Barat II,age_group,70-74,,420,jiwa,2025,registration,total_population,3.2,28,,70-74
+16.73.06,3,Lubuk Linggau Barat II,age_group,75+,laki_laki,163,jiwa,2025,registration,total_population,3.2,28,,>75
+16.73.06,3,Lubuk Linggau Barat II,age_group,75+,perempuan,281,jiwa,2025,registration,total_population,3.2,28,,>75
+16.73.06,3,Lubuk Linggau Barat II,age_group,75+,,444,jiwa,2025,registration,total_population,3.2,28,,>75
+16.73.06,3,Lubuk Linggau Barat II,sex,laki_laki,,10651,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+16.73.06,3,Lubuk Linggau Barat II,sex,perempuan,,10497,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+16.73.06,3,Lubuk Linggau Barat II,total,total,,21148,jiwa,2025,registration,total_population,3.2,28,,

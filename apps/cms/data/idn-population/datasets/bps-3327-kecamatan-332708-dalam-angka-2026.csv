@@ -1,0 +1,77 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.08.2001,4,Banjarmulya,sex,perempuan,,5389,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2001,4,Banjarmulya,total,total,,10910,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2002,4,Surajaya,sex,perempuan,,4822,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2002,4,Surajaya,total,total,,9785,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2005,4,Pegongsoran,sex,perempuan,,2933,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2005,4,Pegongsoran,total,total,,6065,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2006,4,Sungapan,sex,perempuan,,1898,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2006,4,Sungapan,total,total,,3800,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.1004,4,Paduraksa,sex,perempuan,,3591,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.1004,4,Paduraksa,total,total,,7319,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2003,4,Kramat,sex,perempuan,,1756,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2003,4,Kramat,total,total,,3607,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2010,4,Wanamulya,sex,perempuan,,2952,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2010,4,Wanamulya,total,total,,5994,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2009,4,Mengori,sex,perempuan,,3113,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2009,4,Mengori,total,total,,6231,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2008,4,Sewaka,sex,perempuan,,3675,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2008,4,Sewaka,total,total,,7468,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2007,4,Saradan,sex,perempuan,,2336,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2007,4,Saradan,total,total,,4697,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.1014,4,Bojongbata,sex,perempuan,,8364,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.1014,4,Bojongbata,total,total,,16841,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2011,4,Bojongnangka,sex,perempuan,,6746,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2011,4,Bojongnangka,total,total,,13813,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2012,4,Tambakrejo,sex,perempuan,,4505,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2012,4,Tambakrejo,total,total,,9336,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.1013,4,Kebondalem,sex,perempuan,,9902,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.1013,4,Kebondalem,total,total,,20026,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.1015,4,Mulyoharjo,sex,perempuan,,13044,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.1015,4,Mulyoharjo,total,total,,25922,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.1016,4,Pelutan,sex,perempuan,,13187,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.1016,4,Pelutan,total,total,,26770,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2017,4,Lawangrejo,sex,perempuan,,1961,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2017,4,Lawangrejo,total,total,,4016,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.1018,4,Sugihwaras,sex,perempuan,,9132,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.1018,4,Sugihwaras,total,total,,18736,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.1019,4,Widuri,sex,perempuan,,4062,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.1019,4,Widuri,total,total,,8318,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08.2020,4,Danasari,sex,perempuan,,4011,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08.2020,4,Danasari,total,total,,8234,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08,3,Kecamatan Pemalang,sex,perempuan,,107379,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.08,3,Kecamatan Pemalang,total,total,,217888,jiwa,2025,registration,total_population,3.1,45,,
+33.27.08,3,Pemalang,age_group,0-4,perempuan,6734,jiwa,2025,registration,total_population,3.2,47,,0–4
+33.27.08,3,Pemalang,age_group,0-4,,13874,jiwa,2025,registration,total_population,3.2,47,,0–4
+33.27.08,3,Pemalang,age_group,5-9,perempuan,8619,jiwa,2025,registration,total_population,3.2,47,,5–9
+33.27.08,3,Pemalang,age_group,5-9,,17725,jiwa,2025,registration,total_population,3.2,47,,5–9
+33.27.08,3,Pemalang,age_group,10-14,perempuan,8837,jiwa,2025,registration,total_population,3.2,47,,10–14
+33.27.08,3,Pemalang,age_group,10-14,,18383,jiwa,2025,registration,total_population,3.2,47,,10–14
+33.27.08,3,Pemalang,age_group,15-19,perempuan,8133,jiwa,2025,registration,total_population,3.2,47,,15–19
+33.27.08,3,Pemalang,age_group,15-19,,16707,jiwa,2025,registration,total_population,3.2,47,,15–19
+33.27.08,3,Pemalang,age_group,20-24,perempuan,7969,jiwa,2025,registration,total_population,3.2,47,,20–24
+33.27.08,3,Pemalang,age_group,20-24,,16617,jiwa,2025,registration,total_population,3.2,47,,20–24
+33.27.08,3,Pemalang,age_group,25-29,perempuan,8084,jiwa,2025,registration,total_population,3.2,47,,25–29
+33.27.08,3,Pemalang,age_group,25-29,,16881,jiwa,2025,registration,total_population,3.2,47,,25–29
+33.27.08,3,Pemalang,age_group,30-34,perempuan,8180,jiwa,2025,registration,total_population,3.2,47,,30–34
+33.27.08,3,Pemalang,age_group,30-34,,17162,jiwa,2025,registration,total_population,3.2,47,,30–34
+33.27.08,3,Pemalang,age_group,35-39,perempuan,7751,jiwa,2025,registration,total_population,3.2,47,,35–39
+33.27.08,3,Pemalang,age_group,35-39,,16369,jiwa,2025,registration,total_population,3.2,47,,35–39
+33.27.08,3,Pemalang,age_group,40-44,perempuan,8376,jiwa,2025,registration,total_population,3.2,47,,40–44
+33.27.08,3,Pemalang,age_group,40-44,,17251,jiwa,2025,registration,total_population,3.2,47,,40–44
+33.27.08,3,Pemalang,age_group,45-49,perempuan,7799,jiwa,2025,registration,total_population,3.2,47,,45–49
+33.27.08,3,Pemalang,age_group,45-49,,15800,jiwa,2025,registration,total_population,3.2,47,,45–49
+33.27.08,3,Pemalang,age_group,50-54,perempuan,6629,jiwa,2025,registration,total_population,3.2,47,,50–54
+33.27.08,3,Pemalang,age_group,50-54,,13214,jiwa,2025,registration,total_population,3.2,47,,50–54
+33.27.08,3,Pemalang,age_group,55-59,perempuan,5830,jiwa,2025,registration,total_population,3.2,47,,55–59
+33.27.08,3,Pemalang,age_group,55-59,,11047,jiwa,2025,registration,total_population,3.2,47,,55–59
+33.27.08,3,Pemalang,age_group,60-64,perempuan,5229,jiwa,2025,registration,total_population,3.2,47,,60–64
+33.27.08,3,Pemalang,age_group,60-64,,9521,jiwa,2025,registration,total_population,3.2,47,,60–64
+33.27.08,3,Pemalang,age_group,65-69,perempuan,4050,jiwa,2025,registration,total_population,3.2,47,,65–69
+33.27.08,3,Pemalang,age_group,65-69,,7807,jiwa,2025,registration,total_population,3.2,47,,65–69
+33.27.08,3,Pemalang,age_group,70-74,perempuan,2487,jiwa,2025,registration,total_population,3.2,47,,70–74
+33.27.08,3,Pemalang,age_group,70-74,,4883,jiwa,2025,registration,total_population,3.2,47,,70–74
+33.27.08,3,Pemalang,age_group,75+,perempuan,2672,jiwa,2025,registration,total_population,3.2,47,,>= 75
+33.27.08,3,Pemalang,age_group,75+,,4647,jiwa,2025,registration,total_population,3.2,47,,>= 75
+33.27.08,3,Kecamatan Pemalang,sex,perempuan,,107379,jiwa,2025,registration,total_population,3.2,47,,Perempuan
+33.27.08,3,Kecamatan Pemalang,total,total,,217888,jiwa,2025,registration,total_population,3.2,47,,

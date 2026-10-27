@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1801-kecamatan-180422-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.04.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lumbok Seminung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Barat",
+  "publisherDomain": "1801",
+  "publisherWebsite": "https://lampungbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Barat (https://lampungbaratkab.bps.go.id), publikasi \"Kecamatan Lumbok Seminung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1801042",
+  "publicationNumber": "18010.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungbaratkab.bps.go.id/id/publication/2026/09/28/f82b0ab2a842882c27c0c178/kecamatan-lumbok-seminung-dalam-angka-2026.html",
+  "sourceFileSha256": "a8e1dbd3251d9b733a6d71987eb5b9bc563d8bfa820d2bdeac0e4dd0754d1381",
+  "sourceFileBytes": 4188752,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Barat",
+  "csvPath": "datasets/bps-1801-kecamatan-180422-dalam-angka-2026.csv",
+  "csvSha256": "e80d84f7f35dd863fa42277eee49c018beee6394fa919e148b03e30b1fd7c8dc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lumbok Seminung, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lumbok Seminung, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

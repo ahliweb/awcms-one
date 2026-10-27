@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1606-kecamatan-160610-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.06.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Plakat Tinggi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Banyuasin",
+  "publisherDomain": "1606",
+  "publisherWebsite": "https://musibanyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Banyuasin (https://musibanyuasinkab.bps.go.id), publikasi \"Kecamatan Plakat Tinggi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16060.26008",
+  "issn": "2745-3278",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://musibanyuasinkab.bps.go.id/id/publication/2026/09/28/830ab13445eb19ad10b34524/kecamatan-plakat-tinggi-dalam-angka-2026.html",
+  "sourceFileSha256": "7a4c0993d9d06833fbab23fb2b63385b76c73ad5e8ba79c912ae33cb863a44a7",
+  "sourceFileBytes": 19856044,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Banyuasin.",
+  "csvPath": "datasets/bps-1606-kecamatan-160610-dalam-angka-2026.csv",
+  "csvSha256": "a357dcef219d82e20abc5dda6648b5699bb3584aaa493d79f4c303c60c383d7e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Plakat Tinggi, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Plakat Tinggi, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bangun Harjo\": unmatched ",
+    "table 3.1: row not stored: row \"Sumber Rezeki\": unmatched ",
+    "table 3.1: row not stored: row \"Bangun Harjo\": unmatched ",
+    "table 3.1: row not stored: row \"Sumber Rezeki\": unmatched ",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

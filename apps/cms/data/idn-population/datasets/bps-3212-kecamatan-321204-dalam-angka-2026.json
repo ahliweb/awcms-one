@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cikedung Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Cikedung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212040",
+  "publicationNumber": "32120.24015",
+  "issn": "2807-453X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/86feca4268d0cecd199df0e9/kecamatan-cikedung-dalam-angka-2026.html",
+  "sourceFileSha256": "f84a33fa4cf280f411c5ed149364d53fce5a94324f0f1540d04bb30998b62116",
+  "sourceFileBytes": 21016884,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321204-dalam-angka-2026.csv",
+  "csvSha256": "ddcf08c76ac46e69a7d36aaa735e760368f7a835b2e39e86c673a132e160c0a0",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cikedung, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.2: 45 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

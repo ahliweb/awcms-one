@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.71.05,3,Kampung Melayu,age_group,0-4,laki_laki,2250,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+17.71.05,3,Kampung Melayu,age_group,0-4,perempuan,2104,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+17.71.05,3,Kampung Melayu,age_group,0-4,,4354,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+17.71.05,3,Kampung Melayu,age_group,5-9,laki_laki,2783,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+17.71.05,3,Kampung Melayu,age_group,5-9,perempuan,2609,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+17.71.05,3,Kampung Melayu,age_group,5-9,,5392,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+17.71.05,3,Kampung Melayu,age_group,10-14,laki_laki,2657,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+17.71.05,3,Kampung Melayu,age_group,10-14,perempuan,2453,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+17.71.05,3,Kampung Melayu,age_group,10-14,,5110,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+17.71.05,3,Kampung Melayu,age_group,15-19,laki_laki,2195,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+17.71.05,3,Kampung Melayu,age_group,15-19,perempuan,2112,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+17.71.05,3,Kampung Melayu,age_group,15-19,,4307,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+17.71.05,3,Kampung Melayu,age_group,20-24,laki_laki,2134,jiwa,2025,registration,total_population,3.2,27,,20 -24
+17.71.05,3,Kampung Melayu,age_group,20-24,perempuan,2062,jiwa,2025,registration,total_population,3.2,27,,20 -24
+17.71.05,3,Kampung Melayu,age_group,20-24,,4196,jiwa,2025,registration,total_population,3.2,27,,20 -24
+17.71.05,3,Kampung Melayu,age_group,25-29,laki_laki,2227,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+17.71.05,3,Kampung Melayu,age_group,25-29,perempuan,2410,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+17.71.05,3,Kampung Melayu,age_group,25-29,,4637,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+17.71.05,3,Kampung Melayu,age_group,30-34,laki_laki,2288,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+17.71.05,3,Kampung Melayu,age_group,30-34,perempuan,2378,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+17.71.05,3,Kampung Melayu,age_group,30-34,,4666,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+17.71.05,3,Kampung Melayu,age_group,35-39,laki_laki,2298,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+17.71.05,3,Kampung Melayu,age_group,35-39,perempuan,2291,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+17.71.05,3,Kampung Melayu,age_group,35-39,,4589,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+17.71.05,3,Kampung Melayu,age_group,40-44,laki_laki,2044,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+17.71.05,3,Kampung Melayu,age_group,40-44,perempuan,1935,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+17.71.05,3,Kampung Melayu,age_group,40-44,,3979,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+17.71.05,3,Kampung Melayu,age_group,45-49,laki_laki,1707,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+17.71.05,3,Kampung Melayu,age_group,45-49,perempuan,1682,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+17.71.05,3,Kampung Melayu,age_group,45-49,,3389,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+17.71.05,3,Kampung Melayu,age_group,50-54,laki_laki,1326,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+17.71.05,3,Kampung Melayu,age_group,50-54,perempuan,1422,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+17.71.05,3,Kampung Melayu,age_group,50-54,,2748,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+17.71.05,3,Kampung Melayu,age_group,55-59,laki_laki,1174,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+17.71.05,3,Kampung Melayu,age_group,55-59,perempuan,1118,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+17.71.05,3,Kampung Melayu,age_group,55-59,,2292,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+17.71.05,3,Kampung Melayu,age_group,60-64,laki_laki,834,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+17.71.05,3,Kampung Melayu,age_group,60-64,perempuan,770,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+17.71.05,3,Kampung Melayu,age_group,60-64,,1604,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+17.71.05,3,Kampung Melayu,age_group,65-69,laki_laki,573,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+17.71.05,3,Kampung Melayu,age_group,65-69,perempuan,416,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+17.71.05,3,Kampung Melayu,age_group,65-69,,989,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+17.71.05,3,Kampung Melayu,age_group,70-74,laki_laki,240,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+17.71.05,3,Kampung Melayu,age_group,70-74,perempuan,220,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+17.71.05,3,Kampung Melayu,age_group,70-74,,460,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+17.71.05,3,Kampung Melayu,age_group,75+,laki_laki,191,jiwa,2025,registration,total_population,3.2,27,,> 75
+17.71.05,3,Kampung Melayu,age_group,75+,perempuan,256,jiwa,2025,registration,total_population,3.2,27,,> 75
+17.71.05,3,Kampung Melayu,age_group,75+,,447,jiwa,2025,registration,total_population,3.2,27,,> 75
+17.71.05.1003,4,Teluk Sepang,religion,islam,,3359,jiwa,2025,registration,total_population,4.4.3,50,,Islam/
+17.71.05.1003,4,Teluk Sepang,religion,kristen,,13,jiwa,2025,registration,total_population,4.4.3,50,,Kristen/
+17.71.05.1004,4,Sumber Jaya,religion,islam,,9355,jiwa,2025,registration,total_population,4.4.3,50,,Islam/
+17.71.05.1004,4,Sumber Jaya,religion,kristen,,434,jiwa,2025,registration,total_population,4.4.3,50,,Kristen/
+17.71.05.1001,4,Kandang,religion,islam,,7753,jiwa,2025,registration,total_population,4.4.3,50,,Islam/
+17.71.05.1001,4,Kandang,religion,kristen,,349,jiwa,2025,registration,total_population,4.4.3,50,,Kristen/
+17.71.05.1002,4,Kandang Mas,religion,islam,,16820,jiwa,2025,registration,total_population,4.4.3,50,,Islam/
+17.71.05.1002,4,Kandang Mas,religion,kristen,,505,jiwa,2025,registration,total_population,4.4.3,50,,Kristen/
+17.71.05.1005,4,Padang Serai,religion,islam,,11441,jiwa,2025,registration,total_population,4.4.3,50,,Islam/
+17.71.05.1005,4,Padang Serai,religion,kristen,,628,jiwa,2025,registration,total_population,4.4.3,50,,Kristen/
+17.71.05.1006,4,Muara Dua,religion,islam,,1951,jiwa,2025,registration,total_population,4.4.3,50,,Islam/
+17.71.05.1006,4,Muara Dua,religion,kristen,,156,jiwa,2025,registration,total_population,4.4.3,50,,Kristen/
+17.71.05,3,Kampung Melayu,religion,islam,,50679,jiwa,2025,registration,total_population,4.4.3,50,,Islam/
+17.71.05,3,Kampung Melayu,religion,kristen,,2085,jiwa,2025,registration,total_population,4.4.3,50,,Kristen/

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jatibanteng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Jatibanteng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512020",
+  "publicationNumber": "35120.25010",
+  "issn": "2808-6252",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/85383e875a8d4c4106b5b924/kecamatan-jatibanteng-dalam-angka-2026.html",
+  "sourceFileSha256": "1f066f9d311b4f8547b91f34c2e7b6f458e10851c7a114fc587f391209a0ae83",
+  "sourceFileBytes": 4292639,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351201-dalam-angka-2026.csv",
+  "csvSha256": "1e12a490d5b3124f26ab64d5f3c4db64194c47fd3a7d82fb55a9a779f80de244",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jatibanteng, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jatibanteng, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuch u\" not recognised)"
+  ]
+}

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.38.2004,4,Kamarang,sex,laki_laki,,1712,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2004,4,Kamarang,sex,perempuan,,1559,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2004,4,Kamarang,total,total,,3271,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2005,4,Greged,sex,laki_laki,,2835,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2005,4,Greged,sex,perempuan,,2647,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2005,4,Greged,total,total,,5482,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2006,4,Kamarang Lebak,sex,laki_laki,,1225,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2006,4,Kamarang Lebak,sex,perempuan,,1202,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2006,4,Kamarang Lebak,total,total,,2427,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2007,4,Durajaya,sex,laki_laki,,2936,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2007,4,Durajaya,sex,perempuan,,2783,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2007,4,Durajaya,total,total,,5719,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2008,4,Jatipancur,sex,laki_laki,,2664,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2008,4,Jatipancur,sex,perempuan,,2482,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2008,4,Jatipancur,total,total,,5146,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2009,4,Sindang Kempeng,sex,laki_laki,,2765,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2009,4,Sindang Kempeng,sex,perempuan,,2640,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2009,4,Sindang Kempeng,total,total,,5405,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2010,4,Nanggela,sex,laki_laki,,3766,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2010,4,Nanggela,sex,perempuan,,3487,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2010,4,Nanggela,total,total,,7253,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2001,4,Gumulung Lebak,sex,laki_laki,,5616,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2001,4,Gumulung Lebak,sex,perempuan,,5168,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2001,4,Gumulung Lebak,total,total,,10784,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2002,4,Lebak Mekar,sex,laki_laki,,5528,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2002,4,Lebak Mekar,sex,perempuan,,5048,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2002,4,Lebak Mekar,total,total,,10576,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38.2003,4,Gumulung Tonggoh,sex,laki_laki,,5260,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38.2003,4,Gumulung Tonggoh,sex,perempuan,,4959,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38.2003,4,Gumulung Tonggoh,total,total,,10219,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38,3,Kecamatan Greged,sex,laki_laki,,34307,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.38,3,Kecamatan Greged,sex,perempuan,,31975,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.38,3,Kecamatan Greged,total,total,,66282,jiwa,2025,registration,total_population,3.1,52,,
+32.09.38,3,Greged,age_group,0-4,laki_laki,2866,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.38,3,Greged,age_group,0-4,perempuan,2523,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.38,3,Greged,age_group,0-4,,5389,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.38,3,Greged,age_group,5-9,laki_laki,3409,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.38,3,Greged,age_group,5-9,perempuan,3055,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.38,3,Greged,age_group,5-9,,6464,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.38,3,Greged,age_group,10-14,laki_laki,3062,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.38,3,Greged,age_group,10-14,perempuan,2887,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.38,3,Greged,age_group,10-14,,5949,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.38,3,Greged,age_group,15-19,laki_laki,2588,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.38,3,Greged,age_group,15-19,perempuan,2481,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.38,3,Greged,age_group,15-19,,5069,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.38,3,Greged,age_group,20-24,laki_laki,2576,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.38,3,Greged,age_group,20-24,perempuan,2462,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.38,3,Greged,age_group,20-24,,5038,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.38,3,Greged,age_group,25-29,laki_laki,2923,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.38,3,Greged,age_group,25-29,perempuan,2797,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.38,3,Greged,age_group,25-29,,5720,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.38,3,Greged,age_group,30-34,laki_laki,2929,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.38,3,Greged,age_group,30-34,perempuan,2624,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.38,3,Greged,age_group,30-34,,5553,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.38,3,Greged,age_group,35-39,laki_laki,2702,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.38,3,Greged,age_group,35-39,perempuan,2434,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.38,3,Greged,age_group,35-39,,5136,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.38,3,Greged,age_group,40-44,laki_laki,2590,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.38,3,Greged,age_group,40-44,perempuan,2293,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.38,3,Greged,age_group,40-44,,4883,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.38,3,Greged,age_group,45-49,laki_laki,2160,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.38,3,Greged,age_group,45-49,perempuan,1887,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.38,3,Greged,age_group,45-49,,4047,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.38,3,Greged,age_group,50-54,laki_laki,1809,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.38,3,Greged,age_group,50-54,perempuan,1654,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.38,3,Greged,age_group,50-54,,3463,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.38,3,Greged,age_group,55-59,laki_laki,1368,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.38,3,Greged,age_group,55-59,perempuan,1402,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.38,3,Greged,age_group,55-59,,2770,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.38,3,Greged,age_group,60-64,laki_laki,1150,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.38,3,Greged,age_group,60-64,perempuan,1090,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.38,3,Greged,age_group,60-64,,2240,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.38,3,Greged,age_group,65-69,laki_laki,869,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.38,3,Greged,age_group,65-69,perempuan,934,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.38,3,Greged,age_group,65-69,,1803,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.38,3,Greged,age_group,70-74,laki_laki,593,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.38,3,Greged,age_group,70-74,perempuan,599,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.38,3,Greged,age_group,70-74,,1192,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.38,3,Greged,age_group,75+,laki_laki,713,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.38,3,Greged,age_group,75+,perempuan,853,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.38,3,Greged,age_group,75+,,1566,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.38,3,Kecamatan Greged,sex,laki_laki,,34307,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.38,3,Kecamatan Greged,sex,perempuan,,31975,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.38,3,Kecamatan Greged,total,total,,66282,jiwa,2025,registration,total_population,3.2,54,,

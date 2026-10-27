@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.07.2003,4,Pulau Rumput,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2003,4,Pulau Rumput,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2003,4,Pulau Rumput,total,total,,771,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2006,4,Koto Gunung,sex,laki_laki,,403,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2006,4,Koto Gunung,sex,perempuan,,403,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2006,4,Koto Gunung,total,total,,806,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2002,4,Teluk Beringin,sex,laki_laki,,839,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2002,4,Teluk Beringin,sex,perempuan,,834,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2002,4,Teluk Beringin,total,total,,1673,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2001,4,Pulau Mungkur,sex,laki_laki,,706,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2001,4,Pulau Mungkur,sex,perempuan,,615,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2001,4,Pulau Mungkur,total,total,,1321,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2004,4,Seberang Gunung,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2004,4,Seberang Gunung,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2004,4,Seberang Gunung,total,total,,632,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2005,4,Teberau Panjang,sex,laki_laki,,708,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2005,4,Teberau Panjang,sex,perempuan,,695,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2005,4,Teberau Panjang,total,total,,1403,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2007,4,Gunung,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2007,4,Gunung,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2007,4,Gunung,total,total,,965,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2008,4,Toar,sex,laki_laki,,479,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2008,4,Toar,sex,perempuan,,486,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2008,4,Toar,total,total,,965,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2010,4,Kampung Baru,sex,laki_laki,,706,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2010,4,Kampung Baru,sex,perempuan,,739,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2010,4,Kampung Baru,total,total,,1445,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2009,4,Petapahan,sex,laki_laki,,867,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2009,4,Petapahan,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2009,4,Petapahan,total,total,,1705,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2013,4,Siberobah,sex,laki_laki,,264,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2013,4,Siberobah,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2013,4,Siberobah,total,total,,510,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2011,4,Pisang Berebus,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2011,4,Pisang Berebus,sex,perempuan,,528,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2011,4,Pisang Berebus,total,total,,1054,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07.2014,4,Seberang Sungai,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07.2014,4,Seberang Sungai,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07.2014,4,Seberang Sungai,total,total,,863,jiwa,2025,registration,total_population,3.1,22,,
+14.09.07,3,Gunung Toar,sex,laki_laki,,7470,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.07,3,Gunung Toar,sex,perempuan,,7287,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.07,3,Gunung Toar,total,total,,14757,jiwa,2025,registration,total_population,3.1,22,,

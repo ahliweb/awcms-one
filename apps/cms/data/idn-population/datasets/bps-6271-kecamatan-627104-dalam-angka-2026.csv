@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.71.04.1003,4,Kereng Bangkirai,sex,perempuan,,6602,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan/
+62.71.04.1003,4,Kereng Bangkirai,total,total,,13725,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.04.1006,4,Sabaru,sex,perempuan,,3707,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan/
+62.71.04.1006,4,Sabaru,total,total,,7442,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.04.1002,4,Kalampangan,sex,perempuan,,2523,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan/
+62.71.04.1002,4,Kalampangan,total,total,,5138,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.04.1004,4,Kameloh Baru,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan/
+62.71.04.1004,4,Kameloh Baru,total,total,,868,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.04.1001,4,Bereng Bengkel,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan/
+62.71.04.1001,4,Bereng Bengkel,total,total,,1199,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.04.1005,4,Danau Tundai,sex,perempuan,,133,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan/
+62.71.04.1005,4,Danau Tundai,total,total,,276,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.04,3,Sabangau,sex,perempuan,,13964,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan/
+62.71.04,3,Sabangau,total,total,,28648,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.04.1003,4,Kereng Bangkirai,religion,islam,,10383,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.04.1003,4,Kereng Bangkirai,religion,kristen,,2697,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.04.1003,4,Kereng Bangkirai,religion,katolik,,141,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.04.1003,4,Kereng Bangkirai,religion,hindu,,205,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.04.1006,4,Sabaru,religion,islam,,5040,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.04.1006,4,Sabaru,religion,kristen,,2004,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.04.1006,4,Sabaru,religion,katolik,,82,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.04.1006,4,Sabaru,religion,hindu,,75,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.04.1002,4,Kalampangan,religion,islam,,4940,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.04.1002,4,Kalampangan,religion,kristen,,166,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.04.1002,4,Kalampangan,religion,katolik,,11,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.04.1002,4,Kalampangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Hindu
+62.71.04.1004,4,Kameloh Baru,religion,islam,,855,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.04.1004,4,Kameloh Baru,religion,kristen,,3,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.04.1004,4,Kameloh Baru,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.04.1004,4,Kameloh Baru,religion,hindu,,2,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.04.1001,4,Bereng Bengkel,religion,islam,,1194,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.04.1001,4,Bereng Bengkel,religion,kristen,,7,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.04.1001,4,Bereng Bengkel,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.04.1001,4,Bereng Bengkel,religion,hindu,,5,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.04.1005,4,Danau Tundai,religion,islam,,266,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.04.1005,4,Danau Tundai,religion,kristen,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Kristen
+62.71.04.1005,4,Danau Tundai,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.04.1005,4,Danau Tundai,religion,hindu,,4,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.04,3,Sabangau,religion,islam,,22678,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.04,3,Sabangau,religion,kristen,,4877,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.04,3,Sabangau,religion,katolik,,234,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.04,3,Sabangau,religion,hindu,,291,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.04.1003,4,Kereng Bangkirai,religion,buddha,,11,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.04.1003,4,Kereng Bangkirai,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.04.1003,4,Kereng Bangkirai,religion,kepercayaan,,7,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.04.1006,4,Sabaru,religion,buddha,,6,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.04.1006,4,Sabaru,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.04.1006,4,Sabaru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.04.1002,4,Kalampangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.04.1002,4,Kalampangan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.04.1002,4,Kalampangan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.04.1004,4,Kameloh Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.04.1004,4,Kameloh Baru,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.04.1004,4,Kameloh Baru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.04.1001,4,Bereng Bengkel,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.04.1001,4,Bereng Bengkel,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.04.1001,4,Bereng Bengkel,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.04.1005,4,Danau Tundai,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.04.1005,4,Danau Tundai,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.04.1005,4,Danau Tundai,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.04,3,Sabangau,religion,buddha,,17,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.04,3,Sabangau,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.04,3,Sabangau,religion,kepercayaan,,7,jiwa,2025,registration,total_population,4.5.1,96,,Aliran

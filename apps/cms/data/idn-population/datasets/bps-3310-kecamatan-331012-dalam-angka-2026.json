@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3310-kecamatan-331012-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.10.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pedan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klaten",
+  "publisherDomain": "3310",
+  "publisherWebsite": "https://klatenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klaten (https://klatenkab.bps.go.id), publikasi \"Kecamatan Pedan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33100.25018",
+  "issn": "0853-6511",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klatenkab.bps.go.id/id/publication/2026/09/28/1d16ef9f6f4676683072144f/kecamatan-pedan-dalam-angka-2026.html",
+  "sourceFileSha256": "7e9683dbd8d45e4c5a159d561de2add185479f0ced167efa204730a2927a4df5",
+  "sourceFileBytes": 5507874,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klaten",
+  "csvPath": "datasets/bps-3310-kecamatan-331012-dalam-angka-2026.csv",
+  "csvSha256": "d3a9288e6f45941aef5966967d134c6b3b422666a83b4c7775fc2552fa0fa876",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pedan, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pedan, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

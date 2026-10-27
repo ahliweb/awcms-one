@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.37.2002,4,Sadu,sex,laki_laki,,5742,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2002,4,Sadu,sex,perempuan,,5520,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2002,4,Sadu,total,total,,11262,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2010,4,Sukajadi,sex,laki_laki,,4728,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2010,4,Sukajadi,sex,perempuan,,4465,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2010,4,Sukajadi,total,total,,9193,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2018,4,Sukanagara,sex,laki_laki,,3612,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2018,4,Sukanagara,sex,perempuan,,3365,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2018,4,Sukanagara,total,total,,6977,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2004,4,Panyirapan,sex,laki_laki,,4366,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2004,4,Panyirapan,sex,perempuan,,4196,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2004,4,Panyirapan,total,total,,8562,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2017,4,Karamatmulya,sex,laki_laki,,4813,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2017,4,Karamatmulya,sex,perempuan,,4499,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2017,4,Karamatmulya,total,total,,9312,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2001,4,Soreang,sex,laki_laki,,10965,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2001,4,Soreang,sex,perempuan,,10730,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2001,4,Soreang,total,total,,21695,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2011,4,Pamekaran,sex,laki_laki,,7179,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2011,4,Pamekaran,sex,perempuan,,7146,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2011,4,Pamekaran,total,total,,14325,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2020,4,Parungserab,sex,laki_laki,,4770,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2020,4,Parungserab,sex,perempuan,,4650,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2020,4,Parungserab,total,total,,9420,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2021,4,Sekarwangi,sex,laki_laki,,4658,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2021,4,Sekarwangi,sex,perempuan,,4568,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2021,4,Sekarwangi,total,total,,9226,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37.2019,4,Cingcin,sex,laki_laki,,12464,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37.2019,4,Cingcin,sex,perempuan,,12325,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37.2019,4,Cingcin,total,total,,24789,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.37,3,Kecamatan Soreang,sex,laki_laki,,63297,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.37,3,Kecamatan Soreang,sex,perempuan,,61464,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.37,3,Kecamatan Soreang,total,total,,124761,jiwa,2025,registration,total_population,unnumbered-p28,28,,

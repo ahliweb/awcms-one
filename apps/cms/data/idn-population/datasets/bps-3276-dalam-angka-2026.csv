@@ -1,0 +1,158 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.03,3,Sawangan,total,total,,206515,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.11,3,Bojongsari,total,total,,151911,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.01,3,Pancoran Mas,total,total,,254370,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.07,3,Cipayung,total,total,,190849,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.05,3,Sukmajaya,total,total,,253712,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.08,3,Cilodong,total,total,,187319,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.02,3,Cimanggis,total,total,,247999,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.10,3,Tapos,total,total,,279577,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.06,3,Beji,total,total,,168484,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.04,3,Limo,total,total,,127509,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76.09,3,Cinere,total,total,,99716,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76,2,Kota Depok,total,total,,2167961,jiwa,2025,projection,total_population,3.1.1,42,,
+32.76,2,Kota Depok,age_group,0-4,laki_laki,83738,jiwa,2025,projection,total_population,3.1.2,45,,0–4
+32.76,2,Kota Depok,age_group,0-4,perempuan,80415,jiwa,2025,projection,total_population,3.1.2,45,,0–4
+32.76,2,Kota Depok,age_group,0-4,,164153,jiwa,2025,projection,total_population,3.1.2,45,,0–4
+32.76,2,Kota Depok,age_group,5-9,laki_laki,86026,jiwa,2025,projection,total_population,3.1.2,45,,5–9
+32.76,2,Kota Depok,age_group,5-9,perempuan,81680,jiwa,2025,projection,total_population,3.1.2,45,,5–9
+32.76,2,Kota Depok,age_group,5-9,,167706,jiwa,2025,projection,total_population,3.1.2,45,,5–9
+32.76,2,Kota Depok,age_group,10-14,laki_laki,82939,jiwa,2025,projection,total_population,3.1.2,45,,10–14
+32.76,2,Kota Depok,age_group,10-14,perempuan,80127,jiwa,2025,projection,total_population,3.1.2,45,,10–14
+32.76,2,Kota Depok,age_group,10-14,,163066,jiwa,2025,projection,total_population,3.1.2,45,,10–14
+32.76,2,Kota Depok,age_group,15-19,laki_laki,89503,jiwa,2025,projection,total_population,3.1.2,45,,15–19
+32.76,2,Kota Depok,age_group,15-19,perempuan,83820,jiwa,2025,projection,total_population,3.1.2,45,,15–19
+32.76,2,Kota Depok,age_group,15-19,,173323,jiwa,2025,projection,total_population,3.1.2,45,,15–19
+32.76,2,Kota Depok,age_group,20-24,laki_laki,82168,jiwa,2025,projection,total_population,3.1.2,45,,20–24
+32.76,2,Kota Depok,age_group,20-24,perempuan,78241,jiwa,2025,projection,total_population,3.1.2,45,,20–24
+32.76,2,Kota Depok,age_group,20-24,,160409,jiwa,2025,projection,total_population,3.1.2,45,,20–24
+32.76,2,Kota Depok,age_group,25-29,laki_laki,79349,jiwa,2025,projection,total_population,3.1.2,45,,25–29
+32.76,2,Kota Depok,age_group,25-29,perempuan,76792,jiwa,2025,projection,total_population,3.1.2,45,,25–29
+32.76,2,Kota Depok,age_group,25-29,,156141,jiwa,2025,projection,total_population,3.1.2,45,,25–29
+32.76,2,Kota Depok,age_group,30-34,laki_laki,82630,jiwa,2025,projection,total_population,3.1.2,45,,30–34
+32.76,2,Kota Depok,age_group,30-34,perempuan,84288,jiwa,2025,projection,total_population,3.1.2,45,,30–34
+32.76,2,Kota Depok,age_group,30-34,,166918,jiwa,2025,projection,total_population,3.1.2,45,,30–34
+32.76,2,Kota Depok,age_group,35-39,laki_laki,86895,jiwa,2025,projection,total_population,3.1.2,45,,35–39
+32.76,2,Kota Depok,age_group,35-39,perempuan,89202,jiwa,2025,projection,total_population,3.1.2,45,,35–39
+32.76,2,Kota Depok,age_group,35-39,,176097,jiwa,2025,projection,total_population,3.1.2,45,,35–39
+32.76,2,Kota Depok,age_group,40-44,laki_laki,86060,jiwa,2025,projection,total_population,3.1.2,45,,40–44
+32.76,2,Kota Depok,age_group,40-44,perempuan,85994,jiwa,2025,projection,total_population,3.1.2,45,,40–44
+32.76,2,Kota Depok,age_group,40-44,,172054,jiwa,2025,projection,total_population,3.1.2,45,,40–44
+32.76,2,Kota Depok,age_group,45-49,laki_laki,85407,jiwa,2025,projection,total_population,3.1.2,45,,45–49
+32.76,2,Kota Depok,age_group,45-49,perempuan,83066,jiwa,2025,projection,total_population,3.1.2,45,,45–49
+32.76,2,Kota Depok,age_group,45-49,,168473,jiwa,2025,projection,total_population,3.1.2,45,,45–49
+32.76,2,Kota Depok,age_group,50-54,laki_laki,74404,jiwa,2025,projection,total_population,3.1.2,45,,50–54
+32.76,2,Kota Depok,age_group,50-54,perempuan,72628,jiwa,2025,projection,total_population,3.1.2,45,,50–54
+32.76,2,Kota Depok,age_group,50-54,,147032,jiwa,2025,projection,total_population,3.1.2,45,,50–54
+32.76,2,Kota Depok,age_group,55-59,laki_laki,61255,jiwa,2025,projection,total_population,3.1.2,45,,55–59
+32.76,2,Kota Depok,age_group,55-59,perempuan,60947,jiwa,2025,projection,total_population,3.1.2,45,,55–59
+32.76,2,Kota Depok,age_group,55-59,,122202,jiwa,2025,projection,total_population,3.1.2,45,,55–59
+32.76,2,Kota Depok,age_group,60-64,laki_laki,45661,jiwa,2025,projection,total_population,3.1.2,45,,60–64
+32.76,2,Kota Depok,age_group,60-64,perempuan,47472,jiwa,2025,projection,total_population,3.1.2,45,,60–64
+32.76,2,Kota Depok,age_group,60-64,,93133,jiwa,2025,projection,total_population,3.1.2,45,,60–64
+32.76,2,Kota Depok,age_group,65-69,laki_laki,30670,jiwa,2025,projection,total_population,3.1.2,45,,65–69
+32.76,2,Kota Depok,age_group,65-69,perempuan,33472,jiwa,2025,projection,total_population,3.1.2,45,,65–69
+32.76,2,Kota Depok,age_group,65-69,,64142,jiwa,2025,projection,total_population,3.1.2,45,,65–69
+32.76,2,Kota Depok,age_group,70-74,laki_laki,19377,jiwa,2025,projection,total_population,3.1.2,45,,70–74
+32.76,2,Kota Depok,age_group,70-74,perempuan,22089,jiwa,2025,projection,total_population,3.1.2,45,,70–74
+32.76,2,Kota Depok,age_group,70-74,,41466,jiwa,2025,projection,total_population,3.1.2,45,,70–74
+32.76,2,Kota Depok,age_group,75+,laki_laki,13748,jiwa,2025,projection,total_population,3.1.2,45,,75+
+32.76,2,Kota Depok,age_group,75+,perempuan,17898,jiwa,2025,projection,total_population,3.1.2,45,,75+
+32.76,2,Kota Depok,age_group,75+,,31646,jiwa,2025,projection,total_population,3.1.2,45,,75+
+32.76,2,Kota Depok,sex,laki_laki,,1089830,jiwa,2025,projection,total_population,3.1.2,45,,Laki-Laki
+32.76,2,Kota Depok,sex,perempuan,,1078131,jiwa,2025,projection,total_population,3.1.2,45,,Perempuan
+32.76,2,Kota Depok,total,total,,2167961,jiwa,2025,projection,total_population,3.1.2,45,,
+32.76.03,3,Sawangan,religion,islam,,180969,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.03,3,Sawangan,religion,kristen,,4418,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.03,3,Sawangan,religion,katolik,,1608,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.03,3,Sawangan,religion,hindu,,228,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.11,3,Bojongsari,religion,islam,,131090,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.11,3,Bojongsari,religion,kristen,,4124,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.11,3,Bojongsari,religion,katolik,,1342,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.11,3,Bojongsari,religion,hindu,,177,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.01,3,Pancoran Mas,religion,islam,,228741,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.01,3,Pancoran Mas,religion,kristen,,14728,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.01,3,Pancoran Mas,religion,katolik,,3589,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.01,3,Pancoran Mas,religion,hindu,,324,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.07,3,Cipayung,religion,islam,,167595,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.07,3,Cipayung,religion,kristen,,4429,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.07,3,Cipayung,religion,katolik,,1220,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.07,3,Cipayung,religion,hindu,,118,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.05,3,Sukmajaya,religion,islam,,229965,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.05,3,Sukmajaya,religion,kristen,,17592,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.05,3,Sukmajaya,religion,katolik,,4695,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.05,3,Sukmajaya,religion,hindu,,327,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.08,3,Cilodong,religion,islam,,157427,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.08,3,Cilodong,religion,kristen,,10037,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.08,3,Cilodong,religion,katolik,,2632,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.08,3,Cilodong,religion,hindu,,211,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.02,3,Cimanggis,religion,islam,,222865,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.02,3,Cimanggis,religion,kristen,,12413,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.02,3,Cimanggis,religion,katolik,,5350,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.02,3,Cimanggis,religion,hindu,,911,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.10,3,Tapos,religion,islam,,250831,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.10,3,Tapos,religion,kristen,,12054,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.10,3,Tapos,religion,katolik,,3815,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.10,3,Tapos,religion,hindu,,300,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.06,3,Beji,religion,islam,,152932,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.06,3,Beji,religion,kristen,,6307,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.06,3,Beji,religion,katolik,,1950,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.06,3,Beji,religion,hindu,,196,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.04,3,Limo,religion,islam,,99648,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.04,3,Limo,religion,kristen,,5215,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.04,3,Limo,religion,katolik,,1699,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.04,3,Limo,religion,hindu,,267,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76.09,3,Cinere,religion,islam,,80433,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76.09,3,Cinere,religion,kristen,,4101,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76.09,3,Cinere,religion,katolik,,1975,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76.09,3,Cinere,religion,hindu,,281,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76,2,Kota Depok,religion,islam,,1902496,jiwa,2025,registration,total_population,unnumbered-p116,116,,Islam
+32.76,2,Kota Depok,religion,kristen,,95418,jiwa,2025,registration,total_population,unnumbered-p116,116,,Protestan
+32.76,2,Kota Depok,religion,katolik,,29875,jiwa,2025,registration,total_population,unnumbered-p116,116,,Katolik
+32.76,2,Kota Depok,religion,hindu,,3340,jiwa,2025,registration,total_population,unnumbered-p116,116,,Hindu
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/padi_padian,,94975,rupiah,2024,survey_estimate,per_capita,10.1,260,,Padi-padian
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/padi_padian,,85149,rupiah,2025,survey_estimate,per_capita,10.1,260,,Padi-padian
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/umbi_umbian,,13479,rupiah,2024,survey_estimate,per_capita,10.1,260,,Umbi-umbian
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/umbi_umbian,,13140,rupiah,2025,survey_estimate,per_capita,10.1,260,,Umbi-umbian
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,88055,rupiah,2024,survey_estimate,per_capita,10.1,260,,Ikan/udang/cumi/kerang
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,91229,rupiah,2025,survey_estimate,per_capita,10.1,260,,Ikan/udang/cumi/kerang
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/daging,,84294,rupiah,2024,survey_estimate,per_capita,10.1,260,,Daging
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/daging,,80092,rupiah,2025,survey_estimate,per_capita,10.1,260,,Daging
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/telur_dan_susu,,70605,rupiah,2024,survey_estimate,per_capita,10.1,260,,Telur dan susu
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/telur_dan_susu,,69759,rupiah,2025,survey_estimate,per_capita,10.1,260,,Telur dan susu
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/sayur_sayuran,,85112,rupiah,2024,survey_estimate,per_capita,10.1,260,,Sayur-sayuran
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/sayur_sayuran,,83725,rupiah,2025,survey_estimate,per_capita,10.1,260,,Sayur-sayuran
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/kacang_kacangan,,21974,rupiah,2024,survey_estimate,per_capita,10.1,260,,Kacang-kacangan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/kacang_kacangan,,19967,rupiah,2025,survey_estimate,per_capita,10.1,260,,Kacang-kacangan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/buah_buahan,,72699,rupiah,2024,survey_estimate,per_capita,10.1,260,,Buah-buahan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/buah_buahan,,84281,rupiah,2025,survey_estimate,per_capita,10.1,260,,Buah-buahan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21074,rupiah,2024,survey_estimate,per_capita,10.1,260,,Minyak dan kelapa
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24585,rupiah,2025,survey_estimate,per_capita,10.1,260,,Minyak dan kelapa
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/bahan_minuman,,25889,rupiah,2024,survey_estimate,per_capita,10.1,260,,Bahan minuman
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/bahan_minuman,,28987,rupiah,2025,survey_estimate,per_capita,10.1,260,,Bahan minuman
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/bumbu_bumbuan,,20173,rupiah,2024,survey_estimate,per_capita,10.1,260,,Bumbu-bumbuan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/bumbu_bumbuan,,19856,rupiah,2025,survey_estimate,per_capita,10.1,260,,Bumbu-bumbuan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/konsumsi_lainnya,,22489,rupiah,2024,survey_estimate,per_capita,10.1,260,,Konsumsi lainnya
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/konsumsi_lainnya,,19817,rupiah,2025,survey_estimate,per_capita,10.1,260,,Konsumsi lainnya
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,420275,rupiah,2024,survey_estimate,per_capita,10.1,260,,Makanan dan minuman jadi
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,480654,rupiah,2025,survey_estimate,per_capita,10.1,260,,Makanan dan minuman jadi
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/rokok,,107563,rupiah,2024,survey_estimate,per_capita,10.1,260,,Rokok
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/rokok,,91992,rupiah,2025,survey_estimate,per_capita,10.1,260,,Rokok
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/jumlah_makanan,,1148655,rupiah,2024,survey_estimate,per_capita,10.1,260,,Jumlah makanan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/jumlah_makanan,,1193232,rupiah,2025,survey_estimate,per_capita,10.1,260,,Jumlah makanan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,817700,rupiah,2024,survey_estimate,per_capita,10.1,260,,Perumahan dan fasilitas rumah tangga
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,1008874,rupiah,2025,survey_estimate,per_capita,10.1,260,,Perumahan dan fasilitas rumah tangga
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,500197,rupiah,2024,survey_estimate,per_capita,10.1,260,,Aneka barang dan jasa
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,676995,rupiah,2025,survey_estimate,per_capita,10.1,260,,Aneka barang dan jasa
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,62349,rupiah,2024,survey_estimate,per_capita,10.1,260,,"Pakaian, alas kaki, dan tutup kepala"
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,87607,rupiah,2025,survey_estimate,per_capita,10.1,260,,"Pakaian, alas kaki, dan tutup kepala"
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/barang_tahan_lama,,98109,rupiah,2024,survey_estimate,per_capita,10.1,260,,Barang tahan lama
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/barang_tahan_lama,,192046,rupiah,2025,survey_estimate,per_capita,10.1,260,,Barang tahan lama
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,138817,rupiah,2024,survey_estimate,per_capita,10.1,260,,"Pajak, pungutan, dan asuransi"
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,168283,rupiah,2025,survey_estimate,per_capita,10.1,260,,"Pajak, pungutan, dan asuransi"
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,57400,rupiah,2024,survey_estimate,per_capita,10.1,260,,Keperluan pesta dan upacara/kenduri
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,47220,rupiah,2025,survey_estimate,per_capita,10.1,260,,Keperluan pesta dan upacara/kenduri
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1674573,rupiah,2024,survey_estimate,per_capita,10.1,260,,Jumlah bukan makanan
+32.76,2,Kota Depok,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,2181025,rupiah,2025,survey_estimate,per_capita,10.1,260,,Jumlah bukan makanan
+32.76,2,Kota Depok,expenditure,total,,2823228,rupiah,2024,survey_estimate,per_capita,10.1,260,,
+32.76,2,Kota Depok,expenditure,total,,3374256,rupiah,2025,survey_estimate,per_capita,10.1,260,,

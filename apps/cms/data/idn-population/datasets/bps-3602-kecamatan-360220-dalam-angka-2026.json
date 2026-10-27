@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360220-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cilograng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Cilograng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36020.26006",
+  "issn": "3031-7185",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/d67981a756961cf0d5f8d1dc/kecamatan-cilograng-dalam-angka-2026.html",
+  "sourceFileSha256": "c944ce57687f7c7795f2fe134217cae040149fdc37f92129a19a105e42da8542",
+  "sourceFileBytes": 7019991,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360220-dalam-angka-2026.csv",
+  "csvSha256": "989bbade9f8f889a3a50cd6da792138595e6a77416faee58325042c064940432",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Cilograng, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cilograng, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Cilograng Cilograng District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cilograng Cilograng District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Cilograng Cilograng District\": unmatched "
+  ]
+}

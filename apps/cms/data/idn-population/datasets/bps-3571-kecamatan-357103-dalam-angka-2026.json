@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3571-kecamatan-357103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pesantren Dalam Angka 2026",
+  "publisherName": "BPS Kota Kediri",
+  "publisherDomain": "3571",
+  "publisherWebsite": "https://kedirikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Kediri (https://kedirikota.bps.go.id), publikasi \"Kecamatan Pesantren Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3571030",
+  "publicationNumber": "35710.26007",
+  "issn": "2776-6527",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kedirikota.bps.go.id/id/publication/2026/09/28/a96c0fa9729224cb6594ab3e/kecamatan-pesantren-dalam-angka-2026.html",
+  "sourceFileSha256": "1cc73d3967b1895f5ca8e39d987c2c8b772c97104c37f9a0f85d94b71ea762cd",
+  "sourceFileBytes": 24015855,
+  "sourcePages": [28, 29, 30, 68, 69],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Kediri.",
+  "csvPath": "datasets/bps-3571-kecamatan-357103-dalam-angka-2026.csv",
+  "csvSha256": "494b1df6893e47d3c4ee2638c23d9fd29688aed81692f2bddcee163a02914e20",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Pesantren, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pesantren (jiwa), 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.4",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Pesantren (jiwa), 2025",
+      "printedPages": [68, 69],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": []
+}

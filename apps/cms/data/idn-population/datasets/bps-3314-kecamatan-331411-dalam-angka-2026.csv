@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.11.2001,4,Bentak,sex,laki_laki,,1833,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2001,4,Bentak,sex,perempuan,,1812,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2001,4,Bentak,total,total,,3645,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2002,4,Purwosuman,sex,laki_laki,,3643,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2002,4,Purwosuman,sex,perempuan,,3704,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2002,4,Purwosuman,total,total,,7347,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2003,4,Patihan,sex,laki_laki,,3756,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2003,4,Patihan,sex,perempuan,,3872,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2003,4,Patihan,total,total,,7628,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2004,4,Duyungan,sex,laki_laki,,3085,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2004,4,Duyungan,sex,perempuan,,3258,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2004,4,Duyungan,total,total,,6343,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2005,4,Jetak,sex,laki_laki,,3441,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2005,4,Jetak,sex,perempuan,,3527,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2005,4,Jetak,total,total,,6968,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2006,4,Sidoharjo,sex,laki_laki,,2220,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2006,4,Sidoharjo,sex,perempuan,,2281,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2006,4,Sidoharjo,total,total,,4501,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2007,4,Singopadu,sex,laki_laki,,2081,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2007,4,Singopadu,sex,perempuan,,2085,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2007,4,Singopadu,total,total,,4166,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2011,4,Jambanan,sex,laki_laki,,2653,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2011,4,Jambanan,sex,perempuan,,2786,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2011,4,Jambanan,total,total,,5439,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2008,4,Taraman,sex,laki_laki,,1646,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2008,4,Taraman,sex,perempuan,,1685,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2008,4,Taraman,total,total,,3331,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2009,4,Tenggak,sex,laki_laki,,1454,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2009,4,Tenggak,sex,perempuan,,1484,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2009,4,Tenggak,total,total,,2938,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2010,4,Sribit,sex,laki_laki,,2332,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2010,4,Sribit,sex,perempuan,,2328,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2010,4,Sribit,total,total,,4660,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11.2012,4,Pandak,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11.2012,4,Pandak,sex,perempuan,,1426,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11.2012,4,Pandak,total,total,,2837,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11,3,Kecamatan Sidoharjo,sex,laki_laki,,29555,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.11,3,Kecamatan Sidoharjo,sex,perempuan,,30248,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.11,3,Kecamatan Sidoharjo,total,total,,59803,jiwa,2025,registration,total_population,3.1,32,,
+33.14.11,3,Sidoharjo,age_group,0-4,laki_laki,1581,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.11,3,Sidoharjo,age_group,0-4,perempuan,1569,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.11,3,Sidoharjo,age_group,0-4,,3150,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.11,3,Sidoharjo,age_group,5-9,laki_laki,2070,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.11,3,Sidoharjo,age_group,5-9,perempuan,2093,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.11,3,Sidoharjo,age_group,5-9,,4163,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.11,3,Sidoharjo,age_group,10-14,laki_laki,2180,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.11,3,Sidoharjo,age_group,10-14,perempuan,2120,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.11,3,Sidoharjo,age_group,10-14,,4300,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.11,3,Sidoharjo,age_group,15-19,laki_laki,2274,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.11,3,Sidoharjo,age_group,15-19,perempuan,2181,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.11,3,Sidoharjo,age_group,15-19,,4455,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.11,3,Sidoharjo,age_group,20-24,laki_laki,2262,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.11,3,Sidoharjo,age_group,20-24,perempuan,2056,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.11,3,Sidoharjo,age_group,20-24,,4318,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.11,3,Sidoharjo,age_group,25-29,laki_laki,2084,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.11,3,Sidoharjo,age_group,25-29,perempuan,1954,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.11,3,Sidoharjo,age_group,25-29,,4038,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.11,3,Sidoharjo,age_group,30-34,laki_laki,1995,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.11,3,Sidoharjo,age_group,30-34,perempuan,1930,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.11,3,Sidoharjo,age_group,30-34,,3925,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.11,3,Sidoharjo,age_group,35-39,laki_laki,1828,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.11,3,Sidoharjo,age_group,35-39,perempuan,1907,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.11,3,Sidoharjo,age_group,35-39,,3735,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.11,3,Sidoharjo,age_group,40-44,laki_laki,2271,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.11,3,Sidoharjo,age_group,40-44,perempuan,2414,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.11,3,Sidoharjo,age_group,40-44,,4685,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.11,3,Sidoharjo,age_group,45-49,laki_laki,2300,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.11,3,Sidoharjo,age_group,45-49,perempuan,2366,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.11,3,Sidoharjo,age_group,45-49,,4666,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.11,3,Sidoharjo,age_group,50-54,laki_laki,2061,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.11,3,Sidoharjo,age_group,50-54,perempuan,2094,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.11,3,Sidoharjo,age_group,50-54,,4155,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.11,3,Sidoharjo,age_group,55-59,laki_laki,1812,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.11,3,Sidoharjo,age_group,55-59,perempuan,1942,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.11,3,Sidoharjo,age_group,55-59,,3754,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.11,3,Sidoharjo,age_group,60-64,laki_laki,1482,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.11,3,Sidoharjo,age_group,60-64,perempuan,1654,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.11,3,Sidoharjo,age_group,60-64,,3136,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.11,3,Sidoharjo,age_group,65-69,laki_laki,1360,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.11,3,Sidoharjo,age_group,65-69,perempuan,1502,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.11,3,Sidoharjo,age_group,65-69,,2862,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.11,3,Sidoharjo,age_group,70-74,laki_laki,959,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.11,3,Sidoharjo,age_group,70-74,perempuan,968,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.11,3,Sidoharjo,age_group,70-74,,1927,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.11,3,Sidoharjo,age_group,75+,laki_laki,1036,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.11,3,Sidoharjo,age_group,75+,perempuan,1498,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.11,3,Sidoharjo,age_group,75+,,2534,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.11,3,Kecamatan Sidoharjo,sex,laki_laki,,29555,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+33.14.11,3,Kecamatan Sidoharjo,sex,perempuan,,30248,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+33.14.11,3,Kecamatan Sidoharjo,total,total,,59803,jiwa,2025,registration,total_population,3.2,34,,

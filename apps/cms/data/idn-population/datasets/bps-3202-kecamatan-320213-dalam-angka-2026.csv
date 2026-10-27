@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.13.2002,4,Palasari Hilir,sex,laki_laki,,6956,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13.2002,4,Palasari Hilir,sex,perempuan,,6548,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13.2002,4,Palasari Hilir,total,total,,13504,jiwa,2025,registration,total_population,3.1,24,,
+32.02.13.2005,4,Sundawenang,sex,laki_laki,,8519,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13.2005,4,Sundawenang,sex,perempuan,,8322,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13.2005,4,Sundawenang,total,total,,16841,jiwa,2025,registration,total_population,3.1,24,,
+32.02.13.2001,4,Parungkuda,sex,laki_laki,,4040,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13.2001,4,Parungkuda,sex,perempuan,,3970,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13.2001,4,Parungkuda,total,total,,8010,jiwa,2025,registration,total_population,3.1,24,,
+32.02.13.2006,4,Bojong Kokosan,sex,laki_laki,,4084,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13.2006,4,Bojong Kokosan,sex,perempuan,,4142,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13.2006,4,Bojong Kokosan,total,total,,8226,jiwa,2025,registration,total_population,3.1,24,,
+32.02.13.2003,4,Kompa,sex,laki_laki,,3991,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13.2003,4,Kompa,sex,perempuan,,4084,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13.2003,4,Kompa,total,total,,8075,jiwa,2025,registration,total_population,3.1,24,,
+32.02.13.2004,4,Pondok Kaso Landeuh,sex,laki_laki,,6800,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13.2004,4,Pondok Kaso Landeuh,sex,perempuan,,6558,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13.2004,4,Pondok Kaso Landeuh,total,total,,13358,jiwa,2025,registration,total_population,3.1,24,,
+32.02.13.2008,4,Babakanjaya,sex,laki_laki,,5109,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13.2008,4,Babakanjaya,sex,perempuan,,5047,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13.2008,4,Babakanjaya,total,total,,10156,jiwa,2025,registration,total_population,3.1,24,,
+32.02.13,3,Parungkuda,sex,laki_laki,,43736,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.13,3,Parungkuda,sex,perempuan,,42727,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.13,3,Parungkuda,total,total,,86463,jiwa,2025,registration,total_population,3.1,24,,

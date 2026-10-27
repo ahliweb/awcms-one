@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3172-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "31.75",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Jakarta Timur Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Timur",
+  "publisherDomain": "3172",
+  "publisherWebsite": "https://jaktimkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Timur (https://jaktimkota.bps.go.id), publikasi \"Kota Jakarta Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3172",
+  "publicationNumber": "31720.26003",
+  "issn": "0215-4129",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://jaktimkota.bps.go.id/id/publication/2026/02/27/1ba40e1aa41a300f61dc0b6a/kota-jakarta-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "dd7e7b8c2948599b4bcbf8b8ebae112ef4bc10e62d44b39d995a33b235ccbc88",
+  "sourceFileBytes": 5583212,
+  "sourcePages": [51],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik.",
+  "csvPath": "datasets/bps-3172-dalam-angka-2026.csv",
+  "csvSha256": "19d0bf90e662f2bb2541387df3de109b42f6da14d0853f465be609dcca514e16",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Laju Pertumbuhan Penduduk per Tahun, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan Kota Jakarta Timur, 2024-2025",
+      "printedPages": [51],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Konghuchu\" not recognised)"
+  ]
+}

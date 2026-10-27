@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.13.2008,4,Jatimulyo,sex,laki_laki,,10554,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2008,4,Jatimulyo,sex,perempuan,,10139,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2008,4,Jatimulyo,total,total,,20693,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2018,4,Banjar Agung,sex,laki_laki,,1716,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2018,4,Banjar Agung,sex,perempuan,,1642,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2018,4,Banjar Agung,total,total,,3358,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2006,4,Gedung Harapan,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2006,4,Gedung Harapan,sex,perempuan,,497,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2006,4,Gedung Harapan,total,total,,1021,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2004,4,Gedung Agung,sex,laki_laki,,1011,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2004,4,Gedung Agung,sex,perempuan,,992,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2004,4,Gedung Agung,total,total,,2003,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2003,4,Margomulyo,sex,laki_laki,,1624,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2003,4,Margomulyo,sex,perempuan,,1563,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2003,4,Margomulyo,total,total,,3187,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2002,4,Sidodadi Asri,sex,laki_laki,,3432,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2002,4,Sidodadi Asri,sex,perempuan,,3194,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2002,4,Sidodadi Asri,total,total,,6626,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2017,4,Purwotani,sex,laki_laki,,1433,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2017,4,Purwotani,sex,perempuan,,1325,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2017,4,Purwotani,total,total,,2758,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2013,4,Sumber Jaya,sex,laki_laki,,2454,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2013,4,Sumber Jaya,sex,perempuan,,2399,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2013,4,Sumber Jaya,total,total,,4853,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2005,4,Margodadi,sex,laki_laki,,1729,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2005,4,Margodadi,sex,perempuan,,1693,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2005,4,Margodadi,total,total,,3422,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2012,4,Margo Lestari,sex,laki_laki,,1707,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2012,4,Margo Lestari,sex,perempuan,,1614,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2012,4,Margo Lestari,total,total,,3321,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2007,4,Marga Agung,sex,laki_laki,,2477,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2007,4,Marga Agung,sex,perempuan,,2407,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2007,4,Marga Agung,total,total,,4884,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2011,4,Marga Kaya,sex,laki_laki,,2020,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2011,4,Marga Kaya,sex,perempuan,,1948,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2011,4,Marga Kaya,total,total,,3968,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2014,4,Sinar Rejeki,sex,laki_laki,,4418,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2014,4,Sinar Rejeki,sex,perempuan,,4275,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2014,4,Sinar Rejeki,total,total,,8693,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2015,4,Sidoharjo,sex,laki_laki,,1761,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2015,4,Sidoharjo,sex,perempuan,,1723,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2015,4,Sidoharjo,total,total,,3484,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2016,4,Rejomulyo,sex,laki_laki,,3373,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2016,4,Rejomulyo,sex,perempuan,,3263,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2016,4,Rejomulyo,total,total,,6636,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2010,4,Karang Anyar,sex,laki_laki,,10505,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2010,4,Karang Anyar,sex,perempuan,,10244,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2010,4,Karang Anyar,total,total,,20749,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2009,4,Fajar Baru,sex,laki_laki,,3900,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2009,4,Fajar Baru,sex,perempuan,,3767,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2009,4,Fajar Baru,total,total,,7667,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2019,4,Karang Sari,sex,laki_laki,,3549,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2019,4,Karang Sari,sex,perempuan,,3394,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2019,4,Karang Sari,total,total,,6943,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2020,4,Karang Rejo,sex,laki_laki,,3031,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2020,4,Karang Rejo,sex,perempuan,,2914,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2020,4,Karang Rejo,total,total,,5945,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13.2021,4,Margorejo,sex,laki_laki,,1121,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13.2021,4,Margorejo,sex,perempuan,,1050,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13.2021,4,Margorejo,total,total,,2171,jiwa,2025,registration,total_population,3.1,24,,
+18.01.13,3,Jati Agung,sex,laki_laki,,67651,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.13,3,Jati Agung,sex,perempuan,,65244,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.13,3,Jati Agung,total,total,,132895,jiwa,2025,registration,total_population,3.1,24,,

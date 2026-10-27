@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.12.2001,4,Sleman,sex,laki_laki,,2763,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2001,4,Sleman,sex,perempuan,,2800,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2001,4,Sleman,total,total,,5563,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2002,4,Tambi,sex,laki_laki,,2441,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2002,4,Tambi,sex,perempuan,,2444,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2002,4,Tambi,total,total,,4885,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2003,4,Sudikampiran,sex,laki_laki,,1559,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2003,4,Sudikampiran,sex,perempuan,,1550,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2003,4,Sudikampiran,total,total,,3109,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2004,4,Tambi Lor,sex,laki_laki,,2732,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2004,4,Tambi Lor,sex,perempuan,,2607,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2004,4,Tambi Lor,total,total,,5339,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2005,4,Sleman Lor,sex,laki_laki,,2392,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2005,4,Sleman Lor,sex,perempuan,,2332,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2005,4,Sleman Lor,total,total,,4724,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2006,4,Majasari,sex,laki_laki,,1824,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2006,4,Majasari,sex,perempuan,,1817,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2006,4,Majasari,total,total,,3641,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2007,4,Majasih,sex,laki_laki,,2247,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2007,4,Majasih,sex,perempuan,,2328,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2007,4,Majasih,total,total,,4575,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2008,4,Sliyeg,sex,laki_laki,,3054,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2008,4,Sliyeg,sex,perempuan,,3015,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2008,4,Sliyeg,total,total,,6069,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2009,4,Gadingan,sex,laki_laki,,3473,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2009,4,Gadingan,sex,perempuan,,3519,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2009,4,Gadingan,total,total,,6992,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2010,4,Mekargading,sex,laki_laki,,2043,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2010,4,Mekargading,sex,perempuan,,2028,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2010,4,Mekargading,total,total,,4071,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2011,4,Sliyeg Lor,sex,laki_laki,,1873,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2011,4,Sliyeg Lor,sex,perempuan,,1881,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2011,4,Sliyeg Lor,total,total,,3754,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2012,4,Tugu Kidul,sex,laki_laki,,2717,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2012,4,Tugu Kidul,sex,perempuan,,2844,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2012,4,Tugu Kidul,total,total,,5561,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2013,4,Tugu,sex,laki_laki,,3910,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2013,4,Tugu,sex,perempuan,,3826,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2013,4,Tugu,total,total,,7736,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12.2016,4,Longok,sex,laki_laki,,1666,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12.2016,4,Longok,sex,perempuan,,1662,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12.2016,4,Longok,total,total,,3328,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12,3,Kecamatan Sliyeg,sex,laki_laki,,34694,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.12,3,Kecamatan Sliyeg,sex,perempuan,,34653,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.12,3,Kecamatan Sliyeg,total,total,,69347,jiwa,2025,registration,total_population,3.1,30,,
+32.12.12,3,Sliyeg,age_group,0-4,laki_laki,2435,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.12,3,Sliyeg,age_group,0-4,perempuan,2391,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.12,3,Sliyeg,age_group,0-4,,4826,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.12,3,Sliyeg,age_group,5-9,laki_laki,2228,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.12,3,Sliyeg,age_group,5-9,perempuan,2203,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.12,3,Sliyeg,age_group,5-9,,4431,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.12,3,Sliyeg,age_group,10-14,laki_laki,2283,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.12,3,Sliyeg,age_group,10-14,perempuan,2223,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.12,3,Sliyeg,age_group,10-14,,4506,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.12,3,Sliyeg,age_group,15-19,laki_laki,2158,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.12,3,Sliyeg,age_group,15-19,perempuan,2098,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.12,3,Sliyeg,age_group,15-19,,4256,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.12,3,Sliyeg,age_group,20-24,laki_laki,2286,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.12,3,Sliyeg,age_group,20-24,perempuan,2225,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.12,3,Sliyeg,age_group,20-24,,4511,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.12,3,Sliyeg,age_group,25-29,laki_laki,2854,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.12,3,Sliyeg,age_group,25-29,perempuan,2732,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.12,3,Sliyeg,age_group,25-29,,5586,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.12,3,Sliyeg,age_group,30-34,laki_laki,2914,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.12,3,Sliyeg,age_group,30-34,perempuan,2694,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.12,3,Sliyeg,age_group,30-34,,5608,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.12,3,Sliyeg,age_group,35-39,laki_laki,2724,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.12,3,Sliyeg,age_group,35-39,perempuan,2687,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.12,3,Sliyeg,age_group,35-39,,5411,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.12,3,Sliyeg,age_group,40-44,laki_laki,2552,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.12,3,Sliyeg,age_group,40-44,perempuan,2893,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.12,3,Sliyeg,age_group,40-44,,5445,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.12,3,Sliyeg,age_group,45-49,laki_laki,2539,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.12,3,Sliyeg,age_group,45-49,perempuan,2869,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.12,3,Sliyeg,age_group,45-49,,5408,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.12,3,Sliyeg,age_group,50-54,laki_laki,2213,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.12,3,Sliyeg,age_group,50-54,perempuan,2333,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.12,3,Sliyeg,age_group,50-54,,4546,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.12,3,Sliyeg,age_group,55-59,laki_laki,1837,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.12,3,Sliyeg,age_group,55-59,perempuan,1940,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.12,3,Sliyeg,age_group,55-59,,3777,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.12,3,Sliyeg,age_group,60-64,laki_laki,1537,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.12,3,Sliyeg,age_group,60-64,perempuan,1641,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.12,3,Sliyeg,age_group,60-64,,3178,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.12,3,Sliyeg,age_group,65-69,laki_laki,1204,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.12,3,Sliyeg,age_group,65-69,perempuan,1296,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.12,3,Sliyeg,age_group,65-69,,2500,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.12,3,Sliyeg,age_group,70-74,laki_laki,877,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.12,3,Sliyeg,age_group,70-74,perempuan,922,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.12,3,Sliyeg,age_group,70-74,,1799,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.12,3,Sliyeg,age_group,75+,laki_laki,654,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.12,3,Sliyeg,age_group,75+,perempuan,822,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.12,3,Sliyeg,age_group,75+,,1476,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.12,3,Kecamatan Sliyeg,sex,laki_laki,,33295,jiwa,2025,projection,total_population,3.2,32,,Laki-Laki
+32.12.12,3,Kecamatan Sliyeg,sex,perempuan,,33969,jiwa,2025,projection,total_population,3.2,32,,Perempuan
+32.12.12,3,Kecamatan Sliyeg,total,total,,67264,jiwa,2025,projection,total_population,3.2,32,,

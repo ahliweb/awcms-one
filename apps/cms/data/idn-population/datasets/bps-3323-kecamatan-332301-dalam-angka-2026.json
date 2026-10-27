@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3323-kecamatan-332301-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.23.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Temanggung",
+  "publisherDomain": "3323",
+  "publisherWebsite": "https://temanggungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Temanggung (https://temanggungkab.bps.go.id), publikasi \"Kecamatan Bulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3323020",
+  "publicationNumber": "33230.26014",
+  "issn": "2614-9095",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://temanggungkab.bps.go.id/id/publication/2026/09/28/68e29da48469c5c1bd97e2e8/kecamatan-bulu-dalam-angka-2026.html",
+  "sourceFileSha256": "f05d1699d5184c6f69fff61f6ffb3a951a6df598a9a50e93ca3b2c7f85a352eb",
+  "sourceFileBytes": 10759132,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Temanggung.",
+  "csvPath": "datasets/bps-3323-kecamatan-332301-dalam-angka-2026.csv",
+  "csvSha256": "a11da4842448a48a8f17986c089759d1df1b03faf08645d32b22d0ad4732af42",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bulu, 2026",
+      "printedPages": [25, 26],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bulu, 2026",
+      "printedPages": [27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pasuruhan\": unmatched ",
+    "table 3.1: row not stored: row \"Tegallurung\": unmatched ",
+    "table 3.1: row not stored: row \"Pasuruhan\": unmatched ",
+    "table 3.1: row not stored: row \"Tegallurung\": unmatched "
+  ]
+}

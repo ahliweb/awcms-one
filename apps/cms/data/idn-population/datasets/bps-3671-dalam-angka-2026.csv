@@ -1,0 +1,125 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.71.06,3,Ciledug,religion,islam,,148618,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.06,3,Ciledug,religion,kristen,,4641,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.06,3,Ciledug,religion,katolik,,2286,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.06,3,Ciledug,religion,hindu,,343,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.06,3,Ciledug,religion,buddha,,624,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.06,3,Ciledug,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.13,3,Larangan,religion,islam,,150158,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.13,3,Larangan,religion,kristen,,4357,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.13,3,Larangan,religion,katolik,,1982,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.13,3,Larangan,religion,hindu,,208,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.13,3,Larangan,religion,buddha,,437,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.13,3,Larangan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.12,3,Karang Tengah,religion,islam,,108872,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.12,3,Karang Tengah,religion,kristen,,7258,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.12,3,Karang Tengah,religion,katolik,,4467,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.12,3,Karang Tengah,religion,hindu,,568,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.12,3,Karang Tengah,religion,buddha,,1669,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.12,3,Karang Tengah,religion,lainnya,,60,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.05,3,Cipondoh,religion,islam,,203872,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.05,3,Cipondoh,religion,kristen,,18895,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.05,3,Cipondoh,religion,katolik,,9082,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.05,3,Cipondoh,religion,hindu,,277,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.05,3,Cipondoh,religion,buddha,,10386,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.05,3,Cipondoh,religion,lainnya,,198,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.11,3,Pinang,religion,islam,,179143,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.11,3,Pinang,religion,kristen,,8151,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.11,3,Pinang,religion,katolik,,3891,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.11,3,Pinang,religion,hindu,,260,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.11,3,Pinang,religion,buddha,,2019,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.11,3,Pinang,religion,lainnya,,58,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.01,3,Tangerang,religion,islam,,142186,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.01,3,Tangerang,religion,kristen,,12825,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.01,3,Tangerang,religion,katolik,,5407,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.01,3,Tangerang,religion,hindu,,283,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.01,3,Tangerang,religion,buddha,,8505,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.01,3,Tangerang,religion,lainnya,,117,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.07,3,Karawaci,religion,islam,,160660,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.07,3,Karawaci,religion,kristen,,13920,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.07,3,Karawaci,religion,katolik,,5668,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.07,3,Karawaci,religion,hindu,,288,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.07,3,Karawaci,religion,buddha,,15462,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.07,3,Karawaci,religion,lainnya,,93,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.02,3,Jatiuwung,religion,islam,,105063,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.02,3,Jatiuwung,religion,kristen,,1969,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.02,3,Jatiuwung,religion,katolik,,1022,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.02,3,Jatiuwung,religion,hindu,,26,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.02,3,Jatiuwung,religion,buddha,,287,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.02,3,Jatiuwung,religion,lainnya,,21,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.09,3,Cibodas,religion,islam,,139453,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.09,3,Cibodas,religion,kristen,,13124,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.09,3,Cibodas,religion,katolik,,4500,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.09,3,Cibodas,religion,hindu,,147,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.09,3,Cibodas,religion,buddha,,3360,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.09,3,Cibodas,religion,lainnya,,30,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.08,3,Periuk,religion,islam,,123255,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.08,3,Periuk,religion,kristen,,11458,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.08,3,Periuk,religion,katolik,,5025,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.08,3,Periuk,religion,hindu,,191,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.08,3,Periuk,religion,buddha,,7408,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.08,3,Periuk,religion,lainnya,,68,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.03,3,Batu Ceper,religion,islam,,85455,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.03,3,Batu Ceper,religion,kristen,,5623,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.03,3,Batu Ceper,religion,katolik,,2687,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.03,3,Batu Ceper,religion,hindu,,40,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.03,3,Batu Ceper,religion,buddha,,3969,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.03,3,Batu Ceper,religion,lainnya,,60,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.10,3,Neglasari,religion,islam,,105125,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.10,3,Neglasari,religion,kristen,,6405,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.10,3,Neglasari,religion,katolik,,1327,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.10,3,Neglasari,religion,hindu,,50,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.10,3,Neglasari,religion,buddha,,15303,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.10,3,Neglasari,religion,lainnya,,157,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71.04,3,Benda,religion,islam,,78953,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+36.71.04,3,Benda,religion,kristen,,3615,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+36.71.04,3,Benda,religion,katolik,,1723,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+36.71.04,3,Benda,religion,hindu,,44,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+36.71.04,3,Benda,religion,buddha,,3633,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+36.71.04,3,Benda,religion,lainnya,,160,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/padi_padian,,81339,rupiah,2025,survey_estimate,per_capita,10.1,223,,Padi-padian
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/padi_padian,,89508,rupiah,2024,survey_estimate,per_capita,10.1,223,,Padi-padian
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/umbi_umbian,,11453,rupiah,2025,survey_estimate,per_capita,10.1,223,,Umbi-umbian
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/umbi_umbian,,12005,rupiah,2024,survey_estimate,per_capita,10.1,223,,Umbi-umbian
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,79924,rupiah,2025,survey_estimate,per_capita,10.1,223,,Ikan/udang/cumi/kerang
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,91563,rupiah,2024,survey_estimate,per_capita,10.1,223,,Ikan/udang/cumi/kerang
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/daging,,60600,rupiah,2025,survey_estimate,per_capita,10.1,223,,Daging
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/daging,,68747,rupiah,2024,survey_estimate,per_capita,10.1,223,,Daging
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/telur_dan_susu,,64301,rupiah,2025,survey_estimate,per_capita,10.1,223,,Telur dan susu
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/telur_dan_susu,,63626,rupiah,2024,survey_estimate,per_capita,10.1,223,,Telur dan susu
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/sayur_sayuran,,80117,rupiah,2025,survey_estimate,per_capita,10.1,223,,Sayur-sayuran
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/sayur_sayuran,,80149,rupiah,2024,survey_estimate,per_capita,10.1,223,,Sayur-sayuran
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/kacang_kacangan,,18317,rupiah,2025,survey_estimate,per_capita,10.1,223,,Kacang-kacangan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/kacang_kacangan,,18513,rupiah,2024,survey_estimate,per_capita,10.1,223,,Kacang-kacangan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/buah_buahan,,66100,rupiah,2025,survey_estimate,per_capita,10.1,223,,Buah-buahan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/buah_buahan,,67343,rupiah,2024,survey_estimate,per_capita,10.1,223,,Buah-buahan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21235,rupiah,2025,survey_estimate,per_capita,10.1,223,,Minyak dan kelapa
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19193,rupiah,2024,survey_estimate,per_capita,10.1,223,,Minyak dan kelapa
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/bahan_minuman,,25981,rupiah,2025,survey_estimate,per_capita,10.1,223,,Bahan minuman
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/bahan_minuman,,24106,rupiah,2024,survey_estimate,per_capita,10.1,223,,Bahan minuman
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/bumbu_bumbuan,,18238,rupiah,2025,survey_estimate,per_capita,10.1,223,,Bumbu-bumbuan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/bumbu_bumbuan,,20113,rupiah,2024,survey_estimate,per_capita,10.1,223,,Bumbu-bumbuan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/konsumsi_lainnya,,16684,rupiah,2025,survey_estimate,per_capita,10.1,223,,Konsumsi lainnya
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/konsumsi_lainnya,,18422,rupiah,2024,survey_estimate,per_capita,10.1,223,,Konsumsi lainnya
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,436127,rupiah,2025,survey_estimate,per_capita,10.1,223,,Makanan dan minuman jadi
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,462477,rupiah,2024,survey_estimate,per_capita,10.1,223,,Makanan dan minuman jadi
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/rokok,,94657,rupiah,2025,survey_estimate,per_capita,10.1,223,,Rokok
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/rokok,,111937,rupiah,2024,survey_estimate,per_capita,10.1,223,,Rokok
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/jumlah_makanan,,1075072,rupiah,2025,survey_estimate,per_capita,10.1,223,,Jumlah makanan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/jumlah_makanan,,1147702,rupiah,2024,survey_estimate,per_capita,10.1,223,,Jumlah makanan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,668436,rupiah,2025,survey_estimate,per_capita,10.1,223,,Perumahan dan fasilitas rumah tangga
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,755825,rupiah,2024,survey_estimate,per_capita,10.1,223,,Perumahan dan fasilitas rumah tangga
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,339826,rupiah,2025,survey_estimate,per_capita,10.1,223,,Aneka barang dan jasa
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,353030,rupiah,2024,survey_estimate,per_capita,10.1,223,,Aneka barang dan jasa
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,58448,rupiah,2025,survey_estimate,per_capita,10.1,223,,"Pakaian, alas kaki, dan tutup kepala"
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,51760,rupiah,2024,survey_estimate,per_capita,10.1,223,,"Pakaian, alas kaki, dan tutup kepala"
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/barang_tahan_lama,,67363,rupiah,2025,survey_estimate,per_capita,10.1,223,,Barang tahan lama
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/barang_tahan_lama,,80323,rupiah,2024,survey_estimate,per_capita,10.1,223,,Barang tahan lama
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,106127,rupiah,2025,survey_estimate,per_capita,10.1,223,,"Pajak, pungutan, dan asuransi"
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,106032,rupiah,2024,survey_estimate,per_capita,10.1,223,,"Pajak, pungutan, dan asuransi"
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7710,rupiah,2025,survey_estimate,per_capita,10.1,223,,Keperluan pesta dan upacara/kenduri
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,39210,rupiah,2024,survey_estimate,per_capita,10.1,223,,Keperluan pesta dan upacara/kenduri
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1247910,rupiah,2025,survey_estimate,per_capita,10.1,223,,Jumlah bukan makanan
+36.71,2,Kota Tangerang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1387887,rupiah,2024,survey_estimate,per_capita,10.1,223,,Jumlah bukan makanan
+36.71,2,Kota Tangerang,expenditure,total,,2322982,rupiah,2025,survey_estimate,per_capita,10.1,223,,
+36.71,2,Kota Tangerang,expenditure,total,,2535588,rupiah,2024,survey_estimate,per_capita,10.1,223,,

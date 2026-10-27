@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.06.16.2001,4,Pendalian,sex,laki_laki,,2006,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.16.2001,4,Pendalian,sex,perempuan,,1899,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.16.2001,4,Pendalian,total,total,,3905,jiwa,2025,registration,total_population,3.1,30,,
+14.06.16.2002,4,Bengkolan Salak,sex,laki_laki,,728,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.16.2002,4,Bengkolan Salak,sex,perempuan,,722,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.16.2002,4,Bengkolan Salak,total,total,,1450,jiwa,2025,registration,total_population,3.1,30,,
+14.06.16.2003,4,Suligi,sex,laki_laki,,1418,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.16.2003,4,Suligi,sex,perempuan,,1337,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.16.2003,4,Suligi,total,total,,2755,jiwa,2025,registration,total_population,3.1,30,,
+14.06.16.2004,4,Air Panas,sex,laki_laki,,1663,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.16.2004,4,Air Panas,sex,perempuan,,1582,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.16.2004,4,Air Panas,total,total,,3245,jiwa,2025,registration,total_population,3.1,30,,
+14.06.16,3,Pendalian IV Koto,sex,laki_laki,,6518,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.16,3,Pendalian IV Koto,sex,perempuan,,6245,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.16,3,Pendalian IV Koto,total,total,,12763,jiwa,2025,registration,total_population,3.1,30,,
+14.06.16,3,Pendalian IV Koto,age_group,0-4,laki_laki,389,jiwa,2025,registration,total_population,3.2,32,,0–4
+14.06.16,3,Pendalian IV Koto,age_group,0-4,perempuan,343,jiwa,2025,registration,total_population,3.2,32,,0–4
+14.06.16,3,Pendalian IV Koto,age_group,0-4,,732,jiwa,2025,registration,total_population,3.2,32,,0–4
+14.06.16,3,Pendalian IV Koto,age_group,5-9,laki_laki,591,jiwa,2025,registration,total_population,3.2,32,,5–9
+14.06.16,3,Pendalian IV Koto,age_group,5-9,perempuan,515,jiwa,2025,registration,total_population,3.2,32,,5–9
+14.06.16,3,Pendalian IV Koto,age_group,5-9,,1106,jiwa,2025,registration,total_population,3.2,32,,5–9
+14.06.16,3,Pendalian IV Koto,age_group,10-14,laki_laki,569,jiwa,2025,registration,total_population,3.2,32,,10–14
+14.06.16,3,Pendalian IV Koto,age_group,10-14,perempuan,668,jiwa,2025,registration,total_population,3.2,32,,10–14
+14.06.16,3,Pendalian IV Koto,age_group,10-14,,1237,jiwa,2025,registration,total_population,3.2,32,,10–14
+14.06.16,3,Pendalian IV Koto,age_group,15-19,laki_laki,579,jiwa,2025,registration,total_population,3.2,32,,15–19
+14.06.16,3,Pendalian IV Koto,age_group,15-19,perempuan,553,jiwa,2025,registration,total_population,3.2,32,,15–19
+14.06.16,3,Pendalian IV Koto,age_group,15-19,,1132,jiwa,2025,registration,total_population,3.2,32,,15–19
+14.06.16,3,Pendalian IV Koto,age_group,20-24,laki_laki,632,jiwa,2025,registration,total_population,3.2,32,,20–24
+14.06.16,3,Pendalian IV Koto,age_group,20-24,perempuan,565,jiwa,2025,registration,total_population,3.2,32,,20–24
+14.06.16,3,Pendalian IV Koto,age_group,20-24,,1197,jiwa,2025,registration,total_population,3.2,32,,20–24
+14.06.16,3,Pendalian IV Koto,age_group,25-29,laki_laki,494,jiwa,2025,registration,total_population,3.2,32,,25–29
+14.06.16,3,Pendalian IV Koto,age_group,25-29,perempuan,458,jiwa,2025,registration,total_population,3.2,32,,25–29
+14.06.16,3,Pendalian IV Koto,age_group,25-29,,952,jiwa,2025,registration,total_population,3.2,32,,25–29
+14.06.16,3,Pendalian IV Koto,age_group,30-34,laki_laki,390,jiwa,2025,registration,total_population,3.2,32,,30–34
+14.06.16,3,Pendalian IV Koto,age_group,30-34,perempuan,407,jiwa,2025,registration,total_population,3.2,32,,30–34
+14.06.16,3,Pendalian IV Koto,age_group,30-34,,797,jiwa,2025,registration,total_population,3.2,32,,30–34
+14.06.16,3,Pendalian IV Koto,age_group,35-39,laki_laki,476,jiwa,2025,registration,total_population,3.2,32,,35–39
+14.06.16,3,Pendalian IV Koto,age_group,35-39,perempuan,498,jiwa,2025,registration,total_population,3.2,32,,35–39
+14.06.16,3,Pendalian IV Koto,age_group,35-39,,974,jiwa,2025,registration,total_population,3.2,32,,35–39
+14.06.16,3,Pendalian IV Koto,age_group,40-44,laki_laki,538,jiwa,2025,registration,total_population,3.2,32,,40–44
+14.06.16,3,Pendalian IV Koto,age_group,40-44,perempuan,544,jiwa,2025,registration,total_population,3.2,32,,40–44
+14.06.16,3,Pendalian IV Koto,age_group,40-44,,1082,jiwa,2025,registration,total_population,3.2,32,,40–44
+14.06.16,3,Pendalian IV Koto,age_group,45-49,laki_laki,523,jiwa,2025,registration,total_population,3.2,32,,45–49
+14.06.16,3,Pendalian IV Koto,age_group,45-49,perempuan,473,jiwa,2025,registration,total_population,3.2,32,,45–49
+14.06.16,3,Pendalian IV Koto,age_group,45-49,,996,jiwa,2025,registration,total_population,3.2,32,,45–49
+14.06.16,3,Pendalian IV Koto,age_group,50-54,laki_laki,373,jiwa,2025,registration,total_population,3.2,32,,50–54
+14.06.16,3,Pendalian IV Koto,age_group,50-54,perempuan,313,jiwa,2025,registration,total_population,3.2,32,,50–54
+14.06.16,3,Pendalian IV Koto,age_group,50-54,,686,jiwa,2025,registration,total_population,3.2,32,,50–54
+14.06.16,3,Pendalian IV Koto,age_group,55-59,laki_laki,270,jiwa,2025,registration,total_population,3.2,32,,55–59
+14.06.16,3,Pendalian IV Koto,age_group,55-59,perempuan,293,jiwa,2025,registration,total_population,3.2,32,,55–59
+14.06.16,3,Pendalian IV Koto,age_group,55-59,,563,jiwa,2025,registration,total_population,3.2,32,,55–59
+14.06.16,3,Pendalian IV Koto,age_group,60-64,laki_laki,272,jiwa,2025,registration,total_population,3.2,32,,60–64
+14.06.16,3,Pendalian IV Koto,age_group,60-64,perempuan,254,jiwa,2025,registration,total_population,3.2,32,,60–64
+14.06.16,3,Pendalian IV Koto,age_group,60-64,,526,jiwa,2025,registration,total_population,3.2,32,,60–64
+14.06.16,3,Pendalian IV Koto,age_group,65-69,laki_laki,182,jiwa,2025,registration,total_population,3.2,32,,65–69
+14.06.16,3,Pendalian IV Koto,age_group,65-69,perempuan,175,jiwa,2025,registration,total_population,3.2,32,,65–69
+14.06.16,3,Pendalian IV Koto,age_group,65-69,,357,jiwa,2025,registration,total_population,3.2,32,,65–69
+14.06.16,3,Pendalian IV Koto,age_group,70-74,laki_laki,117,jiwa,2025,registration,total_population,3.2,32,,70–74
+14.06.16,3,Pendalian IV Koto,age_group,70-74,perempuan,92,jiwa,2025,registration,total_population,3.2,32,,70–74
+14.06.16,3,Pendalian IV Koto,age_group,70-74,,209,jiwa,2025,registration,total_population,3.2,32,,70–74
+14.06.16,3,Pendalian IV Koto,age_group,75+,laki_laki,123,jiwa,2025,registration,total_population,3.2,32,,75+
+14.06.16,3,Pendalian IV Koto,age_group,75+,perempuan,94,jiwa,2025,registration,total_population,3.2,32,,75+
+14.06.16,3,Pendalian IV Koto,age_group,75+,,217,jiwa,2025,registration,total_population,3.2,32,,75+
+14.06.16,3,Pendalian IV Koto,sex,laki_laki,,6518,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+14.06.16,3,Pendalian IV Koto,sex,perempuan,,6245,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+14.06.16,3,Pendalian IV Koto,total,total,,12763,jiwa,2025,registration,total_population,3.2,32,,

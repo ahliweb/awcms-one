@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.09.1006,4,Cipedak,sex,laki_laki,,26192,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.09.1006,4,Cipedak,sex,perempuan,,26471,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.09.1006,4,Cipedak,total,total,,52663,jiwa,2025,registration,total_population,3.1,28,,
+31.74.09.1002,4,Srengseng Sawah,sex,laki_laki,,37687,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.09.1002,4,Srengseng Sawah,sex,perempuan,,37049,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.09.1002,4,Srengseng Sawah,total,total,,74736,jiwa,2025,registration,total_population,3.1,28,,
+31.74.09.1003,4,Ciganjur,sex,laki_laki,,25636,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.09.1003,4,Ciganjur,sex,perempuan,,25885,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.09.1003,4,Ciganjur,total,total,,51521,jiwa,2025,registration,total_population,3.1,28,,
+31.74.09.1001,4,Jagakarsa,sex,laki_laki,,41210,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.09.1001,4,Jagakarsa,sex,perempuan,,41456,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.09.1001,4,Jagakarsa,total,total,,82666,jiwa,2025,registration,total_population,3.1,28,,
+31.74.09.1004,4,Lenteng Agung,sex,laki_laki,,33685,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.09.1004,4,Lenteng Agung,sex,perempuan,,33324,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.09.1004,4,Lenteng Agung,total,total,,67009,jiwa,2025,registration,total_population,3.1,28,,
+31.74.09.1005,4,Tanjung Barat,sex,laki_laki,,25447,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.09.1005,4,Tanjung Barat,sex,perempuan,,25455,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.09.1005,4,Tanjung Barat,total,total,,50902,jiwa,2025,registration,total_population,3.1,28,,
+31.74.09,3,Jagakarsa,age_group,0-10,laki_laki,30877,jiwa,2025,registration,total_population,3.2,30,,0-10
+31.74.09,3,Jagakarsa,age_group,0-10,perempuan,29250,jiwa,2025,registration,total_population,3.2,30,,0-10
+31.74.09,3,Jagakarsa,age_group,0-10,,60127,jiwa,2025,registration,total_population,3.2,30,,0-10
+31.74.09,3,Jagakarsa,age_group,11-20,laki_laki,32469,jiwa,2025,registration,total_population,3.2,30,,11-20
+31.74.09,3,Jagakarsa,age_group,11-20,perempuan,30700,jiwa,2025,registration,total_population,3.2,30,,11-20
+31.74.09,3,Jagakarsa,age_group,11-20,,63169,jiwa,2025,registration,total_population,3.2,30,,11-20
+31.74.09,3,Jagakarsa,age_group,21-30,laki_laki,30473,jiwa,2025,registration,total_population,3.2,30,,21-30
+31.74.09,3,Jagakarsa,age_group,21-30,perempuan,29933,jiwa,2025,registration,total_population,3.2,30,,21-30
+31.74.09,3,Jagakarsa,age_group,21-30,,60406,jiwa,2025,registration,total_population,3.2,30,,21-30
+31.74.09,3,Jagakarsa,age_group,31-40,laki_laki,28400,jiwa,2025,registration,total_population,3.2,30,,31-40
+31.74.09,3,Jagakarsa,age_group,31-40,perempuan,29534,jiwa,2025,registration,total_population,3.2,30,,31-40
+31.74.09,3,Jagakarsa,age_group,31-40,,57934,jiwa,2025,registration,total_population,3.2,30,,31-40
+31.74.09,3,Jagakarsa,age_group,41-50,laki_laki,29655,jiwa,2025,registration,total_population,3.2,30,,41-50
+31.74.09,3,Jagakarsa,age_group,41-50,perempuan,31193,jiwa,2025,registration,total_population,3.2,30,,41-50
+31.74.09,3,Jagakarsa,age_group,41-50,,60848,jiwa,2025,registration,total_population,3.2,30,,41-50
+31.74.09,3,Jagakarsa,age_group,51-60,laki_laki,22764,jiwa,2025,registration,total_population,3.2,30,,51-60
+31.74.09,3,Jagakarsa,age_group,51-60,perempuan,22260,jiwa,2025,registration,total_population,3.2,30,,51-60
+31.74.09,3,Jagakarsa,age_group,51-60,,45024,jiwa,2025,registration,total_population,3.2,30,,51-60
+31.74.09,3,Jagakarsa,age_group,61-70,laki_laki,11018,jiwa,2025,registration,total_population,3.2,30,,61-70
+31.74.09,3,Jagakarsa,age_group,61-70,perempuan,11937,jiwa,2025,registration,total_population,3.2,30,,61-70
+31.74.09,3,Jagakarsa,age_group,61-70,,22955,jiwa,2025,registration,total_population,3.2,30,,61-70
+31.74.09,3,Jagakarsa,age_group,71-80,laki_laki,3555,jiwa,2025,registration,total_population,3.2,30,,71-80
+31.74.09,3,Jagakarsa,age_group,71-80,perempuan,3994,jiwa,2025,registration,total_population,3.2,30,,71-80
+31.74.09,3,Jagakarsa,age_group,71-80,,7549,jiwa,2025,registration,total_population,3.2,30,,71-80
+31.74.09,3,Jagakarsa,age_group,81+,laki_laki,646,jiwa,2025,registration,total_population,3.2,30,,81+
+31.74.09,3,Jagakarsa,age_group,81+,perempuan,839,jiwa,2025,registration,total_population,3.2,30,,81+
+31.74.09,3,Jagakarsa,age_group,81+,,1485,jiwa,2025,registration,total_population,3.2,30,,81+

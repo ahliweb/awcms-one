@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.07.1003,4,Rano,sex,laki_laki,,1869,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07.1003,4,Rano,sex,perempuan,,1773,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07.1003,4,Rano,total,total,,3642,jiwa,2025,registration,total_population,3.1,24,,
+15.07.07.1005,4,Parit Culum I,sex,laki_laki,,3326,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07.1005,4,Parit Culum I,sex,perempuan,,3306,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07.1005,4,Parit Culum I,total,total,,6632,jiwa,2025,registration,total_population,3.1,24,,
+15.07.07.1006,4,Parit Culum II,sex,laki_laki,,1176,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07.1006,4,Parit Culum II,sex,perempuan,,1094,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07.1006,4,Parit Culum II,total,total,,2270,jiwa,2025,registration,total_population,3.1,24,,
+15.07.07.1007,4,Teluk Dawan,sex,laki_laki,,1069,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07.1007,4,Teluk Dawan,sex,perempuan,,1031,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07.1007,4,Teluk Dawan,total,total,,2100,jiwa,2025,registration,total_population,3.1,24,,
+15.07.07.1004,4,Talang Babat,sex,laki_laki,,2476,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07.1004,4,Talang Babat,sex,perempuan,,2432,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07.1004,4,Talang Babat,total,total,,4908,jiwa,2025,registration,total_population,3.1,24,,
+15.07.07.1002,4,Nibung Putih,sex,laki_laki,,1192,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07.1002,4,Nibung Putih,sex,perempuan,,1109,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07.1002,4,Nibung Putih,total,total,,2301,jiwa,2025,registration,total_population,3.1,24,,
+15.07.07.1001,4,Kampung Singkep,sex,laki_laki,,1509,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07.1001,4,Kampung Singkep,sex,perempuan,,1437,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07.1001,4,Kampung Singkep,total,total,,2946,jiwa,2025,registration,total_population,3.1,24,,
+15.07.07,3,Muara Sabak Barat,sex,laki_laki,,12617,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.07,3,Muara Sabak Barat,sex,perempuan,,12182,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.07,3,Muara Sabak Barat,total,total,,24799,jiwa,2025,registration,total_population,3.1,24,,

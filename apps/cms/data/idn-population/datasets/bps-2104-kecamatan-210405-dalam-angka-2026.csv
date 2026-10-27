@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.05.2005,4,Sekanah,sex,laki_laki,,538,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2005,4,Sekanah,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2005,4,Sekanah,total,total,,1012,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2002,4,Duara,sex,laki_laki,,713,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2002,4,Duara,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2002,4,Duara,total,total,,1372,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2004,4,Resun,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2004,4,Resun,sex,perempuan,,274,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2004,4,Resun,total,total,,591,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2003,4,Limbung,sex,laki_laki,,995,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2003,4,Limbung,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2003,4,Limbung,total,total,,1912,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2001,4,Bukit Harapan,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2001,4,Bukit Harapan,sex,perempuan,,497,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2001,4,Bukit Harapan,total,total,,994,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2008,4,Linau,sex,laki_laki,,359,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2008,4,Linau,sex,perempuan,,359,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2008,4,Linau,total,total,,718,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.1007,4,Pancur,sex,laki_laki,,725,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.1007,4,Pancur,sex,perempuan,,706,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.1007,4,Pancur,total,total,,1431,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2010,4,Rantau Panjang,sex,laki_laki,,336,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2010,4,Rantau Panjang,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2010,4,Rantau Panjang,total,total,,618,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2009,4,Sungai Besar,sex,laki_laki,,358,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2009,4,Sungai Besar,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2009,4,Sungai Besar,total,total,,701,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05.2012,4,Resun Pesisir,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05.2012,4,Resun Pesisir,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05.2012,4,Resun Pesisir,total,total,,946,jiwa,2025,registration,total_population,3.1,19,,
+21.04.05,3,Kecamatan Lingga Utara,sex,laki_laki,,5308,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.05,3,Kecamatan Lingga Utara,sex,perempuan,,4987,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.05,3,Kecamatan Lingga Utara,total,total,,10295,jiwa,2025,registration,total_population,3.1,19,,

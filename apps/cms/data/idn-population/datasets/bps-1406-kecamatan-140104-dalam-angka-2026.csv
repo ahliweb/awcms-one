@@ -1,0 +1,29 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.04.2006,4,Balung,sex,perempuan,,1105,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2006,4,Balung,total,total,,2299,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2010,4,Pulau Gadang,sex,perempuan,,1124,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2010,4,Pulau Gadang,total,total,,2328,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2011,4,Tanjung Alai,sex,perempuan,,1209,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2011,4,Tanjung Alai,total,total,,2501,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.1018,4,Batu Bersurat,sex,perempuan,,1416,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.1018,4,Batu Bersurat,total,total,,2934,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2005,4,Koto Tuo,sex,perempuan,,1454,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2005,4,Koto Tuo,total,total,,2934,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2007,4,Muara Takus,sex,perempuan,,1007,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2007,4,Muara Takus,total,total,,2104,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2004,4,Gunung Bungsu,sex,perempuan,,901,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2004,4,Gunung Bungsu,total,total,,1849,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2014,4,Koto Mesjid,sex,perempuan,,1342,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2014,4,Koto Mesjid,total,total,,2739,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2013,4,Lubuk Agung,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2013,4,Lubuk Agung,total,total,,1905,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2012,4,Ranah Sungkai,sex,perempuan,,657,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2012,4,Ranah Sungkai,total,total,,1408,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2017,4,Binamang,sex,perempuan,,637,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2017,4,Binamang,total,total,,1267,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2016,4,Pongkai Istiqomah,sex,perempuan,,373,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2016,4,Pongkai Istiqomah,total,total,,718,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04.2019,4,Koto Tuo Barat,sex,perempuan,,598,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04.2019,4,Koto Tuo Barat,total,total,,1257,jiwa,2025,registration,total_population,3.1,11,,
+14.01.04,3,XIII Koto Kampar,sex,perempuan,,12753,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.04,3,XIII Koto Kampar,total,total,,26243,jiwa,2025,registration,total_population,3.1,11,,

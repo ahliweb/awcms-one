@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3509-kecamatan-350903-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.09.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumber Baru Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jember",
+  "publisherDomain": "3509",
+  "publisherWebsite": "https://jemberkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jember (https://jemberkab.bps.go.id), publikasi \"Kecamatan Sumber Baru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3509170",
+  "publicationNumber": "35090.26021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jemberkab.bps.go.id/id/publication/2026/09/28/ff82bc8a9c9ed4c0f27acda7/kecamatan-sumber-baru-dalam-angka-2026.html",
+  "sourceFileSha256": "35b6acf8fef2840928d2042682a9ee9f809923876cdceffa6883c8803154a65c",
+  "sourceFileBytes": 13675387,
+  "sourcePages": [33, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jember.",
+  "csvPath": "datasets/bps-3509-kecamatan-350903-dalam-angka-2026.csv",
+  "csvSha256": "8a495cb50c1cc7815666ca4e0b747ba5bfd66988d9a8434e4c5886ca782dc5b2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sumberbaru, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumberbaru, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

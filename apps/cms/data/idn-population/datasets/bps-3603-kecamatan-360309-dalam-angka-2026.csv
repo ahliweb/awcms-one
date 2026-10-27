@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.09.2007,4,Legok Sukamaju,sex,laki_laki,,2670,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.09.2007,4,Legok Sukamaju,sex,perempuan,,2569,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.09.2007,4,Legok Sukamaju,total,total,,5239,jiwa,2025,registration,total_population,3.1,25,,
+36.03.09.2005,4,Ranca Labuh,sex,laki_laki,,4314,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.09.2005,4,Ranca Labuh,sex,perempuan,,4086,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.09.2005,4,Ranca Labuh,total,total,,8400,jiwa,2025,registration,total_population,3.1,25,,
+36.03.09.2004,4,Kemiri,sex,laki_laki,,6236,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.09.2004,4,Kemiri,sex,perempuan,,5949,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.09.2004,4,Kemiri,total,total,,12185,jiwa,2025,registration,total_population,3.1,25,,
+36.03.09.2001,4,Patra Manggala,sex,laki_laki,,2583,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.09.2001,4,Patra Manggala,sex,perempuan,,2439,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.09.2001,4,Patra Manggala,total,total,,5022,jiwa,2025,registration,total_population,3.1,25,,
+36.03.09.2002,4,Karang Anyar,sex,laki_laki,,2576,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.09.2002,4,Karang Anyar,sex,perempuan,,2404,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.09.2002,4,Karang Anyar,total,total,,4980,jiwa,2025,registration,total_population,3.1,25,,
+36.03.09.2003,4,Lontar,sex,laki_laki,,3714,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.09.2003,4,Lontar,sex,perempuan,,3723,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.09.2003,4,Lontar,total,total,,7437,jiwa,2025,registration,total_population,3.1,25,,
+36.03.09,3,Kemiri,age_group,0-4,laki_laki,2416,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.09,3,Kemiri,age_group,0-4,perempuan,2177,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.09,3,Kemiri,age_group,0-4,,4593,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.09,3,Kemiri,age_group,5-9,laki_laki,2867,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.09,3,Kemiri,age_group,5-9,perempuan,2652,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.09,3,Kemiri,age_group,5-9,,5519,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.09,3,Kemiri,age_group,10-14,laki_laki,2671,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.09,3,Kemiri,age_group,10-14,perempuan,2503,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.09,3,Kemiri,age_group,10-14,,5174,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.09,3,Kemiri,age_group,15-19,laki_laki,2064,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.09,3,Kemiri,age_group,15-19,perempuan,1984,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.09,3,Kemiri,age_group,15-19,,4048,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.09,3,Kemiri,age_group,20-24,laki_laki,2140,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.09,3,Kemiri,age_group,20-24,perempuan,1982,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.09,3,Kemiri,age_group,20-24,,4122,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.09,3,Kemiri,age_group,25-29,laki_laki,2472,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.09,3,Kemiri,age_group,25-29,perempuan,2325,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.09,3,Kemiri,age_group,25-29,,4797,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.09,3,Kemiri,age_group,30-34,laki_laki,2599,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.09,3,Kemiri,age_group,30-34,perempuan,2393,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.09,3,Kemiri,age_group,30-34,,4992,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.09,3,Kemiri,age_group,35-39,laki_laki,2650,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.09,3,Kemiri,age_group,35-39,perempuan,2334,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.09,3,Kemiri,age_group,35-39,,4984,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.09,3,Kemiri,age_group,40-44,laki_laki,2118,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.09,3,Kemiri,age_group,40-44,perempuan,2042,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.09,3,Kemiri,age_group,40-44,,4160,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.09,3,Kemiri,age_group,45-49,laki_laki,1541,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.09,3,Kemiri,age_group,45-49,perempuan,1759,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.09,3,Kemiri,age_group,45-49,,3300,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.09,3,Kemiri,age_group,50-54,laki_laki,1282,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.09,3,Kemiri,age_group,50-54,perempuan,1347,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.09,3,Kemiri,age_group,50-54,,2629,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.09,3,Kemiri,age_group,55-59,laki_laki,1076,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.09,3,Kemiri,age_group,55-59,perempuan,1197,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.09,3,Kemiri,age_group,55-59,,2273,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.09,3,Kemiri,age_group,60-64,laki_laki,889,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.09,3,Kemiri,age_group,60-64,perempuan,890,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.09,3,Kemiri,age_group,60-64,,1779,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.09,3,Kemiri,age_group,65-69,laki_laki,716,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.09,3,Kemiri,age_group,65-69,perempuan,713,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.09,3,Kemiri,age_group,65-69,,1429,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.09,3,Kemiri,age_group,70-74,laki_laki,362,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.09,3,Kemiri,age_group,70-74,perempuan,361,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.09,3,Kemiri,age_group,70-74,,723,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.09,3,Kemiri,age_group,75+,laki_laki,350,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.09,3,Kemiri,age_group,75+,perempuan,496,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.09,3,Kemiri,age_group,75+,,846,jiwa,2025,registration,total_population,3.2,27,,>75

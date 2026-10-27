@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.09.2006,4,Muara Merang,sex,laki_laki,,2388,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2006,4,Muara Merang,sex,perempuan,,2040,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2006,4,Muara Merang,total,total,,4428,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2007,4,Mangsang,sex,laki_laki,,5870,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2007,4,Mangsang,sex,perempuan,,5314,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2007,4,Mangsang,total,total,,11184,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2008,4,Tampang Baru,sex,laki_laki,,2781,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2008,4,Tampang Baru,sex,perempuan,,2563,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2008,4,Tampang Baru,total,total,,5344,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2014,4,Pulai Gading,sex,laki_laki,,2327,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2014,4,Pulai Gading,sex,perempuan,,2097,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2014,4,Pulai Gading,total,total,,4424,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2015,4,Muara Medak,sex,laki_laki,,4754,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2015,4,Muara Medak,sex,perempuan,,4147,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2015,4,Muara Medak,total,total,,8901,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2009,4,Kali Berau,sex,laki_laki,,1599,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2009,4,Kali Berau,sex,perempuan,,1472,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2009,4,Kali Berau,total,total,,3071,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2010,4,Sindang Marga,sex,laki_laki,,1022,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2010,4,Sindang Marga,sex,perempuan,,969,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2010,4,Sindang Marga,total,total,,1991,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2011,4,Telang,sex,laki_laki,,1525,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2011,4,Telang,sex,perempuan,,1449,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2011,4,Telang,total,total,,2974,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2013,4,Mendis,sex,laki_laki,,2075,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2013,4,Mendis,sex,perempuan,,1919,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2013,4,Mendis,total,total,,3994,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2048,4,Simpang Bayat,sex,laki_laki,,2193,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2048,4,Simpang Bayat,sex,perempuan,,2061,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2048,4,Simpang Bayat,total,total,,4254,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2050,4,Pangkalan Bayat,sex,laki_laki,,1025,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2050,4,Pangkalan Bayat,sex,perempuan,,942,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2050,4,Pangkalan Bayat,total,total,,1967,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2012,4,Pagar Desa,sex,laki_laki,,935,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2012,4,Pagar Desa,sex,perempuan,,797,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2012,4,Pagar Desa,total,total,,1732,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2049,4,Bayat Ilir,sex,laki_laki,,925,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2049,4,Bayat Ilir,sex,perempuan,,885,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2049,4,Bayat Ilir,total,total,,1810,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.1016,4,Bayung Lencir,sex,laki_laki,,6450,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.1016,4,Bayung Lencir,sex,perempuan,,6053,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.1016,4,Bayung Lencir,total,total,,12503,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2026,4,Senawar Jaya,sex,laki_laki,,2402,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2026,4,Senawar Jaya,sex,perempuan,,2246,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2026,4,Senawar Jaya,total,total,,4648,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2017,4,Sukajaya,sex,laki_laki,,3362,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2017,4,Sukajaya,sex,perempuan,,3162,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2017,4,Sukajaya,total,total,,6524,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2051,4,Muara Bahar,sex,laki_laki,,2277,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2051,4,Muara Bahar,sex,perempuan,,2001,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2051,4,Muara Bahar,total,total,,4278,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2058,4,Mekar Jaya,sex,laki_laki,,2873,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2058,4,Mekar Jaya,sex,perempuan,,2719,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2058,4,Mekar Jaya,total,total,,5592,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2060,4,Kepayang,sex,laki_laki,,1424,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2060,4,Kepayang,sex,perempuan,,1184,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2060,4,Kepayang,total,total,,2608,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2059,4,Mendis Jaya,sex,laki_laki,,2166,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2059,4,Mendis Jaya,sex,perempuan,,1960,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2059,4,Mendis Jaya,total,total,,4126,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2063,4,Lubuk Harjo,sex,laki_laki,,1956,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2063,4,Lubuk Harjo,sex,perempuan,,1829,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2063,4,Lubuk Harjo,total,total,,3785,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.1065,4,Bayung Lencir Indah,sex,laki_laki,,2716,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.1065,4,Bayung Lencir Indah,sex,perempuan,,2686,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.1065,4,Bayung Lencir Indah,total,total,,5402,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09.2061,4,Wonorejo,sex,laki_laki,,1123,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09.2061,4,Wonorejo,sex,perempuan,,1047,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09.2061,4,Wonorejo,total,total,,2170,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09,3,Bayung Lencir,sex,laki_laki,,56168,jiwa,2026,projection,total_population,3.1,44,,Laki-Laki/Male
+16.06.09,3,Bayung Lencir,sex,perempuan,,51542,jiwa,2026,projection,total_population,3.1,44,,Perempuan/Female
+16.06.09,3,Bayung Lencir,total,total,,107710,jiwa,2026,projection,total_population,3.1,44,,
+16.06.09,3,Bayung Lencir,age_group,0-14,laki_laki,10708,jiwa,2026,projection,total_population,3.2,46,,0-14
+16.06.09,3,Bayung Lencir,age_group,0-14,perempuan,10724,jiwa,2026,projection,total_population,3.2,46,,0-14
+16.06.09,3,Bayung Lencir,age_group,0-14,,21432,jiwa,2026,projection,total_population,3.2,46,,0-14
+16.06.09,3,Bayung Lencir,age_group,15-64,laki_laki,29359,jiwa,2026,projection,total_population,3.2,46,,15-64
+16.06.09,3,Bayung Lencir,age_group,15-64,perempuan,26607,jiwa,2026,projection,total_population,3.2,46,,15-64
+16.06.09,3,Bayung Lencir,age_group,15-64,,55966,jiwa,2026,projection,total_population,3.2,46,,15-64
+16.06.09,3,Bayung Lencir,age_group,65+,laki_laki,1914,jiwa,2026,projection,total_population,3.2,46,,65+
+16.06.09,3,Bayung Lencir,age_group,65+,perempuan,1377,jiwa,2026,projection,total_population,3.2,46,,65+
+16.06.09,3,Bayung Lencir,age_group,65+,,3291,jiwa,2026,projection,total_population,3.2,46,,65+
+16.06.09,3,Bayung Lencir,sex,laki_laki,,41981,jiwa,2026,projection,total_population,3.2,46,,Laki-Laki
+16.06.09,3,Bayung Lencir,sex,perempuan,,38708,jiwa,2026,projection,total_population,3.2,46,,Perempuan
+16.06.09,3,Bayung Lencir,total,total,,80689,jiwa,2026,projection,total_population,3.2,46,,

@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360130-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.30",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mekarjaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Mekarjaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601172",
+  "publicationNumber": "36010.26034",
+  "issn": "3063-8593",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/987ca6306dd58de18589de87/kecamatan-mekarjaya-dalam-angka-2026.html",
+  "sourceFileSha256": "a21f783030878cbfb4d14cf7bebd003dfb57c89b92faad5ed593cd69cefc157b",
+  "sourceFileBytes": 8411229,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360130-dalam-angka-2026.csv",
+  "csvSha256": "8c2c02e62ebd01e2f54ce3e7fbb602df7b4eb69dc7da6f40333098d730bd76b6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Mekarjaya, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KECAMATAN MEKARJAYA MEKARJAYA DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN MEKARJAYA MEKARJAYA DISTRICT\": unmatched "
+  ]
+}

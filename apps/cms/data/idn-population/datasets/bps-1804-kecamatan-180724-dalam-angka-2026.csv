@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.07.24.2001,4,Bungkuk,sex,laki_laki,,2546,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2001,4,Bungkuk,sex,perempuan,,2420,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2001,4,Bungkuk,total,total,,4966,jiwa,2025,registration,total_population,3.1,,,
+18.07.24.2005,4,Giri Mulyo,sex,laki_laki,,4565,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2005,4,Giri Mulyo,sex,perempuan,,4313,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2005,4,Giri Mulyo,total,total,,8878,jiwa,2025,registration,total_population,3.1,,,
+18.07.24.2006,4,Gunung Mas,sex,laki_laki,,1623,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2006,4,Gunung Mas,sex,perempuan,,1596,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2006,4,Gunung Mas,total,total,,3219,jiwa,2025,registration,total_population,3.1,,,
+18.07.24.2002,4,Batu Badak,sex,laki_laki,,1453,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2002,4,Batu Badak,sex,perempuan,,1412,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2002,4,Batu Badak,total,total,,2865,jiwa,2025,registration,total_population,3.1,,,
+18.07.24.2003,4,Peniangan,sex,laki_laki,,2236,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2003,4,Peniangan,sex,perempuan,,2146,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2003,4,Peniangan,total,total,,4382,jiwa,2025,registration,total_population,3.1,,,
+18.07.24.2007,4,Purwosari,sex,laki_laki,,1188,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2007,4,Purwosari,sex,perempuan,,1189,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2007,4,Purwosari,total,total,,2377,jiwa,2025,registration,total_population,3.1,,,
+18.07.24.2004,4,Gunung Raya,sex,laki_laki,,1458,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2004,4,Gunung Raya,sex,perempuan,,1476,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2004,4,Gunung Raya,total,total,,2934,jiwa,2025,registration,total_population,3.1,,,
+18.07.24.2008,4,Bukit Raya,sex,laki_laki,,631,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24.2008,4,Bukit Raya,sex,perempuan,,658,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24.2008,4,Bukit Raya,total,total,,1289,jiwa,2025,registration,total_population,3.1,,,
+18.07.24,3,Marga Sekampung,sex,laki_laki,,15700,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.24,3,Marga Sekampung,sex,perempuan,,15210,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.24,3,Marga Sekampung,total,total,,30910,jiwa,2025,registration,total_population,3.1,,,
+18.07.24,3,Marga Sekampung,age_group,0-4,laki_laki,935,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.24,3,Marga Sekampung,age_group,0-4,perempuan,820,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.24,3,Marga Sekampung,age_group,0-4,,1755,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.24,3,Marga Sekampung,age_group,5-9,laki_laki,1269,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.24,3,Marga Sekampung,age_group,5-9,perempuan,1231,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.24,3,Marga Sekampung,age_group,5-9,,2500,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.24,3,Marga Sekampung,age_group,10-14,laki_laki,1347,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.24,3,Marga Sekampung,age_group,10-14,perempuan,1287,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.24,3,Marga Sekampung,age_group,10-14,,2634,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.24,3,Marga Sekampung,age_group,15-19,laki_laki,1240,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.24,3,Marga Sekampung,age_group,15-19,perempuan,1216,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.24,3,Marga Sekampung,age_group,15-19,,2456,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.24,3,Marga Sekampung,age_group,20-24,laki_laki,1194,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.24,3,Marga Sekampung,age_group,20-24,perempuan,1068,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.24,3,Marga Sekampung,age_group,20-24,,2262,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.24,3,Marga Sekampung,age_group,25-29,laki_laki,1235,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.24,3,Marga Sekampung,age_group,25-29,perempuan,1164,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.24,3,Marga Sekampung,age_group,25-29,,2399,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.24,3,Marga Sekampung,age_group,30-34,laki_laki,1117,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.24,3,Marga Sekampung,age_group,30-34,perempuan,1084,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.24,3,Marga Sekampung,age_group,30-34,,2201,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.24,3,Marga Sekampung,age_group,35-39,laki_laki,1095,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.24,3,Marga Sekampung,age_group,35-39,perempuan,1103,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.24,3,Marga Sekampung,age_group,35-39,,2198,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.24,3,Marga Sekampung,age_group,40-44,laki_laki,1278,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.24,3,Marga Sekampung,age_group,40-44,perempuan,1227,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.24,3,Marga Sekampung,age_group,40-44,,2505,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.24,3,Marga Sekampung,age_group,45-49,laki_laki,1217,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.24,3,Marga Sekampung,age_group,45-49,perempuan,1227,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.24,3,Marga Sekampung,age_group,45-49,,2444,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.24,3,Marga Sekampung,age_group,50-54,laki_laki,1050,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.24,3,Marga Sekampung,age_group,50-54,perempuan,936,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.24,3,Marga Sekampung,age_group,50-54,,1986,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.24,3,Marga Sekampung,age_group,55-59,laki_laki,712,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.24,3,Marga Sekampung,age_group,55-59,perempuan,730,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.24,3,Marga Sekampung,age_group,55-59,,1442,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.24,3,Marga Sekampung,age_group,60-64,laki_laki,556,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.24,3,Marga Sekampung,age_group,60-64,perempuan,708,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.24,3,Marga Sekampung,age_group,60-64,,1264,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.24,3,Marga Sekampung,age_group,65-69,laki_laki,534,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.24,3,Marga Sekampung,age_group,65-69,perempuan,533,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.24,3,Marga Sekampung,age_group,65-69,,1067,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.24,3,Marga Sekampung,age_group,70-74,laki_laki,415,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.24,3,Marga Sekampung,age_group,70-74,perempuan,399,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.24,3,Marga Sekampung,age_group,70-74,,814,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.24,3,Marga Sekampung,age_group,75+,laki_laki,506,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.24,3,Marga Sekampung,age_group,75+,perempuan,477,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.24,3,Marga Sekampung,age_group,75+,,983,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.24,3,Marga Sekampung,sex,laki_laki,,15700,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+18.07.24,3,Marga Sekampung,sex,perempuan,,15210,jiwa,2025,registration,total_population,3.2,,,Perempuan
+18.07.24,3,Marga Sekampung,total,total,,30910,jiwa,2025,registration,total_population,3.2,,,

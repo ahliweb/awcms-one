@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.01,3,Perak,age_group,0-4,perempuan,1565,jiwa,2025,registration,total_population,3.2,35,,0–4
+35.17.01,3,Perak,age_group,0-4,,3106,jiwa,2025,registration,total_population,3.2,35,,0–4
+35.17.01,3,Perak,age_group,5-9,perempuan,2171,jiwa,2025,registration,total_population,3.2,35,,5–9
+35.17.01,3,Perak,age_group,5-9,,4499,jiwa,2025,registration,total_population,3.2,35,,5–9
+35.17.01,3,Perak,age_group,10-14,perempuan,2351,jiwa,2025,registration,total_population,3.2,35,,10–14
+35.17.01,3,Perak,age_group,10-14,,4829,jiwa,2025,registration,total_population,3.2,35,,10–14
+35.17.01,3,Perak,age_group,15-19,perempuan,2299,jiwa,2025,registration,total_population,3.2,35,,15–19
+35.17.01,3,Perak,age_group,15-19,,4786,jiwa,2025,registration,total_population,3.2,35,,15–19
+35.17.01,3,Perak,age_group,20-24,perempuan,2362,jiwa,2025,registration,total_population,3.2,35,,20–24
+35.17.01,3,Perak,age_group,20-24,,4762,jiwa,2025,registration,total_population,3.2,35,,20–24
+35.17.01,3,Perak,age_group,25-29,perempuan,2142,jiwa,2025,registration,total_population,3.2,35,,25–29
+35.17.01,3,Perak,age_group,25-29,,4415,jiwa,2025,registration,total_population,3.2,35,,25–29
+35.17.01,3,Perak,age_group,30-34,perempuan,1996,jiwa,2025,registration,total_population,3.2,35,,30–34
+35.17.01,3,Perak,age_group,30-34,,4089,jiwa,2025,registration,total_population,3.2,35,,30–34
+35.17.01,3,Perak,age_group,35-39,perempuan,1942,jiwa,2025,registration,total_population,3.2,35,,35–39
+35.17.01,3,Perak,age_group,35-39,,3946,jiwa,2025,registration,total_population,3.2,35,,35–39
+35.17.01,3,Perak,age_group,40-44,perempuan,2359,jiwa,2025,registration,total_population,3.2,35,,40–44
+35.17.01,3,Perak,age_group,40-44,,4763,jiwa,2025,registration,total_population,3.2,35,,40–44
+35.17.01,3,Perak,age_group,45-49,perempuan,2144,jiwa,2025,registration,total_population,3.2,35,,45–49
+35.17.01,3,Perak,age_group,45-49,,4417,jiwa,2025,registration,total_population,3.2,35,,45–49
+35.17.01,3,Perak,age_group,50-54,perempuan,1986,jiwa,2025,registration,total_population,3.2,35,,50–54
+35.17.01,3,Perak,age_group,50-54,,4040,jiwa,2025,registration,total_population,3.2,35,,50–54
+35.17.01,3,Perak,age_group,55-59,perempuan,1762,jiwa,2025,registration,total_population,3.2,35,,55–59
+35.17.01,3,Perak,age_group,55-59,,3386,jiwa,2025,registration,total_population,3.2,35,,55–59
+35.17.01,3,Perak,age_group,60-64,perempuan,1541,jiwa,2025,registration,total_population,3.2,35,,60–64
+35.17.01,3,Perak,age_group,60-64,,2930,jiwa,2025,registration,total_population,3.2,35,,60–64
+35.17.01,3,Perak,age_group,65-69,perempuan,1175,jiwa,2025,registration,total_population,3.2,35,,65–69
+35.17.01,3,Perak,age_group,65-69,,2209,jiwa,2025,registration,total_population,3.2,35,,65–69
+35.17.01,3,Perak,age_group,70-74,perempuan,734,jiwa,2025,registration,total_population,3.2,35,,70–74
+35.17.01,3,Perak,age_group,70-74,,1399,jiwa,2025,registration,total_population,3.2,35,,70–74
+35.17.01,3,Perak,age_group,75+,perempuan,1209,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.01,3,Perak,age_group,75+,,1988,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.01,3,Kecamatan Perak,sex,perempuan,,29738,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.17.01,3,Kecamatan Perak,total,total,,59564,jiwa,2025,registration,total_population,3.2,35,,

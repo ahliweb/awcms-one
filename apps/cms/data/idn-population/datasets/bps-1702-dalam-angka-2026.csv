@@ -1,0 +1,210 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.06,3,Kota Padang,total,total,,12582,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.23,3,Sindang Beliti Ilir,total,total,,9232,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.07,3,Padang Ulak Tanding,total,total,,20802,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.08,3,Sindang Kelingi,total,total,,13230,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.20,3,Binduriang,total,total,,9377,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.21,3,Sindang Beliti Ulu,total,total,,11284,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.22,3,Sindang Dataran,total,total,,10501,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.09,3,Curup,total,total,,26697,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.10,3,Bermani Ulu,total,total,,14650,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.11,3,Selupu Rejang,total,total,,40653,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.18,3,Curup Selatan,total,total,,25681,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.19,3,Curup Tengah,total,total,,34946,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.24,3,Bermani Ulu Raya,total,total,,12698,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.16,3,Curup Utara,total,total,,20796,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02.17,3,Curup Timur,total,total,,28768,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02,2,Rejang Lebong,total,total,,291897,jiwa,2025,projection,total_population,3.1.1,49,,
+17.02,2,Kabupaten Rejang Lebong,age_group,0-4,laki_laki,12231,jiwa,2025,projection,total_population,3.1.2,52,,0–4
+17.02,2,Kabupaten Rejang Lebong,age_group,0-4,perempuan,11722,jiwa,2025,projection,total_population,3.1.2,52,,0–4
+17.02,2,Kabupaten Rejang Lebong,age_group,0-4,,23953,jiwa,2025,projection,total_population,3.1.2,52,,0–4
+17.02,2,Kabupaten Rejang Lebong,age_group,5-9,laki_laki,11175,jiwa,2025,projection,total_population,3.1.2,52,,5–9
+17.02,2,Kabupaten Rejang Lebong,age_group,5-9,perempuan,10564,jiwa,2025,projection,total_population,3.1.2,52,,5–9
+17.02,2,Kabupaten Rejang Lebong,age_group,5-9,,21739,jiwa,2025,projection,total_population,3.1.2,52,,5–9
+17.02,2,Kabupaten Rejang Lebong,age_group,10-14,laki_laki,11267,jiwa,2025,projection,total_population,3.1.2,52,,10–14
+17.02,2,Kabupaten Rejang Lebong,age_group,10-14,perempuan,10925,jiwa,2025,projection,total_population,3.1.2,52,,10–14
+17.02,2,Kabupaten Rejang Lebong,age_group,10-14,,22192,jiwa,2025,projection,total_population,3.1.2,52,,10–14
+17.02,2,Kabupaten Rejang Lebong,age_group,15-19,laki_laki,12047,jiwa,2025,projection,total_population,3.1.2,52,,15–19
+17.02,2,Kabupaten Rejang Lebong,age_group,15-19,perempuan,11480,jiwa,2025,projection,total_population,3.1.2,52,,15–19
+17.02,2,Kabupaten Rejang Lebong,age_group,15-19,,23527,jiwa,2025,projection,total_population,3.1.2,52,,15–19
+17.02,2,Kabupaten Rejang Lebong,age_group,20-24,laki_laki,12423,jiwa,2025,projection,total_population,3.1.2,52,,20–24
+17.02,2,Kabupaten Rejang Lebong,age_group,20-24,perempuan,11941,jiwa,2025,projection,total_population,3.1.2,52,,20–24
+17.02,2,Kabupaten Rejang Lebong,age_group,20-24,,24364,jiwa,2025,projection,total_population,3.1.2,52,,20–24
+17.02,2,Kabupaten Rejang Lebong,age_group,25-29,laki_laki,12410,jiwa,2025,projection,total_population,3.1.2,52,,25–29
+17.02,2,Kabupaten Rejang Lebong,age_group,25-29,perempuan,11816,jiwa,2025,projection,total_population,3.1.2,52,,25–29
+17.02,2,Kabupaten Rejang Lebong,age_group,25-29,,24226,jiwa,2025,projection,total_population,3.1.2,52,,25–29
+17.02,2,Kabupaten Rejang Lebong,age_group,30-34,laki_laki,12144,jiwa,2025,projection,total_population,3.1.2,52,,30–34
+17.02,2,Kabupaten Rejang Lebong,age_group,30-34,perempuan,10939,jiwa,2025,projection,total_population,3.1.2,52,,30–34
+17.02,2,Kabupaten Rejang Lebong,age_group,30-34,,23083,jiwa,2025,projection,total_population,3.1.2,52,,30–34
+17.02,2,Kabupaten Rejang Lebong,age_group,35-39,laki_laki,11503,jiwa,2025,projection,total_population,3.1.2,52,,35–39
+17.02,2,Kabupaten Rejang Lebong,age_group,35-39,perempuan,10617,jiwa,2025,projection,total_population,3.1.2,52,,35–39
+17.02,2,Kabupaten Rejang Lebong,age_group,35-39,,22120,jiwa,2025,projection,total_population,3.1.2,52,,35–39
+17.02,2,Kabupaten Rejang Lebong,age_group,40-44,laki_laki,10682,jiwa,2025,projection,total_population,3.1.2,52,,40–44
+17.02,2,Kabupaten Rejang Lebong,age_group,40-44,perempuan,10599,jiwa,2025,projection,total_population,3.1.2,52,,40–44
+17.02,2,Kabupaten Rejang Lebong,age_group,40-44,,21281,jiwa,2025,projection,total_population,3.1.2,52,,40–44
+17.02,2,Kabupaten Rejang Lebong,age_group,45-49,laki_laki,10554,jiwa,2025,projection,total_population,3.1.2,52,,45–49
+17.02,2,Kabupaten Rejang Lebong,age_group,45-49,perempuan,10487,jiwa,2025,projection,total_population,3.1.2,52,,45–49
+17.02,2,Kabupaten Rejang Lebong,age_group,45-49,,21041,jiwa,2025,projection,total_population,3.1.2,52,,45–49
+17.02,2,Kabupaten Rejang Lebong,age_group,50-54,laki_laki,9270,jiwa,2025,projection,total_population,3.1.2,52,,50–54
+17.02,2,Kabupaten Rejang Lebong,age_group,50-54,perempuan,8985,jiwa,2025,projection,total_population,3.1.2,52,,50–54
+17.02,2,Kabupaten Rejang Lebong,age_group,50-54,,18255,jiwa,2025,projection,total_population,3.1.2,52,,50–54
+17.02,2,Kabupaten Rejang Lebong,age_group,55-59,laki_laki,7557,jiwa,2025,projection,total_population,3.1.2,52,,55–59
+17.02,2,Kabupaten Rejang Lebong,age_group,55-59,perempuan,7367,jiwa,2025,projection,total_population,3.1.2,52,,55–59
+17.02,2,Kabupaten Rejang Lebong,age_group,55-59,,14924,jiwa,2025,projection,total_population,3.1.2,52,,55–59
+17.02,2,Kabupaten Rejang Lebong,age_group,60-64,laki_laki,5870,jiwa,2025,projection,total_population,3.1.2,52,,60–64
+17.02,2,Kabupaten Rejang Lebong,age_group,60-64,perempuan,5798,jiwa,2025,projection,total_population,3.1.2,52,,60–64
+17.02,2,Kabupaten Rejang Lebong,age_group,60-64,,11668,jiwa,2025,projection,total_population,3.1.2,52,,60–64
+17.02,2,Kabupaten Rejang Lebong,age_group,65-69,laki_laki,4371,jiwa,2025,projection,total_population,3.1.2,52,,65–69
+17.02,2,Kabupaten Rejang Lebong,age_group,65-69,perempuan,4370,jiwa,2025,projection,total_population,3.1.2,52,,65–69
+17.02,2,Kabupaten Rejang Lebong,age_group,65-69,,8741,jiwa,2025,projection,total_population,3.1.2,52,,65–69
+17.02,2,Kabupaten Rejang Lebong,age_group,70-74,laki_laki,2892,jiwa,2025,projection,total_population,3.1.2,52,,70–74
+17.02,2,Kabupaten Rejang Lebong,age_group,70-74,perempuan,3043,jiwa,2025,projection,total_population,3.1.2,52,,70–74
+17.02,2,Kabupaten Rejang Lebong,age_group,70-74,,5935,jiwa,2025,projection,total_population,3.1.2,52,,70–74
+17.02,2,Kabupaten Rejang Lebong,age_group,75+,laki_laki,2195,jiwa,2025,projection,total_population,3.1.2,52,,75+
+17.02,2,Kabupaten Rejang Lebong,age_group,75+,perempuan,2653,jiwa,2025,projection,total_population,3.1.2,52,,75+
+17.02,2,Kabupaten Rejang Lebong,age_group,75+,,4848,jiwa,2025,projection,total_population,3.1.2,52,,75+
+17.02,2,Rejang Lebong,sex,laki_laki,,148591,jiwa,2025,projection,total_population,3.1.2,52,,Laki-Laki
+17.02,2,Rejang Lebong,sex,perempuan,,143306,jiwa,2025,projection,total_population,3.1.2,52,,Perempuan
+17.02,2,Rejang Lebong,total,total,,291897,jiwa,2025,projection,total_population,3.1.2,52,,
+17.02.09,3,Curup,religion,islam,,25497,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.09,3,Curup,religion,kristen,,433,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.09,3,Curup,religion,katolik,,264,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.09,3,Curup,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.02.09,3,Curup,religion,buddha,,232,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02.09,3,Curup,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,109,,Lainnya
+17.02.16,3,Curup Utara,religion,islam,,20410,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.16,3,Curup Utara,religion,kristen,,10,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.16,3,Curup Utara,religion,katolik,,83,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.16,3,Curup Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.16,3,Curup Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.16,3,Curup Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.17,3,Curup Timur,religion,islam,,27462,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.17,3,Curup Timur,religion,kristen,,377,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.17,3,Curup Timur,religion,katolik,,92,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.17,3,Curup Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.17,3,Curup Timur,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02.17,3,Curup Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.18,3,Curup Selatan,religion,islam,,25035,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.18,3,Curup Selatan,religion,kristen,,194,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.18,3,Curup Selatan,religion,katolik,,59,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.18,3,Curup Selatan,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.02.18,3,Curup Selatan,religion,buddha,,28,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02.18,3,Curup Selatan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,109,,Lainnya
+17.02.19,3,Curup Tengah,religion,islam,,33490,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.19,3,Curup Tengah,religion,kristen,,669,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.19,3,Curup Tengah,religion,katolik,,188,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.19,3,Curup Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.19,3,Curup Tengah,religion,buddha,,107,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02.19,3,Curup Tengah,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,109,,Lainnya
+17.02.08,3,Sindang Kelingi,religion,islam,,13126,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.08,3,Sindang Kelingi,religion,kristen,,26,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.08,3,Sindang Kelingi,religion,katolik,,512,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.08,3,Sindang Kelingi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.08,3,Sindang Kelingi,religion,buddha,,133,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02.08,3,Sindang Kelingi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.22,3,Sindang Dataran,religion,islam,,10872,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.22,3,Sindang Dataran,religion,kristen,,84,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.22,3,Sindang Dataran,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.22,3,Sindang Dataran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.22,3,Sindang Dataran,religion,buddha,,24,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02.22,3,Sindang Dataran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.06,3,Kota Padang,religion,islam,,12814,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.06,3,Kota Padang,religion,kristen,,14,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.06,3,Kota Padang,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.06,3,Kota Padang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.06,3,Kota Padang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.06,3,Kota Padang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.23,3,Sindang Beliti Ilir,religion,islam,,9712,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.23,3,Sindang Beliti Ilir,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.23,3,Sindang Beliti Ilir,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.23,3,Sindang Beliti Ilir,religion,hindu,,27,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.02.23,3,Sindang Beliti Ilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.23,3,Sindang Beliti Ilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.10,3,Bermani Ulu,religion,islam,,14669,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.10,3,Bermani Ulu,religion,kristen,,68,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.10,3,Bermani Ulu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Katolik
+17.02.10,3,Bermani Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.10,3,Bermani Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.10,3,Bermani Ulu,religion,lainnya,,46,jiwa,2025,registration,total_population,4.3.1,109,,Lainnya
+17.02.24,3,Bermani Ulu Raya,religion,islam,,13002,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.24,3,Bermani Ulu Raya,religion,kristen,,57,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.24,3,Bermani Ulu Raya,religion,katolik,,57,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.24,3,Bermani Ulu Raya,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.02.24,3,Bermani Ulu Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.24,3,Bermani Ulu Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.07,3,Padang Ulak Tanding,religion,islam,,20656,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.07,3,Padang Ulak Tanding,religion,kristen,,69,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.07,3,Padang Ulak Tanding,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.07,3,Padang Ulak Tanding,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.07,3,Padang Ulak Tanding,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.07,3,Padang Ulak Tanding,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.20,3,Binduriang,religion,islam,,9610,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.20,3,Binduriang,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.20,3,Binduriang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Katolik
+17.02.20,3,Binduriang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.20,3,Binduriang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.20,3,Binduriang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.21,3,Sindang Beliti Ulu,religion,islam,,12198,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.21,3,Sindang Beliti Ulu,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.21,3,Sindang Beliti Ulu,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.21,3,Sindang Beliti Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.21,3,Sindang Beliti Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.02.21,3,Sindang Beliti Ulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02.11,3,Selupu Rejang,religion,islam,,39186,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02.11,3,Selupu Rejang,religion,kristen,,136,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02.11,3,Selupu Rejang,religion,katolik,,31,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02.11,3,Selupu Rejang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.02.11,3,Selupu Rejang,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02.11,3,Selupu Rejang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.02,2,Rejang Lebong,religion,islam,,287739,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.02,2,Rejang Lebong,religion,kristen,,2151,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.02,2,Rejang Lebong,religion,katolik,,1318,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.02,2,Rejang Lebong,religion,hindu,,45,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.02,2,Rejang Lebong,religion,buddha,,546,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.02,2,Rejang Lebong,religion,lainnya,,54,jiwa,2025,registration,total_population,4.3.1,109,,Lainnya
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/padi_padian,,89469,rupiah,2025,survey_estimate,per_capita,10.1,212,,Padi-padian
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/padi_padian,,98752,rupiah,2024,survey_estimate,per_capita,10.1,212,,Padi-padian
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/umbi_umbian,,6876,rupiah,2025,survey_estimate,per_capita,10.1,212,,Umbi-umbian
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/umbi_umbian,,5995,rupiah,2024,survey_estimate,per_capita,10.1,212,,Umbi-umbian
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,54667,rupiah,2025,survey_estimate,per_capita,10.1,212,,Ikan/udang/cumi/kerang
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,45557,rupiah,2024,survey_estimate,per_capita,10.1,212,,Ikan/udang/cumi/kerang
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/daging,,29268,rupiah,2025,survey_estimate,per_capita,10.1,212,,Daging
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/daging,,27006,rupiah,2024,survey_estimate,per_capita,10.1,212,,Daging
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/telur_dan_susu,,30740,rupiah,2025,survey_estimate,per_capita,10.1,212,,Telur dan susu
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/telur_dan_susu,,26374,rupiah,2024,survey_estimate,per_capita,10.1,212,,Telur dan susu
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/sayur_sayuran,,82165,rupiah,2025,survey_estimate,per_capita,10.1,212,,Sayur-sayuran
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/sayur_sayuran,,84003,rupiah,2024,survey_estimate,per_capita,10.1,212,,Sayur-sayuran
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/kacang_kacangan,,11983,rupiah,2025,survey_estimate,per_capita,10.1,212,,Kacang-kacangan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/kacang_kacangan,,11898,rupiah,2024,survey_estimate,per_capita,10.1,212,,Kacang-kacangan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/buah_buahan,,37990,rupiah,2025,survey_estimate,per_capita,10.1,212,,Buah-buahan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/buah_buahan,,40349,rupiah,2024,survey_estimate,per_capita,10.1,212,,Buah-buahan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22720,rupiah,2025,survey_estimate,per_capita,10.1,212,,Minyak dan kelapa
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19085,rupiah,2024,survey_estimate,per_capita,10.1,212,,Minyak dan kelapa
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/bahan_minuman,,27103,rupiah,2025,survey_estimate,per_capita,10.1,212,,Bahan minuman
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/bahan_minuman,,22807,rupiah,2024,survey_estimate,per_capita,10.1,212,,Bahan minuman
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/bumbu_bumbuan,,9985,rupiah,2025,survey_estimate,per_capita,10.1,212,,Bumbu-bumbuan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/bumbu_bumbuan,,11255,rupiah,2024,survey_estimate,per_capita,10.1,212,,Bumbu-bumbuan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/konsumsi_lainnya,,13546,rupiah,2025,survey_estimate,per_capita,10.1,212,,Konsumsi lainnya
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/konsumsi_lainnya,,14337,rupiah,2024,survey_estimate,per_capita,10.1,212,,Konsumsi lainnya
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,164223,rupiah,2025,survey_estimate,per_capita,10.1,212,,Makanan dan minuman jadi
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,166441,rupiah,2024,survey_estimate,per_capita,10.1,212,,Makanan dan minuman jadi
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/rokok,,95802,rupiah,2025,survey_estimate,per_capita,10.1,212,,Rokok
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/rokok,,100222,rupiah,2024,survey_estimate,per_capita,10.1,212,,Rokok
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/jumlah_makanan,,676537,rupiah,2025,survey_estimate,per_capita,10.1,212,,Jumlah makanan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/jumlah_makanan,,674081,rupiah,2024,survey_estimate,per_capita,10.1,212,,Jumlah makanan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,273941,rupiah,2025,survey_estimate,per_capita,10.1,212,,Perumahan dan fasilitas rumah tangga
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,277198,rupiah,2024,survey_estimate,per_capita,10.1,212,,Perumahan dan fasilitas rumah tangga
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,128674,rupiah,2025,survey_estimate,per_capita,10.1,212,,Aneka barang dan jasa
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,115772,rupiah,2024,survey_estimate,per_capita,10.1,212,,Aneka barang dan jasa
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39982,rupiah,2025,survey_estimate,per_capita,10.1,212,,"Pakaian, alas kaki, dan tutup kepala"
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40618,rupiah,2024,survey_estimate,per_capita,10.1,212,,"Pakaian, alas kaki, dan tutup kepala"
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/barang_tahan_lama,,80524,rupiah,2025,survey_estimate,per_capita,10.1,212,,Barang tahan lama
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/barang_tahan_lama,,24435,rupiah,2024,survey_estimate,per_capita,10.1,212,,Barang tahan lama
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39259,rupiah,2025,survey_estimate,per_capita,10.1,212,,"Pajak, pungutan, dan asuransi"
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36054,rupiah,2024,survey_estimate,per_capita,10.1,212,,"Pajak, pungutan, dan asuransi"
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28109,rupiah,2025,survey_estimate,per_capita,10.1,212,,Keperluan pesta dan upacara/kenduri
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,27666,rupiah,2024,survey_estimate,per_capita,10.1,212,,Keperluan pesta dan upacara/kenduri
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,590488,rupiah,2025,survey_estimate,per_capita,10.1,212,,Jumlah bukan makanan
+17.02,2,Kabupaten Rejang Lebong,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,521743,rupiah,2024,survey_estimate,per_capita,10.1,212,,Jumlah bukan makanan
+17.02,2,Kabupaten Rejang Lebong,expenditure,total,,1267025,rupiah,2025,survey_estimate,per_capita,10.1,212,,
+17.02,2,Kabupaten Rejang Lebong,expenditure,total,,1195824,rupiah,2024,survey_estimate,per_capita,10.1,212,,

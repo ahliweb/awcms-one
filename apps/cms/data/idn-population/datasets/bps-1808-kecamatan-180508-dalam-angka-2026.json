@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1808-kecamatan-180508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.05.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banjar Agung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulang Bawang",
+  "publisherDomain": "1808",
+  "publisherWebsite": "https://tulangbawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulang Bawang (https://tulangbawangkab.bps.go.id), publikasi \"Kecamatan Banjar Agung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "2829",
+  "publicationNumber": "18080.26006",
+  "issn": "2829-9795",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tulangbawangkab.bps.go.id/id/publication/2026/09/28/a5a1c55f8e9eb52b3c9effcf/kecamatan-banjar-agung-dalam-angka-2026.html",
+  "sourceFileSha256": "c1e12028cbc3b9c9a6c527e24df2173877c26a103f834c8f5f5012c2bf8403ef",
+  "sourceFileBytes": 11753017,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulang Bawang.",
+  "csvPath": "datasets/bps-1808-kecamatan-180508-dalam-angka-2026.csv",
+  "csvSha256": "502fc324eab2adca81289d1ac3340afe14d809ae76fd082296e9a9ebafec9185",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Banjar Agung, 2026",
+      "printedPages": [32, 33],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banjar Agung, 2026",
+      "printedPages": [34],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tri Dharma Wirajaya\": unmatched ",
+    "table 3.1: row not stored: row \"Tri Dharma Wirajaya\": unmatched ",
+    "cross-table disagreement, both stored as published: 18.05.08 sex/laki_laki/ 2026: 23808 (table 3.1) vs 23369 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.05.08 sex/perempuan/ 2026: 22940 (table 3.1) vs 22499 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.05.08 total/total/ 2026: 46748 (table 3.1) vs 45868 (table 3.2)"
+  ]
+}

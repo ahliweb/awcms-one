@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.07.09,3,Makarti Jaya,age_group,0-4,laki_laki,864,jiwa,2026,registration,total_population,3.2,36,,0 - 4
+16.07.09,3,Makarti Jaya,age_group,0-4,perempuan,808,jiwa,2026,registration,total_population,3.2,36,,0 - 4
+16.07.09,3,Makarti Jaya,age_group,0-4,,1672,jiwa,2026,registration,total_population,3.2,36,,0 - 4
+16.07.09,3,Makarti Jaya,age_group,5-9,laki_laki,1154,jiwa,2026,registration,total_population,3.2,36,,5 - 9
+16.07.09,3,Makarti Jaya,age_group,5-9,perempuan,1084,jiwa,2026,registration,total_population,3.2,36,,5 - 9
+16.07.09,3,Makarti Jaya,age_group,5-9,,2238,jiwa,2026,registration,total_population,3.2,36,,5 - 9
+16.07.09,3,Makarti Jaya,age_group,10-14,laki_laki,1238,jiwa,2026,registration,total_population,3.2,36,,10 - 14
+16.07.09,3,Makarti Jaya,age_group,10-14,perempuan,1222,jiwa,2026,registration,total_population,3.2,36,,10 - 14
+16.07.09,3,Makarti Jaya,age_group,10-14,,2460,jiwa,2026,registration,total_population,3.2,36,,10 - 14
+16.07.09,3,Makarti Jaya,age_group,15-19,laki_laki,1107,jiwa,2026,registration,total_population,3.2,36,,15 - 19
+16.07.09,3,Makarti Jaya,age_group,15-19,perempuan,1040,jiwa,2026,registration,total_population,3.2,36,,15 - 19
+16.07.09,3,Makarti Jaya,age_group,15-19,,2147,jiwa,2026,registration,total_population,3.2,36,,15 - 19
+16.07.09,3,Makarti Jaya,age_group,20-24,laki_laki,1040,jiwa,2026,registration,total_population,3.2,36,,20 - 24
+16.07.09,3,Makarti Jaya,age_group,20-24,perempuan,1082,jiwa,2026,registration,total_population,3.2,36,,20 - 24
+16.07.09,3,Makarti Jaya,age_group,20-24,,2122,jiwa,2026,registration,total_population,3.2,36,,20 - 24
+16.07.09,3,Makarti Jaya,age_group,25-29,laki_laki,1026,jiwa,2026,registration,total_population,3.2,36,,25 - 29
+16.07.09,3,Makarti Jaya,age_group,25-29,perempuan,968,jiwa,2026,registration,total_population,3.2,36,,25 - 29
+16.07.09,3,Makarti Jaya,age_group,25-29,,1994,jiwa,2026,registration,total_population,3.2,36,,25 - 29
+16.07.09,3,Makarti Jaya,age_group,30-34,laki_laki,954,jiwa,2026,registration,total_population,3.2,36,,30 - 34
+16.07.09,3,Makarti Jaya,age_group,30-34,perempuan,937,jiwa,2026,registration,total_population,3.2,36,,30 - 34
+16.07.09,3,Makarti Jaya,age_group,30-34,,1891,jiwa,2026,registration,total_population,3.2,36,,30 - 34
+16.07.09,3,Makarti Jaya,age_group,35-39,laki_laki,974,jiwa,2026,registration,total_population,3.2,36,,35 - 39
+16.07.09,3,Makarti Jaya,age_group,35-39,perempuan,1011,jiwa,2026,registration,total_population,3.2,36,,35 - 39
+16.07.09,3,Makarti Jaya,age_group,35-39,,1985,jiwa,2026,registration,total_population,3.2,36,,35 - 39
+16.07.09,3,Makarti Jaya,age_group,40-44,laki_laki,1021,jiwa,2026,registration,total_population,3.2,36,,40 - 44
+16.07.09,3,Makarti Jaya,age_group,40-44,perempuan,1048,jiwa,2026,registration,total_population,3.2,36,,40 - 44
+16.07.09,3,Makarti Jaya,age_group,40-44,,2069,jiwa,2026,registration,total_population,3.2,36,,40 - 44
+16.07.09,3,Makarti Jaya,age_group,45-49,laki_laki,961,jiwa,2026,registration,total_population,3.2,36,,45 - 49
+16.07.09,3,Makarti Jaya,age_group,45-49,perempuan,954,jiwa,2026,registration,total_population,3.2,36,,45 - 49
+16.07.09,3,Makarti Jaya,age_group,45-49,,1915,jiwa,2026,registration,total_population,3.2,36,,45 - 49
+16.07.09,3,Makarti Jaya,age_group,50-59,laki_laki,844,jiwa,2026,registration,total_population,3.2,36,,50 - 59
+16.07.09,3,Makarti Jaya,age_group,50-59,perempuan,805,jiwa,2026,registration,total_population,3.2,36,,50 - 59
+16.07.09,3,Makarti Jaya,age_group,50-59,,1649,jiwa,2026,registration,total_population,3.2,36,,50 - 59
+16.07.09,3,Makarti Jaya,age_group,55-69,laki_laki,656,jiwa,2026,registration,total_population,3.2,36,,55 - 69
+16.07.09,3,Makarti Jaya,age_group,55-69,perempuan,653,jiwa,2026,registration,total_population,3.2,36,,55 - 69
+16.07.09,3,Makarti Jaya,age_group,55-69,,1309,jiwa,2026,registration,total_population,3.2,36,,55 - 69
+16.07.09,3,Makarti Jaya,age_group,60-64,laki_laki,526,jiwa,2026,registration,total_population,3.2,36,,60 - 64
+16.07.09,3,Makarti Jaya,age_group,60-64,perempuan,488,jiwa,2026,registration,total_population,3.2,36,,60 - 64
+16.07.09,3,Makarti Jaya,age_group,60-64,,1014,jiwa,2026,registration,total_population,3.2,36,,60 - 64
+16.07.09,3,Makarti Jaya,age_group,65-69,laki_laki,423,jiwa,2026,registration,total_population,3.2,36,,65 - 69
+16.07.09,3,Makarti Jaya,age_group,65-69,perempuan,372,jiwa,2026,registration,total_population,3.2,36,,65 - 69
+16.07.09,3,Makarti Jaya,age_group,65-69,,795,jiwa,2026,registration,total_population,3.2,36,,65 - 69
+16.07.09,3,Makarti Jaya,age_group,70-74,laki_laki,258,jiwa,2026,registration,total_population,3.2,36,,70 - 74
+16.07.09,3,Makarti Jaya,age_group,70-74,perempuan,232,jiwa,2026,registration,total_population,3.2,36,,70 - 74
+16.07.09,3,Makarti Jaya,age_group,70-74,,490,jiwa,2026,registration,total_population,3.2,36,,70 - 74
+16.07.09,3,Makarti Jaya,age_group,75+,laki_laki,368,jiwa,2026,registration,total_population,3.2,36,,75+
+16.07.09,3,Makarti Jaya,age_group,75+,perempuan,391,jiwa,2026,registration,total_population,3.2,36,,75+
+16.07.09,3,Makarti Jaya,age_group,75+,,759,jiwa,2026,registration,total_population,3.2,36,,75+
+16.07.09,3,Makarti Jaya,sex,laki_laki,,13414,jiwa,2026,registration,total_population,3.2,36,,Laki-Laki
+16.07.09,3,Makarti Jaya,sex,perempuan,,13095,jiwa,2026,registration,total_population,3.2,36,,Perempuan
+16.07.09,3,Makarti Jaya,total,total,,26509,jiwa,2026,registration,total_population,3.2,36,,

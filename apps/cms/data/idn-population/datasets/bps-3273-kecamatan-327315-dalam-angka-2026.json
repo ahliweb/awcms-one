@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327315-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bandung Kulon Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Bandung Kulon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273010",
+  "publicationNumber": "32730.26030",
+  "issn": "2797-4669",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/2fb664c999d08451e724458b/kecamatan-bandung-kulon-dalam-angka-2026.html",
+  "sourceFileSha256": "de39c6380507456395a130a42e18b50e58539db9f6d0be937a4249f147280c39",
+  "sourceFileBytes": 9818171,
+  "sourcePages": [37, 38, 39, 99],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327315-dalam-angka-2026.csv",
+  "csvSha256": "8f15d783de576fc62b5cc00373b0b10eb0d0bedf0d4ba7eef8926eb029d24535",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bandung Kulon, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bandung Kulon, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Bandung Kulon, 2025",
+      "printedPages": [99],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Bandung Kulon District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Bandung Kulon Bandung Kulon District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kecamatan Bandung\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kulon Bandung Kulon District\": unmatched "
+  ]
+}

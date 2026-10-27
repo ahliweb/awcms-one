@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332013-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kalinyamatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Kalinyamatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320021",
+  "publicationNumber": "33200.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/b51025e63c765ce90038a65b/kecamatan-kalinyamatan-dalam-angka-2026.html",
+  "sourceFileSha256": "88dfb6cfe9e1ba95e09fac01ec67623b364f87e082a2f4fc27f2ccc35f8557e1",
+  "sourceFileBytes": 13154336,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332013-dalam-angka-2026.csv",
+  "csvSha256": "e30cf853032e7a1523247a12d622b60f79c0685259464d3ca788c6683c7a9594",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kalinyamatan, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kalinyamatan, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 33.20.13 are not stored: age_group (perempuan) vs sex value: parts sum 33558.0000 != 33555.0000 (diff 3.0000); the source itself is inconsistent"
+  ]
+}

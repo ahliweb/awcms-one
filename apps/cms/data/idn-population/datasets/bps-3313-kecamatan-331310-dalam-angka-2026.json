@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3313-kecamatan-331310-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.13.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tasikmadu Dalam Angka 2026",
+  "publisherName": "BPS kabupaten karanganyar",
+  "publisherDomain": "3313",
+  "publisherWebsite": "https://karanganyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS kabupaten karanganyar (https://karanganyarkab.bps.go.id), publikasi \"Kecamatan Tasikmadu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3313100",
+  "publicationNumber": "33130.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karanganyarkab.bps.go.id/id/publication/2026/09/28/63e8b974c705c08f16009a77/kecamatan-tasikmadu-dalam-angka-2026.html",
+  "sourceFileSha256": "06a158c21a91f56e071d5371215430c4c6681d8b438cd63a0f74f335b7e71a44",
+  "sourceFileBytes": 8496399,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karanganyar.",
+  "csvPath": "datasets/bps-3313-kecamatan-331310-dalam-angka-2026.csv",
+  "csvSha256": "84e32ccd75c8bac157d853e597a4e4a891ce4b4799f423048faab9277f537f10",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tasikmadu, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tasikmadu, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

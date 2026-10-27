@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.09.07.2010,4,Bajak II,sex,laki_laki,,373,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2010,4,Bajak II,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2010,4,Bajak II,total,total,,694,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2001,4,Jambu,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2001,4,Jambu,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2001,4,Jambu,total,total,,1238,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2002,4,Penembang,sex,laki_laki,,384,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2002,4,Penembang,sex,perempuan,,390,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2002,4,Penembang,total,total,,774,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2005,4,Lubuk Unen,sex,laki_laki,,461,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2005,4,Lubuk Unen,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2005,4,Lubuk Unen,total,total,,925,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2006,4,Pungguk Ketupak,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2006,4,Pungguk Ketupak,sex,perempuan,,198,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2006,4,Pungguk Ketupak,total,total,,431,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2007,4,Pungguk Beringin,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2007,4,Pungguk Beringin,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2007,4,Pungguk Beringin,total,total,,448,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2009,4,Kelindang,sex,laki_laki,,236,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2009,4,Kelindang,sex,perempuan,,247,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2009,4,Kelindang,total,total,,483,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2008,4,Ulak Lebar,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2008,4,Ulak Lebar,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2008,4,Ulak Lebar,total,total,,451,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2004,4,Taba Durian Sebakul,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2004,4,Taba Durian Sebakul,sex,perempuan,,239,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2004,4,Taba Durian Sebakul,total,total,,483,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2003,4,Talang Ambung,sex,laki_laki,,82,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2003,4,Talang Ambung,sex,perempuan,,83,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2003,4,Talang Ambung,total,total,,165,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2011,4,Lubuk Unen Baru,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2011,4,Lubuk Unen Baru,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2011,4,Lubuk Unen Baru,total,total,,794,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2012,4,Padang Kedeper,sex,laki_laki,,159,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2012,4,Padang Kedeper,sex,perempuan,,153,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2012,4,Padang Kedeper,total,total,,312,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07.2013,4,Kelindang Atas,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07.2013,4,Kelindang Atas,sex,perempuan,,267,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07.2013,4,Kelindang Atas,total,total,,562,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07,3,Merigi Kelindang,sex,laki_laki,,3993,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.07,3,Merigi Kelindang,sex,perempuan,,3767,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.07,3,Merigi Kelindang,total,total,,7760,jiwa,2025,registration,total_population,3.1,35,,
+17.09.07,3,Merigi Kelindang,age_group,0-4,laki_laki,268,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.07,3,Merigi Kelindang,age_group,0-4,perempuan,228,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.07,3,Merigi Kelindang,age_group,0-4,,496,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.07,3,Merigi Kelindang,age_group,5-9,laki_laki,317,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.07,3,Merigi Kelindang,age_group,5-9,perempuan,306,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.07,3,Merigi Kelindang,age_group,5-9,,623,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.07,3,Merigi Kelindang,age_group,10-14,laki_laki,326,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.07,3,Merigi Kelindang,age_group,10-14,perempuan,320,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.07,3,Merigi Kelindang,age_group,10-14,,646,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.07,3,Merigi Kelindang,age_group,15-19,laki_laki,372,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.07,3,Merigi Kelindang,age_group,15-19,perempuan,308,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.07,3,Merigi Kelindang,age_group,15-19,,680,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.07,3,Merigi Kelindang,age_group,20-24,laki_laki,352,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.07,3,Merigi Kelindang,age_group,20-24,perempuan,340,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.07,3,Merigi Kelindang,age_group,20-24,,692,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.07,3,Merigi Kelindang,age_group,25-29,laki_laki,324,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.07,3,Merigi Kelindang,age_group,25-29,perempuan,295,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.07,3,Merigi Kelindang,age_group,25-29,,619,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.07,3,Merigi Kelindang,age_group,30-34,laki_laki,318,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.07,3,Merigi Kelindang,age_group,30-34,perempuan,283,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.07,3,Merigi Kelindang,age_group,30-34,,601,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.07,3,Merigi Kelindang,age_group,35-39,laki_laki,343,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.07,3,Merigi Kelindang,age_group,35-39,perempuan,354,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.07,3,Merigi Kelindang,age_group,35-39,,697,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.07,3,Merigi Kelindang,age_group,40-44,laki_laki,371,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.07,3,Merigi Kelindang,age_group,40-44,perempuan,321,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.07,3,Merigi Kelindang,age_group,40-44,,692,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.07,3,Merigi Kelindang,age_group,45-49,laki_laki,279,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.07,3,Merigi Kelindang,age_group,45-49,perempuan,252,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.07,3,Merigi Kelindang,age_group,45-49,,531,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.07,3,Merigi Kelindang,age_group,50-54,laki_laki,217,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.07,3,Merigi Kelindang,age_group,50-54,perempuan,220,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.07,3,Merigi Kelindang,age_group,50-54,,437,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.07,3,Merigi Kelindang,age_group,55-59,laki_laki,179,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.07,3,Merigi Kelindang,age_group,55-59,perempuan,134,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.07,3,Merigi Kelindang,age_group,55-59,,313,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.07,3,Merigi Kelindang,age_group,60-64,laki_laki,116,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.07,3,Merigi Kelindang,age_group,60-64,perempuan,149,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.07,3,Merigi Kelindang,age_group,60-64,,265,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.07,3,Merigi Kelindang,age_group,65-69,laki_laki,113,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.07,3,Merigi Kelindang,age_group,65-69,perempuan,100,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.07,3,Merigi Kelindang,age_group,65-69,,213,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.07,3,Merigi Kelindang,age_group,70-74,laki_laki,57,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.07,3,Merigi Kelindang,age_group,70-74,perempuan,56,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.07,3,Merigi Kelindang,age_group,70-74,,113,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.07,3,Merigi Kelindang,age_group,75+,laki_laki,41,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.07,3,Merigi Kelindang,age_group,75+,perempuan,101,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.07,3,Merigi Kelindang,age_group,75+,,142,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.07,3,Merigi Kelindang,sex,laki_laki,,3993,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+17.09.07,3,Merigi Kelindang,sex,perempuan,,3767,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+17.09.07,3,Merigi Kelindang,total,total,,7760,jiwa,2025,registration,total_population,3.2,37,,

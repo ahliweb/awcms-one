@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3503-kecamatan-350314-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.03.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Suruh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Trenggalek",
+  "publisherDomain": "3503",
+  "publisherWebsite": "https://trenggalekkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Trenggalek (https://trenggalekkab.bps.go.id), publikasi \"Kecamatan Suruh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3503071",
+  "publicationNumber": "35030.25011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://trenggalekkab.bps.go.id/id/publication/2026/09/28/03594422f45b7f9439b986ca/kecamatan-suruh-dalam-angka-2026.html",
+  "sourceFileSha256": "51728593c5a50d69417dbfb5f30cc54ecd6509911a9479873f4015c10e6750fa",
+  "sourceFileBytes": 8122464,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Trenggalek.",
+  "csvPath": "datasets/bps-3503-kecamatan-350314-dalam-angka-2026.csv",
+  "csvSha256": "ade041bd1194d7b821eda576d9c160cd5584faede3f2a9c63f2d6b5c03e0bb8b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Suruh, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Suruh, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.13.2001,4,Sekapas,sex,laki_laki,,402,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.13.2001,4,Sekapas,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.13.2001,4,Sekapas,total,total,,804,jiwa,2025,registration,total_population,3.1,18,,
+14.07.13.2004,4,Bagan Cempedak,sex,laki_laki,,926,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.13.2004,4,Bagan Cempedak,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.13.2004,4,Bagan Cempedak,total,total,,1764,jiwa,2025,registration,total_population,3.1,18,,
+14.07.13.1002,4,Rantau Kopar,sex,laki_laki,,1359,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.13.1002,4,Rantau Kopar,sex,perempuan,,1352,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.13.1002,4,Rantau Kopar,total,total,,2711,jiwa,2025,registration,total_population,3.1,18,,
+14.07.13.1003,4,Sungai Rangau,sex,laki_laki,,929,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.13.1003,4,Sungai Rangau,sex,perempuan,,918,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.13.1003,4,Sungai Rangau,total,total,,1847,jiwa,2025,registration,total_population,3.1,18,,
+14.07.13,3,Rantau Kopar,sex,laki_laki,,3616,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.13,3,Rantau Kopar,sex,perempuan,,3510,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.13,3,Rantau Kopar,total,total,,7126,jiwa,2025,registration,total_population,3.1,18,,

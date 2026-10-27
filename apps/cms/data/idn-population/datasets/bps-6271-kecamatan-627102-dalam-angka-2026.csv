@@ -1,0 +1,107 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.71.02.1001,4,Marang,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02.1001,4,Marang,total,total,,1213,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02.1002,4,Tumbang Tahai,sex,perempuan,,1583,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02.1002,4,Tumbang Tahai,total,total,,3224,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02.1003,4,Banturung,sex,perempuan,,1870,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02.1003,4,Banturung,total,total,,3858,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02.1004,4,Tangkiling,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02.1004,4,Tangkiling,total,total,,3450,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02.1005,4,Sei Gohong,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02.1005,4,Sei Gohong,total,total,,1726,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02.1006,4,Kanarakan,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02.1006,4,Kanarakan,total,total,,376,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02.1007,4,Habaring Hurung,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02.1007,4,Habaring Hurung,total,total,,1115,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02,3,Bukit Batu,sex,perempuan,,7225,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.02,3,Bukit Batu,total,total,,14962,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.02,3,Bukit Batu,age_group,0-4,perempuan,417,jiwa,2025,registration,total_population,3.1.2,38,,0–4
+62.71.02,3,Bukit Batu,age_group,0-4,,866,jiwa,2025,registration,total_population,3.1.2,38,,0–4
+62.71.02,3,Bukit Batu,age_group,5-9,perempuan,621,jiwa,2025,registration,total_population,3.1.2,38,,5–9
+62.71.02,3,Bukit Batu,age_group,5-9,,1268,jiwa,2025,registration,total_population,3.1.2,38,,5–9
+62.71.02,3,Bukit Batu,age_group,10-14,perempuan,643,jiwa,2025,registration,total_population,3.1.2,38,,10–14
+62.71.02,3,Bukit Batu,age_group,10-14,,1374,jiwa,2025,registration,total_population,3.1.2,38,,10–14
+62.71.02,3,Bukit Batu,age_group,15-19,perempuan,666,jiwa,2025,registration,total_population,3.1.2,38,,15–19
+62.71.02,3,Bukit Batu,age_group,15-19,,1307,jiwa,2025,registration,total_population,3.1.2,38,,15–19
+62.71.02,3,Bukit Batu,age_group,20-24,perempuan,652,jiwa,2025,registration,total_population,3.1.2,38,,20–24
+62.71.02,3,Bukit Batu,age_group,20-24,,1328,jiwa,2025,registration,total_population,3.1.2,38,,20–24
+62.71.02,3,Bukit Batu,age_group,25-29,perempuan,573,jiwa,2025,registration,total_population,3.1.2,38,,25–29
+62.71.02,3,Bukit Batu,age_group,25-29,,1213,jiwa,2025,registration,total_population,3.1.2,38,,25–29
+62.71.02,3,Bukit Batu,age_group,30-34,perempuan,532,jiwa,2025,registration,total_population,3.1.2,38,,30–34
+62.71.02,3,Bukit Batu,age_group,30-34,,1091,jiwa,2025,registration,total_population,3.1.2,38,,30–34
+62.71.02,3,Bukit Batu,age_group,35-39,perempuan,558,jiwa,2025,registration,total_population,3.1.2,38,,35–39
+62.71.02,3,Bukit Batu,age_group,35-39,,1084,jiwa,2025,registration,total_population,3.1.2,38,,35–39
+62.71.02,3,Bukit Batu,age_group,40-44,perempuan,579,jiwa,2025,registration,total_population,3.1.2,38,,40–44
+62.71.02,3,Bukit Batu,age_group,40-44,,1181,jiwa,2025,registration,total_population,3.1.2,38,,40–44
+62.71.02,3,Bukit Batu,age_group,45-49,perempuan,508,jiwa,2025,registration,total_population,3.1.2,38,,45–49
+62.71.02,3,Bukit Batu,age_group,45-49,,1057,jiwa,2025,registration,total_population,3.1.2,38,,45–49
+62.71.02,3,Bukit Batu,age_group,50-54,perempuan,414,jiwa,2025,registration,total_population,3.1.2,38,,50–54
+62.71.02,3,Bukit Batu,age_group,50-54,,918,jiwa,2025,registration,total_population,3.1.2,38,,50–54
+62.71.02,3,Bukit Batu,age_group,55-59,perempuan,378,jiwa,2025,registration,total_population,3.1.2,38,,55–59
+62.71.02,3,Bukit Batu,age_group,55-59,,780,jiwa,2025,registration,total_population,3.1.2,38,,55–59
+62.71.02,3,Bukit Batu,age_group,60-64,perempuan,257,jiwa,2025,registration,total_population,3.1.2,38,,60–64
+62.71.02,3,Bukit Batu,age_group,60-64,,560,jiwa,2025,registration,total_population,3.1.2,38,,60–64
+62.71.02,3,Bukit Batu,age_group,65-69,perempuan,195,jiwa,2025,registration,total_population,3.1.2,38,,65–69
+62.71.02,3,Bukit Batu,age_group,65-69,,428,jiwa,2025,registration,total_population,3.1.2,38,,65–69
+62.71.02,3,Bukit Batu,age_group,70-74,perempuan,114,jiwa,2025,registration,total_population,3.1.2,38,,70–74
+62.71.02,3,Bukit Batu,age_group,70-74,,257,jiwa,2025,registration,total_population,3.1.2,38,,70–74
+62.71.02,3,Bukit Batu,age_group,75+,perempuan,118,jiwa,2025,registration,total_population,3.1.2,38,,75+
+62.71.02,3,Bukit Batu,age_group,75+,,250,jiwa,2025,registration,total_population,3.1.2,38,,75+
+62.71.02,3,Bukit Batu,sex,perempuan,,7225,jiwa,2025,registration,total_population,3.1.2,38,,Perempuan
+62.71.02,3,Bukit Batu,total,total,,14962,jiwa,2025,registration,total_population,3.1.2,38,,
+62.71.02.1001,4,Marang,religion,islam,,485,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02.1001,4,Marang,religion,kristen,,147,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02.1001,4,Marang,religion,katolik,,11,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.02.1001,4,Marang,religion,hindu,,27,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02.1002,4,Tumbang Tahai,religion,islam,,1226,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02.1002,4,Tumbang Tahai,religion,kristen,,598,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02.1002,4,Tumbang Tahai,religion,katolik,,69,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.02.1002,4,Tumbang Tahai,religion,hindu,,12,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02.1003,4,Banturung,religion,islam,,1292,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02.1003,4,Banturung,religion,kristen,,1089,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02.1003,4,Banturung,religion,katolik,,36,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.02.1003,4,Banturung,religion,hindu,,62,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02.1004,4,Tangkiling,religion,islam,,1132,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02.1004,4,Tangkiling,religion,kristen,,899,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02.1004,4,Tangkiling,religion,katolik,,23,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.02.1004,4,Tangkiling,religion,hindu,,148,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02.1005,4,Sei Gohong,religion,islam,,437,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02.1005,4,Sei Gohong,religion,kristen,,678,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02.1005,4,Sei Gohong,religion,katolik,,36,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.02.1005,4,Sei Gohong,religion,hindu,,77,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02.1006,4,Kanarakan,religion,islam,,157,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02.1006,4,Kanarakan,religion,kristen,,44,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02.1006,4,Kanarakan,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.02.1006,4,Kanarakan,religion,hindu,,2,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02.1007,4,Habaring Hurung,religion,islam,,465,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02.1007,4,Habaring Hurung,religion,kristen,,55,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02.1007,4,Habaring Hurung,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.02.1007,4,Habaring Hurung,religion,hindu,,4,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02,3,Bukit Batu,religion,islam,,5194,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.02,3,Bukit Batu,religion,kristen,,3510,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.02,3,Bukit Batu,religion,katolik,,175,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.02,3,Bukit Batu,religion,hindu,,332,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.02.1001,4,Marang,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.02.1001,4,Marang,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.5.1,96,,Konghucu
+62.71.02.1001,4,Marang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.02.1002,4,Tumbang Tahai,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.02.1002,4,Tumbang Tahai,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.02.1002,4,Tumbang Tahai,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.02.1003,4,Banturung,religion,buddha,,3,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.02.1003,4,Banturung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.02.1003,4,Banturung,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.02.1004,4,Tangkiling,religion,buddha,,2,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.02.1004,4,Tangkiling,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.02.1004,4,Tangkiling,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.02.1005,4,Sei Gohong,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.02.1005,4,Sei Gohong,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.02.1005,4,Sei Gohong,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.02.1006,4,Kanarakan,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.02.1006,4,Kanarakan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.02.1006,4,Kanarakan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.02.1007,4,Habaring Hurung,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.02.1007,4,Habaring Hurung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.02.1007,4,Habaring Hurung,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.02,3,Bukit Batu,religion,buddha,,5,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.02,3,Bukit Batu,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.5.1,96,,Konghucu
+62.71.02,3,Bukit Batu,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.5.1,96,,Aliran

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.15.01.2006,4,Prigi,sex,laki_laki,,979,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2006,4,Prigi,sex,perempuan,,987,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2006,4,Prigi,total,total,,1966,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2005,4,Ngombak,sex,laki_laki,,1491,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2005,4,Ngombak,sex,perempuan,,1524,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2005,4,Ngombak,total,total,,3015,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2004,4,Kentengsari,sex,laki_laki,,1727,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2004,4,Kentengsari,sex,perempuan,,1684,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2004,4,Kentengsari,total,total,,3411,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2001,4,Karanglangu,sex,laki_laki,,2794,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2001,4,Karanglangu,sex,perempuan,,2720,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2001,4,Karanglangu,total,total,,5514,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2002,4,Panimbo,sex,laki_laki,,1302,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2002,4,Panimbo,sex,perempuan,,1285,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2002,4,Panimbo,total,total,,2587,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2009,4,Padas,sex,laki_laki,,1510,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2009,4,Padas,sex,perempuan,,1529,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2009,4,Padas,total,total,,3039,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2003,4,Deras,sex,laki_laki,,2182,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2003,4,Deras,sex,perempuan,,2169,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2003,4,Deras,total,total,,4351,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2008,4,Klitikan,sex,laki_laki,,708,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2008,4,Klitikan,sex,perempuan,,720,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2008,4,Klitikan,total,total,,1428,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2007,4,Kedungjati,sex,laki_laki,,2750,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2007,4,Kedungjati,sex,perempuan,,2835,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2007,4,Kedungjati,total,total,,5585,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2010,4,Kalimaro,sex,laki_laki,,2785,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2010,4,Kalimaro,sex,perempuan,,2830,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2010,4,Kalimaro,total,total,,5615,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2011,4,Jumo,sex,laki_laki,,2654,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2011,4,Jumo,sex,perempuan,,2573,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2011,4,Jumo,total,total,,5227,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01.2012,4,Wates,sex,laki_laki,,1957,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01.2012,4,Wates,sex,perempuan,,1920,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01.2012,4,Wates,total,total,,3877,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01,3,Kecamatan Kedungjati,sex,laki_laki,,22839,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.01,3,Kecamatan Kedungjati,sex,perempuan,,22776,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.01,3,Kecamatan Kedungjati,total,total,,45615,jiwa,2025,registration,total_population,3.1,25,,
+33.15.01,3,Kedungjati,age_group,0-4,laki_laki,1484,jiwa,2025,registration,total_population,3.2,27,,0–4
+33.15.01,3,Kedungjati,age_group,0-4,perempuan,1469,jiwa,2025,registration,total_population,3.2,27,,0–4
+33.15.01,3,Kedungjati,age_group,0-4,,2953,jiwa,2025,registration,total_population,3.2,27,,0–4
+33.15.01,3,Kedungjati,age_group,5-9,laki_laki,1751,jiwa,2025,registration,total_population,3.2,27,,5–9
+33.15.01,3,Kedungjati,age_group,5-9,perempuan,1719,jiwa,2025,registration,total_population,3.2,27,,5–9
+33.15.01,3,Kedungjati,age_group,5-9,,3470,jiwa,2025,registration,total_population,3.2,27,,5–9
+33.15.01,3,Kedungjati,age_group,10-14,laki_laki,1797,jiwa,2025,registration,total_population,3.2,27,,10–14
+33.15.01,3,Kedungjati,age_group,10-14,perempuan,1676,jiwa,2025,registration,total_population,3.2,27,,10–14
+33.15.01,3,Kedungjati,age_group,10-14,,3473,jiwa,2025,registration,total_population,3.2,27,,10–14
+33.15.01,3,Kedungjati,age_group,15-19,laki_laki,1744,jiwa,2025,registration,total_population,3.2,27,,15–19
+33.15.01,3,Kedungjati,age_group,15-19,perempuan,1644,jiwa,2025,registration,total_population,3.2,27,,15–19
+33.15.01,3,Kedungjati,age_group,15-19,,3388,jiwa,2025,registration,total_population,3.2,27,,15–19
+33.15.01,3,Kedungjati,age_group,20-24,laki_laki,1729,jiwa,2025,registration,total_population,3.2,27,,20–24
+33.15.01,3,Kedungjati,age_group,20-24,perempuan,1619,jiwa,2025,registration,total_population,3.2,27,,20–24
+33.15.01,3,Kedungjati,age_group,20-24,,3348,jiwa,2025,registration,total_population,3.2,27,,20–24
+33.15.01,3,Kedungjati,age_group,25-29,laki_laki,1919,jiwa,2025,registration,total_population,3.2,27,,25–29
+33.15.01,3,Kedungjati,age_group,25-29,perempuan,1740,jiwa,2025,registration,total_population,3.2,27,,25–29
+33.15.01,3,Kedungjati,age_group,25-29,,3659,jiwa,2025,registration,total_population,3.2,27,,25–29
+33.15.01,3,Kedungjati,age_group,30-34,laki_laki,1783,jiwa,2025,registration,total_population,3.2,27,,30–34
+33.15.01,3,Kedungjati,age_group,30-34,perempuan,1603,jiwa,2025,registration,total_population,3.2,27,,30–34
+33.15.01,3,Kedungjati,age_group,30-34,,3386,jiwa,2025,registration,total_population,3.2,27,,30–34
+33.15.01,3,Kedungjati,age_group,35-39,laki_laki,1842,jiwa,2025,registration,total_population,3.2,27,,35–39
+33.15.01,3,Kedungjati,age_group,35-39,perempuan,1636,jiwa,2025,registration,total_population,3.2,27,,35–39
+33.15.01,3,Kedungjati,age_group,35-39,,3478,jiwa,2025,registration,total_population,3.2,27,,35–39
+33.15.01,3,Kedungjati,age_group,40-44,laki_laki,1515,jiwa,2025,registration,total_population,3.2,27,,40– 44
+33.15.01,3,Kedungjati,age_group,40-44,perempuan,1539,jiwa,2025,registration,total_population,3.2,27,,40– 44
+33.15.01,3,Kedungjati,age_group,40-44,,3054,jiwa,2025,registration,total_population,3.2,27,,40– 44
+33.15.01,3,Kedungjati,age_group,45-49,laki_laki,1483,jiwa,2025,registration,total_population,3.2,27,,45–49
+33.15.01,3,Kedungjati,age_group,45-49,perempuan,1433,jiwa,2025,registration,total_population,3.2,27,,45–49
+33.15.01,3,Kedungjati,age_group,45-49,,2916,jiwa,2025,registration,total_population,3.2,27,,45–49
+33.15.01,3,Kedungjati,age_group,50-54,laki_laki,1247,jiwa,2025,registration,total_population,3.2,27,,50–54
+33.15.01,3,Kedungjati,age_group,50-54,perempuan,1332,jiwa,2025,registration,total_population,3.2,27,,50–54
+33.15.01,3,Kedungjati,age_group,50-54,,2579,jiwa,2025,registration,total_population,3.2,27,,50–54
+33.15.01,3,Kedungjati,age_group,55-59,laki_laki,1279,jiwa,2025,registration,total_population,3.2,27,,55–59
+33.15.01,3,Kedungjati,age_group,55-59,perempuan,1373,jiwa,2025,registration,total_population,3.2,27,,55–59
+33.15.01,3,Kedungjati,age_group,55-59,,2652,jiwa,2025,registration,total_population,3.2,27,,55–59
+33.15.01,3,Kedungjati,age_group,60-64,laki_laki,1046,jiwa,2025,registration,total_population,3.2,27,,60–64
+33.15.01,3,Kedungjati,age_group,60-64,perempuan,1294,jiwa,2025,registration,total_population,3.2,27,,60–64
+33.15.01,3,Kedungjati,age_group,60-64,,2340,jiwa,2025,registration,total_population,3.2,27,,60–64
+33.15.01,3,Kedungjati,age_group,65-69,laki_laki,953,jiwa,2025,registration,total_population,3.2,27,,65–69
+33.15.01,3,Kedungjati,age_group,65-69,perempuan,1046,jiwa,2025,registration,total_population,3.2,27,,65–69
+33.15.01,3,Kedungjati,age_group,65-69,,1999,jiwa,2025,registration,total_population,3.2,27,,65–69
+33.15.01,3,Kedungjati,age_group,70-74,laki_laki,589,jiwa,2025,registration,total_population,3.2,27,,70–74
+33.15.01,3,Kedungjati,age_group,70-74,perempuan,623,jiwa,2025,registration,total_population,3.2,27,,70–74
+33.15.01,3,Kedungjati,age_group,70-74,,1212,jiwa,2025,registration,total_population,3.2,27,,70–74
+33.15.01,3,Kedungjati,age_group,75+,laki_laki,678,jiwa,2025,registration,total_population,3.2,27,,75 +
+33.15.01,3,Kedungjati,age_group,75+,perempuan,1030,jiwa,2025,registration,total_population,3.2,27,,75 +
+33.15.01,3,Kedungjati,age_group,75+,,1708,jiwa,2025,registration,total_population,3.2,27,,75 +
+33.15.01,3,Kecamatan Kedungjati,sex,laki_laki,,22839,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+33.15.01,3,Kecamatan Kedungjati,sex,perempuan,,22776,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+33.15.01,3,Kecamatan Kedungjati,total,total,,45615,jiwa,2025,registration,total_population,3.2,27,,

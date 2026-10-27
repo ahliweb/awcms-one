@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3174-kecamatan-317303-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.73.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Taman Sari Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Barat",
+  "publisherDomain": "3174",
+  "publisherWebsite": "https://jakbarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Barat (https://jakbarkota.bps.go.id), publikasi \"Kecamatan Taman Sari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3174060",
+  "publicationNumber": "31740.250010",
+  "issn": "0852-2251",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakbarkota.bps.go.id/id/publication/2026/09/28/711066ea6183959ed8455286/kecamatan-taman-sari-dalam-angka-2026.html",
+  "sourceFileSha256": "66475ffb43bcf14e7c4dc5bd8cc0c4e3a9b15d2b2ab09351e758ddb085e1b150",
+  "sourceFileBytes": 4451940,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Barat",
+  "csvPath": "datasets/bps-3174-kecamatan-317303-dalam-angka-2026.csv",
+  "csvSha256": "6d27eb3ef955610f2c4eca9baef7b894a641f3a3dad132ae14373c038aec0c05",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Taman Sari, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 (age-by-sex) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

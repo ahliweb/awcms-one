@@ -1,0 +1,154 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.11.04,3,Way Serdang,total,total,,50071,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11.05,3,Simpang Pematang,total,total,,34168,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11.06,3,Panca Jaya,total,total,,20934,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11.07,3,Tanjung Raya,total,total,,49183,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11.01,3,Mesuji,total,total,,24692,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11.02,3,Mesuji Timur,total,total,,38430,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11.03,3,Rawajitu Utara,total,total,,27306,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11,2,Kabupaten Mesuji,total,total,,244784,jiwa,2025,registration,total_population,3.1.1,52,,
+18.11,2,Kabupaten Mesuji,age_group,0-4,laki_laki,8619,jiwa,2025,registration,total_population,3.1.2,55,,0–4
+18.11,2,Kabupaten Mesuji,age_group,0-4,perempuan,7992,jiwa,2025,registration,total_population,3.1.2,55,,0–4
+18.11,2,Kabupaten Mesuji,age_group,0-4,,16611,jiwa,2025,registration,total_population,3.1.2,55,,0–4
+18.11,2,Kabupaten Mesuji,age_group,5-9,laki_laki,11308,jiwa,2025,registration,total_population,3.1.2,55,,5–9
+18.11,2,Kabupaten Mesuji,age_group,5-9,perempuan,10557,jiwa,2025,registration,total_population,3.1.2,55,,5–9
+18.11,2,Kabupaten Mesuji,age_group,5-9,,21865,jiwa,2025,registration,total_population,3.1.2,55,,5–9
+18.11,2,Kabupaten Mesuji,age_group,10-14,laki_laki,11821,jiwa,2025,registration,total_population,3.1.2,55,,10–14
+18.11,2,Kabupaten Mesuji,age_group,10-14,perempuan,11092,jiwa,2025,registration,total_population,3.1.2,55,,10–14
+18.11,2,Kabupaten Mesuji,age_group,10-14,,22913,jiwa,2025,registration,total_population,3.1.2,55,,10–14
+18.11,2,Kabupaten Mesuji,age_group,15-19,laki_laki,8696,jiwa,2025,registration,total_population,3.1.2,55,,15–19
+18.11,2,Kabupaten Mesuji,age_group,15-19,perempuan,8132,jiwa,2025,registration,total_population,3.1.2,55,,15–19
+18.11,2,Kabupaten Mesuji,age_group,15-19,,16828,jiwa,2025,registration,total_population,3.1.2,55,,15–19
+18.11,2,Kabupaten Mesuji,age_group,20-24,laki_laki,8875,jiwa,2025,registration,total_population,3.1.2,55,,20–24
+18.11,2,Kabupaten Mesuji,age_group,20-24,perempuan,8692,jiwa,2025,registration,total_population,3.1.2,55,,20–24
+18.11,2,Kabupaten Mesuji,age_group,20-24,,17567,jiwa,2025,registration,total_population,3.1.2,55,,20–24
+18.11,2,Kabupaten Mesuji,age_group,25-29,laki_laki,9822,jiwa,2025,registration,total_population,3.1.2,55,,25–29
+18.11,2,Kabupaten Mesuji,age_group,25-29,perempuan,9409,jiwa,2025,registration,total_population,3.1.2,55,,25–29
+18.11,2,Kabupaten Mesuji,age_group,25-29,,19231,jiwa,2025,registration,total_population,3.1.2,55,,25–29
+18.11,2,Kabupaten Mesuji,age_group,30-34,laki_laki,10144,jiwa,2025,registration,total_population,3.1.2,55,,30–34
+18.11,2,Kabupaten Mesuji,age_group,30-34,perempuan,9893,jiwa,2025,registration,total_population,3.1.2,55,,30–34
+18.11,2,Kabupaten Mesuji,age_group,30-34,,20037,jiwa,2025,registration,total_population,3.1.2,55,,30–34
+18.11,2,Kabupaten Mesuji,age_group,35-39,laki_laki,9920,jiwa,2025,registration,total_population,3.1.2,55,,35–39
+18.11,2,Kabupaten Mesuji,age_group,35-39,perempuan,9846,jiwa,2025,registration,total_population,3.1.2,55,,35–39
+18.11,2,Kabupaten Mesuji,age_group,35-39,,19766,jiwa,2025,registration,total_population,3.1.2,55,,35–39
+18.11,2,Kabupaten Mesuji,age_group,40-44,laki_laki,9788,jiwa,2025,registration,total_population,3.1.2,55,,40–44
+18.11,2,Kabupaten Mesuji,age_group,40-44,perempuan,9220,jiwa,2025,registration,total_population,3.1.2,55,,40–44
+18.11,2,Kabupaten Mesuji,age_group,40-44,,19008,jiwa,2025,registration,total_population,3.1.2,55,,40–44
+18.11,2,Kabupaten Mesuji,age_group,45-49,laki_laki,8905,jiwa,2025,registration,total_population,3.1.2,55,,45–49
+18.11,2,Kabupaten Mesuji,age_group,45-49,perempuan,8389,jiwa,2025,registration,total_population,3.1.2,55,,45–49
+18.11,2,Kabupaten Mesuji,age_group,45-49,,17294,jiwa,2025,registration,total_population,3.1.2,55,,45–49
+18.11,2,Kabupaten Mesuji,age_group,50-54,laki_laki,7116,jiwa,2025,registration,total_population,3.1.2,55,,50–54
+18.11,2,Kabupaten Mesuji,age_group,50-54,perempuan,6849,jiwa,2025,registration,total_population,3.1.2,55,,50–54
+18.11,2,Kabupaten Mesuji,age_group,50-54,,13965,jiwa,2025,registration,total_population,3.1.2,55,,50–54
+18.11,2,Kabupaten Mesuji,age_group,55-59,laki_laki,5717,jiwa,2025,registration,total_population,3.1.2,55,,55–59
+18.11,2,Kabupaten Mesuji,age_group,55-59,perempuan,5383,jiwa,2025,registration,total_population,3.1.2,55,,55–59
+18.11,2,Kabupaten Mesuji,age_group,55-59,,11100,jiwa,2025,registration,total_population,3.1.2,55,,55–59
+18.11,2,Kabupaten Mesuji,age_group,60-64,laki_laki,4998,jiwa,2025,registration,total_population,3.1.2,55,,60–64
+18.11,2,Kabupaten Mesuji,age_group,60-64,perempuan,5017,jiwa,2025,registration,total_population,3.1.2,55,,60–64
+18.11,2,Kabupaten Mesuji,age_group,60-64,,10015,jiwa,2025,registration,total_population,3.1.2,55,,60–64
+18.11,2,Kabupaten Mesuji,age_group,65-69,laki_laki,3830,jiwa,2025,registration,total_population,3.1.2,55,,65–69
+18.11,2,Kabupaten Mesuji,age_group,65-69,perempuan,3202,jiwa,2025,registration,total_population,3.1.2,55,,65–69
+18.11,2,Kabupaten Mesuji,age_group,65-69,,7032,jiwa,2025,registration,total_population,3.1.2,55,,65–69
+18.11,2,Kabupaten Mesuji,age_group,70-74,laki_laki,2753,jiwa,2025,registration,total_population,3.1.2,55,,70–74
+18.11,2,Kabupaten Mesuji,age_group,70-74,perempuan,2070,jiwa,2025,registration,total_population,3.1.2,55,,70–74
+18.11,2,Kabupaten Mesuji,age_group,70-74,,4823,jiwa,2025,registration,total_population,3.1.2,55,,70–74
+18.11,2,Kabupaten Mesuji,age_group,75+,laki_laki,3634,jiwa,2025,registration,total_population,3.1.2,55,,75+
+18.11,2,Kabupaten Mesuji,age_group,75+,perempuan,3095,jiwa,2025,registration,total_population,3.1.2,55,,75+
+18.11,2,Kabupaten Mesuji,age_group,75+,,6729,jiwa,2025,registration,total_population,3.1.2,55,,75+
+18.11,2,Kabupaten Mesuji,sex,laki_laki,,125946,jiwa,2025,registration,total_population,3.1.2,55,,Laki-Laki
+18.11,2,Kabupaten Mesuji,sex,perempuan,,118838,jiwa,2025,registration,total_population,3.1.2,55,,Perempuan
+18.11,2,Kabupaten Mesuji,total,total,,244784,jiwa,2025,registration,total_population,3.1.2,55,,
+18.11.04,3,Way Serdang,religion,islam,,46606,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11.04,3,Way Serdang,religion,kristen,,677,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11.04,3,Way Serdang,religion,katolik,,116,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11.04,3,Way Serdang,religion,hindu,,2631,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11.04,3,Way Serdang,religion,buddha,,39,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11.04,3,Way Serdang,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,117,,Lainnya
+18.11.05,3,Simpang Pematang,religion,islam,,32564,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11.05,3,Simpang Pematang,religion,kristen,,854,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11.05,3,Simpang Pematang,religion,katolik,,244,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11.05,3,Simpang Pematang,religion,hindu,,489,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11.05,3,Simpang Pematang,religion,buddha,,17,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11.05,3,Simpang Pematang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,117,nil,Lainnya
+18.11.06,3,Panca Jaya,religion,islam,,20433,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11.06,3,Panca Jaya,religion,kristen,,218,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11.06,3,Panca Jaya,religion,katolik,,39,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11.06,3,Panca Jaya,religion,hindu,,244,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11.06,3,Panca Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11.06,3,Panca Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,117,nil,Lainnya
+18.11.07,3,Tanjung Raya,religion,islam,,47816,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11.07,3,Tanjung Raya,religion,kristen,,556,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11.07,3,Tanjung Raya,religion,katolik,,241,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11.07,3,Tanjung Raya,religion,hindu,,557,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11.07,3,Tanjung Raya,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11.07,3,Tanjung Raya,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,117,,Lainnya
+18.11.01,3,Mesuji,religion,islam,,24288,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11.01,3,Mesuji,religion,kristen,,153,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11.01,3,Mesuji,religion,katolik,,16,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11.01,3,Mesuji,religion,hindu,,167,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11.01,3,Mesuji,religion,buddha,,68,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11.01,3,Mesuji,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,117,nil,Lainnya
+18.11.02,3,Mesuji Timur,religion,islam,,36284,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11.02,3,Mesuji Timur,religion,kristen,,288,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11.02,3,Mesuji Timur,religion,katolik,,101,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11.02,3,Mesuji Timur,religion,hindu,,1714,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11.02,3,Mesuji Timur,religion,buddha,,43,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11.02,3,Mesuji Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,117,nil,Lainnya
+18.11.03,3,Rawajitu Utara,religion,islam,,27044,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11.03,3,Rawajitu Utara,religion,kristen,,196,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11.03,3,Rawajitu Utara,religion,katolik,,57,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11.03,3,Rawajitu Utara,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11.03,3,Rawajitu Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11.03,3,Rawajitu Utara,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,117,,Lainnya
+18.11,2,Kabupaten Mesuji,religion,islam,,235035,jiwa,2025,registration,total_population,4.3.1,117,,Islam
+18.11,2,Kabupaten Mesuji,religion,kristen,,2942,jiwa,2025,registration,total_population,4.3.1,117,,Protestan
+18.11,2,Kabupaten Mesuji,religion,katolik,,814,jiwa,2025,registration,total_population,4.3.1,117,,Katolik
+18.11,2,Kabupaten Mesuji,religion,hindu,,5808,jiwa,2025,registration,total_population,4.3.1,117,,Hindu
+18.11,2,Kabupaten Mesuji,religion,buddha,,179,jiwa,2025,registration,total_population,4.3.1,117,,Budha
+18.11,2,Kabupaten Mesuji,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,117,,Lainnya
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/padi_padian,,97790,rupiah,2024,survey_estimate,per_capita,10.1,225,,Padi-padian
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/padi_padian,,79571,rupiah,2025,survey_estimate,per_capita,10.1,225,,Padi-padian
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/umbi_umbian,,4136,rupiah,2024,survey_estimate,per_capita,10.1,225,,Umbi-umbian
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/umbi_umbian,,4704,rupiah,2025,survey_estimate,per_capita,10.1,225,,Umbi-umbian
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,45543,rupiah,2024,survey_estimate,per_capita,10.1,225,,Ikan/udang/cumi/kerang
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,42133,rupiah,2025,survey_estimate,per_capita,10.1,225,,Ikan/udang/cumi/kerang
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/daging,,19600,rupiah,2024,survey_estimate,per_capita,10.1,225,,Daging
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/daging,,22613,rupiah,2025,survey_estimate,per_capita,10.1,225,,Daging
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/telur_dan_susu,,28480,rupiah,2024,survey_estimate,per_capita,10.1,225,,Telur dan susu
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/telur_dan_susu,,29123,rupiah,2025,survey_estimate,per_capita,10.1,225,,Telur dan susu
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/sayur_sayuran,,73143,rupiah,2024,survey_estimate,per_capita,10.1,225,,Sayur-sayuran
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/sayur_sayuran,,67583,rupiah,2025,survey_estimate,per_capita,10.1,225,,Sayur-sayuran
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/kacang_kacangan,,16905,rupiah,2024,survey_estimate,per_capita,10.1,225,,Kacang-kacangan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/kacang_kacangan,,12849,rupiah,2025,survey_estimate,per_capita,10.1,225,,Kacang-kacangan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/buah_buahan,,32265,rupiah,2024,survey_estimate,per_capita,10.1,225,,Buah-buahan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/buah_buahan,,28429,rupiah,2025,survey_estimate,per_capita,10.1,225,,Buah-buahan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18565,rupiah,2024,survey_estimate,per_capita,10.1,225,,Minyak dan kelapa
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20328,rupiah,2025,survey_estimate,per_capita,10.1,225,,Minyak dan kelapa
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/bahan_minuman,,20337,rupiah,2024,survey_estimate,per_capita,10.1,225,,Bahan minuman
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/bahan_minuman,,19744,rupiah,2025,survey_estimate,per_capita,10.1,225,,Bahan minuman
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/bumbu_bumbuan,,15235,rupiah,2024,survey_estimate,per_capita,10.1,225,,Bumbu-bumbuan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/bumbu_bumbuan,,13692,rupiah,2025,survey_estimate,per_capita,10.1,225,,Bumbu-bumbuan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/konsumsi_lainnya,,11730,rupiah,2024,survey_estimate,per_capita,10.1,225,,Konsumsi lainnya
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/konsumsi_lainnya,,9647,rupiah,2025,survey_estimate,per_capita,10.1,225,,Konsumsi lainnya
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,141103,rupiah,2024,survey_estimate,per_capita,10.1,225,,Makanan dan minuman jadi
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,119621,rupiah,2025,survey_estimate,per_capita,10.1,225,,Makanan dan minuman jadi
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/rokok,,106597,rupiah,2024,survey_estimate,per_capita,10.1,225,,Rokok
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/rokok,,92894,rupiah,2025,survey_estimate,per_capita,10.1,225,,Rokok
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/jumlah_makanan,,631429,rupiah,2024,survey_estimate,per_capita,10.1,225,,Jumlah makanan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/jumlah_makanan,,562933,rupiah,2025,survey_estimate,per_capita,10.1,225,,Jumlah makanan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,299855,rupiah,2024,survey_estimate,per_capita,10.1,225,,Perumahan dan fasilitas rumah tangga
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,266806,rupiah,2025,survey_estimate,per_capita,10.1,225,,Perumahan dan fasilitas rumah tangga
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,121527,rupiah,2024,survey_estimate,per_capita,10.1,225,,Aneka barang dan jasa
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,99101,rupiah,2025,survey_estimate,per_capita,10.1,225,,Aneka barang dan jasa
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39662,rupiah,2024,survey_estimate,per_capita,10.1,225,,"Pakaian, alas kaki, dan tutup kepala"
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36601,rupiah,2025,survey_estimate,per_capita,10.1,225,,"Pakaian, alas kaki, dan tutup kepala"
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/barang_tahan_lama,,38793,rupiah,2024,survey_estimate,per_capita,10.1,225,,Barang tahan lama
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/barang_tahan_lama,,47698,rupiah,2025,survey_estimate,per_capita,10.1,225,,Barang tahan lama
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38754,rupiah,2024,survey_estimate,per_capita,10.1,225,,"Pajak, pungutan, dan asuransi"
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35216,rupiah,2025,survey_estimate,per_capita,10.1,225,,"Pajak, pungutan, dan asuransi"
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12965,rupiah,2024,survey_estimate,per_capita,10.1,225,,Keperluan pesta dan upacara/kenduri
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9314,rupiah,2025,survey_estimate,per_capita,10.1,225,,Keperluan pesta dan upacara/kenduri
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,551556,rupiah,2024,survey_estimate,per_capita,10.1,225,,Jumlah bukan makanan
+18.11,2,Kabupaten Mesuji,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,494736,rupiah,2025,survey_estimate,per_capita,10.1,225,,Jumlah bukan makanan
+18.11,2,Kabupaten Mesuji,expenditure,total,,1182986,rupiah,2024,survey_estimate,per_capita,10.1,225,,
+18.11,2,Kabupaten Mesuji,expenditure,total,,1057670,rupiah,2025,survey_estimate,per_capita,10.1,225,,

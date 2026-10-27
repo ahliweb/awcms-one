@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-1302-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "13.01",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Pesisir Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pesisir Selatan",
+  "publisherDomain": "1302",
+  "publisherWebsite": "https://pesselkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pesisir Selatan (https://pesselkab.bps.go.id), publikasi \"Kabupaten Pesisir Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1302",
+  "publicationNumber": "13020.26003",
+  "issn": "0215-3688",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://pesselkab.bps.go.id/id/publication/2026/02/27/f3db4ac8c3991acf8bceab95/kabupaten-pesisir-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "e17687670ea7f539f48792be2685046507740e832f4a53948e49c0223251844b",
+  "sourceFileBytes": 11167219,
+  "sourcePages": [125, 242, 477],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pesisir Selatan.",
+  "csvPath": "datasets/bps-1302-dalam-angka-2026.csv",
+  "csvSha256": "973045c7e4e23fc58794d21403927ed410633fdf4447aa2211dbbfb6196ddc99",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Pesisir Selatan (jiwa), 2025",
+      "printedPages": [125],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Pesisir Selatan, 2025",
+      "printedPages": [242],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Pesisir Selatan (rupiah), 2024 dan 2025",
+      "printedPages": [477],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (heading says jiwa but only some figures carry decimals)",
+    "table 4.3.1: row not stored: row \"12 lV Jurai\": unmatched ",
+    "table 4.3.1: row not stored: row \"14 lV Nagari Bayang Utara\": unmatched ",
+    "table 4.3.1: row not stored: row \"15 Koto Xl Tarusan\": unmatched "
+  ]
+}

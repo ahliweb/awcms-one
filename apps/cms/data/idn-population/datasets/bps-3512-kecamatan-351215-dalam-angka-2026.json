@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351215-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumbermalang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Sumbermalang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512010",
+  "publicationNumber": "35120.26006",
+  "issn": "2808-6104",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/40535f726948aaf84049ac5c/kecamatan-sumbermalang-dalam-angka-2026.html",
+  "sourceFileSha256": "e22b8ad9dae052920ebdec52acdb7860b1ca4c76384eb01e1bbafa6b0f48764c",
+  "sourceFileBytes": 5802466,
+  "sourcePages": [30, 31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351215-dalam-angka-2026.csv",
+  "csvSha256": "5ebdd310916e05f6671c9fd649977e70827bdf421e3f7a815ef922b47b956da5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sumbermalang, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumbermalang, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Banyaknya Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Sumbermalang, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 is not included: its published figures do not add up (religion/kristen/- 2025: parts sum 5.0000 != 4.0000 (diff 1.0000)); the source itself is inconsistent"
+  ]
+}

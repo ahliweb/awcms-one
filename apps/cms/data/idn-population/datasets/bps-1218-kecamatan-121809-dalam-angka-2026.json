@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-1218-kecamatan-121809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.18.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dolok Masihul Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Serdang Bedagai",
+  "publisherDomain": "1218",
+  "publisherWebsite": "https://serdangbedagaikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Serdang Bedagai (https://serdangbedagaikab.bps.go.id), publikasi \"Kecamatan Dolok Masihul Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1218020",
+  "publicationNumber": "12180.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serdangbedagaikab.bps.go.id/id/publication/2026/09/28/a9bcafc92f75f5835c23ce6f/kecamatan-dolok-masihul-dalam-angka-2026.html",
+  "sourceFileSha256": "59411b6eda199ff90b75d255d327caa59c42619ea0618c0c2f4b15607b8193dc",
+  "sourceFileBytes": 10275680,
+  "sourcePages": [27, 28, 29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau mengandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik kabupaten Serdang Bedagai.",
+  "csvPath": "datasets/bps-1218-kecamatan-121809-dalam-angka-2026.csv",
+  "csvSha256": "1f061cfcdf9c1c7db75e4e3e2affc96adbe32dc361ebd407f9a33b22c616721e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Dolok Masihul, 2025",
+      "printedPages": [27, 28, 29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dolok Masihul, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sarang Ginting\": unmatched ",
+    "table 3.1: row not stored: row \"Pekan Kemis\": unmatched ",
+    "table 3.1: row not stored: row \"Hevea\": unmatched ",
+    "table 3.1: row not stored: row \"Blok Sepuluh\": unmatched ",
+    "table 3.1: row not stored: row \"Sarang Ginting\": unmatched ",
+    "table 3.1: row not stored: row \"Pekan Kemis\": unmatched ",
+    "table 3.1: row not stored: row \"Hevea\": unmatched ",
+    "table 3.1: row not stored: row \"Blok Sepuluh\": unmatched "
+  ]
+}

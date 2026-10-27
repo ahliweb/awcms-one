@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.05.07.2001,4,Arongan,sex,laki_laki,,169,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2001,4,Arongan,sex,perempuan,,162,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2001,4,Arongan,total,total,,331,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2006,4,Cot Kumbang,sex,laki_laki,,153,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2006,4,Cot Kumbang,sex,perempuan,,146,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2006,4,Cot Kumbang,total,total,,299,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2010,4,Keub,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2010,4,Keub,sex,perempuan,,334,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2010,4,Keub,total,total,,669,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2012,4,Peuribu,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2012,4,Peuribu,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2012,4,Peuribu,total,total,,997,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2024,4,Ujong Beusa,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2024,4,Ujong Beusa,sex,perempuan,,118,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2024,4,Ujong Beusa,total,total,,233,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2009,4,Kubu,sex,laki_laki,,253,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2009,4,Kubu,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2009,4,Kubu,total,total,,489,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2018,4,Seuneubok Lhong,sex,laki_laki,,123,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2018,4,Seuneubok Lhong,sex,perempuan,,114,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2018,4,Seuneubok Lhong,total,total,,237,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2008,4,Drien Rampak,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2008,4,Drien Rampak,sex,perempuan,,434,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2008,4,Drien Rampak,total,total,,844,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2005,4,Cot Buloh,sex,laki_laki,,255,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2005,4,Cot Buloh,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2005,4,Cot Buloh,total,total,,505,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2021,4,Simpang Peut,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2021,4,Simpang Peut,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2021,4,Simpang Peut,total,total,,1020,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2022,4,Seuneubok Teungoh,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2022,4,Seuneubok Teungoh,sex,perempuan,,403,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2022,4,Seuneubok Teungoh,total,total,,820,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2026,4,Gunong Pulo,sex,laki_laki,,155,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2026,4,Gunong Pulo,sex,perempuan,,164,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2026,4,Gunong Pulo,total,total,,319,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2027,4,Karang Hampa,sex,laki_laki,,59,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2027,4,Karang Hampa,sex,perempuan,,37,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2027,4,Karang Hampa,total,total,,96,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2025,4,Ujong Simpang,sex,laki_laki,,321,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.07.2025,4,Ujong Simpang,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.07.2025,4,Ujong Simpang,total,total,,627,jiwa,2025,registration,total_population,3.1,34,,
+11.05.07.2014,4,Panton Bahagia,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+11.05.07.2014,4,Panton Bahagia,sex,perempuan,,112,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+11.05.07.2014,4,Panton Bahagia,total,total,,227,jiwa,2025,registration,total_population,3.1,35,,
+11.05.07.2007,4,Cot Jurumudi,sex,laki_laki,,98,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+11.05.07.2007,4,Cot Jurumudi,sex,perempuan,,116,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+11.05.07.2007,4,Cot Jurumudi,total,total,,214,jiwa,2025,registration,total_population,3.1,35,,
+11.05.07.2003,4,Alue Sundak,sex,laki_laki,,151,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+11.05.07.2003,4,Alue Sundak,sex,perempuan,,135,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+11.05.07.2003,4,Alue Sundak,total,total,,286,jiwa,2025,registration,total_population,3.1,35,,
+11.05.07.2002,4,Alue Bagok,sex,laki_laki,,240,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+11.05.07.2002,4,Alue Bagok,sex,perempuan,,232,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+11.05.07.2002,4,Alue Bagok,total,total,,472,jiwa,2025,registration,total_population,3.1,35,,
+11.05.07.2004,4,Alue Batee,sex,laki_laki,,133,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+11.05.07.2004,4,Alue Batee,sex,perempuan,,121,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+11.05.07.2004,4,Alue Batee,total,total,,254,jiwa,2025,registration,total_population,3.1,35,,
+11.05.07,3,Kecamatan Arongan Lambalek,sex,laki_laki,,6447,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+11.05.07,3,Kecamatan Arongan Lambalek,sex,perempuan,,6287,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+11.05.07,3,Kecamatan Arongan Lambalek,total,total,,12734,jiwa,2025,registration,total_population,3.1,35,,
+11.05.07,3,Arongan Lambalek,age_group,0-4,laki_laki,460,jiwa,2025,registration,total_population,3.2,38,,0 - 4
+11.05.07,3,Arongan Lambalek,age_group,0-4,perempuan,463,jiwa,2025,registration,total_population,3.2,38,,0 - 4
+11.05.07,3,Arongan Lambalek,age_group,0-4,,923,jiwa,2025,registration,total_population,3.2,38,,0 - 4
+11.05.07,3,Arongan Lambalek,age_group,5-9,laki_laki,513,jiwa,2025,registration,total_population,3.2,38,,5 - 9
+11.05.07,3,Arongan Lambalek,age_group,5-9,perempuan,471,jiwa,2025,registration,total_population,3.2,38,,5 - 9
+11.05.07,3,Arongan Lambalek,age_group,5-9,,984,jiwa,2025,registration,total_population,3.2,38,,5 - 9
+11.05.07,3,Arongan Lambalek,age_group,10-14,laki_laki,548,jiwa,2025,registration,total_population,3.2,38,,10 - 14
+11.05.07,3,Arongan Lambalek,age_group,10-14,perempuan,523,jiwa,2025,registration,total_population,3.2,38,,10 - 14
+11.05.07,3,Arongan Lambalek,age_group,10-14,,1071,jiwa,2025,registration,total_population,3.2,38,,10 - 14
+11.05.07,3,Arongan Lambalek,age_group,15-19,laki_laki,587,jiwa,2025,registration,total_population,3.2,38,,15 - 19
+11.05.07,3,Arongan Lambalek,age_group,15-19,perempuan,585,jiwa,2025,registration,total_population,3.2,38,,15 - 19
+11.05.07,3,Arongan Lambalek,age_group,15-19,,1172,jiwa,2025,registration,total_population,3.2,38,,15 - 19
+11.05.07,3,Arongan Lambalek,age_group,20-24,laki_laki,485,jiwa,2025,registration,total_population,3.2,38,,20 - 24
+11.05.07,3,Arongan Lambalek,age_group,20-24,perempuan,454,jiwa,2025,registration,total_population,3.2,38,,20 - 24
+11.05.07,3,Arongan Lambalek,age_group,20-24,,939,jiwa,2025,registration,total_population,3.2,38,,20 - 24
+11.05.07,3,Arongan Lambalek,age_group,25-29,laki_laki,523,jiwa,2025,registration,total_population,3.2,38,,25 - 29
+11.05.07,3,Arongan Lambalek,age_group,25-29,perempuan,459,jiwa,2025,registration,total_population,3.2,38,,25 - 29
+11.05.07,3,Arongan Lambalek,age_group,25-29,,982,jiwa,2025,registration,total_population,3.2,38,,25 - 29
+11.05.07,3,Arongan Lambalek,age_group,30-34,laki_laki,479,jiwa,2025,registration,total_population,3.2,38,,30 - 34
+11.05.07,3,Arongan Lambalek,age_group,30-34,perempuan,450,jiwa,2025,registration,total_population,3.2,38,,30 - 34
+11.05.07,3,Arongan Lambalek,age_group,30-34,,929,jiwa,2025,registration,total_population,3.2,38,,30 - 34
+11.05.07,3,Arongan Lambalek,age_group,35-39,laki_laki,447,jiwa,2025,registration,total_population,3.2,38,,35 - 39
+11.05.07,3,Arongan Lambalek,age_group,35-39,perempuan,509,jiwa,2025,registration,total_population,3.2,38,,35 - 39
+11.05.07,3,Arongan Lambalek,age_group,35-39,,956,jiwa,2025,registration,total_population,3.2,38,,35 - 39
+11.05.07,3,Arongan Lambalek,age_group,40-44,laki_laki,471,jiwa,2025,registration,total_population,3.2,38,,40 - 44
+11.05.07,3,Arongan Lambalek,age_group,40-44,perempuan,443,jiwa,2025,registration,total_population,3.2,38,,40 - 44
+11.05.07,3,Arongan Lambalek,age_group,40-44,,914,jiwa,2025,registration,total_population,3.2,38,,40 - 44
+11.05.07,3,Arongan Lambalek,age_group,45-49,laki_laki,421,jiwa,2025,registration,total_population,3.2,38,,45 - 49
+11.05.07,3,Arongan Lambalek,age_group,45-49,perempuan,460,jiwa,2025,registration,total_population,3.2,38,,45 - 49
+11.05.07,3,Arongan Lambalek,age_group,45-49,,881,jiwa,2025,registration,total_population,3.2,38,,45 - 49
+11.05.07,3,Arongan Lambalek,age_group,50-54,laki_laki,418,jiwa,2025,registration,total_population,3.2,38,,50 - 54
+11.05.07,3,Arongan Lambalek,age_group,50-54,perempuan,424,jiwa,2025,registration,total_population,3.2,38,,50 - 54
+11.05.07,3,Arongan Lambalek,age_group,50-54,,842,jiwa,2025,registration,total_population,3.2,38,,50 - 54
+11.05.07,3,Arongan Lambalek,age_group,55-59,laki_laki,359,jiwa,2025,registration,total_population,3.2,38,,55 - 59
+11.05.07,3,Arongan Lambalek,age_group,55-59,perempuan,327,jiwa,2025,registration,total_population,3.2,38,,55 - 59
+11.05.07,3,Arongan Lambalek,age_group,55-59,,686,jiwa,2025,registration,total_population,3.2,38,,55 - 59
+11.05.07,3,Arongan Lambalek,age_group,60-64,laki_laki,252,jiwa,2025,registration,total_population,3.2,38,,60 - 64
+11.05.07,3,Arongan Lambalek,age_group,60-64,perempuan,209,jiwa,2025,registration,total_population,3.2,38,,60 - 64
+11.05.07,3,Arongan Lambalek,age_group,60-64,,461,jiwa,2025,registration,total_population,3.2,38,,60 - 64
+11.05.07,3,Arongan Lambalek,age_group,65-69,laki_laki,202,jiwa,2025,registration,total_population,3.2,38,,65 - 69
+11.05.07,3,Arongan Lambalek,age_group,65-69,perempuan,211,jiwa,2025,registration,total_population,3.2,38,,65 - 69
+11.05.07,3,Arongan Lambalek,age_group,65-69,,413,jiwa,2025,registration,total_population,3.2,38,,65 - 69
+11.05.07,3,Arongan Lambalek,age_group,70-74,laki_laki,93,jiwa,2025,registration,total_population,3.2,38,,70 - 74
+11.05.07,3,Arongan Lambalek,age_group,70-74,perempuan,92,jiwa,2025,registration,total_population,3.2,38,,70 - 74
+11.05.07,3,Arongan Lambalek,age_group,70-74,,185,jiwa,2025,registration,total_population,3.2,38,,70 - 74
+11.05.07,3,Arongan Lambalek,age_group,75+,laki_laki,189,jiwa,2025,registration,total_population,3.2,38,,75+
+11.05.07,3,Arongan Lambalek,age_group,75+,perempuan,207,jiwa,2025,registration,total_population,3.2,38,,75+
+11.05.07,3,Arongan Lambalek,age_group,75+,,396,jiwa,2025,registration,total_population,3.2,38,,75+
+11.05.07,3,Kecamatan Arongan Lambalek,sex,laki_laki,,6447,jiwa,2025,registration,total_population,3.2,38,,Laki-Laki
+11.05.07,3,Kecamatan Arongan Lambalek,sex,perempuan,,6287,jiwa,2025,registration,total_population,3.2,38,,Perempuan
+11.05.07,3,Kecamatan Arongan Lambalek,total,total,,12734,jiwa,2025,registration,total_population,3.2,38,,

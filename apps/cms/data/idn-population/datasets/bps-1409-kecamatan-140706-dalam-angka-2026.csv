@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.06.2004,4,Sungai Daun,sex,laki_laki,,2910,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.06.2004,4,Sungai Daun,sex,perempuan,,2705,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.06.2004,4,Sungai Daun,total,total,,5615,jiwa,2025,registration,total_population,3.1,18,,
+14.07.06.2003,4,Pasir Limau Kapas,sex,laki_laki,,3196,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.06.2003,4,Pasir Limau Kapas,sex,perempuan,,2942,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.06.2003,4,Pasir Limau Kapas,total,total,,6138,jiwa,2025,registration,total_population,3.1,18,,
+14.07.06.2002,4,Teluk Pulai,sex,laki_laki,,4052,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.06.2002,4,Teluk Pulai,sex,perempuan,,3814,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.06.2002,4,Teluk Pulai,total,total,,7866,jiwa,2025,registration,total_population,3.1,18,,
+14.07.06.2006,4,Panipahan Laut,sex,laki_laki,,1408,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.06.2006,4,Panipahan Laut,sex,perempuan,,1322,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.06.2006,4,Panipahan Laut,total,total,,2730,jiwa,2025,registration,total_population,3.1,18,,
+14.07.06.2005,4,Panipahan Darat,sex,laki_laki,,5930,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.06.2005,4,Panipahan Darat,sex,perempuan,,5546,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.06.2005,4,Panipahan Darat,total,total,,11476,jiwa,2025,registration,total_population,3.1,18,,
+14.07.06.2008,4,Pulau Jemur,sex,laki_laki,,502,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.06.2008,4,Pulau Jemur,sex,perempuan,,465,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.06.2008,4,Pulau Jemur,total,total,,967,jiwa,2025,registration,total_population,3.1,18,,
+14.07.06,3,Pasir Limau Kapas,sex,laki_laki,,21411,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.06,3,Pasir Limau Kapas,sex,perempuan,,20100,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.06,3,Pasir Limau Kapas,total,total,,41511,jiwa,2025,registration,total_population,3.1,18,,

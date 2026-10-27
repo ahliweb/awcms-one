@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.01.2002,4,Sanglar,sex,laki_laki,,2778,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2002,4,Sanglar,sex,perempuan,,2785,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2002,4,Sanglar,total,total,,5563,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2003,4,Pulau Kecil,sex,laki_laki,,2589,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2003,4,Pulau Kecil,sex,perempuan,,2580,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2003,4,Pulau Kecil,total,total,,5169,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.1001,4,Pulau Kijang,sex,laki_laki,,6704,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.1001,4,Pulau Kijang,sex,perempuan,,6489,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.1001,4,Pulau Kijang,total,total,,13193,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2009,4,Sungai Undan,sex,laki_laki,,810,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2009,4,Sungai Undan,sex,perempuan,,730,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2009,4,Sungai Undan,total,total,,1540,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2010,4,Seberang Sanglar,sex,laki_laki,,1497,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2010,4,Seberang Sanglar,sex,perempuan,,1379,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2010,4,Seberang Sanglar,total,total,,2876,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2011,4,Mekar Sari,sex,laki_laki,,449,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2011,4,Mekar Sari,sex,perempuan,,467,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2011,4,Mekar Sari,total,total,,916,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2012,4,Seberang Pulau Kijang,sex,laki_laki,,513,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2012,4,Seberang Pulau Kijang,sex,perempuan,,469,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2012,4,Seberang Pulau Kijang,total,total,,982,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2013,4,Sungai Asam,sex,laki_laki,,746,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2013,4,Sungai Asam,sex,perempuan,,696,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2013,4,Sungai Asam,total,total,,1442,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2014,4,Pulau Ruku,sex,laki_laki,,501,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2014,4,Pulau Ruku,sex,perempuan,,428,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2014,4,Pulau Ruku,total,total,,929,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.1017,4,Metro,sex,laki_laki,,933,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.1017,4,Metro,sex,perempuan,,895,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.1017,4,Metro,total,total,,1828,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.1018,4,Madani,sex,laki_laki,,1032,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.1018,4,Madani,sex,perempuan,,921,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.1018,4,Madani,total,total,,1953,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2019,4,Tanjung Labuh,sex,laki_laki,,228,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2019,4,Tanjung Labuh,sex,perempuan,,221,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2019,4,Tanjung Labuh,total,total,,449,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01.2020,4,Sungai Mahang,sex,laki_laki,,310,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01.2020,4,Sungai Mahang,sex,perempuan,,249,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01.2020,4,Sungai Mahang,total,total,,559,jiwa,2026,registration,total_population,3.1,29,,
+14.04.01,3,Reteh,sex,laki_laki,,19233,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.01,3,Reteh,sex,perempuan,,18451,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.01,3,Reteh,total,total,,37684,jiwa,2026,registration,total_population,3.1,29,,

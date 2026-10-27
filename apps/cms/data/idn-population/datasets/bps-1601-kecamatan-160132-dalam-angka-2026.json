@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1601-kecamatan-160132-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.01.32",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kedaton Peninjauan Raya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ulu",
+  "publisherDomain": "1601",
+  "publisherWebsite": "https://okukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ulu (https://okukab.bps.go.id), publikasi \"Kecamatan Kedaton Peninjauan Raya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16010.26017",
+  "issn": "3063-9131",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okukab.bps.go.id/id/publication/2026/09/28/a9bd9dd2f10b03838fee8cd4/kecamatan-kedaton-peninjauan-raya-dalam-angka-2026.html",
+  "sourceFileSha256": "0712b225db089a2e3f493161c7576d4be8bfd9edeb973a6999107450e8b64bbe",
+  "sourceFileBytes": 9408507,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ulu.",
+  "csvPath": "datasets/bps-1601-kecamatan-160132-dalam-angka-2026.csv",
+  "csvSha256": "89efa3e602a2b7323bab0c25fc01f5f6e9e983aaee9d7bc251741dd40c36e0a4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kedaton Peninjauan Raya, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kedaton Peninjauan Raya, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

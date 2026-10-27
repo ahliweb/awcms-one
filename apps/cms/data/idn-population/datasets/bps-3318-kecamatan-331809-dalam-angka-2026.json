@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3318-kecamatan-331809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.18.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jakenan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pati",
+  "publisherDomain": "3318",
+  "publisherWebsite": "https://patikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pati (https://patikab.bps.go.id), publikasi \"Kecamatan Jakenan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3318090",
+  "publicationNumber": "33180.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://patikab.bps.go.id/id/publication/2026/09/28/ccc0b4441a03d64c4ab0d192/kecamatan-jakenan-dalam-angka-2026.html",
+  "sourceFileSha256": "7923d250a3596b878d5b8853bf04576ccc896c8e07a1546528ff56b2e4081f82",
+  "sourceFileBytes": 11730318,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statsistik Kabupaten Pati",
+  "csvPath": "datasets/bps-3318-kecamatan-331809-dalam-angka-2026.csv",
+  "csvSha256": "3d86851ff484e370a897492cc5280c41a1e15e59873fbe2036b45c39bfb3e0f4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Jakenan, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jakenan, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 33.18.09 sex/laki_laki/ 2025: 24618 (table 3.1) vs 41574 (table 3.2)",
+    "cross-table disagreement, both stored as published: 33.18.09 sex/perempuan/ 2025: 25884 (table 3.1) vs 42200 (table 3.2)",
+    "cross-table disagreement, both stored as published: 33.18.09 total/total/ 2025: 50502 (table 3.1) vs 83774 (table 3.2)"
+  ]
+}

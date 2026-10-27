@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.07.2007,4,Banyumas,sex,laki_laki,,3365,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.2007,4,Banyumas,sex,perempuan,,3424,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.2007,4,Banyumas,total,total,,6789,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.1005,4,Kwala Bingai,sex,laki_laki,,6390,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.1005,4,Kwala Bingai,sex,perempuan,,6436,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.1005,4,Kwala Bingai,total,total,,12826,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.1006,4,Sidomulyo,sex,laki_laki,,3598,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.1006,4,Sidomulyo,sex,perempuan,,3623,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.1006,4,Sidomulyo,total,total,,7221,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.2008,4,Pantai Gemi,sex,laki_laki,,4785,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.2008,4,Pantai Gemi,sex,perempuan,,4658,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.2008,4,Pantai Gemi,total,total,,9443,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.1004,4,Perdamaian,sex,laki_laki,,6954,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.1004,4,Perdamaian,sex,perempuan,,7086,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.1004,4,Perdamaian,total,total,,14040,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.1010,4,Stabat Baru,sex,laki_laki,,3125,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.1010,4,Stabat Baru,sex,perempuan,,3245,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.1010,4,Stabat Baru,total,total,,6370,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.2009,4,Ara Condong,sex,laki_laki,,3966,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.2009,4,Ara Condong,sex,perempuan,,3915,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.2009,4,Ara Condong,total,total,,7881,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.2002,4,Kwala Begumit,sex,laki_laki,,3967,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.2002,4,Kwala Begumit,sex,perempuan,,3976,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.2002,4,Kwala Begumit,total,total,,7943,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.2003,4,Mangga,sex,laki_laki,,1828,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.2003,4,Mangga,sex,perempuan,,1788,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.2003,4,Mangga,total,total,,3616,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.2001,4,Karang Rejo,sex,laki_laki,,6088,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.2001,4,Karang Rejo,sex,perempuan,,6010,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.2001,4,Karang Rejo,total,total,,12098,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.1011,4,Dendang,sex,laki_laki,,4154,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.1011,4,Dendang,sex,perempuan,,4121,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.1011,4,Dendang,total,total,,8275,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07.1012,4,Paya Mabar,sex,laki_laki,,2560,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07.1012,4,Paya Mabar,sex,perempuan,,2537,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07.1012,4,Paya Mabar,total,total,,5097,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.07,3,Kecamatan Stabat,sex,laki_laki,,50780,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.07,3,Kecamatan Stabat,sex,perempuan,,50819,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.07,3,Kecamatan Stabat,total,total,,101599,jiwa,2025,registration,total_population,unnumbered-p39,39,,

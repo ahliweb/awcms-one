@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.18.02.2029,4,Alue Keumiki,sex,laki_laki,,102,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2029,4,Alue Keumiki,sex,perempuan,,74,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2029,4,Alue Keumiki,total,total,,176,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2028,4,Lhok Gajah,sex,laki_laki,,81,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2028,4,Lhok Gajah,sex,perempuan,,80,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2028,4,Lhok Gajah,total,total,,161,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2027,4,Cot Seutui,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2027,4,Cot Seutui,sex,perempuan,,311,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2027,4,Cot Seutui,total,total,,578,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2025,4,Meunasah Mesjid,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2025,4,Meunasah Mesjid,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2025,4,Meunasah Mesjid,total,total,,415,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2030,4,Blang Cari,sex,laki_laki,,128,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2030,4,Blang Cari,sex,perempuan,,131,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2030,4,Blang Cari,total,total,,259,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2020,4,Bidok,sex,laki_laki,,287,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2020,4,Bidok,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2020,4,Bidok,total,total,,517,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2013,4,Balee Ulim,sex,laki_laki,,409,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2013,4,Balee Ulim,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2013,4,Balee Ulim,total,total,,844,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2021,4,Pantang Cot Baloi,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2021,4,Pantang Cot Baloi,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2021,4,Pantang Cot Baloi,total,total,,530,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2023,4,Nangrhoe Barat,sex,laki_laki,,421,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2023,4,Nangrhoe Barat,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2023,4,Nangrhoe Barat,total,total,,869,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2002,4,Reuleut,sex,laki_laki,,136,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2002,4,Reuleut,sex,perempuan,,172,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2002,4,Reuleut,total,total,,308,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2003,4,Sambongan Baro,sex,laki_laki,,143,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2003,4,Sambongan Baro,sex,perempuan,,138,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2003,4,Sambongan Baro,total,total,,281,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2001,4,Dayah Baroh,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2001,4,Dayah Baroh,sex,perempuan,,427,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2001,4,Dayah Baroh,total,total,,870,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2022,4,Meunasah Pupu,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2022,4,Meunasah Pupu,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2022,4,Meunasah Pupu,total,total,,407,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2024,4,Nangrhoe Timu,sex,laki_laki,,461,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2024,4,Nangrhoe Timu,sex,perempuan,,482,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2024,4,Nangrhoe Timu,total,total,,943,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2015,4,Meunasah Kumbang,sex,laki_laki,,253,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2015,4,Meunasah Kumbang,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2015,4,Meunasah Kumbang,total,total,,541,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2017,4,Mesjid Ulim Tunong,sex,laki_laki,,138,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2017,4,Mesjid Ulim Tunong,sex,perempuan,,142,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2017,4,Mesjid Ulim Tunong,total,total,,280,jiwa,2025,registration,total_population,3.1,26,,
+11.18.02.2018,4,Pulo Ulim,sex,laki_laki,,520,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.18.02.2018,4,Pulo Ulim,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.18.02.2018,4,Pulo Ulim,total,total,,1040,jiwa,2025,registration,total_population,3.1,26,,

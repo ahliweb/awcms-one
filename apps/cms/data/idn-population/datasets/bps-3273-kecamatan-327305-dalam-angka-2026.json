@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327305-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Andir Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Andir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273180",
+  "publicationNumber": "32730.26007",
+  "issn": "2797-4677",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/d5d89ea667a73f24e482d995/kecamatan-andir-dalam-angka-2026.html",
+  "sourceFileSha256": "85be381c37fce6ad881dbc31a2e2ab349d48c777bdc1cfa2a3c66ab1ff3aeaa7",
+  "sourceFileBytes": 9365810,
+  "sourcePages": [37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327305-dalam-angka-2026.csv",
+  "csvSha256": "6755713dde5bea1f1f78a17dda483c27ac2d897e71a4852f5f5e61cde33f9085",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Andir, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Andir, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 4.4.5 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Khongkucu Khongkucu\" not recognised)",
+    "table 3.1: row not stored: row \"Andir District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Andir Andir District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

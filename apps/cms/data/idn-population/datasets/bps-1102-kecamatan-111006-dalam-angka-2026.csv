@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.06.2019,4,Pertampakan,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2019,4,Pertampakan,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2019,4,Pertampakan,total,total,,438,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2018,4,Tanah Merah,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2018,4,Tanah Merah,sex,perempuan,,318,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2018,4,Tanah Merah,total,total,,648,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2017,4,Sebatang,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2017,4,Sebatang,sex,perempuan,,319,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2017,4,Sebatang,total,total,,636,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2016,4,Seping Baru,sex,laki_laki,,199,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2016,4,Seping Baru,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2016,4,Seping Baru,total,total,,398,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2015,4,Perangusan,sex,laki_laki,,343,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2015,4,Perangusan,sex,perempuan,,336,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2015,4,Perangusan,total,total,,679,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2014,4,Gunung Lagan,sex,laki_laki,,1841,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2014,4,Gunung Lagan,sex,perempuan,,1866,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2014,4,Gunung Lagan,total,total,,3707,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2006,4,Tanah Bara,sex,laki_laki,,1601,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2006,4,Tanah Bara,sex,perempuan,,1612,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2006,4,Tanah Bara,total,total,,3213,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2013,4,Suka Makmur,sex,laki_laki,,1494,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2013,4,Suka Makmur,sex,perempuan,,1517,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2013,4,Suka Makmur,total,total,,3011,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2012,4,Sidorejo,sex,laki_laki,,1821,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2012,4,Sidorejo,sex,perempuan,,1829,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2012,4,Sidorejo,total,total,,3650,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2020,4,Pandan Sari,sex,laki_laki,,868,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2020,4,Pandan Sari,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2020,4,Pandan Sari,total,total,,1666,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2011,4,Blok 31,sex,laki_laki,,184,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2011,4,Blok 31,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2011,4,Blok 31,total,total,,368,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2010,4,Blok 18,sex,laki_laki,,308,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2010,4,Blok 18,sex,perempuan,,285,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2010,4,Blok 18,total,total,,593,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2021,4,Sanggaberu Silulusan,sex,laki_laki,,1023,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2021,4,Sanggaberu Silulusan,sex,perempuan,,1052,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2021,4,Sanggaberu Silulusan,total,total,,2075,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2009,4,Blok 15,sex,laki_laki,,1072,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2009,4,Blok 15,sex,perempuan,,1051,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2009,4,Blok 15,total,total,,2123,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2022,4,Tulaan,sex,laki_laki,,1379,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2022,4,Tulaan,sex,perempuan,,1364,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2022,4,Tulaan,total,total,,2743,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2008,4,Blok Vi Baru,sex,laki_laki,,1658,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2008,4,Blok Vi Baru,sex,perempuan,,1674,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2008,4,Blok Vi Baru,total,total,,3332,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2023,4,Tunas Harapan,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2023,4,Tunas Harapan,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2023,4,Tunas Harapan,total,total,,1243,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2024,4,Lae Butar,sex,laki_laki,,1595,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2024,4,Lae Butar,sex,perempuan,,1505,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2024,4,Lae Butar,total,total,,3100,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2007,4,Rimo,sex,laki_laki,,1622,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2007,4,Rimo,sex,perempuan,,1522,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2007,4,Rimo,total,total,,3144,jiwa,2025,registration,total_population,3.1,24,,
+11.10.06.2025,4,Sianjo Anjo Meriah,sex,laki_laki,,920,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.10.06.2025,4,Sianjo Anjo Meriah,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.10.06.2025,4,Sianjo Anjo Meriah,total,total,,1830,jiwa,2025,registration,total_population,3.1,24,,

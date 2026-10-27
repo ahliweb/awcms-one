@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.18.2004,4,Rantau Serik,sex,laki_laki,,791,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.18.2004,4,Rantau Serik,sex,perempuan,,849,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.18.2004,4,Rantau Serik,total,total,,1640,jiwa,2025,registration,total_population,3.1,23,,
+16.05.18.2008,4,Kebur,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.18.2008,4,Kebur,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.18.2008,4,Kebur,total,total,,846,jiwa,2025,registration,total_population,3.1,23,,
+16.05.18.2001,4,Lubuk Besar,sex,laki_laki,,989,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.18.2001,4,Lubuk Besar,sex,perempuan,,925,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.18.2001,4,Lubuk Besar,total,total,,1914,jiwa,2025,registration,total_population,3.1,23,,
+16.05.18.2002,4,Batu Bandung,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.18.2002,4,Batu Bandung,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.18.2002,4,Batu Bandung,total,total,,761,jiwa,2025,registration,total_population,3.1,23,,
+16.05.18.2005,4,Muara Kati Lama,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.18.2005,4,Muara Kati Lama,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.18.2005,4,Muara Kati Lama,total,total,,868,jiwa,2025,registration,total_population,3.1,23,,
+16.05.18.2010,4,Kebur Jaya,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.18.2010,4,Kebur Jaya,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.18.2010,4,Kebur Jaya,total,total,,966,jiwa,2025,registration,total_population,3.1,23,,
+16.05.18,3,Tiang Pumpung Kepungut,sex,laki_laki,,6679,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.18,3,Tiang Pumpung Kepungut,sex,perempuan,,6438,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.18,3,Tiang Pumpung Kepungut,total,total,,13117,jiwa,2025,registration,total_population,3.1,23,,
+16.05.18,3,Tiang Pumpung Kepungut,age_group,0-14,laki_laki,1579,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.18,3,Tiang Pumpung Kepungut,age_group,0-14,perempuan,1448,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.18,3,Tiang Pumpung Kepungut,age_group,0-14,,3027,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.18,3,Tiang Pumpung Kepungut,age_group,15-64,laki_laki,4720,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.18,3,Tiang Pumpung Kepungut,age_group,15-64,perempuan,4489,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.18,3,Tiang Pumpung Kepungut,age_group,15-64,,9209,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.18,3,Tiang Pumpung Kepungut,age_group,65+,laki_laki,380,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.18,3,Tiang Pumpung Kepungut,age_group,65+,perempuan,501,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.18,3,Tiang Pumpung Kepungut,age_group,65+,,881,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.18,3,Tiang Pumpung Kepungut,sex,laki_laki,,6679,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+16.05.18,3,Tiang Pumpung Kepungut,sex,perempuan,,6438,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+16.05.18,3,Tiang Pumpung Kepungut,total,total,,13117,jiwa,2025,registration,total_population,3.2,25,,

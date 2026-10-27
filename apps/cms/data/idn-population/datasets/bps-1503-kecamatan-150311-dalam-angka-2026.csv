@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.11.2001,4,Guruh Baru,sex,laki_laki,,1325,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2001,4,Guruh Baru,sex,perempuan,,1249,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2001,4,Guruh Baru,total,total,,2574,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2002,4,Petiduran Baru,sex,laki_laki,,1113,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2002,4,Petiduran Baru,sex,perempuan,,1044,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2002,4,Petiduran Baru,total,total,,2157,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2003,4,Sungai Butang,sex,laki_laki,,1263,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2003,4,Sungai Butang,sex,perempuan,,1096,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2003,4,Sungai Butang,total,total,,2359,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2004,4,Butang Baru,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2004,4,Butang Baru,sex,perempuan,,564,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2004,4,Butang Baru,total,total,,1172,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2005,4,Suka Maju,sex,laki_laki,,664,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2005,4,Suka Maju,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2005,4,Suka Maju,total,total,,1343,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2006,4,Jati Baru,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2006,4,Jati Baru,sex,perempuan,,430,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2006,4,Jati Baru,total,total,,925,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2007,4,Jati Baru Mudo,sex,laki_laki,,517,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2007,4,Jati Baru Mudo,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2007,4,Jati Baru Mudo,total,total,,993,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2008,4,Meranti Baru,sex,laki_laki,,547,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2008,4,Meranti Baru,sex,perempuan,,500,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2008,4,Meranti Baru,total,total,,1047,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2009,4,Meranti Jaya,sex,laki_laki,,592,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2009,4,Meranti Jaya,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2009,4,Meranti Jaya,total,total,,1111,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11.2010,4,Jernang Baru,sex,laki_laki,,351,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11.2010,4,Jernang Baru,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11.2010,4,Jernang Baru,total,total,,652,jiwa,2025,registration,total_population,3.1,28,,
+15.03.11,3,Mandiangin Timur,sex,laki_laki,,7475,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.11,3,Mandiangin Timur,sex,perempuan,,6858,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.11,3,Mandiangin Timur,total,total,,14333,jiwa,2025,registration,total_population,3.1,28,,

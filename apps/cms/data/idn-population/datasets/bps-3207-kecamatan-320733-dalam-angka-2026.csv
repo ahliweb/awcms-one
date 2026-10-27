@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.33.2002,4,Tenggerraharja,sex,laki_laki,,1504,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.33.2002,4,Tenggerraharja,sex,perempuan,,1438,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.33.2002,4,Tenggerraharja,total,total,,2942,jiwa,2025,registration,total_population,3.1,34,,
+32.07.33.2001,4,Sukamantri,sex,laki_laki,,2638,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.33.2001,4,Sukamantri,sex,perempuan,,2532,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.33.2001,4,Sukamantri,total,total,,5170,jiwa,2025,registration,total_population,3.1,34,,
+32.07.33.2003,4,Cibeureum,sex,laki_laki,,4300,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.33.2003,4,Cibeureum,sex,perempuan,,4142,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.33.2003,4,Cibeureum,total,total,,8442,jiwa,2025,registration,total_population,3.1,34,,
+32.07.33.2004,4,Sindanglaya,sex,laki_laki,,2532,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.33.2004,4,Sindanglaya,sex,perempuan,,2517,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.33.2004,4,Sindanglaya,total,total,,5049,jiwa,2025,registration,total_population,3.1,34,,
+32.07.33.2005,4,Mekarwangi,sex,laki_laki,,1830,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.33.2005,4,Mekarwangi,sex,perempuan,,1899,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.33.2005,4,Mekarwangi,total,total,,3729,jiwa,2025,registration,total_population,3.1,34,,
+32.07.33,3,Kecamatan Sukamantri,sex,laki_laki,,12804,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.33,3,Kecamatan Sukamantri,sex,perempuan,,12528,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.33,3,Kecamatan Sukamantri,total,total,,25332,jiwa,2025,registration,total_population,3.1,34,,

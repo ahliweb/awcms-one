@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09.13.2002,4,Curah Malang,sex,laki_laki,,2805,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2002,4,Curah Malang,sex,perempuan,,2784,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2002,4,Curah Malang,total,total,,5589,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13.2001,4,Nogosari,sex,laki_laki,,10760,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2001,4,Nogosari,sex,perempuan,,10490,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2001,4,Nogosari,total,total,,21250,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13.2003,4,Rowotamtu,sex,laki_laki,,3943,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2003,4,Rowotamtu,sex,perempuan,,3878,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2003,4,Rowotamtu,total,total,,7821,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13.2005,4,Pecoro,sex,laki_laki,,3827,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2005,4,Pecoro,sex,perempuan,,3777,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2005,4,Pecoro,total,total,,7604,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13.2006,4,Rambipuji,sex,laki_laki,,5680,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2006,4,Rambipuji,sex,perempuan,,5856,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2006,4,Rambipuji,total,total,,11536,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13.2004,4,Kaliwining,sex,laki_laki,,10236,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2004,4,Kaliwining,sex,perempuan,,10106,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2004,4,Kaliwining,total,total,,20342,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13.2008,4,Rambigundam,sex,laki_laki,,4470,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2008,4,Rambigundam,sex,perempuan,,4570,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2008,4,Rambigundam,total,total,,9040,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13.2007,4,Gugut,sex,laki_laki,,2926,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13.2007,4,Gugut,sex,perempuan,,2916,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13.2007,4,Gugut,total,total,,5842,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13,3,Kecamatan Rambipuji,sex,laki_laki,,44647,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.13,3,Kecamatan Rambipuji,sex,perempuan,,44377,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.13,3,Kecamatan Rambipuji,total,total,,89024,jiwa,2025,registration,total_population,3.1,33,,
+35.09.13,3,Rambipuji,age_group,0-4,laki_laki,2171,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.13,3,Rambipuji,age_group,0-4,perempuan,2147,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.13,3,Rambipuji,age_group,0-4,,4318,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.13,3,Rambipuji,age_group,5-9,laki_laki,3324,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.13,3,Rambipuji,age_group,5-9,perempuan,3029,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.13,3,Rambipuji,age_group,5-9,,6353,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.13,3,Rambipuji,age_group,10-14,laki_laki,3413,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.13,3,Rambipuji,age_group,10-14,perempuan,3195,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.13,3,Rambipuji,age_group,10-14,,6608,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.13,3,Rambipuji,age_group,15-19,laki_laki,3000,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.13,3,Rambipuji,age_group,15-19,perempuan,2829,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.13,3,Rambipuji,age_group,15-19,,5829,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.13,3,Rambipuji,age_group,20-24,laki_laki,3470,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.13,3,Rambipuji,age_group,20-24,perempuan,3179,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.13,3,Rambipuji,age_group,20-24,,6649,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.13,3,Rambipuji,age_group,25-29,laki_laki,3556,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.13,3,Rambipuji,age_group,25-29,perempuan,3385,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.13,3,Rambipuji,age_group,25-29,,6941,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.13,3,Rambipuji,age_group,30-34,laki_laki,3353,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.13,3,Rambipuji,age_group,30-34,perempuan,3054,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.13,3,Rambipuji,age_group,30-34,,6407,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.13,3,Rambipuji,age_group,35-39,laki_laki,2903,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.13,3,Rambipuji,age_group,35-39,perempuan,2879,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.13,3,Rambipuji,age_group,35-39,,5782,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.13,3,Rambipuji,age_group,40-44,laki_laki,3138,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.13,3,Rambipuji,age_group,40-44,perempuan,3238,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.13,3,Rambipuji,age_group,40-44,,6376,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.13,3,Rambipuji,age_group,45-49,laki_laki,2959,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.13,3,Rambipuji,age_group,45-49,perempuan,3156,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.13,3,Rambipuji,age_group,45-49,,6115,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.13,3,Rambipuji,age_group,50-54,laki_laki,3076,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.13,3,Rambipuji,age_group,50-54,perempuan,3261,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.13,3,Rambipuji,age_group,50-54,,6337,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.13,3,Rambipuji,age_group,55-59,laki_laki,2867,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.13,3,Rambipuji,age_group,55-59,perempuan,2943,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.13,3,Rambipuji,age_group,55-59,,5810,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.13,3,Rambipuji,age_group,60-64,laki_laki,2246,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.13,3,Rambipuji,age_group,60-64,perempuan,2509,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.13,3,Rambipuji,age_group,60-64,,4755,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.13,3,Rambipuji,age_group,65-69,laki_laki,1958,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.13,3,Rambipuji,age_group,65-69,perempuan,2094,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.13,3,Rambipuji,age_group,65-69,,4052,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.13,3,Rambipuji,age_group,70-74,laki_laki,1368,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.13,3,Rambipuji,age_group,70-74,perempuan,1325,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.13,3,Rambipuji,age_group,70-74,,2693,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.13,3,Rambipuji,age_group,75+,laki_laki,1845,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.13,3,Rambipuji,age_group,75+,perempuan,2154,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.13,3,Rambipuji,age_group,75+,,3999,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.13,3,Kecamatan Rambipuji,sex,laki_laki,,44647,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+35.09.13,3,Kecamatan Rambipuji,sex,perempuan,,44377,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.09.13,3,Kecamatan Rambipuji,total,total,,89024,jiwa,2025,registration,total_population,3.2,35,,

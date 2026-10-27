@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.06.2004,4,TELUK KETAPANG,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2004,4,TELUK KETAPANG,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2004,4,TELUK KETAPANG,total,total,,1043,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2005,4,SEMUKUT,sex,laki_laki,,1264,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2005,4,SEMUKUT,sex,perempuan,,1170,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2005,4,SEMUKUT,total,total,,2434,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2006,4,CENTAI,sex,laki_laki,,815,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2006,4,CENTAI,sex,perempuan,,758,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2006,4,CENTAI,total,total,,1573,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2007,4,TANJUNG BUNGA,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2007,4,TANJUNG BUNGA,sex,perempuan,,615,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2007,4,TANJUNG BUNGA,total,total,,1324,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2002,4,RENAK DUNGUN,sex,laki_laki,,1100,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2002,4,RENAK DUNGUN,sex,perempuan,,943,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2002,4,RENAK DUNGUN,total,total,,2043,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2003,4,BARAN MELINTANG,sex,laki_laki,,749,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2003,4,BARAN MELINTANG,sex,perempuan,,710,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2003,4,BARAN MELINTANG,total,total,,1459,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2001,4,KUALA MERBAU,sex,laki_laki,,1207,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2001,4,KUALA MERBAU,sex,perempuan,,1162,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2001,4,KUALA MERBAU,total,total,,2369,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2008,4,BATANG MERANTI,sex,laki_laki,,629,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2008,4,BATANG MERANTI,sex,perempuan,,584,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2008,4,BATANG MERANTI,total,total,,1213,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2009,4,PANGKALAN BALAI,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2009,4,PANGKALAN BALAI,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2009,4,PANGKALAN BALAI,total,total,,862,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2010,4,PADANG KAMAL,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2010,4,PADANG KAMAL,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2010,4,PADANG KAMAL,total,total,,688,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06.2011,4,KETAPANG PERMAI,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06.2011,4,KETAPANG PERMAI,sex,perempuan,,498,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06.2011,4,KETAPANG PERMAI,total,total,,996,jiwa,2025,registration,total_population,3.1,28,,
+14.10.06,3,PULAU MERBAU,sex,laki_laki,,8195,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.06,3,PULAU MERBAU,sex,perempuan,,7809,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.06,3,PULAU MERBAU,total,total,,16004,jiwa,2025,registration,total_population,3.1,28,,

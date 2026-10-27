@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.72.01.2004,4,Krueng Raya,sex,laki_laki,,1153,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.01.2004,4,Krueng Raya,sex,perempuan,,1113,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.01.2004,4,Krueng Raya,total,total,,2266,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.01.2005,4,Aneuk Laot,sex,laki_laki,,675,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.01.2005,4,Aneuk Laot,sex,perempuan,,710,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.01.2005,4,Aneuk Laot,total,total,,1385,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.01.2006,4,Kuta Timu,sex,laki_laki,,1168,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.01.2006,4,Kuta Timu,sex,perempuan,,1126,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.01.2006,4,Kuta Timu,total,total,,2294,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.01.2007,4,Kuta Barat,sex,laki_laki,,1788,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.01.2007,4,Kuta Barat,sex,perempuan,,1760,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.01.2007,4,Kuta Barat,total,total,,3548,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.01.2008,4,Kuta Ateuh,sex,laki_laki,,1990,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.01.2008,4,Kuta Ateuh,sex,perempuan,,1959,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.01.2008,4,Kuta Ateuh,total,total,,3949,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.01,3,Sukakarya,sex,laki_laki,,6774,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.01,3,Sukakarya,sex,perempuan,,6668,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.01,3,Sukakarya,total,total,,13442,jiwa,2025,registration,total_population,unnumbered-p16,16,,

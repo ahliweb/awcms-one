@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3578-kecamatan-357811-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.78.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Simokerto Dalam Angka 2026",
+  "publisherName": "BPS Kota Surabaya",
+  "publisherDomain": "3578",
+  "publisherWebsite": "https://surabayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surabaya (https://surabayakota.bps.go.id), publikasi \"Kecamatan Simokerto Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3578220",
+  "publicationNumber": "35780.25035",
+  "issn": "3110-519X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surabayakota.bps.go.id/id/publication/2026/09/28/3511372d3463a853f17c36ce/kecamatan-simokerto-dalam-angka-2026.html",
+  "sourceFileSha256": "1503f2d0a3f3cc511fabbc198eb2fadfa6a7457f35a92de8df36655197cc227b",
+  "sourceFileBytes": 26837813,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surabaya.",
+  "csvPath": "datasets/bps-3578-kecamatan-357811-dalam-angka-2026.csv",
+  "csvSha256": "ec38717c095af07ad0d7263821799c83653c5035cf80ecbe1d94370774dcf1c1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Simokerto, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Simokerto, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.08.2001,4,Sumur Anyir,sex,laki_laki,,980,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.08.2001,4,Sumur Anyir,sex,perempuan,,919,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.08.2001,4,Sumur Anyir,total,total,,1899,jiwa,2025,registration,total_population,3.1,31,,
+15.72.08.2004,4,Pelayang Raya,sex,laki_laki,,1056,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.08.2004,4,Pelayang Raya,sex,perempuan,,1096,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.08.2004,4,Pelayang Raya,total,total,,2152,jiwa,2025,registration,total_population,3.1,31,,
+15.72.08.2003,4,Talang Lindung,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.08.2003,4,Talang Lindung,sex,perempuan,,906,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.08.2003,4,Talang Lindung,total,total,,1797,jiwa,2025,registration,total_population,3.1,31,,
+15.72.08.2006,4,Sungai Ning,sex,laki_laki,,917,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.08.2006,4,Sungai Ning,sex,perempuan,,874,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.08.2006,4,Sungai Ning,total,total,,1791,jiwa,2025,registration,total_population,3.1,31,,
+15.72.08.2002,4,Koto Tinggi,sex,laki_laki,,606,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.08.2002,4,Koto Tinggi,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.08.2002,4,Koto Tinggi,total,total,,1233,jiwa,2025,registration,total_population,3.1,31,,
+15.72.08.1005,4,Dusun Baru,sex,laki_laki,,1327,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.08.1005,4,Dusun Baru,sex,perempuan,,1221,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.08.1005,4,Dusun Baru,total,total,,2548,jiwa,2025,registration,total_population,3.1,31,,
+15.72.08,3,Kecamatan Sungai Bungkal,sex,laki_laki,,5777,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.08,3,Kecamatan Sungai Bungkal,sex,perempuan,,5643,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.08,3,Kecamatan Sungai Bungkal,total,total,,11420,jiwa,2025,registration,total_population,3.1,31,,
+15.72.08,3,Sungai Bungkal,age_group,0-4,laki_laki,337,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+15.72.08,3,Sungai Bungkal,age_group,0-4,perempuan,342,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+15.72.08,3,Sungai Bungkal,age_group,0-4,,679,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+15.72.08,3,Sungai Bungkal,age_group,5-9,laki_laki,458,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+15.72.08,3,Sungai Bungkal,age_group,5-9,perempuan,434,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+15.72.08,3,Sungai Bungkal,age_group,5-9,,892,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+15.72.08,3,Sungai Bungkal,age_group,10-14,laki_laki,495,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+15.72.08,3,Sungai Bungkal,age_group,10-14,perempuan,453,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+15.72.08,3,Sungai Bungkal,age_group,10-14,,948,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+15.72.08,3,Sungai Bungkal,age_group,15-19,laki_laki,522,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+15.72.08,3,Sungai Bungkal,age_group,15-19,perempuan,466,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+15.72.08,3,Sungai Bungkal,age_group,15-19,,988,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+15.72.08,3,Sungai Bungkal,age_group,20-24,laki_laki,533,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+15.72.08,3,Sungai Bungkal,age_group,20-24,perempuan,469,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+15.72.08,3,Sungai Bungkal,age_group,20-24,,1002,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+15.72.08,3,Sungai Bungkal,age_group,25-29,laki_laki,454,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+15.72.08,3,Sungai Bungkal,age_group,25-29,perempuan,393,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+15.72.08,3,Sungai Bungkal,age_group,25-29,,847,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+15.72.08,3,Sungai Bungkal,age_group,30-34,laki_laki,376,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+15.72.08,3,Sungai Bungkal,age_group,30-34,perempuan,413,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+15.72.08,3,Sungai Bungkal,age_group,30-34,,789,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+15.72.08,3,Sungai Bungkal,age_group,35-39,laki_laki,380,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+15.72.08,3,Sungai Bungkal,age_group,35-39,perempuan,366,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+15.72.08,3,Sungai Bungkal,age_group,35-39,,746,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+15.72.08,3,Sungai Bungkal,age_group,40-44,laki_laki,405,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+15.72.08,3,Sungai Bungkal,age_group,40-44,perempuan,413,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+15.72.08,3,Sungai Bungkal,age_group,40-44,,818,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+15.72.08,3,Sungai Bungkal,age_group,45-49,laki_laki,434,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+15.72.08,3,Sungai Bungkal,age_group,45-49,perempuan,421,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+15.72.08,3,Sungai Bungkal,age_group,45-49,,855,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+15.72.08,3,Sungai Bungkal,age_group,50-54,laki_laki,361,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+15.72.08,3,Sungai Bungkal,age_group,50-54,perempuan,363,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+15.72.08,3,Sungai Bungkal,age_group,50-54,,724,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+15.72.08,3,Sungai Bungkal,age_group,55-59,laki_laki,286,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+15.72.08,3,Sungai Bungkal,age_group,55-59,perempuan,297,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+15.72.08,3,Sungai Bungkal,age_group,55-59,,583,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+15.72.08,3,Sungai Bungkal,age_group,60-64,laki_laki,253,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+15.72.08,3,Sungai Bungkal,age_group,60-64,perempuan,256,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+15.72.08,3,Sungai Bungkal,age_group,60-64,,509,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+15.72.08,3,Sungai Bungkal,age_group,65-69,laki_laki,208,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+15.72.08,3,Sungai Bungkal,age_group,65-69,perempuan,214,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+15.72.08,3,Sungai Bungkal,age_group,65-69,,422,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+15.72.08,3,Sungai Bungkal,age_group,70-74,laki_laki,136,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+15.72.08,3,Sungai Bungkal,age_group,70-74,perempuan,174,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+15.72.08,3,Sungai Bungkal,age_group,70-74,,310,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+15.72.08,3,Sungai Bungkal,age_group,75+,laki_laki,139,jiwa,2025,registration,total_population,3.2,33,,75+
+15.72.08,3,Sungai Bungkal,age_group,75+,perempuan,169,jiwa,2025,registration,total_population,3.2,33,,75+
+15.72.08,3,Sungai Bungkal,age_group,75+,,308,jiwa,2025,registration,total_population,3.2,33,,75+
+15.72.08,3,Kecamatan Sungai Bungkal,sex,laki_laki,,5777,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+15.72.08,3,Kecamatan Sungai Bungkal,sex,perempuan,,5643,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+15.72.08,3,Kecamatan Sungai Bungkal,total,total,,11420,jiwa,2025,registration,total_population,3.2,33,,

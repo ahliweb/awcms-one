@@ -1,0 +1,127 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.02.07.2012,4,Talang Bersemi,religion,islam,,1724,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2012,4,Talang Bersemi,religion,katolik,,40,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2012,4,Talang Bersemi,religion,kristen,,49,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2012,4,Talang Bersemi,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2012,4,Talang Bersemi,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2012,4,Talang Bersemi,total,total,,1813,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2013,4,Talang Mulya,religion,islam,,3989,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2013,4,Talang Mulya,religion,katolik,,9,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2013,4,Talang Mulya,religion,kristen,,82,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2013,4,Talang Mulya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2013,4,Talang Mulya,religion,buddha,,4,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.07.2013,4,Talang Mulya,total,total,,4084,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2002,4,Anak Talang,religion,islam,,4285,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2002,4,Anak Talang,religion,katolik,,133,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2002,4,Anak Talang,religion,kristen,,1776,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2002,4,Anak Talang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2002,4,Anak Talang,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.07.2002,4,Anak Talang,total,total,,6195,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2017,4,Cenaku Kecil,religion,islam,,1147,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2017,4,Cenaku Kecil,religion,katolik,,11,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2017,4,Cenaku Kecil,religion,kristen,,226,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2017,4,Cenaku Kecil,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2017,4,Cenaku Kecil,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2017,4,Cenaku Kecil,total,total,,1384,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2018,4,Alim,religion,islam,,3542,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2018,4,Alim,religion,katolik,,115,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2018,4,Alim,religion,kristen,,1006,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2018,4,Alim,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2018,4,Alim,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2018,4,Alim,total,total,,4663,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2014,4,Puntianai,religion,islam,,808,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2014,4,Puntianai,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.07.2014,4,Puntianai,religion,kristen,,6,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2014,4,Puntianai,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2014,4,Puntianai,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2014,4,Puntianai,total,total,,814,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2010,4,Pematang Manggis,religion,islam,,1253,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2010,4,Pematang Manggis,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.07.2010,4,Pematang Manggis,religion,kristen,,9,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2010,4,Pematang Manggis,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2010,4,Pematang Manggis,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2010,4,Pematang Manggis,total,total,,1262,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2008,4,Kerubung Jaya,religion,islam,,3344,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2008,4,Kerubung Jaya,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2008,4,Kerubung Jaya,religion,kristen,,39,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2008,4,Kerubung Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2008,4,Kerubung Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2008,4,Kerubung Jaya,total,total,,3384,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2015,4,Petaling Jaya,religion,islam,,1586,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2015,4,Petaling Jaya,religion,katolik,,8,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2015,4,Petaling Jaya,religion,kristen,,12,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2015,4,Petaling Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2015,4,Petaling Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2015,4,Petaling Jaya,total,total,,1606,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2019,4,Aur Cina,religion,islam,,2456,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2019,4,Aur Cina,religion,katolik,,48,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2019,4,Aur Cina,religion,kristen,,104,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2019,4,Aur Cina,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2019,4,Aur Cina,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2019,4,Aur Cina,total,total,,2608,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2004,4,Bukit Lingkar,religion,islam,,3628,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2004,4,Bukit Lingkar,religion,katolik,,8,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2004,4,Bukit Lingkar,religion,kristen,,10,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2004,4,Bukit Lingkar,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2004,4,Bukit Lingkar,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2004,4,Bukit Lingkar,total,total,,3646,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2005,4,Bukit Lipai,religion,islam,,3629,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2005,4,Bukit Lipai,religion,katolik,,12,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2005,4,Bukit Lipai,religion,kristen,,243,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2005,4,Bukit Lipai,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2005,4,Bukit Lipai,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2005,4,Bukit Lipai,total,total,,3884,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2006,4,Kuala Gading,religion,islam,,3239,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2006,4,Kuala Gading,religion,katolik,,4,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2006,4,Kuala Gading,religion,kristen,,5,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2006,4,Kuala Gading,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2006,4,Kuala Gading,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2006,4,Kuala Gading,total,total,,3248,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2007,4,Kuala Kilan,religion,islam,,1495,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2007,4,Kuala Kilan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.07.2007,4,Kuala Kilan,religion,kristen,,27,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2007,4,Kuala Kilan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2007,4,Kuala Kilan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2007,4,Kuala Kilan,total,total,,1522,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2011,4,Sipang,religion,islam,,955,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2011,4,Sipang,religion,katolik,,12,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2011,4,Sipang,religion,kristen,,43,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2011,4,Sipang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2011,4,Sipang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2011,4,Sipang,total,total,,1010,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2009,4,Pejangki,religion,islam,,712,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2009,4,Pejangki,religion,katolik,,16,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2009,4,Pejangki,religion,kristen,,211,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2009,4,Pejangki,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2009,4,Pejangki,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2009,4,Pejangki,total,total,,939,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2020,4,Lahai Kemuning,religion,islam,,1854,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2020,4,Lahai Kemuning,religion,katolik,,6,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2020,4,Lahai Kemuning,religion,kristen,,58,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2020,4,Lahai Kemuning,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2020,4,Lahai Kemuning,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2020,4,Lahai Kemuning,total,total,,1918,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2021,4,Kepayang Sari,religion,islam,,4282,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2021,4,Kepayang Sari,religion,katolik,,57,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2021,4,Kepayang Sari,religion,kristen,,837,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2021,4,Kepayang Sari,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2021,4,Kepayang Sari,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2021,4,Kepayang Sari,total,total,,5176,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2022,4,Batu Papan,religion,islam,,1017,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2022,4,Batu Papan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.07.2022,4,Batu Papan,religion,kristen,,8,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2022,4,Batu Papan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2022,4,Batu Papan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2022,4,Batu Papan,total,total,,1025,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07.2023,4,Sanglap,religion,islam,,493,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07.2023,4,Sanglap,religion,katolik,,8,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07.2023,4,Sanglap,religion,kristen,,108,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07.2023,4,Sanglap,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07.2023,4,Sanglap,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.07.2023,4,Sanglap,total,total,,609,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.07,3,Batang Cenaku,religion,islam,,45438,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.07,3,Batang Cenaku,religion,katolik,,488,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.07,3,Batang Cenaku,religion,kristen,,4859,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.07,3,Batang Cenaku,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.07,3,Batang Cenaku,religion,buddha,,5,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.07,3,Batang Cenaku,total,total,,50790,jiwa,2025,registration,total_population,4.4.1,59,,

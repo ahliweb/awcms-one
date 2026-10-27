@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.06.01.1001,4,Ujung Batu,sex,laki_laki,,9074,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.06.01.1001,4,Ujung Batu,sex,perempuan,,9074,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+14.06.01.1001,4,Ujung Batu,total,total,,18148,jiwa,2025,registration,total_population,3.1,28,,
+14.06.01.2004,4,Ujung Batu Timur,sex,laki_laki,,3942,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.06.01.2004,4,Ujung Batu Timur,sex,perempuan,,3883,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+14.06.01.2004,4,Ujung Batu Timur,total,total,,7825,jiwa,2025,registration,total_population,3.1,28,,
+14.06.01.2003,4,Ngaso,sex,laki_laki,,3429,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.06.01.2003,4,Ngaso,sex,perempuan,,3230,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+14.06.01.2003,4,Ngaso,total,total,,6659,jiwa,2025,registration,total_population,3.1,28,,
+14.06.01.2002,4,Suka Damai,sex,laki_laki,,4728,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.06.01.2002,4,Suka Damai,sex,perempuan,,4639,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+14.06.01.2002,4,Suka Damai,total,total,,9367,jiwa,2025,registration,total_population,3.1,28,,
+14.06.01.2005,4,Pematang Tebih,sex,laki_laki,,5556,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.06.01.2005,4,Pematang Tebih,sex,perempuan,,5375,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+14.06.01.2005,4,Pematang Tebih,total,total,,10931,jiwa,2025,registration,total_population,3.1,28,,
+14.06.01,3,Ujung Batu,sex,laki_laki,,26729,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.06.01,3,Ujung Batu,sex,perempuan,,26201,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+14.06.01,3,Ujung Batu,total,total,,52930,jiwa,2025,registration,total_population,3.1,28,,
+14.06.01,3,Ujung Batu,age_group,0-4,laki_laki,1780,jiwa,2025,registration,total_population,3.2,30,,0–4
+14.06.01,3,Ujung Batu,age_group,0-4,perempuan,1645,jiwa,2025,registration,total_population,3.2,30,,0–4
+14.06.01,3,Ujung Batu,age_group,0-4,,3425,jiwa,2025,registration,total_population,3.2,30,,0–4
+14.06.01,3,Ujung Batu,age_group,5-9,laki_laki,2595,jiwa,2025,registration,total_population,3.2,30,,5–9
+14.06.01,3,Ujung Batu,age_group,5-9,perempuan,2504,jiwa,2025,registration,total_population,3.2,30,,5–9
+14.06.01,3,Ujung Batu,age_group,5-9,,5099,jiwa,2025,registration,total_population,3.2,30,,5–9
+14.06.01,3,Ujung Batu,age_group,10-14,laki_laki,2704,jiwa,2025,registration,total_population,3.2,30,,10–14
+14.06.01,3,Ujung Batu,age_group,10-14,perempuan,2467,jiwa,2025,registration,total_population,3.2,30,,10–14
+14.06.01,3,Ujung Batu,age_group,10-14,,5171,jiwa,2025,registration,total_population,3.2,30,,10–14
+14.06.01,3,Ujung Batu,age_group,15-19,laki_laki,2513,jiwa,2025,registration,total_population,3.2,30,,15–19
+14.06.01,3,Ujung Batu,age_group,15-19,perempuan,2405,jiwa,2025,registration,total_population,3.2,30,,15–19
+14.06.01,3,Ujung Batu,age_group,15-19,,4918,jiwa,2025,registration,total_population,3.2,30,,15–19
+14.06.01,3,Ujung Batu,age_group,20-24,laki_laki,2420,jiwa,2025,registration,total_population,3.2,30,,20–24
+14.06.01,3,Ujung Batu,age_group,20-24,perempuan,2331,jiwa,2025,registration,total_population,3.2,30,,20–24
+14.06.01,3,Ujung Batu,age_group,20-24,,4751,jiwa,2025,registration,total_population,3.2,30,,20–24
+14.06.01,3,Ujung Batu,age_group,25-29,laki_laki,2365,jiwa,2025,registration,total_population,3.2,30,,25–29
+14.06.01,3,Ujung Batu,age_group,25-29,perempuan,2221,jiwa,2025,registration,total_population,3.2,30,,25–29
+14.06.01,3,Ujung Batu,age_group,25-29,,4586,jiwa,2025,registration,total_population,3.2,30,,25–29
+14.06.01,3,Ujung Batu,age_group,30-34,laki_laki,2080,jiwa,2025,registration,total_population,3.2,30,,30–34
+14.06.01,3,Ujung Batu,age_group,30-34,perempuan,2013,jiwa,2025,registration,total_population,3.2,30,,30–34
+14.06.01,3,Ujung Batu,age_group,30-34,,4093,jiwa,2025,registration,total_population,3.2,30,,30–34
+14.06.01,3,Ujung Batu,age_group,35-39,laki_laki,1940,jiwa,2025,registration,total_population,3.2,30,,35–39
+14.06.01,3,Ujung Batu,age_group,35-39,perempuan,2053,jiwa,2025,registration,total_population,3.2,30,,35–39
+14.06.01,3,Ujung Batu,age_group,35-39,,3993,jiwa,2025,registration,total_population,3.2,30,,35–39
+14.06.01,3,Ujung Batu,age_group,40-44,laki_laki,1914,jiwa,2025,registration,total_population,3.2,30,,40–44
+14.06.01,3,Ujung Batu,age_group,40-44,perempuan,2064,jiwa,2025,registration,total_population,3.2,30,,40–44
+14.06.01,3,Ujung Batu,age_group,40-44,,3978,jiwa,2025,registration,total_population,3.2,30,,40–44
+14.06.01,3,Ujung Batu,age_group,45-49,laki_laki,1824,jiwa,2025,registration,total_population,3.2,30,,45–49
+14.06.01,3,Ujung Batu,age_group,45-49,perempuan,1856,jiwa,2025,registration,total_population,3.2,30,,45–49
+14.06.01,3,Ujung Batu,age_group,45-49,,3680,jiwa,2025,registration,total_population,3.2,30,,45–49
+14.06.01,3,Ujung Batu,age_group,50-54,laki_laki,1440,jiwa,2025,registration,total_population,3.2,30,,50–54
+14.06.01,3,Ujung Batu,age_group,50-54,perempuan,1379,jiwa,2025,registration,total_population,3.2,30,,50–54
+14.06.01,3,Ujung Batu,age_group,50-54,,2819,jiwa,2025,registration,total_population,3.2,30,,50–54
+14.06.01,3,Ujung Batu,age_group,55-59,laki_laki,1121,jiwa,2025,registration,total_population,3.2,30,,55–59
+14.06.01,3,Ujung Batu,age_group,55-59,perempuan,1154,jiwa,2025,registration,total_population,3.2,30,,55–59
+14.06.01,3,Ujung Batu,age_group,55-59,,2275,jiwa,2025,registration,total_population,3.2,30,,55–59
+14.06.01,3,Ujung Batu,age_group,60-64,laki_laki,843,jiwa,2025,registration,total_population,3.2,30,,60–64
+14.06.01,3,Ujung Batu,age_group,60-64,perempuan,906,jiwa,2025,registration,total_population,3.2,30,,60–64
+14.06.01,3,Ujung Batu,age_group,60-64,,1749,jiwa,2025,registration,total_population,3.2,30,,60–64
+14.06.01,3,Ujung Batu,age_group,65-69,laki_laki,656,jiwa,2025,registration,total_population,3.2,30,,65–69
+14.06.01,3,Ujung Batu,age_group,65-69,perempuan,574,jiwa,2025,registration,total_population,3.2,30,,65–69
+14.06.01,3,Ujung Batu,age_group,65-69,,1230,jiwa,2025,registration,total_population,3.2,30,,65–69
+14.06.01,3,Ujung Batu,age_group,70-74,laki_laki,297,jiwa,2025,registration,total_population,3.2,30,,70–74
+14.06.01,3,Ujung Batu,age_group,70-74,perempuan,319,jiwa,2025,registration,total_population,3.2,30,,70–74
+14.06.01,3,Ujung Batu,age_group,70-74,,616,jiwa,2025,registration,total_population,3.2,30,,70–74
+14.06.01,3,Ujung Batu,age_group,75+,laki_laki,237,jiwa,2025,registration,total_population,3.2,30,,75+
+14.06.01,3,Ujung Batu,age_group,75+,perempuan,310,jiwa,2025,registration,total_population,3.2,30,,75+
+14.06.01,3,Ujung Batu,age_group,75+,,547,jiwa,2025,registration,total_population,3.2,30,,75+
+14.06.01,3,Ujung Batu,sex,laki_laki,,26729,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+14.06.01,3,Ujung Batu,sex,perempuan,,26201,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+14.06.01,3,Ujung Batu,total,total,,52930,jiwa,2025,registration,total_population,3.2,30,,

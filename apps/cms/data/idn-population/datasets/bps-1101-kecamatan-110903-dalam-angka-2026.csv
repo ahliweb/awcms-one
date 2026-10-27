@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.09.03.2016,4,Sital,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2016,4,Sital,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2016,4,Sital,total,total,,395,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2015,4,Leubang,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2015,4,Leubang,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2015,4,Leubang,total,total,,888,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2014,4,Leubang Hulu,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2014,4,Leubang Hulu,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2014,4,Leubang Hulu,total,total,,435,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2004,4,Awe Seubal,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2004,4,Awe Seubal,sex,perempuan,,273,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2004,4,Awe Seubal,total,total,,569,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2013,4,Lantik,sex,laki_laki,,268,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2013,4,Lantik,sex,perempuan,,284,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2013,4,Lantik,total,total,,552,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2011,4,Awe Kecil,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2011,4,Awe Kecil,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2011,4,Awe Kecil,total,total,,418,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2009,4,Salur,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2009,4,Salur,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2009,4,Salur,total,total,,757,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2008,4,Salur Latun,sex,laki_laki,,118,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2008,4,Salur Latun,sex,perempuan,,119,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2008,4,Salur Latun,total,total,,237,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2007,4,Salur Lasengalu,sex,laki_laki,,310,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2007,4,Salur Lasengalu,sex,perempuan,,297,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2007,4,Salur Lasengalu,total,total,,607,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2018,4,Nancala,sex,laki_laki,,101,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2018,4,Nancala,sex,perempuan,,119,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2018,4,Nancala,total,total,,220,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2017,4,Maudil,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2017,4,Maudil,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2017,4,Maudil,total,total,,651,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2006,4,Inor,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2006,4,Inor,sex,perempuan,,234,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2006,4,Inor,total,total,,493,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2012,4,Naibos,sex,laki_laki,,172,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2012,4,Naibos,sex,perempuan,,167,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2012,4,Naibos,total,total,,339,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2005,4,Laayon,sex,laki_laki,,125,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2005,4,Laayon,sex,perempuan,,99,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2005,4,Laayon,total,total,,224,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2003,4,Angkeo,sex,laki_laki,,250,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2003,4,Angkeo,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2003,4,Angkeo,total,total,,475,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2002,4,Bunon,sex,laki_laki,,191,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2002,4,Bunon,sex,perempuan,,178,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2002,4,Bunon,total,total,,369,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2001,4,Silengas,sex,laki_laki,,187,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2001,4,Silengas,sex,perempuan,,191,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2001,4,Silengas,total,total,,378,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03.2010,4,Pulau Teupah,sex,laki_laki,,201,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03.2010,4,Pulau Teupah,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03.2010,4,Pulau Teupah,total,total,,380,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03,3,Teupah Barat,sex,laki_laki,,4279,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.03,3,Teupah Barat,sex,perempuan,,4108,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.03,3,Teupah Barat,total,total,,8387,jiwa,2025,registration,total_population,3.1,24,,
+11.09.03,3,Teupah Barat,age_group,0-4,laki_laki,292,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.09.03,3,Teupah Barat,age_group,0-4,perempuan,277,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.09.03,3,Teupah Barat,age_group,0-4,,569,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.09.03,3,Teupah Barat,age_group,5-9,laki_laki,373,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.09.03,3,Teupah Barat,age_group,5-9,perempuan,333,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.09.03,3,Teupah Barat,age_group,5-9,,706,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.09.03,3,Teupah Barat,age_group,10-14,laki_laki,374,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.09.03,3,Teupah Barat,age_group,10-14,perempuan,352,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.09.03,3,Teupah Barat,age_group,10-14,,726,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.09.03,3,Teupah Barat,age_group,15-19,laki_laki,418,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.09.03,3,Teupah Barat,age_group,15-19,perempuan,367,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.09.03,3,Teupah Barat,age_group,15-19,,785,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.09.03,3,Teupah Barat,age_group,20-24,laki_laki,411,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.09.03,3,Teupah Barat,age_group,20-24,perempuan,426,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.09.03,3,Teupah Barat,age_group,20-24,,837,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.09.03,3,Teupah Barat,age_group,25-29,laki_laki,377,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.09.03,3,Teupah Barat,age_group,25-29,perempuan,350,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.09.03,3,Teupah Barat,age_group,25-29,,727,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.09.03,3,Teupah Barat,age_group,30-34,laki_laki,320,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.09.03,3,Teupah Barat,age_group,30-34,perempuan,283,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.09.03,3,Teupah Barat,age_group,30-34,,603,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.09.03,3,Teupah Barat,age_group,35-39,laki_laki,319,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.09.03,3,Teupah Barat,age_group,35-39,perempuan,284,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.09.03,3,Teupah Barat,age_group,35-39,,603,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.09.03,3,Teupah Barat,age_group,40-44,laki_laki,348,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.09.03,3,Teupah Barat,age_group,40-44,perempuan,315,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.09.03,3,Teupah Barat,age_group,40-44,,663,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.09.03,3,Teupah Barat,age_group,45-49,laki_laki,332,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.09.03,3,Teupah Barat,age_group,45-49,perempuan,259,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.09.03,3,Teupah Barat,age_group,45-49,,591,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.09.03,3,Teupah Barat,age_group,50-54,laki_laki,211,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.09.03,3,Teupah Barat,age_group,50-54,perempuan,207,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.09.03,3,Teupah Barat,age_group,50-54,,418,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.09.03,3,Teupah Barat,age_group,55-59,laki_laki,171,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.09.03,3,Teupah Barat,age_group,55-59,perempuan,187,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.09.03,3,Teupah Barat,age_group,55-59,,358,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.09.03,3,Teupah Barat,age_group,60-64,laki_laki,123,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.09.03,3,Teupah Barat,age_group,60-64,perempuan,144,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.09.03,3,Teupah Barat,age_group,60-64,,267,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.09.03,3,Teupah Barat,age_group,65-70,laki_laki,108,jiwa,2025,registration,total_population,3.2,26,,65-70
+11.09.03,3,Teupah Barat,age_group,65-70,perempuan,124,jiwa,2025,registration,total_population,3.2,26,,65-70
+11.09.03,3,Teupah Barat,age_group,65-70,,232,jiwa,2025,registration,total_population,3.2,26,,65-70
+11.09.03,3,Teupah Barat,age_group,70-74,laki_laki,52,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.09.03,3,Teupah Barat,age_group,70-74,perempuan,82,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.09.03,3,Teupah Barat,age_group,70-74,,134,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.09.03,3,Teupah Barat,age_group,75+,laki_laki,50,jiwa,2025,registration,total_population,3.2,26,,75+
+11.09.03,3,Teupah Barat,age_group,75+,perempuan,118,jiwa,2025,registration,total_population,3.2,26,,75+
+11.09.03,3,Teupah Barat,age_group,75+,,168,jiwa,2025,registration,total_population,3.2,26,,75+
+11.09.03,3,Teupah Barat,sex,laki_laki,,4279,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+11.09.03,3,Teupah Barat,sex,perempuan,,4108,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+11.09.03,3,Teupah Barat,total,total,,8387,jiwa,2025,registration,total_population,3.2,26,,

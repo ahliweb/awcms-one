@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.15.09.2002,4,BABAH LUENG,sex,laki_laki,,501,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2002,4,BABAH LUENG,sex,perempuan,,511,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2002,4,BABAH LUENG,total,total,,1012,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2003,4,DRIEN TUJOH,sex,laki_laki,,624,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2003,4,DRIEN TUJOH,sex,perempuan,,566,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2003,4,DRIEN TUJOH,total,total,,1190,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2005,4,KABU,sex,laki_laki,,647,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2005,4,KABU,sex,perempuan,,686,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2005,4,KABU,total,total,,1333,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2004,4,LUENG KEUBEU JAGAT,sex,laki_laki,,911,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2004,4,LUENG KEUBEU JAGAT,sex,perempuan,,914,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2004,4,LUENG KEUBEU JAGAT,total,total,,1825,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2009,4,MON DUA,sex,laki_laki,,259,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2009,4,MON DUA,sex,perempuan,,271,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2009,4,MON DUA,total,total,,530,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2007,4,NEUBOK YEE PK,sex,laki_laki,,226,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2007,4,NEUBOK YEE PK,sex,perempuan,,227,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2007,4,NEUBOK YEE PK,total,total,,453,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2008,4,NEUBOK YEE PP,sex,laki_laki,,269,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2008,4,NEUBOK YEE PP,sex,perempuan,,269,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2008,4,NEUBOK YEE PP,total,total,,538,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2011,4,PANTON PANGE,sex,laki_laki,,251,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2011,4,PANTON PANGE,sex,perempuan,,221,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2011,4,PANTON PANGE,total,total,,472,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09.2010,4,UJONG KRUENG,sex,laki_laki,,232,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09.2010,4,UJONG KRUENG,sex,perempuan,,229,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09.2010,4,UJONG KRUENG,total,total,,461,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09,3,TRIPAMAKMUR,sex,laki_laki,,5164,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.09,3,TRIPAMAKMUR,sex,perempuan,,5098,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.09,3,TRIPAMAKMUR,total,total,,10262,jiwa,2026,registration,total_population,3.1,31,,
+11.15.09,3,Tripa Makmur,age_group,0-4,laki_laki,486,jiwa,2026,registration,total_population,3.2,33,,0 – 4
+11.15.09,3,Tripa Makmur,age_group,0-4,perempuan,391,jiwa,2026,registration,total_population,3.2,33,,0 – 4
+11.15.09,3,Tripa Makmur,age_group,0-4,,877,jiwa,2026,registration,total_population,3.2,33,,0 – 4
+11.15.09,3,Tripa Makmur,age_group,5-9,laki_laki,496,jiwa,2026,registration,total_population,3.2,33,,5 - 9
+11.15.09,3,Tripa Makmur,age_group,5-9,perempuan,511,jiwa,2026,registration,total_population,3.2,33,,5 - 9
+11.15.09,3,Tripa Makmur,age_group,5-9,,1007,jiwa,2026,registration,total_population,3.2,33,,5 - 9
+11.15.09,3,Tripa Makmur,age_group,10-14,laki_laki,430,jiwa,2026,registration,total_population,3.2,33,,10 - 14
+11.15.09,3,Tripa Makmur,age_group,10-14,perempuan,449,jiwa,2026,registration,total_population,3.2,33,,10 - 14
+11.15.09,3,Tripa Makmur,age_group,10-14,,879,jiwa,2026,registration,total_population,3.2,33,,10 - 14
+11.15.09,3,Tripa Makmur,age_group,15-18,laki_laki,498,jiwa,2026,registration,total_population,3.2,33,,15 - 18
+11.15.09,3,Tripa Makmur,age_group,15-18,perempuan,409,jiwa,2026,registration,total_population,3.2,33,,15 - 18
+11.15.09,3,Tripa Makmur,age_group,15-18,,907,jiwa,2026,registration,total_population,3.2,33,,15 - 18
+11.15.09,3,Tripa Makmur,age_group,20-24,laki_laki,367,jiwa,2026,registration,total_population,3.2,33,,20 - 24
+11.15.09,3,Tripa Makmur,age_group,20-24,perempuan,360,jiwa,2026,registration,total_population,3.2,33,,20 - 24
+11.15.09,3,Tripa Makmur,age_group,20-24,,727,jiwa,2026,registration,total_population,3.2,33,,20 - 24
+11.15.09,3,Tripa Makmur,age_group,25-29,laki_laki,406,jiwa,2026,registration,total_population,3.2,33,,25 - 29
+11.15.09,3,Tripa Makmur,age_group,25-29,perempuan,459,jiwa,2026,registration,total_population,3.2,33,,25 - 29
+11.15.09,3,Tripa Makmur,age_group,25-29,,865,jiwa,2026,registration,total_population,3.2,33,,25 - 29
+11.15.09,3,Tripa Makmur,age_group,30-34,laki_laki,424,jiwa,2026,registration,total_population,3.2,33,,30 - 34
+11.15.09,3,Tripa Makmur,age_group,30-34,perempuan,377,jiwa,2026,registration,total_population,3.2,33,,30 - 34
+11.15.09,3,Tripa Makmur,age_group,30-34,,801,jiwa,2026,registration,total_population,3.2,33,,30 - 34
+11.15.09,3,Tripa Makmur,age_group,35-39,laki_laki,404,jiwa,2026,registration,total_population,3.2,33,,35 - 39
+11.15.09,3,Tripa Makmur,age_group,35-39,perempuan,412,jiwa,2026,registration,total_population,3.2,33,,35 - 39
+11.15.09,3,Tripa Makmur,age_group,35-39,,816,jiwa,2026,registration,total_population,3.2,33,,35 - 39
+11.15.09,3,Tripa Makmur,age_group,40-44,laki_laki,389,jiwa,2026,registration,total_population,3.2,33,,40 - 44
+11.15.09,3,Tripa Makmur,age_group,40-44,perempuan,386,jiwa,2026,registration,total_population,3.2,33,,40 - 44
+11.15.09,3,Tripa Makmur,age_group,40-44,,775,jiwa,2026,registration,total_population,3.2,33,,40 - 44
+11.15.09,3,Tripa Makmur,age_group,45-49,laki_laki,352,jiwa,2026,registration,total_population,3.2,33,,45 - 49
+11.15.09,3,Tripa Makmur,age_group,45-49,perempuan,356,jiwa,2026,registration,total_population,3.2,33,,45 - 49
+11.15.09,3,Tripa Makmur,age_group,45-49,,708,jiwa,2026,registration,total_population,3.2,33,,45 - 49
+11.15.09,3,Tripa Makmur,age_group,50-54,laki_laki,264,jiwa,2026,registration,total_population,3.2,33,,50 - 54
+11.15.09,3,Tripa Makmur,age_group,50-54,perempuan,269,jiwa,2026,registration,total_population,3.2,33,,50 - 54
+11.15.09,3,Tripa Makmur,age_group,50-54,,533,jiwa,2026,registration,total_population,3.2,33,,50 - 54
+11.15.09,3,Tripa Makmur,age_group,55-59,laki_laki,213,jiwa,2026,registration,total_population,3.2,33,,55 - 59
+11.15.09,3,Tripa Makmur,age_group,55-59,perempuan,241,jiwa,2026,registration,total_population,3.2,33,,55 - 59
+11.15.09,3,Tripa Makmur,age_group,55-59,,454,jiwa,2026,registration,total_population,3.2,33,,55 - 59
+11.15.09,3,Tripa Makmur,age_group,60-64,laki_laki,145,jiwa,2026,registration,total_population,3.2,33,,60 - 64
+11.15.09,3,Tripa Makmur,age_group,60-64,perempuan,149,jiwa,2026,registration,total_population,3.2,33,,60 - 64
+11.15.09,3,Tripa Makmur,age_group,60-64,,294,jiwa,2026,registration,total_population,3.2,33,,60 - 64
+11.15.09,3,Tripa Makmur,age_group,65+,laki_laki,290,jiwa,2026,registration,total_population,3.2,33,,65+
+11.15.09,3,Tripa Makmur,age_group,65+,perempuan,329,jiwa,2026,registration,total_population,3.2,33,,65+
+11.15.09,3,Tripa Makmur,age_group,65+,,619,jiwa,2026,registration,total_population,3.2,33,,65+
+11.15.09,3,TRIPA MAKMUR,sex,laki_laki,,5164,jiwa,2026,registration,total_population,3.2,33,,Laki-Laki
+11.15.09,3,TRIPA MAKMUR,sex,perempuan,,5098,jiwa,2026,registration,total_population,3.2,33,,Perempuan
+11.15.09,3,TRIPA MAKMUR,total,total,,10262,jiwa,2026,registration,total_population,3.2,33,,

@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.39.2004,4,Panundaan,sex,laki_laki,,7717,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39.2004,4,Panundaan,sex,perempuan,,7529,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39.2004,4,Panundaan,total,total,,15246,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.39.2002,4,Ciwidey,sex,laki_laki,,8917,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39.2002,4,Ciwidey,sex,perempuan,,8492,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39.2002,4,Ciwidey,total,total,,17409,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.39.2005,4,Panyocokan,sex,laki_laki,,7400,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39.2005,4,Panyocokan,sex,perempuan,,7050,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39.2005,4,Panyocokan,total,total,,14450,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.39.2001,4,Lebakmuncang,sex,laki_laki,,8927,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39.2001,4,Lebakmuncang,sex,perempuan,,8522,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39.2001,4,Lebakmuncang,total,total,,17449,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.39.2006,4,Rawabogo,sex,laki_laki,,4890,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39.2006,4,Rawabogo,sex,perempuan,,4699,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39.2006,4,Rawabogo,total,total,,9589,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.39.2003,4,Nengkelan,sex,laki_laki,,3898,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39.2003,4,Nengkelan,sex,perempuan,,3704,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39.2003,4,Nengkelan,total,total,,7602,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.39.2007,4,Sukawening,sex,laki_laki,,6737,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39.2007,4,Sukawening,sex,perempuan,,6233,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39.2007,4,Sukawening,total,total,,12970,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.39,3,Kecamatan Ciwidey,sex,laki_laki,,48486,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.39,3,Kecamatan Ciwidey,sex,perempuan,,46229,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.39,3,Kecamatan Ciwidey,total,total,,94715,jiwa,2025,registration,total_population,unnumbered-p28,28,,

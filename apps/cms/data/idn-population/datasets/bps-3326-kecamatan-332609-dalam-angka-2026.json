@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3326-kecamatan-332609-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.26.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kesesi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pekalongan",
+  "publisherDomain": "3326",
+  "publisherWebsite": "https://pekalongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pekalongan (https://pekalongankab.bps.go.id), publikasi \"Kecamatan Kesesi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3326090",
+  "publicationNumber": "33260.26014",
+  "issn": "2621-1742",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekalongankab.bps.go.id/id/publication/2026/09/28/6418bcfc91384d8841b0698d/kecamatan-kesesi-dalam-angka-2026.html",
+  "sourceFileSha256": "25d4541f5eda451fc37f4ad2acaa1dd33f2bbcfbd84af91a318e837af56d1d5a",
+  "sourceFileBytes": 12309124,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pekalongan.",
+  "csvPath": "datasets/bps-3326-kecamatan-332609-dalam-angka-2026.csv",
+  "csvSha256": "86bfd5aee2891a73ae4278962b81c00ea574b05a8ecdad5e381b0b0a6a8c4e49",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kesesi, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kesesi, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kesesi 12,31%\": unmatched "
+  ]
+}

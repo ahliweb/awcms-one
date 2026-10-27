@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327327-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.27",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gedebage Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Gedebage Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273101",
+  "publicationNumber": "32730.26026",
+  "issn": "2797-4863",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/a4dfbfe9e2bb6b5fc26cb6b9/kecamatan-gedebage-dalam-angka-2026.html",
+  "sourceFileSha256": "cde10cc2697e98c42220d203e5d24984def9eb94994ff03031440d557089e358",
+  "sourceFileBytes": 8793964,
+  "sourcePages": [37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327327-dalam-angka-2026.csv",
+  "csvSha256": "8b0bccf5239312c4e276a4d3be9a039535de9f1dbc42db5236a60012ae646384",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Gedebage, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gedebage, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 4.4.5 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Khongkucu Khongkucu\" not recognised)",
+    "table 3.1: row not stored: row \"Gedebage District\": unmatched ",
+    "table 3.1: row not stored: row \"Rancabolang 28.38\": unmatched ",
+    "table 3.1: row not stored: row \"Rancanumpang 12.29\": unmatched ",
+    "table 3.1: row not stored: row \"Cisaranten Kidul 49.25\": unmatched ",
+    "table 3.1: row not stored: row \"Cimincrang 10.09\": unmatched ",
+    "table 3.1: row not stored: row \"100.00 Gedebage District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

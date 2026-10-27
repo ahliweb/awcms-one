@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.05.13.2005,4,Sukamaju,sex,laki_laki,,2879,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.13.2005,4,Sukamaju,sex,perempuan,,2660,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.13.2005,4,Sukamaju,total,total,,5539,jiwa,2025,registration,total_population,3.1,22,,
+32.05.13.2004,4,Girijaya,sex,laki_laki,,2828,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.13.2004,4,Girijaya,sex,perempuan,,2692,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.13.2004,4,Girijaya,total,total,,5520,jiwa,2025,registration,total_population,3.1,22,,
+32.05.13.2001,4,Kersamanah,sex,laki_laki,,6046,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.13.2001,4,Kersamanah,sex,perempuan,,5935,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.13.2001,4,Kersamanah,total,total,,11981,jiwa,2025,registration,total_population,3.1,22,,
+32.05.13.2002,4,Nanjungjaya,sex,laki_laki,,4680,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.13.2002,4,Nanjungjaya,sex,perempuan,,4439,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.13.2002,4,Nanjungjaya,total,total,,9119,jiwa,2025,registration,total_population,3.1,22,,
+32.05.13.2003,4,Sukamerang,sex,laki_laki,,3154,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.13.2003,4,Sukamerang,sex,perempuan,,2990,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.13.2003,4,Sukamerang,total,total,,6144,jiwa,2025,registration,total_population,3.1,22,,
+32.05.13.2006,4,Mekarraya,sex,laki_laki,,2530,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.13.2006,4,Mekarraya,sex,perempuan,,2374,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.13.2006,4,Mekarraya,total,total,,4904,jiwa,2025,registration,total_population,3.1,22,,
+32.05.13,3,Kecamatan Kersamanah,sex,laki_laki,,22117,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.13,3,Kecamatan Kersamanah,sex,perempuan,,21090,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.13,3,Kecamatan Kersamanah,total,total,,43207,jiwa,2025,registration,total_population,3.1,22,,
+32.05.13,3,Kersamanah,age_group,0-4,laki_laki,1603,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.13,3,Kersamanah,age_group,0-4,perempuan,1539,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.13,3,Kersamanah,age_group,0-4,,3142,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.13,3,Kersamanah,age_group,5-9,laki_laki,2039,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.13,3,Kersamanah,age_group,5-9,perempuan,1987,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.13,3,Kersamanah,age_group,5-9,,4026,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.13,3,Kersamanah,age_group,10-14,laki_laki,2088,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.13,3,Kersamanah,age_group,10-14,perempuan,1979,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.13,3,Kersamanah,age_group,10-14,,4067,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.13,3,Kersamanah,age_group,15-19,laki_laki,1943,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.13,3,Kersamanah,age_group,15-19,perempuan,1893,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.13,3,Kersamanah,age_group,15-19,,3836,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.13,3,Kersamanah,age_group,20-24,laki_laki,2047,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.13,3,Kersamanah,age_group,20-24,perempuan,1875,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.13,3,Kersamanah,age_group,20-24,,3922,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.13,3,Kersamanah,age_group,25-29,laki_laki,1879,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.13,3,Kersamanah,age_group,25-29,perempuan,1713,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.13,3,Kersamanah,age_group,25-29,,3592,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.13,3,Kersamanah,age_group,30-34,laki_laki,1669,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.13,3,Kersamanah,age_group,30-34,perempuan,1524,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.13,3,Kersamanah,age_group,30-34,,3193,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.13,3,Kersamanah,age_group,35-39,laki_laki,1416,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.13,3,Kersamanah,age_group,35-39,perempuan,1333,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.13,3,Kersamanah,age_group,35-39,,2749,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.13,3,Kersamanah,age_group,40-44,laki_laki,1503,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.13,3,Kersamanah,age_group,40-44,perempuan,1456,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.13,3,Kersamanah,age_group,40-44,,2959,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.13,3,Kersamanah,age_group,45-49,laki_laki,1365,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.13,3,Kersamanah,age_group,45-49,perempuan,1223,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.13,3,Kersamanah,age_group,45-49,,2588,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.13,3,Kersamanah,age_group,50-54,laki_laki,1268,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.13,3,Kersamanah,age_group,50-54,perempuan,1213,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.13,3,Kersamanah,age_group,50-54,,2481,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.13,3,Kersamanah,age_group,55-59,laki_laki,1112,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.13,3,Kersamanah,age_group,55-59,perempuan,1064,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.13,3,Kersamanah,age_group,55-59,,2176,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.13,3,Kersamanah,age_group,60-64,laki_laki,791,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.13,3,Kersamanah,age_group,60-64,perempuan,809,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.13,3,Kersamanah,age_group,60-64,,1600,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.13,3,Kersamanah,age_group,65-69,laki_laki,587,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.13,3,Kersamanah,age_group,65-69,perempuan,572,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.13,3,Kersamanah,age_group,65-69,,1159,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.13,3,Kersamanah,age_group,70-74,laki_laki,374,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.13,3,Kersamanah,age_group,70-74,perempuan,361,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.13,3,Kersamanah,age_group,70-74,,735,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.13,3,Kersamanah,age_group,75+,laki_laki,433,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.13,3,Kersamanah,age_group,75+,perempuan,549,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.13,3,Kersamanah,age_group,75+,,982,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.13,3,Kecamatan Kersamanah,sex,laki_laki,,22117,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.05.13,3,Kecamatan Kersamanah,sex,perempuan,,21090,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.05.13,3,Kecamatan Kersamanah,total,total,,43207,jiwa,2025,registration,total_population,3.2,24,,

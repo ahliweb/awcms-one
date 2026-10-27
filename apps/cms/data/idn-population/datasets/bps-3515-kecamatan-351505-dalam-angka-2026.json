@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3515-kecamatan-351505-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.15.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jabon Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sidoarjo",
+  "publisherDomain": "3515",
+  "publisherWebsite": "https://sidoarjokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sidoarjo (https://sidoarjokab.bps.go.id), publikasi \"Kecamatan Jabon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3515050",
+  "publicationNumber": "35150.26009",
+  "issn": "2620-7591",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sidoarjokab.bps.go.id/id/publication/2026/09/28/18b9c1f49bb709fd3c1dd718/kecamatan-jabon-dalam-angka-2026.html",
+  "sourceFileSha256": "d50fdfa6f7ccf6dc7f8a29f7f6de4d3c996ca99afd12d96b9d7cd681a41055fb",
+  "sourceFileBytes": 16452949,
+  "sourcePages": [39, 40, 41],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sidoarjo.",
+  "csvPath": "datasets/bps-3515-kecamatan-351505-dalam-angka-2026.csv",
+  "csvSha256": "35e68d58f411c48d379c255b7d0b2d76dc1c99ec739d6b9c87c351e07f6494d3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jabon, 2025",
+      "printedPages": [39, 40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jabon, 2025",
+      "printedPages": [41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

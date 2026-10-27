@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-2171-kecamatan-217107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.71.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sei Beduk Dalam Angka 2026",
+  "publisherName": "BPS Kota Batam",
+  "publisherDomain": "2171",
+  "publisherWebsite": "https://batamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batam (https://batamkota.bps.go.id), publikasi \"Kecamatan Sei Beduk Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2171040",
+  "publicationNumber": "21710.26014",
+  "issn": "2987-4645",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batamkota.bps.go.id/id/publication/2026/09/28/54f253c98da2949eae16dbf0/kecamatan-sei-beduk-dalam-angka-2026.html",
+  "sourceFileSha256": "cb01c90be12c479901af45be1da1a714330aff9f9a924044770c0b00a8898327",
+  "sourceFileBytes": 15410133,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batam.",
+  "csvPath": "datasets/bps-2171-kecamatan-217107-dalam-angka-2026.csv",
+  "csvSha256": "141071e48370c7c84f14359e295d893563e3d52541084048cc1b0d5b48a245d5",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p21",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sei Beduk, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p21: row not stored: row \"Kecamatan Sei Beduk Sei Beduk District\": unmatched "
+  ]
+}

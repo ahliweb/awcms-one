@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.12.2015,4,Supang,sex,laki_laki,,951,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2015,4,Supang,sex,perempuan,,874,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2015,4,Supang,total,total,,1825,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2002,4,Hurung Tabengan,sex,laki_laki,,147,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2002,4,Hurung Tabengan,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2002,4,Hurung Tabengan,total,total,,274,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2003,4,Rahung Bungai,sex,laki_laki,,169,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2003,4,Rahung Bungai,sex,perempuan,,154,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2003,4,Rahung Bungai,total,total,,323,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2008,4,Tangirang,sex,laki_laki,,448,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2008,4,Tangirang,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2008,4,Tangirang,total,total,,850,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2005,4,Bulau Ngandung,sex,laki_laki,,132,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2005,4,Bulau Ngandung,sex,perempuan,,109,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2005,4,Bulau Ngandung,total,total,,241,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2016,4,Katanjung,sex,laki_laki,,169,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2016,4,Katanjung,sex,perempuan,,150,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2016,4,Katanjung,total,total,,319,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2014,4,Hurung Tampang,sex,laki_laki,,153,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2014,4,Hurung Tampang,sex,perempuan,,139,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2014,4,Hurung Tampang,total,total,,292,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2021,4,Dirung Koram,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2021,4,Dirung Koram,sex,perempuan,,181,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2021,4,Dirung Koram,total,total,,388,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2018,4,Jakatan Pari,sex,laki_laki,,530,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2018,4,Jakatan Pari,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2018,4,Jakatan Pari,total,total,,994,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2019,4,Tumbang Sirat,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2019,4,Tumbang Sirat,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2019,4,Tumbang Sirat,total,total,,827,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12.2022,4,Mampai Jaya,sex,laki_laki,,60,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12.2022,4,Mampai Jaya,sex,perempuan,,63,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12.2022,4,Mampai Jaya,total,total,,123,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12,3,Kapuas Hulu,sex,laki_laki,,6103,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.12,3,Kapuas Hulu,sex,perempuan,,5559,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.12,3,Kapuas Hulu,total,total,,11662,jiwa,2025,registration,total_population,3.1,30,,
+62.03.12,3,Kapuas Hulu,age_group,0-4,laki_laki,343,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.12,3,Kapuas Hulu,age_group,0-4,perempuan,325,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.12,3,Kapuas Hulu,age_group,0-4,,668,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.12,3,Kapuas Hulu,age_group,5-9,laki_laki,563,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.12,3,Kapuas Hulu,age_group,5-9,perempuan,564,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.12,3,Kapuas Hulu,age_group,5-9,,1127,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.12,3,Kapuas Hulu,age_group,10-14,laki_laki,584,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.12,3,Kapuas Hulu,age_group,10-14,perempuan,569,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.12,3,Kapuas Hulu,age_group,10-14,,1153,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.12,3,Kapuas Hulu,age_group,15-19,laki_laki,563,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.12,3,Kapuas Hulu,age_group,15-19,perempuan,548,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.12,3,Kapuas Hulu,age_group,15-19,,1111,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.12,3,Kapuas Hulu,age_group,20-24,laki_laki,619,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.12,3,Kapuas Hulu,age_group,20-24,perempuan,526,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.12,3,Kapuas Hulu,age_group,20-24,,1145,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.12,3,Kapuas Hulu,age_group,25-29,laki_laki,495,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.12,3,Kapuas Hulu,age_group,25-29,perempuan,548,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.12,3,Kapuas Hulu,age_group,25-29,,1043,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.12,3,Kapuas Hulu,age_group,30-34,laki_laki,620,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.12,3,Kapuas Hulu,age_group,30-34,perempuan,519,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.12,3,Kapuas Hulu,age_group,30-34,,1139,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.12,3,Kapuas Hulu,age_group,35-39,laki_laki,579,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.12,3,Kapuas Hulu,age_group,35-39,perempuan,448,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.12,3,Kapuas Hulu,age_group,35-39,,1027,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.12,3,Kapuas Hulu,age_group,40-44,laki_laki,416,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.12,3,Kapuas Hulu,age_group,40-44,perempuan,360,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.12,3,Kapuas Hulu,age_group,40-44,,776,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.12,3,Kapuas Hulu,age_group,45-49,laki_laki,339,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.12,3,Kapuas Hulu,age_group,45-49,perempuan,306,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.12,3,Kapuas Hulu,age_group,45-49,,645,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.12,3,Kapuas Hulu,age_group,50-54,laki_laki,279,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.12,3,Kapuas Hulu,age_group,50-54,perempuan,246,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.12,3,Kapuas Hulu,age_group,50-54,,525,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.12,3,Kapuas Hulu,age_group,55-59,laki_laki,243,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.12,3,Kapuas Hulu,age_group,55-59,perempuan,191,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.12,3,Kapuas Hulu,age_group,55-59,,434,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.12,3,Kapuas Hulu,age_group,60-64,laki_laki,186,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.12,3,Kapuas Hulu,age_group,60-64,perempuan,148,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.12,3,Kapuas Hulu,age_group,60-64,,334,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.12,3,Kapuas Hulu,age_group,65-69,laki_laki,116,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.12,3,Kapuas Hulu,age_group,65-69,perempuan,136,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.12,3,Kapuas Hulu,age_group,65-69,,252,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.12,3,Kapuas Hulu,age_group,70-74,laki_laki,85,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.12,3,Kapuas Hulu,age_group,70-74,perempuan,56,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.12,3,Kapuas Hulu,age_group,70-74,,141,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.12,3,Kapuas Hulu,age_group,75+,laki_laki,73,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.12,3,Kapuas Hulu,age_group,75+,perempuan,69,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.12,3,Kapuas Hulu,age_group,75+,,142,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.12,3,Kapuas Hulu,sex,laki_laki,,6103,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+62.03.12,3,Kapuas Hulu,sex,perempuan,,5559,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+62.03.12,3,Kapuas Hulu,total,total,,11662,jiwa,2025,registration,total_population,3.2,32,,

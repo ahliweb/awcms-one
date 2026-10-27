@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.14.1001,4,Selensen,sex,laki_laki,,2516,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.1001,4,Selensen,sex,perempuan,,2512,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.1001,4,Selensen,total,total,,5028,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2002,4,Batu Ampar,sex,laki_laki,,3581,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2002,4,Batu Ampar,sex,perempuan,,3316,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2002,4,Batu Ampar,total,total,,6897,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2004,4,Air Balui,sex,laki_laki,,1379,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2004,4,Air Balui,sex,perempuan,,1263,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2004,4,Air Balui,total,total,,2642,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2005,4,Tuk Jimun,sex,laki_laki,,506,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2005,4,Tuk Jimun,sex,perempuan,,477,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2005,4,Tuk Jimun,total,total,,983,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2007,4,Kemuning Muda,sex,laki_laki,,1181,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2007,4,Kemuning Muda,sex,perempuan,,1135,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2007,4,Kemuning Muda,total,total,,2316,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2006,4,Kemuning Tua,sex,laki_laki,,1113,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2006,4,Kemuning Tua,sex,perempuan,,1111,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2006,4,Kemuning Tua,total,total,,2224,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2010,4,Sekara,sex,laki_laki,,1822,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2010,4,Sekara,sex,perempuan,,1658,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2010,4,Sekara,total,total,,3480,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2008,4,Limau Manis,sex,laki_laki,,722,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2008,4,Limau Manis,sex,perempuan,,710,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2008,4,Limau Manis,total,total,,1432,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2011,4,Talang Jangkang,sex,laki_laki,,612,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2011,4,Talang Jangkang,sex,perempuan,,591,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2011,4,Talang Jangkang,total,total,,1203,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2009,4,Lubuk Besar,sex,laki_laki,,752,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2009,4,Lubuk Besar,sex,perempuan,,712,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2009,4,Lubuk Besar,total,total,,1464,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14.2012,4,Sekayan,sex,laki_laki,,1936,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14.2012,4,Sekayan,sex,perempuan,,1803,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14.2012,4,Sekayan,total,total,,3739,jiwa,2026,registration,total_population,3.1,29,,
+14.04.14,3,Kemuning,sex,laki_laki,,24439,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.14,3,Kemuning,sex,perempuan,,23119,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.14,3,Kemuning,total,total,,47558,jiwa,2026,registration,total_population,3.1,29,,

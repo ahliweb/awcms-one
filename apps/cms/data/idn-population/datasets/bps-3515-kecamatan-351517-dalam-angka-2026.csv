@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.15.17.2001,4,Kwangsan,sex,laki_laki,,2702,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2001,4,Kwangsan,sex,perempuan,,2624,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2001,4,Kwangsan,total,total,,5326,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2002,4,Pepe,sex,laki_laki,,7401,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2002,4,Pepe,sex,perempuan,,7572,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2002,4,Pepe,total,total,,14973,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2003,4,Buncitan,sex,laki_laki,,2750,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2003,4,Buncitan,sex,perempuan,,2742,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2003,4,Buncitan,total,total,,5492,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2004,4,Kalanganyar,sex,laki_laki,,2539,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2004,4,Kalanganyar,sex,perempuan,,2558,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2004,4,Kalanganyar,total,total,,5097,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2005,4,Tambak Cemandi,sex,laki_laki,,1956,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2005,4,Tambak Cemandi,sex,perempuan,,1958,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2005,4,Tambak Cemandi,total,total,,3914,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2006,4,Gisik Cemandi,sex,laki_laki,,1272,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2006,4,Gisik Cemandi,sex,perempuan,,1226,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2006,4,Gisik Cemandi,total,total,,2498,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2007,4,Cemandi,sex,laki_laki,,3131,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2007,4,Cemandi,sex,perempuan,,3120,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2007,4,Cemandi,total,total,,6251,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2008,4,Pulungan,sex,laki_laki,,1392,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2008,4,Pulungan,sex,perempuan,,1419,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2008,4,Pulungan,total,total,,2811,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2009,4,Betro,sex,laki_laki,,3527,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2009,4,Betro,sex,perempuan,,3434,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2009,4,Betro,total,total,,6961,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2010,4,Sedati Agung,sex,laki_laki,,3386,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2010,4,Sedati Agung,sex,perempuan,,3306,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2010,4,Sedati Agung,total,total,,6692,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2011,4,Sedati Gede,sex,laki_laki,,5949,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2011,4,Sedati Gede,sex,perempuan,,6113,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2011,4,Sedati Gede,total,total,,12062,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2012,4,Pabean,sex,laki_laki,,8177,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2012,4,Pabean,sex,perempuan,,8134,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2012,4,Pabean,total,total,,16311,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2013,4,Semampir,sex,laki_laki,,1914,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2013,4,Semampir,sex,perempuan,,1924,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2013,4,Semampir,total,total,,3838,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2014,4,Pranti,sex,laki_laki,,1582,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2014,4,Pranti,sex,perempuan,,1522,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2014,4,Pranti,total,total,,3104,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2015,4,Segoro Tambak,sex,laki_laki,,1012,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2015,4,Segoro Tambak,sex,perempuan,,887,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2015,4,Segoro Tambak,total,total,,1899,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17.2016,4,Banjar Kemuning,sex,laki_laki,,1154,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17.2016,4,Banjar Kemuning,sex,perempuan,,1144,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17.2016,4,Banjar Kemuning,total,total,,2298,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17,3,Kecamatan Sedati,sex,laki_laki,,49844,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.17,3,Kecamatan Sedati,sex,perempuan,,49683,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.17,3,Kecamatan Sedati,total,total,,99527,jiwa,2025,registration,total_population,3.1,38,,
+35.15.17,3,Sedati,age_group,0-4,laki_laki,2758,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.17,3,Sedati,age_group,0-4,perempuan,2696,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.17,3,Sedati,age_group,0-4,,5454,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.17,3,Sedati,age_group,5-9,laki_laki,3729,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.17,3,Sedati,age_group,5-9,perempuan,3530,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.17,3,Sedati,age_group,5-9,,7259,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.17,3,Sedati,age_group,10-14,laki_laki,3900,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.17,3,Sedati,age_group,10-14,perempuan,3796,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.17,3,Sedati,age_group,10-14,,7696,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.17,3,Sedati,age_group,15-19,laki_laki,3969,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.17,3,Sedati,age_group,15-19,perempuan,3588,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.17,3,Sedati,age_group,15-19,,7557,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.17,3,Sedati,age_group,20-24,laki_laki,4218,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.17,3,Sedati,age_group,20-24,perempuan,3977,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.17,3,Sedati,age_group,20-24,,8195,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.17,3,Sedati,age_group,25-29,laki_laki,4225,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.17,3,Sedati,age_group,25-29,perempuan,4027,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.17,3,Sedati,age_group,25-29,,8252,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.17,3,Sedati,age_group,30-34,laki_laki,3958,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.17,3,Sedati,age_group,30-34,perempuan,3837,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.17,3,Sedati,age_group,30-34,,7795,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.17,3,Sedati,age_group,35-39,laki_laki,3441,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.17,3,Sedati,age_group,35-39,perempuan,3369,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.17,3,Sedati,age_group,35-39,,6810,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.17,3,Sedati,age_group,40-44,laki_laki,3811,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.17,3,Sedati,age_group,40-44,perempuan,3838,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.17,3,Sedati,age_group,40-44,,7649,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.17,3,Sedati,age_group,45-49,laki_laki,3729,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.17,3,Sedati,age_group,45-49,perempuan,4232,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.17,3,Sedati,age_group,45-49,,7961,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.17,3,Sedati,age_group,50-54,laki_laki,3600,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.17,3,Sedati,age_group,50-54,perempuan,4007,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.17,3,Sedati,age_group,50-54,,7607,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.17,3,Sedati,age_group,55-59,laki_laki,3180,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.17,3,Sedati,age_group,55-59,perempuan,3140,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.17,3,Sedati,age_group,55-59,,6320,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.17,3,Sedati,age_group,60-64,laki_laki,2247,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.17,3,Sedati,age_group,60-64,perempuan,2363,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.17,3,Sedati,age_group,60-64,,4610,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.17,3,Sedati,age_group,65-69,laki_laki,1565,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.17,3,Sedati,age_group,65-69,perempuan,1599,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.17,3,Sedati,age_group,65-69,,3164,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.17,3,Sedati,age_group,70-74,laki_laki,819,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.17,3,Sedati,age_group,70-74,perempuan,795,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.17,3,Sedati,age_group,70-74,,1614,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.17,3,Sedati,age_group,75+,laki_laki,695,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.17,3,Sedati,age_group,75+,perempuan,889,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.17,3,Sedati,age_group,75+,,1584,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.17,3,Kecamatan Sedati,sex,laki_laki,,49844,jiwa,2025,registration,total_population,3.2,40,,Laki-Laki
+35.15.17,3,Kecamatan Sedati,sex,perempuan,,49683,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+35.15.17,3,Kecamatan Sedati,total,total,,99527,jiwa,2025,registration,total_population,3.2,40,,

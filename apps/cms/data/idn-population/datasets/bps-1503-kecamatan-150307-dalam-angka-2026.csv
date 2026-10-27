@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.07.2005,4,Lubuk Kepayang,sex,laki_laki,,1005,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2005,4,Lubuk Kepayang,sex,perempuan,,945,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2005,4,Lubuk Kepayang,total,total,,1950,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2003,4,Desa Baru,sex,laki_laki,,1536,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2003,4,Desa Baru,sex,perempuan,,1415,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2003,4,Desa Baru,total,total,,2951,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2004,4,Semurung,sex,laki_laki,,916,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2004,4,Semurung,sex,perempuan,,840,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2004,4,Semurung,total,total,,1756,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2002,4,Jernih,sex,laki_laki,,1523,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2002,4,Jernih,sex,perempuan,,1456,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2002,4,Jernih,total,total,,2979,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2001,4,Lubuk Jering,sex,laki_laki,,979,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2001,4,Lubuk Jering,sex,perempuan,,887,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2001,4,Lubuk Jering,total,total,,1866,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2008,4,Mentawak Baru,sex,laki_laki,,2207,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2008,4,Mentawak Baru,sex,perempuan,,2087,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2008,4,Mentawak Baru,total,total,,4294,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2006,4,Pematang Kabau,sex,laki_laki,,1832,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2006,4,Pematang Kabau,sex,perempuan,,1678,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2006,4,Pematang Kabau,total,total,,3510,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2007,4,Bukit Suban,sex,laki_laki,,3145,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2007,4,Bukit Suban,sex,perempuan,,2991,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2007,4,Bukit Suban,total,total,,6136,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07.2009,4,Mentawak Ulu,sex,laki_laki,,1365,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07.2009,4,Mentawak Ulu,sex,perempuan,,1269,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07.2009,4,Mentawak Ulu,total,total,,2634,jiwa,2025,registration,total_population,3.1,28,,
+15.03.07,3,Air Hitam,sex,laki_laki,,14508,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.07,3,Air Hitam,sex,perempuan,,13568,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.07,3,Air Hitam,total,total,,28076,jiwa,2025,registration,total_population,3.1,28,,

@@ -1,0 +1,115 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.02.02.2001,4,Ulak Kapal,sex,laki_laki,,1429,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2001,4,Ulak Kapal,sex,perempuan,,1391,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2001,4,Ulak Kapal,total,total,,2820,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2002,4,Tanjung Merindu,sex,laki_laki,,569,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2002,4,Tanjung Merindu,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2002,4,Tanjung Merindu,total,total,,1088,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2003,4,Tanjung Baru,sex,laki_laki,,1189,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2003,4,Tanjung Baru,sex,perempuan,,1160,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2003,4,Tanjung Baru,total,total,,2349,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2004,4,Seri Tanjung,sex,laki_laki,,947,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2004,4,Seri Tanjung,sex,perempuan,,933,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2004,4,Seri Tanjung,total,total,,1880,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2006,4,Sukarami,sex,laki_laki,,772,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2006,4,Sukarami,sex,perempuan,,740,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2006,4,Sukarami,total,total,,1512,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2010,4,Pulau Gemantung,sex,laki_laki,,869,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2010,4,Pulau Gemantung,sex,perempuan,,835,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2010,4,Pulau Gemantung,total,total,,1704,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2012,4,Bumi Agung,sex,laki_laki,,543,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2012,4,Bumi Agung,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2012,4,Bumi Agung,total,total,,1063,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2013,4,Kotabumi,sex,laki_laki,,801,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2013,4,Kotabumi,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2013,4,Kotabumi,total,total,,1524,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2014,4,Tanjung Beringin,sex,laki_laki,,873,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2014,4,Tanjung Beringin,sex,perempuan,,883,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2014,4,Tanjung Beringin,total,total,,1756,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2031,4,Juk Dadak,sex,laki_laki,,702,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2031,4,Juk Dadak,sex,perempuan,,612,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2031,4,Juk Dadak,total,total,,1314,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2017,4,Ulak Balam,sex,laki_laki,,775,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2017,4,Ulak Balam,sex,perempuan,,765,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2017,4,Ulak Balam,total,total,,1540,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2016,4,Tanjung Laut,sex,laki_laki,,539,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2016,4,Tanjung Laut,sex,perempuan,,559,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2016,4,Tanjung Laut,total,total,,1098,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2015,4,Tanjung Laga,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2015,4,Tanjung Laga,sex,perempuan,,263,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2015,4,Tanjung Laga,total,total,,566,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.1011,4,Tanjung Lubuk,sex,laki_laki,,1223,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.1011,4,Tanjung Lubuk,sex,perempuan,,1173,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.1011,4,Tanjung Lubuk,total,total,,2396,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2018,4,Jambu Ilir,sex,laki_laki,,1118,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2018,4,Jambu Ilir,sex,perempuan,,1059,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2018,4,Jambu Ilir,total,total,,2177,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2032,4,Atar Balam,sex,laki_laki,,219,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2032,4,Atar Balam,sex,perempuan,,215,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2032,4,Atar Balam,total,total,,434,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2033,4,Tanjung Harapan,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2033,4,Tanjung Harapan,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2033,4,Tanjung Harapan,total,total,,1315,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2036,4,Pulau Gemantung Darat,sex,laki_laki,,319,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2036,4,Pulau Gemantung Darat,sex,perempuan,,271,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2036,4,Pulau Gemantung Darat,total,total,,590,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2035,4,Pulau Gemantung Ulu,sex,laki_laki,,852,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2035,4,Pulau Gemantung Ulu,sex,perempuan,,842,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2035,4,Pulau Gemantung Ulu,total,total,,1694,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02.2034,4,Pulau Gemantung Ilir,sex,laki_laki,,844,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02.2034,4,Pulau Gemantung Ilir,sex,perempuan,,786,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02.2034,4,Pulau Gemantung Ilir,total,total,,1630,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02,3,Kecamatan Tanjung Lubuk,sex,laki_laki,,18237,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.02,3,Kecamatan Tanjung Lubuk,sex,perempuan,,17535,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.02,3,Kecamatan Tanjung Lubuk,total,total,,35772,jiwa,2025,registration,total_population,3.1,31,,
+16.02.02,3,Tanjung Lubuk,age_group,0-4,laki_laki,967,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.02,3,Tanjung Lubuk,age_group,0-4,perempuan,825,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.02,3,Tanjung Lubuk,age_group,0-4,,1792,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.02,3,Tanjung Lubuk,age_group,5-9,laki_laki,1432,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.02,3,Tanjung Lubuk,age_group,5-9,perempuan,1338,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.02,3,Tanjung Lubuk,age_group,5-9,,2770,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.02,3,Tanjung Lubuk,age_group,10-14,laki_laki,1670,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.02,3,Tanjung Lubuk,age_group,10-14,perempuan,1552,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.02,3,Tanjung Lubuk,age_group,10-14,,3222,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.02,3,Tanjung Lubuk,age_group,15-19,laki_laki,1572,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.02,3,Tanjung Lubuk,age_group,15-19,perempuan,1461,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.02,3,Tanjung Lubuk,age_group,15-19,,3033,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.02,3,Tanjung Lubuk,age_group,20-24,laki_laki,1467,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.02,3,Tanjung Lubuk,age_group,20-24,perempuan,1355,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.02,3,Tanjung Lubuk,age_group,20-24,,2822,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.02,3,Tanjung Lubuk,age_group,25-29,laki_laki,1410,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.02,3,Tanjung Lubuk,age_group,25-29,perempuan,1249,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.02,3,Tanjung Lubuk,age_group,25-29,,2659,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.02,3,Tanjung Lubuk,age_group,30-34,laki_laki,1218,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.02,3,Tanjung Lubuk,age_group,30-34,perempuan,1031,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.02,3,Tanjung Lubuk,age_group,30-34,,2249,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.02,3,Tanjung Lubuk,age_group,35-39,laki_laki,1450,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.02,3,Tanjung Lubuk,age_group,35-39,perempuan,1296,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.02,3,Tanjung Lubuk,age_group,35-39,,2746,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.02,3,Tanjung Lubuk,age_group,40-44,laki_laki,1335,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.02,3,Tanjung Lubuk,age_group,40-44,perempuan,1258,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.02,3,Tanjung Lubuk,age_group,40-44,,2593,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.02,3,Tanjung Lubuk,age_group,45-49,laki_laki,1227,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.02,3,Tanjung Lubuk,age_group,45-49,perempuan,1183,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.02,3,Tanjung Lubuk,age_group,45-49,,2410,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.02,3,Tanjung Lubuk,age_group,50-54,laki_laki,1014,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.02,3,Tanjung Lubuk,age_group,50-54,perempuan,1044,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.02,3,Tanjung Lubuk,age_group,50-54,,2058,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.02,3,Tanjung Lubuk,age_group,55-59,laki_laki,1043,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.02,3,Tanjung Lubuk,age_group,55-59,perempuan,1124,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.02,3,Tanjung Lubuk,age_group,55-59,,2167,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.02,3,Tanjung Lubuk,age_group,60-64,laki_laki,910,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.02,3,Tanjung Lubuk,age_group,60-64,perempuan,1029,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.02,3,Tanjung Lubuk,age_group,60-64,,1939,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.02,3,Tanjung Lubuk,age_group,65-69,laki_laki,705,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.02,3,Tanjung Lubuk,age_group,65-69,perempuan,807,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.02,3,Tanjung Lubuk,age_group,65-69,,1512,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.02,3,Tanjung Lubuk,age_group,70-74,laki_laki,446,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.02,3,Tanjung Lubuk,age_group,70-74,perempuan,465,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.02,3,Tanjung Lubuk,age_group,70-74,,911,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.02,3,Tanjung Lubuk,age_group,74+,laki_laki,371,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.02,3,Tanjung Lubuk,age_group,74+,perempuan,518,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.02,3,Tanjung Lubuk,age_group,74+,,889,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.02,3,Kecamatan Tanjung Lubuk,sex,laki_laki,,18237,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+16.02.02,3,Kecamatan Tanjung Lubuk,sex,perempuan,,17535,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+16.02.02,3,Kecamatan Tanjung Lubuk,total,total,,35772,jiwa,2025,registration,total_population,3.2,33,,

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1603-kecamatan-160301-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.03.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanjung Agung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muara Enim",
+  "publisherDomain": "1603",
+  "publisherWebsite": "https://muaraenimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muara Enim (https://muaraenimkab.bps.go.id), publikasi \"Kecamatan Tanjung Agung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1603020",
+  "publicationNumber": "16030.26008",
+  "issn": "2745-3456",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muaraenimkab.bps.go.id/id/publication/2026/09/28/538ea55b588d99f58a28b48f/kecamatan-tanjung-agung-dalam-angka-2026.html",
+  "sourceFileSha256": "6b611c399bfda69f6cfa641f6ba21aecb073e321ee544832a8acd4ed6d4b8a10",
+  "sourceFileBytes": 2481935,
+  "sourcePages": [23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muara Enim.",
+  "csvPath": "datasets/bps-1603-kecamatan-160301-dalam-angka-2026.csv",
+  "csvSha256": "87abc44971ba13b93ede794a17e05b4e51190cb8bc020bcd49f20db3bac715fb",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p23",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tanjung Agung, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

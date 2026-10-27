@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.11.22.2007,4,Sumbercanting,sex,perempuan,,1981,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22.2007,4,Sumbercanting,total,total,,3833,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22.2003,4,Lanas,sex,perempuan,,1678,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22.2003,4,Lanas,total,total,,3344,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22.2004,4,Penang,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22.2004,4,Penang,total,total,,1590,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22.2005,4,Gayam,sex,perempuan,,2385,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22.2005,4,Gayam,total,total,,4628,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22.2001,4,Lumutan,sex,perempuan,,2930,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22.2001,4,Lumutan,total,total,,5667,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22.2002,4,Botolinggo,sex,perempuan,,3101,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22.2002,4,Botolinggo,total,total,,6149,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22.2008,4,Gayam Lor,sex,perempuan,,1435,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22.2008,4,Gayam Lor,total,total,,2743,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22,3,Kecamatan Botolinggo,sex,perempuan,,15106,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.22,3,Kecamatan Botolinggo,total,total,,29521,jiwa,2025,registration,total_population,3.1,25,,
+35.11.22,3,Botolinggo,age_group,0-14,perempuan,2675,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.22,3,Botolinggo,age_group,0-14,,5503,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.22,3,Botolinggo,age_group,15-64,perempuan,10187,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.22,3,Botolinggo,age_group,15-64,,19954,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.22,3,Botolinggo,age_group,65+,perempuan,2244,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.22,3,Botolinggo,age_group,65+,,4064,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.22,3,Kecamatan Botolinggo,sex,perempuan,,15106,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+35.11.22,3,Kecamatan Botolinggo,total,total,,29521,jiwa,2025,registration,total_population,3.2,27,,

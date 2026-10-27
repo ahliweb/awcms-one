@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.03.04.2003,4,Watuagung,sex,laki_laki,,1756,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2003,4,Watuagung,sex,perempuan,,1701,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2003,4,Watuagung,total,total,,3457,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2004,4,Pandean,sex,laki_laki,,3910,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2004,4,Pandean,sex,perempuan,,3785,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2004,4,Pandean,total,total,,7695,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2006,4,Salamwates,sex,laki_laki,,3978,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2006,4,Salamwates,sex,perempuan,,3912,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2006,4,Salamwates,total,total,,7890,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2009,4,Ngerdani,sex,laki_laki,,2465,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2009,4,Ngerdani,sex,perempuan,,2413,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2009,4,Ngerdani,total,total,,4878,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2005,4,Petung,sex,laki_laki,,2992,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2005,4,Petung,sex,perempuan,,2975,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2005,4,Petung,total,total,,5967,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2001,4,Cakul,sex,laki_laki,,4816,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2001,4,Cakul,sex,perempuan,,4608,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2001,4,Cakul,total,total,,9424,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2002,4,Siki,sex,laki_laki,,3772,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2002,4,Siki,sex,perempuan,,3683,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2002,4,Siki,total,total,,7455,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2007,4,Dongko,sex,laki_laki,,5634,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2007,4,Dongko,sex,perempuan,,5462,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2007,4,Dongko,total,total,,11096,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2008,4,Sumberbening,sex,laki_laki,,2183,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2008,4,Sumberbening,sex,perempuan,,2186,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2008,4,Sumberbening,total,total,,4369,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04.2010,4,Pringapus,sex,laki_laki,,2899,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04.2010,4,Pringapus,sex,perempuan,,2882,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04.2010,4,Pringapus,total,total,,5781,jiwa,2025,registration,total_population,3.1,33,,
+35.03.04,3,Kecamatan Dongko,sex,laki_laki,,34405,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.03.04,3,Kecamatan Dongko,sex,perempuan,,33607,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.03.04,3,Kecamatan Dongko,total,total,,68012,jiwa,2025,registration,total_population,3.1,33,,

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321219-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Arahan Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Arahan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212171",
+  "publicationNumber": "32120.25028",
+  "issn": "2807-4432",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/f5108362898d4d0f7d3783de/kecamatan-arahan-dalam-angka-2026.html",
+  "sourceFileSha256": "a4f99429af38582d9ccc929918ab42a6b9c205b1373dea72507f25b68656822a",
+  "sourceFileBytes": 21372826,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321219-dalam-angka-2026.csv",
+  "csvSha256": "48e34681a348e099ec9e3eb3b04b9e1d6b9b44d158ee25374be3855731266d0e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Arahan, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Arahan, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 32.12.19 are not stored: sex split vs total: parts sum 38127.0000 != 38375.0000 (diff 248.0000); the source itself is inconsistent"
+  ]
+}

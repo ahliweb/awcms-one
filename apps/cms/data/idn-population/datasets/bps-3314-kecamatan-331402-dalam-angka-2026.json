@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3314-kecamatan-331402-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.14.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Plupuh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sragen",
+  "publisherDomain": "3314",
+  "publisherWebsite": "https://sragenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sragen (https://sragenkab.bps.go.id), publikasi \"Kecamatan Plupuh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3314020",
+  "publicationNumber": "3314026008",
+  "issn": "0852-2618",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sragenkab.bps.go.id/id/publication/2026/09/28/267c029a551593a2338fe3d9/kecamatan-plupuh-dalam-angka-2026.html",
+  "sourceFileSha256": "89c2e9233b86fc5a88749920f880d28199f2706fd59cc6bc35b2871222464b2c",
+  "sourceFileBytes": 18761819,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sragen.",
+  "csvPath": "datasets/bps-3314-kecamatan-331402-dalam-angka-2026.csv",
+  "csvSha256": "0b653193f295e290a6060ed8c9c4903b11dc1b51ed6e4318b0becbd3d6e525d1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Plupuh, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Plupuh, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

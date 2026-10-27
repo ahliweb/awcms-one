@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.21.2001,4,Sri Katon,sex,perempuan,,2030,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2001,4,Sri Katon,total,total,,4065,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2002,4,Jaya Sakti,sex,perempuan,,2654,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2002,4,Jaya Sakti,total,total,,5470,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2011,4,Bumi Jaya,sex,perempuan,,1403,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2011,4,Bumi Jaya,total,total,,2832,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2012,4,Mulyo Haji,sex,perempuan,,1379,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2012,4,Mulyo Haji,total,total,,2849,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2003,4,Haji Pemanggilan,sex,perempuan,,2149,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2003,4,Haji Pemanggilan,total,total,,4414,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2004,4,Negara Bumi Ilir,sex,perempuan,,2014,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2004,4,Negara Bumi Ilir,total,total,,4110,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2005,4,Bumi Aji,sex,perempuan,,3161,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2005,4,Bumi Aji,total,total,,6513,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2006,4,Negara Aji Tua,sex,perempuan,,2290,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2006,4,Negara Aji Tua,total,total,,4613,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2007,4,Negara Bumi Udik,sex,perempuan,,2061,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2007,4,Negara Bumi Udik,total,total,,4219,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2008,4,Negara Aji Baru,sex,perempuan,,1603,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2008,4,Negara Aji Baru,total,total,,3233,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2009,4,Gunung Agung,sex,perempuan,,201,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2009,4,Gunung Agung,total,total,,411,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21.2010,4,Tanjung Harapan,sex,perempuan,,1275,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21.2010,4,Tanjung Harapan,total,total,,2605,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21,3,Anak Tuha,sex,perempuan,,22220,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+18.02.21,3,Anak Tuha,total,total,,45334,jiwa,2025,registration,total_population,3.1,20,,
+18.02.21,3,Anak Tuha,age_group,0-4,perempuan,1559,jiwa,2025,registration,total_population,3.2,22,,0–4
+18.02.21,3,Anak Tuha,age_group,0-4,,3182,jiwa,2025,registration,total_population,3.2,22,,0–4
+18.02.21,3,Anak Tuha,age_group,5-9,perempuan,1950,jiwa,2025,registration,total_population,3.2,22,,5–9
+18.02.21,3,Anak Tuha,age_group,5-9,,4140,jiwa,2025,registration,total_population,3.2,22,,5–9
+18.02.21,3,Anak Tuha,age_group,10-14,perempuan,2033,jiwa,2025,registration,total_population,3.2,22,,10–14
+18.02.21,3,Anak Tuha,age_group,10-14,,4233,jiwa,2025,registration,total_population,3.2,22,,10–14
+18.02.21,3,Anak Tuha,age_group,15-19,perempuan,1547,jiwa,2025,registration,total_population,3.2,22,,15–19
+18.02.21,3,Anak Tuha,age_group,15-19,,3243,jiwa,2025,registration,total_population,3.2,22,,15–19
+18.02.21,3,Anak Tuha,age_group,20-24,perempuan,1534,jiwa,2025,registration,total_population,3.2,22,,20–24
+18.02.21,3,Anak Tuha,age_group,20-24,,3121,jiwa,2025,registration,total_population,3.2,22,,20–24
+18.02.21,3,Anak Tuha,age_group,25-29,perempuan,1720,jiwa,2025,registration,total_population,3.2,22,,25–29
+18.02.21,3,Anak Tuha,age_group,25-29,,3449,jiwa,2025,registration,total_population,3.2,22,,25–29
+18.02.21,3,Anak Tuha,age_group,30-34,perempuan,1610,jiwa,2025,registration,total_population,3.2,22,,30–34
+18.02.21,3,Anak Tuha,age_group,30-34,,3288,jiwa,2025,registration,total_population,3.2,22,,30–34
+18.02.21,3,Anak Tuha,age_group,35-39,perempuan,1703,jiwa,2025,registration,total_population,3.2,22,,35–39
+18.02.21,3,Anak Tuha,age_group,35-39,,3478,jiwa,2025,registration,total_population,3.2,22,,35–39
+18.02.21,3,Anak Tuha,age_group,40-44,perempuan,1767,jiwa,2025,registration,total_population,3.2,22,,40–44
+18.02.21,3,Anak Tuha,age_group,40-44,,3530,jiwa,2025,registration,total_population,3.2,22,,40–44
+18.02.21,3,Anak Tuha,age_group,45-49,perempuan,1685,jiwa,2025,registration,total_population,3.2,22,,45–49
+18.02.21,3,Anak Tuha,age_group,45-49,,3351,jiwa,2025,registration,total_population,3.2,22,,45–49
+18.02.21,3,Anak Tuha,age_group,50-54,perempuan,1235,jiwa,2025,registration,total_population,3.2,22,,50–54
+18.02.21,3,Anak Tuha,age_group,50-54,,2581,jiwa,2025,registration,total_population,3.2,22,,50–54
+18.02.21,3,Anak Tuha,age_group,55-59,perempuan,1000,jiwa,2025,registration,total_population,3.2,22,,55–59
+18.02.21,3,Anak Tuha,age_group,55-59,,2083,jiwa,2025,registration,total_population,3.2,22,,55–59
+18.02.21,3,Anak Tuha,age_group,60-64,perempuan,892,jiwa,2025,registration,total_population,3.2,22,,60–64
+18.02.21,3,Anak Tuha,age_group,60-64,,1743,jiwa,2025,registration,total_population,3.2,22,,60–64
+18.02.21,3,Anak Tuha,age_group,65-69,perempuan,724,jiwa,2025,registration,total_population,3.2,22,,65–69
+18.02.21,3,Anak Tuha,age_group,65-69,,1454,jiwa,2025,registration,total_population,3.2,22,,65–69
+18.02.21,3,Anak Tuha,age_group,70-74,perempuan,447,jiwa,2025,registration,total_population,3.2,22,,70–74
+18.02.21,3,Anak Tuha,age_group,70-74,,925,jiwa,2025,registration,total_population,3.2,22,,70–74
+18.02.21,3,Anak Tuha,age_group,75+,perempuan,814,jiwa,2025,registration,total_population,3.2,22,,75+
+18.02.21,3,Anak Tuha,age_group,75+,,1533,jiwa,2025,registration,total_population,3.2,22,,75+
+18.02.21,3,Anak Tuha,sex,perempuan,,22220,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+18.02.21,3,Anak Tuha,total,total,,45334,jiwa,2025,registration,total_population,3.2,22,,

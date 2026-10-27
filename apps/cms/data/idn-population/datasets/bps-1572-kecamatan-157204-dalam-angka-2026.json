@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1572-kecamatan-157204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.72.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanah Kampung Dalam Angka 2026",
+  "publisherName": "BPS Kota Sungai Penuh",
+  "publisherDomain": "1572",
+  "publisherWebsite": "https://sungaipenuhkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sungai Penuh (https://sungaipenuhkota.bps.go.id), publikasi \"Kecamatan Tanah Kampung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1572010",
+  "publicationNumber": "15720.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sungaipenuhkota.bps.go.id/id/publication/2026/09/28/050770a48126b45fbac37a65/kecamatan-tanah-kampung-dalam-angka-2026.html",
+  "sourceFileSha256": "328d8fad0cd0bcdda782c8c75edfd6de9da476de79d7cb997efa7ac2ae0f38d4",
+  "sourceFileBytes": 11900925,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sungai Penuh .",
+  "csvPath": "datasets/bps-1572-kecamatan-157204-dalam-angka-2026.csv",
+  "csvSha256": "363ca98b8ac5b36c0786b0f42f1bff4e1f99dd6a60268d440d2df4ff5c4772ae",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi 3.2 Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tanah Kampung , 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tanah Kampung , 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Dusun Baru Debai\": unmatched ",
+    "table 3.1: row not stored: row \"Koto Baru Tanah Kampung\": unmatched ",
+    "table 3.1: row not stored: row \"Dusun Baru Debai\": unmatched ",
+    "table 3.1: row not stored: row \"Koto Baru Tanah Kampung\": unmatched "
+  ]
+}

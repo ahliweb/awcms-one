@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.12.2011,4,Teluk Kabung,sex,laki_laki,,2095,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2011,4,Teluk Kabung,sex,perempuan,,1865,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2011,4,Teluk Kabung,total,total,,3960,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2003,4,Simpang Gaung,sex,laki_laki,,4044,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2003,4,Simpang Gaung,sex,perempuan,,3688,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2003,4,Simpang Gaung,total,total,,7732,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2009,4,Pungkat,sex,laki_laki,,1445,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2009,4,Pungkat,sex,perempuan,,1406,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2009,4,Pungkat,total,total,,2851,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2004,4,Belantaraya,sex,laki_laki,,4662,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2004,4,Belantaraya,sex,perempuan,,4131,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2004,4,Belantaraya,total,total,,8793,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2010,4,Jerambang,sex,laki_laki,,714,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2010,4,Jerambang,sex,perempuan,,668,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2010,4,Jerambang,total,total,,1382,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2005,4,Sungai Baru,sex,laki_laki,,405,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2005,4,Sungai Baru,sex,perempuan,,387,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2005,4,Sungai Baru,total,total,,792,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2002,4,Lahang Baru,sex,laki_laki,,1589,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2002,4,Lahang Baru,sex,perempuan,,1533,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2002,4,Lahang Baru,total,total,,3122,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.1006,4,Kuala Lahang,sex,laki_laki,,1823,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.1006,4,Kuala Lahang,sex,perempuan,,1716,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.1006,4,Kuala Lahang,total,total,,3539,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2007,4,Lahang Tengah,sex,laki_laki,,756,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2007,4,Lahang Tengah,sex,perempuan,,731,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2007,4,Lahang Tengah,total,total,,1487,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2008,4,Lahang Hulu,sex,laki_laki,,1979,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2008,4,Lahang Hulu,sex,perempuan,,1765,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2008,4,Lahang Hulu,total,total,,3744,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2001,4,Terusan Kempas,sex,laki_laki,,729,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2001,4,Terusan Kempas,sex,perempuan,,598,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2001,4,Terusan Kempas,total,total,,1327,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2012,4,Gembira,sex,laki_laki,,1129,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2012,4,Gembira,sex,perempuan,,1036,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2012,4,Gembira,total,total,,2165,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2013,4,Semambu Kuning,sex,laki_laki,,821,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2013,4,Semambu Kuning,sex,perempuan,,763,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2013,4,Semambu Kuning,total,total,,1584,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2016,4,Pintasan,sex,laki_laki,,318,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2016,4,Pintasan,sex,perempuan,,294,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2016,4,Pintasan,total,total,,612,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2015,4,Soren,sex,laki_laki,,501,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2015,4,Soren,sex,perempuan,,409,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2015,4,Soren,total,total,,910,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12.2014,4,Teluk Merbau,sex,laki_laki,,1051,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12.2014,4,Teluk Merbau,sex,perempuan,,885,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12.2014,4,Teluk Merbau,total,total,,1936,jiwa,2026,registration,total_population,3.1,29,,
+14.04.12,3,Gaung,sex,laki_laki,,24061,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.12,3,Gaung,sex,perempuan,,21875,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.12,3,Gaung,total,total,,45936,jiwa,2026,registration,total_population,3.1,29,,

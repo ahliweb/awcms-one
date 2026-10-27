@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.06.2001,4,Kanekes,sex,laki_laki,,5667,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2001,4,Kanekes,sex,perempuan,,4868,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2001,4,Kanekes,total,total,,10535,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2007,4,Nayagati,sex,laki_laki,,3290,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2007,4,Nayagati,sex,perempuan,,3012,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2007,4,Nayagati,total,total,,6302,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2008,4,Bojongmenteng,sex,laki_laki,,2609,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2008,4,Bojongmenteng,sex,perempuan,,2459,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2008,4,Bojongmenteng,total,total,,5068,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2002,4,Cisimeut,sex,laki_laki,,3547,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2002,4,Cisimeut,sex,perempuan,,3295,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2002,4,Cisimeut,total,total,,6842,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2009,4,Margawangi,sex,laki_laki,,1099,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2009,4,Margawangi,sex,perempuan,,1005,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2009,4,Margawangi,total,total,,2104,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2006,4,Sangkanwangi,sex,laki_laki,,1975,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2006,4,Sangkanwangi,sex,perempuan,,1825,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2006,4,Sangkanwangi,total,total,,3800,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2011,4,Jalupangmulya,sex,laki_laki,,2187,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2011,4,Jalupangmulya,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2011,4,Jalupangmulya,total,total,,4174,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2004,4,Leuwidamar,sex,laki_laki,,2627,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2004,4,Leuwidamar,sex,perempuan,,2587,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2004,4,Leuwidamar,total,total,,5214,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2003,4,Cibungur,sex,laki_laki,,3160,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2003,4,Cibungur,sex,perempuan,,3074,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2003,4,Cibungur,total,total,,6234,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2005,4,Lebak Parahiang,sex,laki_laki,,2039,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2005,4,Lebak Parahiang,sex,perempuan,,1910,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2005,4,Lebak Parahiang,total,total,,3949,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2010,4,Wantisari,sex,laki_laki,,2438,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2010,4,Wantisari,sex,perempuan,,2384,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2010,4,Wantisari,total,total,,4822,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06.2012,4,Cisimeut Raya,sex,laki_laki,,2417,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.06.2012,4,Cisimeut Raya,sex,perempuan,,2306,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.06.2012,4,Cisimeut Raya,total,total,,4723,jiwa,2025,registration,total_population,3.1,23,,
+36.02.06,3,Leuwidamar,age_group,0-4,laki_laki,2465,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+36.02.06,3,Leuwidamar,age_group,0-4,perempuan,2343,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+36.02.06,3,Leuwidamar,age_group,0-4,,4808,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+36.02.06,3,Leuwidamar,age_group,5-9,laki_laki,3152,jiwa,2025,registration,total_population,3.2,25,,5 - 9
+36.02.06,3,Leuwidamar,age_group,5-9,perempuan,3000,jiwa,2025,registration,total_population,3.2,25,,5 - 9
+36.02.06,3,Leuwidamar,age_group,5-9,,6152,jiwa,2025,registration,total_population,3.2,25,,5 - 9
+36.02.06,3,Leuwidamar,age_group,10-14,laki_laki,2964,jiwa,2025,registration,total_population,3.2,25,,10 - 14
+36.02.06,3,Leuwidamar,age_group,10-14,perempuan,2799,jiwa,2025,registration,total_population,3.2,25,,10 - 14
+36.02.06,3,Leuwidamar,age_group,10-14,,5763,jiwa,2025,registration,total_population,3.2,25,,10 - 14
+36.02.06,3,Leuwidamar,age_group,15-19,laki_laki,2538,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+36.02.06,3,Leuwidamar,age_group,15-19,perempuan,2490,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+36.02.06,3,Leuwidamar,age_group,15-19,,5028,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+36.02.06,3,Leuwidamar,age_group,20-24,laki_laki,2950,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+36.02.06,3,Leuwidamar,age_group,20-24,perempuan,2680,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+36.02.06,3,Leuwidamar,age_group,20-24,,5630,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+36.02.06,3,Leuwidamar,age_group,25-29,laki_laki,3142,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+36.02.06,3,Leuwidamar,age_group,25-29,perempuan,2665,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+36.02.06,3,Leuwidamar,age_group,25-29,,5807,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+36.02.06,3,Leuwidamar,age_group,30-34,laki_laki,2915,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+36.02.06,3,Leuwidamar,age_group,30-34,perempuan,2444,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+36.02.06,3,Leuwidamar,age_group,30-34,,5359,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+36.02.06,3,Leuwidamar,age_group,35-39,laki_laki,2550,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+36.02.06,3,Leuwidamar,age_group,35-39,perempuan,2478,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+36.02.06,3,Leuwidamar,age_group,35-39,,5028,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+36.02.06,3,Leuwidamar,age_group,40-44,laki_laki,2278,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+36.02.06,3,Leuwidamar,age_group,40-44,perempuan,2108,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+36.02.06,3,Leuwidamar,age_group,40-44,,4386,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+36.02.06,3,Leuwidamar,age_group,45-49,laki_laki,2010,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+36.02.06,3,Leuwidamar,age_group,45-49,perempuan,1882,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+36.02.06,3,Leuwidamar,age_group,45-49,,3892,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+36.02.06,3,Leuwidamar,age_group,50-54,laki_laki,1549,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+36.02.06,3,Leuwidamar,age_group,50-54,perempuan,1480,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+36.02.06,3,Leuwidamar,age_group,50-54,,3029,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+36.02.06,3,Leuwidamar,age_group,55-59,laki_laki,1508,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+36.02.06,3,Leuwidamar,age_group,55-59,perempuan,1531,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+36.02.06,3,Leuwidamar,age_group,55-59,,3039,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+36.02.06,3,Leuwidamar,age_group,60-64,laki_laki,1186,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+36.02.06,3,Leuwidamar,age_group,60-64,perempuan,1045,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+36.02.06,3,Leuwidamar,age_group,60-64,,2231,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+36.02.06,3,Leuwidamar,age_group,65-69,laki_laki,900,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+36.02.06,3,Leuwidamar,age_group,65-69,perempuan,818,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+36.02.06,3,Leuwidamar,age_group,65-69,,1718,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+36.02.06,3,Leuwidamar,age_group,70-74,laki_laki,426,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+36.02.06,3,Leuwidamar,age_group,70-74,perempuan,355,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+36.02.06,3,Leuwidamar,age_group,70-74,,781,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+36.02.06,3,Leuwidamar,age_group,75+,laki_laki,522,jiwa,2025,registration,total_population,3.2,25,,75 +
+36.02.06,3,Leuwidamar,age_group,75+,perempuan,594,jiwa,2025,registration,total_population,3.2,25,,75 +
+36.02.06,3,Leuwidamar,age_group,75+,,1116,jiwa,2025,registration,total_population,3.2,25,,75 +

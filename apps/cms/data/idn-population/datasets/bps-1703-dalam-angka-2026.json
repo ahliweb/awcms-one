@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-1703-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "17.03",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Bengkulu Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bengkulu Utara",
+  "publisherDomain": "1703",
+  "publisherWebsite": "https://bengkuluutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bengkulu Utara (https://bengkuluutarakab.bps.go.id), publikasi \"Kabupaten Bengkulu Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "11020001.1703",
+  "publicationNumber": "17030.26002",
+  "issn": "0215-4056",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://bengkuluutarakab.bps.go.id/id/publication/2026/02/27/0c17fb150dc429ff9ed5adf8/kabupaten-bengkulu-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "30053c945f417f3fe33e896266cfbc09faa45fc9af9be83477550ead7d4e2dfe",
+  "sourceFileBytes": 14718634,
+  "sourcePages": [56, 59, 308],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bengkulu Utara.",
+  "csvPath": "datasets/bps-1703-dalam-angka-2026.csv",
+  "csvSha256": "afd276dbbec245adaa9cb651e7cad0ce696cc11032a84db5e1a7f08db5ae1a63",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Bengkulu Utara, 2025",
+      "printedPages": [56],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Bengkulu Utara (jiwa), 2026",
+      "printedPages": [59],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Bengkulu Utara (rupiah), 2024 dan 2025",
+      "printedPages": [308],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)"
+  ]
+}

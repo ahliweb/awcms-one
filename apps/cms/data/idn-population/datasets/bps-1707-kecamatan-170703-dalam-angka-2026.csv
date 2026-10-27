@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.03.2008,4,Pagar Agung,sex,laki_laki,,685,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2008,4,Pagar Agung,sex,perempuan,,622,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2008,4,Pagar Agung,total,total,,1307,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2020,4,Suka Damai,sex,laki_laki,,618,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2020,4,Suka Damai,sex,perempuan,,619,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2020,4,Suka Damai,total,total,,1237,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2006,4,Tanjung Bungai I,sex,laki_laki,,714,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2006,4,Tanjung Bungai I,sex,perempuan,,679,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2006,4,Tanjung Bungai I,total,total,,1393,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2023,4,Tanjung Bungai II,sex,laki_laki,,530,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2023,4,Tanjung Bungai II,sex,perempuan,,531,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2023,4,Tanjung Bungai II,total,total,,1061,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2009,4,Karang Anyar,sex,laki_laki,,458,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2009,4,Karang Anyar,sex,perempuan,,401,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2009,4,Karang Anyar,total,total,,859,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2007,4,Semelako I,sex,laki_laki,,622,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2007,4,Semelako I,sex,perempuan,,590,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2007,4,Semelako I,total,total,,1212,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2013,4,Semelako II,sex,laki_laki,,591,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2013,4,Semelako II,sex,perempuan,,576,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2013,4,Semelako II,total,total,,1167,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2014,4,Semelako III,sex,laki_laki,,336,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2014,4,Semelako III,sex,perempuan,,295,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2014,4,Semelako III,total,total,,631,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2015,4,Semelako Atas,sex,laki_laki,,756,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2015,4,Semelako Atas,sex,perempuan,,676,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2015,4,Semelako Atas,total,total,,1432,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.2016,4,Danau Liang,sex,laki_laki,,460,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.2016,4,Danau Liang,sex,perempuan,,389,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.2016,4,Danau Liang,total,total,,849,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03.1005,4,Embong Panjang,sex,laki_laki,,486,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03.1005,4,Embong Panjang,sex,perempuan,,453,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03.1005,4,Embong Panjang,total,total,,939,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03,3,Kecamatan Lebong Tengah,sex,laki_laki,,6256,jiwa,2025,registration,total_population,1.5,29,,Laki-Laki/Male
+17.07.03,3,Kecamatan Lebong Tengah,sex,perempuan,,5831,jiwa,2025,registration,total_population,1.5,29,,Perempuan/Female
+17.07.03,3,Kecamatan Lebong Tengah,total,total,,12087,jiwa,2025,registration,total_population,1.5,29,,
+17.07.03,3,Kecamatan Lebong Tengah,sex,laki_laki,,6256,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki
+17.07.03,3,Kecamatan Lebong Tengah,sex,perempuan,,5831,jiwa,2025,registration,total_population,1.6,31,,Perempuan
+17.07.03,3,Kecamatan Lebong Tengah,total,total,,12087,jiwa,2025,registration,total_population,1.6,31,,

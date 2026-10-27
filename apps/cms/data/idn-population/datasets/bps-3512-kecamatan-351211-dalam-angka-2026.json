@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351211-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Arjasa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Arjasa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512140",
+  "publicationNumber": "35120.25022",
+  "issn": "2808-0629",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/06276e2b436cc6fd884965f8/kecamatan-arjasa-dalam-angka-2026.html",
+  "sourceFileSha256": "0fc40d2a1458b630c9a296d2d7a83b068a46b4e5a4ceee4f0dcac6d55361714c",
+  "sourceFileBytes": 5918000,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351211-dalam-angka-2026.csv",
+  "csvSha256": "d38f70d24687707d2f2b2b023ef0d09a9388e7f2989c1042e8a98d80720e085c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Arjasa, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Arjasa, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Confucian\" not recognised)",
+    "table 3.1: the rows of region 35.12.11.2008 are not stored: sex split vs total: parts sum 4402.0000 != 2248.0000 (diff 2154.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.12.11.2007 are not stored: sex split vs total: parts sum 4402.0000 != 2201.0000 (diff 2201.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.12.11 are not stored: sex split vs total: parts sum 44205.0000 != 39850.0000 (diff 4355.0000); the source itself is inconsistent"
+  ]
+}

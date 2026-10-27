@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.26.1002,4,Manyar Sabrangan,sex,laki_laki,,7992,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.26.1002,4,Manyar Sabrangan,sex,perempuan,,8249,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.26.1002,4,Manyar Sabrangan,total,total,,16241,jiwa,2025,registration,total_population,3.1,29,,
+35.78.26.1001,4,Mulyorejo,sex,laki_laki,,8596,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.26.1001,4,Mulyorejo,sex,perempuan,,9068,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.26.1001,4,Mulyorejo,total,total,,17664,jiwa,2025,registration,total_population,3.1,29,,
+35.78.26.1004,4,Kalisari,sex,laki_laki,,7693,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.26.1004,4,Kalisari,sex,perempuan,,8035,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.26.1004,4,Kalisari,total,total,,15728,jiwa,2025,registration,total_population,3.1,29,,
+35.78.26.1005,4,Dukuh Sutorejo,sex,laki_laki,,7895,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.26.1005,4,Dukuh Sutorejo,sex,perempuan,,8347,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.26.1005,4,Dukuh Sutorejo,total,total,,16242,jiwa,2025,registration,total_population,3.1,29,,
+35.78.26.1006,4,Kalijudan,sex,laki_laki,,7082,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.26.1006,4,Kalijudan,sex,perempuan,,7201,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.26.1006,4,Kalijudan,total,total,,14283,jiwa,2025,registration,total_population,3.1,29,,
+35.78.26,3,Kecamatan Mulyorejo,sex,laki_laki,,43125,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.26,3,Kecamatan Mulyorejo,sex,perempuan,,44807,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.26,3,Kecamatan Mulyorejo,total,total,,87932,jiwa,2025,registration,total_population,3.1,29,,
+35.78.26,3,Mulyorejo,age_group,0-4,laki_laki,2443,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.26,3,Mulyorejo,age_group,0-4,perempuan,2250,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.26,3,Mulyorejo,age_group,0-4,,4693,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.26,3,Mulyorejo,age_group,5-9,laki_laki,3163,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.26,3,Mulyorejo,age_group,5-9,perempuan,2950,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.26,3,Mulyorejo,age_group,5-9,,6113,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.26,3,Mulyorejo,age_group,10-14,laki_laki,3419,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.26,3,Mulyorejo,age_group,10-14,perempuan,3234,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.26,3,Mulyorejo,age_group,10-14,,6653,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.26,3,Mulyorejo,age_group,15-19,laki_laki,3469,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.26,3,Mulyorejo,age_group,15-19,perempuan,3157,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.26,3,Mulyorejo,age_group,15-19,,6626,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.26,3,Mulyorejo,age_group,20-24,laki_laki,3450,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.26,3,Mulyorejo,age_group,20-24,perempuan,3268,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.26,3,Mulyorejo,age_group,20-24,,6718,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.26,3,Mulyorejo,age_group,25-29,laki_laki,3263,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.26,3,Mulyorejo,age_group,25-29,perempuan,3225,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.26,3,Mulyorejo,age_group,25-29,,6488,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.26,3,Mulyorejo,age_group,30-34,laki_laki,3220,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.26,3,Mulyorejo,age_group,30-34,perempuan,3389,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.26,3,Mulyorejo,age_group,30-34,,6609,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.26,3,Mulyorejo,age_group,35-39,laki_laki,3140,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.26,3,Mulyorejo,age_group,35-39,perempuan,3160,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.26,3,Mulyorejo,age_group,35-39,,6300,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.26,3,Mulyorejo,age_group,40-44,laki_laki,3432,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.26,3,Mulyorejo,age_group,40-44,perempuan,3729,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.26,3,Mulyorejo,age_group,40-44,,7161,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.26,3,Mulyorejo,age_group,45-49,laki_laki,3326,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.26,3,Mulyorejo,age_group,45-49,perempuan,3529,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.26,3,Mulyorejo,age_group,45-49,,6855,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.26,3,Mulyorejo,age_group,50-54,laki_laki,2888,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.26,3,Mulyorejo,age_group,50-54,perempuan,3057,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.26,3,Mulyorejo,age_group,50-54,,5945,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.26,3,Mulyorejo,age_group,55-59,laki_laki,2399,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.26,3,Mulyorejo,age_group,55-59,perempuan,2676,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.26,3,Mulyorejo,age_group,55-59,,5075,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.26,3,Mulyorejo,age_group,60-64,laki_laki,1852,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.26,3,Mulyorejo,age_group,60-64,perempuan,2195,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.26,3,Mulyorejo,age_group,60-64,,4047,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.26,3,Mulyorejo,age_group,65-69,laki_laki,1494,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.26,3,Mulyorejo,age_group,65-69,perempuan,1902,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.26,3,Mulyorejo,age_group,65-69,,3396,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.26,3,Mulyorejo,age_group,70-74,laki_laki,1099,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.26,3,Mulyorejo,age_group,70-74,perempuan,1366,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.26,3,Mulyorejo,age_group,70-74,,2465,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.26,3,Mulyorejo,age_group,75+,laki_laki,1068,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.26,3,Mulyorejo,age_group,75+,perempuan,1720,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.26,3,Mulyorejo,age_group,75+,,2788,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.26,3,Kecamatan Mulyorejo,sex,laki_laki,,43125,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.26,3,Kecamatan Mulyorejo,sex,perempuan,,44807,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.26,3,Kecamatan Mulyorejo,total,total,,87932,jiwa,2025,registration,total_population,3.2,31,,

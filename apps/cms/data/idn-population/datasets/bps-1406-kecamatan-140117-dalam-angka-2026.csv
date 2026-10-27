@@ -1,0 +1,21 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.17.2002,4,Pulau Rambai,sex,perempuan,,1696,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2002,4,Pulau Rambai,total,total,,3422,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2003,4,Kampar,sex,perempuan,,2187,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2003,4,Kampar,total,total,,4492,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2004,4,Koto Perambahan,sex,perempuan,,2751,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2004,4,Koto Perambahan,total,total,,5509,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2001,4,Pulau Birandang,sex,perempuan,,2581,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2001,4,Pulau Birandang,total,total,,5385,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2005,4,Sungai Putih,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2005,4,Sungai Putih,total,total,,1212,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2006,4,Deli Makmur,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2006,4,Deli Makmur,total,total,,1049,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2007,4,Sungai Tarap,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2007,4,Sungai Tarap,total,total,,1518,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2008,4,Tanjung Bungo,sex,perempuan,,1085,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2008,4,Tanjung Bungo,total,total,,2184,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17.2009,4,Sawah Baru,sex,perempuan,,955,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17.2009,4,Sawah Baru,total,total,,1925,jiwa,2025,registration,total_population,3.1,11,,
+14.01.17,3,Kampa,sex,perempuan,,13133,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.17,3,Kampa,total,total,,26696,jiwa,2025,registration,total_population,3.1,11,,

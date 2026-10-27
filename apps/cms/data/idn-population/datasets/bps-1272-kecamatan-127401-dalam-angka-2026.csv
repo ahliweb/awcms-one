@@ -1,0 +1,65 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.74.01.1002,4,Tanjung Balai Kota II,sex,laki_laki,,3253,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.74.01.1002,4,Tanjung Balai Kota II,sex,perempuan,,3238,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.74.01.1002,4,Tanjung Balai Kota II,total,total,,6491,jiwa,2025,registration,total_population,3.1,37,,
+12.74.01.1001,4,Tanjung Balai Kota I,sex,laki_laki,,1249,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.74.01.1001,4,Tanjung Balai Kota I,sex,perempuan,,1362,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.74.01.1001,4,Tanjung Balai Kota I,total,total,,2611,jiwa,2025,registration,total_population,3.1,37,,
+12.74.01.1004,4,Karya,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.74.01.1004,4,Karya,sex,perempuan,,881,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.74.01.1004,4,Karya,total,total,,1689,jiwa,2025,registration,total_population,3.1,37,,
+12.74.01.1003,4,Perwira,sex,laki_laki,,1279,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.74.01.1003,4,Perwira,sex,perempuan,,1316,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.74.01.1003,4,Perwira,total,total,,2595,jiwa,2025,registration,total_population,3.1,37,,
+12.74.01.1006,4,Indra Sakti,sex,laki_laki,,909,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.74.01.1006,4,Indra Sakti,sex,perempuan,,958,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.74.01.1006,4,Indra Sakti,total,total,,1867,jiwa,2025,registration,total_population,3.1,37,,
+12.74.01.1002,4,Tanjung Balai Kota II,religion,islam,,5108,jiwa,2025,registration,total_population,3.4,40,,Islam
+12.74.01.1002,4,Tanjung Balai Kota II,religion,kristen,,235,jiwa,2025,registration,total_population,3.4,40,,Protestan
+12.74.01.1002,4,Tanjung Balai Kota II,religion,katolik,,40,jiwa,2025,registration,total_population,3.4,40,,Katolik
+12.74.01.1002,4,Tanjung Balai Kota II,religion,hindu,,2,jiwa,2025,registration,total_population,3.4,40,,Hindu
+12.74.01.1002,4,Tanjung Balai Kota II,religion,buddha,,1105,jiwa,2025,registration,total_population,3.4,40,,Budha
+12.74.01.1002,4,Tanjung Balai Kota II,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.4,40,,Konghucu
+12.74.01.1002,4,Tanjung Balai Kota II,religion,lainnya,,0,jiwa,2025,registration,total_population,3.4,40,nil,Lainnya
+12.74.01.1001,4,Tanjung Balai Kota I,religion,islam,,1073,jiwa,2025,registration,total_population,3.4,40,,Islam
+12.74.01.1001,4,Tanjung Balai Kota I,religion,kristen,,118,jiwa,2025,registration,total_population,3.4,40,,Protestan
+12.74.01.1001,4,Tanjung Balai Kota I,religion,katolik,,35,jiwa,2025,registration,total_population,3.4,40,,Katolik
+12.74.01.1001,4,Tanjung Balai Kota I,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,40,nil,Hindu
+12.74.01.1001,4,Tanjung Balai Kota I,religion,buddha,,1375,jiwa,2025,registration,total_population,3.4,40,,Budha
+12.74.01.1001,4,Tanjung Balai Kota I,religion,khonghucu,,10,jiwa,2025,registration,total_population,3.4,40,,Konghucu
+12.74.01.1001,4,Tanjung Balai Kota I,religion,lainnya,,0,jiwa,2025,registration,total_population,3.4,40,nil,Lainnya
+12.74.01.1004,4,Karya,religion,islam,,594,jiwa,2025,registration,total_population,3.4,40,,Islam
+12.74.01.1004,4,Karya,religion,kristen,,91,jiwa,2025,registration,total_population,3.4,40,,Protestan
+12.74.01.1004,4,Karya,religion,katolik,,15,jiwa,2025,registration,total_population,3.4,40,,Katolik
+12.74.01.1004,4,Karya,religion,hindu,,6,jiwa,2025,registration,total_population,3.4,40,,Hindu
+12.74.01.1004,4,Karya,religion,buddha,,976,jiwa,2025,registration,total_population,3.4,40,,Budha
+12.74.01.1004,4,Karya,religion,khonghucu,,7,jiwa,2025,registration,total_population,3.4,40,,Konghucu
+12.74.01.1004,4,Karya,religion,lainnya,,0,jiwa,2025,registration,total_population,3.4,40,nil,Lainnya
+12.74.01.1003,4,Perwira,religion,islam,,1933,jiwa,2025,registration,total_population,3.4,40,,Islam
+12.74.01.1003,4,Perwira,religion,kristen,,175,jiwa,2025,registration,total_population,3.4,40,,Protestan
+12.74.01.1003,4,Perwira,religion,katolik,,13,jiwa,2025,registration,total_population,3.4,40,,Katolik
+12.74.01.1003,4,Perwira,religion,hindu,,6,jiwa,2025,registration,total_population,3.4,40,,Hindu
+12.74.01.1003,4,Perwira,religion,buddha,,466,jiwa,2025,registration,total_population,3.4,40,,Budha
+12.74.01.1003,4,Perwira,religion,khonghucu,,2,jiwa,2025,registration,total_population,3.4,40,,Konghucu
+12.74.01.1003,4,Perwira,religion,lainnya,,0,jiwa,2025,registration,total_population,3.4,40,nil,Lainnya
+12.74.01.1006,4,Indra Sakti,religion,islam,,527,jiwa,2025,registration,total_population,3.4,40,,Islam
+12.74.01.1006,4,Indra Sakti,religion,kristen,,120,jiwa,2025,registration,total_population,3.4,40,,Protestan
+12.74.01.1006,4,Indra Sakti,religion,katolik,,18,jiwa,2025,registration,total_population,3.4,40,,Katolik
+12.74.01.1006,4,Indra Sakti,religion,hindu,,10,jiwa,2025,registration,total_population,3.4,40,,Hindu
+12.74.01.1006,4,Indra Sakti,religion,buddha,,1191,jiwa,2025,registration,total_population,3.4,40,,Budha
+12.74.01.1006,4,Indra Sakti,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.4,40,,Konghucu
+12.74.01.1006,4,Indra Sakti,religion,lainnya,,0,jiwa,2025,registration,total_population,3.4,40,nil,Lainnya
+12.74.01.1005,4,Pantai Burung,religion,islam,,3990,jiwa,2025,registration,total_population,3.4,40,,Islam
+12.74.01.1005,4,Pantai Burung,religion,kristen,,130,jiwa,2025,registration,total_population,3.4,40,,Protestan
+12.74.01.1005,4,Pantai Burung,religion,katolik,,5,jiwa,2025,registration,total_population,3.4,40,,Katolik
+12.74.01.1005,4,Pantai Burung,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,40,nil,Hindu
+12.74.01.1005,4,Pantai Burung,religion,buddha,,638,jiwa,2025,registration,total_population,3.4,40,,Budha
+12.74.01.1005,4,Pantai Burung,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.4,40,,Konghucu
+12.74.01.1005,4,Pantai Burung,religion,lainnya,,0,jiwa,2025,registration,total_population,3.4,40,nil,Lainnya
+12.74.01,3,Tanjungbalai Selatan,religion,islam,,13225,jiwa,2025,registration,total_population,3.4,40,,Islam
+12.74.01,3,Tanjungbalai Selatan,religion,kristen,,869,jiwa,2025,registration,total_population,3.4,40,,Protestan
+12.74.01,3,Tanjungbalai Selatan,religion,katolik,,126,jiwa,2025,registration,total_population,3.4,40,,Katolik
+12.74.01,3,Tanjungbalai Selatan,religion,hindu,,24,jiwa,2025,registration,total_population,3.4,40,,Hindu
+12.74.01,3,Tanjungbalai Selatan,religion,buddha,,5751,jiwa,2025,registration,total_population,3.4,40,,Budha
+12.74.01,3,Tanjungbalai Selatan,religion,khonghucu,,22,jiwa,2025,registration,total_population,3.4,40,,Konghucu
+12.74.01,3,Tanjungbalai Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,3.4,40,nil,Lainnya

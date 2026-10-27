@@ -1,0 +1,50 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.72.01,3,Lubuk Sikarah,total,total,,48103,jiwa,2025,registration,total_population,3.1.1,75,,
+13.72.02,3,Tanjung Harapan,total,total,,38808,jiwa,2025,registration,total_population,3.1.1,75,,
+13.72,2,Kota Solok,total,total,,86911,jiwa,2025,registration,total_population,3.1.1,75,,
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/padi_padian,,95433,rupiah,2024,survey_estimate,per_capita,10.1,385,,Padi–padian
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/padi_padian,,105936,rupiah,2025,survey_estimate,per_capita,10.1,385,,Padi–padian
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/umbi_umbian,,9756,rupiah,2024,survey_estimate,per_capita,10.1,385,,Umbi–umbian
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/umbi_umbian,,10181,rupiah,2025,survey_estimate,per_capita,10.1,385,,Umbi–umbian
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,66755,rupiah,2024,survey_estimate,per_capita,10.1,385,,Ikan/udang/cumi/kerang
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,79638,rupiah,2025,survey_estimate,per_capita,10.1,385,,Ikan/udang/cumi/kerang
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/daging,,37839,rupiah,2024,survey_estimate,per_capita,10.1,385,,Daging
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/daging,,40885,rupiah,2025,survey_estimate,per_capita,10.1,385,,Daging
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/telur_dan_susu,,40332,rupiah,2024,survey_estimate,per_capita,10.1,385,,Telur dan susu
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/telur_dan_susu,,53544,rupiah,2025,survey_estimate,per_capita,10.1,385,,Telur dan susu
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/sayur_sayuran,,82742,rupiah,2024,survey_estimate,per_capita,10.1,385,,Sayur–sayuran
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/sayur_sayuran,,81269,rupiah,2025,survey_estimate,per_capita,10.1,385,,Sayur–sayuran
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/kacang_kacangan,,13004,rupiah,2024,survey_estimate,per_capita,10.1,385,,Kacang–kacangan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/kacang_kacangan,,13853,rupiah,2025,survey_estimate,per_capita,10.1,385,,Kacang–kacangan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/buah_buahan,,45759,rupiah,2024,survey_estimate,per_capita,10.1,385,,Buah–buahan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/buah_buahan,,74261,rupiah,2025,survey_estimate,per_capita,10.1,385,,Buah–buahan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/minyak_dan_kelapa,,27892,rupiah,2024,survey_estimate,per_capita,10.1,385,,Minyak dan kelapa
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/minyak_dan_kelapa,,31634,rupiah,2025,survey_estimate,per_capita,10.1,385,,Minyak dan kelapa
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/bahan_minuman,,15302,rupiah,2024,survey_estimate,per_capita,10.1,385,,Bahan minuman
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/bahan_minuman,,16128,rupiah,2025,survey_estimate,per_capita,10.1,385,,Bahan minuman
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/bumbu_bumbuan,,7764,rupiah,2024,survey_estimate,per_capita,10.1,385,,Bumbu–bumbuan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/bumbu_bumbuan,,8511,rupiah,2025,survey_estimate,per_capita,10.1,385,,Bumbu–bumbuan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/konsumsi_lainnya,,11858,rupiah,2024,survey_estimate,per_capita,10.1,385,,Konsumsi lainnya
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/konsumsi_lainnya,,12148,rupiah,2025,survey_estimate,per_capita,10.1,385,,Konsumsi lainnya
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,277036,rupiah,2024,survey_estimate,per_capita,10.1,385,,Makanan dan minuman jadi
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,286546,rupiah,2025,survey_estimate,per_capita,10.1,385,,Makanan dan minuman jadi
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/rokok,,106574,rupiah,2024,survey_estimate,per_capita,10.1,385,,Rokok
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/rokok,,109926,rupiah,2025,survey_estimate,per_capita,10.1,385,,Rokok
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/jumlah_makanan,,838046,rupiah,2024,survey_estimate,per_capita,10.1,385,,Jumlah makanan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/jumlah_makanan,,924460,rupiah,2025,survey_estimate,per_capita,10.1,385,,Jumlah makanan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,403260,rupiah,2024,survey_estimate,per_capita,10.1,385,,Perumahan dan fasilitas rumah tangga
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,413219,rupiah,2025,survey_estimate,per_capita,10.1,385,,Perumahan dan fasilitas rumah tangga
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,182050,rupiah,2024,survey_estimate,per_capita,10.1,385,,Aneka barang dan jasa
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,219372,rupiah,2025,survey_estimate,per_capita,10.1,385,,Aneka barang dan jasa
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,57941,rupiah,2024,survey_estimate,per_capita,10.1,385,,"Pakaian, alas kaki, dan tutup kepala"
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,82945,rupiah,2025,survey_estimate,per_capita,10.1,385,,"Pakaian, alas kaki, dan tutup kepala"
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/barang_tahan_lama,,61105,rupiah,2024,survey_estimate,per_capita,10.1,385,,Barang tahan lama
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/barang_tahan_lama,,133205,rupiah,2025,survey_estimate,per_capita,10.1,385,,Barang tahan lama
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,78362,rupiah,2024,survey_estimate,per_capita,10.1,385,,"Pajak, pungutan, dan asuransi"
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,85698,rupiah,2025,survey_estimate,per_capita,10.1,385,,"Pajak, pungutan, dan asuransi"
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18136,rupiah,2024,survey_estimate,per_capita,10.1,385,,Keperluan pesta dan upacara/kenduri
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,43226,rupiah,2025,survey_estimate,per_capita,10.1,385,,Keperluan pesta dan upacara/kenduri
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,800854,rupiah,2024,survey_estimate,per_capita,10.1,385,,Jumlah bukan makanan
+13.72,2,Kota Solok,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,977665,rupiah,2025,survey_estimate,per_capita,10.1,385,,Jumlah bukan makanan
+13.72,2,Kota Solok,expenditure,total,,1638900,rupiah,2024,survey_estimate,per_capita,10.1,385,,
+13.72,2,Kota Solok,expenditure,total,,1902125,rupiah,2025,survey_estimate,per_capita,10.1,385,,

@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.07,3,Mojowarno,age_group,0-4,perempuan,2468,jiwa,2025,registration,total_population,3.2,36,,0–4
+35.17.07,3,Mojowarno,age_group,0-4,,5114,jiwa,2025,registration,total_population,3.2,36,,0–4
+35.17.07,3,Mojowarno,age_group,5-9,perempuan,3568,jiwa,2025,registration,total_population,3.2,36,,5–9
+35.17.07,3,Mojowarno,age_group,5-9,,7367,jiwa,2025,registration,total_population,3.2,36,,5–9
+35.17.07,3,Mojowarno,age_group,10-14,perempuan,3795,jiwa,2025,registration,total_population,3.2,36,,10–14
+35.17.07,3,Mojowarno,age_group,10-14,,7805,jiwa,2025,registration,total_population,3.2,36,,10–14
+35.17.07,3,Mojowarno,age_group,15-19,perempuan,3859,jiwa,2025,registration,total_population,3.2,36,,15–19
+35.17.07,3,Mojowarno,age_group,15-19,,7891,jiwa,2025,registration,total_population,3.2,36,,15–19
+35.17.07,3,Mojowarno,age_group,20-24,perempuan,3765,jiwa,2025,registration,total_population,3.2,36,,20–24
+35.17.07,3,Mojowarno,age_group,20-24,,7855,jiwa,2025,registration,total_population,3.2,36,,20–24
+35.17.07,3,Mojowarno,age_group,25-29,perempuan,3524,jiwa,2025,registration,total_population,3.2,36,,25–29
+35.17.07,3,Mojowarno,age_group,25-29,,7522,jiwa,2025,registration,total_population,3.2,36,,25–29
+35.17.07,3,Mojowarno,age_group,30-34,perempuan,3387,jiwa,2025,registration,total_population,3.2,36,,30–34
+35.17.07,3,Mojowarno,age_group,30-34,,7335,jiwa,2025,registration,total_population,3.2,36,,30–34
+35.17.07,3,Mojowarno,age_group,35-39,perempuan,3494,jiwa,2025,registration,total_population,3.2,36,,35–39
+35.17.07,3,Mojowarno,age_group,35-39,,7231,jiwa,2025,registration,total_population,3.2,36,,35–39
+35.17.07,3,Mojowarno,age_group,40-44,perempuan,3760,jiwa,2025,registration,total_population,3.2,36,,40–44
+35.17.07,3,Mojowarno,age_group,40-44,,7874,jiwa,2025,registration,total_population,3.2,36,,40–44
+35.17.07,3,Mojowarno,age_group,45-49,perempuan,3449,jiwa,2025,registration,total_population,3.2,36,,45–49
+35.17.07,3,Mojowarno,age_group,45-49,,7198,jiwa,2025,registration,total_population,3.2,36,,45–49
+35.17.07,3,Mojowarno,age_group,50-54,perempuan,3343,jiwa,2025,registration,total_population,3.2,36,,50–54
+35.17.07,3,Mojowarno,age_group,50-54,,6633,jiwa,2025,registration,total_population,3.2,36,,50–54
+35.17.07,3,Mojowarno,age_group,55-59,perempuan,2968,jiwa,2025,registration,total_population,3.2,36,,55–59
+35.17.07,3,Mojowarno,age_group,55-59,,5892,jiwa,2025,registration,total_population,3.2,36,,55–59
+35.17.07,3,Mojowarno,age_group,60-64,perempuan,2729,jiwa,2025,registration,total_population,3.2,36,,60–64
+35.17.07,3,Mojowarno,age_group,60-64,,5119,jiwa,2025,registration,total_population,3.2,36,,60–64
+35.17.07,3,Mojowarno,age_group,65-69,perempuan,1791,jiwa,2025,registration,total_population,3.2,36,,65–69
+35.17.07,3,Mojowarno,age_group,65-69,,3643,jiwa,2025,registration,total_population,3.2,36,,65–69
+35.17.07,3,Mojowarno,age_group,70-74,perempuan,1113,jiwa,2025,registration,total_population,3.2,36,,70–74
+35.17.07,3,Mojowarno,age_group,70-74,,2275,jiwa,2025,registration,total_population,3.2,36,,70–74
+35.17.07,3,Mojowarno,age_group,75+,perempuan,2153,jiwa,2025,registration,total_population,3.2,36,,75+
+35.17.07,3,Mojowarno,age_group,75+,,3579,jiwa,2025,registration,total_population,3.2,36,,75+
+35.17.07,3,Kecamatan Mojowarno,sex,perempuan,,49166,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+35.17.07,3,Kecamatan Mojowarno,total,total,,100333,jiwa,2025,registration,total_population,3.2,36,,

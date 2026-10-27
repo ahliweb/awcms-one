@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.01.1013,4,Batu Belang Jaya,sex,laki_laki,,4074,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.1013,4,Batu Belang Jaya,sex,perempuan,,4072,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.1013,4,Batu Belang Jaya,total,total,,8146,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.1014,4,Bumi Agung,sex,laki_laki,,2980,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.1014,4,Bumi Agung,sex,perempuan,,2939,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.1014,4,Bumi Agung,total,total,,5919,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.1015,4,Pancur Pungah,sex,laki_laki,,2100,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.1015,4,Pancur Pungah,sex,perempuan,,1992,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.1015,4,Pancur Pungah,total,total,,4092,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.1016,4,Kisau,sex,laki_laki,,2054,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.1016,4,Kisau,sex,perempuan,,1901,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.1016,4,Kisau,total,total,,3955,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.1019,4,Pasar Muaradua,sex,laki_laki,,6544,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.1019,4,Pasar Muaradua,sex,perempuan,,6413,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.1019,4,Pasar Muaradua,total,total,,12957,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2002,4,Gedung Lepihan,sex,laki_laki,,501,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2002,4,Gedung Lepihan,sex,perempuan,,461,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2002,4,Gedung Lepihan,total,total,,962,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2003,4,Gunung Tiga,sex,laki_laki,,1137,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2003,4,Gunung Tiga,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2003,4,Gunung Tiga,total,total,,2192,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2004,4,Sukabanjar,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2004,4,Sukabanjar,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2004,4,Sukabanjar,total,total,,774,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2005,4,Sukaraja ii,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2005,4,Sukaraja ii,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2005,4,Sukaraja ii,total,total,,632,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2017,4,Pendagan,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2017,4,Pendagan,sex,perempuan,,1039,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2017,4,Pendagan,total,total,,2243,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2018,4,Mehanggin,sex,laki_laki,,1076,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2018,4,Mehanggin,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2018,4,Mehanggin,total,total,,2006,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2024,4,Pelangki,sex,laki_laki,,2545,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2024,4,Pelangki,sex,perempuan,,2431,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2024,4,Pelangki,total,total,,4976,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2025,4,Batu Belang 2,sex,laki_laki,,697,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2025,4,Batu Belang 2,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2025,4,Batu Belang 2,total,total,,1320,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01.2026,4,Datar,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01.2026,4,Datar,sex,perempuan,,368,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01.2026,4,Datar,total,total,,757,jiwa,2025,registration,total_population,3.1,27,,
+16.09.01,3,Muaradua,sex,laki_laki,,26042,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.01,3,Muaradua,sex,perempuan,,24889,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.01,3,Muaradua,total,total,,50931,jiwa,2025,registration,total_population,3.1,27,,

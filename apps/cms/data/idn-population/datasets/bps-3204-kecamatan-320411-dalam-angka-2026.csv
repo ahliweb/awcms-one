@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.11.2004,4,Gandasari,sex,laki_laki,,9349,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11.2004,4,Gandasari,sex,perempuan,,9134,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11.2004,4,Gandasari,total,total,,18483,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11.2002,4,Katapang,sex,laki_laki,,8485,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11.2002,4,Katapang,sex,perempuan,,8134,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11.2002,4,Katapang,total,total,,16619,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11.2007,4,Cilampeni,sex,laki_laki,,11164,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11.2007,4,Cilampeni,sex,perempuan,,10606,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11.2007,4,Cilampeni,total,total,,21770,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11.2008,4,Pangauban,sex,laki_laki,,8881,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11.2008,4,Pangauban,sex,perempuan,,8987,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11.2008,4,Pangauban,total,total,,17868,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11.2009,4,Banyusari,sex,laki_laki,,5014,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11.2009,4,Banyusari,sex,perempuan,,4789,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11.2009,4,Banyusari,total,total,,9803,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11.2001,4,Sangkanhurip,sex,laki_laki,,18626,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11.2001,4,Sangkanhurip,sex,perempuan,,17871,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11.2001,4,Sangkanhurip,total,total,,36497,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11.2006,4,Sukamukti,sex,laki_laki,,10344,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11.2006,4,Sukamukti,sex,perempuan,,10164,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11.2006,4,Sukamukti,total,total,,20508,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11,3,Kecamatan Katapang,sex,laki_laki,,71863,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.11,3,Kecamatan Katapang,sex,perempuan,,69685,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.11,3,Kecamatan Katapang,total,total,,141548,jiwa,2025,registration,total_population,3.1,28,,
+32.04.11,3,Katapang,age_group,0-4,laki_laki,4727,jiwa,2025,registration,total_population,3.2,30,,00-04
+32.04.11,3,Katapang,age_group,0-4,perempuan,4445,jiwa,2025,registration,total_population,3.2,30,,00-04
+32.04.11,3,Katapang,age_group,0-4,,9172,jiwa,2025,registration,total_population,3.2,30,,00-04
+32.04.11,3,Katapang,age_group,5-9,laki_laki,6295,jiwa,2025,registration,total_population,3.2,30,,05-09
+32.04.11,3,Katapang,age_group,5-9,perempuan,5990,jiwa,2025,registration,total_population,3.2,30,,05-09
+32.04.11,3,Katapang,age_group,5-9,,12285,jiwa,2025,registration,total_population,3.2,30,,05-09
+32.04.11,3,Katapang,age_group,10-14,laki_laki,6415,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.04.11,3,Katapang,age_group,10-14,perempuan,6013,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.04.11,3,Katapang,age_group,10-14,,12428,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.04.11,3,Katapang,age_group,15-19,laki_laki,5935,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.04.11,3,Katapang,age_group,15-19,perempuan,5817,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.04.11,3,Katapang,age_group,15-19,,11752,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.04.11,3,Katapang,age_group,20-24,laki_laki,6281,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.04.11,3,Katapang,age_group,20-24,perempuan,5971,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.04.11,3,Katapang,age_group,20-24,,12252,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.04.11,3,Katapang,age_group,25-29,laki_laki,5924,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.04.11,3,Katapang,age_group,25-29,perempuan,5561,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.04.11,3,Katapang,age_group,25-29,,11485,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.04.11,3,Katapang,age_group,30-34,laki_laki,5558,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.04.11,3,Katapang,age_group,30-34,perempuan,5352,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.04.11,3,Katapang,age_group,30-34,,10910,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.04.11,3,Katapang,age_group,35-39,laki_laki,4800,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.04.11,3,Katapang,age_group,35-39,perempuan,4543,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.04.11,3,Katapang,age_group,35-39,,9343,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.04.11,3,Katapang,age_group,40-44,laki_laki,5489,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.04.11,3,Katapang,age_group,40-44,perempuan,5443,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.04.11,3,Katapang,age_group,40-44,,10932,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.04.11,3,Katapang,age_group,45-49,laki_laki,5411,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.04.11,3,Katapang,age_group,45-49,perempuan,5376,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.04.11,3,Katapang,age_group,45-49,,10787,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.04.11,3,Katapang,age_group,50-54,laki_laki,4575,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.04.11,3,Katapang,age_group,50-54,perempuan,4719,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.04.11,3,Katapang,age_group,50-54,,9294,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.04.11,3,Katapang,age_group,55-59,laki_laki,3744,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.04.11,3,Katapang,age_group,55-59,perempuan,3468,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.04.11,3,Katapang,age_group,55-59,,7212,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.04.11,3,Katapang,age_group,60-64,laki_laki,2662,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.04.11,3,Katapang,age_group,60-64,perempuan,2599,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.04.11,3,Katapang,age_group,60-64,,5261,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.04.11,3,Katapang,age_group,65-69,laki_laki,1812,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.04.11,3,Katapang,age_group,65-69,perempuan,1887,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.04.11,3,Katapang,age_group,65-69,,3699,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.04.11,3,Katapang,age_group,70-74,laki_laki,1120,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.04.11,3,Katapang,age_group,70-74,perempuan,1198,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.04.11,3,Katapang,age_group,70-74,,2318,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.04.11,3,Katapang,age_group,75+,laki_laki,1115,jiwa,2025,registration,total_population,3.2,30,,75+
+32.04.11,3,Katapang,age_group,75+,perempuan,1303,jiwa,2025,registration,total_population,3.2,30,,75+
+32.04.11,3,Katapang,age_group,75+,,2418,jiwa,2025,registration,total_population,3.2,30,,75+
+32.04.11,3,Kecamatan Katapang,sex,laki_laki,,71863,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+32.04.11,3,Kecamatan Katapang,sex,perempuan,,69685,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+32.04.11,3,Kecamatan Katapang,total,total,,141548,jiwa,2025,registration,total_population,3.2,30,,

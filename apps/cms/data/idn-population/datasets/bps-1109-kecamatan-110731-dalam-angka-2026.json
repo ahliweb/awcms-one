@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1109-kecamatan-110731-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.07.31",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Titeue Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "1109",
+  "publisherWebsite": "https://pidiekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://pidiekab.bps.go.id), publikasi \"Kecamatan Titeue Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1109112",
+  "publicationNumber": "11090.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pidiekab.bps.go.id/id/publication/2026/09/28/d2b03e57a0ada8bede1069bb/kecamatan-titeue-dalam-angka-2026.html",
+  "sourceFileSha256": "8046f650240f3491ef25cf72707213f81b8ff5b62dcd5a042e41d94f02c4c11c",
+  "sourceFileBytes": 3652301,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pidie",
+  "csvPath": "datasets/bps-1109-kecamatan-110731-dalam-angka-2026.csv",
+  "csvSha256": "ab72ed267293fd1a0fdd584028693ccc80ce7e993473b916813789ffb63b24e7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Titeue, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Asan Tongpeudeng\": unmatched ",
+    "table 3.1: row not stored: row \"Mesjid Tongpeudeng\": unmatched ",
+    "table 3.1: row not stored: row \"Pulo Loih\": unmatched ",
+    "table 3.1: row not stored: row \"Paloh Naleung\": unmatched ",
+    "table 3.1: row not stored: row \"Dayah Menara\": unmatched ",
+    "table 3.1: row not stored: row \"Asan Tongpeudeng\": unmatched ",
+    "table 3.1: row not stored: row \"Mesjid Tongpeudeng\": unmatched ",
+    "table 3.1: row not stored: row \"Pulo Loih\": unmatched ",
+    "table 3.1: row not stored: row \"Paloh Naleung\": unmatched ",
+    "table 3.1: row not stored: row \"Dayah Menara\": unmatched "
+  ]
+}

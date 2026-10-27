@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.19.2001,4,WATUWUNGKUK,sex,laki_laki,,1096,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2001,4,WATUWUNGKUK,sex,perempuan,,1104,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2001,4,WATUWUNGKUK,total,total,,2200,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2002,4,SUMBERSUKO,sex,laki_laki,,1573,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2002,4,SUMBERSUKO,sex,perempuan,,1567,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2002,4,SUMBERSUKO,total,total,,3140,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2003,4,SUMBERAGUNG,sex,laki_laki,,798,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2003,4,SUMBERAGUNG,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2003,4,SUMBERAGUNG,total,total,,1666,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2004,4,NGEPOH,sex,laki_laki,,956,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2004,4,NGEPOH,sex,perempuan,,965,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2004,4,NGEPOH,total,total,,1921,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2005,4,MRANGONLAWANG,sex,laki_laki,,1350,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2005,4,MRANGONLAWANG,sex,perempuan,,1388,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2005,4,MRANGONLAWANG,total,total,,2738,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2006,4,SEKARKARE,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2006,4,SEKARKARE,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2006,4,SEKARKARE,total,total,,1308,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2007,4,TAMANSARI,sex,laki_laki,,3767,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2007,4,TAMANSARI,sex,perempuan,,3715,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2007,4,TAMANSARI,total,total,,7482,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2008,4,TEGALREJO,sex,laki_laki,,1656,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2008,4,TEGALREJO,sex,perempuan,,1692,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2008,4,TEGALREJO,total,total,,3348,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2009,4,KALIREJO,sex,laki_laki,,2950,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2009,4,KALIREJO,sex,perempuan,,2953,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2009,4,KALIREJO,total,total,,5903,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2010,4,KEDUNGDALEM,sex,laki_laki,,2799,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2010,4,KEDUNGDALEM,sex,perempuan,,2835,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2010,4,KEDUNGDALEM,total,total,,5634,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2011,4,KALISALAM,sex,laki_laki,,2064,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2011,4,KALISALAM,sex,perempuan,,2030,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2011,4,KALISALAM,total,total,,4094,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2012,4,RANDUPUTIH,sex,laki_laki,,1950,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2012,4,RANDUPUTIH,sex,perempuan,,1988,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2012,4,RANDUPUTIH,total,total,,3938,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2013,4,DRINGU,sex,laki_laki,,2068,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2013,4,DRINGU,sex,perempuan,,2121,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2013,4,DRINGU,total,total,,4189,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19.2014,4,PABEAN,sex,laki_laki,,3289,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19.2014,4,PABEAN,sex,perempuan,,3236,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19.2014,4,PABEAN,total,total,,6525,jiwa,2025,registration,total_population,3.1,24,,
+35.13.19,3,KECAMATAN DRINGU,sex,laki_laki,,26961,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.19,3,KECAMATAN DRINGU,sex,perempuan,,27125,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.19,3,KECAMATAN DRINGU,total,total,,54086,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-1110-kecamatan-111107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.11.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ganda Pura Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bireuen",
+  "publisherDomain": "1110",
+  "publisherWebsite": "https://bireuenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bireuen (https://bireuenkab.bps.go.id), publikasi \"Kecamatan Ganda Pura Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11100.25005",
+  "issn": "2597-744X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bireuenkab.bps.go.id/id/publication/2026/09/28/cc3e121909e259df0a1f283d/kecamatan-ganda-pura-dalam-angka-2026.html",
+  "sourceFileSha256": "438a57f923e8015538af03e98299779c6d1a2de13a5376dc0959df5365d93bb3",
+  "sourceFileBytes": 2760003,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bireuen.",
+  "csvPath": "datasets/bps-1110-kecamatan-111107-dalam-angka-2026.csv",
+  "csvSha256": "34f12d37dcf8ad0257d859904845311b3797e1113eb5539f9e5dd25c02feae7a",
+  "tablesUsed": [
+    {
+      "table": "1.2",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan GANDAPURA, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.2: row not stored: row \"Paloh Kayee Kunyet\": unmatched ",
+    "table 1.2: row not stored: row \"Mon Jeureujak\": unmatched ",
+    "table 1.2: row not stored: row \"Cot Teubee\": unmatched "
+  ]
+}

@@ -1,0 +1,21 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.20.2001,4,Kebun Durian,sex,perempuan,,2085,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2001,4,Kebun Durian,total,total,,4351,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2005,4,Subarak,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2005,4,Subarak,total,total,,1392,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2002,4,Gunung Sahilan,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2002,4,Gunung Sahilan,total,total,,1842,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2004,4,Suka Makmur,sex,perempuan,,1602,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2004,4,Suka Makmur,total,total,,3205,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2003,4,Gunung Sari,sex,perempuan,,2289,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2003,4,Gunung Sari,total,total,,4754,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2009,4,Makmur Sejahtera,sex,perempuan,,890,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2009,4,Makmur Sejahtera,total,total,,1822,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2006,4,Sungai Lipai,sex,perempuan,,1227,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2006,4,Sungai Lipai,total,total,,2559,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2007,4,Sahilan Darussalam,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2007,4,Sahilan Darussalam,total,total,,1342,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20.2008,4,Gunung Mulya,sex,perempuan,,1205,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20.2008,4,Gunung Mulya,total,total,,2483,jiwa,2025,registration,total_population,3.1,11,,
+14.01.20,3,Gunung Sahilan,sex,perempuan,,11528,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.20,3,Gunung Sahilan,total,total,,23750,jiwa,2025,registration,total_population,3.1,11,,

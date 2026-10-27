@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.09.2006,4,Tanjung Saluksuk,sex,laki_laki,,325,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2006,4,Tanjung Saluksuk,sex,perempuan,,313,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2006,4,Tanjung Saluksuk,total,total,,638,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2001,4,Simanduma,sex,laki_laki,,503,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2001,4,Simanduma,sex,perempuan,,531,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2001,4,Simanduma,total,total,,1034,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2002,4,Bandar Huta Usang,sex,laki_laki,,1103,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2002,4,Bandar Huta Usang,sex,perempuan,,1127,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2002,4,Bandar Huta Usang,total,total,,2230,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2004,4,Lingga Raja,sex,laki_laki,,1028,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2004,4,Lingga Raja,sex,perempuan,,1016,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2004,4,Lingga Raja,total,total,,2044,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2003,4,Onan Lama,sex,laki_laki,,942,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2003,4,Onan Lama,sex,perempuan,,910,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2003,4,Onan Lama,total,total,,1852,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2007,4,Bukit Tinggi,sex,laki_laki,,725,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2007,4,Bukit Tinggi,sex,perempuan,,785,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2007,4,Bukit Tinggi,total,total,,1510,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2005,4,Laksa,sex,laki_laki,,557,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2005,4,Laksa,sex,perempuan,,535,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2005,4,Laksa,total,total,,1092,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2008,4,Simartugan,sex,laki_laki,,1058,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2008,4,Simartugan,sex,perempuan,,1010,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2008,4,Simartugan,total,total,,2068,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2013,4,Perrik Mbue,sex,laki_laki,,470,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2013,4,Perrik Mbue,sex,perempuan,,496,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2013,4,Perrik Mbue,total,total,,966,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2010,4,Lingga Raja II,sex,laki_laki,,1367,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2010,4,Lingga Raja II,sex,perempuan,,1346,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2010,4,Lingga Raja II,total,total,,2713,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2012,4,Bukit Baru,sex,laki_laki,,358,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2012,4,Bukit Baru,sex,perempuan,,355,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2012,4,Bukit Baru,total,total,,713,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2011,4,Mbinanga,sex,laki_laki,,401,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2011,4,Mbinanga,sex,perempuan,,407,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2011,4,Mbinanga,total,total,,808,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09.2009,4,Kuta Usang,sex,laki_laki,,724,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09.2009,4,Kuta Usang,sex,perempuan,,701,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09.2009,4,Kuta Usang,total,total,,1425,jiwa,2026,registration,total_population,3.1,22,,
+12.11.09,3,Pegagan Hilir,sex,laki_laki,,9561,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.09,3,Pegagan Hilir,sex,perempuan,,9532,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.09,3,Pegagan Hilir,total,total,,19093,jiwa,2026,registration,total_population,3.1,22,,

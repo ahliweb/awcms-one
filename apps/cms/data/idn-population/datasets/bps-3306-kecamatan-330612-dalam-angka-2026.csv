@@ -1,0 +1,113 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.06.12.2002,4,Kroyo Kulon,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2002,4,Kroyo Kulon,total,total,,995,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2001,4,Waled,sex,perempuan,,293,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2001,4,Waled,total,total,,542,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2005,4,Paitan,sex,perempuan,,821,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2005,4,Paitan,total,total,,1695,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2006,4,Gedong,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2006,4,Gedong,total,total,,823,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2007,4,Rowobayem,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2007,4,Rowobayem,total,total,,1934,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2008,4,Kemiri Kidul,sex,perempuan,,1185,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2008,4,Kemiri Kidul,total,total,,2264,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2026,4,Kerep,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2026,4,Kerep,total,total,,1553,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2004,4,Gesikan,sex,perempuan,,457,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2004,4,Gesikan,total,total,,910,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2003,4,Rejosari,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2003,4,Rejosari,total,total,,1475,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2027,4,Kroyo Lor,sex,perempuan,,860,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2027,4,Kroyo Lor,total,total,,1736,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2025,4,Kemiri Lor,sex,perempuan,,982,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2025,4,Kemiri Lor,total,total,,1997,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2009,4,Bedono Kluwung,sex,perempuan,,1257,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2009,4,Bedono Kluwung,total,total,,2533,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2010,4,Bedono Pageron,sex,perempuan,,993,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2010,4,Bedono Pageron,total,total,,2045,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2012,4,Rebug,sex,perempuan,,833,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2012,4,Rebug,total,total,,1647,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2013,4,Loning,sex,perempuan,,919,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2013,4,Loning,total,total,,1796,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2014,4,Winong,sex,perempuan,,1323,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2014,4,Winong,total,total,,2662,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2015,4,Sutoragan,sex,perempuan,,805,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2015,4,Sutoragan,total,total,,1667,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2016,4,Jatiwangsan,sex,perempuan,,695,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2016,4,Jatiwangsan,total,total,,1404,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2019,4,Turus,sex,perempuan,,954,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.12.2019,4,Turus,total,total,,1931,jiwa,2025,registration,total_population,3.1,21,,
+33.06.12.2021,4,Kedunglo,sex,perempuan,,1232,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2021,4,Kedunglo,total,total,,2501,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2023,4,Sidodadi,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2023,4,Sidodadi,total,total,,1018,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2034,4,Kaliurip,sex,perempuan,,518,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2034,4,Kaliurip,total,total,,1055,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2024,4,Kalimeneng,sex,perempuan,,710,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2024,4,Kalimeneng,total,total,,1420,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2033,4,Rejowinangun,sex,perempuan,,1324,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2033,4,Rejowinangun,total,total,,2669,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2028,4,Samping,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2028,4,Samping,total,total,,3140,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2029,4,Wonosari,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2029,4,Wonosari,total,total,,654,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2031,4,Kapiteran,sex,perempuan,,207,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2031,4,Kapiteran,total,total,,424,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2032,4,Wanurojo,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2032,4,Wanurojo,total,total,,1094,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2030,4,Kaliglagah,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2030,4,Kaliglagah,total,total,,1355,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2039,4,Gunungteges,sex,perempuan,,268,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2039,4,Gunungteges,total,total,,519,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2040,4,Purbayan,sex,perempuan,,383,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2040,4,Purbayan,total,total,,780,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2037,4,Kedung Pomahan Kulon,sex,perempuan,,892,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2037,4,Kedung Pomahan Kulon,total,total,,1881,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2036,4,Karangluas,sex,perempuan,,357,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2036,4,Karangluas,total,total,,706,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2035,4,Kedung Pomahan Wetan,sex,perempuan,,1089,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2035,4,Kedung Pomahan Wetan,total,total,,2301,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2022,4,Wonosuko,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2022,4,Wonosuko,total,total,,1351,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2020,4,Dilem,sex,perempuan,,707,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2020,4,Dilem,total,total,,1403,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2018,4,Girijoyo,sex,perempuan,,829,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2018,4,Girijoyo,total,total,,1706,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12.2017,4,Girimulyo,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12.2017,4,Girimulyo,total,total,,1252,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12,3,Kecamatan Kemiri,sex,perempuan,,30472,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.12,3,Kecamatan Kemiri,total,total,,61521,jiwa,2025,registration,total_population,3.1,22,,
+33.06.12,3,Kemiri,age_group,0-4,perempuan,1712,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.12,3,Kemiri,age_group,0-4,,3565,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.12,3,Kemiri,age_group,5-9,perempuan,2140,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.12,3,Kemiri,age_group,5-9,,4345,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.12,3,Kemiri,age_group,10-14,perempuan,2126,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.12,3,Kemiri,age_group,10-14,,4491,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.12,3,Kemiri,age_group,15-19,perempuan,2144,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.12,3,Kemiri,age_group,15-19,,4533,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.12,3,Kemiri,age_group,20-24,perempuan,2041,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.12,3,Kemiri,age_group,20-24,,4187,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.12,3,Kemiri,age_group,25-29,perempuan,2196,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.12,3,Kemiri,age_group,25-29,,4466,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.12,3,Kemiri,age_group,30-34,perempuan,2068,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.12,3,Kemiri,age_group,30-34,,4177,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.12,3,Kemiri,age_group,35-39,perempuan,2184,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.12,3,Kemiri,age_group,35-39,,4429,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.12,3,Kemiri,age_group,40-44,perempuan,2072,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.12,3,Kemiri,age_group,40-44,,4218,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.12,3,Kemiri,age_group,45-49,perempuan,1938,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.12,3,Kemiri,age_group,45-49,,3940,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.12,3,Kemiri,age_group,50-54,perempuan,1933,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.12,3,Kemiri,age_group,50-54,,3826,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.12,3,Kemiri,age_group,55-59,perempuan,2066,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.12,3,Kemiri,age_group,55-59,,4032,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.12,3,Kemiri,age_group,60-64,perempuan,1940,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.12,3,Kemiri,age_group,60-64,,3749,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.12,3,Kemiri,age_group,65-69,perempuan,1610,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.12,3,Kemiri,age_group,65-69,,3194,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.12,3,Kemiri,age_group,70-74,perempuan,922,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.12,3,Kemiri,age_group,70-74,,1901,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.12,3,Kemiri,age_group,75+,perempuan,1380,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.12,3,Kemiri,age_group,75+,,2468,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.12,3,Kecamatan Kemiri,sex,perempuan,,30472,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+33.06.12,3,Kecamatan Kemiri,total,total,,61521,jiwa,2025,registration,total_population,3.2,25,,

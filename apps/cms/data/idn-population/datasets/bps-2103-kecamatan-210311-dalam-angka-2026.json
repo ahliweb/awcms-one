@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-2103-kecamatan-210311-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.03.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulau Tiga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Natuna",
+  "publisherDomain": "2103",
+  "publisherWebsite": "https://natunakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Natuna (https://natunakab.bps.go.id), publikasi \"Kecamatan Pulau Tiga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2103043",
+  "publicationNumber": "21030.26013",
+  "issn": "2963-6981",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://natunakab.bps.go.id/id/publication/2026/09/28/276257883c52276fe2cb3d12/kecamatan-pulau-tiga-dalam-angka-2026.html",
+  "sourceFileSha256": "281cbe58c94162127cd0651afcfa1b9225097f6e574a474c926752a1aafbfe30",
+  "sourceFileBytes": 7320315,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Natuna.",
+  "csvPath": "datasets/bps-2103-kecamatan-210311-dalam-angka-2026.csv",
+  "csvSha256": "f4d1c6ae304dd7c282be811cc9f37993bbdf5c16e0ceb2e551db397fae12ee6e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pulau Tiga, 2026",
+      "printedPages": [26, 27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pulau Tiga, 2026",
+      "printedPages": [28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Tiga Pulau Tiga District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Tiga Pulau Tiga District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Pulau Tiga Pulau Tiga District\": unmatched "
+  ]
+}

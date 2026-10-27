@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.08.25.2011,4,Suka Damai,sex,laki_laki,,712,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2011,4,Suka Damai,sex,perempuan,,713,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2011,4,Suka Damai,total,total,,1425,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2010,4,Pulo Meuria,sex,laki_laki,,333,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2010,4,Pulo Meuria,sex,perempuan,,293,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2010,4,Pulo Meuria,total,total,,626,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2009,4,Krueng Mbang,sex,laki_laki,,176,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2009,4,Krueng Mbang,sex,perempuan,,174,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2009,4,Krueng Mbang,total,total,,350,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2006,4,Dayah Seupeng,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2006,4,Dayah Seupeng,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2006,4,Dayah Seupeng,total,total,,781,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2007,4,Uram Jalan,sex,laki_laki,,161,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2007,4,Uram Jalan,sex,perempuan,,158,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2007,4,Uram Jalan,total,total,,319,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2008,4,Peudari,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2008,4,Peudari,sex,perempuan,,495,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2008,4,Peudari,total,total,,985,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2005,4,Rayeuk Jawa,sex,laki_laki,,321,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2005,4,Rayeuk Jawa,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2005,4,Rayeuk Jawa,total,total,,649,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2004,4,Darussalam,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2004,4,Darussalam,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2004,4,Darussalam,total,total,,462,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2003,4,Alue Awe,sex,laki_laki,,164,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2003,4,Alue Awe,sex,perempuan,,155,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2003,4,Alue Awe,total,total,,319,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2001,4,Lhok Asan,sex,laki_laki,,123,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2001,4,Lhok Asan,sex,perempuan,,118,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2001,4,Lhok Asan,total,total,,241,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25.2002,4,Darul Aman,sex,laki_laki,,101,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25.2002,4,Darul Aman,sex,perempuan,,78,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25.2002,4,Darul Aman,total,total,,179,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25,3,Geureudong Pase,sex,laki_laki,,3206,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.25,3,Geureudong Pase,sex,perempuan,,3130,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.25,3,Geureudong Pase,total,total,,6336,jiwa,2025,registration,total_population,3.1,28,,
+11.08.25,3,Geureudong Pase,age_group,0-4,laki_laki,309,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.25,3,Geureudong Pase,age_group,0-4,perempuan,288,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.25,3,Geureudong Pase,age_group,0-4,,597,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.25,3,Geureudong Pase,age_group,5-9,laki_laki,371,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.25,3,Geureudong Pase,age_group,5-9,perempuan,331,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.25,3,Geureudong Pase,age_group,5-9,,702,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.25,3,Geureudong Pase,age_group,10-14,laki_laki,337,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.25,3,Geureudong Pase,age_group,10-14,perempuan,309,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.25,3,Geureudong Pase,age_group,10-14,,646,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.25,3,Geureudong Pase,age_group,15-19,laki_laki,273,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.25,3,Geureudong Pase,age_group,15-19,perempuan,264,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.25,3,Geureudong Pase,age_group,15-19,,537,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.25,3,Geureudong Pase,age_group,20-24,laki_laki,273,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.25,3,Geureudong Pase,age_group,20-24,perempuan,274,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.25,3,Geureudong Pase,age_group,20-24,,547,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.25,3,Geureudong Pase,age_group,25-29,laki_laki,269,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.25,3,Geureudong Pase,age_group,25-29,perempuan,289,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.25,3,Geureudong Pase,age_group,25-29,,558,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.25,3,Geureudong Pase,age_group,30-34,laki_laki,247,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.25,3,Geureudong Pase,age_group,30-34,perempuan,209,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.25,3,Geureudong Pase,age_group,30-34,,456,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.25,3,Geureudong Pase,age_group,35-39,laki_laki,266,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.25,3,Geureudong Pase,age_group,35-39,perempuan,264,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.25,3,Geureudong Pase,age_group,35-39,,530,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.25,3,Geureudong Pase,age_group,40-44,laki_laki,231,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.25,3,Geureudong Pase,age_group,40-44,perempuan,216,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.25,3,Geureudong Pase,age_group,40-44,,447,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.25,3,Geureudong Pase,age_group,45-49,laki_laki,193,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.25,3,Geureudong Pase,age_group,45-49,perempuan,175,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.25,3,Geureudong Pase,age_group,45-49,,368,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.25,3,Geureudong Pase,age_group,50-54,laki_laki,128,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.25,3,Geureudong Pase,age_group,50-54,perempuan,150,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.25,3,Geureudong Pase,age_group,50-54,,278,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.25,3,Geureudong Pase,age_group,55-59,laki_laki,117,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.25,3,Geureudong Pase,age_group,55-59,perempuan,113,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.25,3,Geureudong Pase,age_group,55-59,,230,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.25,3,Geureudong Pase,age_group,60-64,laki_laki,71,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.25,3,Geureudong Pase,age_group,60-64,perempuan,87,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.25,3,Geureudong Pase,age_group,60-64,,158,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.25,3,Geureudong Pase,age_group,65+,laki_laki,121,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.25,3,Geureudong Pase,age_group,65+,perempuan,161,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.25,3,Geureudong Pase,age_group,65+,,282,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.25,3,Geureudong Pase,sex,laki_laki,,3206,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+11.08.25,3,Geureudong Pase,sex,perempuan,,3130,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+11.08.25,3,Geureudong Pase,total,total,,6336,jiwa,2025,registration,total_population,3.2,30,,

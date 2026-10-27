@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.02.13.2001,4,Wonokromo,sex,laki_laki,,7633,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.13.2001,4,Wonokromo,sex,perempuan,,7564,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.13.2001,4,Wonokromo,total,total,,15197,jiwa,2025,registration,total_population,3.1,27,,
+34.02.13.2002,4,Pleret,sex,laki_laki,,7138,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.13.2002,4,Pleret,sex,perempuan,,7026,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.13.2002,4,Pleret,total,total,,14164,jiwa,2025,registration,total_population,3.1,27,,
+34.02.13.2003,4,Segoroyoso,sex,laki_laki,,4722,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.13.2003,4,Segoroyoso,sex,perempuan,,4659,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.13.2003,4,Segoroyoso,total,total,,9381,jiwa,2025,registration,total_population,3.1,27,,
+34.02.13.2004,4,Bawuran,sex,laki_laki,,3382,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.13.2004,4,Bawuran,sex,perempuan,,3323,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.13.2004,4,Bawuran,total,total,,6705,jiwa,2025,registration,total_population,3.1,27,,
+34.02.13.2005,4,Wonolelo,sex,laki_laki,,2567,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.13.2005,4,Wonolelo,sex,perempuan,,2522,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.13.2005,4,Wonolelo,total,total,,5089,jiwa,2025,registration,total_population,3.1,27,,
+34.02.13,3,Pleret,sex,laki_laki,,25442,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.13,3,Pleret,sex,perempuan,,25094,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.13,3,Pleret,total,total,,50536,jiwa,2025,registration,total_population,3.1,27,,
+34.02.13,3,Pleret,age_group,0-4,laki_laki,1515,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.13,3,Pleret,age_group,0-4,perempuan,1386,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.13,3,Pleret,age_group,0-4,,2901,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.13,3,Pleret,age_group,5-9,laki_laki,1925,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.13,3,Pleret,age_group,5-9,perempuan,1780,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.13,3,Pleret,age_group,5-9,,3705,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.13,3,Pleret,age_group,10-14,laki_laki,2039,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.13,3,Pleret,age_group,10-14,perempuan,1933,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.13,3,Pleret,age_group,10-14,,3972,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.13,3,Pleret,age_group,15-19,laki_laki,2134,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.13,3,Pleret,age_group,15-19,perempuan,2027,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.13,3,Pleret,age_group,15-19,,4161,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.13,3,Pleret,age_group,20-24,laki_laki,1951,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.13,3,Pleret,age_group,20-24,perempuan,1706,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.13,3,Pleret,age_group,20-24,,3657,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.13,3,Pleret,age_group,25-29,laki_laki,1756,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.13,3,Pleret,age_group,25-29,perempuan,1770,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.13,3,Pleret,age_group,25-29,,3526,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.13,3,Pleret,age_group,30-34,laki_laki,1830,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.13,3,Pleret,age_group,30-34,perempuan,1834,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.13,3,Pleret,age_group,30-34,,3664,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.13,3,Pleret,age_group,35-39,laki_laki,1646,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.13,3,Pleret,age_group,35-39,perempuan,1744,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.13,3,Pleret,age_group,35-39,,3390,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.13,3,Pleret,age_group,40-44,laki_laki,2017,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.13,3,Pleret,age_group,40-44,perempuan,2044,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.13,3,Pleret,age_group,40-44,,4061,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.13,3,Pleret,age_group,45-49,laki_laki,1947,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.13,3,Pleret,age_group,45-49,perempuan,1901,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.13,3,Pleret,age_group,45-49,,3848,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.13,3,Pleret,age_group,50-54,laki_laki,1787,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.13,3,Pleret,age_group,50-54,perempuan,1822,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.13,3,Pleret,age_group,50-54,,3609,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.13,3,Pleret,age_group,55-59,laki_laki,1575,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.13,3,Pleret,age_group,55-59,perempuan,1527,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.13,3,Pleret,age_group,55-59,,3102,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.13,3,Pleret,age_group,60-64,laki_laki,1188,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.13,3,Pleret,age_group,60-64,perempuan,1209,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.13,3,Pleret,age_group,60-64,,2397,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.13,3,Pleret,age_group,65-69,laki_laki,910,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.13,3,Pleret,age_group,65-69,perempuan,958,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.13,3,Pleret,age_group,65-69,,1868,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.13,3,Pleret,age_group,70-74,laki_laki,633,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.13,3,Pleret,age_group,70-74,perempuan,604,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.13,3,Pleret,age_group,70-74,,1237,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.13,3,Pleret,age_group,75+,laki_laki,589,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.13,3,Pleret,age_group,75+,perempuan,849,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.13,3,Pleret,age_group,75+,,1438,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.13,3,Pleret,sex,laki_laki,,25442,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+34.02.13,3,Pleret,sex,perempuan,,25094,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+34.02.13,3,Pleret,total,total,,50536,jiwa,2025,registration,total_population,3.2,29,,

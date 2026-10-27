@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1101-kecamatan-110907-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.09.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Teupah Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Simeulue",
+  "publisherDomain": "1101",
+  "publisherWebsite": "https://simeuluekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simeulue (https://simeuluekab.bps.go.id), publikasi \"Kecamatan Teupah Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11010.260065",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://simeuluekab.bps.go.id/id/publication/2026/09/28/e2d49b4a0f534b0dfe6031d4/kecamatan-teupah-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "35c7a28c6ddafc4f102e24dc2e556f6e32ca2b64288b60abb02960c35e5b5f2c",
+  "sourceFileBytes": 8768616,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simeulue.",
+  "csvPath": "datasets/bps-1101-kecamatan-110907-dalam-angka-2026.csv",
+  "csvSha256": "f5c5d1ccdd4b72dae8d51eac42665ed97314d9549f13f8ff4ff15c73f11abfc4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Teupah Selatan, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Teupah Selatan, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pulau Bengkalak\": unmatched ",
+    "table 3.1: row not stored: row \"Seuneubok\": unmatched ",
+    "table 3.1: row not stored: row \"Pulau Bengkalak\": unmatched ",
+    "table 3.1: row not stored: row \"Seuneubok\": unmatched "
+  ]
+}

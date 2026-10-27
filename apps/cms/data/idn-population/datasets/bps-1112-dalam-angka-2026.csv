@@ -1,0 +1,122 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.12.03,3,Manggeng,total,total,,15688,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.09,3,Lembah Sabil,total,total,,11372,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.02,3,Tangan-Tangan,total,total,,14173,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.07,3,Setia,total,total,,8987,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.01,3,Blangpidie,total,total,,24319,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.08,3,Jeumpa,total,total,,11718,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.04,3,Susoh,total,total,,25486,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.05,3,Kuala Batee,total,total,,22651,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12.06,3,Babahrot,total,total,,22343,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12,2,Aceh Barat Daya,total,total,,156737,jiwa,2025,registration,total_population,3.1.1,48,,
+11.12,2,Kabupaten Aceh Barat Daya,age_group,0-4,laki_laki,7438,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+11.12,2,Kabupaten Aceh Barat Daya,age_group,0-4,perempuan,7128,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+11.12,2,Kabupaten Aceh Barat Daya,age_group,0-4,,14566,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+11.12,2,Kabupaten Aceh Barat Daya,age_group,5-9,laki_laki,6585,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+11.12,2,Kabupaten Aceh Barat Daya,age_group,5-9,perempuan,6281,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+11.12,2,Kabupaten Aceh Barat Daya,age_group,5-9,,12866,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+11.12,2,Kabupaten Aceh Barat Daya,age_group,10-14,laki_laki,6422,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+11.12,2,Kabupaten Aceh Barat Daya,age_group,10-14,perempuan,5992,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+11.12,2,Kabupaten Aceh Barat Daya,age_group,10-14,,12414,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+11.12,2,Kabupaten Aceh Barat Daya,age_group,15-19,laki_laki,6351,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+11.12,2,Kabupaten Aceh Barat Daya,age_group,15-19,perempuan,5954,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+11.12,2,Kabupaten Aceh Barat Daya,age_group,15-19,,12305,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+11.12,2,Kabupaten Aceh Barat Daya,age_group,20-24,laki_laki,6524,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+11.12,2,Kabupaten Aceh Barat Daya,age_group,20-24,perempuan,6225,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+11.12,2,Kabupaten Aceh Barat Daya,age_group,20-24,,12749,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+11.12,2,Kabupaten Aceh Barat Daya,age_group,25-29,laki_laki,7234,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+11.12,2,Kabupaten Aceh Barat Daya,age_group,25-29,perempuan,6831,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+11.12,2,Kabupaten Aceh Barat Daya,age_group,25-29,,14065,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+11.12,2,Kabupaten Aceh Barat Daya,age_group,30-34,laki_laki,7068,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+11.12,2,Kabupaten Aceh Barat Daya,age_group,30-34,perempuan,6496,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+11.12,2,Kabupaten Aceh Barat Daya,age_group,30-34,,13564,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+11.12,2,Kabupaten Aceh Barat Daya,age_group,35-39,laki_laki,6216,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+11.12,2,Kabupaten Aceh Barat Daya,age_group,35-39,perempuan,6261,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+11.12,2,Kabupaten Aceh Barat Daya,age_group,35-39,,12477,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+11.12,2,Kabupaten Aceh Barat Daya,age_group,40-44,laki_laki,6064,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+11.12,2,Kabupaten Aceh Barat Daya,age_group,40-44,perempuan,6101,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+11.12,2,Kabupaten Aceh Barat Daya,age_group,40-44,,12165,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+11.12,2,Kabupaten Aceh Barat Daya,age_group,45-49,laki_laki,5547,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+11.12,2,Kabupaten Aceh Barat Daya,age_group,45-49,perempuan,5530,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+11.12,2,Kabupaten Aceh Barat Daya,age_group,45-49,,11077,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+11.12,2,Kabupaten Aceh Barat Daya,age_group,50-54,laki_laki,4617,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+11.12,2,Kabupaten Aceh Barat Daya,age_group,50-54,perempuan,4664,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+11.12,2,Kabupaten Aceh Barat Daya,age_group,50-54,,9281,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+11.12,2,Kabupaten Aceh Barat Daya,age_group,55-59,laki_laki,3873,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+11.12,2,Kabupaten Aceh Barat Daya,age_group,55-59,perempuan,4021,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+11.12,2,Kabupaten Aceh Barat Daya,age_group,55-59,,7894,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+11.12,2,Kabupaten Aceh Barat Daya,age_group,60-64,laki_laki,3118,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+11.12,2,Kabupaten Aceh Barat Daya,age_group,60-64,perempuan,3143,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+11.12,2,Kabupaten Aceh Barat Daya,age_group,60-64,,6261,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+11.12,2,Kabupaten Aceh Barat Daya,age_group,65-69,laki_laki,2154,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+11.12,2,Kabupaten Aceh Barat Daya,age_group,65-69,perempuan,2224,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+11.12,2,Kabupaten Aceh Barat Daya,age_group,65-69,,4378,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+11.12,2,Kabupaten Aceh Barat Daya,age_group,70-74,laki_laki,1344,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+11.12,2,Kabupaten Aceh Barat Daya,age_group,70-74,perempuan,1334,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+11.12,2,Kabupaten Aceh Barat Daya,age_group,70-74,,2678,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+11.12,2,Kabupaten Aceh Barat Daya,age_group,75+,laki_laki,1024,jiwa,2025,projection,total_population,3.1.2,51,,75+
+11.12,2,Kabupaten Aceh Barat Daya,age_group,75+,perempuan,1577,jiwa,2025,projection,total_population,3.1.2,51,,75+
+11.12,2,Kabupaten Aceh Barat Daya,age_group,75+,,2601,jiwa,2025,projection,total_population,3.1.2,51,,75+
+11.12,2,Aceh Barat Daya,sex,laki_laki,,81579,jiwa,2025,projection,total_population,3.1.2,51,,Laki-Laki
+11.12,2,Aceh Barat Daya,sex,perempuan,,79762,jiwa,2025,projection,total_population,3.1.2,51,,Perempuan
+11.12,2,Aceh Barat Daya,total,total,,161341,jiwa,2025,projection,total_population,3.1.2,51,,
+11.12.03,3,Manggeng,religion,islam,,15688,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.03,3,Manggeng,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Protestan
+11.12.03,3,Manggeng,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.03,3,Manggeng,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+11.12.03,3,Manggeng,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Budha
+11.12.03,3,Manggeng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.09,3,Lembah Sabil,religion,islam,,11372,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.09,3,Lembah Sabil,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Protestan
+11.12.09,3,Lembah Sabil,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.09,3,Lembah Sabil,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+11.12.09,3,Lembah Sabil,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Budha
+11.12.09,3,Lembah Sabil,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.02,3,Tangan-Tangan,religion,islam,,14173,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.02,3,Tangan-Tangan,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Protestan
+11.12.02,3,Tangan-Tangan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.02,3,Tangan-Tangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+11.12.02,3,Tangan-Tangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Budha
+11.12.02,3,Tangan-Tangan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.07,3,Setia,religion,islam,,8971,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.07,3,Setia,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+11.12.07,3,Setia,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.07,3,Setia,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+11.12.07,3,Setia,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Budha
+11.12.07,3,Setia,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.01,3,Blang Pidie,religion,islam,,24110,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.01,3,Blang Pidie,religion,kristen,,12,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+11.12.01,3,Blang Pidie,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+11.12.01,3,Blang Pidie,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+11.12.01,3,Blang Pidie,religion,buddha,,191,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+11.12.01,3,Blang Pidie,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.08,3,Jeumpa,religion,islam,,11718,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.08,3,Jeumpa,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Protestan
+11.12.08,3,Jeumpa,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.08,3,Jeumpa,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+11.12.08,3,Jeumpa,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Budha
+11.12.08,3,Jeumpa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.04,3,Susoh,religion,islam,,25478,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.04,3,Susoh,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+11.12.04,3,Susoh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.04,3,Susoh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+11.12.04,3,Susoh,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+11.12.04,3,Susoh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.05,3,Kuala Batee,religion,islam,,22642,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.05,3,Kuala Batee,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+11.12.05,3,Kuala Batee,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.05,3,Kuala Batee,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+11.12.05,3,Kuala Batee,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Budha
+11.12.05,3,Kuala Batee,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12.06,3,Babah Rot,religion,islam,,22340,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12.06,3,Babah Rot,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Protestan
+11.12.06,3,Babah Rot,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Katolik
+11.12.06,3,Babah Rot,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+11.12.06,3,Babah Rot,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Budha
+11.12.06,3,Babah Rot,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+11.12,2,Aceh Barat Daya,religion,islam,,156492,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+11.12,2,Aceh Barat Daya,religion,kristen,,31,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+11.12,2,Aceh Barat Daya,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+11.12,2,Aceh Barat Daya,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+11.12,2,Aceh Barat Daya,religion,buddha,,193,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+11.12,2,Aceh Barat Daya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya

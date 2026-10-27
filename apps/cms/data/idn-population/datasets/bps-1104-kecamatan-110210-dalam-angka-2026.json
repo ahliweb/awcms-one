@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1104-kecamatan-110210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.02.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Semadam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tenggara",
+  "publisherDomain": "1104",
+  "publisherWebsite": "https://acehtenggarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tenggara (https://acehtenggarakab.bps.go.id), publikasi \"Kecamatan Semadam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1104022",
+  "publicationNumber": "11040.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtenggarakab.bps.go.id/id/publication/2026/09/28/5e18164d8ff1b4e70a0ff25e/kecamatan-semadam-dalam-angka-2026.html",
+  "sourceFileSha256": "6e9e1696cb9596b19b17691de4dcb297e203a95ea5bdb13728bc0d3ac89e1972",
+  "sourceFileBytes": 1125522,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Tenggara.",
+  "csvPath": "datasets/bps-1104-kecamatan-110210-dalam-angka-2026.csv",
+  "csvSha256": "64743903404678d36e6028dbf55f9d9e0d0d56f6f6484c0d322c3df4235d50c4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Semadam, 2025 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lawe Kinga T Tinggi\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Beringin Gayo\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Kinga GAB\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Petanduk\": unmatched ",
+    "table 3.1: row not stored: row \"Sepakat Segenep\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Kinga Lapter\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Kinga T Tinggi\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Beringin Gayo\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Kinga GAB\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Petanduk\": unmatched ",
+    "table 3.1: row not stored: row \"Sepakat Segenep\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Kinga Lapter\": unmatched "
+  ]
+}

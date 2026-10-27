@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1301-kecamatan-130904-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.09.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siberut Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepulauan Mentawai",
+  "publisherDomain": "1301",
+  "publisherWebsite": "https://mentawaikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepulauan Mentawai (https://mentawaikab.bps.go.id), publikasi \"Kecamatan Siberut Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "13010.26017",
+  "issn": "3089-0543",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mentawaikab.bps.go.id/id/publication/2026/09/28/719633f1ad3adfbb5830a735/kecamatan-siberut-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "f42fd281cc5f9027741d83f31a83729dc303fab5bec99fbc19e3a5446cdd6af6",
+  "sourceFileBytes": 10663621,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepulauan Mentawai.",
+  "csvPath": "datasets/bps-1301-kecamatan-130904-dalam-angka-2026.csv",
+  "csvSha256": "fa59373dbe79602758ea16a3e81d5c323c7e72a0ff81632341c99f4249839337",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Siberut Utara, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siberut Utara (jiwa), 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

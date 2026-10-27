@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3519-kecamatan-351905-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.19.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kare Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Madiun",
+  "publisherDomain": "3519",
+  "publisherWebsite": "https://madiunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Madiun (https://madiunkab.bps.go.id), publikasi \"Kecamatan Kare Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.35190060",
+  "publicationNumber": "35190.26010",
+  "issn": "2598-6619",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkab.bps.go.id/id/publication/2026/09/28/5025da5d5c291f18a3de7b9d/kecamatan-kare-dalam-angka-2026.html",
+  "sourceFileSha256": "11f9a0011db1c54ee320986f4a797c6ba34264006ae134501f824938716290d5",
+  "sourceFileBytes": 4502580,
+  "sourcePages": [26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Madiun",
+  "csvPath": "datasets/bps-3519-kecamatan-351905-dalam-angka-2026.csv",
+  "csvSha256": "2013fba6a8db554d900c8070f97c093edaf037332ee633c4d98aca9faa7ee758",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kare, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kare, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.21.2005,4,Muara,sex,laki_laki,,6862,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2005,4,Muara,sex,perempuan,,6566,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2005,4,Muara,total,total,,13428,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2001,4,Wanasalam,sex,laki_laki,,4365,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2001,4,Wanasalam,sex,perempuan,,4105,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2001,4,Wanasalam,total,total,,8470,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2010,4,Sukatani,sex,laki_laki,,3589,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2010,4,Sukatani,sex,perempuan,,3514,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2010,4,Sukatani,total,total,,7103,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2007,4,Cikeusik,sex,laki_laki,,1747,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2007,4,Cikeusik,sex,perempuan,,1655,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2007,4,Cikeusik,total,total,,3402,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2002,4,Bejod,sex,laki_laki,,3027,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2002,4,Bejod,sex,perempuan,,2878,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2002,4,Bejod,total,total,,5905,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2011,4,Cipedang,sex,laki_laki,,2159,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2011,4,Cipedang,sex,perempuan,,2083,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2011,4,Cipedang,total,total,,4242,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2009,4,Cisarap,sex,laki_laki,,1909,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2009,4,Cisarap,sex,perempuan,,1807,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2009,4,Cisarap,total,total,,3716,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2012,4,Parungsari,sex,laki_laki,,1637,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2012,4,Parungsari,sex,perempuan,,1502,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2012,4,Parungsari,total,total,,3139,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2004,4,Cipeucang,sex,laki_laki,,1344,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2004,4,Cipeucang,sex,perempuan,,1236,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2004,4,Cipeucang,total,total,,2580,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2006,4,Parungpanjang,sex,laki_laki,,2455,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2006,4,Parungpanjang,sex,perempuan,,2213,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2006,4,Parungpanjang,total,total,,4668,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2003,4,Cilangkap,sex,laki_laki,,1350,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2003,4,Cilangkap,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2003,4,Cilangkap,total,total,,2584,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21.2013,4,Karang Pamindangan,sex,laki_laki,,1304,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.21.2013,4,Karang Pamindangan,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.21.2013,4,Karang Pamindangan,total,total,,2539,jiwa,2025,registration,total_population,3.1,28,,
+36.02.21,3,Wanasalam,age_group,0-4,laki_laki,2497,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+36.02.21,3,Wanasalam,age_group,0-4,perempuan,2305,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+36.02.21,3,Wanasalam,age_group,0-4,,4802,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+36.02.21,3,Wanasalam,age_group,5-9,laki_laki,3453,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+36.02.21,3,Wanasalam,age_group,5-9,perempuan,3050,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+36.02.21,3,Wanasalam,age_group,5-9,,6503,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+36.02.21,3,Wanasalam,age_group,10-14,laki_laki,3060,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+36.02.21,3,Wanasalam,age_group,10-14,perempuan,2898,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+36.02.21,3,Wanasalam,age_group,10-14,,5958,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+36.02.21,3,Wanasalam,age_group,15-19,laki_laki,2435,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+36.02.21,3,Wanasalam,age_group,15-19,perempuan,2382,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+36.02.21,3,Wanasalam,age_group,15-19,,4817,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+36.02.21,3,Wanasalam,age_group,20-24,laki_laki,2784,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+36.02.21,3,Wanasalam,age_group,20-24,perempuan,2592,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+36.02.21,3,Wanasalam,age_group,20-24,,5376,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+36.02.21,3,Wanasalam,age_group,25-29,laki_laki,3228,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+36.02.21,3,Wanasalam,age_group,25-29,perempuan,2815,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+36.02.21,3,Wanasalam,age_group,25-29,,6043,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+36.02.21,3,Wanasalam,age_group,30-34,laki_laki,2671,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+36.02.21,3,Wanasalam,age_group,30-34,perempuan,2386,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+36.02.21,3,Wanasalam,age_group,30-34,,5057,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+36.02.21,3,Wanasalam,age_group,35-39,laki_laki,2549,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+36.02.21,3,Wanasalam,age_group,35-39,perempuan,2516,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+36.02.21,3,Wanasalam,age_group,35-39,,5065,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+36.02.21,3,Wanasalam,age_group,40-44,laki_laki,2475,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+36.02.21,3,Wanasalam,age_group,40-44,perempuan,2460,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+36.02.21,3,Wanasalam,age_group,40-44,,4935,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+36.02.21,3,Wanasalam,age_group,45-49,laki_laki,2298,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+36.02.21,3,Wanasalam,age_group,45-49,perempuan,2343,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+36.02.21,3,Wanasalam,age_group,45-49,,4641,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+36.02.21,3,Wanasalam,age_group,50-54,laki_laki,1879,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+36.02.21,3,Wanasalam,age_group,50-54,perempuan,1713,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+36.02.21,3,Wanasalam,age_group,50-54,,3592,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+36.02.21,3,Wanasalam,age_group,55-59,laki_laki,1575,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+36.02.21,3,Wanasalam,age_group,55-59,perempuan,1572,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+36.02.21,3,Wanasalam,age_group,55-59,,3147,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+36.02.21,3,Wanasalam,age_group,60-64,laki_laki,1119,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+36.02.21,3,Wanasalam,age_group,60-64,perempuan,1130,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+36.02.21,3,Wanasalam,age_group,60-64,,2249,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+36.02.21,3,Wanasalam,age_group,65-69,laki_laki,893,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+36.02.21,3,Wanasalam,age_group,65-69,perempuan,786,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+36.02.21,3,Wanasalam,age_group,65-69,,1679,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+36.02.21,3,Wanasalam,age_group,70-74,laki_laki,418,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+36.02.21,3,Wanasalam,age_group,70-74,perempuan,400,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+36.02.21,3,Wanasalam,age_group,70-74,,818,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+36.02.21,3,Wanasalam,age_group,75+,laki_laki,607,jiwa,2025,registration,total_population,3.2,30,,75 +
+36.02.21,3,Wanasalam,age_group,75+,perempuan,663,jiwa,2025,registration,total_population,3.2,30,,75 +
+36.02.21,3,Wanasalam,age_group,75+,,1270,jiwa,2025,registration,total_population,3.2,30,,75 +

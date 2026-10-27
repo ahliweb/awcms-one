@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-1708-kecamatan-170801-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.08.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bermani Ilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepahiang",
+  "publisherDomain": "1708",
+  "publisherWebsite": "https://kepahiangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepahiang (https://kepahiangkab.bps.go.id), publikasi \"Kecamatan Bermani Ilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1708020",
+  "publicationNumber": "17080.26011",
+  "issn": "2615-8264",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kepahiangkab.bps.go.id/id/publication/2026/09/28/c3445bc137d3a734524abb06/kecamatan-bermani-ilir-dalam-angka-2026.html",
+  "sourceFileSha256": "048bd57509e3cf10884f68905a31441fcfd6de65b9d28bd6fb21d2c2bd501eb0",
+  "sourceFileBytes": 2599254,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepahiang",
+  "csvPath": "datasets/bps-1708-kecamatan-170801-dalam-angka-2026.csv",
+  "csvSha256": "594fadb1e380eda9f41d2fa390fd22cc510873373047ce59b1a646f4032bb113",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bermani Ilir, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bermani Ilir, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Desa Kota Agung\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Limbur Lama\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Sosokan Cinto Mandi\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Cinto Mandi Baru\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Kota Agung\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Limbur Lama\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Sosokan Cinto Mandi\": unmatched ",
+    "table 3.1: row not stored: row \"Desa Cinto Mandi Baru\": unmatched "
+  ]
+}

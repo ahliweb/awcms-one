@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-2104-kecamatan-210413-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.04.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bakung Serumpun Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lingga",
+  "publisherDomain": "2104",
+  "publisherWebsite": "https://linggakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lingga (https://linggakab.bps.go.id), publikasi \"Kecamatan Bakung Serumpun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2104051",
+  "publicationNumber": "21040.26016",
+  "issn": "3164-5909",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://linggakab.bps.go.id/id/publication/2026/09/28/5fae5ed67e3d823a915e2e9d/kecamatan-bakung-serumpun-dalam-angka-2026.html",
+  "sourceFileSha256": "c486b8f497e1268c2d3b7606597e9259a771c4ade0e2f8b81d368c1196e33540",
+  "sourceFileBytes": 12665981,
+  "sourcePages": [19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lingga.",
+  "csvPath": "datasets/bps-2104-kecamatan-210413-dalam-angka-2026.csv",
+  "csvSha256": "b1109df8407f3c85143563ff56bd648180badc6c34f5a7ae192145317fc64113",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bakung Serumpun, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

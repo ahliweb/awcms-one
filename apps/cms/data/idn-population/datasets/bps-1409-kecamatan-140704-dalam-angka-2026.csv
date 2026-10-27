@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.04.2008,4,Karya Mukti,sex,laki_laki,,1493,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2008,4,Karya Mukti,sex,perempuan,,1464,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2008,4,Karya Mukti,total,total,,2957,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.1001,4,Rimba Melintang,sex,laki_laki,,3852,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.1001,4,Rimba Melintang,sex,perempuan,,3640,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.1001,4,Rimba Melintang,total,total,,7492,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2002,4,Jumrah,sex,laki_laki,,2362,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2002,4,Jumrah,sex,perempuan,,2356,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2002,4,Jumrah,total,total,,4718,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2004,4,Teluk Pulau Hulu,sex,laki_laki,,2112,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2004,4,Teluk Pulau Hulu,sex,perempuan,,1995,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2004,4,Teluk Pulau Hulu,total,total,,4107,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2003,4,Teluk Pulau Hilir,sex,laki_laki,,1154,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2003,4,Teluk Pulau Hilir,sex,perempuan,,1119,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2003,4,Teluk Pulau Hilir,total,total,,2273,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2007,4,Mukti Jaya,sex,laki_laki,,1885,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2007,4,Mukti Jaya,sex,perempuan,,1783,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2007,4,Mukti Jaya,total,total,,3668,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2006,4,Lenggadai Hilir,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2006,4,Lenggadai Hilir,sex,perempuan,,1140,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2006,4,Lenggadai Hilir,total,total,,2335,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2011,4,Pematang Botam,sex,laki_laki,,1311,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2011,4,Pematang Botam,sex,perempuan,,1212,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2011,4,Pematang Botam,total,total,,2523,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2009,4,Harapan Jaya,sex,laki_laki,,439,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2009,4,Harapan Jaya,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2009,4,Harapan Jaya,total,total,,877,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2010,4,Seremban Jaya,sex,laki_laki,,1506,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2010,4,Seremban Jaya,sex,perempuan,,1415,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2010,4,Seremban Jaya,total,total,,2921,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04.2012,4,Pematang Sikek,sex,laki_laki,,1449,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04.2012,4,Pematang Sikek,sex,perempuan,,1430,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04.2012,4,Pematang Sikek,total,total,,2879,jiwa,2025,registration,total_population,3.1,18,,
+14.07.04,3,Rimba Melintang,sex,laki_laki,,20870,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.04,3,Rimba Melintang,sex,perempuan,,19987,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.04,3,Rimba Melintang,total,total,,40857,jiwa,2025,registration,total_population,3.1,18,,

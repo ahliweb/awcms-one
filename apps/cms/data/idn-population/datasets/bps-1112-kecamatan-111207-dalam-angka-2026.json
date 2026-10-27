@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1112-kecamatan-111207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.12.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Setia Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Barat Daya",
+  "publisherDomain": "1112",
+  "publisherWebsite": "https://acehbaratdayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Barat Daya (https://acehbaratdayakab.bps.go.id), publikasi \"Kecamatan Setia Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1112021",
+  "publicationNumber": "11120.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbaratdayakab.bps.go.id/id/publication/2026/09/28/3f6fdaab8cc293eaa6c0f71e/kecamatan-setia-dalam-angka-2026.html",
+  "sourceFileSha256": "0853b3d9835283abbd6ce910a139693847322d2dc517c2f1af8b25638b40e656",
+  "sourceFileBytes": 4057859,
+  "sourcePages": [21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Barat Daya",
+  "csvPath": "datasets/bps-1112-kecamatan-111207-dalam-angka-2026.csv",
+  "csvSha256": "fb85d8d8fab0d056ee144c2bbbff407587f5b4755a57625c5bda01fb2a07c157",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Setia, 2025",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"002 Tangan-Tangan Cut 15.07\": unmatched ",
+    "table 3.1: row not stored: row \"003 Lhang 18.96\": unmatched ",
+    "table 3.1: row not stored: row \"004 Ujung Tanah 11.76\": unmatched ",
+    "table 3.1: row not stored: row \"005 Rambong 10.76\": unmatched ",
+    "table 3.1: row not stored: row \"006 Pisang 8.96\": unmatched ",
+    "table 3.1: row not stored: row \"007 Alue Dama 14.03\": unmatched ",
+    "table 3.1: row not stored: row \"008 Mon Mameh 4.43\": unmatched ",
+    "table 3.1: row not stored: row \"009 Cinta Makmur 7.23\": unmatched ",
+    "table 3.1: row not stored: row \"010 Kuta Murni 8.80\": unmatched ",
+    "table 3.1: row not stored: row \"Setia 100.00\": unmatched "
+  ]
+}

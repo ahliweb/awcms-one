@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352414-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Paciran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Paciran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35240.26031",
+  "issn": "2798-9682",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/3f6ef141bb5ca751547e781f/kecamatan-paciran-dalam-angka-2026.html",
+  "sourceFileSha256": "7900bfe5f7988d13883f6842e240409b63407d88b97de8d87b23bf3be5ba6f2a",
+  "sourceFileBytes": 6574605,
+  "sourcePages": [1],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352414-dalam-angka-2026.csv",
+  "csvSha256": "e4a23c5259afcaf3bb6333ee438839da0dc8346a518896f08cd8c96daa5dfdf9",
+  "tablesUsed": [
+    {
+      "table": "1.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan PACIRAN, 2025",
+      "printedPages": [1],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.4: row not stored: row \"Usia 0-4\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 5-9\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 10-14\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 15-19\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 20-24\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 25-29\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 30-34\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 35-39\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 40-44\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 45-49\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 50-54\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 55-59\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 60-64\": unmatched ",
+    "table 1.4: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

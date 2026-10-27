@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.72.02,3,Cikole,age_group,0-4,laki_laki,2223,jiwa,2026,registration,total_population,3.2,32,,0 - 4
+32.72.02,3,Cikole,age_group,0-4,perempuan,2017,jiwa,2026,registration,total_population,3.2,32,,0 - 4
+32.72.02,3,Cikole,age_group,0-4,,4240,jiwa,2026,registration,total_population,3.2,32,,0 - 4
+32.72.02,3,Cikole,age_group,5-9,laki_laki,3006,jiwa,2026,registration,total_population,3.2,32,,5 - 9
+32.72.02,3,Cikole,age_group,5-9,perempuan,2800,jiwa,2026,registration,total_population,3.2,32,,5 - 9
+32.72.02,3,Cikole,age_group,5-9,,5806,jiwa,2026,registration,total_population,3.2,32,,5 - 9
+32.72.02,3,Cikole,age_group,10-14,laki_laki,3094,jiwa,2026,registration,total_population,3.2,32,,10 - 14
+32.72.02,3,Cikole,age_group,10-14,perempuan,2959,jiwa,2026,registration,total_population,3.2,32,,10 - 14
+32.72.02,3,Cikole,age_group,10-14,,6053,jiwa,2026,registration,total_population,3.2,32,,10 - 14
+32.72.02,3,Cikole,age_group,15-19,laki_laki,2951,jiwa,2026,registration,total_population,3.2,32,,15 - 19
+32.72.02,3,Cikole,age_group,15-19,perempuan,2989,jiwa,2026,registration,total_population,3.2,32,,15 - 19
+32.72.02,3,Cikole,age_group,15-19,,5940,jiwa,2026,registration,total_population,3.2,32,,15 - 19
+32.72.02,3,Cikole,age_group,20-24,laki_laki,2987,jiwa,2026,registration,total_population,3.2,32,,20 -24
+32.72.02,3,Cikole,age_group,20-24,perempuan,2797,jiwa,2026,registration,total_population,3.2,32,,20 -24
+32.72.02,3,Cikole,age_group,20-24,,5784,jiwa,2026,registration,total_population,3.2,32,,20 -24
+32.72.02,3,Cikole,age_group,25-29,laki_laki,2840,jiwa,2026,registration,total_population,3.2,32,,25 - 29
+32.72.02,3,Cikole,age_group,25-29,perempuan,2778,jiwa,2026,registration,total_population,3.2,32,,25 - 29
+32.72.02,3,Cikole,age_group,25-29,,5618,jiwa,2026,registration,total_population,3.2,32,,25 - 29
+32.72.02,3,Cikole,age_group,30-34,laki_laki,2609,jiwa,2026,registration,total_population,3.2,32,,30 -34
+32.72.02,3,Cikole,age_group,30-34,perempuan,2525,jiwa,2026,registration,total_population,3.2,32,,30 -34
+32.72.02,3,Cikole,age_group,30-34,,5134,jiwa,2026,registration,total_population,3.2,32,,30 -34
+32.72.02,3,Cikole,age_group,35-39,laki_laki,2359,jiwa,2026,registration,total_population,3.2,32,,35 - 39
+32.72.02,3,Cikole,age_group,35-39,perempuan,2402,jiwa,2026,registration,total_population,3.2,32,,35 - 39
+32.72.02,3,Cikole,age_group,35-39,,4761,jiwa,2026,registration,total_population,3.2,32,,35 - 39
+32.72.02,3,Cikole,age_group,40-44,laki_laki,2600,jiwa,2026,registration,total_population,3.2,32,,40 -44
+32.72.02,3,Cikole,age_group,40-44,perempuan,2613,jiwa,2026,registration,total_population,3.2,32,,40 -44
+32.72.02,3,Cikole,age_group,40-44,,5213,jiwa,2026,registration,total_population,3.2,32,,40 -44
+32.72.02,3,Cikole,age_group,45-49,laki_laki,2396,jiwa,2026,registration,total_population,3.2,32,,45 - 49
+32.72.02,3,Cikole,age_group,45-49,perempuan,2438,jiwa,2026,registration,total_population,3.2,32,,45 - 49
+32.72.02,3,Cikole,age_group,45-49,,4834,jiwa,2026,registration,total_population,3.2,32,,45 - 49
+32.72.02,3,Cikole,age_group,50-54,laki_laki,2146,jiwa,2026,registration,total_population,3.2,32,,50 - 54
+32.72.02,3,Cikole,age_group,50-54,perempuan,2137,jiwa,2026,registration,total_population,3.2,32,,50 - 54
+32.72.02,3,Cikole,age_group,50-54,,4283,jiwa,2026,registration,total_population,3.2,32,,50 - 54
+32.72.02,3,Cikole,age_group,55-59,laki_laki,1810,jiwa,2026,registration,total_population,3.2,32,,55 - 59
+32.72.02,3,Cikole,age_group,55-59,perempuan,1930,jiwa,2026,registration,total_population,3.2,32,,55 - 59
+32.72.02,3,Cikole,age_group,55-59,,3740,jiwa,2026,registration,total_population,3.2,32,,55 - 59
+32.72.02,3,Cikole,age_group,60-64,laki_laki,1437,jiwa,2026,registration,total_population,3.2,32,,60 - 64
+32.72.02,3,Cikole,age_group,60-64,perempuan,1646,jiwa,2026,registration,total_population,3.2,32,,60 - 64
+32.72.02,3,Cikole,age_group,60-64,,3083,jiwa,2026,registration,total_population,3.2,32,,60 - 64
+32.72.02,3,Cikole,age_group,65-69,laki_laki,1128,jiwa,2026,registration,total_population,3.2,32,,65 - 69
+32.72.02,3,Cikole,age_group,65-69,perempuan,1369,jiwa,2026,registration,total_population,3.2,32,,65 - 69
+32.72.02,3,Cikole,age_group,65-69,,2497,jiwa,2026,registration,total_population,3.2,32,,65 - 69
+32.72.02,3,Cikole,age_group,70-74,laki_laki,833,jiwa,2026,registration,total_population,3.2,32,,70 - 74
+32.72.02,3,Cikole,age_group,70-74,perempuan,1052,jiwa,2026,registration,total_population,3.2,32,,70 - 74
+32.72.02,3,Cikole,age_group,70-74,,1885,jiwa,2026,registration,total_population,3.2,32,,70 - 74
+32.72.02,3,Cikole,age_group,75+,laki_laki,775,jiwa,2026,registration,total_population,3.2,32,,75 +
+32.72.02,3,Cikole,age_group,75+,perempuan,1151,jiwa,2026,registration,total_population,3.2,32,,75 +
+32.72.02,3,Cikole,age_group,75+,,1926,jiwa,2026,registration,total_population,3.2,32,,75 +
+32.72.02,3,Cikole,sex,laki_laki,,35194,jiwa,2026,registration,total_population,3.2,32,,Laki-Laki
+32.72.02,3,Cikole,sex,perempuan,,35603,jiwa,2026,registration,total_population,3.2,32,,Perempuan
+32.72.02,3,Cikole,total,total,,70797,jiwa,2026,registration,total_population,3.2,32,,

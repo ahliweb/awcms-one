@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1110-kecamatan-111104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.11.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jeumpa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bireuen",
+  "publisherDomain": "1110",
+  "publisherWebsite": "https://bireuenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bireuen (https://bireuenkab.bps.go.id), publikasi \"Kecamatan Jeumpa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11100.25005",
+  "issn": "2597-744X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bireuenkab.bps.go.id/id/publication/2026/09/28/33d8ae5f4111ef9152f4e510/kecamatan-jeumpa-dalam-angka-2026.html",
+  "sourceFileSha256": "82fef5ede63c4f649fbdbb7a8677f7be495b632814bad2660481733ba59fb8bb",
+  "sourceFileBytes": 2716012,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bireuen.",
+  "csvPath": "datasets/bps-1110-kecamatan-111104-dalam-angka-2026.csv",
+  "csvSha256": "5fd51a93810f7f96d11a1c98e7944bb8d4946bd6fa5b5071ba80619217055282",
+  "tablesUsed": [
+    {
+      "table": "1.2",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Jeumpa, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.2: row not stored: row \"Blang Seupeng\": unmatched "
+  ]
+}

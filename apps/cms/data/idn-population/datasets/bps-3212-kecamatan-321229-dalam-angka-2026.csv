@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.29.2003,4,Pagirikan,sex,laki_laki,,2011,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.29.2003,4,Pagirikan,sex,perempuan,,1832,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.29.2003,4,Pagirikan,total,total,,3843,jiwa,2025,registration,total_population,3.1,30,,
+32.12.29.2004,4,Pasekan,sex,laki_laki,,1827,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.29.2004,4,Pasekan,sex,perempuan,,1738,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.29.2004,4,Pasekan,total,total,,3565,jiwa,2025,registration,total_population,3.1,30,,
+32.12.29.2001,4,Brondong,sex,laki_laki,,3464,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.29.2001,4,Brondong,sex,perempuan,,3405,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.29.2001,4,Brondong,total,total,,6869,jiwa,2025,registration,total_population,3.1,30,,
+32.12.29.2002,4,Pabeanilir,sex,laki_laki,,4110,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.29.2002,4,Pabeanilir,sex,perempuan,,3811,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.29.2002,4,Pabeanilir,total,total,,7921,jiwa,2025,registration,total_population,3.1,30,,
+32.12.29.2006,4,Totoran,sex,laki_laki,,1776,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.29.2006,4,Totoran,sex,perempuan,,1646,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.29.2006,4,Totoran,total,total,,3422,jiwa,2025,registration,total_population,3.1,30,,
+32.12.29.2005,4,Karanganyar,sex,laki_laki,,2657,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.29.2005,4,Karanganyar,sex,perempuan,,2600,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.29.2005,4,Karanganyar,total,total,,5257,jiwa,2025,registration,total_population,3.1,30,,
+32.12.29,3,Kecamatan Pasekan,sex,laki_laki,,15845,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.29,3,Kecamatan Pasekan,sex,perempuan,,15032,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.29,3,Kecamatan Pasekan,total,total,,30877,jiwa,2025,registration,total_population,3.1,30,,

@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3527-kecamatan-352702-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.27.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Torjun Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sampang",
+  "publisherDomain": "3527",
+  "publisherWebsite": "https://sampangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sampang (https://sampangkab.bps.go.id), publikasi \"Kecamatan Torjun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35270.26007",
+  "issn": "3031-2590",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sampangkab.bps.go.id/id/publication/2026/09/28/fd2f2999ea3792629286d599/kecamatan-torjun-dalam-angka-2026.html",
+  "sourceFileSha256": "fd1b56873fca33b9fe91a11055bfb286b638a5f8a81aec18ce29eb3df8c375cb",
+  "sourceFileBytes": 5472166,
+  "sourcePages": [36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Sampang.",
+  "csvPath": "datasets/bps-3527-kecamatan-352702-dalam-angka-2026.csv",
+  "csvSha256": "92521f00dcec2f529954ff6eafaa553111b59ba88f3e8113824ea691a3fc5d53",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Torjun, 2025",
+      "printedPages": [36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Torjun, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.7 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"2025 Konghuchu\" not recognised)",
+    "table 3.1: row not stored: row \"018 Tana Mera\": unmatched ",
+    "table 3.1: row not stored: row \"018 Tana Mera\": unmatched ",
+    "cross-table disagreement, both stored as published: 35.27.02 sex/laki_laki/ 2025: 22068 (table 3.1) vs 22060 (table 3.2)",
+    "cross-table disagreement, both stored as published: 35.27.02 sex/perempuan/ 2025: 22546 (table 3.1) vs 21820 (table 3.2)",
+    "cross-table disagreement, both stored as published: 35.27.02 total/total/ 2025: 44614 (table 3.1) vs 43880 (table 3.2)"
+  ]
+}

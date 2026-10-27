@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-3207-kecamatan-320734-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.07.34",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lumbung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ciamis",
+  "publisherDomain": "3207",
+  "publisherWebsite": "https://ciamiskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ciamis (https://ciamiskab.bps.go.id), publikasi \"Kecamatan Lumbung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3207281",
+  "publicationNumber": "32070.26028",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ciamiskab.bps.go.id/id/publication/2026/09/28/d45f0aaa35c603fab7ec4d1e/kecamatan-lumbung-dalam-angka-2026.html",
+  "sourceFileSha256": "c49a935d6338e86c7254e6eb0d703ac1e2668ca4c63725a5f6c26c2dd7b76988",
+  "sourceFileBytes": 9679519,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ciamis.",
+  "csvPath": "datasets/bps-3207-kecamatan-320734-dalam-angka-2026.csv",
+  "csvSha256": "1af7ddd52e1c9bb0cd88ff9df76e8700c229e70b4099288e8e52490c9d678edc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lumbung, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lumbung, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"05-09'\": unmatched ",
+    "table 3.2: row not stored: row \"10-14'\": unmatched ",
+    "table 3.2: row not stored: row \"15-19'\": unmatched ",
+    "table 3.2: row not stored: row \"20-24'\": unmatched ",
+    "table 3.2: row not stored: row \"25-29'\": unmatched ",
+    "table 3.2: row not stored: row \"30-34'\": unmatched ",
+    "table 3.2: row not stored: row \"35-39'\": unmatched ",
+    "table 3.2: row not stored: row \"40-44'\": unmatched ",
+    "table 3.2: row not stored: row \"45-49'\": unmatched ",
+    "table 3.2: row not stored: row \"50-54'\": unmatched ",
+    "table 3.2: row not stored: row \"55-59'\": unmatched ",
+    "table 3.2: row not stored: row \"60-64'\": unmatched ",
+    "table 3.2: row not stored: row \"65-69'\": unmatched ",
+    "table 3.2: row not stored: row \"70-74'\": unmatched ",
+    "table 3.2: the rows of region 32.07.34 are not stored: age_group (perempuan) vs sex value: parts sum 1869.0000 != 16241.0000 (diff 14372.0000); the source itself is inconsistent"
+  ]
+}

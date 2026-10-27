@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.15.06.2019,4,ALUE GAJAH,sex,laki_laki,,65,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2019,4,ALUE GAJAH,sex,perempuan,,63,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2019,4,ALUE GAJAH,total,total,,128,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2002,4,ALUE KAMBUK,sex,laki_laki,,296,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2002,4,ALUE KAMBUK,sex,perempuan,,266,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2002,4,ALUE KAMBUK,total,total,,562,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2018,4,ALUE PEUSAJA,sex,laki_laki,,135,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2018,4,ALUE PEUSAJA,sex,perempuan,,121,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2018,4,ALUE PEUSAJA,total,total,,256,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2014,4,BLANG MULING,sex,laki_laki,,201,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2014,4,BLANG MULING,sex,perempuan,,194,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2014,4,BLANG MULING,total,total,,395,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2010,4,BLANG SAPEK,sex,laki_laki,,486,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2010,4,BLANG SAPEK,sex,perempuan,,480,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2010,4,BLANG SAPEK,total,total,,966,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2007,4,COT KUTA,sex,laki_laki,,520,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2007,4,COT KUTA,sex,perempuan,,481,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2007,4,COT KUTA,total,total,,1001,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2009,4,COT PEURADI,sex,laki_laki,,369,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2009,4,COT PEURADI,sex,perempuan,,333,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2009,4,COT PEURADI,total,total,,702,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2012,4,GAMPONG TEUNGOH,sex,laki_laki,,244,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2012,4,GAMPONG TEUNGOH,sex,perempuan,,224,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2012,4,GAMPONG TEUNGOH,total,total,,468,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2008,4,KABU BLANG SAPEK,sex,laki_laki,,324,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2008,4,KABU BLANG SAPEK,sex,perempuan,,312,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2008,4,KABU BLANG SAPEK,total,total,,636,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2015,4,KRAK TAMPAI,sex,laki_laki,,302,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2015,4,KRAK TAMPAI,sex,perempuan,,278,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2015,4,KRAK TAMPAI,total,total,,580,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2017,4,KUTA BARO BLANG MULING,sex,laki_laki,,118,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2017,4,KUTA BARO BLANG MULING,sex,perempuan,,96,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2017,4,KUTA BARO BLANG MULING,total,total,,214,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2003,4,KUTA PADANG,sex,laki_laki,,286,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2003,4,KUTA PADANG,sex,perempuan,,250,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2003,4,KUTA PADANG,total,total,,536,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2011,4,LHOK BEUTONG,sex,laki_laki,,70,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2011,4,LHOK BEUTONG,sex,perempuan,,76,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2011,4,LHOK BEUTONG,total,total,,146,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2013,4,LHOK RAMEUAN,sex,laki_laki,,199,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2013,4,LHOK RAMEUAN,sex,perempuan,,199,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2013,4,LHOK RAMEUAN,total,total,,398,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2001,4,LUENG BARO,sex,laki_laki,,874,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2001,4,LUENG BARO,sex,perempuan,,869,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2001,4,LUENG BARO,total,total,,1743,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2005,4,MACAH,sex,laki_laki,,215,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2005,4,MACAH,sex,perempuan,,217,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2005,4,MACAH,total,total,,432,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2016,4,MEUREUBO,sex,laki_laki,,228,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2016,4,MEUREUBO,sex,perempuan,,191,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2016,4,MEUREUBO,total,total,,419,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2006,4,SEUMAMBEK,sex,laki_laki,,154,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2006,4,SEUMAMBEK,sex,perempuan,,113,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2006,4,SEUMAMBEK,total,total,,267,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06.2004,4,SUAK BILIE,sex,laki_laki,,655,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06.2004,4,SUAK BILIE,sex,perempuan,,559,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06.2004,4,SUAK BILIE,total,total,,1214,jiwa,2026,registration,total_population,3.1,31,,
+11.15.06,3,Suka Makmue,sex,laki_laki,,5741,jiwa,2026,registration,total_population,3.1,31,,Laki-Laki/Male
+11.15.06,3,Suka Makmue,sex,perempuan,,5322,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.06,3,Suka Makmue,total,total,,11063,jiwa,2026,registration,total_population,3.1,31,,

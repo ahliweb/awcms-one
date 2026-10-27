@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.04.2002,4,Kubu Perahu,sex,laki_laki,,1032,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2002,4,Kubu Perahu,sex,perempuan,,1033,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2002,4,Kubu Perahu,total,total,,2065,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2006,4,Way Empulau Ulu,sex,laki_laki,,1200,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2006,4,Way Empulau Ulu,sex,perempuan,,1170,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2006,4,Way Empulau Ulu,total,total,,2370,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2009,4,Padang Dalom,sex,laki_laki,,862,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2009,4,Padang Dalom,sex,perempuan,,825,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2009,4,Padang Dalom,total,total,,1687,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2007,4,Gunung Sugih,sex,laki_laki,,922,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2007,4,Gunung Sugih,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2007,4,Gunung Sugih,total,total,,1811,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2005,4,Sebarus,sex,laki_laki,,2036,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2005,4,Sebarus,sex,perempuan,,1907,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2005,4,Sebarus,total,total,,3943,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2004,4,Padang Cahya,sex,laki_laki,,3063,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2004,4,Padang Cahya,sex,perempuan,,2733,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2004,4,Padang Cahya,total,total,,5796,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2010,4,Sukarame,sex,laki_laki,,2109,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2010,4,Sukarame,sex,perempuan,,2076,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2010,4,Sukarame,total,total,,4185,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2011,4,Bahway,sex,laki_laki,,1656,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2011,4,Bahway,sex,perempuan,,1460,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2011,4,Bahway,total,total,,3116,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.2012,4,Sedampah Indah,sex,laki_laki,,779,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.2012,4,Sedampah Indah,sex,perempuan,,691,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.2012,4,Sedampah Indah,total,total,,1470,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.1001,4,Pasar Liwa,sex,laki_laki,,3555,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.1001,4,Pasar Liwa,sex,perempuan,,3406,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.1001,4,Pasar Liwa,total,total,,6961,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04.1003,4,Way Mengaku,sex,laki_laki,,4196,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04.1003,4,Way Mengaku,sex,perempuan,,4024,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04.1003,4,Way Mengaku,total,total,,8220,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04,3,Kecamatan Balik Bukit,sex,laki_laki,,22825,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.04,3,Kecamatan Balik Bukit,sex,perempuan,,21591,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.04,3,Kecamatan Balik Bukit,total,total,,44416,jiwa,2025,registration,total_population,3.1,31,,
+18.04.04,3,Balik Bukit,age_group,0-4,laki_laki,1495,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.04,3,Balik Bukit,age_group,0-4,perempuan,1451,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.04,3,Balik Bukit,age_group,0-4,,2946,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.04,3,Balik Bukit,age_group,5-9,laki_laki,2006,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.04,3,Balik Bukit,age_group,5-9,perempuan,1925,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.04,3,Balik Bukit,age_group,5-9,,3931,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.04,3,Balik Bukit,age_group,10-14,laki_laki,2172,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.04,3,Balik Bukit,age_group,10-14,perempuan,2021,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.04,3,Balik Bukit,age_group,10-14,,4193,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.04,3,Balik Bukit,age_group,15-19,laki_laki,2141,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.04,3,Balik Bukit,age_group,15-19,perempuan,2007,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.04,3,Balik Bukit,age_group,15-19,,4148,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.04,3,Balik Bukit,age_group,20-24,laki_laki,1869,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.04,3,Balik Bukit,age_group,20-24,perempuan,1804,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.04,3,Balik Bukit,age_group,20-24,,3673,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.04,3,Balik Bukit,age_group,25-29,laki_laki,1733,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.04,3,Balik Bukit,age_group,25-29,perempuan,1663,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.04,3,Balik Bukit,age_group,25-29,,3396,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.04,3,Balik Bukit,age_group,30-34,laki_laki,1611,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.04,3,Balik Bukit,age_group,30-34,perempuan,1567,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.04,3,Balik Bukit,age_group,30-34,,3178,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.04,3,Balik Bukit,age_group,35-39,laki_laki,1694,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.04,3,Balik Bukit,age_group,35-39,perempuan,1640,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.04,3,Balik Bukit,age_group,35-39,,3334,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.04,3,Balik Bukit,age_group,40-44,laki_laki,1704,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.04,3,Balik Bukit,age_group,40-44,perempuan,1729,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.04,3,Balik Bukit,age_group,40-44,,3433,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.04,3,Balik Bukit,age_group,45-49,laki_laki,1729,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.04,3,Balik Bukit,age_group,45-49,perempuan,1544,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.04,3,Balik Bukit,age_group,45-49,,3273,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.04,3,Balik Bukit,age_group,50-54,laki_laki,1406,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.04,3,Balik Bukit,age_group,50-54,perempuan,1264,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.04,3,Balik Bukit,age_group,50-54,,2670,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.04,3,Balik Bukit,age_group,55-59,laki_laki,1052,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.04,3,Balik Bukit,age_group,55-59,perempuan,965,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.04,3,Balik Bukit,age_group,55-59,,2017,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.04,3,Balik Bukit,age_group,60-64,laki_laki,823,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.04,3,Balik Bukit,age_group,60-64,perempuan,757,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.04,3,Balik Bukit,age_group,60-64,,1580,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.04,3,Balik Bukit,age_group,65-69,laki_laki,634,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.04,3,Balik Bukit,age_group,65-69,perempuan,526,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.04,3,Balik Bukit,age_group,65-69,,1160,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.04,3,Balik Bukit,age_group,70-74,laki_laki,352,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.04,3,Balik Bukit,age_group,70-74,perempuan,307,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.04,3,Balik Bukit,age_group,70-74,,659,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.04,3,Balik Bukit,age_group,75+,laki_laki,404,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.04,3,Balik Bukit,age_group,75+,perempuan,421,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.04,3,Balik Bukit,age_group,75+,,825,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.04,3,Kecamatan Balik Bukit,sex,laki_laki,,22825,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+18.04.04,3,Kecamatan Balik Bukit,sex,perempuan,,21591,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+18.04.04,3,Kecamatan Balik Bukit,total,total,,44416,jiwa,2025,registration,total_population,3.2,33,,

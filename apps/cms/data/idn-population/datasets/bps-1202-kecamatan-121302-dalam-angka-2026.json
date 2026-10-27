@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1202-kecamatan-121302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.13.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panyabungan Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mandailing Natal",
+  "publisherDomain": "1202",
+  "publisherWebsite": "https://mandailingnatalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mandailing Natal (https://mandailingnatalkab.bps.go.id), publikasi \"Kecamatan Panyabungan Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1202053",
+  "publicationNumber": "12020.26025",
+  "issn": "3063-3397",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mandailingnatalkab.bps.go.id/id/publication/2026/09/28/40d926857b081d11b5d27643/kecamatan-panyabungan-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "ebe9616ff6ce17837d60b7b5578d5d4b4fed86d3b1430776db8bcaff3a5b7c65",
+  "sourceFileBytes": 3406504,
+  "sourcePages": [21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi tp buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten ht Mandailing Natal. ISSN XXXXXXXX TIM PENYUSUN Kecamatan Panyabungan Utara Dalam Angka 2025 Volume 14, 2025 ps .g o .id Pengarah Dedi Kintoro ka b .b Penanggung Jawab Dedi Kintoro ai lin gn at al Penyunting Tim Diseminasi BPS Kabupaten Mandailing Natal s: //m an d Pengolah Data dan Penulis Naskah Tim Diseminasi BPS Kabupaten Mandailing Natal ht tp Penata Letak Tim Diseminasi BPS Kabupaten Mandailing Natal v at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KONTRIBUTOR DATA 1. Kementerian Agama 2. Kementerian Pendidikan dan Kebudayaan .id 3. Badan Pusat Statistik ps .g o 4. Dinas Kependudukan dan Pencatatan Sipil Kabupaten Mandailing Natal ka b 6. Kecamatan Panyabungan Utara .b 5. Dinas Kesehatan Kabupaten Mandailing Natal ht tp s: //m an d ai lin gn at al 7. Website Data Pokok Pendidikan Dasar dan Menengah vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KATA PENGANTAR Dengan memanjatkan puji syukur ke hadirat Tuhan Yang Maha Esa, saya menyambut gembira penerbitan Publikasi Kecamatan Panyabungan Utara Dalam Angka 2024. Penerbitan ini merupakan hasil dari usaha nyata yang bersifat luas dan komprehensif untuk menyediakan data bagi perencana pembangunan. .id Saya percaya bahwa pembangunan data yang terdapat dalam terbitan ini ps .g o akan memungkinkan para perencana untuk lebih memantapkan sistem perencanaan secara nyata, terarah, terpadu, dan berdaya guna. .b Terima kasih saya ucapkan kepada Kecamatan Naga Juang yang telah ka b berupaya dengan sungguh-sungguh memberikan bantuan sehingga at al dapat terwujudnya publikasi ini. gn Akhirnya saya mengharapkan agar ht tp s: //m an d ai lin kegiatan pengumpulan data di setiap sektor pembangunan di tingkat kecamatan makin lebih tepat, akurat dan efektif, serta berdaya guna sehingga data yang benar dapat diinformasikan dan disebarluaskan kepada masyarakat dan instansi yang memerlukan. Panyabungan Utara, September 2026 Kepala Badan Pusat Statistik Kabupaten Mandailing Natal vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b Frits Fahridws Damanik",
+  "csvPath": "datasets/bps-1202-kecamatan-121302-dalam-angka-2026.csv",
+  "csvSha256": "50ff96ccbebb24dd2259e25e577f55511321722e3998aa86f9262025a91772ec",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Panyabungan Utara, 2026 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [21, 22],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 (age-by-sex) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.1: row not stored: row \"Baringin Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Baringin Jaya 3.52\": unmatched ",
+    "table 3.1: row not stored: row \"Simanondong 3.27\": unmatched ",
+    "table 3.1: row not stored: row \"Rumbio 8.62\": unmatched ",
+    "table 3.1: row not stored: row \"Mompang Julu 23.96\": unmatched ",
+    "table 3.1: row not stored: row \"Huta Damai 4.29\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Ramai 3.59\": unmatched ",
+    "table 3.1: row not stored: row \"Jambur Padang Matinggi 17.71\": unmatched ",
+    "table 3.1: row not stored: row \"Sopo Sorik 2.14\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Mompang 7.10\": unmatched ",
+    "table 3.1: row not stored: row \"Torbanua Raja 3.13\": unmatched ",
+    "table 3.1: row not stored: row \"Kampung Baru 3.54\": unmatched ",
+    "table 3.1: row not stored: row \"Mompang Jae 19.12\": unmatched ",
+    "table 3.1: 14 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

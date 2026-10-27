@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.04.1001,4,Pinangsori,sex,laki_laki,,4517,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.1001,4,Pinangsori,sex,perempuan,,4602,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.1001,4,Pinangsori,total,total,,9119,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.2002,4,Gunung Marijo,sex,laki_laki,,1021,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.2002,4,Gunung Marijo,sex,perempuan,,1047,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.2002,4,Gunung Marijo,total,total,,2068,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.2003,4,Sihaporas,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.2003,4,Sihaporas,sex,perempuan,,398,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.2003,4,Sihaporas,total,total,,798,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.1004,4,Sitonong Bangun,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.1004,4,Sitonong Bangun,sex,perempuan,,751,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.1004,4,Sitonong Bangun,total,total,,1498,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.2005,4,Toga Basir,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.2005,4,Toga Basir,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.2005,4,Toga Basir,total,total,,876,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.1007,4,Pinang Baru,sex,laki_laki,,2296,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.1007,4,Pinang Baru,sex,perempuan,,2290,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.1007,4,Pinang Baru,total,total,,4586,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.2006,4,Parjalihotan Baru,sex,laki_laki,,1522,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.2006,4,Parjalihotan Baru,sex,perempuan,,1413,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.2006,4,Parjalihotan Baru,total,total,,2935,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.2008,4,Danau Pandan,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.2008,4,Danau Pandan,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.2008,4,Danau Pandan,total,total,,1014,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.1010,4,Sori Nauli,sex,laki_laki,,579,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.1010,4,Sori Nauli,sex,perempuan,,527,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.1010,4,Sori Nauli,total,total,,1106,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04.1009,4,Albion Prancis,sex,laki_laki,,1216,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04.1009,4,Albion Prancis,sex,perempuan,,1247,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04.1009,4,Albion Prancis,total,total,,2463,jiwa,2025,registration,total_population,3.1,37,,
+12.01.04,3,Pinangsori,sex,laki_laki,,13306,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.04,3,Pinangsori,sex,perempuan,,13157,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.04,3,Pinangsori,total,total,,26463,jiwa,2025,registration,total_population,3.1,37,,

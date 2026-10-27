@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.03.2014,4,Surien,sex,laki_laki,,1259,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2014,4,Surien,sex,perempuan,,1295,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2014,4,Surien,total,total,,2554,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2010,4,Gampong Blang,sex,laki_laki,,357,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2010,4,Gampong Blang,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2010,4,Gampong Blang,total,total,,726,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2012,4,Lamjabat,sex,laki_laki,,723,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2012,4,Lamjabat,sex,perempuan,,721,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2012,4,Lamjabat,total,total,,1444,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2007,4,Lampaseh Aceh,sex,laki_laki,,1556,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2007,4,Lampaseh Aceh,sex,perempuan,,1483,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2007,4,Lampaseh Aceh,total,total,,3039,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2016,4,Punge Ujong,sex,laki_laki,,991,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2016,4,Punge Ujong,sex,perempuan,,957,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2016,4,Punge Ujong,total,total,,1948,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2013,4,Cot Lamkuweuh,sex,laki_laki,,823,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2013,4,Cot Lamkuweuh,sex,perempuan,,821,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2013,4,Cot Lamkuweuh,total,total,,1644,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2011,4,Gampong Pie,sex,laki_laki,,409,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2011,4,Gampong Pie,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2011,4,Gampong Pie,total,total,,778,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2002,4,Ulee Lheue,sex,laki_laki,,465,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2002,4,Ulee Lheue,sex,perempuan,,472,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2002,4,Ulee Lheue,total,total,,937,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2004,4,Deah Glumpang,sex,laki_laki,,746,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2004,4,Deah Glumpang,sex,perempuan,,748,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2004,4,Deah Glumpang,total,total,,1494,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2003,4,Lambung,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2003,4,Lambung,sex,perempuan,,581,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2003,4,Lambung,total,total,,1169,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2008,4,Blang Oi,sex,laki_laki,,1530,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2008,4,Blang Oi,sex,perempuan,,1534,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2008,4,Blang Oi,total,total,,3064,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2006,4,Alue Deah Teungoh,sex,laki_laki,,835,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2006,4,Alue Deah Teungoh,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2006,4,Alue Deah Teungoh,total,total,,1619,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03.2005,4,Deah Baro,sex,laki_laki,,503,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03.2005,4,Deah Baro,sex,perempuan,,495,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03.2005,4,Deah Baro,total,total,,998,jiwa,2025,registration,total_population,3.1,27,,
+11.71.03,3,Kecamatan Meuraxa,sex,laki_laki,,14608,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.03,3,Kecamatan Meuraxa,sex,perempuan,,14371,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.03,3,Kecamatan Meuraxa,total,total,,28979,jiwa,2025,registration,total_population,3.1,27,,

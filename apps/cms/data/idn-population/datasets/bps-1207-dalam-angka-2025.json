@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-1207-dalam-angka-2025",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "12.10",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Labuhan Batu Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Labuhanbatu",
+  "publisherDomain": "1207",
+  "publisherWebsite": "https://labuhanbatukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Labuhanbatu (https://labuhanbatukab.bps.go.id), publikasi \"Kabupaten Labuhan Batu Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1207",
+  "publicationNumber": "12070.25001",
+  "issn": "0215-3572",
+  "publicationYear": 2025,
+  "releaseDate": "2025-02-28",
+  "publicationUrl": "https://labuhanbatukab.bps.go.id/id/publication/2025/02/28/c61f41ca817a3bf7b1073fea/kabupaten-labuhan-batu-dalam-angka-2025.html",
+  "sourceFileSha256": "a0f37e81067d32ef53082621740d308f32642c44aa231a8947b9b3508f6dbeed",
+  "sourceFileBytes": 10958722,
+  "sourcePages": [68, 71, 158, 379],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Labuhanbatu.",
+  "csvPath": "datasets/bps-1207-dalam-angka-2025.csv",
+  "csvSha256": "a55afe07bbc79dbceb140460f8ae5c1a82b0d0f56f6b2e62db252fe7927d67f5",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Labuhanbatu, 2024",
+      "printedPages": [68],
+      "referenceYears": [2024],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Labuhanbatu (ribu jiwa) , 2024",
+      "printedPages": [71],
+      "referenceYears": [2024],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Labuhanbatu, 2024",
+      "printedPages": [158],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Labuhanbatu (rupiah), 2023 dan 2024",
+      "printedPages": [379],
+      "referenceYears": [2023, 2024],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

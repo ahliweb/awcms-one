@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.23.2007,4,Cot Mon Raya,sex,laki_laki,,217,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2007,4,Cot Mon Raya,sex,perempuan,,212,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2007,4,Cot Mon Raya,total,total,,429,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2005,4,Cot Geundreut,sex,laki_laki,,327,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2005,4,Cot Geundreut,sex,perempuan,,349,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2005,4,Cot Geundreut,total,total,,676,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2006,4,Paya-Ue,sex,laki_laki,,232,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2006,4,Paya-Ue,sex,perempuan,,238,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2006,4,Paya-Ue,total,total,,470,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2002,4,Lamme,sex,laki_laki,,254,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2002,4,Lamme,sex,perempuan,,225,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2002,4,Lamme,total,total,,479,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2003,4,Meulayo,sex,laki_laki,,189,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2003,4,Meulayo,sex,perempuan,,188,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2003,4,Meulayo,total,total,,377,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2004,4,Lam Siem,sex,laki_laki,,286,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2004,4,Lam Siem,sex,perempuan,,283,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2004,4,Lam Siem,total,total,,569,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2001,4,Cot Puklat,sex,laki_laki,,249,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2001,4,Cot Puklat,sex,perempuan,,260,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2001,4,Cot Puklat,total,total,,509,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2026,4,Data Makmur,sex,laki_laki,,437,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2026,4,Data Makmur,sex,perempuan,,405,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2026,4,Data Makmur,total,total,,842,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2023,4,Kayee Kunyet,sex,laki_laki,,392,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2023,4,Kayee Kunyet,sex,perempuan,,402,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2023,4,Kayee Kunyet,total,total,,794,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2017,4,Cot Nambak,sex,laki_laki,,124,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2017,4,Cot Nambak,sex,perempuan,,146,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2017,4,Cot Nambak,total,total,,270,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2024,4,Cot Mancang,sex,laki_laki,,185,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2024,4,Cot Mancang,sex,perempuan,,163,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2024,4,Cot Mancang,total,total,,348,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2025,4,Empee Bata,sex,laki_laki,,250,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2025,4,Empee Bata,sex,perempuan,,260,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2025,4,Empee Bata,total,total,,510,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2020,4,Teupin Batee,sex,laki_laki,,198,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2020,4,Teupin Batee,sex,perempuan,,212,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2020,4,Teupin Batee,total,total,,410,jiwa,2025,registration,total_population,unnumbered-p24,24,,
+11.06.23.2021,4,Cot Leuot,sex,laki_laki,,152,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki/Male
+11.06.23.2021,4,Cot Leuot,sex,perempuan,,161,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan/Female
+11.06.23.2021,4,Cot Leuot,total,total,,313,jiwa,2025,registration,total_population,unnumbered-p24,24,,

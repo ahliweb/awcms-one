@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1902-kecamatan-190204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.02.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sijuk Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belitung",
+  "publisherDomain": "1902",
+  "publisherWebsite": "https://belitungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belitung (https://belitungkab.bps.go.id), publikasi \"Kecamatan Sijuk Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1902062",
+  "publicationNumber": "19020.26012",
+  "issn": "2407-0173",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://belitungkab.bps.go.id/id/publication/2026/09/28/69172f709a102863a087d082/kecamatan-sijuk-dalam-angka-2026.html",
+  "sourceFileSha256": "5c3d9b0b63cbec9df6e97c81b7fbd31d548640ee74e7e6f7f473346a448edb3e",
+  "sourceFileBytes": 9392950,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Belitung",
+  "csvPath": "datasets/bps-1902-kecamatan-190204-dalam-angka-2026.csv",
+  "csvSha256": "3e7319ae47783c2d532160bc7456d99d6bd8eddd13d8c6261c54ddc2cf19ee85",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sijuk, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sijuk, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

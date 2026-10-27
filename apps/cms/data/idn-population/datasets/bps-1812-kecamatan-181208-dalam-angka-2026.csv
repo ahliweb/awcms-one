@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.12.08.2001,4,Pagar Dewa,sex,laki_laki,,768,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.08.2001,4,Pagar Dewa,sex,perempuan,,744,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.08.2001,4,Pagar Dewa,total,total,,1512,jiwa,2025,registration,total_population,3.1,28,,
+18.12.08.2002,4,Pagar Dewa Suka Mulya,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.08.2002,4,Pagar Dewa Suka Mulya,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.08.2002,4,Pagar Dewa Suka Mulya,total,total,,829,jiwa,2025,registration,total_population,3.1,28,,
+18.12.08.2003,4,Cahyou Randu,sex,laki_laki,,1113,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.08.2003,4,Cahyou Randu,sex,perempuan,,1028,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.08.2003,4,Cahyou Randu,total,total,,2141,jiwa,2025,registration,total_population,3.1,28,,
+18.12.08.2004,4,Bujung Dewa,sex,laki_laki,,751,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.08.2004,4,Bujung Dewa,sex,perempuan,,705,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.08.2004,4,Bujung Dewa,total,total,,1456,jiwa,2025,registration,total_population,3.1,28,,
+18.12.08.2005,4,Bujung Sari Marga,sex,laki_laki,,382,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.08.2005,4,Bujung Sari Marga,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.08.2005,4,Bujung Sari Marga,total,total,,759,jiwa,2025,registration,total_population,3.1,28,,
+18.12.08.2006,4,Marga Jaya Indah,sex,laki_laki,,558,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.08.2006,4,Marga Jaya Indah,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.08.2006,4,Marga Jaya Indah,total,total,,1059,jiwa,2025,registration,total_population,3.1,28,,
+18.12.08,3,Pagar Dewa,sex,laki_laki,,3979,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.08,3,Pagar Dewa,sex,perempuan,,3777,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.08,3,Pagar Dewa,total,total,,7756,jiwa,2025,registration,total_population,3.1,28,,

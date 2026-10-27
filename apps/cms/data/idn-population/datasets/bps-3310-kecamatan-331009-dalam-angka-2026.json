@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3310-kecamatan-331009-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.10.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Manisrenggo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klaten",
+  "publisherDomain": "3310",
+  "publisherWebsite": "https://klatenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klaten (https://klatenkab.bps.go.id), publikasi \"Kecamatan Manisrenggo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33100.26017",
+  "issn": "2828-7819",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klatenkab.bps.go.id/id/publication/2026/09/28/878a9b2e949e6b5b87c39357/kecamatan-manisrenggo-dalam-angka-2026.html",
+  "sourceFileSha256": "88adbd679ad3ceeaa464c6d7fc01ff5fd9c47b6d33787b3195452376bcea9029",
+  "sourceFileBytes": 10110815,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klaten..",
+  "csvPath": "datasets/bps-3310-kecamatan-331009-dalam-angka-2026.csv",
+  "csvSha256": "9d548366257be63d0762231d742ad9093c2af55855f9d4221d97c9a51bb30c95",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Manisrenggo, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Manisrenggo, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Nama Kecamatan\": unmatched ",
+    "table 3.1: row not stored: row \"Nama Kecamatan\": unmatched ",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

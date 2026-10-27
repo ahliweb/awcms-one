@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.08.2001,4,Karya Mekar,sex,perempuan,,2100,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2001,4,Karya Mekar,total,total,,4181,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2007,4,Bantar Kuning,sex,perempuan,,2756,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2007,4,Bantar Kuning,total,total,,5519,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2003,4,Cikutamahi,sex,perempuan,,2374,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2003,4,Cikutamahi,total,total,,4795,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2010,4,Cibatu Tiga,sex,perempuan,,2328,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2010,4,Cibatu Tiga,total,total,,4721,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2006,4,Mekarwangi,sex,perempuan,,3096,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2006,4,Mekarwangi,total,total,,6206,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2009,4,Tegal Panjang,sex,perempuan,,3014,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2009,4,Tegal Panjang,total,total,,5978,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2005,4,Cariu,sex,perempuan,,5739,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2005,4,Cariu,total,total,,11529,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2004,4,Kutamekar,sex,perempuan,,2007,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2004,4,Kutamekar,total,total,,3970,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2008,4,Sukajadi,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2008,4,Sukajadi,total,total,,3349,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08.2002,4,Babakan Raden,sex,perempuan,,3123,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08.2002,4,Babakan Raden,total,total,,6213,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08,3,Cariu,sex,perempuan,,28212,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.08,3,Cariu,total,total,,56461,jiwa,2025,registration,total_population,3.1,34,,
+32.01.08,3,Cariu,age_group,0-4,perempuan,1840,jiwa,2025,registration,total_population,3.2,36,,0–4
+32.01.08,3,Cariu,age_group,0-4,,3732,jiwa,2025,registration,total_population,3.2,36,,0–4
+32.01.08,3,Cariu,age_group,5-9,perempuan,2173,jiwa,2025,registration,total_population,3.2,36,,5–9
+32.01.08,3,Cariu,age_group,5-9,,4373,jiwa,2025,registration,total_population,3.2,36,,5–9
+32.01.08,3,Cariu,age_group,10-14,perempuan,2180,jiwa,2025,registration,total_population,3.2,36,,10–14
+32.01.08,3,Cariu,age_group,10-14,,4520,jiwa,2025,registration,total_population,3.2,36,,10–14
+32.01.08,3,Cariu,age_group,15-19,perempuan,1828,jiwa,2025,registration,total_population,3.2,36,,15–19
+32.01.08,3,Cariu,age_group,15-19,,3724,jiwa,2025,registration,total_population,3.2,36,,15–19
+32.01.08,3,Cariu,age_group,20-24,perempuan,2107,jiwa,2025,registration,total_population,3.2,36,,20–24
+32.01.08,3,Cariu,age_group,20-24,,4317,jiwa,2025,registration,total_population,3.2,36,,20–24
+32.01.08,3,Cariu,age_group,25-29,perempuan,2042,jiwa,2025,registration,total_population,3.2,36,,25–29
+32.01.08,3,Cariu,age_group,25-29,,4242,jiwa,2025,registration,total_population,3.2,36,,25–29
+32.01.08,3,Cariu,age_group,30-34,perempuan,1963,jiwa,2025,registration,total_population,3.2,36,,30–34
+32.01.08,3,Cariu,age_group,30-34,,3966,jiwa,2025,registration,total_population,3.2,36,,30–34
+32.01.08,3,Cariu,age_group,35-39,perempuan,2078,jiwa,2025,registration,total_population,3.2,36,,35–39
+32.01.08,3,Cariu,age_group,35-39,,4118,jiwa,2025,registration,total_population,3.2,36,,35–39
+32.01.08,3,Cariu,age_group,40-44,perempuan,2211,jiwa,2025,registration,total_population,3.2,36,,40–44
+32.01.08,3,Cariu,age_group,40-44,,4305,jiwa,2025,registration,total_population,3.2,36,,40–44
+32.01.08,3,Cariu,age_group,45-49,perempuan,2104,jiwa,2025,registration,total_population,3.2,36,,45–49
+32.01.08,3,Cariu,age_group,45-49,,4055,jiwa,2025,registration,total_population,3.2,36,,45–49
+32.01.08,3,Cariu,age_group,50-54,perempuan,1787,jiwa,2025,registration,total_population,3.2,36,,50–54
+32.01.08,3,Cariu,age_group,50-54,,3679,jiwa,2025,registration,total_population,3.2,36,,50–54
+32.01.08,3,Cariu,age_group,55-59,perempuan,1682,jiwa,2025,registration,total_population,3.2,36,,55–59
+32.01.08,3,Cariu,age_group,55-59,,3330,jiwa,2025,registration,total_population,3.2,36,,55–59
+32.01.08,3,Cariu,age_group,60-64,perempuan,1233,jiwa,2025,registration,total_population,3.2,36,,60–64
+32.01.08,3,Cariu,age_group,60-64,,2476,jiwa,2025,registration,total_population,3.2,36,,60–64
+32.01.08,3,Cariu,age_group,65-69,perempuan,992,jiwa,2025,registration,total_population,3.2,36,,65–69
+32.01.08,3,Cariu,age_group,65-69,,1906,jiwa,2025,registration,total_population,3.2,36,,65–69
+32.01.08,3,Cariu,age_group,70-74,perempuan,748,jiwa,2025,registration,total_population,3.2,36,,70–74
+32.01.08,3,Cariu,age_group,70-74,,1414,jiwa,2025,registration,total_population,3.2,36,,70–74
+32.01.08,3,Cariu,age_group,75+,perempuan,888,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.08,3,Cariu,age_group,75+,,1562,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.08,3,Cariu,sex,perempuan,,27856,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.01.08,3,Cariu,total,total,,55719,jiwa,2025,registration,total_population,3.2,36,,

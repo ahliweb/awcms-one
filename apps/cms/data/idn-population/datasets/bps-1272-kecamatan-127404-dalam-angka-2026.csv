@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.74.04.1005,4,Beting Kuala Kapias,sex,laki_laki,,5069,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+12.74.04.1005,4,Beting Kuala Kapias,sex,perempuan,,4894,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+12.74.04.1005,4,Beting Kuala Kapias,total,total,,9963,jiwa,2025,registration,total_population,3.1,29,,
+12.74.04.1004,4,Kapias Pulau Buaya,sex,laki_laki,,4546,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+12.74.04.1004,4,Kapias Pulau Buaya,sex,perempuan,,4451,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+12.74.04.1004,4,Kapias Pulau Buaya,total,total,,8997,jiwa,2025,registration,total_population,3.1,29,,
+12.74.04.1001,4,Sei Merbau,sex,laki_laki,,3902,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+12.74.04.1001,4,Sei Merbau,sex,perempuan,,3669,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+12.74.04.1001,4,Sei Merbau,total,total,,7571,jiwa,2025,registration,total_population,3.1,29,,
+12.74.04.1002,4,Pematang Pasir,sex,laki_laki,,5007,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+12.74.04.1002,4,Pematang Pasir,sex,perempuan,,4751,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+12.74.04.1002,4,Pematang Pasir,total,total,,9758,jiwa,2025,registration,total_population,3.1,29,,
+12.74.04.1003,4,Perjuangan,sex,laki_laki,,4169,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+12.74.04.1003,4,Perjuangan,sex,perempuan,,3907,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+12.74.04.1003,4,Perjuangan,total,total,,8076,jiwa,2025,registration,total_population,3.1,29,,
+12.74.04,3,Teluk Nibung,sex,laki_laki,,22693,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+12.74.04,3,Teluk Nibung,sex,perempuan,,21672,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+12.74.04,3,Teluk Nibung,total,total,,44365,jiwa,2025,registration,total_population,3.1,29,,
+12.74.04.1005,4,Beting Kuala Kapias,religion,islam,,9907,jiwa,2025,registration,total_population,3.4,33,,Islam
+12.74.04.1005,4,Beting Kuala Kapias,religion,kristen,,29,jiwa,2025,registration,total_population,3.4,33,,Protestan
+12.74.04.1005,4,Beting Kuala Kapias,religion,katolik,,1,jiwa,2025,registration,total_population,3.4,33,,Katolik
+12.74.04.1005,4,Beting Kuala Kapias,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Hindu
+12.74.04.1005,4,Beting Kuala Kapias,religion,buddha,,26,jiwa,2025,registration,total_population,3.4,33,,Budha
+12.74.04.1005,4,Beting Kuala Kapias,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Konghucu
+12.74.04.1004,4,Kapias Pulau Buaya,religion,islam,,8956,jiwa,2025,registration,total_population,3.4,33,,Islam
+12.74.04.1004,4,Kapias Pulau Buaya,religion,kristen,,31,jiwa,2025,registration,total_population,3.4,33,,Protestan
+12.74.04.1004,4,Kapias Pulau Buaya,religion,katolik,,3,jiwa,2025,registration,total_population,3.4,33,,Katolik
+12.74.04.1004,4,Kapias Pulau Buaya,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Hindu
+12.74.04.1004,4,Kapias Pulau Buaya,religion,buddha,,7,jiwa,2025,registration,total_population,3.4,33,,Budha
+12.74.04.1004,4,Kapias Pulau Buaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Konghucu
+12.74.04.1001,4,Sei Merbau,religion,islam,,7497,jiwa,2025,registration,total_population,3.4,33,,Islam
+12.74.04.1001,4,Sei Merbau,religion,kristen,,11,jiwa,2025,registration,total_population,3.4,33,,Protestan
+12.74.04.1001,4,Sei Merbau,religion,katolik,,1,jiwa,2025,registration,total_population,3.4,33,,Katolik
+12.74.04.1001,4,Sei Merbau,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Hindu
+12.74.04.1001,4,Sei Merbau,religion,buddha,,62,jiwa,2025,registration,total_population,3.4,33,,Budha
+12.74.04.1001,4,Sei Merbau,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Konghucu
+12.74.04.1002,4,Pematang Pasir,religion,islam,,9732,jiwa,2025,registration,total_population,3.4,33,,Islam
+12.74.04.1002,4,Pematang Pasir,religion,kristen,,14,jiwa,2025,registration,total_population,3.4,33,,Protestan
+12.74.04.1002,4,Pematang Pasir,religion,katolik,,0,jiwa,2025,registration,total_population,3.4,33,nil,Katolik
+12.74.04.1002,4,Pematang Pasir,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Hindu
+12.74.04.1002,4,Pematang Pasir,religion,buddha,,12,jiwa,2025,registration,total_population,3.4,33,,Budha
+12.74.04.1002,4,Pematang Pasir,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Konghucu
+12.74.04.1003,4,Perjuangan,religion,islam,,8059,jiwa,2025,registration,total_population,3.4,33,,Islam
+12.74.04.1003,4,Perjuangan,religion,kristen,,16,jiwa,2025,registration,total_population,3.4,33,,Protestan
+12.74.04.1003,4,Perjuangan,religion,katolik,,1,jiwa,2025,registration,total_population,3.4,33,,Katolik
+12.74.04.1003,4,Perjuangan,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Hindu
+12.74.04.1003,4,Perjuangan,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,33,nil,Budha
+12.74.04.1003,4,Perjuangan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Konghucu
+12.74.04,3,Teluk Nibung,religion,islam,,44151,jiwa,2025,registration,total_population,3.4,33,,Islam
+12.74.04,3,Teluk Nibung,religion,kristen,,101,jiwa,2025,registration,total_population,3.4,33,,Protestan
+12.74.04,3,Teluk Nibung,religion,katolik,,6,jiwa,2025,registration,total_population,3.4,33,,Katolik
+12.74.04,3,Teluk Nibung,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Hindu
+12.74.04,3,Teluk Nibung,religion,buddha,,107,jiwa,2025,registration,total_population,3.4,33,,Budha
+12.74.04,3,Teluk Nibung,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,33,nil,Konghucu

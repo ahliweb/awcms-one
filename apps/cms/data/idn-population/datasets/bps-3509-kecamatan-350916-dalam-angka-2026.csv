@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09.16.2001,4,Kemuningsari Kidul,sex,laki_laki,,5151,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16.2001,4,Kemuningsari Kidul,sex,perempuan,,5041,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16.2001,4,Kemuningsari Kidul,total,total,,10192,jiwa,2025,registration,total_population,3.1,33,,
+35.09.16.2004,4,Kertonegoro,sex,laki_laki,,5988,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16.2004,4,Kertonegoro,sex,perempuan,,5742,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16.2004,4,Kertonegoro,total,total,,11730,jiwa,2025,registration,total_population,3.1,33,,
+35.09.16.2006,4,Jatisari,sex,laki_laki,,5945,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16.2006,4,Jatisari,sex,perempuan,,5808,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16.2006,4,Jatisari,total,total,,11753,jiwa,2025,registration,total_population,3.1,33,,
+35.09.16.2005,4,Sruni,sex,laki_laki,,4812,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16.2005,4,Sruni,sex,perempuan,,4619,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16.2005,4,Sruni,total,total,,9431,jiwa,2025,registration,total_population,3.1,33,,
+35.09.16.2008,4,Cangkring,sex,laki_laki,,7745,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16.2008,4,Cangkring,sex,perempuan,,7721,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16.2008,4,Cangkring,total,total,,15466,jiwa,2025,registration,total_population,3.1,33,,
+35.09.16.2003,4,Jenggawah,sex,laki_laki,,8477,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16.2003,4,Jenggawah,sex,perempuan,,8405,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16.2003,4,Jenggawah,total,total,,16882,jiwa,2025,registration,total_population,3.1,33,,
+35.09.16.2007,4,Jatimulyo,sex,laki_laki,,3581,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16.2007,4,Jatimulyo,sex,perempuan,,3510,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16.2007,4,Jatimulyo,total,total,,7091,jiwa,2025,registration,total_population,3.1,33,,
+35.09.16,3,Kecamatan Jenggawah,sex,laki_laki,,46417,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.16,3,Kecamatan Jenggawah,sex,perempuan,,45655,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.16,3,Kecamatan Jenggawah,total,total,,92072,jiwa,2025,registration,total_population,3.1,33,,

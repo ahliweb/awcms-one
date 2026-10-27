@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.05.34.2005,4,Linggarjati,sex,laki_laki,,1992,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.34.2005,4,Linggarjati,sex,perempuan,,1932,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.34.2005,4,Linggarjati,total,total,,3924,jiwa,2025,registration,total_population,3.1,22,,
+32.05.34.2002,4,Garumukti,sex,laki_laki,,2054,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.34.2002,4,Garumukti,sex,perempuan,,1938,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.34.2002,4,Garumukti,total,total,,3992,jiwa,2025,registration,total_population,3.1,22,,
+32.05.34.2003,4,Panawa,sex,laki_laki,,1931,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.34.2003,4,Panawa,sex,perempuan,,1800,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.34.2003,4,Panawa,total,total,,3731,jiwa,2025,registration,total_population,3.1,22,,
+32.05.34.2001,4,Pakenjeng,sex,laki_laki,,2166,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.34.2001,4,Pakenjeng,sex,perempuan,,2059,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.34.2001,4,Pakenjeng,total,total,,4225,jiwa,2025,registration,total_population,3.1,22,,
+32.05.34.2004,4,Pananjung,sex,laki_laki,,2132,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.34.2004,4,Pananjung,sex,perempuan,,2117,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.34.2004,4,Pananjung,total,total,,4249,jiwa,2025,registration,total_population,3.1,22,,
+32.05.34,3,Kecamatan Pamulihan,sex,laki_laki,,10275,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.34,3,Kecamatan Pamulihan,sex,perempuan,,9846,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.34,3,Kecamatan Pamulihan,total,total,,20121,jiwa,2025,registration,total_population,3.1,22,,
+32.05.34,3,Pamulihan,age_group,0-4,laki_laki,767,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.34,3,Pamulihan,age_group,0-4,perempuan,655,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.34,3,Pamulihan,age_group,0-4,,1422,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.34,3,Pamulihan,age_group,5-9,laki_laki,887,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.34,3,Pamulihan,age_group,5-9,perempuan,917,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.34,3,Pamulihan,age_group,5-9,,1804,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.34,3,Pamulihan,age_group,10-14,laki_laki,889,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.34,3,Pamulihan,age_group,10-14,perempuan,873,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.34,3,Pamulihan,age_group,10-14,,1762,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.34,3,Pamulihan,age_group,15-19,laki_laki,818,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.34,3,Pamulihan,age_group,15-19,perempuan,759,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.34,3,Pamulihan,age_group,15-19,,1577,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.34,3,Pamulihan,age_group,20-24,laki_laki,926,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.34,3,Pamulihan,age_group,20-24,perempuan,853,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.34,3,Pamulihan,age_group,20-24,,1779,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.34,3,Pamulihan,age_group,25-29,laki_laki,925,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.34,3,Pamulihan,age_group,25-29,perempuan,832,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.34,3,Pamulihan,age_group,25-29,,1757,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.34,3,Pamulihan,age_group,30-34,laki_laki,752,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.34,3,Pamulihan,age_group,30-34,perempuan,647,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.34,3,Pamulihan,age_group,30-34,,1399,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.34,3,Pamulihan,age_group,35-39,laki_laki,604,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.34,3,Pamulihan,age_group,35-39,perempuan,606,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.34,3,Pamulihan,age_group,35-39,,1210,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.34,3,Pamulihan,age_group,40-44,laki_laki,681,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.34,3,Pamulihan,age_group,40-44,perempuan,669,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.34,3,Pamulihan,age_group,40-44,,1350,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.34,3,Pamulihan,age_group,45-49,laki_laki,637,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.34,3,Pamulihan,age_group,45-49,perempuan,603,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.34,3,Pamulihan,age_group,45-49,,1240,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.34,3,Pamulihan,age_group,50-54,laki_laki,653,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.34,3,Pamulihan,age_group,50-54,perempuan,677,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.34,3,Pamulihan,age_group,50-54,,1330,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.34,3,Pamulihan,age_group,55-59,laki_laki,485,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.34,3,Pamulihan,age_group,55-59,perempuan,437,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.34,3,Pamulihan,age_group,55-59,,922,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.34,3,Pamulihan,age_group,60-64,laki_laki,423,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.34,3,Pamulihan,age_group,60-64,perempuan,395,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.34,3,Pamulihan,age_group,60-64,,818,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.34,3,Pamulihan,age_group,65-69,laki_laki,313,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.34,3,Pamulihan,age_group,65-69,perempuan,365,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.34,3,Pamulihan,age_group,65-69,,678,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.34,3,Pamulihan,age_group,70-74,laki_laki,235,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.34,3,Pamulihan,age_group,70-74,perempuan,254,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.34,3,Pamulihan,age_group,70-74,,489,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.34,3,Pamulihan,age_group,75+,laki_laki,280,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.34,3,Pamulihan,age_group,75+,perempuan,304,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.34,3,Pamulihan,age_group,75+,,584,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.34,3,Kecamatan Pamulihan,sex,laki_laki,,10275,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.05.34,3,Kecamatan Pamulihan,sex,perempuan,,9846,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.05.34,3,Kecamatan Pamulihan,total,total,,20121,jiwa,2025,registration,total_population,3.2,24,,

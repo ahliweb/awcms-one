@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3508-kecamatan-350818-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.08.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Randuagung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lumajang",
+  "publisherDomain": "3508",
+  "publisherWebsite": "https://lumajangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lumajang (https://lumajangkab.bps.go.id), publikasi \"Kecamatan Randuagung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3508120",
+  "publicationNumber": "35080.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lumajangkab.bps.go.id/id/publication/2026/09/28/25f1e4c0f409ad80b2981d65/kecamatan-randuagung-dalam-angka-2026.html",
+  "sourceFileSha256": "6e17f5f0b14540bba704d83f4b4479ae9bb49cf3362259cafaa867d48a2f6d6f",
+  "sourceFileBytes": 2694165,
+  "sourcePages": [34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lumajang",
+  "csvPath": "datasets/bps-3508-kecamatan-350818-dalam-angka-2026.csv",
+  "csvSha256": "ab0459485e6c9998df4d1866180d4b62cb53b048fe24e3123cd0003f62d667d2",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Randuagung, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.2: row not stored: row \"Kecamatan Randuaguang\": unmatched ",
+    "table 3.2: 42 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3526-kecamatan-352608-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.26.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sepulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangkalan",
+  "publisherDomain": "3526",
+  "publisherWebsite": "https://bangkalankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangkalan (https://bangkalankab.bps.go.id), publikasi \"Kecamatan Sepulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3526170",
+  "publicationNumber": "35260.26012",
+  "issn": "2808-0513",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkalankab.bps.go.id/id/publication/2026/09/28/67d92d2b18fd710290b16451/kecamatan-sepulu-dalam-angka-2026.html",
+  "sourceFileSha256": "77ec5cfee5ba41a0d8da4fd8df8a43f77afec72f4035d1e658b5e954a9b05c05",
+  "sourceFileBytes": 22808559,
+  "sourcePages": [31, 32, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangkalan.",
+  "csvPath": "datasets/bps-3526-kecamatan-352608-dalam-angka-2026.csv",
+  "csvSha256": "0e5c85c683d9c0a2be9290d24ae9a3d5f0c61bd194508073fad03174f6ac6ce1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sepulu, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sepulu, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gunelap\": unmatched ",
+    "table 3.1: row not stored: row \"Sepuluh\": unmatched ",
+    "table 3.1: row not stored: row \"Gunelap\": unmatched ",
+    "table 3.1: row not stored: row \"Sepuluh\": unmatched ",
+    "table 3.1: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched ",
+    "table 3.3: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched "
+  ]
+}

@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.01.10.2019,4,Ujung Padang Asahan,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2019,4,Ujung Padang Asahan,sex,perempuan,,634,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2019,4,Ujung Padang Asahan,total,total,,1248,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2020,4,Pulo Ie II,sex,laki_laki,,119,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2020,4,Pulo Ie II,sex,perempuan,,105,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2020,4,Pulo Ie II,total,total,,224,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2012,4,Ie Mirah,sex,laki_laki,,426,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2012,4,Ie Mirah,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2012,4,Ie Mirah,total,total,,871,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2014,4,Ujung Padang Rasian,sex,laki_laki,,378,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2014,4,Ujung Padang Rasian,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2014,4,Ujung Padang Rasian,total,total,,755,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2013,4,Pasie Rasian,sex,laki_laki,,106,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2013,4,Pasie Rasian,sex,perempuan,,122,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2013,4,Pasie Rasian,total,total,,228,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2018,4,Teupin Gajah,sex,laki_laki,,621,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2018,4,Teupin Gajah,sex,perempuan,,664,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2018,4,Teupin Gajah,total,total,,1285,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2015,4,Krueng Kalee,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2015,4,Krueng Kalee,sex,perempuan,,361,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2015,4,Krueng Kalee,total,total,,753,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2016,4,Lhok Sialang Rayeuk,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2016,4,Lhok Sialang Rayeuk,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2016,4,Lhok Sialang Rayeuk,total,total,,979,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2010,4,Lhok Sialang Cut,sex,laki_laki,,213,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2010,4,Lhok Sialang Cut,sex,perempuan,,234,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2010,4,Lhok Sialang Cut,total,total,,447,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2006,4,Paya Ateuk,sex,laki_laki,,1041,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2006,4,Paya Ateuk,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2006,4,Paya Ateuk,total,total,,2008,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2003,4,Silolo,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2003,4,Silolo,sex,perempuan,,635,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2003,4,Silolo,total,total,,905,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2004,4,Kampung Baru,sex,laki_laki,,126,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2004,4,Kampung Baru,sex,perempuan,,144,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2004,4,Kampung Baru,total,total,,270,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2011,4,Seuneubok,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2011,4,Seuneubok,sex,perempuan,,575,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2011,4,Seuneubok,total,total,,1090,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2007,4,Ladang Tuha,sex,laki_laki,,771,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2007,4,Ladang Tuha,sex,perempuan,,765,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2007,4,Ladang Tuha,total,total,,1536,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2005,4,Panton Bili,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2005,4,Panton Bili,sex,perempuan,,371,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2005,4,Panton Bili,total,total,,731,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2001,4,Ladang Teungoh,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2001,4,Ladang Teungoh,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2001,4,Ladang Teungoh,total,total,,721,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2002,4,Pucok Krueng,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2002,4,Pucok Krueng,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2002,4,Pucok Krueng,total,total,,454,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2008,4,Mata Ie,sex,laki_laki,,325,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2008,4,Mata Ie,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2008,4,Mata Ie,total,total,,648,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2009,4,Ujong Batee,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2009,4,Ujong Batee,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2009,4,Ujong Batee,total,total,,911,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10.2021,4,Pante Raja,sex,laki_laki,,466,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10.2021,4,Pante Raja,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10.2021,4,Pante Raja,total,total,,898,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10,3,Pasieraja,sex,laki_laki,,8564,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.10,3,Pasieraja,sex,perempuan,,8908,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.10,3,Pasieraja,total,total,,17472,jiwa,2025,registration,total_population,3.1,22,,
+11.01.10,3,Pasie Raja,age_group,0-4,laki_laki,771,jiwa,2025,registration,total_population,3.2,24,,0-4
+11.01.10,3,Pasie Raja,age_group,0-4,perempuan,690,jiwa,2025,registration,total_population,3.2,24,,0-4
+11.01.10,3,Pasie Raja,age_group,0-4,,1461,jiwa,2025,registration,total_population,3.2,24,,0-4
+11.01.10,3,Pasie Raja,age_group,5-9,laki_laki,941,jiwa,2025,registration,total_population,3.2,24,,5-9
+11.01.10,3,Pasie Raja,age_group,5-9,perempuan,873,jiwa,2025,registration,total_population,3.2,24,,5-9
+11.01.10,3,Pasie Raja,age_group,5-9,,1814,jiwa,2025,registration,total_population,3.2,24,,5-9
+11.01.10,3,Pasie Raja,age_group,10-14,laki_laki,891,jiwa,2025,registration,total_population,3.2,24,,10-14
+11.01.10,3,Pasie Raja,age_group,10-14,perempuan,887,jiwa,2025,registration,total_population,3.2,24,,10-14
+11.01.10,3,Pasie Raja,age_group,10-14,,1778,jiwa,2025,registration,total_population,3.2,24,,10-14
+11.01.10,3,Pasie Raja,age_group,15-19,laki_laki,737,jiwa,2025,registration,total_population,3.2,24,,15-19
+11.01.10,3,Pasie Raja,age_group,15-19,perempuan,777,jiwa,2025,registration,total_population,3.2,24,,15-19
+11.01.10,3,Pasie Raja,age_group,15-19,,1514,jiwa,2025,registration,total_population,3.2,24,,15-19
+11.01.10,3,Pasie Raja,age_group,20-24,laki_laki,850,jiwa,2025,registration,total_population,3.2,24,,20-24
+11.01.10,3,Pasie Raja,age_group,20-24,perempuan,789,jiwa,2025,registration,total_population,3.2,24,,20-24
+11.01.10,3,Pasie Raja,age_group,20-24,,1639,jiwa,2025,registration,total_population,3.2,24,,20-24
+11.01.10,3,Pasie Raja,age_group,25-29,laki_laki,848,jiwa,2025,registration,total_population,3.2,24,,25-29
+11.01.10,3,Pasie Raja,age_group,25-29,perempuan,709,jiwa,2025,registration,total_population,3.2,24,,25-29
+11.01.10,3,Pasie Raja,age_group,25-29,,1557,jiwa,2025,registration,total_population,3.2,24,,25-29
+11.01.10,3,Pasie Raja,age_group,30-34,laki_laki,748,jiwa,2025,registration,total_population,3.2,24,,30-34
+11.01.10,3,Pasie Raja,age_group,30-34,perempuan,643,jiwa,2025,registration,total_population,3.2,24,,30-34
+11.01.10,3,Pasie Raja,age_group,30-34,,1391,jiwa,2025,registration,total_population,3.2,24,,30-34
+11.01.10,3,Pasie Raja,age_group,35-39,laki_laki,721,jiwa,2025,registration,total_population,3.2,24,,35-39
+11.01.10,3,Pasie Raja,age_group,35-39,perempuan,666,jiwa,2025,registration,total_population,3.2,24,,35-39
+11.01.10,3,Pasie Raja,age_group,35-39,,1387,jiwa,2025,registration,total_population,3.2,24,,35-39
+11.01.10,3,Pasie Raja,age_group,40-44,laki_laki,654,jiwa,2025,registration,total_population,3.2,24,,40-44
+11.01.10,3,Pasie Raja,age_group,40-44,perempuan,681,jiwa,2025,registration,total_population,3.2,24,,40-44
+11.01.10,3,Pasie Raja,age_group,40-44,,1335,jiwa,2025,registration,total_population,3.2,24,,40-44
+11.01.10,3,Pasie Raja,age_group,45-49,laki_laki,571,jiwa,2025,registration,total_population,3.2,24,,45-49
+11.01.10,3,Pasie Raja,age_group,45-49,perempuan,619,jiwa,2025,registration,total_population,3.2,24,,45-49
+11.01.10,3,Pasie Raja,age_group,45-49,,1190,jiwa,2025,registration,total_population,3.2,24,,45-49
+11.01.10,3,Pasie Raja,age_group,50-54,laki_laki,524,jiwa,2025,registration,total_population,3.2,24,,50-54
+11.01.10,3,Pasie Raja,age_group,50-54,perempuan,509,jiwa,2025,registration,total_population,3.2,24,,50-54
+11.01.10,3,Pasie Raja,age_group,50-54,,1033,jiwa,2025,registration,total_population,3.2,24,,50-54
+11.01.10,3,Pasie Raja,age_group,55-59,laki_laki,379,jiwa,2025,registration,total_population,3.2,24,,55-59
+11.01.10,3,Pasie Raja,age_group,55-59,perempuan,403,jiwa,2025,registration,total_population,3.2,24,,55-59
+11.01.10,3,Pasie Raja,age_group,55-59,,782,jiwa,2025,registration,total_population,3.2,24,,55-59
+11.01.10,3,Pasie Raja,age_group,60-64,laki_laki,284,jiwa,2025,registration,total_population,3.2,24,,60-64
+11.01.10,3,Pasie Raja,age_group,60-64,perempuan,350,jiwa,2025,registration,total_population,3.2,24,,60-64
+11.01.10,3,Pasie Raja,age_group,60-64,,634,jiwa,2025,registration,total_population,3.2,24,,60-64
+11.01.10,3,Pasie Raja,age_group,65-69,laki_laki,193,jiwa,2025,registration,total_population,3.2,24,,65-69
+11.01.10,3,Pasie Raja,age_group,65-69,perempuan,222,jiwa,2025,registration,total_population,3.2,24,,65-69
+11.01.10,3,Pasie Raja,age_group,65-69,,415,jiwa,2025,registration,total_population,3.2,24,,65-69
+11.01.10,3,Pasie Raja,age_group,70-74,laki_laki,133,jiwa,2025,registration,total_population,3.2,24,,70-74
+11.01.10,3,Pasie Raja,age_group,70-74,perempuan,138,jiwa,2025,registration,total_population,3.2,24,,70-74
+11.01.10,3,Pasie Raja,age_group,70-74,,271,jiwa,2025,registration,total_population,3.2,24,,70-74
+11.01.10,3,Pasie Raja,age_group,75+,laki_laki,122,jiwa,2025,registration,total_population,3.2,24,,75+
+11.01.10,3,Pasie Raja,age_group,75+,perempuan,181,jiwa,2025,registration,total_population,3.2,24,,75+
+11.01.10,3,Pasie Raja,age_group,75+,,303,jiwa,2025,registration,total_population,3.2,24,,75+

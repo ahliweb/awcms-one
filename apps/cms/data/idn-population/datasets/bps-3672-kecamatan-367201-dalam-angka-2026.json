@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3672-kecamatan-367201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.72.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cibeber Dalam Angka 2026",
+  "publisherName": "BPS Kota Cilegon",
+  "publisherDomain": "3672",
+  "publisherWebsite": "https://cilegonkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cilegon (https://cilegonkota.bps.go.id), publikasi \"Kecamatan Cibeber Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3672040",
+  "publicationNumber": "36720.26012",
+  "issn": "2598-8697",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilegonkota.bps.go.id/id/publication/2026/09/28/72550c35debf52034b7ca85c/kecamatan-cibeber-dalam-angka-2026.html",
+  "sourceFileSha256": "c14e2e0a3834d0ff748da87247fa5aefc8b5c7dc686de18b186a96e81ca7befd",
+  "sourceFileBytes": 9492878,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cilegon.",
+  "csvPath": "datasets/bps-3672-kecamatan-367201-dalam-angka-2026.csv",
+  "csvSha256": "43cbcdcf5964cda6414367932b8b8f7854a54c90332d902efe18eda06a178f09",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Cibeber, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cibeber, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Cibeber Cibeber District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cibeber Cibeber District\": unmatched "
+  ]
+}

@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.05,3,Talun,age_group,0-4,laki_laki,2163,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.05,3,Talun,age_group,0-4,perempuan,2007,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.05,3,Talun,age_group,0-4,,4170,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.05,3,Talun,age_group,5-9,laki_laki,2787,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.05,3,Talun,age_group,5-9,perempuan,2584,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.05,3,Talun,age_group,5-9,,5371,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.05,3,Talun,age_group,10-14,laki_laki,2815,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.05,3,Talun,age_group,10-14,perempuan,2635,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.05,3,Talun,age_group,10-14,,5450,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.05,3,Talun,age_group,15-19,laki_laki,2657,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.05,3,Talun,age_group,15-19,perempuan,2410,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.05,3,Talun,age_group,15-19,,5067,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.05,3,Talun,age_group,20-24,laki_laki,2522,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.05,3,Talun,age_group,20-24,perempuan,2442,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.05,3,Talun,age_group,20-24,,4964,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.05,3,Talun,age_group,25-29,laki_laki,2594,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.05,3,Talun,age_group,25-29,perempuan,2399,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.05,3,Talun,age_group,25-29,,4993,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.05,3,Talun,age_group,30-34,laki_laki,2657,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.05,3,Talun,age_group,30-34,perempuan,2422,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.05,3,Talun,age_group,30-34,,5079,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.05,3,Talun,age_group,35-39,laki_laki,2362,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.05,3,Talun,age_group,35-39,perempuan,2314,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.05,3,Talun,age_group,35-39,,4676,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.05,3,Talun,age_group,40-44,laki_laki,2714,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.05,3,Talun,age_group,40-44,perempuan,2410,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.05,3,Talun,age_group,40-44,,5124,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.05,3,Talun,age_group,45-49,laki_laki,2419,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.05,3,Talun,age_group,45-49,perempuan,2358,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.05,3,Talun,age_group,45-49,,4777,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.05,3,Talun,age_group,50-54,laki_laki,2067,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.05,3,Talun,age_group,50-54,perempuan,2027,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.05,3,Talun,age_group,50-54,,4094,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.05,3,Talun,age_group,55-59,laki_laki,1753,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.05,3,Talun,age_group,55-59,perempuan,1813,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.05,3,Talun,age_group,55-59,,3566,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.05,3,Talun,age_group,60-64,laki_laki,1377,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.05,3,Talun,age_group,60-64,perempuan,1594,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.05,3,Talun,age_group,60-64,,2971,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.05,3,Talun,age_group,65-69,laki_laki,1018,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.05,3,Talun,age_group,65-69,perempuan,1236,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.05,3,Talun,age_group,65-69,,2254,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.05,3,Talun,age_group,70-74,laki_laki,649,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.05,3,Talun,age_group,70-74,perempuan,720,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.05,3,Talun,age_group,70-74,,1369,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.05,3,Talun,age_group,75+,laki_laki,536,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.05,3,Talun,age_group,75+,perempuan,817,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.05,3,Talun,age_group,75+,,1353,jiwa,2025,registration,total_population,3.2,36,,>75

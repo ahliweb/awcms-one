@@ -1,0 +1,128 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.73.03,3,Argomulyo,total,total,,51894,jiwa,2025,registration,total_population,3.1.1,54,,
+33.73.02,3,Tingkir,total,total,,47374,jiwa,2025,registration,total_population,3.1.1,54,,
+33.73.04,3,Sidomukti,total,total,,45740,jiwa,2025,registration,total_population,3.1.1,54,,
+33.73.01,3,Sidorejo,total,total,,54898,jiwa,2025,registration,total_population,3.1.1,54,,
+33.73,2,Salatiga,total,total,,199906,jiwa,2025,registration,total_population,3.1.1,54,,
+33.73,2,Kota Salatiga,age_group,0-4,laki_laki,5740,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+33.73,2,Kota Salatiga,age_group,0-4,perempuan,5335,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+33.73,2,Kota Salatiga,age_group,0-4,,11075,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+33.73,2,Kota Salatiga,age_group,5-9,laki_laki,7461,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+33.73,2,Kota Salatiga,age_group,5-9,perempuan,6863,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+33.73,2,Kota Salatiga,age_group,5-9,,14324,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+33.73,2,Kota Salatiga,age_group,10-14,laki_laki,7885,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+33.73,2,Kota Salatiga,age_group,10-14,perempuan,7426,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+33.73,2,Kota Salatiga,age_group,10-14,,15311,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+33.73,2,Kota Salatiga,age_group,15-19,laki_laki,8202,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+33.73,2,Kota Salatiga,age_group,15-19,perempuan,7802,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+33.73,2,Kota Salatiga,age_group,15-19,,16004,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+33.73,2,Kota Salatiga,age_group,20-24,laki_laki,7322,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+33.73,2,Kota Salatiga,age_group,20-24,perempuan,7056,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+33.73,2,Kota Salatiga,age_group,20-24,,14378,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+33.73,2,Kota Salatiga,age_group,25-29,laki_laki,7242,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+33.73,2,Kota Salatiga,age_group,25-29,perempuan,7303,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+33.73,2,Kota Salatiga,age_group,25-29,,14545,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+33.73,2,Kota Salatiga,age_group,30-34,laki_laki,7429,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+33.73,2,Kota Salatiga,age_group,30-34,perempuan,7220,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+33.73,2,Kota Salatiga,age_group,30-34,,14649,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+33.73,2,Kota Salatiga,age_group,35-39,laki_laki,6829,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+33.73,2,Kota Salatiga,age_group,35-39,perempuan,7069,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+33.73,2,Kota Salatiga,age_group,35-39,,13898,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+33.73,2,Kota Salatiga,age_group,40-44,laki_laki,7867,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+33.73,2,Kota Salatiga,age_group,40-44,perempuan,8180,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+33.73,2,Kota Salatiga,age_group,40-44,,16047,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+33.73,2,Kota Salatiga,age_group,45-49,laki_laki,7773,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+33.73,2,Kota Salatiga,age_group,45-49,perempuan,7812,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+33.73,2,Kota Salatiga,age_group,45-49,,15585,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+33.73,2,Kota Salatiga,age_group,50-54,laki_laki,6356,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+33.73,2,Kota Salatiga,age_group,50-54,perempuan,6683,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+33.73,2,Kota Salatiga,age_group,50-54,,13039,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+33.73,2,Kota Salatiga,age_group,55-59,laki_laki,5740,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+33.73,2,Kota Salatiga,age_group,55-59,perempuan,6378,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+33.73,2,Kota Salatiga,age_group,55-59,,12118,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+33.73,2,Kota Salatiga,age_group,60-64,laki_laki,4596,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+33.73,2,Kota Salatiga,age_group,60-64,perempuan,5343,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+33.73,2,Kota Salatiga,age_group,60-64,,9939,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+33.73,2,Kota Salatiga,age_group,65-69,laki_laki,3820,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+33.73,2,Kota Salatiga,age_group,65-69,perempuan,4325,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+33.73,2,Kota Salatiga,age_group,65-69,,8145,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+33.73,2,Kota Salatiga,age_group,70-74,laki_laki,2596,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+33.73,2,Kota Salatiga,age_group,70-74,perempuan,2835,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+33.73,2,Kota Salatiga,age_group,70-74,,5431,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+33.73,2,Kota Salatiga,age_group,75+,laki_laki,2207,jiwa,2025,registration,total_population,3.1.2,57,,75+
+33.73,2,Kota Salatiga,age_group,75+,perempuan,3211,jiwa,2025,registration,total_population,3.1.2,57,,75+
+33.73,2,Kota Salatiga,age_group,75+,,5418,jiwa,2025,registration,total_population,3.1.2,57,,75+
+33.73,2,Salatiga,sex,laki_laki,,99065,jiwa,2025,registration,total_population,3.1.2,57,,Laki-Laki
+33.73,2,Salatiga,sex,perempuan,,100841,jiwa,2025,registration,total_population,3.1.2,57,,Perempuan
+33.73,2,Salatiga,total,total,,199906,jiwa,2025,registration,total_population,3.1.2,57,,
+33.73.03,3,Argomulyo,religion,islam,,41510,jiwa,2025,registration,total_population,4.3.1,139,,Islam/
+33.73.03,3,Argomulyo,religion,kristen,,8191,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+33.73.03,3,Argomulyo,religion,katolik,,1990,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+33.73.03,3,Argomulyo,religion,hindu,,39,jiwa,2025,registration,total_population,4.3.1,139,,Hindu/
+33.73.03,3,Argomulyo,religion,buddha,,152,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+33.73.02,3,Tingkir,religion,islam,,38543,jiwa,2025,registration,total_population,4.3.1,139,,Islam/
+33.73.02,3,Tingkir,religion,kristen,,6716,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+33.73.02,3,Tingkir,religion,katolik,,1974,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+33.73.02,3,Tingkir,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,139,,Hindu/
+33.73.02,3,Tingkir,religion,buddha,,120,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+33.73.04,3,Sidomukti,religion,islam,,35913,jiwa,2025,registration,total_population,4.3.1,139,,Islam/
+33.73.04,3,Sidomukti,religion,kristen,,7807,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+33.73.04,3,Sidomukti,religion,katolik,,1788,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+33.73.04,3,Sidomukti,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,139,,Hindu/
+33.73.04,3,Sidomukti,religion,buddha,,218,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+33.73.01,3,Sidorejo,religion,islam,,43901,jiwa,2025,registration,total_population,4.3.1,139,,Islam/
+33.73.01,3,Sidorejo,religion,kristen,,7652,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+33.73.01,3,Sidorejo,religion,katolik,,3185,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+33.73.01,3,Sidorejo,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,139,,Hindu/
+33.73.01,3,Sidorejo,religion,buddha,,146,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+33.73,2,Salatiga,religion,islam,,159867,jiwa,2025,registration,total_population,4.3.1,139,,Islam/
+33.73,2,Salatiga,religion,kristen,,30366,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+33.73,2,Salatiga,religion,katolik,,8937,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+33.73,2,Salatiga,religion,hindu,,70,jiwa,2025,registration,total_population,4.3.1,139,,Hindu/
+33.73,2,Salatiga,religion,buddha,,636,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/padi_padian,,80464,rupiah,2024,survey_estimate,per_capita,10.1,298,,Padi-padian
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/padi_padian,,72643,rupiah,2025,survey_estimate,per_capita,10.1,298,,Padi-padian
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/umbi_umbian,,6149,rupiah,2024,survey_estimate,per_capita,10.1,298,,Umbi-umbian
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/umbi_umbian,,8008,rupiah,2025,survey_estimate,per_capita,10.1,298,,Umbi-umbian
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,34300,rupiah,2024,survey_estimate,per_capita,10.1,298,,Ikan/udang/cumi/kerang
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,39617,rupiah,2025,survey_estimate,per_capita,10.1,298,,Ikan/udang/cumi/kerang
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/daging,,47830,rupiah,2024,survey_estimate,per_capita,10.1,298,,Daging
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/daging,,49365,rupiah,2025,survey_estimate,per_capita,10.1,298,,Daging
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/telur_dan_susu,,56396,rupiah,2024,survey_estimate,per_capita,10.1,298,,Telur dan susu
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/telur_dan_susu,,54693,rupiah,2025,survey_estimate,per_capita,10.1,298,,Telur dan susu
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/sayur_sayuran,,60569,rupiah,2024,survey_estimate,per_capita,10.1,298,,Sayur-sayuran
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/sayur_sayuran,,64196,rupiah,2025,survey_estimate,per_capita,10.1,298,,Sayur-sayuran
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/kacang_kacangan,,20075,rupiah,2024,survey_estimate,per_capita,10.1,298,,Kacang-kacangan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/kacang_kacangan,,20714,rupiah,2025,survey_estimate,per_capita,10.1,298,,Kacang-kacangan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/buah_buahan,,60645,rupiah,2024,survey_estimate,per_capita,10.1,298,,Buah-buahan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/buah_buahan,,75369,rupiah,2025,survey_estimate,per_capita,10.1,298,,Buah-buahan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16582,rupiah,2024,survey_estimate,per_capita,10.1,298,,Minyak dan kelapa
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20726,rupiah,2025,survey_estimate,per_capita,10.1,298,,Minyak dan kelapa
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/bahan_minuman,,24984,rupiah,2024,survey_estimate,per_capita,10.1,298,,Bahan minuman
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/bahan_minuman,,25439,rupiah,2025,survey_estimate,per_capita,10.1,298,,Bahan minuman
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/bumbu_bumbuan,,14051,rupiah,2024,survey_estimate,per_capita,10.1,298,,Bumbu-bumbuan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/bumbu_bumbuan,,15701,rupiah,2025,survey_estimate,per_capita,10.1,298,,Bumbu-bumbuan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/konsumsi_lainnya,,13023,rupiah,2024,survey_estimate,per_capita,10.1,298,,Konsumsi lainnya
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/konsumsi_lainnya,,14884,rupiah,2025,survey_estimate,per_capita,10.1,298,,Konsumsi lainnya
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,289655,rupiah,2024,survey_estimate,per_capita,10.1,298,,Makanan dan minuman jadi
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,306858,rupiah,2025,survey_estimate,per_capita,10.1,298,,Makanan dan minuman jadi
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/rokok,,86601,rupiah,2024,survey_estimate,per_capita,10.1,298,,Rokok
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/rokok,,74366,rupiah,2025,survey_estimate,per_capita,10.1,298,,Rokok
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/jumlah_makanan,,811324,rupiah,2024,survey_estimate,per_capita,10.1,298,,Jumlah makanan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/jumlah_makanan,,842582,rupiah,2025,survey_estimate,per_capita,10.1,298,,Jumlah makanan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,621656,rupiah,2024,survey_estimate,per_capita,10.1,298,,Perumahan dan fasilitas rumah tangga
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,558296,rupiah,2025,survey_estimate,per_capita,10.1,298,,Perumahan dan fasilitas rumah tangga
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,377081,rupiah,2024,survey_estimate,per_capita,10.1,298,,Aneka komoditas dan jasa
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,368364,rupiah,2025,survey_estimate,per_capita,10.1,298,,Aneka komoditas dan jasa
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,50700,rupiah,2024,survey_estimate,per_capita,10.1,298,,"Pakaian, alas kaki, dan tutup kepala"
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,57267,rupiah,2025,survey_estimate,per_capita,10.1,298,,"Pakaian, alas kaki, dan tutup kepala"
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/komoditas_tahan_lama,,103028,rupiah,2024,survey_estimate,per_capita,10.1,298,,Komoditas tahan lama
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/komoditas_tahan_lama,,153952,rupiah,2025,survey_estimate,per_capita,10.1,298,,Komoditas tahan lama
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,106000,rupiah,2024,survey_estimate,per_capita,10.1,298,,"Pajak, pungutan, dan asuransi"
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,108046,rupiah,2025,survey_estimate,per_capita,10.1,298,,"Pajak, pungutan, dan asuransi"
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,56821,rupiah,2024,survey_estimate,per_capita,10.1,298,,Keperluan pesta dan upacara/kenduri
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,100800,rupiah,2025,survey_estimate,per_capita,10.1,298,,Keperluan pesta dan upacara/kenduri
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1315286,rupiah,2024,survey_estimate,per_capita,10.1,298,,Jumlah bukan makanan
+33.73,2,Kota Salatiga,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1346724,rupiah,2025,survey_estimate,per_capita,10.1,298,,Jumlah bukan makanan
+33.73,2,Kota Salatiga,expenditure,total,,2126610,rupiah,2024,survey_estimate,per_capita,10.1,298,,
+33.73,2,Kota Salatiga,expenditure,total,,2189306,rupiah,2025,survey_estimate,per_capita,10.1,298,,

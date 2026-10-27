@@ -1,0 +1,48 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.17.05.2001,4,Lodan Kulon,sex,laki_laki,,2162,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2001,4,Lodan Kulon,sex,perempuan,,2012,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2001,4,Lodan Kulon,total,total,,4174,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2002,4,Lodan Wetan,sex,laki_laki,,1816,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2002,4,Lodan Wetan,sex,perempuan,,1787,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2002,4,Lodan Wetan,total,total,,3603,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2003,4,Bonjor,sex,laki_laki,,1514,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2003,4,Bonjor,sex,perempuan,,1466,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2003,4,Bonjor,total,total,,2980,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2004,4,Tawangrejo,sex,laki_laki,,1011,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2004,4,Tawangrejo,sex,perempuan,,974,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2004,4,Tawangrejo,total,total,,1985,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2005,4,Sampung,sex,laki_laki,,883,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2005,4,Sampung,sex,perempuan,,857,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2005,4,Sampung,total,total,,1740,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2006,4,Baturno,sex,laki_laki,,653,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2006,4,Baturno,sex,perempuan,,625,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2006,4,Baturno,total,total,,1278,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2007,4,Babaktulung,sex,laki_laki,,2126,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2007,4,Babaktulung,sex,perempuan,,2033,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2007,4,Babaktulung,total,total,,4159,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2008,4,Nglojo,sex,laki_laki,,1139,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2008,4,Nglojo,sex,perempuan,,1136,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2008,4,Nglojo,total,total,,2275,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2009,4,Jambangan,sex,laki_laki,,980,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2009,4,Jambangan,sex,perempuan,,971,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2009,4,Jambangan,total,total,,1951,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2010,4,Pelang,sex,laki_laki,,805,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2010,4,Pelang,sex,perempuan,,773,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+33.17.05.2010,4,Pelang,total,total,,1578,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2011,4,Gilis,sex,laki_laki,,1196,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2011,4,Gilis,total,total,,2375,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2012,4,Gunungmulyo,sex,laki_laki,,1204,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2012,4,Gunungmulyo,total,total,,2378,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2013,4,Gonggang,sex,laki_laki,,593,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2013,4,Gonggang,total,total,,1220,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05.2014,4,Sumbermulyo,sex,laki_laki,,1339,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+33.17.05.2014,4,Sumbermulyo,total,total,,2662,jiwa,2025,registration,total_population,1.3,1,,
+33.17.05,3,Sarang,age_group,0-14,laki_laki,6949,jiwa,2025,registration,total_population,1.4,1,,0-14
+33.17.05,3,Sarang,age_group,0-14,perempuan,6813,jiwa,2025,registration,total_population,1.4,1,,0-14
+33.17.05,3,Sarang,age_group,0-14,,13762,jiwa,2025,registration,total_population,1.4,1,,0-14
+33.17.05,3,Sarang,age_group,15-64,laki_laki,22865,jiwa,2025,registration,total_population,1.4,1,,15-64
+33.17.05,3,Sarang,age_group,15-64,perempuan,22157,jiwa,2025,registration,total_population,1.4,1,,15-64
+33.17.05,3,Sarang,age_group,15-64,,45022,jiwa,2025,registration,total_population,1.4,1,,15-64
+33.17.05,3,Sarang,age_group,65+,laki_laki,2324,jiwa,2025,registration,total_population,1.4,1,,65+
+33.17.05,3,Sarang,age_group,65+,perempuan,2888,jiwa,2025,registration,total_population,1.4,1,,65+
+33.17.05,3,Sarang,age_group,65+,,5212,jiwa,2025,registration,total_population,1.4,1,,65+

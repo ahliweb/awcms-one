@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.31.2005,4,Cijengkol,sex,laki_laki,,3792,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2005,4,Cijengkol,sex,perempuan,,3590,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2005,4,Cijengkol,total,total,,7382,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2006,4,Mekarjaya,sex,laki_laki,,3760,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2006,4,Mekarjaya,sex,perempuan,,3576,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2006,4,Mekarjaya,total,total,,7336,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2007,4,Talaga,sex,laki_laki,,4089,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2007,4,Talaga,sex,perempuan,,3890,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2007,4,Talaga,total,total,,7979,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2003,4,Caringin Kulon,sex,laki_laki,,2581,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2003,4,Caringin Kulon,sex,perempuan,,2453,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2003,4,Caringin Kulon,total,total,,5034,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2001,4,Caringin Wetan,sex,laki_laki,,3158,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2001,4,Caringin Wetan,sex,perempuan,,2974,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2001,4,Caringin Wetan,total,total,,6132,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2004,4,Seuseupan,sex,laki_laki,,2967,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2004,4,Seuseupan,sex,perempuan,,2932,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2004,4,Seuseupan,total,total,,5899,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2002,4,Sukamulya,sex,laki_laki,,2837,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2002,4,Sukamulya,sex,perempuan,,2739,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2002,4,Sukamulya,total,total,,5576,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2008,4,Cikembang,sex,laki_laki,,3117,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2008,4,Cikembang,sex,perempuan,,2933,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2008,4,Cikembang,total,total,,6050,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31.2009,4,Pasirdatar Indah,sex,laki_laki,,1868,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31.2009,4,Pasirdatar Indah,sex,perempuan,,1817,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31.2009,4,Pasirdatar Indah,total,total,,3685,jiwa,2025,registration,total_population,3.1,24,,
+32.02.31,3,Caringin,sex,laki_laki,,28169,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.31,3,Caringin,sex,perempuan,,26904,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.31,3,Caringin,total,total,,55073,jiwa,2025,registration,total_population,3.1,24,,

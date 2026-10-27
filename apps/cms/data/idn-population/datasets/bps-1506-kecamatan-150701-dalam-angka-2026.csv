@@ -1,0 +1,78 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.01.2014,4,Kota Raja,sex,laki_laki,,944,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2014,4,Kota Raja,sex,perempuan,,838,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2014,4,Kota Raja,total,total,,1782,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2015,4,Siau Dalam,sex,perempuan,,1418,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2015,4,Siau Dalam,total,total,,2828,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2011,4,Lambur I,sex,laki_laki,,1798,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2011,4,Lambur I,sex,perempuan,,1697,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2011,4,Lambur I,total,total,,3495,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2012,4,Lambur II,sex,laki_laki,,2555,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2012,4,Lambur II,sex,perempuan,,2503,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2012,4,Lambur II,total,total,,5058,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2004,4,Simbur Naik,sex,laki_laki,,2004,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2004,4,Simbur Naik,sex,perempuan,,2063,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2004,4,Simbur Naik,total,total,,4067,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2018,4,Kuala Simbur,sex,laki_laki,,570,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2018,4,Kuala Simbur,sex,perempuan,,524,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2018,4,Kuala Simbur,total,total,,1094,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2002,4,Lambur,sex,laki_laki,,2462,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2002,4,Lambur,sex,perempuan,,2436,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2002,4,Lambur,total,total,,4898,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2017,4,Kota Harapan,sex,laki_laki,,929,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2017,4,Kota Harapan,sex,perempuan,,946,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2017,4,Kota Harapan,total,total,,1875,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2001,4,Alang-Alang,sex,laki_laki,,720,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2001,4,Alang-Alang,sex,perempuan,,707,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2001,4,Alang-Alang,total,total,,1427,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.2016,4,Sungai Ular,sex,laki_laki,,261,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.2016,4,Sungai Ular,sex,perempuan,,245,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.2016,4,Sungai Ular,total,total,,506,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.1010,4,Muara Sabak Ilir,sex,laki_laki,,1896,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.1010,4,Muara Sabak Ilir,total,total,,3776,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01.1013,4,Muara Sabak Ulu,sex,laki_laki,,1967,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.01.1013,4,Muara Sabak Ulu,sex,perempuan,,1882,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+15.07.01.1013,4,Muara Sabak Ulu,total,total,,3849,jiwa,2026,registration,total_population,3.1,26,,
+15.07.01,3,Muara Sabak Timur,age_group,0-4,laki_laki,1077,jiwa,2025,registration,total_population,3.2,28,,00–04
+15.07.01,3,Muara Sabak Timur,age_group,0-4,perempuan,1033,jiwa,2025,registration,total_population,3.2,28,,00–04
+15.07.01,3,Muara Sabak Timur,age_group,5-9,laki_laki,1477,jiwa,2025,registration,total_population,3.2,28,,05–09
+15.07.01,3,Muara Sabak Timur,age_group,5-9,perempuan,1426,jiwa,2025,registration,total_population,3.2,28,,05–09
+15.07.01,3,Muara Sabak Timur,age_group,5-9,,2903,jiwa,2025,registration,total_population,3.2,28,,05–09
+15.07.01,3,Muara Sabak Timur,age_group,10-14,laki_laki,1538,jiwa,2025,registration,total_population,3.2,28,,10–14
+15.07.01,3,Muara Sabak Timur,age_group,10-14,perempuan,1487,jiwa,2025,registration,total_population,3.2,28,,10–14
+15.07.01,3,Muara Sabak Timur,age_group,10-14,,3025,jiwa,2025,registration,total_population,3.2,28,,10–14
+15.07.01,3,Muara Sabak Timur,age_group,15-19,laki_laki,1501,jiwa,2025,registration,total_population,3.2,28,,15–19
+15.07.01,3,Muara Sabak Timur,age_group,15-19,perempuan,1479,jiwa,2025,registration,total_population,3.2,28,,15–19
+15.07.01,3,Muara Sabak Timur,age_group,20-24,laki_laki,1438,jiwa,2025,registration,total_population,3.2,28,,20–24
+15.07.01,3,Muara Sabak Timur,age_group,20-24,perempuan,1417,jiwa,2025,registration,total_population,3.2,28,,20–24
+15.07.01,3,Muara Sabak Timur,age_group,20-24,,2855,jiwa,2025,registration,total_population,3.2,28,,20–24
+15.07.01,3,Muara Sabak Timur,age_group,25-29,laki_laki,1335,jiwa,2025,registration,total_population,3.2,28,,25–29
+15.07.01,3,Muara Sabak Timur,age_group,25-29,perempuan,1316,jiwa,2025,registration,total_population,3.2,28,,25–29
+15.07.01,3,Muara Sabak Timur,age_group,25-29,,2651,jiwa,2025,registration,total_population,3.2,28,,25–29
+15.07.01,3,Muara Sabak Timur,age_group,35-39,laki_laki,1283,jiwa,2025,registration,total_population,3.2,28,,35–39
+15.07.01,3,Muara Sabak Timur,age_group,35-39,perempuan,1351,jiwa,2025,registration,total_population,3.2,28,,35–39
+15.07.01,3,Muara Sabak Timur,age_group,35-39,,2634,jiwa,2025,registration,total_population,3.2,28,,35–39
+15.07.01,3,Muara Sabak Timur,age_group,40-44,laki_laki,1462,jiwa,2025,registration,total_population,3.2,28,,40–44
+15.07.01,3,Muara Sabak Timur,age_group,40-44,perempuan,1404,jiwa,2025,registration,total_population,3.2,28,,40–44
+15.07.01,3,Muara Sabak Timur,age_group,40-44,,2866,jiwa,2025,registration,total_population,3.2,28,,40–44
+15.07.01,3,Muara Sabak Timur,age_group,45-49,laki_laki,1334,jiwa,2025,registration,total_population,3.2,28,,45–49
+15.07.01,3,Muara Sabak Timur,age_group,45-49,perempuan,1271,jiwa,2025,registration,total_population,3.2,28,,45–49
+15.07.01,3,Muara Sabak Timur,age_group,45-49,,2605,jiwa,2025,registration,total_population,3.2,28,,45–49
+15.07.01,3,Muara Sabak Timur,age_group,50-54,laki_laki,1084,jiwa,2025,registration,total_population,3.2,28,,50–54
+15.07.01,3,Muara Sabak Timur,age_group,50-54,perempuan,1051,jiwa,2025,registration,total_population,3.2,28,,50–54
+15.07.01,3,Muara Sabak Timur,age_group,50-54,,2135,jiwa,2025,registration,total_population,3.2,28,,50–54
+15.07.01,3,Muara Sabak Timur,age_group,55-59,laki_laki,862,jiwa,2025,registration,total_population,3.2,28,,55–59
+15.07.01,3,Muara Sabak Timur,age_group,55-59,perempuan,834,jiwa,2025,registration,total_population,3.2,28,,55–59
+15.07.01,3,Muara Sabak Timur,age_group,55-59,,1696,jiwa,2025,registration,total_population,3.2,28,,55–59
+15.07.01,3,Muara Sabak Timur,age_group,60-64,laki_laki,661,jiwa,2025,registration,total_population,3.2,28,,60–64
+15.07.01,3,Muara Sabak Timur,age_group,60-64,perempuan,631,jiwa,2025,registration,total_population,3.2,28,,60–64
+15.07.01,3,Muara Sabak Timur,age_group,60-64,,1292,jiwa,2025,registration,total_population,3.2,28,,60–64
+15.07.01,3,Muara Sabak Timur,age_group,65-69,laki_laki,496,jiwa,2025,registration,total_population,3.2,28,,65–69
+15.07.01,3,Muara Sabak Timur,age_group,65-69,perempuan,489,jiwa,2025,registration,total_population,3.2,28,,65–69
+15.07.01,3,Muara Sabak Timur,age_group,65-69,,985,jiwa,2025,registration,total_population,3.2,28,,65–69
+15.07.01,3,Muara Sabak Timur,age_group,70-74,laki_laki,322,jiwa,2025,registration,total_population,3.2,28,,70–74
+15.07.01,3,Muara Sabak Timur,age_group,70-74,perempuan,303,jiwa,2025,registration,total_population,3.2,28,,70–74
+15.07.01,3,Muara Sabak Timur,age_group,70-74,,625,jiwa,2025,registration,total_population,3.2,28,,70–74
+15.07.01,3,Muara Sabak Timur,age_group,75+,laki_laki,436,jiwa,2025,registration,total_population,3.2,28,,≥75
+15.07.01,3,Muara Sabak Timur,age_group,75+,perempuan,467,jiwa,2025,registration,total_population,3.2,28,,≥75
+15.07.01,3,Muara Sabak Timur,age_group,75+,,903,jiwa,2025,registration,total_population,3.2,28,,≥75

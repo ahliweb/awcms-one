@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332812-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Talang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Talang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328030",
+  "publicationNumber": "33280.26016",
+  "issn": "2623-1913",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/57f43eccea34c084ab06b513/kecamatan-talang-dalam-angka-2026.html",
+  "sourceFileSha256": "6462e39d89185b33cc2c6ed369d448f5e035eb482b8e7872caf6cc6ba2df1834",
+  "sourceFileBytes": 4857362,
+  "sourcePages": [36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332812-dalam-angka-2026.csv",
+  "csvSha256": "3398cc8d3be4f8829608f324cc675b6e497922d3550e9b15ea635eb12456b845",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Talang, 2026",
+      "printedPages": [36, 37],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Talang, 2026",
+      "printedPages": [38],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

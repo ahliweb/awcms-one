@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.16.2008,4,Bungur Jaya,sex,laki_laki,,1119,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2008,4,Bungur Jaya,sex,perempuan,,1125,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2008,4,Bungur Jaya,total,total,,2244,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2002,4,Pondokbungur,sex,laki_laki,,1827,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2002,4,Pondokbungur,sex,perempuan,,1631,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2002,4,Pondokbungur,total,total,,3458,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2003,4,Salem,sex,laki_laki,,1911,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2003,4,Salem,sex,perempuan,,1824,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2003,4,Salem,total,total,,3735,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2004,4,Galudra,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2004,4,Galudra,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2004,4,Galudra,total,total,,1576,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2010,4,Sukajadi,sex,laki_laki,,1555,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2010,4,Sukajadi,sex,perempuan,,1451,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2010,4,Sukajadi,total,total,,3006,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2005,4,Tanjungsari,sex,laki_laki,,2727,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2005,4,Tanjungsari,sex,perempuan,,2687,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2005,4,Tanjungsari,total,total,,5414,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2007,4,Salam Jaya,sex,laki_laki,,1419,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2007,4,Salam Jaya,sex,perempuan,,1444,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2007,4,Salam Jaya,total,total,,2863,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2011,4,Situ,sex,laki_laki,,1338,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2011,4,Situ,sex,perempuan,,1247,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2011,4,Situ,total,total,,2585,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2001,4,Parakansalam,sex,laki_laki,,877,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2001,4,Parakansalam,sex,perempuan,,859,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2001,4,Parakansalam,total,total,,1736,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2006,4,Salam Mulya,sex,laki_laki,,1890,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2006,4,Salam Mulya,sex,perempuan,,1871,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2006,4,Salam Mulya,total,total,,3761,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16.2009,4,Gurudug,sex,laki_laki,,1579,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16.2009,4,Gurudug,sex,perempuan,,1467,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16.2009,4,Gurudug,total,total,,3046,jiwa,2025,registration,total_population,3.1,22,,
+32.14.16,3,Kecamatan Pondok Salam,sex,laki_laki,,17030,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.16,3,Kecamatan Pondok Salam,sex,perempuan,,16394,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.16,3,Kecamatan Pondok Salam,total,total,,33424,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.19.2005,4,Huta Bargot Dolok,sex,laki_laki,,412,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2005,4,Huta Bargot Dolok,sex,perempuan,,403,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2005,4,Huta Bargot Dolok,total,total,,815,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2007,4,Huta Bargot Nauli,sex,laki_laki,,944,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2007,4,Huta Bargot Nauli,sex,perempuan,,939,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2007,4,Huta Bargot Nauli,total,total,,1883,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2003,4,Pasar Huta Bargot,sex,laki_laki,,352,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2003,4,Pasar Huta Bargot,sex,perempuan,,358,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2003,4,Pasar Huta Bargot,total,total,,710,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2001,4,Bangun Sejati,sex,laki_laki,,316,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2001,4,Bangun Sejati,sex,perempuan,,336,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2001,4,Bangun Sejati,total,total,,652,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2004,4,Huta Bargot Lombang,sex,laki_laki,,570,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2004,4,Huta Bargot Lombang,sex,perempuan,,577,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2004,4,Huta Bargot Lombang,total,total,,1147,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2006,4,Huta Bargot Setia,sex,laki_laki,,170,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2006,4,Huta Bargot Setia,sex,perempuan,,191,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2006,4,Huta Bargot Setia,total,total,,361,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2008,4,Mondan,sex,laki_laki,,248,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2008,4,Mondan,sex,perempuan,,233,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2008,4,Mondan,total,total,,481,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2009,4,Sayur Maincat,sex,laki_laki,,329,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2009,4,Sayur Maincat,sex,perempuan,,349,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2009,4,Sayur Maincat,total,total,,678,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2011,4,Simalagi,sex,laki_laki,,224,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2011,4,Simalagi,sex,perempuan,,266,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2011,4,Simalagi,total,total,,490,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2002,4,Hutarimbaru,sex,laki_laki,,361,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2002,4,Hutarimbaru,sex,perempuan,,330,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2002,4,Hutarimbaru,total,total,,691,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2010,4,Kumpulan Setia,sex,laki_laki,,257,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2010,4,Kumpulan Setia,sex,perempuan,,278,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2010,4,Kumpulan Setia,total,total,,535,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2014,4,Hutanaingkan,sex,laki_laki,,207,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2014,4,Hutanaingkan,sex,perempuan,,238,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2014,4,Hutanaingkan,total,total,,445,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2013,4,Binanga,sex,laki_laki,,263,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2013,4,Binanga,sex,perempuan,,275,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2013,4,Binanga,total,total,,538,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19.2012,4,Saba Padang,sex,laki_laki,,206,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.19.2012,4,Saba Padang,sex,perempuan,,217,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.19.2012,4,Saba Padang,total,total,,423,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.19,3,Kecamatan Huta Bargot,sex,laki_laki,,4859,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki
+12.13.19,3,Kecamatan Huta Bargot,sex,perempuan,,4990,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan
+12.13.19,3,Kecamatan Huta Bargot,total,total,,9849,jiwa,2025,registration,total_population,unnumbered-p24,24,,

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1403-kecamatan-140413-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.04.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tembilahan Hulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Indragiri Hilir",
+  "publisherDomain": "1403",
+  "publisherWebsite": "https://inhilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Indragiri Hilir (https://inhilkab.bps.go.id), publikasi \"Kecamatan Tembilahan Hulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1403061",
+  "publicationNumber": "14030.26015",
+  "issn": "2715-1336",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://inhilkab.bps.go.id/id/publication/2026/09/28/4a222c6784791efd375864f7/kecamatan-tembilahan-hulu-dalam-angka-2026.html",
+  "sourceFileSha256": "654e0d886dd198299b6db778b9efd495ec593b5bbfb412e72b0a0a6beca0bdf3",
+  "sourceFileBytes": 13148222,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik BPS Kabupaten Indragiri Hilir.",
+  "csvPath": "datasets/bps-1403-kecamatan-140413-dalam-angka-2026.csv",
+  "csvSha256": "4fa74e0fed7b23bee9bd1cdd6bd66e64419e3755d8b95ddcf5baa65b29a66e0d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tembilahan Hulu, 2026",
+      "printedPages": [29, 30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

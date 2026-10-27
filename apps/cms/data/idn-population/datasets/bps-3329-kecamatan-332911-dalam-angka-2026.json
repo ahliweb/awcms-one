@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-3329-kecamatan-332911-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.29.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kersana Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Brebes",
+  "publisherDomain": "3329",
+  "publisherWebsite": "https://brebeskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Brebes (https://brebeskab.bps.go.id), publikasi \"Kecamatan Kersana Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3329120",
+  "publicationNumber": "33290.26022",
+  "issn": "2621-4334",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://brebeskab.bps.go.id/id/publication/2026/09/28/dd51026e185a890f6f68a78e/kecamatan-kersana-dalam-angka-2026.html",
+  "sourceFileSha256": "0dda95226d2b2f4c8e6a8c9b3677cb02cb520ea3e6e011e2620038a3fd57fc44",
+  "sourceFileBytes": 16856088,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Brebes.",
+  "csvPath": "datasets/bps-3329-kecamatan-332911-dalam-angka-2026.csv",
+  "csvSha256": "30211ac0c3a43708cbe58bffa2ccffe8469d02040e58710c72a57aec9cf5f81e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kersana, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kersana, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.2.1 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu\" not recognised)",
+    "table 3.1: row not stored: row \"001. Kradenen\": unmatched ",
+    "table 3.1: row not stored: row \"001. Kradenen 3.11\": unmatched ",
+    "table 3.1: row not stored: row \"002. Sindangjaya 5.90\": unmatched ",
+    "table 3.1: row not stored: row \"003. Pende 8.72\": unmatched ",
+    "table 3.1: row not stored: row \"004. Kubangpari 8.82\": unmatched ",
+    "table 3.1: row not stored: row \"005.Cikandang 9.90\": unmatched ",
+    "table 3.1: row not stored: row \"006. Cigedog 9.62\": unmatched ",
+    "table 3.1: row not stored: row \"007. Ciampel 4.62\": unmatched ",
+    "table 3.1: row not stored: row \"008. Jagapura 12.43\": unmatched ",
+    "table 3.1: row not stored: row \"009. Kersana 7.74\": unmatched ",
+    "table 3.1: row not stored: row \"010. Kemukten 7.30\": unmatched ",
+    "table 3.1: row not stored: row \"011. Kramatsampang 2.33\": unmatched ",
+    "table 3.1: row not stored: row \"012. Limbangan 14.12\": unmatched ",
+    "table 3.1: row not stored: row \"013. Sutamaja 5.39\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kersana 100.00\": unmatched "
+  ]
+}

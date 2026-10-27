@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-1215-kecamatan-121607-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.16.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sijamapolang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Humbang Hasundutan",
+  "publisherDomain": "1215",
+  "publisherWebsite": "https://humbanghasundutankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Humbang Hasundutan (https://humbanghasundutankab.bps.go.id), publikasi \"Kecamatan Sijamapolang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "12150.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://humbanghasundutankab.bps.go.id/id/publication/2026/09/28/e038f004957ff92be5006a1a/kecamatan-sijamapolang-dalam-angka-2026.html",
+  "sourceFileSha256": "8fe1d21678d7b3cd7d9fe5d6e15cbc73787b96784708c5ce938c784c8bd343f2",
+  "sourceFileBytes": 7319416,
+  "sourcePages": [32, 33, 34, 35, 36, 37, 38, 39, 40, 41],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Humbang Hasundutan.",
+  "csvPath": "datasets/bps-1215-kecamatan-121607-dalam-angka-2026.csv",
+  "csvSha256": "8a3ee5d1c03b8b26f869621eeb5561571236b2e51c580952b2a76cfec0cc4e55",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sijamapolang, 2024",
+      "printedPages": [32, 33],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sijamapolang, 2024",
+      "printedPages": [34, 35, 36, 37, 38, 39, 40, 41],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 12.16.07.2002 are not stored: sex split vs total: parts sum 293.0000 != 17.0000 (diff 276.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2003 are not stored: sex split vs total: parts sum 468.0000 != 23.0000 (diff 445.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2009 are not stored: sex split vs total: parts sum 861.0000 != 45.0000 (diff 816.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2004 are not stored: sex split vs total: parts sum 328.0000 != 10.0000 (diff 318.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2001 are not stored: sex split vs total: parts sum 466.0000 != 34.0000 (diff 432.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2008 are not stored: sex split vs total: parts sum 967.0000 != 61.0000 (diff 906.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2007 are not stored: sex split vs total: parts sum 1053.0000 != 47.0000 (diff 1006.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2005 are not stored: sex split vs total: parts sum 381.0000 != 30.0000 (diff 351.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2006 are not stored: sex split vs total: parts sum 1432.0000 != 129.0000 (diff 1303.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07.2010 are not stored: sex split vs total: parts sum 424.0000 != 23.0000 (diff 401.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.07 are not stored: sex split vs total: parts sum 6673.0000 != 419.0000 (diff 6254.0000); the source itself is inconsistent"
+  ]
+}

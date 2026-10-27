@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-1401-kecamatan-140908-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.09.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Singingi Hilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuantan Singingi",
+  "publisherDomain": "1401",
+  "publisherWebsite": "https://kuansingkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuantan Singingi (https://kuansingkab.bps.go.id), publikasi \"Kecamatan Singingi Hilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1401021",
+  "publicationNumber": "14010.26012",
+  "issn": "2722-5925",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuansingkab.bps.go.id/id/publication/2026/09/28/778823104173fc5cfd96ab1d/kecamatan-singingi-hilir-dalam-angka-2026.html",
+  "sourceFileSha256": "3b46d9e87bed0c99dd3b90c88ddae8439ef76fe3679f2203a71b64ca05bb75da",
+  "sourceFileBytes": 14961495,
+  "sourcePages": [22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kuantan Singingi.",
+  "csvPath": "datasets/bps-1401-kecamatan-140908-dalam-angka-2026.csv",
+  "csvSha256": "366f84b1946a956de59c065e4a2f66f58a627c3afebefe3809221363e00fd47f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Singingi Hilir, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.1: the rows of region 14.09.08.2002 are not stored: sex split vs total: parts sum 3969.0000 != 5869.0000 (diff 1900.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.09.08.2006 are not stored: sex split vs total: parts sum 5739.0000 != 8507.0000 (diff 2768.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.09.08.2005 are not stored: sex split vs total: parts sum 3690.0000 != 5486.0000 (diff 1796.0000); the source itself is inconsistent"
+  ]
+}

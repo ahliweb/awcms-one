@@ -1,0 +1,83 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.02.2014,4,LAWE LONING AMAN,sex,laki_laki,,797,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2014,4,LAWE LONING AMAN,sex,perempuan,,832,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2014,4,LAWE LONING AMAN,total,total,,1629,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2010,4,TANAH BARU,sex,laki_laki,,534,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2010,4,TANAH BARU,sex,perempuan,,528,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2010,4,TANAH BARU,total,total,,1062,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2006,4,LAWE SIGALA TIMUR,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2006,4,LAWE SIGALA TIMUR,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2006,4,LAWE SIGALA TIMUR,total,total,,789,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2007,4,LAWE SIGALA BARAT,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2007,4,LAWE SIGALA BARAT,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2007,4,LAWE SIGALA BARAT,total,total,,937,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2008,4,SUKA DAMAI,sex,laki_laki,,187,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2008,4,SUKA DAMAI,sex,perempuan,,186,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2008,4,SUKA DAMAI,total,total,,373,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2005,4,LAWE SIGALA II,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2005,4,LAWE SIGALA II,sex,perempuan,,232,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2005,4,LAWE SIGALA II,total,total,,454,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2001,4,BUKIT MERDEKA,sex,laki_laki,,337,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2001,4,BUKIT MERDEKA,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2001,4,BUKIT MERDEKA,total,total,,686,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2003,4,LAWE KESUMPAT,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2003,4,LAWE KESUMPAT,sex,perempuan,,291,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2003,4,LAWE KESUMPAT,total,total,,545,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2002,4,DARUL AMAN,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2002,4,DARUL AMAN,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2002,4,DARUL AMAN,total,total,,673,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2024,4,LAWE LONING SEPAKAT,sex,laki_laki,,195,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2024,4,LAWE LONING SEPAKAT,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2024,4,LAWE LONING SEPAKAT,total,total,,401,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2026,4,GAYA JAYA,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2026,4,GAYA JAYA,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2026,4,GAYA JAYA,total,total,,574,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2025,4,LAWE LONING I,sex,laki_laki,,375,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2025,4,LAWE LONING I,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2025,4,LAWE LONING I,total,total,,752,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2019,4,LAWE RAKAT,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2019,4,LAWE RAKAT,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2019,4,LAWE RAKAT,total,total,,697,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2015,4,SUKA MAJU,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2015,4,SUKA MAJU,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2015,4,SUKA MAJU,total,total,,810,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2020,4,SUKA JAYA,sex,laki_laki,,449,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2020,4,SUKA JAYA,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2020,4,SUKA JAYA,total,total,,939,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2018,4,LAWE SERKE,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2018,4,LAWE SERKE,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2018,4,LAWE SERKE,total,total,,719,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2017,4,LAWE TUA PERSATUAN,sex,laki_laki,,302,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.02.2017,4,LAWE TUA PERSATUAN,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.02.2017,4,LAWE TUA PERSATUAN,total,total,,607,jiwa,2025,registration,total_population,3.1,28,,
+11.02.02.2016,4,LAWE TUA MAKMUR,sex,laki_laki,,169,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2016,4,LAWE TUA MAKMUR,sex,perempuan,,191,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2016,4,LAWE TUA MAKMUR,total,total,,360,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2023,4,BUKIT SEPAKAT,sex,laki_laki,,200,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2023,4,BUKIT SEPAKAT,sex,perempuan,,201,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2023,4,BUKIT SEPAKAT,total,total,,401,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2022,4,SEBUNGKE,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2022,4,SEBUNGKE,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2022,4,SEBUNGKE,total,total,,451,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2029,4,LAWE LONING HAKHAPEN,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2029,4,LAWE LONING HAKHAPEN,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2029,4,LAWE LONING HAKHAPEN,total,total,,649,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2034,4,KERTIMBANG,sex,laki_laki,,128,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2034,4,KERTIMBANG,sex,perempuan,,126,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2034,4,KERTIMBANG,total,total,,254,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2032,4,LAWE SIGALA BARAT JAYA,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2032,4,LAWE SIGALA BARAT JAYA,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2032,4,LAWE SIGALA BARAT JAYA,total,total,,789,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2027,4,GELAH MUSARA,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2027,4,GELAH MUSARA,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2027,4,GELAH MUSARA,total,total,,387,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2028,4,MULIE DAME,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2028,4,MULIE DAME,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2028,4,MULIE DAME,total,total,,424,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2030,4,KARYA INDAH,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2030,4,KARYA INDAH,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2030,4,KARYA INDAH,total,total,,431,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02.2031,4,KAYU MBELIN,sex,laki_laki,,234,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.02.2031,4,KAYU MBELIN,sex,perempuan,,274,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.02.2031,4,KAYU MBELIN,total,total,,508,jiwa,2025,registration,total_population,3.1,29,,
+11.02.02,3,Lawe Sigala-gala,total,total,,21938,jiwa,2025,registration,total_population,3.1,29,,

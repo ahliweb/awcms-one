@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327303-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Babakan Ciparay Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Babakan Ciparay Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273020",
+  "publicationNumber": "32730.25007",
+  "issn": "2797-4901",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/6155dff572a76404fe027332/kecamatan-babakan-ciparay-dalam-angka-2026.html",
+  "sourceFileSha256": "36126320411ae5ba949a523b3a579b52d587e142106dadbd2ec2c1d02e83f1db",
+  "sourceFileBytes": 9428685,
+  "sourcePages": [37, 38, 39, 95],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327303-dalam-angka-2026.csv",
+  "csvSha256": "bd25963f7d0d8930e043fb0b3839c78616de2cef4f7cf92962ce458079ced0ff",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Babakan Ciparay, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Babakan Ciparay, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Babakan Ciparay, 2025",
+      "printedPages": [95],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Kecamatan Babakan Ciparay Babakan Ciparay District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Babakan Ciparay Babakan Ciparay District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.4.5: row not stored: row \"Ciparay Babakan Ciparay District\": unmatched "
+  ]
+}

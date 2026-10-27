@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.10.1006,4,Pacar Keling,sex,laki_laki,,10721,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1006,4,Pacar Keling,sex,perempuan,,11174,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1006,4,Pacar Keling,total,total,,21895,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10.1004,4,Pacar Kembang,sex,laki_laki,,19506,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1004,4,Pacar Kembang,sex,perempuan,,20161,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1004,4,Pacar Kembang,total,total,,39667,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10.1002,4,Ploso,sex,laki_laki,,17167,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1002,4,Ploso,sex,perempuan,,17730,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1002,4,Ploso,total,total,,34897,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10.1001,4,Tambaksari,sex,laki_laki,,9474,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1001,4,Tambaksari,sex,perempuan,,9753,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1001,4,Tambaksari,total,total,,19227,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10.1005,4,Rangkah,sex,laki_laki,,8235,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1005,4,Rangkah,sex,perempuan,,8611,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1005,4,Rangkah,total,total,,16846,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10.1003,4,Gading,sex,laki_laki,,15184,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1003,4,Gading,sex,perempuan,,15557,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1003,4,Gading,total,total,,30741,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10.1007,4,Kapasmadya Baru,sex,laki_laki,,19759,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1007,4,Kapasmadya Baru,sex,perempuan,,19714,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1007,4,Kapasmadya Baru,total,total,,39473,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10.1008,4,Dukuh Setro,sex,laki_laki,,11607,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10.1008,4,Dukuh Setro,sex,perempuan,,11586,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10.1008,4,Dukuh Setro,total,total,,23193,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10,3,Kecamatan Tambaksari,sex,laki_laki,,111653,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.10,3,Kecamatan Tambaksari,sex,perempuan,,114286,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.10,3,Kecamatan Tambaksari,total,total,,225939,jiwa,2025,registration,total_population,3.1,29,,
+35.78.10,3,Tambaksari,age_group,0-4,laki_laki,6512,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.10,3,Tambaksari,age_group,0-4,perempuan,6107,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.10,3,Tambaksari,age_group,0-4,,12619,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.10,3,Tambaksari,age_group,5-9,laki_laki,8280,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.10,3,Tambaksari,age_group,5-9,perempuan,7969,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.10,3,Tambaksari,age_group,5-9,,16249,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.10,3,Tambaksari,age_group,10-14,laki_laki,9153,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.10,3,Tambaksari,age_group,10-14,perempuan,8695,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.10,3,Tambaksari,age_group,10-14,,17848,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.10,3,Tambaksari,age_group,15-19,laki_laki,9290,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.10,3,Tambaksari,age_group,15-19,perempuan,8572,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.10,3,Tambaksari,age_group,15-19,,17862,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.10,3,Tambaksari,age_group,20-24,laki_laki,8872,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.10,3,Tambaksari,age_group,20-24,perempuan,8541,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.10,3,Tambaksari,age_group,20-24,,17413,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.10,3,Tambaksari,age_group,25-29,laki_laki,8485,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.10,3,Tambaksari,age_group,25-29,perempuan,7999,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.10,3,Tambaksari,age_group,25-29,,16484,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.10,3,Tambaksari,age_group,30-34,laki_laki,8236,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.10,3,Tambaksari,age_group,30-34,perempuan,8099,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.10,3,Tambaksari,age_group,30-34,,16335,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.10,3,Tambaksari,age_group,35-39,laki_laki,7811,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.10,3,Tambaksari,age_group,35-39,perempuan,7858,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.10,3,Tambaksari,age_group,35-39,,15669,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.10,3,Tambaksari,age_group,40-44,laki_laki,9125,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.10,3,Tambaksari,age_group,40-44,perempuan,9267,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.10,3,Tambaksari,age_group,40-44,,18392,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.10,3,Tambaksari,age_group,45-49,laki_laki,8289,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.10,3,Tambaksari,age_group,45-49,perempuan,8567,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.10,3,Tambaksari,age_group,45-49,,16856,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.10,3,Tambaksari,age_group,50-54,laki_laki,7530,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.10,3,Tambaksari,age_group,50-54,perempuan,8017,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.10,3,Tambaksari,age_group,50-54,,15547,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.10,3,Tambaksari,age_group,55-59,laki_laki,6409,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.10,3,Tambaksari,age_group,55-59,perempuan,6999,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.10,3,Tambaksari,age_group,55-59,,13408,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.10,3,Tambaksari,age_group,60-64,laki_laki,5015,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.10,3,Tambaksari,age_group,60-64,perempuan,6136,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.10,3,Tambaksari,age_group,60-64,,11151,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.10,3,Tambaksari,age_group,65-69,laki_laki,3931,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.10,3,Tambaksari,age_group,65-69,perempuan,4721,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.10,3,Tambaksari,age_group,65-69,,8652,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.10,3,Tambaksari,age_group,70-74,laki_laki,2586,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.10,3,Tambaksari,age_group,70-74,perempuan,3184,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.10,3,Tambaksari,age_group,70-74,,5770,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.10,3,Tambaksari,age_group,75+,laki_laki,2129,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.10,3,Tambaksari,age_group,75+,perempuan,3555,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.10,3,Tambaksari,age_group,75+,,5684,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.10,3,Kecamatan Tambaksari,sex,laki_laki,,111653,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.10,3,Kecamatan Tambaksari,sex,perempuan,,114286,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.10,3,Kecamatan Tambaksari,total,total,,225939,jiwa,2025,registration,total_population,3.2,31,,

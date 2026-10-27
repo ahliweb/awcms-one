@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.16.2001,4,Panyindangan Kulon,sex,laki_laki,,4092,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2001,4,Panyindangan Kulon,sex,perempuan,,3978,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2001,4,Panyindangan Kulon,total,total,,8070,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2002,4,Rambatan Wetan,sex,laki_laki,,4194,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2002,4,Rambatan Wetan,sex,perempuan,,4228,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2002,4,Rambatan Wetan,total,total,,8422,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2003,4,Panyindangan Wetan,sex,laki_laki,,2690,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2003,4,Panyindangan Wetan,sex,perempuan,,2629,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2003,4,Panyindangan Wetan,total,total,,5319,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2004,4,Kenanga,sex,laki_laki,,3615,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2004,4,Kenanga,sex,perempuan,,3384,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2004,4,Kenanga,total,total,,6999,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2005,4,Terusan,sex,laki_laki,,5057,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2005,4,Terusan,sex,perempuan,,4859,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2005,4,Terusan,total,total,,9916,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2006,4,Dermayu,sex,laki_laki,,2258,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2006,4,Dermayu,sex,perempuan,,2151,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2006,4,Dermayu,total,total,,4409,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2007,4,Sindang,sex,laki_laki,,3890,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2007,4,Sindang,sex,perempuan,,3837,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2007,4,Sindang,total,total,,7727,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2008,4,Penganjang,sex,laki_laki,,2307,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2008,4,Penganjang,sex,perempuan,,2215,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2008,4,Penganjang,total,total,,4522,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2009,4,Babadan,sex,laki_laki,,1841,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2009,4,Babadan,sex,perempuan,,1769,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2009,4,Babadan,total,total,,3610,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16.2014,4,Wanantara,sex,laki_laki,,1572,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16.2014,4,Wanantara,sex,perempuan,,1531,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16.2014,4,Wanantara,total,total,,3103,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16,3,Kecamatan Sindang,sex,laki_laki,,31516,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.16,3,Kecamatan Sindang,sex,perempuan,,30581,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.16,3,Kecamatan Sindang,total,total,,62097,jiwa,2025,registration,total_population,3.1,30,,
+32.12.16,3,Sindang,age_group,0-4,laki_laki,2717,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.16,3,Sindang,age_group,0-4,perempuan,2558,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.16,3,Sindang,age_group,0-4,,5275,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.16,3,Sindang,age_group,5-9,laki_laki,2197,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.16,3,Sindang,age_group,5-9,perempuan,2085,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.16,3,Sindang,age_group,5-9,,4282,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.16,3,Sindang,age_group,10-14,laki_laki,2280,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.16,3,Sindang,age_group,10-14,perempuan,2131,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.16,3,Sindang,age_group,10-14,,4411,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.16,3,Sindang,age_group,15-19,laki_laki,2298,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.16,3,Sindang,age_group,15-19,perempuan,2144,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.16,3,Sindang,age_group,15-19,,4442,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.16,3,Sindang,age_group,20-24,laki_laki,2372,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.16,3,Sindang,age_group,20-24,perempuan,2213,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.16,3,Sindang,age_group,20-24,,4585,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.16,3,Sindang,age_group,25-29,laki_laki,2653,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.16,3,Sindang,age_group,25-29,perempuan,2435,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.16,3,Sindang,age_group,25-29,,5088,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.16,3,Sindang,age_group,30-34,laki_laki,2463,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.16,3,Sindang,age_group,30-34,perempuan,2183,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.16,3,Sindang,age_group,30-34,,4646,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.16,3,Sindang,age_group,35-39,laki_laki,2468,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.16,3,Sindang,age_group,35-39,perempuan,2336,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.16,3,Sindang,age_group,35-39,,4804,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.16,3,Sindang,age_group,40-44,laki_laki,2235,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.16,3,Sindang,age_group,40-44,perempuan,2439,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.16,3,Sindang,age_group,40-44,,4674,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.16,3,Sindang,age_group,45-49,laki_laki,2018,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.16,3,Sindang,age_group,45-49,perempuan,2196,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.16,3,Sindang,age_group,45-49,,4214,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.16,3,Sindang,age_group,50-54,laki_laki,1851,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.16,3,Sindang,age_group,50-54,perempuan,1876,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.16,3,Sindang,age_group,50-54,,3727,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.16,3,Sindang,age_group,55-59,laki_laki,1592,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.16,3,Sindang,age_group,55-59,perempuan,1617,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.16,3,Sindang,age_group,55-59,,3209,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.16,3,Sindang,age_group,60-64,laki_laki,1195,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.16,3,Sindang,age_group,60-64,perempuan,1226,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.16,3,Sindang,age_group,60-64,,2421,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.16,3,Sindang,age_group,65-69,laki_laki,917,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.16,3,Sindang,age_group,65-69,perempuan,946,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.16,3,Sindang,age_group,65-69,,1863,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.16,3,Sindang,age_group,70-74,laki_laki,577,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.16,3,Sindang,age_group,70-74,perempuan,584,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.16,3,Sindang,age_group,70-74,,1161,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.16,3,Sindang,age_group,75+,laki_laki,433,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.16,3,Sindang,age_group,75+,perempuan,525,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.16,3,Sindang,age_group,75+,,958,jiwa,2025,projection,total_population,3.2,32,,75+

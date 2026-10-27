@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1403-kecamatan-140401-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.04.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Reteh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Indragiri Hilir",
+  "publisherDomain": "1403",
+  "publisherWebsite": "https://inhilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Indragiri Hilir (https://inhilkab.bps.go.id), publikasi \"Kecamatan Reteh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1403020",
+  "publicationNumber": "14030.26008",
+  "issn": "2597-5498",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://inhilkab.bps.go.id/id/publication/2026/09/28/b7e412518ebd71ce515c2701/kecamatan-reteh-dalam-angka-2026.html",
+  "sourceFileSha256": "37a1592554155a8d492e1f0736a1bb8bdf83b0428e2d1bcd3c7c69cc4054b760",
+  "sourceFileBytes": 3054319,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik BPS Kabupaten Indragiri Hilir.",
+  "csvPath": "datasets/bps-1403-kecamatan-140401-dalam-angka-2026.csv",
+  "csvSha256": "1251078f17af04d763db0584563db898a6f8939c2487b0f9011f230c7cee45d2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Reteh, 2026",
+      "printedPages": [29, 30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sungai Terab\": unmatched ",
+    "table 3.1: row not stored: row \"Sungai Terab\": unmatched "
+  ]
+}

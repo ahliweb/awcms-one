@@ -1,0 +1,59 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.28.06.2001,4,Timbangreja,sex,perempuan,,3171,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2001,4,Timbangreja,total,total,,6480,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2005,4,Yamansari,sex,perempuan,,6320,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2005,4,Yamansari,total,total,,12964,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2002,4,Lebaksiu Kidul,sex,perempuan,,3822,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2002,4,Lebaksiu Kidul,total,total,,7759,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2003,4,Lebaksiu Lor,sex,perempuan,,2581,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2003,4,Lebaksiu Lor,total,total,,5110,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2004,4,Kajen,sex,perempuan,,2072,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2004,4,Kajen,total,total,,4171,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2009,4,Dukuhlo,sex,perempuan,,2195,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2009,4,Dukuhlo,total,total,,4465,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2010,4,Pendawa,sex,perempuan,,2889,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2010,4,Pendawa,total,total,,5683,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2006,4,Kesuben,sex,perempuan,,6008,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2006,4,Kesuben,total,total,,12215,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2007,4,Balaradin,sex,perempuan,,3043,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2007,4,Balaradin,total,total,,6109,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2012,4,Kambangan,sex,perempuan,,5058,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2012,4,Kambangan,total,total,,10220,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2014,4,Tegalandong,sex,perempuan,,3963,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2014,4,Tegalandong,total,total,,8007,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2015,4,Dukuhdamu,sex,perempuan,,2427,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2015,4,Dukuhdamu,total,total,,4788,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06.2013,4,Slarang Kidul,sex,perempuan,,2782,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.06.2013,4,Slarang Kidul,total,total,,5578,jiwa,2026,registration,total_population,3.1,34,,
+33.28.06,3,Lebaksiu,age_group,0-4,perempuan,4022,jiwa,2026,registration,total_population,3.2,36,,0—4
+33.28.06,3,Lebaksiu,age_group,0-4,,8142,jiwa,2026,registration,total_population,3.2,36,,0—4
+33.28.06,3,Lebaksiu,age_group,5-9,perempuan,3903,jiwa,2026,registration,total_population,3.2,36,,5—9
+33.28.06,3,Lebaksiu,age_group,5-9,,8020,jiwa,2026,registration,total_population,3.2,36,,5—9
+33.28.06,3,Lebaksiu,age_group,10-14,perempuan,3595,jiwa,2026,registration,total_population,3.2,36,,10—14
+33.28.06,3,Lebaksiu,age_group,10-14,,7479,jiwa,2026,registration,total_population,3.2,36,,10—14
+33.28.06,3,Lebaksiu,age_group,15-19,perempuan,3658,jiwa,2026,registration,total_population,3.2,36,,15—19
+33.28.06,3,Lebaksiu,age_group,15-19,,7628,jiwa,2026,registration,total_population,3.2,36,,15—19
+33.28.06,3,Lebaksiu,age_group,20-24,perempuan,3490,jiwa,2026,registration,total_population,3.2,36,,20—24
+33.28.06,3,Lebaksiu,age_group,20-24,,7090,jiwa,2026,registration,total_population,3.2,36,,20—24
+33.28.06,3,Lebaksiu,age_group,25-29,perempuan,3736,jiwa,2026,registration,total_population,3.2,36,,25—29
+33.28.06,3,Lebaksiu,age_group,25-29,,7825,jiwa,2026,registration,total_population,3.2,36,,25—29
+33.28.06,3,Lebaksiu,age_group,30-34,perempuan,3883,jiwa,2026,registration,total_population,3.2,36,,30—34
+33.28.06,3,Lebaksiu,age_group,30-34,,7783,jiwa,2026,registration,total_population,3.2,36,,30—34
+33.28.06,3,Lebaksiu,age_group,35-39,perempuan,3607,jiwa,2026,registration,total_population,3.2,36,,35—39
+33.28.06,3,Lebaksiu,age_group,35-39,,7420,jiwa,2026,registration,total_population,3.2,36,,35—39
+33.28.06,3,Lebaksiu,age_group,40-44,perempuan,3536,jiwa,2026,registration,total_population,3.2,36,,40—44
+33.28.06,3,Lebaksiu,age_group,40-44,,7120,jiwa,2026,registration,total_population,3.2,36,,40—44
+33.28.06,3,Lebaksiu,age_group,45-49,perempuan,3444,jiwa,2026,registration,total_population,3.2,36,,45—49
+33.28.06,3,Lebaksiu,age_group,45-49,,6788,jiwa,2026,registration,total_population,3.2,36,,45—49
+33.28.06,3,Lebaksiu,age_group,50-54,perempuan,3354,jiwa,2026,registration,total_population,3.2,36,,50—54
+33.28.06,3,Lebaksiu,age_group,50-54,,6261,jiwa,2026,registration,total_population,3.2,36,,50—54
+33.28.06,3,Lebaksiu,age_group,55-59,perempuan,2777,jiwa,2026,registration,total_population,3.2,36,,55—59
+33.28.06,3,Lebaksiu,age_group,55-59,,5200,jiwa,2026,registration,total_population,3.2,36,,55—59
+33.28.06,3,Lebaksiu,age_group,60-64,perempuan,2228,jiwa,2026,registration,total_population,3.2,36,,60—64
+33.28.06,3,Lebaksiu,age_group,60-64,,4204,jiwa,2026,registration,total_population,3.2,36,,60—64
+33.28.06,3,Lebaksiu,age_group,65-69,perempuan,1784,jiwa,2026,registration,total_population,3.2,36,,65—69
+33.28.06,3,Lebaksiu,age_group,65-69,,3299,jiwa,2026,registration,total_population,3.2,36,,65—69
+33.28.06,3,Lebaksiu,age_group,70-74,perempuan,1383,jiwa,2026,registration,total_population,3.2,36,,70—74
+33.28.06,3,Lebaksiu,age_group,70-74,,2462,jiwa,2026,registration,total_population,3.2,36,,70—74
+33.28.06,3,Lebaksiu,age_group,75+,perempuan,1320,jiwa,2026,registration,total_population,3.2,36,,75+
+33.28.06,3,Lebaksiu,age_group,75+,,2285,jiwa,2026,registration,total_population,3.2,36,,75+

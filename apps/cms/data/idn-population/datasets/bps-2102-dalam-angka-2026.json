@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-2102-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "21.01",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Bintan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bintan",
+  "publisherDomain": "2102",
+  "publisherWebsite": "https://bintankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bintan (https://bintankab.bps.go.id), publikasi \"Kabupaten Bintan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2102",
+  "publicationNumber": "21020.26003",
+  "issn": "2406-8470",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://bintankab.bps.go.id/id/publication/2026/02/27/69cf5752c1fba068f5507914/kabupaten-bintan-dalam-angka-2026.html",
+  "sourceFileSha256": "e9ea7c10ed83f536971c65e43648b7cdaf0741e60227bc335e0068a74a246a31",
+  "sourceFileBytes": 12682969,
+  "sourcePages": [64, 168, 331],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bintan.",
+  "csvPath": "datasets/bps-2102-dalam-angka-2026.csv",
+  "csvSha256": "4230e028e41494611161796a760dceaab7439d39b597787207fcd2fb2e450a64",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Bintan, 2025",
+      "printedPages": [64],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Bintan, 2025",
+      "printedPages": [168],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Bintan (rupiah), 2024 dan 2025",
+      "printedPages": [331],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1603-kecamatan-160314-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.03.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muara Enim",
+  "publisherDomain": "1603",
+  "publisherWebsite": "https://muaraenimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muara Enim (https://muaraenimkab.bps.go.id), publikasi \"Kecamatan Lubai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1603032",
+  "publicationNumber": "16030.26011",
+  "issn": "2745-3200",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muaraenimkab.bps.go.id/id/publication/2026/09/28/f3053ac1c39310ad9214ee73/kecamatan-lubai-dalam-angka-2026.html",
+  "sourceFileSha256": "3216fa1f1eaef4b7b9e6a5e7191b80ace177cb97f8dba63cba0fc2f0bae7230c",
+  "sourceFileBytes": 1335659,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muara Enim.",
+  "csvPath": "datasets/bps-1603-kecamatan-160314-dalam-angka-2026.csv",
+  "csvSha256": "dfcde73ba7db1573d485121a9f66bc50bf8c0313cede76f117243ac6e7e6d822",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lubai, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 16.03.14 are not stored: sex split vs total: parts sum 28622.0000 != 28266.0000 (diff 356.0000); the source itself is inconsistent"
+  ]
+}

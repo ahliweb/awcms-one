@@ -1,0 +1,189 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.09.02,3,Tebo Ilir,total,total,,30061,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.12,3,Muara Tabir,total,total,,17921,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.01,3,Tebo Tengah,total,total,,43311,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.05,3,Sumay,total,total,,23525,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.09,3,Tengah Ilir,total,total,,30032,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.04,3,Rimbo Bujang,total,total,,65072,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.07,3,Rimbo Ulu,total,total,,39016,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.08,3,Rimbo Ilir,total,total,,24435,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.03,3,Tebo Ulu,total,total,,33847,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.06,3,VII Koto,total,total,,21057,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.10,3,Serai Serumpun,total,total,,10680,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09.11,3,VII Koto Ilir,total,total,,20681,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09,2,Tebo,total,total,,359638,jiwa,2025,projection,total_population,3.1.1,63,,
+15.09,2,Kabupaten Tebo,age_group,0-4,laki_laki,16682,jiwa,2025,projection,total_population,3.1.2,66,,0–4
+15.09,2,Kabupaten Tebo,age_group,0-4,perempuan,16147,jiwa,2025,projection,total_population,3.1.2,66,,0–4
+15.09,2,Kabupaten Tebo,age_group,0-4,,32829,jiwa,2025,projection,total_population,3.1.2,66,,0–4
+15.09,2,Kabupaten Tebo,age_group,5-9,laki_laki,16216,jiwa,2025,projection,total_population,3.1.2,66,,5–9
+15.09,2,Kabupaten Tebo,age_group,5-9,perempuan,15422,jiwa,2025,projection,total_population,3.1.2,66,,5–9
+15.09,2,Kabupaten Tebo,age_group,5-9,,31638,jiwa,2025,projection,total_population,3.1.2,66,,5–9
+15.09,2,Kabupaten Tebo,age_group,10-14,laki_laki,15868,jiwa,2025,projection,total_population,3.1.2,66,,10–14
+15.09,2,Kabupaten Tebo,age_group,10-14,perempuan,15075,jiwa,2025,projection,total_population,3.1.2,66,,10–14
+15.09,2,Kabupaten Tebo,age_group,10-14,,30943,jiwa,2025,projection,total_population,3.1.2,66,,10–14
+15.09,2,Kabupaten Tebo,age_group,15-19,laki_laki,14759,jiwa,2025,projection,total_population,3.1.2,66,,15–19
+15.09,2,Kabupaten Tebo,age_group,15-19,perempuan,13932,jiwa,2025,projection,total_population,3.1.2,66,,15–19
+15.09,2,Kabupaten Tebo,age_group,15-19,,28691,jiwa,2025,projection,total_population,3.1.2,66,,15–19
+15.09,2,Kabupaten Tebo,age_group,20-24,laki_laki,14400,jiwa,2025,projection,total_population,3.1.2,66,,20–24
+15.09,2,Kabupaten Tebo,age_group,20-24,perempuan,13691,jiwa,2025,projection,total_population,3.1.2,66,,20–24
+15.09,2,Kabupaten Tebo,age_group,20-24,,28091,jiwa,2025,projection,total_population,3.1.2,66,,20–24
+15.09,2,Kabupaten Tebo,age_group,25-29,laki_laki,14371,jiwa,2025,projection,total_population,3.1.2,66,,25–29
+15.09,2,Kabupaten Tebo,age_group,25-29,perempuan,14024,jiwa,2025,projection,total_population,3.1.2,66,,25–29
+15.09,2,Kabupaten Tebo,age_group,25-29,,28395,jiwa,2025,projection,total_population,3.1.2,66,,25–29
+15.09,2,Kabupaten Tebo,age_group,30-34,laki_laki,14083,jiwa,2025,projection,total_population,3.1.2,66,,30–34
+15.09,2,Kabupaten Tebo,age_group,30-34,perempuan,13880,jiwa,2025,projection,total_population,3.1.2,66,,30–34
+15.09,2,Kabupaten Tebo,age_group,30-34,,27963,jiwa,2025,projection,total_population,3.1.2,66,,30–34
+15.09,2,Kabupaten Tebo,age_group,35-39,laki_laki,14024,jiwa,2025,projection,total_population,3.1.2,66,,35–39
+15.09,2,Kabupaten Tebo,age_group,35-39,perempuan,13792,jiwa,2025,projection,total_population,3.1.2,66,,35–39
+15.09,2,Kabupaten Tebo,age_group,35-39,,27816,jiwa,2025,projection,total_population,3.1.2,66,,35–39
+15.09,2,Kabupaten Tebo,age_group,40-44,laki_laki,13402,jiwa,2025,projection,total_population,3.1.2,66,,40–44
+15.09,2,Kabupaten Tebo,age_group,40-44,perempuan,13002,jiwa,2025,projection,total_population,3.1.2,66,,40–44
+15.09,2,Kabupaten Tebo,age_group,40-44,,26404,jiwa,2025,projection,total_population,3.1.2,66,,40–44
+15.09,2,Kabupaten Tebo,age_group,45-49,laki_laki,12676,jiwa,2025,projection,total_population,3.1.2,66,,45–49
+15.09,2,Kabupaten Tebo,age_group,45-49,perempuan,12113,jiwa,2025,projection,total_population,3.1.2,66,,45–49
+15.09,2,Kabupaten Tebo,age_group,45-49,,24789,jiwa,2025,projection,total_population,3.1.2,66,,45–49
+15.09,2,Kabupaten Tebo,age_group,50-54,laki_laki,11082,jiwa,2025,projection,total_population,3.1.2,66,,50–54
+15.09,2,Kabupaten Tebo,age_group,50-54,perempuan,10396,jiwa,2025,projection,total_population,3.1.2,66,,50–54
+15.09,2,Kabupaten Tebo,age_group,50-54,,21478,jiwa,2025,projection,total_population,3.1.2,66,,50–54
+15.09,2,Kabupaten Tebo,age_group,55-59,laki_laki,9067,jiwa,2025,projection,total_population,3.1.2,66,,55–59
+15.09,2,Kabupaten Tebo,age_group,55-59,perempuan,8188,jiwa,2025,projection,total_population,3.1.2,66,,55–59
+15.09,2,Kabupaten Tebo,age_group,55-59,,17255,jiwa,2025,projection,total_population,3.1.2,66,,55–59
+15.09,2,Kabupaten Tebo,age_group,60-64,laki_laki,7058,jiwa,2025,projection,total_population,3.1.2,66,,60–64
+15.09,2,Kabupaten Tebo,age_group,60-64,perempuan,6325,jiwa,2025,projection,total_population,3.1.2,66,,60–64
+15.09,2,Kabupaten Tebo,age_group,60-64,,13383,jiwa,2025,projection,total_population,3.1.2,66,,60–64
+15.09,2,Kabupaten Tebo,age_group,65-69,laki_laki,4950,jiwa,2025,projection,total_population,3.1.2,66,,65–69
+15.09,2,Kabupaten Tebo,age_group,65-69,perempuan,4453,jiwa,2025,projection,total_population,3.1.2,66,,65–69
+15.09,2,Kabupaten Tebo,age_group,65-69,,9403,jiwa,2025,projection,total_population,3.1.2,66,,65–69
+15.09,2,Kabupaten Tebo,age_group,70-74,laki_laki,3171,jiwa,2025,projection,total_population,3.1.2,66,,70–74
+15.09,2,Kabupaten Tebo,age_group,70-74,perempuan,2882,jiwa,2025,projection,total_population,3.1.2,66,,70–74
+15.09,2,Kabupaten Tebo,age_group,70-74,,6053,jiwa,2025,projection,total_population,3.1.2,66,,70–74
+15.09,2,Kabupaten Tebo,age_group,75+,laki_laki,2283,jiwa,2025,projection,total_population,3.1.2,66,,75+
+15.09,2,Kabupaten Tebo,age_group,75+,perempuan,2224,jiwa,2025,projection,total_population,3.1.2,66,,75+
+15.09,2,Kabupaten Tebo,age_group,75+,,4507,jiwa,2025,projection,total_population,3.1.2,66,,75+
+15.09,2,Kabupaten Tebo,sex,laki_laki,,184092,jiwa,2025,projection,total_population,3.1.2,66,,Laki-Laki
+15.09,2,Kabupaten Tebo,sex,perempuan,,175546,jiwa,2025,projection,total_population,3.1.2,66,,Perempuan
+15.09,2,Kabupaten Tebo,total,total,,359638,jiwa,2025,projection,total_population,3.1.2,66,,
+15.09.02,3,Tebo Ilir,religion,islam,,27306,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.02,3,Tebo Ilir,religion,kristen,,195,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.02,3,Tebo Ilir,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Katolik
+15.09.02,3,Tebo Ilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.02,3,Tebo Ilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.02,3,Tebo Ilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.12,3,Muara Tabir,religion,islam,,19541,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.12,3,Muara Tabir,religion,kristen,,216,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.12,3,Muara Tabir,religion,katolik,,50,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.12,3,Muara Tabir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.12,3,Muara Tabir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.12,3,Muara Tabir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.01,3,Tebo Tengah,religion,islam,,41111,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.01,3,Tebo Tengah,religion,kristen,,256,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.01,3,Tebo Tengah,religion,katolik,,60,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.01,3,Tebo Tengah,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,133,,Hindu
+15.09.01,3,Tebo Tengah,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,133,,Budha
+15.09.01,3,Tebo Tengah,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,133,,Lainnya
+15.09.05,3,Sumay,religion,islam,,25100,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.05,3,Sumay,religion,kristen,,571,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.05,3,Sumay,religion,katolik,,87,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.05,3,Sumay,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.05,3,Sumay,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.05,3,Sumay,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.09,3,Tengah Ilir,religion,islam,,30277,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.09,3,Tengah Ilir,religion,kristen,,1146,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.09,3,Tengah Ilir,religion,katolik,,1494,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.09,3,Tengah Ilir,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,133,,Hindu
+15.09.09,3,Tengah Ilir,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,133,,Budha
+15.09.09,3,Tengah Ilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.04,3,Rimbo Bujang,religion,islam,,59935,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.04,3,Rimbo Bujang,religion,kristen,,1925,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.04,3,Rimbo Bujang,religion,katolik,,1914,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.04,3,Rimbo Bujang,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,133,,Hindu
+15.09.04,3,Rimbo Bujang,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,133,,Budha
+15.09.04,3,Rimbo Bujang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,,Lainnya
+15.09.07,3,Rimbo Ulu,religion,islam,,36999,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.07,3,Rimbo Ulu,religion,kristen,,553,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.07,3,Rimbo Ulu,religion,katolik,,87,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.07,3,Rimbo Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.07,3,Rimbo Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.07,3,Rimbo Ulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.08,3,Rimbo Ilir,religion,islam,,22267,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.08,3,Rimbo Ilir,religion,kristen,,390,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.08,3,Rimbo Ilir,religion,katolik,,349,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.08,3,Rimbo Ilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.08,3,Rimbo Ilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.08,3,Rimbo Ilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.03,3,Tebo Ulu,religion,islam,,35122,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.03,3,Tebo Ulu,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.03,3,Tebo Ulu,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.03,3,Tebo Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.03,3,Tebo Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.03,3,Tebo Ulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.06,3,VII Koto,religion,islam,,40078,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.06,3,VII Koto,religion,kristen,,80,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.06,3,VII Koto,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Katolik
+15.09.06,3,VII Koto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.06,3,VII Koto,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.06,3,VII Koto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.10,3,Serai Serumpun,religion,islam,,11127,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.10,3,Serai Serumpun,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.10,3,Serai Serumpun,religion,katolik,,200,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.10,3,Serai Serumpun,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+15.09.10,3,Serai Serumpun,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.10,3,Serai Serumpun,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09.11,3,VII Koto Ilir,religion,islam,,22019,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09.11,3,VII Koto Ilir,religion,kristen,,370,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09.11,3,VII Koto Ilir,religion,katolik,,234,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09.11,3,VII Koto Ilir,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,133,,Hindu
+15.09.11,3,VII Koto Ilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+15.09.11,3,VII Koto Ilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+15.09,2,Tebo,religion,islam,,370882,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+15.09,2,Tebo,religion,kristen,,5712,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+15.09,2,Tebo,religion,katolik,,4490,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+15.09,2,Tebo,religion,hindu,,34,jiwa,2025,registration,total_population,4.3.1,133,,Hindu
+15.09,2,Tebo,religion,buddha,,28,jiwa,2025,registration,total_population,4.3.1,133,,Budha
+15.09,2,Tebo,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,133,,Lainnya
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/padi_padian,,94864,rupiah,2024,survey_estimate,per_capita,10.1,295,,Padi-padian
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/padi_padian,,102472,rupiah,2025,survey_estimate,per_capita,10.1,295,,Padi-padian
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/umbi_umbian,,8167,rupiah,2024,survey_estimate,per_capita,10.1,295,,Umbi-umbian
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/umbi_umbian,,8061,rupiah,2025,survey_estimate,per_capita,10.1,295,,Umbi-umbian
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,60043,rupiah,2024,survey_estimate,per_capita,10.1,295,,Ikan/udang/cumi/kerang
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,61653,rupiah,2025,survey_estimate,per_capita,10.1,295,,Ikan/udang/cumi/kerang
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/daging,,27746,rupiah,2024,survey_estimate,per_capita,10.1,295,,Daging
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/daging,,27092,rupiah,2025,survey_estimate,per_capita,10.1,295,,Daging
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/telur_dan_susu,,28554,rupiah,2024,survey_estimate,per_capita,10.1,295,,Telur dan susu
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/telur_dan_susu,,27615,rupiah,2025,survey_estimate,per_capita,10.1,295,,Telur dan susu
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/sayur_sayuran,,83993,rupiah,2024,survey_estimate,per_capita,10.1,295,,Sayur-sayuran
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/sayur_sayuran,,85479,rupiah,2025,survey_estimate,per_capita,10.1,295,,Sayur-sayuran
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/kacang_kacangan,,10331,rupiah,2024,survey_estimate,per_capita,10.1,295,,Kacang-kacangan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/kacang_kacangan,,11895,rupiah,2025,survey_estimate,per_capita,10.1,295,,Kacang-kacangan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/buah_buahan,,47714,rupiah,2024,survey_estimate,per_capita,10.1,295,,Buah-buahan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/buah_buahan,,36762,rupiah,2025,survey_estimate,per_capita,10.1,295,,Buah-buahan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23974,rupiah,2024,survey_estimate,per_capita,10.1,295,,Minyak dan kelapa
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26594,rupiah,2025,survey_estimate,per_capita,10.1,295,,Minyak dan kelapa
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/bahan_minuman,,22420,rupiah,2024,survey_estimate,per_capita,10.1,295,,Bahan minuman
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/bahan_minuman,,25637,rupiah,2025,survey_estimate,per_capita,10.1,295,,Bahan minuman
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/bumbu_bumbuan,,10879,rupiah,2024,survey_estimate,per_capita,10.1,295,,Bumbu-bumbuan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/bumbu_bumbuan,,11128,rupiah,2025,survey_estimate,per_capita,10.1,295,,Bumbu-bumbuan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/konsumsi_lainnya,,12660,rupiah,2024,survey_estimate,per_capita,10.1,295,,Konsumsi lainnya
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/konsumsi_lainnya,,11849,rupiah,2025,survey_estimate,per_capita,10.1,295,,Konsumsi lainnya
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,154476,rupiah,2024,survey_estimate,per_capita,10.1,295,,Makanan dan minuman jadi
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,143899,rupiah,2025,survey_estimate,per_capita,10.1,295,,Makanan dan minuman jadi
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/rokok,,110378,rupiah,2024,survey_estimate,per_capita,10.1,295,,Rokok
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/rokok,,106496,rupiah,2025,survey_estimate,per_capita,10.1,295,,Rokok
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/jumlah_makanan,,696199,rupiah,2024,survey_estimate,per_capita,10.1,295,,Jumlah makanan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/jumlah_makanan,,686631,rupiah,2025,survey_estimate,per_capita,10.1,295,,Jumlah makanan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,276120,rupiah,2024,survey_estimate,per_capita,10.1,295,,Perumahan dan fasilitas rumah tangga
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,270800,rupiah,2025,survey_estimate,per_capita,10.1,295,,Perumahan dan fasilitas rumah tangga
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,86819,rupiah,2024,survey_estimate,per_capita,10.1,295,,Aneka barang dan jasa
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,91812,rupiah,2025,survey_estimate,per_capita,10.1,295,,Aneka barang dan jasa
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36724,rupiah,2024,survey_estimate,per_capita,10.1,295,,"Pakaian, alas kaki, dan tutup kepala"
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36526,rupiah,2025,survey_estimate,per_capita,10.1,295,,"Pakaian, alas kaki, dan tutup kepala"
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/barang_tahan_lama,,20740,rupiah,2024,survey_estimate,per_capita,10.1,295,,Barang tahan lama
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/barang_tahan_lama,,56244,rupiah,2025,survey_estimate,per_capita,10.1,295,,Barang tahan lama
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,33707,rupiah,2024,survey_estimate,per_capita,10.1,295,,"Pajak, pungutan, dan asuransi"
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36716,rupiah,2025,survey_estimate,per_capita,10.1,295,,"Pajak, pungutan, dan asuransi"
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,151148,rupiah,2024,survey_estimate,per_capita,10.1,295,,Keperluan pesta dan upacara/kenduri
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22280,rupiah,2025,survey_estimate,per_capita,10.1,295,,Keperluan pesta dan upacara/kenduri
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,469275,rupiah,2024,survey_estimate,per_capita,10.1,295,,Jumlah bukan makanan
+15.09,2,Kabupaten Tebo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,514377,rupiah,2025,survey_estimate,per_capita,10.1,295,,Jumlah bukan makanan
+15.09,2,Kabupaten Tebo,expenditure,total,,1047860,rupiah,2024,survey_estimate,per_capita,10.1,295,,
+15.09,2,Kabupaten Tebo,expenditure,total,,1201008,rupiah,2025,survey_estimate,per_capita,10.1,295,,

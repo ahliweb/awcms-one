@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3578-kecamatan-357810-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.78.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tambaksari Dalam Angka 2026",
+  "publisherName": "BPS Kota Surabaya",
+  "publisherDomain": "3578",
+  "publisherWebsite": "https://surabayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surabaya (https://surabayakota.bps.go.id), publikasi \"Kecamatan Tambaksari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3578200",
+  "publicationNumber": "35780.25031",
+  "issn": "3110-5114",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surabayakota.bps.go.id/id/publication/2026/09/28/02089c053e86b211f9a76128/kecamatan-tambaksari-dalam-angka-2026.html",
+  "sourceFileSha256": "09cb3e1170d0aa4b24f3b47cf0de6c09402b442ef14a25a0d75d9e5243c1f0a6",
+  "sourceFileBytes": 23903892,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surabaya.",
+  "csvPath": "datasets/bps-3578-kecamatan-357810-dalam-angka-2026.csv",
+  "csvSha256": "ea1d6e13264c25a9a79f055f7b4f105f2b402f67b70614985f11686264b0ab87",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tambaksari, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tambaksari, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

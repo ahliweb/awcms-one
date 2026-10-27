@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Coblong Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Coblong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273230",
+  "publicationNumber": "32730.25007",
+  "issn": "2797-4650",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/11eaab60c4e6d5a3563d0336/kecamatan-coblong-dalam-angka-2026.html",
+  "sourceFileSha256": "8b7b2709dd0673a9303c38b46af233a4619d901cd8e3871102eee7783efb61eb",
+  "sourceFileBytes": 8974370,
+  "sourcePages": [37, 39, 95],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327302-dalam-angka-2026.csv",
+  "csvSha256": "883a3ac94e42389705d1e045aa25114be7e959ed1fd058af402a95b4f7e7b25a",
+  "tablesUsed": [
+    {
+      "table": "1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Coblong, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Coblong, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Coblong, 2025",
+      "printedPages": [95],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 1.1: row not stored: row \"Kecamatan Coblong Coblong District\": unmatched ",
+    "table 1.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 1.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kecamatan Coblong Coblong District\": unmatched "
+  ]
+}

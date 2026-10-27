@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-1202-kecamatan-121312-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.13.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muara Sipongi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mandailing Natal",
+  "publisherDomain": "1202",
+  "publisherWebsite": "https://mandailingnatalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mandailing Natal (https://mandailingnatalkab.bps.go.id), publikasi \"Kecamatan Muara Sipongi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1202040",
+  "publicationNumber": "12020.26023",
+  "issn": "3063-3443",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mandailingnatalkab.bps.go.id/id/publication/2026/09/28/b0f4fffb549539afe13c15fb/kecamatan-muara-sipongi-dalam-angka-2026.html",
+  "sourceFileSha256": "00bcaa33d695de4453c2e39ec1825023c79b1bd1064b3e617361986e2a503559",
+  "sourceFileBytes": 7540901,
+  "sourcePages": [22, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mandailing Natal. ISSN 3063-3443 TIM PENYUSUN Kecamatan Muara Sipongi Dalam Angka 2026 Volume 15, 2026 ps .g o ka b .b Penanggung Jawab Dedi Kintoro .id Pengarah Dedi Kintoro gn at al Penyunting Tim Diseminasi BPS Kabupaten Mandailing Natal an d ai lin Pengolah Data dan Penulis Naskah Tim Diseminasi BPS Kabupaten Mandailing Natal ht tp s: //m Penata Letak Tim Diseminasi BPS Kabupaten Mandailing Natal v at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KONTRIBUTOR DATA tp s: //m an d ai lin gn at al ka b .b ps .g o .id Kementerian Agama Kementerian Pendidikan dan Kebudayaan Badan Pusat Statistik Dinas Kependudukan dan Pencatatan Sipil Kabupaten Mandailing Natal Dinas Kesehatan Kabupaten Mandailing Natal Kecamatan Muara Sipongi Website Data Pokok Pendidikan Dasar dan Menengah ht 1. 2. 3. 4. 5. 6. 7. vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KATA PENGANTAR Dengan memanjatkan puji syukur ke hadirat Tuhan Yang Maha Esa, saya menyambut gembira penerbitan Publikasi Kecamatan Muara Sipongi Dalam Angka 2024. Penerbitan ini merupakan hasil dari usaha nyata yang bersifat luas dan komprehensif untuk menyediakan data bagi perencana pembangunan. Saya percaya bahwa pembangunan data yang terdapat dalam terbitan ini akan memungkinkan para perencana untuk lebih memantapkan sistem perencanaan secara nyata, terarah, terpadu, dan berdaya guna. ps .g o .id Terima kasih saya ucapkan kepada Kecamatan Naga Juang yang telah berupaya dengan sungguhsungguh memberikan bantuan sehingga dapat terwujudnya publikasi ini. Muara Sipongi, September 2026 Kepala Badan Pusat Statistik Kabupaten Mandailing Natal ht tp s: //m an d ai lin gn at al ka b .b Akhirnya saya mengharapkan agar kegiatan pengumpulan data di setiap sektor pembangunan di tingkat kecamatan makin lebih tepat, akurat dan efektif, serta berdaya guna sehingga data yang benar dapat diinformasikan dan disebarluaskan kepada masyarakat dan instansi yang memerlukan. Dedi Kintoro vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b",
+  "csvPath": "datasets/bps-1202-kecamatan-121312-dalam-angka-2026.csv",
+  "csvSha256": "eb19d9b09497bbb6091651659269784594ac69f2103af72838ac8bcdfc36d7a9",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p22",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Muara Sipongi, 2025 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "unnumbered-p24",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Muara Sipongi, 2025 Jenis Kelamin Kelompok Umur Laki-Laki Perempuan Jumlah",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p24: row not stored: row \"0-4 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"5-9 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"10-14 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"15-19 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"20-24 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"25-29 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"30-34 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"35-39 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"40-44 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"45-49 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"50-54 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"55-59 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"60-64 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"65-69 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \"70-74 Thn\": unmatched ",
+    "table unnumbered-p24: row not stored: row \">74 Thn\": unmatched "
+  ]
+}

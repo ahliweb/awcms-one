@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.26.02.2007,4,Junganyar,sex,laki_laki,,1698,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2007,4,Junganyar,sex,perempuan,,1650,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2007,4,Junganyar,total,total,,3348,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2001,4,Socah,sex,laki_laki,,3075,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2001,4,Socah,sex,perempuan,,3041,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2001,4,Socah,total,total,,6116,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2006,4,Buluh,sex,laki_laki,,2360,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2006,4,Buluh,sex,perempuan,,2348,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2006,4,Buluh,total,total,,4708,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2005,4,Jaddih,sex,laki_laki,,5718,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2005,4,Jaddih,sex,perempuan,,5819,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2005,4,Jaddih,total,total,,11537,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2011,4,Sanggra Agung,sex,laki_laki,,3029,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2011,4,Sanggra Agung,sex,perempuan,,3038,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2011,4,Sanggra Agung,total,total,,6067,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2004,4,Parseh,sex,laki_laki,,4357,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2004,4,Parseh,sex,perempuan,,4233,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2004,4,Parseh,total,total,,8590,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2003,4,Bilaporah,sex,laki_laki,,3225,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2003,4,Bilaporah,sex,perempuan,,3200,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2003,4,Bilaporah,total,total,,6425,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2002,4,Keleyan,sex,laki_laki,,4295,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2002,4,Keleyan,sex,perempuan,,4256,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2002,4,Keleyan,total,total,,8551,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2009,4,Petaonan,sex,laki_laki,,1736,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2009,4,Petaonan,sex,perempuan,,1835,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2009,4,Petaonan,total,total,,3571,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2008,4,Dakiring,sex,laki_laki,,1507,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2008,4,Dakiring,sex,perempuan,,1498,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2008,4,Dakiring,total,total,,3005,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02.2010,4,Pernajuh,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02.2010,4,Pernajuh,sex,perempuan,,542,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02.2010,4,Pernajuh,total,total,,1101,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02,3,Kecamatan Socah,sex,laki_laki,,31559,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.02,3,Kecamatan Socah,sex,perempuan,,31460,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.02,3,Kecamatan Socah,total,total,,63019,jiwa,2025,registration,total_population,3.1,31,,
+35.26.02,3,Socah,age_group,0-4,laki_laki,2268,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.02,3,Socah,age_group,0-4,perempuan,2131,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.02,3,Socah,age_group,0-4,,4399,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.02,3,Socah,age_group,5-9,laki_laki,2822,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.02,3,Socah,age_group,5-9,perempuan,2695,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.02,3,Socah,age_group,5-9,,5517,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.02,3,Socah,age_group,10-14,laki_laki,2897,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.02,3,Socah,age_group,10-14,perempuan,2669,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.02,3,Socah,age_group,10-14,,5566,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.02,3,Socah,age_group,15-19,laki_laki,2119,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.02,3,Socah,age_group,15-19,perempuan,1942,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.02,3,Socah,age_group,15-19,,4061,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.02,3,Socah,age_group,20-24,laki_laki,2643,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.02,3,Socah,age_group,20-24,perempuan,2517,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.02,3,Socah,age_group,20-24,,5160,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.02,3,Socah,age_group,25-29,laki_laki,2648,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.02,3,Socah,age_group,25-29,perempuan,2464,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.02,3,Socah,age_group,25-29,,5112,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.02,3,Socah,age_group,30-34,laki_laki,2421,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.02,3,Socah,age_group,30-34,perempuan,2400,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.02,3,Socah,age_group,30-34,,4821,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.02,3,Socah,age_group,35-39,laki_laki,2287,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.02,3,Socah,age_group,35-39,perempuan,2198,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.02,3,Socah,age_group,35-39,,4485,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.02,3,Socah,age_group,40-44,laki_laki,2331,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.02,3,Socah,age_group,40-44,perempuan,2515,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.02,3,Socah,age_group,40-44,,4846,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.02,3,Socah,age_group,45-49,laki_laki,2003,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.02,3,Socah,age_group,45-49,perempuan,2282,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.02,3,Socah,age_group,45-49,,4285,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.02,3,Socah,age_group,50-54,laki_laki,1848,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.02,3,Socah,age_group,50-54,perempuan,2203,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.02,3,Socah,age_group,50-54,,4051,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.02,3,Socah,age_group,55-59,laki_laki,1630,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.02,3,Socah,age_group,55-59,perempuan,2023,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.02,3,Socah,age_group,55-59,,3653,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.02,3,Socah,age_group,60-64,laki_laki,1426,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.02,3,Socah,age_group,60-64,perempuan,1714,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.02,3,Socah,age_group,60-64,,3140,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.02,3,Socah,age_group,65-69,laki_laki,1109,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.02,3,Socah,age_group,65-69,perempuan,1277,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.02,3,Socah,age_group,65-69,,2386,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.02,3,Socah,age_group,70-74,laki_laki,533,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.02,3,Socah,age_group,70-74,perempuan,158,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.02,3,Socah,age_group,70-74,,691,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.02,3,Socah,age_group,75+,laki_laki,574,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.02,3,Socah,age_group,75+,perempuan,272,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.02,3,Socah,age_group,75+,,846,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.02,3,Socah,sex,laki_laki,,31559,jiwa,2025,registration,total_population,3.3,35,,Laki-Laki
+35.26.02,3,Socah,sex,perempuan,,31460,jiwa,2025,registration,total_population,3.3,35,,Perempuan
+35.26.02,3,Socah,total,total,,63019,jiwa,2025,registration,total_population,3.3,35,,

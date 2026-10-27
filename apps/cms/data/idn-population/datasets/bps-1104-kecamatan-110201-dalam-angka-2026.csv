@@ -1,0 +1,62 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.01.2009,4,Muara baru,sex,laki_laki,,311,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2009,4,Muara baru,sex,perempuan,,307,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2009,4,Muara baru,total,total,,618,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2004,4,Pasir Bangun,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2004,4,Pasir Bangun,sex,perempuan,,442,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2004,4,Pasir Bangun,total,total,,887,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2006,4,Kubu,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2006,4,Kubu,sex,perempuan,,409,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2006,4,Kubu,total,total,,852,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2008,4,Kuta Cingkam II,sex,laki_laki,,488,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2008,4,Kuta Cingkam II,sex,perempuan,,487,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2008,4,Kuta Cingkam II,total,total,,975,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2012,4,Kuta Cingkam I,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2012,4,Kuta Cingkam I,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2012,4,Kuta Cingkam I,total,total,,808,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2014,4,Lawe Sempilang,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2014,4,Lawe Sempilang,sex,perempuan,,215,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2014,4,Lawe Sempilang,total,total,,433,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2013,4,Kuta Batu II,sex,laki_laki,,629,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2013,4,Kuta Batu II,sex,perempuan,,625,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2013,4,Kuta Batu II,total,total,,1254,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2011,4,Kuta Batu I,sex,laki_laki,,513,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2011,4,Kuta Batu I,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2011,4,Kuta Batu I,total,total,,1005,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2015,4,Prapat Batu Nunggul,sex,laki_laki,,505,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2015,4,Prapat Batu Nunggul,sex,perempuan,,489,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2015,4,Prapat Batu Nunggul,total,total,,994,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2016,4,Pulo Sepang,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2016,4,Pulo Sepang,sex,perempuan,,456,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2016,4,Pulo Sepang,total,total,,920,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2019,4,Darul Amin,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2019,4,Darul Amin,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2019,4,Darul Amin,total,total,,796,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2020,4,Lawe Lubang Indah,sex,laki_laki,,201,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2020,4,Lawe Lubang Indah,sex,perempuan,,207,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2020,4,Lawe Lubang Indah,total,total,,408,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2021,4,Batu Hamparan,sex,laki_laki,,177,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2021,4,Batu Hamparan,sex,perempuan,,170,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2021,4,Batu Hamparan,total,total,,347,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2017,4,Rih Mbelang,sex,laki_laki,,304,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2017,4,Rih Mbelang,sex,perempuan,,273,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2017,4,Rih Mbelang,total,total,,577,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2002,4,Rumah Kampung,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2002,4,Rumah Kampung,sex,perempuan,,241,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2002,4,Rumah Kampung,total,total,,485,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2024,4,Pasir Nunggul,sex,laki_laki,,170,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.01.2024,4,Pasir Nunggul,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.01.2024,4,Pasir Nunggul,total,total,,349,jiwa,2025,registration,total_population,3.1,28,,
+11.02.01.2023,4,Pulo Ndadap,sex,laki_laki,,273,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.01.2023,4,Pulo Ndadap,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.01.2023,4,Pulo Ndadap,total,total,,542,jiwa,2025,registration,total_population,3.1,29,,
+11.02.01.2026,4,Pintu Khimbe,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.01.2026,4,Pintu Khimbe,sex,perempuan,,273,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.01.2026,4,Pintu Khimbe,total,total,,544,jiwa,2025,registration,total_population,3.1,29,,
+11.02.01.2028,4,Pulo Gadung,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.01.2028,4,Pulo Gadung,sex,perempuan,,203,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.01.2028,4,Pulo Gadung,total,total,,429,jiwa,2025,registration,total_population,3.1,29,,
+11.02.01.2031,4,Deleng Kukusen,sex,laki_laki,,243,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.01.2031,4,Deleng Kukusen,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.01.2031,4,Deleng Kukusen,total,total,,489,jiwa,2025,registration,total_population,3.1,29,,
+11.02.01,3,Lawe Alas,total,total,,19074,jiwa,2025,registration,total_population,3.1,29,,

@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-1111-kecamatan-110826-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.08.26",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banda Baro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Utara",
+  "publisherDomain": "1111",
+  "publisherWebsite": "https://acehutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Utara (https://acehutarakab.bps.go.id), publikasi \"Kecamatan Banda Baro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1111022",
+  "publicationNumber": "11110.26028",
+  "issn": "2528-5246",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehutarakab.bps.go.id/id/publication/2026/09/28/2318946225954a1d5bde80ff/kecamatan-banda-baro-dalam-angka-2026.html",
+  "sourceFileSha256": "0ef725708e96af2cffc59185aec2936a076eba112fc5c7013e752832249d2882",
+  "sourceFileBytes": 3255587,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Utara.",
+  "csvPath": "datasets/bps-1111-kecamatan-110826-dalam-angka-2026.csv",
+  "csvSha256": "a04570f11cf60215d2975dfba2ad622e348ffe7da9f68a72919e8d7dc4b9d703",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di KecamatanBanda Baro, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banda Baro, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Alue Keureunyai\": unmatched ",
+    "table 3.1: row not stored: row \"Jamuan 21,28%\": unmatched ",
+    "table 3.1: row not stored: row \"Alue Keureunyai 7,77%\": unmatched ",
+    "table 3.1: row not stored: row \"Blang Pala 10,35%\": unmatched ",
+    "table 3.1: row not stored: row \"Sangkelan 11,67%\": unmatched ",
+    "table 3.1: row not stored: row \"Ulee Nyeue 17,75%\": unmatched ",
+    "table 3.1: row not stored: row \"Paya Uleue 5,15%\": unmatched ",
+    "table 3.1: row not stored: row \"Cot Jabet 4,86%\": unmatched ",
+    "table 3.1: row not stored: row \"Paya Dua 14,34%\": unmatched ",
+    "table 3.1: row not stored: row \"Paya Beunyot 6,84%\": unmatched ",
+    "table 3.1: row not stored: row \"Banda Baro 100,00%\": unmatched "
+  ]
+}

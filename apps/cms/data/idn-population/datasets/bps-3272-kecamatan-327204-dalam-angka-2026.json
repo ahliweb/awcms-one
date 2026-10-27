@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-3272-kecamatan-327204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.72.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Warudoyong Dalam Angka 2026",
+  "publisherName": "BPS Kota Sukabumi",
+  "publisherDomain": "3272",
+  "publisherWebsite": "https://sukabumikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sukabumi (https://sukabumikota.bps.go.id), publikasi \"Kecamatan Warudoyong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3272030",
+  "publicationNumber": "32720.26009",
+  "issn": "2798-8414",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikota.bps.go.id/id/publication/2026/09/28/87a83da06380eac114740818/kecamatan-warudoyong-dalam-angka-2026.html",
+  "sourceFileSha256": "194625d18232e12c4a791c58c65516807f6ba31c523b3cddd17f66f63b973619",
+  "sourceFileBytes": 7804966,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sukabumi.",
+  "csvPath": "datasets/bps-3272-kecamatan-327204-dalam-angka-2026.csv",
+  "csvSha256": "763fff30ea9729f3df68697b573cc208b68da269f83357cd59861fe42c58df93",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Warudoyong, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Dayeuhluhur 9.522\": unmatched ",
+    "table 3.1: row not stored: row \"Warudoyong 3.401\": unmatched ",
+    "table 3.1: row not stored: row \"Nyomplong 3.497\": unmatched ",
+    "table 3.1: row not stored: row \"Benteng 6.630\": unmatched ",
+    "table 3.1: row not stored: row \"Sukakarya 9.772\": unmatched ",
+    "table 3.1: row not stored: row \"Warudoyong 32.822\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

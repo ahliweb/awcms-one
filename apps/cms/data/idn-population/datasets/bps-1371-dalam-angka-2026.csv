@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.71.05,3,Bungus Teluk Kabung,total,total,,29.70,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.07,3,Lubuk Kilangan,total,total,,62.70,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.06,3,Lubuk Begalung,total,total,,132.32,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.01,3,Padang Selatan,total,total,,63.15,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.02,3,Padang Timur,total,total,,78.73,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.03,3,Padang Barat,total,total,,43.30,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.04,3,Padang Utara,total,total,,55.61,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.10,3,Nanggalo,total,total,,59.63,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.09,3,Kuranji,total,total,,157.78,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.08,3,Pauh,total,total,,64.25,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.11,3,Koto Tangah,total,total,,217.87,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71,2,Padang,total,total,,965.05,ribu_jiwa,2025,projection,total_population,unnumbered-p90,90,,
+13.71.05,3,Bungus Teluk Kabung,religion,islam,,26464,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.05,3,Bungus Teluk Kabung,religion,kristen,,52,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.05,3,Bungus Teluk Kabung,religion,katolik,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Katolik
+13.71.05,3,Bungus Teluk Kabung,religion,hindu,,1,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71.05,3,Bungus Teluk Kabung,religion,buddha,,2,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.05,3,Bungus Teluk Kabung,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.07,3,Lubuk Kilangan,religion,islam,,64827,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.07,3,Lubuk Kilangan,religion,kristen,,15,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.07,3,Lubuk Kilangan,religion,katolik,,219,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.07,3,Lubuk Kilangan,religion,hindu,,5,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71.07,3,Lubuk Kilangan,religion,buddha,,5,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.07,3,Lubuk Kilangan,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.06,3,Lubuk Begalung,religion,islam,,99772,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.06,3,Lubuk Begalung,religion,kristen,,220,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.06,3,Lubuk Begalung,religion,katolik,,64,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.06,3,Lubuk Begalung,religion,hindu,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Hindu
+13.71.06,3,Lubuk Begalung,religion,buddha,,18,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.06,3,Lubuk Begalung,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.01,3,Padang Selatan,religion,islam,,46466,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.01,3,Padang Selatan,religion,kristen,,4048,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.01,3,Padang Selatan,religion,katolik,,3611,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.01,3,Padang Selatan,religion,hindu,,101,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71.01,3,Padang Selatan,religion,buddha,,997,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.01,3,Padang Selatan,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.02,3,Padang Timur,religion,islam,,64243,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.02,3,Padang Timur,religion,kristen,,849,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.02,3,Padang Timur,religion,katolik,,375,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.02,3,Padang Timur,religion,hindu,,57,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71.02,3,Padang Timur,religion,buddha,,52,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.02,3,Padang Timur,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.03,3,Padang Barat,religion,islam,,37110,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.03,3,Padang Barat,religion,kristen,,1015,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.03,3,Padang Barat,religion,katolik,,3760,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.03,3,Padang Barat,religion,hindu,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Hindu
+13.71.03,3,Padang Barat,religion,buddha,,1527,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.03,3,Padang Barat,religion,lainnya,,5,jiwa,2024,registration,total_population,unnumbered-p210,210,,Lainnya
+13.71.04,3,Padang Utara,religion,islam,,70776,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.04,3,Padang Utara,religion,kristen,,350,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.04,3,Padang Utara,religion,katolik,,271,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.04,3,Padang Utara,religion,hindu,,23,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71.04,3,Padang Utara,religion,buddha,,36,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.04,3,Padang Utara,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.10,3,Nanggalo,religion,islam,,67298,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.10,3,Nanggalo,religion,kristen,,220,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.10,3,Nanggalo,religion,katolik,,28,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.10,3,Nanggalo,religion,hindu,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Hindu
+13.71.10,3,Nanggalo,religion,buddha,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Budha
+13.71.10,3,Nanggalo,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.09,3,Kuranji,religion,islam,,151569,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.09,3,Kuranji,religion,kristen,,95,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.09,3,Kuranji,religion,katolik,,132,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.09,3,Kuranji,religion,hindu,,48,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71.09,3,Kuranji,religion,buddha,,17,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.09,3,Kuranji,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.08,3,Pauh,religion,islam,,54061,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.08,3,Pauh,religion,kristen,,153,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.08,3,Pauh,religion,katolik,,104,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.08,3,Pauh,religion,hindu,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Hindu
+13.71.08,3,Pauh,religion,buddha,,23,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.08,3,Pauh,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71.11,3,Koto Tangah,religion,islam,,190671,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71.11,3,Koto Tangah,religion,kristen,,399,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71.11,3,Koto Tangah,religion,katolik,,301,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71.11,3,Koto Tangah,religion,hindu,,54,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71.11,3,Koto Tangah,religion,buddha,,41,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71.11,3,Koto Tangah,religion,lainnya,,0,jiwa,2024,registration,total_population,unnumbered-p210,210,nil,Lainnya
+13.71,2,Padang,religion,islam,,873257,jiwa,2024,registration,total_population,unnumbered-p210,210,,Islam
+13.71,2,Padang,religion,kristen,,7416,jiwa,2024,registration,total_population,unnumbered-p210,210,,Protestan
+13.71,2,Padang,religion,katolik,,8865,jiwa,2024,registration,total_population,unnumbered-p210,210,,Katolik
+13.71,2,Padang,religion,hindu,,289,jiwa,2024,registration,total_population,unnumbered-p210,210,,Hindu
+13.71,2,Padang,religion,buddha,,2718,jiwa,2024,registration,total_population,unnumbered-p210,210,,Budha
+13.71,2,Padang,religion,lainnya,,5,jiwa,2024,registration,total_population,unnumbered-p210,210,,Lainnya

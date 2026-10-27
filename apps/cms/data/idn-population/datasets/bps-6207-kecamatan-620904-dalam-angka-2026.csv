@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.09.04.2011,4,Bukit Jaya,sex,perempuan,,1397,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2011,4,Bukit Jaya,total,total,,2941,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2012,4,Sukamaju,sex,perempuan,,482,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2012,4,Sukamaju,total,total,,1016,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2001,4,Nanga Palikodan,sex,perempuan,,193,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2001,4,Nanga Palikodan,total,total,,409,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2002,4,Sungkup,sex,perempuan,,259,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2002,4,Sungkup,total,total,,520,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2004,4,Nanga Koring,sex,perempuan,,159,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2004,4,Nanga Koring,total,total,,353,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2003,4,Nuangan,sex,perempuan,,90,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2003,4,Nuangan,total,total,,190,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2005,4,Toka,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2005,4,Toka,total,total,,489,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2006,4,Sepondam,sex,perempuan,,178,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2006,4,Sepondam,total,total,,387,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2008,4,Pedongatan,sex,perempuan,,556,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2008,4,Pedongatan,total,total,,1212,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2007,4,Merambang,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2007,4,Merambang,total,total,,1224,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2009,4,Batu Tunggal,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2009,4,Batu Tunggal,total,total,,818,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04.2010,4,Nanga Kemujan,sex,perempuan,,67,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04.2010,4,Nanga Kemujan,total,total,,127,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04,3,Kecamatan Bulik Timur,sex,perempuan,,4552,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.04,3,Kecamatan Bulik Timur,total,total,,9686,jiwa,2025,registration,total_population,3.1,28,,
+62.09.04,3,Bulik Timur,age_group,0-4,perempuan,278,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.04,3,Bulik Timur,age_group,0-4,,619,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.04,3,Bulik Timur,age_group,5-9,perempuan,412,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.04,3,Bulik Timur,age_group,5-9,,816,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.04,3,Bulik Timur,age_group,10-14,perempuan,370,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.04,3,Bulik Timur,age_group,10-14,,770,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.04,3,Bulik Timur,age_group,15-19,perempuan,303,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.04,3,Bulik Timur,age_group,15-19,,708,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.04,3,Bulik Timur,age_group,20-24,perempuan,436,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.04,3,Bulik Timur,age_group,20-24,,906,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.04,3,Bulik Timur,age_group,25-29,perempuan,415,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.04,3,Bulik Timur,age_group,25-29,,859,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.04,3,Bulik Timur,age_group,30-34,perempuan,351,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.04,3,Bulik Timur,age_group,30-34,,779,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.04,3,Bulik Timur,age_group,35-39,perempuan,323,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.04,3,Bulik Timur,age_group,35-39,,732,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.04,3,Bulik Timur,age_group,40-44,perempuan,394,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.04,3,Bulik Timur,age_group,40-44,,776,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.04,3,Bulik Timur,age_group,45-49,perempuan,319,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.04,3,Bulik Timur,age_group,45-49,,686,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.04,3,Bulik Timur,age_group,50-54,perempuan,292,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.04,3,Bulik Timur,age_group,50-54,,611,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.04,3,Bulik Timur,age_group,55-59,perempuan,213,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.04,3,Bulik Timur,age_group,55-59,,501,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.04,3,Bulik Timur,age_group,60-64,perempuan,156,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.04,3,Bulik Timur,age_group,60-64,,331,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.04,3,Bulik Timur,age_group,65-69,perempuan,118,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.04,3,Bulik Timur,age_group,65-69,,255,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.04,3,Bulik Timur,age_group,70-74,perempuan,70,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.04,3,Bulik Timur,age_group,70-74,,153,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.04,3,Bulik Timur,age_group,75+,perempuan,102,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.04,3,Bulik Timur,age_group,75+,,184,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.04,3,Kecamatan Bulik Timur,sex,perempuan,,4552,jiwa,2025,registration,total_population,3.2,30,,Perempuan/Female
+62.09.04,3,Kecamatan Bulik Timur,total,total,,9686,jiwa,2025,registration,total_population,3.2,30,,

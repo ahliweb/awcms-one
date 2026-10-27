@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1702-kecamatan-170218-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.02.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Curup Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rejang Lebong",
+  "publisherDomain": "1702",
+  "publisherWebsite": "https://rejanglebongkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rejang Lebong (https://rejanglebongkab.bps.go.id), publikasi \"Kecamatan Curup Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1702043",
+  "publicationNumber": "17020.26016",
+  "issn": "2715-1425",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rejanglebongkab.bps.go.id/id/publication/2026/09/28/92f57cefd3faeff372e43fd3/kecamatan-curup-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "4329de16a8b02ac1a1a98b39e0d862c58ffde74c1ac6f5a9f2399f3d465922e3",
+  "sourceFileBytes": 11192857,
+  "sourcePages": [22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rejang Lebong. ISSN 2715-1425 TIM PENYUSUN KECAMATAN CURUP SELATAN DALAM ANGKA 2026 Volume 17, 2026 go bp s. Penanggung Jawab Dwi Yogo Supriyanto .id Pengarah Dwi Yogo Supriyanto on g ka b. Penyunting Nova Primeri ht tp s :// r ej an gl eb Penulis Naskah Hemelda Listiawati Pengolah Data Sanggra Lasmana Penata Letak Ragil Putri Rahmadani ej :// r tp s ht eb gl an bp s. ka b. on g .id go KONTRIBUTOR DATA tp s :// r ej an gl eb on g ka b. bp s. go .id Kementerian Agama Kementerian Pendidikan dan Kebudayaan Badan Meteorologi Klimatologi dan Geofisika Badan Pusat Statistik Dinas Pemberdayaan Masyarakat dan Desa Kabupaten Rejang Lebong Sekretariat Daerah Kabupaten Rejang Lebong bagian Pemerintahan ht 1. 2. 3. 4. 5. 6. ej :// r tp s ht eb gl an bp s. ka b. on g .id go KATA PENGANTAR ht tp s :// r ej an gl eb on g ka b. bp s. go .id Publikasi Kecamatan Curup Selatan dalam Angka 2026 merupakan publikasi tahunan yang diterbitkan oleh BPS Kabupaten Rejang Lebong. Publikasi ini dapat terwujud berkat kerjasama dan bantuan dari berbagai pihak baik instansi pemerintah maupun swasta. Disadari bahwa publikasi ini masih terasa belum dapat memenuhi kebutuhan pengguna data. Oleh karena itu, kritik dan saran yang konstruktif sangat diharapkan untuk perbaikan publikasi ini di masa mendatang. Kepada semua pihak yang telah membantu menyediakan data dalam penyusunan publikasi ini, kami sampaikan ucapan terima kasih. Diharapkan publikasi ini dapat bermanfaat bagi kita semua dalam menyusun, melaksanakan dan mengevaluasi pembangunan, khususnya di Kecamatan Curup Selatan. Curup, September 2026 Kepala BPS Kabupaten Rejang Lebong DWI YOGO SUPRIYANTO vii ISSN 2715-1425 DAFTAR ISI KECAMATAN CURUP SELATAN DALAM ANGKA 2026 Volume 17, 2026 Halaman ht tp s :// r ej an gl eb on g ka b. bp s. go .id Kata Pengantar...................................................................................................................... Daftar Isi........................................................................................................ Daftar Tabel............................................................................................................................ Daftar Gambar............................................................................................... Penjelasan Umum.......................................................................................... Daftar Singkatan............................................................................................ 1. Geografi....................................................................................................................... 2. Pemerintahan............................................................................................................ 3. Penduduk.................................................................................................................... 4. Sosial dan Kesejahteraan Rakyat......................................................................... 5. Pertanian..................................................................................................................... 6. Pariwisata, Transportasi, dan Komunikasi........................................................ 7. Perbankan, Koperasi, dan Perdagangan............................................................ viii vii viii ix xv xvii xix 1 9 17 25 41 53 61 DAFTAR TABEL Halaman Tabel 1. GEOGRAFI 6 7 PEMERINTAHAN on g 2. 8 ka b. bp s. go .id 1.1 Luas Daerah Menurut Desa/Kelurahan di Kecamatan Curup Selatan, 2025 ................................................................................................................................. 1.2 Jarak ke Ibukota Kecamatan dan Ibukota Kabupaten/Kota Menurut Desa/Kelurahan di Kecamatan Curup Selatan (km), 2025 ................................................................................................................................. 1.3 Lokasi wilayah desa/kelurahan terhadap kawasan hutan/hutan di Kecamatan Curup Selatan, 2025 ................................................................................................................................. 14 ht tp s :// r ej an gl eb 2.1 WILAYAH ADMINISTRATIF 2.1.1 Jumlah Rukun Warga (RW), Rukun Tetangga (RT) dan Dusun Menurut Desa/Kelurahan di Kecamatan Curup Selatan, 2025 ................................................................................................................................. 2.2 SUMBER DAYA MANUSIA 2.2.1 Keberadaan Kepala Desa/Lurah dan Sekretaris Desa/ Sekretaris Kelurahan di Kecamatan Curup Selatan, 2025 ................................................................................................................................. 3. 15 PENDUDUK ix",
+  "csvPath": "datasets/bps-1702-kecamatan-170218-dalam-angka-2026.csv",
+  "csvSha256": "d72ab4a8ef0fe59a86b790f2985227573538ac37b9f195c11e6bd174fc13acfe",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Curup Selatan, 2025 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah/Total",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

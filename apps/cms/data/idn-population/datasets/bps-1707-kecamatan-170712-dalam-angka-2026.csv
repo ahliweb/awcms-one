@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.12.2003,4,Ketenong Jaya,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.07.12.2003,4,Ketenong Jaya,sex,perempuan,,318,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.07.12.2003,4,Ketenong Jaya,total,total,,688,jiwa,2025,registration,total_population,3.1,28,,
+17.07.12.2004,4,Tambang Saweak,sex,laki_laki,,460,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.07.12.2004,4,Tambang Saweak,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.07.12.2004,4,Tambang Saweak,total,total,,892,jiwa,2025,registration,total_population,3.1,28,,
+17.07.12.2005,4,Air Kopras,sex,laki_laki,,951,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.07.12.2005,4,Air Kopras,sex,perempuan,,906,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.07.12.2005,4,Air Kopras,total,total,,1857,jiwa,2025,registration,total_population,3.1,28,,
+17.07.12.2006,4,Bioa Putiak,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.07.12.2006,4,Bioa Putiak,sex,perempuan,,439,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.07.12.2006,4,Bioa Putiak,total,total,,945,jiwa,2025,registration,total_population,3.1,28,,
+17.07.12.2008,4,Sungai Lisai,sex,laki_laki,,164,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.07.12.2008,4,Sungai Lisai,sex,perempuan,,151,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.07.12.2008,4,Sungai Lisai,total,total,,315,jiwa,2025,registration,total_population,3.1,28,,
+17.07.12,3,Kecamatan Pinang Belapis,sex,laki_laki,,3385,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.07.12,3,Kecamatan Pinang Belapis,sex,perempuan,,3081,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.07.12,3,Kecamatan Pinang Belapis,total,total,,6466,jiwa,2025,registration,total_population,3.1,28,,
+17.07.12,3,Kecamatan Pinang Belapis,sex,laki_laki,,3385,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+17.07.12,3,Kecamatan Pinang Belapis,sex,perempuan,,3081,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+17.07.12,3,Kecamatan Pinang Belapis,total,total,,6466,jiwa,2025,registration,total_population,3.2,30,,

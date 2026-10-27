@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1704-kecamatan-170412-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.04.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tetap Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kaur",
+  "publisherDomain": "1704",
+  "publisherWebsite": "https://kaurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kaur (https://kaurkab.bps.go.id), publikasi \"Kecamatan Tetap Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1704031",
+  "publicationNumber": "17040.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kaurkab.bps.go.id/id/publication/2026/09/28/45b7caee0507ff8742074080/kecamatan-tetap-dalam-angka-2026.html",
+  "sourceFileSha256": "9fd83ce772e46875c2011de8e7141df896e316e076040db15c23c9e2c6e0343c",
+  "sourceFileBytes": 7279101,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kaur.",
+  "csvPath": "datasets/bps-1704-kecamatan-170412-dalam-angka-2026.csv",
+  "csvSha256": "eb7fe503274916a649c542023c9971d8488389526cee9444f5cb69fa34d35faa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tetap, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tetap, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

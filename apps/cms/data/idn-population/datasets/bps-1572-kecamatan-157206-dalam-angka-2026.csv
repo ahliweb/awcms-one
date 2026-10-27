@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.06.2001,4,Sungai Jernih,sex,laki_laki,,1150,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.2001,4,Sungai Jernih,sex,perempuan,,1128,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.2001,4,Sungai Jernih,total,total,,2278,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06.2007,4,Koto Lebu,sex,laki_laki,,699,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.2007,4,Koto Lebu,sex,perempuan,,708,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.2007,4,Koto Lebu,total,total,,1407,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06.2006,4,Karya Bakti,sex,laki_laki,,1187,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.2006,4,Karya Bakti,sex,perempuan,,1146,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.2006,4,Karya Bakti,total,total,,2333,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06.2005,4,Lawang Agung,sex,laki_laki,,2317,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.2005,4,Lawang Agung,sex,perempuan,,2322,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.2005,4,Lawang Agung,total,total,,4639,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06.1008,4,Pondok Tinggi,sex,laki_laki,,1579,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.1008,4,Pondok Tinggi,sex,perempuan,,1519,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.1008,4,Pondok Tinggi,total,total,,3098,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06.2004,4,Permanti,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.2004,4,Permanti,sex,perempuan,,720,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.2004,4,Permanti,total,total,,1392,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06.2003,4,Pondok Agung,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.2003,4,Pondok Agung,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.2003,4,Pondok Agung,total,total,,1111,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06.2002,4,Aur Duri,sex,laki_laki,,1298,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06.2002,4,Aur Duri,sex,perempuan,,1256,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06.2002,4,Aur Duri,total,total,,2554,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06,3,Kecamatan Pondok Tinggi,sex,laki_laki,,9479,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.06,3,Kecamatan Pondok Tinggi,sex,perempuan,,9333,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.06,3,Kecamatan Pondok Tinggi,total,total,,18812,jiwa,2025,registration,total_population,3.1,32,,
+15.72.06,3,Pondok Tinggi,age_group,0-4,laki_laki,555,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+15.72.06,3,Pondok Tinggi,age_group,0-4,perempuan,542,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+15.72.06,3,Pondok Tinggi,age_group,0-4,,1097,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+15.72.06,3,Pondok Tinggi,age_group,5-9,laki_laki,775,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+15.72.06,3,Pondok Tinggi,age_group,5-9,perempuan,684,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+15.72.06,3,Pondok Tinggi,age_group,5-9,,1459,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+15.72.06,3,Pondok Tinggi,age_group,10-14,laki_laki,799,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+15.72.06,3,Pondok Tinggi,age_group,10-14,perempuan,726,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+15.72.06,3,Pondok Tinggi,age_group,10-14,,1525,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+15.72.06,3,Pondok Tinggi,age_group,15-19,laki_laki,819,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+15.72.06,3,Pondok Tinggi,age_group,15-19,perempuan,763,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+15.72.06,3,Pondok Tinggi,age_group,15-19,,1582,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+15.72.06,3,Pondok Tinggi,age_group,20-24,laki_laki,845,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+15.72.06,3,Pondok Tinggi,age_group,20-24,perempuan,813,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+15.72.06,3,Pondok Tinggi,age_group,20-24,,1658,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+15.72.06,3,Pondok Tinggi,age_group,25-29,laki_laki,710,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+15.72.06,3,Pondok Tinggi,age_group,25-29,perempuan,758,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+15.72.06,3,Pondok Tinggi,age_group,25-29,,1468,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+15.72.06,3,Pondok Tinggi,age_group,30-34,laki_laki,666,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+15.72.06,3,Pondok Tinggi,age_group,30-34,perempuan,589,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+15.72.06,3,Pondok Tinggi,age_group,30-34,,1255,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+15.72.06,3,Pondok Tinggi,age_group,35-39,laki_laki,655,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+15.72.06,3,Pondok Tinggi,age_group,35-39,perempuan,631,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+15.72.06,3,Pondok Tinggi,age_group,35-39,,1286,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+15.72.06,3,Pondok Tinggi,age_group,40-44,laki_laki,693,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+15.72.06,3,Pondok Tinggi,age_group,40-44,perempuan,662,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+15.72.06,3,Pondok Tinggi,age_group,40-44,,1355,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+15.72.06,3,Pondok Tinggi,age_group,45-49,laki_laki,697,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+15.72.06,3,Pondok Tinggi,age_group,45-49,perempuan,708,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+15.72.06,3,Pondok Tinggi,age_group,45-49,,1405,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+15.72.06,3,Pondok Tinggi,age_group,50-54,laki_laki,617,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+15.72.06,3,Pondok Tinggi,age_group,50-54,perempuan,631,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+15.72.06,3,Pondok Tinggi,age_group,50-54,,1248,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+15.72.06,3,Pondok Tinggi,age_group,55-59,laki_laki,497,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+15.72.06,3,Pondok Tinggi,age_group,55-59,perempuan,465,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+15.72.06,3,Pondok Tinggi,age_group,55-59,,962,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+15.72.06,3,Pondok Tinggi,age_group,60-64,laki_laki,375,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+15.72.06,3,Pondok Tinggi,age_group,60-64,perempuan,449,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+15.72.06,3,Pondok Tinggi,age_group,60-64,,824,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+15.72.06,3,Pondok Tinggi,age_group,65-69,laki_laki,295,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+15.72.06,3,Pondok Tinggi,age_group,65-69,perempuan,341,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+15.72.06,3,Pondok Tinggi,age_group,65-69,,636,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+15.72.06,3,Pondok Tinggi,age_group,70-74,laki_laki,242,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+15.72.06,3,Pondok Tinggi,age_group,70-74,perempuan,263,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+15.72.06,3,Pondok Tinggi,age_group,70-74,,505,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+15.72.06,3,Pondok Tinggi,age_group,75+,laki_laki,239,jiwa,2025,registration,total_population,3.2,34,,75+
+15.72.06,3,Pondok Tinggi,age_group,75+,perempuan,308,jiwa,2025,registration,total_population,3.2,34,,75+
+15.72.06,3,Pondok Tinggi,age_group,75+,,547,jiwa,2025,registration,total_population,3.2,34,,75+
+15.72.06,3,Kecamatan Pondok Tinggi,sex,laki_laki,,9479,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+15.72.06,3,Kecamatan Pondok Tinggi,sex,perempuan,,9333,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+15.72.06,3,Kecamatan Pondok Tinggi,total,total,,18812,jiwa,2025,registration,total_population,3.2,34,,

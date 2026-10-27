@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.72.01.1004,4,Hadimulyo Barat,sex,laki_laki,,6876,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.01.1004,4,Hadimulyo Barat,sex,perempuan,,6790,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.01.1004,4,Hadimulyo Barat,total,total,,13666,jiwa,2025,registration,total_population,3.1,31,,
+18.72.01.1002,4,Hadimulyo Timur,sex,laki_laki,,5859,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.01.1002,4,Hadimulyo Timur,sex,perempuan,,5708,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.01.1002,4,Hadimulyo Timur,total,total,,11567,jiwa,2025,registration,total_population,3.1,31,,
+18.72.01.1003,4,Imopuro,sex,laki_laki,,3187,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.01.1003,4,Imopuro,sex,perempuan,,3177,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.01.1003,4,Imopuro,total,total,,6364,jiwa,2025,registration,total_population,3.1,31,,
+18.72.01.1001,4,Metro,sex,laki_laki,,7436,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.01.1001,4,Metro,sex,perempuan,,7396,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.01.1001,4,Metro,total,total,,14832,jiwa,2025,registration,total_population,3.1,31,,
+18.72.01.1005,4,Yosomulyo,sex,laki_laki,,5524,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.01.1005,4,Yosomulyo,sex,perempuan,,5411,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.01.1005,4,Yosomulyo,total,total,,10935,jiwa,2025,registration,total_population,3.1,31,,
+18.72.01,3,Metro Pusat,sex,laki_laki,,28882,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.01,3,Metro Pusat,sex,perempuan,,28482,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.01,3,Metro Pusat,total,total,,57364,jiwa,2025,registration,total_population,3.1,31,,
+18.72.01,3,Metro Pusat,age_group,0-4,laki_laki,1913,jiwa,2025,registration,total_population,3.2,33,,0 - 4
+18.72.01,3,Metro Pusat,age_group,0-4,perempuan,1678,jiwa,2025,registration,total_population,3.2,33,,0 - 4
+18.72.01,3,Metro Pusat,age_group,0-4,,3591,jiwa,2025,registration,total_population,3.2,33,,0 - 4
+18.72.01,3,Metro Pusat,age_group,5-9,laki_laki,2377,jiwa,2025,registration,total_population,3.2,33,,5 - 9
+18.72.01,3,Metro Pusat,age_group,5-9,perempuan,2253,jiwa,2025,registration,total_population,3.2,33,,5 - 9
+18.72.01,3,Metro Pusat,age_group,5-9,,4630,jiwa,2025,registration,total_population,3.2,33,,5 - 9
+18.72.01,3,Metro Pusat,age_group,10-14,laki_laki,2556,jiwa,2025,registration,total_population,3.2,33,,10 - 14
+18.72.01,3,Metro Pusat,age_group,10-14,perempuan,2367,jiwa,2025,registration,total_population,3.2,33,,10 - 14
+18.72.01,3,Metro Pusat,age_group,10-14,,4923,jiwa,2025,registration,total_population,3.2,33,,10 - 14
+18.72.01,3,Metro Pusat,age_group,15-19,laki_laki,2252,jiwa,2025,registration,total_population,3.2,33,,15 - 19
+18.72.01,3,Metro Pusat,age_group,15-19,perempuan,2226,jiwa,2025,registration,total_population,3.2,33,,15 - 19
+18.72.01,3,Metro Pusat,age_group,15-19,,4478,jiwa,2025,registration,total_population,3.2,33,,15 - 19
+18.72.01,3,Metro Pusat,age_group,20-24,laki_laki,2265,jiwa,2025,registration,total_population,3.2,33,,20 - 24
+18.72.01,3,Metro Pusat,age_group,20-24,perempuan,2176,jiwa,2025,registration,total_population,3.2,33,,20 - 24
+18.72.01,3,Metro Pusat,age_group,20-24,,4441,jiwa,2025,registration,total_population,3.2,33,,20 - 24
+18.72.01,3,Metro Pusat,age_group,25-29,laki_laki,2287,jiwa,2025,registration,total_population,3.2,33,,25 - 29
+18.72.01,3,Metro Pusat,age_group,25-29,perempuan,2216,jiwa,2025,registration,total_population,3.2,33,,25 - 29
+18.72.01,3,Metro Pusat,age_group,25-29,,4503,jiwa,2025,registration,total_population,3.2,33,,25 - 29
+18.72.01,3,Metro Pusat,age_group,30-34,laki_laki,2223,jiwa,2025,registration,total_population,3.2,33,,30 - 34
+18.72.01,3,Metro Pusat,age_group,30-34,perempuan,2234,jiwa,2025,registration,total_population,3.2,33,,30 - 34
+18.72.01,3,Metro Pusat,age_group,30-34,,4457,jiwa,2025,registration,total_population,3.2,33,,30 - 34
+18.72.01,3,Metro Pusat,age_group,35-39,laki_laki,2090,jiwa,2025,registration,total_population,3.2,33,,35 - 39
+18.72.01,3,Metro Pusat,age_group,35-39,perempuan,2049,jiwa,2025,registration,total_population,3.2,33,,35 - 39
+18.72.01,3,Metro Pusat,age_group,35-39,,4139,jiwa,2025,registration,total_population,3.2,33,,35 - 39
+18.72.01,3,Metro Pusat,age_group,40-44,laki_laki,2136,jiwa,2025,registration,total_population,3.2,33,,40 - 44
+18.72.01,3,Metro Pusat,age_group,40-44,perempuan,2073,jiwa,2025,registration,total_population,3.2,33,,40 - 44
+18.72.01,3,Metro Pusat,age_group,40-44,,4209,jiwa,2025,registration,total_population,3.2,33,,40 - 44
+18.72.01,3,Metro Pusat,age_group,45-49,laki_laki,2026,jiwa,2025,registration,total_population,3.2,33,,45 - 49
+18.72.01,3,Metro Pusat,age_group,45-49,perempuan,2066,jiwa,2025,registration,total_population,3.2,33,,45 - 49
+18.72.01,3,Metro Pusat,age_group,45-49,,4092,jiwa,2025,registration,total_population,3.2,33,,45 - 49
+18.72.01,3,Metro Pusat,age_group,50-54,laki_laki,1893,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.72.01,3,Metro Pusat,age_group,50-54,perempuan,1873,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.72.01,3,Metro Pusat,age_group,50-54,,3766,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.72.01,3,Metro Pusat,age_group,55-59,laki_laki,1578,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.72.01,3,Metro Pusat,age_group,55-59,perempuan,1609,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.72.01,3,Metro Pusat,age_group,55-59,,3187,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.72.01,3,Metro Pusat,age_group,60-64,laki_laki,1212,jiwa,2025,registration,total_population,3.2,33,,60 - 64
+18.72.01,3,Metro Pusat,age_group,60-64,perempuan,1323,jiwa,2025,registration,total_population,3.2,33,,60 - 64
+18.72.01,3,Metro Pusat,age_group,60-64,,2535,jiwa,2025,registration,total_population,3.2,33,,60 - 64
+18.72.01,3,Metro Pusat,age_group,65-69,laki_laki,975,jiwa,2025,registration,total_population,3.2,33,,65 - 69
+18.72.01,3,Metro Pusat,age_group,65-69,perempuan,979,jiwa,2025,registration,total_population,3.2,33,,65 - 69
+18.72.01,3,Metro Pusat,age_group,65-69,,1954,jiwa,2025,registration,total_population,3.2,33,,65 - 69
+18.72.01,3,Metro Pusat,age_group,70-74,laki_laki,562,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.72.01,3,Metro Pusat,age_group,70-74,perempuan,580,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.72.01,3,Metro Pusat,age_group,70-74,,1142,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.72.01,3,Metro Pusat,age_group,75+,laki_laki,537,jiwa,2025,registration,total_population,3.2,33,,> 75
+18.72.01,3,Metro Pusat,age_group,75+,perempuan,780,jiwa,2025,registration,total_population,3.2,33,,> 75
+18.72.01,3,Metro Pusat,age_group,75+,,1317,jiwa,2025,registration,total_population,3.2,33,,> 75
+18.72.01,3,Metro Pusat,sex,laki_laki,,28882,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+18.72.01,3,Metro Pusat,sex,perempuan,,28482,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+18.72.01,3,Metro Pusat,total,total,,57364,jiwa,2025,registration,total_population,3.2,33,,

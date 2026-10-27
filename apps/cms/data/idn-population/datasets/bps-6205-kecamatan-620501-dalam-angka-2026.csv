@@ -1,0 +1,68 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.05.01.2007,4,Pepas,sex,laki_laki,,816,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.2007,4,Pepas,sex,perempuan,,765,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.2007,4,Pepas,total,total,,1581,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.1004,4,Tumpung Laung II,sex,laki_laki,,1659,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.1004,4,Tumpung Laung II,sex,perempuan,,1564,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.1004,4,Tumpung Laung II,total,total,,3223,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.1003,4,Tumpung Laung I,sex,laki_laki,,593,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.1003,4,Tumpung Laung I,sex,perempuan,,550,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.1003,4,Tumpung Laung I,total,total,,1143,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.1001,4,Montallat I,sex,laki_laki,,90,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.1001,4,Montallat I,sex,perempuan,,88,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.1001,4,Montallat I,total,total,,178,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.1002,4,Montallat II,sex,laki_laki,,850,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.1002,4,Montallat II,sex,perempuan,,780,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.1002,4,Montallat II,total,total,,1630,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.2005,4,Sikan,sex,laki_laki,,978,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.2005,4,Sikan,sex,perempuan,,888,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.2005,4,Sikan,total,total,,1866,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.2006,4,Rubei,sex,laki_laki,,96,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.2006,4,Rubei,sex,perempuan,,86,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.2006,4,Rubei,total,total,,182,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.2008,4,Ruji,sex,laki_laki,,321,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.2008,4,Ruji,sex,perempuan,,276,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.2008,4,Ruji,total,total,,597,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.2009,4,Paring Lahung,sex,laki_laki,,638,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.2009,4,Paring Lahung,sex,perempuan,,589,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.2009,4,Paring Lahung,total,total,,1227,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01.2010,4,Kamawen,sex,laki_laki,,446,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01.2010,4,Kamawen,sex,perempuan,,406,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01.2010,4,Kamawen,total,total,,852,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01,3,Montallat,sex,laki_laki,,6487,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.01,3,Montallat,sex,perempuan,,5992,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.01,3,Montallat,total,total,,12479,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.01,3,Montallat,age_group,0-4,laki_laki,338,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.01,3,Montallat,age_group,0-4,perempuan,356,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.01,3,Montallat,age_group,5-9,laki_laki,525,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.01,3,Montallat,age_group,5-9,perempuan,514,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.01,3,Montallat,age_group,10-14,laki_laki,519,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.01,3,Montallat,age_group,10-14,perempuan,500,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.01,3,Montallat,age_group,15-19,laki_laki,623,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.01,3,Montallat,age_group,15-19,perempuan,514,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.01,3,Montallat,age_group,20-24,laki_laki,644,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.01,3,Montallat,age_group,20-24,perempuan,608,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.01,3,Montallat,age_group,25-29,laki_laki,497,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.01,3,Montallat,age_group,25-29,perempuan,448,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.01,3,Montallat,age_group,30-34,laki_laki,453,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.01,3,Montallat,age_group,30-34,perempuan,435,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.01,3,Montallat,age_group,35-39,laki_laki,491,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.01,3,Montallat,age_group,35-39,perempuan,425,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.01,3,Montallat,age_group,40-44,laki_laki,498,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.01,3,Montallat,age_group,40-44,perempuan,438,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.01,3,Montallat,age_group,45-49,laki_laki,478,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.01,3,Montallat,age_group,45-49,perempuan,432,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.01,3,Montallat,age_group,50-54,laki_laki,398,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.01,3,Montallat,age_group,50-54,perempuan,393,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.01,3,Montallat,age_group,55-59,laki_laki,361,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.01,3,Montallat,age_group,55-59,perempuan,262,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.01,3,Montallat,age_group,60-64,laki_laki,258,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.01,3,Montallat,age_group,60-64,perempuan,234,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.01,3,Montallat,age_group,65-69,laki_laki,185,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.01,3,Montallat,age_group,65-69,perempuan,179,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.01,3,Montallat,age_group,70-74,laki_laki,111,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.01,3,Montallat,age_group,70-74,perempuan,86,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.01,3,Montallat,age_group,75+,laki_laki,108,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.01,3,Montallat,age_group,75+,perempuan,168,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.01,3,Montallat,sex,laki_laki,,6487,jiwa,2025,registration,total_population,unnumbered-p43,43,,Laki-laki
+62.05.01,3,Montallat,sex,perempuan,,5992,jiwa,2025,registration,total_population,unnumbered-p43,43,,Perempuan

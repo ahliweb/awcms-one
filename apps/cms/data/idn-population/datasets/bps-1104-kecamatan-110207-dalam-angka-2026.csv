@@ -1,0 +1,65 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.07.2001,4,GULO,sex,laki_laki,,337,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2001,4,GULO,sex,perempuan,,342,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2001,4,GULO,total,total,,679,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2005,4,LAWE STUL,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2005,4,LAWE STUL,sex,perempuan,,247,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2005,4,LAWE STUL,total,total,,505,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2002,4,PULO PIKU,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2002,4,PULO PIKU,sex,perempuan,,363,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2002,4,PULO PIKU,total,total,,730,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2003,4,TERUTUNG KUTE,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2003,4,TERUTUNG KUTE,sex,perempuan,,307,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2003,4,TERUTUNG KUTE,total,total,,645,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2007,4,MAMAS,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2007,4,MAMAS,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2007,4,MAMAS,total,total,,769,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2008,4,TANJUNG LAMA,sex,laki_laki,,479,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2008,4,TANJUNG LAMA,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2008,4,TANJUNG LAMA,total,total,,925,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2009,4,TANJUNG MUDA,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2009,4,TANJUNG MUDA,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2009,4,TANJUNG MUDA,total,total,,454,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2011,4,TANJUNG AMAN,sex,laki_laki,,422,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2011,4,TANJUNG AMAN,sex,perempuan,,370,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2011,4,TANJUNG AMAN,total,total,,792,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2010,4,RAMBUNG TELDAK,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2010,4,RAMBUNG TELDAK,sex,perempuan,,336,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2010,4,RAMBUNG TELDAK,total,total,,699,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2018,4,DARUL MAKMUR,sex,laki_laki,,253,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2018,4,DARUL MAKMUR,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2018,4,DARUL MAKMUR,total,total,,448,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2014,4,KUTE RAMBE,sex,laki_laki,,459,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2014,4,KUTE RAMBE,sex,perempuan,,441,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2014,4,KUTE RAMBE,total,total,,900,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2013,4,UJUNG BARU,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2013,4,UJUNG BARU,sex,perempuan,,442,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2013,4,UJUNG BARU,total,total,,872,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2015,4,MAMAS BARU,sex,laki_laki,,358,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2015,4,MAMAS BARU,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2015,4,MAMAS BARU,total,total,,710,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2016,4,RAMBUNG JAYA,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2016,4,RAMBUNG JAYA,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2016,4,RAMBUNG JAYA,total,total,,698,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2017,4,MAKMUR JAYA,sex,laki_laki,,213,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2017,4,MAKMUR JAYA,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2017,4,MAKMUR JAYA,total,total,,419,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2023,4,LAWE MAMAS INDAH,sex,laki_laki,,278,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.07.2023,4,LAWE MAMAS INDAH,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.07.2023,4,LAWE MAMAS INDAH,total,total,,560,jiwa,2025,registration,total_population,3.1,29,,
+11.02.07.2025,4,SIMPANG IV TANJUNG,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.07.2025,4,SIMPANG IV TANJUNG,sex,perempuan,,164,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.07.2025,4,SIMPANG IV TANJUNG,total,total,,350,jiwa,2025,registration,total_population,3.1,30,,
+11.02.07.2024,4,TANJUNG LEUSER,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.07.2024,4,TANJUNG LEUSER,sex,perempuan,,265,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.07.2024,4,TANJUNG LEUSER,total,total,,546,jiwa,2025,registration,total_population,3.1,30,,
+11.02.07.2026,4,LAWE PINIS,sex,laki_laki,,174,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.07.2026,4,LAWE PINIS,sex,perempuan,,177,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.07.2026,4,LAWE PINIS,total,total,,351,jiwa,2025,registration,total_population,3.1,30,,
+11.02.07.2028,4,KUNING ABADI,sex,laki_laki,,219,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.07.2028,4,KUNING ABADI,sex,perempuan,,176,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.07.2028,4,KUNING ABADI,total,total,,395,jiwa,2025,registration,total_population,3.1,30,,
+11.02.07.2027,4,BUNTUL KENDAWI,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.07.2027,4,BUNTUL KENDAWI,sex,perempuan,,166,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.07.2027,4,BUNTUL KENDAWI,total,total,,351,jiwa,2025,registration,total_population,3.1,30,,
+11.02.07,3,Darul Hasanah,total,total,,16713,jiwa,2025,registration,total_population,3.1,30,,

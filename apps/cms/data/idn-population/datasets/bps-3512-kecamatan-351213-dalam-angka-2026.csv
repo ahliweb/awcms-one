@@ -1,0 +1,33 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.12.13.2007,4,Mojosari,sex,laki_laki,,2096,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2007,4,Mojosari,sex,perempuan,,2237,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2006,4,Kertosari,sex,laki_laki,,2224,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2006,4,Kertosari,sex,perempuan,,2459,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2006,4,Kertosari,total,total,,4683,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2001,4,Kedunglo,sex,laki_laki,,2084,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2001,4,Kedunglo,sex,perempuan,,2258,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2001,4,Kedunglo,total,total,,4342,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2002,4,Bantal,sex,laki_laki,,2493,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2002,4,Bantal,sex,perempuan,,2698,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2002,4,Bantal,total,total,,5191,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2003,4,Awar-Awar,sex,laki_laki,,2044,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2003,4,Awar-Awar,sex,perempuan,,2178,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2003,4,Awar-Awar,total,total,,4222,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2004,4,Perante,sex,laki_laki,,2259,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2004,4,Perante,sex,perempuan,,2416,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2004,4,Perante,total,total,,4675,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2005,4,Trigonco,sex,laki_laki,,2661,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2005,4,Trigonco,sex,perempuan,,2806,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2005,4,Trigonco,total,total,,5467,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2008,4,Asembagus,sex,laki_laki,,3288,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2008,4,Asembagus,sex,perempuan,,3483,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2008,4,Asembagus,total,total,,6771,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2009,4,Gudang,sex,laki_laki,,2331,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2009,4,Gudang,sex,perempuan,,2434,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2009,4,Gudang,total,total,,4765,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13.2010,4,Wringin Anom,sex,laki_laki,,2909,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13.2010,4,Wringin Anom,sex,perempuan,,3026,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13.2010,4,Wringin Anom,total,total,,5935,jiwa,2025,registration,total_population,3.1,25,,
+35.12.13,3,Asembagus,sex,laki_laki,,24389,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.12.13,3,Asembagus,sex,perempuan,,25995,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.12.13,3,Asembagus,total,total,,50384,jiwa,2025,registration,total_population,3.1,25,,

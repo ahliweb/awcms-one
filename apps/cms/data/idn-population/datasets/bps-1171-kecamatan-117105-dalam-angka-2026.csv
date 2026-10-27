@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.05.2008,4,Lamdom,sex,laki_laki,,1501,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2008,4,Lamdom,sex,perempuan,,1477,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2008,4,Lamdom,total,total,,2978,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05.2002,4,Cot Mesjid,sex,laki_laki,,2172,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2002,4,Cot Mesjid,sex,perempuan,,2226,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2002,4,Cot Mesjid,total,total,,4398,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05.2006,4,Batoh,sex,laki_laki,,2703,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2006,4,Batoh,sex,perempuan,,2734,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2006,4,Batoh,total,total,,5437,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05.2004,4,Blang Cut,sex,laki_laki,,1082,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2004,4,Blang Cut,sex,perempuan,,1103,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2004,4,Blang Cut,total,total,,2185,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05.2009,4,Lampaloh,sex,laki_laki,,315,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2009,4,Lampaloh,sex,perempuan,,311,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2009,4,Lampaloh,total,total,,626,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05.2007,4,Sukadamai,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2007,4,Sukadamai,sex,perempuan,,818,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2007,4,Sukadamai,total,total,,1626,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05.2003,4,Panteriek,sex,laki_laki,,1834,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2003,4,Panteriek,sex,perempuan,,1811,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2003,4,Panteriek,total,total,,3645,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05.2005,4,Lamseupeung,sex,laki_laki,,984,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05.2005,4,Lamseupeung,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05.2005,4,Lamseupeung,total,total,,1963,jiwa,2025,registration,total_population,3.1,25,,
+11.71.05,3,Kecamatan Lueng Bata,sex,laki_laki,,13205,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.05,3,Kecamatan Lueng Bata,sex,perempuan,,13264,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.05,3,Kecamatan Lueng Bata,total,total,,26469,jiwa,2025,registration,total_population,3.1,25,,

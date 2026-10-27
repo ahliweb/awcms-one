@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.23.17.2012,4,Batursari,sex,laki_laki,,1073,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2012,4,Batursari,sex,perempuan,,987,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2012,4,Batursari,total,total,,2060,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2001,4,Kledung,sex,laki_laki,,1492,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2001,4,Kledung,sex,perempuan,,1479,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2001,4,Kledung,total,total,,2971,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2010,4,Jambu,sex,laki_laki,,473,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2010,4,Jambu,sex,perempuan,,460,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2010,4,Jambu,total,total,,933,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2009,4,Canggal,sex,laki_laki,,332,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2009,4,Canggal,sex,perempuan,,316,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2009,4,Canggal,total,total,,648,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2011,4,Kruwisan,sex,laki_laki,,1245,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2011,4,Kruwisan,sex,perempuan,,1217,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2011,4,Kruwisan,total,total,,2462,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2008,4,Petarangan,sex,laki_laki,,1964,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2008,4,Petarangan,sex,perempuan,,1872,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2008,4,Petarangan,total,total,,3836,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2006,4,Kwadungan Jurang,sex,laki_laki,,721,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2006,4,Kwadungan Jurang,sex,perempuan,,696,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2006,4,Kwadungan Jurang,total,total,,1417,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2005,4,Kwadungan Gunung,sex,laki_laki,,1166,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2005,4,Kwadungan Gunung,sex,perempuan,,1198,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2005,4,Kwadungan Gunung,total,total,,2364,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2004,4,Jeketro,sex,laki_laki,,691,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2004,4,Jeketro,sex,perempuan,,660,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2004,4,Jeketro,total,total,,1351,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2013,4,Tuksari,sex,laki_laki,,2117,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2013,4,Tuksari,sex,perempuan,,2013,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2013,4,Tuksari,total,total,,4130,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2003,4,Paponan,sex,laki_laki,,809,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2003,4,Paponan,sex,perempuan,,813,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2003,4,Paponan,total,total,,1622,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17.2002,4,Kalirejo,sex,laki_laki,,515,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17.2002,4,Kalirejo,sex,perempuan,,482,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17.2002,4,Kalirejo,total,total,,997,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17,3,Kecamatan Kledung,sex,laki_laki,,14801,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.17,3,Kecamatan Kledung,sex,perempuan,,14265,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.17,3,Kecamatan Kledung,total,total,,29066,jiwa,2026,registration,total_population,3.1,25,,
+33.23.17,3,Kledung,age_group,0-4,laki_laki,810,jiwa,2026,registration,total_population,3.2,27,,0-4
+33.23.17,3,Kledung,age_group,0-4,perempuan,706,jiwa,2026,registration,total_population,3.2,27,,0-4
+33.23.17,3,Kledung,age_group,0-4,,1516,jiwa,2026,registration,total_population,3.2,27,,0-4
+33.23.17,3,Kledung,age_group,5-9,laki_laki,1107,jiwa,2026,registration,total_population,3.2,27,,5-9
+33.23.17,3,Kledung,age_group,5-9,perempuan,1003,jiwa,2026,registration,total_population,3.2,27,,5-9
+33.23.17,3,Kledung,age_group,5-9,,2110,jiwa,2026,registration,total_population,3.2,27,,5-9
+33.23.17,3,Kledung,age_group,10-14,laki_laki,1181,jiwa,2026,registration,total_population,3.2,27,,10-14
+33.23.17,3,Kledung,age_group,10-14,perempuan,1119,jiwa,2026,registration,total_population,3.2,27,,10-14
+33.23.17,3,Kledung,age_group,10-14,,2300,jiwa,2026,registration,total_population,3.2,27,,10-14
+33.23.17,3,Kledung,age_group,15-19,laki_laki,1177,jiwa,2026,registration,total_population,3.2,27,,15-19
+33.23.17,3,Kledung,age_group,15-19,perempuan,1153,jiwa,2026,registration,total_population,3.2,27,,15-19
+33.23.17,3,Kledung,age_group,15-19,,2330,jiwa,2026,registration,total_population,3.2,27,,15-19
+33.23.17,3,Kledung,age_group,20-24,laki_laki,976,jiwa,2026,registration,total_population,3.2,27,,20-24
+33.23.17,3,Kledung,age_group,20-24,perempuan,903,jiwa,2026,registration,total_population,3.2,27,,20-24
+33.23.17,3,Kledung,age_group,20-24,,1879,jiwa,2026,registration,total_population,3.2,27,,20-24
+33.23.17,3,Kledung,age_group,25-29,laki_laki,937,jiwa,2026,registration,total_population,3.2,27,,25-29
+33.23.17,3,Kledung,age_group,25-29,perempuan,942,jiwa,2026,registration,total_population,3.2,27,,25-29
+33.23.17,3,Kledung,age_group,25-29,,1879,jiwa,2026,registration,total_population,3.2,27,,25-29
+33.23.17,3,Kledung,age_group,30-34,laki_laki,916,jiwa,2026,registration,total_population,3.2,27,,30-34
+33.23.17,3,Kledung,age_group,30-34,perempuan,1047,jiwa,2026,registration,total_population,3.2,27,,30-34
+33.23.17,3,Kledung,age_group,30-34,,1963,jiwa,2026,registration,total_population,3.2,27,,30-34
+33.23.17,3,Kledung,age_group,35-39,laki_laki,1012,jiwa,2026,registration,total_population,3.2,27,,35-39
+33.23.17,3,Kledung,age_group,35-39,perempuan,941,jiwa,2026,registration,total_population,3.2,27,,35-39
+33.23.17,3,Kledung,age_group,35-39,,1953,jiwa,2026,registration,total_population,3.2,27,,35-39
+33.23.17,3,Kledung,age_group,40-44,laki_laki,1195,jiwa,2026,registration,total_population,3.2,27,,40-44
+33.23.17,3,Kledung,age_group,40-44,perempuan,1125,jiwa,2026,registration,total_population,3.2,27,,40-44
+33.23.17,3,Kledung,age_group,40-44,,2320,jiwa,2026,registration,total_population,3.2,27,,40-44
+33.23.17,3,Kledung,age_group,45-49,laki_laki,1276,jiwa,2026,registration,total_population,3.2,27,,45-49
+33.23.17,3,Kledung,age_group,45-49,perempuan,1207,jiwa,2026,registration,total_population,3.2,27,,45-49
+33.23.17,3,Kledung,age_group,45-49,,2483,jiwa,2026,registration,total_population,3.2,27,,45-49
+33.23.17,3,Kledung,age_group,50-54,laki_laki,1072,jiwa,2026,registration,total_population,3.2,27,,50-54
+33.23.17,3,Kledung,age_group,50-54,perempuan,927,jiwa,2026,registration,total_population,3.2,27,,50-54
+33.23.17,3,Kledung,age_group,50-54,,1999,jiwa,2026,registration,total_population,3.2,27,,50-54
+33.23.17,3,Kledung,age_group,55-59,laki_laki,868,jiwa,2026,registration,total_population,3.2,27,,55-59
+33.23.17,3,Kledung,age_group,55-59,perempuan,824,jiwa,2026,registration,total_population,3.2,27,,55-59
+33.23.17,3,Kledung,age_group,55-59,,1692,jiwa,2026,registration,total_population,3.2,27,,55-59
+33.23.17,3,Kledung,age_group,60-64,laki_laki,693,jiwa,2026,registration,total_population,3.2,27,,60-64
+33.23.17,3,Kledung,age_group,60-64,perempuan,771,jiwa,2026,registration,total_population,3.2,27,,60-64
+33.23.17,3,Kledung,age_group,60-64,,1464,jiwa,2026,registration,total_population,3.2,27,,60-64
+33.23.17,3,Kledung,age_group,65-69,laki_laki,646,jiwa,2026,registration,total_population,3.2,27,,65-69
+33.23.17,3,Kledung,age_group,65-69,perempuan,687,jiwa,2026,registration,total_population,3.2,27,,65-69
+33.23.17,3,Kledung,age_group,65-69,,1333,jiwa,2026,registration,total_population,3.2,27,,65-69
+33.23.17,3,Kledung,age_group,70-74,laki_laki,454,jiwa,2026,registration,total_population,3.2,27,,70-74
+33.23.17,3,Kledung,age_group,70-74,perempuan,402,jiwa,2026,registration,total_population,3.2,27,,70-74
+33.23.17,3,Kledung,age_group,70-74,,856,jiwa,2026,registration,total_population,3.2,27,,70-74
+33.23.17,3,Kledung,age_group,75+,laki_laki,481,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.17,3,Kledung,age_group,75+,perempuan,508,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.17,3,Kledung,age_group,75+,,989,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.17,3,Kecamatan Kledung,sex,laki_laki,,14801,jiwa,2026,registration,total_population,3.2,27,,Laki-Laki
+33.23.17,3,Kecamatan Kledung,sex,perempuan,,14265,jiwa,2026,registration,total_population,3.2,27,,Perempuan
+33.23.17,3,Kecamatan Kledung,total,total,,29066,jiwa,2026,registration,total_population,3.2,27,,

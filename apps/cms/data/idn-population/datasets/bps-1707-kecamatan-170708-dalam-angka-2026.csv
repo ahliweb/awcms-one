@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.08.2001,4,Ujung Tanjung I,sex,laki_laki,,683,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2001,4,Ujung Tanjung I,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2001,4,Ujung Tanjung I,total,total,,1363,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2002,4,Muning Agung,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2002,4,Muning Agung,sex,perempuan,,495,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2002,4,Muning Agung,total,total,,953,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2003,4,Ujung Tanjung II,sex,laki_laki,,785,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2003,4,Ujung Tanjung II,sex,perempuan,,748,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2003,4,Ujung Tanjung II,total,total,,1533,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2004,4,Ujung Tanjung III,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2004,4,Ujung Tanjung III,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2004,4,Ujung Tanjung III,total,total,,675,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2005,4,Magelang Baru,sex,laki_laki,,723,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2005,4,Magelang Baru,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2005,4,Magelang Baru,total,total,,1465,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2006,4,Lemeu Pit,sex,laki_laki,,564,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2006,4,Lemeu Pit,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2006,4,Lemeu Pit,total,total,,1105,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2007,4,Tabeak Kauk,sex,laki_laki,,301,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2007,4,Tabeak Kauk,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2007,4,Tabeak Kauk,total,total,,636,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2008,4,Tabeak Dipoa,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2008,4,Tabeak Dipoa,sex,perempuan,,322,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2008,4,Tabeak Dipoa,total,total,,674,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08.2009,4,Suka Bumi,sex,laki_laki,,653,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08.2009,4,Suka Bumi,sex,perempuan,,690,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08.2009,4,Suka Bumi,total,total,,1343,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08,3,Kecamatan Lebong Sakti,sex,laki_laki,,4854,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.08,3,Kecamatan Lebong Sakti,sex,perempuan,,4893,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.08,3,Kecamatan Lebong Sakti,total,total,,9747,jiwa,2025,registration,total_population,3.1,27,,
+17.07.08,3,Kecamatan Lebong Sakti,sex,laki_laki,,4854,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+17.07.08,3,Kecamatan Lebong Sakti,sex,perempuan,,4893,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+17.07.08,3,Kecamatan Lebong Sakti,total,total,,9747,jiwa,2025,registration,total_population,3.2,29,,

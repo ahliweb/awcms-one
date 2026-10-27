@@ -1,0 +1,63 @@
+{
+  "datasetCode": "bps-2171-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "21.71",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Batam Dalam Angka 2026",
+  "publisherName": "BPS Kota Batam",
+  "publisherDomain": "2171",
+  "publisherWebsite": "https://batamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batam (https://batamkota.bps.go.id), publikasi \"Kota Batam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2171",
+  "publicationNumber": "21710.26002",
+  "issn": "2355-4444",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://batamkota.bps.go.id/id/publication/2026/02/27/f114fc2ec6b86e133422cd62/kota-batam-dalam-angka-2026.html",
+  "sourceFileSha256": "c7462bd571379dea64d181d003b7e903f0e80e24edf2909ea11e7b371dae5063",
+  "sourceFileBytes": 3140591,
+  "sourcePages": [68, 71, 90],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batam.",
+  "csvPath": "datasets/bps-2171-dalam-angka-2026.csv",
+  "csvSha256": "0f9debf854e4f3a1a28ac1cfa6c5e4b9c06ac67fc6bbd61a8753b8403a5b6f4a",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kota Batam, 2024–2025",
+      "printedPages": [68],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kota Batam (ribu jiwa), 2025",
+      "printedPages": [71],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.2.16",
+      "title": "Rata-rata Upah/Gaji Bersih Sebulan Pekerja Formal Menurut Kelompok Umur dan Lapangan Pekerjaan Utama di Kota Batam, 2025",
+      "printedPages": [90],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.1.1: row not stored: row \"Sungai Beduk\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kota Batam Batam Municipality\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kota Batam Batam Municipality\": unmatched ",
+    "table 3.2.16: row not stored: row \"Jumlah/Total\": unmatched ",
+    "table 3.2.16: age group by industry cross-tab columns are not stored (only the per-age average)"
+  ]
+}

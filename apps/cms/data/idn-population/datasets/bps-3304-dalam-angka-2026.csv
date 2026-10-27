@@ -1,0 +1,117 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.04.01,3,Susukan,total,total,,66584,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.03,3,Mandiraja,total,total,,83720,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.04,3,Purwanegara,total,total,,87456,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.05,3,Bawang,total,total,,66861,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.06,3,Banjarnegara,total,total,,70877,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.20,3,Pagedongan,total,total,,44874,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.07,3,Sigaluh,total,total,,33085,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.08,3,Madukara,total,total,,47690,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.09,3,Banjarmangu,total,total,,48390,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.11,3,Rakit,total,total,,56196,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.12,3,Punggelan,total,total,,91904,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.13,3,Karangkobar,total,total,,32710,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.14,3,Pagentan,total,total,,39272,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.15,3,Pejawaran,total,total,,45858,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.16,3,Batur,total,total,,41926,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.17,3,Wanayasa,total,total,,52271,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.18,3,Kalibening,total,total,,48519,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04.19,3,Pandanarum,total,total,,23881,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04,2,Kabupaten Banjarnegara,total,total,,1067606,jiwa,2025,projection,total_population,3.1.1,90,,
+33.04,2,Kabupaten Banjarnegara,age_group,0-4,laki_laki,42900,jiwa,2025,projection,total_population,3.1.2,93,,0–4
+33.04,2,Kabupaten Banjarnegara,age_group,0-4,perempuan,41182,jiwa,2025,projection,total_population,3.1.2,93,,0–4
+33.04,2,Kabupaten Banjarnegara,age_group,0-4,,84082,jiwa,2025,projection,total_population,3.1.2,93,,0–4
+33.04,2,Kabupaten Banjarnegara,age_group,5-9,laki_laki,37821,jiwa,2025,projection,total_population,3.1.2,93,,5–9
+33.04,2,Kabupaten Banjarnegara,age_group,5-9,perempuan,36659,jiwa,2025,projection,total_population,3.1.2,93,,5–9
+33.04,2,Kabupaten Banjarnegara,age_group,5-9,,74480,jiwa,2025,projection,total_population,3.1.2,93,,5–9
+33.04,2,Kabupaten Banjarnegara,age_group,10-14,laki_laki,39698,jiwa,2025,projection,total_population,3.1.2,93,,10–14
+33.04,2,Kabupaten Banjarnegara,age_group,10-14,perempuan,37815,jiwa,2025,projection,total_population,3.1.2,93,,10–14
+33.04,2,Kabupaten Banjarnegara,age_group,10-14,,77513,jiwa,2025,projection,total_population,3.1.2,93,,10–14
+33.04,2,Kabupaten Banjarnegara,age_group,15-19,laki_laki,40013,jiwa,2025,projection,total_population,3.1.2,93,,15–19
+33.04,2,Kabupaten Banjarnegara,age_group,15-19,perempuan,37976,jiwa,2025,projection,total_population,3.1.2,93,,15–19
+33.04,2,Kabupaten Banjarnegara,age_group,15-19,,77989,jiwa,2025,projection,total_population,3.1.2,93,,15–19
+33.04,2,Kabupaten Banjarnegara,age_group,20-24,laki_laki,39859,jiwa,2025,projection,total_population,3.1.2,93,,20–24
+33.04,2,Kabupaten Banjarnegara,age_group,20-24,perempuan,37700,jiwa,2025,projection,total_population,3.1.2,93,,20–24
+33.04,2,Kabupaten Banjarnegara,age_group,20-24,,77559,jiwa,2025,projection,total_population,3.1.2,93,,20–24
+33.04,2,Kabupaten Banjarnegara,age_group,25-29,laki_laki,40761,jiwa,2025,projection,total_population,3.1.2,93,,25–29
+33.04,2,Kabupaten Banjarnegara,age_group,25-29,perempuan,37444,jiwa,2025,projection,total_population,3.1.2,93,,25–29
+33.04,2,Kabupaten Banjarnegara,age_group,25-29,,78205,jiwa,2025,projection,total_population,3.1.2,93,,25–29
+33.04,2,Kabupaten Banjarnegara,age_group,30-34,laki_laki,42896,jiwa,2025,projection,total_population,3.1.2,93,,30–34
+33.04,2,Kabupaten Banjarnegara,age_group,30-34,perempuan,40084,jiwa,2025,projection,total_population,3.1.2,93,,30–34
+33.04,2,Kabupaten Banjarnegara,age_group,30-34,,82980,jiwa,2025,projection,total_population,3.1.2,93,,30–34
+33.04,2,Kabupaten Banjarnegara,age_group,35-39,laki_laki,41154,jiwa,2025,projection,total_population,3.1.2,93,,35–39
+33.04,2,Kabupaten Banjarnegara,age_group,35-39,perempuan,39051,jiwa,2025,projection,total_population,3.1.2,93,,35–39
+33.04,2,Kabupaten Banjarnegara,age_group,35-39,,80205,jiwa,2025,projection,total_population,3.1.2,93,,35–39
+33.04,2,Kabupaten Banjarnegara,age_group,40-44,laki_laki,40086,jiwa,2025,projection,total_population,3.1.2,93,,40–44
+33.04,2,Kabupaten Banjarnegara,age_group,40-44,perempuan,38641,jiwa,2025,projection,total_population,3.1.2,93,,40–44
+33.04,2,Kabupaten Banjarnegara,age_group,40-44,,78727,jiwa,2025,projection,total_population,3.1.2,93,,40–44
+33.04,2,Kabupaten Banjarnegara,age_group,45-49,laki_laki,36771,jiwa,2025,projection,total_population,3.1.2,93,,45–49
+33.04,2,Kabupaten Banjarnegara,age_group,45-49,perempuan,35730,jiwa,2025,projection,total_population,3.1.2,93,,45–49
+33.04,2,Kabupaten Banjarnegara,age_group,45-49,,72501,jiwa,2025,projection,total_population,3.1.2,93,,45–49
+33.04,2,Kabupaten Banjarnegara,age_group,50-54,laki_laki,33679,jiwa,2025,projection,total_population,3.1.2,93,,50–54
+33.04,2,Kabupaten Banjarnegara,age_group,50-54,perempuan,33837,jiwa,2025,projection,total_population,3.1.2,93,,50–54
+33.04,2,Kabupaten Banjarnegara,age_group,50-54,,67516,jiwa,2025,projection,total_population,3.1.2,93,,50–54
+33.04,2,Kabupaten Banjarnegara,age_group,55-59,laki_laki,30037,jiwa,2025,projection,total_population,3.1.2,93,,55–59
+33.04,2,Kabupaten Banjarnegara,age_group,55-59,perempuan,30249,jiwa,2025,projection,total_population,3.1.2,93,,55–59
+33.04,2,Kabupaten Banjarnegara,age_group,55-59,,60286,jiwa,2025,projection,total_population,3.1.2,93,,55–59
+33.04,2,Kabupaten Banjarnegara,age_group,60-64,laki_laki,25303,jiwa,2025,projection,total_population,3.1.2,93,,60–64
+33.04,2,Kabupaten Banjarnegara,age_group,60-64,perempuan,26319,jiwa,2025,projection,total_population,3.1.2,93,,60–64
+33.04,2,Kabupaten Banjarnegara,age_group,60-64,,51622,jiwa,2025,projection,total_population,3.1.2,93,,60–64
+33.04,2,Kabupaten Banjarnegara,age_group,65-69,laki_laki,20473,jiwa,2025,projection,total_population,3.1.2,93,,65–69
+33.04,2,Kabupaten Banjarnegara,age_group,65-69,perempuan,21254,jiwa,2025,projection,total_population,3.1.2,93,,65–69
+33.04,2,Kabupaten Banjarnegara,age_group,65-69,,41727,jiwa,2025,projection,total_population,3.1.2,93,,65–69
+33.04,2,Kabupaten Banjarnegara,age_group,70-74,laki_laki,14731,jiwa,2025,projection,total_population,3.1.2,93,,70–74
+33.04,2,Kabupaten Banjarnegara,age_group,70-74,perempuan,15540,jiwa,2025,projection,total_population,3.1.2,93,,70–74
+33.04,2,Kabupaten Banjarnegara,age_group,70-74,,30271,jiwa,2025,projection,total_population,3.1.2,93,,70–74
+33.04,2,Kabupaten Banjarnegara,age_group,75+,laki_laki,15009,jiwa,2025,projection,total_population,3.1.2,93,,75+
+33.04,2,Kabupaten Banjarnegara,age_group,75+,perempuan,16934,jiwa,2025,projection,total_population,3.1.2,93,,75+
+33.04,2,Kabupaten Banjarnegara,age_group,75+,,31943,jiwa,2025,projection,total_population,3.1.2,93,,75+
+33.04,2,Kabupaten Banjarnegara,sex,laki_laki,,541191,jiwa,2025,projection,total_population,3.1.2,93,,Laki-Laki
+33.04,2,Kabupaten Banjarnegara,sex,perempuan,,526415,jiwa,2025,projection,total_population,3.1.2,93,,Perempuan
+33.04,2,Kabupaten Banjarnegara,total,total,,1067606,jiwa,2025,projection,total_population,3.1.2,93,,
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/padi_padian,,72728,rupiah,2024,survey_estimate,per_capita,10.1,449,,Padi-padian
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/padi_padian,,59553,rupiah,2025,survey_estimate,per_capita,10.1,449,,Padi-padian
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/umbi_umbian,,5063,rupiah,2024,survey_estimate,per_capita,10.1,449,,Umbi-umbian
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/umbi_umbian,,5172,rupiah,2025,survey_estimate,per_capita,10.1,449,,Umbi-umbian
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,22325,rupiah,2024,survey_estimate,per_capita,10.1,449,,Ikan/udang/cumi/kerang
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,19466,rupiah,2025,survey_estimate,per_capita,10.1,449,,Ikan/udang/cumi/kerang
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/daging,,25998,rupiah,2024,survey_estimate,per_capita,10.1,449,,Daging
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/daging,,28194,rupiah,2025,survey_estimate,per_capita,10.1,449,,Daging
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/telur_dan_susu,,26235,rupiah,2024,survey_estimate,per_capita,10.1,449,,Telur dan susu
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/telur_dan_susu,,30779,rupiah,2025,survey_estimate,per_capita,10.1,449,,Telur dan susu
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/sayur_sayuran,,40604,rupiah,2024,survey_estimate,per_capita,10.1,449,,Sayur-sayuran
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/sayur_sayuran,,47485,rupiah,2025,survey_estimate,per_capita,10.1,449,,Sayur-sayuran
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/kacang_kacangan,,15317,rupiah,2024,survey_estimate,per_capita,10.1,449,,Kacang-kacangan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/kacang_kacangan,,16178,rupiah,2025,survey_estimate,per_capita,10.1,449,,Kacang-kacangan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/buah_buahan,,31162,rupiah,2024,survey_estimate,per_capita,10.1,449,,Buah-buahan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/buah_buahan,,36854,rupiah,2025,survey_estimate,per_capita,10.1,449,,Buah-buahan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16740,rupiah,2024,survey_estimate,per_capita,10.1,449,,Minyak dan kelapa
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19092,rupiah,2025,survey_estimate,per_capita,10.1,449,,Minyak dan kelapa
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/bahan_minuman,,25101,rupiah,2024,survey_estimate,per_capita,10.1,449,,Bahan minuman
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/bahan_minuman,,25993,rupiah,2025,survey_estimate,per_capita,10.1,449,,Bahan minuman
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/bumbu_bumbuan,,12619,rupiah,2024,survey_estimate,per_capita,10.1,449,,Bumbu-bumbuan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/bumbu_bumbuan,,12924,rupiah,2025,survey_estimate,per_capita,10.1,449,,Bumbu-bumbuan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/konsumsi_lainnya,,11079,rupiah,2024,survey_estimate,per_capita,10.1,449,,Konsumsi lainnya
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/konsumsi_lainnya,,9882,rupiah,2025,survey_estimate,per_capita,10.1,449,,Konsumsi lainnya
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,159878,rupiah,2024,survey_estimate,per_capita,10.1,449,,Makanan dan minuman jadi
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,153994,rupiah,2025,survey_estimate,per_capita,10.1,449,,Makanan dan minuman jadi
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/rokok,,75562,rupiah,2024,survey_estimate,per_capita,10.1,449,,Rokok
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/rokok,,71092,rupiah,2025,survey_estimate,per_capita,10.1,449,,Rokok
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/jumlah_makanan,,540410,rupiah,2024,survey_estimate,per_capita,10.1,449,,Jumlah makanan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/jumlah_makanan,,536658,rupiah,2025,survey_estimate,per_capita,10.1,449,,Jumlah makanan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,217758,rupiah,2024,survey_estimate,per_capita,10.1,449,,Perumahan dan fasilitas rumah tangga
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,212875,rupiah,2025,survey_estimate,per_capita,10.1,449,,Perumahan dan fasilitas rumah tangga
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,104756,rupiah,2024,survey_estimate,per_capita,10.1,449,,Aneka barang dan jasa
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,143269,rupiah,2025,survey_estimate,per_capita,10.1,449,,Aneka barang dan jasa
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,27525,rupiah,2024,survey_estimate,per_capita,10.1,449,,Pakaian. alas kaki. dan tutup kepala
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29295,rupiah,2025,survey_estimate,per_capita,10.1,449,,Pakaian. alas kaki. dan tutup kepala
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/barang_tahan_lama,,43773,rupiah,2024,survey_estimate,per_capita,10.1,449,,Barang tahan lama
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/barang_tahan_lama,,68617,rupiah,2025,survey_estimate,per_capita,10.1,449,,Barang tahan lama
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35130,rupiah,2024,survey_estimate,per_capita,10.1,449,,Pajak. pungutan. dan asuransi
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38939,rupiah,2025,survey_estimate,per_capita,10.1,449,,Pajak. pungutan. dan asuransi
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24555,rupiah,2024,survey_estimate,per_capita,10.1,449,,Keperluan pesta dan upacara/kenduri
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12051,rupiah,2025,survey_estimate,per_capita,10.1,449,,Keperluan pesta dan upacara/kenduri
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,453497,rupiah,2024,survey_estimate,per_capita,10.1,449,,Jumlah bukan makanan
+33.04,2,Kabupaten Banjarnegara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,505046,rupiah,2025,survey_estimate,per_capita,10.1,449,,Jumlah bukan makanan
+33.04,2,Kabupaten Banjarnegara,expenditure,total,,993907,rupiah,2024,survey_estimate,per_capita,10.1,449,,
+33.04,2,Kabupaten Banjarnegara,expenditure,total,,1041705,rupiah,2025,survey_estimate,per_capita,10.1,449,,

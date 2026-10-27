@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360206-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Leuwidamar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Leuwidamar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36020.26027",
+  "issn": "3031-6177",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/1756a1ce2093e1b907e19461/kecamatan-leuwidamar-dalam-angka-2026.html",
+  "sourceFileSha256": "6c7950ad0de5abdd32f34893cf12f7288e6f6972b08af859a7961b9e61fbd9ab",
+  "sourceFileBytes": 24054508,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360206-dalam-angka-2026.csv",
+  "csvSha256": "3c35a082e279c80c846bfb9c38328b623dbe76cfecdd049cddde49f67d668dcb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Leuwidamar, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Leuwidamar, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Leuwidamar Leuwidamar District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Leuwidamar Leuwidamar District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Leuwidamar Leuwidamar District\": unmatched "
+  ]
+}

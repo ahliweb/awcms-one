@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.08.05.2006,4,Natai Kondang,sex,laki_laki,,908,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05.2006,4,Natai Kondang,sex,perempuan,,821,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05.2006,4,Natai Kondang,total,total,,1729,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05.2003,4,Ajang,sex,laki_laki,,1003,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05.2003,4,Ajang,sex,perempuan,,907,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05.2003,4,Ajang,total,total,,1910,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05.2002,4,Laman Baru,sex,laki_laki,,492,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05.2002,4,Laman Baru,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05.2002,4,Laman Baru,total,total,,924,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05.2001,4,Kenawan,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05.2001,4,Kenawan,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05.2001,4,Kenawan,total,total,,647,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05.2004,4,Semantun,sex,laki_laki,,1034,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05.2004,4,Semantun,sex,perempuan,,912,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05.2004,4,Semantun,total,total,,1946,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05.2007,4,Sembikuan,sex,laki_laki,,767,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05.2007,4,Sembikuan,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05.2007,4,Sembikuan,total,total,,1446,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05.2005,4,Nibung Terjun,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05.2005,4,Nibung Terjun,sex,perempuan,,552,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05.2005,4,Nibung Terjun,total,total,,1175,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05,3,Permata Kecubung,sex,laki_laki,,5173,jiwa,2025,registration,total_population,3.1,36,,Laki-laki/Male
+62.08.05,3,Permata Kecubung,sex,perempuan,,4604,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+62.08.05,3,Permata Kecubung,total,total,,9777,jiwa,2025,registration,total_population,3.1,36,,
+62.08.05,3,Permata Kecubung,age_group,0-4,laki_laki,344,jiwa,2025,registration,total_population,3.2,38,,0–4
+62.08.05,3,Permata Kecubung,age_group,0-4,perempuan,309,jiwa,2025,registration,total_population,3.2,38,,0–4
+62.08.05,3,Permata Kecubung,age_group,0-4,,653,jiwa,2025,registration,total_population,3.2,38,,0–4
+62.08.05,3,Permata Kecubung,age_group,5-9,laki_laki,471,jiwa,2025,registration,total_population,3.2,38,,5–9
+62.08.05,3,Permata Kecubung,age_group,5-9,perempuan,408,jiwa,2025,registration,total_population,3.2,38,,5–9
+62.08.05,3,Permata Kecubung,age_group,5-9,,879,jiwa,2025,registration,total_population,3.2,38,,5–9
+62.08.05,3,Permata Kecubung,age_group,10-14,laki_laki,466,jiwa,2025,registration,total_population,3.2,38,,10–14
+62.08.05,3,Permata Kecubung,age_group,10-14,perempuan,418,jiwa,2025,registration,total_population,3.2,38,,10–14
+62.08.05,3,Permata Kecubung,age_group,10-14,,884,jiwa,2025,registration,total_population,3.2,38,,10–14
+62.08.05,3,Permata Kecubung,age_group,15-19,laki_laki,417,jiwa,2025,registration,total_population,3.2,38,,15–19
+62.08.05,3,Permata Kecubung,age_group,15-19,perempuan,410,jiwa,2025,registration,total_population,3.2,38,,15–19
+62.08.05,3,Permata Kecubung,age_group,15-19,,827,jiwa,2025,registration,total_population,3.2,38,,15–19
+62.08.05,3,Permata Kecubung,age_group,20-24,laki_laki,462,jiwa,2025,registration,total_population,3.2,38,,20–24
+62.08.05,3,Permata Kecubung,age_group,20-24,perempuan,438,jiwa,2025,registration,total_population,3.2,38,,20–24
+62.08.05,3,Permata Kecubung,age_group,20-24,,900,jiwa,2025,registration,total_population,3.2,38,,20–24
+62.08.05,3,Permata Kecubung,age_group,25-29,laki_laki,447,jiwa,2025,registration,total_population,3.2,38,,25–29
+62.08.05,3,Permata Kecubung,age_group,25-29,perempuan,417,jiwa,2025,registration,total_population,3.2,38,,25–29
+62.08.05,3,Permata Kecubung,age_group,25-29,,864,jiwa,2025,registration,total_population,3.2,38,,25–29
+62.08.05,3,Permata Kecubung,age_group,30-34,laki_laki,444,jiwa,2025,registration,total_population,3.2,38,,30–34
+62.08.05,3,Permata Kecubung,age_group,30-34,perempuan,366,jiwa,2025,registration,total_population,3.2,38,,30–34
+62.08.05,3,Permata Kecubung,age_group,30-34,,810,jiwa,2025,registration,total_population,3.2,38,,30–34
+62.08.05,3,Permata Kecubung,age_group,35-39,laki_laki,443,jiwa,2025,registration,total_population,3.2,38,,35–39
+62.08.05,3,Permata Kecubung,age_group,35-39,perempuan,420,jiwa,2025,registration,total_population,3.2,38,,35–39
+62.08.05,3,Permata Kecubung,age_group,35-39,,863,jiwa,2025,registration,total_population,3.2,38,,35–39
+62.08.05,3,Permata Kecubung,age_group,40-44,laki_laki,415,jiwa,2025,registration,total_population,3.2,38,,40–44
+62.08.05,3,Permata Kecubung,age_group,40-44,perempuan,425,jiwa,2025,registration,total_population,3.2,38,,40–44
+62.08.05,3,Permata Kecubung,age_group,40-44,,840,jiwa,2025,registration,total_population,3.2,38,,40–44
+62.08.05,3,Permata Kecubung,age_group,45-49,laki_laki,395,jiwa,2025,registration,total_population,3.2,38,,45–49
+62.08.05,3,Permata Kecubung,age_group,45-49,perempuan,341,jiwa,2025,registration,total_population,3.2,38,,45–49
+62.08.05,3,Permata Kecubung,age_group,45-49,,736,jiwa,2025,registration,total_population,3.2,38,,45–49
+62.08.05,3,Permata Kecubung,age_group,50-54,laki_laki,288,jiwa,2025,registration,total_population,3.2,38,,50–54
+62.08.05,3,Permata Kecubung,age_group,50-54,perempuan,204,jiwa,2025,registration,total_population,3.2,38,,50–54
+62.08.05,3,Permata Kecubung,age_group,50-54,,492,jiwa,2025,registration,total_population,3.2,38,,50–54
+62.08.05,3,Permata Kecubung,age_group,55-59,laki_laki,221,jiwa,2025,registration,total_population,3.2,38,,55–59
+62.08.05,3,Permata Kecubung,age_group,55-59,perempuan,193,jiwa,2025,registration,total_population,3.2,38,,55–59
+62.08.05,3,Permata Kecubung,age_group,55-59,,414,jiwa,2025,registration,total_population,3.2,38,,55–59
+62.08.05,3,Permata Kecubung,age_group,60-64,laki_laki,149,jiwa,2025,registration,total_population,3.2,38,,60–64
+62.08.05,3,Permata Kecubung,age_group,60-64,perempuan,91,jiwa,2025,registration,total_population,3.2,38,,60–64
+62.08.05,3,Permata Kecubung,age_group,60-64,,240,jiwa,2025,registration,total_population,3.2,38,,60–64
+62.08.05,3,Permata Kecubung,age_group,65-69,laki_laki,91,jiwa,2025,registration,total_population,3.2,38,,65–69
+62.08.05,3,Permata Kecubung,age_group,65-69,perempuan,83,jiwa,2025,registration,total_population,3.2,38,,65–69
+62.08.05,3,Permata Kecubung,age_group,65-69,,174,jiwa,2025,registration,total_population,3.2,38,,65–69
+62.08.05,3,Permata Kecubung,age_group,70-74,laki_laki,53,jiwa,2025,registration,total_population,3.2,38,,70–74
+62.08.05,3,Permata Kecubung,age_group,70-74,perempuan,36,jiwa,2025,registration,total_population,3.2,38,,70–74
+62.08.05,3,Permata Kecubung,age_group,70-74,,89,jiwa,2025,registration,total_population,3.2,38,,70–74
+62.08.05,3,Permata Kecubung,age_group,75+,laki_laki,67,jiwa,2025,registration,total_population,3.2,38,,75+
+62.08.05,3,Permata Kecubung,age_group,75+,perempuan,45,jiwa,2025,registration,total_population,3.2,38,,75+
+62.08.05,3,Permata Kecubung,age_group,75+,,112,jiwa,2025,registration,total_population,3.2,38,,75+
+62.08.05,3,Permata Kecubung,sex,laki_laki,,5173,jiwa,2025,registration,total_population,3.2,38,,Laki-laki/Male
+62.08.05,3,Permata Kecubung,sex,perempuan,,4604,jiwa,2025,registration,total_population,3.2,38,,Perempuan/Female
+62.08.05,3,Permata Kecubung,total,total,,9777,jiwa,2025,registration,total_population,3.2,38,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.33.2003,4,BIRU,sex,laki_laki,,9886,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2003,4,BIRU,sex,perempuan,,9468,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2003,4,BIRU,total,total,,19354,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2005,4,BOJONG,sex,laki_laki,,8513,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2005,4,BOJONG,sex,perempuan,,8137,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2005,4,BOJONG,total,total,,16650,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2007,4,MAJAKERTA,sex,laki_laki,,6581,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2007,4,MAJAKERTA,sex,perempuan,,6238,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2007,4,MAJAKERTA,total,total,,12819,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2001,4,MAJALAYA,sex,laki_laki,,5979,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2001,4,MAJALAYA,sex,perempuan,,5713,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2001,4,MAJALAYA,total,total,,11692,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2010,4,NEGLASARI,sex,laki_laki,,6129,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2010,4,NEGLASARI,sex,perempuan,,5866,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2010,4,NEGLASARI,total,total,,11995,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2004,4,PADAMULYA,sex,laki_laki,,8232,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2004,4,PADAMULYA,sex,perempuan,,7713,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2004,4,PADAMULYA,total,total,,15945,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2009,4,PADAULUN,sex,laki_laki,,11465,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2009,4,PADAULUN,sex,perempuan,,10923,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2009,4,PADAULUN,total,total,,22388,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2008,4,SUKAMAJU,sex,laki_laki,,10670,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2008,4,SUKAMAJU,sex,perempuan,,10068,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2008,4,SUKAMAJU,total,total,,20738,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2011,4,SUKAMUKTI,sex,laki_laki,,7423,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2011,4,SUKAMUKTI,sex,perempuan,,6970,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2011,4,SUKAMUKTI,total,total,,14393,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33.2002,4,WANGISAGARA,sex,laki_laki,,8427,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33.2002,4,WANGISAGARA,sex,perempuan,,7935,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33.2002,4,WANGISAGARA,total,total,,16362,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.33,3,Kecamatan Majalaya,sex,laki_laki,,88763,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.33,3,Kecamatan Majalaya,sex,perempuan,,84326,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.33,3,Kecamatan Majalaya,total,total,,173089,jiwa,2025,registration,total_population,unnumbered-p28,28,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3515-kecamatan-351517-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.15.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sedati Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sidoarjo",
+  "publisherDomain": "3515",
+  "publisherWebsite": "https://sidoarjokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sidoarjo (https://sidoarjokab.bps.go.id), publikasi \"Kecamatan Sedati Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3515130",
+  "publicationNumber": "35150.26017",
+  "issn": "2620-7095",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sidoarjokab.bps.go.id/id/publication/2026/09/28/2e0f04fab387d981cf388ca6/kecamatan-sedati-dalam-angka-2026.html",
+  "sourceFileSha256": "e425adce08ff70466e388110d40a082592a96ef6f6cb29dea74e78b4f4e8c1a0",
+  "sourceFileBytes": 23694312,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sidoarjo.",
+  "csvPath": "datasets/bps-3515-kecamatan-351517-dalam-angka-2026.csv",
+  "csvSha256": "95c47b14b014231d6d470bb6b3e5473d3c62a3868cb25b8fb234d6cfde6ffc75",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sedati, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sedati, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

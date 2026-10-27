@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.08.10.1003,4,Citrodiwangsan,sex,laki_laki,,5859,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.1003,4,Citrodiwangsan,sex,perempuan,,6216,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.1003,4,Citrodiwangsan,total,total,,12075,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.1004,4,Ditotrunan,sex,laki_laki,,3181,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.1004,4,Ditotrunan,sex,perempuan,,3352,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.1004,4,Ditotrunan,total,total,,6533,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.1005,4,Jogotrunan,sex,laki_laki,,4680,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.1005,4,Jogotrunan,sex,perempuan,,4856,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.1005,4,Jogotrunan,total,total,,9536,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.1009,4,Jogoyudan,sex,laki_laki,,3170,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.1009,4,Jogoyudan,sex,perempuan,,3291,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.1009,4,Jogoyudan,total,total,,6461,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.1010,4,Rogotrunan,sex,laki_laki,,4935,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.1010,4,Rogotrunan,sex,perempuan,,4930,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.1010,4,Rogotrunan,total,total,,9865,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.1011,4,Tompokersan,sex,laki_laki,,7086,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.1011,4,Tompokersan,sex,perempuan,,7456,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.1011,4,Tompokersan,total,total,,14542,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.1012,4,Kepuharjo,sex,laki_laki,,3148,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.1012,4,Kepuharjo,sex,perempuan,,3259,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.1012,4,Kepuharjo,total,total,,6407,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.2001,4,Banjarwaru,sex,laki_laki,,1327,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.2001,4,Banjarwaru,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.2001,4,Banjarwaru,total,total,,2624,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.2002,4,Labruk Lor,sex,laki_laki,,2057,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.2002,4,Labruk Lor,sex,perempuan,,2040,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.2002,4,Labruk Lor,total,total,,4097,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.2006,4,Denok,sex,laki_laki,,2294,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.2006,4,Denok,sex,perempuan,,2279,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.2006,4,Denok,total,total,,4573,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.2007,4,Blukon,sex,laki_laki,,1158,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.2007,4,Blukon,sex,perempuan,,1197,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.2007,4,Blukon,total,total,,2355,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10.2008,4,Boreng,sex,laki_laki,,2943,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10.2008,4,Boreng,sex,perempuan,,3035,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10.2008,4,Boreng,total,total,,5978,jiwa,2025,registration,total_population,3.1,30,,
+35.08.10,3,Kecamatan Lumajang,sex,laki_laki,,41838,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.08.10,3,Kecamatan Lumajang,sex,perempuan,,43208,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.08.10,3,Kecamatan Lumajang,total,total,,85046,jiwa,2025,registration,total_population,3.1,30,,

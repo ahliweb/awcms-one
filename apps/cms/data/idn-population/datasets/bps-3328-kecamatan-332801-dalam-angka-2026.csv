@@ -1,0 +1,75 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.28.01.2001,4,Prupuk Selatan,sex,perempuan,,5904,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2001,4,Prupuk Selatan,total,total,,11930,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2012,4,Prupuk Utara,sex,perempuan,,3159,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2012,4,Prupuk Utara,total,total,,6289,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2002,4,Kaligayam,sex,perempuan,,1378,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2002,4,Kaligayam,total,total,,2765,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2004,4,Wanasari,sex,perempuan,,1577,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2004,4,Wanasari,total,total,,3169,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2005,4,Danaraja,sex,perempuan,,1946,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2005,4,Danaraja,total,total,,3926,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2006,4,Jembayat,sex,perempuan,,7553,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2006,4,Jembayat,total,total,,15334,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2007,4,Margasari,sex,perempuan,,6612,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2007,4,Margasari,total,total,,13234,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2003,4,Dukuh Tengah,sex,perempuan,,3968,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2003,4,Dukuh Tengah,total,total,,8093,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2008,4,Pakulaut,sex,perempuan,,5730,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2008,4,Pakulaut,total,total,,11827,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2013,4,Marga Ayu,sex,perempuan,,2890,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2013,4,Marga Ayu,total,total,,6002,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2010,4,Kalisalak,sex,perempuan,,5573,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2010,4,Kalisalak,total,total,,11294,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2009,4,Karangdawa,sex,perempuan,,8677,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2009,4,Karangdawa,total,total,,17965,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01.2011,4,Jatilaba,sex,perempuan,,5455,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.01.2011,4,Jatilaba,total,total,,11039,jiwa,2026,registration,total_population,3.1,34,,
+33.28.01,3,Margasari,age_group,0-4,laki_laki,4773,jiwa,2026,registration,total_population,3.2,36,,0-4
+33.28.01,3,Margasari,age_group,0-4,perempuan,4479,jiwa,2026,registration,total_population,3.2,36,,0-4
+33.28.01,3,Margasari,age_group,0-4,,9252,jiwa,2026,registration,total_population,3.2,36,,0-4
+33.28.01,3,Margasari,age_group,5-9,laki_laki,4769,jiwa,2026,registration,total_population,3.2,36,,5-9
+33.28.01,3,Margasari,age_group,5-9,perempuan,4496,jiwa,2026,registration,total_population,3.2,36,,5-9
+33.28.01,3,Margasari,age_group,5-9,,9265,jiwa,2026,registration,total_population,3.2,36,,5-9
+33.28.01,3,Margasari,age_group,10-14,laki_laki,4560,jiwa,2026,registration,total_population,3.2,36,,10-14
+33.28.01,3,Margasari,age_group,10-14,perempuan,4500,jiwa,2026,registration,total_population,3.2,36,,10-14
+33.28.01,3,Margasari,age_group,10-14,,9060,jiwa,2026,registration,total_population,3.2,36,,10-14
+33.28.01,3,Margasari,age_group,15-19,laki_laki,4677,jiwa,2026,registration,total_population,3.2,36,,15-19
+33.28.01,3,Margasari,age_group,15-19,perempuan,4431,jiwa,2026,registration,total_population,3.2,36,,15-19
+33.28.01,3,Margasari,age_group,15-19,,9108,jiwa,2026,registration,total_population,3.2,36,,15-19
+33.28.01,3,Margasari,age_group,20-24,laki_laki,4451,jiwa,2026,registration,total_population,3.2,36,,20-24
+33.28.01,3,Margasari,age_group,20-24,perempuan,4315,jiwa,2026,registration,total_population,3.2,36,,20-24
+33.28.01,3,Margasari,age_group,20-24,,8766,jiwa,2026,registration,total_population,3.2,36,,20-24
+33.28.01,3,Margasari,age_group,25-29,laki_laki,5092,jiwa,2026,registration,total_population,3.2,36,,25-29
+33.28.01,3,Margasari,age_group,25-29,perempuan,4614,jiwa,2026,registration,total_population,3.2,36,,25-29
+33.28.01,3,Margasari,age_group,25-29,,9706,jiwa,2026,registration,total_population,3.2,36,,25-29
+33.28.01,3,Margasari,age_group,30-34,laki_laki,4897,jiwa,2026,registration,total_population,3.2,36,,30-34
+33.28.01,3,Margasari,age_group,30-34,perempuan,4472,jiwa,2026,registration,total_population,3.2,36,,30-34
+33.28.01,3,Margasari,age_group,30-34,,9369,jiwa,2026,registration,total_population,3.2,36,,30-34
+33.28.01,3,Margasari,age_group,35-39,laki_laki,4413,jiwa,2026,registration,total_population,3.2,36,,35-39
+33.28.01,3,Margasari,age_group,35-39,perempuan,4221,jiwa,2026,registration,total_population,3.2,36,,35-39
+33.28.01,3,Margasari,age_group,35-39,,8634,jiwa,2026,registration,total_population,3.2,36,,35-39
+33.28.01,3,Margasari,age_group,40-44,laki_laki,4218,jiwa,2026,registration,total_population,3.2,36,,40-44
+33.28.01,3,Margasari,age_group,40-44,perempuan,4240,jiwa,2026,registration,total_population,3.2,36,,40-44
+33.28.01,3,Margasari,age_group,40-44,,8458,jiwa,2026,registration,total_population,3.2,36,,40-44
+33.28.01,3,Margasari,age_group,45-49,laki_laki,4067,jiwa,2026,registration,total_population,3.2,36,,45-49
+33.28.01,3,Margasari,age_group,45-49,perempuan,4022,jiwa,2026,registration,total_population,3.2,36,,45-49
+33.28.01,3,Margasari,age_group,45-49,,8089,jiwa,2026,registration,total_population,3.2,36,,45-49
+33.28.01,3,Margasari,age_group,50-54,laki_laki,3547,jiwa,2026,registration,total_population,3.2,36,,50-54
+33.28.01,3,Margasari,age_group,50-54,perempuan,3644,jiwa,2026,registration,total_population,3.2,36,,50-54
+33.28.01,3,Margasari,age_group,50-54,,7191,jiwa,2026,registration,total_population,3.2,36,,50-54
+33.28.01,3,Margasari,age_group,55-59,laki_laki,2864,jiwa,2026,registration,total_population,3.2,36,,55-59
+33.28.01,3,Margasari,age_group,55-59,perempuan,3112,jiwa,2026,registration,total_population,3.2,36,,55-59
+33.28.01,3,Margasari,age_group,55-59,,5976,jiwa,2026,registration,total_population,3.2,36,,55-59
+33.28.01,3,Margasari,age_group,60-64,laki_laki,2225,jiwa,2026,registration,total_population,3.2,36,,60-64
+33.28.01,3,Margasari,age_group,60-64,perempuan,2673,jiwa,2026,registration,total_population,3.2,36,,60-64
+33.28.01,3,Margasari,age_group,60-64,,4898,jiwa,2026,registration,total_population,3.2,36,,60-64
+33.28.01,3,Margasari,age_group,65-69,laki_laki,1756,jiwa,2026,registration,total_population,3.2,36,,65-69
+33.28.01,3,Margasari,age_group,65-69,perempuan,2117,jiwa,2026,registration,total_population,3.2,36,,65-69
+33.28.01,3,Margasari,age_group,65-69,,3873,jiwa,2026,registration,total_population,3.2,36,,65-69
+33.28.01,3,Margasari,age_group,70-74,laki_laki,1314,jiwa,2026,registration,total_population,3.2,36,,70-74
+33.28.01,3,Margasari,age_group,70-74,perempuan,1593,jiwa,2026,registration,total_population,3.2,36,,70-74
+33.28.01,3,Margasari,age_group,70-74,,2907,jiwa,2026,registration,total_population,3.2,36,,70-74
+33.28.01,3,Margasari,age_group,75+,laki_laki,1027,jiwa,2026,registration,total_population,3.2,36,,75+
+33.28.01,3,Margasari,age_group,75+,perempuan,1155,jiwa,2026,registration,total_population,3.2,36,,75+
+33.28.01,3,Margasari,age_group,75+,,2182,jiwa,2026,registration,total_population,3.2,36,,75+

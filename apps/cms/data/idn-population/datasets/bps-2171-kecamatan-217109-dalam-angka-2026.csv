@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.09.1002,4,Bengkong Laut,sex,laki_laki,,10169,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.09.1002,4,Bengkong Laut,sex,perempuan,,10014,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.09.1002,4,Bengkong Laut,total,total,,20183,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.09.1001,4,Bengkong Indah,sex,laki_laki,,11088,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.09.1001,4,Bengkong Indah,sex,perempuan,,10852,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.09.1001,4,Bengkong Indah,total,total,,21940,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.09.1003,4,Sadai,sex,laki_laki,,26309,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.09.1003,4,Sadai,sex,perempuan,,25726,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.09.1003,4,Sadai,total,total,,52035,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.09.1004,4,Tanjung Buntung,sex,laki_laki,,23398,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.09.1004,4,Tanjung Buntung,sex,perempuan,,22686,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.09.1004,4,Tanjung Buntung,total,total,,46084,jiwa,2025,registration,total_population,unnumbered-p21,21,,

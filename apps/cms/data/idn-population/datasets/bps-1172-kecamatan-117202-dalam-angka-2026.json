@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1172-kecamatan-117202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.72.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukajaya Dalam Angka 2026",
+  "publisherName": "BPS Kota Sabang",
+  "publisherDomain": "1172",
+  "publisherWebsite": "https://sabangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sabang (https://sabangkota.bps.go.id), publikasi \"Kecamatan Sukajaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1172010",
+  "publicationNumber": "11720.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sabangkota.bps.go.id/id/publication/2026/09/28/bad4a4724caa0e445c4bd691/kecamatan-sukajaya-dalam-angka-2026.html",
+  "sourceFileSha256": "576d77895be187513ed9d734732d9dca6ee60e5a97578261af210222365f6aae",
+  "sourceFileBytes": 6400576,
+  "sourcePages": [16],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sabang.",
+  "csvPath": "datasets/bps-1172-kecamatan-117202-dalam-angka-2026.csv",
+  "csvSha256": "1fb97a57da4fdc31f21ed6afad7dd227029984dde66831554d3ceaa81fceb1d5",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p16",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 2.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sukajaya, 2025",
+      "printedPages": [16],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p16: row not stored: row \"Anoi Itam\": unmatched ",
+    "table unnumbered-p16: row not stored: row \"Ujong Kareung\": unmatched "
+  ]
+}

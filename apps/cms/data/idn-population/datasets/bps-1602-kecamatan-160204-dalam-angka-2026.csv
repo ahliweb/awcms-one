@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.02.04.2037,4,Kali Deras,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2037,4,Kali Deras,sex,perempuan,,1087,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2037,4,Kali Deras,total,total,,2282,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2038,4,Sumber Deras,sex,laki_laki,,713,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2038,4,Sumber Deras,sex,perempuan,,701,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2038,4,Sumber Deras,total,total,,1414,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2001,4,Pematang Panggang,sex,laki_laki,,2079,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2001,4,Pematang Panggang,sex,perempuan,,1925,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2001,4,Pematang Panggang,total,total,,4004,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2006,4,Suryaadi,sex,laki_laki,,3623,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2006,4,Suryaadi,sex,perempuan,,3476,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2006,4,Suryaadi,total,total,,7099,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2007,4,Makarti Mulya,sex,laki_laki,,2538,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2007,4,Makarti Mulya,sex,perempuan,,2448,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2007,4,Makarti Mulya,total,total,,4986,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2025,4,Suka Mukti,sex,laki_laki,,2070,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2025,4,Suka Mukti,sex,perempuan,,1914,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2025,4,Suka Mukti,total,total,,3984,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2002,4,Sungai Sodong,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2002,4,Sungai Sodong,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2002,4,Sungai Sodong,total,total,,1224,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2026,4,Mekar Wangi,sex,laki_laki,,899,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2026,4,Mekar Wangi,sex,perempuan,,928,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2026,4,Mekar Wangi,total,total,,1827,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2035,4,Karya Mukti,sex,laki_laki,,1007,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2035,4,Karya Mukti,sex,perempuan,,958,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2035,4,Karya Mukti,total,total,,1965,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2005,4,Pagar Dewa,sex,laki_laki,,1002,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2005,4,Pagar Dewa,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2005,4,Pagar Dewa,total,total,,1891,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2050,4,Kota Baru,sex,laki_laki,,688,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2050,4,Kota Baru,sex,perempuan,,624,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2050,4,Kota Baru,total,total,,1312,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2051,4,Sido Basuki,sex,laki_laki,,654,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2051,4,Sido Basuki,sex,perempuan,,612,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2051,4,Sido Basuki,total,total,,1266,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2052,4,Pematang Kasih,sex,laki_laki,,548,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2052,4,Pematang Kasih,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2052,4,Pematang Kasih,total,total,,1017,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04.2053,4,Labuhan Jaya,sex,laki_laki,,1184,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04.2053,4,Labuhan Jaya,sex,perempuan,,1117,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04.2053,4,Labuhan Jaya,total,total,,2301,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04,3,Kecamatan Mesuji,sex,laki_laki,,23813,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.04,3,Kecamatan Mesuji,sex,perempuan,,22362,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.04,3,Kecamatan Mesuji,total,total,,46175,jiwa,2025,registration,total_population,3.1,31,,
+16.02.04,3,Mesuji,age_group,0-4,laki_laki,1342,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.04,3,Mesuji,age_group,0-4,perempuan,1184,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.04,3,Mesuji,age_group,0-4,,2526,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.04,3,Mesuji,age_group,5-9,laki_laki,2061,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.04,3,Mesuji,age_group,5-9,perempuan,1947,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.04,3,Mesuji,age_group,5-9,,4008,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.04,3,Mesuji,age_group,10-14,laki_laki,2279,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.04,3,Mesuji,age_group,10-14,perempuan,2127,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.04,3,Mesuji,age_group,10-14,,4406,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.04,3,Mesuji,age_group,15-19,laki_laki,2061,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.04,3,Mesuji,age_group,15-19,perempuan,1978,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.04,3,Mesuji,age_group,15-19,,4039,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.04,3,Mesuji,age_group,20-24,laki_laki,1911,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.04,3,Mesuji,age_group,20-24,perempuan,1697,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.04,3,Mesuji,age_group,20-24,,3608,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.04,3,Mesuji,age_group,25-29,laki_laki,1757,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.04,3,Mesuji,age_group,25-29,perempuan,1735,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.04,3,Mesuji,age_group,25-29,,3492,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.04,3,Mesuji,age_group,30-34,laki_laki,1670,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.04,3,Mesuji,age_group,30-34,perempuan,1720,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.04,3,Mesuji,age_group,30-34,,3390,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.04,3,Mesuji,age_group,35-39,laki_laki,1751,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.04,3,Mesuji,age_group,35-39,perempuan,1877,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.04,3,Mesuji,age_group,35-39,,3628,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.04,3,Mesuji,age_group,40-44,laki_laki,1817,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.04,3,Mesuji,age_group,40-44,perempuan,1783,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.04,3,Mesuji,age_group,40-44,,3600,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.04,3,Mesuji,age_group,45-49,laki_laki,1749,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.04,3,Mesuji,age_group,45-49,perempuan,1665,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.04,3,Mesuji,age_group,45-49,,3414,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.04,3,Mesuji,age_group,50-54,laki_laki,1550,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.04,3,Mesuji,age_group,50-54,perempuan,1440,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.04,3,Mesuji,age_group,50-54,,2990,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.04,3,Mesuji,age_group,55-59,laki_laki,1261,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.04,3,Mesuji,age_group,55-59,perempuan,1051,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.04,3,Mesuji,age_group,55-59,,2312,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.04,3,Mesuji,age_group,60-64,laki_laki,957,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.04,3,Mesuji,age_group,60-64,perempuan,853,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.04,3,Mesuji,age_group,60-64,,1810,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.04,3,Mesuji,age_group,65-69,laki_laki,650,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.04,3,Mesuji,age_group,65-69,perempuan,552,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.04,3,Mesuji,age_group,65-69,,1202,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.04,3,Mesuji,age_group,70-74,laki_laki,483,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.04,3,Mesuji,age_group,70-74,perempuan,364,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.04,3,Mesuji,age_group,70-74,,847,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.04,3,Mesuji,age_group,74+,laki_laki,514,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.04,3,Mesuji,age_group,74+,perempuan,389,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.04,3,Mesuji,age_group,74+,,903,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.04,3,Kecamatan Mesuji,sex,laki_laki,,23813,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+16.02.04,3,Kecamatan Mesuji,sex,perempuan,,22362,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+16.02.04,3,Kecamatan Mesuji,total,total,,46175,jiwa,2025,registration,total_population,3.2,33,,

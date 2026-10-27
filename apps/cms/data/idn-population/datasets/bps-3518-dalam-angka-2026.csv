@@ -1,0 +1,245 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.18.01,3,Sawahan,total,total,,40430,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.02,3,Ngetos,total,total,,39957,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.03,3,Berbek,total,total,,61131,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.04,3,Loceret,total,total,,78790,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.05,3,Pace,total,total,,69382,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.11,3,Tanjunganom,total,total,,121863,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.06,3,Prambon,total,total,,75826,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.07,3,Ngronggot,total,total,,87348,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.08,3,Kertosono,total,total,,57385,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.09,3,Patianrowo,total,total,,46481,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.10,3,Baron,total,total,,56708,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.17,3,Gondang,total,total,,58126,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.12,3,Sukomoro,total,total,,48912,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.13,3,Nganjuk,total,total,,71483,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.14,3,Bagor,total,total,,64306,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.15,3,Wilangan,total,total,,31812,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.16,3,Rejoso,total,total,,74408,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.18,3,Ngluyu,total,total,,14616,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.19,3,Lengkong,total,total,,34632,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18.20,3,Jatikalen,total,total,,21300,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18,2,Nganjuk,total,total,,1154896,jiwa,2025,registration,total_population,3.1.1,47,,
+35.18,2,Kabupaten Nganjuk,age_group,0-4,laki_laki,27025,jiwa,2025,registration,total_population,3.1.2,50,,0–4
+35.18,2,Kabupaten Nganjuk,age_group,0-4,perempuan,25525,jiwa,2025,registration,total_population,3.1.2,50,,0–4
+35.18,2,Kabupaten Nganjuk,age_group,0-4,,52550,jiwa,2025,registration,total_population,3.1.2,50,,0–4
+35.18,2,Kabupaten Nganjuk,age_group,5-9,laki_laki,39379,jiwa,2025,registration,total_population,3.1.2,50,,5–9
+35.18,2,Kabupaten Nganjuk,age_group,5-9,perempuan,36755,jiwa,2025,registration,total_population,3.1.2,50,,5–9
+35.18,2,Kabupaten Nganjuk,age_group,5-9,,76134,jiwa,2025,registration,total_population,3.1.2,50,,5–9
+35.18,2,Kabupaten Nganjuk,age_group,10-14,laki_laki,43121,jiwa,2025,registration,total_population,3.1.2,50,,10–14
+35.18,2,Kabupaten Nganjuk,age_group,10-14,perempuan,40620,jiwa,2025,registration,total_population,3.1.2,50,,10–14
+35.18,2,Kabupaten Nganjuk,age_group,10-14,,83741,jiwa,2025,registration,total_population,3.1.2,50,,10–14
+35.18,2,Kabupaten Nganjuk,age_group,15-19,laki_laki,44005,jiwa,2025,registration,total_population,3.1.2,50,,15–19
+35.18,2,Kabupaten Nganjuk,age_group,15-19,perempuan,42071,jiwa,2025,registration,total_population,3.1.2,50,,15–19
+35.18,2,Kabupaten Nganjuk,age_group,15-19,,86076,jiwa,2025,registration,total_population,3.1.2,50,,15–19
+35.18,2,Kabupaten Nganjuk,age_group,20-24,laki_laki,42338,jiwa,2025,registration,total_population,3.1.2,50,,20–24
+35.18,2,Kabupaten Nganjuk,age_group,20-24,perempuan,40697,jiwa,2025,registration,total_population,3.1.2,50,,20–24
+35.18,2,Kabupaten Nganjuk,age_group,20-24,,83035,jiwa,2025,registration,total_population,3.1.2,50,,20–24
+35.18,2,Kabupaten Nganjuk,age_group,25-29,laki_laki,42794,jiwa,2025,registration,total_population,3.1.2,50,,25–29
+35.18,2,Kabupaten Nganjuk,age_group,25-29,perempuan,39913,jiwa,2025,registration,total_population,3.1.2,50,,25–29
+35.18,2,Kabupaten Nganjuk,age_group,25-29,,82707,jiwa,2025,registration,total_population,3.1.2,50,,25–29
+35.18,2,Kabupaten Nganjuk,age_group,30-34,laki_laki,38914,jiwa,2025,registration,total_population,3.1.2,50,,30–34
+35.18,2,Kabupaten Nganjuk,age_group,30-34,perempuan,36163,jiwa,2025,registration,total_population,3.1.2,50,,30–34
+35.18,2,Kabupaten Nganjuk,age_group,30-34,,75077,jiwa,2025,registration,total_population,3.1.2,50,,30–34
+35.18,2,Kabupaten Nganjuk,age_group,35-39,laki_laki,38627,jiwa,2025,registration,total_population,3.1.2,50,,35–39
+35.18,2,Kabupaten Nganjuk,age_group,35-39,perempuan,37185,jiwa,2025,registration,total_population,3.1.2,50,,35–39
+35.18,2,Kabupaten Nganjuk,age_group,35-39,,75812,jiwa,2025,registration,total_population,3.1.2,50,,35–39
+35.18,2,Kabupaten Nganjuk,age_group,40-44,laki_laki,45964,jiwa,2025,registration,total_population,3.1.2,50,,40–44
+35.18,2,Kabupaten Nganjuk,age_group,40-44,perempuan,44489,jiwa,2025,registration,total_population,3.1.2,50,,40–44
+35.18,2,Kabupaten Nganjuk,age_group,40-44,,90453,jiwa,2025,registration,total_population,3.1.2,50,,40–44
+35.18,2,Kabupaten Nganjuk,age_group,45-49,laki_laki,43489,jiwa,2025,registration,total_population,3.1.2,50,,45–49
+35.18,2,Kabupaten Nganjuk,age_group,45-49,perempuan,42562,jiwa,2025,registration,total_population,3.1.2,50,,45–49
+35.18,2,Kabupaten Nganjuk,age_group,45-49,,86051,jiwa,2025,registration,total_population,3.1.2,50,,45–49
+35.18,2,Kabupaten Nganjuk,age_group,50-54,laki_laki,40470,jiwa,2025,registration,total_population,3.1.2,50,,50–54
+35.18,2,Kabupaten Nganjuk,age_group,50-54,perempuan,40852,jiwa,2025,registration,total_population,3.1.2,50,,50–54
+35.18,2,Kabupaten Nganjuk,age_group,50-54,,81322,jiwa,2025,registration,total_population,3.1.2,50,,50–54
+35.18,2,Kabupaten Nganjuk,age_group,55-59,laki_laki,36055,jiwa,2025,registration,total_population,3.1.2,50,,55–59
+35.18,2,Kabupaten Nganjuk,age_group,55-59,perempuan,37609,jiwa,2025,registration,total_population,3.1.2,50,,55–59
+35.18,2,Kabupaten Nganjuk,age_group,55-59,,73664,jiwa,2025,registration,total_population,3.1.2,50,,55–59
+35.18,2,Kabupaten Nganjuk,age_group,60-64,laki_laki,31979,jiwa,2025,registration,total_population,3.1.2,50,,60–64
+35.18,2,Kabupaten Nganjuk,age_group,60-64,perempuan,35106,jiwa,2025,registration,total_population,3.1.2,50,,60–64
+35.18,2,Kabupaten Nganjuk,age_group,60-64,,67085,jiwa,2025,registration,total_population,3.1.2,50,,60–64
+35.18,2,Kabupaten Nganjuk,age_group,65-69,laki_laki,25950,jiwa,2025,registration,total_population,3.1.2,50,,65–69
+35.18,2,Kabupaten Nganjuk,age_group,65-69,perempuan,27292,jiwa,2025,registration,total_population,3.1.2,50,,65–69
+35.18,2,Kabupaten Nganjuk,age_group,65-69,,53242,jiwa,2025,registration,total_population,3.1.2,50,,65–69
+35.18,2,Kabupaten Nganjuk,age_group,70-74,laki_laki,16776,jiwa,2025,registration,total_population,3.1.2,50,,70–74
+35.18,2,Kabupaten Nganjuk,age_group,70-74,perempuan,16801,jiwa,2025,registration,total_population,3.1.2,50,,70–74
+35.18,2,Kabupaten Nganjuk,age_group,70-74,,33577,jiwa,2025,registration,total_population,3.1.2,50,,70–74
+35.18,2,Kabupaten Nganjuk,age_group,75+,laki_laki,23543,jiwa,2025,registration,total_population,3.1.2,50,,75+
+35.18,2,Kabupaten Nganjuk,age_group,75+,perempuan,30827,jiwa,2025,registration,total_population,3.1.2,50,,75+
+35.18,2,Kabupaten Nganjuk,age_group,75+,,54370,jiwa,2025,registration,total_population,3.1.2,50,,75+
+35.18,2,Nganjuk,sex,laki_laki,,580429,jiwa,2025,registration,total_population,3.1.2,50,,Laki-Laki
+35.18,2,Nganjuk,sex,perempuan,,574467,jiwa,2025,registration,total_population,3.1.2,50,,Perempuan
+35.18,2,Nganjuk,total,total,,1154896,jiwa,2025,registration,total_population,3.1.2,50,,
+35.18.01,3,Sawahan,religion,islam,,40252,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.01,3,Sawahan,religion,kristen,,160,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.01,3,Sawahan,religion,katolik,,16,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.01,3,Sawahan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Hindu
+35.18.01,3,Sawahan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Budha
+35.18.01,3,Sawahan,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.02,3,Ngetos,religion,islam,,39912,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.02,3,Ngetos,religion,kristen,,29,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.02,3,Ngetos,religion,katolik,,11,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.02,3,Ngetos,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.02,3,Ngetos,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Budha
+35.18.02,3,Ngetos,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.03,3,Berbek,religion,islam,,60887,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.03,3,Berbek,religion,kristen,,145,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.03,3,Berbek,religion,katolik,,94,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.03,3,Berbek,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.03,3,Berbek,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Budha
+35.18.03,3,Berbek,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.04,3,Loceret,religion,islam,,77770,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.04,3,Loceret,religion,kristen,,398,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.04,3,Loceret,religion,katolik,,326,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.04,3,Loceret,religion,hindu,,265,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.04,3,Loceret,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.04,3,Loceret,religion,lainnya,,21,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.05,3,Pace,religion,islam,,68978,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.05,3,Pace,religion,kristen,,326,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.05,3,Pace,religion,katolik,,54,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.05,3,Pace,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Hindu
+35.18.05,3,Pace,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.05,3,Pace,religion,lainnya,,22,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.11,3,Tanjunganom,religion,islam,,121039,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.11,3,Tanjunganom,religion,kristen,,487,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.11,3,Tanjunganom,religion,katolik,,307,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.11,3,Tanjunganom,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.11,3,Tanjunganom,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.11,3,Tanjunganom,religion,lainnya,,19,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.06,3,Prambon,religion,islam,,75574,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.06,3,Prambon,religion,kristen,,150,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.06,3,Prambon,religion,katolik,,86,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.06,3,Prambon,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.06,3,Prambon,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.06,3,Prambon,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.07,3,Ngronggot,religion,islam,,87119,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.07,3,Ngronggot,religion,kristen,,171,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.07,3,Ngronggot,religion,katolik,,34,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.07,3,Ngronggot,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.07,3,Ngronggot,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.07,3,Ngronggot,religion,lainnya,,16,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.08,3,Kertosono,religion,islam,,55512,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.08,3,Kertosono,religion,kristen,,1464,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.08,3,Kertosono,religion,katolik,,347,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.08,3,Kertosono,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.08,3,Kertosono,religion,buddha,,49,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.08,3,Kertosono,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.09,3,Patianrowo,religion,islam,,46162,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.09,3,Patianrowo,religion,kristen,,277,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.09,3,Patianrowo,religion,katolik,,33,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.09,3,Patianrowo,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.09,3,Patianrowo,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.09,3,Patianrowo,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.10,3,Baron,religion,islam,,56377,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.10,3,Baron,religion,kristen,,236,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.10,3,Baron,religion,katolik,,91,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.10,3,Baron,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.10,3,Baron,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.10,3,Baron,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.17,3,Gondang,religion,islam,,57855,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.17,3,Gondang,religion,kristen,,231,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.17,3,Gondang,religion,katolik,,33,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.17,3,Gondang,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.17,3,Gondang,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.17,3,Gondang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.12,3,Sukomoro,religion,islam,,48671,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.12,3,Sukomoro,religion,kristen,,203,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.12,3,Sukomoro,religion,katolik,,25,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.12,3,Sukomoro,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.12,3,Sukomoro,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.12,3,Sukomoro,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.13,3,Nganjuk,religion,islam,,69058,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.13,3,Nganjuk,religion,kristen,,1491,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.13,3,Nganjuk,religion,katolik,,800,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.13,3,Nganjuk,religion,hindu,,26,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.13,3,Nganjuk,religion,buddha,,96,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.13,3,Nganjuk,religion,lainnya,,12,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.14,3,Bagor,religion,islam,,63898,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.14,3,Bagor,religion,kristen,,304,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.14,3,Bagor,religion,katolik,,96,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.14,3,Bagor,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.14,3,Bagor,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.14,3,Bagor,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.15,3,Wilangan,religion,islam,,31745,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.15,3,Wilangan,religion,kristen,,41,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.15,3,Wilangan,religion,katolik,,24,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.15,3,Wilangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Hindu
+35.18.15,3,Wilangan,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.15,3,Wilangan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Lainnya
+35.18.16,3,Rejoso,religion,islam,,74159,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.16,3,Rejoso,religion,kristen,,192,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.16,3,Rejoso,religion,katolik,,46,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.16,3,Rejoso,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.16,3,Rejoso,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.16,3,Rejoso,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.18,3,Ngluyu,religion,islam,,14588,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.18,3,Ngluyu,religion,kristen,,20,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.18,3,Ngluyu,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.18,3,Ngluyu,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.18,3,Ngluyu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Budha
+35.18.18,3,Ngluyu,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.19,3,Lengkong,religion,islam,,34475,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.19,3,Lengkong,religion,kristen,,134,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.19,3,Lengkong,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.19,3,Lengkong,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18.19,3,Lengkong,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18.19,3,Lengkong,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18.20,3,Jatikalen,religion,islam,,21257,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18.20,3,Jatikalen,religion,kristen,,35,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18.20,3,Jatikalen,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18.20,3,Jatikalen,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Hindu
+35.18.20,3,Jatikalen,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,114,nil,Budha
+35.18.20,3,Jatikalen,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18,2,Nganjuk,religion,islam,,1145288,jiwa,2025,registration,total_population,4.3.1,114,,Islam
+35.18,2,Nganjuk,religion,kristen,,6494,jiwa,2025,registration,total_population,4.3.1,114,,Protestan
+35.18,2,Nganjuk,religion,katolik,,2450,jiwa,2025,registration,total_population,4.3.1,114,,Katolik
+35.18,2,Nganjuk,religion,hindu,,328,jiwa,2025,registration,total_population,4.3.1,114,,Hindu
+35.18,2,Nganjuk,religion,buddha,,202,jiwa,2025,registration,total_population,4.3.1,114,,Budha
+35.18,2,Nganjuk,religion,lainnya,,134,jiwa,2025,registration,total_population,4.3.1,114,,Lainnya
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/padi_padian,,103482,rupiah,2024,survey_estimate,per_capita,10.1,261,,Padi-padian
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/padi_padian,,86743,rupiah,2025,survey_estimate,per_capita,10.1,261,,Padi-padian
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/umbi_umbian,,8855,rupiah,2024,survey_estimate,per_capita,10.1,261,,Umbi-umbian
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/umbi_umbian,,6742,rupiah,2025,survey_estimate,per_capita,10.1,261,,Umbi-umbian
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,19702,rupiah,2024,survey_estimate,per_capita,10.1,261,,Ikan/udang/cumi/kerang
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,24080,rupiah,2025,survey_estimate,per_capita,10.1,261,,Ikan/udang/cumi/kerang
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/daging,,24424,rupiah,2024,survey_estimate,per_capita,10.1,261,,Daging
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/daging,,25389,rupiah,2025,survey_estimate,per_capita,10.1,261,,Daging
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/telur_dan_susu,,35674,rupiah,2024,survey_estimate,per_capita,10.1,261,,Telur dan susu
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/telur_dan_susu,,34784,rupiah,2025,survey_estimate,per_capita,10.1,261,,Telur dan susu
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/sayur_sayuran,,52086,rupiah,2024,survey_estimate,per_capita,10.1,261,,Sayur-sayuran
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/sayur_sayuran,,58353,rupiah,2025,survey_estimate,per_capita,10.1,261,,Sayur-sayuran
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/kacang_kacangan,,23484,rupiah,2024,survey_estimate,per_capita,10.1,261,,Kacang-kacangan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/kacang_kacangan,,26463,rupiah,2025,survey_estimate,per_capita,10.1,261,,Kacang-kacangan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/buah_buahan,,27279,rupiah,2024,survey_estimate,per_capita,10.1,261,,Buah-buahan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/buah_buahan,,30785,rupiah,2025,survey_estimate,per_capita,10.1,261,,Buah-buahan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21436,rupiah,2024,survey_estimate,per_capita,10.1,261,,Minyak dan kelapa
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24051,rupiah,2025,survey_estimate,per_capita,10.1,261,,Minyak dan kelapa
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/bahan_minuman,,22302,rupiah,2024,survey_estimate,per_capita,10.1,261,,Bahan minuman
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/bahan_minuman,,22365,rupiah,2025,survey_estimate,per_capita,10.1,261,,Bahan minuman
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/bumbu_bumbuan,,13143,rupiah,2024,survey_estimate,per_capita,10.1,261,,Bumbu-bumbuan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/bumbu_bumbuan,,15611,rupiah,2025,survey_estimate,per_capita,10.1,261,,Bumbu-bumbuan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/konsumsi_lainnya,,11145,rupiah,2024,survey_estimate,per_capita,10.1,261,,Konsumsi lainnya
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/konsumsi_lainnya,,10070,rupiah,2025,survey_estimate,per_capita,10.1,261,,Konsumsi lainnya
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,220633,rupiah,2024,survey_estimate,per_capita,10.1,261,,Makanan dan minuman jadi
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,211435,rupiah,2025,survey_estimate,per_capita,10.1,261,,Makanan dan minuman jadi
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/rokok,,69989,rupiah,2024,survey_estimate,per_capita,10.1,261,,Rokok
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/rokok,,63705,rupiah,2025,survey_estimate,per_capita,10.1,261,,Rokok
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/jumlah_makanan,,653635,rupiah,2024,survey_estimate,per_capita,10.1,261,,Jumlah makanan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/jumlah_makanan,,640577,rupiah,2025,survey_estimate,per_capita,10.1,261,,Jumlah makanan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,258373,rupiah,2024,survey_estimate,per_capita,10.1,261,,Perumahan dan fasilitas rumah tangga
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,240366,rupiah,2025,survey_estimate,per_capita,10.1,261,,Perumahan dan fasilitas rumah tangga
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,136449,rupiah,2024,survey_estimate,per_capita,10.1,261,,Aneka barang dan jasa
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,155097,rupiah,2025,survey_estimate,per_capita,10.1,261,,Aneka barang dan jasa
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20315,rupiah,2024,survey_estimate,per_capita,10.1,261,,"Pakaian, alas kaki, dan tutup kepala"
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22841,rupiah,2025,survey_estimate,per_capita,10.1,261,,"Pakaian, alas kaki, dan tutup kepala"
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/barang_tahan_lama,,52333,rupiah,2024,survey_estimate,per_capita,10.1,261,,Barang tahan lama
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/barang_tahan_lama,,58264,rupiah,2025,survey_estimate,per_capita,10.1,261,,Barang tahan lama
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46400,rupiah,2024,survey_estimate,per_capita,10.1,261,,"Pajak, pungutan, dan asuransi"
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49071,rupiah,2025,survey_estimate,per_capita,10.1,261,,"Pajak, pungutan, dan asuransi"
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24238,rupiah,2024,survey_estimate,per_capita,10.1,261,,Keperluan pesta dan upacara/kenduri
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,34156,rupiah,2025,survey_estimate,per_capita,10.1,261,,Keperluan pesta dan upacara/kenduri
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,538109,rupiah,2024,survey_estimate,per_capita,10.1,261,,Jumlah bukan makanan
+35.18,2,Kabupaten Nganjuk,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,559795,rupiah,2025,survey_estimate,per_capita,10.1,261,,Jumlah bukan makanan
+35.18,2,Kabupaten Nganjuk,expenditure,total,,1191743,rupiah,2024,survey_estimate,per_capita,10.1,261,,
+35.18,2,Kabupaten Nganjuk,expenditure,total,,1200372,rupiah,2025,survey_estimate,per_capita,10.1,261,,

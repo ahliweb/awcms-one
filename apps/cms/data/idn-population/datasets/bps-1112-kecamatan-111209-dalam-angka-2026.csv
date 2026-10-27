@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.12.09.2008,4,Ujung Tanah,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2008,4,Ujung Tanah,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2008,4,Ujung Tanah,total,total,,458,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2007,4,Kuta Paya,sex,laki_laki,,81,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2007,4,Kuta Paya,sex,perempuan,,78,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2007,4,Kuta Paya,total,total,,159,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2006,4,Geulanggang Batee,sex,laki_laki,,301,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2006,4,Geulanggang Batee,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2006,4,Geulanggang Batee,total,total,,606,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2005,4,Meunasah Tengah,sex,laki_laki,,450,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2005,4,Meunasah Tengah,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2005,4,Meunasah Tengah,total,total,,841,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2004,4,Meunasah Sukon,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2004,4,Meunasah Sukon,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2004,4,Meunasah Sukon,total,total,,768,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2003,4,Cot Bak U,sex,laki_laki,,584,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2003,4,Cot Bak U,sex,perempuan,,554,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2003,4,Cot Bak U,total,total,,1138,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2001,4,Meurandeh,sex,laki_laki,,459,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2001,4,Meurandeh,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2001,4,Meurandeh,total,total,,933,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2009,4,Padang Keulele,sex,laki_laki,,337,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2009,4,Padang Keulele,sex,perempuan,,330,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2009,4,Padang Keulele,total,total,,667,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2011,4,Ladang Tuha I,sex,laki_laki,,640,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2011,4,Ladang Tuha I,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2011,4,Ladang Tuha I,total,total,,1223,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2012,4,Ladang Tuha II,sex,laki_laki,,408,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2012,4,Ladang Tuha II,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2012,4,Ladang Tuha II,total,total,,831,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2010,4,Alue Rambot,sex,laki_laki,,534,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2010,4,Alue Rambot,sex,perempuan,,516,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2010,4,Alue Rambot,total,total,,1050,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2002,4,Suka Damai,sex,laki_laki,,479,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2002,4,Suka Damai,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2002,4,Suka Damai,total,total,,967,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09.2013,4,Tokoh II,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09.2013,4,Tokoh II,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09.2013,4,Tokoh II,total,total,,503,jiwa,2025,registration,total_population,3.1,22,,
+11.12.09,3,Lembah Sabil,sex,laki_laki,,5691,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.09,3,Lembah Sabil,sex,perempuan,,5695,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.09,3,Lembah Sabil,total,total,,11386,jiwa,2025,registration,total_population,3.1,22,,

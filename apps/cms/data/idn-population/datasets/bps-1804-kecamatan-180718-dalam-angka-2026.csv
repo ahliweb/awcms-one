@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.07.18.2001,4,Negeri Agung,sex,laki_laki,,2882,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.18.2001,4,Negeri Agung,sex,perempuan,,2778,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.18.2001,4,Negeri Agung,total,total,,5660,jiwa,2025,registration,total_population,3.1,,,
+18.07.18.2002,4,Pempen,sex,laki_laki,,1823,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.18.2002,4,Pempen,sex,perempuan,,1722,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.18.2002,4,Pempen,total,total,,3545,jiwa,2025,registration,total_population,3.1,,,
+18.07.18.2004,4,Pelindung Jaya,sex,laki_laki,,3138,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.18.2004,4,Pelindung Jaya,sex,perempuan,,3013,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.18.2004,4,Pelindung Jaya,total,total,,6151,jiwa,2025,registration,total_population,3.1,,,
+18.07.18.2003,4,Way Mili,sex,laki_laki,,1489,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.18.2003,4,Way Mili,sex,perempuan,,1503,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.18.2003,4,Way Mili,total,total,,2992,jiwa,2025,registration,total_population,3.1,,,
+18.07.18.2005,4,Nibung,sex,laki_laki,,3198,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.18.2005,4,Nibung,sex,perempuan,,3033,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.18.2005,4,Nibung,total,total,,6231,jiwa,2025,registration,total_population,3.1,,,
+18.07.18,3,Gunung Pelindung,sex,laki_laki,,12530,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.18,3,Gunung Pelindung,sex,perempuan,,12049,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.18,3,Gunung Pelindung,total,total,,24579,jiwa,2025,registration,total_population,3.1,,,
+18.07.18,3,Gunung Pelindung,age_group,0-4,laki_laki,722,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.18,3,Gunung Pelindung,age_group,0-4,perempuan,719,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.18,3,Gunung Pelindung,age_group,0-4,,1441,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.18,3,Gunung Pelindung,age_group,5-9,laki_laki,1049,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.18,3,Gunung Pelindung,age_group,5-9,perempuan,916,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.18,3,Gunung Pelindung,age_group,5-9,,1965,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.18,3,Gunung Pelindung,age_group,10-14,laki_laki,1129,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.18,3,Gunung Pelindung,age_group,10-14,perempuan,1068,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.18,3,Gunung Pelindung,age_group,10-14,,2197,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.18,3,Gunung Pelindung,age_group,15-19,laki_laki,1084,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.18,3,Gunung Pelindung,age_group,15-19,perempuan,990,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.18,3,Gunung Pelindung,age_group,15-19,,2074,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.18,3,Gunung Pelindung,age_group,20-24,laki_laki,910,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.18,3,Gunung Pelindung,age_group,20-24,perempuan,852,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.18,3,Gunung Pelindung,age_group,20-24,,1762,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.18,3,Gunung Pelindung,age_group,25-29,laki_laki,1006,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.18,3,Gunung Pelindung,age_group,25-29,perempuan,945,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.18,3,Gunung Pelindung,age_group,25-29,,1951,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.18,3,Gunung Pelindung,age_group,30-34,laki_laki,918,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.18,3,Gunung Pelindung,age_group,30-34,perempuan,863,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.18,3,Gunung Pelindung,age_group,30-34,,1781,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.18,3,Gunung Pelindung,age_group,35-39,laki_laki,872,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.18,3,Gunung Pelindung,age_group,35-39,perempuan,865,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.18,3,Gunung Pelindung,age_group,35-39,,1737,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.18,3,Gunung Pelindung,age_group,40-44,laki_laki,957,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.18,3,Gunung Pelindung,age_group,40-44,perempuan,909,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.18,3,Gunung Pelindung,age_group,40-44,,1866,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.18,3,Gunung Pelindung,age_group,45-49,laki_laki,841,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.18,3,Gunung Pelindung,age_group,45-49,perempuan,912,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.18,3,Gunung Pelindung,age_group,45-49,,1753,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.18,3,Gunung Pelindung,age_group,50-54,laki_laki,821,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.18,3,Gunung Pelindung,age_group,50-54,perempuan,765,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.18,3,Gunung Pelindung,age_group,50-54,,1586,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.18,3,Gunung Pelindung,age_group,55-59,laki_laki,632,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.18,3,Gunung Pelindung,age_group,55-59,perempuan,593,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.18,3,Gunung Pelindung,age_group,55-59,,1225,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.18,3,Gunung Pelindung,age_group,60-64,laki_laki,465,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.18,3,Gunung Pelindung,age_group,60-64,perempuan,545,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.18,3,Gunung Pelindung,age_group,60-64,,1010,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.18,3,Gunung Pelindung,age_group,65-69,laki_laki,408,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.18,3,Gunung Pelindung,age_group,65-69,perempuan,415,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.18,3,Gunung Pelindung,age_group,65-69,,823,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.18,3,Gunung Pelindung,age_group,70-74,laki_laki,281,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.18,3,Gunung Pelindung,age_group,70-74,perempuan,262,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.18,3,Gunung Pelindung,age_group,70-74,,543,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.18,3,Gunung Pelindung,age_group,75+,laki_laki,435,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.18,3,Gunung Pelindung,age_group,75+,perempuan,430,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.18,3,Gunung Pelindung,age_group,75+,,865,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.18,3,Gunung Pelindung,sex,laki_laki,,12530,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+18.07.18,3,Gunung Pelindung,sex,perempuan,,12049,jiwa,2025,registration,total_population,3.2,,,Perempuan
+18.07.18,3,Gunung Pelindung,total,total,,24579,jiwa,2025,registration,total_population,3.2,,,

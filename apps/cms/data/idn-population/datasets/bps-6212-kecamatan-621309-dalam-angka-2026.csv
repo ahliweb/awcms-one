@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.13.09.2001,4,Tampa,sex,laki_laki,,742,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2001,4,Tampa,sex,perempuan,,716,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2001,4,Tampa,total,total,,1458,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2005,4,Runggu Raya,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2005,4,Runggu Raya,sex,perempuan,,441,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2005,4,Runggu Raya,total,total,,888,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2004,4,Patung,sex,laki_laki,,358,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2004,4,Patung,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2004,4,Patung,total,total,,684,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2002,4,Kalamus,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2002,4,Kalamus,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2002,4,Kalamus,total,total,,1500,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2003,4,Simpang Bingkuang,sex,laki_laki,,326,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2003,4,Simpang Bingkuang,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2003,4,Simpang Bingkuang,total,total,,650,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2011,4,Kupang Baru,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2011,4,Kupang Baru,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2011,4,Kupang Baru,total,total,,771,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2012,4,Luau Jawuk,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2012,4,Luau Jawuk,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2012,4,Luau Jawuk,total,total,,618,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2007,4,Tarinsing,sex,laki_laki,,113,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2007,4,Tarinsing,sex,perempuan,,97,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2007,4,Tarinsing,total,total,,210,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2006,4,Bantai Napu,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2006,4,Bantai Napu,sex,perempuan,,243,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2006,4,Bantai Napu,total,total,,510,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2010,4,Pangkan,sex,laki_laki,,460,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2010,4,Pangkan,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2010,4,Pangkan,total,total,,856,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2009,4,Gandrung,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2009,4,Gandrung,sex,perempuan,,262,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2009,4,Gandrung,total,total,,558,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09.2008,4,Paku Beto,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09.2008,4,Paku Beto,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09.2008,4,Paku Beto,total,total,,469,jiwa,2025,registration,total_population,3.1,30,,
+62.13.09,3,Paku,sex,laki_laki,,4756,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.13.09,3,Paku,sex,perempuan,,4416,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.13.09,3,Paku,total,total,,9172,jiwa,2025,registration,total_population,3.1,30,,

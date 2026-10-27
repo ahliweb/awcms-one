@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.08.01.2003,4,LANGKAI,sex,perempuan,,1669,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.2003,4,LANGKAI,total,total,,3401,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01.2011,4,TUMANG,sex,perempuan,,2625,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.2011,4,TUMANG,total,total,,5497,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01.2012,4,MEREMPAN HULU,sex,perempuan,,1191,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.2012,4,MEREMPAN HULU,total,total,,2467,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01.2013,4,RAWANG AIR PUTIH,sex,perempuan,,674,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.2013,4,RAWANG AIR PUTIH,total,total,,1440,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01.2014,4,SUAK LANJUT,sex,perempuan,,1335,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.2014,4,SUAK LANJUT,total,total,,2755,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01.2015,4,BUANTAN BESAR,sex,perempuan,,1334,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.2015,4,BUANTAN BESAR,total,total,,2712,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01.1001,4,KAMPUNG DALAM,sex,perempuan,,4190,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.1001,4,KAMPUNG DALAM,total,total,,8292,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01.1002,4,KAMPUNG REMPAK,sex,perempuan,,4690,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01.1002,4,KAMPUNG REMPAK,total,total,,9502,jiwa,2025,registration,total_population,3.1,26,,
+14.08.01,3,KECAMATAN SIAK,sex,perempuan,,17708,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.01,3,KECAMATAN SIAK,total,total,,36066,jiwa,2025,registration,total_population,3.1,26,,

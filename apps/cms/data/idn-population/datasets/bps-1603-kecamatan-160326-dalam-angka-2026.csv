@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.26.2005,4,Banuayu,sex,laki_laki,,2691,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2005,4,Banuayu,sex,perempuan,,2555,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2005,4,Banuayu,total,total,,5246,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2008,4,Batu Raja,sex,laki_laki,,933,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2008,4,Batu Raja,sex,perempuan,,881,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2008,4,Batu Raja,total,total,,1814,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2009,4,Dangku,sex,laki_laki,,1130,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2009,4,Dangku,sex,perempuan,,1133,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2009,4,Dangku,total,total,,2263,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2004,4,Gunung Raja,sex,laki_laki,,1981,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2004,4,Gunung Raja,sex,perempuan,,1870,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2004,4,Gunung Raja,total,total,,3851,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2002,4,Kahuripan Baru,sex,laki_laki,,547,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2002,4,Kahuripan Baru,sex,perempuan,,510,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2002,4,Kahuripan Baru,total,total,,1057,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2006,4,Kuripan,sex,laki_laki,,608,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2006,4,Kuripan,sex,perempuan,,642,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2006,4,Kuripan,total,total,,1250,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2001,4,Muara Niru,sex,laki_laki,,732,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2001,4,Muara Niru,sex,perempuan,,717,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2001,4,Muara Niru,total,total,,1449,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2003,4,Pangkalan Babat,sex,laki_laki,,309,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2003,4,Pangkalan Babat,sex,perempuan,,290,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2003,4,Pangkalan Babat,total,total,,599,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26.2010,4,Siku,sex,laki_laki,,1147,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26.2010,4,Siku,sex,perempuan,,1143,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26.2010,4,Siku,total,total,,2290,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.26,3,Empat Petulai Dangku,sex,laki_laki,,10628,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.26,3,Empat Petulai Dangku,sex,perempuan,,10297,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.26,3,Empat Petulai Dangku,total,total,,20925,jiwa,2025,registration,total_population,unnumbered-p23,23,,

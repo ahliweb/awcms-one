@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.28.2009,4,Sukamanah,sex,laki_laki,,4539,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2009,4,Sukamanah,sex,perempuan,,4512,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2009,4,Sukamanah,total,total,,9051,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2011,4,Tegal Sumedang,sex,laki_laki,,2555,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2011,4,Tegal Sumedang,sex,perempuan,,2470,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2011,4,Tegal Sumedang,total,total,,5025,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2002,4,Rancaekek Kulon,sex,laki_laki,,7646,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2002,4,Rancaekek Kulon,sex,perempuan,,7407,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2002,4,Rancaekek Kulon,total,total,,15053,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2001,4,Rancaekek Wetan,sex,laki_laki,,12468,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2001,4,Rancaekek Wetan,sex,perempuan,,12182,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2001,4,Rancaekek Wetan,total,total,,24650,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2004,4,Bojongloa,sex,laki_laki,,11136,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2004,4,Bojongloa,sex,perempuan,,11135,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2004,4,Bojongloa,total,total,,22271,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2005,4,Jelegong,sex,laki_laki,,11619,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2005,4,Jelegong,sex,perempuan,,11664,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2005,4,Jelegong,total,total,,23283,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2006,4,Linggar,sex,laki_laki,,5930,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2006,4,Linggar,sex,perempuan,,5972,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2006,4,Linggar,total,total,,11902,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2010,4,Sukamulya,sex,laki_laki,,4809,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2010,4,Sukamulya,sex,perempuan,,4700,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2010,4,Sukamulya,total,total,,9509,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2008,4,Haurpugur,sex,laki_laki,,4488,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2008,4,Haurpugur,sex,perempuan,,4435,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2008,4,Haurpugur,total,total,,8923,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2012,4,Sangiang,sex,laki_laki,,3955,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2012,4,Sangiang,sex,perempuan,,3901,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2012,4,Sangiang,total,total,,7856,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2003,4,Bojongsalam,sex,laki_laki,,3942,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2003,4,Bojongsalam,sex,perempuan,,3667,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2003,4,Bojongsalam,total,total,,7609,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2007,4,Cangkuang,sex,laki_laki,,7115,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2007,4,Cangkuang,sex,perempuan,,6989,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2007,4,Cangkuang,total,total,,14104,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.2013,4,Nanjung Mekar,sex,laki_laki,,6219,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.2013,4,Nanjung Mekar,sex,perempuan,,6083,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.2013,4,Nanjung Mekar,total,total,,12302,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28.1014,4,Rancaekek Kencana,sex,laki_laki,,11196,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28.1014,4,Rancaekek Kencana,sex,perempuan,,11303,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28.1014,4,Rancaekek Kencana,total,total,,22499,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.28,3,Kecamatan Rancaekek,sex,laki_laki,,97617,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.28,3,Kecamatan Rancaekek,sex,perempuan,,96420,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.28,3,Kecamatan Rancaekek,total,total,,194037,jiwa,2025,registration,total_population,unnumbered-p28,28,,

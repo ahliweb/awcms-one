@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.11.2002,4,Sampang Maruhur,sex,laki_laki,,647,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11.2002,4,Sampang Maruhur,sex,perempuan,,660,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11.2002,4,Sampang Maruhur,total,total,,1307,jiwa,2025,registration,total_population,3.1,35,,
+12.01.11.2003,4,Siordang,sex,laki_laki,,1199,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11.2003,4,Siordang,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11.2003,4,Siordang,total,total,,2391,jiwa,2025,registration,total_population,3.1,35,,
+12.01.11.2004,4,Pardomuan,sex,laki_laki,,1123,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11.2004,4,Pardomuan,sex,perempuan,,1141,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11.2004,4,Pardomuan,total,total,,2264,jiwa,2025,registration,total_population,3.1,35,,
+12.01.11.2005,4,Simpang III Lae Bingke,sex,laki_laki,,1361,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11.2005,4,Simpang III Lae Bingke,sex,perempuan,,1405,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11.2005,4,Simpang III Lae Bingke,total,total,,2766,jiwa,2025,registration,total_population,3.1,35,,
+12.01.11.1001,4,Bajamas,sex,laki_laki,,2096,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11.1001,4,Bajamas,sex,perempuan,,2070,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11.1001,4,Bajamas,total,total,,4166,jiwa,2025,registration,total_population,3.1,35,,
+12.01.11.2007,4,Masnauli,sex,laki_laki,,1216,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11.2007,4,Masnauli,sex,perempuan,,1239,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11.2007,4,Masnauli,total,total,,2455,jiwa,2025,registration,total_population,3.1,35,,
+12.01.11.2006,4,Sigodung,sex,laki_laki,,804,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11.2006,4,Sigodung,sex,perempuan,,792,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11.2006,4,Sigodung,total,total,,1596,jiwa,2025,registration,total_population,3.1,35,,
+12.01.11,3,Sirandorung,sex,laki_laki,,9187,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.11,3,Sirandorung,sex,perempuan,,9249,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.11,3,Sirandorung,total,total,,18436,jiwa,2025,registration,total_population,3.1,35,,

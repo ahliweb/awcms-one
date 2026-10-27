@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.41.2009,4,Sinar Bentang,sex,laki_laki,,1367,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2009,4,Sinar Bentang,sex,perempuan,,1346,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2009,4,Sinar Bentang,total,total,,2713,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2008,4,Gunung Bentang,sex,laki_laki,,1399,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2008,4,Gunung Bentang,sex,perempuan,,1392,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2008,4,Gunung Bentang,total,total,,2791,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2004,4,Pasanggrahan,sex,laki_laki,,2756,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2004,4,Pasanggrahan,sex,perempuan,,2723,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2004,4,Pasanggrahan,total,total,,5479,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2002,4,Curugluhur,sex,laki_laki,,2239,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2002,4,Curugluhur,sex,perempuan,,2172,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2002,4,Curugluhur,total,total,,4411,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2005,4,Datarnangka,sex,laki_laki,,2307,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2005,4,Datarnangka,sex,perempuan,,2225,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2005,4,Datarnangka,total,total,,4532,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2001,4,Sagaranten,sex,laki_laki,,2866,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2001,4,Sagaranten,sex,perempuan,,2865,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2001,4,Sagaranten,total,total,,5731,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2011,4,Margaluyu,sex,laki_laki,,1935,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2011,4,Margaluyu,sex,perempuan,,1974,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2011,4,Margaluyu,total,total,,3909,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2010,4,Cibitung,sex,laki_laki,,2283,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2010,4,Cibitung,sex,perempuan,,2304,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2010,4,Cibitung,total,total,,4587,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2007,4,Hegarmanah,sex,laki_laki,,3090,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2007,4,Hegarmanah,sex,perempuan,,3068,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2007,4,Hegarmanah,total,total,,6158,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2003,4,Cibaregbeg,sex,laki_laki,,3104,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2003,4,Cibaregbeg,sex,perempuan,,3035,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2003,4,Cibaregbeg,total,total,,6139,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2006,4,Puncakmanggis,sex,laki_laki,,2811,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2006,4,Puncakmanggis,sex,perempuan,,2726,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2006,4,Puncakmanggis,total,total,,5537,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41.2012,4,Mekarsari,sex,laki_laki,,1821,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41.2012,4,Mekarsari,sex,perempuan,,1890,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41.2012,4,Mekarsari,total,total,,3711,jiwa,2025,registration,total_population,3.1,24,,
+32.02.41,3,Sagaranten,sex,laki_laki,,27978,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.41,3,Sagaranten,sex,perempuan,,27720,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.41,3,Sagaranten,total,total,,55698,jiwa,2025,registration,total_population,3.1,24,,

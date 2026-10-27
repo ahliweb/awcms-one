@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.46.2011,4,Cilame,sex,laki_laki,,3433,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2011,4,Cilame,sex,perempuan,,3196,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2011,4,Cilame,total,total,,6629,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2009,4,Buninagara,sex,laki_laki,,4138,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2009,4,Buninagara,sex,perempuan,,3970,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2009,4,Buninagara,total,total,,8108,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2008,4,Padasuka,sex,laki_laki,,5294,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2008,4,Padasuka,sex,perempuan,,5033,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2008,4,Padasuka,total,total,,10327,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2007,4,Sukamulya,sex,laki_laki,,4444,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2007,4,Sukamulya,sex,perempuan,,4301,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2007,4,Sukamulya,total,total,,8745,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2006,4,Kutawaringin,sex,laki_laki,,3899,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2006,4,Kutawaringin,sex,perempuan,,3747,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2006,4,Kutawaringin,total,total,,7646,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2004,4,Kopo,sex,laki_laki,,4637,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2004,4,Kopo,sex,perempuan,,4598,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2004,4,Kopo,total,total,,9235,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2005,4,Cibodas,sex,laki_laki,,3982,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2005,4,Cibodas,sex,perempuan,,3792,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2005,4,Cibodas,total,total,,7774,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2002,4,Jatisari,sex,laki_laki,,6873,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2002,4,Jatisari,sex,perempuan,,6683,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2002,4,Jatisari,total,total,,13556,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2001,4,Jelegong,sex,laki_laki,,10023,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2001,4,Jelegong,sex,perempuan,,9598,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2001,4,Jelegong,total,total,,19621,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2010,4,Gajah Mekar,sex,laki_laki,,6852,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2010,4,Gajah Mekar,sex,perempuan,,6486,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2010,4,Gajah Mekar,total,total,,13338,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46.2003,4,Pameuntasan,sex,laki_laki,,5014,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46.2003,4,Pameuntasan,sex,perempuan,,4871,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46.2003,4,Pameuntasan,total,total,,9885,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.46,3,Kecamatan Kutawaringin,sex,laki_laki,,58589,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.46,3,Kecamatan Kutawaringin,sex,perempuan,,56275,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.46,3,Kecamatan Kutawaringin,total,total,,114864,jiwa,2025,registration,total_population,unnumbered-p28,28,,

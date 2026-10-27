@@ -1,0 +1,71 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.03.09.2007,4,Kumanis,sex,laki_laki,,1233,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2007,4,Kumanis,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2007,4,Kumanis,total,total,,2425,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2004,4,Tanjung Bonai Aur,sex,laki_laki,,1508,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2004,4,Tanjung Bonai Aur,sex,perempuan,,1482,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2004,4,Tanjung Bonai Aur,total,total,,2990,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2002,4,Sisawah,sex,laki_laki,,1954,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2002,4,Sisawah,sex,perempuan,,1787,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2002,4,Sisawah,total,total,,3741,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2006,4,Tamparungo,sex,laki_laki,,1043,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2006,4,Tamparungo,sex,perempuan,,1035,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2006,4,Tamparungo,total,total,,2078,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2005,4,Sumpur Kudus,sex,laki_laki,,1851,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2005,4,Sumpur Kudus,sex,perempuan,,1960,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2005,4,Sumpur Kudus,total,total,,3811,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2008,4,Manganti,sex,laki_laki,,840,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2008,4,Manganti,sex,perempuan,,774,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2008,4,Manganti,total,total,,1614,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2001,4,Silantai,sex,laki_laki,,994,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2001,4,Silantai,sex,perempuan,,1039,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2001,4,Silantai,total,total,,2033,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2003,4,Unggan,sex,laki_laki,,1501,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2003,4,Unggan,sex,perempuan,,1483,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2003,4,Unggan,total,total,,2984,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2011,4,Tanjung Bonai Aur Selatan,sex,laki_laki,,1162,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2011,4,Tanjung Bonai Aur Selatan,sex,perempuan,,1155,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2011,4,Tanjung Bonai Aur Selatan,total,total,,2317,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2010,4,Tanjung Labuah,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2010,4,Tanjung Labuah,sex,perempuan,,615,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2010,4,Tanjung Labuah,total,total,,1247,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09.2009,4,Sumpur Kudus Selatan,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09.2009,4,Sumpur Kudus Selatan,sex,perempuan,,877,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09.2009,4,Sumpur Kudus Selatan,total,total,,1855,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09,3,Sumpur Kudus,sex,laki_laki,,13696,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+13.03.09,3,Sumpur Kudus,sex,perempuan,,13399,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.09,3,Sumpur Kudus,total,total,,27095,jiwa,2025,registration,total_population,3.1,35,,
+13.03.09,3,Sumpur Kudus,age_group,0-4,perempuan,807,jiwa,2025,registration,total_population,3.2,37,,0–4
+13.03.09,3,Sumpur Kudus,age_group,0-4,,1627,jiwa,2025,registration,total_population,3.2,37,,0–4
+13.03.09,3,Sumpur Kudus,age_group,5-9,perempuan,1011,jiwa,2025,registration,total_population,3.2,37,,5–9
+13.03.09,3,Sumpur Kudus,age_group,5-9,,2055,jiwa,2025,registration,total_population,3.2,37,,5–9
+13.03.09,3,Sumpur Kudus,age_group,10-14,perempuan,1143,jiwa,2025,registration,total_population,3.2,37,,10–14
+13.03.09,3,Sumpur Kudus,age_group,10-14,,2312,jiwa,2025,registration,total_population,3.2,37,,10–14
+13.03.09,3,Sumpur Kudus,age_group,15-19,perempuan,1260,jiwa,2025,registration,total_population,3.2,37,,15–19
+13.03.09,3,Sumpur Kudus,age_group,15-19,,2637,jiwa,2025,registration,total_population,3.2,37,,15–19
+13.03.09,3,Sumpur Kudus,age_group,20-24,perempuan,1238,jiwa,2025,registration,total_population,3.2,37,,20–24
+13.03.09,3,Sumpur Kudus,age_group,20-24,,2591,jiwa,2025,registration,total_population,3.2,37,,20–24
+13.03.09,3,Sumpur Kudus,age_group,25-29,perempuan,941,jiwa,2025,registration,total_population,3.2,37,,25–29
+13.03.09,3,Sumpur Kudus,age_group,25-29,,2054,jiwa,2025,registration,total_population,3.2,37,,25–29
+13.03.09,3,Sumpur Kudus,age_group,30-34,perempuan,808,jiwa,2025,registration,total_population,3.2,37,,30–34
+13.03.09,3,Sumpur Kudus,age_group,30-34,,1667,jiwa,2025,registration,total_population,3.2,37,,30–34
+13.03.09,3,Sumpur Kudus,age_group,35-39,perempuan,929,jiwa,2025,registration,total_population,3.2,37,,35–39
+13.03.09,3,Sumpur Kudus,age_group,35-39,,1796,jiwa,2025,registration,total_population,3.2,37,,35–39
+13.03.09,3,Sumpur Kudus,age_group,40-44,perempuan,977,jiwa,2025,registration,total_population,3.2,37,,40–44
+13.03.09,3,Sumpur Kudus,age_group,40-44,,1959,jiwa,2025,registration,total_population,3.2,37,,40–44
+13.03.09,3,Sumpur Kudus,age_group,45-49,perempuan,1003,jiwa,2025,registration,total_population,3.2,37,,45–49
+13.03.09,3,Sumpur Kudus,age_group,45-49,,2065,jiwa,2025,registration,total_population,3.2,37,,45–49
+13.03.09,3,Sumpur Kudus,age_group,50-54,perempuan,774,jiwa,2025,registration,total_population,3.2,37,,50–54
+13.03.09,3,Sumpur Kudus,age_group,50-54,,1628,jiwa,2025,registration,total_population,3.2,37,,50–54
+13.03.09,3,Sumpur Kudus,age_group,55-59,perempuan,617,jiwa,2025,registration,total_population,3.2,37,,55–59
+13.03.09,3,Sumpur Kudus,age_group,55-59,,1209,jiwa,2025,registration,total_population,3.2,37,,55–59
+13.03.09,3,Sumpur Kudus,age_group,60-64,perempuan,498,jiwa,2025,registration,total_population,3.2,37,,60–64
+13.03.09,3,Sumpur Kudus,age_group,60-64,,984,jiwa,2025,registration,total_population,3.2,37,,60–64
+13.03.09,3,Sumpur Kudus,age_group,65-69,perempuan,556,jiwa,2025,registration,total_population,3.2,37,,65–69
+13.03.09,3,Sumpur Kudus,age_group,65-69,,1036,jiwa,2025,registration,total_population,3.2,37,,65–69
+13.03.09,3,Sumpur Kudus,age_group,70-74,perempuan,370,jiwa,2025,registration,total_population,3.2,37,,70–74
+13.03.09,3,Sumpur Kudus,age_group,70-74,,683,jiwa,2025,registration,total_population,3.2,37,,70–74
+13.03.09,3,Sumpur Kudus,age_group,75+,perempuan,467,jiwa,2025,registration,total_population,3.2,37,,75+
+13.03.09,3,Sumpur Kudus,age_group,75+,,792,jiwa,2025,registration,total_population,3.2,37,,75+
+13.03.09,3,Sumpur Kudus,sex,perempuan,,13399,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+13.03.09,3,Sumpur Kudus,total,total,,27095,jiwa,2025,registration,total_population,3.2,37,,

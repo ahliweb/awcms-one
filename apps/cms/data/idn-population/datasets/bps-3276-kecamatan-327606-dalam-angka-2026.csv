@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.06.1001,4,Beji,sex,laki_laki,,24547,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki
+32.76.06.1001,4,Beji,sex,perempuan,,24779,jiwa,2025,registration,total_population,3.1,13,,Perempuan
+32.76.06.1001,4,Beji,total,total,,49326,jiwa,2025,registration,total_population,3.1,13,,
+32.76.06.1006,4,Beji Timur,sex,laki_laki,,5727,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki
+32.76.06.1006,4,Beji Timur,sex,perempuan,,5742,jiwa,2025,registration,total_population,3.1,13,,Perempuan
+32.76.06.1006,4,Beji Timur,total,total,,11469,jiwa,2025,registration,total_population,3.1,13,,
+32.76.06.1004,4,Kemirimuka,sex,laki_laki,,16453,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki
+32.76.06.1004,4,Kemirimuka,sex,perempuan,,16090,jiwa,2025,registration,total_population,3.1,13,,Perempuan
+32.76.06.1004,4,Kemirimuka,total,total,,32543,jiwa,2025,registration,total_population,3.1,13,,
+32.76.06.1005,4,Pondok Cina,sex,laki_laki,,6375,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki
+32.76.06.1005,4,Pondok Cina,sex,perempuan,,6282,jiwa,2025,registration,total_population,3.1,13,,Perempuan
+32.76.06.1005,4,Pondok Cina,total,total,,12657,jiwa,2025,registration,total_population,3.1,13,,
+32.76.06.1002,4,Kukusan,sex,laki_laki,,9541,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki
+32.76.06.1002,4,Kukusan,sex,perempuan,,9493,jiwa,2025,registration,total_population,3.1,13,,Perempuan
+32.76.06.1002,4,Kukusan,total,total,,19034,jiwa,2025,registration,total_population,3.1,13,,
+32.76.06.1003,4,Tanah Baru,sex,laki_laki,,18251,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki
+32.76.06.1003,4,Tanah Baru,sex,perempuan,,18607,jiwa,2025,registration,total_population,3.1,13,,Perempuan
+32.76.06.1003,4,Tanah Baru,total,total,,36858,jiwa,2025,registration,total_population,3.1,13,,
+32.76.06,3,Kecamatan Beji,sex,laki_laki,,80894,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki
+32.76.06,3,Kecamatan Beji,sex,perempuan,,80993,jiwa,2025,registration,total_population,3.1,13,,Perempuan
+32.76.06,3,Kecamatan Beji,total,total,,161887,jiwa,2025,registration,total_population,3.1,13,,

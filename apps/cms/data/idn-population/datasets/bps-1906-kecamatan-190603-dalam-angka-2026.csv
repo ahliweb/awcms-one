@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.06.03.2001,4,Dendang,sex,laki_laki,,1058,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.03.2001,4,Dendang,sex,perempuan,,974,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.03.2001,4,Dendang,total,total,,2032,jiwa,2025,registration,total_population,3.1,18,,
+19.06.03.2002,4,Jangkang,sex,laki_laki,,1784,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.03.2002,4,Jangkang,sex,perempuan,,1671,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.03.2002,4,Jangkang,total,total,,3455,jiwa,2025,registration,total_population,3.1,18,,
+19.06.03.2005,4,Nyuruk,sex,laki_laki,,1763,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.03.2005,4,Nyuruk,sex,perempuan,,1619,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.03.2005,4,Nyuruk,total,total,,3382,jiwa,2025,registration,total_population,3.1,18,,
+19.06.03.2008,4,Balok,sex,laki_laki,,1175,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.03.2008,4,Balok,sex,perempuan,,1104,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.03.2008,4,Balok,total,total,,2279,jiwa,2025,registration,total_population,3.1,18,,
+19.06.03,3,Dendang,sex,laki_laki,,5780,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.03,3,Dendang,sex,perempuan,,5368,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.03,3,Dendang,total,total,,11148,jiwa,2025,registration,total_population,3.1,18,,

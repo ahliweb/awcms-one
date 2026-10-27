@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.03.11.2003,4,Sededap,sex,laki_laki,,209,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.11.2003,4,Sededap,sex,perempuan,,207,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.11.2003,4,Sededap,total,total,,416,jiwa,2026,registration,total_population,3.1,26,,
+21.03.11.2001,4,Sabang Mawang,sex,laki_laki,,391,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.11.2001,4,Sabang Mawang,sex,perempuan,,358,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.11.2001,4,Sabang Mawang,total,total,,749,jiwa,2026,registration,total_population,3.1,26,,
+21.03.11.2004,4,Tanjung Batang,sex,laki_laki,,562,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.11.2004,4,Tanjung Batang,sex,perempuan,,514,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.11.2004,4,Tanjung Batang,total,total,,1076,jiwa,2026,registration,total_population,3.1,26,,
+21.03.11.2005,4,Serantas,sex,laki_laki,,385,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.11.2005,4,Serantas,sex,perempuan,,337,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.11.2005,4,Serantas,total,total,,722,jiwa,2026,registration,total_population,3.1,26,,
+21.03.11.2006,4,Sabang Mawang Barat,sex,laki_laki,,305,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.11.2006,4,Sabang Mawang Barat,sex,perempuan,,277,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.11.2006,4,Sabang Mawang Barat,total,total,,582,jiwa,2026,registration,total_population,3.1,26,,
+21.03.11.2010,4,Teluk Labuh,sex,laki_laki,,217,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.11.2010,4,Teluk Labuh,sex,perempuan,,213,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.11.2010,4,Teluk Labuh,total,total,,430,jiwa,2026,registration,total_population,3.1,26,,
+21.03.11,3,Pulau Tiga,age_group,0-4,laki_laki,170,jiwa,2026,registration,total_population,3.2,28,,0–4
+21.03.11,3,Pulau Tiga,age_group,0-4,perempuan,155,jiwa,2026,registration,total_population,3.2,28,,0–4
+21.03.11,3,Pulau Tiga,age_group,0-4,,325,jiwa,2026,registration,total_population,3.2,28,,0–4
+21.03.11,3,Pulau Tiga,age_group,5-9,laki_laki,179,jiwa,2026,registration,total_population,3.2,28,,5–9
+21.03.11,3,Pulau Tiga,age_group,5-9,perempuan,173,jiwa,2026,registration,total_population,3.2,28,,5–9
+21.03.11,3,Pulau Tiga,age_group,5-9,,352,jiwa,2026,registration,total_population,3.2,28,,5–9
+21.03.11,3,Pulau Tiga,age_group,10-14,laki_laki,183,jiwa,2026,registration,total_population,3.2,28,,10–14
+21.03.11,3,Pulau Tiga,age_group,10-14,perempuan,160,jiwa,2026,registration,total_population,3.2,28,,10–14
+21.03.11,3,Pulau Tiga,age_group,10-14,,343,jiwa,2026,registration,total_population,3.2,28,,10–14
+21.03.11,3,Pulau Tiga,age_group,15-19,laki_laki,188,jiwa,2026,registration,total_population,3.2,28,,15–19
+21.03.11,3,Pulau Tiga,age_group,15-19,perempuan,197,jiwa,2026,registration,total_population,3.2,28,,15–19
+21.03.11,3,Pulau Tiga,age_group,15-19,,385,jiwa,2026,registration,total_population,3.2,28,,15–19
+21.03.11,3,Pulau Tiga,age_group,20-24,laki_laki,179,jiwa,2026,registration,total_population,3.2,28,,20–24
+21.03.11,3,Pulau Tiga,age_group,20-24,perempuan,168,jiwa,2026,registration,total_population,3.2,28,,20–24
+21.03.11,3,Pulau Tiga,age_group,20-24,,347,jiwa,2026,registration,total_population,3.2,28,,20–24
+21.03.11,3,Pulau Tiga,age_group,25-29,laki_laki,177,jiwa,2026,registration,total_population,3.2,28,,25–29
+21.03.11,3,Pulau Tiga,age_group,25-29,perempuan,149,jiwa,2026,registration,total_population,3.2,28,,25–29
+21.03.11,3,Pulau Tiga,age_group,25-29,,326,jiwa,2026,registration,total_population,3.2,28,,25–29
+21.03.11,3,Pulau Tiga,age_group,30-34,laki_laki,168,jiwa,2026,registration,total_population,3.2,28,,30–34
+21.03.11,3,Pulau Tiga,age_group,30-34,perempuan,132,jiwa,2026,registration,total_population,3.2,28,,30–34
+21.03.11,3,Pulau Tiga,age_group,30-34,,300,jiwa,2026,registration,total_population,3.2,28,,30–34
+21.03.11,3,Pulau Tiga,age_group,35-39,laki_laki,144,jiwa,2026,registration,total_population,3.2,28,,35–39
+21.03.11,3,Pulau Tiga,age_group,35-39,perempuan,137,jiwa,2026,registration,total_population,3.2,28,,35–39
+21.03.11,3,Pulau Tiga,age_group,35-39,,281,jiwa,2026,registration,total_population,3.2,28,,35–39
+21.03.11,3,Pulau Tiga,age_group,40-44,laki_laki,169,jiwa,2026,registration,total_population,3.2,28,,40–44
+21.03.11,3,Pulau Tiga,age_group,40-44,perempuan,136,jiwa,2026,registration,total_population,3.2,28,,40–44
+21.03.11,3,Pulau Tiga,age_group,40-44,,305,jiwa,2026,registration,total_population,3.2,28,,40–44
+21.03.11,3,Pulau Tiga,age_group,45-49,laki_laki,123,jiwa,2026,registration,total_population,3.2,28,,45–49
+21.03.11,3,Pulau Tiga,age_group,45-49,perempuan,121,jiwa,2026,registration,total_population,3.2,28,,45–49
+21.03.11,3,Pulau Tiga,age_group,45-49,,244,jiwa,2026,registration,total_population,3.2,28,,45–49
+21.03.11,3,Pulau Tiga,age_group,50-54,laki_laki,116,jiwa,2026,registration,total_population,3.2,28,,50–54
+21.03.11,3,Pulau Tiga,age_group,50-54,perempuan,98,jiwa,2026,registration,total_population,3.2,28,,50–54
+21.03.11,3,Pulau Tiga,age_group,50-54,,214,jiwa,2026,registration,total_population,3.2,28,,50–54
+21.03.11,3,Pulau Tiga,age_group,55-59,laki_laki,92,jiwa,2026,registration,total_population,3.2,28,,55–59
+21.03.11,3,Pulau Tiga,age_group,55-59,perempuan,87,jiwa,2026,registration,total_population,3.2,28,,55–59
+21.03.11,3,Pulau Tiga,age_group,55-59,,179,jiwa,2026,registration,total_population,3.2,28,,55–59
+21.03.11,3,Pulau Tiga,age_group,60-64,laki_laki,74,jiwa,2026,registration,total_population,3.2,28,,60–64
+21.03.11,3,Pulau Tiga,age_group,60-64,perempuan,65,jiwa,2026,registration,total_population,3.2,28,,60–64
+21.03.11,3,Pulau Tiga,age_group,60-64,,139,jiwa,2026,registration,total_population,3.2,28,,60–64
+21.03.11,3,Pulau Tiga,age_group,65-69,laki_laki,55,jiwa,2026,registration,total_population,3.2,28,,65–69
+21.03.11,3,Pulau Tiga,age_group,65-69,perempuan,42,jiwa,2026,registration,total_population,3.2,28,,65–69
+21.03.11,3,Pulau Tiga,age_group,65-69,,97,jiwa,2026,registration,total_population,3.2,28,,65–69
+21.03.11,3,Pulau Tiga,age_group,70-74,laki_laki,24,jiwa,2026,registration,total_population,3.2,28,,70–74
+21.03.11,3,Pulau Tiga,age_group,70-74,perempuan,43,jiwa,2026,registration,total_population,3.2,28,,70–74
+21.03.11,3,Pulau Tiga,age_group,70-74,,67,jiwa,2026,registration,total_population,3.2,28,,70–74
+21.03.11,3,Pulau Tiga,age_group,75+,laki_laki,28,jiwa,2026,registration,total_population,3.2,28,,75+
+21.03.11,3,Pulau Tiga,age_group,75+,perempuan,43,jiwa,2026,registration,total_population,3.2,28,,75+
+21.03.11,3,Pulau Tiga,age_group,75+,,71,jiwa,2026,registration,total_population,3.2,28,,75+

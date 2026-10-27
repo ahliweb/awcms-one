@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.09.06.2003,4,Pasakiat Taileleu,sex,laki_laki,,2014,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.06.2003,4,Pasakiat Taileleu,sex,perempuan,,1838,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.06.2003,4,Pasakiat Taileleu,total,total,,3852,jiwa,2025,registration,total_population,3.1,31,,
+13.09.06.2001,4,Katurei,sex,laki_laki,,1325,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.06.2001,4,Katurei,sex,perempuan,,1207,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.06.2001,4,Katurei,total,total,,2532,jiwa,2025,registration,total_population,3.1,31,,
+13.09.06.2002,4,Sagulubbeg,sex,laki_laki,,989,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.06.2002,4,Sagulubbeg,sex,perempuan,,893,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.06.2002,4,Sagulubbeg,total,total,,1882,jiwa,2025,registration,total_population,3.1,31,,
+13.09.06,3,Siberut Barat Daya,sex,laki_laki,,4328,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.06,3,Siberut Barat Daya,sex,perempuan,,3938,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.06,3,Siberut Barat Daya,total,total,,8266,jiwa,2025,registration,total_population,3.1,31,,
+13.09.06,3,Siberut Barat Daya,age_group,0-4,laki_laki,343,jiwa,2025,registration,total_population,3.2,33,,0–4
+13.09.06,3,Siberut Barat Daya,age_group,0-4,perempuan,265,jiwa,2025,registration,total_population,3.2,33,,0–4
+13.09.06,3,Siberut Barat Daya,age_group,0-4,,608,jiwa,2025,registration,total_population,3.2,33,,0–4
+13.09.06,3,Siberut Barat Daya,age_group,5-9,laki_laki,436,jiwa,2025,registration,total_population,3.2,33,,5–9
+13.09.06,3,Siberut Barat Daya,age_group,5-9,perempuan,395,jiwa,2025,registration,total_population,3.2,33,,5–9
+13.09.06,3,Siberut Barat Daya,age_group,5-9,,831,jiwa,2025,registration,total_population,3.2,33,,5–9
+13.09.06,3,Siberut Barat Daya,age_group,10-14,laki_laki,460,jiwa,2025,registration,total_population,3.2,33,,10–14
+13.09.06,3,Siberut Barat Daya,age_group,10-14,perempuan,397,jiwa,2025,registration,total_population,3.2,33,,10–14
+13.09.06,3,Siberut Barat Daya,age_group,10-14,,857,jiwa,2025,registration,total_population,3.2,33,,10–14
+13.09.06,3,Siberut Barat Daya,age_group,15-19,laki_laki,491,jiwa,2025,registration,total_population,3.2,33,,15–19
+13.09.06,3,Siberut Barat Daya,age_group,15-19,perempuan,479,jiwa,2025,registration,total_population,3.2,33,,15–19
+13.09.06,3,Siberut Barat Daya,age_group,15-19,,970,jiwa,2025,registration,total_population,3.2,33,,15–19
+13.09.06,3,Siberut Barat Daya,age_group,20-24,laki_laki,351,jiwa,2025,registration,total_population,3.2,33,,20–24
+13.09.06,3,Siberut Barat Daya,age_group,20-24,perempuan,401,jiwa,2025,registration,total_population,3.2,33,,20–24
+13.09.06,3,Siberut Barat Daya,age_group,20-24,,752,jiwa,2025,registration,total_population,3.2,33,,20–24
+13.09.06,3,Siberut Barat Daya,age_group,25-29,laki_laki,387,jiwa,2025,registration,total_population,3.2,33,,25–29
+13.09.06,3,Siberut Barat Daya,age_group,25-29,perempuan,355,jiwa,2025,registration,total_population,3.2,33,,25–29
+13.09.06,3,Siberut Barat Daya,age_group,25-29,,742,jiwa,2025,registration,total_population,3.2,33,,25–29
+13.09.06,3,Siberut Barat Daya,age_group,30-34,laki_laki,319,jiwa,2025,registration,total_population,3.2,33,,30–34
+13.09.06,3,Siberut Barat Daya,age_group,30-34,perempuan,269,jiwa,2025,registration,total_population,3.2,33,,30–34
+13.09.06,3,Siberut Barat Daya,age_group,30-34,,588,jiwa,2025,registration,total_population,3.2,33,,30–34
+13.09.06,3,Siberut Barat Daya,age_group,35-39,laki_laki,279,jiwa,2025,registration,total_population,3.2,33,,35–39
+13.09.06,3,Siberut Barat Daya,age_group,35-39,perempuan,269,jiwa,2025,registration,total_population,3.2,33,,35–39
+13.09.06,3,Siberut Barat Daya,age_group,35-39,,548,jiwa,2025,registration,total_population,3.2,33,,35–39
+13.09.06,3,Siberut Barat Daya,age_group,40-44,laki_laki,262,jiwa,2025,registration,total_population,3.2,33,,40–44
+13.09.06,3,Siberut Barat Daya,age_group,40-44,perempuan,241,jiwa,2025,registration,total_population,3.2,33,,40–44
+13.09.06,3,Siberut Barat Daya,age_group,40-44,,503,jiwa,2025,registration,total_population,3.2,33,,40–44
+13.09.06,3,Siberut Barat Daya,age_group,45-49,laki_laki,285,jiwa,2025,registration,total_population,3.2,33,,45–49
+13.09.06,3,Siberut Barat Daya,age_group,45-49,perempuan,243,jiwa,2025,registration,total_population,3.2,33,,45–49
+13.09.06,3,Siberut Barat Daya,age_group,45-49,,528,jiwa,2025,registration,total_population,3.2,33,,45–49
+13.09.06,3,Siberut Barat Daya,age_group,50-54,laki_laki,180,jiwa,2025,registration,total_population,3.2,33,,50–54
+13.09.06,3,Siberut Barat Daya,age_group,50-54,perempuan,181,jiwa,2025,registration,total_population,3.2,33,,50–54
+13.09.06,3,Siberut Barat Daya,age_group,50-54,,361,jiwa,2025,registration,total_population,3.2,33,,50–54
+13.09.06,3,Siberut Barat Daya,age_group,55-59,laki_laki,188,jiwa,2025,registration,total_population,3.2,33,,55–59
+13.09.06,3,Siberut Barat Daya,age_group,55-59,perempuan,168,jiwa,2025,registration,total_population,3.2,33,,55–59
+13.09.06,3,Siberut Barat Daya,age_group,55-59,,356,jiwa,2025,registration,total_population,3.2,33,,55–59
+13.09.06,3,Siberut Barat Daya,age_group,60-64,laki_laki,127,jiwa,2025,registration,total_population,3.2,33,,60–64
+13.09.06,3,Siberut Barat Daya,age_group,60-64,perempuan,122,jiwa,2025,registration,total_population,3.2,33,,60–64
+13.09.06,3,Siberut Barat Daya,age_group,60-64,,249,jiwa,2025,registration,total_population,3.2,33,,60–64
+13.09.06,3,Siberut Barat Daya,age_group,65-69,laki_laki,109,jiwa,2025,registration,total_population,3.2,33,,65–69
+13.09.06,3,Siberut Barat Daya,age_group,65-69,perempuan,79,jiwa,2025,registration,total_population,3.2,33,,65–69
+13.09.06,3,Siberut Barat Daya,age_group,65-69,,188,jiwa,2025,registration,total_population,3.2,33,,65–69
+13.09.06,3,Siberut Barat Daya,age_group,70-74,laki_laki,48,jiwa,2025,registration,total_population,3.2,33,,70–74
+13.09.06,3,Siberut Barat Daya,age_group,70-74,perempuan,41,jiwa,2025,registration,total_population,3.2,33,,70–74
+13.09.06,3,Siberut Barat Daya,age_group,70-74,,89,jiwa,2025,registration,total_population,3.2,33,,70–74
+13.09.06,3,Siberut Barat Daya,age_group,75+,laki_laki,63,jiwa,2025,registration,total_population,3.2,33,,75+
+13.09.06,3,Siberut Barat Daya,age_group,75+,perempuan,33,jiwa,2025,registration,total_population,3.2,33,,75+
+13.09.06,3,Siberut Barat Daya,age_group,75+,,96,jiwa,2025,registration,total_population,3.2,33,,75+
+13.09.06,3,Siberut Barat Daya,sex,laki_laki,,4328,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+13.09.06,3,Siberut Barat Daya,sex,perempuan,,3938,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+13.09.06,3,Siberut Barat Daya,total,total,,8266,jiwa,2025,registration,total_population,3.2,33,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.73.02.1001,4,Saringan,sex,laki_laki,,922,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.1001,4,Saringan,sex,perempuan,,896,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.1001,4,Saringan,total,total,,1818,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.1002,4,Lubang Panjang,sex,laki_laki,,707,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.1002,4,Lubang Panjang,sex,perempuan,,713,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.1002,4,Lubang Panjang,total,total,,1420,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.1003,4,Durian I,sex,laki_laki,,1224,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.1003,4,Durian I,sex,perempuan,,1202,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.1003,4,Durian I,total,total,,2426,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.1004,4,Durian Ii,sex,laki_laki,,1206,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.1004,4,Durian Ii,sex,perempuan,,1223,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.1004,4,Durian Ii,total,total,,2429,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.2005,4,Santur,sex,laki_laki,,2273,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.2005,4,Santur,sex,perempuan,,2273,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.2005,4,Santur,total,total,,4546,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.2006,4,Kolok Mudiak,sex,laki_laki,,786,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.2006,4,Kolok Mudiak,sex,perempuan,,763,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.2006,4,Kolok Mudiak,total,total,,1549,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.2007,4,Kolok Nan Tuo,sex,laki_laki,,693,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.2007,4,Kolok Nan Tuo,sex,perempuan,,739,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.2007,4,Kolok Nan Tuo,total,total,,1432,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.2008,4,Talago Gunung,sex,laki_laki,,933,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.2008,4,Talago Gunung,sex,perempuan,,1015,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.2008,4,Talago Gunung,total,total,,1948,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.2009,4,Lumindai,sex,laki_laki,,1505,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.2009,4,Lumindai,sex,perempuan,,1420,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.2009,4,Lumindai,total,total,,2925,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02.2010,4,Balai Batu Sandaran,sex,laki_laki,,403,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02.2010,4,Balai Batu Sandaran,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02.2010,4,Balai Batu Sandaran,total,total,,787,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02,3,Kecamatan Barangin,sex,laki_laki,,10652,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.02,3,Kecamatan Barangin,sex,perempuan,,10628,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.02,3,Kecamatan Barangin,total,total,,21280,jiwa,2025,registration,total_population,3.1,41,,
+13.73.02,3,Barangin,age_group,0-4,laki_laki,656,jiwa,2025,registration,total_population,3.2,43,,0–4
+13.73.02,3,Barangin,age_group,0-4,perempuan,652,jiwa,2025,registration,total_population,3.2,43,,0–4
+13.73.02,3,Barangin,age_group,0-4,,1308,jiwa,2025,registration,total_population,3.2,43,,0–4
+13.73.02,3,Barangin,age_group,5-9,laki_laki,909,jiwa,2025,registration,total_population,3.2,43,,5–9
+13.73.02,3,Barangin,age_group,5-9,perempuan,838,jiwa,2025,registration,total_population,3.2,43,,5–9
+13.73.02,3,Barangin,age_group,5-9,,1747,jiwa,2025,registration,total_population,3.2,43,,5–9
+13.73.02,3,Barangin,age_group,10-14,laki_laki,911,jiwa,2025,registration,total_population,3.2,43,,10–14
+13.73.02,3,Barangin,age_group,10-14,perempuan,895,jiwa,2025,registration,total_population,3.2,43,,10–14
+13.73.02,3,Barangin,age_group,10-14,,1806,jiwa,2025,registration,total_population,3.2,43,,10–14
+13.73.02,3,Barangin,age_group,15-19,laki_laki,936,jiwa,2025,registration,total_population,3.2,43,,15–19
+13.73.02,3,Barangin,age_group,15-19,perempuan,907,jiwa,2025,registration,total_population,3.2,43,,15–19
+13.73.02,3,Barangin,age_group,15-19,,1843,jiwa,2025,registration,total_population,3.2,43,,15–19
+13.73.02,3,Barangin,age_group,20-24,laki_laki,920,jiwa,2025,registration,total_population,3.2,43,,20–24
+13.73.02,3,Barangin,age_group,20-24,perempuan,850,jiwa,2025,registration,total_population,3.2,43,,20–24
+13.73.02,3,Barangin,age_group,20-24,,1770,jiwa,2025,registration,total_population,3.2,43,,20–24
+13.73.02,3,Barangin,age_group,25-29,laki_laki,791,jiwa,2025,registration,total_population,3.2,43,,25–29
+13.73.02,3,Barangin,age_group,25-29,perempuan,746,jiwa,2025,registration,total_population,3.2,43,,25–29
+13.73.02,3,Barangin,age_group,25-29,,1537,jiwa,2025,registration,total_population,3.2,43,,25–29
+13.73.02,3,Barangin,age_group,30-34,laki_laki,710,jiwa,2025,registration,total_population,3.2,43,,30–34
+13.73.02,3,Barangin,age_group,30-34,perempuan,719,jiwa,2025,registration,total_population,3.2,43,,30–34
+13.73.02,3,Barangin,age_group,30-34,,1429,jiwa,2025,registration,total_population,3.2,43,,30–34
+13.73.02,3,Barangin,age_group,35-39,laki_laki,718,jiwa,2025,registration,total_population,3.2,43,,35–39
+13.73.02,3,Barangin,age_group,35-39,perempuan,668,jiwa,2025,registration,total_population,3.2,43,,35–39
+13.73.02,3,Barangin,age_group,35-39,,1386,jiwa,2025,registration,total_population,3.2,43,,35–39
+13.73.02,3,Barangin,age_group,40-44,laki_laki,736,jiwa,2025,registration,total_population,3.2,43,,40–44
+13.73.02,3,Barangin,age_group,40-44,perempuan,751,jiwa,2025,registration,total_population,3.2,43,,40–44
+13.73.02,3,Barangin,age_group,40-44,,1487,jiwa,2025,registration,total_population,3.2,43,,40–44
+13.73.02,3,Barangin,age_group,45-49,laki_laki,698,jiwa,2025,registration,total_population,3.2,43,,45–49
+13.73.02,3,Barangin,age_group,45-49,perempuan,668,jiwa,2025,registration,total_population,3.2,43,,45–49
+13.73.02,3,Barangin,age_group,45-49,,1366,jiwa,2025,registration,total_population,3.2,43,,45–49
+13.73.02,3,Barangin,age_group,50-54,laki_laki,643,jiwa,2025,registration,total_population,3.2,43,,50–54
+13.73.02,3,Barangin,age_group,50-54,perempuan,661,jiwa,2025,registration,total_population,3.2,43,,50–54
+13.73.02,3,Barangin,age_group,50-54,,1304,jiwa,2025,registration,total_population,3.2,43,,50–54
+13.73.02,3,Barangin,age_group,55-59,laki_laki,575,jiwa,2025,registration,total_population,3.2,43,,55–59
+13.73.02,3,Barangin,age_group,55-59,perempuan,629,jiwa,2025,registration,total_population,3.2,43,,55–59
+13.73.02,3,Barangin,age_group,55-59,,1204,jiwa,2025,registration,total_population,3.2,43,,55–59
+13.73.02,3,Barangin,age_group,60-64,laki_laki,551,jiwa,2025,registration,total_population,3.2,43,,60–64
+13.73.02,3,Barangin,age_group,60-64,perempuan,572,jiwa,2025,registration,total_population,3.2,43,,60–64
+13.73.02,3,Barangin,age_group,60-64,,1123,jiwa,2025,registration,total_population,3.2,43,,60–64
+13.73.02,3,Barangin,age_group,65+,laki_laki,898,jiwa,2025,registration,total_population,3.2,43,,65+
+13.73.02,3,Barangin,age_group,65+,perempuan,1072,jiwa,2025,registration,total_population,3.2,43,,65+
+13.73.02,3,Barangin,age_group,65+,,1970,jiwa,2025,registration,total_population,3.2,43,,65+
+13.73.02,3,Kecamatan Barangin,sex,laki_laki,,10652,jiwa,2025,registration,total_population,3.2,43,,Laki-Laki
+13.73.02,3,Kecamatan Barangin,sex,perempuan,,10628,jiwa,2025,registration,total_population,3.2,43,,Perempuan
+13.73.02,3,Kecamatan Barangin,total,total,,21280,jiwa,2025,registration,total_population,3.2,43,,

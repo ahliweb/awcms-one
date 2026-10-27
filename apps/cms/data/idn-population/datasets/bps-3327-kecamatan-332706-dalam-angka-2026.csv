@@ -1,0 +1,86 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.06.2001,4,Sumurkidang,sex,perempuan,,2129,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2001,4,Sumurkidang,total,total,,4350,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2002,4,Wanarata,sex,perempuan,,5706,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2002,4,Wanarata,total,total,,11499,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2003,4,Pedagung,sex,perempuan,,3846,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2003,4,Pedagung,total,total,,7978,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2004,4,Suru,sex,perempuan,,2363,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2004,4,Suru,total,total,,4794,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2005,4,Banjarsari,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2005,4,Banjarsari,total,total,,2441,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2006,4,Pegiringan,sex,perempuan,,6304,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2006,4,Pegiringan,total,total,,12908,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2007,4,Karanganyar,sex,perempuan,,3500,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2007,4,Karanganyar,total,total,,6987,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2008,4,Purana,sex,perempuan,,1291,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2008,4,Purana,total,total,,2564,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2009,4,Pabuaran,sex,perempuan,,1314,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2009,4,Pabuaran,total,total,,2758,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2010,4,Sarwodadi,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2010,4,Sarwodadi,total,total,,841,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2011,4,Bantarbolang,sex,perempuan,,8070,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2011,4,Bantarbolang,total,total,,16296,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2012,4,Sambeng,sex,perempuan,,1416,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2012,4,Sambeng,total,total,,2857,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2013,4,Glandang,sex,perempuan,,1712,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2013,4,Glandang,total,total,,3472,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2014,4,Kuta,sex,perempuan,,2267,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2014,4,Kuta,total,total,,4571,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2015,4,Kebongede,sex,perempuan,,2022,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2015,4,Kebongede,total,total,,4130,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06.2017,4,Lenggerong,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06.2017,4,Lenggerong,total,total,,1112,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06,3,Kecamatan Bantarbolang,sex,perempuan,,46195,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.06,3,Kecamatan Bantarbolang,total,total,,93705,jiwa,2025,registration,total_population,3.1,47,,
+33.27.06,3,Bantarbolang,age_group,0-4,laki_laki,3124,jiwa,2025,registration,total_population,3.2,49,,0-4
+33.27.06,3,Bantarbolang,age_group,0-4,perempuan,2875,jiwa,2025,registration,total_population,3.2,49,,0-4
+33.27.06,3,Bantarbolang,age_group,0-4,,5999,jiwa,2025,registration,total_population,3.2,49,,0-4
+33.27.06,3,Bantarbolang,age_group,5-9,laki_laki,3730,jiwa,2025,registration,total_population,3.2,49,,5-9
+33.27.06,3,Bantarbolang,age_group,5-9,perempuan,3465,jiwa,2025,registration,total_population,3.2,49,,5-9
+33.27.06,3,Bantarbolang,age_group,5-9,,7195,jiwa,2025,registration,total_population,3.2,49,,5-9
+33.27.06,3,Bantarbolang,age_group,10-14,laki_laki,3782,jiwa,2025,registration,total_population,3.2,49,,10-14
+33.27.06,3,Bantarbolang,age_group,10-14,perempuan,3511,jiwa,2025,registration,total_population,3.2,49,,10-14
+33.27.06,3,Bantarbolang,age_group,10-14,,7293,jiwa,2025,registration,total_population,3.2,49,,10-14
+33.27.06,3,Bantarbolang,age_group,15-19,laki_laki,3457,jiwa,2025,registration,total_population,3.2,49,,15-19
+33.27.06,3,Bantarbolang,age_group,15-19,perempuan,3326,jiwa,2025,registration,total_population,3.2,49,,15-19
+33.27.06,3,Bantarbolang,age_group,15-19,,6783,jiwa,2025,registration,total_population,3.2,49,,15-19
+33.27.06,3,Bantarbolang,age_group,20-24,laki_laki,3512,jiwa,2025,registration,total_population,3.2,49,,20-24
+33.27.06,3,Bantarbolang,age_group,20-24,perempuan,3298,jiwa,2025,registration,total_population,3.2,49,,20-24
+33.27.06,3,Bantarbolang,age_group,20-24,,6810,jiwa,2025,registration,total_population,3.2,49,,20-24
+33.27.06,3,Bantarbolang,age_group,25-29,laki_laki,3872,jiwa,2025,registration,total_population,3.2,49,,25-29
+33.27.06,3,Bantarbolang,age_group,25-29,perempuan,3644,jiwa,2025,registration,total_population,3.2,49,,25-29
+33.27.06,3,Bantarbolang,age_group,25-29,,7516,jiwa,2025,registration,total_population,3.2,49,,25-29
+33.27.06,3,Bantarbolang,age_group,30-34,laki_laki,3743,jiwa,2025,registration,total_population,3.2,49,,30-34
+33.27.06,3,Bantarbolang,age_group,30-34,perempuan,3490,jiwa,2025,registration,total_population,3.2,49,,30-34
+33.27.06,3,Bantarbolang,age_group,30-34,,7233,jiwa,2025,registration,total_population,3.2,49,,30-34
+33.27.06,3,Bantarbolang,age_group,35-39,laki_laki,3724,jiwa,2025,registration,total_population,3.2,49,,35-39
+33.27.06,3,Bantarbolang,age_group,35-39,perempuan,3304,jiwa,2025,registration,total_population,3.2,49,,35-39
+33.27.06,3,Bantarbolang,age_group,35-39,,7028,jiwa,2025,registration,total_population,3.2,49,,35-39
+33.27.06,3,Bantarbolang,age_group,40-44,laki_laki,3793,jiwa,2025,registration,total_population,3.2,49,,40-44
+33.27.06,3,Bantarbolang,age_group,40-44,perempuan,3548,jiwa,2025,registration,total_population,3.2,49,,40-44
+33.27.06,3,Bantarbolang,age_group,40-44,,7341,jiwa,2025,registration,total_population,3.2,49,,40-44
+33.27.06,3,Bantarbolang,age_group,45-49,laki_laki,3220,jiwa,2025,registration,total_population,3.2,49,,45-49
+33.27.06,3,Bantarbolang,age_group,45-49,perempuan,3049,jiwa,2025,registration,total_population,3.2,49,,45-49
+33.27.06,3,Bantarbolang,age_group,45-49,,6269,jiwa,2025,registration,total_population,3.2,49,,45-49
+33.27.06,3,Bantarbolang,age_group,50-54,laki_laki,2648,jiwa,2025,registration,total_population,3.2,49,,50-54
+33.27.06,3,Bantarbolang,age_group,50-54,perempuan,2877,jiwa,2025,registration,total_population,3.2,49,,50-54
+33.27.06,3,Bantarbolang,age_group,50-54,,5525,jiwa,2025,registration,total_population,3.2,49,,50-54
+33.27.06,3,Bantarbolang,age_group,55-59,laki_laki,2467,jiwa,2025,registration,total_population,3.2,49,,55-59
+33.27.06,3,Bantarbolang,age_group,55-59,perempuan,2772,jiwa,2025,registration,total_population,3.2,49,,55-59
+33.27.06,3,Bantarbolang,age_group,55-59,,5239,jiwa,2025,registration,total_population,3.2,49,,55-59
+33.27.06,3,Bantarbolang,age_group,60-64,laki_laki,2181,jiwa,2025,registration,total_population,3.2,49,,60-64
+33.27.06,3,Bantarbolang,age_group,60-64,perempuan,2372,jiwa,2025,registration,total_population,3.2,49,,60-64
+33.27.06,3,Bantarbolang,age_group,60-64,,4553,jiwa,2025,registration,total_population,3.2,49,,60-64
+33.27.06,3,Bantarbolang,age_group,65-69,laki_laki,1822,jiwa,2025,registration,total_population,3.2,49,,65-69
+33.27.06,3,Bantarbolang,age_group,65-69,perempuan,1865,jiwa,2025,registration,total_population,3.2,49,,65-69
+33.27.06,3,Bantarbolang,age_group,65-69,,3687,jiwa,2025,registration,total_population,3.2,49,,65-69
+33.27.06,3,Bantarbolang,age_group,70-74,laki_laki,1115,jiwa,2025,registration,total_population,3.2,49,,70-74
+33.27.06,3,Bantarbolang,age_group,70-74,perempuan,1209,jiwa,2025,registration,total_population,3.2,49,,70-74
+33.27.06,3,Bantarbolang,age_group,70-74,,2324,jiwa,2025,registration,total_population,3.2,49,,70-74
+33.27.06,3,Bantarbolang,age_group,75+,laki_laki,1320,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.06,3,Bantarbolang,age_group,75+,perempuan,1590,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.06,3,Bantarbolang,age_group,75+,,2910,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.06,3,Kecamatan Bantarbolang,sex,laki_laki,,47510,jiwa,2025,registration,total_population,3.2,49,,Laki-Laki
+33.27.06,3,Kecamatan Bantarbolang,sex,perempuan,,46195,jiwa,2025,registration,total_population,3.2,49,,Perempuan
+33.27.06,3,Kecamatan Bantarbolang,total,total,,93705,jiwa,2025,registration,total_population,3.2,49,,

@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.05.2002,4,Pasirbaru,sex,laki_laki,,4677,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2002,4,Pasirbaru,sex,perempuan,,4345,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2002,4,Pasirbaru,total,total,,9022,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2003,4,Cikahuripan,sex,laki_laki,,4071,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2003,4,Cikahuripan,sex,perempuan,,3913,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2003,4,Cikahuripan,total,total,,7984,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2001,4,Cisolok,sex,laki_laki,,3171,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2001,4,Cisolok,sex,perempuan,,3159,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2001,4,Cisolok,total,total,,6330,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2008,4,Karangpapak,sex,laki_laki,,4810,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2008,4,Karangpapak,sex,perempuan,,4630,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2008,4,Karangpapak,total,total,,9440,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2009,4,Sirnaresmi,sex,laki_laki,,2906,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2009,4,Sirnaresmi,sex,perempuan,,2640,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2009,4,Sirnaresmi,total,total,,5546,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2010,4,Cicadas,sex,laki_laki,,3261,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2010,4,Cicadas,sex,perempuan,,3156,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2010,4,Cicadas,total,total,,6417,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2004,4,Cikelat,sex,laki_laki,,3078,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2004,4,Cikelat,sex,perempuan,,3040,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2004,4,Cikelat,total,total,,6118,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2007,4,Gunung Tanjung,sex,laki_laki,,1890,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2007,4,Gunung Tanjung,sex,perempuan,,1753,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2007,4,Gunung Tanjung,total,total,,3643,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2005,4,Caringin,sex,laki_laki,,3967,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2005,4,Caringin,sex,perempuan,,3590,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2005,4,Caringin,total,total,,7557,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2013,4,Sukarame,sex,laki_laki,,1643,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2013,4,Sukarame,sex,perempuan,,1555,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2013,4,Sukarame,total,total,,3198,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2012,4,Wangunsari,sex,laki_laki,,2561,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2012,4,Wangunsari,sex,perempuan,,2444,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2012,4,Wangunsari,total,total,,5005,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05.2011,4,Wanajaya,sex,laki_laki,,2606,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05.2011,4,Wanajaya,sex,perempuan,,2553,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05.2011,4,Wanajaya,total,total,,5159,jiwa,2025,registration,total_population,3.1,24,,
+32.02.05,3,Cisolok,sex,laki_laki,,41252,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.05,3,Cisolok,sex,perempuan,,39259,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.05,3,Cisolok,total,total,,80511,jiwa,2025,registration,total_population,3.1,24,,

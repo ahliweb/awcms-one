@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3313-kecamatan-331301-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.13.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jatipuro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karanganyar",
+  "publisherDomain": "3313",
+  "publisherWebsite": "https://karanganyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karanganyar (https://karanganyarkab.bps.go.id), publikasi \"Kecamatan Jatipuro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3313010",
+  "publicationNumber": "33130.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karanganyarkab.bps.go.id/id/publication/2026/09/28/0110249faa9d61898c1d4056/kecamatan-jatipuro-dalam-angka-2026.html",
+  "sourceFileSha256": "2a4e6879c0f490f2a2b26bb63f50dceeb42cf4475452f994f31588dad7819547",
+  "sourceFileBytes": 8193513,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karanganyar.",
+  "csvPath": "datasets/bps-3313-kecamatan-331301-dalam-angka-2026.csv",
+  "csvSha256": "356a2e420827fb222a1e9ceef9c88b901a988cdaeb7e9c2e205dcc969c4bca25",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jatipuro, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jatipuro, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

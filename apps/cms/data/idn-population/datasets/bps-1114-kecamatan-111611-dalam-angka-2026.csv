@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.16.11.2004,4,Selamat,sex,laki_laki,,2837,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.16.11.2004,4,Selamat,sex,perempuan,,2632,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+11.16.11.2004,4,Selamat,total,total,,5469,jiwa,2025,registration,total_population,3.1,11,,
+11.16.11.2003,4,Tenggulun,sex,laki_laki,,2326,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.16.11.2003,4,Tenggulun,sex,perempuan,,2232,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+11.16.11.2003,4,Tenggulun,total,total,,4558,jiwa,2025,registration,total_population,3.1,11,,
+11.16.11.2002,4,Rimba Sawang,sex,laki_laki,,814,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.16.11.2002,4,Rimba Sawang,sex,perempuan,,811,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+11.16.11.2002,4,Rimba Sawang,total,total,,1625,jiwa,2025,registration,total_population,3.1,11,,
+11.16.11.2001,4,Tebing Tinggi,sex,laki_laki,,626,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.16.11.2001,4,Tebing Tinggi,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+11.16.11.2001,4,Tebing Tinggi,total,total,,1216,jiwa,2025,registration,total_population,3.1,11,,
+11.16.11.2005,4,Simpang Kiri,sex,laki_laki,,1023,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.16.11.2005,4,Simpang Kiri,sex,perempuan,,995,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+11.16.11.2005,4,Simpang Kiri,total,total,,2018,jiwa,2025,registration,total_population,3.1,11,,
+11.16.11.2006,4,Sumber Makmur,sex,laki_laki,,2199,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.16.11.2006,4,Sumber Makmur,sex,perempuan,,2167,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+11.16.11.2006,4,Sumber Makmur,total,total,,4366,jiwa,2025,registration,total_population,3.1,11,,
+11.16.11,3,Tenggulun,sex,laki_laki,,9825,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.16.11,3,Tenggulun,sex,perempuan,,9427,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+11.16.11,3,Tenggulun,total,total,,19252,jiwa,2025,registration,total_population,3.1,11,,
+11.16.11,3,Tenggulun,age_group,0-4,laki_laki,691,jiwa,2025,registration,total_population,3.2,13,,0-4
+11.16.11,3,Tenggulun,age_group,0-4,perempuan,690,jiwa,2025,registration,total_population,3.2,13,,0-4
+11.16.11,3,Tenggulun,age_group,0-4,,1381,jiwa,2025,registration,total_population,3.2,13,,0-4
+11.16.11,3,Tenggulun,age_group,5-9,laki_laki,961,jiwa,2025,registration,total_population,3.2,13,,5-9
+11.16.11,3,Tenggulun,age_group,5-9,perempuan,838,jiwa,2025,registration,total_population,3.2,13,,5-9
+11.16.11,3,Tenggulun,age_group,5-9,,1799,jiwa,2025,registration,total_population,3.2,13,,5-9
+11.16.11,3,Tenggulun,age_group,10-14,laki_laki,916,jiwa,2025,registration,total_population,3.2,13,,10-14
+11.16.11,3,Tenggulun,age_group,10-14,perempuan,914,jiwa,2025,registration,total_population,3.2,13,,10-14
+11.16.11,3,Tenggulun,age_group,10-14,,1830,jiwa,2025,registration,total_population,3.2,13,,10-14
+11.16.11,3,Tenggulun,age_group,15-19,laki_laki,969,jiwa,2025,registration,total_population,3.2,13,,15-19
+11.16.11,3,Tenggulun,age_group,15-19,perempuan,968,jiwa,2025,registration,total_population,3.2,13,,15-19
+11.16.11,3,Tenggulun,age_group,15-19,,1937,jiwa,2025,registration,total_population,3.2,13,,15-19
+11.16.11,3,Tenggulun,age_group,20-24,laki_laki,900,jiwa,2025,registration,total_population,3.2,13,,20-24
+11.16.11,3,Tenggulun,age_group,20-24,perempuan,873,jiwa,2025,registration,total_population,3.2,13,,20-24
+11.16.11,3,Tenggulun,age_group,20-24,,1773,jiwa,2025,registration,total_population,3.2,13,,20-24
+11.16.11,3,Tenggulun,age_group,25-29,laki_laki,860,jiwa,2025,registration,total_population,3.2,13,,25-29
+11.16.11,3,Tenggulun,age_group,25-29,perempuan,780,jiwa,2025,registration,total_population,3.2,13,,25-29
+11.16.11,3,Tenggulun,age_group,25-29,,1640,jiwa,2025,registration,total_population,3.2,13,,25-29
+11.16.11,3,Tenggulun,age_group,30-34,laki_laki,719,jiwa,2025,registration,total_population,3.2,13,,30-34
+11.16.11,3,Tenggulun,age_group,30-34,perempuan,641,jiwa,2025,registration,total_population,3.2,13,,30-34
+11.16.11,3,Tenggulun,age_group,30-34,,1360,jiwa,2025,registration,total_population,3.2,13,,30-34
+11.16.11,3,Tenggulun,age_group,35-39,laki_laki,699,jiwa,2025,registration,total_population,3.2,13,,35-39
+11.16.11,3,Tenggulun,age_group,35-39,perempuan,694,jiwa,2025,registration,total_population,3.2,13,,35-39
+11.16.11,3,Tenggulun,age_group,35-39,,1393,jiwa,2025,registration,total_population,3.2,13,,35-39
+11.16.11,3,Tenggulun,age_group,40-44,laki_laki,688,jiwa,2025,registration,total_population,3.2,13,,40-44
+11.16.11,3,Tenggulun,age_group,40-44,perempuan,682,jiwa,2025,registration,total_population,3.2,13,,40-44
+11.16.11,3,Tenggulun,age_group,40-44,,1370,jiwa,2025,registration,total_population,3.2,13,,40-44
+11.16.11,3,Tenggulun,age_group,45-49,laki_laki,636,jiwa,2025,registration,total_population,3.2,13,,45-49
+11.16.11,3,Tenggulun,age_group,45-49,perempuan,624,jiwa,2025,registration,total_population,3.2,13,,45-49
+11.16.11,3,Tenggulun,age_group,45-49,,1260,jiwa,2025,registration,total_population,3.2,13,,45-49
+11.16.11,3,Tenggulun,age_group,50-54,laki_laki,532,jiwa,2025,registration,total_population,3.2,13,,50-54
+11.16.11,3,Tenggulun,age_group,50-54,perempuan,542,jiwa,2025,registration,total_population,3.2,13,,50-54
+11.16.11,3,Tenggulun,age_group,50-54,,1074,jiwa,2025,registration,total_population,3.2,13,,50-54
+11.16.11,3,Tenggulun,age_group,55-59,laki_laki,449,jiwa,2025,registration,total_population,3.2,13,,55-59
+11.16.11,3,Tenggulun,age_group,55-59,perempuan,381,jiwa,2025,registration,total_population,3.2,13,,55-59
+11.16.11,3,Tenggulun,age_group,55-59,,830,jiwa,2025,registration,total_population,3.2,13,,55-59
+11.16.11,3,Tenggulun,age_group,60-64,laki_laki,338,jiwa,2025,registration,total_population,3.2,13,,60-64
+11.16.11,3,Tenggulun,age_group,60-64,perempuan,307,jiwa,2025,registration,total_population,3.2,13,,60-64
+11.16.11,3,Tenggulun,age_group,60-64,,645,jiwa,2025,registration,total_population,3.2,13,,60-64
+11.16.11,3,Tenggulun,age_group,65-69,laki_laki,221,jiwa,2025,registration,total_population,3.2,13,,65-69
+11.16.11,3,Tenggulun,age_group,65-69,perempuan,223,jiwa,2025,registration,total_population,3.2,13,,65-69
+11.16.11,3,Tenggulun,age_group,65-69,,444,jiwa,2025,registration,total_population,3.2,13,,65-69
+11.16.11,3,Tenggulun,age_group,70-74,laki_laki,122,jiwa,2025,registration,total_population,3.2,13,,70-74
+11.16.11,3,Tenggulun,age_group,70-74,perempuan,107,jiwa,2025,registration,total_population,3.2,13,,70-74
+11.16.11,3,Tenggulun,age_group,70-74,,229,jiwa,2025,registration,total_population,3.2,13,,70-74
+11.16.11,3,Tenggulun,age_group,75+,laki_laki,124,jiwa,2025,registration,total_population,3.2,13,,75+
+11.16.11,3,Tenggulun,age_group,75+,perempuan,163,jiwa,2025,registration,total_population,3.2,13,,75+
+11.16.11,3,Tenggulun,age_group,75+,,287,jiwa,2025,registration,total_population,3.2,13,,75+
+11.16.11,3,Tenggulun,sex,laki_laki,,9825,jiwa,2025,registration,total_population,3.2,13,,Laki-Laki
+11.16.11,3,Tenggulun,sex,perempuan,,9427,jiwa,2025,registration,total_population,3.2,13,,Perempuan
+11.16.11,3,Tenggulun,total,total,,19252,jiwa,2025,registration,total_population,3.2,13,,

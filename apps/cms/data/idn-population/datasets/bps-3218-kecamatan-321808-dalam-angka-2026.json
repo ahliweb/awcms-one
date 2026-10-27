@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3218-kecamatan-321808-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.18.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kalipucang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pangandaran",
+  "publisherDomain": "3218",
+  "publisherWebsite": "https://pangandarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pangandaran (https://pangandarankab.bps.go.id), publikasi \"Kecamatan Kalipucang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3218080",
+  "publicationNumber": "32180.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pangandarankab.bps.go.id/id/publication/2026/09/28/001771a0d78c83329c8509ca/kecamatan-kalipucang-dalam-angka-2026.html",
+  "sourceFileSha256": "3ce8ea7a47251b1d07b6c340371f027ac88c4b465598983b5bf913020eb3bed3",
+  "sourceFileBytes": 3232215,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pangandaran.",
+  "csvPath": "datasets/bps-3218-kecamatan-321808-dalam-angka-2026.csv",
+  "csvSha256": "2e5be6e80a2fc71365378247afc402aa37c7292fdb7dd9c0b836f9cd5097f4bf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mangunjaya, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kalipucang, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

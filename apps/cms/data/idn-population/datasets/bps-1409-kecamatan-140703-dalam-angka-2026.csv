@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.03,3,Tanah Putih,sex,laki_laki,,41081,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.03,3,Tanah Putih,sex,perempuan,,39469,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.03,3,Tanah Putih,total,total,,80550,jiwa,2025,registration,total_population,3.1,18,,

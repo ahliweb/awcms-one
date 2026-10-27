@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.01.1003,4,Menteng Dalam,sex,laki_laki,,20641,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01.1003,4,Menteng Dalam,sex,perempuan,,20955,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01.1003,4,Menteng Dalam,total,total,,41596,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01.1002,4,Tebet Barat,sex,laki_laki,,11721,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01.1002,4,Tebet Barat,sex,perempuan,,12205,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01.1002,4,Tebet Barat,total,total,,23926,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01.1001,4,Tebet Timur,sex,laki_laki,,9793,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01.1001,4,Tebet Timur,sex,perempuan,,10545,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01.1001,4,Tebet Timur,total,total,,20338,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01.1004,4,Kebon Baru,sex,laki_laki,,20543,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01.1004,4,Kebon Baru,sex,perempuan,,20413,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01.1004,4,Kebon Baru,total,total,,40956,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01.1005,4,Bukit Duri,sex,laki_laki,,19816,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01.1005,4,Bukit Duri,sex,perempuan,,19687,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01.1005,4,Bukit Duri,total,total,,39503,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01.1006,4,Manggarai Selatan,sex,laki_laki,,13102,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01.1006,4,Manggarai Selatan,sex,perempuan,,13165,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01.1006,4,Manggarai Selatan,total,total,,26267,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01.1007,4,Manggarai,sex,laki_laki,,16669,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01.1007,4,Manggarai,sex,perempuan,,16479,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01.1007,4,Manggarai,total,total,,33148,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01,3,Tebet,sex,laki_laki,,112285,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.01,3,Tebet,sex,perempuan,,113449,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.01,3,Tebet,total,total,,225734,jiwa,2025,registration,total_population,3.1,26,,
+31.74.01,3,Tebet,age_group,0-10,laki_laki,16194,jiwa,2025,registration,total_population,3.2,28,,0 - 10
+31.74.01,3,Tebet,age_group,0-10,perempuan,15052,jiwa,2025,registration,total_population,3.2,28,,0 - 10
+31.74.01,3,Tebet,age_group,0-10,,31246,jiwa,2025,registration,total_population,3.2,28,,0 - 10
+31.74.01,3,Tebet,age_group,11-20,laki_laki,18390,jiwa,2025,registration,total_population,3.2,28,,11 - 20
+31.74.01,3,Tebet,age_group,11-20,perempuan,17384,jiwa,2025,registration,total_population,3.2,28,,11 - 20
+31.74.01,3,Tebet,age_group,11-20,,35774,jiwa,2025,registration,total_population,3.2,28,,11 - 20
+31.74.01,3,Tebet,age_group,21-30,laki_laki,18003,jiwa,2025,registration,total_population,3.2,28,,21 - 30
+31.74.01,3,Tebet,age_group,21-30,perempuan,17004,jiwa,2025,registration,total_population,3.2,28,,21 - 30
+31.74.01,3,Tebet,age_group,21-30,,35007,jiwa,2025,registration,total_population,3.2,28,,21 - 30
+31.74.01,3,Tebet,age_group,31-40,laki_laki,15681,jiwa,2025,registration,total_population,3.2,28,,31 - 40
+31.74.01,3,Tebet,age_group,31-40,perempuan,16198,jiwa,2025,registration,total_population,3.2,28,,31 - 40
+31.74.01,3,Tebet,age_group,31-40,,31879,jiwa,2025,registration,total_population,3.2,28,,31 - 40
+31.74.01,3,Tebet,age_group,41-50,laki_laki,17290,jiwa,2025,registration,total_population,3.2,28,,41 - 50
+31.74.01,3,Tebet,age_group,41-50,perempuan,18059,jiwa,2025,registration,total_population,3.2,28,,41 - 50
+31.74.01,3,Tebet,age_group,41-50,,35349,jiwa,2025,registration,total_population,3.2,28,,41 - 50
+31.74.01,3,Tebet,age_group,51-60,laki_laki,15131,jiwa,2025,registration,total_population,3.2,28,,51 - 60
+31.74.01,3,Tebet,age_group,51-60,perempuan,15539,jiwa,2025,registration,total_population,3.2,28,,51 - 60
+31.74.01,3,Tebet,age_group,51-60,,30670,jiwa,2025,registration,total_population,3.2,28,,51 - 60
+31.74.01,3,Tebet,age_group,61-70,laki_laki,8201,jiwa,2025,registration,total_population,3.2,28,,61 - 70
+31.74.01,3,Tebet,age_group,61-70,perempuan,9244,jiwa,2025,registration,total_population,3.2,28,,61 - 70
+31.74.01,3,Tebet,age_group,61-70,,17445,jiwa,2025,registration,total_population,3.2,28,,61 - 70
+31.74.01,3,Tebet,age_group,71-80,laki_laki,2781,jiwa,2025,registration,total_population,3.2,28,,71 - 80
+31.74.01,3,Tebet,age_group,71-80,perempuan,3762,jiwa,2025,registration,total_population,3.2,28,,71 - 80
+31.74.01,3,Tebet,age_group,71-80,,6543,jiwa,2025,registration,total_population,3.2,28,,71 - 80
+31.74.01,3,Tebet,age_group,81+,laki_laki,614,jiwa,2025,registration,total_population,3.2,28,,81 ke atas
+31.74.01,3,Tebet,age_group,81+,perempuan,1207,jiwa,2025,registration,total_population,3.2,28,,81 ke atas
+31.74.01,3,Tebet,age_group,81+,,1821,jiwa,2025,registration,total_population,3.2,28,,81 ke atas
+31.74.01,3,Tebet,sex,laki_laki,,112285,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+31.74.01,3,Tebet,sex,perempuan,,113449,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+31.74.01,3,Tebet,total,total,,225734,jiwa,2025,registration,total_population,3.2,28,,

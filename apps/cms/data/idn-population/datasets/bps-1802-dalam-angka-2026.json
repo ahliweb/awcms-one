@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-1802-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "18.06",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Tanggamus Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tanggamus",
+  "publisherDomain": "1802",
+  "publisherWebsite": "https://tanggamuskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tanggamus (https://tanggamuskab.bps.go.id), publikasi \"Kabupaten Tanggamus Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1802",
+  "publicationNumber": "18020.26004",
+  "issn": "2085-9287",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://tanggamuskab.bps.go.id/id/publication/2026/02/27/257d32a9a59a5c42a1afc995/kabupaten-tanggamus-dalam-angka-2026.html",
+  "sourceFileSha256": "222dbc3b255faf26a0d0df2084cc684269ebfe505cb2632f27997bf92cbf2ac5",
+  "sourceFileBytes": 15082274,
+  "sourcePages": [53, 56, 138],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari dari Badan Pusat Statistik Kabupaten Tanggamus.",
+  "csvPath": "datasets/bps-1802-dalam-angka-2026.csv",
+  "csvSha256": "18a33a6033f2c2c799b886a0a855292457cde489ab023d294835dc56e41d6b45",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Tanggamus, 2025",
+      "printedPages": [53],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Tanggamus (jiwa), 2025",
+      "printedPages": [56],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Tanggamus, 2025",
+      "printedPages": [138],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1106-kecamatan-110418-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.04.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Atu Lintang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tengah",
+  "publisherDomain": "1106",
+  "publisherWebsite": "https://acehtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tengah (https://acehtengahkab.bps.go.id), publikasi \"Kecamatan Atu Lintang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11060.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtengahkab.bps.go.id/id/publication/2026/09/28/73bc8fa9f287364466619704/kecamatan-atu-lintang-dalam-angka-2026.html",
+  "sourceFileSha256": "07e38ca2d2bcb1cdff64f3330e06316b4fd00f7311464924d77ee65230862c9b",
+  "sourceFileBytes": 5164513,
+  "sourcePages": [19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kabupaten Aceh Tengah",
+  "csvPath": "datasets/bps-1106-kecamatan-110418-dalam-angka-2026.csv",
+  "csvSha256": "d783338f2df57f06693e292c830469d2db2856f44aedb55f1cfbdaf4c0c602b0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Atu Lintang, 2026",
+      "printedPages": [19, 20],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

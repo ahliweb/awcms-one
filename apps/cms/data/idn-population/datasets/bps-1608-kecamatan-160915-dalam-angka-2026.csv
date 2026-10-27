@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.15.2005,4,Pecah Pinggan,sex,laki_laki,,479,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.15.2005,4,Pecah Pinggan,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.15.2005,4,Pecah Pinggan,total,total,,948,jiwa,2025,registration,total_population,3.1,27,,
+16.09.15.2004,4,Ujan Mas,sex,laki_laki,,1165,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.15.2004,4,Ujan Mas,sex,perempuan,,1037,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.15.2004,4,Ujan Mas,total,total,,2202,jiwa,2025,registration,total_population,3.1,27,,
+16.09.15.2001,4,Pulau Kemuning,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.15.2001,4,Pulau Kemuning,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.15.2001,4,Pulau Kemuning,total,total,,648,jiwa,2025,registration,total_population,3.1,27,,
+16.09.15.2003,4,Tanah PIlih,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.15.2003,4,Tanah PIlih,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.15.2003,4,Tanah PIlih,total,total,,795,jiwa,2025,registration,total_population,3.1,27,,
+16.09.15.2002,4,Guntung Jaya,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.15.2002,4,Guntung Jaya,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.15.2002,4,Guntung Jaya,total,total,,742,jiwa,2025,registration,total_population,3.1,27,,
+16.09.15.2007,4,Simpang Luas,sex,laki_laki,,1640,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.15.2007,4,Simpang Luas,sex,perempuan,,1541,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.15.2007,4,Simpang Luas,total,total,,3181,jiwa,2025,registration,total_population,3.1,27,,
+16.09.15,3,Sungai Are,sex,laki_laki,,6145,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.15,3,Sungai Are,sex,perempuan,,5612,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.15,3,Sungai Are,total,total,,11757,jiwa,2025,registration,total_population,3.1,27,,
+16.09.15,3,Sungai Are,age_group,0-4,laki_laki,379,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.15,3,Sungai Are,age_group,0-4,perempuan,377,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.15,3,Sungai Are,age_group,0-4,,756,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.15,3,Sungai Are,age_group,5-9,laki_laki,542,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.15,3,Sungai Are,age_group,5-9,perempuan,506,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.15,3,Sungai Are,age_group,5-9,,1048,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.15,3,Sungai Are,age_group,10-14,laki_laki,477,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.15,3,Sungai Are,age_group,10-14,perempuan,464,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.15,3,Sungai Are,age_group,10-14,,941,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.15,3,Sungai Are,age_group,15-19,laki_laki,493,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.15,3,Sungai Are,age_group,15-19,perempuan,462,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.15,3,Sungai Are,age_group,15-19,,955,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.15,3,Sungai Are,age_group,20-24,laki_laki,651,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.15,3,Sungai Are,age_group,20-24,perempuan,547,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.15,3,Sungai Are,age_group,20-24,,1198,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.15,3,Sungai Are,age_group,25-29,laki_laki,529,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.15,3,Sungai Are,age_group,25-29,perempuan,517,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.15,3,Sungai Are,age_group,25-29,,1046,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.15,3,Sungai Are,age_group,30-34,laki_laki,448,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.15,3,Sungai Are,age_group,30-34,perempuan,398,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.15,3,Sungai Are,age_group,30-34,,846,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.15,3,Sungai Are,age_group,35-39,laki_laki,442,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.15,3,Sungai Are,age_group,35-39,perempuan,460,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.15,3,Sungai Are,age_group,35-39,,902,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.15,3,Sungai Are,age_group,40-44,laki_laki,477,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.15,3,Sungai Are,age_group,40-44,perempuan,393,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.15,3,Sungai Are,age_group,40-44,,870,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.15,3,Sungai Are,age_group,45-49,laki_laki,429,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.15,3,Sungai Are,age_group,45-49,perempuan,421,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.15,3,Sungai Are,age_group,45-49,,850,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.15,3,Sungai Are,age_group,50-54,laki_laki,360,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.15,3,Sungai Are,age_group,50-54,perempuan,322,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.15,3,Sungai Are,age_group,50-54,,682,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.15,3,Sungai Are,age_group,55-59,laki_laki,312,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.15,3,Sungai Are,age_group,55-59,perempuan,241,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.15,3,Sungai Are,age_group,55-59,,553,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.15,3,Sungai Are,age_group,60-64,laki_laki,225,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.15,3,Sungai Are,age_group,60-64,perempuan,194,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.15,3,Sungai Are,age_group,60-64,,419,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.15,3,Sungai Are,age_group,65-69,laki_laki,178,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.15,3,Sungai Are,age_group,65-69,perempuan,154,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.15,3,Sungai Are,age_group,65-69,,332,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.15,3,Sungai Are,age_group,70-74,laki_laki,83,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.15,3,Sungai Are,age_group,70-74,perempuan,65,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.15,3,Sungai Are,age_group,70-74,,148,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.15,3,Sungai Are,age_group,75+,laki_laki,120,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.15,3,Sungai Are,age_group,75+,perempuan,91,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.15,3,Sungai Are,age_group,75+,,211,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.15,3,Sungai Are,sex,laki_laki,,6145,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.15,3,Sungai Are,sex,perempuan,,5612,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.15,3,Sungai Are,total,total,,11757,jiwa,2025,registration,total_population,3.2,29,,

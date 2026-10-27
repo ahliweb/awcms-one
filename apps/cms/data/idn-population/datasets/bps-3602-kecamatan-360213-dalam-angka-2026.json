@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360213-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Maja Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Maja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36020.26032",
+  "issn": "3031-7991",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/2dd731645cbed28f9e3a90be/kecamatan-maja-dalam-angka-2026.html",
+  "sourceFileSha256": "3d8b1288c3ee7e83f8d3b9a75427b6633c7729000322dce829b4d02ed72fbee3",
+  "sourceFileBytes": 27492480,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360213-dalam-angka-2026.csv",
+  "csvSha256": "0a5807d3c6ae595a782d752a961c79107f721e90eec1b6a9ed61037d3a1c9d90",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Maja, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Maja, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Maja Maja District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Maja Maja District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Maja Maja District\": unmatched "
+  ]
+}

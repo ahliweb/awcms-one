@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.10.11.2002,4,Tumbang Samui,sex,laki_laki,,339,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.11.2002,4,Tumbang Samui,sex,perempuan,,291,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.11.2002,4,Tumbang Samui,total,total,,630,jiwa,2025,registration,total_population,3.1,30,,
+62.10.11.2003,4,Tumbang Oroi,sex,laki_laki,,318,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.11.2003,4,Tumbang Oroi,sex,perempuan,,259,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.11.2003,4,Tumbang Oroi,total,total,,577,jiwa,2025,registration,total_population,3.1,30,,
+62.10.11.2004,4,Luwuk Tukau,sex,laki_laki,,541,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.11.2004,4,Luwuk Tukau,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.11.2004,4,Luwuk Tukau,total,total,,1044,jiwa,2025,registration,total_population,3.1,30,,
+62.10.11.2007,4,Tumbang Mantuhe,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.11.2007,4,Tumbang Mantuhe,sex,perempuan,,283,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.11.2007,4,Tumbang Mantuhe,total,total,,603,jiwa,2025,registration,total_population,3.1,30,,
+62.10.11.2006,4,Putat Durei,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.11.2006,4,Putat Durei,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.11.2006,4,Putat Durei,total,total,,450,jiwa,2025,registration,total_population,3.1,30,,
+62.10.11.1005,4,Tehang,sex,laki_laki,,1382,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.11.1005,4,Tehang,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.11.1005,4,Tehang,total,total,,2616,jiwa,2025,registration,total_population,3.1,30,,
+62.10.11,3,Manuhing Raya,sex,laki_laki,,3132,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.11,3,Manuhing Raya,sex,perempuan,,2788,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.11,3,Manuhing Raya,total,total,,5920,jiwa,2025,registration,total_population,3.1,30,,
+62.10.11,3,Manuhing Raya,age_group,0-4,laki_laki,214,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+62.10.11,3,Manuhing Raya,age_group,0-4,perempuan,190,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+62.10.11,3,Manuhing Raya,age_group,0-4,,404,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+62.10.11,3,Manuhing Raya,age_group,5-9,laki_laki,299,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+62.10.11,3,Manuhing Raya,age_group,5-9,perempuan,304,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+62.10.11,3,Manuhing Raya,age_group,5-9,,603,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+62.10.11,3,Manuhing Raya,age_group,10-14,laki_laki,327,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+62.10.11,3,Manuhing Raya,age_group,10-14,perempuan,284,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+62.10.11,3,Manuhing Raya,age_group,10-14,,611,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+62.10.11,3,Manuhing Raya,age_group,15-19,laki_laki,294,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+62.10.11,3,Manuhing Raya,age_group,15-19,perempuan,320,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+62.10.11,3,Manuhing Raya,age_group,15-19,,614,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+62.10.11,3,Manuhing Raya,age_group,20-24,laki_laki,319,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+62.10.11,3,Manuhing Raya,age_group,20-24,perempuan,251,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+62.10.11,3,Manuhing Raya,age_group,20-24,,570,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+62.10.11,3,Manuhing Raya,age_group,25-29,laki_laki,239,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+62.10.11,3,Manuhing Raya,age_group,25-29,perempuan,210,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+62.10.11,3,Manuhing Raya,age_group,25-29,,449,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+62.10.11,3,Manuhing Raya,age_group,30-34,laki_laki,274,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+62.10.11,3,Manuhing Raya,age_group,30-34,perempuan,191,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+62.10.11,3,Manuhing Raya,age_group,30-34,,465,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+62.10.11,3,Manuhing Raya,age_group,35-39,laki_laki,221,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+62.10.11,3,Manuhing Raya,age_group,35-39,perempuan,213,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+62.10.11,3,Manuhing Raya,age_group,35-39,,434,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+62.10.11,3,Manuhing Raya,age_group,40-44,laki_laki,248,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+62.10.11,3,Manuhing Raya,age_group,40-44,perempuan,170,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+62.10.11,3,Manuhing Raya,age_group,40-44,,418,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+62.10.11,3,Manuhing Raya,age_group,45-49,laki_laki,181,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+62.10.11,3,Manuhing Raya,age_group,45-49,perempuan,144,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+62.10.11,3,Manuhing Raya,age_group,45-49,,325,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+62.10.11,3,Manuhing Raya,age_group,50-54,laki_laki,149,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+62.10.11,3,Manuhing Raya,age_group,50-54,perempuan,144,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+62.10.11,3,Manuhing Raya,age_group,50-54,,293,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+62.10.11,3,Manuhing Raya,age_group,55-59,laki_laki,142,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+62.10.11,3,Manuhing Raya,age_group,55-59,perempuan,114,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+62.10.11,3,Manuhing Raya,age_group,55-59,,256,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+62.10.11,3,Manuhing Raya,age_group,60-64,laki_laki,76,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+62.10.11,3,Manuhing Raya,age_group,60-64,perempuan,86,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+62.10.11,3,Manuhing Raya,age_group,60-64,,162,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+62.10.11,3,Manuhing Raya,age_group,65-69,laki_laki,55,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+62.10.11,3,Manuhing Raya,age_group,65-69,perempuan,58,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+62.10.11,3,Manuhing Raya,age_group,65-69,,113,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+62.10.11,3,Manuhing Raya,age_group,70-74,laki_laki,40,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+62.10.11,3,Manuhing Raya,age_group,70-74,perempuan,32,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+62.10.11,3,Manuhing Raya,age_group,70-74,,72,jiwa,2025,registration,total_population,3.2,32,,70 - 74

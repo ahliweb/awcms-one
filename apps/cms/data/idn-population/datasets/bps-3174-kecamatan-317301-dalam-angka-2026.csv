@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.01.1003,4,Rawa Buaya,sex,laki_laki,,41324,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+31.73.01.1003,4,Rawa Buaya,sex,perempuan,,40243,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+31.73.01.1003,4,Rawa Buaya,total,total,,81567,jiwa,2025,registration,total_population,3.1,33,,
+31.73.01.1004,4,Kedaung Kali Angke,sex,laki_laki,,20787,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+31.73.01.1004,4,Kedaung Kali Angke,sex,perempuan,,20134,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+31.73.01.1004,4,Kedaung Kali Angke,total,total,,40921,jiwa,2025,registration,total_population,3.1,33,,
+31.73.01.1005,4,Kapuk,sex,laki_laki,,87097,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+31.73.01.1005,4,Kapuk,sex,perempuan,,84084,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+31.73.01.1005,4,Kapuk,total,total,,171181,jiwa,2025,registration,total_population,3.1,33,,
+31.73.01.1001,4,Cengkareng Barat,sex,laki_laki,,41616,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+31.73.01.1001,4,Cengkareng Barat,sex,perempuan,,41182,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+31.73.01.1001,4,Cengkareng Barat,total,total,,82798,jiwa,2025,registration,total_population,3.1,33,,
+31.73.01,3,Cengkareng,age_group,0-4,laki_laki,19425,jiwa,2025,registration,total_population,3.2,35,,00-04
+31.73.01,3,Cengkareng,age_group,0-4,perempuan,17873,jiwa,2025,registration,total_population,3.2,35,,00-04
+31.73.01,3,Cengkareng,age_group,0-4,,37298,jiwa,2025,registration,total_population,3.2,35,,00-04
+31.73.01,3,Cengkareng,age_group,5-9,laki_laki,25507,jiwa,2025,registration,total_population,3.2,35,,05-09
+31.73.01,3,Cengkareng,age_group,5-9,perempuan,23612,jiwa,2025,registration,total_population,3.2,35,,05-09
+31.73.01,3,Cengkareng,age_group,5-9,,49119,jiwa,2025,registration,total_population,3.2,35,,05-09
+31.73.01,3,Cengkareng,age_group,10-14,laki_laki,25846,jiwa,2025,registration,total_population,3.2,35,,10-14
+31.73.01,3,Cengkareng,age_group,10-14,perempuan,24514,jiwa,2025,registration,total_population,3.2,35,,10-14
+31.73.01,3,Cengkareng,age_group,10-14,,50360,jiwa,2025,registration,total_population,3.2,35,,10-14
+31.73.01,3,Cengkareng,age_group,15-19,laki_laki,23251,jiwa,2025,registration,total_population,3.2,35,,15-19
+31.73.01,3,Cengkareng,age_group,15-19,perempuan,22178,jiwa,2025,registration,total_population,3.2,35,,15-19
+31.73.01,3,Cengkareng,age_group,15-19,,45429,jiwa,2025,registration,total_population,3.2,35,,15-19
+31.73.01,3,Cengkareng,age_group,20-24,laki_laki,22944,jiwa,2025,registration,total_population,3.2,35,,20-24
+31.73.01,3,Cengkareng,age_group,20-24,perempuan,21418,jiwa,2025,registration,total_population,3.2,35,,20-24
+31.73.01,3,Cengkareng,age_group,20-24,,44362,jiwa,2025,registration,total_population,3.2,35,,20-24
+31.73.01,3,Cengkareng,age_group,25-29,laki_laki,21862,jiwa,2025,registration,total_population,3.2,35,,25-29
+31.73.01,3,Cengkareng,age_group,25-29,perempuan,21794,jiwa,2025,registration,total_population,3.2,35,,25-29
+31.73.01,3,Cengkareng,age_group,25-29,,43656,jiwa,2025,registration,total_population,3.2,35,,25-29
+31.73.01,3,Cengkareng,age_group,30-34,laki_laki,22609,jiwa,2025,registration,total_population,3.2,35,,30-34
+31.73.01,3,Cengkareng,age_group,30-34,perempuan,22751,jiwa,2025,registration,total_population,3.2,35,,30-34
+31.73.01,3,Cengkareng,age_group,30-34,,45360,jiwa,2025,registration,total_population,3.2,35,,30-34
+31.73.01,3,Cengkareng,age_group,35-39,laki_laki,23230,jiwa,2025,registration,total_population,3.2,35,,35-39
+31.73.01,3,Cengkareng,age_group,35-39,perempuan,22888,jiwa,2025,registration,total_population,3.2,35,,35-39
+31.73.01,3,Cengkareng,age_group,35-39,,46118,jiwa,2025,registration,total_population,3.2,35,,35-39
+31.73.01,3,Cengkareng,age_group,40-44,laki_laki,25961,jiwa,2025,registration,total_population,3.2,35,,40-44
+31.73.01,3,Cengkareng,age_group,40-44,perempuan,25374,jiwa,2025,registration,total_population,3.2,35,,40-44
+31.73.01,3,Cengkareng,age_group,40-44,,51335,jiwa,2025,registration,total_population,3.2,35,,40-44
+31.73.01,3,Cengkareng,age_group,45-49,laki_laki,22993,jiwa,2025,registration,total_population,3.2,35,,45-49
+31.73.01,3,Cengkareng,age_group,45-49,perempuan,23043,jiwa,2025,registration,total_population,3.2,35,,45-49
+31.73.01,3,Cengkareng,age_group,45-49,,46036,jiwa,2025,registration,total_population,3.2,35,,45-49
+31.73.01,3,Cengkareng,age_group,50-54,laki_laki,19052,jiwa,2025,registration,total_population,3.2,35,,50-54
+31.73.01,3,Cengkareng,age_group,50-54,perempuan,18266,jiwa,2025,registration,total_population,3.2,35,,50-54
+31.73.01,3,Cengkareng,age_group,50-54,,37318,jiwa,2025,registration,total_population,3.2,35,,50-54
+31.73.01,3,Cengkareng,age_group,55-59,laki_laki,14685,jiwa,2025,registration,total_population,3.2,35,,55-59
+31.73.01,3,Cengkareng,age_group,55-59,perempuan,14407,jiwa,2025,registration,total_population,3.2,35,,55-59
+31.73.01,3,Cengkareng,age_group,55-59,,29092,jiwa,2025,registration,total_population,3.2,35,,55-59
+31.73.01,3,Cengkareng,age_group,60-64,laki_laki,10473,jiwa,2025,registration,total_population,3.2,35,,60-64
+31.73.01,3,Cengkareng,age_group,60-64,perempuan,10834,jiwa,2025,registration,total_population,3.2,35,,60-64
+31.73.01,3,Cengkareng,age_group,60-64,,21307,jiwa,2025,registration,total_population,3.2,35,,60-64
+31.73.01,3,Cengkareng,age_group,65-69,laki_laki,6824,jiwa,2025,registration,total_population,3.2,35,,65-69
+31.73.01,3,Cengkareng,age_group,65-69,perempuan,7395,jiwa,2025,registration,total_population,3.2,35,,65-69
+31.73.01,3,Cengkareng,age_group,65-69,,14219,jiwa,2025,registration,total_population,3.2,35,,65-69
+31.73.01,3,Cengkareng,age_group,70-75,laki_laki,3784,jiwa,2025,registration,total_population,3.2,35,,70-75
+31.73.01,3,Cengkareng,age_group,70-75,perempuan,4111,jiwa,2025,registration,total_population,3.2,35,,70-75
+31.73.01,3,Cengkareng,age_group,70-75,,7895,jiwa,2025,registration,total_population,3.2,35,,70-75
+31.73.01,3,Cengkareng,age_group,75+,laki_laki,2784,jiwa,2025,registration,total_population,3.2,35,,75+
+31.73.01,3,Cengkareng,age_group,75+,perempuan,3713,jiwa,2025,registration,total_population,3.2,35,,75+
+31.73.01,3,Cengkareng,age_group,75+,,6497,jiwa,2025,registration,total_population,3.2,35,,75+
+31.73.01,3,Cengkareng,sex,laki_laki,,291230,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+31.73.01,3,Cengkareng,sex,perempuan,,284171,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+31.73.01,3,Cengkareng,total,total,,575401,jiwa,2025,registration,total_population,3.2,35,,

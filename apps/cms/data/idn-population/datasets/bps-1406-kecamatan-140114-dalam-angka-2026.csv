@@ -1,0 +1,17 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.14.2003,4,Alam Panjang,sex,perempuan,,1856,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14.2003,4,Alam Panjang,total,total,,3745,jiwa,2025,registration,total_population,3.1,11,,
+14.01.14.2001,4,Pulau Payung,sex,perempuan,,1998,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14.2001,4,Pulau Payung,total,total,,4030,jiwa,2025,registration,total_population,3.1,11,,
+14.01.14.2002,4,Teratak,sex,perempuan,,1668,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14.2002,4,Teratak,total,total,,3363,jiwa,2025,registration,total_population,3.1,11,,
+14.01.14.2004,4,Bukit Kratai,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14.2004,4,Bukit Kratai,total,total,,2120,jiwa,2025,registration,total_population,3.1,11,,
+14.01.14.2005,4,Batang Batindih,sex,perempuan,,1466,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14.2005,4,Batang Batindih,total,total,,2958,jiwa,2025,registration,total_population,3.1,11,,
+14.01.14.2006,4,Tambusai,sex,perempuan,,1163,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14.2006,4,Tambusai,total,total,,2423,jiwa,2025,registration,total_population,3.1,11,,
+14.01.14.2007,4,Simpang Petai,sex,perempuan,,903,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14.2007,4,Simpang Petai,total,total,,1908,jiwa,2025,registration,total_population,3.1,11,,
+14.01.14,3,Rumbio Jaya,sex,perempuan,,10095,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.14,3,Rumbio Jaya,total,total,,20547,jiwa,2025,registration,total_population,3.1,11,,

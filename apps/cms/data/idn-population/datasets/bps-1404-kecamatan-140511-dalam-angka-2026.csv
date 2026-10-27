@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.05.11.2003,4,Simpang Beringin,sex,laki_laki,,1447,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.11.2003,4,Simpang Beringin,sex,perempuan,,1406,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.11.2003,4,Simpang Beringin,total,total,,2853,jiwa,2025,registration,total_population,3.1,26,,
+14.05.11.2002,4,Lubuk Ogung,sex,laki_laki,,3094,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.11.2002,4,Lubuk Ogung,sex,perempuan,,2868,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.11.2002,4,Lubuk Ogung,total,total,,5962,jiwa,2025,registration,total_population,3.1,26,,
+14.05.11.2004,4,Muda Setia,sex,laki_laki,,1529,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.11.2004,4,Muda Setia,sex,perempuan,,1428,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.11.2004,4,Muda Setia,total,total,,2957,jiwa,2025,registration,total_population,3.1,26,,
+14.05.11.2005,4,Kiab Jaya,sex,laki_laki,,3610,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.11.2005,4,Kiab Jaya,sex,perempuan,,3316,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.11.2005,4,Kiab Jaya,total,total,,6926,jiwa,2025,registration,total_population,3.1,26,,
+14.05.11,3,Bandar Seikijang,sex,laki_laki,,12619,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.11,3,Bandar Seikijang,sex,perempuan,,11880,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.11,3,Bandar Seikijang,total,total,,24499,jiwa,2025,registration,total_population,3.1,26,,
+14.05.11,3,Bandar Sei Kijang,age_group,0-4,laki_laki,900,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.05.11,3,Bandar Sei Kijang,age_group,0-4,perempuan,883,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.05.11,3,Bandar Sei Kijang,age_group,0-4,,1783,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.05.11,3,Bandar Sei Kijang,age_group,5-9,laki_laki,1358,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.05.11,3,Bandar Sei Kijang,age_group,5-9,perempuan,1215,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.05.11,3,Bandar Sei Kijang,age_group,5-9,,2573,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.05.11,3,Bandar Sei Kijang,age_group,10-14,laki_laki,1406,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.05.11,3,Bandar Sei Kijang,age_group,10-14,perempuan,1346,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.05.11,3,Bandar Sei Kijang,age_group,10-14,,2752,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.05.11,3,Bandar Sei Kijang,age_group,15-19,laki_laki,1305,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.05.11,3,Bandar Sei Kijang,age_group,15-19,perempuan,1251,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.05.11,3,Bandar Sei Kijang,age_group,15-19,,2556,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.05.11,3,Bandar Sei Kijang,age_group,20-24,laki_laki,1102,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.05.11,3,Bandar Sei Kijang,age_group,20-24,perempuan,1022,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.05.11,3,Bandar Sei Kijang,age_group,20-24,,2124,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.05.11,3,Bandar Sei Kijang,age_group,25-29,laki_laki,981,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.05.11,3,Bandar Sei Kijang,age_group,25-29,perempuan,955,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.05.11,3,Bandar Sei Kijang,age_group,25-29,,1936,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.05.11,3,Bandar Sei Kijang,age_group,30-34,laki_laki,947,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.05.11,3,Bandar Sei Kijang,age_group,30-34,perempuan,930,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.05.11,3,Bandar Sei Kijang,age_group,30-34,,1877,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.05.11,3,Bandar Sei Kijang,age_group,35-39,laki_laki,984,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.05.11,3,Bandar Sei Kijang,age_group,35-39,perempuan,962,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.05.11,3,Bandar Sei Kijang,age_group,35-39,,1946,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.05.11,3,Bandar Sei Kijang,age_group,40-44,laki_laki,1054,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.05.11,3,Bandar Sei Kijang,age_group,40-44,perempuan,1019,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.05.11,3,Bandar Sei Kijang,age_group,40-44,,2073,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.05.11,3,Bandar Sei Kijang,age_group,45-49,laki_laki,924,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.05.11,3,Bandar Sei Kijang,age_group,45-49,perempuan,878,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.05.11,3,Bandar Sei Kijang,age_group,45-49,,1802,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.05.11,3,Bandar Sei Kijang,age_group,50-54,laki_laki,700,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.05.11,3,Bandar Sei Kijang,age_group,50-54,perempuan,583,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.05.11,3,Bandar Sei Kijang,age_group,50-54,,1283,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.05.11,3,Bandar Sei Kijang,age_group,55-59,laki_laki,401,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.05.11,3,Bandar Sei Kijang,age_group,55-59,perempuan,340,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.05.11,3,Bandar Sei Kijang,age_group,55-59,,741,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.05.11,3,Bandar Sei Kijang,age_group,60-64,laki_laki,241,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.05.11,3,Bandar Sei Kijang,age_group,60-64,perempuan,214,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.05.11,3,Bandar Sei Kijang,age_group,60-64,,455,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.05.11,3,Bandar Sei Kijang,age_group,65-69,laki_laki,173,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.05.11,3,Bandar Sei Kijang,age_group,65-69,perempuan,133,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.05.11,3,Bandar Sei Kijang,age_group,65-69,,306,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.05.11,3,Bandar Sei Kijang,age_group,70-74,laki_laki,72,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.05.11,3,Bandar Sei Kijang,age_group,70-74,perempuan,79,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.05.11,3,Bandar Sei Kijang,age_group,70-74,,151,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.05.11,3,Bandar Sei Kijang,age_group,75+,laki_laki,71,jiwa,2025,registration,total_population,3.2,28,,75+
+14.05.11,3,Bandar Sei Kijang,age_group,75+,perempuan,70,jiwa,2025,registration,total_population,3.2,28,,75+
+14.05.11,3,Bandar Sei Kijang,age_group,75+,,141,jiwa,2025,registration,total_population,3.2,28,,75+
+14.05.11,3,Bandar Seikijang,sex,laki_laki,,12619,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+14.05.11,3,Bandar Seikijang,sex,perempuan,,11880,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+14.05.11,3,Bandar Seikijang,total,total,,24499,jiwa,2025,registration,total_population,3.2,28,,

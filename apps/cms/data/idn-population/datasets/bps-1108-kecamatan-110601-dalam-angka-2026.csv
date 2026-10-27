@@ -1,0 +1,121 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.01.2001,4,MEUNASAH KRUENG KALA,sex,laki_laki,,148,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2001,4,MEUNASAH KRUENG KALA,sex,perempuan,,135,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2001,4,MEUNASAH KRUENG KALA,total,total,,283,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2002,4,JANTANG,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2002,4,JANTANG,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2002,4,JANTANG,total,total,,472,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2003,4,BAROH KRUENG KALA,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2003,4,BAROH KRUENG KALA,sex,perempuan,,226,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2003,4,BAROH KRUENG KALA,total,total,,458,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2004,4,TUNONG KRUENG KALA,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2004,4,TUNONG KRUENG KALA,sex,perempuan,,203,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2004,4,TUNONG KRUENG KALA,total,total,,426,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2005,4,SUNGKO MULAT,sex,laki_laki,,199,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2005,4,SUNGKO MULAT,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2005,4,SUNGKO MULAT,total,total,,396,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2006,4,BIREK,sex,laki_laki,,112,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2006,4,BIREK,sex,perempuan,,129,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2006,4,BIREK,total,total,,241,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2007,4,KAREUNG,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2007,4,KAREUNG,sex,perempuan,,99,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2007,4,KAREUNG,total,total,,214,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2008,4,PAROY,sex,laki_laki,,200,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2008,4,PAROY,sex,perempuan,,168,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2008,4,PAROY,total,total,,368,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2009,4,TEUNGOH BLANG MEE,sex,laki_laki,,101,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2009,4,TEUNGOH BLANG MEE,sex,perempuan,,97,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2009,4,TEUNGOH BLANG MEE,total,total,,198,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2010,4,LAMKUTA BLANG MEE,sex,laki_laki,,132,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2010,4,LAMKUTA BLANG MEE,sex,perempuan,,121,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2010,4,LAMKUTA BLANG MEE,total,total,,253,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2011,4,BAROH BLANG MEE,sex,laki_laki,,89,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2011,4,BAROH BLANG MEE,sex,perempuan,,85,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2011,4,BAROH BLANG MEE,total,total,,174,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2012,4,UMONG SEURIBEE,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2012,4,UMONG SEURIBEE,sex,perempuan,,381,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2012,4,UMONG SEURIBEE,total,total,,767,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2013,4,TEUNGOH GEUNTEUT,sex,laki_laki,,199,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2013,4,TEUNGOH GEUNTEUT,sex,perempuan,,194,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2013,4,TEUNGOH GEUNTEUT,total,total,,393,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2014,4,BAROH GEUNTEUT,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2014,4,BAROH GEUNTEUT,sex,perempuan,,165,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2014,4,BAROH GEUNTEUT,total,total,,367,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2015,4,LAM JUHANG,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2015,4,LAM JUHANG,sex,perempuan,,312,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2015,4,LAM JUHANG,total,total,,636,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2016,4,UTAMONG,sex,laki_laki,,105,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2016,4,UTAMONG,sex,perempuan,,107,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2016,4,UTAMONG,total,total,,212,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2017,4,GAPUY,sex,laki_laki,,112,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2017,4,GAPUY,sex,perempuan,,115,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2017,4,GAPUY,total,total,,227,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2018,4,LAMSUJEN,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2018,4,LAMSUJEN,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2018,4,LAMSUJEN,total,total,,813,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2019,4,MON MATA,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2019,4,MON MATA,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2019,4,MON MATA,total,total,,493,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2020,4,LAMGEURIHEU,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2020,4,LAMGEURIHEU,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2020,4,LAMGEURIHEU,total,total,,501,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2021,4,KEUTAPANG,sex,laki_laki,,194,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2021,4,KEUTAPANG,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2021,4,KEUTAPANG,total,total,,393,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2022,4,SANEY,sex,laki_laki,,96,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2022,4,SANEY,sex,perempuan,,98,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2022,4,SANEY,total,total,,194,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2023,4,CUNDIEN,sex,laki_laki,,190,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2023,4,CUNDIEN,sex,perempuan,,177,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2023,4,CUNDIEN,total,total,,367,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01.2024,4,GLEE BRUEK,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.06.01.2024,4,GLEE BRUEK,sex,perempuan,,267,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.06.01.2024,4,GLEE BRUEK,total,total,,558,jiwa,2025,registration,total_population,3.1,26,,
+11.06.01,3,Lhoong,age_group,0-4,laki_laki,389,jiwa,2025,registration,total_population,3.2,30,,0–4
+11.06.01,3,Lhoong,age_group,0-4,perempuan,379,jiwa,2025,registration,total_population,3.2,30,,0–4
+11.06.01,3,Lhoong,age_group,0-4,,768,jiwa,2025,registration,total_population,3.2,30,,0–4
+11.06.01,3,Lhoong,age_group,5-9,laki_laki,527,jiwa,2025,registration,total_population,3.2,30,,5–9
+11.06.01,3,Lhoong,age_group,5-9,perempuan,447,jiwa,2025,registration,total_population,3.2,30,,5–9
+11.06.01,3,Lhoong,age_group,5-9,,974,jiwa,2025,registration,total_population,3.2,30,,5–9
+11.06.01,3,Lhoong,age_group,10-14,laki_laki,529,jiwa,2025,registration,total_population,3.2,30,,10–14
+11.06.01,3,Lhoong,age_group,10-14,perempuan,530,jiwa,2025,registration,total_population,3.2,30,,10–14
+11.06.01,3,Lhoong,age_group,10-14,,1059,jiwa,2025,registration,total_population,3.2,30,,10–14
+11.06.01,3,Lhoong,age_group,15-19,laki_laki,641,jiwa,2025,registration,total_population,3.2,30,,15–19
+11.06.01,3,Lhoong,age_group,15-19,perempuan,575,jiwa,2025,registration,total_population,3.2,30,,15–19
+11.06.01,3,Lhoong,age_group,15-19,,1216,jiwa,2025,registration,total_population,3.2,30,,15–19
+11.06.01,3,Lhoong,age_group,20-24,laki_laki,354,jiwa,2025,registration,total_population,3.2,30,,20–24
+11.06.01,3,Lhoong,age_group,20-24,perempuan,325,jiwa,2025,registration,total_population,3.2,30,,20–24
+11.06.01,3,Lhoong,age_group,20-24,,679,jiwa,2025,registration,total_population,3.2,30,,20–24
+11.06.01,3,Lhoong,age_group,25-29,laki_laki,343,jiwa,2025,registration,total_population,3.2,30,,25–29
+11.06.01,3,Lhoong,age_group,25-29,perempuan,321,jiwa,2025,registration,total_population,3.2,30,,25–29
+11.06.01,3,Lhoong,age_group,25-29,,664,jiwa,2025,registration,total_population,3.2,30,,25–29
+11.06.01,3,Lhoong,age_group,30-34,laki_laki,335,jiwa,2025,registration,total_population,3.2,30,,30–34
+11.06.01,3,Lhoong,age_group,30-34,perempuan,343,jiwa,2025,registration,total_population,3.2,30,,30–34
+11.06.01,3,Lhoong,age_group,30-34,,678,jiwa,2025,registration,total_population,3.2,30,,30–34
+11.06.01,3,Lhoong,age_group,35-39,laki_laki,448,jiwa,2025,registration,total_population,3.2,30,,35–39
+11.06.01,3,Lhoong,age_group,35-39,perempuan,491,jiwa,2025,registration,total_population,3.2,30,,35–39
+11.06.01,3,Lhoong,age_group,35-39,,939,jiwa,2025,registration,total_population,3.2,30,,35–39
+11.06.01,3,Lhoong,age_group,40-44,laki_laki,408,jiwa,2025,registration,total_population,3.2,30,,40–44
+11.06.01,3,Lhoong,age_group,40-44,perempuan,460,jiwa,2025,registration,total_population,3.2,30,,40–44
+11.06.01,3,Lhoong,age_group,40-44,,868,jiwa,2025,registration,total_population,3.2,30,,40–44
+11.06.01,3,Lhoong,age_group,45-49,laki_laki,449,jiwa,2025,registration,total_population,3.2,30,,45–49
+11.06.01,3,Lhoong,age_group,45-49,perempuan,365,jiwa,2025,registration,total_population,3.2,30,,45–49
+11.06.01,3,Lhoong,age_group,45-49,,814,jiwa,2025,registration,total_population,3.2,30,,45–49
+11.06.01,3,Lhoong,age_group,50-54,laki_laki,334,jiwa,2025,registration,total_population,3.2,30,,50–54
+11.06.01,3,Lhoong,age_group,50-54,perempuan,301,jiwa,2025,registration,total_population,3.2,30,,50–54
+11.06.01,3,Lhoong,age_group,50-54,,635,jiwa,2025,registration,total_population,3.2,30,,50–54
+11.06.01,3,Lhoong,age_group,55-59,laki_laki,236,jiwa,2025,registration,total_population,3.2,30,,55–59
+11.06.01,3,Lhoong,age_group,55-59,perempuan,195,jiwa,2025,registration,total_population,3.2,30,,55–59
+11.06.01,3,Lhoong,age_group,55-59,,431,jiwa,2025,registration,total_population,3.2,30,,55–59
+11.06.01,3,Lhoong,age_group,60-64,laki_laki,187,jiwa,2025,registration,total_population,3.2,30,,60–64
+11.06.01,3,Lhoong,age_group,60-64,perempuan,172,jiwa,2025,registration,total_population,3.2,30,,60–64
+11.06.01,3,Lhoong,age_group,60-64,,359,jiwa,2025,registration,total_population,3.2,30,,60–64
+11.06.01,3,Lhoong,age_group,65-69,laki_laki,140,jiwa,2025,registration,total_population,3.2,30,,65–69
+11.06.01,3,Lhoong,age_group,65-69,perempuan,127,jiwa,2025,registration,total_population,3.2,30,,65–69
+11.06.01,3,Lhoong,age_group,65-69,,267,jiwa,2025,registration,total_population,3.2,30,,65–69
+11.06.01,3,Lhoong,age_group,70-74,laki_laki,81,jiwa,2025,registration,total_population,3.2,30,,70–74
+11.06.01,3,Lhoong,age_group,70-74,perempuan,80,jiwa,2025,registration,total_population,3.2,30,,70–74
+11.06.01,3,Lhoong,age_group,70-74,,161,jiwa,2025,registration,total_population,3.2,30,,70–74
+11.06.01,3,Lhoong,age_group,75+,laki_laki,106,jiwa,2025,registration,total_population,3.2,30,,75+
+11.06.01,3,Lhoong,age_group,75+,perempuan,137,jiwa,2025,registration,total_population,3.2,30,,75+
+11.06.01,3,Lhoong,age_group,75+,,243,jiwa,2025,registration,total_population,3.2,30,,75+

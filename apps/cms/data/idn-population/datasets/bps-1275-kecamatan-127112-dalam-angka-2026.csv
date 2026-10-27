@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71.12.1004,4,Tanah Enam Ratus,sex,laki_laki,,20361,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.12.1004,4,Tanah Enam Ratus,sex,perempuan,,19993,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.12.1002,4,Rengas Pulau,sex,laki_laki,,37492,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.12.1002,4,Rengas Pulau,sex,perempuan,,36814,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.12.1003,4,TERJUN,sex,laki_laki,,25104,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.12.1003,4,TERJUN,sex,perempuan,,24991,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.12.1005,4,Paya Pasir,sex,laki_laki,,8482,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.12.1005,4,Paya Pasir,sex,perempuan,,8047,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.12.1001,4,Labuhan Deli,sex,laki_laki,,10379,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.12.1001,4,Labuhan Deli,sex,perempuan,,9781,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.12,3,Medan Marelan,sex,laki_laki,,101818,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.12,3,Medan Marelan,sex,perempuan,,99626,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.12,3,Medan Marelan,age_group,0-4,laki_laki,6217,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.12,3,Medan Marelan,age_group,0-4,perempuan,5821,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.12,3,Medan Marelan,age_group,0-4,,12038,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.12,3,Medan Marelan,age_group,5-9,laki_laki,9503,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.12,3,Medan Marelan,age_group,5-9,perempuan,9012,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.12,3,Medan Marelan,age_group,5-9,,18515,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.12,3,Medan Marelan,age_group,10-14,laki_laki,10260,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.12,3,Medan Marelan,age_group,10-14,perempuan,9584,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.12,3,Medan Marelan,age_group,10-14,,19844,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.12,3,Medan Marelan,age_group,15-19,laki_laki,9605,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.12,3,Medan Marelan,age_group,15-19,perempuan,9176,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.12,3,Medan Marelan,age_group,15-19,,18781,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.12,3,Medan Marelan,age_group,20-24,laki_laki,9168,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.12,3,Medan Marelan,age_group,20-24,perempuan,8475,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.12,3,Medan Marelan,age_group,20-24,,17643,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.12,3,Medan Marelan,age_group,25-29,laki_laki,8360,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.12,3,Medan Marelan,age_group,25-29,perempuan,8418,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.12,3,Medan Marelan,age_group,25-29,,16778,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.12,3,Medan Marelan,age_group,30-34,laki_laki,8095,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.12,3,Medan Marelan,age_group,30-34,perempuan,7913,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.12,3,Medan Marelan,age_group,30-34,,16008,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.12,3,Medan Marelan,age_group,35-39,laki_laki,7743,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.12,3,Medan Marelan,age_group,35-39,perempuan,7493,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.12,3,Medan Marelan,age_group,35-39,,15236,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.12,3,Medan Marelan,age_group,40-44,laki_laki,7674,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.12,3,Medan Marelan,age_group,40-44,perempuan,7463,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.12,3,Medan Marelan,age_group,40-44,,15137,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.12,3,Medan Marelan,age_group,45-49,laki_laki,6436,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.12,3,Medan Marelan,age_group,45-49,perempuan,6551,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.12,3,Medan Marelan,age_group,45-49,,12987,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.12,3,Medan Marelan,age_group,50-54,laki_laki,5629,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.12,3,Medan Marelan,age_group,50-54,perempuan,5867,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.12,3,Medan Marelan,age_group,50-54,,11496,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.12,3,Medan Marelan,age_group,55-59,laki_laki,4551,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.12,3,Medan Marelan,age_group,55-59,perempuan,4643,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.12,3,Medan Marelan,age_group,55-59,,9194,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.12,3,Medan Marelan,age_group,60-64,laki_laki,3391,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.12,3,Medan Marelan,age_group,60-64,perempuan,3651,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.12,3,Medan Marelan,age_group,60-64,,7042,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.12,3,Medan Marelan,age_group,65-69,laki_laki,2548,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.12,3,Medan Marelan,age_group,65-69,perempuan,2540,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.12,3,Medan Marelan,age_group,65-69,,5088,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.12,3,Medan Marelan,age_group,70-74,laki_laki,1435,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.12,3,Medan Marelan,age_group,70-74,perempuan,1402,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.12,3,Medan Marelan,age_group,70-74,,2837,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.12,3,Medan Marelan,age_group,75+,laki_laki,1203,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.12,3,Medan Marelan,age_group,75+,perempuan,1617,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.12,3,Medan Marelan,age_group,75+,,2820,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.12,3,Medan Marelan,sex,laki_laki,,101818,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.71.12,3,Medan Marelan,sex,perempuan,,99626,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.71.12,3,Medan Marelan,total,total,,201444,jiwa,2025,registration,total_population,3.2,31,,
+12.71.12.1004,4,Tanah Enam Ratus,religion,islam,,38922,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.12.1004,4,Tanah Enam Ratus,religion,kristen,,695,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.12.1004,4,Tanah Enam Ratus,religion,katolik,,82,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.12.1004,4,Tanah Enam Ratus,religion,buddha,,566,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.12.1004,4,Tanah Enam Ratus,religion,hindu,,89,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.12.1004,4,Tanah Enam Ratus,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,38,nil,Khonghucu
+12.71.12.1004,4,Tanah Enam Ratus,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,38,nil,Kepercayaan
+12.71.12.1002,4,Rengas Pulau,religion,islam,,62043,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.12.1002,4,Rengas Pulau,religion,kristen,,4410,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.12.1002,4,Rengas Pulau,religion,katolik,,504,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.12.1002,4,Rengas Pulau,religion,buddha,,7241,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.12.1002,4,Rengas Pulau,religion,hindu,,50,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.12.1002,4,Rengas Pulau,religion,khonghucu,,56,jiwa,2025,registration,total_population,3.6,38,,Khonghucu
+12.71.12.1002,4,Rengas Pulau,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.6,38,,Kepercayaan
+12.71.12.1003,4,TERJUN,religion,islam,,45859,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.12.1003,4,TERJUN,religion,kristen,,3277,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.12.1003,4,TERJUN,religion,katolik,,388,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.12.1003,4,TERJUN,religion,buddha,,533,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.12.1003,4,TERJUN,religion,hindu,,38,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.12.1003,4,TERJUN,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,38,nil,Khonghucu
+12.71.12.1003,4,TERJUN,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,38,nil,Kepercayaan
+12.71.12.1005,4,Paya Pasir,religion,islam,,15836,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.12.1005,4,Paya Pasir,religion,kristen,,312,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.12.1005,4,Paya Pasir,religion,katolik,,15,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.12.1005,4,Paya Pasir,religion,buddha,,359,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.12.1005,4,Paya Pasir,religion,hindu,,7,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.12.1005,4,Paya Pasir,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,38,nil,Khonghucu
+12.71.12.1005,4,Paya Pasir,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,38,nil,Kepercayaan
+12.71.12.1001,4,Labuhan Deli,religion,islam,,19106,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.12.1001,4,Labuhan Deli,religion,kristen,,651,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.12.1001,4,Labuhan Deli,religion,katolik,,59,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.12.1001,4,Labuhan Deli,religion,buddha,,343,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.12.1001,4,Labuhan Deli,religion,hindu,,1,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.12.1001,4,Labuhan Deli,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,38,nil,Khonghucu
+12.71.12.1001,4,Labuhan Deli,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,38,nil,Kepercayaan
+12.71.12,3,Medan Marelan,religion,islam,,181766,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.12,3,Medan Marelan,religion,kristen,,9345,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.12,3,Medan Marelan,religion,katolik,,1048,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.12,3,Medan Marelan,religion,buddha,,9042,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.12,3,Medan Marelan,religion,hindu,,185,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.12,3,Medan Marelan,religion,khonghucu,,56,jiwa,2025,registration,total_population,3.6,38,,Khonghucu
+12.71.12,3,Medan Marelan,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.6,38,,Kepercayaan

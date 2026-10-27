@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.18.2003,4,Tanjung Baru,sex,laki_laki,,4940,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2003,4,Tanjung Baru,sex,perempuan,,4743,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2003,4,Tanjung Baru,total,total,,9683,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2004,4,Baru Ranji,sex,laki_laki,,3610,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2004,4,Baru Ranji,sex,perempuan,,3406,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2004,4,Baru Ranji,total,total,,7016,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2005,4,Karang Raja,sex,laki_laki,,1643,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2005,4,Karang Raja,sex,perempuan,,1645,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2005,4,Karang Raja,total,total,,3288,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2014,4,Mekar Jaya,sex,laki_laki,,2325,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2014,4,Mekar Jaya,sex,perempuan,,2272,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2014,4,Mekar Jaya,total,total,,4597,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2002,4,Suban,sex,laki_laki,,2736,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2002,4,Suban,sex,perempuan,,2641,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2002,4,Suban,total,total,,5377,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2001,4,Merbau Mataram,sex,laki_laki,,3806,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2001,4,Merbau Mataram,sex,perempuan,,3680,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2001,4,Merbau Mataram,total,total,,7486,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2012,4,Tri Harjo,sex,laki_laki,,2600,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2012,4,Tri Harjo,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2012,4,Tri Harjo,total,total,,5084,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2013,4,Panca Tunggal,sex,laki_laki,,2622,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2013,4,Panca Tunggal,sex,perempuan,,2533,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2013,4,Panca Tunggal,total,total,,5155,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2006,4,Talang Jawa,sex,laki_laki,,1686,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2006,4,Talang Jawa,sex,perempuan,,1637,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2006,4,Talang Jawa,total,total,,3323,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2007,4,Lebung Sari,sex,laki_laki,,781,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2007,4,Lebung Sari,sex,perempuan,,781,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2007,4,Lebung Sari,total,total,,1562,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2008,4,Puji Rahayu,sex,laki_laki,,870,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2008,4,Puji Rahayu,sex,perempuan,,849,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2008,4,Puji Rahayu,total,total,,1719,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2009,4,Batu Agung,sex,laki_laki,,926,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2009,4,Batu Agung,sex,perempuan,,890,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2009,4,Batu Agung,total,total,,1816,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2011,4,Sinar Karya,sex,laki_laki,,737,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2011,4,Sinar Karya,sex,perempuan,,754,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2011,4,Sinar Karya,total,total,,1491,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2010,4,Tanjung Harapan,sex,laki_laki,,1111,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2010,4,Tanjung Harapan,sex,perempuan,,1068,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2010,4,Tanjung Harapan,total,total,,2179,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18.2015,4,Karang Jaya,sex,laki_laki,,968,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18.2015,4,Karang Jaya,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18.2015,4,Karang Jaya,total,total,,1885,jiwa,2025,registration,total_population,3.1,24,,
+18.01.18,3,Merbau Mataram,sex,laki_laki,,31361,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.18,3,Merbau Mataram,sex,perempuan,,30300,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.18,3,Merbau Mataram,total,total,,61661,jiwa,2025,registration,total_population,3.1,24,,

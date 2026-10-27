@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332408-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kaliwungu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Kaliwungu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3324080",
+  "publicationNumber": "33240.26019",
+  "issn": "2614-9265",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/e7078d32281d31fac93f8724/kecamatan-kaliwungu-dalam-angka-2026.html",
+  "sourceFileSha256": "66bbe01baf8f5b39f177bb260b7deb67c9f551446d042fd1ea24612db91dced3",
+  "sourceFileBytes": 7289307,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332408-dalam-angka-2026.csv",
+  "csvSha256": "7e2548e9abdc6cdb3a62b83cb809efbdc3d80cb2591671b110a07be316275bd6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kaliwungu, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kaliwungu, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Kaliwungu Kaliwungu District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kaliwungu Kaliwungu District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Kaliwungu Kaliwungu District\": unmatched "
+  ]
+}

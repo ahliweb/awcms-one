@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1206-kecamatan-121204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.12.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Habinsaran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Toba",
+  "publisherDomain": "1206",
+  "publisherWebsite": "https://tobakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Toba (https://tobakab.bps.go.id), publikasi \"Kecamatan Habinsaran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "12060.26011",
+  "issn": "2461-0178",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tobakab.bps.go.id/id/publication/2026/09/28/72c7eafee22e5da915597582/kecamatan-habinsaran-dalam-angka-2026.html",
+  "sourceFileSha256": "2558506edfbe9ca932549454017705036c3497ce655a74f49db9ddf3bf81a0f2",
+  "sourceFileBytes": 6076044,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Toba.",
+  "csvPath": "datasets/bps-1206-kecamatan-121204-dalam-angka-2026.csv",
+  "csvSha256": "678dd9f6bdc4f1b6963adbf25931f256fc7ceafe940867f66d5a243178bfc630",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Habinsaran, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Habinsaran, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pangujungan\": unmatched ",
+    "table 3.1: row not stored: row \"Pangujungan\": unmatched ",
+    "table 3.1: 5 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 15 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.14.2004,4,Gandri,sex,laki_laki,,1271,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2004,4,Gandri,sex,perempuan,,1333,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2004,4,Gandri,total,total,,2604,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2003,4,Sumber,sex,laki_laki,,754,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2003,4,Sumber,sex,perempuan,,778,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2003,4,Sumber,total,total,,1532,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2001,4,Babadan,sex,laki_laki,,2747,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2001,4,Babadan,sex,perempuan,,2741,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2001,4,Babadan,total,total,,5488,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2002,4,Poh Konyal,sex,laki_laki,,878,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2002,4,Poh Konyal,sex,perempuan,,888,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2002,4,Poh Konyal,total,total,,1766,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2009,4,Paras,sex,laki_laki,,1219,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2009,4,Paras,sex,perempuan,,1249,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2009,4,Paras,total,total,,2468,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2005,4,Pleset,sex,laki_laki,,1560,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2005,4,Pleset,sex,perempuan,,1567,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2005,4,Pleset,total,total,,3127,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2008,4,Pangkur,sex,laki_laki,,2436,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2008,4,Pangkur,sex,perempuan,,2485,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2008,4,Pangkur,total,total,,4921,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2006,4,Waruktengah,sex,laki_laki,,1606,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2006,4,Waruktengah,sex,perempuan,,1721,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2006,4,Waruktengah,total,total,,3327,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14.2007,4,Ngompro,sex,laki_laki,,1515,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14.2007,4,Ngompro,sex,perempuan,,1506,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14.2007,4,Ngompro,total,total,,3021,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.14,3,Kecamatan Pangkur,sex,laki_laki,,13986,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.14,3,Kecamatan Pangkur,sex,perempuan,,14268,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.14,3,Kecamatan Pangkur,total,total,,28254,jiwa,2025,registration,total_population,unnumbered-p38,38,,

@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.71.01.1003,4,Tegalrejo,sex,laki_laki,,4351,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+34.71.01.1003,4,Tegalrejo,sex,perempuan,,4755,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+34.71.01.1003,4,Tegalrejo,total,total,,9106,jiwa,2025,registration,total_population,3.1,26,,
+34.71.01.1004,4,Bener,sex,laki_laki,,2513,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+34.71.01.1004,4,Bener,sex,perempuan,,2520,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+34.71.01.1004,4,Bener,total,total,,5033,jiwa,2025,registration,total_population,3.1,26,,
+34.71.01.1001,4,Kricak,sex,laki_laki,,6676,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+34.71.01.1001,4,Kricak,sex,perempuan,,6874,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+34.71.01.1001,4,Kricak,total,total,,13550,jiwa,2025,registration,total_population,3.1,26,,
+34.71.01.1002,4,Karangwaru,sex,laki_laki,,4647,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+34.71.01.1002,4,Karangwaru,sex,perempuan,,4893,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+34.71.01.1002,4,Karangwaru,total,total,,9540,jiwa,2025,registration,total_population,3.1,26,,
+34.71.01,3,Kecamatan Tegalrejo,sex,laki_laki,,18187,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+34.71.01,3,Kecamatan Tegalrejo,sex,perempuan,,19042,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+34.71.01,3,Kecamatan Tegalrejo,total,total,,37229,jiwa,2025,registration,total_population,3.1,26,,

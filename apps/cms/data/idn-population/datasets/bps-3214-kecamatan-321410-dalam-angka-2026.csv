@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.10.2004,4,Ciherang,sex,laki_laki,,2330,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2004,4,Ciherang,sex,perempuan,,2227,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2004,4,Ciherang,total,total,,4557,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2005,4,Cidahu,sex,laki_laki,,953,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2005,4,Cidahu,sex,perempuan,,943,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2005,4,Cidahu,total,total,,1896,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2001,4,Pasawahan Anyar,sex,laki_laki,,1061,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2001,4,Pasawahan Anyar,sex,perempuan,,1094,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2001,4,Pasawahan Anyar,total,total,,2155,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2006,4,Pasawahankidul,sex,laki_laki,,1937,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2006,4,Pasawahankidul,sex,perempuan,,1912,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2006,4,Pasawahankidul,total,total,,3849,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2003,4,Sawah Kulon,sex,laki_laki,,2770,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2003,4,Sawah Kulon,sex,perempuan,,2650,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2003,4,Sawah Kulon,total,total,,5420,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2007,4,Kertajaya,sex,laki_laki,,2769,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2007,4,Kertajaya,sex,perempuan,,2743,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2007,4,Kertajaya,total,total,,5512,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2008,4,Lebakanyar,sex,laki_laki,,2814,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2008,4,Lebakanyar,sex,perempuan,,2776,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2008,4,Lebakanyar,total,total,,5590,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2012,4,Cihuni,sex,laki_laki,,2085,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2012,4,Cihuni,sex,perempuan,,2030,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2012,4,Cihuni,total,total,,4115,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2011,4,Warungkadu,sex,laki_laki,,1490,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2011,4,Warungkadu,sex,perempuan,,1414,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2011,4,Warungkadu,total,total,,2904,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2009,4,Selaawi,sex,laki_laki,,2888,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2009,4,Selaawi,sex,perempuan,,2799,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2009,4,Selaawi,total,total,,5687,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2010,4,Margasari,sex,laki_laki,,2506,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2010,4,Margasari,sex,perempuan,,2392,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2010,4,Margasari,total,total,,4898,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10.2002,4,Pasawahan,sex,laki_laki,,3078,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10.2002,4,Pasawahan,sex,perempuan,,2860,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10.2002,4,Pasawahan,total,total,,5938,jiwa,2025,registration,total_population,3.1,22,,
+32.14.10,3,Kecamatan Pasawahan,sex,laki_laki,,26681,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.10,3,Kecamatan Pasawahan,sex,perempuan,,25840,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.10,3,Kecamatan Pasawahan,total,total,,52521,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.02.2001,4,Clekatakan,sex,perempuan,,3527,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2001,4,Clekatakan,total,total,,7112,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2002,4,Batursari,sex,perempuan,,1857,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2002,4,Batursari,total,total,,3676,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2003,4,Penakir,sex,perempuan,,3160,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2003,4,Penakir,total,total,,6348,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2004,4,Gunungsari,sex,perempuan,,2281,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2004,4,Gunungsari,total,total,,4607,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2005,4,Jurangmangu,sex,perempuan,,772,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2005,4,Jurangmangu,total,total,,1528,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2006,4,Gambuhan,sex,perempuan,,4728,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2006,4,Gambuhan,total,total,,9581,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2007,4,Karangsari,sex,perempuan,,3552,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2007,4,Karangsari,total,total,,7140,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2008,4,Nyalembeng,sex,perempuan,,1857,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2008,4,Nyalembeng,total,total,,3798,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2009,4,Pulosari,sex,perempuan,,4884,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2009,4,Pulosari,total,total,,10019,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2010,4,Pagenteran,sex,perempuan,,1146,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2010,4,Pagenteran,total,total,,2330,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2011,4,Siremeng,sex,perempuan,,3142,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2011,4,Siremeng,total,total,,6412,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02.2012,4,Cikendung,sex,perempuan,,3277,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02.2012,4,Cikendung,total,total,,6738,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02,3,Kecamatan Pulosari,sex,perempuan,,34183,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.02,3,Kecamatan Pulosari,total,total,,69289,jiwa,2025,registration,total_population,3.1,47,,
+33.27.02,3,Pulosari,age_group,0-4,perempuan,2361,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+33.27.02,3,Pulosari,age_group,0-4,,4890,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+33.27.02,3,Pulosari,age_group,5-9,perempuan,2904,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+33.27.02,3,Pulosari,age_group,5-9,,5886,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+33.27.02,3,Pulosari,age_group,10-14,perempuan,2579,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+33.27.02,3,Pulosari,age_group,10-14,,5536,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+33.27.02,3,Pulosari,age_group,15-19,perempuan,2538,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+33.27.02,3,Pulosari,age_group,15-19,,5074,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+33.27.02,3,Pulosari,age_group,20-24,perempuan,2526,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+33.27.02,3,Pulosari,age_group,20-24,,5074,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+33.27.02,3,Pulosari,age_group,25-29,perempuan,2857,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+33.27.02,3,Pulosari,age_group,25-29,,5708,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+33.27.02,3,Pulosari,age_group,30-34,perempuan,2492,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+33.27.02,3,Pulosari,age_group,30-34,,5053,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+33.27.02,3,Pulosari,age_group,35-39,perempuan,2279,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+33.27.02,3,Pulosari,age_group,35-39,,4812,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+33.27.02,3,Pulosari,age_group,40-44,perempuan,2412,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+33.27.02,3,Pulosari,age_group,40-44,,4885,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+33.27.02,3,Pulosari,age_group,45-49,perempuan,2300,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+33.27.02,3,Pulosari,age_group,45-49,,4663,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+33.27.02,3,Pulosari,age_group,50-54,perempuan,2101,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+33.27.02,3,Pulosari,age_group,50-54,,4200,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+33.27.02,3,Pulosari,age_group,55-59,perempuan,1932,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+33.27.02,3,Pulosari,age_group,55-59,,3814,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+33.27.02,3,Pulosari,age_group,60-64,perempuan,1614,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+33.27.02,3,Pulosari,age_group,60-64,,3066,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+33.27.02,3,Pulosari,age_group,65-69,perempuan,1390,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+33.27.02,3,Pulosari,age_group,65-69,,2766,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+33.27.02,3,Pulosari,age_group,70-74,perempuan,774,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+33.27.02,3,Pulosari,age_group,70-74,,1696,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+33.27.02,3,Pulosari,age_group,75+,perempuan,1124,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.02,3,Pulosari,age_group,75+,,2166,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.02,3,Kecamatan Pulosari,sex,perempuan,,34183,jiwa,2025,registration,total_population,3.2,49,,Perempuan
+33.27.02,3,Kecamatan Pulosari,total,total,,69289,jiwa,2025,registration,total_population,3.2,49,,

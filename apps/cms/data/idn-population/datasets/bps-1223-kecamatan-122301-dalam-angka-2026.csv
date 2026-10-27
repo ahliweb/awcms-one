@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.23.01.2003,4,Kuala Beringin,sex,laki_laki,,3840,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.2003,4,Kuala Beringin,sex,perempuan,,3607,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.2003,4,Kuala Beringin,total,total,,7447,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01.2005,4,Pulo Dogom,sex,laki_laki,,3841,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.2005,4,Pulo Dogom,sex,perempuan,,3851,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.2005,4,Pulo Dogom,total,total,,7692,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01.2004,4,Parpaudangan,sex,laki_laki,,2498,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.2004,4,Parpaudangan,sex,perempuan,,2576,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.2004,4,Parpaudangan,total,total,,5074,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01.1001,4,Aek Kanopan,sex,laki_laki,,9374,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.1001,4,Aek Kanopan,sex,perempuan,,9319,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.1001,4,Aek Kanopan,total,total,,18693,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01.1002,4,Aek Kanopan Timur,sex,laki_laki,,4584,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.1002,4,Aek Kanopan Timur,sex,perempuan,,4577,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.1002,4,Aek Kanopan Timur,total,total,,9161,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01.2012,4,Sukarame,sex,laki_laki,,4805,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.2012,4,Sukarame,sex,perempuan,,4735,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.2012,4,Sukarame,total,total,,9540,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01.2013,4,Sukarame Baru,sex,laki_laki,,3235,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.2013,4,Sukarame Baru,sex,perempuan,,3100,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.2013,4,Sukarame Baru,total,total,,6335,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01.2011,4,Sonomartani,sex,laki_laki,,3105,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01.2011,4,Sonomartani,sex,perempuan,,2956,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01.2011,4,Sonomartani,total,total,,6061,jiwa,2025,registration,total_population,3.1,32,,
+12.23.01,3,Kualuh Hulu,sex,laki_laki,,40381,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.01,3,Kualuh Hulu,sex,perempuan,,39667,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.01,3,Kualuh Hulu,total,total,,80048,jiwa,2025,registration,total_population,3.1,32,,

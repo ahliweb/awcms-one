@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3510-kecamatan-351012-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.10.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Singojuruh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuwangi",
+  "publisherDomain": "3510",
+  "publisherWebsite": "https://banyuwangikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuwangi (https://banyuwangikab.bps.go.id), publikasi \"Kecamatan Singojuruh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3510140",
+  "publicationNumber": "35100.26032",
+  "issn": "2407-0351",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuwangikab.bps.go.id/id/publication/2026/09/28/a23c405409c63bef2202153e/kecamatan-singojuruh-dalam-angka-2026.html",
+  "sourceFileSha256": "0abae904cef3048bf1845ea4bc9cf877c74e1434682ab2ba16e0a3ae1023e659",
+  "sourceFileBytes": 17070391,
+  "sourcePages": [7, 9],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3510-kecamatan-351012-dalam-angka-2026.csv",
+  "csvSha256": "2ca220e1ef2afc98a0cecebf35ac2ebfb19a3a23e49732434d36125a711a4703",
+  "tablesUsed": [
+    {
+      "table": "1.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan SINGOJURUH, 2025",
+      "printedPages": [9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.3: row not stored: row \"Gambor 1527\": unmatched ",
+    "table 1.3: row not stored: row \"Singojuruh 4082\": unmatched ",
+    "table 1.3: row not stored: row \"Alasmalang 2354\": unmatched ",
+    "table 1.3: row not stored: row \"Benelan Kidul 2448\": unmatched ",
+    "table 1.3: row not stored: row \"Lemahbangkulon 1868\": unmatched ",
+    "table 1.3: row not stored: row \"Singolatren 2475\": unmatched ",
+    "table 1.3: row not stored: row \"Padang 2078\": unmatched ",
+    "table 1.3: row not stored: row \"Cantuk 2525\": unmatched ",
+    "table 1.3: row not stored: row \"Gumirih 2414\": unmatched ",
+    "table 1.3: row not stored: row \"Kemiri 2618\": unmatched ",
+    "table 1.3: row not stored: row \"Sumberbaru 2370\": unmatched ",
+    "table 1.3: row not stored: row \"SINGOJURUH 26,759\": unmatched ",
+    "table 1.3: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

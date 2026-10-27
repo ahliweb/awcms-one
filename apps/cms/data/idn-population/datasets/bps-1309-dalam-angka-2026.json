@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-1309-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "13.08",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Pasaman Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pasaman",
+  "publisherDomain": "1309",
+  "publisherWebsite": "https://pasamankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pasaman (https://pasamankab.bps.go.id), publikasi \"Kabupaten Pasaman Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1309",
+  "publicationNumber": "13090.26005",
+  "issn": "0215-3750",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://pasamankab.bps.go.id/id/publication/2026/02/27/9216ec8b33fce21a95bc57ba/kabupaten-pasaman-dalam-angka-2026.html",
+  "sourceFileSha256": "4861f33d6e2bb629f42d8582675a6fb04fcd122f3242a9ce245b3af9b579d0a5",
+  "sourceFileBytes": 4995755,
+  "sourcePages": [77, 82, 363],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pasaman",
+  "csvPath": "datasets/bps-1309-dalam-angka-2026.csv",
+  "csvSha256": "1d28b349e7b6ed854d7800cb0a02619c2fa7d6fddcedf48e61cb9a0b602b3736",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p77",
+      "title": "Jumlah Penduduk , Laju Pertumbuhan Penduduk , 3.1.1 Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Pasaman, 2025",
+      "printedPages": [77],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "unnumbered-p82",
+      "title": "Jumlah Penduduk Menurut Jenis Kelamin dan Rasio Jenis 3.1.7 Kelamin Menurut Kecamatan di Kabupaten Pasaman, 2025",
+      "printedPages": [82],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Pasaman (rupiah), 2024 dan 2025",
+      "printedPages": [363],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table unnumbered-p77: row not stored: row \"Dua Koto\": unmatched ",
+    "table unnumbered-p82: row not stored: row \"Dua Koto\": unmatched ",
+    "table unnumbered-p82: row not stored: row \"Pasaman\": unmatched "
+  ]
+}

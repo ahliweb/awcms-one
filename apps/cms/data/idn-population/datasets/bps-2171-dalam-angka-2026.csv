@@ -1,0 +1,81 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.01,3,Belakang Padang,total,total,,23.42,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.01,3,Belakang Padang,total,total,,23.64,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.05,3,Bulang,total,total,,10.85,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.05,3,Bulang,total,total,,10.87,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.08,3,Galang,total,total,,17.28,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.08,3,Galang,total,total,,17.33,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.11,3,Sagulung,total,total,,230.96,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.11,3,Sagulung,total,total,,236.41,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.04,3,Nongsa,total,total,,95.44,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.04,3,Nongsa,total,total,,99.18,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.10,3,Batam Kota,total,total,,208.08,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.10,3,Batam Kota,total,total,,210.27,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.03,3,Sekupang,total,total,,179.89,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.03,3,Sekupang,total,total,,186.11,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.12,3,Batu Aji,total,total,,139.96,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.12,3,Batu Aji,total,total,,139.91,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.06,3,Lubuk Baja,total,total,,83.34,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.06,3,Lubuk Baja,total,total,,82.95,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.02,3,Batu Ampar,total,total,,59.21,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.02,3,Batu Ampar,total,total,,58.84,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71.09,3,Bengkong,total,total,,128.58,ribu_jiwa,2024,projection,total_population,3.1.1,68,,
+21.71.09,3,Bengkong,total,total,,130.71,ribu_jiwa,2025,projection,total_population,3.1.1,68,,
+21.71,2,Kota Batam,age_group,0-4,laki_laki,60.50,ribu_jiwa,2025,projection,total_population,3.1.2,71,,0–4
+21.71,2,Kota Batam,age_group,0-4,perempuan,57.97,ribu_jiwa,2025,projection,total_population,3.1.2,71,,0–4
+21.71,2,Kota Batam,age_group,0-4,,118.47,ribu_jiwa,2025,projection,total_population,3.1.2,71,,0–4
+21.71,2,Kota Batam,age_group,5-9,laki_laki,57.53,ribu_jiwa,2025,projection,total_population,3.1.2,71,,5–9
+21.71,2,Kota Batam,age_group,5-9,perempuan,54.03,ribu_jiwa,2025,projection,total_population,3.1.2,71,,5–9
+21.71,2,Kota Batam,age_group,5-9,,111.56,ribu_jiwa,2025,projection,total_population,3.1.2,71,,5–9
+21.71,2,Kota Batam,age_group,10-14,laki_laki,56.16,ribu_jiwa,2025,projection,total_population,3.1.2,71,,10–14
+21.71,2,Kota Batam,age_group,10-14,perempuan,53.23,ribu_jiwa,2025,projection,total_population,3.1.2,71,,10–14
+21.71,2,Kota Batam,age_group,10-14,,109.39,ribu_jiwa,2025,projection,total_population,3.1.2,71,,10–14
+21.71,2,Kota Batam,age_group,15-19,laki_laki,51.98,ribu_jiwa,2025,projection,total_population,3.1.2,71,,15–19
+21.71,2,Kota Batam,age_group,15-19,perempuan,49.24,ribu_jiwa,2025,projection,total_population,3.1.2,71,,15–19
+21.71,2,Kota Batam,age_group,15-19,,101.23,ribu_jiwa,2025,projection,total_population,3.1.2,71,,15–19
+21.71,2,Kota Batam,age_group,20-24,laki_laki,51.82,ribu_jiwa,2025,projection,total_population,3.1.2,71,,20–24
+21.71,2,Kota Batam,age_group,20-24,perempuan,49.44,ribu_jiwa,2025,projection,total_population,3.1.2,71,,20–24
+21.71,2,Kota Batam,age_group,20-24,,101.26,ribu_jiwa,2025,projection,total_population,3.1.2,71,,20–24
+21.71,2,Kota Batam,age_group,25-29,laki_laki,56.99,ribu_jiwa,2025,projection,total_population,3.1.2,71,,25–29
+21.71,2,Kota Batam,age_group,25-29,perempuan,56.88,ribu_jiwa,2025,projection,total_population,3.1.2,71,,25–29
+21.71,2,Kota Batam,age_group,25-29,,113.87,ribu_jiwa,2025,projection,total_population,3.1.2,71,,25–29
+21.71,2,Kota Batam,age_group,30-34,laki_laki,56.10,ribu_jiwa,2025,projection,total_population,3.1.2,71,,30–34
+21.71,2,Kota Batam,age_group,30-34,perempuan,56.82,ribu_jiwa,2025,projection,total_population,3.1.2,71,,30–34
+21.71,2,Kota Batam,age_group,30-34,,112.92,ribu_jiwa,2025,projection,total_population,3.1.2,71,,30–34
+21.71,2,Kota Batam,age_group,35-39,laki_laki,56.45,ribu_jiwa,2025,projection,total_population,3.1.2,71,,35–39
+21.71,2,Kota Batam,age_group,35-39,perempuan,57.27,ribu_jiwa,2025,projection,total_population,3.1.2,71,,35–39
+21.71,2,Kota Batam,age_group,35-39,,113.72,ribu_jiwa,2025,projection,total_population,3.1.2,71,,35–39
+21.71,2,Kota Batam,age_group,40-44,laki_laki,51.21,ribu_jiwa,2025,projection,total_population,3.1.2,71,,40–44
+21.71,2,Kota Batam,age_group,40-44,perempuan,52.22,ribu_jiwa,2025,projection,total_population,3.1.2,71,,40–44
+21.71,2,Kota Batam,age_group,40-44,,103.43,ribu_jiwa,2025,projection,total_population,3.1.2,71,,40–44
+21.71,2,Kota Batam,age_group,45-49,laki_laki,47.61,ribu_jiwa,2025,projection,total_population,3.1.2,71,,45–49
+21.71,2,Kota Batam,age_group,45-49,perempuan,48.71,ribu_jiwa,2025,projection,total_population,3.1.2,71,,45–49
+21.71,2,Kota Batam,age_group,45-49,,96.32,ribu_jiwa,2025,projection,total_population,3.1.2,71,,45–49
+21.71,2,Kota Batam,age_group,50-54,laki_laki,39.88,ribu_jiwa,2025,projection,total_population,3.1.2,71,,50–54
+21.71,2,Kota Batam,age_group,50-54,perempuan,40.05,ribu_jiwa,2025,projection,total_population,3.1.2,71,,50–54
+21.71,2,Kota Batam,age_group,50-54,,79.93,ribu_jiwa,2025,projection,total_population,3.1.2,71,,50–54
+21.71,2,Kota Batam,age_group,55-59,laki_laki,29.25,ribu_jiwa,2025,projection,total_population,3.1.2,71,,55–59
+21.71,2,Kota Batam,age_group,55-59,perempuan,27.49,ribu_jiwa,2025,projection,total_population,3.1.2,71,,55–59
+21.71,2,Kota Batam,age_group,55-59,,56.73,ribu_jiwa,2025,projection,total_population,3.1.2,71,,55–59
+21.71,2,Kota Batam,age_group,60-64,laki_laki,18.99,ribu_jiwa,2025,projection,total_population,3.1.2,71,,60–64
+21.71,2,Kota Batam,age_group,60-64,perempuan,17.53,ribu_jiwa,2025,projection,total_population,3.1.2,71,,60–64
+21.71,2,Kota Batam,age_group,60-64,,36.52,ribu_jiwa,2025,projection,total_population,3.1.2,71,,60–64
+21.71,2,Kota Batam,age_group,65-69,laki_laki,10.26,ribu_jiwa,2025,projection,total_population,3.1.2,71,,65–69
+21.71,2,Kota Batam,age_group,65-69,perempuan,10.26,ribu_jiwa,2025,projection,total_population,3.1.2,71,,65–69
+21.71,2,Kota Batam,age_group,65-69,,20.52,ribu_jiwa,2025,projection,total_population,3.1.2,71,,65–69
+21.71,2,Kota Batam,age_group,70-74,laki_laki,5.68,ribu_jiwa,2025,projection,total_population,3.1.2,71,,70–74
+21.71,2,Kota Batam,age_group,70-74,perempuan,6.03,ribu_jiwa,2025,projection,total_population,3.1.2,71,,70–74
+21.71,2,Kota Batam,age_group,70-74,,11.71,ribu_jiwa,2025,projection,total_population,3.1.2,71,,70–74
+21.71,2,Kota Batam,age_group,75+,laki_laki,4.32,ribu_jiwa,2025,projection,total_population,3.1.2,71,,75+
+21.71,2,Kota Batam,age_group,75+,perempuan,5.06,ribu_jiwa,2025,projection,total_population,3.1.2,71,,75+
+21.71,2,Kota Batam,age_group,75+,,9.38,ribu_jiwa,2025,projection,total_population,3.1.2,71,,75+
+21.71,2,Kota Batam,income,kelompok_umur/15-19,,3806300.24,rupiah,2025,survey_estimate,employees,3.2.16,90,,15–19
+21.71,2,Kota Batam,income,kelompok_umur/20-24,,4324119.68,rupiah,2025,survey_estimate,employees,3.2.16,90,,20–24
+21.71,2,Kota Batam,income,kelompok_umur/25-29,,4717027.52,rupiah,2025,survey_estimate,employees,3.2.16,90,,25–29
+21.71,2,Kota Batam,income,kelompok_umur/30-34,,5699435.97,rupiah,2025,survey_estimate,employees,3.2.16,90,,30–34
+21.71,2,Kota Batam,income,kelompok_umur/35-39,,5370959.52,rupiah,2025,survey_estimate,employees,3.2.16,90,,35–39
+21.71,2,Kota Batam,income,kelompok_umur/40-44,,5308666.92,rupiah,2025,survey_estimate,employees,3.2.16,90,,40–44
+21.71,2,Kota Batam,income,kelompok_umur/45-49,,6747171.31,rupiah,2025,survey_estimate,employees,3.2.16,90,,45–49
+21.71,2,Kota Batam,income,kelompok_umur/50-54,,5469286.58,rupiah,2025,survey_estimate,employees,3.2.16,90,,50–54
+21.71,2,Kota Batam,income,kelompok_umur/55-59,,7430614.01,rupiah,2025,survey_estimate,employees,3.2.16,90,,55–59
+21.71,2,Kota Batam,income,kelompok_umur/60+,,4320333.63,rupiah,2025,survey_estimate,employees,3.2.16,90,,60+

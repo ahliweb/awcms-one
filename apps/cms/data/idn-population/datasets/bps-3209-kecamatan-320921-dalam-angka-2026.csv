@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.21.2001,4,Adidharma,sex,laki_laki,,2772,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2001,4,Adidharma,sex,perempuan,,2883,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2001,4,Adidharma,total,total,,5655,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2002,4,Pasindangan,sex,laki_laki,,2661,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2002,4,Pasindangan,sex,perempuan,,2665,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2002,4,Pasindangan,total,total,,5326,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2003,4,Jadimulya,sex,laki_laki,,3681,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2003,4,Jadimulya,sex,perempuan,,3765,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2003,4,Jadimulya,total,total,,7446,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2004,4,Klayan,sex,laki_laki,,4992,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2004,4,Klayan,sex,perempuan,,5026,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2004,4,Klayan,total,total,,10018,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2005,4,Jatimerta,sex,laki_laki,,2821,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2005,4,Jatimerta,sex,perempuan,,2930,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2005,4,Jatimerta,total,total,,5751,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2006,4,Astana,sex,laki_laki,,2654,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2006,4,Astana,sex,perempuan,,2683,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2006,4,Astana,total,total,,5337,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2007,4,Kalisapu,sex,laki_laki,,2380,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2007,4,Kalisapu,sex,perempuan,,2386,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2007,4,Kalisapu,total,total,,4766,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2008,4,Wanakaya,sex,laki_laki,,3060,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2008,4,Wanakaya,sex,perempuan,,2887,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2008,4,Wanakaya,total,total,,5947,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2009,4,Grogol,sex,laki_laki,,2650,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2009,4,Grogol,sex,perempuan,,2600,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2009,4,Grogol,total,total,,5250,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2010,4,Babadan,sex,laki_laki,,1976,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2010,4,Babadan,sex,perempuan,,1918,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2010,4,Babadan,total,total,,3894,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2011,4,Buyut,sex,laki_laki,,3720,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2011,4,Buyut,sex,perempuan,,3661,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2011,4,Buyut,total,total,,7381,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2012,4,Mayung,sex,laki_laki,,1949,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2012,4,Mayung,sex,perempuan,,1931,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2012,4,Mayung,total,total,,3880,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2016,4,Sambeng,sex,laki_laki,,2099,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2016,4,Sambeng,sex,perempuan,,2016,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2016,4,Sambeng,total,total,,4115,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2017,4,Sirnabaya,sex,laki_laki,,2556,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2017,4,Sirnabaya,sex,perempuan,,2547,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2017,4,Sirnabaya,total,total,,5103,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21.2015,4,Mertasinga,sex,laki_laki,,3828,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21.2015,4,Mertasinga,sex,perempuan,,3639,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21.2015,4,Mertasinga,total,total,,7467,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21,3,Kecamatan Gunung Jati,sex,laki_laki,,43799,jiwa,2025,registration,total_population,3.1,55,,Laki-Laki/Male
+32.09.21,3,Kecamatan Gunung Jati,sex,perempuan,,43537,jiwa,2025,registration,total_population,3.1,55,,Perempuan/Female
+32.09.21,3,Kecamatan Gunung Jati,total,total,,87336,jiwa,2025,registration,total_population,3.1,55,,
+32.09.21,3,Gunung Jati,age_group,0-4,laki_laki,2853,jiwa,2025,registration,total_population,3.2,57,,0–4
+32.09.21,3,Gunung Jati,age_group,0-4,perempuan,2547,jiwa,2025,registration,total_population,3.2,57,,0–4
+32.09.21,3,Gunung Jati,age_group,0-4,,5400,jiwa,2025,registration,total_population,3.2,57,,0–4
+32.09.21,3,Gunung Jati,age_group,5-9,laki_laki,3676,jiwa,2025,registration,total_population,3.2,57,,5–9
+32.09.21,3,Gunung Jati,age_group,5-9,perempuan,3405,jiwa,2025,registration,total_population,3.2,57,,5–9
+32.09.21,3,Gunung Jati,age_group,5-9,,7081,jiwa,2025,registration,total_population,3.2,57,,5–9
+32.09.21,3,Gunung Jati,age_group,10-14,laki_laki,3585,jiwa,2025,registration,total_population,3.2,57,,10–14
+32.09.21,3,Gunung Jati,age_group,10-14,perempuan,3318,jiwa,2025,registration,total_population,3.2,57,,10–14
+32.09.21,3,Gunung Jati,age_group,10-14,,6903,jiwa,2025,registration,total_population,3.2,57,,10–14
+32.09.21,3,Gunung Jati,age_group,15-19,laki_laki,3089,jiwa,2025,registration,total_population,3.2,57,,15–19
+32.09.21,3,Gunung Jati,age_group,15-19,perempuan,2962,jiwa,2025,registration,total_population,3.2,57,,15–19
+32.09.21,3,Gunung Jati,age_group,15-19,,6051,jiwa,2025,registration,total_population,3.2,57,,15–19
+32.09.21,3,Gunung Jati,age_group,20-24,laki_laki,3384,jiwa,2025,registration,total_population,3.2,57,,20–24
+32.09.21,3,Gunung Jati,age_group,20-24,perempuan,3268,jiwa,2025,registration,total_population,3.2,57,,20–24
+32.09.21,3,Gunung Jati,age_group,20-24,,6652,jiwa,2025,registration,total_population,3.2,57,,20–24
+32.09.21,3,Gunung Jati,age_group,25-29,laki_laki,3726,jiwa,2025,registration,total_population,3.2,57,,25–29
+32.09.21,3,Gunung Jati,age_group,25-29,perempuan,3457,jiwa,2025,registration,total_population,3.2,57,,25–29
+32.09.21,3,Gunung Jati,age_group,25-29,,7183,jiwa,2025,registration,total_population,3.2,57,,25–29
+32.09.21,3,Gunung Jati,age_group,30-34,laki_laki,3560,jiwa,2025,registration,total_population,3.2,57,,30–34
+32.09.21,3,Gunung Jati,age_group,30-34,perempuan,3284,jiwa,2025,registration,total_population,3.2,57,,30–34
+32.09.21,3,Gunung Jati,age_group,30-34,,6844,jiwa,2025,registration,total_population,3.2,57,,30–34
+32.09.21,3,Gunung Jati,age_group,35-39,laki_laki,3451,jiwa,2025,registration,total_population,3.2,57,,35–39
+32.09.21,3,Gunung Jati,age_group,35-39,perempuan,3226,jiwa,2025,registration,total_population,3.2,57,,35–39
+32.09.21,3,Gunung Jati,age_group,35-39,,6677,jiwa,2025,registration,total_population,3.2,57,,35–39
+32.09.21,3,Gunung Jati,age_group,40-44,laki_laki,3650,jiwa,2025,registration,total_population,3.2,57,,40–44
+32.09.21,3,Gunung Jati,age_group,40-44,perempuan,3694,jiwa,2025,registration,total_population,3.2,57,,40–44
+32.09.21,3,Gunung Jati,age_group,40-44,,7344,jiwa,2025,registration,total_population,3.2,57,,40–44
+32.09.21,3,Gunung Jati,age_group,45-49,laki_laki,3231,jiwa,2025,registration,total_population,3.2,57,,45–49
+32.09.21,3,Gunung Jati,age_group,45-49,perempuan,3533,jiwa,2025,registration,total_population,3.2,57,,45–49
+32.09.21,3,Gunung Jati,age_group,45-49,,6764,jiwa,2025,registration,total_population,3.2,57,,45–49
+32.09.21,3,Gunung Jati,age_group,50-54,laki_laki,2781,jiwa,2025,registration,total_population,3.2,57,,50–54
+32.09.21,3,Gunung Jati,age_group,50-54,perempuan,3061,jiwa,2025,registration,total_population,3.2,57,,50–54
+32.09.21,3,Gunung Jati,age_group,50-54,,5842,jiwa,2025,registration,total_population,3.2,57,,50–54
+32.09.21,3,Gunung Jati,age_group,55-59,laki_laki,2338,jiwa,2025,registration,total_population,3.2,57,,55–59
+32.09.21,3,Gunung Jati,age_group,55-59,perempuan,2590,jiwa,2025,registration,total_population,3.2,57,,55–59
+32.09.21,3,Gunung Jati,age_group,55-59,,4928,jiwa,2025,registration,total_population,3.2,57,,55–59
+32.09.21,3,Gunung Jati,age_group,60-64,laki_laki,1633,jiwa,2025,registration,total_population,3.2,57,,60–64
+32.09.21,3,Gunung Jati,age_group,60-64,perempuan,1830,jiwa,2025,registration,total_population,3.2,57,,60–64
+32.09.21,3,Gunung Jati,age_group,60-64,,3463,jiwa,2025,registration,total_population,3.2,57,,60–64
+32.09.21,3,Gunung Jati,age_group,65-69,laki_laki,1268,jiwa,2025,registration,total_population,3.2,57,,65–69
+32.09.21,3,Gunung Jati,age_group,65-69,perempuan,1418,jiwa,2025,registration,total_population,3.2,57,,65–69
+32.09.21,3,Gunung Jati,age_group,65-69,,2686,jiwa,2025,registration,total_population,3.2,57,,65–69
+32.09.21,3,Gunung Jati,age_group,70-74,laki_laki,840,jiwa,2025,registration,total_population,3.2,57,,70–74
+32.09.21,3,Gunung Jati,age_group,70-74,perempuan,923,jiwa,2025,registration,total_population,3.2,57,,70–74
+32.09.21,3,Gunung Jati,age_group,70-74,,1763,jiwa,2025,registration,total_population,3.2,57,,70–74
+32.09.21,3,Gunung Jati,age_group,75+,laki_laki,734,jiwa,2025,registration,total_population,3.2,57,,75+
+32.09.21,3,Gunung Jati,age_group,75+,perempuan,1021,jiwa,2025,registration,total_population,3.2,57,,75+
+32.09.21,3,Gunung Jati,age_group,75+,,1755,jiwa,2025,registration,total_population,3.2,57,,75+
+32.09.21,3,Kecamatan Gunung Jati,sex,laki_laki,,43799,jiwa,2025,registration,total_population,3.2,57,,Laki-Laki
+32.09.21,3,Kecamatan Gunung Jati,sex,perempuan,,43537,jiwa,2025,registration,total_population,3.2,57,,Perempuan
+32.09.21,3,Kecamatan Gunung Jati,total,total,,87336,jiwa,2025,registration,total_population,3.2,57,,

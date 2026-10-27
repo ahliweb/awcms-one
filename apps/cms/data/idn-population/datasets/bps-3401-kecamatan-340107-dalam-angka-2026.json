@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3401-kecamatan-340107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.01.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pengasih Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kulon Progo",
+  "publisherDomain": "3401",
+  "publisherWebsite": "https://kulonprogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kulon Progo (https://kulonprogokab.bps.go.id), publikasi \"Kecamatan Pengasih Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3401070",
+  "publicationNumber": "34010.25013",
+  "issn": "2614-9230",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kulonprogokab.bps.go.id/id/publication/2026/09/28/85da02a5733b03bea2c664dc/kecamatan-pengasih-dalam-angka-2026.html",
+  "sourceFileSha256": "7c9b80b024c6ce8f359a27bd3e4b9edb3f9b8e553dc8ccb174e94d06649de96d",
+  "sourceFileBytes": 9873154,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kulon Progo.",
+  "csvPath": "datasets/bps-3401-kecamatan-340107-dalam-angka-2026.csv",
+  "csvSha256": "074b958071e66d53d504e7e7e9d76e4bd176bbf031c8ab005157965d4141f25c",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pengasih, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pengasih, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

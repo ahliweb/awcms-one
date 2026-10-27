@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.73.10.1001,4,Karasak,sex,laki_laki,,6717,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.10.1001,4,Karasak,sex,perempuan,,6917,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.10.1001,4,Karasak,total,total,,13634,jiwa,2025,registration,total_population,3.1,37,,
+32.73.10.1006,4,Pelindung Hewan,sex,laki_laki,,10161,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.10.1006,4,Pelindung Hewan,sex,perempuan,,10185,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.10.1006,4,Pelindung Hewan,total,total,,20346,jiwa,2025,registration,total_population,3.1,37,,
+32.73.10.1002,4,Nyengseret,sex,laki_laki,,6146,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.10.1002,4,Nyengseret,sex,perempuan,,6094,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.10.1002,4,Nyengseret,total,total,,12240,jiwa,2025,registration,total_population,3.1,37,,
+32.73.10.1004,4,Panjunan,sex,laki_laki,,3809,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.10.1004,4,Panjunan,sex,perempuan,,3771,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.10.1004,4,Panjunan,total,total,,7580,jiwa,2025,registration,total_population,3.1,37,,
+32.73.10.1005,4,Cibadak,sex,laki_laki,,6753,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.10.1005,4,Cibadak,sex,perempuan,,6718,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.10.1005,4,Cibadak,total,total,,13471,jiwa,2025,registration,total_population,3.1,37,,
+32.73.10.1003,4,Karang Anyar,sex,laki_laki,,3222,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.10.1003,4,Karang Anyar,sex,perempuan,,3360,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.10.1003,4,Karang Anyar,total,total,,6582,jiwa,2025,registration,total_population,3.1,37,,
+32.73.10,3,Astanaanyar,age_group,0-4,laki_laki,2220,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.10,3,Astanaanyar,age_group,0-4,perempuan,2026,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.10,3,Astanaanyar,age_group,0-4,,4246,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.10,3,Astanaanyar,age_group,5-9,laki_laki,2873,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.10,3,Astanaanyar,age_group,5-9,perempuan,2620,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.10,3,Astanaanyar,age_group,5-9,,5493,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.10,3,Astanaanyar,age_group,10-14,laki_laki,2970,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.10,3,Astanaanyar,age_group,10-14,perempuan,2907,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.10,3,Astanaanyar,age_group,10-14,,5877,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.10,3,Astanaanyar,age_group,15-19,laki_laki,2741,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.10,3,Astanaanyar,age_group,15-19,perempuan,2800,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.10,3,Astanaanyar,age_group,15-19,,5541,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.10,3,Astanaanyar,age_group,20-24,laki_laki,3023,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.10,3,Astanaanyar,age_group,20-24,perempuan,2853,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.10,3,Astanaanyar,age_group,20-24,,5876,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.10,3,Astanaanyar,age_group,25-29,laki_laki,2748,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.10,3,Astanaanyar,age_group,25-29,perempuan,2609,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.10,3,Astanaanyar,age_group,25-29,,5357,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.10,3,Astanaanyar,age_group,30-34,laki_laki,2626,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.10,3,Astanaanyar,age_group,30-34,perempuan,2548,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.10,3,Astanaanyar,age_group,30-34,,5174,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.10,3,Astanaanyar,age_group,35-39,laki_laki,2439,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.10,3,Astanaanyar,age_group,35-39,perempuan,2494,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.10,3,Astanaanyar,age_group,35-39,,4933,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.10,3,Astanaanyar,age_group,40-44,laki_laki,3013,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.10,3,Astanaanyar,age_group,40-44,perempuan,2917,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.10,3,Astanaanyar,age_group,40-44,,5930,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.10,3,Astanaanyar,age_group,45-49,laki_laki,2704,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.10,3,Astanaanyar,age_group,45-49,perempuan,2689,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.10,3,Astanaanyar,age_group,45-49,,5393,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.10,3,Astanaanyar,age_group,50-54,laki_laki,2435,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.10,3,Astanaanyar,age_group,50-54,perempuan,2457,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.10,3,Astanaanyar,age_group,50-54,,4892,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.10,3,Astanaanyar,age_group,55-59,laki_laki,2115,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.10,3,Astanaanyar,age_group,55-59,perempuan,2108,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.10,3,Astanaanyar,age_group,55-59,,4223,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.10,3,Astanaanyar,age_group,60-64,laki_laki,1658,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.10,3,Astanaanyar,age_group,60-64,perempuan,1859,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.10,3,Astanaanyar,age_group,60-64,,3517,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.10,3,Astanaanyar,age_group,65-69,laki_laki,1305,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.10,3,Astanaanyar,age_group,65-69,perempuan,1561,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.10,3,Astanaanyar,age_group,65-69,,2866,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.10,3,Astanaanyar,age_group,70-74,laki_laki,910,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.10,3,Astanaanyar,age_group,70-74,perempuan,1127,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.10,3,Astanaanyar,age_group,70-74,,2037,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.10,3,Astanaanyar,age_group,75+,laki_laki,1028,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.10,3,Astanaanyar,age_group,75+,perempuan,1470,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.10,3,Astanaanyar,age_group,75+,,2498,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.10.1001,4,Karasak,religion,islam,,11737,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.10.1001,4,Karasak,religion,kristen,,1250,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.10.1001,4,Karasak,religion,katolik,,502,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.10.1001,4,Karasak,religion,hindu,,8,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.10.1001,4,Karasak,religion,buddha,,132,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.10.1001,4,Karasak,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.10.1006,4,Pelindung Hewan,religion,islam,,18465,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.10.1006,4,Pelindung Hewan,religion,kristen,,1296,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.10.1006,4,Pelindung Hewan,religion,katolik,,445,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.10.1006,4,Pelindung Hewan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.10.1006,4,Pelindung Hewan,religion,buddha,,138,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.10.1006,4,Pelindung Hewan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.10.1002,4,Nyengseret,religion,islam,,10565,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.10.1002,4,Nyengseret,religion,kristen,,1149,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.10.1002,4,Nyengseret,religion,katolik,,311,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.10.1002,4,Nyengseret,religion,hindu,,6,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.10.1002,4,Nyengseret,religion,buddha,,208,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.10.1002,4,Nyengseret,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.10.1004,4,Panjunan,religion,islam,,6305,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.10.1004,4,Panjunan,religion,kristen,,878,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.10.1004,4,Panjunan,religion,katolik,,240,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.10.1004,4,Panjunan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.10.1004,4,Panjunan,religion,buddha,,157,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.10.1004,4,Panjunan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.10.1005,4,Cibadak,religion,islam,,9167,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.10.1005,4,Cibadak,religion,kristen,,3233,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.10.1005,4,Cibadak,religion,katolik,,697,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.10.1005,4,Cibadak,religion,hindu,,13,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.10.1005,4,Cibadak,religion,buddha,,352,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.10.1005,4,Cibadak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.10.1003,4,Karang Anyar,religion,islam,,3742,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.10.1003,4,Karang Anyar,religion,kristen,,1669,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.10.1003,4,Karang Anyar,religion,katolik,,670,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.10.1003,4,Karang Anyar,religion,hindu,,6,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.10.1003,4,Karang Anyar,religion,buddha,,493,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.10.1003,4,Karang Anyar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya

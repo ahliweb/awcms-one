@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.16.08.2012,4,Sanggaran II,sex,laki_laki,,411,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2012,4,Sanggaran II,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2012,4,Sanggaran II,total,total,,813,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2006,4,Janji Nagodang,sex,laki_laki,,269,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2006,4,Janji Nagodang,sex,perempuan,,257,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2006,4,Janji Nagodang,total,total,,526,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2008,4,Huta Julu,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2008,4,Huta Julu,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2008,4,Huta Julu,total,total,,511,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2002,4,Onan Ganjang,sex,laki_laki,,769,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2002,4,Onan Ganjang,sex,perempuan,,790,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2002,4,Onan Ganjang,total,total,,1559,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2003,4,Parbotihan,sex,laki_laki,,1040,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2003,4,Parbotihan,sex,perempuan,,1133,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2003,4,Parbotihan,total,total,,2173,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2001,4,Batu Nagodang Siatas,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2001,4,Batu Nagodang Siatas,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2001,4,Batu Nagodang Siatas,total,total,,800,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2007,4,Sampetua,sex,laki_laki,,305,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2007,4,Sampetua,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2007,4,Sampetua,total,total,,631,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2005,4,Parnapa,sex,laki_laki,,384,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2005,4,Parnapa,sex,perempuan,,357,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2005,4,Parnapa,total,total,,741,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2009,4,Sibuluan,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2009,4,Sibuluan,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2009,4,Sibuluan,total,total,,1131,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08.2010,4,Sigalogo,sex,laki_laki,,745,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08.2010,4,Sigalogo,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08.2010,4,Sigalogo,total,total,,1500,jiwa,2025,registration,total_population,3.1,31,,
+12.16.08,3,Onan Ganjang,sex,laki_laki,,5810,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.16.08,3,Onan Ganjang,sex,perempuan,,5966,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.16.08,3,Onan Ganjang,total,total,,11776,jiwa,2025,registration,total_population,3.1,31,,

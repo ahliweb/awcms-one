@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332409-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Brangsong Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Brangsong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3324090",
+  "publicationNumber": "33240.26015",
+  "issn": "2614-9176",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/158ad5d77bd4a3b96d7ef724/kecamatan-brangsong-dalam-angka-2026.html",
+  "sourceFileSha256": "0e03cc888edee700226885a43deccaaffa252aaec9f686e3ed5e1a97d61db9b9",
+  "sourceFileBytes": 7516336,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332409-dalam-angka-2026.csv",
+  "csvSha256": "f6b494a19c24cbcbfabd68ed3e8e4e25917d2babf2eb57a95cd1176a61f9ada9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Brangsong, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Brangsong, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Brangsong Brangsong District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Brangsong Brangsong District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Brangsong Brangsong District\": unmatched "
+  ]
+}

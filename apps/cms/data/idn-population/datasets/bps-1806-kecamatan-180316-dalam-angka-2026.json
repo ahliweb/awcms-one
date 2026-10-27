@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1806-kecamatan-180316-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.03.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bunga Mayang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Utara",
+  "publisherDomain": "1806",
+  "publisherWebsite": "https://lampungutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Utara (https://lampungutarakab.bps.go.id), publikasi \"Kecamatan Bunga Mayang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1806072",
+  "publicationNumber": "18060.26022",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungutarakab.bps.go.id/id/publication/2026/09/28/6f54669c829f957597c863c6/kecamatan-bunga-mayang-dalam-angka-2026.html",
+  "sourceFileSha256": "388ba4ced921b13762280b20079cdfdf51899bf1852f76f01e9005fd7cc05196",
+  "sourceFileBytes": 9250751,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Utara.",
+  "csvPath": "datasets/bps-1806-kecamatan-180316-dalam-angka-2026.csv",
+  "csvSha256": "c417ddb53b43f26e5fa7daab2b909901df7aaff5943beec37ed424245601647a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bunga Mayang, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bunga Mayang, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

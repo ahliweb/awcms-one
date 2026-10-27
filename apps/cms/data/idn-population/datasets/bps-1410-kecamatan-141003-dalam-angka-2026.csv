@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.03.2010,4,REPAN,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2010,4,REPAN,sex,perempuan,,365,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2010,4,REPAN,total,total,,728,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2008,4,PENYAGUN,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2008,4,PENYAGUN,sex,perempuan,,669,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2008,4,PENYAGUN,total,total,,1332,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2004,4,GEMALA SARI,sex,laki_laki,,702,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2004,4,GEMALA SARI,sex,perempuan,,634,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2004,4,GEMALA SARI,total,total,,1336,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2013,4,SUNGAI GAYUNG KIRI,sex,laki_laki,,738,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2013,4,SUNGAI GAYUNG KIRI,sex,perempuan,,639,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2013,4,SUNGAI GAYUNG KIRI,total,total,,1377,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2002,4,TANJUNG MEDANG,sex,laki_laki,,558,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2002,4,TANJUNG MEDANG,sex,perempuan,,496,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2002,4,TANJUNG MEDANG,total,total,,1054,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2012,4,TELUK SAMAK,sex,laki_laki,,770,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2012,4,TELUK SAMAK,sex,perempuan,,687,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2012,4,TELUK SAMAK,total,total,,1457,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2001,4,TANJUNG SAMAK,sex,laki_laki,,1384,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2001,4,TANJUNG SAMAK,sex,perempuan,,1337,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2001,4,TANJUNG SAMAK,total,total,,2721,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2011,4,TANJUNG BAKAU,sex,laki_laki,,981,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2011,4,TANJUNG BAKAU,sex,perempuan,,913,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2011,4,TANJUNG BAKAU,total,total,,1894,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2007,4,TOPANG,sex,laki_laki,,1072,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2007,4,TOPANG,sex,perempuan,,1216,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2007,4,TOPANG,total,total,,2288,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2014,4,CITRA DAMAI,sex,laki_laki,,856,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2014,4,CITRA DAMAI,sex,perempuan,,778,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2014,4,CITRA DAMAI,total,total,,1634,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2016,4,DWI TUNGGAL,sex,laki_laki,,794,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2016,4,DWI TUNGGAL,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2016,4,DWI TUNGGAL,total,total,,1541,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2017,4,WONOSARI,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2017,4,WONOSARI,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2017,4,WONOSARI,total,total,,813,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2018,4,TEBUN,sex,laki_laki,,644,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2018,4,TEBUN,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2018,4,TEBUN,total,total,,1195,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03.2020,4,TANJUNG GEMUK,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03.2020,4,TANJUNG GEMUK,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03.2020,4,TANJUNG GEMUK,total,total,,891,jiwa,2025,registration,total_population,3.1,27,,
+14.10.03,3,RANGSANG,sex,laki_laki,,10436,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.03,3,RANGSANG,sex,perempuan,,9825,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.03,3,RANGSANG,total,total,,20261,jiwa,2025,registration,total_population,3.1,27,,
