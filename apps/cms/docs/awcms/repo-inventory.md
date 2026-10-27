@@ -415,8 +415,8 @@
 | 354 | `sql/1052_awcms_commerce_commission_attributed_sources.sql`                 |
 | 355 | `sql/1053_awcms_commerce_commission_revoke_payroll_worker_grants.sql`       |
 | 356 | `sql/1054_awcms_commerce_booking_pos_guard_marker.sql`                      |
-| 357 | `sql/1054_awcms_commerce_booking_revenue_export_permission.sql`             |
-| 358 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
+| 357 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
+| 358 | `sql/1062_awcms_commerce_booking_revenue_export_permission.sql`             |
 
 ### Tables & Row-Level Security
 
