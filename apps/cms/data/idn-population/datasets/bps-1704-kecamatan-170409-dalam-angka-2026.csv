@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.04.09.2011,4,Pagar Dewa,sex,laki_laki,,362,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2011,4,Pagar Dewa,sex,perempuan,,331,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2011,4,Pagar Dewa,total,total,,693,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2010,4,Talang Tais,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2010,4,Talang Tais,sex,perempuan,,237,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2010,4,Talang Tais,total,total,,484,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2009,4,Penantian,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2009,4,Penantian,sex,perempuan,,227,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2009,4,Penantian,total,total,,449,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2008,4,Siring Agung,sex,laki_laki,,325,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2008,4,Siring Agung,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2008,4,Siring Agung,total,total,,620,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2007,4,Darat Sawah,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2007,4,Darat Sawah,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2007,4,Darat Sawah,total,total,,543,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2003,4,Rigangan I,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2003,4,Rigangan I,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2003,4,Rigangan I,total,total,,630,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2004,4,Rigangan II,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2004,4,Rigangan II,sex,perempuan,,319,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2004,4,Rigangan II,total,total,,647,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2005,4,Rigangan III,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2005,4,Rigangan III,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2005,4,Rigangan III,total,total,,718,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2001,4,Tanjung Ganti I,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2001,4,Tanjung Ganti I,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2001,4,Tanjung Ganti I,total,total,,665,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2002,4,Tanjung Ganti II,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2002,4,Tanjung Ganti II,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2002,4,Tanjung Ganti II,total,total,,698,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2012,4,Talang Marap,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2012,4,Talang Marap,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2012,4,Talang Marap,total,total,,652,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09.2013,4,Sukarami II,sex,laki_laki,,114,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09.2013,4,Sukarami II,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09.2013,4,Sukarami II,total,total,,241,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09,3,Kecamatan Kelam Tengah,sex,laki_laki,,3947,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.04.09,3,Kecamatan Kelam Tengah,sex,perempuan,,3846,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.04.09,3,Kecamatan Kelam Tengah,total,total,,7793,jiwa,2025,registration,total_population,3.1,27,,
+17.04.09,3,Kelam Tengah,age_group,0-4,laki_laki,210,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.04.09,3,Kelam Tengah,age_group,0-4,perempuan,210,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.04.09,3,Kelam Tengah,age_group,0-4,,420,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.04.09,3,Kelam Tengah,age_group,5-9,laki_laki,317,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.04.09,3,Kelam Tengah,age_group,5-9,perempuan,305,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.04.09,3,Kelam Tengah,age_group,5-9,,622,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.04.09,3,Kelam Tengah,age_group,10-14,laki_laki,335,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.04.09,3,Kelam Tengah,age_group,10-14,perempuan,335,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.04.09,3,Kelam Tengah,age_group,10-14,,670,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.04.09,3,Kelam Tengah,age_group,15-19,laki_laki,353,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.04.09,3,Kelam Tengah,age_group,15-19,perempuan,344,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.04.09,3,Kelam Tengah,age_group,15-19,,697,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.04.09,3,Kelam Tengah,age_group,20-24,laki_laki,352,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.04.09,3,Kelam Tengah,age_group,20-24,perempuan,347,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.04.09,3,Kelam Tengah,age_group,20-24,,699,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.04.09,3,Kelam Tengah,age_group,25-29,laki_laki,266,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.04.09,3,Kelam Tengah,age_group,25-29,perempuan,227,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.04.09,3,Kelam Tengah,age_group,25-29,,493,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.04.09,3,Kelam Tengah,age_group,30-34,laki_laki,242,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.04.09,3,Kelam Tengah,age_group,30-34,perempuan,240,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.04.09,3,Kelam Tengah,age_group,30-34,,482,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.04.09,3,Kelam Tengah,age_group,35-39,laki_laki,271,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.04.09,3,Kelam Tengah,age_group,35-39,perempuan,275,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.04.09,3,Kelam Tengah,age_group,35-39,,546,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.04.09,3,Kelam Tengah,age_group,40-44,laki_laki,288,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.04.09,3,Kelam Tengah,age_group,40-44,perempuan,275,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.04.09,3,Kelam Tengah,age_group,40-44,,563,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.04.09,3,Kelam Tengah,age_group,45-49,laki_laki,340,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.04.09,3,Kelam Tengah,age_group,45-49,perempuan,287,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.04.09,3,Kelam Tengah,age_group,45-49,,627,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.04.09,3,Kelam Tengah,age_group,50-54,laki_laki,259,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.04.09,3,Kelam Tengah,age_group,50-54,perempuan,250,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.04.09,3,Kelam Tengah,age_group,50-54,,509,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.04.09,3,Kelam Tengah,age_group,55-59,laki_laki,211,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.04.09,3,Kelam Tengah,age_group,55-59,perempuan,194,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.04.09,3,Kelam Tengah,age_group,55-59,,405,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.04.09,3,Kelam Tengah,age_group,60-64,laki_laki,167,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.04.09,3,Kelam Tengah,age_group,60-64,perempuan,163,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.04.09,3,Kelam Tengah,age_group,60-64,,330,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.04.09,3,Kelam Tengah,age_group,65-69,laki_laki,145,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.04.09,3,Kelam Tengah,age_group,65-69,perempuan,149,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.04.09,3,Kelam Tengah,age_group,65-69,,294,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.04.09,3,Kelam Tengah,age_group,70-74,laki_laki,78,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.04.09,3,Kelam Tengah,age_group,70-74,perempuan,92,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.04.09,3,Kelam Tengah,age_group,70-74,,170,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.04.09,3,Kelam Tengah,age_group,75+,laki_laki,113,jiwa,2025,registration,total_population,3.2,29,,75+
+17.04.09,3,Kelam Tengah,age_group,75+,perempuan,153,jiwa,2025,registration,total_population,3.2,29,,75+
+17.04.09,3,Kelam Tengah,age_group,75+,,266,jiwa,2025,registration,total_population,3.2,29,,75+
+17.04.09,3,Kecamatan Kelam Tengah,sex,laki_laki,,3947,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+17.04.09,3,Kecamatan Kelam Tengah,sex,perempuan,,3846,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+17.04.09,3,Kecamatan Kelam Tengah,total,total,,7793,jiwa,2025,registration,total_population,3.2,29,,

@@ -1,0 +1,129 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.73.05.1008,4,Gelam,sex,laki_laki,,1329,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1008,4,Gelam,sex,perempuan,,1432,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1008,4,Gelam,total,total,,2761,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05.1007,4,Dalung,sex,laki_laki,,1009,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1007,4,Dalung,sex,perempuan,,1016,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1007,4,Dalung,total,total,,2025,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05.1006,4,Tembong,sex,laki_laki,,1070,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1006,4,Tembong,sex,perempuan,,1038,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1006,4,Tembong,total,total,,2108,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05.1002,4,Karundang,sex,laki_laki,,1069,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1002,4,Karundang,sex,perempuan,,1009,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1002,4,Karundang,total,total,,2078,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05.1001,4,Cipocok Jaya,sex,laki_laki,,1818,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1001,4,Cipocok Jaya,sex,perempuan,,1653,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1001,4,Cipocok Jaya,total,total,,3471,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05.1005,4,Banjarsari,sex,laki_laki,,2585,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1005,4,Banjarsari,sex,perempuan,,2568,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1005,4,Banjarsari,total,total,,5153,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05.1004,4,Banjaragung,sex,laki_laki,,1920,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1004,4,Banjaragung,sex,perempuan,,1829,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1004,4,Banjaragung,total,total,,3749,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05.1003,4,Panancangan,sex,laki_laki,,1669,jiwa,2026,registration,total_population,3.1,28,,Laki-Laki/Male
+36.73.05.1003,4,Panancangan,sex,perempuan,,1671,jiwa,2026,registration,total_population,3.1,28,,Perempuan/Female
+36.73.05.1003,4,Panancangan,total,total,,3340,jiwa,2026,registration,total_population,3.1,28,,
+36.73.05,3,Cipocok Jaya,age_group,0-4,laki_laki,4354,jiwa,2026,registration,total_population,3.2,30,,0–4
+36.73.05,3,Cipocok Jaya,age_group,0-4,perempuan,4126,jiwa,2026,registration,total_population,3.2,30,,0–4
+36.73.05,3,Cipocok Jaya,age_group,0-4,,8480,jiwa,2026,registration,total_population,3.2,30,,0–4
+36.73.05,3,Cipocok Jaya,age_group,5-9,laki_laki,5748,jiwa,2026,registration,total_population,3.2,30,,5–9
+36.73.05,3,Cipocok Jaya,age_group,5-9,perempuan,5329,jiwa,2026,registration,total_population,3.2,30,,5–9
+36.73.05,3,Cipocok Jaya,age_group,5-9,,11077,jiwa,2026,registration,total_population,3.2,30,,5–9
+36.73.05,3,Cipocok Jaya,age_group,10-14,laki_laki,5555,jiwa,2026,registration,total_population,3.2,30,,10–14
+36.73.05,3,Cipocok Jaya,age_group,10-14,perempuan,5266,jiwa,2026,registration,total_population,3.2,30,,10–14
+36.73.05,3,Cipocok Jaya,age_group,10-14,,10821,jiwa,2026,registration,total_population,3.2,30,,10–14
+36.73.05,3,Cipocok Jaya,age_group,15-19,laki_laki,4929,jiwa,2026,registration,total_population,3.2,30,,15–19
+36.73.05,3,Cipocok Jaya,age_group,15-19,perempuan,4692,jiwa,2026,registration,total_population,3.2,30,,15–19
+36.73.05,3,Cipocok Jaya,age_group,15-19,,9621,jiwa,2026,registration,total_population,3.2,30,,15–19
+36.73.05,3,Cipocok Jaya,age_group,20-24,laki_laki,4660,jiwa,2026,registration,total_population,3.2,30,,20–24
+36.73.05,3,Cipocok Jaya,age_group,20-24,perempuan,4551,jiwa,2026,registration,total_population,3.2,30,,20–24
+36.73.05,3,Cipocok Jaya,age_group,20-24,,9211,jiwa,2026,registration,total_population,3.2,30,,20–24
+36.73.05,3,Cipocok Jaya,age_group,25-29,laki_laki,4843,jiwa,2026,registration,total_population,3.2,30,,25–29
+36.73.05,3,Cipocok Jaya,age_group,25-29,perempuan,4834,jiwa,2026,registration,total_population,3.2,30,,25–29
+36.73.05,3,Cipocok Jaya,age_group,25-29,,9677,jiwa,2026,registration,total_population,3.2,30,,25–29
+36.73.05,3,Cipocok Jaya,age_group,30-34,laki_laki,5132,jiwa,2026,registration,total_population,3.2,30,,30–34
+36.73.05,3,Cipocok Jaya,age_group,30-34,perempuan,4851,jiwa,2026,registration,total_population,3.2,30,,30–34
+36.73.05,3,Cipocok Jaya,age_group,30-34,,9983,jiwa,2026,registration,total_population,3.2,30,,30–34
+36.73.05,3,Cipocok Jaya,age_group,35-39,laki_laki,4540,jiwa,2026,registration,total_population,3.2,30,,35–39
+36.73.05,3,Cipocok Jaya,age_group,35-39,perempuan,4642,jiwa,2026,registration,total_population,3.2,30,,35–39
+36.73.05,3,Cipocok Jaya,age_group,35-39,,9182,jiwa,2026,registration,total_population,3.2,30,,35–39
+36.73.05,3,Cipocok Jaya,age_group,40-44,laki_laki,4450,jiwa,2026,registration,total_population,3.2,30,,40–44
+36.73.05,3,Cipocok Jaya,age_group,40-44,perempuan,4343,jiwa,2026,registration,total_population,3.2,30,,40–44
+36.73.05,3,Cipocok Jaya,age_group,40-44,,8793,jiwa,2026,registration,total_population,3.2,30,,40–44
+36.73.05,3,Cipocok Jaya,age_group,45-49,laki_laki,3968,jiwa,2026,registration,total_population,3.2,30,,45–49
+36.73.05,3,Cipocok Jaya,age_group,45-49,perempuan,3873,jiwa,2026,registration,total_population,3.2,30,,45–49
+36.73.05,3,Cipocok Jaya,age_group,45-49,,7841,jiwa,2026,registration,total_population,3.2,30,,45–49
+36.73.05,3,Cipocok Jaya,age_group,50-54,laki_laki,3371,jiwa,2026,registration,total_population,3.2,30,,50–54
+36.73.05,3,Cipocok Jaya,age_group,50-54,perempuan,3268,jiwa,2026,registration,total_population,3.2,30,,50–54
+36.73.05,3,Cipocok Jaya,age_group,50-54,,6639,jiwa,2026,registration,total_population,3.2,30,,50–54
+36.73.05,3,Cipocok Jaya,age_group,55-59,laki_laki,2557,jiwa,2026,registration,total_population,3.2,30,,55–59
+36.73.05,3,Cipocok Jaya,age_group,55-59,perempuan,2360,jiwa,2026,registration,total_population,3.2,30,,55–59
+36.73.05,3,Cipocok Jaya,age_group,55-59,,4917,jiwa,2026,registration,total_population,3.2,30,,55–59
+36.73.05,3,Cipocok Jaya,age_group,60-64,laki_laki,1686,jiwa,2026,registration,total_population,3.2,30,,60–64
+36.73.05,3,Cipocok Jaya,age_group,60-64,perempuan,1579,jiwa,2026,registration,total_population,3.2,30,,60–64
+36.73.05,3,Cipocok Jaya,age_group,60-64,,3265,jiwa,2026,registration,total_population,3.2,30,,60–64
+36.73.05,3,Cipocok Jaya,age_group,65-69,laki_laki,1052,jiwa,2026,registration,total_population,3.2,30,,65–69
+36.73.05,3,Cipocok Jaya,age_group,65-69,perempuan,1061,jiwa,2026,registration,total_population,3.2,30,,65–69
+36.73.05,3,Cipocok Jaya,age_group,65-69,,2113,jiwa,2026,registration,total_population,3.2,30,,65–69
+36.73.05,3,Cipocok Jaya,age_group,70-74,laki_laki,576,jiwa,2026,registration,total_population,3.2,30,,70–74
+36.73.05,3,Cipocok Jaya,age_group,70-74,perempuan,626,jiwa,2026,registration,total_population,3.2,30,,70–74
+36.73.05,3,Cipocok Jaya,age_group,70-74,,1202,jiwa,2026,registration,total_population,3.2,30,,70–74
+36.73.05,3,Cipocok Jaya,age_group,75+,laki_laki,508,jiwa,2026,registration,total_population,3.2,30,,≥75
+36.73.05,3,Cipocok Jaya,age_group,75+,perempuan,617,jiwa,2026,registration,total_population,3.2,30,,≥75
+36.73.05,3,Cipocok Jaya,age_group,75+,,1125,jiwa,2026,registration,total_population,3.2,30,,≥75
+36.73.05.1008,4,Gelam,religion,islam,,13004,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1008,4,Gelam,religion,kristen,,22,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1008,4,Gelam,religion,katolik,,3,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1008,4,Gelam,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,33,nil,Hindu
+36.73.05.1007,4,Dalung,religion,islam,,8934,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1007,4,Dalung,religion,kristen,,96,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1007,4,Dalung,religion,katolik,,39,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1007,4,Dalung,religion,hindu,,9,jiwa,2026,registration,total_population,3.5,33,,Hindu
+36.73.05.1006,4,Tembong,religion,islam,,9151,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1006,4,Tembong,religion,kristen,,43,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1006,4,Tembong,religion,katolik,,7,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1006,4,Tembong,religion,hindu,,3,jiwa,2026,registration,total_population,3.5,33,,Hindu
+36.73.05.1002,4,Karundang,religion,islam,,9749,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1002,4,Karundang,religion,kristen,,44,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1002,4,Karundang,religion,katolik,,8,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1002,4,Karundang,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,33,nil,Hindu
+36.73.05.1001,4,Cipocok Jaya,religion,islam,,15814,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1001,4,Cipocok Jaya,religion,kristen,,97,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1001,4,Cipocok Jaya,religion,katolik,,66,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1001,4,Cipocok Jaya,religion,hindu,,4,jiwa,2026,registration,total_population,3.5,33,,Hindu
+36.73.05.1005,4,Banjarsari,religion,islam,,23625,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1005,4,Banjarsari,religion,kristen,,308,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1005,4,Banjarsari,religion,katolik,,55,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1005,4,Banjarsari,religion,hindu,,8,jiwa,2026,registration,total_population,3.5,33,,Hindu
+36.73.05.1004,4,Banjaragung,religion,islam,,16113,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1004,4,Banjaragung,religion,kristen,,257,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1004,4,Banjaragung,religion,katolik,,53,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1004,4,Banjaragung,religion,hindu,,3,jiwa,2026,registration,total_population,3.5,33,,Hindu
+36.73.05.1003,4,Panancangan,religion,islam,,15971,jiwa,2026,registration,total_population,3.5,33,,Islam
+36.73.05.1003,4,Panancangan,religion,kristen,,206,jiwa,2026,registration,total_population,3.5,33,,Kristen
+36.73.05.1003,4,Panancangan,religion,katolik,,46,jiwa,2026,registration,total_population,3.5,33,,Catholic
+36.73.05.1003,4,Panancangan,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,33,nil,Hindu
+36.73.05.1008,4,Gelam,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,34,nil,Budha
+36.73.05.1008,4,Gelam,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,34,nil,Khonghucu
+36.73.05.1008,4,Gelam,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan
+36.73.05.1007,4,Dalung,religion,buddha,,10,jiwa,2026,registration,total_population,3.5,34,,Budha
+36.73.05.1007,4,Dalung,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,34,nil,Khonghucu
+36.73.05.1007,4,Dalung,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan
+36.73.05.1006,4,Tembong,religion,buddha,,24,jiwa,2026,registration,total_population,3.5,34,,Budha
+36.73.05.1006,4,Tembong,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,34,nil,Khonghucu
+36.73.05.1006,4,Tembong,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan
+36.73.05.1002,4,Karundang,religion,buddha,,10,jiwa,2026,registration,total_population,3.5,34,,Budha
+36.73.05.1002,4,Karundang,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,34,nil,Khonghucu
+36.73.05.1002,4,Karundang,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan
+36.73.05.1001,4,Cipocok Jaya,religion,buddha,,51,jiwa,2026,registration,total_population,3.5,34,,Budha
+36.73.05.1001,4,Cipocok Jaya,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,34,nil,Khonghucu
+36.73.05.1001,4,Cipocok Jaya,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan
+36.73.05.1005,4,Banjarsari,religion,buddha,,34,jiwa,2026,registration,total_population,3.5,34,,Budha
+36.73.05.1005,4,Banjarsari,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,34,nil,Khonghucu
+36.73.05.1005,4,Banjarsari,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan
+36.73.05.1004,4,Banjaragung,religion,buddha,,38,jiwa,2026,registration,total_population,3.5,34,,Budha
+36.73.05.1004,4,Banjaragung,religion,khonghucu,,5,jiwa,2026,registration,total_population,3.5,34,,Khonghucu
+36.73.05.1004,4,Banjaragung,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan
+36.73.05.1003,4,Panancangan,religion,buddha,,36,jiwa,2026,registration,total_population,3.5,34,,Budha
+36.73.05.1003,4,Panancangan,religion,khonghucu,,1,jiwa,2026,registration,total_population,3.5,34,,Khonghucu
+36.73.05.1003,4,Panancangan,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,34,nil,Kepercayaan

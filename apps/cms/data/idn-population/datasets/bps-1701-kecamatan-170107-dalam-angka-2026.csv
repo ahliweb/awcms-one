@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.07.2010,4,Lubuk Ladung,sex,laki_laki,,889,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2010,4,Lubuk Ladung,sex,perempuan,,861,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2010,4,Lubuk Ladung,total,total,,1750,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2011,4,Air Sulau,sex,laki_laki,,1226,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2011,4,Air Sulau,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2011,4,Air Sulau,total,total,,2374,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2012,4,Sukajaya,sex,laki_laki,,492,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2012,4,Sukajaya,sex,perempuan,,483,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2012,4,Sukajaya,total,total,,975,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2009,4,Sukaraja,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2009,4,Sukaraja,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2009,4,Sukaraja,total,total,,377,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2008,4,Limus,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2008,4,Limus,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2008,4,Limus,total,total,,613,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2007,4,Penindaian,sex,laki_laki,,257,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2007,4,Penindaian,sex,perempuan,,280,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2007,4,Penindaian,total,total,,537,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2006,4,Padang Bindu,sex,laki_laki,,277,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2006,4,Padang Bindu,sex,perempuan,,286,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2006,4,Padang Bindu,total,total,,563,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2004,4,Nanjungan,sex,laki_laki,,275,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2004,4,Nanjungan,sex,perempuan,,261,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2004,4,Nanjungan,total,total,,536,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2003,4,Pagar Banyu,sex,laki_laki,,155,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2003,4,Pagar Banyu,sex,perempuan,,132,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2003,4,Pagar Banyu,total,total,,287,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2005,4,Sukarami,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2005,4,Sukarami,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2005,4,Sukarami,total,total,,855,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2002,4,Betungan,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2002,4,Betungan,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2002,4,Betungan,total,total,,621,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07.2001,4,Karang Caya,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07.2001,4,Karang Caya,sex,perempuan,,210,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07.2001,4,Karang Caya,total,total,,442,jiwa,2025,registration,total_population,3.1,26,,
+17.01.07,3,Kecamatan Kedurang Ilir,sex,laki_laki,,5073,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.07,3,Kecamatan Kedurang Ilir,sex,perempuan,,4857,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.07,3,Kecamatan Kedurang Ilir,total,total,,9930,jiwa,2025,registration,total_population,3.1,26,,

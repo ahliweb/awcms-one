@@ -1,0 +1,98 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07,2,Kabupaten Rokan Hilir,age_group,0-4,laki_laki,23342,jiwa,2024,registration,total_population,3.1.2,31,,0–4
+14.07,2,Kabupaten Rokan Hilir,age_group,0-4,perempuan,21857,jiwa,2024,registration,total_population,3.1.2,31,,0–4
+14.07,2,Kabupaten Rokan Hilir,age_group,0-4,,45199,jiwa,2024,registration,total_population,3.1.2,31,,0–4
+14.07,2,Kabupaten Rokan Hilir,age_group,5-9,laki_laki,35436,jiwa,2024,registration,total_population,3.1.2,31,,5–9
+14.07,2,Kabupaten Rokan Hilir,age_group,5-9,perempuan,33404,jiwa,2024,registration,total_population,3.1.2,31,,5–9
+14.07,2,Kabupaten Rokan Hilir,age_group,5-9,,68840,jiwa,2024,registration,total_population,3.1.2,31,,5–9
+14.07,2,Kabupaten Rokan Hilir,age_group,10-14,laki_laki,38460,jiwa,2024,registration,total_population,3.1.2,31,,10–14
+14.07,2,Kabupaten Rokan Hilir,age_group,10-14,perempuan,36004,jiwa,2024,registration,total_population,3.1.2,31,,10–14
+14.07,2,Kabupaten Rokan Hilir,age_group,10-14,,74464,jiwa,2024,registration,total_population,3.1.2,31,,10–14
+14.07,2,Kabupaten Rokan Hilir,age_group,15-19,laki_laki,31536,jiwa,2024,registration,total_population,3.1.2,31,,15–19
+14.07,2,Kabupaten Rokan Hilir,age_group,15-19,perempuan,29923,jiwa,2024,registration,total_population,3.1.2,31,,15–19
+14.07,2,Kabupaten Rokan Hilir,age_group,15-19,,61459,jiwa,2024,registration,total_population,3.1.2,31,,15–19
+14.07,2,Kabupaten Rokan Hilir,age_group,20-24,laki_laki,32857,jiwa,2024,registration,total_population,3.1.2,31,,20–24
+14.07,2,Kabupaten Rokan Hilir,age_group,20-24,perempuan,31269,jiwa,2024,registration,total_population,3.1.2,31,,20–24
+14.07,2,Kabupaten Rokan Hilir,age_group,20-24,,64126,jiwa,2024,registration,total_population,3.1.2,31,,20–24
+14.07,2,Kabupaten Rokan Hilir,age_group,25-29,laki_laki,28437,jiwa,2024,registration,total_population,3.1.2,31,,25–29
+14.07,2,Kabupaten Rokan Hilir,age_group,25-29,perempuan,26844,jiwa,2024,registration,total_population,3.1.2,31,,25–29
+14.07,2,Kabupaten Rokan Hilir,age_group,25-29,,55281,jiwa,2024,registration,total_population,3.1.2,31,,25–29
+14.07,2,Kabupaten Rokan Hilir,age_group,30-34,laki_laki,26462,jiwa,2024,registration,total_population,3.1.2,31,,30–34
+14.07,2,Kabupaten Rokan Hilir,age_group,30-34,perempuan,25735,jiwa,2024,registration,total_population,3.1.2,31,,30–34
+14.07,2,Kabupaten Rokan Hilir,age_group,30-34,,52197,jiwa,2024,registration,total_population,3.1.2,31,,30–34
+14.07,2,Kabupaten Rokan Hilir,age_group,35-39,laki_laki,25697,jiwa,2024,registration,total_population,3.1.2,31,,35–39
+14.07,2,Kabupaten Rokan Hilir,age_group,35-39,perempuan,25731,jiwa,2024,registration,total_population,3.1.2,31,,35–39
+14.07,2,Kabupaten Rokan Hilir,age_group,35-39,,51428,jiwa,2024,registration,total_population,3.1.2,31,,35–39
+14.07,2,Kabupaten Rokan Hilir,age_group,40-44,laki_laki,26593,jiwa,2024,registration,total_population,3.1.2,31,,40–44
+14.07,2,Kabupaten Rokan Hilir,age_group,40-44,perempuan,26232,jiwa,2024,registration,total_population,3.1.2,31,,40–44
+14.07,2,Kabupaten Rokan Hilir,age_group,40-44,,52825,jiwa,2024,registration,total_population,3.1.2,31,,40–44
+14.07,2,Kabupaten Rokan Hilir,age_group,45-49,laki_laki,22653,jiwa,2024,registration,total_population,3.1.2,31,,45–49
+14.07,2,Kabupaten Rokan Hilir,age_group,45-49,perempuan,21605,jiwa,2024,registration,total_population,3.1.2,31,,45–49
+14.07,2,Kabupaten Rokan Hilir,age_group,45-49,,44258,jiwa,2024,registration,total_population,3.1.2,31,,45–49
+14.07,2,Kabupaten Rokan Hilir,age_group,50-54,laki_laki,18970,jiwa,2024,registration,total_population,3.1.2,31,,50–54
+14.07,2,Kabupaten Rokan Hilir,age_group,50-54,perempuan,17734,jiwa,2024,registration,total_population,3.1.2,31,,50–54
+14.07,2,Kabupaten Rokan Hilir,age_group,50-54,,36704,jiwa,2024,registration,total_population,3.1.2,31,,50–54
+14.07,2,Kabupaten Rokan Hilir,age_group,55-59,laki_laki,14935,jiwa,2024,registration,total_population,3.1.2,31,,55–59
+14.07,2,Kabupaten Rokan Hilir,age_group,55-59,perempuan,14045,jiwa,2024,registration,total_population,3.1.2,31,,55–59
+14.07,2,Kabupaten Rokan Hilir,age_group,55-59,,28980,jiwa,2024,registration,total_population,3.1.2,31,,55–59
+14.07,2,Kabupaten Rokan Hilir,age_group,60-64,laki_laki,10822,jiwa,2024,registration,total_population,3.1.2,31,,60–64
+14.07,2,Kabupaten Rokan Hilir,age_group,60-64,perempuan,10430,jiwa,2024,registration,total_population,3.1.2,31,,60–64
+14.07,2,Kabupaten Rokan Hilir,age_group,60-64,,21252,jiwa,2024,registration,total_population,3.1.2,31,,60–64
+14.07,2,Kabupaten Rokan Hilir,age_group,65-69,laki_laki,7486,jiwa,2024,registration,total_population,3.1.2,31,,65–69
+14.07,2,Kabupaten Rokan Hilir,age_group,65-69,perempuan,6970,jiwa,2024,registration,total_population,3.1.2,31,,65–69
+14.07,2,Kabupaten Rokan Hilir,age_group,65-69,,14456,jiwa,2024,registration,total_population,3.1.2,31,,65–69
+14.07,2,Kabupaten Rokan Hilir,age_group,70-74,laki_laki,4581,jiwa,2024,registration,total_population,3.1.2,31,,70–74
+14.07,2,Kabupaten Rokan Hilir,age_group,70-74,perempuan,4249,jiwa,2024,registration,total_population,3.1.2,31,,70–74
+14.07,2,Kabupaten Rokan Hilir,age_group,70-74,,8830,jiwa,2024,registration,total_population,3.1.2,31,,70–74
+14.07,2,Kabupaten Rokan Hilir,age_group,75+,laki_laki,3968,jiwa,2024,registration,total_population,3.1.2,31,,75+
+14.07,2,Kabupaten Rokan Hilir,age_group,75+,perempuan,3806,jiwa,2024,registration,total_population,3.1.2,31,,75+
+14.07,2,Kabupaten Rokan Hilir,age_group,75+,,7774,jiwa,2024,registration,total_population,3.1.2,31,,75+
+14.07,2,Rokan Hilir,sex,laki_laki,,352235,jiwa,2024,registration,total_population,3.1.2,31,,Laki-Laki
+14.07,2,Rokan Hilir,sex,perempuan,,335838,jiwa,2024,registration,total_population,3.1.2,31,,Perempuan
+14.07,2,Rokan Hilir,total,total,,688073,jiwa,2024,registration,total_population,3.1.2,31,,
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/padi_padian,,95068,rupiah,2024,survey_estimate,per_capita,10.1,181,,Padi-padian
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/padi_padian,,94939,rupiah,2025,survey_estimate,per_capita,10.1,181,,Padi-padian
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/umbi_umbian,,8681,rupiah,2024,survey_estimate,per_capita,10.1,181,,Umbi-umbian
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/umbi_umbian,,7973,rupiah,2025,survey_estimate,per_capita,10.1,181,,Umbi-umbian
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,84458,rupiah,2024,survey_estimate,per_capita,10.1,181,,Ikan/udang/cumi/kerang
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,81421,rupiah,2025,survey_estimate,per_capita,10.1,181,,Ikan/udang/cumi/kerang
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/daging,,26995,rupiah,2024,survey_estimate,per_capita,10.1,181,,Daging
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/daging,,24530,rupiah,2025,survey_estimate,per_capita,10.1,181,,Daging
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/telur_dan_susu,,32210,rupiah,2024,survey_estimate,per_capita,10.1,181,,Telur dan susu
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/telur_dan_susu,,33956,rupiah,2025,survey_estimate,per_capita,10.1,181,,Telur dan susu
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/sayur_sayuran,,77934,rupiah,2024,survey_estimate,per_capita,10.1,181,,Sayur-sayuran
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/sayur_sayuran,,75602,rupiah,2025,survey_estimate,per_capita,10.1,181,,Sayur-sayuran
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/kacang_kacangan,,9485,rupiah,2024,survey_estimate,per_capita,10.1,181,,Kacang-kacangan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/kacang_kacangan,,9723,rupiah,2025,survey_estimate,per_capita,10.1,181,,Kacang-kacangan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/buah_buahan,,30696,rupiah,2024,survey_estimate,per_capita,10.1,181,,Buah-buahan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/buah_buahan,,34194,rupiah,2025,survey_estimate,per_capita,10.1,181,,Buah-buahan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23792,rupiah,2024,survey_estimate,per_capita,10.1,181,,Minyak dan kelapa
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,28127,rupiah,2025,survey_estimate,per_capita,10.1,181,,Minyak dan kelapa
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/bahan_minuman,,21373,rupiah,2024,survey_estimate,per_capita,10.1,181,,Bahan minuman
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/bahan_minuman,,21519,rupiah,2025,survey_estimate,per_capita,10.1,181,,Bahan minuman
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,17483,rupiah,2024,survey_estimate,per_capita,10.1,181,,Bumbu-bumbuan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,19169,rupiah,2025,survey_estimate,per_capita,10.1,181,,Bumbu-bumbuan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,10005,rupiah,2024,survey_estimate,per_capita,10.1,181,,Konsumsi lainnya
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,10130,rupiah,2025,survey_estimate,per_capita,10.1,181,,Konsumsi lainnya
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,170515,rupiah,2024,survey_estimate,per_capita,10.1,181,,Makanan dan minuman jadi
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,157156,rupiah,2025,survey_estimate,per_capita,10.1,181,,Makanan dan minuman jadi
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/rokok,,118660,rupiah,2024,survey_estimate,per_capita,10.1,181,,Rokok
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/rokok,,128592,rupiah,2025,survey_estimate,per_capita,10.1,181,,Rokok
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/jumlah_makanan,,727355,rupiah,2024,survey_estimate,per_capita,10.1,181,,Jumlah makanan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/jumlah_makanan,,727032,rupiah,2025,survey_estimate,per_capita,10.1,181,,Jumlah makanan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,293708,rupiah,2024,survey_estimate,per_capita,10.1,181,,Perumahan dan fasilitas rumah tangga
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,287171,rupiah,2025,survey_estimate,per_capita,10.1,181,,Perumahan dan fasilitas rumah tangga
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,126692,rupiah,2024,survey_estimate,per_capita,10.1,181,,Aneka barang dan jasa
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,137894,rupiah,2025,survey_estimate,per_capita,10.1,181,,Aneka barang dan jasa
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39765,rupiah,2024,survey_estimate,per_capita,10.1,181,,"Pakaian , alas kaki, dan tutup kepala"
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39537,rupiah,2025,survey_estimate,per_capita,10.1,181,,"Pakaian , alas kaki, dan tutup kepala"
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/barang_tahan_lama,,27831,rupiah,2024,survey_estimate,per_capita,10.1,181,,Barang tahan lama
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/barang_tahan_lama,,64832,rupiah,2025,survey_estimate,per_capita,10.1,181,,Barang tahan lama
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,37952,rupiah,2024,survey_estimate,per_capita,10.1,181,,"Pajak, pungutan, dan asuransi"
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43227,rupiah,2025,survey_estimate,per_capita,10.1,181,,"Pajak, pungutan, dan asuransi"
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17690,rupiah,2024,survey_estimate,per_capita,10.1,181,,Keperluan pesta dan upacara/kenduri
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10165,rupiah,2025,survey_estimate,per_capita,10.1,181,,Keperluan pesta dan upacara/kenduri
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,543639,rupiah,2024,survey_estimate,per_capita,10.1,181,,Jumlah bukan makanan
+14.07,2,Kabupaten Rokan Hilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,582827,rupiah,2025,survey_estimate,per_capita,10.1,181,,Jumlah bukan makanan
+14.07,2,Kabupaten Rokan Hilir,expenditure,total,,1270994,rupiah,2024,survey_estimate,per_capita,10.1,181,,
+14.07,2,Kabupaten Rokan Hilir,expenditure,total,,1309859,rupiah,2025,survey_estimate,per_capita,10.1,181,,

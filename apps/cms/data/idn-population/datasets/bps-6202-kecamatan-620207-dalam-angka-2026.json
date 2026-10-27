@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-6202-kecamatan-620207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.02.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mentaya Hilir Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Timur",
+  "publisherDomain": "6202",
+  "publisherWebsite": "https://kotimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Timur (https://kotimkab.bps.go.id), publikasi \"Kecamatan Mentaya Hilir Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6202070",
+  "publicationNumber": "62020.26014",
+  "issn": "2621-8569",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kotimkab.bps.go.id/id/publication/2026/09/28/9ac561e894fe96f19acff1b8/kecamatan-mentaya-hilir-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "f566dab2aa70e50143b7100d633a5433383695708135022e8531e834a5f719aa",
+  "sourceFileBytes": 7884818,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Timur.",
+  "csvPath": "datasets/bps-6202-kecamatan-620207-dalam-angka-2026.csv",
+  "csvSha256": "ab92405f04feb785b0051bc52a45adb9ade05c6cbf5673203a08814b52457424",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mentaya Hilir Utara, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bagendang Hilir Permai\": unmatched ",
+    "table 3.1: row not stored: row \"Bagendang Hilir Permai\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

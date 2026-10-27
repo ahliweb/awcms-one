@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.10.2005,4,Kapias Batu VIII,sex,laki_laki,,2149,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2005,4,Kapias Batu VIII,sex,perempuan,,1973,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2005,4,Kapias Batu VIII,total,total,,4122,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10.2006,4,Pematang Sei Baru,sex,laki_laki,,2380,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2006,4,Pematang Sei Baru,sex,perempuan,,2294,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2006,4,Pematang Sei Baru,total,total,,4674,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10.2008,4,Sei Apung Jaya,sex,laki_laki,,2946,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2008,4,Sei Apung Jaya,sex,perempuan,,2844,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2008,4,Sei Apung Jaya,total,total,,5790,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10.2007,4,Sei Apung,sex,laki_laki,,2400,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2007,4,Sei Apung,sex,perempuan,,2183,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2007,4,Sei Apung,total,total,,4583,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10.2001,4,Asahan Mati,sex,laki_laki,,1713,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2001,4,Asahan Mati,sex,perempuan,,1621,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2001,4,Asahan Mati,total,total,,3334,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10.2003,4,Bagan Asahan Baru,sex,laki_laki,,2974,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2003,4,Bagan Asahan Baru,sex,perempuan,,2750,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2003,4,Bagan Asahan Baru,total,total,,5724,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10.2004,4,Bagan Asahan Pekan,sex,laki_laki,,3012,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2004,4,Bagan Asahan Pekan,sex,perempuan,,2909,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2004,4,Bagan Asahan Pekan,total,total,,5921,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10.2002,4,Bagan Asahan,sex,laki_laki,,4549,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10.2002,4,Bagan Asahan,sex,perempuan,,4219,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10.2002,4,Bagan Asahan,total,total,,8768,jiwa,2024,registration,total_population,3.1,24,,
+12.09.10,3,Tanjung Balai,sex,laki_laki,,22123,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.10,3,Tanjung Balai,sex,perempuan,,20793,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.10,3,Tanjung Balai,total,total,,42916,jiwa,2024,registration,total_population,3.1,24,,

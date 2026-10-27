@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.79.03.1001,4,Purwaharja,sex,laki_laki,,4867,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.03.1001,4,Purwaharja,sex,perempuan,,4666,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.03.1001,4,Purwaharja,total,total,,9533,jiwa,2025,registration,total_population,3.1,28,,
+32.79.03.1004,4,Karangpanimbal,sex,laki_laki,,2242,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.03.1004,4,Karangpanimbal,sex,perempuan,,2224,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.03.1004,4,Karangpanimbal,total,total,,4466,jiwa,2025,registration,total_population,3.1,28,,
+32.79.03.2002,4,Raharja,sex,laki_laki,,2823,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.03.2002,4,Raharja,sex,perempuan,,2803,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.03.2002,4,Raharja,total,total,,5626,jiwa,2025,registration,total_population,3.1,28,,
+32.79.03.2003,4,Mekarharja,sex,laki_laki,,2856,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.03.2003,4,Mekarharja,sex,perempuan,,2826,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.03.2003,4,Mekarharja,total,total,,5682,jiwa,2025,registration,total_population,3.1,28,,
+32.79.03,3,Kecamatan Purwaharja,sex,laki_laki,,12788,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.03,3,Kecamatan Purwaharja,sex,perempuan,,12519,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.03,3,Kecamatan Purwaharja,total,total,,25307,jiwa,2025,registration,total_population,3.1,28,,

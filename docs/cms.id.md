@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:093a815502a7cc9b911d202c2d790d862df660e1c758ac68688b33866e692e0f -->
+<!-- i18n-source-hash: sha256:9bc4c1d58d0cac7c253bc6089cb47d1b4966a2d967116b6961a8ad2f58c2397a -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -398,7 +398,7 @@ Di balik fitur `booking` (default OFF), dispesifikasikan di [`booking-ux-flows.i
 - **Layar.** `/admin/commerce-segments` — definisikan segmen dengan hingga enam kondisi (atau tempel aturan bersarang sebagai JSON), daftar, serta aturan, versi, pratinjau, pelanggan, dan suntingan satu segmen. Ia berada di balik fitur `segments` (bawaan MATI; _Segmen pelanggan_ di Fitur pada pengaturan toko).
 - **Pengujian.** `apps/cms/tests/commerce-segment-domain.test.ts` (kosakata tertutup, batas, string injeksi, penyembunyian, topeng, CSV), `commerce-feature-toggles.test.ts`, dan terhadap Postgres sungguhan `apps/cms/tests/integration/commerce-segments.integration.test.ts` (setiap bidang dan AND / OR / NOT, pengecualian, jendela dan as-of, ketakbisaubahan versi, hapus-menjaga-versi, isolasi tenant, batas waktu dan konkurensi, dan pengukuran pratinjau 100.000 pelanggan) dan `commerce-segments-routes.integration.test.ts` (sakelar, pemisahan izin, validasi, 404 lintas tenant, audit).
 
-### Kondisi turunan booking (issue #390, epik #280 butir 7, [ADR-0051](adr/0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+### Kondisi turunan booking (issue #390, epik #280 butir 7, [ADR-0052](adr/0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
 
 - **Apa itu.** Lima kondisi tambahan, dapat dipakai di mana pun kondisi pesanan dipakai (dan, atau, bukan, jendela ke belakang hingga 3.650 hari): _Jumlah booking terkonfirmasi_ (lunas dan masih berlaku; "memesan dalam 90 hari terakhir" adalah minimal 1 dengan jendela 90, diukur pada hari booking dibayar), _Jumlah menginap_ (tamu sudah check-in; jendelanya tanggal kedatangan), _Menginap terakhir (kedatangan)_ (sebelum / sesudah / tidak pernah), _Jumlah tidak hadir_ dan _Jumlah pembatalan oleh pelanggan_ (jendelanya hari keputusan dicatat). Pembatalan oleh staf tidak pernah dihitung terhadap pelanggan. Reservasi yang dibuat staf tanpa penjualan di baliknya tidak milik siapa pun.
 - **Skema aturan 2.** Setiap versi segmen mencatat skema aturan tempat ia ditulis, dan selalu dibaca di bawah skema itu: versi yang disimpan sebelum perubahan ini tetap bermakna persis seperti dahulu dan tidak dapat memperoleh kondisi booking hanya karena dibaca kode yang lebih baru. Versi baru ditulis di bawah skema 2. API menampilkan `ruleSchemaVersion` pada setiap versi.

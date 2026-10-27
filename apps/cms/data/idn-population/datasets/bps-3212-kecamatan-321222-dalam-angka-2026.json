@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321222-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bongas Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Bongas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212200",
+  "publicationNumber": "32120.24038",
+  "issn": "2807-4416",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/ce446e97babf0e635d75611b/kecamatan-bongas-dalam-angka-2026.html",
+  "sourceFileSha256": "af2b0cdff3a737d214f13f8dcf502ef939a9de891fe74095839cde90dce1d3b1",
+  "sourceFileBytes": 21573572,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321222-dalam-angka-2026.csv",
+  "csvSha256": "4dd7310198b308ae78b0fc6f7827e7f61cd011c912d8ed145040a5fbc65175a0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bongas, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bongas, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 32.12.22 are not stored: age_group vs total: parts sum 99371.0000 != 52762.0000 (diff 46609.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:d89c1f04338e23e85794984ded782e1806d839f90406517a9a7fe4c0c42d5969 -->
+<!-- i18n-source-hash: sha256:345f414eed2a5ed29b894f4794ce6a72734633972cfa6be807202fc62f3bb9aa -->
 
 # Skema basis data
 
@@ -315,12 +315,12 @@ Dua tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key k
 - **`sql/1003`** mengisi tujuh kunci izin; **`sql/1004`** memberi `awcms_worker` `SELECT, DELETE` untuk deskriptor retensi (praktis tak terjangkau: `deleted_at` tidak pernah diisi, sehingga versi yang dicatat konsumen tidak pernah dipurge).
 - **Evaluasi hanya membaca.** Ia menggabungkan `awcms_commerce_customers` dengan akun pelanggan, akun loyalitas, dan satu pemindaian terkelompok pesanan lunas; tak satu pun mendapat kolom baru.
 
-### Skema aturan segmen: satu kolom pada versi (`sql/1060`, issue #390, [ADR-0051](adr/0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+### Skema aturan segmen: satu kolom pada versi (`sql/1060`, issue #390, [ADR-0052](adr/0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
 
 `awcms_commerce_segment_versions` mendapat `rule_schema_version integer NOT NULL DEFAULT 1` dengan `CHECK (rule_schema_version >= 1)`. Ia mencatat kosakata aturan tempat sebuah versi ditulis (1 = sembilan bidang commerce, 2 = menambah `booking_count`, `stay_count`, `last_stay_date`, `no_show_count`, `cancellation_count`); `resolveSegmentRules` memvalidasi ulang versi tersimpan di bawah skema itu, sehingga versi lama tidak pernah memperoleh bidang baru dan baris yang dipalsukan di luar aplikasi dengan bidang yang lebih baru gagal tertutup. Setiap baris yang ada adalah skema 1 (bawaannya persis apa adanya mereka); versi baru ditulis di bawah 2.
 
 - **Tanpa penulisan ulang, tetap tak dapat diubah.** `ADD COLUMN ... DEFAULT <konstanta>` adalah perubahan katalog di PostgreSQL: tanpa penulisan ulang tabel, tanpa `UPDATE` baris, sehingga trigger ketakbisaubahan `sql/1001` tidak terlibat, dan `awcms_app` tetap tanpa `UPDATE` pada tabel (keduanya dikunci tes integrasi).
-- **Tanpa indeks baru dan tanpa tabel baru.** Aturan turunan booking membaca tabel yang sudah ada - `awcms_commerce_booking_reservation_links`, `awcms_commerce_orders`, `awcms_commerce_booking_refund_decisions` dan, hanya `SELECT` dan dua kolom (`status`, `starts_at`), `awcms_booking_reservations` milik Booking - sebagai pemindaian terkelompok dengan hash join; dua indeks cakupan diukur pada set data 100.000 pelanggan dan tidak memberi apa-apa di luar derau antar-lari (ADR-0051 D6). Jalur satu-pelanggan digerakkan indeks oleh `awcms_commerce_orders_customer_idx`, indeks `(tenant_id, order_id)` tabel tautan, primary key reservasi, dan indeks `(tenant_id, order_id)` tabel keputusan.
+- **Tanpa indeks baru dan tanpa tabel baru.** Aturan turunan booking membaca tabel yang sudah ada - `awcms_commerce_booking_reservation_links`, `awcms_commerce_orders`, `awcms_commerce_booking_refund_decisions` dan, hanya `SELECT` dan dua kolom (`status`, `starts_at`), `awcms_booking_reservations` milik Booking - sebagai pemindaian terkelompok dengan hash join; dua indeks cakupan diukur pada set data 100.000 pelanggan dan tidak memberi apa-apa di luar derau antar-lari (ADR-0052 D6). Jalur satu-pelanggan digerakkan indeks oleh `awcms_commerce_orders_customer_idx`, indeks `(tenant_id, order_id)` tabel tautan, primary key reservasi, dan indeks `(tenant_id, order_id)` tabel keputusan.
 - **Tidak ada yang disalin.** Tidak ada anggota, bendera, atau penghitung yang disimpan di mana pun; angkanya diagregasi per evaluasi di bawah RLS tenant pemanggil.
 
 ### Kelayakan loyalitas berdasarkan segmen: dua kolom pada program (`sql/1005`, issue #361, amandemen [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))

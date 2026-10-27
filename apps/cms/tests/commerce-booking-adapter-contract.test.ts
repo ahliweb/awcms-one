@@ -458,7 +458,7 @@ describe("module wiring and boundary", () => {
     ]);
   });
 
-  test("the segment booking facts read only the reservation status and arrival instant of a Booking row - never a customer reference, note or party (ADR-0051 D3)", async () => {
+  test("the segment booking facts read only the reservation status and arrival instant of a Booking row - never a customer reference, note or party (ADR-0052 D3)", async () => {
     const source = (
       await readFile(
         "src/modules/commerce/application/segment-booking-sql.ts",

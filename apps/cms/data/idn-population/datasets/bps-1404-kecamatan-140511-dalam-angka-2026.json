@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1404-kecamatan-140511-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.05.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bandar Seikijang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pelalawan",
+  "publisherDomain": "1404",
+  "publisherWebsite": "https://pelalawankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pelalawan (https://pelalawankab.bps.go.id), publikasi \"Kecamatan Bandar Seikijang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1404012",
+  "publicationNumber": "14040.26012",
+  "issn": "2723-1321",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pelalawankab.bps.go.id/id/publication/2026/09/28/8402e127dc54d68c1019f9f9/kecamatan-bandar-seikijang-dalam-angka-2026.html",
+  "sourceFileSha256": "42c8f5f59176ab5183d81d80ce53041e558b3cffdfedade4449cf92f864f1083",
+  "sourceFileBytes": 7731807,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pelalawan.",
+  "csvPath": "datasets/bps-1404-kecamatan-140511-dalam-angka-2026.csv",
+  "csvSha256": "b1aabfc1c7b997deeb494407a6ed478ca65b7f7612ba492a742a38cf81909b92",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bandar Seikijang, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bandar Seikijang, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sekijang\": unmatched ",
+    "table 3.1: row not stored: row \"Sekijang\": unmatched "
+  ]
+}

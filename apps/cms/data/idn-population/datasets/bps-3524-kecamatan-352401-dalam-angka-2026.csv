@@ -1,0 +1,27 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.01.2003,4,Kedungkumpul,sex,laki_laki,,2019,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01.2003,4,Kedungkumpul,sex,perempuan,,2042,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2003,4,Kedungkumpul,total,total,,4061,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01.2001,4,Sembung,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01.2001,4,Sembung,sex,perempuan,,570,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2001,4,Sembung,total,total,,1135,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01.2002,4,Banggle,sex,laki_laki,,768,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01.2002,4,Banggle,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2002,4,Banggle,total,total,,1547,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01.2004,4,Sukorame,sex,laki_laki,,3310,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01.2004,4,Sukorame,sex,perempuan,,3372,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2004,4,Sukorame,total,total,,6682,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01.2007,4,Sewor,sex,laki_laki,,1050,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01.2007,4,Sewor,sex,perempuan,,1045,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2007,4,Sewor,total,total,,2095,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01.2006,4,Kedungrejo,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01.2006,4,Kedungrejo,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2006,4,Kedungrejo,total,total,,1020,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01.2008,4,Wedoro,sex,laki_laki,,872,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01.2008,4,Wedoro,sex,perempuan,,869,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2008,4,Wedoro,total,total,,1741,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01.2009,4,Pendowokumpul,sex,perempuan,,947,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01.2009,4,Pendowokumpul,total,total,,1856,jiwa,2025,registration,total_population,3.1,31,,
+35.24.01,3,Kecamatan Sukorame,sex,laki_laki,,10660,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.01,3,Kecamatan Sukorame,sex,perempuan,,10801,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.01,3,Kecamatan Sukorame,total,total,,21461,jiwa,2025,registration,total_population,3.1,31,,

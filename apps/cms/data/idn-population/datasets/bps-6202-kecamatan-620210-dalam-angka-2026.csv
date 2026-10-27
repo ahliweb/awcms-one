@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.02.10,3,Antang Kalang,age_group,0-4,laki_laki,452,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+62.02.10,3,Antang Kalang,age_group,0-4,perempuan,423,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+62.02.10,3,Antang Kalang,age_group,0-4,,875,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+62.02.10,3,Antang Kalang,age_group,5-9,laki_laki,691,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+62.02.10,3,Antang Kalang,age_group,5-9,perempuan,709,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+62.02.10,3,Antang Kalang,age_group,5-9,,1400,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+62.02.10,3,Antang Kalang,age_group,10-14,laki_laki,736,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+62.02.10,3,Antang Kalang,age_group,10-14,perempuan,719,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+62.02.10,3,Antang Kalang,age_group,10-14,,1455,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+62.02.10,3,Antang Kalang,age_group,15-19,laki_laki,581,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+62.02.10,3,Antang Kalang,age_group,15-19,perempuan,539,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+62.02.10,3,Antang Kalang,age_group,15-19,,1120,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+62.02.10,3,Antang Kalang,age_group,20-24,laki_laki,684,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+62.02.10,3,Antang Kalang,age_group,20-24,perempuan,618,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+62.02.10,3,Antang Kalang,age_group,20-24,,1302,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+62.02.10,3,Antang Kalang,age_group,25-29,laki_laki,561,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+62.02.10,3,Antang Kalang,age_group,25-29,perempuan,536,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+62.02.10,3,Antang Kalang,age_group,25-29,,1097,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+62.02.10,3,Antang Kalang,age_group,30-34,laki_laki,647,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+62.02.10,3,Antang Kalang,age_group,30-34,perempuan,559,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+62.02.10,3,Antang Kalang,age_group,30-34,,1206,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+62.02.10,3,Antang Kalang,age_group,35-39,laki_laki,647,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+62.02.10,3,Antang Kalang,age_group,35-39,perempuan,580,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+62.02.10,3,Antang Kalang,age_group,35-39,,1227,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+62.02.10,3,Antang Kalang,age_group,40-44,laki_laki,592,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+62.02.10,3,Antang Kalang,age_group,40-44,perempuan,584,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+62.02.10,3,Antang Kalang,age_group,40-44,,1176,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+62.02.10,3,Antang Kalang,age_group,45-49,laki_laki,547,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+62.02.10,3,Antang Kalang,age_group,45-49,perempuan,438,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+62.02.10,3,Antang Kalang,age_group,45-49,,985,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+62.02.10,3,Antang Kalang,age_group,50-54,laki_laki,416,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+62.02.10,3,Antang Kalang,age_group,50-54,perempuan,341,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+62.02.10,3,Antang Kalang,age_group,50-54,,757,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+62.02.10,3,Antang Kalang,age_group,55-59,laki_laki,325,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+62.02.10,3,Antang Kalang,age_group,55-59,perempuan,295,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+62.02.10,3,Antang Kalang,age_group,55-59,,620,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+62.02.10,3,Antang Kalang,age_group,60-64,laki_laki,226,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+62.02.10,3,Antang Kalang,age_group,60-64,perempuan,219,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+62.02.10,3,Antang Kalang,age_group,60-64,,445,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+62.02.10,3,Antang Kalang,age_group,65-69,laki_laki,218,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+62.02.10,3,Antang Kalang,age_group,65-69,perempuan,161,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+62.02.10,3,Antang Kalang,age_group,65-69,,379,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+62.02.10,3,Antang Kalang,age_group,70-74,laki_laki,115,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+62.02.10,3,Antang Kalang,age_group,70-74,perempuan,108,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+62.02.10,3,Antang Kalang,age_group,70-74,,223,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+62.02.10,3,Antang Kalang,age_group,75+,laki_laki,156,jiwa,2025,registration,total_population,3.2,34,,75+
+62.02.10,3,Antang Kalang,age_group,75+,perempuan,93,jiwa,2025,registration,total_population,3.2,34,,75+
+62.02.10,3,Antang Kalang,age_group,75+,,249,jiwa,2025,registration,total_population,3.2,34,,75+
+62.02.10,3,Antang Kalang,sex,laki_laki,,7594,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+62.02.10,3,Antang Kalang,sex,perempuan,,6922,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+62.02.10,3,Antang Kalang,total,total,,14516,jiwa,2025,registration,total_population,3.2,34,,

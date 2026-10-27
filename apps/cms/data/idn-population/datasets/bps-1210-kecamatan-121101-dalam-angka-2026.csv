@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.01.2014,4,Kalang Simbara,sex,laki_laki,,1707,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.2014,4,Kalang Simbara,sex,perempuan,,1702,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.2014,4,Kalang Simbara,total,total,,3409,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.2013,4,Bintang,sex,laki_laki,,1344,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.2013,4,Bintang,sex,perempuan,,1377,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.2013,4,Bintang,total,total,,2721,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.2012,4,Kalang,sex,laki_laki,,1921,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.2012,4,Kalang,sex,perempuan,,1907,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.2012,4,Kalang,total,total,,3828,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.2008,4,Belang Malum,sex,laki_laki,,1315,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.2008,4,Belang Malum,sex,perempuan,,1319,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.2008,4,Belang Malum,total,total,,2634,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.2011,4,Huta Rakyat,sex,laki_laki,,3878,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.2011,4,Huta Rakyat,sex,perempuan,,4032,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.2011,4,Huta Rakyat,total,total,,7910,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.2017,4,Bintang Mersada,sex,laki_laki,,1501,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.2017,4,Bintang Mersada,sex,perempuan,,1458,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.2017,4,Bintang Mersada,total,total,,2959,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.1007,4,Sidiangkat,sex,laki_laki,,2919,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.1007,4,Sidiangkat,sex,perempuan,,2903,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.1007,4,Sidiangkat,total,total,,5822,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.1009,4,Batang Beruh,sex,laki_laki,,6109,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.1009,4,Batang Beruh,sex,perempuan,,6262,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.1009,4,Batang Beruh,total,total,,12371,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.1015,4,Bintang Hulu,sex,laki_laki,,1588,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.1015,4,Bintang Hulu,sex,perempuan,,1572,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.1015,4,Bintang Hulu,total,total,,3160,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.1010,4,Sidikalang,sex,laki_laki,,4940,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.1010,4,Sidikalang,sex,perempuan,,5156,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.1010,4,Sidikalang,total,total,,10096,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01.1005,4,Kuta Gambir,sex,laki_laki,,1589,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01.1005,4,Kuta Gambir,sex,perempuan,,1594,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01.1005,4,Kuta Gambir,total,total,,3183,jiwa,2026,registration,total_population,3.1,22,,
+12.11.01,3,Sidikalang,sex,laki_laki,,28811,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.01,3,Sidikalang,sex,perempuan,,29282,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.01,3,Sidikalang,total,total,,58093,jiwa,2026,registration,total_population,3.1,22,,

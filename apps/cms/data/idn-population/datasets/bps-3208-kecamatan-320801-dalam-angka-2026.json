@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320801-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kadugede Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Kadugede Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208020",
+  "publicationNumber": "32080.25028",
+  "issn": "2830-4055",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/783bd9d7eb74f51202eacfcf/kecamatan-kadugede-dalam-angka-2026.html",
+  "sourceFileSha256": "664cc1cdd9d8dc5cf4dfef940d64a739a65949febea10167313cecb994d4a592",
+  "sourceFileBytes": 3136717,
+  "sourcePages": [35, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320801-dalam-angka-2026.csv",
+  "csvSha256": "ad66c5f4d473ecfde2ba1e0eace45bea3a474c9ae9e4118c02ec7289ddc525cf",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p35",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kadugede 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "unnumbered-p38",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kadugede, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p35: row not stored: row \"Kecamatan Kadugede Kadugede District\": unmatched ",
+    "table unnumbered-p35: row not stored: row \"2024\": unmatched ",
+    "table unnumbered-p38: row not stored: row \"75++\": unmatched ",
+    "table unnumbered-p38: row not stored: row \"Kecamatan Kadugede Kadugede District\": unmatched ",
+    "table unnumbered-p38: row not stored: row \"2025\": unmatched "
+  ]
+}

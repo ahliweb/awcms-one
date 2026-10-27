@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1306-kecamatan-130501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.05.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubuak Aluang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Padang Pariaman BPS-Statistics Padang Pariaman Regency Sumber Ilustrasi",
+  "publisherDomain": "1306",
+  "publisherWebsite": "https://padangpariamankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Padang Pariaman BPS-Statistics Padang Pariaman Regency Sumber Ilustrasi (https://padangpariamankab.bps.go.id), publikasi \"Kecamatan Lubuak Aluang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1306020",
+  "publicationNumber": "13060.26011",
+  "issn": "3031-3147",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://padangpariamankab.bps.go.id/id/publication/2026/09/28/c13dbffcc76832402f53d38d/kecamatan-lubuak-aluang-dalam-angka-2026.html",
+  "sourceFileSha256": "232a64b11fa3a682f0ab0bf7479e683837db470b01155e73df6e8dbc1283a641",
+  "sourceFileBytes": 22687342,
+  "sourcePages": [39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Padang Pariaman.",
+  "csvPath": "datasets/bps-1306-kecamatan-130501-dalam-angka-2026.csv",
+  "csvSha256": "3dca8e5503ba7fa8b11659a3ec73c29a9e04984c4b99624e31d54f287f8dfe8f",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Tables Kecamatan Lubuak Aluang (jiwa), 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.3: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

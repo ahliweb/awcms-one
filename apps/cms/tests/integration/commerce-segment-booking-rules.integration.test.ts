@@ -1,6 +1,6 @@
 /**
  * Booking-derived CRM segment rules (rule schema 2) against a real, migrated
- * PostgreSQL under the least-privilege RUNTIME role (Issue #390, ADR-0051;
+ * PostgreSQL under the least-privilege RUNTIME role (Issue #390, ADR-0052;
  * epic #280 item 7, second half; threat model F8, controls C-25..C-29). WORLD 1
  * (see `harness.ts`). The HTTP half (feature, permission) is
  * `commerce-segment-booking-rules-routes.integration.test.ts`.
@@ -485,7 +485,7 @@ function createInput(raw: unknown, name: string): CreateSegmentInput {
   return result.value;
 }
 
-suite("booking-derived CRM segment rules (Issue #390, ADR-0051)", () => {
+suite("booking-derived CRM segment rules (Issue #390, ADR-0052)", () => {
   beforeAll(async () => {
     await setupIntegrationDatabase();
   }, 120000);

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351206-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panarukan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Panarukan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512090",
+  "publicationNumber": "35120.26012",
+  "issn": "2808-6120",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/8be541baad569f619ac2fb4f/kecamatan-panarukan-dalam-angka-2026.html",
+  "sourceFileSha256": "111fac44ce274e35b931ff975a2abc25bda2b88341ef628af0995a1cca0b16c8",
+  "sourceFileBytes": 5350508,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351206-dalam-angka-2026.csv",
+  "csvSha256": "d39dc633e7f164bb41f1b99c9e9b0d3e119fd4533db046d081f7ed7170021550",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Panarukan, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Panarukan, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Confucian\" not recognised)",
+    "table 3.1: row not stored: row \"Total\": unmatched "
+  ]
+}

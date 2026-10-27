@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1218-kecamatan-121802-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.18.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Perbaungan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Serdang Bedagai",
+  "publisherDomain": "1218",
+  "publisherWebsite": "https://serdangbedagaikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Serdang Bedagai (https://serdangbedagaikab.bps.go.id), publikasi \"Kecamatan Perbaungan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1218100",
+  "publicationNumber": "12180.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serdangbedagaikab.bps.go.id/id/publication/2026/09/28/9397b09a739d5c1a480d6041/kecamatan-perbaungan-dalam-angka-2026.html",
+  "sourceFileSha256": "265ca00578ca697f247c84112db34681bd06c1526e9309f6234dc2b93968da91",
+  "sourceFileBytes": 10659293,
+  "sourcePages": [31, 32, 33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau mengandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik kabupaten Serdang Bedagai.",
+  "csvPath": "datasets/bps-1218-kecamatan-121802-dalam-angka-2026.csv",
+  "csvSha256": "a20543cef602128bcf43efbb2c5ce18a97032eb387c6a2cfaec5d28b621a9393",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Perbaungan, 2025",
+      "printedPages": [31, 32, 33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Perbaungan, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

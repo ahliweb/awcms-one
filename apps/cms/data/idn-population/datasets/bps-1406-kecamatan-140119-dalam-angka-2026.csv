@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.19.2006,4,Penghidupan,sex,perempuan,,2262,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2006,4,Penghidupan,total,total,,4598,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2001,4,Simalinyang,sex,perempuan,,1751,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2001,4,Simalinyang,total,total,,3573,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2007,4,Mayang Pongkai,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2007,4,Mayang Pongkai,total,total,,2506,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2005,4,Lubuk Sakai,sex,perempuan,,1176,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2005,4,Lubuk Sakai,total,total,,2452,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2002,4,Bina Baru,sex,perempuan,,2893,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2002,4,Bina Baru,total,total,,5874,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2003,4,Hidup Baru,sex,perempuan,,1310,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2003,4,Hidup Baru,total,total,,2682,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2004,4,Karya Bakti,sex,perempuan,,1240,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2004,4,Karya Bakti,total,total,,2501,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2008,4,Koto Damai,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2008,4,Koto Damai,total,total,,2312,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2009,4,Utama Karya,sex,perempuan,,643,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2009,4,Utama Karya,total,total,,1364,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2010,4,Bukit Sakai,sex,perempuan,,666,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2010,4,Bukit Sakai,total,total,,1328,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19.2011,4,Mekar Jaya,sex,perempuan,,1037,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19.2011,4,Mekar Jaya,total,total,,2088,jiwa,2025,registration,total_population,3.1,11,,
+14.01.19,3,Kampar Kiri Tengah,sex,perempuan,,15331,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.19,3,Kampar Kiri Tengah,total,total,,31278,jiwa,2025,registration,total_population,3.1,11,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.76.02.1035,4,Tigo Koto Diate,sex,laki_laki,,2906,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1035,4,Tigo Koto Diate,sex,perempuan,,2839,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1035,4,Tigo Koto Diate,total,total,,5745,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1036,4,Ikua Koto Dibalai,sex,laki_laki,,1961,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1036,4,Ikua Koto Dibalai,sex,perempuan,,1830,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1036,4,Ikua Koto Dibalai,total,total,,3791,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1037,4,Balai Tongah Koto,sex,laki_laki,,1426,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1037,4,Balai Tongah Koto,sex,perempuan,,1490,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1037,4,Balai Tongah Koto,total,total,,2916,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1038,4,Kapalo Koto Dibalai,sex,laki_laki,,1908,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1038,4,Kapalo Koto Dibalai,sex,perempuan,,1971,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1038,4,Kapalo Koto Dibalai,total,total,,3879,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1039,4,Koto Kociak Kubu Tapak Rajo,sex,laki_laki,,2801,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1039,4,Koto Kociak Kubu Tapak Rajo,sex,perempuan,,2715,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1039,4,Koto Kociak Kubu Tapak Rajo,total,total,,5516,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1034,4,Tigo Koto Dibaruah,sex,laki_laki,,2382,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1034,4,Tigo Koto Dibaruah,sex,perempuan,,2374,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1034,4,Tigo Koto Dibaruah,total,total,,4756,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1033,4,Taratak Padang Kampuang,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1033,4,Taratak Padang Kampuang,sex,perempuan,,938,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1033,4,Taratak Padang Kampuang,total,total,,1886,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1032,4,Ompang Tanah Sirah,sex,laki_laki,,1672,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1032,4,Ompang Tanah Sirah,sex,perempuan,,1712,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1032,4,Ompang Tanah Sirah,total,total,,3384,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02.1002,4,Napar,sex,laki_laki,,1554,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+13.76.02.1002,4,Napar,sex,perempuan,,1544,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+13.76.02.1002,4,Napar,total,total,,3098,jiwa,2025,registration,total_population,3.1,47,,
+13.76.02,3,Payakumbuh Utara,age_group,0-4,laki_laki,1226,jiwa,2025,registration,total_population,3.2,49,,0-4
+13.76.02,3,Payakumbuh Utara,age_group,0-4,perempuan,1179,jiwa,2025,registration,total_population,3.2,49,,0-4
+13.76.02,3,Payakumbuh Utara,age_group,0-4,,2405,jiwa,2025,registration,total_population,3.2,49,,0-4
+13.76.02,3,Payakumbuh Utara,age_group,5-9,laki_laki,1522,jiwa,2025,registration,total_population,3.2,49,,5-9
+13.76.02,3,Payakumbuh Utara,age_group,5-9,perempuan,1480,jiwa,2025,registration,total_population,3.2,49,,5-9
+13.76.02,3,Payakumbuh Utara,age_group,5-9,,3002,jiwa,2025,registration,total_population,3.2,49,,5-9
+13.76.02,3,Payakumbuh Utara,age_group,10-14,laki_laki,1560,jiwa,2025,registration,total_population,3.2,49,,10-14
+13.76.02,3,Payakumbuh Utara,age_group,10-14,perempuan,1524,jiwa,2025,registration,total_population,3.2,49,,10-14
+13.76.02,3,Payakumbuh Utara,age_group,10-14,,3084,jiwa,2025,registration,total_population,3.2,49,,10-14
+13.76.02,3,Payakumbuh Utara,age_group,15-19,laki_laki,1707,jiwa,2025,registration,total_population,3.2,49,,15-19
+13.76.02,3,Payakumbuh Utara,age_group,15-19,perempuan,1571,jiwa,2025,registration,total_population,3.2,49,,15-19
+13.76.02,3,Payakumbuh Utara,age_group,15-19,,3278,jiwa,2025,registration,total_population,3.2,49,,15-19
+13.76.02,3,Payakumbuh Utara,age_group,20-24,laki_laki,1521,jiwa,2025,registration,total_population,3.2,49,,20-24
+13.76.02,3,Payakumbuh Utara,age_group,20-24,perempuan,1463,jiwa,2025,registration,total_population,3.2,49,,20-24
+13.76.02,3,Payakumbuh Utara,age_group,20-24,,2984,jiwa,2025,registration,total_population,3.2,49,,20-24
+13.76.02,3,Payakumbuh Utara,age_group,25-29,laki_laki,1408,jiwa,2025,registration,total_population,3.2,49,,25-29
+13.76.02,3,Payakumbuh Utara,age_group,25-29,perempuan,1384,jiwa,2025,registration,total_population,3.2,49,,25-29
+13.76.02,3,Payakumbuh Utara,age_group,25-29,,2792,jiwa,2025,registration,total_population,3.2,49,,25-29
+13.76.02,3,Payakumbuh Utara,age_group,30-34,laki_laki,1221,jiwa,2025,registration,total_population,3.2,49,,30-34
+13.76.02,3,Payakumbuh Utara,age_group,30-34,perempuan,1141,jiwa,2025,registration,total_population,3.2,49,,30-34
+13.76.02,3,Payakumbuh Utara,age_group,30-34,,2362,jiwa,2025,registration,total_population,3.2,49,,30-34
+13.76.02,3,Payakumbuh Utara,age_group,35-39,laki_laki,1100,jiwa,2025,registration,total_population,3.2,49,,35-39
+13.76.02,3,Payakumbuh Utara,age_group,35-39,perempuan,1179,jiwa,2025,registration,total_population,3.2,49,,35-39
+13.76.02,3,Payakumbuh Utara,age_group,35-39,,2279,jiwa,2025,registration,total_population,3.2,49,,35-39
+13.76.02,3,Payakumbuh Utara,age_group,40-44,laki_laki,1351,jiwa,2025,registration,total_population,3.2,49,,40-44
+13.76.02,3,Payakumbuh Utara,age_group,40-44,perempuan,1256,jiwa,2025,registration,total_population,3.2,49,,40-44
+13.76.02,3,Payakumbuh Utara,age_group,40-44,,2607,jiwa,2025,registration,total_population,3.2,49,,40-44
+13.76.02,3,Payakumbuh Utara,age_group,45-49,laki_laki,1175,jiwa,2025,registration,total_population,3.2,49,,45-49
+13.76.02,3,Payakumbuh Utara,age_group,45-49,perempuan,1175,jiwa,2025,registration,total_population,3.2,49,,45-49
+13.76.02,3,Payakumbuh Utara,age_group,45-49,,2350,jiwa,2025,registration,total_population,3.2,49,,45-49
+13.76.02,3,Payakumbuh Utara,age_group,50-54,laki_laki,1136,jiwa,2025,registration,total_population,3.2,49,,50-54
+13.76.02,3,Payakumbuh Utara,age_group,50-54,perempuan,999,jiwa,2025,registration,total_population,3.2,49,,50-54
+13.76.02,3,Payakumbuh Utara,age_group,50-54,,2135,jiwa,2025,registration,total_population,3.2,49,,50-54
+13.76.02,3,Payakumbuh Utara,age_group,55-59,laki_laki,825,jiwa,2025,registration,total_population,3.2,49,,55-59
+13.76.02,3,Payakumbuh Utara,age_group,55-59,perempuan,857,jiwa,2025,registration,total_population,3.2,49,,55-59
+13.76.02,3,Payakumbuh Utara,age_group,55-59,,1682,jiwa,2025,registration,total_population,3.2,49,,55-59
+13.76.02,3,Payakumbuh Utara,age_group,60-64,laki_laki,667,jiwa,2025,registration,total_population,3.2,49,,60-64
+13.76.02,3,Payakumbuh Utara,age_group,60-64,perempuan,783,jiwa,2025,registration,total_population,3.2,49,,60-64
+13.76.02,3,Payakumbuh Utara,age_group,60-64,,1450,jiwa,2025,registration,total_population,3.2,49,,60-64
+13.76.02,3,Payakumbuh Utara,age_group,65-69,laki_laki,573,jiwa,2025,registration,total_population,3.2,49,,65-69
+13.76.02,3,Payakumbuh Utara,age_group,65-69,perempuan,605,jiwa,2025,registration,total_population,3.2,49,,65-69
+13.76.02,3,Payakumbuh Utara,age_group,65-69,,1178,jiwa,2025,registration,total_population,3.2,49,,65-69
+13.76.02,3,Payakumbuh Utara,age_group,70-74,laki_laki,334,jiwa,2025,registration,total_population,3.2,49,,70-74
+13.76.02,3,Payakumbuh Utara,age_group,70-74,perempuan,383,jiwa,2025,registration,total_population,3.2,49,,70-74
+13.76.02,3,Payakumbuh Utara,age_group,70-74,,717,jiwa,2025,registration,total_population,3.2,49,,70-74
+13.76.02,3,Payakumbuh Utara,age_group,75+,laki_laki,232,jiwa,2025,registration,total_population,3.2,49,,75 +
+13.76.02,3,Payakumbuh Utara,age_group,75+,perempuan,434,jiwa,2025,registration,total_population,3.2,49,,75 +
+13.76.02,3,Payakumbuh Utara,age_group,75+,,666,jiwa,2025,registration,total_population,3.2,49,,75 +
+13.76.02,3,Payakumbuh Utara,sex,laki_laki,,17558,jiwa,2025,registration,total_population,3.2,49,,Laki-Laki
+13.76.02,3,Payakumbuh Utara,sex,perempuan,,17413,jiwa,2025,registration,total_population,3.2,49,,Perempuan
+13.76.02,3,Payakumbuh Utara,total,total,,34971,jiwa,2025,registration,total_population,3.2,49,,

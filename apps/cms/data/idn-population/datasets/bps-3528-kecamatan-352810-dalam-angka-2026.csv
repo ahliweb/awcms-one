@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.28.10.2002,4,Sumber Waru,sex,perempuan,,3274,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2002,4,Sumber Waru,total,total,,6509,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2001,4,Bajur,sex,perempuan,,3125,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2001,4,Bajur,total,total,,6050,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2007,4,Ragang,sex,perempuan,,1872,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2007,4,Ragang,total,total,,3617,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2006,4,Tampojung Tenggina,sex,perempuan,,1538,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2006,4,Tampojung Tenggina,total,total,,3069,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2005,4,Tampojung Tengah,sex,perempuan,,1384,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2005,4,Tampojung Tengah,total,total,,2764,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2004,4,Tampojung Guwa,sex,perempuan,,775,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2004,4,Tampojung Guwa,total,total,,1545,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2008,4,Sana Laok,sex,perempuan,,5813,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2008,4,Sana Laok,total,total,,11355,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2009,4,Waru Timur,sex,perempuan,,5363,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2009,4,Waru Timur,total,total,,10706,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2010,4,Waru Barat,sex,perempuan,,7520,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2010,4,Waru Barat,total,total,,15002,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10.2011,4,Tlontoares,sex,perempuan,,857,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.10.2011,4,Tlontoares,total,total,,1729,jiwa,2025,registration,total_population,3.1,25,,
+35.28.10,3,Waru,age_group,0-4,perempuan,2615,jiwa,2025,registration,total_population,3.2,27,,0-4
+35.28.10,3,Waru,age_group,0-4,,5546,jiwa,2025,registration,total_population,3.2,27,,0-4
+35.28.10,3,Waru,age_group,5-9,perempuan,3309,jiwa,2025,registration,total_population,3.2,27,,5-9
+35.28.10,3,Waru,age_group,5-9,,6716,jiwa,2025,registration,total_population,3.2,27,,5-9
+35.28.10,3,Waru,age_group,10-14,perempuan,2784,jiwa,2025,registration,total_population,3.2,27,,10-14
+35.28.10,3,Waru,age_group,10-14,,5612,jiwa,2025,registration,total_population,3.2,27,,10-14
+35.28.10,3,Waru,age_group,15-19,perempuan,1871,jiwa,2025,registration,total_population,3.2,27,,15-19
+35.28.10,3,Waru,age_group,15-19,,3867,jiwa,2025,registration,total_population,3.2,27,,15-19
+35.28.10,3,Waru,age_group,20-24,perempuan,2506,jiwa,2025,registration,total_population,3.2,27,,20-24
+35.28.10,3,Waru,age_group,20-24,,5181,jiwa,2025,registration,total_population,3.2,27,,20-24
+35.28.10,3,Waru,age_group,25-29,perempuan,3144,jiwa,2025,registration,total_population,3.2,27,,25-29
+35.28.10,3,Waru,age_group,25-29,,6334,jiwa,2025,registration,total_population,3.2,27,,25-29
+35.28.10,3,Waru,age_group,30-34,perempuan,2543,jiwa,2025,registration,total_population,3.2,27,,30-34
+35.28.10,3,Waru,age_group,30-34,,5137,jiwa,2025,registration,total_population,3.2,27,,30-34
+35.28.10,3,Waru,age_group,35-39,perempuan,2609,jiwa,2025,registration,total_population,3.2,27,,35-39
+35.28.10,3,Waru,age_group,35-39,,5274,jiwa,2025,registration,total_population,3.2,27,,35-39
+35.28.10,3,Waru,age_group,40-44,perempuan,2797,jiwa,2025,registration,total_population,3.2,27,,40-44
+35.28.10,3,Waru,age_group,40-44,,5123,jiwa,2025,registration,total_population,3.2,27,,40-44
+35.28.10,3,Waru,age_group,45-49,perempuan,2888,jiwa,2025,registration,total_population,3.2,27,,45-49
+35.28.10,3,Waru,age_group,45-49,,5564,jiwa,2025,registration,total_population,3.2,27,,45-49
+35.28.10,3,Waru,age_group,50-54,perempuan,2219,jiwa,2025,registration,total_population,3.2,27,,50-54
+35.28.10,3,Waru,age_group,50-54,,4352,jiwa,2025,registration,total_population,3.2,27,,50-54
+35.28.10,3,Waru,age_group,55-59,perempuan,1953,jiwa,2025,registration,total_population,3.2,27,,55-59
+35.28.10,3,Waru,age_group,55-59,,3687,jiwa,2025,registration,total_population,3.2,27,,55-59
+35.28.10,3,Waru,age_group,60-64,perempuan,1723,jiwa,2025,registration,total_population,3.2,27,,60-64
+35.28.10,3,Waru,age_group,60-64,,3122,jiwa,2025,registration,total_population,3.2,27,,60-64
+35.28.10,3,Waru,age_group,65-69,perempuan,1188,jiwa,2025,registration,total_population,3.2,27,,65-69
+35.28.10,3,Waru,age_group,65-69,,2271,jiwa,2025,registration,total_population,3.2,27,,65-69
+35.28.10,3,Waru,age_group,70-74,perempuan,818,jiwa,2025,registration,total_population,3.2,27,,70-74
+35.28.10,3,Waru,age_group,70-74,,1536,jiwa,2025,registration,total_population,3.2,27,,70-74
+35.28.10,3,Waru,age_group,75+,perempuan,1235,jiwa,2025,registration,total_population,3.2,27,,75+
+35.28.10,3,Waru,age_group,75+,,2228,jiwa,2025,registration,total_population,3.2,27,,75+

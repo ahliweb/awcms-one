@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3327-kecamatan-332708-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.27.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pemalang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pemalang",
+  "publisherDomain": "3327",
+  "publisherWebsite": "https://pemalangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pemalang (https://pemalangkab.bps.go.id), publikasi \"Kecamatan Pemalang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3327080",
+  "publicationNumber": "33270.26021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pemalangkab.bps.go.id/id/publication/2026/09/28/bd85fa11b959be250e1355db/kecamatan-pemalang-dalam-angka-2026.html",
+  "sourceFileSha256": "b07cb29d26b62514ebf88d5eb4e539607eb50de282892c22f7649a5e6c8ccdc3",
+  "sourceFileBytes": 29526869,
+  "sourcePages": [45, 46, 47],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pemalang.",
+  "csvPath": "datasets/bps-3327-kecamatan-332708-dalam-angka-2026.csv",
+  "csvSha256": "f1c41282cba7cbf418d28b5a7aace9b3983cf5248e5dbe486c25aadb9117cae9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pemalang, 2025",
+      "printedPages": [45, 46],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pemalang, 2025",
+      "printedPages": [47],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

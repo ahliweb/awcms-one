@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1171-kecamatan-117109-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.71.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ulee Kareng Dalam Angka 2026",
+  "publisherName": "BPS Kota Banda Aceh",
+  "publisherDomain": "1171",
+  "publisherWebsite": "https://bandaacehkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Banda Aceh (https://bandaacehkota.bps.go.id), publikasi \"Kecamatan Ulee Kareng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1171041",
+  "publicationNumber": "11710.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandaacehkota.bps.go.id/id/publication/2026/09/28/6c7376cdb1f8bef91909de7f/kecamatan-ulee-kareng-dalam-angka-2026.html",
+  "sourceFileSha256": "92b59cd41ab4aa74af83e08900c125eeed1939ebce906d37a56fb3fcc8052d5f",
+  "sourceFileBytes": 2277287,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Banda Aceh.",
+  "csvPath": "datasets/bps-1171-kecamatan-117109-dalam-angka-2026.csv",
+  "csvSha256": "f884e2495306e1e501ab1a40cab795ef941e8decf6f5cdfd0b2f73821e38a42e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Gampong di Kecamatan Ulee Kareng, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ulee Kareng, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 11.71.09 are not stored: age_group (perempuan) vs sex value: parts sum 15126.0000 != 17126.0000 (diff 2000.0000); the source itself is inconsistent"
+  ]
+}

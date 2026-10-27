@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.23.2001,4,Sirah Pulau,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2001,4,Sirah Pulau,sex,perempuan,,743,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2001,4,Sirah Pulau,total,total,,1474,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2003,4,Prabu Menang,sex,laki_laki,,931,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2003,4,Prabu Menang,sex,perempuan,,937,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2003,4,Prabu Menang,total,total,,1868,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2002,4,Gunung Kembang,sex,laki_laki,,1829,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2002,4,Gunung Kembang,sex,perempuan,,1820,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2002,4,Gunung Kembang,total,total,,3649,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2005,4,Arahan,sex,laki_laki,,1550,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2005,4,Arahan,sex,perempuan,,1550,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2005,4,Arahan,total,total,,3100,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2004,4,Banjar Sari,sex,laki_laki,,1236,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2004,4,Banjar Sari,sex,perempuan,,1221,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2004,4,Banjar Sari,total,total,,2457,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2011,4,Tanjung Jambu,sex,laki_laki,,971,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2011,4,Tanjung Jambu,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2011,4,Tanjung Jambu,total,total,,1842,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2010,4,Muara Lawai,sex,laki_laki,,941,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2010,4,Muara Lawai,sex,perempuan,,920,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2010,4,Muara Lawai,total,total,,1861,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2006,4,Nanjungan,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2006,4,Nanjungan,sex,perempuan,,227,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2006,4,Nanjungan,total,total,,454,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2009,4,Gedung Agung,sex,laki_laki,,1937,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2009,4,Gedung Agung,sex,perempuan,,1885,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2009,4,Gedung Agung,total,total,,3822,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2008,4,Tanjung Lontar,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2008,4,Tanjung Lontar,sex,perempuan,,508,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2008,4,Tanjung Lontar,total,total,,1035,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2007,4,Sengkuang,sex,laki_laki,,377,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2007,4,Sengkuang,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2007,4,Sengkuang,total,total,,761,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2012,4,Cempaka Wangi,sex,laki_laki,,519,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2012,4,Cempaka Wangi,sex,perempuan,,559,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2012,4,Cempaka Wangi,total,total,,1078,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.2013,4,Lematang Jaya,sex,laki_laki,,989,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.2013,4,Lematang Jaya,sex,perempuan,,862,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.2013,4,Lematang Jaya,total,total,,1851,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23.1014,4,Lebuay Bandung,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23.1014,4,Lebuay Bandung,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23.1014,4,Lebuay Bandung,total,total,,806,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23,3,Merapi Timur,sex,laki_laki,,13165,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.23,3,Merapi Timur,sex,perempuan,,12893,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Fe
+16.04.23,3,Merapi Timur,total,total,,26058,jiwa,2025,registration,total_population,3.1,30,,
+16.04.23,3,Merapi Timur,age_group,0-4,laki_laki,1006,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.23,3,Merapi Timur,age_group,0-4,perempuan,1009,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.23,3,Merapi Timur,age_group,0-4,,2015,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.23,3,Merapi Timur,age_group,5-9,laki_laki,1198,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.23,3,Merapi Timur,age_group,5-9,perempuan,1135,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.23,3,Merapi Timur,age_group,5-9,,2333,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.23,3,Merapi Timur,age_group,10-14,laki_laki,1126,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.23,3,Merapi Timur,age_group,10-14,perempuan,1098,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.23,3,Merapi Timur,age_group,10-14,,2224,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.23,3,Merapi Timur,age_group,15-19,laki_laki,1142,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.23,3,Merapi Timur,age_group,15-19,perempuan,1045,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.23,3,Merapi Timur,age_group,15-19,,2187,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.23,3,Merapi Timur,age_group,20-24,laki_laki,1078,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.23,3,Merapi Timur,age_group,20-24,perempuan,1046,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.23,3,Merapi Timur,age_group,20-24,,2124,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.23,3,Merapi Timur,age_group,25-29,laki_laki,955,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.23,3,Merapi Timur,age_group,25-29,perempuan,1063,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.23,3,Merapi Timur,age_group,25-29,,2018,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.23,3,Merapi Timur,age_group,30-34,laki_laki,972,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.23,3,Merapi Timur,age_group,30-34,perempuan,918,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.23,3,Merapi Timur,age_group,30-34,,1890,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.23,3,Merapi Timur,age_group,35-39,laki_laki,1062,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.23,3,Merapi Timur,age_group,35-39,perempuan,988,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.23,3,Merapi Timur,age_group,35-39,,2050,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.23,3,Merapi Timur,age_group,40-44,laki_laki,1036,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.23,3,Merapi Timur,age_group,40-44,perempuan,949,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.23,3,Merapi Timur,age_group,40-44,,1985,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.23,3,Merapi Timur,age_group,45-49,laki_laki,893,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.23,3,Merapi Timur,age_group,45-49,perempuan,891,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.23,3,Merapi Timur,age_group,45-49,,1784,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.23,3,Merapi Timur,age_group,50-54,laki_laki,728,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.23,3,Merapi Timur,age_group,50-54,perempuan,664,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.23,3,Merapi Timur,age_group,50-54,,1392,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.23,3,Merapi Timur,age_group,55-59,laki_laki,586,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.23,3,Merapi Timur,age_group,55-59,perempuan,578,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.23,3,Merapi Timur,age_group,55-59,,1164,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.23,3,Merapi Timur,age_group,60-64,laki_laki,449,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.23,3,Merapi Timur,age_group,60-64,perempuan,472,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.23,3,Merapi Timur,age_group,60-64,,921,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.23,3,Merapi Timur,age_group,65-69,laki_laki,394,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.23,3,Merapi Timur,age_group,65-69,perempuan,398,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.23,3,Merapi Timur,age_group,65-69,,792,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.23,3,Merapi Timur,age_group,70-74,laki_laki,241,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.23,3,Merapi Timur,age_group,70-74,perempuan,229,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.23,3,Merapi Timur,age_group,70-74,,470,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.23,3,Merapi Timur,age_group,75+,laki_laki,299,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.23,3,Merapi Timur,age_group,75+,perempuan,410,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.23,3,Merapi Timur,age_group,75+,,709,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.23,3,Merapi Timur,sex,laki_laki,,13165,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+16.04.23,3,Merapi Timur,sex,perempuan,,12893,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+16.04.23,3,Merapi Timur,total,total,,26058,jiwa,2025,registration,total_population,3.2,32,,

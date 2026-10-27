@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3276-kecamatan-327606-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.76.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Beji Dalam Angka 2026",
+  "publisherName": "BPS Kota Depok",
+  "publisherDomain": "3276",
+  "publisherWebsite": "https://depokkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Depok (https://depokkota.bps.go.id), publikasi \"Kecamatan Beji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3276050",
+  "publicationNumber": "32760.26011",
+  "issn": "2597-8535",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://depokkota.bps.go.id/id/publication/2026/09/28/2e610b51da9bd303676d870e/kecamatan-beji-dalam-angka-2026.html",
+  "sourceFileSha256": "2812e73474ad38750cd6db28a3a752bc6a6de882b0dcc97549107981e7f93028",
+  "sourceFileBytes": 3953577,
+  "sourcePages": [13, 14, 15, 16],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Depok.",
+  "csvPath": "datasets/bps-3276-kecamatan-327606-dalam-angka-2026.csv",
+  "csvSha256": "c2bebb0bb64ae3c9a72385cd94997480fd92abbfa52998de336b985d89ff487b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Beji, 2025",
+      "printedPages": [13, 14, 15],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Beji, 2025",
+      "printedPages": [16],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \">= 65 Tahun\": unmatched ",
+    "table 3.2: the rows of region 32.76.06 are not stored: age_group (perempuan) vs sex value: parts sum 75679.0000 != 80993.0000 (diff 5314.0000); the source itself is inconsistent"
+  ]
+}

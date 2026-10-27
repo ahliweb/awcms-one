@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-1603-kecamatan-160306-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.03.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gelumbang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muara Enim",
+  "publisherDomain": "1603",
+  "publisherWebsite": "https://muaraenimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muara Enim (https://muaraenimkab.bps.go.id), publikasi \"Kecamatan Gelumbang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1603090",
+  "publicationNumber": "16030.26021",
+  "issn": "2745-3154",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muaraenimkab.bps.go.id/id/publication/2026/09/28/8766a61274af757df2cc1ca7/kecamatan-gelumbang-dalam-angka-2026.html",
+  "sourceFileSha256": "22ffbdca21ab703679b82a1b303b2571c191dadc4441168540b7b581ea17e1e5",
+  "sourceFileBytes": 10923757,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muara Enim.",
+  "csvPath": "datasets/bps-1603-kecamatan-160306-dalam-angka-2026.csv",
+  "csvSha256": "5aba29f703b2fea6c489f050c37087a99da3e8bd4f08b4ebb3b81f26a9b38f6f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gelumbang, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Melilian\": unmatched ",
+    "table 3.1: row not stored: row \"Karta Mulia\": unmatched ",
+    "table 3.1: row not stored: row \"Melilian\": unmatched ",
+    "table 3.1: row not stored: row \"Karta Mulia\": unmatched "
+  ]
+}

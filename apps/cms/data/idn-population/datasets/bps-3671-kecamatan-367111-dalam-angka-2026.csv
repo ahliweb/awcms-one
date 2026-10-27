@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.71.11.1010,4,Panunggangan Utara,sex,laki_laki,,12600,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1010,4,Panunggangan Utara,sex,perempuan,,12516,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1010,4,Panunggangan Utara,total,total,,25116,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1009,4,Panunggangan,sex,laki_laki,,5575,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1009,4,Panunggangan,sex,perempuan,,5430,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1009,4,Panunggangan,total,total,,11005,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1011,4,Panunggangan Timur,sex,laki_laki,,1946,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1011,4,Panunggangan Timur,sex,perempuan,,1877,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1011,4,Panunggangan Timur,total,total,,3823,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1004,4,Kunciran,sex,laki_laki,,9095,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1004,4,Kunciran,sex,perempuan,,9105,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1004,4,Kunciran,total,total,,18200,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1005,4,Kunciran Indah,sex,laki_laki,,18262,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1005,4,Kunciran Indah,sex,perempuan,,18102,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1005,4,Kunciran Indah,total,total,,36364,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1002,4,Sudimara Pinang,sex,laki_laki,,9912,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1002,4,Sudimara Pinang,sex,perempuan,,10003,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1002,4,Sudimara Pinang,total,total,,19915,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1001,4,Pinang,sex,laki_laki,,11267,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1001,4,Pinang,sex,perempuan,,11393,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1001,4,Pinang,total,total,,22660,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1003,4,Neroktog,sex,laki_laki,,9941,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1003,4,Neroktog,sex,perempuan,,9867,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1003,4,Neroktog,total,total,,19808,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1006,4,Kunciran Jaya,sex,laki_laki,,5574,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1006,4,Kunciran Jaya,sex,perempuan,,5458,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1006,4,Kunciran Jaya,total,total,,11032,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1008,4,Pakojan,sex,laki_laki,,4696,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1008,4,Pakojan,sex,perempuan,,4637,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1008,4,Pakojan,total,total,,9333,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11.1007,4,Cipete,sex,laki_laki,,9256,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11.1007,4,Cipete,sex,perempuan,,9339,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11.1007,4,Cipete,total,total,,18595,jiwa,2025,registration,total_population,1.3,22,,
+36.71.11,3,Pinang,sex,laki_laki,,98124,jiwa,2025,registration,total_population,1.3,22,,Laki-Laki
+36.71.11,3,Pinang,sex,perempuan,,97727,jiwa,2025,registration,total_population,1.3,22,,Perempuan
+36.71.11,3,Pinang,total,total,,195851,jiwa,2025,registration,total_population,1.3,22,,

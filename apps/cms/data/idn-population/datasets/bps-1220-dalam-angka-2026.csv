@@ -1,0 +1,253 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.20.07,3,Batang Onang,total,total,,14499,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.07,3,Batang Onang,total,total,,15352,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.05,3,Padang Bolak Julu,total,total,,12594,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.05,3,Padang Bolak Julu,total,total,,12868,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.06,3,Portibi,total,total,,30654,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.06,3,Portibi,total,total,,30576,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.04,3,Padang Bolak,total,total,,61247,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.04,3,Padang Bolak,total,total,,60201,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.10,3,Padang Bolak Tenggara,total,total,,12960,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.10,3,Padang Bolak Tenggara,total,total,,13092,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.08,3,Simangambat,total,total,,44132,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.08,3,Simangambat,total,total,,45896,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.12,3,Ujung Batu,total,total,,12830,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.12,3,Ujung Batu,total,total,,13115,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.03,3,Halongonan,total,total,,22846,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.03,3,Halongonan,total,total,,23291,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.11,3,Halongonan Timur,total,total,,25869,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.11,3,Halongonan Timur,total,total,,25120,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.02,3,Dolok,total,total,,26299,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.02,3,Dolok,total,total,,27599,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.01,3,Dolok Sigompulon,total,total,,16582,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.01,3,Dolok Sigompulon,total,total,,18052,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20.09,3,Hulu Sihapas,total,total,,5147,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20.09,3,Hulu Sihapas,total,total,,5509,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20,2,Padang Lawas Utara,total,total,,285659,jiwa,2025,projection,total_population,3.1.1,69,,
+12.20,2,Padang Lawas Utara,total,total,,290671,jiwa,2026,projection,total_population,3.1.1,69,,
+12.20,2,Kabupaten Padang Lawas Utara,age_group,0-4,laki_laki,15.92,ribu_jiwa,2025,projection,total_population,3.1.2,74,,0–4
+12.20,2,Kabupaten Padang Lawas Utara,age_group,0-4,laki_laki,15.88,ribu_jiwa,2026,projection,total_population,3.1.2,74,,0–4
+12.20,2,Kabupaten Padang Lawas Utara,age_group,0-4,perempuan,15.26,ribu_jiwa,2025,projection,total_population,3.1.2,74,,0–4
+12.20,2,Kabupaten Padang Lawas Utara,age_group,0-4,perempuan,15.24,ribu_jiwa,2026,projection,total_population,3.1.2,74,,0–4
+12.20,2,Kabupaten Padang Lawas Utara,age_group,0-4,,31.18,ribu_jiwa,2025,projection,total_population,3.1.2,74,,0–4
+12.20,2,Kabupaten Padang Lawas Utara,age_group,0-4,,31.12,ribu_jiwa,2026,projection,total_population,3.1.2,74,,0–4
+12.20,2,Kabupaten Padang Lawas Utara,age_group,5-9,laki_laki,13.36,ribu_jiwa,2025,projection,total_population,3.1.2,74,,5–9
+12.20,2,Kabupaten Padang Lawas Utara,age_group,5-9,laki_laki,13.63,ribu_jiwa,2026,projection,total_population,3.1.2,74,,5–9
+12.20,2,Kabupaten Padang Lawas Utara,age_group,5-9,perempuan,12.69,ribu_jiwa,2025,projection,total_population,3.1.2,74,,5–9
+12.20,2,Kabupaten Padang Lawas Utara,age_group,5-9,perempuan,12.95,ribu_jiwa,2026,projection,total_population,3.1.2,74,,5–9
+12.20,2,Kabupaten Padang Lawas Utara,age_group,5-9,,26.04,ribu_jiwa,2025,projection,total_population,3.1.2,74,,5–9
+12.20,2,Kabupaten Padang Lawas Utara,age_group,5-9,,26.59,ribu_jiwa,2026,projection,total_population,3.1.2,74,,5–9
+12.20,2,Kabupaten Padang Lawas Utara,age_group,10-14,laki_laki,14.93,ribu_jiwa,2025,projection,total_population,3.1.2,74,,10–14
+12.20,2,Kabupaten Padang Lawas Utara,age_group,10-14,laki_laki,14.79,ribu_jiwa,2026,projection,total_population,3.1.2,74,,10–14
+12.20,2,Kabupaten Padang Lawas Utara,age_group,10-14,perempuan,14.64,ribu_jiwa,2025,projection,total_population,3.1.2,74,,10–14
+12.20,2,Kabupaten Padang Lawas Utara,age_group,10-14,perempuan,14.51,ribu_jiwa,2026,projection,total_population,3.1.2,74,,10–14
+12.20,2,Kabupaten Padang Lawas Utara,age_group,10-14,,29.57,ribu_jiwa,2025,projection,total_population,3.1.2,74,,10–14
+12.20,2,Kabupaten Padang Lawas Utara,age_group,10-14,,29.29,ribu_jiwa,2026,projection,total_population,3.1.2,74,,10–14
+12.20,2,Kabupaten Padang Lawas Utara,age_group,15-19,laki_laki,14.89,ribu_jiwa,2025,projection,total_population,3.1.2,74,,15–19
+12.20,2,Kabupaten Padang Lawas Utara,age_group,15-19,laki_laki,15.04,ribu_jiwa,2026,projection,total_population,3.1.2,74,,15–19
+12.20,2,Kabupaten Padang Lawas Utara,age_group,15-19,perempuan,14.17,ribu_jiwa,2025,projection,total_population,3.1.2,74,,15–19
+12.20,2,Kabupaten Padang Lawas Utara,age_group,15-19,perempuan,14.44,ribu_jiwa,2026,projection,total_population,3.1.2,74,,15–19
+12.20,2,Kabupaten Padang Lawas Utara,age_group,15-19,,29.06,ribu_jiwa,2025,projection,total_population,3.1.2,74,,15–19
+12.20,2,Kabupaten Padang Lawas Utara,age_group,15-19,,29.48,ribu_jiwa,2026,projection,total_population,3.1.2,74,,15–19
+12.20,2,Kabupaten Padang Lawas Utara,age_group,20-24,laki_laki,13.43,ribu_jiwa,2025,projection,total_population,3.1.2,74,,20–24
+12.20,2,Kabupaten Padang Lawas Utara,age_group,20-24,laki_laki,13.73,ribu_jiwa,2026,projection,total_population,3.1.2,74,,20–24
+12.20,2,Kabupaten Padang Lawas Utara,age_group,20-24,perempuan,12.23,ribu_jiwa,2025,projection,total_population,3.1.2,74,,20–24
+12.20,2,Kabupaten Padang Lawas Utara,age_group,20-24,perempuan,12.57,ribu_jiwa,2026,projection,total_population,3.1.2,74,,20–24
+12.20,2,Kabupaten Padang Lawas Utara,age_group,20-24,,25.66,ribu_jiwa,2025,projection,total_population,3.1.2,74,,20–24
+12.20,2,Kabupaten Padang Lawas Utara,age_group,20-24,,26.30,ribu_jiwa,2026,projection,total_population,3.1.2,74,,20–24
+12.20,2,Kabupaten Padang Lawas Utara,age_group,25-29,laki_laki,12.03,ribu_jiwa,2025,projection,total_population,3.1.2,74,,25–29
+12.20,2,Kabupaten Padang Lawas Utara,age_group,25-29,laki_laki,12.26,ribu_jiwa,2026,projection,total_population,3.1.2,74,,25–29
+12.20,2,Kabupaten Padang Lawas Utara,age_group,25-29,perempuan,11.15,ribu_jiwa,2025,projection,total_population,3.1.2,74,,25–29
+12.20,2,Kabupaten Padang Lawas Utara,age_group,25-29,perempuan,11.29,ribu_jiwa,2026,projection,total_population,3.1.2,74,,25–29
+12.20,2,Kabupaten Padang Lawas Utara,age_group,25-29,,23.18,ribu_jiwa,2025,projection,total_population,3.1.2,74,,25–29
+12.20,2,Kabupaten Padang Lawas Utara,age_group,25-29,,23.55,ribu_jiwa,2026,projection,total_population,3.1.2,74,,25–29
+12.20,2,Kabupaten Padang Lawas Utara,age_group,30-34,laki_laki,11.26,ribu_jiwa,2025,projection,total_population,3.1.2,74,,30–34
+12.20,2,Kabupaten Padang Lawas Utara,age_group,30-34,laki_laki,11.35,ribu_jiwa,2026,projection,total_population,3.1.2,74,,30–34
+12.20,2,Kabupaten Padang Lawas Utara,age_group,30-34,perempuan,10.49,ribu_jiwa,2025,projection,total_population,3.1.2,74,,30–34
+12.20,2,Kabupaten Padang Lawas Utara,age_group,30-34,perempuan,10.56,ribu_jiwa,2026,projection,total_population,3.1.2,74,,30–34
+12.20,2,Kabupaten Padang Lawas Utara,age_group,30-34,,21.75,ribu_jiwa,2025,projection,total_population,3.1.2,74,,30–34
+12.20,2,Kabupaten Padang Lawas Utara,age_group,30-34,,21.91,ribu_jiwa,2026,projection,total_population,3.1.2,74,,30–34
+12.20,2,Kabupaten Padang Lawas Utara,age_group,35-39,laki_laki,10.82,ribu_jiwa,2025,projection,total_population,3.1.2,74,,35–39
+12.20,2,Kabupaten Padang Lawas Utara,age_group,35-39,laki_laki,10.97,ribu_jiwa,2026,projection,total_population,3.1.2,74,,35–39
+12.20,2,Kabupaten Padang Lawas Utara,age_group,35-39,perempuan,10.27,ribu_jiwa,2025,projection,total_population,3.1.2,74,,35–39
+12.20,2,Kabupaten Padang Lawas Utara,age_group,35-39,perempuan,10.38,ribu_jiwa,2026,projection,total_population,3.1.2,74,,35–39
+12.20,2,Kabupaten Padang Lawas Utara,age_group,35-39,,21.09,ribu_jiwa,2025,projection,total_population,3.1.2,74,,35–39
+12.20,2,Kabupaten Padang Lawas Utara,age_group,35-39,,21.35,ribu_jiwa,2026,projection,total_population,3.1.2,74,,35–39
+12.20,2,Kabupaten Padang Lawas Utara,age_group,40-44,laki_laki,9.61,ribu_jiwa,2025,projection,total_population,3.1.2,74,,40–44
+12.20,2,Kabupaten Padang Lawas Utara,age_group,40-44,laki_laki,9.83,ribu_jiwa,2026,projection,total_population,3.1.2,74,,40–44
+12.20,2,Kabupaten Padang Lawas Utara,age_group,40-44,perempuan,8.71,ribu_jiwa,2025,projection,total_population,3.1.2,74,,40–44
+12.20,2,Kabupaten Padang Lawas Utara,age_group,40-44,perempuan,8.97,ribu_jiwa,2026,projection,total_population,3.1.2,74,,40–44
+12.20,2,Kabupaten Padang Lawas Utara,age_group,40-44,,18.32,ribu_jiwa,2025,projection,total_population,3.1.2,74,,40–44
+12.20,2,Kabupaten Padang Lawas Utara,age_group,40-44,,18.81,ribu_jiwa,2026,projection,total_population,3.1.2,74,,40–44
+12.20,2,Kabupaten Padang Lawas Utara,age_group,45-49,laki_laki,8.40,ribu_jiwa,2025,projection,total_population,3.1.2,74,,45–49
+12.20,2,Kabupaten Padang Lawas Utara,age_group,45-49,laki_laki,8.65,ribu_jiwa,2026,projection,total_population,3.1.2,74,,45–49
+12.20,2,Kabupaten Padang Lawas Utara,age_group,45-49,perempuan,7.96,ribu_jiwa,2025,projection,total_population,3.1.2,74,,45–49
+12.20,2,Kabupaten Padang Lawas Utara,age_group,45-49,perempuan,8.13,ribu_jiwa,2026,projection,total_population,3.1.2,74,,45–49
+12.20,2,Kabupaten Padang Lawas Utara,age_group,45-49,,16.35,ribu_jiwa,2025,projection,total_population,3.1.2,74,,45–49
+12.20,2,Kabupaten Padang Lawas Utara,age_group,45-49,,16.78,ribu_jiwa,2026,projection,total_population,3.1.2,74,,45–49
+12.20,2,Kabupaten Padang Lawas Utara,age_group,50-54,laki_laki,6.64,ribu_jiwa,2025,projection,total_population,3.1.2,74,,50–54
+12.20,2,Kabupaten Padang Lawas Utara,age_group,50-54,laki_laki,6.91,ribu_jiwa,2026,projection,total_population,3.1.2,74,,50–54
+12.20,2,Kabupaten Padang Lawas Utara,age_group,50-54,perempuan,6.34,ribu_jiwa,2025,projection,total_population,3.1.2,74,,50–54
+12.20,2,Kabupaten Padang Lawas Utara,age_group,50-54,perempuan,6.62,ribu_jiwa,2026,projection,total_population,3.1.2,74,,50–54
+12.20,2,Kabupaten Padang Lawas Utara,age_group,50-54,,12.98,ribu_jiwa,2025,projection,total_population,3.1.2,74,,50–54
+12.20,2,Kabupaten Padang Lawas Utara,age_group,50-54,,13.53,ribu_jiwa,2026,projection,total_population,3.1.2,74,,50–54
+12.20,2,Kabupaten Padang Lawas Utara,age_group,55-59,laki_laki,5.18,ribu_jiwa,2025,projection,total_population,3.1.2,74,,55–59
+12.20,2,Kabupaten Padang Lawas Utara,age_group,55-59,laki_laki,5.40,ribu_jiwa,2026,projection,total_population,3.1.2,74,,55–59
+12.20,2,Kabupaten Padang Lawas Utara,age_group,55-59,perempuan,5.32,ribu_jiwa,2025,projection,total_population,3.1.2,74,,55–59
+12.20,2,Kabupaten Padang Lawas Utara,age_group,55-59,perempuan,5.48,ribu_jiwa,2026,projection,total_population,3.1.2,74,,55–59
+12.20,2,Kabupaten Padang Lawas Utara,age_group,55-59,,10.50,ribu_jiwa,2025,projection,total_population,3.1.2,74,,55–59
+12.20,2,Kabupaten Padang Lawas Utara,age_group,55-59,,10.88,ribu_jiwa,2026,projection,total_population,3.1.2,74,,55–59
+12.20,2,Kabupaten Padang Lawas Utara,age_group,60-64,laki_laki,3.71,ribu_jiwa,2025,projection,total_population,3.1.2,74,,60–64
+12.20,2,Kabupaten Padang Lawas Utara,age_group,60-64,laki_laki,3.90,ribu_jiwa,2026,projection,total_population,3.1.2,74,,60–64
+12.20,2,Kabupaten Padang Lawas Utara,age_group,60-64,perempuan,4.07,ribu_jiwa,2025,projection,total_population,3.1.2,74,,60–64
+12.20,2,Kabupaten Padang Lawas Utara,age_group,60-64,perempuan,4.25,ribu_jiwa,2026,projection,total_population,3.1.2,74,,60–64
+12.20,2,Kabupaten Padang Lawas Utara,age_group,60-64,,7.78,ribu_jiwa,2025,projection,total_population,3.1.2,74,,60–64
+12.20,2,Kabupaten Padang Lawas Utara,age_group,60-64,,8.15,ribu_jiwa,2026,projection,total_population,3.1.2,74,,60–64
+12.20,2,Kabupaten Padang Lawas Utara,age_group,65-69,laki_laki,2.51,ribu_jiwa,2025,projection,total_population,3.1.2,74,,65–69
+12.20,2,Kabupaten Padang Lawas Utara,age_group,65-69,laki_laki,2.65,ribu_jiwa,2026,projection,total_population,3.1.2,74,,65–69
+12.20,2,Kabupaten Padang Lawas Utara,age_group,65-69,perempuan,3.10,ribu_jiwa,2025,projection,total_population,3.1.2,74,,65–69
+12.20,2,Kabupaten Padang Lawas Utara,age_group,65-69,perempuan,3.24,ribu_jiwa,2026,projection,total_population,3.1.2,74,,65–69
+12.20,2,Kabupaten Padang Lawas Utara,age_group,65-69,,5.60,ribu_jiwa,2025,projection,total_population,3.1.2,74,,65–69
+12.20,2,Kabupaten Padang Lawas Utara,age_group,65-69,,5.88,ribu_jiwa,2026,projection,total_population,3.1.2,74,,65–69
+12.20,2,Kabupaten Padang Lawas Utara,age_group,70-74,laki_laki,1.60,ribu_jiwa,2025,projection,total_population,3.1.2,74,,70–74
+12.20,2,Kabupaten Padang Lawas Utara,age_group,70-74,laki_laki,1.69,ribu_jiwa,2026,projection,total_population,3.1.2,74,,70–74
+12.20,2,Kabupaten Padang Lawas Utara,age_group,70-74,perempuan,1.93,ribu_jiwa,2025,projection,total_population,3.1.2,74,,70–74
+12.20,2,Kabupaten Padang Lawas Utara,age_group,70-74,perempuan,2.06,ribu_jiwa,2026,projection,total_population,3.1.2,74,,70–74
+12.20,2,Kabupaten Padang Lawas Utara,age_group,70-74,,3.53,ribu_jiwa,2025,projection,total_population,3.1.2,74,,70–74
+12.20,2,Kabupaten Padang Lawas Utara,age_group,70-74,,3.75,ribu_jiwa,2026,projection,total_population,3.1.2,74,,70–74
+12.20,2,Kabupaten Padang Lawas Utara,age_group,75+,laki_laki,1.27,ribu_jiwa,2025,projection,total_population,3.1.2,74,,75+
+12.20,2,Kabupaten Padang Lawas Utara,age_group,75+,laki_laki,1.37,ribu_jiwa,2026,projection,total_population,3.1.2,74,,75+
+12.20,2,Kabupaten Padang Lawas Utara,age_group,75+,perempuan,1.81,ribu_jiwa,2025,projection,total_population,3.1.2,74,,75+
+12.20,2,Kabupaten Padang Lawas Utara,age_group,75+,perempuan,1.94,ribu_jiwa,2026,projection,total_population,3.1.2,74,,75+
+12.20,2,Kabupaten Padang Lawas Utara,age_group,75+,,3.08,ribu_jiwa,2025,projection,total_population,3.1.2,74,,75+
+12.20,2,Kabupaten Padang Lawas Utara,age_group,75+,,3.31,ribu_jiwa,2026,projection,total_population,3.1.2,74,,75+
+12.20,2,Padang Lawas Utara,sex,laki_laki,,145.53,ribu_jiwa,2025,projection,total_population,3.1.2,74,,Laki-Laki
+12.20,2,Padang Lawas Utara,sex,laki_laki,,148.05,ribu_jiwa,2026,projection,total_population,3.1.2,74,,Laki-Laki
+12.20,2,Padang Lawas Utara,sex,perempuan,,140.13,ribu_jiwa,2025,projection,total_population,3.1.2,74,,Perempuan
+12.20,2,Padang Lawas Utara,sex,perempuan,,142.62,ribu_jiwa,2026,projection,total_population,3.1.2,74,,Perempuan
+12.20,2,Padang Lawas Utara,total,total,,285.66,ribu_jiwa,2025,projection,total_population,3.1.2,74,,
+12.20,2,Padang Lawas Utara,total,total,,290.67,ribu_jiwa,2026,projection,total_population,3.1.2,74,,
+12.20.07,3,Batang Onang,religion,islam,,12428,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.07,3,Batang Onang,religion,kristen,,136,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20.07,3,Batang Onang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.07,3,Batang Onang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.07,3,Batang Onang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.07,3,Batang Onang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.05,3,Padang Bolak Julu,religion,islam,,10227,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.05,3,Padang Bolak Julu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Protestan
+12.20.05,3,Padang Bolak Julu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.05,3,Padang Bolak Julu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.05,3,Padang Bolak Julu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.05,3,Padang Bolak Julu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.06,3,Portibi,religion,islam,,22124,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.06,3,Portibi,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Protestan
+12.20.06,3,Portibi,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.06,3,Portibi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.06,3,Portibi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.06,3,Portibi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.04,3,Padang Bolak,religion,islam,,58898,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.04,3,Padang Bolak,religion,kristen,,1995,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20.04,3,Padang Bolak,religion,katolik,,73,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+12.20.04,3,Padang Bolak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.04,3,Padang Bolak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.04,3,Padang Bolak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.10,3,Padang Bolak Tenggara,religion,islam,,11978,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.10,3,Padang Bolak Tenggara,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Protestan
+12.20.10,3,Padang Bolak Tenggara,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.10,3,Padang Bolak Tenggara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.10,3,Padang Bolak Tenggara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.10,3,Padang Bolak Tenggara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.08,3,Simangambat,religion,islam,,33918,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.08,3,Simangambat,religion,kristen,,9763,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20.08,3,Simangambat,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.08,3,Simangambat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.08,3,Simangambat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.08,3,Simangambat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.12,3,Ujung Batu,religion,islam,,11626,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.12,3,Ujung Batu,religion,kristen,,5000,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20.12,3,Ujung Batu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.12,3,Ujung Batu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.12,3,Ujung Batu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.12,3,Ujung Batu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.03,3,Halongonan,religion,islam,,19248,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.03,3,Halongonan,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Protestan
+12.20.03,3,Halongonan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.03,3,Halongonan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.03,3,Halongonan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.03,3,Halongonan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.11,3,Halongonan Timur,religion,islam,,19270,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.11,3,Halongonan Timur,religion,kristen,,4000,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20.11,3,Halongonan Timur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.11,3,Halongonan Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.11,3,Halongonan Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.11,3,Halongonan Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.02,3,Dolok,religion,islam,,24916,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.02,3,Dolok,religion,kristen,,1033,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20.02,3,Dolok,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.02,3,Dolok,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.02,3,Dolok,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.02,3,Dolok,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.01,3,Dolok Sigompulon,religion,islam,,15515,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.01,3,Dolok Sigompulon,religion,kristen,,5000,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20.01,3,Dolok Sigompulon,religion,katolik,,63,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+12.20.01,3,Dolok Sigompulon,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.01,3,Dolok Sigompulon,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.01,3,Dolok Sigompulon,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20.09,3,Hulu Sihapas,religion,islam,,5031,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20.09,3,Hulu Sihapas,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Protestan
+12.20.09,3,Hulu Sihapas,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Katolik
+12.20.09,3,Hulu Sihapas,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20.09,3,Hulu Sihapas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20.09,3,Hulu Sihapas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20,2,Padang Lawas Utara,religion,islam,,245179,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+12.20,2,Padang Lawas Utara,religion,kristen,,26927,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+12.20,2,Padang Lawas Utara,religion,katolik,,136,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+12.20,2,Padang Lawas Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Hindu
+12.20,2,Padang Lawas Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Budha
+12.20,2,Padang Lawas Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,148,nil,Lainnya
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/padi_padian,,132020,rupiah,2025,survey_estimate,per_capita,10.1,342,,Padi-padian
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/padi_padian,,133935,rupiah,2024,survey_estimate,per_capita,10.1,342,,Padi-padian
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/umbi_umbian,,8934,rupiah,2025,survey_estimate,per_capita,10.1,342,,Umbi-umbian
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/umbi_umbian,,7937,rupiah,2024,survey_estimate,per_capita,10.1,342,,Umbi-umbian
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,87634,rupiah,2025,survey_estimate,per_capita,10.1,342,,Ikan/udang/cumi/kerang
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,79245,rupiah,2024,survey_estimate,per_capita,10.1,342,,Ikan/udang/cumi/kerang
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/daging,,21040,rupiah,2025,survey_estimate,per_capita,10.1,342,,Daging
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/daging,,18598,rupiah,2024,survey_estimate,per_capita,10.1,342,,Daging
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/telur_dan_susu,,24350,rupiah,2025,survey_estimate,per_capita,10.1,342,,Telur dan susu
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/telur_dan_susu,,22111,rupiah,2024,survey_estimate,per_capita,10.1,342,,Telur dan susu
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/sayur_sayuran,,63412,rupiah,2025,survey_estimate,per_capita,10.1,342,,Sayur-sayuran
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/sayur_sayuran,,63887,rupiah,2024,survey_estimate,per_capita,10.1,342,,Sayur-sayuran
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/kacang_kacangan,,11778,rupiah,2025,survey_estimate,per_capita,10.1,342,,Kacang-kacangan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/kacang_kacangan,,10951,rupiah,2024,survey_estimate,per_capita,10.1,342,,Kacang-kacangan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/buah_buahan,,32366,rupiah,2025,survey_estimate,per_capita,10.1,342,,Buah-buahan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/buah_buahan,,21828,rupiah,2024,survey_estimate,per_capita,10.1,342,,Buah-buahan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23522,rupiah,2025,survey_estimate,per_capita,10.1,342,,Minyak dan kelapa
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19833,rupiah,2024,survey_estimate,per_capita,10.1,342,,Minyak dan kelapa
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/bahan_minuman,,12058,rupiah,2025,survey_estimate,per_capita,10.1,342,,Bahan minuman
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/bahan_minuman,,12829,rupiah,2024,survey_estimate,per_capita,10.1,342,,Bahan minuman
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,11495,rupiah,2025,survey_estimate,per_capita,10.1,342,,Bumbu-bumbuan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,11480,rupiah,2024,survey_estimate,per_capita,10.1,342,,Bumbu-bumbuan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,8126,rupiah,2025,survey_estimate,per_capita,10.1,342,,Konsumsi lainnya
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,7221,rupiah,2024,survey_estimate,per_capita,10.1,342,,Konsumsi lainnya
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,166912,rupiah,2025,survey_estimate,per_capita,10.1,342,,Makanan dan minuman jadi
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,154307,rupiah,2024,survey_estimate,per_capita,10.1,342,,Makanan dan minuman jadi
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/rokok,,133788,rupiah,2025,survey_estimate,per_capita,10.1,342,,Rokok
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/rokok,,135241,rupiah,2024,survey_estimate,per_capita,10.1,342,,Rokok
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/jumlah_makanan,,737433,rupiah,2025,survey_estimate,per_capita,10.1,342,,Jumlah makanan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/jumlah_makanan,,699403,rupiah,2024,survey_estimate,per_capita,10.1,342,,Jumlah makanan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,239246,rupiah,2025,survey_estimate,per_capita,10.1,342,,Perumahan dan fasilitas rumah tangga
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,225873,rupiah,2024,survey_estimate,per_capita,10.1,342,,Perumahan dan fasilitas rumah tangga
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,110708,rupiah,2025,survey_estimate,per_capita,10.1,342,,Aneka barang dan jasa
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,86996,rupiah,2024,survey_estimate,per_capita,10.1,342,,Aneka barang dan jasa
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,45065,rupiah,2025,survey_estimate,per_capita,10.1,342,,"Pakaian, alas kaki, dan tutup kepala"
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,47250,rupiah,2024,survey_estimate,per_capita,10.1,342,,"Pakaian, alas kaki, dan tutup kepala"
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,35153,rupiah,2025,survey_estimate,per_capita,10.1,342,,Barang tahan lama
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,16867,rupiah,2024,survey_estimate,per_capita,10.1,342,,Barang tahan lama
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43422,rupiah,2025,survey_estimate,per_capita,10.1,342,,"Pajak, pungutan, dan asuransi"
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39684,rupiah,2024,survey_estimate,per_capita,10.1,342,,"Pajak, pungutan, dan asuransi"
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6812,rupiah,2025,survey_estimate,per_capita,10.1,342,,Keperluan pesta dan upacara/kenduri
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10173,rupiah,2024,survey_estimate,per_capita,10.1,342,,Keperluan pesta dan upacara/kenduri
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,480406,rupiah,2025,survey_estimate,per_capita,10.1,342,,Jumlah bukan makanan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,426843,rupiah,2024,survey_estimate,per_capita,10.1,342,,Jumlah bukan makanan
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,total,,1217839,rupiah,2025,survey_estimate,per_capita,10.1,342,,
+12.20,2,Kabupaten Padang Lawas Utara,expenditure,total,,1126247,rupiah,2024,survey_estimate,per_capita,10.1,342,,

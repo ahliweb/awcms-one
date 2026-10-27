@@ -1,0 +1,23 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.27.2009,4,Wanajaya,sex,perempuan,,3145,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2009,4,Wanajaya,total,total,,6154,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2008,4,Wanakerta,sex,perempuan,,3216,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2008,4,Wanakerta,total,total,,6511,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2007,4,Wanasari,sex,perempuan,,2987,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2007,4,Wanasari,total,total,,6002,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2002,4,Margamulya,sex,perempuan,,3435,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2002,4,Margamulya,total,total,,6914,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2001,4,Margakaya,sex,perempuan,,3607,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2001,4,Margakaya,total,total,,7350,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2003,4,Karangligar,sex,perempuan,,2996,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2003,4,Karangligar,total,total,,6020,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2006,4,Karangmulya,sex,perempuan,,3930,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2006,4,Karangmulya,total,total,,7949,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2010,4,Mulyajaya,sex,perempuan,,2556,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2010,4,Mulyajaya,total,total,,5143,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2004,4,Mekarmulya,sex,perempuan,,2369,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2004,4,Mekarmulya,total,total,,4741,jiwa,2026,registration,total_population,3.1,,,
+32.15.27.2005,4,Parungsari,sex,perempuan,,2466,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27.2005,4,Parungsari,total,total,,4908,jiwa,2026,registration,total_population,3.1,,,
+32.15.27,3,Kecamatan Telukjambe Barat,sex,perempuan,,30707,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+32.15.27,3,Kecamatan Telukjambe Barat,total,total,,61692,jiwa,2026,registration,total_population,3.1,,,

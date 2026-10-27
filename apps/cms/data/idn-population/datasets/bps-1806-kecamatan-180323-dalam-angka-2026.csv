@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.03.23.2003,4,Jagang,sex,laki_laki,,1740,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23.2003,4,Jagang,sex,perempuan,,1657,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23.2003,4,Jagang,total,total,,3397,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23.2004,4,Tanjung Iman,sex,laki_laki,,3642,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23.2004,4,Tanjung Iman,sex,perempuan,,3326,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23.2004,4,Tanjung Iman,total,total,,6968,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23.2002,4,Blambangan,sex,laki_laki,,1691,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23.2002,4,Blambangan,sex,perempuan,,1659,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23.2002,4,Blambangan,total,total,,3350,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23.2006,4,Pagar Gading,sex,laki_laki,,1174,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23.2006,4,Pagar Gading,sex,perempuan,,1137,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23.2006,4,Pagar Gading,total,total,,2311,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23.2005,4,Tulung Singkip,sex,laki_laki,,837,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23.2005,4,Tulung Singkip,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23.2005,4,Tulung Singkip,total,total,,1687,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23.2001,4,Pagar,sex,laki_laki,,960,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23.2001,4,Pagar,sex,perempuan,,997,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23.2001,4,Pagar,total,total,,1957,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23.2007,4,Buring Kencana,sex,laki_laki,,685,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23.2007,4,Buring Kencana,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23.2007,4,Buring Kencana,total,total,,1352,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23,3,Kecamatan Blambangan Pagar,sex,laki_laki,,10729,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.23,3,Kecamatan Blambangan Pagar,sex,perempuan,,10293,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.23,3,Kecamatan Blambangan Pagar,total,total,,21022,jiwa,2025,registration,total_population,3.1,28,,
+18.03.23,3,Blambangan Pagar,age_group,0-4,laki_laki,717,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.23,3,Blambangan Pagar,age_group,0-4,perempuan,652,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.23,3,Blambangan Pagar,age_group,0-4,,1369,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.23,3,Blambangan Pagar,age_group,5-9,laki_laki,985,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.23,3,Blambangan Pagar,age_group,5-9,perempuan,930,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.23,3,Blambangan Pagar,age_group,5-9,,1915,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.23,3,Blambangan Pagar,age_group,10-14,laki_laki,845,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.23,3,Blambangan Pagar,age_group,10-14,perempuan,787,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.23,3,Blambangan Pagar,age_group,10-14,,1632,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.23,3,Blambangan Pagar,age_group,15-19,laki_laki,753,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.23,3,Blambangan Pagar,age_group,15-19,perempuan,715,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.23,3,Blambangan Pagar,age_group,15-19,,1468,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.23,3,Blambangan Pagar,age_group,20-24,laki_laki,854,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.23,3,Blambangan Pagar,age_group,20-24,perempuan,723,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.23,3,Blambangan Pagar,age_group,20-24,,1577,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.23,3,Blambangan Pagar,age_group,25-29,laki_laki,802,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.23,3,Blambangan Pagar,age_group,25-29,perempuan,759,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.23,3,Blambangan Pagar,age_group,25-29,,1561,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.23,3,Blambangan Pagar,age_group,30-34,laki_laki,821,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.23,3,Blambangan Pagar,age_group,30-34,perempuan,878,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.23,3,Blambangan Pagar,age_group,30-34,,1699,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.23,3,Blambangan Pagar,age_group,35-39,laki_laki,856,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.23,3,Blambangan Pagar,age_group,35-39,perempuan,740,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.23,3,Blambangan Pagar,age_group,35-39,,1596,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.23,3,Blambangan Pagar,age_group,40-44,laki_laki,699,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.23,3,Blambangan Pagar,age_group,40-44,perempuan,681,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.23,3,Blambangan Pagar,age_group,40-44,,1380,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.23,3,Blambangan Pagar,age_group,45-49,laki_laki,915,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.23,3,Blambangan Pagar,age_group,45-49,perempuan,896,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.23,3,Blambangan Pagar,age_group,45-49,,1811,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.23,3,Blambangan Pagar,age_group,50-54,laki_laki,616,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.23,3,Blambangan Pagar,age_group,50-54,perempuan,598,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.23,3,Blambangan Pagar,age_group,50-54,,1214,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.23,3,Blambangan Pagar,age_group,55-59,laki_laki,469,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.23,3,Blambangan Pagar,age_group,55-59,perempuan,558,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.23,3,Blambangan Pagar,age_group,55-59,,1027,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.23,3,Blambangan Pagar,age_group,60-64,laki_laki,496,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.23,3,Blambangan Pagar,age_group,60-64,perempuan,489,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.23,3,Blambangan Pagar,age_group,60-64,,985,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.23,3,Blambangan Pagar,age_group,65-69,laki_laki,390,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.23,3,Blambangan Pagar,age_group,65-69,perempuan,332,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.23,3,Blambangan Pagar,age_group,65-69,,722,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.23,3,Blambangan Pagar,age_group,70-75,laki_laki,215,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.23,3,Blambangan Pagar,age_group,70-75,perempuan,217,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.23,3,Blambangan Pagar,age_group,70-75,,432,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.23,3,Blambangan Pagar,age_group,75+,laki_laki,296,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.23,3,Blambangan Pagar,age_group,75+,perempuan,338,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.23,3,Blambangan Pagar,age_group,75+,,634,jiwa,2025,registration,total_population,3.2,30,,75+

@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.74.04.1005,4,Curahgrinting,sex,laki_laki,,3140,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.04.1005,4,Curahgrinting,sex,perempuan,,3189,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.04.1005,4,Curahgrinting,total,total,,6329,jiwa,2025,registration,total_population,3.1,25,,
+35.74.04.1003,4,Kanigaran,sex,laki_laki,,10637,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.04.1003,4,Kanigaran,sex,perempuan,,10977,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.04.1003,4,Kanigaran,total,total,,21614,jiwa,2025,registration,total_population,3.1,25,,
+35.74.04.1004,4,Kebonsari Wetan,sex,laki_laki,,3192,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.04.1004,4,Kebonsari Wetan,sex,perempuan,,3209,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.04.1004,4,Kebonsari Wetan,total,total,,6401,jiwa,2025,registration,total_population,3.1,25,,
+35.74.04.1002,4,Sukoharjo,sex,laki_laki,,3492,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.04.1002,4,Sukoharjo,sex,perempuan,,3606,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.04.1002,4,Sukoharjo,total,total,,7098,jiwa,2025,registration,total_population,3.1,25,,
+35.74.04.1006,4,Kebonsari Kulon,sex,laki_laki,,7624,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.04.1006,4,Kebonsari Kulon,sex,perempuan,,7616,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.04.1006,4,Kebonsari Kulon,total,total,,15240,jiwa,2025,registration,total_population,3.1,25,,
+35.74.04.1001,4,Tisnonegaran,sex,laki_laki,,3243,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.04.1001,4,Tisnonegaran,sex,perempuan,,3348,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.04.1001,4,Tisnonegaran,total,total,,6591,jiwa,2025,registration,total_population,3.1,25,,
+35.74.04,3,Kanigaran,age_group,0-14,laki_laki,7496,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.04,3,Kanigaran,age_group,0-14,perempuan,7160,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.04,3,Kanigaran,age_group,0-14,,14656,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.04,3,Kanigaran,age_group,15-64,laki_laki,22007,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.04,3,Kanigaran,age_group,15-64,perempuan,22463,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.04,3,Kanigaran,age_group,15-64,,44470,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.04,3,Kanigaran,age_group,65+,laki_laki,1825,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.04,3,Kanigaran,age_group,65+,perempuan,2322,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.04,3,Kanigaran,age_group,65+,,4147,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.04.1005,4,Curahgrinting,religion,islam,,6059,jiwa,2025,registration,total_population,4.4.5,54,,Islam
+35.74.04.1005,4,Curahgrinting,religion,kristen,,180,jiwa,2025,registration,total_population,4.4.5,54,,Protestan
+35.74.04.1005,4,Curahgrinting,religion,katolik,,78,jiwa,2025,registration,total_population,4.4.5,54,,Katolik
+35.74.04.1005,4,Curahgrinting,religion,hindu,,3,jiwa,2025,registration,total_population,4.4.5,54,,Hindu
+35.74.04.1005,4,Curahgrinting,religion,buddha,,9,jiwa,2025,registration,total_population,4.4.5,54,,Budha
+35.74.04.1005,4,Curahgrinting,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Lainnya
+35.74.04.1003,4,Kanigaran,religion,islam,,21324,jiwa,2025,registration,total_population,4.4.5,54,,Islam
+35.74.04.1003,4,Kanigaran,religion,kristen,,162,jiwa,2025,registration,total_population,4.4.5,54,,Protestan
+35.74.04.1003,4,Kanigaran,religion,katolik,,86,jiwa,2025,registration,total_population,4.4.5,54,,Katolik
+35.74.04.1003,4,Kanigaran,religion,hindu,,32,jiwa,2025,registration,total_population,4.4.5,54,,Hindu
+35.74.04.1003,4,Kanigaran,religion,buddha,,10,jiwa,2025,registration,total_population,4.4.5,54,,Budha
+35.74.04.1003,4,Kanigaran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Lainnya
+35.74.04.1004,4,Kebonsari Wetan,religion,islam,,6389,jiwa,2025,registration,total_population,4.4.5,54,,Islam
+35.74.04.1004,4,Kebonsari Wetan,religion,kristen,,11,jiwa,2025,registration,total_population,4.4.5,54,,Protestan
+35.74.04.1004,4,Kebonsari Wetan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Katolik
+35.74.04.1004,4,Kebonsari Wetan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Hindu
+35.74.04.1004,4,Kebonsari Wetan,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.5,54,,Budha
+35.74.04.1004,4,Kebonsari Wetan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Lainnya
+35.74.04.1002,4,Sukoharjo,religion,islam,,7026,jiwa,2025,registration,total_population,4.4.5,54,,Islam
+35.74.04.1002,4,Sukoharjo,religion,kristen,,37,jiwa,2025,registration,total_population,4.4.5,54,,Protestan
+35.74.04.1002,4,Sukoharjo,religion,katolik,,19,jiwa,2025,registration,total_population,4.4.5,54,,Katolik
+35.74.04.1002,4,Sukoharjo,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.5,54,,Hindu
+35.74.04.1002,4,Sukoharjo,religion,buddha,,11,jiwa,2025,registration,total_population,4.4.5,54,,Budha
+35.74.04.1002,4,Sukoharjo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,54,,Lainnya
+35.74.04.1006,4,Kebonsari Kulon,religion,islam,,14927,jiwa,2025,registration,total_population,4.4.5,54,,Islam
+35.74.04.1006,4,Kebonsari Kulon,religion,kristen,,99,jiwa,2025,registration,total_population,4.4.5,54,,Protestan
+35.74.04.1006,4,Kebonsari Kulon,religion,katolik,,106,jiwa,2025,registration,total_population,4.4.5,54,,Katolik
+35.74.04.1006,4,Kebonsari Kulon,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Hindu
+35.74.04.1006,4,Kebonsari Kulon,religion,buddha,,108,jiwa,2025,registration,total_population,4.4.5,54,,Budha
+35.74.04.1006,4,Kebonsari Kulon,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Lainnya
+35.74.04.1001,4,Tisnonegaran,religion,islam,,5997,jiwa,2025,registration,total_population,4.4.5,54,,Islam
+35.74.04.1001,4,Tisnonegaran,religion,kristen,,229,jiwa,2025,registration,total_population,4.4.5,54,,Protestan
+35.74.04.1001,4,Tisnonegaran,religion,katolik,,287,jiwa,2025,registration,total_population,4.4.5,54,,Katolik
+35.74.04.1001,4,Tisnonegaran,religion,hindu,,21,jiwa,2025,registration,total_population,4.4.5,54,,Hindu
+35.74.04.1001,4,Tisnonegaran,religion,buddha,,57,jiwa,2025,registration,total_population,4.4.5,54,,Budha
+35.74.04.1001,4,Tisnonegaran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,54,nil,Lainnya

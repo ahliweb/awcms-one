@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.06.2002,4,Guntung,sex,laki_laki,,1232,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.2002,4,Guntung,sex,perempuan,,1225,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.2002,4,Guntung,total,total,,2457,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.2004,4,Bagan Dalam,sex,laki_laki,,2973,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.2004,4,Bagan Dalam,sex,perempuan,,2745,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.2004,4,Bagan Dalam,total,total,,5718,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.2006,4,Suka Maju,sex,laki_laki,,5055,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.2006,4,Suka Maju,sex,perempuan,,4772,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.2006,4,Suka Maju,total,total,,9827,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.1001,4,Tanjung Tiram,sex,laki_laki,,1149,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.1001,4,Tanjung Tiram,sex,perempuan,,1134,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.1001,4,Tanjung Tiram,total,total,,2283,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.2005,4,Bogak,sex,laki_laki,,3311,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.2005,4,Bogak,sex,perempuan,,3044,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.2005,4,Bogak,total,total,,6355,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.2016,4,Suka Jaya,sex,laki_laki,,2814,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.2016,4,Suka Jaya,sex,perempuan,,2674,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.2016,4,Suka Jaya,total,total,,5488,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.2019,4,Kampung Lalang,sex,laki_laki,,1249,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.2019,4,Kampung Lalang,sex,perempuan,,1176,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.2019,4,Kampung Lalang,total,total,,2425,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.1022,4,Bagan Arya,sex,laki_laki,,738,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.1022,4,Bagan Arya,sex,perempuan,,675,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.1022,4,Bagan Arya,total,total,,1413,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06.2018,4,Bandar Rahmat,sex,laki_laki,,1004,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06.2018,4,Bandar Rahmat,sex,perempuan,,906,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06.2018,4,Bandar Rahmat,total,total,,1910,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.06,3,Tanjung Tiram,sex,laki_laki,,21986,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.06,3,Tanjung Tiram,sex,perempuan,,20682,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.06,3,Tanjung Tiram,total,total,,42668,jiwa,2025,registration,total_population,unnumbered-p28,28,,

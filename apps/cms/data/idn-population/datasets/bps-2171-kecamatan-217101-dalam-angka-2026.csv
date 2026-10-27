@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.01.1002,4,Pemping,sex,laki_laki,,545,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.01.1002,4,Pemping,sex,perempuan,,523,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.01.1002,4,Pemping,total,total,,1068,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.01.1003,4,Kasu,sex,laki_laki,,2018,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.01.1003,4,Kasu,sex,perempuan,,1910,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.01.1003,4,Kasu,total,total,,3928,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.01.1005,4,Pecong,sex,laki_laki,,523,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.01.1005,4,Pecong,sex,perempuan,,481,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.01.1005,4,Pecong,total,total,,1004,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.01.1006,4,Tanjung Sari,sex,laki_laki,,2796,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.01.1006,4,Tanjung Sari,sex,perempuan,,2750,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.01.1006,4,Tanjung Sari,total,total,,5546,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.01.1007,4,Sekanak Raya,sex,laki_laki,,3119,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.01.1007,4,Sekanak Raya,sex,perempuan,,3183,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.01.1007,4,Sekanak Raya,total,total,,6302,jiwa,2025,registration,total_population,unnumbered-p21,21,,

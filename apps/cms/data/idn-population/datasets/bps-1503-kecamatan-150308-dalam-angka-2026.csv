@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.08.2009,4,Tanjung Gagak,sex,laki_laki,,425,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2009,4,Tanjung Gagak,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2009,4,Tanjung Gagak,total,total,,829,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2001,4,Rantau Gedang,sex,laki_laki,,894,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2001,4,Rantau Gedang,sex,perempuan,,839,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2001,4,Rantau Gedang,total,total,,1733,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2010,4,Pulau Buayo,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2010,4,Pulau Buayo,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2010,4,Pulau Buayo,total,total,,545,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2008,4,Batu Penyabung,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2008,4,Batu Penyabung,sex,perempuan,,430,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2008,4,Batu Penyabung,total,total,,860,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2006,4,Teluk Kecimbung,sex,laki_laki,,911,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2006,4,Teluk Kecimbung,sex,perempuan,,926,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2006,4,Teluk Kecimbung,total,total,,1837,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2012,4,Dusun Dalam,sex,laki_laki,,1030,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2012,4,Dusun Dalam,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2012,4,Dusun Dalam,total,total,,2050,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2003,4,Pulau Lintang,sex,laki_laki,,770,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2003,4,Pulau Lintang,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2003,4,Pulau Lintang,total,total,,1549,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2002,4,Penarun,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2002,4,Penarun,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2002,4,Penarun,total,total,,930,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2007,4,Pulau Melako,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2007,4,Pulau Melako,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2007,4,Pulau Melako,total,total,,1307,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2004,4,Tanjung,sex,laki_laki,,2583,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2004,4,Tanjung,sex,perempuan,,2455,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2004,4,Tanjung,total,total,,5038,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.1011,4,Limbur Tembesi,sex,laki_laki,,1478,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.1011,4,Limbur Tembesi,sex,perempuan,,1385,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.1011,4,Limbur Tembesi,total,total,,2863,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2005,4,Bangun Jayo,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2005,4,Bangun Jayo,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2005,4,Bangun Jayo,total,total,,1018,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2013,4,Muara Lati,sex,laki_laki,,230,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2013,4,Muara Lati,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2013,4,Muara Lati,total,total,,444,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2015,4,Teluk Mancur,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2015,4,Teluk Mancur,sex,perempuan,,249,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2015,4,Teluk Mancur,total,total,,511,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08.2014,4,Suka Jadi,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08.2014,4,Suka Jadi,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08.2014,4,Suka Jadi,total,total,,804,jiwa,2025,registration,total_population,3.1,28,,
+15.03.08,3,Bathin VIII,sex,laki_laki,,11378,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.08,3,Bathin VIII,sex,perempuan,,10940,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.08,3,Bathin VIII,total,total,,22318,jiwa,2025,registration,total_population,3.1,28,,

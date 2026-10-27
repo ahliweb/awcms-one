@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.01.2037,4,Meurah,sex,laki_laki,,384,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2037,4,Meurah,sex,perempuan,,386,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2037,4,Meurah,total,total,,770,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2016,4,Batee Iliek,sex,laki_laki,,505,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2016,4,Batee Iliek,sex,perempuan,,574,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2016,4,Batee Iliek,total,total,,1079,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2035,4,Cot Meurak Baroh,sex,laki_laki,,306,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2035,4,Cot Meurak Baroh,sex,perempuan,,308,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2035,4,Cot Meurak Baroh,total,total,,614,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2015,4,Mesjid Baro,sex,laki_laki,,267,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2015,4,Mesjid Baro,sex,perempuan,,268,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2015,4,Mesjid Baro,total,total,,535,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2019,4,Darussalam,sex,laki_laki,,319,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2019,4,Darussalam,sex,perempuan,,309,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2019,4,Darussalam,total,total,,628,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2018,4,Matang Wakeuh,sex,laki_laki,,261,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2018,4,Matang Wakeuh,sex,perempuan,,254,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2018,4,Matang Wakeuh,total,total,,515,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2020,4,Matang Jareung,sex,laki_laki,,399,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2020,4,Matang Jareung,sex,perempuan,,390,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2020,4,Matang Jareung,total,total,,789,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2025,4,Ulee Alue,sex,laki_laki,,184,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2025,4,Ulee Alue,sex,perempuan,,205,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2025,4,Ulee Alue,total,total,,389,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2022,4,Cot Mane,sex,laki_laki,,244,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2022,4,Cot Mane,sex,perempuan,,267,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2022,4,Cot Mane,total,total,,511,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2014,4,Paloh,sex,laki_laki,,235,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2014,4,Paloh,sex,perempuan,,213,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2014,4,Paloh,total,total,,448,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2034,4,Gampong Meulum,sex,laki_laki,,554,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2034,4,Gampong Meulum,sex,perempuan,,597,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2034,4,Gampong Meulum,total,total,,1151,jiwa,2024,registration,total_population,3.1,,,
+11.11.01.2013,4,Lancok,sex,laki_laki,,281,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.01.2013,4,Lancok,sex,perempuan,,292,jiwa,2024,registration,total_population,3.1,,,Perempuan/Femal
+11.11.01.2013,4,Lancok,total,total,,573,jiwa,2024,registration,total_population,3.1,,,

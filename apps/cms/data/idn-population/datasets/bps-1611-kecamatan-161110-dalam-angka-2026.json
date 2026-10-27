@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1611-kecamatan-161110-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.11.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pendopo Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Empat Lawang",
+  "publisherDomain": "1611",
+  "publisherWebsite": "https://empatlawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Empat Lawang (https://empatlawangkab.bps.go.id), publikasi \"Kecamatan Pendopo Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1611031",
+  "publicationNumber": "16110.26011",
+  "issn": "3047-1621",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://empatlawangkab.bps.go.id/id/publication/2026/09/28/c14e957d9f639171f374414d/kecamatan-pendopo-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "ca67ddd0d50410fc823cad651a46fd6946c0f478de986e95e5b02edb4bfe972f",
+  "sourceFileBytes": 9994513,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Empat Lawang.",
+  "csvPath": "datasets/bps-1611-kecamatan-161110-dalam-angka-2026.csv",
+  "csvSha256": "5803226b4f584cd8ce9994c9b5f134bfa84d2daacd681476ba6e43c3f65fca51",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Pendopo Barat, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pendopo Barat, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

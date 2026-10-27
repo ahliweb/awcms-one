@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.09.2003,4,Guntung,sex,laki_laki,,1900,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2003,4,Guntung,sex,perempuan,,1831,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2003,4,Guntung,total,total,,3731,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2008,4,Pematang Panjang,sex,laki_laki,,1473,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2008,4,Pematang Panjang,sex,perempuan,,1385,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2008,4,Pematang Panjang,total,total,,2858,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2009,4,Bulan Bulan,sex,laki_laki,,1967,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2009,4,Bulan Bulan,sex,perempuan,,1925,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2009,4,Bulan Bulan,total,total,,3892,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2002,4,Perupuk,sex,laki_laki,,4313,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2002,4,Perupuk,sex,perempuan,,4047,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2002,4,Perupuk,total,total,,8360,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2001,4,Gambus Laut,sex,laki_laki,,3529,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2001,4,Gambus Laut,sex,perempuan,,3327,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2001,4,Gambus Laut,total,total,,6856,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2011,4,Lubuk Cuik,sex,laki_laki,,2205,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2011,4,Lubuk Cuik,sex,perempuan,,2170,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2011,4,Lubuk Cuik,total,total,,4375,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2004,4,Barung-Barung,sex,laki_laki,,888,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2004,4,Barung-Barung,sex,perempuan,,885,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2004,4,Barung-Barung,total,total,,1773,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2006,4,Pasir Permit,sex,laki_laki,,692,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2006,4,Pasir Permit,sex,perempuan,,700,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2006,4,Pasir Permit,total,total,,1392,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2005,4,Titi Putih,sex,laki_laki,,998,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2005,4,Titi Putih,sex,perempuan,,942,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2005,4,Titi Putih,total,total,,1940,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2010,4,Gunung Bandung,sex,laki_laki,,1027,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2010,4,Gunung Bandung,sex,perempuan,,1047,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2010,4,Gunung Bandung,total,total,,2074,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2007,4,Titi Merah,sex,laki_laki,,1402,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2007,4,Titi Merah,sex,perempuan,,1347,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2007,4,Titi Merah,total,total,,2749,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09.2013,4,Pematang Tengah,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09.2013,4,Pematang Tengah,sex,perempuan,,530,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09.2013,4,Pematang Tengah,total,total,,1025,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09,3,Lima Puluh Pesisir,sex,laki_laki,,21770,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.09,3,Lima Puluh Pesisir,sex,perempuan,,21061,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.09,3,Lima Puluh Pesisir,total,total,,42831,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.09,3,Lima Puluh Pesisir,age_group,0-4,laki_laki,1604,jiwa,2025,registration,total_population,3.2.2,30,,0-4
+12.19.09,3,Lima Puluh Pesisir,age_group,0-4,perempuan,1502,jiwa,2025,registration,total_population,3.2.2,30,,0-4
+12.19.09,3,Lima Puluh Pesisir,age_group,0-4,,3106,jiwa,2025,registration,total_population,3.2.2,30,,0-4
+12.19.09,3,Lima Puluh Pesisir,age_group,5-9,laki_laki,2309,jiwa,2025,registration,total_population,3.2.2,30,,5-9
+12.19.09,3,Lima Puluh Pesisir,age_group,5-9,perempuan,2079,jiwa,2025,registration,total_population,3.2.2,30,,5-9
+12.19.09,3,Lima Puluh Pesisir,age_group,5-9,,4388,jiwa,2025,registration,total_population,3.2.2,30,,5-9
+12.19.09,3,Lima Puluh Pesisir,age_group,10-14,laki_laki,2334,jiwa,2025,registration,total_population,3.2.2,30,,10-14
+12.19.09,3,Lima Puluh Pesisir,age_group,10-14,perempuan,2200,jiwa,2025,registration,total_population,3.2.2,30,,10-14
+12.19.09,3,Lima Puluh Pesisir,age_group,10-14,,4534,jiwa,2025,registration,total_population,3.2.2,30,,10-14
+12.19.09,3,Lima Puluh Pesisir,age_group,15-19,laki_laki,2071,jiwa,2025,registration,total_population,3.2.2,30,,15-19
+12.19.09,3,Lima Puluh Pesisir,age_group,15-19,perempuan,1980,jiwa,2025,registration,total_population,3.2.2,30,,15-19
+12.19.09,3,Lima Puluh Pesisir,age_group,15-19,,4051,jiwa,2025,registration,total_population,3.2.2,30,,15-19
+12.19.09,3,Lima Puluh Pesisir,age_group,20-24,laki_laki,1962,jiwa,2025,registration,total_population,3.2.2,30,,20-24
+12.19.09,3,Lima Puluh Pesisir,age_group,20-24,perempuan,1871,jiwa,2025,registration,total_population,3.2.2,30,,20-24
+12.19.09,3,Lima Puluh Pesisir,age_group,20-24,,3833,jiwa,2025,registration,total_population,3.2.2,30,,20-24
+12.19.09,3,Lima Puluh Pesisir,age_group,25-29,laki_laki,1828,jiwa,2025,registration,total_population,3.2.2,30,,25-29
+12.19.09,3,Lima Puluh Pesisir,age_group,25-29,perempuan,1665,jiwa,2025,registration,total_population,3.2.2,30,,25-29
+12.19.09,3,Lima Puluh Pesisir,age_group,25-29,,3493,jiwa,2025,registration,total_population,3.2.2,30,,25-29
+12.19.09,3,Lima Puluh Pesisir,age_group,30-34,laki_laki,1704,jiwa,2025,registration,total_population,3.2.2,30,,30-34
+12.19.09,3,Lima Puluh Pesisir,age_group,30-34,perempuan,1473,jiwa,2025,registration,total_population,3.2.2,30,,30-34
+12.19.09,3,Lima Puluh Pesisir,age_group,30-34,,3177,jiwa,2025,registration,total_population,3.2.2,30,,30-34
+12.19.09,3,Lima Puluh Pesisir,age_group,35-39,laki_laki,1496,jiwa,2025,registration,total_population,3.2.2,30,,35-39
+12.19.09,3,Lima Puluh Pesisir,age_group,35-39,perempuan,1463,jiwa,2025,registration,total_population,3.2.2,30,,35-39
+12.19.09,3,Lima Puluh Pesisir,age_group,35-39,,2959,jiwa,2025,registration,total_population,3.2.2,30,,35-39
+12.19.09,3,Lima Puluh Pesisir,age_group,40-44,laki_laki,1408,jiwa,2025,registration,total_population,3.2.2,30,,40-44
+12.19.09,3,Lima Puluh Pesisir,age_group,40-44,perempuan,1354,jiwa,2025,registration,total_population,3.2.2,30,,40-44
+12.19.09,3,Lima Puluh Pesisir,age_group,40-44,,2762,jiwa,2025,registration,total_population,3.2.2,30,,40-44
+12.19.09,3,Lima Puluh Pesisir,age_group,45-49,laki_laki,1254,jiwa,2025,registration,total_population,3.2.2,30,,45-49
+12.19.09,3,Lima Puluh Pesisir,age_group,45-49,perempuan,1258,jiwa,2025,registration,total_population,3.2.2,30,,45-49
+12.19.09,3,Lima Puluh Pesisir,age_group,45-49,,2512,jiwa,2025,registration,total_population,3.2.2,30,,45-49
+12.19.09,3,Lima Puluh Pesisir,age_group,50-54,laki_laki,1029,jiwa,2025,registration,total_population,3.2.2,30,,50-54
+12.19.09,3,Lima Puluh Pesisir,age_group,50-54,perempuan,1036,jiwa,2025,registration,total_population,3.2.2,30,,50-54
+12.19.09,3,Lima Puluh Pesisir,age_group,50-54,,2065,jiwa,2025,registration,total_population,3.2.2,30,,50-54
+12.19.09,3,Lima Puluh Pesisir,age_group,55-59,laki_laki,829,jiwa,2025,registration,total_population,3.2.2,30,,55-59
+12.19.09,3,Lima Puluh Pesisir,age_group,55-59,perempuan,900,jiwa,2025,registration,total_population,3.2.2,30,,55-59
+12.19.09,3,Lima Puluh Pesisir,age_group,55-59,,1729,jiwa,2025,registration,total_population,3.2.2,30,,55-59
+12.19.09,3,Lima Puluh Pesisir,age_group,60-64,laki_laki,713,jiwa,2025,registration,total_population,3.2.2,30,,60-64
+12.19.09,3,Lima Puluh Pesisir,age_group,60-64,perempuan,816,jiwa,2025,registration,total_population,3.2.2,30,,60-64
+12.19.09,3,Lima Puluh Pesisir,age_group,60-64,,1529,jiwa,2025,registration,total_population,3.2.2,30,,60-64
+12.19.09,3,Lima Puluh Pesisir,age_group,65-69,laki_laki,528,jiwa,2025,registration,total_population,3.2.2,30,,65-69
+12.19.09,3,Lima Puluh Pesisir,age_group,65-69,perempuan,607,jiwa,2025,registration,total_population,3.2.2,30,,65-69
+12.19.09,3,Lima Puluh Pesisir,age_group,65-69,,1135,jiwa,2025,registration,total_population,3.2.2,30,,65-69
+12.19.09,3,Lima Puluh Pesisir,age_group,70-74,laki_laki,359,jiwa,2025,registration,total_population,3.2.2,30,,70-74
+12.19.09,3,Lima Puluh Pesisir,age_group,70-74,perempuan,380,jiwa,2025,registration,total_population,3.2.2,30,,70-74
+12.19.09,3,Lima Puluh Pesisir,age_group,70-74,,739,jiwa,2025,registration,total_population,3.2.2,30,,70-74
+12.19.09,3,Lima Puluh Pesisir,age_group,75+,laki_laki,342,jiwa,2025,registration,total_population,3.2.2,30,,75+
+12.19.09,3,Lima Puluh Pesisir,age_group,75+,perempuan,477,jiwa,2025,registration,total_population,3.2.2,30,,75+
+12.19.09,3,Lima Puluh Pesisir,age_group,75+,,819,jiwa,2025,registration,total_population,3.2.2,30,,75+
+12.19.09,3,Lima Puluh Pesisir,sex,laki_laki,,21770,jiwa,2025,registration,total_population,3.2.2,30,,Laki-Laki
+12.19.09,3,Lima Puluh Pesisir,sex,perempuan,,21061,jiwa,2025,registration,total_population,3.2.2,30,,Perempuan
+12.19.09,3,Lima Puluh Pesisir,total,total,,42831,jiwa,2025,registration,total_population,3.2.2,30,,

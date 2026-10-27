@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1605-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "16.05",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Musi Rawas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Rawas",
+  "publisherDomain": "1605",
+  "publisherWebsite": "https://musirawaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Rawas (https://musirawaskab.bps.go.id), publikasi \"Kabupaten Musi Rawas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.160",
+  "publicationNumber": "16050.25001",
+  "issn": "2721-4605",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://musirawaskab.bps.go.id/id/publication/2026/02/27/f92f270e1cf317d28aa33ac6/kabupaten-musi-rawas-dalam-angka-2026.html",
+  "sourceFileSha256": "741937459daa10f1eb88c075c21c51931f1b8eaa423c3dad5532d96ee313a8e8",
+  "sourceFileBytes": 39160937,
+  "sourcePages": [48, 51],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Rawas.",
+  "csvPath": "datasets/bps-1605-dalam-angka-2026.csv",
+  "csvSha256": "6b7f213b70b9aa3c9161069aacd1b3f0e1e2519c23096e8c0f9567e91a5a4f4f",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Musi Rawas, 2025",
+      "printedPages": [48],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Musi Rawas (Ribu jiwa), 2025",
+      "printedPages": [51],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 10.1 (expenditure-by-commodity) could not be read reliably and is not included (rupiah figures printed with a three-digit decimal part: the table uses ',' as a thousands mark and is not read)",
+    "table 3.1.1: row not stored: row \"Suku Tengah Lakitan Ulu\": unmatched ",
+    "table 3.1.1: row not stored: row \"Bulang Tengah Suku Ulu\": unmatched "
+  ]
+}

@@ -1,0 +1,181 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.09.07.2009,4,Sukamaju,sex,laki_laki,,1672,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2009,4,Sukamaju,sex,perempuan,,1512,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2009,4,Sukamaju,total,total,,3184,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2008,4,Waykepayang,sex,laki_laki,,1274,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2008,4,Waykepayang,sex,perempuan,,1138,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2008,4,Waykepayang,total,total,,2412,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2010,4,Kedondong,sex,laki_laki,,2986,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2010,4,Kedondong,sex,perempuan,,2878,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2010,4,Kedondong,total,total,,5864,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2017,4,Sinar Harapan,sex,laki_laki,,2574,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2017,4,Sinar Harapan,sex,perempuan,,2400,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2017,4,Sinar Harapan,total,total,,4974,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2012,4,Tempel Rejo,sex,laki_laki,,2734,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2012,4,Tempel Rejo,sex,perempuan,,2523,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2012,4,Tempel Rejo,total,total,,5257,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2011,4,Pasar Baru,sex,laki_laki,,2398,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2011,4,Pasar Baru,sex,perempuan,,2361,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2011,4,Pasar Baru,total,total,,4759,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2013,4,Kerta Sana,sex,laki_laki,,1135,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2013,4,Kerta Sana,sex,perempuan,,1167,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2013,4,Kerta Sana,total,total,,2302,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2014,4,Gunung Sugih,sex,laki_laki,,1529,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2014,4,Gunung Sugih,sex,perempuan,,1464,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2014,4,Gunung Sugih,total,total,,2993,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2019,4,Babakan Loa,sex,laki_laki,,1280,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2019,4,Babakan Loa,sex,perempuan,,1253,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2019,4,Babakan Loa,total,total,,2533,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2018,4,Tebajawa,sex,laki_laki,,687,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2018,4,Tebajawa,sex,perempuan,,681,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2018,4,Tebajawa,total,total,,1368,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07.2021,4,Harapan Jaya,sex,laki_laki,,908,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07.2021,4,Harapan Jaya,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07.2021,4,Harapan Jaya,total,total,,1758,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07,3,Kedondong,sex,laki_laki,,21201,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.07,3,Kedondong,sex,perempuan,,20180,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.07,3,Kedondong,total,total,,41381,jiwa,2025,registration,total_population,3.1,30,,
+18.09.07,3,Kedondong,age_group,0-5,laki_laki,1875,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.07,3,Kedondong,age_group,0-5,perempuan,1778,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.07,3,Kedondong,age_group,0-5,,3653,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.07,3,Kedondong,age_group,6-10,laki_laki,1891,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.07,3,Kedondong,age_group,6-10,perempuan,1808,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.07,3,Kedondong,age_group,6-10,,3699,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.07,3,Kedondong,age_group,11-17,laki_laki,2755,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.07,3,Kedondong,age_group,11-17,perempuan,2588,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.07,3,Kedondong,age_group,11-17,,5343,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.07,3,Kedondong,age_group,18-22,laki_laki,1611,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.07,3,Kedondong,age_group,18-22,perempuan,1580,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.07,3,Kedondong,age_group,18-22,,3191,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.07,3,Kedondong,age_group,23-27,laki_laki,1719,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.07,3,Kedondong,age_group,23-27,perempuan,1573,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.07,3,Kedondong,age_group,23-27,,3292,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.07,3,Kedondong,age_group,28-32,laki_laki,1519,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.07,3,Kedondong,age_group,28-32,perempuan,1332,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.07,3,Kedondong,age_group,28-32,,2851,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.07,3,Kedondong,age_group,33-38,laki_laki,1805,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.07,3,Kedondong,age_group,33-38,perempuan,1647,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.07,3,Kedondong,age_group,33-38,,3452,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.07,3,Kedondong,age_group,39-43,laki_laki,1601,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.07,3,Kedondong,age_group,39-43,perempuan,1570,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.07,3,Kedondong,age_group,39-43,,3171,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.07,3,Kedondong,age_group,44-48,laki_laki,1428,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.07,3,Kedondong,age_group,44-48,perempuan,1427,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.07,3,Kedondong,age_group,44-48,,2855,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.07,3,Kedondong,age_group,49-53,laki_laki,1164,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.07,3,Kedondong,age_group,49-53,perempuan,1204,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.07,3,Kedondong,age_group,49-53,,2368,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.07,3,Kedondong,age_group,54-58,laki_laki,1038,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.07,3,Kedondong,age_group,54-58,perempuan,982,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.07,3,Kedondong,age_group,54-58,,2020,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.07,3,Kedondong,age_group,59-63,laki_laki,858,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.07,3,Kedondong,age_group,59-63,perempuan,862,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.07,3,Kedondong,age_group,59-63,,1720,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.07,3,Kedondong,age_group,64-68,laki_laki,706,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.07,3,Kedondong,age_group,64-68,perempuan,697,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.07,3,Kedondong,age_group,64-68,,1403,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.07,3,Kedondong,age_group,69-73,laki_laki,489,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.07,3,Kedondong,age_group,69-73,perempuan,455,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.07,3,Kedondong,age_group,69-73,,944,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.07,3,Kedondong,age_group,74+,laki_laki,742,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.07,3,Kedondong,age_group,74+,perempuan,677,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.07,3,Kedondong,age_group,74+,,1419,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.07,3,Kedondong,sex,laki_laki,,21201,jiwa,2025,registration,total_population,3.2,32,,Laki-laki/Male
+18.09.07,3,Kedondong,sex,perempuan,,20180,jiwa,2025,registration,total_population,3.2,32,,Perempuan/Female
+18.09.07,3,Kedondong,total,total,,41381,jiwa,2025,registration,total_population,3.2,32,,
+18.09.07.2009,4,Sukamaju,religion,islam,,3184,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2009,4,Sukamaju,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.07.2009,4,Sukamaju,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2009,4,Sukamaju,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2008,4,Waykepayang,religion,islam,,2412,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2008,4,Waykepayang,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.07.2008,4,Waykepayang,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2008,4,Waykepayang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2010,4,Kedondong,religion,islam,,5863,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2010,4,Kedondong,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.07.2010,4,Kedondong,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.07.2010,4,Kedondong,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2017,4,Sinar Harapan,religion,islam,,4973,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2017,4,Sinar Harapan,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.07.2017,4,Sinar Harapan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2017,4,Sinar Harapan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2012,4,Tempel Rejo,religion,islam,,5246,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2012,4,Tempel Rejo,religion,kristen,,11,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.07.2012,4,Tempel Rejo,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2012,4,Tempel Rejo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2011,4,Pasar Baru,religion,islam,,4733,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2011,4,Pasar Baru,religion,kristen,,20,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.07.2011,4,Pasar Baru,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2011,4,Pasar Baru,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2013,4,Kerta Sana,religion,islam,,2301,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2013,4,Kerta Sana,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.07.2013,4,Kerta Sana,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2013,4,Kerta Sana,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2014,4,Gunung Sugih,religion,islam,,2991,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2014,4,Gunung Sugih,religion,kristen,,2,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.07.2014,4,Gunung Sugih,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2014,4,Gunung Sugih,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2019,4,Babakan Loa,religion,islam,,2519,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2019,4,Babakan Loa,religion,kristen,,12,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.07.2019,4,Babakan Loa,religion,katolik,,2,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.07.2019,4,Babakan Loa,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2018,4,Tebajawa,religion,islam,,1368,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2018,4,Tebajawa,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.07.2018,4,Tebajawa,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2018,4,Tebajawa,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2021,4,Harapan Jaya,religion,islam,,1758,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07.2021,4,Harapan Jaya,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.07.2021,4,Harapan Jaya,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.07.2021,4,Harapan Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07,3,Kedondong,religion,islam,,41305,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.07,3,Kedondong,religion,kristen,,65,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.07,3,Kedondong,religion,katolik,,3,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.07,3,Kedondong,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.07.2009,4,Sukamaju,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2009,4,Sukamaju,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2009,4,Sukamaju,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2009,4,Sukamaju,total,total,,3184,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2008,4,Waykepayang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2008,4,Waykepayang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2008,4,Waykepayang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2008,4,Waykepayang,total,total,,2412,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2010,4,Kedondong,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2010,4,Kedondong,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2010,4,Kedondong,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2010,4,Kedondong,total,total,,5864,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2017,4,Sinar Harapan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2017,4,Sinar Harapan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2017,4,Sinar Harapan,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.07.2017,4,Sinar Harapan,total,total,,4974,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2012,4,Tempel Rejo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2012,4,Tempel Rejo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2012,4,Tempel Rejo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2012,4,Tempel Rejo,total,total,,5257,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2011,4,Pasar Baru,religion,buddha,,6,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.07.2011,4,Pasar Baru,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2011,4,Pasar Baru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2011,4,Pasar Baru,total,total,,4759,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2013,4,Kerta Sana,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2013,4,Kerta Sana,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2013,4,Kerta Sana,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.07.2013,4,Kerta Sana,total,total,,2302,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2014,4,Gunung Sugih,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2014,4,Gunung Sugih,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2014,4,Gunung Sugih,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2014,4,Gunung Sugih,total,total,,2993,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2019,4,Babakan Loa,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2019,4,Babakan Loa,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2019,4,Babakan Loa,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2019,4,Babakan Loa,total,total,,2533,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2018,4,Tebajawa,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2018,4,Tebajawa,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2018,4,Tebajawa,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2018,4,Tebajawa,total,total,,1368,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07.2021,4,Harapan Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.07.2021,4,Harapan Jaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07.2021,4,Harapan Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.07.2021,4,Harapan Jaya,total,total,,1758,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.07,3,Kedondong,religion,buddha,,6,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.07,3,Kedondong,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.07,3,Kedondong,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.07,3,Kedondong,total,total,,41381,jiwa,2025,registration,total_population,4.4.3,57,,

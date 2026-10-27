@@ -92,7 +92,7 @@ Create, new version, rename, retire, member-list read and export each write an a
 
 ## Deferred (not built here, on purpose)
 
-Booking-derived fields (stays completed, last stay date) - after Wave C, through the adapter's own events, each with its ADR (owner answer Q7) - **built by [ADR-0051](0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md) (issue #390) as rule schema 2, read live through the booking links rather than through events**; wiring a segment into a loyalty program version (#361) and a campaign audience (#362); analytics slices by segment (metrics section 8.5) as a consumer; a cohort snapshot or a result cache; scheduled or event-driven re-evaluation; a visual rule builder for nested groups (the screen offers a flat all / any builder and a JSON box); domain events for segment changes.
+Booking-derived fields (stays completed, last stay date) - after Wave C, through the adapter's own events, each with its ADR (owner answer Q7) - **built by [ADR-0052](0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md) (issue #390) as rule schema 2, read live through the booking links rather than through events**; wiring a segment into a loyalty program version (#361) and a campaign audience (#362); analytics slices by segment (metrics section 8.5) as a consumer; a cohort snapshot or a result cache; scheduled or event-driven re-evaluation; a visual rule builder for nested groups (the screen offers a flat all / any builder and a JSON box); domain events for segment changes.
 
 ## Amendment (#361) - 11 October 2026: a loyalty program version may be restricted to a segment
 

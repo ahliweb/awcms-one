@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.05.08.2008,4,Purbosari,sex,laki_laki,,1083,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2008,4,Purbosari,sex,perempuan,,1074,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2008,4,Purbosari,total,total,,2157,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2003,4,Talang Perapat,sex,laki_laki,,828,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2003,4,Talang Perapat,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2003,4,Talang Perapat,total,total,,1612,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2002,4,Air Latak,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2002,4,Air Latak,sex,perempuan,,361,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2002,4,Air Latak,total,total,,714,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2004,4,Pagar Agung,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2004,4,Pagar Agung,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2004,4,Pagar Agung,total,total,,915,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2005,4,Talang Tinggi,sex,laki_laki,,586,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2005,4,Talang Tinggi,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2005,4,Talang Tinggi,total,total,,1127,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2006,4,Lunjuk,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2006,4,Lunjuk,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2006,4,Lunjuk,total,total,,853,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2007,4,Lubuk Lagan,sex,laki_laki,,1010,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2007,4,Lubuk Lagan,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2007,4,Lubuk Lagan,total,total,,1940,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2001,4,Tanjung Agung,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2001,4,Tanjung Agung,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2001,4,Tanjung Agung,total,total,,430,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08.2009,4,Sengkuang Jaya,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08.2009,4,Sengkuang Jaya,sex,perempuan,,318,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08.2009,4,Sengkuang Jaya,total,total,,656,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08,3,Seluma Barat,sex,laki_laki,,5354,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.08,3,Seluma Barat,sex,perempuan,,5050,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.08,3,Seluma Barat,total,total,,10404,jiwa,2025,registration,total_population,3.1,27,,
+17.05.08,3,Seluma Barat,age_group,0-4,laki_laki,411,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.05.08,3,Seluma Barat,age_group,0-4,perempuan,348,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.05.08,3,Seluma Barat,age_group,0-4,,759,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.05.08,3,Seluma Barat,age_group,5-9,laki_laki,457,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.05.08,3,Seluma Barat,age_group,5-9,perempuan,407,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.05.08,3,Seluma Barat,age_group,5-9,,864,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.05.08,3,Seluma Barat,age_group,10-14,laki_laki,485,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.05.08,3,Seluma Barat,age_group,10-14,perempuan,469,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.05.08,3,Seluma Barat,age_group,10-14,,954,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.05.08,3,Seluma Barat,age_group,15-19,laki_laki,433,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.05.08,3,Seluma Barat,age_group,15-19,perempuan,433,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.05.08,3,Seluma Barat,age_group,15-19,,866,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.05.08,3,Seluma Barat,age_group,20-24,laki_laki,440,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.05.08,3,Seluma Barat,age_group,20-24,perempuan,437,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.05.08,3,Seluma Barat,age_group,20-24,,877,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.05.08,3,Seluma Barat,age_group,25-29,laki_laki,428,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.05.08,3,Seluma Barat,age_group,25-29,perempuan,428,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.05.08,3,Seluma Barat,age_group,25-29,,856,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.05.08,3,Seluma Barat,age_group,30-34,laki_laki,427,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.05.08,3,Seluma Barat,age_group,30-34,perempuan,406,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.05.08,3,Seluma Barat,age_group,30-34,,833,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.05.08,3,Seluma Barat,age_group,35-39,laki_laki,433,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.05.08,3,Seluma Barat,age_group,35-39,perempuan,417,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.05.08,3,Seluma Barat,age_group,35-39,,850,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.05.08,3,Seluma Barat,age_group,40-44,laki_laki,437,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.05.08,3,Seluma Barat,age_group,40-44,perempuan,373,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.05.08,3,Seluma Barat,age_group,40-44,,810,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.05.08,3,Seluma Barat,age_group,45-49,laki_laki,364,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.05.08,3,Seluma Barat,age_group,45-49,perempuan,306,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.05.08,3,Seluma Barat,age_group,45-49,,670,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.05.08,3,Seluma Barat,age_group,50-54,laki_laki,294,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.05.08,3,Seluma Barat,age_group,50-54,perempuan,292,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.05.08,3,Seluma Barat,age_group,50-54,,586,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.05.08,3,Seluma Barat,age_group,55-59,laki_laki,243,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.05.08,3,Seluma Barat,age_group,55-59,perempuan,229,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.05.08,3,Seluma Barat,age_group,55-59,,472,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.05.08,3,Seluma Barat,age_group,60-64,laki_laki,208,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.05.08,3,Seluma Barat,age_group,60-64,perempuan,182,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.05.08,3,Seluma Barat,age_group,60-64,,390,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.05.08,3,Seluma Barat,age_group,65-69,laki_laki,144,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.05.08,3,Seluma Barat,age_group,65-69,perempuan,141,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.05.08,3,Seluma Barat,age_group,65-69,,285,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.05.08,3,Seluma Barat,age_group,70-74,laki_laki,77,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.05.08,3,Seluma Barat,age_group,70-74,perempuan,76,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.05.08,3,Seluma Barat,age_group,70-74,,153,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.05.08,3,Seluma Barat,age_group,75+,laki_laki,73,jiwa,2025,registration,total_population,3.2,29,,>75
+17.05.08,3,Seluma Barat,age_group,75+,perempuan,106,jiwa,2025,registration,total_population,3.2,29,,>75
+17.05.08,3,Seluma Barat,age_group,75+,,179,jiwa,2025,registration,total_population,3.2,29,,>75
+17.05.08,3,Seluma Barat,sex,laki_laki,,5354,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+17.05.08,3,Seluma Barat,sex,perempuan,,5050,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+17.05.08,3,Seluma Barat,total,total,,10404,jiwa,2025,registration,total_population,3.2,29,,

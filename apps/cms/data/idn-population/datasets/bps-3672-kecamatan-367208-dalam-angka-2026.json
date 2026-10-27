@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3672-kecamatan-367208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.72.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Citangkil Dalam Angka 2026",
+  "publisherName": "BPS Kota Cilegon",
+  "publisherDomain": "3672",
+  "publisherWebsite": "https://cilegonkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cilegon (https://cilegonkota.bps.go.id), publikasi \"Kecamatan Citangkil Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36720.26006",
+  "issn": "2598-8638",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilegonkota.bps.go.id/id/publication/2026/09/28/9cd609c0b723bb3812f4b42b/kecamatan-citangkil-dalam-angka-2026.html",
+  "sourceFileSha256": "ce409b2e37fdaa1b080791ad1cd367ba5a031639673808d71365cf09046e7e47",
+  "sourceFileBytes": 8942771,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cilegon.",
+  "csvPath": "datasets/bps-3672-kecamatan-367208-dalam-angka-2026.csv",
+  "csvSha256": "24e4eecdef12336f9f3deaca264cc198fec306ed253a53d849a07f1de8360fe3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Citangkil, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Citangkil, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Deringo\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Citangkil Citangkil District\": unmatched ",
+    "table 3.1: row not stored: row \"Deringo\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Citangkil Citangkil District\": unmatched "
+  ]
+}

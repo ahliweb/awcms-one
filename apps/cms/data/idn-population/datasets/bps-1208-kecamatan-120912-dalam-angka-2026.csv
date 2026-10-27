@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.12.2008,4,Silomlom,sex,laki_laki,,1894,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.12.2008,4,Silomlom,sex,perempuan,,1838,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.12.2008,4,Silomlom,total,total,,3732,jiwa,2025,registration,total_population,3.1,30,,
+12.09.12.2009,4,Simpang Empat,sex,laki_laki,,8484,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.12.2009,4,Simpang Empat,sex,perempuan,,8486,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.12.2009,4,Simpang Empat,total,total,,16970,jiwa,2025,registration,total_population,3.1,30,,
+12.09.12.2006,4,Sei Dua Hulu,sex,laki_laki,,3171,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.12.2006,4,Sei Dua Hulu,sex,perempuan,,2966,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.12.2006,4,Sei Dua Hulu,total,total,,6137,jiwa,2025,registration,total_population,3.1,30,,
+12.09.12.2012,4,Sipaku Area,sex,laki_laki,,4141,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.12.2012,4,Sipaku Area,sex,perempuan,,4130,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.12.2012,4,Sipaku Area,total,total,,8271,jiwa,2025,registration,total_population,3.1,30,,
+12.09.12.2013,4,Anjung Ganjang,sex,laki_laki,,1088,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.12.2013,4,Anjung Ganjang,sex,perempuan,,1018,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.12.2013,4,Anjung Ganjang,total,total,,2106,jiwa,2025,registration,total_population,3.1,30,,
+12.09.12,3,Simpang Empat,sex,laki_laki,,24897,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.12,3,Simpang Empat,sex,perempuan,,24395,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.12,3,Simpang Empat,total,total,,49292,jiwa,2025,registration,total_population,3.1,30,,

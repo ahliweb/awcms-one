@@ -16,9 +16,9 @@
  * above the bound is refused with a field-naming error before anything
  * reaches the database. Owner answer Q7: rule schema 1 is the PRD section 6.1
  * commerce vocabulary only; the booking-derived fields joined this table in
- * rule schema 2, with their own ADR (ADR-0051, Issue #390, after Wave C).
+ * rule schema 2, with their own ADR (ADR-0052, Issue #390, after Wave C).
  *
- * ## Rule schema versions (control C-29, ADR-0051)
+ * ## Rule schema versions (control C-29, ADR-0052)
  *
  * The vocabulary is versioned. A stored segment version records the rule
  * schema it was written under (`rule_schema_version`, `sql/1060`) and is
@@ -66,7 +66,7 @@ export const SEGMENT_RULE_LIMITS = {
   maxBytes: 8192
 } as const;
 
-/** The rule schema new segment versions are written under. Bumping it is ADR-gated (ADR-0042 D2, ADR-0051). */
+/** The rule schema new segment versions are written under. Bumping it is ADR-gated (ADR-0042 D2, ADR-0052). */
 export const SEGMENT_RULE_SCHEMA_VERSION = 2;
 
 /** Every schema the validator still understands: a stored version keeps the one it was written under. */
@@ -82,7 +82,7 @@ export type SegmentRuleField =
   | "last_order_date"
   | "first_order_date"
   | "loyalty_balance"
-  // Rule schema 2 (ADR-0051): facts derived from the customer's booking links.
+  // Rule schema 2 (ADR-0052): facts derived from the customer's booking links.
   | "booking_count"
   | "stay_count"
   | "last_stay_date"
@@ -233,7 +233,7 @@ export const FIELD_SPECS: Readonly<Record<SegmentRuleField, FieldSpec>> = {
     value: "points",
     windowed: false
   },
-  // Rule schema 2 (ADR-0051). Counts are windowed like order_count; the window
+  // Rule schema 2 (ADR-0052). Counts are windowed like order_count; the window
   // is the booking instant (paid_at) for booking_count, the arrival for
   // stay_count and the decision instant for the other two.
   booking_count: {
@@ -284,7 +284,7 @@ export function segmentRuleFieldsFor(
 /**
  * The booking-derived fields (rule schema 2): the ones that read the customer's
  * booking links, so defining, previewing or listing a segment that uses one is a
- * separate power (`commerce.booking_reservation_links.read`, ADR-0051 D5).
+ * separate power (`commerce.booking_reservation_links.read`, ADR-0052 D5).
  */
 export const BOOKING_RULE_FIELDS: ReadonlySet<SegmentRuleField> = new Set([
   "booking_count",

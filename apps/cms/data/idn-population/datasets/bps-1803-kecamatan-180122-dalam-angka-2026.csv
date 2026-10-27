@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.22.2003,4,Sidomukti,sex,laki_laki,,1285,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2003,4,Sidomukti,sex,perempuan,,1223,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2003,4,Sidomukti,total,total,,2508,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22.2004,4,Wawasan,sex,laki_laki,,1775,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2004,4,Wawasan,sex,perempuan,,1827,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2004,4,Wawasan,total,total,,3602,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22.2001,4,Bangunsari,sex,laki_laki,,1244,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2001,4,Bangunsari,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2001,4,Bangunsari,total,total,,2418,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22.2005,4,Mulyo Sari,sex,laki_laki,,1997,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2005,4,Mulyo Sari,sex,perempuan,,1942,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2005,4,Mulyo Sari,total,total,,3939,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22.2007,4,Kertosari,sex,laki_laki,,5094,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2007,4,Kertosari,sex,perempuan,,4840,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2007,4,Kertosari,total,total,,9934,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22.2006,4,Wonodadi,sex,laki_laki,,2373,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2006,4,Wonodadi,sex,perempuan,,2330,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2006,4,Wonodadi,total,total,,4703,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22.2002,4,Purwodadi Dalam,sex,laki_laki,,2567,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2002,4,Purwodadi Dalam,sex,perempuan,,2497,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2002,4,Purwodadi Dalam,total,total,,5064,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22.2008,4,Malangsari,sex,laki_laki,,1617,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22.2008,4,Malangsari,sex,perempuan,,1516,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22.2008,4,Malangsari,total,total,,3133,jiwa,2025,registration,total_population,3.1,24,,
+18.01.22,3,Tanjung Sari,sex,laki_laki,,17952,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.22,3,Tanjung Sari,sex,perempuan,,17349,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.22,3,Tanjung Sari,total,total,,35301,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3671-kecamatan-367104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.71.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Benda Dalam Angka 2026",
+  "publisherName": "BPS Kota Tangerang",
+  "publisherDomain": "3671",
+  "publisherWebsite": "https://tangerangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tangerang (https://tangerangkota.bps.go.id), publikasi \"Kecamatan Benda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3671",
+  "publicationNumber": "36710.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkota.bps.go.id/id/publication/2026/09/28/b4f2cf6efabed9faa66d94ac/kecamatan-benda-dalam-angka-2026.html",
+  "sourceFileSha256": "d23a696dbb7d9ef943b93ca2bdcd7492937c9c428dd55ab5c90ba5e958218757",
+  "sourceFileBytes": 4632984,
+  "sourcePages": [24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik KOTA TANGERANG",
+  "csvPath": "datasets/bps-3671-kecamatan-367104-dalam-angka-2026.csv",
+  "csvSha256": "4b4aa498313eca7a180edc3467fcf508d724d6bd14edcd6812342534970af459",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Benda, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Benda, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

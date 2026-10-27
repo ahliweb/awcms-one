@@ -1,0 +1,113 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04,2,Lampung Barat,total,total,,302.14,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.04,2,Lampung Barat,total,total,,319.30,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.04,2,Lampung Barat,total,total,,322.59,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.06,2,Tanggamus,total,total,,640.28,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.06,2,Tanggamus,total,total,,678.02,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.06,2,Tanggamus,total,total,,685.54,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.01,2,Lampung Selatan,total,total,,1064.30,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.01,2,Lampung Selatan,total,total,,1133.39,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.01,2,Lampung Selatan,total,total,,1147.20,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.07,2,Lampung Timur,total,total,,1110.34,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.07,2,Lampung Timur,total,total,,1164.70,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.07,2,Lampung Timur,total,total,,1175.37,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.02,2,Lampung Tengah,total,total,,1460.05,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.02,2,Lampung Tengah,total,total,,1541.43,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.02,2,Lampung Tengah,total,total,,1557.29,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.03,2,Lampung Utara,total,total,,633.10,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.03,2,Lampung Utara,total,total,,665.76,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.03,2,Lampung Utara,total,total,,671.49,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.08,2,Way Kanan,total,total,,473.58,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.08,2,Way Kanan,total,total,,503.31,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.08,2,Way Kanan,total,total,,509.25,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.05,2,Tulang Bawang,total,total,,430.02,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.05,2,Tulang Bawang,total,total,,455.40,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.05,2,Tulang Bawang,total,total,,460.34,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.09,2,Pesawaran,total,total,,477.47,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.09,2,Pesawaran,total,total,,506.26,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.09,2,Pesawaran,total,total,,512.16,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.10,2,Pringsewu,total,total,,405.47,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.10,2,Pringsewu,total,total,,429.74,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.10,2,Pringsewu,total,total,,434.74,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.11,2,Mesuji,total,total,,227.52,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.11,2,Mesuji,total,total,,245.21,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.11,2,Mesuji,total,total,,248.75,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.12,2,Tulang Bawang Barat,total,total,,286.16,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.12,2,Tulang Bawang Barat,total,total,,301.79,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.12,2,Tulang Bawang Barat,total,total,,304.76,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.13,2,Pesisir Barat,total,total,,162.70,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.13,2,Pesisir Barat,total,total,,174.86,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.13,2,Pesisir Barat,total,total,,177.39,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.71,2,Bandar Lampung,total,total,,1166.07,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.71,2,Bandar Lampung,total,total,,1226.21,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.71,2,Bandar Lampung,total,total,,1237.63,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.72,2,Metro,total,total,,168.68,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18.72,2,Metro,total,total,,177.52,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18.72,2,Metro,total,total,,179.31,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18,1,Lampung,total,total,,9007.85,ribu_jiwa,2020,census,total_population,3.1.1,92,,
+18,1,Lampung,total,total,,9522.91,ribu_jiwa,2025,projection,total_population,3.1.1,92,,
+18,1,Lampung,total,total,,9623.79,ribu_jiwa,2026,projection,total_population,3.1.1,92,,
+18.04,2,Lampung Barat,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1930748,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.04,2,Lampung Barat,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3045560,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.04,2,Lampung Barat,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2687061,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.04,2,Lampung Barat,income,total,,2666657,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.06,2,Tanggamus,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3527695,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.06,2,Tanggamus,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3371791,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.06,2,Tanggamus,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2103731,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.06,2,Tanggamus,income,total,,2439040,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.01,2,Lampung Selatan,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2217035,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.01,2,Lampung Selatan,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2797511,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.01,2,Lampung Selatan,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2441019,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.01,2,Lampung Selatan,income,total,,2532786,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.07,2,Lampung Timur,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1997246,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.07,2,Lampung Timur,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,1927434,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.07,2,Lampung Timur,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2171887,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.07,2,Lampung Timur,income,total,,2095107,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.02,2,Lampung Tengah,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1996542,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.02,2,Lampung Tengah,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2597587,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.02,2,Lampung Tengah,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,1953902,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.02,2,Lampung Tengah,income,total,,2141586,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.03,2,Lampung Utara,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1642815,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.03,2,Lampung Utara,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2396273,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.03,2,Lampung Utara,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2939173,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.03,2,Lampung Utara,income,total,,2552493,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.08,2,Way Kanan,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1954154,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.08,2,Way Kanan,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2530904,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.08,2,Way Kanan,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2755095,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.08,2,Way Kanan,income,total,,2426500,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.05,2,Tulang Bawang,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2383830,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.05,2,Tulang Bawang,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2990112,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.05,2,Tulang Bawang,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2352537,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.05,2,Tulang Bawang,income,total,,2534479,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.09,2,Pesawaran,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1864721,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.09,2,Pesawaran,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2016807,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.09,2,Pesawaran,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2260207,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.09,2,Pesawaran,income,total,,2163857,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.10,2,Pringsewu,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2121356,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.10,2,Pringsewu,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,1710458,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.10,2,Pringsewu,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2364281,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.10,2,Pringsewu,income,total,,2157695,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.11,2,Mesuji,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2353215,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.11,2,Mesuji,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2308347,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.11,2,Mesuji,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2534937,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.11,2,Mesuji,income,total,,2441598,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.12,2,Tulang Bawang Barat,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2232277,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.12,2,Tulang Bawang Barat,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2792401,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.12,2,Tulang Bawang Barat,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2498962,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.12,2,Tulang Bawang Barat,income,total,,2444161,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.13,2,Pesisir Barat,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1956904,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.13,2,Pesisir Barat,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2226943,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.13,2,Pesisir Barat,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2179232,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.13,2,Pesisir Barat,income,total,,2158031,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.71,2,Bandar Lampung,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3450287,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.71,2,Bandar Lampung,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2490756,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.71,2,Bandar Lampung,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3262064,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.71,2,Bandar Lampung,income,total,,3103540,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18.72,2,Metro,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3502309,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18.72,2,Metro,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2994979,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18.72,2,Metro,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3147134,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18.72,2,Metro,income,total,,3126818,rupiah,2025,survey_estimate,employees,3.2.21,134,,
+18,1,Lampung,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2120609,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertanian, Kehutanan dan Perikanan"
+18,1,Lampung,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2548994,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+18,1,Lampung,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2615100,rupiah,2025,survey_estimate,employees,3.2.21,134,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+18,1,Lampung,income,total,,2520619,rupiah,2025,survey_estimate,employees,3.2.21,134,,

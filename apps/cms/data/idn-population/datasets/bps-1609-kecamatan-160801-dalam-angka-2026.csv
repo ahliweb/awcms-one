@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.08.01.2006,4,Tanjung Kemala,sex,laki_laki,,1424,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2006,4,Tanjung Kemala,sex,perempuan,,1325,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2006,4,Tanjung Kemala,total,total,,2749,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2009,4,Kota Baru,sex,laki_laki,,3220,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2009,4,Kota Baru,sex,perempuan,,3015,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2009,4,Kota Baru,total,total,,6235,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.1008,4,Pasar Martapura,sex,laki_laki,,1239,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.1008,4,Pasar Martapura,sex,perempuan,,1205,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.1008,4,Pasar Martapura,total,total,,2444,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.1014,4,Paku Sengkunyit,sex,laki_laki,,2351,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.1014,4,Paku Sengkunyit,sex,perempuan,,2220,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.1014,4,Paku Sengkunyit,total,total,,4571,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.1007,4,Dusun Martapura,sex,laki_laki,,2105,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.1007,4,Dusun Martapura,sex,perempuan,,1992,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.1007,4,Dusun Martapura,total,total,,4097,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2010,4,Keromongan,sex,laki_laki,,1687,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2010,4,Keromongan,sex,perempuan,,1646,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2010,4,Keromongan,total,total,,3333,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2011,4,Perjaya,sex,laki_laki,,2415,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2011,4,Perjaya,sex,perempuan,,2353,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2011,4,Perjaya,total,total,,4768,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2020,4,Kotabaru Barat,sex,laki_laki,,2266,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2020,4,Kotabaru Barat,sex,perempuan,,2244,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2020,4,Kotabaru Barat,total,total,,4510,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2015,4,Sukomulyo,sex,laki_laki,,1157,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2015,4,Sukomulyo,sex,perempuan,,1114,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2015,4,Sukomulyo,total,total,,2271,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2021,4,Kotabaru Selatan,sex,laki_laki,,2714,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2021,4,Kotabaru Selatan,sex,perempuan,,2584,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2021,4,Kotabaru Selatan,total,total,,5298,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.1017,4,Sungai Tuha Jaya,sex,laki_laki,,2162,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.1017,4,Sungai Tuha Jaya,sex,perempuan,,1838,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.1017,4,Sungai Tuha Jaya,total,total,,4000,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.1018,4,Terukis Rahayu,sex,laki_laki,,3146,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.1018,4,Terukis Rahayu,sex,perempuan,,3113,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.1018,4,Terukis Rahayu,total,total,,6259,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.1016,4,Bukit Sari,sex,laki_laki,,1296,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.1016,4,Bukit Sari,sex,perempuan,,1313,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.1016,4,Bukit Sari,total,total,,2609,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.1019,4,Veteran Jaya,sex,laki_laki,,2226,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.1019,4,Veteran Jaya,sex,perempuan,,2088,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.1019,4,Veteran Jaya,total,total,,4314,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2022,4,Perjaya Barat,sex,laki_laki,,1091,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2022,4,Perjaya Barat,sex,perempuan,,1075,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2022,4,Perjaya Barat,total,total,,2166,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01.2023,4,Tanjung Kemala Barat,sex,laki_laki,,816,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01.2023,4,Tanjung Kemala Barat,sex,perempuan,,807,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01.2023,4,Tanjung Kemala Barat,total,total,,1623,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01,3,Martapura,sex,laki_laki,,31315,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.01,3,Martapura,sex,perempuan,,29932,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.01,3,Martapura,total,total,,61247,jiwa,2025,registration,total_population,3.1,28,,
+16.08.01,3,Martapura,age_group,0-4,laki_laki,2367,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.01,3,Martapura,age_group,0-4,perempuan,2172,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.01,3,Martapura,age_group,0-4,,4539,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.01,3,Martapura,age_group,5-9,laki_laki,2925,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.01,3,Martapura,age_group,5-9,perempuan,2706,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.01,3,Martapura,age_group,5-9,,5631,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.01,3,Martapura,age_group,10-14,laki_laki,2962,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.01,3,Martapura,age_group,10-14,perempuan,2918,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.01,3,Martapura,age_group,10-14,,5880,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.01,3,Martapura,age_group,15-19,laki_laki,2657,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.01,3,Martapura,age_group,15-19,perempuan,2419,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.01,3,Martapura,age_group,15-19,,5076,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.01,3,Martapura,age_group,20-24,laki_laki,2517,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.01,3,Martapura,age_group,20-24,perempuan,2200,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.01,3,Martapura,age_group,20-24,,4717,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.01,3,Martapura,age_group,25-29,laki_laki,2440,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.01,3,Martapura,age_group,25-29,perempuan,2293,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.01,3,Martapura,age_group,25-29,,4733,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.01,3,Martapura,age_group,30-34,laki_laki,2322,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.01,3,Martapura,age_group,30-34,perempuan,2276,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.01,3,Martapura,age_group,30-34,,4598,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.01,3,Martapura,age_group,35-39,laki_laki,2532,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.01,3,Martapura,age_group,35-39,perempuan,2554,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.01,3,Martapura,age_group,35-39,,5086,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.01,3,Martapura,age_group,40-44,laki_laki,2545,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.01,3,Martapura,age_group,40-44,perempuan,2458,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.01,3,Martapura,age_group,40-44,,5003,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.01,3,Martapura,age_group,45-49,laki_laki,2195,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.01,3,Martapura,age_group,45-49,perempuan,2022,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.01,3,Martapura,age_group,45-49,,4217,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.01,3,Martapura,age_group,50-54,laki_laki,1686,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.01,3,Martapura,age_group,50-54,perempuan,1658,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.01,3,Martapura,age_group,50-54,,3344,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.01,3,Martapura,age_group,55-59,laki_laki,1381,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.01,3,Martapura,age_group,55-59,perempuan,1345,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.01,3,Martapura,age_group,55-59,,2726,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.01,3,Martapura,age_group,60-64,laki_laki,1076,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.01,3,Martapura,age_group,60-64,perempuan,1122,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.01,3,Martapura,age_group,60-64,,2198,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.01,3,Martapura,age_group,65-69,laki_laki,767,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.01,3,Martapura,age_group,65-69,perempuan,753,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.01,3,Martapura,age_group,65-69,,1520,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.01,3,Martapura,age_group,70-74,laki_laki,492,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.01,3,Martapura,age_group,70-74,perempuan,474,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.01,3,Martapura,age_group,70-74,,966,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.01,3,Martapura,age_group,75+,laki_laki,451,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.01,3,Martapura,age_group,75+,perempuan,562,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.01,3,Martapura,age_group,75+,,1013,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.01,3,Martapura,sex,laki_laki,,31315,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.08.01,3,Martapura,sex,perempuan,,29932,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.08.01,3,Martapura,total,total,,61247,jiwa,2025,registration,total_population,3.2,30,,

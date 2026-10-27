@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.15.14.2001,4,Wilayut,sex,laki_laki,,1662,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2001,4,Wilayut,sex,perempuan,,1702,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2001,4,Wilayut,total,total,,3364,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2002,4,Kebonagung,sex,laki_laki,,6344,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2002,4,Kebonagung,sex,perempuan,,6423,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2002,4,Kebonagung,total,total,,12767,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2003,4,Anggaswangi,sex,laki_laki,,3450,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2003,4,Anggaswangi,sex,perempuan,,3283,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2003,4,Anggaswangi,total,total,,6733,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2004,4,Jumputrejo,sex,laki_laki,,5625,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2004,4,Jumputrejo,sex,perempuan,,5650,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2004,4,Jumputrejo,total,total,,11275,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2005,4,Suruh,sex,laki_laki,,2070,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2005,4,Suruh,sex,perempuan,,2052,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2005,4,Suruh,total,total,,4122,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2006,4,Pekarungan,sex,laki_laki,,4537,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2006,4,Pekarungan,sex,perempuan,,4572,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2006,4,Pekarungan,total,total,,9109,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2007,4,Pademonegoro,sex,laki_laki,,2497,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2007,4,Pademonegoro,sex,perempuan,,2456,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2007,4,Pademonegoro,total,total,,4953,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2008,4,Cangkringsari,sex,laki_laki,,2709,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2008,4,Cangkringsari,sex,perempuan,,2642,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2008,4,Cangkringsari,total,total,,5351,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2009,4,Jogosatru,sex,laki_laki,,1749,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2009,4,Jogosatru,sex,perempuan,,1711,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2009,4,Jogosatru,total,total,,3460,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2010,4,Ngaresrejo,sex,laki_laki,,1762,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2010,4,Ngaresrejo,sex,perempuan,,1721,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2010,4,Ngaresrejo,total,total,,3483,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2011,4,Sambungrejo,sex,laki_laki,,2252,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2011,4,Sambungrejo,sex,perempuan,,2268,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2011,4,Sambungrejo,total,total,,4520,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2012,4,Plumbungan,sex,laki_laki,,2013,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2012,4,Plumbungan,sex,perempuan,,1937,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2012,4,Plumbungan,total,total,,3950,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2013,4,Sukodono,sex,laki_laki,,4147,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2013,4,Sukodono,sex,perempuan,,4055,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2013,4,Sukodono,total,total,,8202,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2015,4,Masangan Wetan,sex,laki_laki,,2797,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2015,4,Masangan Wetan,sex,perempuan,,2720,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2015,4,Masangan Wetan,total,total,,5517,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2016,4,Suko,sex,laki_laki,,6338,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2016,4,Suko,sex,perempuan,,6277,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2016,4,Suko,total,total,,12615,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2017,4,Masangan Kulon,sex,laki_laki,,6073,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2017,4,Masangan Kulon,sex,perempuan,,6008,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2017,4,Masangan Kulon,total,total,,12081,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2018,4,Panjunan,sex,laki_laki,,2000,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2018,4,Panjunan,sex,perempuan,,1995,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2018,4,Panjunan,total,total,,3995,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14.2019,4,Bangsri,sex,laki_laki,,2715,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14.2019,4,Bangsri,sex,perempuan,,2643,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14.2019,4,Bangsri,total,total,,5358,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14,3,Kecamatan Sukodono,sex,laki_laki,,64347,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.14,3,Kecamatan Sukodono,sex,perempuan,,63616,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.14,3,Kecamatan Sukodono,total,total,,127963,jiwa,2025,registration,total_population,3.1,38,,
+35.15.14,3,Sukodono,age_group,0-4,laki_laki,3549,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.14,3,Sukodono,age_group,0-4,perempuan,3374,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.14,3,Sukodono,age_group,0-4,,6923,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.14,3,Sukodono,age_group,5-9,laki_laki,4796,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.14,3,Sukodono,age_group,5-9,perempuan,4481,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.14,3,Sukodono,age_group,5-9,,9277,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.14,3,Sukodono,age_group,10-14,laki_laki,5218,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.14,3,Sukodono,age_group,10-14,perempuan,4878,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.14,3,Sukodono,age_group,10-14,,10096,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.14,3,Sukodono,age_group,15-19,laki_laki,5285,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.14,3,Sukodono,age_group,15-19,perempuan,4957,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.14,3,Sukodono,age_group,15-19,,10242,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.14,3,Sukodono,age_group,20-24,laki_laki,5633,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.14,3,Sukodono,age_group,20-24,perempuan,5246,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.14,3,Sukodono,age_group,20-24,,10879,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.14,3,Sukodono,age_group,25-29,laki_laki,5059,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.14,3,Sukodono,age_group,25-29,perempuan,4906,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.14,3,Sukodono,age_group,25-29,,9965,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.14,3,Sukodono,age_group,30-34,laki_laki,4630,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.14,3,Sukodono,age_group,30-34,perempuan,4630,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.14,3,Sukodono,age_group,30-34,,9260,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.14,3,Sukodono,age_group,35-39,laki_laki,4186,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.14,3,Sukodono,age_group,35-39,perempuan,4224,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.14,3,Sukodono,age_group,35-39,,8410,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.14,3,Sukodono,age_group,40-44,laki_laki,4864,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.14,3,Sukodono,age_group,40-44,perempuan,5096,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.14,3,Sukodono,age_group,40-44,,9960,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.14,3,Sukodono,age_group,45-49,laki_laki,4862,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.14,3,Sukodono,age_group,45-49,perempuan,5318,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.14,3,Sukodono,age_group,45-49,,10180,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.14,3,Sukodono,age_group,50-54,laki_laki,4871,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.14,3,Sukodono,age_group,50-54,perempuan,5109,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.14,3,Sukodono,age_group,50-54,,9980,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.14,3,Sukodono,age_group,55-59,laki_laki,4233,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.14,3,Sukodono,age_group,55-59,perempuan,4159,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.14,3,Sukodono,age_group,55-59,,8392,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.14,3,Sukodono,age_group,60-64,laki_laki,2969,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.14,3,Sukodono,age_group,60-64,perempuan,2966,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.14,3,Sukodono,age_group,60-64,,5935,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.14,3,Sukodono,age_group,65-69,laki_laki,2030,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.14,3,Sukodono,age_group,65-69,perempuan,1970,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.14,3,Sukodono,age_group,65-69,,4000,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.14,3,Sukodono,age_group,70-74,laki_laki,1173,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.14,3,Sukodono,age_group,70-74,perempuan,1091,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.14,3,Sukodono,age_group,70-74,,2264,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.14,3,Sukodono,age_group,75+,laki_laki,989,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.14,3,Sukodono,age_group,75+,perempuan,1211,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.14,3,Sukodono,age_group,75+,,2200,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.14,3,Kecamatan Sukodono,sex,laki_laki,,64347,jiwa,2025,registration,total_population,3.2,40,,Laki-Laki
+35.15.14,3,Kecamatan Sukodono,sex,perempuan,,63616,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+35.15.14,3,Kecamatan Sukodono,total,total,,127963,jiwa,2025,registration,total_population,3.2,40,,

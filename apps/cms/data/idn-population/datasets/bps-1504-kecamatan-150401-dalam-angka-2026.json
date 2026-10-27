@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1504-kecamatan-150401-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.04.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mersam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batang Hari",
+  "publisherDomain": "1504",
+  "publisherWebsite": "https://batangharikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batang Hari (https://batangharikab.bps.go.id), publikasi \"Kecamatan Mersam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1504010",
+  "publicationNumber": "15040.26005",
+  "issn": "2723-5068",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batangharikab.bps.go.id/id/publication/2026/09/28/b10fbe368e5be934d947365d/kecamatan-mersam-dalam-angka-2026.html",
+  "sourceFileSha256": "3e74eef7736c6f002688821e501deed79df29e4df2e1b1cb138a7a40c6843b39",
+  "sourceFileBytes": 9974772,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batang Hari .",
+  "csvPath": "datasets/bps-1504-kecamatan-150401-dalam-angka-2026.csv",
+  "csvSha256": "bb96052c86b286e19e610d3f746ae72ed10edc5929c26165e74eedcab70a5891",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mersam , 202 5",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mersam , 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

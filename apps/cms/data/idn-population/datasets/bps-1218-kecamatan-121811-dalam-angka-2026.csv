@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.11.2022,4,Pamah,sex,laki_laki,,529,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2022,4,Pamah,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2022,4,Pamah,total,total,,1048,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11.2029,4,Tarean,sex,laki_laki,,1284,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2029,4,Tarean,sex,perempuan,,1279,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2029,4,Tarean,total,total,,2563,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11.2031,4,Tapak Meriah,sex,laki_laki,,700,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2031,4,Tapak Meriah,sex,perempuan,,758,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2031,4,Tapak Meriah,total,total,,1458,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11.2021,4,Pagar Manik,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2021,4,Pagar Manik,sex,perempuan,,617,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2021,4,Pagar Manik,total,total,,1225,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11.2026,4,Silinda,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2026,4,Silinda,sex,perempuan,,256,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2026,4,Silinda,total,total,,538,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11.2013,4,Damak Gelugur,sex,laki_laki,,336,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2013,4,Damak Gelugur,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2013,4,Damak Gelugur,total,total,,688,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11.2016,4,Kulasar,sex,laki_laki,,403,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2016,4,Kulasar,sex,perempuan,,399,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2016,4,Kulasar,total,total,,802,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11.2028,4,Sungai Buaya,sex,laki_laki,,896,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11.2028,4,Sungai Buaya,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11.2028,4,Sungai Buaya,total,total,,1727,jiwa,2025,registration,total_population,3.1,26,,
+12.18.11,3,Silinda,sex,laki_laki,,5198,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.11,3,Silinda,sex,perempuan,,5176,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.11,3,Silinda,total,total,,10374,jiwa,2025,registration,total_population,3.1,26,,

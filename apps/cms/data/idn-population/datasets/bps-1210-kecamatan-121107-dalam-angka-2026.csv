@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.07.2001,4,Tambahan,sex,laki_laki,,677,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2001,4,Tambahan,sex,perempuan,,665,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2001,4,Tambahan,total,total,,1342,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2002,4,Kuta Tengah,sex,laki_laki,,1156,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2002,4,Kuta Tengah,sex,perempuan,,1151,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2002,4,Kuta Tengah,total,total,,2307,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2003,4,Lae Nuaha,sex,laki_laki,,1454,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2003,4,Lae Nuaha,sex,perempuan,,1458,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2003,4,Lae Nuaha,total,total,,2912,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2004,4,Sungai Raya,sex,laki_laki,,1583,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2004,4,Sungai Raya,sex,perempuan,,1530,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2004,4,Sungai Raya,total,total,,3113,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2005,4,Gunung Meriah,sex,laki_laki,,963,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2005,4,Gunung Meriah,sex,perempuan,,945,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2005,4,Gunung Meriah,total,total,,1908,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2010,4,Sigambir-Gambir,sex,laki_laki,,579,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2010,4,Sigambir-Gambir,sex,perempuan,,586,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2010,4,Sigambir-Gambir,total,total,,1165,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2006,4,Silumboyah,sex,laki_laki,,944,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2006,4,Silumboyah,sex,perempuan,,945,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2006,4,Silumboyah,total,total,,1889,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2009,4,Pangaribuan,sex,laki_laki,,594,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2009,4,Pangaribuan,sex,perempuan,,612,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2009,4,Pangaribuan,total,total,,1206,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2008,4,Tualang,sex,laki_laki,,710,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2008,4,Tualang,sex,perempuan,,707,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2008,4,Tualang,total,total,,1417,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2011,4,Bakal Julu,sex,laki_laki,,814,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2011,4,Bakal Julu,sex,perempuan,,819,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2011,4,Bakal Julu,total,total,,1633,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2012,4,Sipoltong,sex,laki_laki,,727,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2012,4,Sipoltong,sex,perempuan,,774,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2012,4,Sipoltong,total,total,,1501,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07.2007,4,Pandan,sex,laki_laki,,787,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07.2007,4,Pandan,sex,perempuan,,751,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07.2007,4,Pandan,total,total,,1538,jiwa,2026,registration,total_population,3.1,22,,
+12.11.07,3,Siempat Nempu Hulu,sex,laki_laki,,10988,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.07,3,Siempat Nempu Hulu,sex,perempuan,,10943,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.07,3,Siempat Nempu Hulu,total,total,,21931,jiwa,2026,registration,total_population,3.1,22,,

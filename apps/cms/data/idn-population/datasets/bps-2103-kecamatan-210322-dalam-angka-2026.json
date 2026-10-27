@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-2103-kecamatan-210322-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.03.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Suak Midai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Natuna",
+  "publisherDomain": "2103",
+  "publisherWebsite": "https://natunakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Natuna (https://natunakab.bps.go.id), publikasi \"Kecamatan Suak Midai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2103031",
+  "publicationNumber": "2103.26009",
+  "issn": "2963-6981",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://natunakab.bps.go.id/id/publication/2026/09/28/579a3fe1ff7fc529dc120fd1/kecamatan-suak-midai-dalam-angka-2026.html",
+  "sourceFileSha256": "2723347cd7f0937dcfd070fc5a46fcc97de75258b80548b456f32cf22f00d2b8",
+  "sourceFileBytes": 8546957,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Natuna.",
+  "csvPath": "datasets/bps-2103-kecamatan-210322-dalam-angka-2026.csv",
+  "csvSha256": "ae059fe6aaff76203bd2c5b91a34d0bd74f6a00173120ec467c27ef58dd72925",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Suak Midai, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Suak Midai, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Suak Midai Suak Midai District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Suak Midai Suak Midai District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Suak Midai Suak Midai District\": unmatched "
+  ]
+}

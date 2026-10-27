@@ -1,0 +1,167 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.10.04,3,Pardasuka,total,total,,38983,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.03,3,Ambarawa,total,total,,40844,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.05,3,Pagelaran,total,total,,57252,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.09,3,Pagelaran Utara,total,total,,16947,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.01,3,Pringsewu,total,total,,89421,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.02,3,Gading Rejo,total,total,,86048,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.08,3,Sukoharjo,total,total,,55124,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.06,3,Banyumas,total,total,,23819,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10.07,3,Adi Luwih,total,total,,39782,jiwa,2025,registration,total_population,3.1.1,55,,
+18.10,2,Kabupaten Pringsewu,age_group,0-4,laki_laki,12970,jiwa,2025,registration,total_population,3.1.2,58,,0–4
+18.10,2,Kabupaten Pringsewu,age_group,0-4,perempuan,12161,jiwa,2025,registration,total_population,3.1.2,58,,0–4
+18.10,2,Kabupaten Pringsewu,age_group,0-4,,25131,jiwa,2025,registration,total_population,3.1.2,58,,0–4
+18.10,2,Kabupaten Pringsewu,age_group,5-9,laki_laki,18992,jiwa,2025,registration,total_population,3.1.2,58,,5–9
+18.10,2,Kabupaten Pringsewu,age_group,5-9,perempuan,17849,jiwa,2025,registration,total_population,3.1.2,58,,5–9
+18.10,2,Kabupaten Pringsewu,age_group,5-9,,36841,jiwa,2025,registration,total_population,3.1.2,58,,5–9
+18.10,2,Kabupaten Pringsewu,age_group,10-14,laki_laki,19825,jiwa,2025,registration,total_population,3.1.2,58,,10–14
+18.10,2,Kabupaten Pringsewu,age_group,10-14,perempuan,18775,jiwa,2025,registration,total_population,3.1.2,58,,10–14
+18.10,2,Kabupaten Pringsewu,age_group,10-14,,38600,jiwa,2025,registration,total_population,3.1.2,58,,10–14
+18.10,2,Kabupaten Pringsewu,age_group,15-19,laki_laki,17721,jiwa,2025,registration,total_population,3.1.2,58,,15–19
+18.10,2,Kabupaten Pringsewu,age_group,15-19,perempuan,16935,jiwa,2025,registration,total_population,3.1.2,58,,15–19
+18.10,2,Kabupaten Pringsewu,age_group,15-19,,34656,jiwa,2025,registration,total_population,3.1.2,58,,15–19
+18.10,2,Kabupaten Pringsewu,age_group,20-24,laki_laki,17503,jiwa,2025,registration,total_population,3.1.2,58,,20–24
+18.10,2,Kabupaten Pringsewu,age_group,20-24,perempuan,16816,jiwa,2025,registration,total_population,3.1.2,58,,20–24
+18.10,2,Kabupaten Pringsewu,age_group,20-24,,34319,jiwa,2025,registration,total_population,3.1.2,58,,20–24
+18.10,2,Kabupaten Pringsewu,age_group,25-29,laki_laki,18650,jiwa,2025,registration,total_population,3.1.2,58,,25–29
+18.10,2,Kabupaten Pringsewu,age_group,25-29,perempuan,17160,jiwa,2025,registration,total_population,3.1.2,58,,25–29
+18.10,2,Kabupaten Pringsewu,age_group,25-29,,35810,jiwa,2025,registration,total_population,3.1.2,58,,25–29
+18.10,2,Kabupaten Pringsewu,age_group,30-34,laki_laki,16438,jiwa,2025,registration,total_population,3.1.2,58,,30–34
+18.10,2,Kabupaten Pringsewu,age_group,30-34,perempuan,15648,jiwa,2025,registration,total_population,3.1.2,58,,30–34
+18.10,2,Kabupaten Pringsewu,age_group,30-34,,32086,jiwa,2025,registration,total_population,3.1.2,58,,30–34
+18.10,2,Kabupaten Pringsewu,age_group,35-39,laki_laki,16579,jiwa,2025,registration,total_population,3.1.2,58,,35–39
+18.10,2,Kabupaten Pringsewu,age_group,35-39,perempuan,15972,jiwa,2025,registration,total_population,3.1.2,58,,35–39
+18.10,2,Kabupaten Pringsewu,age_group,35-39,,32551,jiwa,2025,registration,total_population,3.1.2,58,,35–39
+18.10,2,Kabupaten Pringsewu,age_group,40-44,laki_laki,17165,jiwa,2025,registration,total_population,3.1.2,58,,40–44
+18.10,2,Kabupaten Pringsewu,age_group,40-44,perempuan,16296,jiwa,2025,registration,total_population,3.1.2,58,,40–44
+18.10,2,Kabupaten Pringsewu,age_group,40-44,,33461,jiwa,2025,registration,total_population,3.1.2,58,,40–44
+18.10,2,Kabupaten Pringsewu,age_group,45-49,laki_laki,16572,jiwa,2025,registration,total_population,3.1.2,58,,45–49
+18.10,2,Kabupaten Pringsewu,age_group,45-49,perempuan,15778,jiwa,2025,registration,total_population,3.1.2,58,,45–49
+18.10,2,Kabupaten Pringsewu,age_group,45-49,,32350,jiwa,2025,registration,total_population,3.1.2,58,,45–49
+18.10,2,Kabupaten Pringsewu,age_group,50-54,laki_laki,14604,jiwa,2025,registration,total_population,3.1.2,58,,50–54
+18.10,2,Kabupaten Pringsewu,age_group,50-54,perempuan,14155,jiwa,2025,registration,total_population,3.1.2,58,,50–54
+18.10,2,Kabupaten Pringsewu,age_group,50-54,,28759,jiwa,2025,registration,total_population,3.1.2,58,,50–54
+18.10,2,Kabupaten Pringsewu,age_group,55-59,laki_laki,12294,jiwa,2025,registration,total_population,3.1.2,58,,55–59
+18.10,2,Kabupaten Pringsewu,age_group,55-59,perempuan,11942,jiwa,2025,registration,total_population,3.1.2,58,,55–59
+18.10,2,Kabupaten Pringsewu,age_group,55-59,,24236,jiwa,2025,registration,total_population,3.1.2,58,,55–59
+18.10,2,Kabupaten Pringsewu,age_group,60-64,laki_laki,10529,jiwa,2025,registration,total_population,3.1.2,58,,60–64
+18.10,2,Kabupaten Pringsewu,age_group,60-64,perempuan,10306,jiwa,2025,registration,total_population,3.1.2,58,,60–64
+18.10,2,Kabupaten Pringsewu,age_group,60-64,,20835,jiwa,2025,registration,total_population,3.1.2,58,,60–64
+18.10,2,Kabupaten Pringsewu,age_group,65-69,laki_laki,7842,jiwa,2025,registration,total_population,3.1.2,58,,65–69
+18.10,2,Kabupaten Pringsewu,age_group,65-69,perempuan,7285,jiwa,2025,registration,total_population,3.1.2,58,,65–69
+18.10,2,Kabupaten Pringsewu,age_group,65-69,,15127,jiwa,2025,registration,total_population,3.1.2,58,,65–69
+18.10,2,Kabupaten Pringsewu,age_group,70-74,laki_laki,5058,jiwa,2025,registration,total_population,3.1.2,58,,70–74
+18.10,2,Kabupaten Pringsewu,age_group,70-74,perempuan,4958,jiwa,2025,registration,total_population,3.1.2,58,,70–74
+18.10,2,Kabupaten Pringsewu,age_group,70-74,,10016,jiwa,2025,registration,total_population,3.1.2,58,,70–74
+18.10,2,Kabupaten Pringsewu,age_group,75+,laki_laki,6498,jiwa,2025,registration,total_population,3.1.2,58,,75+
+18.10,2,Kabupaten Pringsewu,age_group,75+,perempuan,6944,jiwa,2025,registration,total_population,3.1.2,58,,75+
+18.10,2,Kabupaten Pringsewu,age_group,75+,,13442,jiwa,2025,registration,total_population,3.1.2,58,,75+
+18.10,2,Pringsewu,sex,laki_laki,,229240,jiwa,2025,registration,total_population,3.1.2,58,,Laki-Laki
+18.10,2,Pringsewu,sex,perempuan,,218980,jiwa,2025,registration,total_population,3.1.2,58,,Perempuan
+18.10,2,Pringsewu,total,total,,448220,jiwa,2025,registration,total_population,3.1.2,58,,
+18.10.04,3,Pardasuka,religion,islam,,38885,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.04,3,Pardasuka,religion,kristen,,22,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.04,3,Pardasuka,religion,katolik,,66,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.04,3,Pardasuka,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Hindu
+18.10.04,3,Pardasuka,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10.04,3,Pardasuka,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10.03,3,Ambarawa,religion,islam,,39503,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.03,3,Ambarawa,religion,kristen,,332,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.03,3,Ambarawa,religion,katolik,,661,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.03,3,Ambarawa,religion,hindu,,346,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.03,3,Ambarawa,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Budha
+18.10.03,3,Ambarawa,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10.05,3,Pagelaran,religion,islam,,55313,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.05,3,Pagelaran,religion,kristen,,251,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.05,3,Pagelaran,religion,katolik,,1312,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.05,3,Pagelaran,religion,hindu,,351,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.05,3,Pagelaran,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10.05,3,Pagelaran,religion,lainnya,,9,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10.09,3,Pagelaran Utara,religion,islam,,16654,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.09,3,Pagelaran Utara,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.09,3,Pagelaran Utara,religion,katolik,,47,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.09,3,Pagelaran Utara,religion,hindu,,104,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.09,3,Pagelaran Utara,religion,buddha,,111,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10.09,3,Pagelaran Utara,religion,lainnya,,22,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10.01,3,Pringsewu,religion,islam,,84412,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.01,3,Pringsewu,religion,kristen,,1309,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.01,3,Pringsewu,religion,katolik,,3391,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.01,3,Pringsewu,religion,hindu,,106,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.01,3,Pringsewu,religion,buddha,,198,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10.01,3,Pringsewu,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10.02,3,Gading Rejo,religion,islam,,84761,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.02,3,Gading Rejo,religion,kristen,,389,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.02,3,Gading Rejo,religion,katolik,,408,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.02,3,Gading Rejo,religion,hindu,,469,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.02,3,Gading Rejo,religion,buddha,,21,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10.02,3,Gading Rejo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+18.10.08,3,Sukoharjo,religion,islam,,52560,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.08,3,Sukoharjo,religion,kristen,,724,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.08,3,Sukoharjo,religion,katolik,,1145,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.08,3,Sukoharjo,religion,hindu,,693,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.08,3,Sukoharjo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Budha
+18.10.08,3,Sukoharjo,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10.06,3,Banyumas,religion,islam,,23442,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.06,3,Banyumas,religion,kristen,,18,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.06,3,Banyumas,religion,katolik,,172,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.06,3,Banyumas,religion,hindu,,63,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.06,3,Banyumas,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10.06,3,Banyumas,religion,lainnya,,115,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10.07,3,Adi Luwih,religion,islam,,37793,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10.07,3,Adi Luwih,religion,kristen,,493,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10.07,3,Adi Luwih,religion,katolik,,1073,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10.07,3,Adi Luwih,religion,hindu,,230,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10.07,3,Adi Luwih,religion,buddha,,180,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10.07,3,Adi Luwih,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10,2,Pringsewu,religion,islam,,433323,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+18.10,2,Pringsewu,religion,kristen,,3547,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+18.10,2,Pringsewu,religion,katolik,,8275,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+18.10,2,Pringsewu,religion,hindu,,2362,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+18.10,2,Pringsewu,religion,buddha,,543,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+18.10,2,Pringsewu,religion,lainnya,,170,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/padi_padian,,91875,rupiah,2024,survey_estimate,per_capita,10.1,344,,Padi-padian
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/padi_padian,,73963,rupiah,2025,survey_estimate,per_capita,10.1,344,,Padi-padian
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/umbi_umbian,,2852,rupiah,2024,survey_estimate,per_capita,10.1,344,,Umbi-umbian
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/umbi_umbian,,3519,rupiah,2025,survey_estimate,per_capita,10.1,344,,Umbi-umbian
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,36491,rupiah,2024,survey_estimate,per_capita,10.1,344,,Ikan/udang/cumi/kerang
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,36546,rupiah,2025,survey_estimate,per_capita,10.1,344,,Ikan/udang/cumi/kerang
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/daging,,16431,rupiah,2024,survey_estimate,per_capita,10.1,344,,Daging
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/daging,,19515,rupiah,2025,survey_estimate,per_capita,10.1,344,,Daging
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/telur_dan_susu,,28785,rupiah,2024,survey_estimate,per_capita,10.1,344,,Telur dan susu
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/telur_dan_susu,,31815,rupiah,2025,survey_estimate,per_capita,10.1,344,,Telur dan susu
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/sayur_sayuran,,59662,rupiah,2024,survey_estimate,per_capita,10.1,344,,Sayur-sayuran
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/sayur_sayuran,,66513,rupiah,2025,survey_estimate,per_capita,10.1,344,,Sayur-sayuran
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/kacang_kacangan,,17340,rupiah,2024,survey_estimate,per_capita,10.1,344,,Kacang-kacangan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/kacang_kacangan,,17434,rupiah,2025,survey_estimate,per_capita,10.1,344,,Kacang-kacangan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/buah_buahan,,38653,rupiah,2024,survey_estimate,per_capita,10.1,344,,Buah-buahan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/buah_buahan,,38450,rupiah,2025,survey_estimate,per_capita,10.1,344,,Buah-buahan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21395,rupiah,2024,survey_estimate,per_capita,10.1,344,,Minyak dan kelapa
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23268,rupiah,2025,survey_estimate,per_capita,10.1,344,,Minyak dan kelapa
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/bahan_minuman,,22610,rupiah,2024,survey_estimate,per_capita,10.1,344,,Bahan minuman
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/bahan_minuman,,22874,rupiah,2025,survey_estimate,per_capita,10.1,344,,Bahan minuman
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/bumbu_bumbuan,,12577,rupiah,2024,survey_estimate,per_capita,10.1,344,,Bumbu-bumbuan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/bumbu_bumbuan,,11950,rupiah,2025,survey_estimate,per_capita,10.1,344,,Bumbu-bumbuan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/konsumsi_lainnya,,10969,rupiah,2024,survey_estimate,per_capita,10.1,344,,Konsumsi lainnya
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/konsumsi_lainnya,,8889,rupiah,2025,survey_estimate,per_capita,10.1,344,,Konsumsi lainnya
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,135415,rupiah,2024,survey_estimate,per_capita,10.1,344,,Makanan dan minuman jadi
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,150589,rupiah,2025,survey_estimate,per_capita,10.1,344,,Makanan dan minuman jadi
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/rokok,,85535,rupiah,2024,survey_estimate,per_capita,10.1,344,,Rokok
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/rokok,,87345,rupiah,2025,survey_estimate,per_capita,10.1,344,,Rokok
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/jumlah_makanan,,580589,rupiah,2024,survey_estimate,per_capita,10.1,344,,Jumlah makanan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/jumlah_makanan,,592670,rupiah,2025,survey_estimate,per_capita,10.1,344,,Jumlah makanan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,230516,rupiah,2024,survey_estimate,per_capita,10.1,344,,Perumahan dan fasilitas rumah tangga
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,264923,rupiah,2025,survey_estimate,per_capita,10.1,344,,Perumahan dan fasilitas rumah tangga
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,117159,rupiah,2024,survey_estimate,per_capita,10.1,344,,Aneka barang dan jasa
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,146685,rupiah,2025,survey_estimate,per_capita,10.1,344,,Aneka barang dan jasa
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28486,rupiah,2024,survey_estimate,per_capita,10.1,344,,"Pakaian, alas kaki, dan tutup kepala"
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33122,rupiah,2025,survey_estimate,per_capita,10.1,344,,"Pakaian, alas kaki, dan tutup kepala"
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/barang_tahan_lama,,26519,rupiah,2024,survey_estimate,per_capita,10.1,344,,Barang tahan lama
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/barang_tahan_lama,,47630,rupiah,2025,survey_estimate,per_capita,10.1,344,,Barang tahan lama
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41150,rupiah,2024,survey_estimate,per_capita,10.1,344,,"Pajak, pungutan, dan asuransi"
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49435,rupiah,2025,survey_estimate,per_capita,10.1,344,,"Pajak, pungutan, dan asuransi"
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15413,rupiah,2024,survey_estimate,per_capita,10.1,344,,Keperluan pesta dan upacara/kenduri
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17716,rupiah,2025,survey_estimate,per_capita,10.1,344,,Keperluan pesta dan upacara/kenduri
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,459243,rupiah,2024,survey_estimate,per_capita,10.1,344,,Jumlah bukan makanan
+18.10,2,Kabupaten Pringsewu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,559511,rupiah,2025,survey_estimate,per_capita,10.1,344,,Jumlah bukan makanan
+18.10,2,Kabupaten Pringsewu,expenditure,total,,1039832,rupiah,2024,survey_estimate,per_capita,10.1,344,,
+18.10,2,Kabupaten Pringsewu,expenditure,total,,1152181,rupiah,2025,survey_estimate,per_capita,10.1,344,,

@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.35.2001,4,Palir,sex,laki_laki,,1803,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35.2001,4,Palir,sex,perempuan,,1681,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35.2001,4,Palir,total,total,,3484,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35.2002,4,Astapada,sex,laki_laki,,3691,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35.2002,4,Astapada,sex,perempuan,,3450,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35.2002,4,Astapada,total,total,,7141,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35.2003,4,Gesik,sex,laki_laki,,3319,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35.2003,4,Gesik,sex,perempuan,,3177,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35.2003,4,Gesik,total,total,,6496,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35.2004,4,Kemlakagede,sex,laki_laki,,3229,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35.2004,4,Kemlakagede,sex,perempuan,,3062,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35.2004,4,Kemlakagede,total,total,,6291,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35.2005,4,Dawuan,sex,laki_laki,,4994,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35.2005,4,Dawuan,sex,perempuan,,4854,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35.2005,4,Dawuan,total,total,,9848,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35.2007,4,Kalibaru,sex,laki_laki,,2522,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35.2007,4,Kalibaru,sex,perempuan,,2527,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35.2007,4,Kalibaru,total,total,,5049,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35.2008,4,Kalitengah,sex,laki_laki,,2521,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35.2008,4,Kalitengah,sex,perempuan,,2420,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35.2008,4,Kalitengah,total,total,,4941,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35,3,Kecamatan Tengahtani,sex,laki_laki,,24991,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.35,3,Kecamatan Tengahtani,sex,perempuan,,24110,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.35,3,Kecamatan Tengahtani,total,total,,49101,jiwa,2025,registration,total_population,3.1,52,,
+32.09.35,3,Tengah Tani,age_group,0-4,laki_laki,1683,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.35,3,Tengah Tani,age_group,0-4,perempuan,1645,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.35,3,Tengah Tani,age_group,0-4,,3328,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.35,3,Tengah Tani,age_group,5-9,laki_laki,2120,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.35,3,Tengah Tani,age_group,5-9,perempuan,2036,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.35,3,Tengah Tani,age_group,5-9,,4156,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.35,3,Tengah Tani,age_group,10-14,laki_laki,2105,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.35,3,Tengah Tani,age_group,10-14,perempuan,2012,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.35,3,Tengah Tani,age_group,10-14,,4117,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.35,3,Tengah Tani,age_group,15-19,laki_laki,1850,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.35,3,Tengah Tani,age_group,15-19,perempuan,1755,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.35,3,Tengah Tani,age_group,15-19,,3605,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.35,3,Tengah Tani,age_group,20-24,laki_laki,1981,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.35,3,Tengah Tani,age_group,20-24,perempuan,1874,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.35,3,Tengah Tani,age_group,20-24,,3855,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.35,3,Tengah Tani,age_group,25-29,laki_laki,2077,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.35,3,Tengah Tani,age_group,25-29,perempuan,1963,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.35,3,Tengah Tani,age_group,25-29,,4040,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.35,3,Tengah Tani,age_group,30-34,laki_laki,2010,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.35,3,Tengah Tani,age_group,30-34,perempuan,1903,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.35,3,Tengah Tani,age_group,30-34,,3913,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.35,3,Tengah Tani,age_group,35-39,laki_laki,2140,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.35,3,Tengah Tani,age_group,35-39,perempuan,1857,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.35,3,Tengah Tani,age_group,35-39,,3997,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.35,3,Tengah Tani,age_group,40-44,laki_laki,2044,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.35,3,Tengah Tani,age_group,40-44,perempuan,1940,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.35,3,Tengah Tani,age_group,40-44,,3984,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.35,3,Tengah Tani,age_group,45-49,laki_laki,1821,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.35,3,Tengah Tani,age_group,45-49,perempuan,1774,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.35,3,Tengah Tani,age_group,45-49,,3595,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.35,3,Tengah Tani,age_group,50-54,laki_laki,1561,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.35,3,Tengah Tani,age_group,50-54,perempuan,1582,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.35,3,Tengah Tani,age_group,50-54,,3143,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.35,3,Tengah Tani,age_group,55-59,laki_laki,1299,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.35,3,Tengah Tani,age_group,55-59,perempuan,1206,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.35,3,Tengah Tani,age_group,55-59,,2505,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.35,3,Tengah Tani,age_group,60-64,laki_laki,863,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.35,3,Tengah Tani,age_group,60-64,perempuan,910,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.35,3,Tengah Tani,age_group,60-64,,1773,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.35,3,Tengah Tani,age_group,65-69,laki_laki,610,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.35,3,Tengah Tani,age_group,65-69,perempuan,691,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.35,3,Tengah Tani,age_group,65-69,,1301,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.35,3,Tengah Tani,age_group,70-74,laki_laki,427,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.35,3,Tengah Tani,age_group,70-74,perempuan,484,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.35,3,Tengah Tani,age_group,70-74,,911,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.35,3,Tengah Tani,age_group,75+,laki_laki,400,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.35,3,Tengah Tani,age_group,75+,perempuan,478,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.35,3,Tengah Tani,age_group,75+,,878,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.35,3,Kecamatan Tengahtani,sex,laki_laki,,24991,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.35,3,Kecamatan Tengahtani,sex,perempuan,,24110,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.35,3,Kecamatan Tengahtani,total,total,,49101,jiwa,2025,registration,total_population,3.2,54,,

@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.73.03.1005,4,Margasuka,sex,laki_laki,,6570,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.03.1005,4,Margasuka,sex,perempuan,,6320,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.03.1005,4,Margasuka,total,total,,12890,jiwa,2025,registration,total_population,3.1,37,,
+32.73.03.1006,4,Cirangrang,sex,laki_laki,,6315,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.03.1006,4,Cirangrang,sex,perempuan,,6094,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.03.1006,4,Cirangrang,total,total,,12409,jiwa,2025,registration,total_population,3.1,37,,
+32.73.03.1004,4,Margahayu Utara,sex,laki_laki,,12149,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.03.1004,4,Margahayu Utara,sex,perempuan,,11937,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.03.1004,4,Margahayu Utara,total,total,,24086,jiwa,2025,registration,total_population,3.1,37,,
+32.73.03.1001,4,Babakan Ciparay,sex,laki_laki,,18120,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.03.1001,4,Babakan Ciparay,sex,perempuan,,17336,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.03.1001,4,Babakan Ciparay,total,total,,35456,jiwa,2025,registration,total_population,3.1,37,,
+32.73.03.1002,4,Babakan,sex,laki_laki,,16629,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.03.1002,4,Babakan,sex,perempuan,,15955,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.03.1002,4,Babakan,total,total,,32584,jiwa,2025,registration,total_population,3.1,37,,
+32.73.03.1003,4,Sukahaji,sex,laki_laki,,16641,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.03.1003,4,Sukahaji,sex,perempuan,,15838,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.03.1003,4,Sukahaji,total,total,,32479,jiwa,2025,registration,total_population,3.1,37,,
+32.73.03,3,Babakan Ciparay,age_group,0-4,laki_laki,5248,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.03,3,Babakan Ciparay,age_group,0-4,perempuan,4712,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.03,3,Babakan Ciparay,age_group,0-4,,9960,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.03,3,Babakan Ciparay,age_group,5-9,laki_laki,6698,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.03,3,Babakan Ciparay,age_group,5-9,perempuan,6294,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.03,3,Babakan Ciparay,age_group,5-9,,12992,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.03,3,Babakan Ciparay,age_group,10-14,laki_laki,6929,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.03,3,Babakan Ciparay,age_group,10-14,perempuan,6416,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.03,3,Babakan Ciparay,age_group,10-14,,13345,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.03,3,Babakan Ciparay,age_group,15-19,laki_laki,6182,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.03,3,Babakan Ciparay,age_group,15-19,perempuan,5812,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.03,3,Babakan Ciparay,age_group,15-19,,11994,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.03,3,Babakan Ciparay,age_group,20-24,laki_laki,6294,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.03,3,Babakan Ciparay,age_group,20-24,perempuan,6098,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.03,3,Babakan Ciparay,age_group,20-24,,12392,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.03,3,Babakan Ciparay,age_group,25-29,laki_laki,6138,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.03,3,Babakan Ciparay,age_group,25-29,perempuan,5859,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.03,3,Babakan Ciparay,age_group,25-29,,11997,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.03,3,Babakan Ciparay,age_group,30-34,laki_laki,5836,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.03,3,Babakan Ciparay,age_group,30-34,perempuan,5510,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.03,3,Babakan Ciparay,age_group,30-34,,11346,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.03,3,Babakan Ciparay,age_group,35-39,laki_laki,5404,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.03,3,Babakan Ciparay,age_group,35-39,perempuan,5132,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.03,3,Babakan Ciparay,age_group,35-39,,10536,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.03,3,Babakan Ciparay,age_group,40-44,laki_laki,6290,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.03,3,Babakan Ciparay,age_group,40-44,perempuan,5869,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.03,3,Babakan Ciparay,age_group,40-44,,12159,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.03,3,Babakan Ciparay,age_group,45-49,laki_laki,5700,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.03,3,Babakan Ciparay,age_group,45-49,perempuan,5386,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.03,3,Babakan Ciparay,age_group,45-49,,11086,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.03,3,Babakan Ciparay,age_group,50-54,laki_laki,4639,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.03,3,Babakan Ciparay,age_group,50-54,perempuan,4533,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.03,3,Babakan Ciparay,age_group,50-54,,9172,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.03,3,Babakan Ciparay,age_group,55-59,laki_laki,3683,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.03,3,Babakan Ciparay,age_group,55-59,perempuan,3569,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.03,3,Babakan Ciparay,age_group,55-59,,7252,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.03,3,Babakan Ciparay,age_group,60-64,laki_laki,2620,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.03,3,Babakan Ciparay,age_group,60-64,perempuan,2839,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.03,3,Babakan Ciparay,age_group,60-64,,5459,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.03,3,Babakan Ciparay,age_group,65-69,laki_laki,2130,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.03,3,Babakan Ciparay,age_group,65-69,perempuan,2355,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.03,3,Babakan Ciparay,age_group,65-69,,4485,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.03,3,Babakan Ciparay,age_group,70-74,laki_laki,1444,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.03,3,Babakan Ciparay,age_group,70-74,perempuan,1549,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.03,3,Babakan Ciparay,age_group,70-74,,2993,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.03,3,Babakan Ciparay,age_group,75+,laki_laki,1189,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.03,3,Babakan Ciparay,age_group,75+,perempuan,1547,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.03,3,Babakan Ciparay,age_group,75+,,2736,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.03.1005,4,Margasuka,religion,islam,,11979,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.03.1005,4,Margasuka,religion,kristen,,646,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.03.1005,4,Margasuka,religion,katolik,,192,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.03.1005,4,Margasuka,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.03.1005,4,Margasuka,religion,buddha,,68,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.03.1005,4,Margasuka,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.03.1006,4,Cirangrang,religion,islam,,11528,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.03.1006,4,Cirangrang,religion,kristen,,609,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.03.1006,4,Cirangrang,religion,katolik,,222,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.03.1006,4,Cirangrang,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.03.1006,4,Cirangrang,religion,buddha,,44,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.03.1006,4,Cirangrang,religion,lainnya,,5,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.03.1004,4,Margahayu Utara,religion,islam,,22335,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.03.1004,4,Margahayu Utara,religion,kristen,,1279,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.03.1004,4,Margahayu Utara,religion,katolik,,364,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.03.1004,4,Margahayu Utara,religion,hindu,,10,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.03.1004,4,Margahayu Utara,religion,buddha,,95,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.03.1004,4,Margahayu Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.03.1001,4,Babakan Ciparay,religion,islam,,33349,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.03.1001,4,Babakan Ciparay,religion,kristen,,1522,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.03.1001,4,Babakan Ciparay,religion,katolik,,493,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.03.1001,4,Babakan Ciparay,religion,hindu,,2,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.03.1001,4,Babakan Ciparay,religion,buddha,,89,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.03.1001,4,Babakan Ciparay,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.03.1002,4,Babakan,religion,islam,,29788,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.03.1002,4,Babakan,religion,kristen,,1753,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.03.1002,4,Babakan,religion,katolik,,883,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.03.1002,4,Babakan,religion,hindu,,11,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.03.1002,4,Babakan,religion,buddha,,148,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.03.1002,4,Babakan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya
+32.73.03.1003,4,Sukahaji,religion,islam,,29305,jiwa,2025,registration,total_population,4.4.5,95,,Islam
+32.73.03.1003,4,Sukahaji,religion,kristen,,2188,jiwa,2025,registration,total_population,4.4.5,95,,Protestan
+32.73.03.1003,4,Sukahaji,religion,katolik,,736,jiwa,2025,registration,total_population,4.4.5,95,,Catholic
+32.73.03.1003,4,Sukahaji,religion,hindu,,2,jiwa,2025,registration,total_population,4.4.5,95,,Hindu
+32.73.03.1003,4,Sukahaji,religion,buddha,,247,jiwa,2025,registration,total_population,4.4.5,95,,Budha
+32.73.03.1003,4,Sukahaji,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,95,,Lainnya

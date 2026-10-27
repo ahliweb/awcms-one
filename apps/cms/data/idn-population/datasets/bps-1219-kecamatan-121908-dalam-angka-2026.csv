@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.08.2001,4,Tanjung Prapat,sex,laki_laki,,1040,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2001,4,Tanjung Prapat,sex,perempuan,,1028,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2001,4,Tanjung Prapat,total,total,,2068,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2002,4,Laut Tador,sex,laki_laki,,2567,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2002,4,Laut Tador,sex,perempuan,,2579,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2002,4,Laut Tador,total,total,,5146,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2006,4,Tanjung Kasau,sex,laki_laki,,649,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2006,4,Tanjung Kasau,sex,perempuan,,646,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2006,4,Tanjung Kasau,total,total,,1295,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2007,4,Tanjung Seri,sex,laki_laki,,1862,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2007,4,Tanjung Seri,sex,perempuan,,1779,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2007,4,Tanjung Seri,total,total,,3641,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2009,4,Sei Simujur,sex,laki_laki,,1090,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2009,4,Sei Simujur,sex,perempuan,,1092,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2009,4,Sei Simujur,total,total,,2182,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2003,4,Pelanggiran Laut Tador,sex,laki_laki,,1541,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2003,4,Pelanggiran Laut Tador,sex,perempuan,,1532,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2003,4,Pelanggiran Laut Tador,total,total,,3073,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2005,4,Dewi Sri,sex,laki_laki,,1042,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2005,4,Dewi Sri,sex,perempuan,,1056,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2005,4,Dewi Sri,total,total,,2098,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2008,4,Mekar Sari,sex,laki_laki,,1034,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2008,4,Mekar Sari,sex,perempuan,,968,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2008,4,Mekar Sari,total,total,,2002,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08.2010,4,Kandangan,sex,laki_laki,,860,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08.2010,4,Kandangan,sex,perempuan,,847,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08.2010,4,Kandangan,total,total,,1707,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.08,3,Laut Tador,sex,laki_laki,,12348,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.08,3,Laut Tador,sex,perempuan,,12185,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.08,3,Laut Tador,total,total,,24533,jiwa,2025,registration,total_population,unnumbered-p28,28,,

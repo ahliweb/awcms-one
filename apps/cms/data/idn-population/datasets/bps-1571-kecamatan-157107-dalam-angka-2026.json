@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1571-kecamatan-157107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.71.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Baru Dalam Angka 2026",
+  "publisherName": "BPS Kota Jambi",
+  "publisherDomain": "1571",
+  "publisherWebsite": "https://jambikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jambi (https://jambikota.bps.go.id), publikasi \"Kecamatan Kota Baru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1571010",
+  "publicationNumber": "15710.26009",
+  "issn": "3063-5241",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jambikota.bps.go.id/id/publication/2026/09/28/0155882cf08693b007d76623/kecamatan-kota-baru-dalam-angka-2026.html",
+  "sourceFileSha256": "4244e40ad69069c65c9ee680b6b40e5814d127b0efccb6cb49a740be752e730a",
+  "sourceFileBytes": 4417843,
+  "sourcePages": [29, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jambi.",
+  "csvPath": "datasets/bps-1571-kecamatan-157107-dalam-angka-2026.csv",
+  "csvSha256": "6b29db05fab7fe3d0eed5d19f478e5737b3239a9d57fabd18d5d377532ca43b6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kota Baru, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kota Baru, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched ",
+    "table 3.1: the rows of region 15.71.07.1012 are not stored: sex split vs total: parts sum 17986.0000 != 18138.0000 (diff 152.0000); the source itself is inconsistent"
+  ]
+}

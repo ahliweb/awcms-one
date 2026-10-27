@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3504-kecamatan-350418-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.04.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pakel Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulungagung",
+  "publisherDomain": "3504",
+  "publisherWebsite": "https://tulungagungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulungagung (https://tulungagungkab.bps.go.id), publikasi \"Kecamatan Pakel Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35040",
+  "issn": "2615-0131",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tulungagungkab.bps.go.id/id/publication/2026/09/28/0df839b5f9fb491ef9b0f6e5/kecamatan-pakel-dalam-angka-2026.html",
+  "sourceFileSha256": "e4841e2cfd03736ea9475fab04b180d295fb63596222e6bcdbe90a4ecbfff188",
+  "sourceFileBytes": 9587563,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulungagung.",
+  "csvPath": "datasets/bps-3504-kecamatan-350418-dalam-angka-2026.csv",
+  "csvSha256": "b73d0f22c8c79ffe13c0e53f577456d659c3845a1ee5d2f7a16d47c9c8d837c1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pakel, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pakel, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 54 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: row not stored: row \"+ 75\": unmatched "
+  ]
+}

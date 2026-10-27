@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.08.13.2009,4,Batumarta X,sex,laki_laki,,1269,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2009,4,Batumarta X,sex,perempuan,,1219,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2009,4,Batumarta X,total,total,,2488,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2007,4,Bina Amarta,sex,laki_laki,,1990,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2007,4,Bina Amarta,sex,perempuan,,1881,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2007,4,Bina Amarta,total,total,,3871,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2005,4,Batumarta VI,sex,laki_laki,,2467,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2005,4,Batumarta VI,sex,perempuan,,2398,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2005,4,Batumarta VI,total,total,,4865,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2001,4,Banding Agung,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2001,4,Banding Agung,sex,perempuan,,544,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2001,4,Banding Agung,total,total,,1106,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2002,4,Nikan,sex,laki_laki,,539,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2002,4,Nikan,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2002,4,Nikan,total,total,,1051,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2004,4,Wana Bakti,sex,laki_laki,,2159,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2004,4,Wana Bakti,sex,perempuan,,2031,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2004,4,Wana Bakti,total,total,,4190,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2008,4,Suka Damai,sex,laki_laki,,1318,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2008,4,Suka Damai,sex,perempuan,,1260,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2008,4,Suka Damai,total,total,,2578,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2003,4,Surabaya,sex,laki_laki,,1203,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2003,4,Surabaya,sex,perempuan,,1098,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2003,4,Surabaya,total,total,,2301,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13.2010,4,Marta V Jaya,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13.2010,4,Marta V Jaya,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13.2010,4,Marta V Jaya,total,total,,733,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13,3,Madang Suku III,sex,laki_laki,,13274,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.13,3,Madang Suku III,sex,perempuan,,12606,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.13,3,Madang Suku III,total,total,,25880,jiwa,2025,registration,total_population,3.1,28,,
+16.08.13,3,Madang Suku III,age_group,0-4,laki_laki,704,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.13,3,Madang Suku III,age_group,0-4,perempuan,659,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.13,3,Madang Suku III,age_group,0-4,,1363,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.13,3,Madang Suku III,age_group,5-9,laki_laki,1143,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.13,3,Madang Suku III,age_group,5-9,perempuan,1000,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.13,3,Madang Suku III,age_group,5-9,,2143,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.13,3,Madang Suku III,age_group,10-14,laki_laki,1221,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.13,3,Madang Suku III,age_group,10-14,perempuan,1167,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.13,3,Madang Suku III,age_group,10-14,,2388,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.13,3,Madang Suku III,age_group,15-19,laki_laki,1128,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.13,3,Madang Suku III,age_group,15-19,perempuan,1054,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.13,3,Madang Suku III,age_group,15-19,,2182,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.13,3,Madang Suku III,age_group,20-24,laki_laki,1045,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.13,3,Madang Suku III,age_group,20-24,perempuan,969,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.13,3,Madang Suku III,age_group,20-24,,2014,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.13,3,Madang Suku III,age_group,25-29,laki_laki,882,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.13,3,Madang Suku III,age_group,25-29,perempuan,844,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.13,3,Madang Suku III,age_group,25-29,,1726,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.13,3,Madang Suku III,age_group,30-34,laki_laki,826,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.13,3,Madang Suku III,age_group,30-34,perempuan,796,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.13,3,Madang Suku III,age_group,30-34,,1622,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.13,3,Madang Suku III,age_group,35-39,laki_laki,1005,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.13,3,Madang Suku III,age_group,35-39,perempuan,1050,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.13,3,Madang Suku III,age_group,35-39,,2055,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.13,3,Madang Suku III,age_group,40-44,laki_laki,1165,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.13,3,Madang Suku III,age_group,40-44,perempuan,1061,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.13,3,Madang Suku III,age_group,40-44,,2226,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.13,3,Madang Suku III,age_group,45-49,laki_laki,942,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.13,3,Madang Suku III,age_group,45-49,perempuan,1016,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.13,3,Madang Suku III,age_group,45-49,,1958,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.13,3,Madang Suku III,age_group,50-54,laki_laki,874,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.13,3,Madang Suku III,age_group,50-54,perempuan,784,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.13,3,Madang Suku III,age_group,50-54,,1658,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.13,3,Madang Suku III,age_group,55-59,laki_laki,662,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.13,3,Madang Suku III,age_group,55-59,perempuan,614,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.13,3,Madang Suku III,age_group,55-59,,1276,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.13,3,Madang Suku III,age_group,60-64,laki_laki,534,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.13,3,Madang Suku III,age_group,60-64,perempuan,504,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.13,3,Madang Suku III,age_group,60-64,,1038,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.13,3,Madang Suku III,age_group,65-69,laki_laki,422,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.13,3,Madang Suku III,age_group,65-69,perempuan,433,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.13,3,Madang Suku III,age_group,65-69,,855,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.13,3,Madang Suku III,age_group,70-74,laki_laki,329,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.13,3,Madang Suku III,age_group,70-74,perempuan,275,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.13,3,Madang Suku III,age_group,70-74,,604,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.13,3,Madang Suku III,age_group,75+,laki_laki,392,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.13,3,Madang Suku III,age_group,75+,perempuan,380,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.13,3,Madang Suku III,age_group,75+,,772,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.13,3,Madang Suku III,sex,laki_laki,,13274,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.08.13,3,Madang Suku III,sex,perempuan,,12606,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.08.13,3,Madang Suku III,total,total,,25880,jiwa,2025,registration,total_population,3.2,30,,

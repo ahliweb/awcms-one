@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.17.2008,4,Barieh,sex,laki_laki,,172,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2008,4,Barieh,sex,perempuan,,169,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2008,4,Barieh,total,total,,341,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2009,4,Kandang,sex,laki_laki,,132,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2009,4,Kandang,sex,perempuan,,148,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2009,4,Kandang,total,total,,280,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2007,4,Paloh Jeureula,sex,laki_laki,,257,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2007,4,Paloh Jeureula,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2007,4,Paloh Jeureula,total,total,,526,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2020,4,Cot Cantek,sex,laki_laki,,103,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2020,4,Cot Cantek,sex,perempuan,,106,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2020,4,Cot Cantek,total,total,,209,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2014,4,Lhok Panah,sex,laki_laki,,154,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2014,4,Lhok Panah,sex,perempuan,,157,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2014,4,Lhok Panah,total,total,,311,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2019,4,Blang Cot,sex,laki_laki,,91,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2019,4,Blang Cot,sex,perempuan,,89,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2019,4,Blang Cot,total,total,,180,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2022,4,Blang Kumot Tunong,sex,laki_laki,,113,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2022,4,Blang Kumot Tunong,sex,perempuan,,137,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2022,4,Blang Kumot Tunong,total,total,,250,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2015,4,Murong Cot,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2015,4,Murong Cot,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2015,4,Murong Cot,total,total,,433,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2018,4,Murong Lhok,sex,laki_laki,,145,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2018,4,Murong Lhok,sex,perempuan,,154,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2018,4,Murong Lhok,total,total,,299,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2011,4,Mancang,sex,laki_laki,,69,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2011,4,Mancang,sex,perempuan,,62,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2011,4,Mancang,total,total,,131,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2045,4,Lingkok,sex,laki_laki,,268,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2045,4,Lingkok,sex,perempuan,,319,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2045,4,Lingkok,total,total,,587,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2016,4,Cumbok Lie,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2016,4,Cumbok Lie,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2016,4,Cumbok Lie,total,total,,388,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2021,4,Blang Kumot Baroh,sex,laki_laki,,122,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2021,4,Blang Kumot Baroh,sex,perempuan,,144,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2021,4,Blang Kumot Baroh,total,total,,266,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2017,4,Lam Ujong,sex,laki_laki,,252,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2017,4,Lam Ujong,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2017,4,Lam Ujong,total,total,,547,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2023,4,Cumbok Niwa,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2023,4,Cumbok Niwa,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2023,4,Cumbok Niwa,total,total,,771,jiwa,2025,registration,total_population,3.1,41,,
+11.07.17.2042,4,Dayah Kp Pisang,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+11.07.17.2042,4,Dayah Kp Pisang,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+11.07.17.2042,4,Dayah Kp Pisang,total,total,,514,jiwa,2025,registration,total_population,3.1,41,,

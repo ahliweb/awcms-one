@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1402-kecamatan-140201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.02.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rengat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Indragiri Hulu",
+  "publisherDomain": "1402",
+  "publisherWebsite": "https://inhukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Indragiri Hulu (https://inhukab.bps.go.id), publikasi \"Kecamatan Rengat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1402060",
+  "publicationNumber": "14020.26021",
+  "issn": "2597-5471",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://inhukab.bps.go.id/id/publication/2026/09/28/39e77d7fa1da564ffa34c9f7/kecamatan-rengat-dalam-angka-2026.html",
+  "sourceFileSha256": "0876695a24f648b87b5e2e4009a1b1ddbd3e68040d48faeccde7b1d37362d4f9",
+  "sourceFileBytes": 5612594,
+  "sourcePages": [59],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indragiri Hulu. TIM PENYUSUN KECAMATAN RENGAT DALAM ANGKA 2026 Volume 23, 2026 go .id Pengarah Sumi’rad s. Penanggung Jawab Sumi’rad //i nh uk ab .b p Penyunting Yeri Ramadani • Riva Ramadhana Ziani Muhammad Arkham Maulana Wibisono ht tp s: Pengolah Data dan Penulis Naskah Luvita Siwi Hidayanti • Nauval Yusuf Retsigam • Shafa Qothrunnadaa Penata Letak Nauval Yusuf Retsigam s. .b p ab //i nh uk s: tp ht go .id KONTRIBUTOR DATA go .id s. .b p ab //i nh uk s: tp 6. 7. 8. Kementerian Agama Kabupaten Indragiri Hulu Kementerian Pendidikan dan Kebudayaan Kabupaten Indragiri Hulu Badan Meteorologi Klimatologi dan Geofisika Kabupaten Indragiri Hulu Badan Pusat Statistik Kabupaten Indragiri Hulu Dinas Pengendalian Penduduk dan Keluarga Berencana Kabupaten Indragiri Hulu Dinas Pemberdayaan Masyarakat Desa Kabupaten Indragiri Hulu Dinas Kependudukan dan Pencatatan Sipil Kabupaten Indragiri Hulu Pemerintah Desa se-Kabupaten Indragiri Hulu ht 1. 2. 3. 4. 5. s. .b p ab //i nh uk s: tp ht go .id ht tp s: //i nh uk ab .b p s. go .id PETA WILAYAH KECAMATAN RENGAT s. .b p ab //i nh uk s: tp ht go .id",
+  "csvPath": "datasets/bps-1402-kecamatan-140201-dalam-angka-2026.csv",
+  "csvSha256": "ef3ac83363135ac7a9fe0384c0f000b874a88be2264bfd3039dedde00c256828",
+  "tablesUsed": [
+    {
+      "table": "4.4.1",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Rengat,2025 Desa/Kelurahan Islam Katolik Protestan Hindu Budha",
+      "printedPages": [59],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication"
+  ]
+}

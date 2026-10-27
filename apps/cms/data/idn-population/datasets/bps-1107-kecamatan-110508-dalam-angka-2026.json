@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1107-kecamatan-110508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.05.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pante Ceureumen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Barat",
+  "publisherDomain": "1107",
+  "publisherWebsite": "https://acehbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Barat (https://acehbaratkab.bps.go.id), publikasi \"Kecamatan Pante Ceureumen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1107082",
+  "publicationNumber": "11070.26014",
+  "issn": "2580-1538",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbaratkab.bps.go.id/id/publication/2026/09/28/d9796608dd1c4f3991a1caca/kecamatan-pante-ceureumen-dalam-angka-2026.html",
+  "sourceFileSha256": "0d606f6e2022213c7e4829f37c809f273bee0b4673007d16384da93ed2af78bf",
+  "sourceFileBytes": 24085545,
+  "sourcePages": [30, 31, 32, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Barat.",
+  "csvPath": "datasets/bps-1107-kecamatan-110508-dalam-angka-2026.csv",
+  "csvSha256": "3775c0e38ad5bb845855a2deef0cfe2ab26f5a6fb4dc9d295778f27cf043f3eb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Gampong di Kecamatan Pante Ceureumen, 2025",
+      "printedPages": [30, 31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pante Ceureumen, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

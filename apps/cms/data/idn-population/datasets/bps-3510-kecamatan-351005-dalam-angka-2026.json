@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3510-kecamatan-351005-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.10.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muncar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuwangi",
+  "publisherDomain": "3510",
+  "publisherWebsite": "https://banyuwangikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuwangi (https://banyuwangikab.bps.go.id), publikasi \"Kecamatan Muncar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3510050",
+  "publicationNumber": "35100.26017",
+  "issn": "2407-0297",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuwangikab.bps.go.id/id/publication/2026/09/28/5381e359dd79324717047bc6/kecamatan-muncar-dalam-angka-2026.html",
+  "sourceFileSha256": "ee271c73167769188911b8ec69165fc1dd239a39999aed2d39e521c868015cf8",
+  "sourceFileBytes": 4721047,
+  "sourcePages": [3, 4],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3510-kecamatan-351005-dalam-angka-2026.csv",
+  "csvSha256": "56717f6c961fd3552cf8df1328c1320791474484618d4ce24ecb280f23ca56a2",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 2.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Muncar, 2025",
+      "printedPages": [3, 4],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p3: row not stored: row \"SUMBERBERAS 32.64\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"WRINGIN PUTIH 24.12\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"KEDUNGRINGIN 20.41\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"TAMBAKREJO 11.06\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"TAPANREJO 14.59\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"BLAMBANGAN 14.39\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"KEDUNGREJO 46.55\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"TEMBOKREJO 53.29\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"SUMBERSEWU 12.83\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"KUMENDUNG 12.33\": unmatched ",
+    "table unnumbered-p3: row not stored: row \"Muncar 242.22\": unmatched ",
+    "table unnumbered-p3: 3 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

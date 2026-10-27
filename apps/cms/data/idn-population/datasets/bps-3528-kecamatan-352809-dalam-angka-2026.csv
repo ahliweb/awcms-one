@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.28.09.2001,4,Bicorong,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2001,4,Bicorong,total,total,,4858,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2002,4,Klompang Barat,sex,perempuan,,1643,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2002,4,Klompang Barat,total,total,,3137,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2003,4,Klompang Timur,sex,perempuan,,1672,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2003,4,Klompang Timur,total,total,,3304,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2005,4,Bajang,sex,perempuan,,1027,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2005,4,Bajang,total,total,,2008,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2004,4,Cenlecen,sex,perempuan,,1798,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2004,4,Cenlecen,total,total,,3465,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2006,4,Banban,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2006,4,Banban,total,total,,843,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2007,4,Somalang,sex,perempuan,,708,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2007,4,Somalang,total,total,,1353,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2008,4,Palalang,sex,perempuan,,836,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2008,4,Palalang,total,total,,1623,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2009,4,Seddur,sex,perempuan,,2982,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2009,4,Seddur,total,total,,5744,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2010,4,Pakong,sex,perempuan,,3007,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2010,4,Pakong,total,total,,5885,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2011,4,Bandungan,sex,perempuan,,1389,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2011,4,Bandungan,total,total,,2760,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09.2012,4,Lebbek,sex,perempuan,,2312,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.09.2012,4,Lebbek,total,total,,4574,jiwa,2025,registration,total_population,3.1,25,,
+35.28.09,3,Pakong,age_group,0-4,perempuan,1341,jiwa,2025,registration,total_population,3.2,27,,0–4
+35.28.09,3,Pakong,age_group,0-4,,2756,jiwa,2025,registration,total_population,3.2,27,,0–4
+35.28.09,3,Pakong,age_group,5-9,perempuan,1525,jiwa,2025,registration,total_population,3.2,27,,5–9
+35.28.09,3,Pakong,age_group,5-9,,3077,jiwa,2025,registration,total_population,3.2,27,,5–9
+35.28.09,3,Pakong,age_group,10-14,perempuan,1356,jiwa,2025,registration,total_population,3.2,27,,10–14
+35.28.09,3,Pakong,age_group,10-14,,2819,jiwa,2025,registration,total_population,3.2,27,,10–14
+35.28.09,3,Pakong,age_group,15-19,perempuan,1094,jiwa,2025,registration,total_population,3.2,27,,15–19
+35.28.09,3,Pakong,age_group,15-19,,2240,jiwa,2025,registration,total_population,3.2,27,,15–19
+35.28.09,3,Pakong,age_group,20-24,perempuan,1444,jiwa,2025,registration,total_population,3.2,27,,20–24
+35.28.09,3,Pakong,age_group,20-24,,2875,jiwa,2025,registration,total_population,3.2,27,,20–24
+35.28.09,3,Pakong,age_group,25-29,perempuan,1504,jiwa,2025,registration,total_population,3.2,27,,25–29
+35.28.09,3,Pakong,age_group,25-29,,3059,jiwa,2025,registration,total_population,3.2,27,,25–29
+35.28.09,3,Pakong,age_group,30-34,perempuan,1338,jiwa,2025,registration,total_population,3.2,27,,30–34
+35.28.09,3,Pakong,age_group,30-34,,2653,jiwa,2025,registration,total_population,3.2,27,,30–34
+35.28.09,3,Pakong,age_group,35-39,perempuan,1271,jiwa,2025,registration,total_population,3.2,27,,35–39
+35.28.09,3,Pakong,age_group,35-39,,2500,jiwa,2025,registration,total_population,3.2,27,,35–39
+35.28.09,3,Pakong,age_group,40-44,perempuan,1572,jiwa,2025,registration,total_population,3.2,27,,40–44
+35.28.09,3,Pakong,age_group,40-44,,2929,jiwa,2025,registration,total_population,3.2,27,,40–44
+35.28.09,3,Pakong,age_group,45-49,perempuan,1598,jiwa,2025,registration,total_population,3.2,27,,45–49
+35.28.09,3,Pakong,age_group,45-49,,3012,jiwa,2025,registration,total_population,3.2,27,,45–49
+35.28.09,3,Pakong,age_group,50-54,perempuan,1431,jiwa,2025,registration,total_population,3.2,27,,50–54
+35.28.09,3,Pakong,age_group,50-54,,2792,jiwa,2025,registration,total_population,3.2,27,,50–54
+35.28.09,3,Pakong,age_group,55-59,perempuan,1322,jiwa,2025,registration,total_population,3.2,27,,55–59
+35.28.09,3,Pakong,age_group,55-59,,2517,jiwa,2025,registration,total_population,3.2,27,,55–59
+35.28.09,3,Pakong,age_group,60-64,perempuan,1071,jiwa,2025,registration,total_population,3.2,27,,60–64
+35.28.09,3,Pakong,age_group,60-64,,1964,jiwa,2025,registration,total_population,3.2,27,,60–64
+35.28.09,3,Pakong,age_group,65-69,perempuan,925,jiwa,2025,registration,total_population,3.2,27,,65–69
+35.28.09,3,Pakong,age_group,65-69,,1714,jiwa,2025,registration,total_population,3.2,27,,65–69
+35.28.09,3,Pakong,age_group,70-74,perempuan,551,jiwa,2025,registration,total_population,3.2,27,,70–74
+35.28.09,3,Pakong,age_group,70-74,,1079,jiwa,2025,registration,total_population,3.2,27,,70–74
+35.28.09,3,Pakong,age_group,75+,perempuan,959,jiwa,2025,registration,total_population,3.2,27,,75+
+35.28.09,3,Pakong,age_group,75+,,1568,jiwa,2025,registration,total_population,3.2,27,,75+

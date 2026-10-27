@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cileles Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Cileles Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3602070",
+  "publicationNumber": "36020.26008",
+  "issn": "3031-6189",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/4204fc6f3b33c7ec181f16e5/kecamatan-cileles-dalam-angka-2026.html",
+  "sourceFileSha256": "65a64933381a456acaf327297d117ef244e8ca1395d73eb6250317ae3f6401e9",
+  "sourceFileBytes": 8690855,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360210-dalam-angka-2026.csv",
+  "csvSha256": "381db54a37b5ce8f3c53ddd5958f5eec0d5f9e5b32720451332b64d17ad600a1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Cileles, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cileles, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Cileles Cileles District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cileles Cileles District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Cileles Cileles District\": unmatched ",
+    "table 3.1: the rows of region 36.02.10.2010 are not stored: sex split vs total: parts sum 3399.0000 != 4628.0000 (diff 1229.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2001 are not stored: sex split vs total: parts sum 4628.0000 != 4407.0000 (diff 221.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2011 are not stored: sex split vs total: parts sum 4236.0000 != 3985.0000 (diff 251.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2002 are not stored: sex split vs total: parts sum 4407.0000 != 5051.0000 (diff 644.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2004 are not stored: sex split vs total: parts sum 5051.0000 != 6677.0000 (diff 1626.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2003 are not stored: sex split vs total: parts sum 3985.0000 != 6161.0000 (diff 2176.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2009 are not stored: sex split vs total: parts sum 5019.0000 != 6310.0000 (diff 1291.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2005 are not stored: sex split vs total: parts sum 6677.0000 != 5177.0000 (diff 1500.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2008 are not stored: sex split vs total: parts sum 5177.0000 != 5019.0000 (diff 158.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2007 are not stored: sex split vs total: parts sum 6310.0000 != 3399.0000 (diff 2911.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.10.2006 are not stored: sex split vs total: parts sum 6161.0000 != 4236.0000 (diff 1925.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.17.04.2009,4,Urat Timur,sex,laki_laki,,364,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2009,4,Urat Timur,sex,perempuan,,363,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2009,4,Urat Timur,total,total,,727,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2001,4,Suhut Nihuta Pardomuan,sex,laki_laki,,300,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2001,4,Suhut Nihuta Pardomuan,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2001,4,Suhut Nihuta Pardomuan,total,total,,639,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2011,4,Parsaoran Urat,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2011,4,Parsaoran Urat,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2011,4,Parsaoran Urat,total,total,,638,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2003,4,Urat II,sex,laki_laki,,646,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2003,4,Urat II,sex,perempuan,,658,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2003,4,Urat II,total,total,,1304,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2002,4,Gorat Pallombuan,sex,laki_laki,,332,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2002,4,Gorat Pallombuan,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2002,4,Gorat Pallombuan,total,total,,721,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2004,4,Palipi,sex,laki_laki,,762,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2004,4,Palipi,sex,perempuan,,880,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2004,4,Palipi,total,total,,1642,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2005,4,Pardomuan Nauli,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2005,4,Pardomuan Nauli,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2005,4,Pardomuan Nauli,total,total,,1071,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2006,4,Hatoguan,sex,laki_laki,,694,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2006,4,Hatoguan,sex,perempuan,,706,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2006,4,Hatoguan,total,total,,1400,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2010,4,Saor Nauli Hatoguan,sex,laki_laki,,801,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2010,4,Saor Nauli Hatoguan,sex,perempuan,,841,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2010,4,Saor Nauli Hatoguan,total,total,,1642,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2007,4,Simbolon Purba,sex,laki_laki,,1379,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2007,4,Simbolon Purba,sex,perempuan,,1400,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2007,4,Simbolon Purba,total,total,,2779,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2012,4,Huta Ginjang,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2012,4,Huta Ginjang,sex,perempuan,,393,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2012,4,Huta Ginjang,total,total,,803,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2014,4,Sigaol Marbun,sex,laki_laki,,998,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2014,4,Sigaol Marbun,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2014,4,Sigaol Marbun,total,total,,1961,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2008,4,Sigaol Simbolon,sex,laki_laki,,715,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2008,4,Sigaol Simbolon,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2008,4,Sigaol Simbolon,total,total,,1462,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2020,4,Pamutaran,sex,laki_laki,,395,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2020,4,Pamutaran,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2020,4,Pamutaran,total,total,,808,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2021,4,Sideak,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2021,4,Sideak,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2021,4,Sideak,total,total,,686,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2019,4,Pallombuan,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2019,4,Pallombuan,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2019,4,Pallombuan,total,total,,764,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04.2018,4,Huta Dame,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04.2018,4,Huta Dame,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04.2018,4,Huta Dame,total,total,,495,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04,3,Kecamatan Palipi,sex,laki_laki,,9623,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.04,3,Kecamatan Palipi,sex,perempuan,,9919,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.04,3,Kecamatan Palipi,total,total,,19542,jiwa,2025,registration,total_population,3.1,30,,
+12.17.04,3,Palipi,age_group,0-4,laki_laki,557,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.17.04,3,Palipi,age_group,0-4,perempuan,569,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.17.04,3,Palipi,age_group,0-4,,1126,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.17.04,3,Palipi,age_group,5-9,laki_laki,917,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.17.04,3,Palipi,age_group,5-9,perempuan,856,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.17.04,3,Palipi,age_group,5-9,,1773,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.17.04,3,Palipi,age_group,10-14,laki_laki,1071,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.17.04,3,Palipi,age_group,10-14,perempuan,995,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.17.04,3,Palipi,age_group,10-14,,2066,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.17.04,3,Palipi,age_group,15-19,laki_laki,1006,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.17.04,3,Palipi,age_group,15-19,perempuan,1038,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.17.04,3,Palipi,age_group,15-19,,2044,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.17.04,3,Palipi,age_group,20-24,laki_laki,947,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.17.04,3,Palipi,age_group,20-24,perempuan,977,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.17.04,3,Palipi,age_group,20-24,,1924,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.17.04,3,Palipi,age_group,25-29,laki_laki,758,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.17.04,3,Palipi,age_group,25-29,perempuan,687,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.17.04,3,Palipi,age_group,25-29,,1445,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.17.04,3,Palipi,age_group,30-34,laki_laki,680,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.17.04,3,Palipi,age_group,30-34,perempuan,547,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.17.04,3,Palipi,age_group,30-34,,1227,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.17.04,3,Palipi,age_group,35-39,laki_laki,642,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.17.04,3,Palipi,age_group,35-39,perempuan,542,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.17.04,3,Palipi,age_group,35-39,,1184,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.17.04,3,Palipi,age_group,40-44,laki_laki,648,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.17.04,3,Palipi,age_group,40-44,perempuan,548,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.17.04,3,Palipi,age_group,40-44,,1196,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.17.04,3,Palipi,age_group,45-49,laki_laki,517,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.17.04,3,Palipi,age_group,45-49,perempuan,524,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.17.04,3,Palipi,age_group,45-49,,1041,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.17.04,3,Palipi,age_group,50-54,laki_laki,433,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.17.04,3,Palipi,age_group,50-54,perempuan,465,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.17.04,3,Palipi,age_group,50-54,,898,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.17.04,3,Palipi,age_group,55-59,laki_laki,390,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.17.04,3,Palipi,age_group,55-59,perempuan,432,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.17.04,3,Palipi,age_group,55-59,,822,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.17.04,3,Palipi,age_group,60-64,laki_laki,335,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.17.04,3,Palipi,age_group,60-64,perempuan,394,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.17.04,3,Palipi,age_group,60-64,,729,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.17.04,3,Palipi,age_group,65-69,laki_laki,262,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.17.04,3,Palipi,age_group,65-69,perempuan,450,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.17.04,3,Palipi,age_group,65-69,,712,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.17.04,3,Palipi,age_group,70-74,laki_laki,217,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.17.04,3,Palipi,age_group,70-74,perempuan,326,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.17.04,3,Palipi,age_group,70-74,,543,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.17.04,3,Palipi,age_group,75+,laki_laki,243,jiwa,2025,registration,total_population,3.2,32,,75+
+12.17.04,3,Palipi,age_group,75+,perempuan,569,jiwa,2025,registration,total_population,3.2,32,,75+
+12.17.04,3,Palipi,age_group,75+,,812,jiwa,2025,registration,total_population,3.2,32,,75+
+12.17.04,3,Kecamatan Palipi,sex,laki_laki,,9623,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+12.17.04,3,Kecamatan Palipi,sex,perempuan,,9919,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+12.17.04,3,Kecamatan Palipi,total,total,,19542,jiwa,2025,registration,total_population,3.2,32,,

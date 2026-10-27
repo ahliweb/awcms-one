@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351212-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jangkar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Jangkar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512110",
+  "publicationNumber": "35120.25023",
+  "issn": "2808-6287",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/4bcb5c6a81646ea710fbc7e4/kecamatan-jangkar-dalam-angka-2026.html",
+  "sourceFileSha256": "a35a8d73765e6c5d84d397571edceec90f1d26be6eddd4f84280e451434fdfd6",
+  "sourceFileBytes": 6551460,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351212-dalam-angka-2026.csv",
+  "csvSha256": "ad6dc8e794d88d5ff359c53597ddb280397084ba58bf11888399cac9455fb100",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jangkar , 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jangkar , 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Confucian\" not recognised)",
+    "table 3.1: the rows of region 35.12.12 are not stored: sex split vs total: parts sum 41215.0000 != 41258.0000 (diff 43.0000); the source itself is inconsistent"
+  ]
+}

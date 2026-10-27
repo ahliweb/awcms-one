@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.74.02.1004,4,Silaing Bawah,sex,laki_laki,,3343,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1004,4,Silaing Bawah,sex,perempuan,,3259,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1004,4,Silaing Bawah,total,total,,6602,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02.1005,4,Silaing Atas,sex,laki_laki,,1240,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1005,4,Silaing Atas,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1005,4,Silaing Atas,total,total,,2474,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02.1002,4,Pasar Usang,sex,laki_laki,,1979,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1002,4,Pasar Usang,sex,perempuan,,1971,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1002,4,Pasar Usang,total,total,,3950,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02.1003,4,Kampung Manggis,sex,laki_laki,,4199,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1003,4,Kampung Manggis,sex,perempuan,,4034,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1003,4,Kampung Manggis,total,total,,8233,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02.1007,4,Tanah Hitam,sex,laki_laki,,1946,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1007,4,Tanah Hitam,sex,perempuan,,1992,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1007,4,Tanah Hitam,total,total,,3938,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02.1006,4,Pasar Baru,sex,laki_laki,,868,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1006,4,Pasar Baru,sex,perempuan,,843,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1006,4,Pasar Baru,total,total,,1711,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02.1001,4,Bukit Surungan,sex,laki_laki,,1412,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1001,4,Bukit Surungan,sex,perempuan,,1448,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1001,4,Bukit Surungan,total,total,,2860,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02.1008,4,Balai-Balai,sex,laki_laki,,3379,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02.1008,4,Balai-Balai,sex,perempuan,,3269,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02.1008,4,Balai-Balai,total,total,,6648,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02,3,Padang Panjang Barat,sex,laki_laki,,18366,jiwa,2025,registration,total_population,3.1,50,,Laki-Laki/Male
+13.74.02,3,Padang Panjang Barat,sex,perempuan,,18050,jiwa,2025,registration,total_population,3.1,50,,Perempuan/Female
+13.74.02,3,Padang Panjang Barat,total,total,,36416,jiwa,2025,registration,total_population,3.1,50,,
+13.74.02,3,Padang Panjang Barat,age_group,0-4,laki_laki,1359,jiwa,2025,registration,total_population,3.2,52,,0–4
+13.74.02,3,Padang Panjang Barat,age_group,0-4,perempuan,1235,jiwa,2025,registration,total_population,3.2,52,,0–4
+13.74.02,3,Padang Panjang Barat,age_group,0-4,,2594,jiwa,2025,registration,total_population,3.2,52,,0–4
+13.74.02,3,Padang Panjang Barat,age_group,5-9,laki_laki,1651,jiwa,2025,registration,total_population,3.2,52,,5–9
+13.74.02,3,Padang Panjang Barat,age_group,5-9,perempuan,1523,jiwa,2025,registration,total_population,3.2,52,,5–9
+13.74.02,3,Padang Panjang Barat,age_group,5-9,,3174,jiwa,2025,registration,total_population,3.2,52,,5–9
+13.74.02,3,Padang Panjang Barat,age_group,10-14,laki_laki,1672,jiwa,2025,registration,total_population,3.2,52,,10–14
+13.74.02,3,Padang Panjang Barat,age_group,10-14,perempuan,1525,jiwa,2025,registration,total_population,3.2,52,,10–14
+13.74.02,3,Padang Panjang Barat,age_group,10-14,,3197,jiwa,2025,registration,total_population,3.2,52,,10–14
+13.74.02,3,Padang Panjang Barat,age_group,15-19,laki_laki,1678,jiwa,2025,registration,total_population,3.2,52,,15–19
+13.74.02,3,Padang Panjang Barat,age_group,15-19,perempuan,1557,jiwa,2025,registration,total_population,3.2,52,,15–19
+13.74.02,3,Padang Panjang Barat,age_group,15-19,,3235,jiwa,2025,registration,total_population,3.2,52,,15–19
+13.74.02,3,Padang Panjang Barat,age_group,20-24,laki_laki,1570,jiwa,2025,registration,total_population,3.2,52,,20–24
+13.74.02,3,Padang Panjang Barat,age_group,20-24,perempuan,1517,jiwa,2025,registration,total_population,3.2,52,,20–24
+13.74.02,3,Padang Panjang Barat,age_group,20-24,,3087,jiwa,2025,registration,total_population,3.2,52,,20–24
+13.74.02,3,Padang Panjang Barat,age_group,25-29,laki_laki,1574,jiwa,2025,registration,total_population,3.2,52,,25–29
+13.74.02,3,Padang Panjang Barat,age_group,25-29,perempuan,1535,jiwa,2025,registration,total_population,3.2,52,,25–29
+13.74.02,3,Padang Panjang Barat,age_group,25-29,,3109,jiwa,2025,registration,total_population,3.2,52,,25–29
+13.74.02,3,Padang Panjang Barat,age_group,30-34,laki_laki,1399,jiwa,2025,registration,total_population,3.2,52,,30–34
+13.74.02,3,Padang Panjang Barat,age_group,30-34,perempuan,1418,jiwa,2025,registration,total_population,3.2,52,,30–34
+13.74.02,3,Padang Panjang Barat,age_group,30-34,,2817,jiwa,2025,registration,total_population,3.2,52,,30–34
+13.74.02,3,Padang Panjang Barat,age_group,35-39,laki_laki,1306,jiwa,2025,registration,total_population,3.2,52,,35–39
+13.74.02,3,Padang Panjang Barat,age_group,35-39,perempuan,1240,jiwa,2025,registration,total_population,3.2,52,,35–39
+13.74.02,3,Padang Panjang Barat,age_group,35-39,,2546,jiwa,2025,registration,total_population,3.2,52,,35–39
+13.74.02,3,Padang Panjang Barat,age_group,40-44,laki_laki,1240,jiwa,2025,registration,total_population,3.2,52,,40–44
+13.74.02,3,Padang Panjang Barat,age_group,40-44,perempuan,1234,jiwa,2025,registration,total_population,3.2,52,,40–44
+13.74.02,3,Padang Panjang Barat,age_group,40-44,,2474,jiwa,2025,registration,total_population,3.2,52,,40–44
+13.74.02,3,Padang Panjang Barat,age_group,45-49,laki_laki,1240,jiwa,2025,registration,total_population,3.2,52,,45–49
+13.74.02,3,Padang Panjang Barat,age_group,45-49,perempuan,1141,jiwa,2025,registration,total_population,3.2,52,,45–49
+13.74.02,3,Padang Panjang Barat,age_group,45-49,,2381,jiwa,2025,registration,total_population,3.2,52,,45–49
+13.74.02,3,Padang Panjang Barat,age_group,50-54,laki_laki,982,jiwa,2025,registration,total_population,3.2,52,,50–54
+13.74.02,3,Padang Panjang Barat,age_group,50-54,perempuan,978,jiwa,2025,registration,total_population,3.2,52,,50–54
+13.74.02,3,Padang Panjang Barat,age_group,50-54,,1960,jiwa,2025,registration,total_population,3.2,52,,50–54
+13.74.02,3,Padang Panjang Barat,age_group,55-59,laki_laki,869,jiwa,2025,registration,total_population,3.2,52,,55–59
+13.74.02,3,Padang Panjang Barat,age_group,55-59,perempuan,838,jiwa,2025,registration,total_population,3.2,52,,55–59
+13.74.02,3,Padang Panjang Barat,age_group,55-59,,1707,jiwa,2025,registration,total_population,3.2,52,,55–59
+13.74.02,3,Padang Panjang Barat,age_group,60-64,laki_laki,685,jiwa,2025,registration,total_population,3.2,52,,60–64
+13.74.02,3,Padang Panjang Barat,age_group,60-64,perempuan,778,jiwa,2025,registration,total_population,3.2,52,,60–64
+13.74.02,3,Padang Panjang Barat,age_group,60-64,,1463,jiwa,2025,registration,total_population,3.2,52,,60–64
+13.74.02,3,Padang Panjang Barat,age_group,65-69,laki_laki,531,jiwa,2025,registration,total_population,3.2,52,,65–69
+13.74.02,3,Padang Panjang Barat,age_group,65-69,perempuan,609,jiwa,2025,registration,total_population,3.2,52,,65–69
+13.74.02,3,Padang Panjang Barat,age_group,65-69,,1140,jiwa,2025,registration,total_population,3.2,52,,65–69
+13.74.02,3,Padang Panjang Barat,age_group,70-74,laki_laki,341,jiwa,2025,registration,total_population,3.2,52,,70–74
+13.74.02,3,Padang Panjang Barat,age_group,70-74,perempuan,431,jiwa,2025,registration,total_population,3.2,52,,70–74
+13.74.02,3,Padang Panjang Barat,age_group,70-74,,772,jiwa,2025,registration,total_population,3.2,52,,70–74
+13.74.02,3,Padang Panjang Barat,age_group,75+,laki_laki,269,jiwa,2025,registration,total_population,3.2,52,,75+
+13.74.02,3,Padang Panjang Barat,age_group,75+,perempuan,491,jiwa,2025,registration,total_population,3.2,52,,75+
+13.74.02,3,Padang Panjang Barat,age_group,75+,,760,jiwa,2025,registration,total_population,3.2,52,,75+
+13.74.02,3,Padang Panjang Barat,sex,laki_laki,,18366,jiwa,2025,registration,total_population,3.2,52,,Laki-Laki
+13.74.02,3,Padang Panjang Barat,sex,perempuan,,18050,jiwa,2025,registration,total_population,3.2,52,,Perempuan
+13.74.02,3,Padang Panjang Barat,total,total,,36416,jiwa,2025,registration,total_population,3.2,52,,

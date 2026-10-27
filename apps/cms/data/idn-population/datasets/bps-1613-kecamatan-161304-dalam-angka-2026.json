@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1613-kecamatan-161304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.13.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rawas Ilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Rawas Utara",
+  "publisherDomain": "1613",
+  "publisherWebsite": "https://muratarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Rawas Utara (https://muratarakab.bps.go.id), publikasi \"Kecamatan Rawas Ilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16130.26004",
+  "issn": "2723-8644",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muratarakab.bps.go.id/id/publication/2026/09/28/d98a0cb6929205fde4461186/kecamatan-rawas-ilir-dalam-angka-2026.html",
+  "sourceFileSha256": "799e0fe4e4a57a688a21510bd3d04e35676cfade3de347d692fc83380342ceab",
+  "sourceFileBytes": 7780109,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Rawas Utara.",
+  "csvPath": "datasets/bps-1613-kecamatan-161304-dalam-angka-2026.csv",
+  "csvSha256": "13046c395ffe340655bde89d545b44054da00b17bee8a64e5862cf279229c79b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Rawas Ilir, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rawas Ilir, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

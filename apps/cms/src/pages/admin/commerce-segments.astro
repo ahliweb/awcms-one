@@ -105,7 +105,7 @@ const screen = await loadAdminScreen({
         activityCode: "customers",
         action: "read"
       }));
-    // Booking-derived conditions (rule schema 2, ADR-0051) are offered only to
+    // Booking-derived conditions (rule schema 2, ADR-0052) are offered only to
     // someone who may use them: the booking feature is on AND the caller may
     // read bookings. A convenience; the routes re-check both.
     const canUseBookingRules =
@@ -161,7 +161,7 @@ const BASE_FIELD_OPTIONS = [
   { value: "loyalty_balance", label: t("Loyalty points balance") }
 ] as const;
 
-/** Rule schema 2 (ADR-0051): offered only when the viewer may use booking-derived conditions. */
+/** Rule schema 2 (ADR-0052): offered only when the viewer may use booking-derived conditions. */
 const BOOKING_FIELD_OPTIONS = [
   { value: "booking_count", label: t("Number of confirmed bookings") },
   { value: "stay_count", label: t("Number of stays") },
@@ -681,7 +681,7 @@ const CONDITION_ROWS = [0, 1, 2, 3, 4, 5];
   const msg = (key: string): string => root?.dataset[key] ?? "";
   const actionError = messageBox("segments-action-error");
 
-  // Field names are suffix-typed (ADR-0051): `*_since` / `*_date` take a date,
+  // Field names are suffix-typed (ADR-0052): `*_since` / `*_date` take a date,
   // `*_count` and `paid_spend` take a window.
   const isDateField = (name: string): boolean => /_(since|date)$/.test(name);
   const isWindowed = (name: string): boolean =>

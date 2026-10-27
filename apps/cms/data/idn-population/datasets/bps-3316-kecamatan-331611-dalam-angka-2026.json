@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3316-kecamatan-331611-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.16.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banjarejo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Blora",
+  "publisherDomain": "3316",
+  "publisherWebsite": "https://blorakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Blora (https://blorakab.bps.go.id), publikasi \"Kecamatan Banjarejo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3316110",
+  "publicationNumber": "33160.26014",
+  "issn": "2614-9710",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://blorakab.bps.go.id/id/publication/2026/09/28/58e743717c4a28561f9bbf5c/kecamatan-banjarejo-dalam-angka-2026.html",
+  "sourceFileSha256": "c55e91593dbb155ccb5a974866297f713ce207b9acf235a5a3556cf0e172777c",
+  "sourceFileBytes": 11621794,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Blora.",
+  "csvPath": "datasets/bps-3316-kecamatan-331611-dalam-angka-2026.csv",
+  "csvSha256": "4b0d63681b8161bee4f9665ae03497ad9faa8c454f2f373fc89ce096e331b969",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa/ Kelurahan di Kecamatan Banjarejo, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banjarejo, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 33.16.11 are not stored: age_group vs total: parts sum 65769.0000 != 65778.0000 (diff 9.0000); the source itself is inconsistent"
+  ]
+}

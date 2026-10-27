@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.24.2012,4,Tanjung Sakti,sex,laki_laki,,676,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2012,4,Tanjung Sakti,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2012,4,Tanjung Sakti,total,total,,1297,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2011,4,Penandingan,sex,laki_laki,,591,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2011,4,Penandingan,sex,perempuan,,574,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2011,4,Penandingan,total,total,,1165,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2010,4,Tanjung Bulan,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2010,4,Tanjung Bulan,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2010,4,Tanjung Bulan,total,total,,931,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2009,4,Pajar Bulan,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2009,4,Pajar Bulan,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2009,4,Pajar Bulan,total,total,,1299,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2013,4,Negeri Kaya,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2013,4,Negeri Kaya,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2013,4,Negeri Kaya,total,total,,526,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2015,4,Gunung Kerto,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2015,4,Gunung Kerto,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2015,4,Gunung Kerto,total,total,,1232,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2014,4,Pulau Panggung,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2014,4,Pulau Panggung,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2014,4,Pulau Panggung,total,total,,1210,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2008,4,Masam Bulau,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2008,4,Masam Bulau,sex,perempuan,,521,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2008,4,Masam Bulau,total,total,,1074,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2007,4,Gunung Agung,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2007,4,Gunung Agung,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2007,4,Gunung Agung,total,total,,739,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2006,4,Ulak Lebar,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2006,4,Ulak Lebar,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2006,4,Ulak Lebar,total,total,,645,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2004,4,Pagar Agung,sex,laki_laki,,89,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2004,4,Pagar Agung,sex,perempuan,,85,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2004,4,Pagar Agung,total,total,,174,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2005,4,Benteng,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2005,4,Benteng,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2005,4,Benteng,total,total,,532,jiwa,2025,registration,total_population,3.1,,,
+16.04.24.2017,4,Pagar Jati,sex,laki_laki,,448,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.04.24.2017,4,Pagar Jati,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.04.24.2017,4,Pagar Jati,total,total,,871,jiwa,2025,registration,total_population,3.1,,,
+16.04.24,3,Tanjung Sakti Pumi,age_group,0-4,laki_laki,442,jiwa,2025,registration,total_population,3.2,,,0–4
+16.04.24,3,Tanjung Sakti Pumi,age_group,0-4,perempuan,444,jiwa,2025,registration,total_population,3.2,,,0–4
+16.04.24,3,Tanjung Sakti Pumi,age_group,0-4,,886,jiwa,2025,registration,total_population,3.2,,,0–4
+16.04.24,3,Tanjung Sakti Pumi,age_group,5-9,laki_laki,644,jiwa,2025,registration,total_population,3.2,,,5–9
+16.04.24,3,Tanjung Sakti Pumi,age_group,5-9,perempuan,643,jiwa,2025,registration,total_population,3.2,,,5–9
+16.04.24,3,Tanjung Sakti Pumi,age_group,5-9,,1287,jiwa,2025,registration,total_population,3.2,,,5–9
+16.04.24,3,Tanjung Sakti Pumi,age_group,10-14,laki_laki,736,jiwa,2025,registration,total_population,3.2,,,10–14
+16.04.24,3,Tanjung Sakti Pumi,age_group,10-14,perempuan,706,jiwa,2025,registration,total_population,3.2,,,10–14
+16.04.24,3,Tanjung Sakti Pumi,age_group,10-14,,1442,jiwa,2025,registration,total_population,3.2,,,10–14
+16.04.24,3,Tanjung Sakti Pumi,age_group,15-19,laki_laki,788,jiwa,2025,registration,total_population,3.2,,,15–19
+16.04.24,3,Tanjung Sakti Pumi,age_group,15-19,perempuan,782,jiwa,2025,registration,total_population,3.2,,,15–19
+16.04.24,3,Tanjung Sakti Pumi,age_group,15-19,,1570,jiwa,2025,registration,total_population,3.2,,,15–19
+16.04.24,3,Tanjung Sakti Pumi,age_group,20-24,laki_laki,730,jiwa,2025,registration,total_population,3.2,,,20–24
+16.04.24,3,Tanjung Sakti Pumi,age_group,20-24,perempuan,704,jiwa,2025,registration,total_population,3.2,,,20–24
+16.04.24,3,Tanjung Sakti Pumi,age_group,20-24,,1434,jiwa,2025,registration,total_population,3.2,,,20–24
+16.04.24,3,Tanjung Sakti Pumi,age_group,25-29,laki_laki,574,jiwa,2025,registration,total_population,3.2,,,25–29
+16.04.24,3,Tanjung Sakti Pumi,age_group,25-29,perempuan,514,jiwa,2025,registration,total_population,3.2,,,25–29
+16.04.24,3,Tanjung Sakti Pumi,age_group,25-29,,1088,jiwa,2025,registration,total_population,3.2,,,25–29
+16.04.24,3,Tanjung Sakti Pumi,age_group,30-34,laki_laki,527,jiwa,2025,registration,total_population,3.2,,,30–34
+16.04.24,3,Tanjung Sakti Pumi,age_group,30-34,perempuan,466,jiwa,2025,registration,total_population,3.2,,,30–34
+16.04.24,3,Tanjung Sakti Pumi,age_group,30-34,,993,jiwa,2025,registration,total_population,3.2,,,30–34
+16.04.24,3,Tanjung Sakti Pumi,age_group,35-39,laki_laki,672,jiwa,2025,registration,total_population,3.2,,,35–39
+16.04.24,3,Tanjung Sakti Pumi,age_group,35-39,perempuan,536,jiwa,2025,registration,total_population,3.2,,,35–39
+16.04.24,3,Tanjung Sakti Pumi,age_group,35-39,,1208,jiwa,2025,registration,total_population,3.2,,,35–39
+16.04.24,3,Tanjung Sakti Pumi,age_group,40-44,laki_laki,699,jiwa,2025,registration,total_population,3.2,,,40–44
+16.04.24,3,Tanjung Sakti Pumi,age_group,40-44,perempuan,566,jiwa,2025,registration,total_population,3.2,,,40–44
+16.04.24,3,Tanjung Sakti Pumi,age_group,40-44,,1265,jiwa,2025,registration,total_population,3.2,,,40–44
+16.04.24,3,Tanjung Sakti Pumi,age_group,45-49,laki_laki,726,jiwa,2025,registration,total_population,3.2,,,45–49
+16.04.24,3,Tanjung Sakti Pumi,age_group,45-49,perempuan,658,jiwa,2025,registration,total_population,3.2,,,45–49
+16.04.24,3,Tanjung Sakti Pumi,age_group,45-49,,1384,jiwa,2025,registration,total_population,3.2,,,45–49
+16.04.24,3,Tanjung Sakti Pumi,age_group,50-54,laki_laki,555,jiwa,2025,registration,total_population,3.2,,,50–54
+16.04.24,3,Tanjung Sakti Pumi,age_group,50-54,perempuan,509,jiwa,2025,registration,total_population,3.2,,,50–54
+16.04.24,3,Tanjung Sakti Pumi,age_group,50-54,,1064,jiwa,2025,registration,total_population,3.2,,,50–54
+16.04.24,3,Tanjung Sakti Pumi,age_group,55-59,laki_laki,477,jiwa,2025,registration,total_population,3.2,,,55–59
+16.04.24,3,Tanjung Sakti Pumi,age_group,55-59,perempuan,420,jiwa,2025,registration,total_population,3.2,,,55–59
+16.04.24,3,Tanjung Sakti Pumi,age_group,55-59,,897,jiwa,2025,registration,total_population,3.2,,,55–59
+16.04.24,3,Tanjung Sakti Pumi,age_group,60-64,laki_laki,377,jiwa,2025,registration,total_population,3.2,,,60–64
+16.04.24,3,Tanjung Sakti Pumi,age_group,60-64,perempuan,380,jiwa,2025,registration,total_population,3.2,,,60–64
+16.04.24,3,Tanjung Sakti Pumi,age_group,60-64,,757,jiwa,2025,registration,total_population,3.2,,,60–64
+16.04.24,3,Tanjung Sakti Pumi,age_group,65-69,laki_laki,342,jiwa,2025,registration,total_population,3.2,,,65–69
+16.04.24,3,Tanjung Sakti Pumi,age_group,65-69,perempuan,391,jiwa,2025,registration,total_population,3.2,,,65–69
+16.04.24,3,Tanjung Sakti Pumi,age_group,65-69,,733,jiwa,2025,registration,total_population,3.2,,,65–69
+16.04.24,3,Tanjung Sakti Pumi,age_group,70-74,laki_laki,237,jiwa,2025,registration,total_population,3.2,,,70–74
+16.04.24,3,Tanjung Sakti Pumi,age_group,70-74,perempuan,252,jiwa,2025,registration,total_population,3.2,,,70–74
+16.04.24,3,Tanjung Sakti Pumi,age_group,70-74,,489,jiwa,2025,registration,total_population,3.2,,,70–74
+16.04.24,3,Tanjung Sakti Pumi,age_group,75+,laki_laki,301,jiwa,2025,registration,total_population,3.2,,,75+
+16.04.24,3,Tanjung Sakti Pumi,age_group,75+,perempuan,369,jiwa,2025,registration,total_population,3.2,,,75+
+16.04.24,3,Tanjung Sakti Pumi,age_group,75+,,670,jiwa,2025,registration,total_population,3.2,,,75+
+16.04.24,3,Tanjung Sakti PUMI,sex,laki_laki,,8827,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+16.04.24,3,Tanjung Sakti PUMI,sex,perempuan,,8340,jiwa,2025,registration,total_population,3.2,,,Perempuan
+16.04.24,3,Tanjung Sakti PUMI,total,total,,17167,jiwa,2025,registration,total_population,3.2,,,

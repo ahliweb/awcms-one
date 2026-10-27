@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.02.2027,4,Pulo Rangkileh,sex,laki_laki,,339,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2027,4,Pulo Rangkileh,sex,perempuan,,362,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2027,4,Pulo Rangkileh,total,total,,701,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2059,4,Meunasah Blang,sex,laki_laki,,484,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2059,4,Meunasah Blang,sex,perempuan,,505,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2059,4,Meunasah Blang,total,total,,989,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2061,4,Meunasah Kota,sex,laki_laki,,219,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2061,4,Meunasah Kota,sex,perempuan,,195,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2061,4,Meunasah Kota,total,total,,414,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2018,4,Blang Me Timu,sex,laki_laki,,463,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2018,4,Blang Me Timu,sex,perempuan,,476,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2018,4,Blang Me Timu,total,total,,939,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2034,4,Ulee Gajah,sex,laki_laki,,273,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2034,4,Ulee Gajah,sex,perempuan,,264,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2034,4,Ulee Gajah,total,total,,537,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2020,4,Blang Lancang,sex,laki_laki,,532,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2020,4,Blang Lancang,sex,perempuan,,534,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2020,4,Blang Lancang,total,total,,1066,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2028,4,Tufah,sex,laki_laki,,345,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2028,4,Tufah,sex,perempuan,,362,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2028,4,Tufah,total,total,,707,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2024,4,Ulee Rabo,sex,laki_laki,,429,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2024,4,Ulee Rabo,sex,perempuan,,392,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2024,4,Ulee Rabo,total,total,,821,jiwa,2025,registration,total_population,1.2,,,
+11.11.02.2019,4,Lancang,sex,laki_laki,,363,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.02.2019,4,Lancang,sex,perempuan,,341,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.02.2019,4,Lancang,total,total,,704,jiwa,2025,registration,total_population,1.2,,,

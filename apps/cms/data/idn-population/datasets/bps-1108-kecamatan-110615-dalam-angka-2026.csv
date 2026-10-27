@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.15.2001,4,Teureubeh,sex,laki_laki,,866,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2001,4,Teureubeh,sex,perempuan,,883,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2001,4,Teureubeh,total,total,,1749,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2002,4,Barueh,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2002,4,Barueh,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2002,4,Barueh,total,total,,597,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2003,4,Jantho,sex,laki_laki,,119,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2003,4,Jantho,sex,perempuan,,107,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2003,4,Jantho,total,total,,226,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2004,4,Awek,sex,laki_laki,,105,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2004,4,Awek,sex,perempuan,,106,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2004,4,Awek,total,total,,211,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2005,4,Data Cut,sex,laki_laki,,73,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2005,4,Data Cut,sex,perempuan,,80,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2005,4,Data Cut,total,total,,153,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2006,4,Bueng,sex,laki_laki,,136,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2006,4,Bueng,sex,perempuan,,140,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2006,4,Bueng,total,total,,276,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2007,4,Weu,sex,laki_laki,,170,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2007,4,Weu,sex,perempuan,,164,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2007,4,Weu,total,total,,334,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2008,4,Jalin,sex,laki_laki,,153,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2008,4,Jalin,sex,perempuan,,156,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2008,4,Jalin,total,total,,309,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2009,4,Suka Tani,sex,laki_laki,,59,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2009,4,Suka Tani,sex,perempuan,,55,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2009,4,Suka Tani,total,total,,114,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2010,4,Cucum,sex,laki_laki,,285,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2010,4,Cucum,sex,perempuan,,271,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2010,4,Cucum,total,total,,556,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2011,4,Jantho Baru,sex,laki_laki,,654,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2011,4,Jantho Baru,sex,perempuan,,629,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2011,4,Jantho Baru,total,total,,1283,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2012,4,Jantho Makmur,sex,laki_laki,,1257,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2012,4,Jantho Makmur,sex,perempuan,,1286,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2012,4,Jantho Makmur,total,total,,2543,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15.2013,4,Bukit Meusara,sex,laki_laki,,724,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15.2013,4,Bukit Meusara,sex,perempuan,,662,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15.2013,4,Bukit Meusara,total,total,,1386,jiwa,2025,registration,total_population,3.1,24,,
+11.06.15,3,Kota Jantho,sex,laki_laki,,4884,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.06.15,3,Kota Jantho,sex,perempuan,,4853,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.06.15,3,Kota Jantho,total,total,,9737,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.21.2011,4,Ciparay,sex,laki_laki,,3014,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2011,4,Ciparay,sex,perempuan,,3114,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2011,4,Ciparay,total,total,,6128,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2002,4,Bojong Genteng,sex,laki_laki,,1446,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2002,4,Bojong Genteng,sex,perempuan,,1540,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2002,4,Bojong Genteng,total,total,,2986,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2005,4,Bojongsari,sex,laki_laki,,2934,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2005,4,Bojongsari,sex,perempuan,,3004,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2005,4,Bojongsari,total,total,,5938,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2008,4,Mekarjaya,sex,laki_laki,,2512,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2008,4,Mekarjaya,sex,perempuan,,2527,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2008,4,Mekarjaya,total,total,,5039,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2007,4,Nagraksari,sex,laki_laki,,3391,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2007,4,Nagraksari,sex,perempuan,,3430,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2007,4,Nagraksari,total,total,,6821,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.1001,4,Jampang Kulon,sex,laki_laki,,1500,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.1001,4,Jampang Kulon,sex,perempuan,,1542,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.1001,4,Jampang Kulon,total,total,,3042,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2009,4,Tanjung,sex,laki_laki,,2960,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2009,4,Tanjung,sex,perempuan,,2850,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2009,4,Tanjung,total,total,,5810,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2013,4,Padajaya,sex,laki_laki,,2255,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2013,4,Padajaya,sex,perempuan,,2265,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2013,4,Padajaya,total,total,,4520,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2003,4,Cikarang,sex,laki_laki,,2083,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2003,4,Cikarang,sex,perempuan,,1971,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2003,4,Cikarang,total,total,,4054,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2014,4,Karanganyar,sex,laki_laki,,1825,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2014,4,Karanganyar,sex,perempuan,,1721,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2014,4,Karanganyar,total,total,,3546,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21.2016,4,Cikaranggeusan,sex,laki_laki,,1841,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21.2016,4,Cikaranggeusan,sex,perempuan,,1783,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21.2016,4,Cikaranggeusan,total,total,,3624,jiwa,2025,registration,total_population,3.1,24,,
+32.02.21,3,Jampang Kulon,sex,laki_laki,,25761,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.21,3,Jampang Kulon,sex,perempuan,,25747,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.21,3,Jampang Kulon,total,total,,51508,jiwa,2025,registration,total_population,3.1,24,,

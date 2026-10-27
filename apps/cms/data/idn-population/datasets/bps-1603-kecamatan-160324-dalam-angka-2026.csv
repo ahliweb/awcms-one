@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.24.2001,4,Tanjung Bunut,sex,laki_laki,,840,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2001,4,Tanjung Bunut,sex,perempuan,,843,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2001,4,Tanjung Bunut,total,total,,1683,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2002,4,Babat,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2002,4,Babat,sex,perempuan,,664,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2002,4,Babat,total,total,,1360,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2003,4,Lubuk Semantung,sex,laki_laki,,479,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2003,4,Lubuk Semantung,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2003,4,Lubuk Semantung,total,total,,958,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2004,4,Lubuk Getam,sex,laki_laki,,482,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2004,4,Lubuk Getam,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2004,4,Lubuk Getam,total,total,,914,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2005,4,Talang Balai,sex,laki_laki,,968,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2005,4,Talang Balai,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2005,4,Talang Balai,total,total,,1839,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2006,4,Talang Beliung,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2006,4,Talang Beliung,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2006,4,Talang Beliung,total,total,,682,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2007,4,Sialingan,sex,laki_laki,,843,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2007,4,Sialingan,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2007,4,Sialingan,total,total,,1626,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2008,4,Tanjung Tiga,sex,laki_laki,,431,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2008,4,Tanjung Tiga,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2008,4,Tanjung Tiga,total,total,,825,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2009,4,Ibul,sex,laki_laki,,699,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2009,4,Ibul,sex,perempuan,,651,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2009,4,Ibul,total,total,,1350,jiwa,2025,registration,total_population,3.1,23,,
+16.03.24.2010,4,Gaung Asam,sex,laki_laki,,1324,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.24.2010,4,Gaung Asam,sex,perempuan,,1283,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.24.2010,4,Gaung Asam,total,total,,2607,jiwa,2025,registration,total_population,3.1,23,,

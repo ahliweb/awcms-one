@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.08.23.2002,4,Lueng Baro,sex,laki_laki,,408,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23.2002,4,Lueng Baro,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23.2002,4,Lueng Baro,total,total,,810,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23.2004,4,Merbo Lama,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23.2004,4,Merbo Lama,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23.2004,4,Merbo Lama,total,total,,516,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23.2003,4,Merbo Jurong,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23.2003,4,Merbo Jurong,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23.2003,4,Merbo Jurong,total,total,,550,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23.2006,4,Geulanggang Baro,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23.2006,4,Geulanggang Baro,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23.2006,4,Geulanggang Baro,total,total,,784,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23.2007,4,Matang Tunong,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23.2007,4,Matang Tunong,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23.2007,4,Matang Tunong,total,total,,888,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23.2009,4,Matang Baroh,sex,laki_laki,,693,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23.2009,4,Matang Baroh,sex,perempuan,,718,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23.2009,4,Matang Baroh,total,total,,1411,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23.2008,4,Keude Lapang,sex,laki_laki,,167,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23.2008,4,Keude Lapang,sex,perempuan,,166,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23.2008,4,Keude Lapang,total,total,,333,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23,3,Lapang,sex,laki_laki,,4569,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.23,3,Lapang,sex,perempuan,,4705,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.23,3,Lapang,total,total,,9274,jiwa,2025,registration,total_population,3.1,28,,
+11.08.23,3,Lapang,age_group,0-4,laki_laki,393,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.23,3,Lapang,age_group,0-4,perempuan,364,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.23,3,Lapang,age_group,0-4,,757,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.23,3,Lapang,age_group,5-9,laki_laki,444,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.23,3,Lapang,age_group,5-9,perempuan,449,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.23,3,Lapang,age_group,5-9,,893,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.23,3,Lapang,age_group,10-14,laki_laki,406,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.23,3,Lapang,age_group,10-14,perempuan,395,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.23,3,Lapang,age_group,10-14,,801,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.23,3,Lapang,age_group,15-19,laki_laki,373,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.23,3,Lapang,age_group,15-19,perempuan,337,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.23,3,Lapang,age_group,15-19,,710,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.23,3,Lapang,age_group,20-24,laki_laki,407,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.23,3,Lapang,age_group,20-24,perempuan,359,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.23,3,Lapang,age_group,20-24,,766,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.23,3,Lapang,age_group,25-29,laki_laki,377,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.23,3,Lapang,age_group,25-29,perempuan,347,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.23,3,Lapang,age_group,25-29,,724,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.23,3,Lapang,age_group,30-34,laki_laki,348,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.23,3,Lapang,age_group,30-34,perempuan,331,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.23,3,Lapang,age_group,30-34,,679,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.23,3,Lapang,age_group,35-39,laki_laki,344,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.23,3,Lapang,age_group,35-39,perempuan,377,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.23,3,Lapang,age_group,35-39,,721,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.23,3,Lapang,age_group,40-44,laki_laki,310,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.23,3,Lapang,age_group,40-44,perempuan,318,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.23,3,Lapang,age_group,40-44,,628,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.23,3,Lapang,age_group,45-49,laki_laki,276,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.23,3,Lapang,age_group,45-49,perempuan,330,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.23,3,Lapang,age_group,45-49,,606,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.23,3,Lapang,age_group,50-54,laki_laki,248,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.23,3,Lapang,age_group,50-54,perempuan,274,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.23,3,Lapang,age_group,50-54,,522,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.23,3,Lapang,age_group,55-59,laki_laki,201,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.23,3,Lapang,age_group,55-59,perempuan,232,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.23,3,Lapang,age_group,55-59,,433,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.23,3,Lapang,age_group,60-64,laki_laki,152,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.23,3,Lapang,age_group,60-64,perempuan,181,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.23,3,Lapang,age_group,60-64,,333,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.23,3,Lapang,age_group,65+,laki_laki,290,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.23,3,Lapang,age_group,65+,perempuan,411,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.23,3,Lapang,age_group,65+,,701,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.23,3,Lapang,sex,laki_laki,,4569,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+11.08.23,3,Lapang,sex,perempuan,,4705,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+11.08.23,3,Lapang,total,total,,9274,jiwa,2025,registration,total_population,3.2,30,,

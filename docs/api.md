@@ -165,7 +165,7 @@ Every route below is behind the tenant's `segments` feature flag (default OFF â€
 
 Evaluation is bounded: `422 SEGMENT_TOO_EXPENSIVE` (cancelled at the 5 s statement timeout), `429 SEGMENT_EVALUATION_BUSY` (2 per tenant, 1 per actor; `Retry-After`) and `429 RATE_LIMITED` (30 previews per actor per minute). Walk-in, blocked and erased customers are never counted or listed. Seven permission keys: `commerce.segments.{read,create,update,delete}`, `commerce.segment_previews.read`, `commerce.segment_members.{read,export}`. No domain event is published yet.
 
-### Booking-derived segment rules (issue #390, [ADR-0051](adr/0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+### Booking-derived segment rules (issue #390, [ADR-0052](adr/0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
 
 The five routes above accept five more `field` values in a rule - `booking_count`, `stay_count`, `no_show_count`, `cancellation_count` (operators `eq gt gte lt lte`, integer `value` 0 to 1,000,000, optional `windowDays`) and `last_stay_date` (operators `before after never`, `value` an ISO instant or `{ "daysAgo": n }`, no window) - and nothing else about their bodies changes. Every version in a response carries `ruleSchemaVersion` (`1` for versions saved before this change, `2` for new ones); a version is always read under the schema it carries, so a booking field inside a schema-1 version is refused rather than evaluated. A rule that reads any of the five additionally needs:
 

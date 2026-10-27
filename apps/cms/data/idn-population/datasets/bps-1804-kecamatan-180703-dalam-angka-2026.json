@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1804-kecamatan-180703-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.07.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jabung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Timur",
+  "publisherDomain": "1804",
+  "publisherWebsite": "https://lampungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Timur (https://lampungtimurkab.bps.go.id), publikasi \"Kecamatan Jabung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1804060",
+  "publicationNumber": "18040.26015",
+  "issn": "2797-538X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtimurkab.bps.go.id/id/publication/2026/09/28/cc692448ff73e6b85bcf66f7/kecamatan-jabung-dalam-angka-2026.html",
+  "sourceFileSha256": "d943b002c005988a1722d2ab9bfae0eddc59b22791420ac0fbb695d6cdd0fe19",
+  "sourceFileBytes": 7884201,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Timur.",
+  "csvPath": "datasets/bps-1804-kecamatan-180703-dalam-angka-2026.csv",
+  "csvSha256": "9ff5224a56f53ee4b43a1e7ce2f9d0aa8e154bfb2adfd53200989229622f21fc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio ───── Jenis Kelamin Penduduk Menurut Desa di Kecamatan Jabung, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di ───── Kecamatan Jabung, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Benteng Sari\": unmatched ",
+    "table 3.1: row not stored: row \"Benteng Sari\": unmatched ",
+    "cross-table disagreement, both stored as published: 18.07.03 sex/laki_laki/ 2025: 3551 (table 3.1) vs 28818 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.07.03 sex/perempuan/ 2025: 3387 (table 3.1) vs 27987 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.07.03 total/total/ 2025: 6938 (table 3.1) vs 56805 (table 3.2)"
+  ]
+}

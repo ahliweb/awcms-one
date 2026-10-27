@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.12.2001,4,Sentang,sex,laki_laki,,1361,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2001,4,Sentang,sex,perempuan,,1475,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2001,4,Sentang,total,total,,2836,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2002,4,Tanjung Mulia,sex,laki_laki,,1153,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2002,4,Tanjung Mulia,sex,perempuan,,1155,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2002,4,Tanjung Mulia,total,total,,2308,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2003,4,Jati Mulia,sex,laki_laki,,618,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2003,4,Jati Mulia,sex,perempuan,,621,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2003,4,Jati Mulia,total,total,,1239,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2004,4,Lima Laras,sex,laki_laki,,1270,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2004,4,Lima Laras,sex,perempuan,,1443,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2004,4,Lima Laras,total,total,,2713,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2005,4,Mekar Laras,sex,laki_laki,,1305,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2005,4,Mekar Laras,sex,perempuan,,1412,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2005,4,Mekar Laras,total,total,,2717,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2006,4,Bandar Sono,sex,laki_laki,,2001,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2006,4,Bandar Sono,sex,perempuan,,2099,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2006,4,Bandar Sono,total,total,,4100,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2007,4,Ujung Kubu,sex,laki_laki,,3866,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2007,4,Ujung Kubu,sex,perempuan,,4114,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2007,4,Ujung Kubu,total,total,,7980,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2008,4,Sei Mentaram,sex,laki_laki,,992,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2008,4,Sei Mentaram,sex,perempuan,,1003,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2008,4,Sei Mentaram,total,total,,1995,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2009,4,Pematang Rambai,sex,laki_laki,,2400,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2009,4,Pematang Rambai,sex,perempuan,,2525,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2009,4,Pematang Rambai,total,total,,4925,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2010,4,Tali Air Permai,sex,laki_laki,,1658,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2010,4,Tali Air Permai,sex,perempuan,,1711,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2010,4,Tali Air Permai,total,total,,3369,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2011,4,Bagan Baru,sex,laki_laki,,934,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2011,4,Bagan Baru,sex,perempuan,,956,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2011,4,Bagan Baru,total,total,,1890,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12.2012,4,Kapal Merah,sex,laki_laki,,776,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12.2012,4,Kapal Merah,sex,perempuan,,843,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12.2012,4,Kapal Merah,total,total,,1619,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.12,3,Nibung Hangus,sex,laki_laki,,18334,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.12,3,Nibung Hangus,sex,perempuan,,19357,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.12,3,Nibung Hangus,total,total,,37691,jiwa,2025,registration,total_population,unnumbered-p28,28,,

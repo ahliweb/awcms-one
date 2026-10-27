@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-6212-kecamatan-621310-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.13.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karusen Janang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Barito Timur.",
+  "publisherDomain": "6212",
+  "publisherWebsite": "https://bartimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Barito Timur. (https://bartimkab.bps.go.id), publikasi \"Kecamatan Karusen Janang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6212010",
+  "publicationNumber": "62120.26016",
+  "issn": "2302-5034",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bartimkab.bps.go.id/id/publication/2026/09/28/4074f37a2c9d258e2c3db61f/kecamatan-karusen-janang-dalam-angka-2026.html",
+  "sourceFileSha256": "b00f79e7250dbd319cce87aa2648cec1e78e09969c01ec53ae63297d95cf7c7b",
+  "sourceFileBytes": 4163454,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Timur.",
+  "csvPath": "datasets/bps-6212-kecamatan-621310-dalam-angka-2026.csv",
+  "csvSha256": "170b46ceea6f97168a87e928d1fcd8affae430171bdaebb4c538c96b82a30b5a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Karusen Janang, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karusen Janang, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 is not included: its published figures do not add up (age_group vs total: parts sum 5488.0000 != 5508.0000 (diff 20.0000)); the source itself is inconsistent"
+  ]
+}

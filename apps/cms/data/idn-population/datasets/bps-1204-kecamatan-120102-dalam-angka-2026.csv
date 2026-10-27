@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.02.2015,4,Bottot,sex,laki_laki,,315,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2015,4,Bottot,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2015,4,Bottot,total,total,,592,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.1001,4,Sorkam,sex,laki_laki,,396,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.1001,4,Sorkam,sex,perempuan,,386,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.1001,4,Sorkam,total,total,,782,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.1002,4,Pargarutan,sex,laki_laki,,1048,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.1002,4,Pargarutan,sex,perempuan,,1099,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.1002,4,Pargarutan,total,total,,2147,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.1004,4,Tarutung Bolak,sex,laki_laki,,791,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.1004,4,Tarutung Bolak,sex,perempuan,,904,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.1004,4,Tarutung Bolak,total,total,,1695,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2010,4,Gonting Mahe,sex,laki_laki,,668,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2010,4,Gonting Mahe,sex,perempuan,,717,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2010,4,Gonting Mahe,total,total,,1385,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2006,4,Pardamean,sex,laki_laki,,287,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2006,4,Pardamean,sex,perempuan,,311,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2006,4,Pardamean,total,total,,598,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2007,4,Pelita,sex,laki_laki,,667,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2007,4,Pelita,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2007,4,Pelita,total,total,,1353,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2005,4,Fajar,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2005,4,Fajar,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2005,4,Fajar,total,total,,661,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2014,4,Pearaja,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2014,4,Pearaja,sex,perempuan,,442,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2014,4,Pearaja,total,total,,889,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.1009,4,Naipospos Barat,sex,laki_laki,,273,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.1009,4,Naipospos Barat,sex,perempuan,,309,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.1009,4,Naipospos Barat,total,total,,582,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2008,4,Rianiate,sex,laki_laki,,274,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2008,4,Rianiate,sex,perempuan,,261,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2008,4,Rianiate,total,total,,535,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2011,4,Dolok Pantis,sex,laki_laki,,174,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2011,4,Dolok Pantis,sex,perempuan,,158,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2011,4,Dolok Pantis,total,total,,332,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2003,4,Teluk Roban,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2003,4,Teluk Roban,sex,perempuan,,439,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2003,4,Teluk Roban,total,total,,907,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2017,4,Sorkam Kiri,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2017,4,Sorkam Kiri,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2017,4,Sorkam Kiri,total,total,,612,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2016,4,Sorkam Tengah,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2016,4,Sorkam Tengah,sex,perempuan,,309,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2016,4,Sorkam Tengah,total,total,,590,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2020,4,Hite Urat,sex,laki_laki,,274,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2020,4,Hite Urat,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2020,4,Hite Urat,total,total,,573,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2019,4,Pagaran Julu,sex,laki_laki,,302,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2019,4,Pagaran Julu,sex,perempuan,,289,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2019,4,Pagaran Julu,total,total,,591,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2018,4,Pananggahan,sex,laki_laki,,364,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2018,4,Pananggahan,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2018,4,Pananggahan,total,total,,715,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2021,4,Sihapas,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2021,4,Sihapas,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2021,4,Sihapas,total,total,,617,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2022,4,Nauli,sex,laki_laki,,231,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2022,4,Nauli,sex,perempuan,,255,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2022,4,Nauli,total,total,,486,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02.2023,4,Muara Nauli,sex,laki_laki,,439,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02.2023,4,Muara Nauli,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02.2023,4,Muara Nauli,total,total,,887,jiwa,2025,registration,total_population,3.1,37,,
+12.01.02,3,Sorkam,sex,laki_laki,,8651,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/
+12.01.02,3,Sorkam,sex,perempuan,,8878,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.02,3,Sorkam,total,total,,17529,jiwa,2025,registration,total_population,3.1,37,,

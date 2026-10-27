@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.18.2001,4,Cempaka,sex,laki_laki,,4016,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2001,4,Cempaka,sex,perempuan,,3897,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2001,4,Cempaka,total,total,,7913,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2002,4,Pamijahan,sex,laki_laki,,4073,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2002,4,Pamijahan,sex,perempuan,,3810,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2002,4,Pamijahan,total,total,,7883,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2003,4,Lurah,sex,laki_laki,,4254,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2003,4,Lurah,sex,perempuan,,4264,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2003,4,Lurah,total,total,,8518,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2004,4,Marikangen,sex,laki_laki,,4496,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2004,4,Marikangen,sex,perempuan,,4162,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2004,4,Marikangen,total,total,,8658,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2005,4,Bode Lor,sex,laki_laki,,3303,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2005,4,Bode Lor,sex,perempuan,,3025,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2005,4,Bode Lor,total,total,,6328,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2006,4,Bodesari,sex,laki_laki,,3822,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2006,4,Bodesari,sex,perempuan,,3478,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2006,4,Bodesari,total,total,,7300,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2007,4,Gombang,sex,laki_laki,,3541,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2007,4,Gombang,sex,perempuan,,3455,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2007,4,Gombang,total,total,,6996,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2008,4,Karangmulya,sex,laki_laki,,1752,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2008,4,Karangmulya,sex,perempuan,,1826,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2008,4,Karangmulya,total,total,,3578,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2009,4,Karangasem,sex,laki_laki,,2985,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2009,4,Karangasem,sex,perempuan,,2894,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2009,4,Karangasem,total,total,,5879,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2010,4,Plumbon,sex,laki_laki,,2246,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2010,4,Plumbon,sex,perempuan,,2282,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2010,4,Plumbon,total,total,,4528,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2011,4,Purbawinangun,sex,laki_laki,,1708,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2011,4,Purbawinangun,sex,perempuan,,1696,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2011,4,Purbawinangun,total,total,,3404,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2012,4,Kebarepan,sex,laki_laki,,2735,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2012,4,Kebarepan,sex,perempuan,,2631,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2012,4,Kebarepan,total,total,,5366,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2013,4,Pasanggrahan,sex,laki_laki,,2291,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2013,4,Pasanggrahan,sex,perempuan,,2206,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2013,4,Pasanggrahan,total,total,,4497,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2014,4,Kedungsana,sex,laki_laki,,2091,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2014,4,Kedungsana,sex,perempuan,,2030,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2014,4,Kedungsana,total,total,,4121,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18.2015,4,Danamulya,sex,laki_laki,,1852,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18.2015,4,Danamulya,sex,perempuan,,1835,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18.2015,4,Danamulya,total,total,,3687,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18,3,Kecamatan Plumbon,sex,laki_laki,,45165,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.18,3,Kecamatan Plumbon,sex,perempuan,,43491,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.18,3,Kecamatan Plumbon,total,total,,88656,jiwa,2025,registration,total_population,3.1,52,,
+32.09.18,3,Plumbon,age_group,0-4,laki_laki,3002,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.18,3,Plumbon,age_group,0-4,perempuan,2725,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.18,3,Plumbon,age_group,0-4,,5727,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.18,3,Plumbon,age_group,5-9,laki_laki,3763,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.18,3,Plumbon,age_group,5-9,perempuan,3390,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.18,3,Plumbon,age_group,5-9,,7153,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.18,3,Plumbon,age_group,10-14,laki_laki,3610,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.18,3,Plumbon,age_group,10-14,perempuan,3258,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.18,3,Plumbon,age_group,10-14,,6868,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.18,3,Plumbon,age_group,15-19,laki_laki,3262,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.18,3,Plumbon,age_group,15-19,perempuan,3027,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.18,3,Plumbon,age_group,15-19,,6289,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.18,3,Plumbon,age_group,20-24,laki_laki,3425,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.18,3,Plumbon,age_group,20-24,perempuan,3120,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.18,3,Plumbon,age_group,20-24,,6545,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.18,3,Plumbon,age_group,25-29,laki_laki,3574,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.18,3,Plumbon,age_group,25-29,perempuan,3364,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.18,3,Plumbon,age_group,25-29,,6938,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.18,3,Plumbon,age_group,30-34,laki_laki,3559,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.18,3,Plumbon,age_group,30-34,perempuan,3387,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.18,3,Plumbon,age_group,30-34,,6946,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.18,3,Plumbon,age_group,35-39,laki_laki,3606,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.18,3,Plumbon,age_group,35-39,perempuan,3372,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.18,3,Plumbon,age_group,35-39,,6978,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.18,3,Plumbon,age_group,40-44,laki_laki,3910,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.18,3,Plumbon,age_group,40-44,perempuan,3856,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.18,3,Plumbon,age_group,40-44,,7766,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.18,3,Plumbon,age_group,45-49,laki_laki,3629,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.18,3,Plumbon,age_group,45-49,perempuan,3497,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.18,3,Plumbon,age_group,45-49,,7126,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.18,3,Plumbon,age_group,50-54,laki_laki,3105,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.18,3,Plumbon,age_group,50-54,perempuan,3093,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.18,3,Plumbon,age_group,50-54,,6198,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.18,3,Plumbon,age_group,55-59,laki_laki,2398,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.18,3,Plumbon,age_group,55-59,perempuan,2318,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.18,3,Plumbon,age_group,55-59,,4716,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.18,3,Plumbon,age_group,60-64,laki_laki,1636,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.18,3,Plumbon,age_group,60-64,perempuan,1783,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.18,3,Plumbon,age_group,60-64,,3419,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.18,3,Plumbon,age_group,65-69,laki_laki,1245,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.18,3,Plumbon,age_group,65-69,perempuan,1371,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.18,3,Plumbon,age_group,65-69,,2616,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.18,3,Plumbon,age_group,70-74,laki_laki,751,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.18,3,Plumbon,age_group,70-74,perempuan,835,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.18,3,Plumbon,age_group,70-74,,1586,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.18,3,Plumbon,age_group,75+,laki_laki,690,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.18,3,Plumbon,age_group,75+,perempuan,1095,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.18,3,Plumbon,age_group,75+,,1785,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.18,3,Kecamatan Plumbon,sex,laki_laki,,45165,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.18,3,Kecamatan Plumbon,sex,perempuan,,43491,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.18,3,Kecamatan Plumbon,total,total,,88656,jiwa,2025,registration,total_population,3.2,54,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09,2,Kuantan Singingi,total,total,,334.94,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.09,2,Kuantan Singingi,total,total,,352.78,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.09,2,Kuantan Singingi,total,total,,356.22,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.02,2,Indragiri Hulu,total,total,,444.55,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.02,2,Indragiri Hulu,total,total,,474.40,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.02,2,Indragiri Hulu,total,total,,480.34,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.04,2,Indragiri Hilir,total,total,,654.91,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.04,2,Indragiri Hilir,total,total,,692.19,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.04,2,Indragiri Hilir,total,total,,699.32,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.05,2,Pelalawan,total,total,,390.05,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.05,2,Pelalawan,total,total,,421.24,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.05,2,Pelalawan,total,total,,427.43,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.08,2,Siak,total,total,,457.94,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.08,2,Siak,total,total,,490.38,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.08,2,Siak,total,total,,496.89,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.01,2,Kampar,total,total,,841.33,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.01,2,Kampar,total,total,,908.39,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.01,2,Kampar,total,total,,921.67,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.06,2,Rokan Hulu,total,total,,561.39,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.06,2,Rokan Hulu,total,total,,601.63,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.06,2,Rokan Hulu,total,total,,609.69,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.03,2,Bengkalis,total,total,,565.57,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.03,2,Bengkalis,total,total,,598.33,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.03,2,Bengkalis,total,total,,604.53,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.07,2,Rokan Hilir,total,total,,637.16,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.07,2,Rokan Hilir,total,total,,682.62,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.07,2,Rokan Hilir,total,total,,691.83,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.10,2,Kepulauan Meranti,total,total,,206.12,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.10,2,Kepulauan Meranti,total,total,,215.59,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.10,2,Kepulauan Meranti,total,total,,217.41,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.71,2,Pekanbaru,total,total,,983.36,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.71,2,Pekanbaru,total,total,,1036.56,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.71,2,Pekanbaru,total,total,,1046.05,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.72,2,Dumai,total,total,,316.78,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14.72,2,Dumai,total,total,,337.07,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14.72,2,Dumai,total,total,,341.01,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14,1,Riau,total,total,,6394.09,ribu_jiwa,2020,census,total_population,3.1.1,67,,
+14,1,Riau,total,total,,6811.16,ribu_jiwa,2025,projection,total_population,3.1.1,67,,
+14,1,Riau,total,total,,6892.39,ribu_jiwa,2026,projection,total_population,3.1.1,67,,
+14.09,2,Kuantan Singingi,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2639332.18,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.09,2,Kuantan Singingi,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2728201.65,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.09,2,Kuantan Singingi,income,total,,2702134.89,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.02,2,Indragiri Hulu,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2770238.95,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.02,2,Indragiri Hulu,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2554968.38,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.02,2,Indragiri Hulu,income,total,,2725867.15,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.04,2,Indragiri Hilir,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2012298.61,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.04,2,Indragiri Hilir,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2504553.8,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.04,2,Indragiri Hilir,income,total,,2545122.45,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.05,2,Pelalawan,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3614452.62,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.05,2,Pelalawan,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2953724.74,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.05,2,Pelalawan,income,total,,3542425.69,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.08,2,Siak,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3190971.43,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.08,2,Siak,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2850546.21,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.08,2,Siak,income,total,,3275841.44,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.01,2,Kampar,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2969884.48,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.01,2,Kampar,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2911282.1,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.01,2,Kampar,income,total,,2983653.55,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.06,2,Rokan Hulu,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3156693.06,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.06,2,Rokan Hulu,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2557198.76,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.06,2,Rokan Hulu,income,total,,2831218.87,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.03,2,Bengkalis,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3310600.68,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.03,2,Bengkalis,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3159116.4,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.03,2,Bengkalis,income,total,,3732748.87,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.07,2,Rokan Hilir,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2547275.63,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.07,2,Rokan Hilir,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2511959.01,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.07,2,Rokan Hilir,income,total,,2591560.73,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.10,2,Kepulauan Meranti,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1729525.25,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.10,2,Kepulauan Meranti,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2458789.22,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.10,2,Kepulauan Meranti,income,total,,2650564.19,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.71,2,Pekanbaru,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,4229922.89,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.71,2,Pekanbaru,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3620841.42,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.71,2,Pekanbaru,income,total,,3611603.13,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14.72,2,Dumai,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2277703.29,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14.72,2,Dumai,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3296482.37,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14.72,2,Dumai,income,total,,3426628.83,rupiah,2025,survey_estimate,employees,3.2.21,109,,
+14,1,Riau,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2913134.22,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Pertanian, Kehutanan dan Perikanan"
+14,1,Riau,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3007669.8,rupiah,2025,survey_estimate,employees,3.2.21,109,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+14,1,Riau,income,total,,3144260.99,rupiah,2025,survey_estimate,employees,3.2.21,109,,

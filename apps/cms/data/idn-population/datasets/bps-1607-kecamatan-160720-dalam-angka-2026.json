@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160720-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karang Agung Ilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Karang Agung Ilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1607101",
+  "publicationNumber": "16070.26023",
+  "issn": "3064-4976",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/58e347551331554865d76312/kecamatan-karang-agung-ilir-dalam-angka-2026.html",
+  "sourceFileSha256": "fe8a119be6591e305ea8052881d6da51e4d9a11326e49b23f0963c0fcff0cc50",
+  "sourceFileBytes": 11381233,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160720-dalam-angka-2026.csv",
+  "csvSha256": "28a50e797dea22690047d3579872c521cc7406d99061ed4bc9eed24066bded15",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karang Agung Ilir, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sumber Rejeki 939\": unmatched ",
+    "table 3.1: row not stored: row \"Sri Agung 1.144\": unmatched ",
+    "table 3.1: row not stored: row \"Mekar Sari 1.115\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Sari 945\": unmatched ",
+    "table 3.1: row not stored: row \"Majuria 762\": unmatched ",
+    "table 3.1: row not stored: row \"Jati Sari 1.061\": unmatched ",
+    "table 3.1: row not stored: row \"Tabala Jaya 712\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Agung Ilir 6.678\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

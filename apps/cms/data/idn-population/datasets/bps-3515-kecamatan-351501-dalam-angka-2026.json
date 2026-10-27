@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3515-kecamatan-351501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.15.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tarik Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sidoarjo",
+  "publisherDomain": "3515",
+  "publisherWebsite": "https://sidoarjokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sidoarjo (https://sidoarjokab.bps.go.id), publikasi \"Kecamatan Tarik Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3515010",
+  "publicationNumber": "35150.26006",
+  "issn": "2620-701X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sidoarjokab.bps.go.id/id/publication/2026/09/28/203045f73104d09546a4f0ba/kecamatan-tarik-dalam-angka-2026.html",
+  "sourceFileSha256": "433c090b780a49cffef008bdde130ffd5e4d5a14b7240495965aec6c87fa4cb6",
+  "sourceFileBytes": 16325189,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sidoarjo.",
+  "csvPath": "datasets/bps-3515-kecamatan-351501-dalam-angka-2026.csv",
+  "csvSha256": "d52bedd3e88f898d778c7993f00318447266b4ffe675d9309bea0ead3b87c544",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tarik, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tarik, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 35.15.01 are not stored: age_group vs total: parts sum 68368.0000 != 68369.0000 (diff 1.0000); the source itself is inconsistent"
+  ]
+}

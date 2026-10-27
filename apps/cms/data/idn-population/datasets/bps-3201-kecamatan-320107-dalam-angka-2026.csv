@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.07.2004,4,Dayeuh,sex,laki_laki,,19330,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2004,4,Dayeuh,sex,perempuan,,18994,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2004,4,Dayeuh,total,total,,38324,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2003,4,Mampir,sex,laki_laki,,10016,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2003,4,Mampir,sex,perempuan,,9777,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2003,4,Mampir,total,total,,19793,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2009,4,Situsari,sex,laki_laki,,12095,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2009,4,Situsari,sex,perempuan,,12191,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2009,4,Situsari,total,total,,24286,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2008,4,Cipeucang,sex,laki_laki,,6650,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2008,4,Cipeucang,sex,perempuan,,6648,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2008,4,Cipeucang,total,total,,13298,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2006,4,Jatisari,sex,laki_laki,,4964,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2006,4,Jatisari,sex,perempuan,,4879,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2006,4,Jatisari,total,total,,9843,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2005,4,Gandoang,sex,laki_laki,,10178,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2005,4,Gandoang,sex,perempuan,,10082,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2005,4,Gandoang,total,total,,20260,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2002,4,Mekarsari,sex,laki_laki,,6677,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2002,4,Mekarsari,sex,perempuan,,6474,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2002,4,Mekarsari,total,total,,13151,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2007,4,Cileungsi Kidul,sex,laki_laki,,19092,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2007,4,Cileungsi Kidul,sex,perempuan,,18974,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2007,4,Cileungsi Kidul,total,total,,38066,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2012,4,Cileungsi,sex,laki_laki,,12478,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2012,4,Cileungsi,sex,perempuan,,12175,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2012,4,Cileungsi,total,total,,24653,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2011,4,Limusnunggal,sex,laki_laki,,15319,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2011,4,Limusnunggal,sex,perempuan,,15093,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2011,4,Limusnunggal,total,total,,30412,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2001,4,Pasir Angin,sex,laki_laki,,21077,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2001,4,Pasir Angin,sex,perempuan,,20593,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2001,4,Pasir Angin,total,total,,41670,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07.2010,4,Cipenjo,sex,laki_laki,,12168,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07.2010,4,Cipenjo,sex,perempuan,,11921,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07.2010,4,Cipenjo,total,total,,24089,jiwa,2025,registration,total_population,3.1,37,,
+32.01.07,3,Kecamatan Cileungsi,sex,laki_laki,,150044,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.01.07,3,Kecamatan Cileungsi,sex,perempuan,,147801,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.01.07,3,Kecamatan Cileungsi,total,total,,297845,jiwa,2025,registration,total_population,3.1,37,,

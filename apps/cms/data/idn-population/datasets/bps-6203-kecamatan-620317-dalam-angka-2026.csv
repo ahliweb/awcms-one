@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.17.2014,4,Terusan Raya Hulu,sex,laki_laki,,1011,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2014,4,Terusan Raya Hulu,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2014,4,Terusan Raya Hulu,total,total,,1900,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2009,4,Terusan Mulya,sex,laki_laki,,1307,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2009,4,Terusan Mulya,sex,perempuan,,1258,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2009,4,Terusan Mulya,total,total,,2565,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2007,4,Terusan Karya,sex,laki_laki,,1161,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2007,4,Terusan Karya,sex,perempuan,,1160,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2007,4,Terusan Karya,total,total,,2321,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2008,4,Terusan Makmur,sex,laki_laki,,900,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2008,4,Terusan Makmur,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2008,4,Terusan Makmur,total,total,,1789,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2013,4,Terusan Raya Barat,sex,laki_laki,,806,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2013,4,Terusan Raya Barat,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2013,4,Terusan Raya Barat,total,total,,1543,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2012,4,Terusan Baguntan Raya,sex,laki_laki,,909,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2012,4,Terusan Baguntan Raya,sex,perempuan,,826,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2012,4,Terusan Baguntan Raya,total,total,,1735,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2006,4,Terusan Raya,sex,laki_laki,,1414,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2006,4,Terusan Raya,sex,perempuan,,1319,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2006,4,Terusan Raya,total,total,,2733,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2010,4,Bamban Raya,sex,laki_laki,,1005,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2010,4,Bamban Raya,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2010,4,Bamban Raya,total,total,,1894,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2004,4,Sei Jangkit,sex,laki_laki,,2397,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2004,4,Sei Jangkit,sex,perempuan,,2197,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2004,4,Sei Jangkit,total,total,,4594,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2005,4,Tamban Luar,sex,laki_laki,,1708,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2005,4,Tamban Luar,sex,perempuan,,1555,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2005,4,Tamban Luar,total,total,,3263,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2011,4,Bangun Harjo,sex,laki_laki,,513,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2011,4,Bangun Harjo,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2011,4,Bangun Harjo,total,total,,1001,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2003,4,Sei Lunuk,sex,laki_laki,,1130,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2003,4,Sei Lunuk,sex,perempuan,,995,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2003,4,Sei Lunuk,total,total,,2125,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2002,4,Pulau Mambulau,sex,laki_laki,,2148,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2002,4,Pulau Mambulau,sex,perempuan,,2009,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2002,4,Pulau Mambulau,total,total,,4157,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.2015,4,Budi Mufakat,sex,laki_laki,,1126,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.2015,4,Budi Mufakat,sex,perempuan,,1029,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.2015,4,Budi Mufakat,total,total,,2155,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17.1001,4,Pulau Kupang,sex,laki_laki,,3867,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17.1001,4,Pulau Kupang,sex,perempuan,,3538,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17.1001,4,Pulau Kupang,total,total,,7405,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17,3,Bataguh,sex,laki_laki,,21402,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.17,3,Bataguh,sex,perempuan,,19778,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.17,3,Bataguh,total,total,,41180,jiwa,2025,registration,total_population,3.1,30,,
+62.03.17,3,Bataguh,age_group,0-4,laki_laki,1135,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.17,3,Bataguh,age_group,0-4,perempuan,1043,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.17,3,Bataguh,age_group,0-4,,2178,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.17,3,Bataguh,age_group,5-9,laki_laki,1588,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.17,3,Bataguh,age_group,5-9,perempuan,1471,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.17,3,Bataguh,age_group,5-9,,3059,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.17,3,Bataguh,age_group,10-14,laki_laki,1946,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.17,3,Bataguh,age_group,10-14,perempuan,1730,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.17,3,Bataguh,age_group,10-14,,3676,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.17,3,Bataguh,age_group,15-19,laki_laki,1985,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.17,3,Bataguh,age_group,15-19,perempuan,1797,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.17,3,Bataguh,age_group,15-19,,3782,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.17,3,Bataguh,age_group,20-24,laki_laki,1889,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.17,3,Bataguh,age_group,20-24,perempuan,1767,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.17,3,Bataguh,age_group,20-24,,3656,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.17,3,Bataguh,age_group,25-29,laki_laki,1737,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.17,3,Bataguh,age_group,25-29,perempuan,1397,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.17,3,Bataguh,age_group,25-29,,3134,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.17,3,Bataguh,age_group,30-34,laki_laki,1675,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.17,3,Bataguh,age_group,30-34,perempuan,1460,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.17,3,Bataguh,age_group,30-34,,3135,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.17,3,Bataguh,age_group,35-39,laki_laki,1722,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.17,3,Bataguh,age_group,35-39,perempuan,1519,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.17,3,Bataguh,age_group,35-39,,3241,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.17,3,Bataguh,age_group,40-44,laki_laki,1631,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.17,3,Bataguh,age_group,40-44,perempuan,1575,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.17,3,Bataguh,age_group,40-44,,3206,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.17,3,Bataguh,age_group,45-49,laki_laki,1629,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.17,3,Bataguh,age_group,45-49,perempuan,1445,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.17,3,Bataguh,age_group,45-49,,3074,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.17,3,Bataguh,age_group,50-54,laki_laki,1232,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.17,3,Bataguh,age_group,50-54,perempuan,1241,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.17,3,Bataguh,age_group,50-54,,2473,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.17,3,Bataguh,age_group,55-59,laki_laki,1062,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.17,3,Bataguh,age_group,55-59,perempuan,1050,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.17,3,Bataguh,age_group,55-59,,2112,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.17,3,Bataguh,age_group,60-64,laki_laki,814,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.17,3,Bataguh,age_group,60-64,perempuan,741,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.17,3,Bataguh,age_group,60-64,,1555,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.17,3,Bataguh,age_group,65-69,laki_laki,584,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.17,3,Bataguh,age_group,65-69,perempuan,655,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.17,3,Bataguh,age_group,65-69,,1239,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.17,3,Bataguh,age_group,70-74,laki_laki,376,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.17,3,Bataguh,age_group,70-74,perempuan,370,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.17,3,Bataguh,age_group,70-74,,746,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.17,3,Bataguh,age_group,75+,laki_laki,397,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.17,3,Bataguh,age_group,75+,perempuan,517,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.17,3,Bataguh,age_group,75+,,914,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.17,3,Bataguh,sex,laki_laki,,21402,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+62.03.17,3,Bataguh,sex,perempuan,,19778,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+62.03.17,3,Bataguh,total,total,,41180,jiwa,2025,registration,total_population,3.2,32,,

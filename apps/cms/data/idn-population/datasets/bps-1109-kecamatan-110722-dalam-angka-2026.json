@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-1109-kecamatan-110722-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.07.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Keumala Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "1109",
+  "publisherWebsite": "https://pidiekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://pidiekab.bps.go.id), publikasi \"Kecamatan Keumala Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.081",
+  "publicationNumber": "11090.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pidiekab.bps.go.id/id/publication/2026/09/28/faf4bc77d96a4984758c68c8/kecamatan-keumala-dalam-angka-2026.html",
+  "sourceFileSha256": "f30675a3e4d5bff1c4480c0e502d2105c7bda64d45dd49b5715d8f7143d05028",
+  "sourceFileBytes": 3955752,
+  "sourcePages": [34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pidie",
+  "csvPath": "datasets/bps-1109-kecamatan-110722-dalam-angka-2026.csv",
+  "csvSha256": "60784a1519b2d6fae6f63a9f9be7a143b62c1ab7e28cc0d6f0be7dd23cfc2396",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Keumala, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Papeuen Nicah\": unmatched ",
+    "table 3.1: row not stored: row \"Papeuen Nicah\": unmatched ",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

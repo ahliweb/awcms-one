@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.27.2002,4,Sei Silau Tua,sex,laki_laki,,859,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.27.2002,4,Sei Silau Tua,sex,perempuan,,826,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.27.2002,4,Sei Silau Tua,total,total,,1685,jiwa,2025,registration,total_population,3.1,30,,
+12.09.27.2003,4,Sei Silau Barat,sex,laki_laki,,1724,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.27.2003,4,Sei Silau Barat,sex,perempuan,,1760,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.27.2003,4,Sei Silau Barat,total,total,,3484,jiwa,2025,registration,total_population,3.1,30,,
+12.09.27.2004,4,Silau Maraja,sex,laki_laki,,953,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.27.2004,4,Silau Maraja,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.27.2004,4,Silau Maraja,total,total,,1905,jiwa,2025,registration,total_population,3.1,30,,
+12.09.27.2001,4,Urung Pane,sex,laki_laki,,2116,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.27.2001,4,Urung Pane,sex,perempuan,,2084,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.27.2001,4,Urung Pane,total,total,,4200,jiwa,2025,registration,total_population,3.1,30,,
+12.09.27.2005,4,Bangun Sari,sex,laki_laki,,993,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.27.2005,4,Bangun Sari,sex,perempuan,,1014,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.27.2005,4,Bangun Sari,total,total,,2007,jiwa,2025,registration,total_population,3.1,30,,
+12.09.27,3,Setia Janji,sex,laki_laki,,6645,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.27,3,Setia Janji,sex,perempuan,,6636,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.27,3,Setia Janji,total,total,,13281,jiwa,2025,registration,total_population,3.1,30,,
+12.09.27,3,Setia Janji,age_group,0-4,laki_laki,366,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.09.27,3,Setia Janji,age_group,0-4,perempuan,368,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.09.27,3,Setia Janji,age_group,0-4,,734,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.09.27,3,Setia Janji,age_group,5-9,laki_laki,549,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.09.27,3,Setia Janji,age_group,5-9,perempuan,525,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.09.27,3,Setia Janji,age_group,5-9,,1074,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.09.27,3,Setia Janji,age_group,10-14,laki_laki,639,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.09.27,3,Setia Janji,age_group,10-14,perempuan,603,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.09.27,3,Setia Janji,age_group,10-14,,1242,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.09.27,3,Setia Janji,age_group,15-19,laki_laki,616,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.09.27,3,Setia Janji,age_group,15-19,perempuan,594,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.09.27,3,Setia Janji,age_group,15-19,,1210,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.09.27,3,Setia Janji,age_group,20-24,laki_laki,557,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.09.27,3,Setia Janji,age_group,20-24,perempuan,551,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.09.27,3,Setia Janji,age_group,20-24,,1108,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.09.27,3,Setia Janji,age_group,25-29,laki_laki,553,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.09.27,3,Setia Janji,age_group,25-29,perempuan,474,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.09.27,3,Setia Janji,age_group,25-29,,1027,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.09.27,3,Setia Janji,age_group,30-34,laki_laki,508,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.09.27,3,Setia Janji,age_group,30-34,perempuan,475,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.09.27,3,Setia Janji,age_group,30-34,,983,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.09.27,3,Setia Janji,age_group,35-39,laki_laki,462,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.09.27,3,Setia Janji,age_group,35-39,perempuan,445,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.09.27,3,Setia Janji,age_group,35-39,,907,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.09.27,3,Setia Janji,age_group,40-44,laki_laki,474,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.09.27,3,Setia Janji,age_group,40-44,perempuan,462,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.09.27,3,Setia Janji,age_group,40-44,,936,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.09.27,3,Setia Janji,age_group,45-49,laki_laki,418,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.09.27,3,Setia Janji,age_group,45-49,perempuan,417,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.09.27,3,Setia Janji,age_group,45-49,,835,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.09.27,3,Setia Janji,age_group,50-54,laki_laki,347,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.09.27,3,Setia Janji,age_group,50-54,perempuan,383,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.09.27,3,Setia Janji,age_group,50-54,,730,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.09.27,3,Setia Janji,age_group,55-59,laki_laki,327,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.09.27,3,Setia Janji,age_group,55-59,perempuan,342,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.09.27,3,Setia Janji,age_group,55-59,,669,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.09.27,3,Setia Janji,age_group,60-64,laki_laki,294,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.09.27,3,Setia Janji,age_group,60-64,perempuan,336,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.09.27,3,Setia Janji,age_group,60-64,,630,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.09.27,3,Setia Janji,age_group,65-69,laki_laki,251,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.09.27,3,Setia Janji,age_group,65-69,perempuan,246,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.09.27,3,Setia Janji,age_group,65-69,,497,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.09.27,3,Setia Janji,age_group,70-74,laki_laki,138,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.09.27,3,Setia Janji,age_group,70-74,perempuan,158,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.09.27,3,Setia Janji,age_group,70-74,,296,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.09.27,3,Setia Janji,age_group,75+,laki_laki,146,jiwa,2025,registration,total_population,3.2,32,,75+
+12.09.27,3,Setia Janji,age_group,75+,perempuan,257,jiwa,2025,registration,total_population,3.2,32,,75+
+12.09.27,3,Setia Janji,age_group,75+,,403,jiwa,2025,registration,total_population,3.2,32,,75+
+12.09.27,3,Setia Janji,sex,laki_laki,,6645,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+12.09.27,3,Setia Janji,sex,perempuan,,6636,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+12.09.27,3,Setia Janji,total,total,,13281,jiwa,2025,registration,total_population,3.2,32,,

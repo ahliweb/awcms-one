@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.13.07.2004,4,Kuto Tanjung,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07.2004,4,Kuto Tanjung,sex,perempuan,,531,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07.2004,4,Kuto Tanjung,total,total,,1105,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07.2002,4,Napal Licin,sex,laki_laki,,1230,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07.2002,4,Napal Licin,sex,perempuan,,1145,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07.2002,4,Napal Licin,total,total,,2375,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07.2003,4,Sosokan,sex,laki_laki,,658,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07.2003,4,Sosokan,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07.2003,4,Sosokan,total,total,,1220,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07.2005,4,Muara Kuis,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07.2005,4,Muara Kuis,sex,perempuan,,650,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07.2005,4,Muara Kuis,total,total,,1305,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07.2006,4,Pulau Kidak,sex,laki_laki,,1352,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07.2006,4,Pulau Kidak,sex,perempuan,,1299,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07.2006,4,Pulau Kidak,total,total,,2651,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07.2001,4,Jangkat,sex,laki_laki,,595,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07.2001,4,Jangkat,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07.2001,4,Jangkat,total,total,,1177,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07.1007,4,Muara Kulam,sex,laki_laki,,1753,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07.1007,4,Muara Kulam,sex,perempuan,,1768,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07.1007,4,Muara Kulam,total,total,,3521,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07,3,Ulu Rawas,sex,laki_laki,,6817,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.07,3,Ulu Rawas,sex,perempuan,,6537,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.07,3,Ulu Rawas,total,total,,13354,jiwa,2025,registration,total_population,3.1,24,,
+16.13.07,3,Ulu Rawas,sex,laki_laki,,6817,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+16.13.07,3,Ulu Rawas,sex,perempuan,,6537,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+16.13.07,3,Ulu Rawas,total,total,,13354,jiwa,2025,registration,total_population,3.2,26,,

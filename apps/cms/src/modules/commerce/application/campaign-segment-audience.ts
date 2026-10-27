@@ -146,7 +146,7 @@ export async function resolveCampaignSegmentPin(
       version: resolved.version,
       asOf: null
     },
-    // The pinned rule tree, so a caller can check what the rule reads (ADR-0051).
+    // The pinned rule tree, so a caller can check what the rule reads (ADR-0052).
     node: resolved.node
   };
 }

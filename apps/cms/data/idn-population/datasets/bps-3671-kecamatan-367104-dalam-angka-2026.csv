@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.71.04.1003,4,Benda,sex,laki_laki,,6453,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+36.71.04.1003,4,Benda,sex,perempuan,,6156,jiwa,2025,registration,total_population,3.1,,,Perempuan
+36.71.04.1003,4,Benda,total,total,,12609,jiwa,2025,registration,total_population,3.1,,,
+36.71.04.1001,4,Belendung,sex,laki_laki,,12930,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+36.71.04.1001,4,Belendung,sex,perempuan,,12473,jiwa,2025,registration,total_population,3.1,,,Perempuan
+36.71.04.1001,4,Belendung,total,total,,25403,jiwa,2025,registration,total_population,3.1,,,
+36.71.04.1002,4,Jurumudi,sex,laki_laki,,10492,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+36.71.04.1002,4,Jurumudi,sex,perempuan,,10143,jiwa,2025,registration,total_population,3.1,,,Perempuan
+36.71.04.1002,4,Jurumudi,total,total,,20635,jiwa,2025,registration,total_population,3.1,,,
+36.71.04.1005,4,Jurumudi Baru,sex,laki_laki,,10969,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+36.71.04.1005,4,Jurumudi Baru,sex,perempuan,,10853,jiwa,2025,registration,total_population,3.1,,,Perempuan
+36.71.04.1005,4,Jurumudi Baru,total,total,,21822,jiwa,2025,registration,total_population,3.1,,,
+36.71.04.1004,4,Pajang,sex,laki_laki,,4340,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+36.71.04.1004,4,Pajang,sex,perempuan,,4146,jiwa,2025,registration,total_population,3.1,,,Perempuan
+36.71.04.1004,4,Pajang,total,total,,8486,jiwa,2025,registration,total_population,3.1,,,
+36.71.04,3,Benda,sex,laki_laki,,45184,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+36.71.04,3,Benda,sex,perempuan,,43771,jiwa,2025,registration,total_population,3.1,,,Perempuan
+36.71.04,3,Benda,total,total,,88955,jiwa,2025,registration,total_population,3.1,,,
+36.71.04,3,Benda,age_group,0-4,laki_laki,3133,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.04,3,Benda,age_group,0-4,perempuan,2915,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.04,3,Benda,age_group,0-4,,6048,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.04,3,Benda,age_group,5-9,laki_laki,4030,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.04,3,Benda,age_group,5-9,perempuan,3817,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.04,3,Benda,age_group,5-9,,7847,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.04,3,Benda,age_group,10-14,laki_laki,4159,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.04,3,Benda,age_group,10-14,perempuan,3728,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.04,3,Benda,age_group,10-14,,7887,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.04,3,Benda,age_group,15-19,laki_laki,3627,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.04,3,Benda,age_group,15-19,perempuan,3453,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.04,3,Benda,age_group,15-19,,7080,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.04,3,Benda,age_group,20-24,laki_laki,3534,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.04,3,Benda,age_group,20-24,perempuan,3447,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.04,3,Benda,age_group,20-24,,6981,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.04,3,Benda,age_group,25-29,laki_laki,3520,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.04,3,Benda,age_group,25-29,perempuan,3500,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.04,3,Benda,age_group,25-29,,7020,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.04,3,Benda,age_group,30-34,laki_laki,3700,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.04,3,Benda,age_group,30-34,perempuan,3643,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.04,3,Benda,age_group,30-34,,7343,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.04,3,Benda,age_group,35-39,laki_laki,3541,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.04,3,Benda,age_group,35-39,perempuan,3261,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.04,3,Benda,age_group,35-39,,6802,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.04,3,Benda,age_group,40-44,laki_laki,3724,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.04,3,Benda,age_group,40-44,perempuan,3636,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.04,3,Benda,age_group,40-44,,7360,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.04,3,Benda,age_group,45-49,laki_laki,3252,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.04,3,Benda,age_group,45-49,perempuan,3397,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.04,3,Benda,age_group,45-49,,6649,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.04,3,Benda,age_group,50-54,laki_laki,2889,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.04,3,Benda,age_group,50-54,perempuan,2920,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.04,3,Benda,age_group,50-54,,5809,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.04,3,Benda,age_group,55-59,laki_laki,2321,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.04,3,Benda,age_group,55-59,perempuan,2256,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.04,3,Benda,age_group,55-59,,4577,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.04,3,Benda,age_group,60-64,laki_laki,1551,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.04,3,Benda,age_group,60-64,perempuan,1532,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.04,3,Benda,age_group,60-64,,3083,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.04,3,Benda,age_group,65-69,laki_laki,1066,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.04,3,Benda,age_group,65-69,perempuan,1019,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.04,3,Benda,age_group,65-69,,2085,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.04,3,Benda,age_group,70-74,laki_laki,605,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.04,3,Benda,age_group,70-74,perempuan,540,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.04,3,Benda,age_group,70-74,,1145,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.04,3,Benda,age_group,75+,laki_laki,532,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.04,3,Benda,age_group,75+,perempuan,707,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.04,3,Benda,age_group,75+,,1239,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.04,3,Benda,sex,laki_laki,,45184,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+36.71.04,3,Benda,sex,perempuan,,43771,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+36.71.04,3,Benda,total,total,,88955,jiwa,2025,registration,total_population,3.2,24,,

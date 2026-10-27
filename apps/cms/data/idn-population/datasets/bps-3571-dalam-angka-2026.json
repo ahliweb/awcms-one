@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-3571-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "35.71",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Kediri Dalam Angka 2026",
+  "publisherName": "BPS Kota Kediri",
+  "publisherDomain": "3571",
+  "publisherWebsite": "https://kedirikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Kediri (https://kedirikota.bps.go.id), publikasi \"Kota Kediri Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3571",
+  "publicationNumber": "35710.26002",
+  "issn": "0215-5958",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://kedirikota.bps.go.id/id/publication/2026/02/27/d33f48afdde9437e5480d334/kota-kediri-dalam-angka-2026.html",
+  "sourceFileSha256": "2135cbe7c3173c2f950c22d296c8f0211c83828756daddad39d38a2f695e3336",
+  "sourceFileBytes": 39550486,
+  "sourcePages": [62, 65, 175, 317],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Kediri.",
+  "csvPath": "datasets/bps-3571-dalam-angka-2026.csv",
+  "csvSha256": "c7f3b94cf751eaa1b3ec3aa5e88c93b233b5e3ed4605b872cc2370377880ea41",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kota Kediri, 2025",
+      "printedPages": [62],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kota Kediri (jiwa) , 2025",
+      "printedPages": [65],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kota Kediri, 2025",
+      "printedPages": [175],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kota Kediri (rupiah), 2024 dan 2025",
+      "printedPages": [317],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

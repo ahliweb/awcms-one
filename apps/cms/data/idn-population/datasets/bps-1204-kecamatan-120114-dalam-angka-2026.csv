@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.14.1007,4,Sipange,sex,laki_laki,,1350,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.1007,4,Sipange,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.1007,4,Sipange,total,total,,2647,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14.1003,4,Huta Nabolon,sex,laki_laki,,1518,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.1003,4,Huta Nabolon,sex,perempuan,,1493,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.1003,4,Huta Nabolon,total,total,,3011,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14.2004,4,Sigiring Giring,sex,laki_laki,,250,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.2004,4,Sigiring Giring,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.2004,4,Sigiring Giring,total,total,,464,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14.2006,4,Sait Kalangan II,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.2006,4,Sait Kalangan II,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.2006,4,Sait Kalangan II,total,total,,860,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14.2005,4,Tapian Nauli Saur Manggita,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.2005,4,Tapian Nauli Saur Manggita,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.2005,4,Tapian Nauli Saur Manggita,total,total,,441,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14.1002,4,Bona Lumban,sex,laki_laki,,1220,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.1002,4,Bona Lumban,sex,perempuan,,1256,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.1002,4,Bona Lumban,total,total,,2476,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14.1001,4,Tukka,sex,laki_laki,,1480,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.1001,4,Tukka,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.1001,4,Tukka,total,total,,3034,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14.1009,4,Aek Tolang Induk,sex,laki_laki,,803,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14.1009,4,Aek Tolang Induk,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14.1009,4,Aek Tolang Induk,total,total,,1586,jiwa,2025,registration,total_population,3.1,35,,
+12.01.14,3,Tukka,sex,laki_laki,,7437,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.14,3,Tukka,sex,perempuan,,7367,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.14,3,Tukka,total,total,,14804,jiwa,2025,registration,total_population,3.1,35,,

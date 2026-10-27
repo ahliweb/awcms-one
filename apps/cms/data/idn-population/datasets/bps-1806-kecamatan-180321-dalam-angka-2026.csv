@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.03.21.2007,4,Comok Sinar Jaya,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2007,4,Comok Sinar Jaya,sex,perempuan,,545,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2007,4,Comok Sinar Jaya,total,total,,1134,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2008,4,Way Isem,sex,laki_laki,,896,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2008,4,Way Isem,sex,perempuan,,886,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2008,4,Way Isem,total,total,,1782,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2001,4,Sinar Harapan,sex,laki_laki,,844,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2001,4,Sinar Harapan,sex,perempuan,,829,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2001,4,Sinar Harapan,total,total,,1673,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2006,4,Cahaya Mas,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2006,4,Cahaya Mas,sex,perempuan,,744,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2006,4,Cahaya Mas,total,total,,1491,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2009,4,Gunung Maknibai,sex,laki_laki,,256,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2009,4,Gunung Maknibai,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2009,4,Gunung Maknibai,total,total,,516,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2003,4,Negeri Sakti,sex,laki_laki,,509,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2003,4,Negeri Sakti,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2003,4,Negeri Sakti,total,total,,982,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2005,4,Gunung Raja,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2005,4,Gunung Raja,sex,perempuan,,893,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2005,4,Gunung Raja,total,total,,1871,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2002,4,Kubuhitu,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2002,4,Kubuhitu,sex,perempuan,,670,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2002,4,Kubuhitu,total,total,,1366,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2004,4,Tanjung Jaya,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2004,4,Tanjung Jaya,sex,perempuan,,584,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2004,4,Tanjung Jaya,total,total,,1166,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21.2010,4,Negeri Batin Jaya,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21.2010,4,Negeri Batin Jaya,sex,perempuan,,538,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21.2010,4,Negeri Batin Jaya,total,total,,1095,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21,3,Kecamatan Sungkai Barat,sex,laki_laki,,6654,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.21,3,Kecamatan Sungkai Barat,sex,perempuan,,6422,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.21,3,Kecamatan Sungkai Barat,total,total,,13076,jiwa,2025,registration,total_population,3.1,28,,
+18.03.21,3,Sungkai Barat,age_group,0-4,laki_laki,498,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.21,3,Sungkai Barat,age_group,0-4,perempuan,452,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.21,3,Sungkai Barat,age_group,0-4,,950,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.21,3,Sungkai Barat,age_group,5-9,laki_laki,638,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.21,3,Sungkai Barat,age_group,5-9,perempuan,594,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.21,3,Sungkai Barat,age_group,5-9,,1232,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.21,3,Sungkai Barat,age_group,10-14,laki_laki,547,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.21,3,Sungkai Barat,age_group,10-14,perempuan,557,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.21,3,Sungkai Barat,age_group,10-14,,1104,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.21,3,Sungkai Barat,age_group,15-19,laki_laki,546,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.21,3,Sungkai Barat,age_group,15-19,perempuan,506,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.21,3,Sungkai Barat,age_group,15-19,,1052,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.21,3,Sungkai Barat,age_group,20-24,laki_laki,559,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.21,3,Sungkai Barat,age_group,20-24,perempuan,520,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.21,3,Sungkai Barat,age_group,20-24,,1079,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.21,3,Sungkai Barat,age_group,25-29,laki_laki,466,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.21,3,Sungkai Barat,age_group,25-29,perempuan,434,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.21,3,Sungkai Barat,age_group,25-29,,900,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.21,3,Sungkai Barat,age_group,30-34,laki_laki,493,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.21,3,Sungkai Barat,age_group,30-34,perempuan,428,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.21,3,Sungkai Barat,age_group,30-34,,921,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.21,3,Sungkai Barat,age_group,35-39,laki_laki,467,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.21,3,Sungkai Barat,age_group,35-39,perempuan,390,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.21,3,Sungkai Barat,age_group,35-39,,857,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.21,3,Sungkai Barat,age_group,40-44,laki_laki,399,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.21,3,Sungkai Barat,age_group,40-44,perempuan,411,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.21,3,Sungkai Barat,age_group,40-44,,810,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.21,3,Sungkai Barat,age_group,45-49,laki_laki,624,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.21,3,Sungkai Barat,age_group,45-49,perempuan,618,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.21,3,Sungkai Barat,age_group,45-49,,1242,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.21,3,Sungkai Barat,age_group,50-54,laki_laki,331,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.21,3,Sungkai Barat,age_group,50-54,perempuan,355,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.21,3,Sungkai Barat,age_group,50-54,,686,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.21,3,Sungkai Barat,age_group,55-59,laki_laki,280,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.21,3,Sungkai Barat,age_group,55-59,perempuan,356,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.21,3,Sungkai Barat,age_group,55-59,,636,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.21,3,Sungkai Barat,age_group,60-64,laki_laki,272,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.21,3,Sungkai Barat,age_group,60-64,perempuan,298,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.21,3,Sungkai Barat,age_group,60-64,,570,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.21,3,Sungkai Barat,age_group,65-69,laki_laki,229,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.21,3,Sungkai Barat,age_group,65-69,perempuan,222,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.21,3,Sungkai Barat,age_group,65-69,,451,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.21,3,Sungkai Barat,age_group,70-75,laki_laki,156,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.21,3,Sungkai Barat,age_group,70-75,perempuan,118,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.21,3,Sungkai Barat,age_group,70-75,,274,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.21,3,Sungkai Barat,age_group,75+,laki_laki,149,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.21,3,Sungkai Barat,age_group,75+,perempuan,163,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.21,3,Sungkai Barat,age_group,75+,,312,jiwa,2025,registration,total_population,3.2,30,,75+

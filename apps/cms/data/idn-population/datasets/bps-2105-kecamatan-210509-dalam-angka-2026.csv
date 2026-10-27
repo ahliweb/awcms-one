@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.05.09.2002,4,Keramut,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.09.2002,4,Keramut,sex,perempuan,,210,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.09.2002,4,Keramut,total,total,,436,jiwa,2025,registration,total_population,3.1,25,,
+21.05.09.2001,4,Impol,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.09.2001,4,Impol,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.09.2001,4,Impol,total,total,,389,jiwa,2025,registration,total_population,3.1,25,,
+21.05.09.2003,4,Sunggak,sex,laki_laki,,134,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.09.2003,4,Sunggak,sex,perempuan,,163,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.09.2003,4,Sunggak,total,total,,297,jiwa,2025,registration,total_population,3.1,25,,
+21.05.09,3,Jemaja Barat,sex,laki_laki,,569,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.09,3,Jemaja Barat,sex,perempuan,,553,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.09,3,Jemaja Barat,total,total,,1122,jiwa,2025,registration,total_population,3.1,25,,

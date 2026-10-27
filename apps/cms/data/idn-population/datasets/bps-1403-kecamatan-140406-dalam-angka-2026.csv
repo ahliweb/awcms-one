@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.06.2008,4,Rambaian,sex,laki_laki,,936,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2008,4,Rambaian,sex,perempuan,,893,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2008,4,Rambaian,total,total,,1829,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.1004,4,Sungai Empat,sex,laki_laki,,1219,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.1004,4,Sungai Empat,sex,perempuan,,1117,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.1004,4,Sungai Empat,total,total,,2336,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2007,4,Teluk Tuasan,sex,laki_laki,,557,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2007,4,Teluk Tuasan,sex,perempuan,,530,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2007,4,Teluk Tuasan,total,total,,1087,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2006,4,Sungai Iliran,sex,laki_laki,,887,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2006,4,Sungai Iliran,sex,perempuan,,828,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2006,4,Sungai Iliran,total,total,,1715,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2003,4,Teluk Sungka,sex,laki_laki,,796,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2003,4,Teluk Sungka,sex,perempuan,,739,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2003,4,Teluk Sungka,total,total,,1535,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2002,4,Teluk Pantaian,sex,laki_laki,,1117,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2002,4,Teluk Pantaian,sex,perempuan,,1061,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2002,4,Teluk Pantaian,total,total,,2178,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.1005,4,Teluk Pinang,sex,laki_laki,,4611,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.1005,4,Teluk Pinang,sex,perempuan,,4282,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.1005,4,Teluk Pinang,total,total,,8893,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2001,4,Kuala Gaung,sex,laki_laki,,689,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2001,4,Kuala Gaung,sex,perempuan,,666,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2001,4,Kuala Gaung,total,total,,1355,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2011,4,Kelumpang,sex,laki_laki,,902,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2011,4,Kelumpang,sex,perempuan,,817,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2011,4,Kelumpang,total,total,,1719,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2012,4,Idaman,sex,laki_laki,,577,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2012,4,Idaman,sex,perempuan,,522,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2012,4,Idaman,total,total,,1099,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.2010,4,Harapan Makmur,sex,laki_laki,,272,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.2010,4,Harapan Makmur,sex,perempuan,,262,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.2010,4,Harapan Makmur,total,total,,534,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06.1009,4,Tanjung Harapan,sex,laki_laki,,621,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06.1009,4,Tanjung Harapan,sex,perempuan,,608,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06.1009,4,Tanjung Harapan,total,total,,1229,jiwa,2026,registration,total_population,3.1,29,,
+14.04.06,3,Gaung Anak Serka,sex,laki_laki,,13184,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.06,3,Gaung Anak Serka,sex,perempuan,,12325,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.06,3,Gaung Anak Serka,total,total,,25509,jiwa,2026,registration,total_population,3.1,29,,

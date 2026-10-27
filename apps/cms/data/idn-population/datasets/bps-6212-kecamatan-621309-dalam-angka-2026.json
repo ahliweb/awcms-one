@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-6212-kecamatan-621309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.13.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Paku Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Barito Timur.",
+  "publisherDomain": "6212",
+  "publisherWebsite": "https://bartimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Barito Timur. (https://bartimkab.bps.go.id), publikasi \"Kecamatan Paku Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6212010",
+  "publicationNumber": "62120.26011",
+  "issn": "2302-5042",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bartimkab.bps.go.id/id/publication/2026/09/28/d423305d5d14c3840220f724/kecamatan-paku-dalam-angka-2026.html",
+  "sourceFileSha256": "5b64715c01315e43676e025dd5ffd98633cf2c0bf53ee43b3ba50b816ff69768",
+  "sourceFileBytes": 3933614,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Timur.",
+  "csvPath": "datasets/bps-6212-kecamatan-621309-dalam-angka-2026.csv",
+  "csvSha256": "4fe6e1a617d9bcaf63a915063d7743b48425e0c90adbe2450971abfe36d86209",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Paku, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Paku, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 is not included: its published figures do not add up (age_group vs total: parts sum 9171.0000 != 9172.0000 (diff 1.0000)); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1906-kecamatan-190604-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.06.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kelapa Kampit Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belitung Timur",
+  "publisherDomain": "1906",
+  "publisherWebsite": "https://belitungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belitung Timur (https://belitungtimurkab.bps.go.id), publikasi \"Kecamatan Kelapa Kampit Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1906040",
+  "publicationNumber": "19060.26014",
+  "issn": "3063-9875",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://belitungtimurkab.bps.go.id/id/publication/2026/09/28/f2c225716f81ceebd74f17c2/kecamatan-kelapa-kampit-dalam-angka-2026.html",
+  "sourceFileSha256": "ef92acd2e79b5ba82f0432ec57509e4b94405c03e78a168c8a168af70e718c5f",
+  "sourceFileBytes": 7310319,
+  "sourcePages": [18, 19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Belitung Timur.",
+  "csvPath": "datasets/bps-1906-kecamatan-190604-dalam-angka-2026.csv",
+  "csvSha256": "f70f7996680c475b5675057befa78fae9aeea70ec6eee6e5ebcbfa8fec58d659",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kelapa Kampit, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kelapa Kampit, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

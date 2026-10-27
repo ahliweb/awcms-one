@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3326-kecamatan-332602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.26.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Paninggaran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pekalongan",
+  "publisherDomain": "3326",
+  "publisherWebsite": "https://pekalongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pekalongan (https://pekalongankab.bps.go.id), publikasi \"Kecamatan Paninggaran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3326150",
+  "publicationNumber": "33260.26007",
+  "issn": "0853-6201",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekalongankab.bps.go.id/id/publication/2026/09/28/77a4cb3e05d46f5d44d4211f/kecamatan-paninggaran-dalam-angka-2026.html",
+  "sourceFileSha256": "1842fe157470298f8ad6a95b0f461c99db96b03517c3ec67a11e820f0888bd39",
+  "sourceFileBytes": 9052510,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pekalongan.",
+  "csvPath": "datasets/bps-3326-kecamatan-332602-dalam-angka-2026.csv",
+  "csvSha256": "c5ab409cbd2730b342c60dd1db4c0b15a83015b43a84e7b4dce5eacc6d22d1f8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Paninggaran, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Paninggaran, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tanggeran\": unmatched "
+  ]
+}

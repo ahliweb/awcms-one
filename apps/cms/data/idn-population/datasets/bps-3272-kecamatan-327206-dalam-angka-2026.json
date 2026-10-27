@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-3272-kecamatan-327206-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.72.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lembursitu Dalam Angka 2026",
+  "publisherName": "BPS Kota Sukabumi",
+  "publisherDomain": "3272",
+  "publisherWebsite": "https://sukabumikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sukabumi (https://sukabumikota.bps.go.id), publikasi \"Kecamatan Lembursitu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3272011",
+  "publicationNumber": "32720.26007",
+  "issn": "2798-8368",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikota.bps.go.id/id/publication/2026/09/28/1c61b7c7a23177453b0d6365/kecamatan-lembursitu-dalam-angka-2026.html",
+  "sourceFileSha256": "bcdee2e1d806e20092fc622dfd04737102e92381d425bad4c7e9685083b10414",
+  "sourceFileBytes": 7786940,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sukabumi.",
+  "csvPath": "datasets/bps-3272-kecamatan-327206-dalam-angka-2026.csv",
+  "csvSha256": "34d08043f063f73b25ace1881262961948347884f39f2b3aefecac2390c7acc4",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lembursitu, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lembursitu 6.462\": unmatched ",
+    "table 3.1: row not stored: row \"Situmekar 3.368\": unmatched ",
+    "table 3.1: row not stored: row \"Cipanengah 4.552\": unmatched ",
+    "table 3.1: row not stored: row \"Cikundul 5.093\": unmatched ",
+    "table 3.1: row not stored: row \"Sindangsari 3.308\": unmatched ",
+    "table 3.1: row not stored: row \"Lembursitu 22.783\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

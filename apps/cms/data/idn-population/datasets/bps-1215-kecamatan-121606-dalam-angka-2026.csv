@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.16.06.2009,4,Sosor Tambok,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2009,4,Sosor Tambok,sex,perempuan,,374,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2009,4,Sosor Tambok,total,total,,703,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2020,4,Sihite II,sex,laki_laki,,658,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2020,4,Sihite II,sex,perempuan,,690,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2020,4,Sihite II,total,total,,1348,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2010,4,Purba Dolok,sex,laki_laki,,1287,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2010,4,Purba Dolok,sex,perempuan,,1275,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2010,4,Purba Dolok,total,total,,2562,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2017,4,Lumban Purba,sex,laki_laki,,814,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2017,4,Lumban Purba,sex,perempuan,,794,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2017,4,Lumban Purba,total,total,,1608,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2005,4,Simarigung,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2005,4,Simarigung,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2005,4,Simarigung,total,total,,1169,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2015,4,Saitnihuta,sex,laki_laki,,1441,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2015,4,Saitnihuta,sex,perempuan,,1463,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2015,4,Saitnihuta,total,total,,2904,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2026,4,Aek Lung,sex,laki_laki,,900,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2026,4,Aek Lung,sex,perempuan,,904,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2026,4,Aek Lung,total,total,,1804,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2003,4,Purba Manalu,sex,laki_laki,,1173,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2003,4,Purba Manalu,sex,perempuan,,1178,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2003,4,Purba Manalu,total,total,,2351,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2022,4,Pakkat,sex,laki_laki,,979,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2022,4,Pakkat,sex,perempuan,,969,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2022,4,Pakkat,total,total,,1948,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2004,4,Pasaribu,sex,laki_laki,,1977,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2004,4,Pasaribu,sex,perempuan,,2053,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2004,4,Pasaribu,total,total,,4030,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2012,4,Lumban Tobing,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2012,4,Lumban Tobing,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2012,4,Lumban Tobing,total,total,,1056,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.1001,4,Pasar Dolok Sanggul,sex,laki_laki,,2755,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.1001,4,Pasar Dolok Sanggul,sex,perempuan,,2895,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.1001,4,Pasar Dolok Sanggul,total,total,,5650,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2021,4,Janji,sex,laki_laki,,413,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2021,4,Janji,sex,perempuan,,425,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2021,4,Janji,total,total,,838,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2011,4,Sihite I,sex,laki_laki,,766,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2011,4,Sihite I,sex,perempuan,,772,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2011,4,Sihite I,total,total,,1538,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2013,4,Huta Bagasan,sex,laki_laki,,1287,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2013,4,Huta Bagasan,sex,perempuan,,1276,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2013,4,Huta Bagasan,total,total,,2563,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2014,4,Matiti II,sex,laki_laki,,940,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2014,4,Matiti II,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2014,4,Matiti II,total,total,,1892,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2024,4,Huta Gurgur,sex,laki_laki,,1165,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2024,4,Huta Gurgur,sex,perempuan,,1066,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2024,4,Huta Gurgur,total,total,,2231,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2006,4,Sampean,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2006,4,Sampean,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2006,4,Sampean,total,total,,505,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2007,4,Silaga Laga,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2007,4,Silaga Laga,sex,perempuan,,601,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2007,4,Silaga Laga,total,total,,1206,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2023,4,Sirisirisi,sex,laki_laki,,1237,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2023,4,Sirisirisi,sex,perempuan,,1218,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2023,4,Sirisirisi,total,total,,2455,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2018,4,Bonani Onan,sex,laki_laki,,1394,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2018,4,Bonani Onan,sex,perempuan,,1392,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2018,4,Bonani Onan,total,total,,2786,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2002,4,Sileang,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2002,4,Sileang,sex,perempuan,,908,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2002,4,Sileang,total,total,,1799,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2008,4,Sosor Gonting,sex,laki_laki,,1224,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2008,4,Sosor Gonting,sex,perempuan,,1177,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2008,4,Sosor Gonting,total,total,,2401,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2016,4,Hutaraja,sex,laki_laki,,1185,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2016,4,Hutaraja,sex,perempuan,,1168,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2016,4,Hutaraja,total,total,,2353,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2019,4,Parik Sinomba,sex,laki_laki,,492,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2019,4,Parik Sinomba,sex,perempuan,,480,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2019,4,Parik Sinomba,total,total,,972,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2027,4,Simangaronsang,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2027,4,Simangaronsang,sex,perempuan,,1147,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2027,4,Simangaronsang,total,total,,2342,jiwa,2025,registration,total_population,3.1,20,,
+12.16.06.2028,4,Sosortolong Sihite III,sex,laki_laki,,300,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+12.16.06.2028,4,Sosortolong Sihite III,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+12.16.06.2028,4,Sosortolong Sihite III,total,total,,577,jiwa,2025,registration,total_population,3.1,20,,

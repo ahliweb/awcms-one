@@ -1,0 +1,115 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.09.2001,4,Tanjung Durian,sex,laki_laki,,1809,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2001,4,Tanjung Durian,sex,perempuan,,1612,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2001,4,Tanjung Durian,total,total,,3421,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2002,4,Sipin,sex,laki_laki,,1329,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2002,4,Sipin,sex,perempuan,,1181,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2002,4,Sipin,total,total,,2510,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2003,4,Kota Way,sex,laki_laki,,961,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2003,4,Kota Way,sex,perempuan,,915,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2003,4,Kota Way,total,total,,1876,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2004,4,Talang Padang,sex,laki_laki,,1676,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2004,4,Talang Padang,sex,perempuan,,1627,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2004,4,Talang Padang,total,total,,3303,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2005,4,Sri Menanti,sex,laki_laki,,1149,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2005,4,Sri Menanti,sex,perempuan,,1131,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2005,4,Sri Menanti,total,total,,2280,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2006,4,Serakat Jaya,sex,laki_laki,,690,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2006,4,Serakat Jaya,sex,perempuan,,684,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2006,4,Serakat Jaya,total,total,,1374,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2007,4,Karet Jaya,sex,laki_laki,,1235,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2007,4,Karet Jaya,sex,perempuan,,1158,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2007,4,Karet Jaya,total,total,,2393,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2008,4,Danau Jaya,sex,laki_laki,,1304,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2008,4,Danau Jaya,sex,perempuan,,1162,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2008,4,Danau Jaya,total,total,,2466,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2009,4,Sumber Ringin,sex,laki_laki,,1227,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2009,4,Sumber Ringin,sex,perempuan,,1109,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2009,4,Sumber Ringin,total,total,,2336,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2010,4,Kembang Tinggi,sex,laki_laki,,743,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2010,4,Kembang Tinggi,sex,perempuan,,665,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2010,4,Kembang Tinggi,total,total,,1408,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2011,4,Sido Rahayu,sex,laki_laki,,1388,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2011,4,Sido Rahayu,sex,perempuan,,1242,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2011,4,Sido Rahayu,total,total,,2630,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2012,4,Sidodadi,sex,laki_laki,,862,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2012,4,Sidodadi,sex,perempuan,,790,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2012,4,Sidodadi,total,total,,1652,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2013,4,Durian Sembilan,sex,laki_laki,,685,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2013,4,Durian Sembilan,sex,perempuan,,658,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2013,4,Durian Sembilan,total,total,,1343,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2014,4,Sumber Raya,sex,laki_laki,,420,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2014,4,Sumber Raya,sex,perempuan,,408,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2014,4,Sumber Raya,total,total,,828,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2015,4,Sinar Napalan,sex,laki_laki,,1223,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2015,4,Sinar Napalan,sex,perempuan,,1071,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2015,4,Sinar Napalan,total,total,,2294,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2016,4,Tanjung Jaya,sex,laki_laki,,2042,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2016,4,Tanjung Jaya,sex,perempuan,,1789,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2016,4,Tanjung Jaya,total,total,,3831,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2017,4,Sinar Baru,sex,laki_laki,,1230,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2017,4,Sinar Baru,sex,perempuan,,1079,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2017,4,Sinar Baru,total,total,,2309,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2018,4,Mekar Jaya,sex,laki_laki,,1366,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2018,4,Mekar Jaya,sex,perempuan,,1172,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2018,4,Mekar Jaya,total,total,,2538,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2019,4,Tanjung Sari,sex,laki_laki,,661,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2019,4,Tanjung Sari,sex,perempuan,,609,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2019,4,Tanjung Sari,total,total,,1270,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2021,4,Air Kelian,sex,laki_laki,,372,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2021,4,Air Kelian,sex,perempuan,,340,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2021,4,Air Kelian,total,total,,712,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09.2022,4,Tanjung Menang,sex,laki_laki,,416,jiwa,2025,registration,total_population,1.3,27,,Laki-Laki/
+16.09.09.2022,4,Tanjung Menang,sex,perempuan,,402,jiwa,2025,registration,total_population,1.3,27,,Perempuan/
+16.09.09.2022,4,Tanjung Menang,total,total,,818,jiwa,2025,registration,total_population,1.3,27,,
+16.09.09,3,Buay Pemaca,age_group,0-4,laki_laki,1309,jiwa,2025,registration,total_population,1.4,29,,0 – 4
+16.09.09,3,Buay Pemaca,age_group,0-4,perempuan,1270,jiwa,2025,registration,total_population,1.4,29,,0 – 4
+16.09.09,3,Buay Pemaca,age_group,0-4,,2579,jiwa,2025,registration,total_population,1.4,29,,0 – 4
+16.09.09,3,Buay Pemaca,age_group,5-9,laki_laki,1677,jiwa,2025,registration,total_population,1.4,29,,5 – 9
+16.09.09,3,Buay Pemaca,age_group,5-9,perempuan,1664,jiwa,2025,registration,total_population,1.4,29,,5 – 9
+16.09.09,3,Buay Pemaca,age_group,5-9,,3341,jiwa,2025,registration,total_population,1.4,29,,5 – 9
+16.09.09,3,Buay Pemaca,age_group,10-14,laki_laki,1713,jiwa,2025,registration,total_population,1.4,29,,10 – 14
+16.09.09,3,Buay Pemaca,age_group,10-14,perempuan,1702,jiwa,2025,registration,total_population,1.4,29,,10 – 14
+16.09.09,3,Buay Pemaca,age_group,10-14,,3415,jiwa,2025,registration,total_population,1.4,29,,10 – 14
+16.09.09,3,Buay Pemaca,age_group,15-19,laki_laki,2063,jiwa,2025,registration,total_population,1.4,29,,15 – 19
+16.09.09,3,Buay Pemaca,age_group,15-19,perempuan,1972,jiwa,2025,registration,total_population,1.4,29,,15 – 19
+16.09.09,3,Buay Pemaca,age_group,15-19,,4035,jiwa,2025,registration,total_population,1.4,29,,15 – 19
+16.09.09,3,Buay Pemaca,age_group,20-24,laki_laki,2035,jiwa,2025,registration,total_population,1.4,29,,20 – 24
+16.09.09,3,Buay Pemaca,age_group,20-24,perempuan,1878,jiwa,2025,registration,total_population,1.4,29,,20 – 24
+16.09.09,3,Buay Pemaca,age_group,20-24,,3913,jiwa,2025,registration,total_population,1.4,29,,20 – 24
+16.09.09,3,Buay Pemaca,age_group,25-29,laki_laki,1967,jiwa,2025,registration,total_population,1.4,29,,25 – 29
+16.09.09,3,Buay Pemaca,age_group,25-29,perempuan,1813,jiwa,2025,registration,total_population,1.4,29,,25 – 29
+16.09.09,3,Buay Pemaca,age_group,25-29,,3780,jiwa,2025,registration,total_population,1.4,29,,25 – 29
+16.09.09,3,Buay Pemaca,age_group,30-34,laki_laki,1766,jiwa,2025,registration,total_population,1.4,29,,30 – 34
+16.09.09,3,Buay Pemaca,age_group,30-34,perempuan,1680,jiwa,2025,registration,total_population,1.4,29,,30 – 34
+16.09.09,3,Buay Pemaca,age_group,30-34,,3446,jiwa,2025,registration,total_population,1.4,29,,30 – 34
+16.09.09,3,Buay Pemaca,age_group,35-39,laki_laki,1954,jiwa,2025,registration,total_population,1.4,29,,35 – 39
+16.09.09,3,Buay Pemaca,age_group,35-39,perempuan,1795,jiwa,2025,registration,total_population,1.4,29,,35 – 39
+16.09.09,3,Buay Pemaca,age_group,35-39,,3749,jiwa,2025,registration,total_population,1.4,29,,35 – 39
+16.09.09,3,Buay Pemaca,age_group,40-44,laki_laki,1768,jiwa,2025,registration,total_population,1.4,29,,40 – 44
+16.09.09,3,Buay Pemaca,age_group,40-44,perempuan,1647,jiwa,2025,registration,total_population,1.4,29,,40 – 44
+16.09.09,3,Buay Pemaca,age_group,40-44,,3415,jiwa,2025,registration,total_population,1.4,29,,40 – 44
+16.09.09,3,Buay Pemaca,age_group,45-49,laki_laki,1706,jiwa,2025,registration,total_population,1.4,29,,45 – 49
+16.09.09,3,Buay Pemaca,age_group,45-49,perempuan,1643,jiwa,2025,registration,total_population,1.4,29,,45 – 49
+16.09.09,3,Buay Pemaca,age_group,45-49,,3349,jiwa,2025,registration,total_population,1.4,29,,45 – 49
+16.09.09,3,Buay Pemaca,age_group,50-54,laki_laki,1424,jiwa,2025,registration,total_population,1.4,29,,50 – 54
+16.09.09,3,Buay Pemaca,age_group,50-54,perempuan,1279,jiwa,2025,registration,total_population,1.4,29,,50 – 54
+16.09.09,3,Buay Pemaca,age_group,50-54,,2703,jiwa,2025,registration,total_population,1.4,29,,50 – 54
+16.09.09,3,Buay Pemaca,age_group,55-59,laki_laki,1184,jiwa,2025,registration,total_population,1.4,29,,55 – 59
+16.09.09,3,Buay Pemaca,age_group,55-59,perempuan,992,jiwa,2025,registration,total_population,1.4,29,,55 – 59
+16.09.09,3,Buay Pemaca,age_group,55-59,,2176,jiwa,2025,registration,total_population,1.4,29,,55 – 59
+16.09.09,3,Buay Pemaca,age_group,60-64,laki_laki,1009,jiwa,2025,registration,total_population,1.4,29,,60 – 64
+16.09.09,3,Buay Pemaca,age_group,60-64,perempuan,769,jiwa,2025,registration,total_population,1.4,29,,60 – 64
+16.09.09,3,Buay Pemaca,age_group,60-64,,1778,jiwa,2025,registration,total_population,1.4,29,,60 – 64
+16.09.09,3,Buay Pemaca,age_group,65-69,laki_laki,886,jiwa,2025,registration,total_population,1.4,29,,65 – 69
+16.09.09,3,Buay Pemaca,age_group,65-69,perempuan,588,jiwa,2025,registration,total_population,1.4,29,,65 – 69
+16.09.09,3,Buay Pemaca,age_group,65-69,,1474,jiwa,2025,registration,total_population,1.4,29,,65 – 69
+16.09.09,3,Buay Pemaca,age_group,70-74,laki_laki,398,jiwa,2025,registration,total_population,1.4,29,,70 – 74
+16.09.09,3,Buay Pemaca,age_group,70-74,perempuan,265,jiwa,2025,registration,total_population,1.4,29,,70 – 74
+16.09.09,3,Buay Pemaca,age_group,70-74,,663,jiwa,2025,registration,total_population,1.4,29,,70 – 74
+16.09.09,3,Buay Pemaca,age_group,75+,laki_laki,452,jiwa,2025,registration,total_population,1.4,29,,75+
+16.09.09,3,Buay Pemaca,age_group,75+,perempuan,308,jiwa,2025,registration,total_population,1.4,29,,75+
+16.09.09,3,Buay Pemaca,age_group,75+,,760,jiwa,2025,registration,total_population,1.4,29,,75+
+16.09.09,3,Buay Pemaca,sex,laki_laki,,23311,jiwa,2025,registration,total_population,1.4,29,,Laki-Laki
+16.09.09,3,Buay Pemaca,sex,perempuan,,21265,jiwa,2025,registration,total_population,1.4,29,,Perempuan
+16.09.09,3,Buay Pemaca,total,total,,44576,jiwa,2025,registration,total_population,1.4,29,,

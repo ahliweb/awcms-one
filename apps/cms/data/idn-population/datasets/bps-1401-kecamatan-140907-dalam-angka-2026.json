@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1401-kecamatan-140907-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.09.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunung Toar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuantan Singingi",
+  "publisherDomain": "1401",
+  "publisherWebsite": "https://kuansingkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuantan Singingi (https://kuansingkab.bps.go.id), publikasi \"Kecamatan Gunung Toar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1401012",
+  "publicationNumber": "14010.26009",
+  "issn": "2722-5941",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuansingkab.bps.go.id/id/publication/2026/09/28/8aa2e2ef2d22e3bc7c987ab9/kecamatan-gunung-toar-dalam-angka-2026.html",
+  "sourceFileSha256": "2ea0bc527a199da7d9520336680ae9a2ab1ca5429d796cee265170431a8361b8",
+  "sourceFileBytes": 14508231,
+  "sourcePages": [22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kuantan Singingi.",
+  "csvPath": "datasets/bps-1401-kecamatan-140907-dalam-angka-2026.csv",
+  "csvSha256": "05c488f73f9bdeee32de3b72cf52017bc2df54a46c94f276c91e596f1151618d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gunung Toar, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lubuk Terantang\": unmatched ",
+    "table 3.1: row not stored: row \"Lubuk Terantang\": unmatched "
+  ]
+}

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.76.03.1001,4,Kalinyamat Wetan,sex,laki_laki,,3068,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1001,4,Kalinyamat Wetan,sex,perempuan,,3030,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1001,4,Kalinyamat Wetan,total,total,,6098,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03.1002,4,Bandung,sex,laki_laki,,3682,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1002,4,Bandung,sex,perempuan,,3583,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1002,4,Bandung,total,total,,7265,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03.1003,4,Debong Kidul,sex,laki_laki,,3270,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1003,4,Debong Kidul,sex,perempuan,,3108,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1003,4,Debong Kidul,total,total,,6378,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03.1004,4,Tunon,sex,laki_laki,,3813,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1004,4,Tunon,sex,perempuan,,3761,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1004,4,Tunon,total,total,,7574,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03.1005,4,Keturen,sex,laki_laki,,2910,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1005,4,Keturen,sex,perempuan,,2712,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1005,4,Keturen,total,total,,5622,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03.1006,4,Debong Kulon,sex,laki_laki,,3120,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1006,4,Debong Kulon,sex,perempuan,,2845,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1006,4,Debong Kulon,total,total,,5965,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03.1007,4,Debong Tengah,sex,laki_laki,,7803,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1007,4,Debong Tengah,sex,perempuan,,7458,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1007,4,Debong Tengah,total,total,,15261,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03.1008,4,Randugunting,sex,laki_laki,,9862,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03.1008,4,Randugunting,sex,perempuan,,9918,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03.1008,4,Randugunting,total,total,,19780,jiwa,2026,registration,total_population,unnumbered-p35,35,,
+33.76.03,3,Kec. Tegal Selatan,sex,laki_laki,,37528,jiwa,2026,registration,total_population,unnumbered-p35,35,,Laki-Laki/Male
+33.76.03,3,Kec. Tegal Selatan,sex,perempuan,,36415,jiwa,2026,registration,total_population,unnumbered-p35,35,,Perempuan/Female
+33.76.03,3,Kec. Tegal Selatan,total,total,,73943,jiwa,2026,registration,total_population,unnumbered-p35,35,,

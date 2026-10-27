@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.16.1001,4,Ampel,sex,laki_laki,,8920,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.16.1001,4,Ampel,sex,perempuan,,9205,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.16.1001,4,Ampel,total,total,,18125,jiwa,2025,registration,total_population,3.1,29,,
+35.78.16.1005,4,Sidotopo,sex,laki_laki,,15529,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.16.1005,4,Sidotopo,sex,perempuan,,15558,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.16.1005,4,Sidotopo,total,total,,31087,jiwa,2025,registration,total_population,3.1,29,,
+35.78.16.1002,4,Pegirian,sex,laki_laki,,15722,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.16.1002,4,Pegirian,sex,perempuan,,15534,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.16.1002,4,Pegirian,total,total,,31256,jiwa,2025,registration,total_population,3.1,29,,
+35.78.16.1003,4,Wonokusumo,sex,laki_laki,,34309,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.16.1003,4,Wonokusumo,sex,perempuan,,33964,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.16.1003,4,Wonokusumo,total,total,,68273,jiwa,2025,registration,total_population,3.1,29,,
+35.78.16.1004,4,Ujung,sex,laki_laki,,16607,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.16.1004,4,Ujung,sex,perempuan,,16421,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.16.1004,4,Ujung,total,total,,33028,jiwa,2025,registration,total_population,3.1,29,,
+35.78.16,3,Kecamatan Semampir,sex,laki_laki,,91087,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.16,3,Kecamatan Semampir,sex,perempuan,,90682,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.16,3,Kecamatan Semampir,total,total,,181769,jiwa,2025,registration,total_population,3.1,29,,
+35.78.16,3,Semampir,age_group,0-4,laki_laki,6838,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.16,3,Semampir,age_group,0-4,perempuan,6331,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.16,3,Semampir,age_group,0-4,,13169,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.16,3,Semampir,age_group,5-9,laki_laki,7999,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.16,3,Semampir,age_group,5-9,perempuan,7765,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.16,3,Semampir,age_group,5-9,,15764,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.16,3,Semampir,age_group,10-14,laki_laki,8322,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.16,3,Semampir,age_group,10-14,perempuan,7738,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.16,3,Semampir,age_group,10-14,,16060,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.16,3,Semampir,age_group,15-19,laki_laki,8015,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.16,3,Semampir,age_group,15-19,perempuan,7539,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.16,3,Semampir,age_group,15-19,,15554,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.16,3,Semampir,age_group,20-24,laki_laki,7586,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.16,3,Semampir,age_group,20-24,perempuan,7171,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.16,3,Semampir,age_group,20-24,,14757,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.16,3,Semampir,age_group,25-29,laki_laki,7268,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.16,3,Semampir,age_group,25-29,perempuan,6840,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.16,3,Semampir,age_group,25-29,,14108,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.16,3,Semampir,age_group,30-34,laki_laki,6924,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.16,3,Semampir,age_group,30-34,perempuan,6727,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.16,3,Semampir,age_group,30-34,,13651,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.16,3,Semampir,age_group,35-39,laki_laki,6535,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.16,3,Semampir,age_group,35-39,perempuan,6267,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.16,3,Semampir,age_group,35-39,,12802,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.16,3,Semampir,age_group,40-44,laki_laki,6825,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.16,3,Semampir,age_group,40-44,perempuan,6741,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.16,3,Semampir,age_group,40-44,,13566,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.16,3,Semampir,age_group,45-49,laki_laki,6403,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.16,3,Semampir,age_group,45-49,perempuan,6305,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.16,3,Semampir,age_group,45-49,,12708,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.16,3,Semampir,age_group,50-54,laki_laki,5520,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.16,3,Semampir,age_group,50-54,perempuan,5558,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.16,3,Semampir,age_group,50-54,,11078,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.16,3,Semampir,age_group,55-59,laki_laki,4304,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.16,3,Semampir,age_group,55-59,perempuan,4612,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.16,3,Semampir,age_group,55-59,,8916,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.16,3,Semampir,age_group,60-64,laki_laki,3060,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.16,3,Semampir,age_group,60-64,perempuan,3566,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.16,3,Semampir,age_group,60-64,,6626,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.16,3,Semampir,age_group,65-69,laki_laki,2385,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.16,3,Semampir,age_group,65-69,perempuan,3128,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.16,3,Semampir,age_group,65-69,,5513,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.16,3,Semampir,age_group,70-74,laki_laki,1569,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.16,3,Semampir,age_group,70-74,perempuan,2063,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.16,3,Semampir,age_group,70-74,,3632,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.16,3,Semampir,age_group,75+,laki_laki,1534,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.16,3,Semampir,age_group,75+,perempuan,2331,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.16,3,Semampir,age_group,75+,,3865,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.16,3,Kecamatan Semampir,sex,laki_laki,,91087,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.16,3,Kecamatan Semampir,sex,perempuan,,90682,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.16,3,Kecamatan Semampir,total,total,,181769,jiwa,2025,registration,total_population,3.2,31,,

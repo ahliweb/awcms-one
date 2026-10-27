@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.13.2001,4,Wonorejo,sex,laki_laki,,6847,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2001,4,Wonorejo,sex,perempuan,,6714,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2001,4,Wonorejo,total,total,,13561,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2002,4,Plesungan,sex,laki_laki,,5270,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2002,4,Plesungan,sex,perempuan,,5150,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2002,4,Plesungan,total,total,,10420,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2003,4,Jatikuwung,sex,laki_laki,,3666,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2003,4,Jatikuwung,sex,perempuan,,3685,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2003,4,Jatikuwung,total,total,,7351,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2004,4,Selokaton,sex,laki_laki,,4794,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2004,4,Selokaton,sex,perempuan,,4753,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2004,4,Selokaton,total,total,,9547,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2005,4,Bulurejo,sex,laki_laki,,3484,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2005,4,Bulurejo,sex,perempuan,,3392,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2005,4,Bulurejo,total,total,,6876,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2006,4,Rejosari,sex,laki_laki,,1775,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2006,4,Rejosari,sex,perempuan,,1829,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2006,4,Rejosari,total,total,,3604,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2007,4,Jeruksawit,sex,laki_laki,,3186,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2007,4,Jeruksawit,sex,perempuan,,3162,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2007,4,Jeruksawit,total,total,,6348,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2008,4,Karangturi,sex,laki_laki,,1835,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2008,4,Karangturi,sex,perempuan,,1830,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2008,4,Karangturi,total,total,,3665,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2009,4,Kragan,sex,laki_laki,,1801,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2009,4,Kragan,sex,perempuan,,1889,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2009,4,Kragan,total,total,,3690,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2010,4,Wonosari,sex,laki_laki,,2225,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2010,4,Wonosari,sex,perempuan,,2142,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2010,4,Wonosari,total,total,,4367,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2011,4,Dayu,sex,laki_laki,,1941,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2011,4,Dayu,sex,perempuan,,1964,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2011,4,Dayu,total,total,,3905,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2012,4,Tuban,sex,laki_laki,,3920,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2012,4,Tuban,sex,perempuan,,4028,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2012,4,Tuban,total,total,,7948,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13.2013,4,Krendowahono,sex,laki_laki,,2199,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13.2013,4,Krendowahono,sex,perempuan,,2193,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13.2013,4,Krendowahono,total,total,,4392,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13,3,Kecamatan Gondangrejo,sex,laki_laki,,42943,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.13,3,Kecamatan Gondangrejo,sex,perempuan,,42731,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.13,3,Kecamatan Gondangrejo,total,total,,85674,jiwa,2025,registration,total_population,3.1,27,,
+33.13.13,3,Gondangrejo,age_group,0-4,laki_laki,2769,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.13,3,Gondangrejo,age_group,0-4,perempuan,2667,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.13,3,Gondangrejo,age_group,0-4,,5436,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.13,3,Gondangrejo,age_group,5-9,laki_laki,3601,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.13,3,Gondangrejo,age_group,5-9,perempuan,3471,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.13,3,Gondangrejo,age_group,5-9,,7072,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.13,3,Gondangrejo,age_group,10-14,laki_laki,3526,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.13,3,Gondangrejo,age_group,10-14,perempuan,3352,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.13,3,Gondangrejo,age_group,10-14,,6878,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.13,3,Gondangrejo,age_group,15-19,laki_laki,3437,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.13,3,Gondangrejo,age_group,15-19,perempuan,3192,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.13,3,Gondangrejo,age_group,15-19,,6629,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.13,3,Gondangrejo,age_group,20-24,laki_laki,3130,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.13,3,Gondangrejo,age_group,20-24,perempuan,3013,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.13,3,Gondangrejo,age_group,20-24,,6143,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.13,3,Gondangrejo,age_group,25-29,laki_laki,3102,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.13,3,Gondangrejo,age_group,25-29,perempuan,3069,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.13,3,Gondangrejo,age_group,25-29,,6171,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.13,3,Gondangrejo,age_group,30-34,laki_laki,3225,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.13,3,Gondangrejo,age_group,30-34,perempuan,3261,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.13,3,Gondangrejo,age_group,30-34,,6486,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.13,3,Gondangrejo,age_group,35-39,laki_laki,3117,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.13,3,Gondangrejo,age_group,35-39,perempuan,2991,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.13,3,Gondangrejo,age_group,35-39,,6108,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.13,3,Gondangrejo,age_group,40-44,laki_laki,3564,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.13,3,Gondangrejo,age_group,40-44,perempuan,3435,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.13,3,Gondangrejo,age_group,40-44,,6999,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.13,3,Gondangrejo,age_group,45-49,laki_laki,3159,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.13,3,Gondangrejo,age_group,45-49,perempuan,3048,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.13,3,Gondangrejo,age_group,45-49,,6207,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.13,3,Gondangrejo,age_group,50-54,laki_laki,2552,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.13,3,Gondangrejo,age_group,50-54,perempuan,2575,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.13,3,Gondangrejo,age_group,50-54,,5127,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.13,3,Gondangrejo,age_group,55-59,laki_laki,2357,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.13,3,Gondangrejo,age_group,55-59,perempuan,2408,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.13,3,Gondangrejo,age_group,55-59,,4765,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.13,3,Gondangrejo,age_group,60-64,laki_laki,1855,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.13,3,Gondangrejo,age_group,60-64,perempuan,2067,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.13,3,Gondangrejo,age_group,60-64,,3922,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.13,3,Gondangrejo,age_group,65-69,laki_laki,1442,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.13,3,Gondangrejo,age_group,65-69,perempuan,1677,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.13,3,Gondangrejo,age_group,65-69,,3119,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.13,3,Gondangrejo,age_group,70-74,laki_laki,1039,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.13,3,Gondangrejo,age_group,70-74,perempuan,976,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.13,3,Gondangrejo,age_group,70-74,,2015,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.13,3,Gondangrejo,age_group,75+,laki_laki,1068,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.13,3,Gondangrejo,age_group,75+,perempuan,1529,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.13,3,Gondangrejo,age_group,75+,,2597,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.13,3,Kecamatan Gondangrejo,sex,laki_laki,,42943,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.13,3,Kecamatan Gondangrejo,sex,perempuan,,42731,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.13,3,Kecamatan Gondangrejo,total,total,,85674,jiwa,2025,registration,total_population,3.2,29,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1906-kecamatan-190602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.06.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gantung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belitung Timur",
+  "publisherDomain": "1906",
+  "publisherWebsite": "https://belitungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belitung Timur (https://belitungtimurkab.bps.go.id), publikasi \"Kecamatan Gantung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "19060.26010",
+  "issn": "3063-9913",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://belitungtimurkab.bps.go.id/id/publication/2026/09/28/ed584a16deb2c874ad2336ec/kecamatan-gantung-dalam-angka-2026.html",
+  "sourceFileSha256": "379c3b57fd57f2a1b812479df8ce2ac9297577c5dba52f7b0a2b00e003cff080",
+  "sourceFileBytes": 7078092,
+  "sourcePages": [18, 19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Belitung Timur.",
+  "csvPath": "datasets/bps-1906-kecamatan-190602-dalam-angka-2026.csv",
+  "csvSha256": "43c010f37f8414bd43e8c881b5b1b27d670811e42752fac12749f4d8e793a964",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Gantung, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gantung, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

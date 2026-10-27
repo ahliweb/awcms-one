@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350719-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pakisaji Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Pakisaji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507220",
+  "publicationNumber": "35070.26028",
+  "issn": "2828-9668",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2026/09/28/d682cd25f5d86a04b971e985/kecamatan-pakisaji-dalam-angka-2026.html",
+  "sourceFileSha256": "7496490c1c57de124fb4f7641275247160aa2f3595e80a6ffcc43b18ebb06865",
+  "sourceFileBytes": 7456422,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350719-dalam-angka-2026.csv",
+  "csvSha256": "c73906884f5bff47b555ea44df2bd777dd7f9d1fc5079746a88cea95070dc26a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pakisaji, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pakisaji, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

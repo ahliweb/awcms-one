@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.21.2007,4,Tangga,sex,laki_laki,,626,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21.2007,4,Tangga,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21.2007,4,Tangga,total,total,,1270,jiwa,2025,registration,total_population,3.1.1,25,,
+12.09.21.2006,4,Lobu Rappa,sex,laki_laki,,1364,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21.2006,4,Lobu Rappa,sex,perempuan,,1329,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21.2006,4,Lobu Rappa,total,total,,2693,jiwa,2025,registration,total_population,3.1.1,25,,
+12.09.21.2005,4,Marjanji Aceh,sex,laki_laki,,1465,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21.2005,4,Marjanji Aceh,sex,perempuan,,1485,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21.2005,4,Marjanji Aceh,total,total,,2950,jiwa,2025,registration,total_population,3.1.1,25,,
+12.09.21.2004,4,Aek Bamban,sex,laki_laki,,757,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21.2004,4,Aek Bamban,sex,perempuan,,735,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21.2004,4,Aek Bamban,total,total,,1492,jiwa,2025,registration,total_population,3.1.1,25,,
+12.09.21.2001,4,Aek Songsongan,sex,laki_laki,,2505,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21.2001,4,Aek Songsongan,sex,perempuan,,2587,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21.2001,4,Aek Songsongan,total,total,,5092,jiwa,2025,registration,total_population,3.1.1,25,,
+12.09.21.2009,4,Mekar Marjanji,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21.2009,4,Mekar Marjanji,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21.2009,4,Mekar Marjanji,total,total,,963,jiwa,2025,registration,total_population,3.1.1,25,,
+12.09.21.2008,4,Situnjak,sex,laki_laki,,593,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21.2008,4,Situnjak,sex,perempuan,,608,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21.2008,4,Situnjak,total,total,,1201,jiwa,2025,registration,total_population,3.1.1,25,,
+12.09.21,3,Aek Songsongan,sex,laki_laki,,9648,jiwa,2025,registration,total_population,3.1.1,25,,Laki-Laki/Male
+12.09.21,3,Aek Songsongan,sex,perempuan,,9575,jiwa,2025,registration,total_population,3.1.1,25,,Perempuan/Female
+12.09.21,3,Aek Songsongan,total,total,,19223,jiwa,2025,registration,total_population,3.1.1,25,,

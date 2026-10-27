@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.09.2015,4,TANJONG KRUENG,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2015,4,TANJONG KRUENG,sex,perempuan,,232,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2015,4,TANJONG KRUENG,total,total,,455,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2009,4,BLANG ASAN,sex,laki_laki,,914,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2009,4,BLANG ASAN,sex,perempuan,,975,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2009,4,BLANG ASAN,total,total,,1889,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2008,4,BLOK SAWAH,sex,laki_laki,,399,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2008,4,BLOK SAWAH,sex,perempuan,,438,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2008,4,BLOK SAWAH,total,total,,837,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2004,4,PANTE TEUNGOH,sex,laki_laki,,434,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2004,4,PANTE TEUNGOH,sex,perempuan,,479,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2004,4,PANTE TEUNGOH,total,total,,913,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2007,4,KRAMAT DALAM,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2007,4,KRAMAT DALAM,sex,perempuan,,345,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2007,4,KRAMAT DALAM,total,total,,717,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2006,4,KRAMAT LUAR,sex,laki_laki,,1358,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2006,4,KRAMAT LUAR,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2006,4,KRAMAT LUAR,total,total,,2725,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2010,4,LAMPOH KRUENG,sex,laki_laki,,1120,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2010,4,LAMPOH KRUENG,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2010,4,LAMPOH KRUENG,total,total,,2294,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2014,4,PASI PEUKAN BARO,sex,laki_laki,,307,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2014,4,PASI PEUKAN BARO,sex,perempuan,,293,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2014,4,PASI PEUKAN BARO,total,total,,600,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2013,4,PASI RAWA,sex,laki_laki,,654,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2013,4,PASI RAWA,sex,perempuan,,623,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2013,4,PASI RAWA,total,total,,1277,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2005,4,KUALA PIDIE,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2005,4,KUALA PIDIE,sex,perempuan,,433,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2005,4,KUALA PIDIE,total,total,,878,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2003,4,BLOK BENGKEL,sex,laki_laki,,311,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2003,4,BLOK BENGKEL,sex,perempuan,,316,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2003,4,BLOK BENGKEL,total,total,,627,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2002,4,BENTENG,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2002,4,BENTENG,sex,perempuan,,491,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2002,4,BENTENG,total,total,,1006,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09.2001,4,BLANG PASEH,sex,laki_laki,,1882,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09.2001,4,BLANG PASEH,sex,perempuan,,1938,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09.2001,4,BLANG PASEH,total,total,,3820,jiwa,2025,registration,total_population,3.2,34,,
+11.07.09,3,KOTA SIGLI,sex,laki_laki,,10008,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki/Male
+11.07.09,3,KOTA SIGLI,sex,perempuan,,10260,jiwa,2025,registration,total_population,3.2,34,,Perempuan/Female
+11.07.09,3,KOTA SIGLI,total,total,,20268,jiwa,2025,registration,total_population,3.2,34,,

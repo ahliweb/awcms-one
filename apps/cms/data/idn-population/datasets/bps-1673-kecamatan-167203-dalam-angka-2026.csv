@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.72.03.1024,4,Burung Dinang,sex,laki_laki,,1194,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.03.1024,4,Burung Dinang,sex,perempuan,,1128,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.03.1024,4,Burung Dinang,total,total,,2322,jiwa,2025,registration,total_population,3.1,28,,
+16.72.03.1019,4,Muara siban,sex,laki_laki,,1812,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.03.1019,4,Muara siban,sex,perempuan,,1733,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.03.1019,4,Muara siban,total,total,,3545,jiwa,2025,registration,total_population,3.1,28,,
+16.72.03.1006,4,Jangkar Mas,sex,laki_laki,,1305,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.03.1006,4,Jangkar Mas,sex,perempuan,,1228,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.03.1006,4,Jangkar Mas,total,total,,2533,jiwa,2025,registration,total_population,3.1,28,,
+16.72.03.1023,4,Pagar Wangi,sex,laki_laki,,1951,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.03.1023,4,Pagar Wangi,sex,perempuan,,1893,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.03.1023,4,Pagar Wangi,total,total,,3844,jiwa,2025,registration,total_population,3.1,28,,
+16.72.03.1012,4,Bumi Agung,sex,laki_laki,,2028,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.03.1012,4,Bumi Agung,sex,perempuan,,1849,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.03.1012,4,Bumi Agung,total,total,,3877,jiwa,2025,registration,total_population,3.1,28,,
+16.72.03.1022,4,Agung Lawangan,sex,laki_laki,,2912,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.03.1022,4,Agung Lawangan,sex,perempuan,,2752,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.03.1022,4,Agung Lawangan,total,total,,5664,jiwa,2025,registration,total_population,3.1,28,,
+16.72.03,3,Dempo Utara,sex,laki_laki,,12548,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.03,3,Dempo Utara,sex,perempuan,,11856,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.03,3,Dempo Utara,total,total,,24404,jiwa,2025,registration,total_population,3.1,28,,

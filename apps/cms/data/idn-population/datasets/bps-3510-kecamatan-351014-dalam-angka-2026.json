@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3510-kecamatan-351014-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.10.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kabat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuwangi",
+  "publisherDomain": "3510",
+  "publisherWebsite": "https://banyuwangikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuwangi (https://banyuwangikab.bps.go.id), publikasi \"Kecamatan Kabat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3510130",
+  "publicationNumber": "35100.26021",
+  "issn": "2407-0351",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuwangikab.bps.go.id/id/publication/2026/09/28/878dc12868ac4b57dddb9269/kecamatan-kabat-dalam-angka-2026.html",
+  "sourceFileSha256": "21b9d842fcab074fe86cb1716c5507416dcda370b315bfb7def47cf5a1b7d726",
+  "sourceFileBytes": 16330000,
+  "sourcePages": [7, 9],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3510-kecamatan-351014-dalam-angka-2026.csv",
+  "csvSha256": "072047d9852e4305c3a87efe6e0451736780e0f8df757aaec512909400bf77f7",
+  "tablesUsed": [
+    {
+      "table": "1.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kabat, 2025",
+      "printedPages": [9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.3: row not stored: row \"Bareng 941\": unmatched ",
+    "table 1.3: row not stored: row \"Bunder 2 383\": unmatched ",
+    "table 1.3: row not stored: row \"Gombolirang 1 665\": unmatched ",
+    "table 1.3: row not stored: row \"Benelan Lor 1 643\": unmatched ",
+    "table 1.3: row not stored: row \"Labanasem 1 712\": unmatched ",
+    "table 1.3: row not stored: row \"Pakistaji 3 276\": unmatched ",
+    "table 1.3: row not stored: row \"Pondoknongko 1 935\": unmatched ",
+    "table 1.3: row not stored: row \"Dadapan 3 793\": unmatched ",
+    "table 1.3: row not stored: row \"Kedayunan 2 675\": unmatched ",
+    "table 1.3: row not stored: row \"Kabat 2 563\": unmatched ",
+    "table 1.3: row not stored: row \"Macan Putih 4 833\": unmatched ",
+    "table 1.3: row not stored: row \"Tambong 1 538\": unmatched ",
+    "table 1.3: row not stored: row \"Pendarungan 2 052\": unmatched ",
+    "table 1.3: row not stored: row \"Kalirejo 2 799\": unmatched ",
+    "table 1.3: row not stored: row \"Kabat 33 808\": unmatched ",
+    "table 1.3: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

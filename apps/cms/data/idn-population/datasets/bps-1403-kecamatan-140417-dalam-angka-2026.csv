@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.17.2001,4,Pulau Burung,sex,laki_laki,,6010,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2001,4,Pulau Burung,sex,perempuan,,5752,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2001,4,Pulau Burung,total,total,,11762,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2007,4,Bangun Harjo Jaya,sex,laki_laki,,420,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2007,4,Bangun Harjo Jaya,sex,perempuan,,358,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2007,4,Bangun Harjo Jaya,total,total,,778,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2008,4,Ringin Jaya,sex,laki_laki,,343,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2008,4,Ringin Jaya,sex,perempuan,,289,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2008,4,Ringin Jaya,total,total,,632,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2004,4,Mayang Sari Jaya,sex,laki_laki,,551,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2004,4,Mayang Sari Jaya,sex,perempuan,,501,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2004,4,Mayang Sari Jaya,total,total,,1052,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2005,4,Bukit Sari Intan Jaya,sex,laki_laki,,334,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2005,4,Bukit Sari Intan Jaya,sex,perempuan,,303,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2005,4,Bukit Sari Intan Jaya,total,total,,637,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2006,4,Manunggal Jaya,sex,laki_laki,,415,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2006,4,Manunggal Jaya,sex,perempuan,,384,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2006,4,Manunggal Jaya,total,total,,799,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2002,4,Teluk Nibung,sex,laki_laki,,965,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2002,4,Teluk Nibung,sex,perempuan,,877,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2002,4,Teluk Nibung,total,total,,1842,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2003,4,Sungai Danai,sex,laki_laki,,713,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2003,4,Sungai Danai,sex,perempuan,,674,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2003,4,Sungai Danai,total,total,,1387,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2010,4,Sapta Jaya,sex,laki_laki,,289,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2010,4,Sapta Jaya,sex,perempuan,,247,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2010,4,Sapta Jaya,total,total,,536,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2011,4,Keramat Jaya,sex,laki_laki,,140,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2011,4,Keramat Jaya,sex,perempuan,,112,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2011,4,Keramat Jaya,total,total,,252,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17.2013,4,Suka Jaya,sex,laki_laki,,285,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17.2013,4,Suka Jaya,sex,perempuan,,261,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17.2013,4,Suka Jaya,total,total,,546,jiwa,2026,registration,total_population,3.1,29,,
+14.04.17,3,Pulau Burung,sex,laki_laki,,11086,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.17,3,Pulau Burung,sex,perempuan,,10297,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.17,3,Pulau Burung,total,total,,21383,jiwa,2026,registration,total_population,3.1,29,,

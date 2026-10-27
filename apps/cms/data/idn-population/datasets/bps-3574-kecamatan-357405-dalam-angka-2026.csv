@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.74.05.1003,4,Sumber Wetan,sex,laki_laki,,3607,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.05.1003,4,Sumber Wetan,sex,perempuan,,2496,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.05.1003,4,Sumber Wetan,total,total,,6103,jiwa,2025,registration,total_population,3.1,25,,
+35.74.05.1002,4,Kareng Lor,sex,laki_laki,,3091,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.05.1002,4,Kareng Lor,sex,perempuan,,4880,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.05.1002,4,Kareng Lor,total,total,,7971,jiwa,2025,registration,total_population,3.1,25,,
+35.74.05.1005,4,Kedopok,sex,laki_laki,,2263,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.05.1005,4,Kedopok,sex,perempuan,,2250,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.05.1005,4,Kedopok,total,total,,4513,jiwa,2025,registration,total_population,3.1,25,,
+35.74.05.1001,4,Jrebeng Kulon,sex,laki_laki,,3125,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.05.1001,4,Jrebeng Kulon,sex,perempuan,,3154,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.05.1001,4,Jrebeng Kulon,total,total,,6279,jiwa,2025,registration,total_population,3.1,25,,
+35.74.05.1006,4,Jrebeng Wetan,sex,laki_laki,,2441,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.05.1006,4,Jrebeng Wetan,sex,perempuan,,3717,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.05.1006,4,Jrebeng Wetan,total,total,,6158,jiwa,2025,registration,total_population,3.1,25,,
+35.74.05.1004,4,Jrebeng Lor,sex,laki_laki,,5048,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.05.1004,4,Jrebeng Lor,sex,perempuan,,3206,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.05.1004,4,Jrebeng Lor,total,total,,8254,jiwa,2025,registration,total_population,3.1,25,,
+35.74.05,3,Kedopok,age_group,0-14,laki_laki,4705,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.05,3,Kedopok,age_group,0-14,perempuan,4649,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.05,3,Kedopok,age_group,0-14,,9354,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.05,3,Kedopok,age_group,15-64,laki_laki,13664,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.05,3,Kedopok,age_group,15-64,perempuan,13695,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.05,3,Kedopok,age_group,15-64,,27359,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.05,3,Kedopok,age_group,65+,laki_laki,1206,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.05,3,Kedopok,age_group,65+,perempuan,1359,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.05,3,Kedopok,age_group,65+,,2565,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.05.1003,4,Sumber Wetan,religion,islam,,7337,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.05.1003,4,Sumber Wetan,religion,kristen,,14,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.05.1003,4,Sumber Wetan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Katolik
+35.74.05.1003,4,Sumber Wetan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.05.1003,4,Sumber Wetan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.05.1003,4,Sumber Wetan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.05.1002,4,Kareng Lor,religion,islam,,6391,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.05.1002,4,Kareng Lor,religion,kristen,,34,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.05.1002,4,Kareng Lor,religion,katolik,,12,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.05.1002,4,Kareng Lor,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.05.1002,4,Kareng Lor,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.05.1002,4,Kareng Lor,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.05.1005,4,Kedopok,religion,islam,,4530,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.05.1005,4,Kedopok,religion,kristen,,8,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.05.1005,4,Kedopok,religion,katolik,,2,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.05.1005,4,Kedopok,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.05.1005,4,Kedopok,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.05.1005,4,Kedopok,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.05.1001,4,Jrebeng Kulon,religion,islam,,6310,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.05.1001,4,Jrebeng Kulon,religion,kristen,,20,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.05.1001,4,Jrebeng Kulon,religion,katolik,,4,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.05.1001,4,Jrebeng Kulon,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.05.1001,4,Jrebeng Kulon,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.05.1001,4,Jrebeng Kulon,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.05.1006,4,Jrebeng Wetan,religion,islam,,4941,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.05.1006,4,Jrebeng Wetan,religion,kristen,,29,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.05.1006,4,Jrebeng Wetan,religion,katolik,,23,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.05.1006,4,Jrebeng Wetan,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.05.1006,4,Jrebeng Wetan,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.05.1006,4,Jrebeng Wetan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.05.1004,4,Jrebeng Lor,religion,islam,,9892,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.05.1004,4,Jrebeng Lor,religion,kristen,,8,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.05.1004,4,Jrebeng Lor,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Katolik
+35.74.05.1004,4,Jrebeng Lor,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.05.1004,4,Jrebeng Lor,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.05.1004,4,Jrebeng Lor,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya

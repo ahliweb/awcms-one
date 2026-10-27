@@ -46,7 +46,7 @@ export type CreateSegmentInput = {
   node: SegmentNode;
   canonicalRules: Record<string, unknown>;
   stats: SegmentRuleStats;
-  /** The rule schema the version is written under (ADR-0051); always the current one for new input. */
+  /** The rule schema the version is written under (ADR-0052); always the current one for new input. */
   ruleSchemaVersion: number;
 };
 

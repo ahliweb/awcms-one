@@ -1,0 +1,66 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.06.1006,4,Rantau Indah,sex,laki_laki,,2528,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.06.1006,4,Rantau Indah,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+15.07.06.1006,4,Rantau Indah,total,total,,5012,jiwa,2025,registration,total_population,3.1,26,,
+15.07.06.2003,4,Kuala Dendang,sex,laki_laki,,964,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.06.2003,4,Kuala Dendang,sex,perempuan,,885,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+15.07.06.2003,4,Kuala Dendang,total,total,,1849,jiwa,2025,registration,total_population,3.1,26,,
+15.07.06.2004,4,Koto Kandis Dendang,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.06.2004,4,Koto Kandis Dendang,sex,perempuan,,564,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+15.07.06.2004,4,Koto Kandis Dendang,total,total,,1162,jiwa,2025,registration,total_population,3.1,26,,
+15.07.06.2005,4,Koto Kandis,sex,laki_laki,,1086,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.06.2005,4,Koto Kandis,sex,perempuan,,1093,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+15.07.06.2005,4,Koto Kandis,total,total,,2179,jiwa,2025,registration,total_population,3.1,26,,
+15.07.06.2007,4,Sido Mukti,sex,laki_laki,,2006,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.06.2007,4,Sido Mukti,sex,perempuan,,1919,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+15.07.06.2007,4,Sido Mukti,total,total,,3925,jiwa,2025,registration,total_population,3.1,26,,
+15.07.06.2008,4,Catur Rahayu,sex,perempuan,,1455,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+15.07.06.2008,4,Catur Rahayu,total,total,,2965,jiwa,2025,registration,total_population,3.1,26,,
+15.07.06.2009,4,Jati Mulyo,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+15.07.06.2009,4,Jati Mulyo,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+15.07.06.2009,4,Jati Mulyo,total,total,,751,jiwa,2025,registration,total_population,3.1,26,,
+15.07.06,3,Dendang,age_group,0-4,laki_laki,584,jiwa,2025,registration,total_population,3.2,28,,0–4
+15.07.06,3,Dendang,age_group,0-4,perempuan,556,jiwa,2025,registration,total_population,3.2,28,,0–4
+15.07.06,3,Dendang,age_group,5-9,laki_laki,717,jiwa,2025,registration,total_population,3.2,28,,5–9
+15.07.06,3,Dendang,age_group,5-9,perempuan,699,jiwa,2025,registration,total_population,3.2,28,,5–9
+15.07.06,3,Dendang,age_group,5-9,,1416,jiwa,2025,registration,total_population,3.2,28,,5–9
+15.07.06,3,Dendang,age_group,10-14,laki_laki,734,jiwa,2025,registration,total_population,3.2,28,,10–14
+15.07.06,3,Dendang,age_group,10-14,perempuan,704,jiwa,2025,registration,total_population,3.2,28,,10–14
+15.07.06,3,Dendang,age_group,10-14,,1438,jiwa,2025,registration,total_population,3.2,28,,10–14
+15.07.06,3,Dendang,age_group,15-19,laki_laki,748,jiwa,2025,registration,total_population,3.2,28,,15–19
+15.07.06,3,Dendang,age_group,15-19,perempuan,696,jiwa,2025,registration,total_population,3.2,28,,15–19
+15.07.06,3,Dendang,age_group,15-19,,1444,jiwa,2025,registration,total_population,3.2,28,,15–19
+15.07.06,3,Dendang,age_group,20-24,laki_laki,718,jiwa,2025,registration,total_population,3.2,28,,20–24
+15.07.06,3,Dendang,age_group,20-24,perempuan,722,jiwa,2025,registration,total_population,3.2,28,,20–24
+15.07.06,3,Dendang,age_group,25-29,laki_laki,736,jiwa,2025,registration,total_population,3.2,28,,25–29
+15.07.06,3,Dendang,age_group,25-29,perempuan,690,jiwa,2025,registration,total_population,3.2,28,,25–29
+15.07.06,3,Dendang,age_group,25-29,,1426,jiwa,2025,registration,total_population,3.2,28,,25–29
+15.07.06,3,Dendang,age_group,30-34,laki_laki,626,jiwa,2025,registration,total_population,3.2,28,,30–34
+15.07.06,3,Dendang,age_group,30-34,perempuan,615,jiwa,2025,registration,total_population,3.2,28,,30–34
+15.07.06,3,Dendang,age_group,30-34,,1241,jiwa,2025,registration,total_population,3.2,28,,30–34
+15.07.06,3,Dendang,age_group,35-39,laki_laki,605,jiwa,2025,registration,total_population,3.2,28,,35–39
+15.07.06,3,Dendang,age_group,35-39,perempuan,592,jiwa,2025,registration,total_population,3.2,28,,35–39
+15.07.06,3,Dendang,age_group,35-39,,1197,jiwa,2025,registration,total_population,3.2,28,,35–39
+15.07.06,3,Dendang,age_group,40-44,laki_laki,729,jiwa,2025,registration,total_population,3.2,28,,40–44
+15.07.06,3,Dendang,age_group,40-44,perempuan,682,jiwa,2025,registration,total_population,3.2,28,,40–44
+15.07.06,3,Dendang,age_group,40-44,,1411,jiwa,2025,registration,total_population,3.2,28,,40–44
+15.07.06,3,Dendang,age_group,45-49,laki_laki,647,jiwa,2025,registration,total_population,3.2,28,,45–49
+15.07.06,3,Dendang,age_group,45-49,perempuan,653,jiwa,2025,registration,total_population,3.2,28,,45–49
+15.07.06,3,Dendang,age_group,50-54,laki_laki,558,jiwa,2025,registration,total_population,3.2,28,,50–54
+15.07.06,3,Dendang,age_group,50-54,perempuan,596,jiwa,2025,registration,total_population,3.2,28,,50–54
+15.07.06,3,Dendang,age_group,50-54,,1154,jiwa,2025,registration,total_population,3.2,28,,50–54
+15.07.06,3,Dendang,age_group,55-59,laki_laki,529,jiwa,2025,registration,total_population,3.2,28,,55–59
+15.07.06,3,Dendang,age_group,55-59,perempuan,462,jiwa,2025,registration,total_population,3.2,28,,55–59
+15.07.06,3,Dendang,age_group,55-59,,991,jiwa,2025,registration,total_population,3.2,28,,55–59
+15.07.06,3,Dendang,age_group,60-64,laki_laki,349,jiwa,2025,registration,total_population,3.2,28,,60–64
+15.07.06,3,Dendang,age_group,60-64,perempuan,306,jiwa,2025,registration,total_population,3.2,28,,60–64
+15.07.06,3,Dendang,age_group,60-64,,655,jiwa,2025,registration,total_population,3.2,28,,60–64
+15.07.06,3,Dendang,age_group,65-69,laki_laki,250,jiwa,2025,registration,total_population,3.2,28,,65–69
+15.07.06,3,Dendang,age_group,65-69,perempuan,244,jiwa,2025,registration,total_population,3.2,28,,65–69
+15.07.06,3,Dendang,age_group,65-69,,494,jiwa,2025,registration,total_population,3.2,28,,65–69
+15.07.06,3,Dendang,age_group,70-74,laki_laki,206,jiwa,2025,registration,total_population,3.2,28,,70–74
+15.07.06,3,Dendang,age_group,70-74,perempuan,187,jiwa,2025,registration,total_population,3.2,28,,70–74
+15.07.06,3,Dendang,age_group,70-74,,393,jiwa,2025,registration,total_population,3.2,28,,70–74
+15.07.06,3,Dendang,age_group,75+,laki_laki,217,jiwa,2025,registration,total_population,3.2,28,,75+
+15.07.06,3,Dendang,age_group,75+,perempuan,242,jiwa,2025,registration,total_population,3.2,28,,75+
+15.07.06,3,Dendang,age_group,75+,,459,jiwa,2025,registration,total_population,3.2,28,,75+

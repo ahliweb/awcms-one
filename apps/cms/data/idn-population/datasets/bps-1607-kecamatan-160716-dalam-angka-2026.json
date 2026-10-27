@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160716-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Suak Tapeh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Suak Tapeh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1607021",
+  "publicationNumber": "16070.26007",
+  "issn": "3064-5166",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/dc52691c4b9adf624bd4bda7/kecamatan-suak-tapeh-dalam-angka-2026.html",
+  "sourceFileSha256": "c308e99f538b559196680ca7fb945374fc8d28682cafb38f01c726979b5944fc",
+  "sourceFileBytes": 11328078,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160716-dalam-angka-2026.csv",
+  "csvSha256": "128cd4f0a040da165a0bc6a50d1e3e624648d4cfd2cecf3384ceaee36389e951",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Suak Tapeh, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Talang Ipuh 691\": unmatched ",
+    "table 3.1: row not stored: row \"Air Senggeris 388\": unmatched ",
+    "table 3.1: row not stored: row \"Lubuk Lancang 2.326\": unmatched ",
+    "table 3.1: row not stored: row \"Biyuku 801\": unmatched ",
+    "table 3.1: row not stored: row \"Rimba Terap 579\": unmatched ",
+    "table 3.1: row not stored: row \"Sedang 1.146\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Laut 1.217\": unmatched ",
+    "table 3.1: row not stored: row \"Bengkuang 304\": unmatched ",
+    "table 3.1: row not stored: row \"Durian Daun 707\": unmatched ",
+    "table 3.1: row not stored: row \"Meranti 1.840\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Raja 474\": unmatched ",
+    "table 3.1: row not stored: row \"Suak Tapeh 10.473\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

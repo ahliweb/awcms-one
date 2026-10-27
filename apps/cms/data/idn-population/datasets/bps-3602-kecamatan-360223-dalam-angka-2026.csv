@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.23.2001,4,Guradog,sex,laki_laki,,2357,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2001,4,Guradog,sex,perempuan,,2286,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2001,4,Guradog,total,total,,4643,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2003,4,Candi,sex,laki_laki,,1780,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2003,4,Candi,sex,perempuan,,1609,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2003,4,Candi,total,total,,3389,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2008,4,Sekarwangi,sex,laki_laki,,2284,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2008,4,Sekarwangi,sex,perempuan,,2169,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2008,4,Sekarwangi,total,total,,4453,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2002,4,Curugbitung,sex,laki_laki,,2050,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2002,4,Curugbitung,sex,perempuan,,1929,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2002,4,Curugbitung,total,total,,3979,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2007,4,Ciburuy,sex,laki_laki,,3366,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2007,4,Ciburuy,sex,perempuan,,3029,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2007,4,Ciburuy,total,total,,6395,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2004,4,Mayak,sex,laki_laki,,1315,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2004,4,Mayak,sex,perempuan,,1210,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2004,4,Mayak,total,total,,2525,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2006,4,Cilayang,sex,laki_laki,,2319,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2006,4,Cilayang,sex,perempuan,,2125,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2006,4,Cilayang,total,total,,4444,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2005,4,Cipining,sex,laki_laki,,2188,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2005,4,Cipining,sex,perempuan,,2053,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2005,4,Cipining,total,total,,4241,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2009,4,Cidadap,sex,laki_laki,,2113,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2009,4,Cidadap,sex,perempuan,,1931,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2009,4,Cidadap,total,total,,4044,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23.2010,4,Lebakasih,sex,laki_laki,,1462,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.23.2010,4,Lebakasih,sex,perempuan,,1366,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.23.2010,4,Lebakasih,total,total,,2828,jiwa,2025,registration,total_population,3.1,26,,
+36.02.23,3,Curugbitung,age_group,0-4,laki_laki,1688,jiwa,2025,registration,total_population,3.2,28,,0 – 4
+36.02.23,3,Curugbitung,age_group,0-4,perempuan,1514,jiwa,2025,registration,total_population,3.2,28,,0 – 4
+36.02.23,3,Curugbitung,age_group,0-4,,3202,jiwa,2025,registration,total_population,3.2,28,,0 – 4
+36.02.23,3,Curugbitung,age_group,5-9,laki_laki,2111,jiwa,2025,registration,total_population,3.2,28,,5 – 9
+36.02.23,3,Curugbitung,age_group,5-9,perempuan,1886,jiwa,2025,registration,total_population,3.2,28,,5 – 9
+36.02.23,3,Curugbitung,age_group,5-9,,3997,jiwa,2025,registration,total_population,3.2,28,,5 – 9
+36.02.23,3,Curugbitung,age_group,10-14,laki_laki,1929,jiwa,2025,registration,total_population,3.2,28,,10 – 14
+36.02.23,3,Curugbitung,age_group,10-14,perempuan,1815,jiwa,2025,registration,total_population,3.2,28,,10 – 14
+36.02.23,3,Curugbitung,age_group,10-14,,3744,jiwa,2025,registration,total_population,3.2,28,,10 – 14
+36.02.23,3,Curugbitung,age_group,15-19,laki_laki,1533,jiwa,2025,registration,total_population,3.2,28,,15 – 19
+36.02.23,3,Curugbitung,age_group,15-19,perempuan,1485,jiwa,2025,registration,total_population,3.2,28,,15 – 19
+36.02.23,3,Curugbitung,age_group,15-19,,3018,jiwa,2025,registration,total_population,3.2,28,,15 – 19
+36.02.23,3,Curugbitung,age_group,20-24,laki_laki,1563,jiwa,2025,registration,total_population,3.2,28,,20 – 24
+36.02.23,3,Curugbitung,age_group,20-24,perempuan,1560,jiwa,2025,registration,total_population,3.2,28,,20 – 24
+36.02.23,3,Curugbitung,age_group,20-24,,3123,jiwa,2025,registration,total_population,3.2,28,,20 – 24
+36.02.23,3,Curugbitung,age_group,25-29,laki_laki,1959,jiwa,2025,registration,total_population,3.2,28,,25 – 29
+36.02.23,3,Curugbitung,age_group,25-29,perempuan,1729,jiwa,2025,registration,total_population,3.2,28,,25 – 29
+36.02.23,3,Curugbitung,age_group,25-29,,3688,jiwa,2025,registration,total_population,3.2,28,,25 – 29
+36.02.23,3,Curugbitung,age_group,30-34,laki_laki,1782,jiwa,2025,registration,total_population,3.2,28,,30 – 34
+36.02.23,3,Curugbitung,age_group,30-34,perempuan,1557,jiwa,2025,registration,total_population,3.2,28,,30 – 34
+36.02.23,3,Curugbitung,age_group,30-34,,3339,jiwa,2025,registration,total_population,3.2,28,,30 – 34
+36.02.23,3,Curugbitung,age_group,35-39,laki_laki,1822,jiwa,2025,registration,total_population,3.2,28,,35 – 39
+36.02.23,3,Curugbitung,age_group,35-39,perempuan,1530,jiwa,2025,registration,total_population,3.2,28,,35 – 39
+36.02.23,3,Curugbitung,age_group,35-39,,3352,jiwa,2025,registration,total_population,3.2,28,,35 – 39
+36.02.23,3,Curugbitung,age_group,40-44,laki_laki,1587,jiwa,2025,registration,total_population,3.2,28,,40 – 44
+36.02.23,3,Curugbitung,age_group,40-44,perempuan,1481,jiwa,2025,registration,total_population,3.2,28,,40 – 44
+36.02.23,3,Curugbitung,age_group,40-44,,3068,jiwa,2025,registration,total_population,3.2,28,,40 – 44
+36.02.23,3,Curugbitung,age_group,45-49,laki_laki,1327,jiwa,2025,registration,total_population,3.2,28,,45 – 49
+36.02.23,3,Curugbitung,age_group,45-49,perempuan,1224,jiwa,2025,registration,total_population,3.2,28,,45 – 49
+36.02.23,3,Curugbitung,age_group,45-49,,2551,jiwa,2025,registration,total_population,3.2,28,,45 – 49
+36.02.23,3,Curugbitung,age_group,50-54,laki_laki,1007,jiwa,2025,registration,total_population,3.2,28,,50 – 54
+36.02.23,3,Curugbitung,age_group,50-54,perempuan,949,jiwa,2025,registration,total_population,3.2,28,,50 – 54
+36.02.23,3,Curugbitung,age_group,50-54,,1956,jiwa,2025,registration,total_population,3.2,28,,50 – 54
+36.02.23,3,Curugbitung,age_group,55-59,laki_laki,885,jiwa,2025,registration,total_population,3.2,28,,55 – 59
+36.02.23,3,Curugbitung,age_group,55-59,perempuan,892,jiwa,2025,registration,total_population,3.2,28,,55 – 59
+36.02.23,3,Curugbitung,age_group,55-59,,1777,jiwa,2025,registration,total_population,3.2,28,,55 – 59
+36.02.23,3,Curugbitung,age_group,60-64,laki_laki,676,jiwa,2025,registration,total_population,3.2,28,,60 – 64
+36.02.23,3,Curugbitung,age_group,60-64,perempuan,643,jiwa,2025,registration,total_population,3.2,28,,60 – 64
+36.02.23,3,Curugbitung,age_group,60-64,,1319,jiwa,2025,registration,total_population,3.2,28,,60 – 64
+36.02.23,3,Curugbitung,age_group,65-69,laki_laki,579,jiwa,2025,registration,total_population,3.2,28,,65 – 69
+36.02.23,3,Curugbitung,age_group,65-69,perempuan,637,jiwa,2025,registration,total_population,3.2,28,,65 – 69
+36.02.23,3,Curugbitung,age_group,65-69,,1216,jiwa,2025,registration,total_population,3.2,28,,65 – 69
+36.02.23,3,Curugbitung,age_group,70-74,laki_laki,342,jiwa,2025,registration,total_population,3.2,28,,70 – 74
+36.02.23,3,Curugbitung,age_group,70-74,perempuan,300,jiwa,2025,registration,total_population,3.2,28,,70 – 74
+36.02.23,3,Curugbitung,age_group,70-74,,642,jiwa,2025,registration,total_population,3.2,28,,70 – 74
+36.02.23,3,Curugbitung,age_group,75+,laki_laki,444,jiwa,2025,registration,total_population,3.2,28,,75 +
+36.02.23,3,Curugbitung,age_group,75+,perempuan,505,jiwa,2025,registration,total_population,3.2,28,,75 +
+36.02.23,3,Curugbitung,age_group,75+,,949,jiwa,2025,registration,total_population,3.2,28,,75 +

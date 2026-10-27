@@ -1,0 +1,125 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.06.01,3,Tungkal ulu,religion,islam,,14019,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.01,3,Tungkal ulu,religion,kristen,,1508,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.01,3,Tungkal ulu,religion,katolik,,129,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.01,3,Tungkal ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.01,3,Tungkal ulu,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+15.06.01,3,Tungkal ulu,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,111,,Lainnya
+15.06.05,3,Merlung,religion,islam,,15866,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.05,3,Merlung,religion,kristen,,1214,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.05,3,Merlung,religion,katolik,,72,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.05,3,Merlung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.05,3,Merlung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+15.06.05,3,Merlung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.07,3,Batang asam,religion,islam,,27450,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.07,3,Batang asam,religion,kristen,,9397,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.07,3,Batang asam,religion,katolik,,1174,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.07,3,Batang asam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.07,3,Batang asam,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+15.06.07,3,Batang asam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.06,3,Tebing tinggi,religion,islam,,33810,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.06,3,Tebing tinggi,religion,kristen,,3380,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.06,3,Tebing tinggi,religion,katolik,,261,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.06,3,Tebing tinggi,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+15.06.06,3,Tebing tinggi,religion,buddha,,44,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+15.06.06,3,Tebing tinggi,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,111,,Lainnya
+15.06.08,3,Renah mendaluh,religion,islam,,15489,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.08,3,Renah mendaluh,religion,kristen,,2257,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.08,3,Renah mendaluh,religion,katolik,,228,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.08,3,Renah mendaluh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.08,3,Renah mendaluh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+15.06.08,3,Renah mendaluh,religion,lainnya,,36,jiwa,2025,registration,total_population,4.3.1,111,,Lainnya
+15.06.09,3,Muara papalik,religion,islam,,10313,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.09,3,Muara papalik,religion,kristen,,680,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.09,3,Muara papalik,religion,katolik,,57,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.09,3,Muara papalik,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.09,3,Muara papalik,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+15.06.09,3,Muara papalik,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.03,3,Pengabuan,religion,islam,,26860,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.03,3,Pengabuan,religion,kristen,,32,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.03,3,Pengabuan,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.03,3,Pengabuan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.03,3,Pengabuan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+15.06.03,3,Pengabuan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.13,3,– Senyerang,religion,islam,,26039,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.13,3,– Senyerang,religion,kristen,,72,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.13,3,– Senyerang,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.13,3,– Senyerang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.13,3,– Senyerang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+15.06.13,3,– Senyerang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.02,3,Tungkal ilir,religion,islam,,74025,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.02,3,Tungkal ilir,religion,kristen,,1043,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.02,3,Tungkal ilir,religion,katolik,,160,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.02,3,Tungkal ilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.02,3,Tungkal ilir,religion,buddha,,1209,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+15.06.02,3,Tungkal ilir,religion,lainnya,,93,jiwa,2025,registration,total_population,4.3.1,111,,Lainnya
+15.06.11,3,Bram itam,religion,islam,,19873,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.11,3,Bram itam,religion,kristen,,59,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.11,3,Bram itam,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.11,3,Bram itam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.11,3,Bram itam,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+15.06.11,3,Bram itam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.10,3,Seberang kota,religion,islam,,9297,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.10,3,Seberang kota,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.10,3,Seberang kota,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Katolik
+15.06.10,3,Seberang kota,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.10,3,Seberang kota,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+15.06.10,3,Seberang kota,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.04,3,Betara,religion,islam,,32500,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.04,3,Betara,religion,kristen,,851,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.04,3,Betara,religion,katolik,,64,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.04,3,Betara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.04,3,Betara,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+15.06.04,3,Betara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06.12,3,Kuala betara,religion,islam,,14364,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+15.06.12,3,Kuala betara,religion,kristen,,46,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+15.06.12,3,Kuala betara,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+15.06.12,3,Kuala betara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Hindu
+15.06.12,3,Kuala betara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+15.06.12,3,Kuala betara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/padi_padian,,81290,rupiah,2025,survey_estimate,per_capita,10.1,238,,Padi-padian
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/padi_padian,,80090,rupiah,2024,survey_estimate,per_capita,10.1,238,,Padi-padian
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/umbi_umbian,,8468,rupiah,2025,survey_estimate,per_capita,10.1,238,,Umbi-umbian
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/umbi_umbian,,8674,rupiah,2024,survey_estimate,per_capita,10.1,238,,Umbi-umbian
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,73513,rupiah,2025,survey_estimate,per_capita,10.1,238,,Ikan/udang/cumi/kerang
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,71626,rupiah,2024,survey_estimate,per_capita,10.1,238,,Ikan/udang/cumi/kerang
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/daging,,29302,rupiah,2025,survey_estimate,per_capita,10.1,238,,Daging
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/daging,,28849,rupiah,2024,survey_estimate,per_capita,10.1,238,,Daging
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/telur_dan_susu,,30987,rupiah,2025,survey_estimate,per_capita,10.1,238,,Telur dan susu
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/telur_dan_susu,,32831,rupiah,2024,survey_estimate,per_capita,10.1,238,,Telur dan susu
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/sayur_sayuran,,79636,rupiah,2025,survey_estimate,per_capita,10.1,238,,Sayur-sayuran
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/sayur_sayuran,,75075,rupiah,2024,survey_estimate,per_capita,10.1,238,,Sayur-sayuran
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/kacang_kacangan,,12020,rupiah,2025,survey_estimate,per_capita,10.1,238,,Kacang-kacangan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/kacang_kacangan,,12055,rupiah,2024,survey_estimate,per_capita,10.1,238,,Kacang-kacangan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/buah_buahan,,37702,rupiah,2025,survey_estimate,per_capita,10.1,238,,Buah-buahan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/buah_buahan,,35346,rupiah,2024,survey_estimate,per_capita,10.1,238,,Buah-buahan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23944,rupiah,2025,survey_estimate,per_capita,10.1,238,,Minyak dan kelapa
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19548,rupiah,2024,survey_estimate,per_capita,10.1,238,,Minyak dan kelapa
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/bahan_minuman,,27922,rupiah,2025,survey_estimate,per_capita,10.1,238,,Bahan minuman
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/bahan_minuman,,24044,rupiah,2024,survey_estimate,per_capita,10.1,238,,Bahan minuman
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,15527,rupiah,2025,survey_estimate,per_capita,10.1,238,,Bumbu-bumbuan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,16469,rupiah,2024,survey_estimate,per_capita,10.1,238,,Bumbu-bumbuan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,14698,rupiah,2025,survey_estimate,per_capita,10.1,238,,Konsumsi lainnya
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,14770,rupiah,2024,survey_estimate,per_capita,10.1,238,,Konsumsi lainnya
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,182829,rupiah,2025,survey_estimate,per_capita,10.1,238,,Makanan dan minuman jadi
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,169969,rupiah,2024,survey_estimate,per_capita,10.1,238,,Makanan dan minuman jadi
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/rokok,,105133,rupiah,2025,survey_estimate,per_capita,10.1,238,,Rokok
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/rokok,,111984,rupiah,2024,survey_estimate,per_capita,10.1,238,,Rokok
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/jumlah_makanan,,722972,rupiah,2025,survey_estimate,per_capita,10.1,238,,Jumlah makanan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/jumlah_makanan,,701331,rupiah,2024,survey_estimate,per_capita,10.1,238,,Jumlah makanan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,305396,rupiah,2025,survey_estimate,per_capita,10.1,238,,Perumahan dan fasilitas rumah tangga
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,291864,rupiah,2024,survey_estimate,per_capita,10.1,238,,Perumahan dan fasilitas rumah tangga
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,98016,rupiah,2025,survey_estimate,per_capita,10.1,238,,Aneka barang dan jasa
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,92811,rupiah,2024,survey_estimate,per_capita,10.1,238,,Aneka barang dan jasa
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33124,rupiah,2025,survey_estimate,per_capita,10.1,238,,"Pakaian, alas kaki, dan tutup kepala"
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34181,rupiah,2024,survey_estimate,per_capita,10.1,238,,"Pakaian, alas kaki, dan tutup kepala"
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,67623,rupiah,2025,survey_estimate,per_capita,10.1,238,,Barang tahan lama
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,46716,rupiah,2024,survey_estimate,per_capita,10.1,238,,Barang tahan lama
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35289,rupiah,2025,survey_estimate,per_capita,10.1,238,,"Pajak, pungutan, dan asuransi"
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,33211,rupiah,2024,survey_estimate,per_capita,10.1,238,,"Pajak, pungutan, dan asuransi"
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,35094,rupiah,2025,survey_estimate,per_capita,10.1,238,,Keperluan pesta dan upacara/kenduri
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,16932,rupiah,2024,survey_estimate,per_capita,10.1,238,,Keperluan pesta dan upacara/kenduri
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,574543,rupiah,2025,survey_estimate,per_capita,10.1,238,,Jumlah bukan makanan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,515717,rupiah,2024,survey_estimate,per_capita,10.1,238,,Jumlah bukan makanan
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,total,,1297515,rupiah,2025,survey_estimate,per_capita,10.1,238,,
+15.06,2,Kabupaten Tanjung Jabung Barat,expenditure,total,,1217048,rupiah,2024,survey_estimate,per_capita,10.1,238,,

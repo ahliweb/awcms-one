@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1673-kecamatan-167205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.72.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dempo Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kota Pagar Alam",
+  "publisherDomain": "1673",
+  "publisherWebsite": "https://pagaralamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pagar Alam (https://pagaralamkota.bps.go.id), publikasi \"Kecamatan Dempo Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1673011",
+  "publicationNumber": "16730.26007",
+  "issn": "3109-7057",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pagaralamkota.bps.go.id/id/publication/2026/09/28/d0089036468f6825c4aee4ed/kecamatan-dempo-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "1466c1bebc9fe876fece46305d9d97de302772ff293496789f27ad8a0aceadd3",
+  "sourceFileBytes": 8911835,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pagar Alam.",
+  "csvPath": "datasets/bps-1673-kecamatan-167205-dalam-angka-2026.csv",
+  "csvSha256": "4b7eeef4fce5f3bc2d2054f7ba684541ac7b14b1ba6804b3d0e04153c850aa52",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Dempo Tengah, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dempo Tengah, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

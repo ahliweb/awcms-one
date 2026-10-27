@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.01.08.2002,4,Pangkil,sex,laki_laki,,710,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.08.2002,4,Pangkil,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.08.2002,4,Pangkil,total,total,,1373,jiwa,2025,registration,total_population,3.1,23,,
+21.01.08.2004,4,Pengujan,sex,laki_laki,,809,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.08.2004,4,Pengujan,sex,perempuan,,746,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.08.2004,4,Pengujan,total,total,,1555,jiwa,2025,registration,total_population,3.1,23,,
+21.01.08.2003,4,Penaga,sex,laki_laki,,1184,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.08.2003,4,Penaga,sex,perempuan,,1058,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.08.2003,4,Penaga,total,total,,2242,jiwa,2025,registration,total_population,3.1,23,,
+21.01.08.2005,4,Tembeling,sex,laki_laki,,675,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.08.2005,4,Tembeling,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.08.2005,4,Tembeling,total,total,,1322,jiwa,2025,registration,total_population,3.1,23,,
+21.01.08.2001,4,Bintan Buyu,sex,laki_laki,,1443,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.08.2001,4,Bintan Buyu,sex,perempuan,,1411,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.08.2001,4,Bintan Buyu,total,total,,2854,jiwa,2025,registration,total_population,3.1,23,,
+21.01.08.1006,4,Tembeling Tanjung,sex,laki_laki,,1455,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.08.1006,4,Tembeling Tanjung,sex,perempuan,,1289,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.08.1006,4,Tembeling Tanjung,total,total,,2744,jiwa,2025,registration,total_population,3.1,23,,
+21.01.08,3,Teluk Bintan,sex,laki_laki,,6276,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.08,3,Teluk Bintan,sex,perempuan,,5814,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.08,3,Teluk Bintan,total,total,,12090,jiwa,2025,registration,total_population,3.1,23,,
+21.01.08,3,Teluk Bintan,age_group,0-4,laki_laki,438,jiwa,2025,registration,total_population,3.2,25,,0–4
+21.01.08,3,Teluk Bintan,age_group,0-4,perempuan,389,jiwa,2025,registration,total_population,3.2,25,,0–4
+21.01.08,3,Teluk Bintan,age_group,0-4,,827,jiwa,2025,registration,total_population,3.2,25,,0–4
+21.01.08,3,Teluk Bintan,age_group,5-9,laki_laki,569,jiwa,2025,registration,total_population,3.2,25,,5–9
+21.01.08,3,Teluk Bintan,age_group,5-9,perempuan,475,jiwa,2025,registration,total_population,3.2,25,,5–9
+21.01.08,3,Teluk Bintan,age_group,5-9,,1044,jiwa,2025,registration,total_population,3.2,25,,5–9
+21.01.08,3,Teluk Bintan,age_group,10-14,laki_laki,563,jiwa,2025,registration,total_population,3.2,25,,10–14
+21.01.08,3,Teluk Bintan,age_group,10-14,perempuan,545,jiwa,2025,registration,total_population,3.2,25,,10–14
+21.01.08,3,Teluk Bintan,age_group,10-14,,1108,jiwa,2025,registration,total_population,3.2,25,,10–14
+21.01.08,3,Teluk Bintan,age_group,15-19,laki_laki,525,jiwa,2025,registration,total_population,3.2,25,,15–19
+21.01.08,3,Teluk Bintan,age_group,15-19,perempuan,476,jiwa,2025,registration,total_population,3.2,25,,15–19
+21.01.08,3,Teluk Bintan,age_group,15-19,,1001,jiwa,2025,registration,total_population,3.2,25,,15–19
+21.01.08,3,Teluk Bintan,age_group,20-24,laki_laki,532,jiwa,2025,registration,total_population,3.2,25,,20–24
+21.01.08,3,Teluk Bintan,age_group,20-24,perempuan,475,jiwa,2025,registration,total_population,3.2,25,,20–24
+21.01.08,3,Teluk Bintan,age_group,20-24,,1007,jiwa,2025,registration,total_population,3.2,25,,20–24
+21.01.08,3,Teluk Bintan,age_group,25-29,laki_laki,420,jiwa,2025,registration,total_population,3.2,25,,25–29
+21.01.08,3,Teluk Bintan,age_group,25-29,perempuan,428,jiwa,2025,registration,total_population,3.2,25,,25–29
+21.01.08,3,Teluk Bintan,age_group,25-29,,848,jiwa,2025,registration,total_population,3.2,25,,25–29
+21.01.08,3,Teluk Bintan,age_group,30-34,laki_laki,467,jiwa,2025,registration,total_population,3.2,25,,30–34
+21.01.08,3,Teluk Bintan,age_group,30-34,perempuan,438,jiwa,2025,registration,total_population,3.2,25,,30–34
+21.01.08,3,Teluk Bintan,age_group,30-34,,905,jiwa,2025,registration,total_population,3.2,25,,30–34
+21.01.08,3,Teluk Bintan,age_group,35-39,laki_laki,442,jiwa,2025,registration,total_population,3.2,25,,35–39
+21.01.08,3,Teluk Bintan,age_group,35-39,perempuan,413,jiwa,2025,registration,total_population,3.2,25,,35–39
+21.01.08,3,Teluk Bintan,age_group,35-39,,855,jiwa,2025,registration,total_population,3.2,25,,35–39
+21.01.08,3,Teluk Bintan,age_group,40-44,laki_laki,525,jiwa,2025,registration,total_population,3.2,25,,40–44
+21.01.08,3,Teluk Bintan,age_group,40-44,perempuan,534,jiwa,2025,registration,total_population,3.2,25,,40–44
+21.01.08,3,Teluk Bintan,age_group,40-44,,1059,jiwa,2025,registration,total_population,3.2,25,,40–44
+21.01.08,3,Teluk Bintan,age_group,45-49,laki_laki,492,jiwa,2025,registration,total_population,3.2,25,,45–49
+21.01.08,3,Teluk Bintan,age_group,45-49,perempuan,428,jiwa,2025,registration,total_population,3.2,25,,45–49
+21.01.08,3,Teluk Bintan,age_group,45-49,,920,jiwa,2025,registration,total_population,3.2,25,,45–49
+21.01.08,3,Teluk Bintan,age_group,50-54,laki_laki,373,jiwa,2025,registration,total_population,3.2,25,,50–54
+21.01.08,3,Teluk Bintan,age_group,50-54,perempuan,298,jiwa,2025,registration,total_population,3.2,25,,50–54
+21.01.08,3,Teluk Bintan,age_group,50-54,,671,jiwa,2025,registration,total_population,3.2,25,,50–54
+21.01.08,3,Teluk Bintan,age_group,55-59,laki_laki,314,jiwa,2025,registration,total_population,3.2,25,,55–59
+21.01.08,3,Teluk Bintan,age_group,55-59,perempuan,220,jiwa,2025,registration,total_population,3.2,25,,55–59
+21.01.08,3,Teluk Bintan,age_group,55-59,,534,jiwa,2025,registration,total_population,3.2,25,,55–59
+21.01.08,3,Teluk Bintan,age_group,60-64,laki_laki,215,jiwa,2025,registration,total_population,3.2,25,,60–64
+21.01.08,3,Teluk Bintan,age_group,60-64,perempuan,238,jiwa,2025,registration,total_population,3.2,25,,60–64
+21.01.08,3,Teluk Bintan,age_group,60-64,,453,jiwa,2025,registration,total_population,3.2,25,,60–64
+21.01.08,3,Teluk Bintan,age_group,65-69,laki_laki,174,jiwa,2025,registration,total_population,3.2,25,,65–69
+21.01.08,3,Teluk Bintan,age_group,65-69,perempuan,192,jiwa,2025,registration,total_population,3.2,25,,65–69
+21.01.08,3,Teluk Bintan,age_group,65-69,,366,jiwa,2025,registration,total_population,3.2,25,,65–69
+21.01.08,3,Teluk Bintan,age_group,70-74,laki_laki,115,jiwa,2025,registration,total_population,3.2,25,,70–74
+21.01.08,3,Teluk Bintan,age_group,70-74,perempuan,123,jiwa,2025,registration,total_population,3.2,25,,70–74
+21.01.08,3,Teluk Bintan,age_group,70-74,,238,jiwa,2025,registration,total_population,3.2,25,,70–74
+21.01.08,3,Teluk Bintan,age_group,75+,laki_laki,112,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.08,3,Teluk Bintan,age_group,75+,perempuan,142,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.08,3,Teluk Bintan,age_group,75+,,254,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.08,3,Teluk Bintan,sex,laki_laki,,6276,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+21.01.08,3,Teluk Bintan,sex,perempuan,,5814,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+21.01.08,3,Teluk Bintan,total,total,,12090,jiwa,2025,registration,total_population,3.2,25,,

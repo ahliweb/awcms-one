@@ -67,7 +67,7 @@ describe("the closed vocabulary (C-25)", () => {
     }
   });
 
-  test("rule schema 2 adds exactly the five booking-derived fields (ADR-0051) and keeps every schema 1 field", () => {
+  test("rule schema 2 adds exactly the five booking-derived fields (ADR-0052) and keeps every schema 1 field", () => {
     expect(SEGMENT_RULE_SCHEMA_VERSION).toBe(2);
     const added = segmentRuleFieldsFor(2).filter(
       (name) => !segmentRuleFieldsFor(1).includes(name)
@@ -385,7 +385,7 @@ describe("segmentNeeds - which relations a rule reads", () => {
     }
   });
 
-  test("booking-derived fields turn on only their own scan, never the order scan (ADR-0051)", () => {
+  test("booking-derived fields turn on only their own scan, never the order scan (ADR-0052)", () => {
     for (const field of ["booking_count", "stay_count"]) {
       expect(needs(leaf(field, "gte", 1))).toEqual({
         facts: false,
@@ -408,7 +408,7 @@ describe("segmentNeeds - which relations a rule reads", () => {
   });
 });
 
-describe("rule schema 2 - the booking-derived fields (ADR-0051, C-29)", () => {
+describe("rule schema 2 - the booking-derived fields (ADR-0052, C-29)", () => {
   const bookingLeaves = [
     leaf("booking_count", "gte", 1, { windowDays: 365 }),
     leaf("stay_count", "eq", 0),

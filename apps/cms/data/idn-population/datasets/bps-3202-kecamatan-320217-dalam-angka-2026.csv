@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.17.2003,4,Pondok Kaso Tengah,sex,laki_laki,,4402,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2003,4,Pondok Kaso Tengah,sex,perempuan,,4316,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2003,4,Pondok Kaso Tengah,total,total,,8718,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17.2008,4,Pasirdoton,sex,laki_laki,,3368,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2008,4,Pasirdoton,sex,perempuan,,3112,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2008,4,Pasirdoton,total,total,,6480,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17.2001,4,Pondok Kaso Tonggoh,sex,laki_laki,,4797,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2001,4,Pondok Kaso Tonggoh,sex,perempuan,,4725,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2001,4,Pondok Kaso Tonggoh,total,total,,9522,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17.2002,4,Babakan Pari,sex,laki_laki,,4267,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2002,4,Babakan Pari,sex,perempuan,,3985,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2002,4,Babakan Pari,total,total,,8252,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17.2005,4,Tangkil,sex,laki_laki,,4909,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2005,4,Tangkil,sex,perempuan,,4791,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2005,4,Tangkil,total,total,,9700,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17.2006,4,Jayabakti,sex,laki_laki,,7947,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2006,4,Jayabakti,sex,perempuan,,7523,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2006,4,Jayabakti,total,total,,15470,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17.2004,4,Cidahu,sex,laki_laki,,6572,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2004,4,Cidahu,sex,perempuan,,6275,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2004,4,Cidahu,total,total,,12847,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17.2007,4,Girijaya,sex,laki_laki,,4674,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17.2007,4,Girijaya,sex,perempuan,,4363,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17.2007,4,Girijaya,total,total,,9037,jiwa,2025,registration,total_population,3.1,24,,
+32.02.17,3,Cidahu,sex,laki_laki,,40936,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.17,3,Cidahu,sex,perempuan,,39090,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.17,3,Cidahu,total,total,,80026,jiwa,2025,registration,total_population,3.1,24,,

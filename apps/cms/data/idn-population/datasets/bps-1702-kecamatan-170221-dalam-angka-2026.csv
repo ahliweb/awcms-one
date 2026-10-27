@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.21.2001,4,APUR,sex,laki_laki,,1181,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2001,4,APUR,sex,perempuan,,1186,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2001,4,APUR,total,total,,2367,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21.2002,4,LAWANG AGUNG,sex,laki_laki,,794,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2002,4,LAWANG AGUNG,sex,perempuan,,745,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2002,4,LAWANG AGUNG,total,total,,1539,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21.2003,4,LUBUK ALAI,sex,laki_laki,,988,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2003,4,LUBUK ALAI,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2003,4,LUBUK ALAI,total,total,,1940,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21.2004,4,KARANG PINANG,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2004,4,KARANG PINANG,sex,perempuan,,707,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2004,4,KARANG PINANG,total,total,,1436,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21.2005,4,TANJUNG AGUNG,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2005,4,TANJUNG AGUNG,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2005,4,TANJUNG AGUNG,total,total,,909,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21.2006,4,PENGAMBANG,sex,laki_laki,,740,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2006,4,PENGAMBANG,sex,perempuan,,675,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2006,4,PENGAMBANG,total,total,,1415,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21.2007,4,JABI,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2007,4,JABI,sex,perempuan,,465,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2007,4,JABI,total,total,,1027,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21.2009,4,AIR NAU,sex,laki_laki,,357,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21.2009,4,AIR NAU,sex,perempuan,,315,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21.2009,4,AIR NAU,total,total,,672,jiwa,2025,registration,total_population,3.1,22,,
+17.02.21,3,SINDANG BELITI ULU,sex,laki_laki,,6303,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.21,3,SINDANG BELITI ULU,sex,perempuan,,5906,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.21,3,SINDANG BELITI ULU,total,total,,12209,jiwa,2025,registration,total_population,3.1,22,,

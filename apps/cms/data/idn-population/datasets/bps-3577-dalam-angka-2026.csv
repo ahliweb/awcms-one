@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.77.02,3,Mangu Harjo,religion,islam,,54611,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.77.02,3,Mangu Harjo,religion,kristen,,3263,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.77.02,3,Mangu Harjo,religion,katolik,,1643,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.77.02,3,Mangu Harjo,religion,hindu,,52,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.77.02,3,Mangu Harjo,religion,buddha,,140,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.77.02,3,Mangu Harjo,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.77.03,3,Taman,religion,islam,,77843,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.77.03,3,Taman,religion,kristen,,4787,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.77.03,3,Taman,religion,katolik,,2290,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.77.03,3,Taman,religion,hindu,,68,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.77.03,3,Taman,religion,buddha,,295,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.77.03,3,Taman,religion,lainnya,,33,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.77.01,3,Kartoharjo,religion,islam,,51552,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.77.01,3,Kartoharjo,religion,kristen,,2531,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.77.01,3,Kartoharjo,religion,katolik,,1448,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.77.01,3,Kartoharjo,religion,hindu,,23,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.77.01,3,Kartoharjo,religion,buddha,,65,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.77.01,3,Kartoharjo,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.77,2,Kota Madiun,religion,islam,,184006,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.77,2,Kota Madiun,religion,kristen,,10581,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.77,2,Kota Madiun,religion,katolik,,5381,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.77,2,Kota Madiun,religion,hindu,,143,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.77,2,Kota Madiun,religion,buddha,,500,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.77,2,Kota Madiun,religion,lainnya,,42,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya

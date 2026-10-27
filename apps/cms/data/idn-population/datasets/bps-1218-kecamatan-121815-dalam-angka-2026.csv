@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.15.2008,4,Sei Belutu,sex,laki_laki,,1786,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2008,4,Sei Belutu,sex,perempuan,,1994,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2008,4,Sei Belutu,total,total,,3780,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2004,4,Gempolan,sex,laki_laki,,2013,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2004,4,Gempolan,sex,perempuan,,2245,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2004,4,Gempolan,total,total,,4258,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2003,4,Bakaran Batu,sex,laki_laki,,1527,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2003,4,Bakaran Batu,sex,perempuan,,1612,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2003,4,Bakaran Batu,total,total,,3139,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2006,4,Suka Damai,sex,laki_laki,,4093,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2006,4,Suka Damai,sex,perempuan,,4214,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2006,4,Suka Damai,total,total,,8307,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2007,4,Sei Bamban Estate,sex,laki_laki,,289,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2007,4,Sei Bamban Estate,sex,perempuan,,268,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2007,4,Sei Bamban Estate,total,total,,557,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2009,4,Sei Buluh,sex,laki_laki,,1031,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2009,4,Sei Buluh,sex,perempuan,,994,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2009,4,Sei Buluh,total,total,,2025,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2002,4,Sei Bamban,sex,laki_laki,,6720,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2002,4,Sei Bamban,sex,perempuan,,6688,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2002,4,Sei Bamban,total,total,,13408,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2010,4,Penggalangan,sex,laki_laki,,2424,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2010,4,Penggalangan,sex,perempuan,,2399,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2010,4,Penggalangan,total,total,,4823,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2001,4,Pon,sex,laki_laki,,3901,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2001,4,Pon,sex,perempuan,,3837,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2001,4,Pon,total,total,,7738,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15.2005,4,Rampah Estate,sex,laki_laki,,161,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15.2005,4,Rampah Estate,sex,perempuan,,160,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15.2005,4,Rampah Estate,total,total,,321,jiwa,2025,registration,total_population,3.1,24,,
+12.18.15,3,Sei Bamban,sex,laki_laki,,23945,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.18.15,3,Sei Bamban,sex,perempuan,,24411,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.18.15,3,Sei Bamban,total,total,,48356,jiwa,2025,registration,total_population,3.1,24,,

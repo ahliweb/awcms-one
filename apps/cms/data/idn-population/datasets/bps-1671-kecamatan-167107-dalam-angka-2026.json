@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1671-kecamatan-167107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.71.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukarami Dalam Angka 2026",
+  "publisherName": "BPS Kota Palembang",
+  "publisherDomain": "1671",
+  "publisherWebsite": "https://palembangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Palembang (https://palembangkota.bps.go.id), publikasi \"Kecamatan Sukarami Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1671080",
+  "publicationNumber": "16710.26022",
+  "issn": "2723-8326",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://palembangkota.bps.go.id/id/publication/2026/09/28/49b4d01be688549524c0ce7d/kecamatan-sukarami-dalam-angka-2026.html",
+  "sourceFileSha256": "1fc1ff542676eafe11896569e5a16cc32e8ceb32977f140e877e9bfb399bacbf",
+  "sourceFileBytes": 12731757,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palembang.",
+  "csvPath": "datasets/bps-1671-kecamatan-167107-dalam-angka-2026.csv",
+  "csvSha256": "5f6a2ee91d984f8fcd2239dda5c3f9f0c165936a7bebab47cf1d6dac71cbbf0a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Sukarami, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukarami, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"+ 65\": unmatched ",
+    "table 3.2: the rows of region 16.71.07 are not stored: age_group (perempuan) vs sex value: parts sum 100213.0000 != 106106.0000 (diff 5893.0000); the source itself is inconsistent"
+  ]
+}

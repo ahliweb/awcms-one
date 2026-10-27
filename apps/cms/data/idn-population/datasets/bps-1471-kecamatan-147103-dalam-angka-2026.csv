@@ -1,0 +1,10 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.71.03.1001,4,Cinta Raja,sex,laki_laki,,3146,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.03.1001,4,Cinta Raja,sex,perempuan,,3202,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.03.1001,4,Cinta Raja,total,total,,6348,jiwa,2025,registration,total_population,3.1,22,,
+14.71.03.1003,4,Suka Maju,sex,laki_laki,,5518,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.03.1003,4,Suka Maju,sex,perempuan,,5646,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.03.1003,4,Suka Maju,total,total,,11164,jiwa,2025,registration,total_population,3.1,22,,
+14.71.03,3,Sail,sex,laki_laki,,13057,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.03,3,Sail,sex,perempuan,,13397,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.03,3,Sail,total,total,,26454,jiwa,2025,registration,total_population,3.1,22,,

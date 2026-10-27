@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.08.1001,4,Sawang,sex,laki_laki,,2824,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.08.1001,4,Sawang,sex,perempuan,,2657,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.08.1001,4,Sawang,total,total,,5481,jiwa,2025,registration,total_population,3.1,32,,
+21.02.08.2003,4,Sawang Laut,sex,laki_laki,,1622,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.08.2003,4,Sawang Laut,sex,perempuan,,1513,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.08.2003,4,Sawang Laut,total,total,,3135,jiwa,2025,registration,total_population,3.1,32,,
+21.02.08.2004,4,Kundur,sex,laki_laki,,1907,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.08.2004,4,Kundur,sex,perempuan,,1812,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.08.2004,4,Kundur,total,total,,3719,jiwa,2025,registration,total_population,3.1,32,,
+21.02.08.2002,4,Sawang Selatan,sex,laki_laki,,1934,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.08.2002,4,Sawang Selatan,sex,perempuan,,1922,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.08.2002,4,Sawang Selatan,total,total,,3856,jiwa,2025,registration,total_population,3.1,32,,
+21.02.08.2005,4,Gemuruh,sex,laki_laki,,1648,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.08.2005,4,Gemuruh,sex,perempuan,,1578,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.08.2005,4,Gemuruh,total,total,,3226,jiwa,2025,registration,total_population,3.1,32,,
+21.02.08,3,Kundur Barat,sex,laki_laki,,9935,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.08,3,Kundur Barat,sex,perempuan,,9482,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.08,3,Kundur Barat,total,total,,19417,jiwa,2025,registration,total_population,3.1,32,,

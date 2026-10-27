@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352416-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mantup Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Mantup Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3524050",
+  "publicationNumber": "35240.26010",
+  "issn": "2798-9690",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/f00943a3d9535fd71d1abada/kecamatan-mantup-dalam-angka-2026.html",
+  "sourceFileSha256": "ed515e8c88243fb0c5953ec49547ed0467038c35bd2572911fb6838bb34096bf",
+  "sourceFileBytes": 4267492,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352416-dalam-angka-2026.csv",
+  "csvSha256": "826d912f689342c63d3dcf631a08794a3809a9ffc717db44dbab194848329ed2",
+  "tablesUsed": [
+    {
+      "table": "1.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mantup, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.4: row not stored: row \"Usia 0-4\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 5-9\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 10-14\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 15-19\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 20-24\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 25-29\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 30-34\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 35-39\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 40-44\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 45-49\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 50-54\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 55-59\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 60-64\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 65-69\": unmatched ",
+    "table 1.4: row not stored: row \"Usia 70-74\": unmatched ",
+    "table 1.4: row not stored: row \"Usia >= 75\": unmatched ",
+    "table 1.4: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

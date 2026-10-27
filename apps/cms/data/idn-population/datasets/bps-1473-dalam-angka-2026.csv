@@ -1,0 +1,99 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.72,2,Dumai,total,total,,358365,jiwa,2025,registration,total_population,3.1.1,61,,
+14.72,2,Kota Dumai,age_group,0-4,laki_laki,12431,jiwa,2025,registration,total_population,3.1.2,64,,0-4
+14.72,2,Kota Dumai,age_group,0-4,perempuan,11493,jiwa,2025,registration,total_population,3.1.2,64,,0-4
+14.72,2,Kota Dumai,age_group,0-4,,23924,jiwa,2025,registration,total_population,3.1.2,64,,0-4
+14.72,2,Kota Dumai,age_group,5-9,laki_laki,17892,jiwa,2025,registration,total_population,3.1.2,64,,5-9
+14.72,2,Kota Dumai,age_group,5-9,perempuan,16539,jiwa,2025,registration,total_population,3.1.2,64,,5-9
+14.72,2,Kota Dumai,age_group,5-9,,34431,jiwa,2025,registration,total_population,3.1.2,64,,5-9
+14.72,2,Kota Dumai,age_group,10-14,laki_laki,18646,jiwa,2025,registration,total_population,3.1.2,64,,10-14
+14.72,2,Kota Dumai,age_group,10-14,perempuan,17082,jiwa,2025,registration,total_population,3.1.2,64,,10-14
+14.72,2,Kota Dumai,age_group,10-14,,35728,jiwa,2025,registration,total_population,3.1.2,64,,10-14
+14.72,2,Kota Dumai,age_group,15-19,laki_laki,16393,jiwa,2025,registration,total_population,3.1.2,64,,15-19
+14.72,2,Kota Dumai,age_group,15-19,perempuan,15304,jiwa,2025,registration,total_population,3.1.2,64,,15-19
+14.72,2,Kota Dumai,age_group,15-19,,31697,jiwa,2025,registration,total_population,3.1.2,64,,15-19
+14.72,2,Kota Dumai,age_group,20-24,laki_laki,16568,jiwa,2025,registration,total_population,3.1.2,64,,20-24
+14.72,2,Kota Dumai,age_group,20-24,perempuan,15040,jiwa,2025,registration,total_population,3.1.2,64,,20-24
+14.72,2,Kota Dumai,age_group,20-24,,31608,jiwa,2025,registration,total_population,3.1.2,64,,20-24
+14.72,2,Kota Dumai,age_group,25-29,laki_laki,15706,jiwa,2025,registration,total_population,3.1.2,64,,25-29
+14.72,2,Kota Dumai,age_group,25-29,perempuan,14462,jiwa,2025,registration,total_population,3.1.2,64,,25-29
+14.72,2,Kota Dumai,age_group,25-29,,30168,jiwa,2025,registration,total_population,3.1.2,64,,25-29
+14.72,2,Kota Dumai,age_group,30-34,laki_laki,14554,jiwa,2025,registration,total_population,3.1.2,64,,30-34
+14.72,2,Kota Dumai,age_group,30-34,perempuan,13744,jiwa,2025,registration,total_population,3.1.2,64,,30-34
+14.72,2,Kota Dumai,age_group,30-34,,28298,jiwa,2025,registration,total_population,3.1.2,64,,30-34
+14.72,2,Kota Dumai,age_group,35-39,laki_laki,13508,jiwa,2025,registration,total_population,3.1.2,64,,35-39
+14.72,2,Kota Dumai,age_group,35-39,perempuan,13625,jiwa,2025,registration,total_population,3.1.2,64,,35-39
+14.72,2,Kota Dumai,age_group,35-39,,27133,jiwa,2025,registration,total_population,3.1.2,64,,35-39
+14.72,2,Kota Dumai,age_group,40-44,laki_laki,14110,jiwa,2025,registration,total_population,3.1.2,64,,40-44
+14.72,2,Kota Dumai,age_group,40-44,perempuan,13648,jiwa,2025,registration,total_population,3.1.2,64,,40-44
+14.72,2,Kota Dumai,age_group,40-44,,27758,jiwa,2025,registration,total_population,3.1.2,64,,40-44
+14.72,2,Kota Dumai,age_group,45-49,laki_laki,12392,jiwa,2025,registration,total_population,3.1.2,64,,45-49
+14.72,2,Kota Dumai,age_group,45-49,perempuan,12081,jiwa,2025,registration,total_population,3.1.2,64,,45-49
+14.72,2,Kota Dumai,age_group,45-49,,24473,jiwa,2025,registration,total_population,3.1.2,64,,45-49
+14.72,2,Kota Dumai,age_group,50-54,laki_laki,10099,jiwa,2025,registration,total_population,3.1.2,64,,50-54
+14.72,2,Kota Dumai,age_group,50-54,perempuan,9557,jiwa,2025,registration,total_population,3.1.2,64,,50-54
+14.72,2,Kota Dumai,age_group,50-54,,19656,jiwa,2025,registration,total_population,3.1.2,64,,50-54
+14.72,2,Kota Dumai,age_group,55-59,laki_laki,7712,jiwa,2025,registration,total_population,3.1.2,64,,55-59
+14.72,2,Kota Dumai,age_group,55-59,perempuan,7163,jiwa,2025,registration,total_population,3.1.2,64,,55-59
+14.72,2,Kota Dumai,age_group,55-59,,14875,jiwa,2025,registration,total_population,3.1.2,64,,55-59
+14.72,2,Kota Dumai,age_group,60-64,laki_laki,5649,jiwa,2025,registration,total_population,3.1.2,64,,60-64
+14.72,2,Kota Dumai,age_group,60-64,perempuan,5651,jiwa,2025,registration,total_population,3.1.2,64,,60-64
+14.72,2,Kota Dumai,age_group,60-64,,11300,jiwa,2025,registration,total_population,3.1.2,64,,60-64
+14.72,2,Kota Dumai,age_group,65-69,laki_laki,4036,jiwa,2025,registration,total_population,3.1.2,64,,65-69
+14.72,2,Kota Dumai,age_group,65-69,perempuan,4185,jiwa,2025,registration,total_population,3.1.2,64,,65-69
+14.72,2,Kota Dumai,age_group,65-69,,8221,jiwa,2025,registration,total_population,3.1.2,64,,65-69
+14.72,2,Kota Dumai,age_group,70-74,laki_laki,2307,jiwa,2025,registration,total_population,3.1.2,64,,70-74
+14.72,2,Kota Dumai,age_group,70-74,perempuan,2371,jiwa,2025,registration,total_population,3.1.2,64,,70-74
+14.72,2,Kota Dumai,age_group,70-74,,4678,jiwa,2025,registration,total_population,3.1.2,64,,70-74
+14.72,2,Kota Dumai,age_group,75+,laki_laki,2121,jiwa,2025,registration,total_population,3.1.2,64,,75+
+14.72,2,Kota Dumai,age_group,75+,perempuan,2296,jiwa,2025,registration,total_population,3.1.2,64,,75+
+14.72,2,Kota Dumai,age_group,75+,,4417,jiwa,2025,registration,total_population,3.1.2,64,,75+
+14.72,2,Dumai,sex,laki_laki,,184124,jiwa,2025,registration,total_population,3.1.2,64,,Laki-Laki
+14.72,2,Dumai,sex,perempuan,,174241,jiwa,2025,registration,total_population,3.1.2,64,,Perempuan
+14.72,2,Dumai,total,total,,358365,jiwa,2025,registration,total_population,3.1.2,64,,
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/padi_padian,,95613,rupiah,2024,survey_estimate,per_capita,10.1,302,,Padi-padian
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/padi_padian,,94221,rupiah,2025,survey_estimate,per_capita,10.1,302,,Padi-padian
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/umbi_umbian,,9793,rupiah,2024,survey_estimate,per_capita,10.1,302,,Umbi-umbian
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/umbi_umbian,,8382,rupiah,2025,survey_estimate,per_capita,10.1,302,,Umbi-umbian
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,94668,rupiah,2024,survey_estimate,per_capita,10.1,302,,Ikan/udang/cumi/kerang
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,96504,rupiah,2025,survey_estimate,per_capita,10.1,302,,Ikan/udang/cumi/kerang
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/daging,,33886,rupiah,2024,survey_estimate,per_capita,10.1,302,,Daging
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/daging,,37810,rupiah,2025,survey_estimate,per_capita,10.1,302,,Daging
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/telur_dan_susu,,51040,rupiah,2024,survey_estimate,per_capita,10.1,302,,Telur dan susu
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/telur_dan_susu,,44646,rupiah,2025,survey_estimate,per_capita,10.1,302,,Telur dan susu
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/sayur_sayuran,,80936,rupiah,2024,survey_estimate,per_capita,10.1,302,,Sayur-sayuran
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/sayur_sayuran,,82660,rupiah,2025,survey_estimate,per_capita,10.1,302,,Sayur-sayuran
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/kacang_kacangan,,12278,rupiah,2024,survey_estimate,per_capita,10.1,302,,Kacang-kacangan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/kacang_kacangan,,12533,rupiah,2025,survey_estimate,per_capita,10.1,302,,Kacang-kacangan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/buah_buahan,,37953,rupiah,2024,survey_estimate,per_capita,10.1,302,,Buah-buahan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/buah_buahan,,42273,rupiah,2025,survey_estimate,per_capita,10.1,302,,Buah-buahan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26225,rupiah,2024,survey_estimate,per_capita,10.1,302,,Minyak dan kelapa
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/minyak_dan_kelapa,,29381,rupiah,2025,survey_estimate,per_capita,10.1,302,,Minyak dan kelapa
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/bahan_minuman,,20477,rupiah,2024,survey_estimate,per_capita,10.1,302,,Bahan minuman
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/bahan_minuman,,22443,rupiah,2025,survey_estimate,per_capita,10.1,302,,Bahan minuman
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/bumbu_bumbuan,,11263,rupiah,2024,survey_estimate,per_capita,10.1,302,,Bumbu-bumbuan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/bumbu_bumbuan,,14338,rupiah,2025,survey_estimate,per_capita,10.1,302,,Bumbu-bumbuan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/konsumsi_lainnya,,12734,rupiah,2024,survey_estimate,per_capita,10.1,302,,Konsumsi lainnya
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/konsumsi_lainnya,,12312,rupiah,2025,survey_estimate,per_capita,10.1,302,,Konsumsi lainnya
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,224039,rupiah,2024,survey_estimate,per_capita,10.1,302,,Makanan dan minuman jadi
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,242572,rupiah,2025,survey_estimate,per_capita,10.1,302,,Makanan dan minuman jadi
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/rokok,,124268,rupiah,2024,survey_estimate,per_capita,10.1,302,,Rokok
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/rokok,,115392,rupiah,2025,survey_estimate,per_capita,10.1,302,,Rokok
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/jumlah_makanan,,835175,rupiah,2024,survey_estimate,per_capita,10.1,302,,Jumlah makanan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/jumlah_makanan,,855467,rupiah,2025,survey_estimate,per_capita,10.1,302,,Jumlah makanan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,451973,rupiah,2024,survey_estimate,per_capita,10.1,302,,Perumahan dan fasilitas rumah tangga
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,416814,rupiah,2025,survey_estimate,per_capita,10.1,302,,Perumahan dan fasilitas rumah tangga
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,175148,rupiah,2024,survey_estimate,per_capita,10.1,302,,Aneka barang dan jasa
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,203218,rupiah,2025,survey_estimate,per_capita,10.1,302,,Aneka barang dan jasa
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,55060,rupiah,2024,survey_estimate,per_capita,10.1,302,,"Pakaian, alas kaki, dan tutup kepala"
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,51422,rupiah,2025,survey_estimate,per_capita,10.1,302,,"Pakaian, alas kaki, dan tutup kepala"
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/barang_tahan_lama,,108701,rupiah,2024,survey_estimate,per_capita,10.1,302,,Barang tahan lama
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/barang_tahan_lama,,113962,rupiah,2025,survey_estimate,per_capita,10.1,302,,Barang tahan lama
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,71648,rupiah,2024,survey_estimate,per_capita,10.1,302,,"Pajak, pungutan, dan asuransi"
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,75469,rupiah,2025,survey_estimate,per_capita,10.1,302,,"Pajak, pungutan, dan asuransi"
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24095,rupiah,2024,survey_estimate,per_capita,10.1,302,,Keperluan pesta dan upacara/kenduri
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,27432,rupiah,2025,survey_estimate,per_capita,10.1,302,,Keperluan pesta dan upacara/kenduri
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,886624,rupiah,2024,survey_estimate,per_capita,10.1,302,,Jumlah bukan makanan
+14.72,2,Kota Dumai,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,888317,rupiah,2025,survey_estimate,per_capita,10.1,302,,Jumlah bukan makanan
+14.72,2,Kota Dumai,expenditure,total,,1721798,rupiah,2024,survey_estimate,per_capita,10.1,302,,
+14.72,2,Kota Dumai,expenditure,total,,1743784,rupiah,2025,survey_estimate,per_capita,10.1,302,,

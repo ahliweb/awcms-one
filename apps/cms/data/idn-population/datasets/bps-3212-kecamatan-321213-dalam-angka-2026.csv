@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.13.2001,4,Sukalila,sex,laki_laki,,1014,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2001,4,Sukalila,sex,perempuan,,960,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2001,4,Sukalila,total,total,,1974,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2002,4,Pilangsari,sex,laki_laki,,2486,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2002,4,Pilangsari,sex,perempuan,,2362,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2002,4,Pilangsari,total,total,,4848,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2003,4,Jatibarang Baru,sex,laki_laki,,5043,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2003,4,Jatibarang Baru,sex,perempuan,,4961,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2003,4,Jatibarang Baru,total,total,,10004,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2004,4,Bulak,sex,laki_laki,,3985,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2004,4,Bulak,sex,perempuan,,3961,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2004,4,Bulak,total,total,,7946,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2005,4,Bulak Lor,sex,laki_laki,,3044,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2005,4,Bulak Lor,sex,perempuan,,3107,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2005,4,Bulak Lor,total,total,,6151,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2006,4,Jatibarang,sex,laki_laki,,3842,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2006,4,Jatibarang,sex,perempuan,,3810,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2006,4,Jatibarang,total,total,,7652,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2007,4,Kebulen,sex,laki_laki,,3250,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2007,4,Kebulen,sex,perempuan,,3218,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2007,4,Kebulen,total,total,,6468,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2008,4,Pawidean,sex,laki_laki,,3158,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2008,4,Pawidean,sex,perempuan,,3130,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2008,4,Pawidean,total,total,,6288,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2009,4,Jatisawit,sex,laki_laki,,2380,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2009,4,Jatisawit,sex,perempuan,,2245,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2009,4,Jatisawit,total,total,,4625,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2010,4,Jatisawit Lor,sex,laki_laki,,2222,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2010,4,Jatisawit Lor,sex,perempuan,,2263,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2010,4,Jatisawit Lor,total,total,,4485,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2011,4,Krasak,sex,laki_laki,,3373,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2011,4,Krasak,sex,perempuan,,3328,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2011,4,Krasak,total,total,,6701,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2012,4,Kalimati,sex,laki_laki,,1722,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2012,4,Kalimati,sex,perempuan,,1681,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2012,4,Kalimati,total,total,,3403,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2013,4,Malangsemirang,sex,laki_laki,,1303,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2013,4,Malangsemirang,sex,perempuan,,1317,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2013,4,Malangsemirang,total,total,,2620,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2014,4,Lobener,sex,laki_laki,,2249,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2014,4,Lobener,sex,perempuan,,2300,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2014,4,Lobener,total,total,,4549,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13.2015,4,Lobener Lor,sex,laki_laki,,2322,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13.2015,4,Lobener Lor,sex,perempuan,,2311,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13.2015,4,Lobener Lor,total,total,,4633,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13,3,Kecamatan Jatibarang,sex,laki_laki,,41393,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.13,3,Kecamatan Jatibarang,sex,perempuan,,40954,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.13,3,Kecamatan Jatibarang,total,total,,82347,jiwa,2025,registration,total_population,3.1,30,,
+32.12.13,3,Jatibarang,age_group,0-4,laki_laki,3202,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.13,3,Jatibarang,age_group,0-4,perempuan,3104,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.13,3,Jatibarang,age_group,0-4,,6306,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.13,3,Jatibarang,age_group,5-9,laki_laki,2722,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.13,3,Jatibarang,age_group,5-9,perempuan,2659,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.13,3,Jatibarang,age_group,5-9,,5381,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.13,3,Jatibarang,age_group,10-14,laki_laki,2999,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.13,3,Jatibarang,age_group,10-14,perempuan,2886,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.13,3,Jatibarang,age_group,10-14,,5885,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.13,3,Jatibarang,age_group,15-19,laki_laki,2905,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.13,3,Jatibarang,age_group,15-19,perempuan,2792,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.13,3,Jatibarang,age_group,15-19,,5697,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.13,3,Jatibarang,age_group,20-24,laki_laki,3055,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.13,3,Jatibarang,age_group,20-24,perempuan,2935,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.13,3,Jatibarang,age_group,20-24,,5990,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.13,3,Jatibarang,age_group,25-29,laki_laki,3325,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.13,3,Jatibarang,age_group,25-29,perempuan,3144,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.13,3,Jatibarang,age_group,25-29,,6469,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.13,3,Jatibarang,age_group,30-34,laki_laki,3276,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.13,3,Jatibarang,age_group,30-34,perempuan,2992,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.13,3,Jatibarang,age_group,30-34,,6268,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.13,3,Jatibarang,age_group,35-39,laki_laki,3445,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.13,3,Jatibarang,age_group,35-39,perempuan,3357,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.13,3,Jatibarang,age_group,35-39,,6802,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.13,3,Jatibarang,age_group,40-44,laki_laki,3123,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.13,3,Jatibarang,age_group,40-44,perempuan,3502,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.13,3,Jatibarang,age_group,40-44,,6625,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.13,3,Jatibarang,age_group,45-49,laki_laki,2898,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.13,3,Jatibarang,age_group,45-49,perempuan,3238,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.13,3,Jatibarang,age_group,45-49,,6136,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.13,3,Jatibarang,age_group,50-54,laki_laki,2650,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.13,3,Jatibarang,age_group,50-54,perempuan,2759,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.13,3,Jatibarang,age_group,50-54,,5409,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.13,3,Jatibarang,age_group,55-59,laki_laki,2188,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.13,3,Jatibarang,age_group,55-59,perempuan,2285,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.13,3,Jatibarang,age_group,55-59,,4473,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.13,3,Jatibarang,age_group,60-64,laki_laki,1704,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.13,3,Jatibarang,age_group,60-64,perempuan,1796,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.13,3,Jatibarang,age_group,60-64,,3500,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.13,3,Jatibarang,age_group,65-69,laki_laki,1396,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.13,3,Jatibarang,age_group,65-69,perempuan,1482,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.13,3,Jatibarang,age_group,65-69,,2878,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.13,3,Jatibarang,age_group,70-74,laki_laki,855,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.13,3,Jatibarang,age_group,70-74,perempuan,890,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.13,3,Jatibarang,age_group,70-74,,1745,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.13,3,Jatibarang,age_group,75+,laki_laki,644,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.13,3,Jatibarang,age_group,75+,perempuan,803,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.13,3,Jatibarang,age_group,75+,,1447,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.13,3,Jatibarang,sex,laki_laki,,40387,jiwa,2025,projection,total_population,3.2,32,,Laki-Laki
+32.12.13,3,Jatibarang,sex,perempuan,,40624,jiwa,2025,projection,total_population,3.2,32,,Perempuan
+32.12.13,3,Jatibarang,total,total,,81011,jiwa,2025,projection,total_population,3.2,32,,

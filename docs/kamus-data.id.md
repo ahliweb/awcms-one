@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:9b4dd34fe6a7b7b5b1894eb49d40500d05cd7d387ecc5aa198dd5939c1b88916 -->
+<!-- i18n-source-hash: sha256:f0279ec5b18763800dfc408f7df1efab83b1d93d63ec037e638023ec393450f4 -->
 
 # Kamus data
 
@@ -358,7 +358,7 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | fitur `segments`                                                                      | pengaturan modul commerce `features.segments` (bawaan MATI)                                                                                                     |
 | `SEGMENT_EVALUATION_LIMITS`                                                           | `domain/segment.ts`: batas waktu statement 5 detik, 2 evaluasi per tenant, 1 per aktor, 30 pratinjau per aktor per menit, halaman 100, contoh 10, ekspor 10.000 |
 | `commerce.segments.*`, `commerce.segment_previews.read`, `commerce.segment_members.*` | `awcms_permissions` (`sql/1003`)                                                                                                                                |
-| versi skema aturan | `awcms_commerce_segment_versions.rule_schema_version` (`sql/1060`, bawaan 1); tata bahasa tempat sebuah versi ditulis dan selalu dibaca (ADR-0051). 1 = sembilan bidang commerce, 2 = menambah bidang turunan booking; versi baru ditulis di bawah 2 |
+| versi skema aturan | `awcms_commerce_segment_versions.rule_schema_version` (`sql/1060`, bawaan 1); tata bahasa tempat sebuah versi ditulis dan selalu dibaca (ADR-0052). 1 = sembilan bidang commerce, 2 = menambah bidang turunan booking; versi baru ditulis di bawah 2 |
 | bidang aturan turunan booking | `booking_count`, `stay_count`, `last_stay_date`, `no_show_count`, `cancellation_count` (skema aturan 2) |
 | booking (untuk aturan) | tautan reservasi aktif yang reservasi Booking-nya `confirmed` / `checked_in` / `completed` dan pesanannya lunas; jendela mengukur `paid_at` pesanan |
 | menginap (untuk aturan) | reservasi yang `checked_in` atau `completed` dengan `starts_at` tidak setelah as-of; jendela dan `last_stay_date` mengukur kedatangan |

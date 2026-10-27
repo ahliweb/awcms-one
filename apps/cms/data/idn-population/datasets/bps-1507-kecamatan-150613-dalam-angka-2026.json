@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-1507-kecamatan-150613-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.06.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Senyerang Dalam Angka 2026",
+  "publisherName": "BPS Tanjung Jabung Barat",
+  "publisherDomain": "1507",
+  "publisherWebsite": "https://tanjabbarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Tanjung Jabung Barat (https://tanjabbarkab.bps.go.id), publikasi \"Kecamatan Senyerang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1507021",
+  "publicationNumber": "15070.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjabbarkab.bps.go.id/id/publication/2026/09/28/7378658316ce3980c33ed8f7/kecamatan-senyerang-dalam-angka-2026.html",
+  "sourceFileSha256": "15e0d0f352471b12adb45760f78932887dbd9adda014c97195ad44a56689adc4",
+  "sourceFileBytes": 4789269,
+  "sourcePages": [22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Tanjung Jabung Barat.",
+  "csvPath": "datasets/bps-1507-kecamatan-150613-dalam-angka-2026.csv",
+  "csvSha256": "84a78dfb0f23cf3caa37bfdc654574f8aaaadf7e5ce92759af6a016500b14ce5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Senyerang, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 6 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.1: the rows of region 15.06.13.2005 are not stored: sex split vs total: parts sum 2926.0000 != 2296.0000 (diff 630.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.06.13.2002 are not stored: sex split vs total: parts sum 2937.0000 != 2127.0000 (diff 810.0000); the source itself is inconsistent"
+  ]
+}

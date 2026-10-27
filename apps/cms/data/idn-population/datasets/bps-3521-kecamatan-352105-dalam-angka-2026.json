@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3521-kecamatan-352105-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.21.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Geneng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ngawi",
+  "publisherDomain": "3521",
+  "publisherWebsite": "https://ngawikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ngawi (https://ngawikab.bps.go.id), publikasi \"Kecamatan Geneng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3521050",
+  "publicationNumber": "35210.26019",
+  "issn": "2797-4227",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ngawikab.bps.go.id/id/publication/2026/09/28/9ed9add7e94c2a072c09271d/kecamatan-geneng-dalam-angka-2026.html",
+  "sourceFileSha256": "1e127cee13b48cd9ef354fe48852dfc8e8ce6e203071a64029aaaa5f2c12c33d",
+  "sourceFileBytes": 17689386,
+  "sourcePages": [38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ngawi.",
+  "csvPath": "datasets/bps-3521-kecamatan-352105-dalam-angka-2026.csv",
+  "csvSha256": "dd333d0beab60a2b72957e5f33c0ad7ed4860c407f7d84955b0909d4eb75a3dd",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p38",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Geneng, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,147 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.01.03,3,Kotawaringin Lama,total,total,,20081,jiwa,2025,projection,total_population,3.1.1,49,,
+62.01.02,3,Arut Selatan,total,total,,126499,jiwa,2025,projection,total_population,3.1.1,49,,
+62.01.01,3,Kumai,total,total,,55024,jiwa,2025,projection,total_population,3.1.1,49,,
+62.01.06,3,Pangkalan Banteng,total,total,,37835,jiwa,2025,projection,total_population,3.1.1,49,,
+62.01.05,3,Pangkalan Lada,total,total,,37097,jiwa,2025,projection,total_population,3.1.1,49,,
+62.01.04,3,Arut Utara,total,total,,9201,jiwa,2025,projection,total_population,3.1.1,49,,
+62.01,2,Kotawaringin Barat,total,total,,285737,jiwa,2025,projection,total_population,3.1.1,49,,
+62.01,2,Kabupaten Kotawaringin Barat,age_group,0-4,laki_laki,12.43,ribu_jiwa,2025,projection,total_population,3.1.2,52,,0–4
+62.01,2,Kabupaten Kotawaringin Barat,age_group,0-4,perempuan,11.91,ribu_jiwa,2025,projection,total_population,3.1.2,52,,0–4
+62.01,2,Kabupaten Kotawaringin Barat,age_group,0-4,,24.34,ribu_jiwa,2025,projection,total_population,3.1.2,52,,0–4
+62.01,2,Kabupaten Kotawaringin Barat,age_group,5-9,laki_laki,12.82,ribu_jiwa,2025,projection,total_population,3.1.2,52,,5–9
+62.01,2,Kabupaten Kotawaringin Barat,age_group,5-9,perempuan,12.18,ribu_jiwa,2025,projection,total_population,3.1.2,52,,5–9
+62.01,2,Kabupaten Kotawaringin Barat,age_group,5-9,,25.00,ribu_jiwa,2025,projection,total_population,3.1.2,52,,5–9
+62.01,2,Kabupaten Kotawaringin Barat,age_group,10-14,laki_laki,11.65,ribu_jiwa,2025,projection,total_population,3.1.2,52,,10–14
+62.01,2,Kabupaten Kotawaringin Barat,age_group,10-14,perempuan,10.86,ribu_jiwa,2025,projection,total_population,3.1.2,52,,10–14
+62.01,2,Kabupaten Kotawaringin Barat,age_group,10-14,,22.51,ribu_jiwa,2025,projection,total_population,3.1.2,52,,10–14
+62.01,2,Kabupaten Kotawaringin Barat,age_group,15-19,laki_laki,11.60,ribu_jiwa,2025,projection,total_population,3.1.2,52,,15–19
+62.01,2,Kabupaten Kotawaringin Barat,age_group,15-19,perempuan,10.80,ribu_jiwa,2025,projection,total_population,3.1.2,52,,15–19
+62.01,2,Kabupaten Kotawaringin Barat,age_group,15-19,,22.39,ribu_jiwa,2025,projection,total_population,3.1.2,52,,15–19
+62.01,2,Kabupaten Kotawaringin Barat,age_group,20-24,laki_laki,10.83,ribu_jiwa,2025,projection,total_population,3.1.2,52,,20–24
+62.01,2,Kabupaten Kotawaringin Barat,age_group,20-24,perempuan,10.01,ribu_jiwa,2025,projection,total_population,3.1.2,52,,20–24
+62.01,2,Kabupaten Kotawaringin Barat,age_group,20-24,,20.84,ribu_jiwa,2025,projection,total_population,3.1.2,52,,20–24
+62.01,2,Kabupaten Kotawaringin Barat,age_group,25-29,laki_laki,11.73,ribu_jiwa,2025,projection,total_population,3.1.2,52,,25–29
+62.01,2,Kabupaten Kotawaringin Barat,age_group,25-29,perempuan,11.22,ribu_jiwa,2025,projection,total_population,3.1.2,52,,25–29
+62.01,2,Kabupaten Kotawaringin Barat,age_group,25-29,,22.96,ribu_jiwa,2025,projection,total_population,3.1.2,52,,25–29
+62.01,2,Kabupaten Kotawaringin Barat,age_group,30-34,laki_laki,11.46,ribu_jiwa,2025,projection,total_population,3.1.2,52,,30–34
+62.01,2,Kabupaten Kotawaringin Barat,age_group,30-34,perempuan,11.04,ribu_jiwa,2025,projection,total_population,3.1.2,52,,30–34
+62.01,2,Kabupaten Kotawaringin Barat,age_group,30-34,,22.50,ribu_jiwa,2025,projection,total_population,3.1.2,52,,30–34
+62.01,2,Kabupaten Kotawaringin Barat,age_group,35-39,laki_laki,11.02,ribu_jiwa,2025,projection,total_population,3.1.2,52,,35–39
+62.01,2,Kabupaten Kotawaringin Barat,age_group,35-39,perempuan,10.97,ribu_jiwa,2025,projection,total_population,3.1.2,52,,35–39
+62.01,2,Kabupaten Kotawaringin Barat,age_group,35-39,,21.99,ribu_jiwa,2025,projection,total_population,3.1.2,52,,35–39
+62.01,2,Kabupaten Kotawaringin Barat,age_group,40-44,laki_laki,11.21,ribu_jiwa,2025,projection,total_population,3.1.2,52,,40–44
+62.01,2,Kabupaten Kotawaringin Barat,age_group,40-44,perempuan,11.08,ribu_jiwa,2025,projection,total_population,3.1.2,52,,40–44
+62.01,2,Kabupaten Kotawaringin Barat,age_group,40-44,,22.29,ribu_jiwa,2025,projection,total_population,3.1.2,52,,40–44
+62.01,2,Kabupaten Kotawaringin Barat,age_group,45-49,laki_laki,11.04,ribu_jiwa,2025,projection,total_population,3.1.2,52,,45–49
+62.01,2,Kabupaten Kotawaringin Barat,age_group,45-49,perempuan,10.24,ribu_jiwa,2025,projection,total_population,3.1.2,52,,45–49
+62.01,2,Kabupaten Kotawaringin Barat,age_group,45-49,,21.27,ribu_jiwa,2025,projection,total_population,3.1.2,52,,45–49
+62.01,2,Kabupaten Kotawaringin Barat,age_group,50-54,laki_laki,9.61,ribu_jiwa,2025,projection,total_population,3.1.2,52,,50–54
+62.01,2,Kabupaten Kotawaringin Barat,age_group,50-54,perempuan,8.74,ribu_jiwa,2025,projection,total_population,3.1.2,52,,50–54
+62.01,2,Kabupaten Kotawaringin Barat,age_group,50-54,,18.35,ribu_jiwa,2025,projection,total_population,3.1.2,52,,50–54
+62.01,2,Kabupaten Kotawaringin Barat,age_group,55-59,laki_laki,7.76,ribu_jiwa,2025,projection,total_population,3.1.2,52,,55–59
+62.01,2,Kabupaten Kotawaringin Barat,age_group,55-59,perempuan,6.73,ribu_jiwa,2025,projection,total_population,3.1.2,52,,55–59
+62.01,2,Kabupaten Kotawaringin Barat,age_group,55-59,,14.49,ribu_jiwa,2025,projection,total_population,3.1.2,52,,55–59
+62.01,2,Kabupaten Kotawaringin Barat,age_group,60-64,laki_laki,5.86,ribu_jiwa,2025,projection,total_population,3.1.2,52,,60–64
+62.01,2,Kabupaten Kotawaringin Barat,age_group,60-64,perempuan,5.32,ribu_jiwa,2025,projection,total_population,3.1.2,52,,60–64
+62.01,2,Kabupaten Kotawaringin Barat,age_group,60-64,,11.17,ribu_jiwa,2025,projection,total_population,3.1.2,52,,60–64
+62.01,2,Kabupaten Kotawaringin Barat,age_group,65-69,laki_laki,3.91,ribu_jiwa,2025,projection,total_population,3.1.2,52,,65–69
+62.01,2,Kabupaten Kotawaringin Barat,age_group,65-69,perempuan,3.33,ribu_jiwa,2025,projection,total_population,3.1.2,52,,65–69
+62.01,2,Kabupaten Kotawaringin Barat,age_group,65-69,,7.24,ribu_jiwa,2025,projection,total_population,3.1.2,52,,65–69
+62.01,2,Kabupaten Kotawaringin Barat,age_group,70-74,laki_laki,2.44,ribu_jiwa,2025,projection,total_population,3.1.2,52,,70–74
+62.01,2,Kabupaten Kotawaringin Barat,age_group,70-74,perempuan,2.08,ribu_jiwa,2025,projection,total_population,3.1.2,52,,70–74
+62.01,2,Kabupaten Kotawaringin Barat,age_group,70-74,,4.52,ribu_jiwa,2025,projection,total_population,3.1.2,52,,70–74
+62.01,2,Kabupaten Kotawaringin Barat,age_group,75+,laki_laki,2.08,ribu_jiwa,2025,projection,total_population,3.1.2,52,,75+
+62.01,2,Kabupaten Kotawaringin Barat,age_group,75+,perempuan,1.80,ribu_jiwa,2025,projection,total_population,3.1.2,52,,75+
+62.01,2,Kabupaten Kotawaringin Barat,age_group,75+,,3.88,ribu_jiwa,2025,projection,total_population,3.1.2,52,,75+
+62.01,2,Kotawaringin Barat,sex,laki_laki,,147.43,ribu_jiwa,2025,projection,total_population,3.1.2,52,,Laki-Laki
+62.01,2,Kotawaringin Barat,sex,perempuan,,138.31,ribu_jiwa,2025,projection,total_population,3.1.2,52,,Perempuan
+62.01,2,Kotawaringin Barat,total,total,,285.74,ribu_jiwa,2025,projection,total_population,3.1.2,52,,
+62.01.03,3,Kotawaringin Lama,religion,islam,,18370,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+62.01.03,3,Kotawaringin Lama,religion,kristen,,1361,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+62.01.03,3,Kotawaringin Lama,religion,katolik,,606,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+62.01.03,3,Kotawaringin Lama,religion,hindu,,1556,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+62.01.03,3,Kotawaringin Lama,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+62.01.03,3,Kotawaringin Lama,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+62.01.02,3,Arut Selatan,religion,islam,,119154,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+62.01.02,3,Arut Selatan,religion,kristen,,7030,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+62.01.02,3,Arut Selatan,religion,katolik,,1444,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+62.01.02,3,Arut Selatan,religion,hindu,,348,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+62.01.02,3,Arut Selatan,religion,buddha,,583,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+62.01.02,3,Arut Selatan,religion,lainnya,,51,jiwa,2025,registration,total_population,4.3.1,111,,Lainnya
+62.01.01,3,Kumai,religion,islam,,57841,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+62.01.01,3,Kumai,religion,kristen,,433,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+62.01.01,3,Kumai,religion,katolik,,138,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+62.01.01,3,Kumai,religion,hindu,,24,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+62.01.01,3,Kumai,religion,buddha,,140,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+62.01.01,3,Kumai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+62.01.06,3,Pangkalan Banteng,religion,islam,,35218,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+62.01.06,3,Pangkalan Banteng,religion,kristen,,1368,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+62.01.06,3,Pangkalan Banteng,religion,katolik,,3644,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+62.01.06,3,Pangkalan Banteng,religion,hindu,,95,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+62.01.06,3,Pangkalan Banteng,religion,buddha,,48,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+62.01.06,3,Pangkalan Banteng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+62.01.05,3,Pangkalan Lada,religion,islam,,37147,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+62.01.05,3,Pangkalan Lada,religion,kristen,,928,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+62.01.05,3,Pangkalan Lada,religion,katolik,,237,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+62.01.05,3,Pangkalan Lada,religion,hindu,,16,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+62.01.05,3,Pangkalan Lada,religion,buddha,,23,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+62.01.05,3,Pangkalan Lada,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,111,,Lainnya
+62.01.04,3,Arut Utara,religion,islam,,5144,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+62.01.04,3,Arut Utara,religion,kristen,,2582,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+62.01.04,3,Arut Utara,religion,katolik,,479,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+62.01.04,3,Arut Utara,religion,hindu,,1214,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+62.01.04,3,Arut Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Budha
+62.01.04,3,Arut Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,111,nil,Lainnya
+62.01,2,Kabupaten Kotawaringin Barat,religion,islam,,272874,jiwa,2025,registration,total_population,4.3.1,111,,Islam
+62.01,2,Kabupaten Kotawaringin Barat,religion,kristen,,13702,jiwa,2025,registration,total_population,4.3.1,111,,Protestan
+62.01,2,Kabupaten Kotawaringin Barat,religion,katolik,,6548,jiwa,2025,registration,total_population,4.3.1,111,,Katolik
+62.01,2,Kabupaten Kotawaringin Barat,religion,hindu,,3253,jiwa,2025,registration,total_population,4.3.1,111,,Hindu
+62.01,2,Kabupaten Kotawaringin Barat,religion,buddha,,802,jiwa,2025,registration,total_population,4.3.1,111,,Budha
+62.01,2,Kabupaten Kotawaringin Barat,religion,lainnya,,54,jiwa,2025,registration,total_population,4.3.1,111,,Lainnya
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/padi_padian,,100504,rupiah,2025,survey_estimate,per_capita,10.1,241,,Padi-padian
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/padi_padian,,103130,rupiah,2024,survey_estimate,per_capita,10.1,241,,Padi-padian
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/umbi_umbian,,8432,rupiah,2025,survey_estimate,per_capita,10.1,241,,Umbi-umbian
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/umbi_umbian,,8678,rupiah,2024,survey_estimate,per_capita,10.1,241,,Umbi-umbian
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,93904,rupiah,2025,survey_estimate,per_capita,10.1,241,,Ikan/udang/cumi/kerang
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,94654,rupiah,2024,survey_estimate,per_capita,10.1,241,,Ikan/udang/cumi/kerang
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/daging,,59338,rupiah,2025,survey_estimate,per_capita,10.1,241,,Daging
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/daging,,63863,rupiah,2024,survey_estimate,per_capita,10.1,241,,Daging
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/telur_dan_susu,,49323,rupiah,2025,survey_estimate,per_capita,10.1,241,,Telur dan susu
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/telur_dan_susu,,48875,rupiah,2024,survey_estimate,per_capita,10.1,241,,Telur dan susu
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/sayur_sayuran,,87691,rupiah,2025,survey_estimate,per_capita,10.1,241,,Sayur-sayuran
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/sayur_sayuran,,85720,rupiah,2024,survey_estimate,per_capita,10.1,241,,Sayur-sayuran
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/kacang_kacangan,,18884,rupiah,2025,survey_estimate,per_capita,10.1,241,,Kacang-kacangan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/kacang_kacangan,,18908,rupiah,2024,survey_estimate,per_capita,10.1,241,,Kacang-kacangan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/buah_buahan,,39595,rupiah,2025,survey_estimate,per_capita,10.1,241,,Buah-buahan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/buah_buahan,,52421,rupiah,2024,survey_estimate,per_capita,10.1,241,,Buah-buahan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23805,rupiah,2025,survey_estimate,per_capita,10.1,241,,Minyak dan kelapa
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22638,rupiah,2024,survey_estimate,per_capita,10.1,241,,Minyak dan kelapa
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/bahan_minuman,,27105,rupiah,2025,survey_estimate,per_capita,10.1,241,,Bahan minuman
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/bahan_minuman,,26833,rupiah,2024,survey_estimate,per_capita,10.1,241,,Bahan minuman
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,21479,rupiah,2025,survey_estimate,per_capita,10.1,241,,Bumbu-bumbuan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,23681,rupiah,2024,survey_estimate,per_capita,10.1,241,,Bumbu-bumbuan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,17543,rupiah,2025,survey_estimate,per_capita,10.1,241,,Konsumsi lainnya
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,17958,rupiah,2024,survey_estimate,per_capita,10.1,241,,Konsumsi lainnya
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,237191,rupiah,2025,survey_estimate,per_capita,10.1,241,,Makanan dan minuman jadi
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,238667,rupiah,2024,survey_estimate,per_capita,10.1,241,,Makanan dan minuman jadi
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/rokok,,141636,rupiah,2025,survey_estimate,per_capita,10.1,241,,Rokok
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/rokok,,143220,rupiah,2024,survey_estimate,per_capita,10.1,241,,Rokok
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/jumlah_makanan,,926429,rupiah,2025,survey_estimate,per_capita,10.1,241,,Jumlah makanan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/jumlah_makanan,,949245,rupiah,2024,survey_estimate,per_capita,10.1,241,,Jumlah makanan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,491214,rupiah,2025,survey_estimate,per_capita,10.1,241,,Perumahan dan fasilitas rumah tangga
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,527329,rupiah,2024,survey_estimate,per_capita,10.1,241,,Perumahan dan fasilitas rumah tangga
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,157081,rupiah,2025,survey_estimate,per_capita,10.1,241,,Aneka barang dan jasa
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,159642,rupiah,2024,survey_estimate,per_capita,10.1,241,,Aneka barang dan jasa
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,38396,rupiah,2025,survey_estimate,per_capita,10.1,241,,"Pakaian, alas kaki, dan tutup kepala"
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34420,rupiah,2024,survey_estimate,per_capita,10.1,241,,"Pakaian, alas kaki, dan tutup kepala"
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,71392,rupiah,2025,survey_estimate,per_capita,10.1,241,,Barang tahan lama
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,68039,rupiah,2024,survey_estimate,per_capita,10.1,241,,Barang tahan lama
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,57784,rupiah,2025,survey_estimate,per_capita,10.1,241,,"Pajak, pungutan, dan asuransi"
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,58201,rupiah,2024,survey_estimate,per_capita,10.1,241,,"Pajak, pungutan, dan asuransi"
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,16865,rupiah,2025,survey_estimate,per_capita,10.1,241,,Keperluan pesta dan upacara/kenduri
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,55337,rupiah,2024,survey_estimate,per_capita,10.1,241,,Keperluan pesta dan upacara/kenduri
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,832732,rupiah,2025,survey_estimate,per_capita,10.1,241,,Jumlah bukan makanan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,902969,rupiah,2024,survey_estimate,per_capita,10.1,241,,Jumlah bukan makanan
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,total,,1759161,rupiah,2025,survey_estimate,per_capita,10.1,241,,
+62.01,2,Kabupaten Kotawaringin Barat,expenditure,total,,1852214,rupiah,2024,survey_estimate,per_capita,10.1,241,,

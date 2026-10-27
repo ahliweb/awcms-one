@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.08.08.2003,4,JAYA PURA,sex,perempuan,,2338,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2003,4,JAYA PURA,total,total,,4723,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2001,4,BUNGA RAYA,sex,perempuan,,3055,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2001,4,BUNGA RAYA,total,total,,6217,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2002,4,JATI BARU,sex,perempuan,,2182,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2002,4,JATI BARU,total,total,,4464,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2013,4,TUAH INDRAPURA,sex,perempuan,,1676,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2013,4,TUAH INDRAPURA,total,total,,3569,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2011,4,KEMUNING MUDA,sex,perempuan,,1451,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2011,4,KEMUNING MUDA,total,total,,2997,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2014,4,LANGSAT PERMAI,sex,perempuan,,808,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2014,4,LANGSAT PERMAI,total,total,,1654,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2017,4,SUAK MERAMBAI,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2017,4,SUAK MERAMBAI,total,total,,970,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2016,4,DAYANG SURI,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2016,4,DAYANG SURI,total,total,,1439,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08.2015,4,TEMUSAI,sex,perempuan,,766,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08.2015,4,TEMUSAI,total,total,,1612,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08,3,KECAMATAN BUNGA RAYA,sex,perempuan,,14919,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.08,3,KECAMATAN BUNGA RAYA,total,total,,30668,jiwa,2025,registration,total_population,3.1,26,,
+14.08.08,3,Bunga Raya,age_group,0-4,perempuan,1140,jiwa,2025,registration,total_population,3.2,28,,0–4
+14.08.08,3,Bunga Raya,age_group,0-4,,2266,jiwa,2025,registration,total_population,3.2,28,,0–4
+14.08.08,3,Bunga Raya,age_group,5-9,perempuan,1427,jiwa,2025,registration,total_population,3.2,28,,5–9
+14.08.08,3,Bunga Raya,age_group,5-9,,3037,jiwa,2025,registration,total_population,3.2,28,,5–9
+14.08.08,3,Bunga Raya,age_group,10-14,perempuan,1472,jiwa,2025,registration,total_population,3.2,28,,10–14
+14.08.08,3,Bunga Raya,age_group,10-14,,3047,jiwa,2025,registration,total_population,3.2,28,,10–14
+14.08.08,3,Bunga Raya,age_group,15-19,perempuan,1259,jiwa,2025,registration,total_population,3.2,28,,15–19
+14.08.08,3,Bunga Raya,age_group,15-19,,2630,jiwa,2025,registration,total_population,3.2,28,,15–19
+14.08.08,3,Bunga Raya,age_group,20-24,perempuan,1277,jiwa,2025,registration,total_population,3.2,28,,20–24
+14.08.08,3,Bunga Raya,age_group,20-24,,2586,jiwa,2025,registration,total_population,3.2,28,,20–24
+14.08.08,3,Bunga Raya,age_group,25-29,perempuan,1169,jiwa,2025,registration,total_population,3.2,28,,25–29
+14.08.08,3,Bunga Raya,age_group,25-29,,2372,jiwa,2025,registration,total_population,3.2,28,,25–29
+14.08.08,3,Bunga Raya,age_group,30-34,perempuan,1134,jiwa,2025,registration,total_population,3.2,28,,30–34
+14.08.08,3,Bunga Raya,age_group,30-34,,2185,jiwa,2025,registration,total_population,3.2,28,,30–34
+14.08.08,3,Bunga Raya,age_group,35-39,perempuan,1122,jiwa,2025,registration,total_population,3.2,28,,35–39
+14.08.08,3,Bunga Raya,age_group,35-39,,2229,jiwa,2025,registration,total_population,3.2,28,,35–39
+14.08.08,3,Bunga Raya,age_group,40-44,perempuan,1189,jiwa,2025,registration,total_population,3.2,28,,40–44
+14.08.08,3,Bunga Raya,age_group,40-44,,2396,jiwa,2025,registration,total_population,3.2,28,,40–44
+14.08.08,3,Bunga Raya,age_group,45-49,perempuan,1037,jiwa,2025,registration,total_population,3.2,28,,45–49
+14.08.08,3,Bunga Raya,age_group,45-49,,2131,jiwa,2025,registration,total_population,3.2,28,,45–49
+14.08.08,3,Bunga Raya,age_group,50-54,perempuan,820,jiwa,2025,registration,total_population,3.2,28,,50–54
+14.08.08,3,Bunga Raya,age_group,50-54,,1807,jiwa,2025,registration,total_population,3.2,28,,50–54
+14.08.08,3,Bunga Raya,age_group,55-59,perempuan,586,jiwa,2025,registration,total_population,3.2,28,,55–59
+14.08.08,3,Bunga Raya,age_group,55-59,,1308,jiwa,2025,registration,total_population,3.2,28,,55–59
+14.08.08,3,Bunga Raya,age_group,60-64,perempuan,428,jiwa,2025,registration,total_population,3.2,28,,60–64
+14.08.08,3,Bunga Raya,age_group,60-64,,924,jiwa,2025,registration,total_population,3.2,28,,60–64
+14.08.08,3,Bunga Raya,age_group,65-69,perempuan,347,jiwa,2025,registration,total_population,3.2,28,,65–69
+14.08.08,3,Bunga Raya,age_group,65-69,,653,jiwa,2025,registration,total_population,3.2,28,,65–69
+14.08.08,3,Bunga Raya,age_group,70-74,perempuan,214,jiwa,2025,registration,total_population,3.2,28,,70–74
+14.08.08,3,Bunga Raya,age_group,70-74,,473,jiwa,2025,registration,total_population,3.2,28,,70–74
+14.08.08,3,Bunga Raya,age_group,75+,perempuan,298,jiwa,2025,registration,total_population,3.2,28,,75+
+14.08.08,3,Bunga Raya,age_group,75+,,624,jiwa,2025,registration,total_population,3.2,28,,75+
+14.08.08,3,KECAMATAN BUNGA RAYA,sex,perempuan,,14919,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+14.08.08,3,KECAMATAN BUNGA RAYA,total,total,,30668,jiwa,2025,registration,total_population,3.2,28,,

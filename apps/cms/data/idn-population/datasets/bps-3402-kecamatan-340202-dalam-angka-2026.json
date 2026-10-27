@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3402-kecamatan-340202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.02.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sanden Dalam Angka 2026",
+  "publisherName": "BPS Kabupate Bantul",
+  "publisherDomain": "3402",
+  "publisherWebsite": "https://bantulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupate Bantul (https://bantulkab.bps.go.id), publikasi \"Kecamatan Sanden Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3402020",
+  "publicationNumber": "34020.26007",
+  "issn": "0852-2901",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bantulkab.bps.go.id/id/publication/2026/09/28/10cf40662eb95a7f3d763b04/kecamatan-sanden-dalam-angka-2026.html",
+  "sourceFileSha256": "9e548b1a499a43c0222205e9b76a21de17eef27b0870e74247215d6f86ecd7fe",
+  "sourceFileBytes": 10455088,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bantul",
+  "csvPath": "datasets/bps-3402-kecamatan-340202-dalam-angka-2026.csv",
+  "csvSha256": "08356b30da22c2bc757b2e7d52024b8c42852c901c9e2f0c5dd62d0b77bf22bd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sanden, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sanden, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

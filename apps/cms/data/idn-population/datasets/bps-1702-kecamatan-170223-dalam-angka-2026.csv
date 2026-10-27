@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.23.2001,4,Desa Merantau,sex,laki_laki,,561,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23.2001,4,Desa Merantau,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23.2001,4,Desa Merantau,total,total,,1066,jiwa,2025,registration,total_population,3.1,22,,
+17.02.23.2002,4,Desa Periang,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23.2002,4,Desa Periang,sex,perempuan,,399,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23.2002,4,Desa Periang,total,total,,844,jiwa,2025,registration,total_population,3.1,22,,
+17.02.23.2003,4,Desa Balai Buntar,sex,laki_laki,,383,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23.2003,4,Desa Balai Buntar,sex,perempuan,,379,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23.2003,4,Desa Balai Buntar,total,total,,762,jiwa,2025,registration,total_population,3.1,22,,
+17.02.23.2008,4,Desa Sari Pulau,sex,laki_laki,,188,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23.2008,4,Desa Sari Pulau,sex,perempuan,,167,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23.2008,4,Desa Sari Pulau,total,total,,355,jiwa,2025,registration,total_population,3.1,22,,
+17.02.23.2009,4,Desa Suka Merindu,sex,laki_laki,,744,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23.2009,4,Desa Suka Merindu,sex,perempuan,,700,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23.2009,4,Desa Suka Merindu,total,total,,1444,jiwa,2025,registration,total_population,3.1,22,,
+17.02.23.2004,4,Desa Lubuk Tunjung,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23.2004,4,Desa Lubuk Tunjung,sex,perempuan,,274,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23.2004,4,Desa Lubuk Tunjung,total,total,,602,jiwa,2025,registration,total_population,3.1,22,,
+17.02.23.2010,4,Desa Suka Karya,sex,laki_laki,,112,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23.2010,4,Desa Suka Karya,sex,perempuan,,100,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23.2010,4,Desa Suka Karya,total,total,,212,jiwa,2025,registration,total_population,3.1,22,,
+17.02.23,3,Sindang Beliti Ilir,sex,laki_laki,,5056,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.23,3,Sindang Beliti Ilir,sex,perempuan,,4693,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.23,3,Sindang Beliti Ilir,total,total,,9749,jiwa,2025,registration,total_population,3.1,22,,

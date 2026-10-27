@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.08.12.2004,4,Sungai Arang,sex,laki_laki,,2539,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+15.08.12.2004,4,Sungai Arang,sex,perempuan,,2464,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+15.08.12.2004,4,Sungai Arang,total,total,,5003,jiwa,2025,registration,total_population,3.1,31,,
+15.08.12.2003,4,Talang Pantai,sex,laki_laki,,2388,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+15.08.12.2003,4,Talang Pantai,sex,perempuan,,2354,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+15.08.12.2003,4,Talang Pantai,total,total,,4742,jiwa,2025,registration,total_population,3.1,31,,
+15.08.12.2005,4,Pulau Pekan,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+15.08.12.2005,4,Pulau Pekan,sex,perempuan,,555,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+15.08.12.2005,4,Pulau Pekan,total,total,,1132,jiwa,2025,registration,total_population,3.1,31,,
+15.08.12.1002,4,Sungai Kerjan,sex,laki_laki,,3874,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+15.08.12.1002,4,Sungai Kerjan,sex,perempuan,,3794,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+15.08.12.1002,4,Sungai Kerjan,total,total,,7668,jiwa,2025,registration,total_population,3.1,31,,
+15.08.12.1001,4,Sungai Pinang,sex,laki_laki,,5185,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+15.08.12.1001,4,Sungai Pinang,sex,perempuan,,4924,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+15.08.12.1001,4,Sungai Pinang,total,total,,10109,jiwa,2025,registration,total_population,3.1,31,,
+15.08.12,3,Bungo Dani,sex,laki_laki,,14563,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+15.08.12,3,Bungo Dani,sex,perempuan,,14091,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+15.08.12,3,Bungo Dani,total,total,,28654,jiwa,2025,registration,total_population,3.1,31,,

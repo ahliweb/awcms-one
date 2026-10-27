@@ -1,0 +1,75 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.05.2001,4,Longkeyang,sex,perempuan,,1874,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2001,4,Longkeyang,total,total,,3829,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2002,4,Jatingarang,sex,perempuan,,3662,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2002,4,Jatingarang,total,total,,7469,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2003,4,Gunungbatu,sex,perempuan,,847,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2003,4,Gunungbatu,total,total,,1713,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2004,4,Pasir,sex,perempuan,,1379,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2004,4,Pasir,total,total,,2846,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2005,4,Kwasen,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2005,4,Kwasen,total,total,,824,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2006,4,Jatiroyom,sex,perempuan,,1743,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2006,4,Jatiroyom,total,total,,3588,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2007,4,Parunggalih,sex,perempuan,,517,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2007,4,Parunggalih,total,total,,1059,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2008,4,Payung,sex,perempuan,,1239,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2008,4,Payung,total,total,,2505,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2009,4,Cangak,sex,perempuan,,1806,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2009,4,Cangak,total,total,,3732,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2010,4,Kebandungan,sex,perempuan,,1352,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2010,4,Kebandungan,total,total,,2722,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2011,4,Kesesirejo,sex,perempuan,,3799,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2011,4,Kesesirejo,total,total,,7761,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2012,4,Babakan,sex,perempuan,,1447,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2012,4,Babakan,total,total,,2983,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2013,4,Karangbrai,sex,perempuan,,2697,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2013,4,Karangbrai,total,total,,5469,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2014,4,Jraganan,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2014,4,Jraganan,total,total,,2475,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2015,4,Kebandaran,sex,perempuan,,937,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2015,4,Kebandaran,total,total,,1873,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2016,4,Bodeh,sex,perempuan,,904,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2016,4,Bodeh,total,total,,1856,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2017,4,Muncang,sex,perempuan,,2979,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2017,4,Muncang,total,total,,6032,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2018,4,Kelangdepok,sex,perempuan,,1763,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2018,4,Kelangdepok,total,total,,3515,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05.2019,4,Pendowo,sex,perempuan,,2669,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05.2019,4,Pendowo,total,total,,5385,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05,3,Kecamatan Bodeh,sex,perempuan,,33270,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.05,3,Kecamatan Bodeh,total,total,,67636,jiwa,2025,registration,total_population,3.1,47,,
+33.27.05,3,Bodeh,age_group,0-4,perempuan,2114,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+33.27.05,3,Bodeh,age_group,0-4,,4469,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+33.27.05,3,Bodeh,age_group,5-9,perempuan,2552,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+33.27.05,3,Bodeh,age_group,5-9,,5309,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+33.27.05,3,Bodeh,age_group,10-14,perempuan,2542,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+33.27.05,3,Bodeh,age_group,10-14,,5252,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+33.27.05,3,Bodeh,age_group,15-19,perempuan,2336,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+33.27.05,3,Bodeh,age_group,15-19,,4802,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+33.27.05,3,Bodeh,age_group,20-24,perempuan,2436,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+33.27.05,3,Bodeh,age_group,20-24,,4984,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+33.27.05,3,Bodeh,age_group,25-29,perempuan,2752,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+33.27.05,3,Bodeh,age_group,25-29,,5691,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+33.27.05,3,Bodeh,age_group,30-34,perempuan,2706,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+33.27.05,3,Bodeh,age_group,30-34,,5543,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+33.27.05,3,Bodeh,age_group,35-39,perempuan,2497,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+33.27.05,3,Bodeh,age_group,35-39,,5174,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+33.27.05,3,Bodeh,age_group,40-44,perempuan,2468,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+33.27.05,3,Bodeh,age_group,40-44,,5013,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+33.27.05,3,Bodeh,age_group,45-49,perempuan,2092,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+33.27.05,3,Bodeh,age_group,45-49,,4377,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+33.27.05,3,Bodeh,age_group,50-54,perempuan,1914,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+33.27.05,3,Bodeh,age_group,50-54,,3738,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+33.27.05,3,Bodeh,age_group,55-59,perempuan,1887,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+33.27.05,3,Bodeh,age_group,55-59,,3616,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+33.27.05,3,Bodeh,age_group,60-64,perempuan,1721,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+33.27.05,3,Bodeh,age_group,60-64,,3429,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+33.27.05,3,Bodeh,age_group,65-69,perempuan,1289,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+33.27.05,3,Bodeh,age_group,65-69,,2540,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+33.27.05,3,Bodeh,age_group,70-74,perempuan,825,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+33.27.05,3,Bodeh,age_group,70-74,,1662,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+33.27.05,3,Bodeh,age_group,75+,perempuan,1139,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.05,3,Bodeh,age_group,75+,,2037,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.05,3,Kecamatan Bodeh,sex,perempuan,,33270,jiwa,2025,registration,total_population,3.2,49,,Perempuan
+33.27.05,3,Kecamatan Bodeh,total,total,,67636,jiwa,2025,registration,total_population,3.2,49,,

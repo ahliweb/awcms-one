@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3317-kecamatan-331708-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.17.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sulang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rembang",
+  "publisherDomain": "3317",
+  "publisherWebsite": "https://rembangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rembang (https://rembangkab.bps.go.id), publikasi \"Kecamatan Sulang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3317010",
+  "publicationNumber": "33170.25015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rembangkab.bps.go.id/id/publication/2026/09/28/4a4388af7db9f73eb5ff2be1/kecamatan-sulang-dalam-angka-2026.html",
+  "sourceFileSha256": "6419419a69461136c23a2b5c4a67077c1c1ed30ce967da773ee44a33850ec4e6",
+  "sourceFileBytes": 3978968,
+  "sourcePages": [26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rembang.",
+  "csvPath": "datasets/bps-3317-kecamatan-331708-dalam-angka-2026.csv",
+  "csvSha256": "1148959eda6f13013676bb4994779c1cedc56b843ea266fc7adf156d4ba9c927",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sulang, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sulang, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 33.17.08 are not stored: sex split vs total: parts sum 38023.0000 != 39025.0000 (diff 1002.0000); the source itself is inconsistent"
+  ]
+}

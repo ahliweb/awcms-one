@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.17.07,3,Timang Gajah,total,total,,22898,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.10,3,Gajah Putih,total,total,,9767,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.01,3,Pintu Rime Gayo,total,total,,16719,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.05,3,Bukit,total,total,,32299,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.06,3,Wih Pesam,total,total,,26337,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.04,3,Bandar,total,total,,30148,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.08,3,Bener Kelipah,total,total,,5319,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.03,3,Syiah Utama,total,total,,2591,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.09,3,Mesidah,total,total,,6195,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17.02,3,Permata,total,total,,22551,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17,2,Bener Meriah,total,total,,174824,jiwa,2025,projection,total_population,3.1.1,60,,
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/padi_padian,,117110,rupiah,2024,survey_estimate,per_capita,10.1,390,,Padi-padian
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/padi_padian,,106348,rupiah,2025,survey_estimate,per_capita,10.1,390,,Padi-padian
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/umbi_umbian,,12194,rupiah,2024,survey_estimate,per_capita,10.1,390,,Umbi-umbian
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/umbi_umbian,,11154,rupiah,2025,survey_estimate,per_capita,10.1,390,,Umbi-umbian
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,103246,rupiah,2024,survey_estimate,per_capita,10.1,390,,Ikan/udang/cumi/kerang
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,99748,rupiah,2025,survey_estimate,per_capita,10.1,390,,Ikan/udang/cumi/kerang
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/daging,,36075,rupiah,2024,survey_estimate,per_capita,10.1,390,,Daging
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/daging,,29401,rupiah,2025,survey_estimate,per_capita,10.1,390,,Daging
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/telur_dan_susu,,32157,rupiah,2024,survey_estimate,per_capita,10.1,390,,Telur dan susu
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/telur_dan_susu,,30492,rupiah,2025,survey_estimate,per_capita,10.1,390,,Telur dan susu
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/sayur_sayuran,,90002,rupiah,2024,survey_estimate,per_capita,10.1,390,,Sayur-sayuran
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/sayur_sayuran,,88432,rupiah,2025,survey_estimate,per_capita,10.1,390,,Sayur-sayuran
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/kacang_kacangan,,12127,rupiah,2024,survey_estimate,per_capita,10.1,390,,Kacang-kacangan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/kacang_kacangan,,12473,rupiah,2025,survey_estimate,per_capita,10.1,390,,Kacang-kacangan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/buah_buahan,,72676,rupiah,2024,survey_estimate,per_capita,10.1,390,,Buah-buahan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/buah_buahan,,74758,rupiah,2025,survey_estimate,per_capita,10.1,390,,Buah-buahan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21756,rupiah,2024,survey_estimate,per_capita,10.1,390,,Minyak dan kelapa
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24480,rupiah,2025,survey_estimate,per_capita,10.1,390,,Minyak dan kelapa
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/bahan_minuman,,30319,rupiah,2024,survey_estimate,per_capita,10.1,390,,Bahan minuman
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/bahan_minuman,,27485,rupiah,2025,survey_estimate,per_capita,10.1,390,,Bahan minuman
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/bumbu_bumbuan,,22128,rupiah,2024,survey_estimate,per_capita,10.1,390,,Bumbu-bumbuan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/bumbu_bumbuan,,18139,rupiah,2025,survey_estimate,per_capita,10.1,390,,Bumbu-bumbuan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/konsumsi_lainnya,,13515,rupiah,2024,survey_estimate,per_capita,10.1,390,,Konsumsi lainnya
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/konsumsi_lainnya,,11199,rupiah,2025,survey_estimate,per_capita,10.1,390,,Konsumsi lainnya
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,246512,rupiah,2024,survey_estimate,per_capita,10.1,390,,Makanan dan minuman jadi
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,234705,rupiah,2025,survey_estimate,per_capita,10.1,390,,Makanan dan minuman jadi
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/rokok,,148578,rupiah,2024,survey_estimate,per_capita,10.1,390,,Rokok
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/rokok,,144536,rupiah,2025,survey_estimate,per_capita,10.1,390,,Rokok
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/jumlah_makanan,,958395,rupiah,2024,survey_estimate,per_capita,10.1,390,,Jumlah makanan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/jumlah_makanan,,913350,rupiah,2025,survey_estimate,per_capita,10.1,390,,Jumlah makanan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,301879,rupiah,2024,survey_estimate,per_capita,10.1,390,,Perumahan dan fasilitas rumah tangga
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,282847,rupiah,2025,survey_estimate,per_capita,10.1,390,,Perumahan dan fasilitas rumah tangga
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,154431,rupiah,2024,survey_estimate,per_capita,10.1,390,,Aneka barang dan jasa
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,144394,rupiah,2025,survey_estimate,per_capita,10.1,390,,Aneka barang dan jasa
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,70543,rupiah,2024,survey_estimate,per_capita,10.1,390,,"Pakaian, alas kaki, dan tutup kepala"
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,74740,rupiah,2025,survey_estimate,per_capita,10.1,390,,"Pakaian, alas kaki, dan tutup kepala"
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/barang_tahan_lama,,62031,rupiah,2024,survey_estimate,per_capita,10.1,390,,Barang tahan lama
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/barang_tahan_lama,,53918,rupiah,2025,survey_estimate,per_capita,10.1,390,,Barang tahan lama
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,63473,rupiah,2024,survey_estimate,per_capita,10.1,390,,"Pajak, pungutan, dan asuransi"
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,59441,rupiah,2025,survey_estimate,per_capita,10.1,390,,"Pajak, pungutan, dan asuransi"
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,64085,rupiah,2024,survey_estimate,per_capita,10.1,390,,Keperluan pesta dan upacara/kenduri
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14588,rupiah,2025,survey_estimate,per_capita,10.1,390,,Keperluan pesta dan upacara/kenduri
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,716442,rupiah,2024,survey_estimate,per_capita,10.1,390,,Jumlah bukan makanan
+11.17,2,Kabupaten Bener Meriah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,629928,rupiah,2025,survey_estimate,per_capita,10.1,390,,Jumlah bukan makanan
+11.17,2,Kabupaten Bener Meriah,expenditure,total,,1674837,rupiah,2024,survey_estimate,per_capita,10.1,390,,
+11.17,2,Kabupaten Bener Meriah,expenditure,total,,1543278,rupiah,2025,survey_estimate,per_capita,10.1,390,,

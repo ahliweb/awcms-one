@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3402-kecamatan-340206-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.02.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pandak Dalam Angka 2026",
+  "publisherName": "BPS Kabupate Bantul",
+  "publisherDomain": "3402",
+  "publisherWebsite": "https://bantulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupate Bantul (https://bantulkab.bps.go.id), publikasi \"Kecamatan Pandak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3402060",
+  "publicationNumber": "34020.26011",
+  "issn": "0852-0285",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bantulkab.bps.go.id/id/publication/2026/09/28/b76148dcac56827bb43f0ee5/kecamatan-pandak-dalam-angka-2026.html",
+  "sourceFileSha256": "afbb8c231268dfff88e94d255827c44b8c08c0ede7f0107964c6f5d916aa38fd",
+  "sourceFileBytes": 9397111,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bantul",
+  "csvPath": "datasets/bps-3402-kecamatan-340206-dalam-angka-2026.csv",
+  "csvSha256": "a4a483fb7f2557c469e8490aebc747c9f5ce07af3508282b15576b2384ddede9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pandak, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pandak, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

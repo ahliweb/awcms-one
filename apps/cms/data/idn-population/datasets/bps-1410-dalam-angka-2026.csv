@@ -1,0 +1,56 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.04,3,Tebing Tinggi Barat,total,total,,19688,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.01,3,Tebing Tinggi,total,total,,66260,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.07,3,Tebing Tinggi Timur,total,total,,14321,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.03,3,Rangsang,total,total,,20797,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.09,3,Rangsang Pesisir,total,total,,19828,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.02,3,Rangsang Barat,total,total,,20248,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.05,3,Merbau,total,total,,16055,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.06,3,Pulau Merbau,total,total,,17141,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10.08,3,Tasik Putri Puyu,total,total,,17951,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10,2,Kepulauan Meranti,total,total,,212289,jiwa,2025,registration,total_population,3.1.1,44,,
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/padi_padian,,94765,rupiah,2025,survey_estimate,per_capita,10.1,220,,Padi-padian
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/padi_padian,,87916,rupiah,2024,survey_estimate,per_capita,10.1,220,,Padi-padian
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/umbi_umbian,,10124,rupiah,2025,survey_estimate,per_capita,10.1,220,,Umbi-umbian
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/umbi_umbian,,9353,rupiah,2024,survey_estimate,per_capita,10.1,220,,Umbi-umbian
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,91257,rupiah,2025,survey_estimate,per_capita,10.1,220,,Ikan/udang/cumi/kerang
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,84165,rupiah,2024,survey_estimate,per_capita,10.1,220,,Ikan/udang/cumi/kerang
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/daging,,32629,rupiah,2025,survey_estimate,per_capita,10.1,220,,Daging
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/daging,,22198,rupiah,2024,survey_estimate,per_capita,10.1,220,,Daging
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/telur_dan_susu,,47191,rupiah,2025,survey_estimate,per_capita,10.1,220,,Telur dan susu
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/telur_dan_susu,,33326,rupiah,2024,survey_estimate,per_capita,10.1,220,,Telur dan susu
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/sayur_sayuran,,71653,rupiah,2025,survey_estimate,per_capita,10.1,220,,Sayur-sayuran
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/sayur_sayuran,,60897,rupiah,2024,survey_estimate,per_capita,10.1,220,,Sayur-sayuran
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/kacang_kacangan,,11850,rupiah,2025,survey_estimate,per_capita,10.1,220,,Kacang-kacangan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/kacang_kacangan,,10741,rupiah,2024,survey_estimate,per_capita,10.1,220,,Kacang-kacangan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/buah_buahan,,38453,rupiah,2025,survey_estimate,per_capita,10.1,220,,Buah-buahan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/buah_buahan,,24964,rupiah,2024,survey_estimate,per_capita,10.1,220,,Buah-buahan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/minyak_dan_kelapa,,27448,rupiah,2025,survey_estimate,per_capita,10.1,220,,Minyak dan kelapa
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23287,rupiah,2024,survey_estimate,per_capita,10.1,220,,Minyak dan kelapa
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/bahan_minuman,,28698,rupiah,2025,survey_estimate,per_capita,10.1,220,,Bahan minuman
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/bahan_minuman,,28057,rupiah,2024,survey_estimate,per_capita,10.1,220,,Bahan minuman
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/bumbu_bumbuan,,18183,rupiah,2025,survey_estimate,per_capita,10.1,220,,Bumbu-bumbuan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/bumbu_bumbuan,,16745,rupiah,2024,survey_estimate,per_capita,10.1,220,,Bumbu-bumbuan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/konsumsi_lainnya,,16339,rupiah,2025,survey_estimate,per_capita,10.1,220,,Konsumsi lainnya
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/konsumsi_lainnya,,14071,rupiah,2024,survey_estimate,per_capita,10.1,220,,Konsumsi lainnya
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,184141,rupiah,2025,survey_estimate,per_capita,10.1,220,,Makanan dan minuman jadi
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,158143,rupiah,2024,survey_estimate,per_capita,10.1,220,,Makanan dan minuman jadi
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/rokok,,103099,rupiah,2025,survey_estimate,per_capita,10.1,220,,Rokok
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/rokok,,106707,rupiah,2024,survey_estimate,per_capita,10.1,220,,Rokok
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/jumlah_makanan,,775829,rupiah,2025,survey_estimate,per_capita,10.1,220,,Jumlah makanan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/jumlah_makanan,,680569,rupiah,2024,survey_estimate,per_capita,10.1,220,,Jumlah makanan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,273532,rupiah,2025,survey_estimate,per_capita,10.1,220,,Perumahan dan fasilitas rumah tangga
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,274104,rupiah,2024,survey_estimate,per_capita,10.1,220,,Perumahan dan fasilitas rumah tangga
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,169727,rupiah,2025,survey_estimate,per_capita,10.1,220,,Aneka barang dan jasa
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,106763,rupiah,2024,survey_estimate,per_capita,10.1,220,,Aneka barang dan jasa
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,51478,rupiah,2025,survey_estimate,per_capita,10.1,220,,"Pakaian, alas kaki, dan tutup kepala"
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,41473,rupiah,2024,survey_estimate,per_capita,10.1,220,,"Pakaian, alas kaki, dan tutup kepala"
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/barang_tahan_lama,,19932,rupiah,2025,survey_estimate,per_capita,10.1,220,,Barang tahan lama
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/barang_tahan_lama,,18525,rupiah,2024,survey_estimate,per_capita,10.1,220,,Barang tahan lama
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,47567,rupiah,2025,survey_estimate,per_capita,10.1,220,,"Pajak, pungutan, dan asuransi"
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45026,rupiah,2024,survey_estimate,per_capita,10.1,220,,"Pajak, pungutan, dan asuransi"
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,33652,rupiah,2025,survey_estimate,per_capita,10.1,220,,Keperluan pesta dan upacara/kenduri
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,595888,rupiah,2025,survey_estimate,per_capita,10.1,220,,Jumlah bukan makanan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,549519,rupiah,2024,survey_estimate,per_capita,10.1,220,,Jumlah bukan makanan
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,total,,1371717,rupiah,2025,survey_estimate,per_capita,10.1,220,,
+14.10,2,Kabupaten Kepulauan Meranti,expenditure,total,,1230088,rupiah,2024,survey_estimate,per_capita,10.1,220,,

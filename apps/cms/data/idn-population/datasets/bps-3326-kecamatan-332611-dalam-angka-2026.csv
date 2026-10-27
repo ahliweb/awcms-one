@@ -1,0 +1,118 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.11.2001,4,Bukur,sex,laki_laki,,1983,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2001,4,Bukur,sex,perempuan,,1909,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2001,4,Bukur,total,total,,3892,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2002,4,Kalipancur,sex,laki_laki,,3039,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2002,4,Kalipancur,sex,perempuan,,2967,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2002,4,Kalipancur,total,total,,6006,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2003,4,Sumurjomblangbogo,sex,laki_laki,,3280,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2003,4,Sumurjomblangbogo,sex,perempuan,,3109,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2003,4,Sumurjomblangbogo,total,total,,6389,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2004,4,Pantianom,sex,laki_laki,,1165,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2004,4,Pantianom,sex,perempuan,,1184,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2004,4,Pantianom,total,total,,2349,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2005,4,Randumuktiwaren,sex,laki_laki,,2151,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2005,4,Randumuktiwaren,sex,perempuan,,2097,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2005,4,Randumuktiwaren,total,total,,4248,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2006,4,Legokclile,sex,laki_laki,,1474,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2006,4,Legokclile,sex,perempuan,,1421,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2006,4,Legokclile,total,total,,2895,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2007,4,Bojongwetan,sex,laki_laki,,1361,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2007,4,Bojongwetan,sex,perempuan,,1296,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2007,4,Bojongwetan,total,total,,2657,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2009,4,Wangandowo,sex,laki_laki,,2115,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2009,4,Wangandowo,sex,perempuan,,1997,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2009,4,Wangandowo,total,total,,4112,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2008,4,Duwet,sex,laki_laki,,1445,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2008,4,Duwet,sex,perempuan,,1383,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2008,4,Duwet,total,total,,2828,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2010,4,Ketitang Kidul,sex,laki_laki,,1691,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2010,4,Ketitang Kidul,sex,perempuan,,1642,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2010,4,Ketitang Kidul,total,total,,3333,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2011,4,Menjangan,sex,laki_laki,,2307,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2011,4,Menjangan,sex,perempuan,,2156,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2011,4,Menjangan,total,total,,4463,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2012,4,Ketitanglor,sex,laki_laki,,1170,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2012,4,Ketitanglor,sex,perempuan,,1094,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2012,4,Ketitanglor,total,total,,2264,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2013,4,Rejosari,sex,laki_laki,,1161,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2013,4,Rejosari,sex,perempuan,,1131,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2013,4,Rejosari,total,total,,2292,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2014,4,Bojonglor,sex,laki_laki,,1488,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2014,4,Bojonglor,sex,perempuan,,1398,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2014,4,Bojonglor,total,total,,2886,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2015,4,Bojongminggir,sex,laki_laki,,2242,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2015,4,Bojongminggir,sex,perempuan,,2204,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2015,4,Bojongminggir,total,total,,4446,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2016,4,Wiroditan,sex,laki_laki,,2108,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2016,4,Wiroditan,sex,perempuan,,2024,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2016,4,Wiroditan,total,total,,4132,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2017,4,Kemasan,sex,laki_laki,,1456,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2017,4,Kemasan,sex,perempuan,,1401,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2017,4,Kemasan,total,total,,2857,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2018,4,Jajarwayang,sex,laki_laki,,2128,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2018,4,Jajarwayang,sex,perempuan,,2021,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2018,4,Jajarwayang,total,total,,4149,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2019,4,Babalanlor,sex,laki_laki,,2464,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2019,4,Babalanlor,sex,perempuan,,2318,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2019,4,Babalanlor,total,total,,4782,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2020,4,Babalankidul,sex,laki_laki,,1527,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2020,4,Babalankidul,sex,perempuan,,1413,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2020,4,Babalankidul,total,total,,2940,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11.2022,4,Sembungjambu,sex,laki_laki,,2609,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11.2022,4,Sembungjambu,sex,perempuan,,2562,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11.2022,4,Sembungjambu,total,total,,5171,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11,3,Kecamatan Bojong,sex,laki_laki,,41775,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.11,3,Kecamatan Bojong,sex,perempuan,,40072,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.11,3,Kecamatan Bojong,total,total,,81847,jiwa,2025,registration,total_population,3.1,34,,
+33.26.11,3,Bojong,age_group,0-4,laki_laki,3000,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.11,3,Bojong,age_group,0-4,perempuan,2843,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.11,3,Bojong,age_group,0-4,,5843,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.11,3,Bojong,age_group,5-9,laki_laki,3718,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.11,3,Bojong,age_group,5-9,perempuan,3349,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.11,3,Bojong,age_group,5-9,,7067,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.11,3,Bojong,age_group,10-14,laki_laki,3529,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.11,3,Bojong,age_group,10-14,perempuan,3334,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.11,3,Bojong,age_group,10-14,,6863,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.11,3,Bojong,age_group,15-19,laki_laki,3305,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.11,3,Bojong,age_group,15-19,perempuan,3019,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.11,3,Bojong,age_group,15-19,,6324,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.11,3,Bojong,age_group,20-24,laki_laki,3201,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.11,3,Bojong,age_group,20-24,perempuan,2938,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.11,3,Bojong,age_group,20-24,,6139,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.11,3,Bojong,age_group,25-29,laki_laki,3351,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.11,3,Bojong,age_group,25-29,perempuan,3146,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.11,3,Bojong,age_group,25-29,,6497,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.11,3,Bojong,age_group,30-34,laki_laki,3567,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.11,3,Bojong,age_group,30-34,perempuan,3236,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.11,3,Bojong,age_group,30-34,,6803,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.11,3,Bojong,age_group,35-39,laki_laki,3315,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.11,3,Bojong,age_group,35-39,perempuan,2975,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.11,3,Bojong,age_group,35-39,,6290,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.11,3,Bojong,age_group,40-44,laki_laki,3245,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.11,3,Bojong,age_group,40-44,perempuan,3029,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.11,3,Bojong,age_group,40-44,,6274,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.11,3,Bojong,age_group,45-49,laki_laki,2706,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.11,3,Bojong,age_group,45-49,perempuan,2578,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.11,3,Bojong,age_group,45-49,,5284,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.11,3,Bojong,age_group,50-54,laki_laki,2286,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.11,3,Bojong,age_group,50-54,perempuan,2302,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.11,3,Bojong,age_group,50-54,,4588,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.11,3,Bojong,age_group,55-59,laki_laki,1971,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.11,3,Bojong,age_group,55-59,perempuan,2038,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.11,3,Bojong,age_group,55-59,,4009,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.11,3,Bojong,age_group,60-64,laki_laki,1660,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.11,3,Bojong,age_group,60-64,perempuan,1778,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.11,3,Bojong,age_group,60-64,,3438,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.11,3,Bojong,age_group,65-69,laki_laki,1272,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.11,3,Bojong,age_group,65-69,perempuan,1337,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.11,3,Bojong,age_group,65-69,,2609,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.11,3,Bojong,age_group,70-74,laki_laki,836,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.11,3,Bojong,age_group,70-74,perempuan,1003,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.11,3,Bojong,age_group,70-74,,1839,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.11,3,Bojong,age_group,75+,laki_laki,813,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.11,3,Bojong,age_group,75+,perempuan,1167,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.11,3,Bojong,age_group,75+,,1980,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.11,3,Kecamatan Bojong,sex,laki_laki,,41775,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+33.26.11,3,Kecamatan Bojong,sex,perempuan,,40072,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+33.26.11,3,Kecamatan Bojong,total,total,,81847,jiwa,2025,registration,total_population,3.2,36,,

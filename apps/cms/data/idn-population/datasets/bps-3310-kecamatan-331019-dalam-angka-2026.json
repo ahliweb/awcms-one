@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3310-kecamatan-331019-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.10.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tulung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klaten",
+  "publisherDomain": "3310",
+  "publisherWebsite": "https://klatenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klaten (https://klatenkab.bps.go.id), publikasi \"Kecamatan Tulung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33100.26028",
+  "issn": "2828-822X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klatenkab.bps.go.id/id/publication/2026/09/28/7225eba2fc30551315609e59/kecamatan-tulung-dalam-angka-2026.html",
+  "sourceFileSha256": "ec2b495bfc04e8210a5eec41626419ceb3a0c5b49e8abcfda585fb4ba0b26438",
+  "sourceFileBytes": 10179522,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klaten",
+  "csvPath": "datasets/bps-3310-kecamatan-331019-dalam-angka-2026.csv",
+  "csvSha256": "d5b8b8d8c577e25e58e79873b0cf17b52c677534d792fec2fc05737a84e4a880",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tulung, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tulung, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bejo\": unmatched ",
+    "table 3.1: row not stored: row \"Bejo\": unmatched "
+  ]
+}

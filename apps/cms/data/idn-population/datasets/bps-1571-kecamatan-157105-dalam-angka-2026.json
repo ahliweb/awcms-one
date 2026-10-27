@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1571-kecamatan-157105-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.71.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pelayangan Dalam Angka 2026",
+  "publisherName": "BPS Kota Jambi",
+  "publisherDomain": "1571",
+  "publisherWebsite": "https://jambikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jambi (https://jambikota.bps.go.id), publikasi \"Kecamatan Pelayangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1571070",
+  "publicationNumber": "15710.26007",
+  "issn": "3063-5217",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jambikota.bps.go.id/id/publication/2026/09/28/2d58b8833de27315b7492ac0/kecamatan-pelayangan-dalam-angka-2026.html",
+  "sourceFileSha256": "b709819efae59c9d1c2b54c173ad8f3032c3aa6475250bbc22ce77c7f057d923",
+  "sourceFileBytes": 4074229,
+  "sourcePages": [29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jambi.",
+  "csvPath": "datasets/bps-1571-kecamatan-157105-dalam-angka-2026.csv",
+  "csvSha256": "65a665d3c27e3f137a92890476aec94e6969672b3b82c7499d326dd5adf26970",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pelayangan, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pelayangan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

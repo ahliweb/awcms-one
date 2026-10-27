@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1108-kecamatan-110603-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.06.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Indrapuri Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Besar",
+  "publisherDomain": "1108",
+  "publisherWebsite": "https://acehbesarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Besar (https://acehbesarkab.bps.go.id), publikasi \"Kecamatan Indrapuri Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11080.26008",
+  "issn": "2407-5094",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbesarkab.bps.go.id/id/publication/2026/09/28/bf7a3d695e9edb8bbe34b389/kecamatan-indrapuri-dalam-angka-2026.html",
+  "sourceFileSha256": "4f2b00e01aa2a73b11c0f070414d3d270b55f2a9b2859cd6a461201fcc7bd3d6",
+  "sourceFileBytes": 8919820,
+  "sourcePages": [36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Besar.",
+  "csvPath": "datasets/bps-1108-kecamatan-110603-dalam-angka-2026.csv",
+  "csvSha256": "543d47f5af525085f60672aa0c05907909988256e668050c22e70c2c913c2788",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Indrapuri, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3304-kecamatan-330414-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.04.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pagentan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banjarnegara",
+  "publisherDomain": "3304",
+  "publisherWebsite": "https://banjarnegarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banjarnegara (https://banjarnegarakab.bps.go.id), publikasi \"Kecamatan Pagentan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3304140",
+  "publicationNumber": "33040.26031",
+  "issn": "2598-5310",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banjarnegarakab.bps.go.id/id/publication/2026/09/28/44f581e15a50b942b9f6ee54/kecamatan-pagentan-dalam-angka-2026.html",
+  "sourceFileSha256": "68922cd5a716de3ed1a6be4f4b05591c6916c7142b628b1fd8780a44b111dd41",
+  "sourceFileBytes": 1940683,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banjarnegara.",
+  "csvPath": "datasets/bps-3304-kecamatan-330414-dalam-angka-2026.csv",
+  "csvSha256": "7bdc079ec6ff8083cac527f005f430553aae4d11dabf9f2db808d14a35fa091e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pagentan, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pagentan, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"– 75\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

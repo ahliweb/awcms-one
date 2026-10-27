@@ -1,0 +1,182 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.03,3,Mendahara,total,total,,27187,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.09,3,Mendahara Ulu,total,total,,18622,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.10,3,Geragai,total,total,,28813,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.06,3,Dendang,total,total,,17775,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.07,3,Muara Sabak Barat,total,total,,25346,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.01,3,Muara Sabak Timur,total,total,,34407,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.08,3,Kuala Jambi,total,total,,15050,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.04,3,Rantau Rasau,total,total,,26924,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.11,3,Berbak,total,total,,11052,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.02,3,Nipah Panjang,total,total,,27913,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07.05,3,Sadu,total,total,,14448,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07,2,Tanjung Jabung Timur,total,total,,247537,jiwa,2025,registration,total_population,3.1.1,41,,
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,0-4,laki_laki,7754,jiwa,2025,registration,total_population,3.1.2,44,,0–4
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,0-4,perempuan,7319,jiwa,2025,registration,total_population,3.1.2,44,,0–4
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,0-4,,15073,jiwa,2025,registration,total_population,3.1.2,44,,0–4
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,5-9,laki_laki,10639,jiwa,2025,registration,total_population,3.1.2,44,,5–9
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,5-9,perempuan,10097,jiwa,2025,registration,total_population,3.1.2,44,,5–9
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,5-9,,20736,jiwa,2025,registration,total_population,3.1.2,44,,5–9
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,10-14,laki_laki,11075,jiwa,2025,registration,total_population,3.1.2,44,,10–14
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,10-14,perempuan,10532,jiwa,2025,registration,total_population,3.1.2,44,,10–14
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,10-14,,21607,jiwa,2025,registration,total_population,3.1.2,44,,10–14
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,15-19,laki_laki,10817,jiwa,2025,registration,total_population,3.1.2,44,,15–19
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,15-19,perempuan,10469,jiwa,2025,registration,total_population,3.1.2,44,,15–19
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,15-19,,21286,jiwa,2025,registration,total_population,3.1.2,44,,15–19
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,20-24,laki_laki,10358,jiwa,2025,registration,total_population,3.1.2,44,,20–24
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,20-24,perempuan,10036,jiwa,2025,registration,total_population,3.1.2,44,,20–24
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,20-24,,20394,jiwa,2025,registration,total_population,3.1.2,44,,20–24
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,25-29,laki_laki,9609,jiwa,2025,registration,total_population,3.1.2,44,,25–29
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,25-29,perempuan,9323,jiwa,2025,registration,total_population,3.1.2,44,,25–29
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,25-29,,18932,jiwa,2025,registration,total_population,3.1.2,44,,25–29
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,30-34,laki_laki,8713,jiwa,2025,registration,total_population,3.1.2,44,,30–34
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,30-34,perempuan,8359,jiwa,2025,registration,total_population,3.1.2,44,,30–34
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,30-34,,17072,jiwa,2025,registration,total_population,3.1.2,44,,30–34
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,35-39,laki_laki,9243,jiwa,2025,registration,total_population,3.1.2,44,,35–39
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,35-39,perempuan,9568,jiwa,2025,registration,total_population,3.1.2,44,,35–39
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,35-39,,18811,jiwa,2025,registration,total_population,3.1.2,44,,35–39
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,40-44,laki_laki,10527,jiwa,2025,registration,total_population,3.1.2,44,,40–44
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,40-44,perempuan,9942,jiwa,2025,registration,total_population,3.1.2,44,,40–44
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,40-44,,20469,jiwa,2025,registration,total_population,3.1.2,44,,40–44
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,45-49,laki_laki,9607,jiwa,2025,registration,total_population,3.1.2,44,,45–49
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,45-49,perempuan,9000,jiwa,2025,registration,total_population,3.1.2,44,,45–49
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,45-49,,18607,jiwa,2025,registration,total_population,3.1.2,44,,45–49
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,50-54,laki_laki,7811,jiwa,2025,registration,total_population,3.1.2,44,,50–54
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,50-54,perempuan,7441,jiwa,2025,registration,total_population,3.1.2,44,,50–54
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,50-54,,15252,jiwa,2025,registration,total_population,3.1.2,44,,50–54
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,55-59,laki_laki,6209,jiwa,2025,registration,total_population,3.1.2,44,,55–59
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,55-59,perempuan,5908,jiwa,2025,registration,total_population,3.1.2,44,,55–59
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,55-59,,12117,jiwa,2025,registration,total_population,3.1.2,44,,55–59
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,60-64,laki_laki,4760,jiwa,2025,registration,total_population,3.1.2,44,,60–64
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,60-64,perempuan,4466,jiwa,2025,registration,total_population,3.1.2,44,,60–64
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,60-64,,9226,jiwa,2025,registration,total_population,3.1.2,44,,60–64
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,65-69,laki_laki,3574,jiwa,2025,registration,total_population,3.1.2,44,,65–69
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,65-69,perempuan,3464,jiwa,2025,registration,total_population,3.1.2,44,,65–69
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,65-69,,7038,jiwa,2025,registration,total_population,3.1.2,44,,65–69
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,70-74,laki_laki,2322,jiwa,2025,registration,total_population,3.1.2,44,,70–74
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,70-74,perempuan,2145,jiwa,2025,registration,total_population,3.1.2,44,,70–74
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,70-74,,4467,jiwa,2025,registration,total_population,3.1.2,44,,70–74
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,75+,laki_laki,3144,jiwa,2025,registration,total_population,3.1.2,44,,75+
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,75+,perempuan,3306,jiwa,2025,registration,total_population,3.1.2,44,,75+
+15.07,2,Kabupaten Tanjung Jabung Timur,age_group,75+,,6450,jiwa,2025,registration,total_population,3.1.2,44,,75+
+15.07,2,Tanjung Jabung Timur,sex,laki_laki,,126162,jiwa,2025,registration,total_population,3.1.2,44,,Laki-Laki
+15.07,2,Tanjung Jabung Timur,sex,perempuan,,121375,jiwa,2025,registration,total_population,3.1.2,44,,Perempuan
+15.07,2,Tanjung Jabung Timur,total,total,,247537,jiwa,2025,registration,total_population,3.1.2,44,,
+15.07.03,3,Mendahara,religion,islam,,27161,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.03,3,Mendahara,religion,kristen,,23,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.03,3,Mendahara,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.03,3,Mendahara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+15.07.03,3,Mendahara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+15.07.03,3,Mendahara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.09,3,Mendahara Ulu,religion,islam,,18066,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.09,3,Mendahara Ulu,religion,kristen,,508,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.09,3,Mendahara Ulu,religion,katolik,,41,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.09,3,Mendahara Ulu,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+15.07.09,3,Mendahara Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+15.07.09,3,Mendahara Ulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.10,3,Geragai,religion,islam,,27887,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.10,3,Geragai,religion,kristen,,767,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.10,3,Geragai,religion,katolik,,157,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.10,3,Geragai,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+15.07.10,3,Geragai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+15.07.10,3,Geragai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.06,3,Dendang,religion,islam,,17493,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.06,3,Dendang,religion,kristen,,212,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.06,3,Dendang,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.06,3,Dendang,religion,hindu,,38,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+15.07.06,3,Dendang,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+15.07.06,3,Dendang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.07,3,Muara Sabak Barat,religion,islam,,24866,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.07,3,Muara Sabak Barat,religion,kristen,,413,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.07,3,Muara Sabak Barat,religion,katolik,,44,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.07,3,Muara Sabak Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+15.07.07,3,Muara Sabak Barat,religion,buddha,,19,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+15.07.07,3,Muara Sabak Barat,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,104,,Lainnya
+15.07.01,3,Muara Sabak Timur,religion,islam,,34162,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.01,3,Muara Sabak Timur,religion,kristen,,213,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.01,3,Muara Sabak Timur,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.01,3,Muara Sabak Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+15.07.01,3,Muara Sabak Timur,religion,buddha,,14,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+15.07.01,3,Muara Sabak Timur,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,104,,Lainnya
+15.07.08,3,Kuala Jambi,religion,islam,,14995,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.08,3,Kuala Jambi,religion,kristen,,39,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.08,3,Kuala Jambi,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.08,3,Kuala Jambi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+15.07.08,3,Kuala Jambi,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+15.07.08,3,Kuala Jambi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.04,3,Rantau Rasau,religion,islam,,26414,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.04,3,Rantau Rasau,religion,kristen,,422,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.04,3,Rantau Rasau,religion,katolik,,88,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.04,3,Rantau Rasau,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+15.07.04,3,Rantau Rasau,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+15.07.04,3,Rantau Rasau,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.11,3,Berbak,religion,islam,,10960,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.11,3,Berbak,religion,kristen,,64,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.11,3,Berbak,religion,katolik,,27,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.11,3,Berbak,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+15.07.11,3,Berbak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+15.07.11,3,Berbak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.02,3,Nipah Panjang,religion,islam,,27705,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.02,3,Nipah Panjang,religion,kristen,,145,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.02,3,Nipah Panjang,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07.02,3,Nipah Panjang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+15.07.02,3,Nipah Panjang,religion,buddha,,58,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+15.07.02,3,Nipah Panjang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07.05,3,Sadu,religion,islam,,14380,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07.05,3,Sadu,religion,kristen,,12,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07.05,3,Sadu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Katolik
+15.07.05,3,Sadu,religion,hindu,,41,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+15.07.05,3,Sadu,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+15.07.05,3,Sadu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+15.07,2,Tanjung Jabung Timur,religion,islam,,244089,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+15.07,2,Tanjung Jabung Timur,religion,kristen,,2818,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+15.07,2,Tanjung Jabung Timur,religion,katolik,,413,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+15.07,2,Tanjung Jabung Timur,religion,hindu,,89,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+15.07,2,Tanjung Jabung Timur,religion,buddha,,123,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+15.07,2,Tanjung Jabung Timur,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,104,,Lainnya
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/padi_padian,,87702,rupiah,2025,survey_estimate,per_capita,10.1,204,,Padi-padian
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/padi_padian,,94596,rupiah,2024,survey_estimate,per_capita,10.1,204,,Padi-padian
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/umbi_umbian,,8597,rupiah,2025,survey_estimate,per_capita,10.1,204,,Umbi-umbian
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/umbi_umbian,,9293,rupiah,2024,survey_estimate,per_capita,10.1,204,,Umbi-umbian
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,86137,rupiah,2025,survey_estimate,per_capita,10.1,204,,Ikan/udang/cumi/kerang
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,86327,rupiah,2024,survey_estimate,per_capita,10.1,204,,Ikan/udang/cumi/kerang
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/daging,,25079,rupiah,2025,survey_estimate,per_capita,10.1,204,,Daging
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/daging,,30141,rupiah,2024,survey_estimate,per_capita,10.1,204,,Daging
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/telur_dan_susu,,36601,rupiah,2025,survey_estimate,per_capita,10.1,204,,Telur dan susu
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/telur_dan_susu,,29683,rupiah,2024,survey_estimate,per_capita,10.1,204,,Telur dan susu
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/sayur_sayuran,,81454,rupiah,2025,survey_estimate,per_capita,10.1,204,,Sayur-sayuran
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/sayur_sayuran,,89060,rupiah,2024,survey_estimate,per_capita,10.1,204,,Sayur-sayuran
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/kacang_kacangan,,10365,rupiah,2025,survey_estimate,per_capita,10.1,204,,Kacang-kacangan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/kacang_kacangan,,12076,rupiah,2024,survey_estimate,per_capita,10.1,204,,Kacang-kacangan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/buah_buahan,,41720,rupiah,2025,survey_estimate,per_capita,10.1,204,,Buah-buahan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/buah_buahan,,44499,rupiah,2024,survey_estimate,per_capita,10.1,204,,Buah-buahan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24616,rupiah,2025,survey_estimate,per_capita,10.1,204,,Minyak dan kelapa
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22351,rupiah,2024,survey_estimate,per_capita,10.1,204,,Minyak dan kelapa
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/bahan_minuman,,24138,rupiah,2025,survey_estimate,per_capita,10.1,204,,Bahan minuman
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/bahan_minuman,,24236,rupiah,2024,survey_estimate,per_capita,10.1,204,,Bahan minuman
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,16084,rupiah,2025,survey_estimate,per_capita,10.1,204,,Bumbu-bumbuan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,17463,rupiah,2024,survey_estimate,per_capita,10.1,204,,Bumbu-bumbuan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,13999,rupiah,2025,survey_estimate,per_capita,10.1,204,,Konsumsi lainnya
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,14942,rupiah,2024,survey_estimate,per_capita,10.1,204,,Konsumsi lainnya
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,182747,rupiah,2025,survey_estimate,per_capita,10.1,204,,Makanan dan minuman jadi
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,186876,rupiah,2024,survey_estimate,per_capita,10.1,204,,Makanan dan minuman jadi
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/rokok,,112585,rupiah,2025,survey_estimate,per_capita,10.1,204,,Rokok
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/rokok,,108376,rupiah,2024,survey_estimate,per_capita,10.1,204,,Rokok
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/jumlah_makanan,,751824,rupiah,2025,survey_estimate,per_capita,10.1,204,,Jumlah makanan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/jumlah_makanan,,769919,rupiah,2024,survey_estimate,per_capita,10.1,204,,Jumlah makanan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,320740,rupiah,2025,survey_estimate,per_capita,10.1,204,,Perumahan dan fasilitas rumah tangga
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,330491,rupiah,2024,survey_estimate,per_capita,10.1,204,,Perumahan dan fasilitas rumah tangga
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,112833,rupiah,2025,survey_estimate,per_capita,10.1,204,,Aneka barang dan jasa
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,115041,rupiah,2024,survey_estimate,per_capita,10.1,204,,Aneka barang dan jasa
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31874,rupiah,2025,survey_estimate,per_capita,10.1,204,,"Pakaian, alas kaki, dan tutup kepala"
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40899,rupiah,2024,survey_estimate,per_capita,10.1,204,,"Pakaian, alas kaki, dan tutup kepala"
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,24260,rupiah,2025,survey_estimate,per_capita,10.1,204,,Barang tahan lama
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,51088,rupiah,2024,survey_estimate,per_capita,10.1,204,,Barang tahan lama
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40334,rupiah,2025,survey_estimate,per_capita,10.1,204,,"Pajak, pungutan, dan asuransi"
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38316,rupiah,2024,survey_estimate,per_capita,10.1,204,,"Pajak, pungutan, dan asuransi"
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8631,rupiah,2025,survey_estimate,per_capita,10.1,204,,Keperluan pesta dan upacara/kenduri
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,16272,rupiah,2024,survey_estimate,per_capita,10.1,204,,Keperluan pesta dan upacara/kenduri
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,538673,rupiah,2025,survey_estimate,per_capita,10.1,204,,Jumlah bukan makanan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,592107,rupiah,2024,survey_estimate,per_capita,10.1,204,,Jumlah bukan makanan
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,total,,1290497,rupiah,2025,survey_estimate,per_capita,10.1,204,,
+15.07,2,Kabupaten Tanjung Jabung Timur,expenditure,total,,1362025,rupiah,2024,survey_estimate,per_capita,10.1,204,,

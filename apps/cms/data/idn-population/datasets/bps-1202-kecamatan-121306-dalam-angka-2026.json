@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-1202-kecamatan-121306-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.13.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siabu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mandailing Natal",
+  "publisherDomain": "1202",
+  "publisherWebsite": "https://mandailingnatalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mandailing Natal (https://mandailingnatalkab.bps.go.id), publikasi \"Kecamatan Siabu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1202080",
+  "publicationNumber": "12020.26012",
+  "issn": "3062-8768",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mandailingnatalkab.bps.go.id/id/publication/2026/09/28/37303edfb0b290d0283c0ab1/kecamatan-siabu-dalam-angka-2026.html",
+  "sourceFileSha256": "304c25c5b064851a78382e58b9cd11a68ebf3ee658313818a58eb7cf9bb725a3",
+  "sourceFileBytes": 5912303,
+  "sourcePages": [24, 25, 26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mandailing Natal . ISSN 3062-8768 TIM PENYUSUN Kecamatan Siabu Dalam Angka 202 6 Volume 15, 2026 ps .g o ka b .b Penanggung Jawab Dedi Kintoro .id Pengarah Dedi Kintoro gn at al Penyunting Tim Diseminasi BPS Kabupaten Mandailing Natal //m an d ai lin Pengolah Data dan Penulis Naskah Tim Diseminasi BPS Kabupaten Mandailing Natal ht tp s: Penata Letak Tim Diseminasi BPS Kabupaten Mandailing Natal v at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KONTRIBUTOR DATA ht tp s: //m an d ai lin gn at al ka b .b ps .g o .id 1. Kementerian Agama 2. Kementerian Pendidikan dan Kebudayaan 3. Badan Pusat Statistik 4. Dinas Kependudukan dan Pencatatan Si pil Kabupaten Mandailing Natal 5. Dinas Kesehatan Kabupaten Mandailing Na tal 6. Kecamatan Siabu 7. Website Data Pokok Pendidikan Dasar dan Menengah vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KATA PENGANTAR Dengan memanjatkan puji syukur ke hadirat Tuhan Yang Maha Esa, saya menyambut gembira penerbitan Publikasi Kecamatan Siabu Dalam Angka 2026. Penerbitan ini merupakan hasil dari usaha nyata yang bersifat luas dan komprehensif untuk menyediakan data bagi perencana pembangunan. .id Saya percaya bahwa pembangunan data yang terdapat dalam terbitan ini akan memungkinkan para perencana untuk lebih memantapkan sistem perencanaan secara nyata, terarah, terpadu, dan berdaya guna. ka b .b ps .g o Terima kasih saya ucapkan kepada Kecamatan Siabu yang telah berupaya dengan sungguh -sungguh memberikan bantuan sehingga dapat terwujudnya publikasi ini. ht tp s: //m an d ai lin gn at al Akhirnya saya mengharapkan agar kegiatan pengumpulan data di setiap sektor pembangunan di tingkat kecamatan makin lebih tepat, akurat dan efektif, serta berdaya guna sehingga data yang benar dapat diinformasikan dan disebarluaskan kepada masyarakat dan ins tansi yang memerlukan. Siabu , September 2026 Kepala Badan Pusat Statistik Kabupaten Mandailing Natal Dedi Kintoro vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b",
+  "csvPath": "datasets/bps-1202-kecamatan-121306-dalam-angka-2026.csv",
+  "csvSha256": "bba58ea8e7c9758e226f910fdbd2aa1658b4d4fa4b79ab1bbe2c5b0cbbeef0d6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Siabu , 202 5 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [24, 25, 26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siabu , 202 5 Jenis Kelamin Kelompok Umur Laki-Laki Perempuan Jumlah",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Muara Batang Angkola\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Batang Angkola\": unmatched ",
+    "table 3.2: row not stored: row \"0-4 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"5-9 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"10-14 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"15-19 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"20-24 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"25-29 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"30-34 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"35-39 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"40-44 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"45-49 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"50-54 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"55-59 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"60-64 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"65-69 Thn\": unmatched ",
+    "table 3.2: row not stored: row \"70-74 Thn\": unmatched ",
+    "table 3.2: row not stored: row \">74 Thn\": unmatched "
+  ]
+}

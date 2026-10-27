@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1904-kecamatan-190406-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.04.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubuk Besar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangka Tengah",
+  "publisherDomain": "1904",
+  "publisherWebsite": "https://bangkatengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangka Tengah (https://bangkatengahkab.bps.go.id), publikasi \"Kecamatan Lubuk Besar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1904011",
+  "publicationNumber": "19040.26009",
+  "issn": "2654-3346",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkatengahkab.bps.go.id/id/publication/2026/09/28/e5628e0989902867893b28d6/kecamatan-lubuk-besar-dalam-angka-2026.html",
+  "sourceFileSha256": "e295ee25c10bdcefc270565175a36e15c5673d28b48f61c5f9a01c548633df1d",
+  "sourceFileBytes": 8305218,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangka Tengah.",
+  "csvPath": "datasets/bps-1904-kecamatan-190406-dalam-angka-2026.csv",
+  "csvSha256": "0b26569d7ffdee1b7dac10ed28d4f9a28a47d52327d5cd1c08db9e2bb94c7e27",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lubuk Besar, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lubuk Besar, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.4 (religion-by-region) could not be read reliably and is not included (religion column 3 header \"Konghuchu\" not recognised)"
+  ]
+}

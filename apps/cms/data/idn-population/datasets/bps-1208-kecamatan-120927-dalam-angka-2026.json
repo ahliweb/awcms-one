@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1208-kecamatan-120927-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.09.27",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Setia Janji Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Asahan",
+  "publisherDomain": "1208",
+  "publisherWebsite": "https://asahankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Asahan (https://asahankab.bps.go.id), publikasi \"Kecamatan Setia Janji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1208082",
+  "publicationNumber": "12080.26025",
+  "issn": "2774-6771",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://asahankab.bps.go.id/id/publication/2026/09/28/69307b380b2eeecc03724a4b/kecamatan-setia-janji-dalam-angka-2026.html",
+  "sourceFileSha256": "a9d45f1d4f5be63184c8da9a0cd6e2080c274988b135750aea06a26c359e5b09",
+  "sourceFileBytes": 9661649,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Asahan. ISSN 2774-6771 TIM PENYUSUN KECAMATAN SETIA JANJI DALAM ANGKA 2026 Volume 16, 2026 go . id Pengarah/Director Rahmat Gustiar .b ps . Penanggung Jawab/Persons in Charge Andry Sadel Hutabarat ha n ka b Penyunting/Editors Indra Thoha ht tp s: //a sa Pengolah Data dan Penulis Naskah/Data Processor and Writers Indra Thoha Penata Letak/Layout Designers Indra Thoha Penerjemah/Translators Indra Thoha sa ht tp s: //a .b ps . ka b ha n go . id KONTRIBUTOR DATA id go . .b ps . ka b ha n 5. sa 3. 4. Kementerian Agama/Ministry of Religious Affairs Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi/Ministry of Education, Culture, Research, and Technology Badan Pusat Statistik/BPS-Statistics Dinas Kependudukan dan Pencatatan Sipil/Population and Civil Registration Office Kantor Kecamatan Setia Janji/ Setia Janji District Office ht tp s: //a 1. 2. sa ht tp s: //a .b ps . ka b ha n go . id ht tp s: //a sa ha n ka b .b ps . go . id PETA WILAYAH KECAMATAN SETIA JANJI MAP OF SETIA JANJI DISTRICT sa ht tp s: //a .b ps . ka b ha n go . id",
+  "csvPath": "datasets/bps-1208-kecamatan-120927-dalam-angka-2026.csv",
+  "csvSha256": "c5997b1fd745c27ba7e54a27c68f284781e68ab6a5c8fc34bab13daa30244988",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Setia Janji, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Setia Janji, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 2 header \"Laki-laki/ Male Desa Village\" not recognised)"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352421-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Turi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Turi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "37",
+  "issn": "2798-7949",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/04326502b9e0d249e213f616/kecamatan-turi-dalam-angka-2026.html",
+  "sourceFileSha256": "7b8b55a38938a2e39cfd959a97e1e9b5af082a9120a44fd941600d4799b7e907",
+  "sourceFileBytes": 3922294,
+  "sourcePages": [33, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352421-dalam-angka-2026.csv",
+  "csvSha256": "f5fe0297f504c379c9bcfb0a28b4004b44bd8b83a284db5a1239a2347e922d08",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Turi, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.3: row not stored: row \"006 Gedongboyountung\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 0-4\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 5-9\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 10-14\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 15-19\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 20-24\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 25-29\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 30-34\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 35-39\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 40-44\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 45-49\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 50-54\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 55-59\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 60-64\": unmatched ",
+    "table 3.4: row not stored: row \"Usia 65-69\": unmatched ",
+    "table 3.4: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

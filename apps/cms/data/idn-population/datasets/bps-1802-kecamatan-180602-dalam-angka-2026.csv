@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.06.02.2012,4,Kalibening,sex,laki_laki,,2227,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2012,4,Kalibening,sex,perempuan,,2126,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2012,4,Kalibening,total,total,,4353,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2015,4,Kejayaan,sex,laki_laki,,842,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2015,4,Kejayaan,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2015,4,Kejayaan,total,total,,1606,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2016,4,Sukabumi,sex,laki_laki,,659,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2016,4,Sukabumi,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2016,4,Sukabumi,total,total,,1286,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2017,4,Sukanegeri Jaya,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2017,4,Sukanegeri Jaya,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2017,4,Sukanegeri Jaya,total,total,,1031,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2018,4,Banjarsari,sex,laki_laki,,1001,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2018,4,Banjarsari,sex,perempuan,,937,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2018,4,Banjarsari,total,total,,1938,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2019,4,Singosari,sex,laki_laki,,942,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2019,4,Singosari,sex,perempuan,,879,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2019,4,Singosari,total,total,,1821,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2020,4,Sinar Banten,sex,laki_laki,,2530,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2020,4,Sinar Banten,sex,perempuan,,2365,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2020,4,Sinar Banten,total,total,,4895,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2021,4,Sukarame,sex,laki_laki,,2038,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2021,4,Sukarame,sex,perempuan,,2013,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2021,4,Sukarame,total,total,,4051,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2022,4,Banding Agung,sex,laki_laki,,2045,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2022,4,Banding Agung,sex,perempuan,,1967,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2022,4,Banding Agung,total,total,,4012,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2023,4,Talang Padang,sex,laki_laki,,2779,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2023,4,Talang Padang,sex,perempuan,,2706,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2023,4,Talang Padang,total,total,,5485,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2024,4,Suka Negeri,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2024,4,Suka Negeri,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2024,4,Suka Negeri,total,total,,460,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2025,4,Suka Bandung,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2025,4,Suka Bandung,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2025,4,Suka Bandung,total,total,,1124,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2026,4,Suka Merindu,sex,laki_laki,,1175,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2026,4,Suka Merindu,sex,perempuan,,1065,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2026,4,Suka Merindu,total,total,,2240,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2027,4,Sinar Semendo,sex,laki_laki,,1117,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2027,4,Sinar Semendo,sex,perempuan,,1173,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2027,4,Sinar Semendo,total,total,,2290,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2028,4,Negeri Agung,sex,laki_laki,,3705,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2028,4,Negeri Agung,sex,perempuan,,3552,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2028,4,Negeri Agung,total,total,,7257,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2029,4,Sinar Petir,sex,laki_laki,,874,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2029,4,Sinar Petir,sex,perempuan,,828,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2029,4,Sinar Petir,total,total,,1702,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2030,4,Way Halom,sex,laki_laki,,936,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2030,4,Way Halom,sex,perempuan,,855,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2030,4,Way Halom,total,total,,1791,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2031,4,Talang Sepuh,sex,laki_laki,,1334,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2031,4,Talang Sepuh,sex,perempuan,,1294,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2031,4,Talang Sepuh,total,total,,2628,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2032,4,Sinar Harapan,sex,laki_laki,,977,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2032,4,Sinar Harapan,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2032,4,Sinar Harapan,total,total,,1907,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02.2033,4,Sinar Betung,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.02.2033,4,Sinar Betung,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.02.2033,4,Sinar Betung,total,total,,1347,jiwa,2025,registration,total_population,3.1,27,,
+18.06.02,3,Talang Padang,age_group,0-4,laki_laki,1739,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.02,3,Talang Padang,age_group,0-4,perempuan,1640,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.02,3,Talang Padang,age_group,0-4,,3379,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.02,3,Talang Padang,age_group,5-9,laki_laki,2380,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.02,3,Talang Padang,age_group,5-9,perempuan,2270,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.02,3,Talang Padang,age_group,5-9,,4650,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.02,3,Talang Padang,age_group,10-14,laki_laki,2529,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.02,3,Talang Padang,age_group,10-14,perempuan,2338,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.02,3,Talang Padang,age_group,10-14,,4867,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.02,3,Talang Padang,age_group,15-19,laki_laki,2256,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.02,3,Talang Padang,age_group,15-19,perempuan,2227,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.02,3,Talang Padang,age_group,15-19,,4483,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.02,3,Talang Padang,age_group,20-24,laki_laki,2207,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.02,3,Talang Padang,age_group,20-24,perempuan,2006,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.02,3,Talang Padang,age_group,20-24,,4213,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.02,3,Talang Padang,age_group,25-29,laki_laki,2255,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.02,3,Talang Padang,age_group,25-29,perempuan,2016,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.02,3,Talang Padang,age_group,25-29,,4271,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.02,3,Talang Padang,age_group,30-34,laki_laki,1986,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.02,3,Talang Padang,age_group,30-34,perempuan,1699,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.02,3,Talang Padang,age_group,30-34,,3685,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.02,3,Talang Padang,age_group,35-39,laki_laki,2053,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.02,3,Talang Padang,age_group,35-39,perempuan,1802,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.02,3,Talang Padang,age_group,35-39,,3855,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.02,3,Talang Padang,age_group,40-44,laki_laki,1919,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.02,3,Talang Padang,age_group,40-44,perempuan,1885,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.02,3,Talang Padang,age_group,40-44,,3804,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.02,3,Talang Padang,age_group,45-49,laki_laki,1851,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.02,3,Talang Padang,age_group,45-49,perempuan,1762,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.02,3,Talang Padang,age_group,45-49,,3613,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.02,3,Talang Padang,age_group,50-54,laki_laki,1518,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.02,3,Talang Padang,age_group,50-54,perempuan,1571,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.02,3,Talang Padang,age_group,50-54,,3089,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.02,3,Talang Padang,age_group,55-59,laki_laki,1335,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.02,3,Talang Padang,age_group,55-59,perempuan,1408,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.02,3,Talang Padang,age_group,55-59,,2743,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.02,3,Talang Padang,age_group,60-64,laki_laki,1133,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.02,3,Talang Padang,age_group,60-64,perempuan,1173,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.02,3,Talang Padang,age_group,60-64,,2306,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.02,3,Talang Padang,age_group,65-69,laki_laki,891,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.02,3,Talang Padang,age_group,65-69,perempuan,884,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.02,3,Talang Padang,age_group,65-69,,1775,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.02,3,Talang Padang,age_group,70-74,laki_laki,575,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.02,3,Talang Padang,age_group,70-74,perempuan,544,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.02,3,Talang Padang,age_group,70-74,,1119,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.02,3,Talang Padang,age_group,75+,laki_laki,599,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.02,3,Talang Padang,age_group,75+,perempuan,773,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.02,3,Talang Padang,age_group,75+,,1372,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.02,3,Talang Padang,sex,laki_laki,,27226,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+18.06.02,3,Talang Padang,sex,perempuan,,25998,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+18.06.02,3,Talang Padang,total,total,,53224,jiwa,2025,registration,total_population,3.2,29,,

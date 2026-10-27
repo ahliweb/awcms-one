@@ -1,0 +1,63 @@
+{
+  "datasetCode": "bps-1509-kecamatan-150807-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.08.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Limbur Lubuk Mengkuang Dalam Angka 2026",
+  "publisherName": "BPSKabupaten Bungo",
+  "publisherDomain": "1509",
+  "publisherWebsite": "https://bungokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPSKabupaten Bungo (https://bungokab.bps.go.id), publikasi \"Kecamatan Limbur Lubuk Mengkuang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1509051",
+  "publicationNumber": "15090.26018",
+  "issn": "2714-5913",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bungokab.bps.go.id/id/publication/2026/09/28/68688ae39a18159804fc9abf/kecamatan-limbur-lubuk-mengkuang-dalam-angka-2026.html",
+  "sourceFileSha256": "48f25ee4aa89199505f552ec0b0c523501634e37a7c09b4ca4fb1535d2581fb6",
+  "sourceFileBytes": 14439125,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulisdari Badan Pusat StatistikKabupaten Bungo.",
+  "csvPath": "datasets/bps-1509-kecamatan-150807-dalam-angka-2026.csv",
+  "csvSha256": "a5b9e50893f46fa2394a6a2c424f3c196a3bd34ea3851ed7591028c3c0b00f8c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Limbur Lubuk Mengkuang , 202 5",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Limbur Lubuk Mengkuang , 202 5",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lubuk Tanah Terban\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Tebo Pandak\": unmatched ",
+    "table 3.1: row not stored: row \"Baru Lubuk Mengkuang\": unmatched ",
+    "table 3.1: row not stored: row \"Tuo Lubuk Mengkuang\": unmatched ",
+    "table 3.1: row not stored: row \"Rantau Tipu 7,38%\": unmatched ",
+    "table 3.1: row not stored: row \"Ipuh 9,69%\": unmatched ",
+    "table 3.1: row not stored: row \"Pemunyian 8,61%\": unmatched ",
+    "table 3.1: row not stored: row \"Terban 5,07%\": unmatched ",
+    "table 3.1: row not stored: row \"Besar 4,66%\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Bungo 1,96%\": unmatched ",
+    "table 3.1: row not stored: row \"Tuo Limbur 10,64%\": unmatched ",
+    "table 3.1: row not stored: row \"Pandak 2,43%\": unmatched ",
+    "table 3.1: row not stored: row \"Tebo Jaya 13,63%\": unmatched ",
+    "table 3.1: row not stored: row \"Sekar Mengkuang 13,31%\": unmatched ",
+    "table 3.1: row not stored: row \"Pauh Agung 6,28%\": unmatched ",
+    "table 3.1: row not stored: row \"Mengkuang 3,54%\": unmatched ",
+    "table 3.1: row not stored: row \"Mengkuang 2,02%\": unmatched ",
+    "table 3.1: row not stored: row \"Limbur Baru 10,78%\": unmatched ",
+    "table 3.1: row not stored: row \"100,00% Mengkuang\": unmatched "
+  ]
+}

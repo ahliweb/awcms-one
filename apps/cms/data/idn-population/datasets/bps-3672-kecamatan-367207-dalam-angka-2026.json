@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3672-kecamatan-367207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.72.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Purwakarta Dalam Angka 2026",
+  "publisherName": "BPS Kota Cilegon",
+  "publisherDomain": "3672",
+  "publisherWebsite": "https://cilegonkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cilegon (https://cilegonkota.bps.go.id), publikasi \"Kecamatan Purwakarta Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36720.26008",
+  "issn": "2598-8638",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilegonkota.bps.go.id/id/publication/2026/09/28/3e9580c1d2401b2634afc356/kecamatan-purwakarta-dalam-angka-2026.html",
+  "sourceFileSha256": "bdf6566cd47aaac389ed8f97f2015098c89319429ebb1e696fbe9ecfea566ce6",
+  "sourceFileBytes": 9841989,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cilegon.",
+  "csvPath": "datasets/bps-3672-kecamatan-367207-dalam-angka-2026.csv",
+  "csvSha256": "16f37452b3dd37397a4852ac7e83eebf38910904a8397b2f5f539bdb9bc40b3d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Purwakarta, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Purwakarta, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Purwakarta Purwakarta District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Purwakarta Purwakarta District\": unmatched ",
+    "table 3.2: the rows of region 36.72.07 are not stored: age_group vs total: parts sum 44953.0000 != 44952.0000 (diff 1.0000); the source itself is inconsistent"
+  ]
+}

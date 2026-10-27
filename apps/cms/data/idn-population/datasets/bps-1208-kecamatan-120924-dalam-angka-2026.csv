@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.24.2006,4,Sei Kepayang Kiri,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+12.09.24.2006,4,Sei Kepayang Kiri,sex,perempuan,,681,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+12.09.24.2006,4,Sei Kepayang Kiri,total,total,,1360,jiwa,2025,registration,total_population,3.1,33,,
+12.09.24.2005,4,Sei Lendir,sex,laki_laki,,446,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+12.09.24.2005,4,Sei Lendir,sex,perempuan,,456,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+12.09.24.2005,4,Sei Lendir,total,total,,902,jiwa,2025,registration,total_population,3.1,33,,
+12.09.24.2004,4,Sei Tualang Pandau,sex,laki_laki,,743,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+12.09.24.2004,4,Sei Tualang Pandau,sex,perempuan,,751,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+12.09.24.2004,4,Sei Tualang Pandau,total,total,,1494,jiwa,2025,registration,total_population,3.1,33,,
+12.09.24.2003,4,Sei Serindan,sex,laki_laki,,1286,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+12.09.24.2003,4,Sei Serindan,sex,perempuan,,1268,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+12.09.24.2003,4,Sei Serindan,total,total,,2554,jiwa,2025,registration,total_population,3.1,33,,
+12.09.24.2002,4,Sei Jawi Jawi,sex,laki_laki,,2337,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+12.09.24.2002,4,Sei Jawi Jawi,sex,perempuan,,2236,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+12.09.24.2002,4,Sei Jawi Jawi,total,total,,4573,jiwa,2025,registration,total_population,3.1,33,,
+12.09.24.2001,4,Sei Nangka,sex,laki_laki,,2163,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+12.09.24.2001,4,Sei Nangka,sex,perempuan,,2065,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+12.09.24.2001,4,Sei Nangka,total,total,,4228,jiwa,2025,registration,total_population,3.1,33,,
+12.09.24,3,Sei Kepayang Barat,sex,laki_laki,,7654,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+12.09.24,3,Sei Kepayang Barat,sex,perempuan,,7457,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+12.09.24,3,Sei Kepayang Barat,total,total,,15111,jiwa,2025,registration,total_population,3.1,33,,
+12.09.24,3,Sei Kepayang Barat,age_group,0-4,laki_laki,433,jiwa,2025,registration,total_population,3.2,35,,0-4
+12.09.24,3,Sei Kepayang Barat,age_group,0-4,perempuan,383,jiwa,2025,registration,total_population,3.2,35,,0-4
+12.09.24,3,Sei Kepayang Barat,age_group,0-4,,816,jiwa,2025,registration,total_population,3.2,35,,0-4
+12.09.24,3,Sei Kepayang Barat,age_group,5-9,laki_laki,719,jiwa,2025,registration,total_population,3.2,35,,5-9
+12.09.24,3,Sei Kepayang Barat,age_group,5-9,perempuan,704,jiwa,2025,registration,total_population,3.2,35,,5-9
+12.09.24,3,Sei Kepayang Barat,age_group,5-9,,1423,jiwa,2025,registration,total_population,3.2,35,,5-9
+12.09.24,3,Sei Kepayang Barat,age_group,10-14,laki_laki,777,jiwa,2025,registration,total_population,3.2,35,,10-14
+12.09.24,3,Sei Kepayang Barat,age_group,10-14,perempuan,786,jiwa,2025,registration,total_population,3.2,35,,10-14
+12.09.24,3,Sei Kepayang Barat,age_group,10-14,,1563,jiwa,2025,registration,total_population,3.2,35,,10-14
+12.09.24,3,Sei Kepayang Barat,age_group,15-19,laki_laki,870,jiwa,2025,registration,total_population,3.2,35,,15-19
+12.09.24,3,Sei Kepayang Barat,age_group,15-19,perempuan,801,jiwa,2025,registration,total_population,3.2,35,,15-19
+12.09.24,3,Sei Kepayang Barat,age_group,15-19,,1671,jiwa,2025,registration,total_population,3.2,35,,15-19
+12.09.24,3,Sei Kepayang Barat,age_group,20-24,laki_laki,742,jiwa,2025,registration,total_population,3.2,35,,20-24
+12.09.24,3,Sei Kepayang Barat,age_group,20-24,perempuan,757,jiwa,2025,registration,total_population,3.2,35,,20-24
+12.09.24,3,Sei Kepayang Barat,age_group,20-24,,1499,jiwa,2025,registration,total_population,3.2,35,,20-24
+12.09.24,3,Sei Kepayang Barat,age_group,25-29,laki_laki,675,jiwa,2025,registration,total_population,3.2,35,,25-29
+12.09.24,3,Sei Kepayang Barat,age_group,25-29,perempuan,607,jiwa,2025,registration,total_population,3.2,35,,25-29
+12.09.24,3,Sei Kepayang Barat,age_group,25-29,,1282,jiwa,2025,registration,total_population,3.2,35,,25-29
+12.09.24,3,Sei Kepayang Barat,age_group,30-34,laki_laki,590,jiwa,2025,registration,total_population,3.2,35,,30-34
+12.09.24,3,Sei Kepayang Barat,age_group,30-34,perempuan,503,jiwa,2025,registration,total_population,3.2,35,,30-34
+12.09.24,3,Sei Kepayang Barat,age_group,30-34,,1093,jiwa,2025,registration,total_population,3.2,35,,30-34
+12.09.24,3,Sei Kepayang Barat,age_group,35-39,laki_laki,530,jiwa,2025,registration,total_population,3.2,35,,35-39
+12.09.24,3,Sei Kepayang Barat,age_group,35-39,perempuan,539,jiwa,2025,registration,total_population,3.2,35,,35-39
+12.09.24,3,Sei Kepayang Barat,age_group,35-39,,1069,jiwa,2025,registration,total_population,3.2,35,,35-39
+12.09.24,3,Sei Kepayang Barat,age_group,40-44,laki_laki,520,jiwa,2025,registration,total_population,3.2,35,,40-44
+12.09.24,3,Sei Kepayang Barat,age_group,40-44,perempuan,490,jiwa,2025,registration,total_population,3.2,35,,40-44
+12.09.24,3,Sei Kepayang Barat,age_group,40-44,,1010,jiwa,2025,registration,total_population,3.2,35,,40-44
+12.09.24,3,Sei Kepayang Barat,age_group,45-49,laki_laki,471,jiwa,2025,registration,total_population,3.2,35,,45-49
+12.09.24,3,Sei Kepayang Barat,age_group,45-49,perempuan,466,jiwa,2025,registration,total_population,3.2,35,,45-49
+12.09.24,3,Sei Kepayang Barat,age_group,45-49,,937,jiwa,2025,registration,total_population,3.2,35,,45-49
+12.09.24,3,Sei Kepayang Barat,age_group,50-54,laki_laki,419,jiwa,2025,registration,total_population,3.2,35,,50-54
+12.09.24,3,Sei Kepayang Barat,age_group,50-54,perempuan,385,jiwa,2025,registration,total_population,3.2,35,,50-54
+12.09.24,3,Sei Kepayang Barat,age_group,50-54,,804,jiwa,2025,registration,total_population,3.2,35,,50-54
+12.09.24,3,Sei Kepayang Barat,age_group,55-59,laki_laki,319,jiwa,2025,registration,total_population,3.2,35,,55-59
+12.09.24,3,Sei Kepayang Barat,age_group,55-59,perempuan,313,jiwa,2025,registration,total_population,3.2,35,,55-59
+12.09.24,3,Sei Kepayang Barat,age_group,55-59,,632,jiwa,2025,registration,total_population,3.2,35,,55-59
+12.09.24,3,Sei Kepayang Barat,age_group,60-64,laki_laki,234,jiwa,2025,registration,total_population,3.2,35,,60-64
+12.09.24,3,Sei Kepayang Barat,age_group,60-64,perempuan,267,jiwa,2025,registration,total_population,3.2,35,,60-64
+12.09.24,3,Sei Kepayang Barat,age_group,60-64,,501,jiwa,2025,registration,total_population,3.2,35,,60-64
+12.09.24,3,Sei Kepayang Barat,age_group,65-69,laki_laki,153,jiwa,2025,registration,total_population,3.2,35,,65-69
+12.09.24,3,Sei Kepayang Barat,age_group,65-69,perempuan,193,jiwa,2025,registration,total_population,3.2,35,,65-69
+12.09.24,3,Sei Kepayang Barat,age_group,65-69,,346,jiwa,2025,registration,total_population,3.2,35,,65-69
+12.09.24,3,Sei Kepayang Barat,age_group,70-74,laki_laki,97,jiwa,2025,registration,total_population,3.2,35,,70-74
+12.09.24,3,Sei Kepayang Barat,age_group,70-74,perempuan,121,jiwa,2025,registration,total_population,3.2,35,,70-74
+12.09.24,3,Sei Kepayang Barat,age_group,70-74,,218,jiwa,2025,registration,total_population,3.2,35,,70-74
+12.09.24,3,Sei Kepayang Barat,age_group,75+,laki_laki,105,jiwa,2025,registration,total_population,3.2,35,,75+
+12.09.24,3,Sei Kepayang Barat,age_group,75+,perempuan,142,jiwa,2025,registration,total_population,3.2,35,,75+
+12.09.24,3,Sei Kepayang Barat,age_group,75+,,247,jiwa,2025,registration,total_population,3.2,35,,75+
+12.09.24,3,Sei Kepayang Barat,sex,laki_laki,,7654,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+12.09.24,3,Sei Kepayang Barat,sex,perempuan,,7457,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+12.09.24,3,Sei Kepayang Barat,total,total,,15111,jiwa,2025,registration,total_population,3.2,35,,

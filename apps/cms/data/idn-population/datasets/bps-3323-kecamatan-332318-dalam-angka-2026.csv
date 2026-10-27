@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.23.18.2005,4,Lowungu,sex,laki_laki,,969,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2005,4,Lowungu,sex,perempuan,,1011,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2005,4,Lowungu,total,total,,1980,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2006,4,Larangan Luwok,sex,laki_laki,,801,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2006,4,Larangan Luwok,sex,perempuan,,795,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2006,4,Larangan Luwok,total,total,,1596,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2004,4,Prangkokan,sex,laki_laki,,429,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2004,4,Prangkokan,sex,perempuan,,409,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2004,4,Prangkokan,total,total,,838,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2003,4,Jlegong,sex,laki_laki,,1364,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2003,4,Jlegong,sex,perempuan,,1308,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2003,4,Jlegong,total,total,,2672,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2002,4,Banjarsari,sex,laki_laki,,502,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2002,4,Banjarsari,sex,perempuan,,536,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2002,4,Banjarsari,total,total,,1038,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2007,4,Congkrang,sex,laki_laki,,680,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2007,4,Congkrang,sex,perempuan,,622,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2007,4,Congkrang,total,total,,1302,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2008,4,Kebondalem,sex,laki_laki,,586,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2008,4,Kebondalem,sex,perempuan,,573,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2008,4,Kebondalem,total,total,,1159,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2009,4,Kemuning,sex,laki_laki,,290,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2009,4,Kemuning,sex,perempuan,,270,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2009,4,Kemuning,total,total,,560,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2001,4,Bejen,sex,laki_laki,,1520,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2001,4,Bejen,sex,perempuan,,1461,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2001,4,Bejen,total,total,,2981,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2010,4,Selosabrang,sex,laki_laki,,1066,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2010,4,Selosabrang,sex,perempuan,,1053,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2010,4,Selosabrang,total,total,,2119,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2011,4,Tanjungsari,sex,laki_laki,,534,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2011,4,Tanjungsari,sex,perempuan,,533,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2011,4,Tanjungsari,total,total,,1067,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2012,4,Petung,sex,laki_laki,,374,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2012,4,Petung,sex,perempuan,,354,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2012,4,Petung,total,total,,728,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2013,4,Duren,sex,laki_laki,,1014,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2013,4,Duren,sex,perempuan,,919,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2013,4,Duren,total,total,,1933,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18.2014,4,Ngaliyan,sex,laki_laki,,1137,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18.2014,4,Ngaliyan,sex,perempuan,,1123,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18.2014,4,Ngaliyan,total,total,,2260,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18,3,Kecamatan Bejen,sex,laki_laki,,11266,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.18,3,Kecamatan Bejen,sex,perempuan,,10967,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.18,3,Kecamatan Bejen,total,total,,22233,jiwa,2026,registration,total_population,3.1,25,,
+33.23.18,3,Bejen,age_group,0-4,laki_laki,642,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.18,3,Bejen,age_group,0-4,perempuan,582,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.18,3,Bejen,age_group,0-4,,1224,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.18,3,Bejen,age_group,5-9,laki_laki,750,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.18,3,Bejen,age_group,5-9,perempuan,670,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.18,3,Bejen,age_group,5-9,,1420,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.18,3,Bejen,age_group,10-14,laki_laki,815,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.18,3,Bejen,age_group,10-14,perempuan,743,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.18,3,Bejen,age_group,10-14,,1558,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.18,3,Bejen,age_group,15-19,laki_laki,870,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.18,3,Bejen,age_group,15-19,perempuan,797,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.18,3,Bejen,age_group,15-19,,1667,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.18,3,Bejen,age_group,20-24,laki_laki,787,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.18,3,Bejen,age_group,20-24,perempuan,825,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.18,3,Bejen,age_group,20-24,,1612,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.18,3,Bejen,age_group,25-29,laki_laki,873,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.18,3,Bejen,age_group,25-29,perempuan,837,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.18,3,Bejen,age_group,25-29,,1710,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.18,3,Bejen,age_group,30-34,laki_laki,836,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.18,3,Bejen,age_group,30-34,perempuan,806,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.18,3,Bejen,age_group,30-34,,1642,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.18,3,Bejen,age_group,35-39,laki_laki,791,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.18,3,Bejen,age_group,35-39,perempuan,724,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.18,3,Bejen,age_group,35-39,,1515,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.18,3,Bejen,age_group,40-44,laki_laki,700,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.18,3,Bejen,age_group,40-44,perempuan,682,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.18,3,Bejen,age_group,40-44,,1382,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.18,3,Bejen,age_group,45-49,laki_laki,803,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.18,3,Bejen,age_group,45-49,perempuan,799,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.18,3,Bejen,age_group,45-49,,1602,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.18,3,Bejen,age_group,50-54,laki_laki,754,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.18,3,Bejen,age_group,50-54,perempuan,791,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.18,3,Bejen,age_group,50-54,,1545,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.18,3,Bejen,age_group,55-59,laki_laki,767,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.18,3,Bejen,age_group,55-59,perempuan,759,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.18,3,Bejen,age_group,55-59,,1526,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.18,3,Bejen,age_group,60-64,laki_laki,670,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.18,3,Bejen,age_group,60-64,perempuan,731,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.18,3,Bejen,age_group,60-64,,1401,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.18,3,Bejen,age_group,65-69,laki_laki,525,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.18,3,Bejen,age_group,65-69,perempuan,524,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.18,3,Bejen,age_group,65-69,,1049,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.18,3,Bejen,age_group,70-74,laki_laki,372,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.18,3,Bejen,age_group,70-74,perempuan,337,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.18,3,Bejen,age_group,70-74,,709,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.18,3,Bejen,age_group,75+,laki_laki,311,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.18,3,Bejen,age_group,75+,perempuan,360,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.18,3,Bejen,age_group,75+,,671,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.18,3,Kecamatan Bejen,sex,laki_laki,,11266,jiwa,2026,registration,total_population,3.2,27,,Laki-Laki
+33.23.18,3,Kecamatan Bejen,sex,perempuan,,10967,jiwa,2026,registration,total_population,3.2,27,,Perempuan
+33.23.18,3,Kecamatan Bejen,total,total,,22233,jiwa,2026,registration,total_population,3.2,27,,

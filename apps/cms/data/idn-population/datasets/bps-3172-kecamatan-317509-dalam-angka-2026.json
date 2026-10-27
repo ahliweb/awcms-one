@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3172-kecamatan-317509-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.75.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciracas Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Timur",
+  "publisherDomain": "3172",
+  "publisherWebsite": "https://jaktimkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Timur (https://jaktimkota.bps.go.id), publikasi \"Kecamatan Ciracas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "31720.25008",
+  "issn": "0852-2065",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jaktimkota.bps.go.id/id/publication/2026/09/28/a07f34fbdbb65f7d8ae7689b/kecamatan-ciracas-dalam-angka-2026.html",
+  "sourceFileSha256": "7e1a22ef16cee42fa04a19b25742a8e10b64d8b2372629aadd2aa29a6fd704fc",
+  "sourceFileBytes": 5362968,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kota Jakarta Timur.",
+  "csvPath": "datasets/bps-3172-kecamatan-317509-dalam-angka-2026.csv",
+  "csvSha256": "2266910d323768474b39dc9c18e1faad029fcd6038edb23efc3276814094d848",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ciracas, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ciracas, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

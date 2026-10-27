@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.11.2001,4,Tanjung Raya,sex,laki_laki,,3361,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2001,4,Tanjung Raya,sex,perempuan,,3167,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2001,4,Tanjung Raya,total,total,,6528,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2002,4,Hanakau,sex,laki_laki,,2453,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2002,4,Hanakau,sex,perempuan,,2243,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2002,4,Hanakau,total,total,,4696,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2003,4,Buay Nyerupa,sex,laki_laki,,1707,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2003,4,Buay Nyerupa,sex,perempuan,,1597,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2003,4,Buay Nyerupa,total,total,,3304,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2004,4,Tapak Siring,sex,laki_laki,,1051,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2004,4,Tapak Siring,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2004,4,Tapak Siring,total,total,,2074,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2009,4,Pagar Dewa,sex,laki_laki,,1538,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2009,4,Pagar Dewa,sex,perempuan,,1503,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2009,4,Pagar Dewa,total,total,,3041,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2005,4,Jaga Raga,sex,laki_laki,,809,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2005,4,Jaga Raga,sex,perempuan,,814,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2005,4,Jaga Raga,total,total,,1623,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2012,4,Suka Mulya,sex,laki_laki,,772,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2012,4,Suka Mulya,sex,perempuan,,703,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2012,4,Suka Mulya,total,total,,1475,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2018,4,Bandar Baru,sex,laki_laki,,844,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2018,4,Bandar Baru,sex,perempuan,,786,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2018,4,Bandar Baru,total,total,,1630,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11.2019,4,Bumi jaya,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11.2019,4,Bumi jaya,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11.2019,4,Bumi jaya,total,total,,976,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11,3,Kecamatan Sukau,sex,laki_laki,,13721,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.11,3,Kecamatan Sukau,sex,perempuan,,12881,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.11,3,Kecamatan Sukau,total,total,,26602,jiwa,2025,registration,total_population,3.1,30,,
+18.04.11,3,Sukau,age_group,0-4,laki_laki,939,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.11,3,Sukau,age_group,0-4,perempuan,860,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.11,3,Sukau,age_group,0-4,,1799,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.11,3,Sukau,age_group,5-9,laki_laki,1259,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.11,3,Sukau,age_group,5-9,perempuan,1156,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.11,3,Sukau,age_group,5-9,,2415,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.11,3,Sukau,age_group,10-14,laki_laki,1303,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.11,3,Sukau,age_group,10-14,perempuan,1238,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.11,3,Sukau,age_group,10-14,,2541,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.11,3,Sukau,age_group,15-19,laki_laki,1239,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.11,3,Sukau,age_group,15-19,perempuan,1219,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.11,3,Sukau,age_group,15-19,,2458,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.11,3,Sukau,age_group,20-24,laki_laki,1006,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.11,3,Sukau,age_group,20-24,perempuan,1010,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.11,3,Sukau,age_group,20-24,,2016,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.11,3,Sukau,age_group,25-29,laki_laki,1029,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.11,3,Sukau,age_group,25-29,perempuan,963,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.11,3,Sukau,age_group,25-29,,1992,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.11,3,Sukau,age_group,30-34,laki_laki,956,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.11,3,Sukau,age_group,30-34,perempuan,896,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.11,3,Sukau,age_group,30-34,,1852,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.11,3,Sukau,age_group,35-39,laki_laki,1071,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.11,3,Sukau,age_group,35-39,perempuan,1077,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.11,3,Sukau,age_group,35-39,,2148,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.11,3,Sukau,age_group,40-44,laki_laki,1042,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.11,3,Sukau,age_group,40-44,perempuan,913,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.11,3,Sukau,age_group,40-44,,1955,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.11,3,Sukau,age_group,45-49,laki_laki,975,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.11,3,Sukau,age_group,45-49,perempuan,893,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.11,3,Sukau,age_group,45-49,,1868,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.11,3,Sukau,age_group,50-54,laki_laki,779,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.11,3,Sukau,age_group,50-54,perempuan,685,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.11,3,Sukau,age_group,50-54,,1464,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.11,3,Sukau,age_group,55-59,laki_laki,625,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.11,3,Sukau,age_group,55-59,perempuan,627,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.11,3,Sukau,age_group,55-59,,1252,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.11,3,Sukau,age_group,60-64,laki_laki,504,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.11,3,Sukau,age_group,60-64,perempuan,455,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.11,3,Sukau,age_group,60-64,,959,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.11,3,Sukau,age_group,65-69,laki_laki,433,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.11,3,Sukau,age_group,65-69,perempuan,358,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.11,3,Sukau,age_group,65-69,,791,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.11,3,Sukau,age_group,70-74,laki_laki,256,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.11,3,Sukau,age_group,70-74,perempuan,212,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.11,3,Sukau,age_group,70-74,,468,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.11,3,Sukau,age_group,75+,laki_laki,305,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.11,3,Sukau,age_group,75+,perempuan,319,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.11,3,Sukau,age_group,75+,,624,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.11,3,Kecamatan Sukau,sex,laki_laki,,13721,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+18.04.11,3,Kecamatan Sukau,sex,perempuan,,12881,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+18.04.11,3,Kecamatan Sukau,total,total,,26602,jiwa,2025,registration,total_population,3.2,32,,

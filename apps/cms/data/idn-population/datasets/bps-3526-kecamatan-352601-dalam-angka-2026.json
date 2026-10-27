@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3526-kecamatan-352601-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.26.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bangkalan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangkalan",
+  "publisherDomain": "3526",
+  "publisherWebsite": "https://bangkalankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangkalan (https://bangkalankab.bps.go.id), publikasi \"Kecamatan Bangkalan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3526110",
+  "publicationNumber": "35260.26018",
+  "issn": "2808-0416",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkalankab.bps.go.id/id/publication/2026/09/28/41b362dea8d42eecec8343eb/kecamatan-bangkalan-dalam-angka-2026.html",
+  "sourceFileSha256": "d0d0b6d0b53c16148398e5a2b899efd54d6f82875a55fbadc7817912e5f39d40",
+  "sourceFileBytes": 22559177,
+  "sourcePages": [31, 32, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangkalan.",
+  "csvPath": "datasets/bps-3526-kecamatan-352601-dalam-angka-2026.csv",
+  "csvSha256": "6b8aa66a2811ab33e04f5dce4f14a586c3fd08b96bdd48dc57372e6b9d5b3226",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bangkalan, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bangkalan, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Mertajasah\": unmatched ",
+    "table 3.1: row not stored: row \"Mertajasah\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Bangkalan\": unmatched ",
+    "table 3.1: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched ",
+    "table 3.3: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched "
+  ]
+}

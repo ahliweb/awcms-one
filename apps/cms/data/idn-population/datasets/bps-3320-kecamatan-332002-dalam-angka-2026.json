@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332002-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pecangaan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Pecangaan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320020",
+  "publicationNumber": "33200.26008",
+  "issn": "2614-9028",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/3f8695efd3acc7056dc6eba8/kecamatan-pecangaan-dalam-angka-2026.html",
+  "sourceFileSha256": "c6dc3c8cc0843905208134352cb6ac74fea7e3a33c390dee1439b42f9770f01a",
+  "sourceFileBytes": 12767325,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332002-dalam-angka-2026.csv",
+  "csvSha256": "2f285f7c9b26408143120b8efd18cc6431b52e323d7d43882358a054d236e193",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pecangaan, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Gerdu 1.047\": unmatched ",
+    "table 3.1: row not stored: row \"013 Krasak 4.381\": unmatched ",
+    "table 3.1: row not stored: row \"014 Karangrandu 3.577\": unmatched ",
+    "table 3.1: row not stored: row \"015 Kaliombo 1.764\": unmatched ",
+    "table 3.1: row not stored: row \"016 Ngeling 4.344\": unmatched ",
+    "table 3.1: row not stored: row \"017 Troso 11.662\": unmatched ",
+    "table 3.1: row not stored: row \"018 Pecangaan Kulon 4.367\": unmatched ",
+    "table 3.1: row not stored: row \"019 Pecangaan Wetan 2.357\": unmatched ",
+    "table 3.1: row not stored: row \"020 Lebuawu 3.452\": unmatched ",
+    "table 3.1: row not stored: row \"021 Pulodarat 3.120\": unmatched ",
+    "table 3.1: row not stored: row \"022 Gemulung 2.351\": unmatched ",
+    "table 3.1: row not stored: row \"024 Rengging 4.140\": unmatched ",
+    "table 3.1: row not stored: row \"Pecangaan 46.562\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

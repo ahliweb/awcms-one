@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.04.01,3,Mersam,religion,islam,,33338,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.01,3,Mersam,religion,kristen,,714,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.01,3,Mersam,religion,katolik,,74,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.01,3,Mersam,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,143,,Hindu
+15.04.01,3,Mersam,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04.01,3,Mersam,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,143,,Konghucu
+15.04.01,3,Mersam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Lainnya
+15.04.06,3,Maro Sebo Ulu,religion,islam,,37489,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.06,3,Maro Sebo Ulu,religion,kristen,,312,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.06,3,Maro Sebo Ulu,religion,katolik,,51,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.06,3,Maro Sebo Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Hindu
+15.04.06,3,Maro Sebo Ulu,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04.06,3,Maro Sebo Ulu,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,143,,Konghucu
+15.04.06,3,Maro Sebo Ulu,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya
+15.04.04,3,Batin XXIV,religion,islam,,30983,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.04,3,Batin XXIV,religion,kristen,,783,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.04,3,Batin XXIV,religion,katolik,,173,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.04,3,Batin XXIV,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Hindu
+15.04.04,3,Batin XXIV,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04.04,3,Batin XXIV,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Konghucu
+15.04.04,3,Batin XXIV,religion,lainnya,,436,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya
+15.04.02,3,Muara Tembesi,religion,islam,,34210,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.02,3,Muara Tembesi,religion,kristen,,1226,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.02,3,Muara Tembesi,religion,katolik,,209,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.02,3,Muara Tembesi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Hindu
+15.04.02,3,Muara Tembesi,religion,buddha,,90,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04.02,3,Muara Tembesi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Konghucu
+15.04.02,3,Muara Tembesi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Lainnya
+15.04.03,3,Muara Bulian,religion,islam,,70715,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.03,3,Muara Bulian,religion,kristen,,1007,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.03,3,Muara Bulian,religion,katolik,,139,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.03,3,Muara Bulian,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,143,,Hindu
+15.04.03,3,Muara Bulian,religion,buddha,,42,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04.03,3,Muara Bulian,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Konghucu
+15.04.03,3,Muara Bulian,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Lainnya
+15.04.07,3,Bajubang,religion,islam,,39110,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.07,3,Bajubang,religion,kristen,,3504,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.07,3,Bajubang,religion,katolik,,51,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.07,3,Bajubang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Hindu
+15.04.07,3,Bajubang,religion,buddha,,127,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04.07,3,Bajubang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Konghucu
+15.04.07,3,Bajubang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Lainnya
+15.04.08,3,Maro Sebo Ilir,religion,islam,,15244,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.08,3,Maro Sebo Ilir,religion,kristen,,692,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.08,3,Maro Sebo Ilir,religion,katolik,,87,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.08,3,Maro Sebo Ilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Hindu
+15.04.08,3,Maro Sebo Ilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Budha
+15.04.08,3,Maro Sebo Ilir,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Konghucu
+15.04.08,3,Maro Sebo Ilir,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya
+15.04.05,3,Pemayung,religion,islam,,37914,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04.05,3,Pemayung,religion,kristen,,81,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04.05,3,Pemayung,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04.05,3,Pemayung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Hindu
+15.04.05,3,Pemayung,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04.05,3,Pemayung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Konghucu
+15.04.05,3,Pemayung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Lainnya
+15.04,2,Batang Hari,religion,islam,,299003,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+15.04,2,Batang Hari,religion,kristen,,8319,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+15.04,2,Batang Hari,religion,katolik,,792,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+15.04,2,Batang Hari,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,143,,Hindu
+15.04,2,Batang Hari,religion,buddha,,296,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+15.04,2,Batang Hari,religion,khonghucu,,8,jiwa,2025,registration,total_population,4.3.1,143,,Konghucu
+15.04,2,Batang Hari,religion,lainnya,,454,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya

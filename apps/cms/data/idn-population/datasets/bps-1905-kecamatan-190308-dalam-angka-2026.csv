@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.03.08.2001,4,Pongok,sex,laki_laki,,1596,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.08.2001,4,Pongok,sex,perempuan,,1449,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.08.2001,4,Pongok,total,total,,3045,jiwa,2025,registration,total_population,3.1,31,,
+19.03.08.2002,4,Celagen,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.08.2002,4,Celagen,sex,perempuan,,586,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.08.2002,4,Celagen,total,total,,1189,jiwa,2025,registration,total_population,3.1,31,,
+19.03.08,3,Kepulauan Pongok,sex,laki_laki,,2199,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.08,3,Kepulauan Pongok,sex,perempuan,,2035,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.08,3,Kepulauan Pongok,total,total,,4234,jiwa,2025,registration,total_population,3.1,31,,
+19.03.08,3,Kepulauan Pongok,age_group,0-4,laki_laki,125,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.08,3,Kepulauan Pongok,age_group,0-4,perempuan,100,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.08,3,Kepulauan Pongok,age_group,0-4,,225,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.08,3,Kepulauan Pongok,age_group,5-9,laki_laki,172,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.08,3,Kepulauan Pongok,age_group,5-9,perempuan,155,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.08,3,Kepulauan Pongok,age_group,5-9,,327,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.08,3,Kepulauan Pongok,age_group,10-14,laki_laki,202,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.08,3,Kepulauan Pongok,age_group,10-14,perempuan,180,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.08,3,Kepulauan Pongok,age_group,10-14,,382,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.08,3,Kepulauan Pongok,age_group,15-19,laki_laki,199,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.08,3,Kepulauan Pongok,age_group,15-19,perempuan,200,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.08,3,Kepulauan Pongok,age_group,15-19,,399,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.08,3,Kepulauan Pongok,age_group,20-24,laki_laki,196,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.08,3,Kepulauan Pongok,age_group,20-24,perempuan,168,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.08,3,Kepulauan Pongok,age_group,20-24,,364,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.08,3,Kepulauan Pongok,age_group,25-29,laki_laki,180,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.08,3,Kepulauan Pongok,age_group,25-29,perempuan,165,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.08,3,Kepulauan Pongok,age_group,25-29,,345,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.08,3,Kepulauan Pongok,age_group,30-34,laki_laki,158,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.08,3,Kepulauan Pongok,age_group,30-34,perempuan,105,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.08,3,Kepulauan Pongok,age_group,30-34,,263,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.08,3,Kepulauan Pongok,age_group,35-39,laki_laki,148,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.08,3,Kepulauan Pongok,age_group,35-39,perempuan,142,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.08,3,Kepulauan Pongok,age_group,35-39,,290,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.08,3,Kepulauan Pongok,age_group,40-44,laki_laki,175,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.08,3,Kepulauan Pongok,age_group,40-44,perempuan,144,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.08,3,Kepulauan Pongok,age_group,40-44,,319,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.08,3,Kepulauan Pongok,age_group,45-49,laki_laki,164,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.08,3,Kepulauan Pongok,age_group,45-49,perempuan,170,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.08,3,Kepulauan Pongok,age_group,45-49,,334,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.08,3,Kepulauan Pongok,age_group,50-54,laki_laki,148,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.08,3,Kepulauan Pongok,age_group,50-54,perempuan,138,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.08,3,Kepulauan Pongok,age_group,50-54,,286,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.08,3,Kepulauan Pongok,age_group,55-59,laki_laki,108,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.08,3,Kepulauan Pongok,age_group,55-59,perempuan,102,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.08,3,Kepulauan Pongok,age_group,55-59,,210,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.08,3,Kepulauan Pongok,age_group,60-64,laki_laki,81,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.08,3,Kepulauan Pongok,age_group,60-64,perempuan,94,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.08,3,Kepulauan Pongok,age_group,60-64,,175,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.08,3,Kepulauan Pongok,age_group,65-69,laki_laki,60,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.08,3,Kepulauan Pongok,age_group,65-69,perempuan,71,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.08,3,Kepulauan Pongok,age_group,65-69,,131,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.08,3,Kepulauan Pongok,age_group,70-74,laki_laki,46,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.08,3,Kepulauan Pongok,age_group,70-74,perempuan,43,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.08,3,Kepulauan Pongok,age_group,70-74,,89,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.08,3,Kepulauan Pongok,age_group,75+,laki_laki,37,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.08,3,Kepulauan Pongok,age_group,75+,perempuan,58,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.08,3,Kepulauan Pongok,age_group,75+,,95,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.08,3,Kepulauan Pongok,sex,laki_laki,,2199,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+19.03.08,3,Kepulauan Pongok,sex,perempuan,,2035,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+19.03.08,3,Kepulauan Pongok,total,total,,4234,jiwa,2025,registration,total_population,3.2,33,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.16.2009,4,Banjarbanggi,sex,laki_laki,,1576,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2009,4,Banjarbanggi,sex,perempuan,,1575,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2009,4,Banjarbanggi,total,total,,3151,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2010,4,Bangunrejo Lor,sex,laki_laki,,1507,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2010,4,Bangunrejo Lor,sex,perempuan,,1542,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2010,4,Bangunrejo Lor,total,total,,3049,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2005,4,Karanggeneng,sex,laki_laki,,846,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2005,4,Karanggeneng,sex,perempuan,,816,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2005,4,Karanggeneng,total,total,,1662,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2008,4,Papungan,sex,laki_laki,,809,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2008,4,Papungan,sex,perempuan,,824,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2008,4,Papungan,total,total,,1633,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2007,4,Cantel,sex,laki_laki,,1129,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2007,4,Cantel,sex,perempuan,,1105,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2007,4,Cantel,total,total,,2234,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2006,4,Ngancar,sex,laki_laki,,1658,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2006,4,Ngancar,sex,perempuan,,1724,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2006,4,Ngancar,total,total,,3382,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2001,4,Kalang,sex,laki_laki,,1475,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2001,4,Kalang,sex,perempuan,,1492,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2001,4,Kalang,total,total,,2967,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2002,4,Pitu,sex,laki_laki,,2783,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2002,4,Pitu,sex,perempuan,,2796,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2002,4,Pitu,total,total,,5579,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2003,4,Dumplengan,sex,laki_laki,,1640,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2003,4,Dumplengan,sex,perempuan,,1637,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2003,4,Dumplengan,total,total,,3277,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16.2004,4,Selopuro,sex,laki_laki,,2300,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16.2004,4,Selopuro,sex,perempuan,,2233,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16.2004,4,Selopuro,total,total,,4533,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.16,3,Kecamatan Pitu,sex,laki_laki,,15723,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.16,3,Kecamatan Pitu,sex,perempuan,,15744,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.16,3,Kecamatan Pitu,total,total,,31467,jiwa,2025,registration,total_population,unnumbered-p38,38,,

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.03.20.2010,4,Tanjung Aur,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2010,4,Tanjung Aur,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2010,4,Tanjung Aur,total,total,,658,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2006,4,Mesigit,sex,laki_laki,,191,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2006,4,Mesigit,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2006,4,Mesigit,total,total,,380,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2007,4,Retes,sex,laki_laki,,117,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2007,4,Retes,sex,perempuan,,119,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2007,4,Retes,total,total,,236,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2008,4,Lubuk Mumpo,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2008,4,Lubuk Mumpo,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2008,4,Lubuk Mumpo,total,total,,554,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2009,4,Talang Ulu,sex,laki_laki,,200,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2009,4,Talang Ulu,sex,perempuan,,193,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2009,4,Talang Ulu,total,total,,393,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2002,4,Kembang Manis,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2002,4,Kembang Manis,sex,perempuan,,498,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2002,4,Kembang Manis,total,total,,1023,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2005,4,Sukarami,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2005,4,Sukarami,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2005,4,Sukarami,total,total,,855,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2003,4,Teluk Ajang,sex,laki_laki,,509,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2003,4,Teluk Ajang,sex,perempuan,,499,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2003,4,Teluk Ajang,total,total,,1008,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2004,4,Balam,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2004,4,Balam,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2004,4,Balam,total,total,,419,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20.2001,4,Padang Kala,sex,laki_laki,,734,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20.2001,4,Padang Kala,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20.2001,4,Padang Kala,total,total,,1471,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20,3,Air Padang,sex,laki_laki,,3548,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.20,3,Air Padang,sex,perempuan,,3449,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.20,3,Air Padang,total,total,,6997,jiwa,2025,registration,total_population,3.1,28,,
+17.03.20,3,Air Padang,age_group,0-4,laki_laki,252,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.20,3,Air Padang,age_group,0-4,perempuan,227,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.20,3,Air Padang,age_group,0-4,,479,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.20,3,Air Padang,age_group,5-9,laki_laki,316,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.20,3,Air Padang,age_group,5-9,perempuan,293,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.20,3,Air Padang,age_group,5-9,,609,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.20,3,Air Padang,age_group,10-14,laki_laki,279,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.20,3,Air Padang,age_group,10-14,perempuan,284,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.20,3,Air Padang,age_group,10-14,,563,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.20,3,Air Padang,age_group,15-19,laki_laki,305,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.20,3,Air Padang,age_group,15-19,perempuan,322,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.20,3,Air Padang,age_group,15-19,,627,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.20,3,Air Padang,age_group,20-24,laki_laki,322,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.20,3,Air Padang,age_group,20-24,perempuan,302,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.20,3,Air Padang,age_group,20-24,,624,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.20,3,Air Padang,age_group,25-29,laki_laki,292,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.20,3,Air Padang,age_group,25-29,perempuan,251,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.20,3,Air Padang,age_group,25-29,,543,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.20,3,Air Padang,age_group,30-34,laki_laki,271,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.20,3,Air Padang,age_group,30-34,perempuan,261,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.20,3,Air Padang,age_group,30-34,,532,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.20,3,Air Padang,age_group,35-39,laki_laki,313,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.20,3,Air Padang,age_group,35-39,perempuan,306,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.20,3,Air Padang,age_group,35-39,,619,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.20,3,Air Padang,age_group,40-44,laki_laki,266,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.20,3,Air Padang,age_group,40-44,perempuan,248,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.20,3,Air Padang,age_group,40-44,,514,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.20,3,Air Padang,age_group,45-49,laki_laki,266,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.20,3,Air Padang,age_group,45-49,perempuan,241,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.20,3,Air Padang,age_group,45-49,,507,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.20,3,Air Padang,age_group,50-54,laki_laki,177,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.20,3,Air Padang,age_group,50-54,perempuan,173,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.20,3,Air Padang,age_group,50-54,,350,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.20,3,Air Padang,age_group,55-59,laki_laki,145,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.20,3,Air Padang,age_group,55-59,perempuan,166,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.20,3,Air Padang,age_group,55-59,,311,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.20,3,Air Padang,age_group,60-64,laki_laki,113,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.20,3,Air Padang,age_group,60-64,perempuan,134,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.20,3,Air Padang,age_group,60-64,,247,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.20,3,Air Padang,age_group,65-69,laki_laki,116,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.20,3,Air Padang,age_group,65-69,perempuan,108,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.20,3,Air Padang,age_group,65-69,,224,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.20,3,Air Padang,age_group,70-74,laki_laki,59,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.03.20,3,Air Padang,age_group,70-74,perempuan,59,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.03.20,3,Air Padang,age_group,70-74,,118,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.03.20,3,Air Padang,age_group,75+,laki_laki,56,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.20,3,Air Padang,age_group,75+,perempuan,74,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.20,3,Air Padang,age_group,75+,,130,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.20,3,Air Padang,sex,laki_laki,,3548,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+17.03.20,3,Air Padang,sex,perempuan,,3449,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+17.03.20,3,Air Padang,total,total,,6997,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1906-kecamatan-190605-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.06.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Damar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belitung Timur",
+  "publisherDomain": "1906",
+  "publisherWebsite": "https://belitungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belitung Timur (https://belitungtimurkab.bps.go.id), publikasi \"Kecamatan Damar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1906031",
+  "publicationNumber": "19060.26013",
+  "issn": "3063-9867",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://belitungtimurkab.bps.go.id/id/publication/2026/09/28/56366bee17b0c08d9ed94d19/kecamatan-damar-dalam-angka-2026.html",
+  "sourceFileSha256": "fdc96c21c9861463e4b28a6a5eb458f774771d4f6404adae1e6d7dd2e30ae84e",
+  "sourceFileBytes": 6880682,
+  "sourcePages": [18, 19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Belitung Timur.",
+  "csvPath": "datasets/bps-1906-kecamatan-190605-dalam-angka-2026.csv",
+  "csvSha256": "3635e37637679fdfbfdeff9511ae0ffdd2f52e291749d7c1a63073dd45c73079",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Damar, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Damar, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Burung Mandi\": unmatched ",
+    "table 3.1: row not stored: row \"Burung Mandi\": unmatched "
+  ]
+}

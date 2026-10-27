@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350709-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Turen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Turen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507120",
+  "publicationNumber": "35070.26018",
+  "issn": "2828-9811",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2026/09/28/bced3e1484e8cfb1dfe963ca/kecamatan-turen-dalam-angka-2026.html",
+  "sourceFileSha256": "d9eb48a31f0d68dd26650923cc7a6792172ef19ce6bf0cdcfc3c5651765641f7",
+  "sourceFileBytes": 6033109,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350709-dalam-angka-2026.csv",
+  "csvSha256": "57885d8dd3f7815b2e3d057b0a04a734d79b7f497f581ff2757830657ef49534",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Turen, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Turen, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"005 Gedog Kulon\": unmatched ",
+    "table 3.1: row not stored: row \"006 Gedog Wetan\": unmatched ",
+    "table 3.1: row not stored: row \"005 Gedog Kulon\": unmatched ",
+    "table 3.1: row not stored: row \"006 Gedog Wetan\": unmatched "
+  ]
+}

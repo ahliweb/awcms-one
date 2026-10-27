@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.12.2005,4,Semplak Barat,sex,laki_laki,,4508,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2005,4,Semplak Barat,sex,perempuan,,4435,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2005,4,Semplak Barat,total,total,,8943,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.1006,4,Atang Senjaya,sex,laki_laki,,1822,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.1006,4,Atang Senjaya,sex,perempuan,,1799,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.1006,4,Atang Senjaya,total,total,,3621,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.2002,4,Parakan Jaya,sex,laki_laki,,5863,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2002,4,Parakan Jaya,sex,perempuan,,5738,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2002,4,Parakan Jaya,total,total,,11601,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.2001,4,Bojong,sex,laki_laki,,8137,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2001,4,Bojong,sex,perempuan,,7696,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2001,4,Bojong,total,total,,15833,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.2003,4,Kemang,sex,laki_laki,,7890,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2003,4,Kemang,sex,perempuan,,7678,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2003,4,Kemang,total,total,,15568,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.2004,4,Pabuaran,sex,laki_laki,,7741,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2004,4,Pabuaran,sex,perempuan,,7368,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2004,4,Pabuaran,total,total,,15109,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.2009,4,Tegal,sex,laki_laki,,12041,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2009,4,Tegal,sex,perempuan,,11916,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2009,4,Tegal,total,total,,23957,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.2008,4,Pondok Udik,sex,laki_laki,,5114,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2008,4,Pondok Udik,sex,perempuan,,4982,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2008,4,Pondok Udik,total,total,,10096,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12.2007,4,Jampang,sex,laki_laki,,6858,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12.2007,4,Jampang,sex,perempuan,,6686,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12.2007,4,Jampang,total,total,,13544,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12,3,Kecamatan Kemang,sex,laki_laki,,59974,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.12,3,Kecamatan Kemang,sex,perempuan,,58298,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.12,3,Kecamatan Kemang,total,total,,118272,jiwa,2025,registration,total_population,3.1,36,,
+32.01.12,3,Kemang,age_group,0-4,laki_laki,4225,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.12,3,Kemang,age_group,0-4,perempuan,4011,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.12,3,Kemang,age_group,0-4,,8236,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.12,3,Kemang,age_group,5-9,laki_laki,5462,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.12,3,Kemang,age_group,5-9,perempuan,5156,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.12,3,Kemang,age_group,5-9,,10618,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.12,3,Kemang,age_group,10-14,laki_laki,5373,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.12,3,Kemang,age_group,10-14,perempuan,5080,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.12,3,Kemang,age_group,10-14,,10453,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.12,3,Kemang,age_group,15-19,laki_laki,4808,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.12,3,Kemang,age_group,15-19,perempuan,4635,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.12,3,Kemang,age_group,15-19,,9443,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.12,3,Kemang,age_group,20-24,laki_laki,4903,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.12,3,Kemang,age_group,20-24,perempuan,4712,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.12,3,Kemang,age_group,20-24,,9615,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.12,3,Kemang,age_group,25-29,laki_laki,4941,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.12,3,Kemang,age_group,25-29,perempuan,4876,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.12,3,Kemang,age_group,25-29,,9817,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.12,3,Kemang,age_group,30-34,laki_laki,4793,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.12,3,Kemang,age_group,30-34,perempuan,4634,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.12,3,Kemang,age_group,30-34,,9427,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.12,3,Kemang,age_group,35-39,laki_laki,4462,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.12,3,Kemang,age_group,35-39,perempuan,4370,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.12,3,Kemang,age_group,35-39,,8832,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.12,3,Kemang,age_group,40-44,laki_laki,4802,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.12,3,Kemang,age_group,40-44,perempuan,4636,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.12,3,Kemang,age_group,40-44,,9438,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.12,3,Kemang,age_group,45-49,laki_laki,4235,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.12,3,Kemang,age_group,45-49,perempuan,4243,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.12,3,Kemang,age_group,45-49,,8478,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.12,3,Kemang,age_group,50-54,laki_laki,3716,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.12,3,Kemang,age_group,50-54,perempuan,3636,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.12,3,Kemang,age_group,50-54,,7352,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.12,3,Kemang,age_group,55-59,laki_laki,2932,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.12,3,Kemang,age_group,55-59,perempuan,2825,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.12,3,Kemang,age_group,55-59,,5757,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.12,3,Kemang,age_group,60-64,laki_laki,2118,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.12,3,Kemang,age_group,60-64,perempuan,2128,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.12,3,Kemang,age_group,60-64,,4246,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.12,3,Kemang,age_group,65-69,laki_laki,1498,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.12,3,Kemang,age_group,65-69,perempuan,1525,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.12,3,Kemang,age_group,65-69,,3023,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.12,3,Kemang,age_group,70-74,laki_laki,904,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.12,3,Kemang,age_group,70-74,perempuan,866,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.12,3,Kemang,age_group,70-74,,1770,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.12,3,Kemang,age_group,75+,laki_laki,802,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.12,3,Kemang,age_group,75+,perempuan,965,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.12,3,Kemang,age_group,75+,,1767,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.12,3,Kecamatan Kemang,sex,laki_laki,,59974,jiwa,2025,registration,total_population,3.2,38,,Laki-Laki
+32.01.12,3,Kecamatan Kemang,sex,perempuan,,58298,jiwa,2025,registration,total_population,3.2,38,,Perempuan
+32.01.12,3,Kecamatan Kemang,total,total,,118272,jiwa,2025,registration,total_population,3.2,38,,

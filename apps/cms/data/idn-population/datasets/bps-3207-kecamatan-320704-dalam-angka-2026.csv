@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.04.2008,4,Mekarjadi,sex,laki_laki,,2990,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.04.2008,4,Mekarjadi,sex,perempuan,,2980,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.04.2008,4,Mekarjadi,total,total,,5970,jiwa,2025,registration,total_population,3.1,34,,
+32.07.04.2007,4,Sukajadi,sex,laki_laki,,3186,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.04.2007,4,Sukajadi,sex,perempuan,,3060,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.04.2007,4,Sukajadi,total,total,,6246,jiwa,2025,registration,total_population,3.1,34,,
+32.07.04.2003,4,Werasari,sex,laki_laki,,2060,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.04.2003,4,Werasari,sex,perempuan,,2028,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.04.2003,4,Werasari,total,total,,4088,jiwa,2025,registration,total_population,3.1,34,,
+32.07.04.2004,4,Mangkubumi,sex,laki_laki,,2129,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.04.2004,4,Mangkubumi,sex,perempuan,,2102,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.04.2004,4,Mangkubumi,total,total,,4231,jiwa,2025,registration,total_population,3.1,34,,
+32.07.04.2006,4,Bendasari,sex,laki_laki,,3366,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.04.2006,4,Bendasari,sex,perempuan,,3187,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.04.2006,4,Bendasari,total,total,,6553,jiwa,2025,registration,total_population,3.1,34,,
+32.07.04.2002,4,Sadananya,sex,laki_laki,,2298,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.04.2002,4,Sadananya,sex,perempuan,,2198,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.04.2002,4,Sadananya,total,total,,4496,jiwa,2025,registration,total_population,3.1,34,,
+32.07.04,3,Kecamatan Sadananya,sex,laki_laki,,21029,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.04,3,Kecamatan Sadananya,sex,perempuan,,20476,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.04,3,Kecamatan Sadananya,total,total,,41505,jiwa,2025,registration,total_population,3.1,34,,

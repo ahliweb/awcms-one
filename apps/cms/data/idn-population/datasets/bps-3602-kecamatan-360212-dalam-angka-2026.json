@@ -1,0 +1,63 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360212-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sajira Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Sajira Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3602130",
+  "publicationNumber": "36020.26031",
+  "issn": "3031-612X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/58f89e6c231b66185657af96/kecamatan-sajira-dalam-angka-2026.html",
+  "sourceFileSha256": "c5e2a7212bcb84c92a68ac484d9593f807ecad43546294e876d23f773fe84c6b",
+  "sourceFileBytes": 10018151,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360212-dalam-angka-2026.csv",
+  "csvSha256": "8a851cb27b8e71b74f3dded1195ef8b98051ec5ffa7a13c334791c2b0dd03789",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sajira, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sajira, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sukame\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Sajira Sajira District\": unmatched ",
+    "table 3.1: row not stored: row \"Maraya 7,13%\": unmatched ",
+    "table 3.1: row not stored: row \"Margaluyu 5,99%\": unmatched ",
+    "table 3.1: row not stored: row \"Sukamarga 5,51%\": unmatched ",
+    "table 3.1: row not stored: row \"Sindangsari 5,21%\": unmatched ",
+    "table 3.1: row not stored: row \"Sajiramekar 9,42%\": unmatched ",
+    "table 3.1: row not stored: row \"Sajira 6,48%\": unmatched ",
+    "table 3.1: row not stored: row \"Sukame 7,75%\": unmatched ",
+    "table 3.1: row not stored: row \"Calungbungur 7,09%\": unmatched ",
+    "table 3.1: row not stored: row \"Sukajaya 9,67%\": unmatched ",
+    "table 3.1: row not stored: row \"Paja 4,22%\": unmatched ",
+    "table 3.1: row not stored: row \"Mekarsari 5,90%\": unmatched ",
+    "table 3.1: row not stored: row \"Pajagan 3,11%\": unmatched ",
+    "table 3.1: row not stored: row \"Parungsari 8,41%\": unmatched ",
+    "table 3.1: row not stored: row \"Bungur Mekar 4,83%\": unmatched ",
+    "table 3.1: row not stored: row \"Ciuyah 9,28%\": unmatched ",
+    "table 3.1: row not stored: row \"Sajira District 100%\": unmatched ",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

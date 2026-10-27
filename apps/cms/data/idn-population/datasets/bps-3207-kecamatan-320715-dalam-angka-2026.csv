@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.15.2009,4,Karangpari,sex,laki_laki,,1403,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2009,4,Karangpari,sex,perempuan,,1463,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2009,4,Karangpari,total,total,,2866,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2008,4,Bojonggedang,sex,laki_laki,,1587,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2008,4,Bojonggedang,sex,perempuan,,1642,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2008,4,Bojonggedang,total,total,,3229,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2004,4,Cisontrol,sex,laki_laki,,3272,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2004,4,Cisontrol,sex,perempuan,,3369,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2004,4,Cisontrol,total,total,,6641,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2003,4,Cileungsir,sex,laki_laki,,3132,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2003,4,Cileungsir,sex,perempuan,,3144,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2003,4,Cileungsir,total,total,,6276,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2002,4,Kiarapayung,sex,laki_laki,,2983,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2002,4,Kiarapayung,sex,perempuan,,2944,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2002,4,Kiarapayung,total,total,,5927,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2006,4,Kawunglarang,sex,laki_laki,,3866,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2006,4,Kawunglarang,sex,perempuan,,3821,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2006,4,Kawunglarang,total,total,,7687,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2001,4,Rancah,sex,laki_laki,,4801,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2001,4,Rancah,sex,perempuan,,4750,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2001,4,Rancah,total,total,,9551,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2005,4,Situmandala,sex,laki_laki,,3306,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2005,4,Situmandala,sex,perempuan,,3307,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2005,4,Situmandala,total,total,,6613,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2007,4,Patakaharja,sex,laki_laki,,1113,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2007,4,Patakaharja,sex,perempuan,,1164,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2007,4,Patakaharja,total,total,,2277,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2010,4,Dadiharja,sex,laki_laki,,1132,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2010,4,Dadiharja,sex,perempuan,,1097,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2010,4,Dadiharja,total,total,,2229,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2011,4,Jangalaharja,sex,laki_laki,,744,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2011,4,Jangalaharja,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2011,4,Jangalaharja,total,total,,1496,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2012,4,Giriharja,sex,laki_laki,,852,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2012,4,Giriharja,sex,perempuan,,844,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2012,4,Giriharja,total,total,,1696,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15.2013,4,Wangunsari,sex,laki_laki,,1021,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15.2013,4,Wangunsari,sex,perempuan,,1011,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15.2013,4,Wangunsari,total,total,,2032,jiwa,2025,registration,total_population,3.1,34,,
+32.07.15,3,Kecamatan Rancah,sex,laki_laki,,29212,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.15,3,Kecamatan Rancah,sex,perempuan,,29308,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.15,3,Kecamatan Rancah,total,total,,58520,jiwa,2025,registration,total_population,3.1,34,,

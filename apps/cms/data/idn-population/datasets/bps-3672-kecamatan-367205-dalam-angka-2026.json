@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3672-kecamatan-367205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.72.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jombang Dalam Angka 2026",
+  "publisherName": "BPS Kota Cilegon",
+  "publisherDomain": "3672",
+  "publisherWebsite": "https://cilegonkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cilegon (https://cilegonkota.bps.go.id), publikasi \"Kecamatan Jombang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36720.26011",
+  "issn": "2598-8638",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilegonkota.bps.go.id/id/publication/2026/09/28/ab57754c1ae3b5247af15c3a/kecamatan-jombang-dalam-angka-2026.html",
+  "sourceFileSha256": "d146e3b01d84b133b662fa57a60951756f0faca56b509fbd031264f4aa902ac9",
+  "sourceFileBytes": 9082625,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cilegon.",
+  "csvPath": "datasets/bps-3672-kecamatan-367205-dalam-angka-2026.csv",
+  "csvSha256": "cd4a832a3a457389c6f0bd1bd3b05cd1b313483c815f73abd41de758eefb33ee",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Jombang, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jombang, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Jombang Jombang District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Jombang Jombang District\": unmatched "
+  ]
+}

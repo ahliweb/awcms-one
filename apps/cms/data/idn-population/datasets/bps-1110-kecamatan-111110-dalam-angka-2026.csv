@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.10.2028,4,Pulo U,sex,laki_laki,,248,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2028,4,Pulo U,sex,perempuan,,234,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2028,4,Pulo U,total,total,,482,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2027,4,Abeuk Jaloh,sex,laki_laki,,327,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2027,4,Abeuk Jaloh,sex,perempuan,,327,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2027,4,Abeuk Jaloh,total,total,,654,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2023,4,Pulo Seuna,sex,laki_laki,,173,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2023,4,Pulo Seuna,sex,perempuan,,188,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2023,4,Pulo Seuna,total,total,,361,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2025,4,Pulo Blang,sex,laki_laki,,273,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2025,4,Pulo Blang,sex,perempuan,,301,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2025,4,Pulo Blang,total,total,,574,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2022,4,Pulo Reudeup,sex,laki_laki,,376,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2022,4,Pulo Reudeup,sex,perempuan,,426,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2022,4,Pulo Reudeup,total,total,,802,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2010,4,Lamkuta,sex,laki_laki,,128,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2010,4,Lamkuta,sex,perempuan,,130,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2010,4,Lamkuta,total,total,,258,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2014,4,Ruseb Ara,sex,laki_laki,,395,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2014,4,Ruseb Ara,sex,perempuan,,403,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2014,4,Ruseb Ara,total,total,,798,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2012,4,Lueng,sex,laki_laki,,298,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2012,4,Lueng,sex,perempuan,,333,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2012,4,Lueng,total,total,,631,jiwa,2025,registration,total_population,1.2,,,
+11.11.10.2013,4,Kambuek,sex,laki_laki,,187,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.10.2013,4,Kambuek,sex,perempuan,,224,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.10.2013,4,Kambuek,total,total,,411,jiwa,2025,registration,total_population,1.2,,,

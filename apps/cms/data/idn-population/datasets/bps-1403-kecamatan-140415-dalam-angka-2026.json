@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-1403-kecamatan-140415-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.04.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pelangiran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Indragiri Hilir",
+  "publisherDomain": "1403",
+  "publisherWebsite": "https://inhilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Indragiri Hilir (https://inhilkab.bps.go.id), publikasi \"Kecamatan Pelangiran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1403121",
+  "publicationNumber": "14030.26023",
+  "issn": "2715-4130",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://inhilkab.bps.go.id/id/publication/2026/09/28/a964562a9a2b389563b7c4d2/kecamatan-pelangiran-dalam-angka-2026.html",
+  "sourceFileSha256": "21c75b852bd1ef6dfcd7b14c3c21c81680f84c757030e963b57b62001ef3bc9e",
+  "sourceFileBytes": 3338431,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik BPS Kabupaten Indragiri Hilir.",
+  "csvPath": "datasets/bps-1403-kecamatan-140415-dalam-angka-2026.csv",
+  "csvSha256": "c73f683d6b0e740c567867bdb9b367b508f5dcc98848dffc9bb5abc9bfd7aeac",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pelangiran, 2026",
+      "printedPages": [29, 30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tegal Rejo Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Intan Mulya Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Tegal Rejo Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Intan Mulya Jaya\": unmatched "
+  ]
+}

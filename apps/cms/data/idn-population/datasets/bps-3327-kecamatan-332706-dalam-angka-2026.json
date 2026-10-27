@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3327-kecamatan-332706-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.27.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bantarbolang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pemalang",
+  "publisherDomain": "3327",
+  "publisherWebsite": "https://pemalangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pemalang (https://pemalangkab.bps.go.id), publikasi \"Kecamatan Bantarbolang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3327060",
+  "publicationNumber": "33270.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pemalangkab.bps.go.id/id/publication/2026/09/28/31cb24f1736ded8f35198afd/kecamatan-bantarbolang-dalam-angka-2026.html",
+  "sourceFileSha256": "fc716abaa901f05d1af4b05617baa8091051c6f2b24c791e6d8d692d038f8bf7",
+  "sourceFileBytes": 20112882,
+  "sourcePages": [47, 48, 49],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pemalang.",
+  "csvPath": "datasets/bps-3327-kecamatan-332706-dalam-angka-2026.csv",
+  "csvSha256": "1b3296f0d3a8f2150c91c629c8e7f9a82a9b10c3c7e0ce229928234e5bc2dc71",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bantarbolang, 2025",
+      "printedPages": [47, 48],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bantarbolang, 2025",
+      "printedPages": [49],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Peguyangan\": unmatched ",
+    "table 3.1: row not stored: row \"Peguyangan\": unmatched "
+  ]
+}

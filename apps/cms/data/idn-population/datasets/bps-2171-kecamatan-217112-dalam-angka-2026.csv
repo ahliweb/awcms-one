@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.12.1001,4,Tanjung Uncang,sex,laki_laki,,27979,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.12.1001,4,Tanjung Uncang,sex,perempuan,,26027,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.12.1001,4,Tanjung Uncang,total,total,,54006,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.12.1004,4,Bukit Tempayan,sex,laki_laki,,9728,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.12.1004,4,Bukit Tempayan,sex,perempuan,,9521,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.12.1004,4,Bukit Tempayan,total,total,,19249,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.12.1002,4,Buliang,sex,laki_laki,,22839,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.12.1002,4,Buliang,sex,perempuan,,22412,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.12.1002,4,Buliang,total,total,,45251,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.12.1003,4,Kibing,sex,laki_laki,,18957,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.12.1003,4,Kibing,sex,perempuan,,18303,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.12.1003,4,Kibing,total,total,,37260,jiwa,2025,registration,total_population,unnumbered-p21,21,,

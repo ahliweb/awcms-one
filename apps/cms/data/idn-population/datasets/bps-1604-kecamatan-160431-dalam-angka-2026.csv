@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.31.2002,4,Tanjung Payang,sex,laki_laki,,3605,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2002,4,Tanjung Payang,sex,perempuan,,3522,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2002,4,Tanjung Payang,total,total,,7127,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2001,4,Banjar Negara,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2001,4,Banjar Negara,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2001,4,Banjar Negara,total,total,,699,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2003,4,Tanjung Tebat,sex,laki_laki,,522,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2003,4,Tanjung Tebat,sex,perempuan,,493,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2003,4,Tanjung Tebat,total,total,,1015,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2005,4,Karang Anyar,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2005,4,Karang Anyar,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2005,4,Karang Anyar,total,total,,827,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2004,4,Nantal,sex,laki_laki,,481,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2004,4,Nantal,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2004,4,Nantal,total,total,,924,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2006,4,Karang Baru,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2006,4,Karang Baru,sex,perempuan,,588,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2006,4,Karang Baru,total,total,,1165,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2010,4,Talang Sejemput,sex,laki_laki,,853,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2010,4,Talang Sejemput,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2010,4,Talang Sejemput,total,total,,1636,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2008,4,Muara Cawang,sex,laki_laki,,286,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2008,4,Muara Cawang,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2008,4,Muara Cawang,total,total,,562,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2009,4,Talang Sawah,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2009,4,Talang Sawah,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2009,4,Talang Sawah,total,total,,818,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31.2007,4,Kerung,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.31.2007,4,Kerung,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.31.2007,4,Kerung,total,total,,1019,jiwa,2025,registration,total_population,3.1,30,,
+16.04.31,3,Lahat Selatan,age_group,0-4,laki_laki,633,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.31,3,Lahat Selatan,age_group,0-4,perempuan,574,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.31,3,Lahat Selatan,age_group,0-4,,1207,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.31,3,Lahat Selatan,age_group,5-9,laki_laki,795,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.31,3,Lahat Selatan,age_group,5-9,perempuan,735,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.31,3,Lahat Selatan,age_group,5-9,,1530,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.31,3,Lahat Selatan,age_group,10-14,laki_laki,795,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.31,3,Lahat Selatan,age_group,10-14,perempuan,775,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.31,3,Lahat Selatan,age_group,10-14,,1570,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.31,3,Lahat Selatan,age_group,15-19,laki_laki,696,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.31,3,Lahat Selatan,age_group,15-19,perempuan,669,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.31,3,Lahat Selatan,age_group,15-19,,1365,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.31,3,Lahat Selatan,age_group,20-24,laki_laki,609,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.31,3,Lahat Selatan,age_group,20-24,perempuan,581,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.31,3,Lahat Selatan,age_group,20-24,,1190,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.31,3,Lahat Selatan,age_group,25-29,laki_laki,597,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.31,3,Lahat Selatan,age_group,25-29,perempuan,616,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.31,3,Lahat Selatan,age_group,25-29,,1213,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.31,3,Lahat Selatan,age_group,30-34,laki_laki,564,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.31,3,Lahat Selatan,age_group,30-34,perempuan,586,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.31,3,Lahat Selatan,age_group,30-34,,1150,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.31,3,Lahat Selatan,age_group,35-39,laki_laki,660,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.31,3,Lahat Selatan,age_group,35-39,perempuan,612,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.31,3,Lahat Selatan,age_group,35-39,,1272,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.31,3,Lahat Selatan,age_group,40-44,laki_laki,682,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.31,3,Lahat Selatan,age_group,40-44,perempuan,660,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.31,3,Lahat Selatan,age_group,40-44,,1342,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.31,3,Lahat Selatan,age_group,45-49,laki_laki,590,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.31,3,Lahat Selatan,age_group,45-49,perempuan,519,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.31,3,Lahat Selatan,age_group,45-49,,1109,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.31,3,Lahat Selatan,age_group,50-54,laki_laki,444,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.31,3,Lahat Selatan,age_group,50-54,perempuan,383,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.31,3,Lahat Selatan,age_group,50-54,,827,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.31,3,Lahat Selatan,age_group,55-59,laki_laki,317,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.31,3,Lahat Selatan,age_group,55-59,perempuan,322,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.31,3,Lahat Selatan,age_group,55-59,,639,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.31,3,Lahat Selatan,age_group,60-64,laki_laki,236,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.31,3,Lahat Selatan,age_group,60-64,perempuan,259,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.31,3,Lahat Selatan,age_group,60-64,,495,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.31,3,Lahat Selatan,age_group,65-69,laki_laki,190,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.31,3,Lahat Selatan,age_group,65-69,perempuan,195,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.31,3,Lahat Selatan,age_group,65-69,,385,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.31,3,Lahat Selatan,age_group,70-74,laki_laki,99,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.31,3,Lahat Selatan,age_group,70-74,perempuan,109,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.31,3,Lahat Selatan,age_group,70-74,,208,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.31,3,Lahat Selatan,age_group,75+,laki_laki,117,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.31,3,Lahat Selatan,age_group,75+,perempuan,173,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.31,3,Lahat Selatan,age_group,75+,,290,jiwa,2025,registration,total_population,3.2,32,,75 +

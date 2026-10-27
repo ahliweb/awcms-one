@@ -1,8 +1,8 @@
 /**
  * Booking-derived segment rules through the REAL route handlers (Issue #390,
- * ADR-0051) - the HTTP half of `commerce-segment-booking-rules.integration.test.ts`:
+ * ADR-0052) - the HTTP half of `commerce-segment-booking-rules.integration.test.ts`:
  * the extra feature and permission a rule that reads a booking fact needs, on
- * every route that defines, counts, lists or exports it (ADR-0051 D5).
+ * every route that defines, counts, lists or exports it (ADR-0052 D5).
  *
  * WORLD 2 (see `harness.ts`). Every principal other than the owner holds
  * EXACTLY the keys under test, so a 403 means "that key was missing":

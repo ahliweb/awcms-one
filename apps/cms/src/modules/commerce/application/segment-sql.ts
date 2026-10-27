@@ -23,7 +23,7 @@
  * customers once. The pass is O(paid orders) whatever the rule's shape, and is
  * skipped entirely when the rule reads no order fact.
  *
- * ## Booking facts (rule schema 2, Issue #390, ADR-0051)
+ * ## Booking facts (rule schema 2, Issue #390, ADR-0052)
  *
  * The five booking-derived fields read two more grouped scans, `b` (the
  * customer's booking links, orders and Booking reservation status / arrival) and
@@ -71,9 +71,9 @@ export type SegmentNeeds = {
   facts: boolean;
   accounts: boolean;
   loyalty: boolean;
-  /** Rule schema 2 (ADR-0051): the link -> order -> reservation scan. */
+  /** Rule schema 2 (ADR-0052): the link -> order -> reservation scan. */
   bookings: boolean;
-  /** Rule schema 2 (ADR-0051): the refund-decision scan. */
+  /** Rule schema 2 (ADR-0052): the refund-decision scan. */
   decisions: boolean;
 };
 

@@ -1,0 +1,130 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.79.01,3,Batu,total,total,,102698,jiwa,2025,survey_estimate,total_population,3.1.1,54,,
+35.79.03,3,Junrejo,total,total,,57991,jiwa,2025,survey_estimate,total_population,3.1.1,54,,
+35.79.02,3,Bumiaji,total,total,,64719,jiwa,2025,survey_estimate,total_population,3.1.1,54,,
+35.79,2,Kota Batu,total,total,,225408,jiwa,2025,survey_estimate,total_population,3.1.1,54,,
+35.79,2,Kota Batu,age_group,0-4,laki_laki,6833,jiwa,2025,survey_estimate,total_population,3.1.2,57,,0–4
+35.79,2,Kota Batu,age_group,0-4,perempuan,6606,jiwa,2025,survey_estimate,total_population,3.1.2,57,,0–4
+35.79,2,Kota Batu,age_group,0-4,,13439,jiwa,2025,survey_estimate,total_population,3.1.2,57,,0–4
+35.79,2,Kota Batu,age_group,5-9,laki_laki,8527,jiwa,2025,survey_estimate,total_population,3.1.2,57,,5–9
+35.79,2,Kota Batu,age_group,5-9,perempuan,8236,jiwa,2025,survey_estimate,total_population,3.1.2,57,,5–9
+35.79,2,Kota Batu,age_group,5-9,,16763,jiwa,2025,survey_estimate,total_population,3.1.2,57,,5–9
+35.79,2,Kota Batu,age_group,10-14,laki_laki,9114,jiwa,2025,survey_estimate,total_population,3.1.2,57,,10–14
+35.79,2,Kota Batu,age_group,10-14,perempuan,8446,jiwa,2025,survey_estimate,total_population,3.1.2,57,,10–14
+35.79,2,Kota Batu,age_group,10-14,,17560,jiwa,2025,survey_estimate,total_population,3.1.2,57,,10–14
+35.79,2,Kota Batu,age_group,15-19,laki_laki,8662,jiwa,2025,survey_estimate,total_population,3.1.2,57,,15–19
+35.79,2,Kota Batu,age_group,15-19,perempuan,8318,jiwa,2025,survey_estimate,total_population,3.1.2,57,,15–19
+35.79,2,Kota Batu,age_group,15-19,,16980,jiwa,2025,survey_estimate,total_population,3.1.2,57,,15–19
+35.79,2,Kota Batu,age_group,20-24,laki_laki,9076,jiwa,2025,survey_estimate,total_population,3.1.2,57,,20–24
+35.79,2,Kota Batu,age_group,20-24,perempuan,8650,jiwa,2025,survey_estimate,total_population,3.1.2,57,,20–24
+35.79,2,Kota Batu,age_group,20-24,,17726,jiwa,2025,survey_estimate,total_population,3.1.2,57,,20–24
+35.79,2,Kota Batu,age_group,25-29,laki_laki,8680,jiwa,2025,survey_estimate,total_population,3.1.2,57,,25–29
+35.79,2,Kota Batu,age_group,25-29,perempuan,8526,jiwa,2025,survey_estimate,total_population,3.1.2,57,,25–29
+35.79,2,Kota Batu,age_group,25-29,,17206,jiwa,2025,survey_estimate,total_population,3.1.2,57,,25–29
+35.79,2,Kota Batu,age_group,30-34,laki_laki,8261,jiwa,2025,survey_estimate,total_population,3.1.2,57,,30–34
+35.79,2,Kota Batu,age_group,30-34,perempuan,8358,jiwa,2025,survey_estimate,total_population,3.1.2,57,,30–34
+35.79,2,Kota Batu,age_group,30-34,,16619,jiwa,2025,survey_estimate,total_population,3.1.2,57,,30–34
+35.79,2,Kota Batu,age_group,35-39,laki_laki,8186,jiwa,2025,survey_estimate,total_population,3.1.2,57,,35–39
+35.79,2,Kota Batu,age_group,35-39,perempuan,8078,jiwa,2025,survey_estimate,total_population,3.1.2,57,,35–39
+35.79,2,Kota Batu,age_group,35-39,,16264,jiwa,2025,survey_estimate,total_population,3.1.2,57,,35–39
+35.79,2,Kota Batu,age_group,40-44,laki_laki,9187,jiwa,2025,survey_estimate,total_population,3.1.2,57,,40–44
+35.79,2,Kota Batu,age_group,40-44,perempuan,9075,jiwa,2025,survey_estimate,total_population,3.1.2,57,,40–44
+35.79,2,Kota Batu,age_group,40-44,,18262,jiwa,2025,survey_estimate,total_population,3.1.2,57,,40–44
+35.79,2,Kota Batu,age_group,45-49,laki_laki,7890,jiwa,2025,survey_estimate,total_population,3.1.2,57,,45–49
+35.79,2,Kota Batu,age_group,45-49,perempuan,7988,jiwa,2025,survey_estimate,total_population,3.1.2,57,,45–49
+35.79,2,Kota Batu,age_group,45-49,,15878,jiwa,2025,survey_estimate,total_population,3.1.2,57,,45–49
+35.79,2,Kota Batu,age_group,50-54,laki_laki,7519,jiwa,2025,survey_estimate,total_population,3.1.2,57,,50–54
+35.79,2,Kota Batu,age_group,50-54,perempuan,7659,jiwa,2025,survey_estimate,total_population,3.1.2,57,,50–54
+35.79,2,Kota Batu,age_group,50-54,,15178,jiwa,2025,survey_estimate,total_population,3.1.2,57,,50–54
+35.79,2,Kota Batu,age_group,55-59,laki_laki,6986,jiwa,2025,survey_estimate,total_population,3.1.2,57,,55–59
+35.79,2,Kota Batu,age_group,55-59,perempuan,7158,jiwa,2025,survey_estimate,total_population,3.1.2,57,,55–59
+35.79,2,Kota Batu,age_group,55-59,,14144,jiwa,2025,survey_estimate,total_population,3.1.2,57,,55–59
+35.79,2,Kota Batu,age_group,60-64,laki_laki,5285,jiwa,2025,survey_estimate,total_population,3.1.2,57,,60–64
+35.79,2,Kota Batu,age_group,60-64,perempuan,5708,jiwa,2025,survey_estimate,total_population,3.1.2,57,,60–64
+35.79,2,Kota Batu,age_group,60-64,,10993,jiwa,2025,survey_estimate,total_population,3.1.2,57,,60–64
+35.79,2,Kota Batu,age_group,65-69,laki_laki,4188,jiwa,2025,survey_estimate,total_population,3.1.2,57,,65–69
+35.79,2,Kota Batu,age_group,65-69,perempuan,3990,jiwa,2025,survey_estimate,total_population,3.1.2,57,,65–69
+35.79,2,Kota Batu,age_group,65-69,,8178,jiwa,2025,survey_estimate,total_population,3.1.2,57,,65–69
+35.79,2,Kota Batu,age_group,70-74,laki_laki,2538,jiwa,2025,survey_estimate,total_population,3.1.2,57,,70–74
+35.79,2,Kota Batu,age_group,70-74,perempuan,2464,jiwa,2025,survey_estimate,total_population,3.1.2,57,,70–74
+35.79,2,Kota Batu,age_group,70-74,,5002,jiwa,2025,survey_estimate,total_population,3.1.2,57,,70–74
+35.79,2,Kota Batu,age_group,75+,laki_laki,2254,jiwa,2025,survey_estimate,total_population,3.1.2,57,,75+
+35.79,2,Kota Batu,age_group,75+,perempuan,2962,jiwa,2025,survey_estimate,total_population,3.1.2,57,,75+
+35.79,2,Kota Batu,age_group,75+,,5216,jiwa,2025,survey_estimate,total_population,3.1.2,57,,75+
+35.79,2,Kota Batu,sex,laki_laki,,113186,jiwa,2025,survey_estimate,total_population,3.1.2,57,,Laki-Laki
+35.79,2,Kota Batu,sex,perempuan,,112222,jiwa,2025,survey_estimate,total_population,3.1.2,57,,Perempuan
+35.79,2,Kota Batu,total,total,,225408,jiwa,2025,survey_estimate,total_population,3.1.2,57,,
+35.79.01,3,Batu,religion,islam,,95444,jiwa,2024,registration,total_population,4.3.1,155,,Islam
+35.79.01,3,Batu,religion,kristen,,4926,jiwa,2024,registration,total_population,4.3.1,155,,Protestan
+35.79.01,3,Batu,religion,katolik,,1969,jiwa,2024,registration,total_population,4.3.1,155,,Katolik
+35.79.01,3,Batu,religion,hindu,,77,jiwa,2024,registration,total_population,4.3.1,155,,Hindu
+35.79.01,3,Batu,religion,buddha,,263,jiwa,2024,registration,total_population,4.3.1,155,,Budha
+35.79.01,3,Batu,religion,khonghucu,,9,jiwa,2024,registration,total_population,4.3.1,155,,Konghucu
+35.79.01,3,Batu,religion,kepercayaan,,10,jiwa,2024,registration,total_population,4.3.1,155,,Kepercayaan
+35.79.03,3,Junrejo,religion,islam,,55165,jiwa,2024,registration,total_population,4.3.1,155,,Islam
+35.79.03,3,Junrejo,religion,kristen,,2194,jiwa,2024,registration,total_population,4.3.1,155,,Protestan
+35.79.03,3,Junrejo,religion,katolik,,371,jiwa,2024,registration,total_population,4.3.1,155,,Katolik
+35.79.03,3,Junrejo,religion,hindu,,83,jiwa,2024,registration,total_population,4.3.1,155,,Hindu
+35.79.03,3,Junrejo,religion,buddha,,177,jiwa,2024,registration,total_population,4.3.1,155,,Budha
+35.79.03,3,Junrejo,religion,khonghucu,,0,jiwa,2024,registration,total_population,4.3.1,155,nil,Konghucu
+35.79.03,3,Junrejo,religion,kepercayaan,,1,jiwa,2024,registration,total_population,4.3.1,155,,Kepercayaan
+35.79.02,3,Bumiaji,religion,islam,,63400,jiwa,2024,registration,total_population,4.3.1,155,,Islam
+35.79.02,3,Bumiaji,religion,kristen,,830,jiwa,2024,registration,total_population,4.3.1,155,,Protestan
+35.79.02,3,Bumiaji,religion,katolik,,212,jiwa,2024,registration,total_population,4.3.1,155,,Katolik
+35.79.02,3,Bumiaji,religion,hindu,,259,jiwa,2024,registration,total_population,4.3.1,155,,Hindu
+35.79.02,3,Bumiaji,religion,buddha,,10,jiwa,2024,registration,total_population,4.3.1,155,,Budha
+35.79.02,3,Bumiaji,religion,khonghucu,,1,jiwa,2024,registration,total_population,4.3.1,155,,Konghucu
+35.79.02,3,Bumiaji,religion,kepercayaan,,7,jiwa,2024,registration,total_population,4.3.1,155,,Kepercayaan
+35.79,2,Kota Batu,religion,islam,,214009,jiwa,2024,registration,total_population,4.3.1,155,,Islam
+35.79,2,Kota Batu,religion,kristen,,7950,jiwa,2024,registration,total_population,4.3.1,155,,Protestan
+35.79,2,Kota Batu,religion,katolik,,2552,jiwa,2024,registration,total_population,4.3.1,155,,Katolik
+35.79,2,Kota Batu,religion,hindu,,419,jiwa,2024,registration,total_population,4.3.1,155,,Hindu
+35.79,2,Kota Batu,religion,buddha,,450,jiwa,2024,registration,total_population,4.3.1,155,,Budha
+35.79,2,Kota Batu,religion,khonghucu,,10,jiwa,2024,registration,total_population,4.3.1,155,,Konghucu
+35.79,2,Kota Batu,religion,kepercayaan,,18,jiwa,2024,registration,total_population,4.3.1,155,,Kepercayaan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/padi_padian,,74789,rupiah,2024,survey_estimate,per_capita,10.1,360,,Padi-padian
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/padi_padian,,81962,rupiah,2025,survey_estimate,per_capita,10.1,360,,Padi-padian
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/umbi_umbian,,7767,rupiah,2024,survey_estimate,per_capita,10.1,360,,Umbi-umbian
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/umbi_umbian,,10216,rupiah,2025,survey_estimate,per_capita,10.1,360,,Umbi-umbian
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,32148,rupiah,2024,survey_estimate,per_capita,10.1,360,,Ikan/udang/cumi/kerang
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,35668,rupiah,2025,survey_estimate,per_capita,10.1,360,,Ikan/udang/cumi/kerang
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/daging,,42022,rupiah,2024,survey_estimate,per_capita,10.1,360,,Daging
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/daging,,41796,rupiah,2025,survey_estimate,per_capita,10.1,360,,Daging
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/telur_dan_susu,,37947,rupiah,2024,survey_estimate,per_capita,10.1,360,,Telur dan susu
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/telur_dan_susu,,42870,rupiah,2025,survey_estimate,per_capita,10.1,360,,Telur dan susu
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/sayur_sayuran,,54714,rupiah,2024,survey_estimate,per_capita,10.1,360,,Sayur-sayuran
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/sayur_sayuran,,59521,rupiah,2025,survey_estimate,per_capita,10.1,360,,Sayur-sayuran
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/kacang_kacangan,,2223,rupiah,2024,survey_estimate,per_capita,10.1,360,,Kacang-kacangan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/kacang_kacangan,,21006,rupiah,2025,survey_estimate,per_capita,10.1,360,,Kacang-kacangan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/buah_buahan,,51354,rupiah,2024,survey_estimate,per_capita,10.1,360,,Buah-buahan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/buah_buahan,,43119,rupiah,2025,survey_estimate,per_capita,10.1,360,,Buah-buahan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16921,rupiah,2024,survey_estimate,per_capita,10.1,360,,Minyak dan kelapa
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17858,rupiah,2025,survey_estimate,per_capita,10.1,360,,Minyak dan kelapa
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/bahan_minuman,,21382,rupiah,2024,survey_estimate,per_capita,10.1,360,,Bahan minuman
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/bahan_minuman,,24395,rupiah,2025,survey_estimate,per_capita,10.1,360,,Bahan minuman
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/bumbu_bumbuan,,16255,rupiah,2024,survey_estimate,per_capita,10.1,360,,Bumbu-bumbuan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/bumbu_bumbuan,,17276,rupiah,2025,survey_estimate,per_capita,10.1,360,,Bumbu-bumbuan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/konsumsi_lainnya,,1156,rupiah,2024,survey_estimate,per_capita,10.1,360,,Konsumsi lainnya
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/konsumsi_lainnya,,13700,rupiah,2025,survey_estimate,per_capita,10.1,360,,Konsumsi lainnya
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,280637,rupiah,2024,survey_estimate,per_capita,10.1,360,,Makanan dan minuman jadi
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,271114,rupiah,2025,survey_estimate,per_capita,10.1,360,,Makanan dan minuman jadi
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/rokok,,97958,rupiah,2024,survey_estimate,per_capita,10.1,360,,Rokok
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/rokok,,100756,rupiah,2025,survey_estimate,per_capita,10.1,360,,Rokok
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/jumlah_makanan,,767683,rupiah,2024,survey_estimate,per_capita,10.1,360,,Jumlah makanan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/jumlah_makanan,,781257,rupiah,2025,survey_estimate,per_capita,10.1,360,,Jumlah makanan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,427174,rupiah,2024,survey_estimate,per_capita,10.1,360,,Perumahan dan fasilitas rumah tangga
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,463117,rupiah,2025,survey_estimate,per_capita,10.1,360,,Perumahan dan fasilitas rumah tangga
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,253957,rupiah,2024,survey_estimate,per_capita,10.1,360,,Aneka barang dan jasa
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,329799,rupiah,2025,survey_estimate,per_capita,10.1,360,,Aneka barang dan jasa
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,48694,rupiah,2024,survey_estimate,per_capita,10.1,360,,Pakaian. alas kaki. dan tutup kepala
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,51548,rupiah,2025,survey_estimate,per_capita,10.1,360,,Pakaian. alas kaki. dan tutup kepala
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/barang_tahan_lama,,9985,rupiah,2024,survey_estimate,per_capita,10.1,360,,Barang tahan lama
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/barang_tahan_lama,,98126,rupiah,2025,survey_estimate,per_capita,10.1,360,,Barang tahan lama
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,78605,rupiah,2024,survey_estimate,per_capita,10.1,360,,Pajak. pungutan. dan asuransi
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,80247,rupiah,2025,survey_estimate,per_capita,10.1,360,,Pajak. pungutan. dan asuransi
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,59854,rupiah,2024,survey_estimate,per_capita,10.1,360,,Keperluan pesta dan upacara/kenduri
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,32096,rupiah,2025,survey_estimate,per_capita,10.1,360,,Keperluan pesta dan upacara/kenduri
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,968134,rupiah,2024,survey_estimate,per_capita,10.1,360,,Jumlah bukan makanan
+35.79,2,Kota Batu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1054934,rupiah,2025,survey_estimate,per_capita,10.1,360,,Jumlah bukan makanan
+35.79,2,Kota Batu,expenditure,total,,1735816,rupiah,2024,survey_estimate,per_capita,10.1,360,,
+35.79,2,Kota Batu,expenditure,total,,1836192,rupiah,2025,survey_estimate,per_capita,10.1,360,,

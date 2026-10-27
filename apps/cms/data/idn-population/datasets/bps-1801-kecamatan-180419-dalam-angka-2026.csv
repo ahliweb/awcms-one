@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.19.2004,4,Gunung Terang,sex,laki_laki,,990,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2004,4,Gunung Terang,sex,perempuan,,920,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2004,4,Gunung Terang,total,total,,1910,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2010,4,Manggarai,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2010,4,Manggarai,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2010,4,Manggarai,total,total,,710,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2008,4,Rigis Jaya,sex,laki_laki,,397,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2008,4,Rigis Jaya,sex,perempuan,,331,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2008,4,Rigis Jaya,total,total,,728,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2002,4,Semarang Jaya,sex,laki_laki,,1256,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2002,4,Semarang Jaya,sex,perempuan,,1184,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2002,4,Semarang Jaya,total,total,,2440,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2001,4,Sidodadi,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2001,4,Sidodadi,sex,perempuan,,403,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2001,4,Sidodadi,total,total,,846,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2007,4,Sinar Jaya,sex,laki_laki,,657,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2007,4,Sinar Jaya,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2007,4,Sinar Jaya,total,total,,1288,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2006,4,Sri Menanti,sex,laki_laki,,659,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2006,4,Sri Menanti,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2006,4,Sri Menanti,total,total,,1244,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2009,4,Suka Damai,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2009,4,Suka Damai,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2009,4,Suka Damai,total,total,,885,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2005,4,Suka Jadi,sex,laki_laki,,428,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2005,4,Suka Jadi,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2005,4,Suka Jadi,total,total,,822,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19.2003,4,Sumber Alam,sex,laki_laki,,904,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19.2003,4,Sumber Alam,sex,perempuan,,839,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19.2003,4,Sumber Alam,total,total,,1743,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19,3,Kecamatan Air Hitam,sex,laki_laki,,6607,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.19,3,Kecamatan Air Hitam,sex,perempuan,,6009,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.19,3,Kecamatan Air Hitam,total,total,,12616,jiwa,2025,registration,total_population,3.1,31,,
+18.04.19,3,Air Hitam,age_group,0-4,laki_laki,358,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.19,3,Air Hitam,age_group,0-4,perempuan,342,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.19,3,Air Hitam,age_group,0-4,,700,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.19,3,Air Hitam,age_group,5-9,laki_laki,576,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.19,3,Air Hitam,age_group,5-9,perempuan,497,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.19,3,Air Hitam,age_group,5-9,,1073,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.19,3,Air Hitam,age_group,10-14,laki_laki,516,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.19,3,Air Hitam,age_group,10-14,perempuan,525,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.19,3,Air Hitam,age_group,10-14,,1041,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.19,3,Air Hitam,age_group,15-19,laki_laki,505,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.19,3,Air Hitam,age_group,15-19,perempuan,473,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.19,3,Air Hitam,age_group,15-19,,978,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.19,3,Air Hitam,age_group,20-24,laki_laki,446,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.19,3,Air Hitam,age_group,20-24,perempuan,387,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.19,3,Air Hitam,age_group,20-24,,833,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.19,3,Air Hitam,age_group,25-29,laki_laki,516,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.19,3,Air Hitam,age_group,25-29,perempuan,514,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.19,3,Air Hitam,age_group,25-29,,1030,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.19,3,Air Hitam,age_group,30-34,laki_laki,531,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.19,3,Air Hitam,age_group,30-34,perempuan,498,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.19,3,Air Hitam,age_group,30-34,,1029,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.19,3,Air Hitam,age_group,35-39,laki_laki,556,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.19,3,Air Hitam,age_group,35-39,perempuan,523,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.19,3,Air Hitam,age_group,35-39,,1079,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.19,3,Air Hitam,age_group,40-44,laki_laki,559,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.19,3,Air Hitam,age_group,40-44,perempuan,474,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.19,3,Air Hitam,age_group,40-44,,1033,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.19,3,Air Hitam,age_group,45-49,laki_laki,462,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.19,3,Air Hitam,age_group,45-49,perempuan,412,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.19,3,Air Hitam,age_group,45-49,,874,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.19,3,Air Hitam,age_group,50-54,laki_laki,397,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.19,3,Air Hitam,age_group,50-54,perempuan,391,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.19,3,Air Hitam,age_group,50-54,,788,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.19,3,Air Hitam,age_group,55-59,laki_laki,358,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.19,3,Air Hitam,age_group,55-59,perempuan,316,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.19,3,Air Hitam,age_group,55-59,,674,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.19,3,Air Hitam,age_group,60-64,laki_laki,297,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.19,3,Air Hitam,age_group,60-64,perempuan,266,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.19,3,Air Hitam,age_group,60-64,,563,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.19,3,Air Hitam,age_group,65-69,laki_laki,256,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.19,3,Air Hitam,age_group,65-69,perempuan,153,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.19,3,Air Hitam,age_group,65-69,,409,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.19,3,Air Hitam,age_group,70-74,laki_laki,138,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.19,3,Air Hitam,age_group,70-74,perempuan,76,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.19,3,Air Hitam,age_group,70-74,,214,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.19,3,Air Hitam,age_group,75+,laki_laki,136,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.19,3,Air Hitam,age_group,75+,perempuan,162,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.19,3,Air Hitam,age_group,75+,,298,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.19,3,Kecamatan Air Hitam,sex,laki_laki,,6607,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+18.04.19,3,Kecamatan Air Hitam,sex,perempuan,,6009,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+18.04.19,3,Kecamatan Air Hitam,total,total,,12616,jiwa,2025,registration,total_population,3.2,33,,

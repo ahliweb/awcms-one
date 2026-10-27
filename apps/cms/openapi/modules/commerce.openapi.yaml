@@ -13854,7 +13854,7 @@ paths:
         `details` name the offending path (`rules.and[1].field`). A key outside
         `name`, `description`, `rules` - a `tenantId`, for instance - is refused
         by name, never honoured. The stored rules are the canonical form. A rule
-        that reads a booking-derived field (rule schema 2, Issue #390, ADR-0051)
+        that reads a booking-derived field (rule schema 2, Issue #390, ADR-0052)
         additionally needs the tenant's `booking` feature (`409
         FEATURE_DISABLED`) and `commerce.booking_reservation_links.read`
         (`403`); the version is stored under rule schema 2.
@@ -13908,7 +13908,7 @@ paths:
         also holds `commerce.segment_members.read` and `commerce.customers.read`;
         otherwise it is null and no customer permission is needed. The walk-in
         placeholder, blocked and erased customers are never counted. A rule that
-        reads a booking-derived field (rule schema 2, Issue #390, ADR-0051)
+        reads a booking-derived field (rule schema 2, Issue #390, ADR-0052)
         additionally needs `commerce.booking_reservation_links.read` (`403`), and
         - for an unsaved `rules` body, which is a definition - the tenant's
         `booking` feature (`409 FEATURE_DISABLED`).
@@ -14001,7 +14001,7 @@ paths:
       operationId: updateCommerceSegment
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`. Issue #390 (ADR-0051): `rules` that read a booking-derived field additionally need the `booking` feature (`409 FEATURE_DISABLED`) and `commerce.booking_reservation_links.read` (`403`); a rename needs neither. The new version is stored under rule schema 2."
+      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`. Issue #390 (ADR-0052): `rules` that read a booking-derived field additionally need the `booking` feature (`409 FEATURE_DISABLED`) and `commerce.booking_reservation_links.read` (`403`); a rename needs neither. The new version is stored under rule schema 2."
       parameters:
         - name: id
           in: path
@@ -22568,7 +22568,7 @@ components:
       description: >-
         A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7). Rule
         schema 1 is the nine commerce fields; rule schema 2 (Issue #390,
-        ADR-0051) adds five booking-derived ones. A node has exactly one of `and` / `or` (arrays of
+        ADR-0052) adds five booking-derived ones. A node has exactly one of `and` / `or` (arrays of
         1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op,
         value?, windowDays? }`. Fields and their operators: `level` (eq, in;
         1..4), `has_account` / `has_email` (eq; boolean), `customer_since`
@@ -22681,7 +22681,7 @@ components:
         ruleSchemaVersion:
           type: integer
           minimum: 1
-          description: "Issue #390 (ADR-0051, C-29). The rule schema the version was written under (1 = the nine commerce fields, 2 = adds the booking-derived fields) and is always read under: a schema-1 version never gains a schema-2 field. Versions saved before schema 2 existed are 1; new versions are 2."
+          description: "Issue #390 (ADR-0052, C-29). The rule schema the version was written under (1 = the nine commerce fields, 2 = adds the booking-derived fields) and is always read under: a schema-1 version never gains a schema-2 field. Versions saved before schema 2 existed are 1; new versions are 2."
         rules:
           $ref: "#/components/schemas/CommerceSegmentRules"
         nodeCount:

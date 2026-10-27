@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.03.04.2004,4,Semoyo,sex,perempuan,,1429,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2004,4,Semoyo,total,total,,2862,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2003,4,Pengkok,sex,perempuan,,1668,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2003,4,Pengkok,total,total,,3280,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2002,4,Beji,sex,perempuan,,1391,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2002,4,Beji,total,total,,2765,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2001,4,Bunder,sex,perempuan,,1808,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2001,4,Bunder,total,total,,3592,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2010,4,Nglegi,sex,perempuan,,1666,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2010,4,Nglegi,total,total,,3262,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2009,4,Putat,sex,perempuan,,2259,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2009,4,Putat,total,total,,4460,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2005,4,Salam,sex,perempuan,,1686,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2005,4,Salam,total,total,,3304,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2006,4,Patuk,sex,perempuan,,1512,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2006,4,Patuk,total,total,,3019,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2007,4,Ngoro Oro,sex,perempuan,,1902,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2007,4,Ngoro Oro,total,total,,3669,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2008,4,Nglanggeran,sex,perempuan,,1372,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2008,4,Nglanggeran,total,total,,2723,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04.2011,4,Terbah,sex,perempuan,,1350,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04.2011,4,Terbah,total,total,,2672,jiwa,2025,registration,total_population,3.1,23,,
+34.03.04,3,Patuk,sex,perempuan,,18043,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.04,3,Patuk,total,total,,35608,jiwa,2025,registration,total_population,3.1,23,,

@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.18.2002,4,Kiajaran Kulon,sex,laki_laki,,3120,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2002,4,Kiajaran Kulon,sex,perempuan,,3004,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2002,4,Kiajaran Kulon,total,total,,6124,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2003,4,Lanjan,sex,laki_laki,,848,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2003,4,Lanjan,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2003,4,Lanjan,total,total,,1686,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2004,4,Langut,sex,laki_laki,,3235,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2004,4,Langut,sex,perempuan,,3145,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2004,4,Langut,total,total,,6380,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2005,4,Larangan,sex,laki_laki,,2917,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2005,4,Larangan,sex,perempuan,,2893,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2005,4,Larangan,total,total,,5810,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2006,4,Waru,sex,laki_laki,,1689,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2006,4,Waru,sex,perempuan,,1634,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2006,4,Waru,total,total,,3323,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2007,4,Legok,sex,laki_laki,,2615,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2007,4,Legok,sex,perempuan,,2620,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2007,4,Legok,total,total,,5235,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2008,4,Bojongslawi,sex,laki_laki,,1801,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2008,4,Bojongslawi,sex,perempuan,,1789,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2008,4,Bojongslawi,total,total,,3590,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2009,4,Lohbener,sex,laki_laki,,3620,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2009,4,Lohbener,sex,perempuan,,3619,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2009,4,Lohbener,total,total,,7239,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2010,4,Pamayahan,sex,laki_laki,,1946,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2010,4,Pamayahan,sex,perempuan,,1875,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2010,4,Pamayahan,total,total,,3821,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2011,4,Sindangkerta,sex,laki_laki,,1545,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2011,4,Sindangkerta,sex,perempuan,,1460,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2011,4,Sindangkerta,total,total,,3005,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18.2012,4,Rambatan Kulon,sex,laki_laki,,5835,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18.2012,4,Rambatan Kulon,sex,perempuan,,5612,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18.2012,4,Rambatan Kulon,total,total,,11447,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18,3,Kecamatan Lohbener,sex,laki_laki,,31373,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.18,3,Kecamatan Lohbener,sex,perempuan,,30724,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.18,3,Kecamatan Lohbener,total,total,,62097,jiwa,2025,registration,total_population,3.1,30,,
+32.12.18,3,Lohbener,age_group,0-4,laki_laki,2365,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.18,3,Lohbener,age_group,0-4,perempuan,2241,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.18,3,Lohbener,age_group,0-4,,4606,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.18,3,Lohbener,age_group,5-9,laki_laki,2113,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.18,3,Lohbener,age_group,5-9,perempuan,2017,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.18,3,Lohbener,age_group,5-9,,4130,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.18,3,Lohbener,age_group,10-14,laki_laki,2186,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.18,3,Lohbener,age_group,10-14,perempuan,2056,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.18,3,Lohbener,age_group,10-14,,4242,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.18,3,Lohbener,age_group,15-19,laki_laki,2313,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.18,3,Lohbener,age_group,15-19,perempuan,2169,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.18,3,Lohbener,age_group,15-19,,4482,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.18,3,Lohbener,age_group,20-24,laki_laki,2410,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.18,3,Lohbener,age_group,20-24,perempuan,2261,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.18,3,Lohbener,age_group,20-24,,4671,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.18,3,Lohbener,age_group,25-29,laki_laki,2438,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.18,3,Lohbener,age_group,25-29,perempuan,2252,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.18,3,Lohbener,age_group,25-29,,4690,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.18,3,Lohbener,age_group,30-34,laki_laki,2447,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.18,3,Lohbener,age_group,30-34,perempuan,2182,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.18,3,Lohbener,age_group,30-34,,4629,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.18,3,Lohbener,age_group,35-39,laki_laki,2352,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.18,3,Lohbener,age_group,35-39,perempuan,2238,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.18,3,Lohbener,age_group,35-39,,4590,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.18,3,Lohbener,age_group,40-44,laki_laki,2346,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.18,3,Lohbener,age_group,40-44,perempuan,2574,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.18,3,Lohbener,age_group,40-44,,4920,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.18,3,Lohbener,age_group,45-49,laki_laki,2167,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.18,3,Lohbener,age_group,45-49,perempuan,2369,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.18,3,Lohbener,age_group,45-49,,4536,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.18,3,Lohbener,age_group,50-54,laki_laki,2152,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.18,3,Lohbener,age_group,50-54,perempuan,2191,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.18,3,Lohbener,age_group,50-54,,4343,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.18,3,Lohbener,age_group,55-59,laki_laki,1655,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.18,3,Lohbener,age_group,55-59,perempuan,1691,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.18,3,Lohbener,age_group,55-59,,3346,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.18,3,Lohbener,age_group,60-64,laki_laki,1342,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.18,3,Lohbener,age_group,60-64,perempuan,1385,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.18,3,Lohbener,age_group,60-64,,2727,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.18,3,Lohbener,age_group,65-69,laki_laki,1008,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.18,3,Lohbener,age_group,65-69,perempuan,1049,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.18,3,Lohbener,age_group,65-69,,2057,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.18,3,Lohbener,age_group,70-74,laki_laki,631,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.18,3,Lohbener,age_group,70-74,perempuan,641,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.18,3,Lohbener,age_group,70-74,,1272,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.18,3,Lohbener,age_group,75+,laki_laki,323,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.18,3,Lohbener,age_group,75+,perempuan,394,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.18,3,Lohbener,age_group,75+,,717,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.18,3,Kecamatan Lohbener,sex,laki_laki,,30248,jiwa,2025,projection,total_population,3.2,32,,Laki-Laki
+32.12.18,3,Kecamatan Lohbener,sex,perempuan,,29710,jiwa,2025,projection,total_population,3.2,32,,Perempuan
+32.12.18,3,Kecamatan Lohbener,total,total,,59958,jiwa,2025,projection,total_population,3.2,32,,

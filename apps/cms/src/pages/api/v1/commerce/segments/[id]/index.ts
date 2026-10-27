@@ -9,7 +9,7 @@
  * `(segment, version)` stays explainable. An unknown id and another tenant's
  * id are the same `404`. All three are gated on the tenant's `segments` feature.
  * A new version whose rules read a booking-derived field (rule schema 2,
- * ADR-0051) also needs the `booking` feature and
+ * ADR-0052) also needs the `booking` feature and
  * `commerce.booking_reservation_links.read`.
  */
 import { fail, ok } from "../../../../../../modules/_shared/api-response";

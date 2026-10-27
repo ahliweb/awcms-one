@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.06.2001,4,Berindat,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.06.2001,4,Berindat,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.06.2001,4,Berindat,total,total,,696,jiwa,2025,registration,total_population,3.1,19,,
+21.04.06.2005,4,Persing,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.06.2005,4,Persing,sex,perempuan,,257,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.06.2005,4,Persing,total,total,,505,jiwa,2025,registration,total_population,3.1,19,,
+21.04.06.2002,4,Sedamai,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.06.2002,4,Sedamai,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.06.2002,4,Sedamai,total,total,,946,jiwa,2025,registration,total_population,3.1,19,,
+21.04.06.2003,4,Lanjut,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.06.2003,4,Lanjut,sex,perempuan,,563,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.06.2003,4,Lanjut,total,total,,1178,jiwa,2025,registration,total_population,3.1,19,,
+21.04.06.2004,4,Kote,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.06.2004,4,Kote,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.06.2004,4,Kote,total,total,,1044,jiwa,2025,registration,total_population,3.1,19,,
+21.04.06.2006,4,Pelakak,sex,laki_laki,,268,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.06.2006,4,Pelakak,sex,perempuan,,237,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.06.2006,4,Pelakak,total,total,,505,jiwa,2025,registration,total_population,3.1,19,,
+21.04.06,3,Kecamatan Singkep Pesisir,sex,laki_laki,,2510,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.06,3,Kecamatan Singkep Pesisir,sex,perempuan,,2364,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.06,3,Kecamatan Singkep Pesisir,total,total,,4874,jiwa,2025,registration,total_population,3.1,19,,

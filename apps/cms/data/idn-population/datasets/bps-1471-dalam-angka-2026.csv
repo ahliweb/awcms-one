@@ -1,0 +1,210 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.71.11,3,Payung Sekaki,total,total,,103264,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.13,3,Tuahmadani,total,total,,177670,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.08,3,Binawidya,total,total,,86915,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.07,3,Bukit Raya,total,total,,113339,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.09,3,Marpoyan Damai,total,total,,158893,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.10,3,Tenayan Raya,total,total,,122917,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.14,3,Kulim,total,total,,65503,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.04,3,Limapuluh,total,total,,46017,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.03,3,Sail,total,total,,26454,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.02,3,Pekanbaru Kota,total,total,,27176,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.01,3,Sukajadi,total,total,,48679,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.05,3,Senapelan,total,total,,38559,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.12,3,Rumbai,total,total,,106548,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.06,3,Rumbai Barat,total,total,,32820,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71.15,3,Rumbai Timur,total,total,,38236,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71,2,Kota Pekanbaru,total,total,,1192990,jiwa,2025,projection,total_population,3.1.1,72,,
+14.71,2,Kota Pekanbaru,age_group,0-4,laki_laki,43547,jiwa,2025,registration,total_population,3.1.2,75,,0–4
+14.71,2,Kota Pekanbaru,age_group,0-4,perempuan,40388,jiwa,2025,registration,total_population,3.1.2,75,,0–4
+14.71,2,Kota Pekanbaru,age_group,0-4,,83935,jiwa,2025,registration,total_population,3.1.2,75,,0–4
+14.71,2,Kota Pekanbaru,age_group,5-9,laki_laki,56463,jiwa,2025,registration,total_population,3.1.2,75,,5–9
+14.71,2,Kota Pekanbaru,age_group,5-9,perempuan,52791,jiwa,2025,registration,total_population,3.1.2,75,,5–9
+14.71,2,Kota Pekanbaru,age_group,5-9,,109254,jiwa,2025,registration,total_population,3.1.2,75,,5–9
+14.71,2,Kota Pekanbaru,age_group,10-14,laki_laki,57548,jiwa,2025,registration,total_population,3.1.2,75,,10–14
+14.71,2,Kota Pekanbaru,age_group,10-14,perempuan,53528,jiwa,2025,registration,total_population,3.1.2,75,,10–14
+14.71,2,Kota Pekanbaru,age_group,10-14,,111076,jiwa,2025,registration,total_population,3.1.2,75,,10–14
+14.71,2,Kota Pekanbaru,age_group,15-19,laki_laki,52422,jiwa,2025,registration,total_population,3.1.2,75,,15–19
+14.71,2,Kota Pekanbaru,age_group,15-19,perempuan,48937,jiwa,2025,registration,total_population,3.1.2,75,,15–19
+14.71,2,Kota Pekanbaru,age_group,15-19,,101359,jiwa,2025,registration,total_population,3.1.2,75,,15–19
+14.71,2,Kota Pekanbaru,age_group,20-24,laki_laki,49785,jiwa,2025,registration,total_population,3.1.2,75,,20–24
+14.71,2,Kota Pekanbaru,age_group,20-24,perempuan,47628,jiwa,2025,registration,total_population,3.1.2,75,,20–24
+14.71,2,Kota Pekanbaru,age_group,20-24,,97413,jiwa,2025,registration,total_population,3.1.2,75,,20–24
+14.71,2,Kota Pekanbaru,age_group,25-29,laki_laki,49016,jiwa,2025,registration,total_population,3.1.2,75,,25–29
+14.71,2,Kota Pekanbaru,age_group,25-29,perempuan,49855,jiwa,2025,registration,total_population,3.1.2,75,,25–29
+14.71,2,Kota Pekanbaru,age_group,25-29,,98871,jiwa,2025,registration,total_population,3.1.2,75,,25–29
+14.71,2,Kota Pekanbaru,age_group,30-34,laki_laki,48538,jiwa,2025,registration,total_population,3.1.2,75,,30–34
+14.71,2,Kota Pekanbaru,age_group,30-34,perempuan,49940,jiwa,2025,registration,total_population,3.1.2,75,,30–34
+14.71,2,Kota Pekanbaru,age_group,30-34,,98478,jiwa,2025,registration,total_population,3.1.2,75,,30–34
+14.71,2,Kota Pekanbaru,age_group,35-39,laki_laki,46052,jiwa,2025,registration,total_population,3.1.2,75,,35–39
+14.71,2,Kota Pekanbaru,age_group,35-39,perempuan,48026,jiwa,2025,registration,total_population,3.1.2,75,,35–39
+14.71,2,Kota Pekanbaru,age_group,35-39,,94078,jiwa,2025,registration,total_population,3.1.2,75,,35–39
+14.71,2,Kota Pekanbaru,age_group,40-44,laki_laki,45834,jiwa,2025,registration,total_population,3.1.2,75,,40–44
+14.71,2,Kota Pekanbaru,age_group,40-44,perempuan,47537,jiwa,2025,registration,total_population,3.1.2,75,,40–44
+14.71,2,Kota Pekanbaru,age_group,40-44,,93371,jiwa,2025,registration,total_population,3.1.2,75,,40–44
+14.71,2,Kota Pekanbaru,age_group,45-49,laki_laki,41371,jiwa,2025,registration,total_population,3.1.2,75,,45–49
+14.71,2,Kota Pekanbaru,age_group,45-49,perempuan,41789,jiwa,2025,registration,total_population,3.1.2,75,,45–49
+14.71,2,Kota Pekanbaru,age_group,45-49,,83160,jiwa,2025,registration,total_population,3.1.2,75,,45–49
+14.71,2,Kota Pekanbaru,age_group,50-54,laki_laki,34914,jiwa,2025,registration,total_population,3.1.2,75,,50–54
+14.71,2,Kota Pekanbaru,age_group,50-54,perempuan,35466,jiwa,2025,registration,total_population,3.1.2,75,,50–54
+14.71,2,Kota Pekanbaru,age_group,50-54,,70380,jiwa,2025,registration,total_population,3.1.2,75,,50–54
+14.71,2,Kota Pekanbaru,age_group,55-59,laki_laki,27367,jiwa,2025,registration,total_population,3.1.2,75,,55–59
+14.71,2,Kota Pekanbaru,age_group,55-59,perempuan,27488,jiwa,2025,registration,total_population,3.1.2,75,,55–59
+14.71,2,Kota Pekanbaru,age_group,55-59,,54855,jiwa,2025,registration,total_population,3.1.2,75,,55–59
+14.71,2,Kota Pekanbaru,age_group,60-64,laki_laki,19930,jiwa,2025,registration,total_population,3.1.2,75,,60–64
+14.71,2,Kota Pekanbaru,age_group,60-64,perempuan,20509,jiwa,2025,registration,total_population,3.1.2,75,,60–64
+14.71,2,Kota Pekanbaru,age_group,60-64,,40439,jiwa,2025,registration,total_population,3.1.2,75,,60–64
+14.71,2,Kota Pekanbaru,age_group,65-69,laki_laki,13343,jiwa,2025,registration,total_population,3.1.2,75,,65–69
+14.71,2,Kota Pekanbaru,age_group,65-69,perempuan,13926,jiwa,2025,registration,total_population,3.1.2,75,,65–69
+14.71,2,Kota Pekanbaru,age_group,65-69,,27269,jiwa,2025,registration,total_population,3.1.2,75,,65–69
+14.71,2,Kota Pekanbaru,age_group,70-74,laki_laki,7545,jiwa,2025,registration,total_population,3.1.2,75,,70–74
+14.71,2,Kota Pekanbaru,age_group,70-74,perempuan,8135,jiwa,2025,registration,total_population,3.1.2,75,,70–74
+14.71,2,Kota Pekanbaru,age_group,70-74,,15680,jiwa,2025,registration,total_population,3.1.2,75,,70–74
+14.71,2,Kota Pekanbaru,age_group,75+,laki_laki,5777,jiwa,2025,registration,total_population,3.1.2,75,,75+
+14.71,2,Kota Pekanbaru,age_group,75+,perempuan,7595,jiwa,2025,registration,total_population,3.1.2,75,,75+
+14.71,2,Kota Pekanbaru,age_group,75+,,13372,jiwa,2025,registration,total_population,3.1.2,75,,75+
+14.71,2,Kota Pekanbaru,sex,laki_laki,,599452,jiwa,2025,registration,total_population,3.1.2,75,,Laki-Laki
+14.71,2,Kota Pekanbaru,sex,perempuan,,593538,jiwa,2025,registration,total_population,3.1.2,75,,Perempuan
+14.71,2,Kota Pekanbaru,total,total,,1192990,jiwa,2025,registration,total_population,3.1.2,75,,
+14.71.11,3,Payung Sekaki,religion,islam,,63802,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.11,3,Payung Sekaki,religion,kristen,,20616,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.11,3,Payung Sekaki,religion,katolik,,3653,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.11,3,Payung Sekaki,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.11,3,Payung Sekaki,religion,buddha,,15153,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.11,3,Payung Sekaki,religion,lainnya,,22,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.13,3,Tuahmadani,religion,islam,,167980,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.13,3,Tuahmadani,religion,kristen,,7916,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.13,3,Tuahmadani,religion,katolik,,1196,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.13,3,Tuahmadani,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.13,3,Tuahmadani,religion,buddha,,552,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.13,3,Tuahmadani,religion,lainnya,,20,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.08,3,Binawidya,religion,islam,,75742,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.08,3,Binawidya,religion,kristen,,9090,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.08,3,Binawidya,religion,katolik,,1209,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.08,3,Binawidya,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.08,3,Binawidya,religion,buddha,,842,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.08,3,Binawidya,religion,lainnya,,21,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.07,3,Bukit Raya,religion,islam,,106430,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.07,3,Bukit Raya,religion,kristen,,4541,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.07,3,Bukit Raya,religion,katolik,,786,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.07,3,Bukit Raya,religion,hindu,,39,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.07,3,Bukit Raya,religion,buddha,,1538,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.07,3,Bukit Raya,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.09,3,Marpoyan Damai,religion,islam,,146119,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.09,3,Marpoyan Damai,religion,kristen,,9022,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.09,3,Marpoyan Damai,religion,katolik,,1536,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.09,3,Marpoyan Damai,religion,hindu,,54,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.09,3,Marpoyan Damai,religion,buddha,,2160,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.09,3,Marpoyan Damai,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.10,3,Tenayan Raya,religion,islam,,98394,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.10,3,Tenayan Raya,religion,kristen,,19826,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.10,3,Tenayan Raya,religion,katolik,,2148,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.10,3,Tenayan Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+14.71.10,3,Tenayan Raya,religion,buddha,,2540,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.10,3,Tenayan Raya,religion,lainnya,,9,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.14,3,Kulim,religion,islam,,57395,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.14,3,Kulim,religion,kristen,,6804,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.14,3,Kulim,religion,katolik,,931,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.14,3,Kulim,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.14,3,Kulim,religion,buddha,,367,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.14,3,Kulim,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.04,3,Limapuluh,religion,islam,,29836,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.04,3,Limapuluh,religion,kristen,,7771,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.04,3,Limapuluh,religion,katolik,,953,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.04,3,Limapuluh,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.04,3,Limapuluh,religion,buddha,,7433,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.04,3,Limapuluh,religion,lainnya,,12,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.03,3,Sail,religion,islam,,24711,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.03,3,Sail,religion,kristen,,1356,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.03,3,Sail,religion,katolik,,201,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.03,3,Sail,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.03,3,Sail,religion,buddha,,185,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.03,3,Sail,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+14.71.02,3,Pekanbaru Kota,religion,islam,,24979,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.02,3,Pekanbaru Kota,religion,kristen,,640,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.02,3,Pekanbaru Kota,religion,katolik,,252,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.02,3,Pekanbaru Kota,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.02,3,Pekanbaru Kota,religion,buddha,,1291,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.02,3,Pekanbaru Kota,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+14.71.01,3,Sukajadi,religion,islam,,41650,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.01,3,Sukajadi,religion,kristen,,3884,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.01,3,Sukajadi,religion,katolik,,848,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.01,3,Sukajadi,religion,hindu,,25,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.01,3,Sukajadi,religion,buddha,,2269,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.01,3,Sukajadi,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.05,3,Senapelan,religion,islam,,28407,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.05,3,Senapelan,religion,kristen,,2757,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.05,3,Senapelan,religion,katolik,,732,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.05,3,Senapelan,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.05,3,Senapelan,religion,buddha,,6648,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.05,3,Senapelan,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.12,3,Rumbai,religion,islam,,83374,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.12,3,Rumbai,religion,kristen,,20103,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.12,3,Rumbai,religion,katolik,,2365,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.12,3,Rumbai,religion,hindu,,21,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.12,3,Rumbai,religion,buddha,,658,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.12,3,Rumbai,religion,lainnya,,27,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.06,3,Rumbai Barat,religion,islam,,24169,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.06,3,Rumbai Barat,religion,kristen,,7582,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.06,3,Rumbai Barat,religion,katolik,,968,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.06,3,Rumbai Barat,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.06,3,Rumbai Barat,religion,buddha,,89,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.06,3,Rumbai Barat,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71.15,3,Rumbai Timur,religion,islam,,35681,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71.15,3,Rumbai Timur,religion,kristen,,2163,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71.15,3,Rumbai Timur,religion,katolik,,326,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71.15,3,Rumbai Timur,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71.15,3,Rumbai Timur,religion,buddha,,61,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71.15,3,Rumbai Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+14.71,2,Kota Pekanbaru,religion,islam,,1008669,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+14.71,2,Kota Pekanbaru,religion,kristen,,124071,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+14.71,2,Kota Pekanbaru,religion,katolik,,18104,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+14.71,2,Kota Pekanbaru,religion,hindu,,224,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+14.71,2,Kota Pekanbaru,religion,buddha,,41786,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+14.71,2,Kota Pekanbaru,religion,lainnya,,136,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/padi_padian,,83266,rupiah,2025,survey_estimate,per_capita,10.1,374,,Padi-padian
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/padi_padian,,82850,rupiah,2024,survey_estimate,per_capita,10.1,374,,Padi-padian
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/umbi_umbian,,9128,rupiah,2025,survey_estimate,per_capita,10.1,374,,Umbi-umbian
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/umbi_umbian,,9431,rupiah,2024,survey_estimate,per_capita,10.1,374,,Umbi-umbian
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,96371,rupiah,2025,survey_estimate,per_capita,10.1,374,,Ikan/udang/cumi/kerang
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,96337,rupiah,2024,survey_estimate,per_capita,10.1,374,,Ikan/udang/cumi/kerang
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/daging,,43102,rupiah,2025,survey_estimate,per_capita,10.1,374,,Daging
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/daging,,45956,rupiah,2024,survey_estimate,per_capita,10.1,374,,Daging
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/telur_dan_susu,,55857,rupiah,2025,survey_estimate,per_capita,10.1,374,,Telur dan susu
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/telur_dan_susu,,53217,rupiah,2024,survey_estimate,per_capita,10.1,374,,Telur dan susu
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/sayur_sayuran,,79925,rupiah,2025,survey_estimate,per_capita,10.1,374,,Sayur-sayuran
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/sayur_sayuran,,83334,rupiah,2024,survey_estimate,per_capita,10.1,374,,Sayur-sayuran
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/kacang_kacangan,,12695,rupiah,2025,survey_estimate,per_capita,10.1,374,,Kacang-kacangan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/kacang_kacangan,,12193,rupiah,2024,survey_estimate,per_capita,10.1,374,,Kacang-kacangan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/buah_buahan,,61463,rupiah,2025,survey_estimate,per_capita,10.1,374,,Buah-buahan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/buah_buahan,,44121,rupiah,2024,survey_estimate,per_capita,10.1,374,,Buah-buahan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/minyak_dan_kelapa,,29305,rupiah,2025,survey_estimate,per_capita,10.1,374,,Minyak dan kelapa
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/minyak_dan_kelapa,,27205,rupiah,2024,survey_estimate,per_capita,10.1,374,,Minyak dan kelapa
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/bahan_minuman,,18488,rupiah,2025,survey_estimate,per_capita,10.1,374,,Bahan minuman
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/bahan_minuman,,20185,rupiah,2024,survey_estimate,per_capita,10.1,374,,Bahan minuman
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/bumbu_bumbuan,,14362,rupiah,2025,survey_estimate,per_capita,10.1,374,,Bumbu-bumbuan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/bumbu_bumbuan,,11557,rupiah,2024,survey_estimate,per_capita,10.1,374,,Bumbu-bumbuan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/konsumsi_lainnya,,15942,rupiah,2025,survey_estimate,per_capita,10.1,374,,Konsumsi lainnya
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/konsumsi_lainnya,,14979,rupiah,2024,survey_estimate,per_capita,10.1,374,,Konsumsi lainnya
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,347659,rupiah,2025,survey_estimate,per_capita,10.1,374,,Makanan dan minuman jadi
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,327702,rupiah,2024,survey_estimate,per_capita,10.1,374,,Makanan dan minuman jadi
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/rokok,,91435,rupiah,2025,survey_estimate,per_capita,10.1,374,,Rokok
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/rokok,,98590,rupiah,2024,survey_estimate,per_capita,10.1,374,,Rokok
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/jumlah_makanan,,958997,rupiah,2025,survey_estimate,per_capita,10.1,374,,Jumlah makanan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/jumlah_makanan,,927656,rupiah,2024,survey_estimate,per_capita,10.1,374,,Jumlah makanan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,584761,rupiah,2025,survey_estimate,per_capita,10.1,374,,Perumahan dan fasilitas rumah tangga
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,588903,rupiah,2024,survey_estimate,per_capita,10.1,374,,Perumahan dan fasilitas rumah tangga
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,332340,rupiah,2025,survey_estimate,per_capita,10.1,374,,Aneka barang dan jasa
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,314395,rupiah,2024,survey_estimate,per_capita,10.1,374,,Aneka barang dan jasa
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,72988,rupiah,2025,survey_estimate,per_capita,10.1,374,,"Pakaian, alas kaki, dan tutup kepala"
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,66070,rupiah,2024,survey_estimate,per_capita,10.1,374,,"Pakaian, alas kaki, dan tutup kepala"
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/barang_tahan_lama,,102592,rupiah,2025,survey_estimate,per_capita,10.1,374,,Barang tahan lama
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/barang_tahan_lama,,100476,rupiah,2024,survey_estimate,per_capita,10.1,374,,Barang tahan lama
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,97471,rupiah,2025,survey_estimate,per_capita,10.1,374,,"Pajak, pungutan, dan asuransi"
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,97025,rupiah,2024,survey_estimate,per_capita,10.1,374,,"Pajak, pungutan, dan asuransi"
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,64508,rupiah,2025,survey_estimate,per_capita,10.1,374,,Keperluan pesta dan upacara/kenduri
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,36501,rupiah,2024,survey_estimate,per_capita,10.1,374,,Keperluan pesta dan upacara/kenduri
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1254660,rupiah,2025,survey_estimate,per_capita,10.1,374,,Jumlah bukan makanan
+14.71,2,Kota Pekanbaru,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1203370,rupiah,2024,survey_estimate,per_capita,10.1,374,,Jumlah bukan makanan
+14.71,2,Kota Pekanbaru,expenditure,total,,2213657,rupiah,2025,survey_estimate,per_capita,10.1,374,,
+14.71,2,Kota Pekanbaru,expenditure,total,,2131025,rupiah,2024,survey_estimate,per_capita,10.1,374,,

@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.03.14.2001,4,Brobot,sex,laki_laki,,2109,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2001,4,Brobot,sex,perempuan,,2056,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2001,4,Brobot,total,total,,4165,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2002,4,Gembong,sex,laki_laki,,1948,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2002,4,Gembong,sex,perempuan,,1913,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2002,4,Gembong,total,total,,3861,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2003,4,Galuh,sex,laki_laki,,1721,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2003,4,Galuh,sex,perempuan,,1513,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2003,4,Galuh,total,total,,3234,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2004,4,Banjaran,sex,laki_laki,,3383,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2004,4,Banjaran,sex,perempuan,,3193,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2004,4,Banjaran,total,total,,6576,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2005,4,Patemon,sex,laki_laki,,2434,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2005,4,Patemon,sex,perempuan,,2316,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2005,4,Patemon,total,total,,4750,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2006,4,Bojongsari,sex,laki_laki,,3399,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2006,4,Bojongsari,sex,perempuan,,3278,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2006,4,Bojongsari,total,total,,6677,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2007,4,Kajongan,sex,laki_laki,,2968,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2007,4,Kajongan,sex,perempuan,,2810,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2007,4,Kajongan,total,total,,5778,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2008,4,Karangbanjar,sex,laki_laki,,2383,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2008,4,Karangbanjar,sex,perempuan,,2299,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2008,4,Karangbanjar,total,total,,4682,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2009,4,Beji,sex,laki_laki,,2110,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2009,4,Beji,sex,perempuan,,2079,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2009,4,Beji,total,total,,4189,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2010,4,Pagedangan,sex,laki_laki,,2162,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2010,4,Pagedangan,sex,perempuan,,2087,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2010,4,Pagedangan,total,total,,4249,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2011,4,Pekalongan,sex,laki_laki,,3141,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2011,4,Pekalongan,sex,perempuan,,3083,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2011,4,Pekalongan,total,total,,6224,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2012,4,Metenggeng,sex,laki_laki,,2335,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2012,4,Metenggeng,sex,perempuan,,2297,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2012,4,Metenggeng,total,total,,4632,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14.2013,4,Bumisari,sex,laki_laki,,4427,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14.2013,4,Bumisari,sex,perempuan,,4208,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14.2013,4,Bumisari,total,total,,8635,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.14,3,Kecamatan Bojongsari,sex,laki_laki,,34520,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.14,3,Kecamatan Bojongsari,sex,perempuan,,33132,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.14,3,Kecamatan Bojongsari,total,total,,67652,jiwa,2025,registration,total_population,3.1.1,19,,

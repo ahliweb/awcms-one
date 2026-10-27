@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.12.2003,4,Pulau Batang,sex,laki_laki,,713,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.12.2003,4,Pulau Batang,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.12.2003,4,Pulau Batang,total,total,,1360,jiwa,2025,registration,total_population,3.1,19,,
+21.04.12.2002,4,Tajur Biru,sex,laki_laki,,902,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.12.2002,4,Tajur Biru,sex,perempuan,,825,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.12.2002,4,Tajur Biru,total,total,,1727,jiwa,2025,registration,total_population,3.1,19,,
+21.04.12.2001,4,Temiang,sex,laki_laki,,286,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.12.2001,4,Temiang,sex,perempuan,,237,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.12.2001,4,Temiang,total,total,,523,jiwa,2025,registration,total_population,3.1,19,,
+21.04.12,3,Kecamatan Temiang Pesisir,sex,laki_laki,,1901,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.12,3,Kecamatan Temiang Pesisir,sex,perempuan,,1709,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.12,3,Kecamatan Temiang Pesisir,total,total,,3610,jiwa,2025,registration,total_population,3.1,19,,

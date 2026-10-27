@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.08.2001,4,Asam Baru,sex,laki_laki,,2377,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki/Male
+62.07.08.2001,4,Asam Baru,sex,perempuan,,2235,jiwa,2025,registration,total_population,1.6,31,,Perempuan/Female
+62.07.08.2001,4,Asam Baru,total,total,,4612,jiwa,2025,registration,total_population,1.6,31,,
+62.07.08.2006,4,Rungau Raya,sex,laki_laki,,4433,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki/Male
+62.07.08.2006,4,Rungau Raya,sex,perempuan,,3987,jiwa,2025,registration,total_population,1.6,31,,Perempuan/Female
+62.07.08.2006,4,Rungau Raya,total,total,,8420,jiwa,2025,registration,total_population,1.6,31,,
+62.07.08.2002,4,Tanjung Hara,sex,laki_laki,,417,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki/Male
+62.07.08.2002,4,Tanjung Hara,sex,perempuan,,371,jiwa,2025,registration,total_population,1.6,31,,Perempuan/Female
+62.07.08.2002,4,Tanjung Hara,total,total,,788,jiwa,2025,registration,total_population,1.6,31,,
+62.07.08.2003,4,Tanjung Paring,sex,laki_laki,,515,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki/Male
+62.07.08.2003,4,Tanjung Paring,sex,perempuan,,480,jiwa,2025,registration,total_population,1.6,31,,Perempuan/Female
+62.07.08.2003,4,Tanjung Paring,total,total,,995,jiwa,2025,registration,total_population,1.6,31,,
+62.07.08.2005,4,Panimba Raya,sex,laki_laki,,144,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki/Male
+62.07.08.2005,4,Panimba Raya,sex,perempuan,,132,jiwa,2025,registration,total_population,1.6,31,,Perempuan/Female
+62.07.08.2005,4,Panimba Raya,total,total,,276,jiwa,2025,registration,total_population,1.6,31,,
+62.07.08.2004,4,Tanjung Rangas II,sex,laki_laki,,227,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki/Male
+62.07.08.2004,4,Tanjung Rangas II,sex,perempuan,,194,jiwa,2025,registration,total_population,1.6,31,,Perempuan/Female
+62.07.08.2004,4,Tanjung Rangas II,total,total,,421,jiwa,2025,registration,total_population,1.6,31,,
+62.07.08,3,Danau Seluluk,sex,laki_laki,,8113,jiwa,2025,registration,total_population,1.6,31,,Laki-Laki/Male
+62.07.08,3,Danau Seluluk,sex,perempuan,,7399,jiwa,2025,registration,total_population,1.6,31,,Perempuan/Female
+62.07.08,3,Danau Seluluk,total,total,,15512,jiwa,2025,registration,total_population,1.6,31,,
+62.07.08,3,Danau Seluluk,age_group,0-14,laki_laki,2179,jiwa,2025,registration,total_population,1.7,33,,0-14
+62.07.08,3,Danau Seluluk,age_group,0-14,perempuan,1981,jiwa,2025,registration,total_population,1.7,33,,0-14
+62.07.08,3,Danau Seluluk,age_group,0-14,,4160,jiwa,2025,registration,total_population,1.7,33,,0-14
+62.07.08,3,Danau Seluluk,age_group,15-64,laki_laki,5773,jiwa,2025,registration,total_population,1.7,33,,15-64
+62.07.08,3,Danau Seluluk,age_group,15-64,perempuan,5275,jiwa,2025,registration,total_population,1.7,33,,15-64
+62.07.08,3,Danau Seluluk,age_group,15-64,,11048,jiwa,2025,registration,total_population,1.7,33,,15-64
+62.07.08,3,Danau Seluluk,age_group,65+,laki_laki,161,jiwa,2025,registration,total_population,1.7,33,,65+
+62.07.08,3,Danau Seluluk,age_group,65+,perempuan,143,jiwa,2025,registration,total_population,1.7,33,,65+
+62.07.08,3,Danau Seluluk,age_group,65+,,304,jiwa,2025,registration,total_population,1.7,33,,65+
+62.07.08,3,Danau Seluluk,sex,laki_laki,,8113,jiwa,2025,registration,total_population,1.7,33,,Laki-Laki
+62.07.08,3,Danau Seluluk,sex,perempuan,,7399,jiwa,2025,registration,total_population,1.7,33,,Perempuan
+62.07.08,3,Danau Seluluk,total,total,,15512,jiwa,2025,registration,total_population,1.7,33,,

@@ -1,0 +1,42 @@
+{
+  "datasetCode": "bps-3173-kecamatan-317103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kemayoran Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Pusat",
+  "publisherDomain": "3173",
+  "publisherWebsite": "https://jakpuskota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Pusat (https://jakpuskota.bps.go.id), publikasi \"Kecamatan Kemayoran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3173060",
+  "publicationNumber": "31730.26010",
+  "issn": "0852-2170",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakpuskota.bps.go.id/id/publication/2026/09/28/96103ce4723f6b1baf9e02d5/kecamatan-kemayoran-dalam-angka-2026.html",
+  "sourceFileSha256": "7d386507fe58e5b5e480095aafba55b2fe4b1a8dda63389a189789167bbe6da0",
+  "sourceFileBytes": 11604889,
+  "sourcePages": [27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Pusat .",
+  "csvPath": "datasets/bps-3173-kecamatan-317103-dalam-angka-2026.csv",
+  "csvSha256": "92172fa00627ce807efb6788442c06e477f01b2552923275a8cccae726c3e6e6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Kemayoran , 2026",
+      "printedPages": [27, 28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Harapan Mulia 10.91\": unmatched ",
+    "table 3.1: row not stored: row \"Cempaka Baru 15.73\": unmatched ",
+    "table 3.1: row not stored: row \"Serdang 14.42\": unmatched ",
+    "table 3.1: row not stored: row \"Utan Panjang 14.22\": unmatched ",
+    "table 3.1: row not stored: row \"Kebon Kosong 15.05\": unmatched "
+  ]
+}

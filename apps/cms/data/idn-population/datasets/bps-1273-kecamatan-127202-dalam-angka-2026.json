@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1273-kecamatan-127202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.72.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siantar Barat Dalam Angka 2026",
+  "publisherName": "BPS Kota Pematangsiantar",
+  "publisherDomain": "1273",
+  "publisherWebsite": "https://siantarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pematangsiantar (https://siantarkota.bps.go.id), publikasi \"Kecamatan Siantar Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "12730.26009",
+  "issn": "3109-8363",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://siantarkota.bps.go.id/id/publication/2026/09/28/d16eaeb2fff0805a540b5047/kecamatan-siantar-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "eb70ae4ca4d50ef4fcc86970548a7c90fb116e8e1c7d616aeafedd6496217872",
+  "sourceFileBytes": 13935241,
+  "sourcePages": [41, 42, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pematangsiantar.",
+  "csvPath": "datasets/bps-1273-kecamatan-127202-dalam-angka-2026.csv",
+  "csvSha256": "5070ce9c283101400522b53b3e652b37b51336f3c89a88b8e0bbc9c773e33286",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Siantar Barat, 2026",
+      "printedPages": [41, 42],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siantar Barat, 2026",
+      "printedPages": [43],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

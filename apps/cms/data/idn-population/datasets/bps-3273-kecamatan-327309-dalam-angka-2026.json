@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bandung Wetan Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Bandung Wetan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273200",
+  "publicationNumber": "32730.26018",
+  "issn": "2797-4162",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/4d163169ced4461746f3378e/kecamatan-bandung-wetan-dalam-angka-2026.html",
+  "sourceFileSha256": "02b44307bdd4f5ec2c7f5e7ac67af0584eb77fa03a5fe91353a2a6c760c972a5",
+  "sourceFileBytes": 8818779,
+  "sourcePages": [37, 38, 39, 89],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327309-dalam-angka-2026.csv",
+  "csvSha256": "26236bb491b14cf13e2dfbfcfdb2d67f5bdde6a31c91ac6984b710f6315b48c9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bandung Wetan, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bandung Wetan, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Bandung Wetan, 2025",
+      "printedPages": [89],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Bandung Wetan District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Bandung Wetan Bandung Wetan District\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 3.2: 32 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 4.4.5: row not stored: row \"Kecamatan Bandung\": unmatched ",
+    "table 4.4.5: row not stored: row \"Wetan Bandung Wetan District\": unmatched "
+  ]
+}

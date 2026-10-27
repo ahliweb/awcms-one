@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.04.21.2013,4,Merandeh Paya,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2013,4,Merandeh Paya,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2013,4,Merandeh Paya,total,total,,414,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2012,4,Tanjung,sex,laki_laki,,183,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2012,4,Tanjung,sex,perempuan,,172,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2012,4,Tanjung,total,total,,355,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2002,4,Rusip,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2002,4,Rusip,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2002,4,Rusip,total,total,,920,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2011,4,Paya Tampu,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2011,4,Paya Tampu,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2011,4,Paya Tampu,total,total,,696,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2014,4,Kuala Rawa,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2014,4,Kuala Rawa,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2014,4,Kuala Rawa,total,total,,649,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2001,4,Pantan Tengah,sex,laki_laki,,716,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2001,4,Pantan Tengah,sex,perempuan,,688,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2001,4,Pantan Tengah,total,total,,1404,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2003,4,Pilar,sex,laki_laki,,373,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2003,4,Pilar,sex,perempuan,,356,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2003,4,Pilar,total,total,,729,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2004,4,Arul Pertik,sex,laki_laki,,339,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2004,4,Arul Pertik,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2004,4,Arul Pertik,total,total,,644,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2007,4,Atu Singkih,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2007,4,Atu Singkih,sex,perempuan,,338,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2007,4,Atu Singkih,total,total,,707,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2008,4,Pantan Bener,sex,laki_laki,,131,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2008,4,Pantan Bener,sex,perempuan,,124,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2008,4,Pantan Bener,total,total,,255,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2009,4,Kerawang,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2009,4,Kerawang,sex,perempuan,,187,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2009,4,Kerawang,total,total,,413,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2005,4,Pilar Jaya,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2005,4,Pilar Jaya,sex,perempuan,,318,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2005,4,Pilar Jaya,total,total,,653,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2006,4,Tirmi Ara,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2006,4,Tirmi Ara,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2006,4,Tirmi Ara,total,total,,535,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2010,4,Mekar Maju,sex,laki_laki,,166,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2010,4,Mekar Maju,sex,perempuan,,147,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2010,4,Mekar Maju,total,total,,313,jiwa,2025,registration,total_population,3.1,19,,
+11.04.21.2015,4,Pilar Wih Kiri,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/
+11.04.21.2015,4,Pilar Wih Kiri,sex,perempuan,,285,jiwa,2025,registration,total_population,3.1,19,,Perempuan/
+11.04.21.2015,4,Pilar Wih Kiri,total,total,,620,jiwa,2025,registration,total_population,3.1,19,,

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3327-kecamatan-332702-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.27.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulosari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pemalang",
+  "publisherDomain": "3327",
+  "publisherWebsite": "https://pemalangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pemalang (https://pemalangkab.bps.go.id), publikasi \"Kecamatan Pulosari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.33270720",
+  "publicationNumber": "33270.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pemalangkab.bps.go.id/id/publication/2026/09/28/d21eb60fe526b9348188f751/kecamatan-pulosari-dalam-angka-2026.html",
+  "sourceFileSha256": "81df067e1b53e6e0b87ef8b37fe6e184ff2225b8f6fd940727fa2a4ddc0bbc05",
+  "sourceFileBytes": 18154444,
+  "sourcePages": [47, 48, 49],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pemalang.",
+  "csvPath": "datasets/bps-3327-kecamatan-332702-dalam-angka-2026.csv",
+  "csvSha256": "93f2baa60212623ac98e9429a57140b9083e321e6a1ac53a779c6cfa5139f9fe",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk Distribusi Persentase Penduduk Kepadatan Penduduk Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pulosari 2025",
+      "printedPages": [47, 48],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pulosari. 2025",
+      "printedPages": [49],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Pulosari 100%\": unmatched "
+  ]
+}

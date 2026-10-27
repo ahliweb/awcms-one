@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.15.2004,4,Tanjung Simpang,sex,laki_laki,,3391,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2004,4,Tanjung Simpang,sex,perempuan,,2941,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2004,4,Tanjung Simpang,total,total,,6332,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2003,4,Simpang Kateman,sex,laki_laki,,2566,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2003,4,Simpang Kateman,sex,perempuan,,2342,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2003,4,Simpang Kateman,total,total,,4908,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.1002,4,Pelangiran,sex,laki_laki,,3031,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.1002,4,Pelangiran,sex,perempuan,,2749,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.1002,4,Pelangiran,total,total,,5780,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2001,4,Rotan Semelur,sex,laki_laki,,2518,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2001,4,Rotan Semelur,sex,perempuan,,2335,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2001,4,Rotan Semelur,total,total,,4853,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2005,4,Baung Rejo Jaya,sex,laki_laki,,523,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2005,4,Baung Rejo Jaya,sex,perempuan,,484,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2005,4,Baung Rejo Jaya,total,total,,1007,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2006,4,Tagagiri Tama Jaya,sex,laki_laki,,372,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2006,4,Tagagiri Tama Jaya,sex,perempuan,,330,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2006,4,Tagagiri Tama Jaya,total,total,,702,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2007,4,Pinang Jaya,sex,laki_laki,,306,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2007,4,Pinang Jaya,sex,perempuan,,292,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2007,4,Pinang Jaya,total,total,,598,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2008,4,Wonosari,sex,laki_laki,,587,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2008,4,Wonosari,sex,perempuan,,515,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2008,4,Wonosari,total,total,,1102,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2011,4,Saka Palas Jaya,sex,laki_laki,,496,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2011,4,Saka Palas Jaya,sex,perempuan,,462,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2011,4,Saka Palas Jaya,total,total,,958,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2012,4,Catur Karya,sex,laki_laki,,179,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2012,4,Catur Karya,sex,perempuan,,175,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2012,4,Catur Karya,total,total,,354,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2013,4,Bagan Jaya,sex,laki_laki,,355,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2013,4,Bagan Jaya,sex,perempuan,,334,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2013,4,Bagan Jaya,total,total,,689,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2014,4,Teluk Bunian,sex,laki_laki,,1259,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2014,4,Teluk Bunian,sex,perempuan,,1189,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2014,4,Teluk Bunian,total,total,,2448,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2016,4,Hidayah,sex,laki_laki,,871,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2016,4,Hidayah,sex,perempuan,,837,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2016,4,Hidayah,total,total,,1708,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15.2015,4,Terusan Beringin Jaya,sex,laki_laki,,840,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15.2015,4,Terusan Beringin Jaya,sex,perempuan,,731,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15.2015,4,Terusan Beringin Jaya,total,total,,1571,jiwa,2026,registration,total_population,3.1,29,,
+14.04.15,3,Pelangiran,sex,laki_laki,,18043,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.15,3,Pelangiran,sex,perempuan,,16374,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.15,3,Pelangiran,total,total,,34417,jiwa,2026,registration,total_population,3.1,29,,

@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320917-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Palimanan Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Palimanan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209130",
+  "publicationNumber": "32090.26044",
+  "issn": "2715-2227",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/491aac8c4b36d4174757037a/kecamatan-palimanan-dalam-angka-2026.html",
+  "sourceFileSha256": "ccbe6593e0c1802be56499e57c08b1dd5335da618b2c89628ecd2caa9a75eac2",
+  "sourceFileBytes": 12913640,
+  "sourcePages": [52, 53, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320917-dalam-angka-2026.csv",
+  "csvSha256": "d76d5c8fac16feef8996ded88b2a849f3d457c31fde03ba185bef907119715f4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Palimanan, 2025",
+      "printedPages": [52, 53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Palimanan, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"017 Cangkuang\": unmatched ",
+    "table 3.1: row not stored: row \"003 Kepuh 8,99%\": unmatched ",
+    "table 3.1: row not stored: row \"006 Cilukrak 6,25%\": unmatched ",
+    "table 3.1: row not stored: row \"007 Balerante 8,15%\": unmatched ",
+    "table 3.1: row not stored: row \"008 Panongan 9,39%\": unmatched ",
+    "table 3.1: row not stored: row \"009 Beberan 6,92%\": unmatched ",
+    "table 3.1: row not stored: row \"010 Semplo 4,74%\": unmatched ",
+    "table 3.1: row not stored: row \"011 Palimanan Timur 10,21%\": unmatched ",
+    "table 3.1: row not stored: row \"014 Pegagan 15,60%\": unmatched ",
+    "table 3.1: row not stored: row \"015 Lungbenda 6,44%\": unmatched ",
+    "table 3.1: row not stored: row \"016 Ciawi 6,85%\": unmatched ",
+    "table 3.1: row not stored: row \"017 Cangkuang 7,99%\": unmatched ",
+    "table 3.1: row not stored: row \"018 Tegalkarang 8,48%\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Palimanan 100,00%\": unmatched "
+  ]
+}

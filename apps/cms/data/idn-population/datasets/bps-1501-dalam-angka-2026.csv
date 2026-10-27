@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.01,2,Kabupaten Kerinci,age_group,0-4,,15748,jiwa,2025,registration,total_population,3.1.2,45,,0–4
+15.01,2,Kabupaten Kerinci,age_group,5-9,,21221,jiwa,2025,registration,total_population,3.1.2,45,,5–9
+15.01,2,Kabupaten Kerinci,age_group,10-14,,21697,jiwa,2025,registration,total_population,3.1.2,45,,10–14
+15.01,2,Kabupaten Kerinci,age_group,15-19,,20876,jiwa,2025,registration,total_population,3.1.2,45,,15–19
+15.01,2,Kabupaten Kerinci,age_group,20-24,,20824,jiwa,2025,registration,total_population,3.1.2,45,,20–24
+15.01,2,Kabupaten Kerinci,age_group,25-29,,20968,jiwa,2025,registration,total_population,3.1.2,45,,25–29
+15.01,2,Kabupaten Kerinci,age_group,30-34,,18494,jiwa,2025,registration,total_population,3.1.2,45,,30–34
+15.01,2,Kabupaten Kerinci,age_group,35-39,,18312,jiwa,2025,registration,total_population,3.1.2,45,,35–39
+15.01,2,Kabupaten Kerinci,age_group,40-44,,20525,jiwa,2025,registration,total_population,3.1.2,45,,40–44
+15.01,2,Kabupaten Kerinci,age_group,45-49,,22926,jiwa,2025,registration,total_population,3.1.2,45,,45–49
+15.01,2,Kabupaten Kerinci,age_group,50-54,,19029,jiwa,2025,registration,total_population,3.1.2,45,,50–54
+15.01,2,Kabupaten Kerinci,age_group,55-59,,14742,jiwa,2025,registration,total_population,3.1.2,45,,55–59
+15.01,2,Kabupaten Kerinci,age_group,60-64,,12469,jiwa,2025,registration,total_population,3.1.2,45,,60–64
+15.01,2,Kabupaten Kerinci,age_group,65-69,,10842,jiwa,2025,registration,total_population,3.1.2,45,,65–69
+15.01,2,Kabupaten Kerinci,age_group,70-74,,7247,jiwa,2025,registration,total_population,3.1.2,45,,70–74
+15.01,2,Kabupaten Kerinci,age_group,75+,,6912,jiwa,2025,registration,total_population,3.1.2,45,,75+
+15.01,2,Kabupaten Kerinci,total,total,,272832,jiwa,2025,registration,total_population,3.1.2,45,,
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/padi_padian,,104675,rupiah,2024,survey_estimate,per_capita,10.1,197,,Padi-padian
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/padi_padian,,95592,rupiah,2025,survey_estimate,per_capita,10.1,197,,Padi-padian
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/umbi_umbian,,13075,rupiah,2024,survey_estimate,per_capita,10.1,197,,Umbi-umbian
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/umbi_umbian,,15645,rupiah,2025,survey_estimate,per_capita,10.1,197,,Umbi-umbian
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,66861,rupiah,2024,survey_estimate,per_capita,10.1,197,,Ikan/udang/cumi/kerang
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,80439,rupiah,2025,survey_estimate,per_capita,10.1,197,,Ikan/udang/cumi/kerang
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/daging,,31515,rupiah,2024,survey_estimate,per_capita,10.1,197,,Daging
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/daging,,34342,rupiah,2025,survey_estimate,per_capita,10.1,197,,Daging
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/telur_dan_susu,,26991,rupiah,2024,survey_estimate,per_capita,10.1,197,,Telur dan susu
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/telur_dan_susu,,29500,rupiah,2025,survey_estimate,per_capita,10.1,197,,Telur dan susu
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/sayur_sayuran,,78021,rupiah,2024,survey_estimate,per_capita,10.1,197,,Sayur-sayuran
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/sayur_sayuran,,75917,rupiah,2025,survey_estimate,per_capita,10.1,197,,Sayur-sayuran
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/kacang_kacangan,,10380,rupiah,2024,survey_estimate,per_capita,10.1,197,,Kacang-kacangan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/kacang_kacangan,,10140,rupiah,2025,survey_estimate,per_capita,10.1,197,,Kacang-kacangan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/buah_buahan,,46194,rupiah,2024,survey_estimate,per_capita,10.1,197,,Buah-buahan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/buah_buahan,,39830,rupiah,2025,survey_estimate,per_capita,10.1,197,,Buah-buahan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/minyak_dan_kelapa,,31342,rupiah,2024,survey_estimate,per_capita,10.1,197,,Minyak dan kelapa
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/minyak_dan_kelapa,,36945,rupiah,2025,survey_estimate,per_capita,10.1,197,,Minyak dan kelapa
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/bahan_minuman,,17163,rupiah,2024,survey_estimate,per_capita,10.1,197,,Bahan minuman
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/bahan_minuman,,20223,rupiah,2025,survey_estimate,per_capita,10.1,197,,Bahan minuman
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/bumbu_bumbuan,,8679,rupiah,2024,survey_estimate,per_capita,10.1,197,,Bumbu-bumbuan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/bumbu_bumbuan,,8490,rupiah,2025,survey_estimate,per_capita,10.1,197,,Bumbu-bumbuan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/konsumsi_lainnya,,8180,rupiah,2024,survey_estimate,per_capita,10.1,197,,Konsumsi lainnya
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/konsumsi_lainnya,,8740,rupiah,2025,survey_estimate,per_capita,10.1,197,,Konsumsi lainnya
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,207792,rupiah,2024,survey_estimate,per_capita,10.1,197,,Makanan dan minuman jadi
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,187024,rupiah,2025,survey_estimate,per_capita,10.1,197,,Makanan dan minuman jadi
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/rokok,,119851,rupiah,2024,survey_estimate,per_capita,10.1,197,,Rokok
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/rokok,,111385,rupiah,2025,survey_estimate,per_capita,10.1,197,,Rokok
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/jumlah_makanan,,770720,rupiah,2024,survey_estimate,per_capita,10.1,197,,Jumlah makanan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/jumlah_makanan,,754213,rupiah,2025,survey_estimate,per_capita,10.1,197,,Jumlah makanan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,300698,rupiah,2024,survey_estimate,per_capita,10.1,197,,Perumahan dan fasilitas rumah tangga
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,274489,rupiah,2025,survey_estimate,per_capita,10.1,197,,Perumahan dan fasilitas rumah tangga
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,140887,rupiah,2024,survey_estimate,per_capita,10.1,197,,Aneka barang dan jasa
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,146400,rupiah,2025,survey_estimate,per_capita,10.1,197,,Aneka barang dan jasa
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,78702,rupiah,2024,survey_estimate,per_capita,10.1,197,,"Pakaian, alas kaki, dan tutup kepala"
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,62741,rupiah,2025,survey_estimate,per_capita,10.1,197,,"Pakaian, alas kaki, dan tutup kepala"
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/barang_tahan_lama,,66838,rupiah,2024,survey_estimate,per_capita,10.1,197,,Barang tahan lama
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/barang_tahan_lama,,70656,rupiah,2025,survey_estimate,per_capita,10.1,197,,Barang tahan lama
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,52163,rupiah,2024,survey_estimate,per_capita,10.1,197,,"Pajak, pungutan, dan asuransi"
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48878,rupiah,2025,survey_estimate,per_capita,10.1,197,,"Pajak, pungutan, dan asuransi"
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,48202,rupiah,2024,survey_estimate,per_capita,10.1,197,,Keperluan pesta dan upacara/kenduri
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,38293,rupiah,2025,survey_estimate,per_capita,10.1,197,,Keperluan pesta dan upacara/kenduri
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,687491,rupiah,2024,survey_estimate,per_capita,10.1,197,,Jumlah bukan makanan
+15.01,2,Kabupaten Kerinci,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,641458,rupiah,2025,survey_estimate,per_capita,10.1,197,,Jumlah bukan makanan
+15.01,2,Kabupaten Kerinci,expenditure,total,,1458211,rupiah,2024,survey_estimate,per_capita,10.1,197,,
+15.01,2,Kabupaten Kerinci,expenditure,total,,1395671,rupiah,2025,survey_estimate,per_capita,10.1,197,,

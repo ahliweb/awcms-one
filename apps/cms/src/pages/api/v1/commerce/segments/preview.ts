@@ -14,7 +14,7 @@
  * throttled per actor (`429 RATE_LIMITED`). A tenant id in the body is refused
  * by name; the tenant always comes from the authenticated context.
  *
- * A rule that reads a booking-derived field (rule schema 2, ADR-0051) also needs
+ * A rule that reads a booking-derived field (rule schema 2, ADR-0052) also needs
  * `commerce.booking_reservation_links.read`, and - when the rule is unsaved
  * (being defined) - the tenant's `booking` feature.
  */

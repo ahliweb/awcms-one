@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.05.2011,4,Sindang Pagar,sex,laki_laki,,1147,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.05.2011,4,Sindang Pagar,sex,perempuan,,1066,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.05.2011,4,Sindang Pagar,total,total,,2213,jiwa,2025,registration,total_population,3.1,30,,
+18.04.05.2010,4,Suka Jaya,sex,laki_laki,,1489,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.05.2010,4,Suka Jaya,sex,perempuan,,1387,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.05.2010,4,Suka Jaya,total,total,,2876,jiwa,2025,registration,total_population,3.1,30,,
+18.04.05.2001,4,Simpang Sari,sex,laki_laki,,1384,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.05.2001,4,Simpang Sari,sex,perempuan,,1232,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.05.2001,4,Simpang Sari,total,total,,2616,jiwa,2025,registration,total_population,3.1,30,,
+18.04.05.2012,4,Sukapura,sex,laki_laki,,2089,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.05.2012,4,Sukapura,sex,perempuan,,1940,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.05.2012,4,Sukapura,total,total,,4029,jiwa,2025,registration,total_population,3.1,30,,
+18.04.05.1016,4,Tugusari,sex,laki_laki,,3655,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.05.1016,4,Tugusari,sex,perempuan,,3514,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.05.1016,4,Tugusari,total,total,,7169,jiwa,2025,registration,total_population,3.1,30,,
+18.04.05,3,Kecamatan Sumber Jaya,sex,laki_laki,,12691,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.05,3,Kecamatan Sumber Jaya,sex,perempuan,,11864,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.05,3,Kecamatan Sumber Jaya,total,total,,24555,jiwa,2025,registration,total_population,3.1,30,,
+18.04.05,3,Sumber Jaya,age_group,0-4,laki_laki,744,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.05,3,Sumber Jaya,age_group,0-4,perempuan,723,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.05,3,Sumber Jaya,age_group,0-4,,1467,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.05,3,Sumber Jaya,age_group,5-9,laki_laki,1010,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.05,3,Sumber Jaya,age_group,5-9,perempuan,967,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.05,3,Sumber Jaya,age_group,5-9,,1977,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.05,3,Sumber Jaya,age_group,10-14,laki_laki,1060,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.05,3,Sumber Jaya,age_group,10-14,perempuan,1056,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.05,3,Sumber Jaya,age_group,10-14,,2116,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.05,3,Sumber Jaya,age_group,15-19,laki_laki,1135,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.05,3,Sumber Jaya,age_group,15-19,perempuan,1031,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.05,3,Sumber Jaya,age_group,15-19,,2166,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.05,3,Sumber Jaya,age_group,20-24,laki_laki,1016,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.05,3,Sumber Jaya,age_group,20-24,perempuan,978,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.05,3,Sumber Jaya,age_group,20-24,,1994,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.05,3,Sumber Jaya,age_group,25-29,laki_laki,987,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.05,3,Sumber Jaya,age_group,25-29,perempuan,858,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.05,3,Sumber Jaya,age_group,25-29,,1845,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.05,3,Sumber Jaya,age_group,30-34,laki_laki,847,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.05,3,Sumber Jaya,age_group,30-34,perempuan,833,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.05,3,Sumber Jaya,age_group,30-34,,1680,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.05,3,Sumber Jaya,age_group,35-39,laki_laki,942,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.05,3,Sumber Jaya,age_group,35-39,perempuan,884,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.05,3,Sumber Jaya,age_group,35-39,,1826,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.05,3,Sumber Jaya,age_group,40-44,laki_laki,977,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.05,3,Sumber Jaya,age_group,40-44,perempuan,892,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.05,3,Sumber Jaya,age_group,40-44,,1869,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.05,3,Sumber Jaya,age_group,45-49,laki_laki,932,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.05,3,Sumber Jaya,age_group,45-49,perempuan,916,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.05,3,Sumber Jaya,age_group,45-49,,1848,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.05,3,Sumber Jaya,age_group,50-54,laki_laki,839,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.05,3,Sumber Jaya,age_group,50-54,perempuan,777,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.05,3,Sumber Jaya,age_group,50-54,,1616,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.05,3,Sumber Jaya,age_group,55-59,laki_laki,623,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.05,3,Sumber Jaya,age_group,55-59,perempuan,570,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.05,3,Sumber Jaya,age_group,55-59,,1193,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.05,3,Sumber Jaya,age_group,60-64,laki_laki,544,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.05,3,Sumber Jaya,age_group,60-64,perempuan,481,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.05,3,Sumber Jaya,age_group,60-64,,1025,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.05,3,Sumber Jaya,age_group,65-69,laki_laki,450,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.05,3,Sumber Jaya,age_group,65-69,perempuan,355,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.05,3,Sumber Jaya,age_group,65-69,,805,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.05,3,Sumber Jaya,age_group,70-74,laki_laki,254,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.05,3,Sumber Jaya,age_group,70-74,perempuan,220,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.05,3,Sumber Jaya,age_group,70-74,,474,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.05,3,Sumber Jaya,age_group,75+,laki_laki,331,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.05,3,Sumber Jaya,age_group,75+,perempuan,323,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.05,3,Sumber Jaya,age_group,75+,,654,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.05,3,Kecamatan Sumber Jaya,sex,laki_laki,,12691,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+18.04.05,3,Kecamatan Sumber Jaya,sex,perempuan,,11864,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+18.04.05,3,Kecamatan Sumber Jaya,total,total,,24555,jiwa,2025,registration,total_population,3.2,32,,

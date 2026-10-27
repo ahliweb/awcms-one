@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.18.2002,4,Tebing Tinggi,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.18.2002,4,Tebing Tinggi,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.18.2002,4,Tebing Tinggi,total,total,,526,jiwa,2025,registration,total_population,3.1,35,,
+12.01.18.2003,4,Pulo Pakkat II,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.18.2003,4,Pulo Pakkat II,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.18.2003,4,Pulo Pakkat II,total,total,,561,jiwa,2025,registration,total_population,3.1,35,,
+12.01.18.2006,4,Sihapas,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.18.2006,4,Sihapas,sex,perempuan,,603,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.18.2006,4,Sihapas,total,total,,1215,jiwa,2025,registration,total_population,3.1,35,,
+12.01.18.2001,4,Pulo Pakkat,sex,laki_laki,,431,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.18.2001,4,Pulo Pakkat,sex,perempuan,,430,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.18.2001,4,Pulo Pakkat,total,total,,861,jiwa,2025,registration,total_population,3.1,35,,
+12.01.18.2004,4,Janji Maria,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.18.2004,4,Janji Maria,sex,perempuan,,330,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.18.2004,4,Janji Maria,total,total,,653,jiwa,2025,registration,total_population,3.1,35,,
+12.01.18.2005,4,Sihadatuon,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.18.2005,4,Sihadatuon,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.18.2005,4,Sihadatuon,total,total,,609,jiwa,2025,registration,total_population,3.1,35,,
+12.01.18,3,Suka Bangun,sex,laki_laki,,2215,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.18,3,Suka Bangun,sex,perempuan,,2210,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.18,3,Suka Bangun,total,total,,4425,jiwa,2025,registration,total_population,3.1,35,,

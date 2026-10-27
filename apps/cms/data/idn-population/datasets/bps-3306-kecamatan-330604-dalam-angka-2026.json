@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3306-kecamatan-330604-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.06.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bagelen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Purworejo",
+  "publisherDomain": "3306",
+  "publisherWebsite": "https://purworejokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Purworejo (https://purworejokab.bps.go.id), publikasi \"Kecamatan Bagelen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33060.26009",
+  "issn": "2598-4373",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://purworejokab.bps.go.id/id/publication/2026/09/28/624b08d0121d347978fb0977/kecamatan-bagelen-dalam-angka-2026.html",
+  "sourceFileSha256": "e66068060313c7fe2fc1baa45950604652b0f692068acb4779b4a804e59dd992",
+  "sourceFileBytes": 9741205,
+  "sourcePages": [19, 20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Purworejo.",
+  "csvPath": "datasets/bps-3306-kecamatan-330604-dalam-angka-2026.csv",
+  "csvSha256": "49ca4d83c688438490bf69e8a8926004fe6a41115e08bb84f44d673b96ccc688",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bagelen, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bagelen, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

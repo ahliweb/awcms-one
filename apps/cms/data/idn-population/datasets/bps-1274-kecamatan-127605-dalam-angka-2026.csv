@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.76.05.1001,4,Mandailing,sex,laki_laki,,1689,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05.1001,4,Mandailing,sex,perempuan,,1645,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05.1001,4,Mandailing,total,total,,3334,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05.1003,4,Pasar Gambir,sex,laki_laki,,1477,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05.1003,4,Pasar Gambir,sex,perempuan,,1569,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05.1003,4,Pasar Gambir,total,total,,3046,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05.1006,4,Rambung,sex,laki_laki,,2642,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05.1006,4,Rambung,sex,perempuan,,2686,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05.1006,4,Rambung,total,total,,5328,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05.1007,4,Tebing Tinggi Lama,sex,laki_laki,,1199,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05.1007,4,Tebing Tinggi Lama,sex,perempuan,,1279,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05.1007,4,Tebing Tinggi Lama,total,total,,2478,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05.1002,4,Pasar Baru,sex,laki_laki,,1086,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05.1002,4,Pasar Baru,sex,perempuan,,1155,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05.1002,4,Pasar Baru,total,total,,2241,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05.1004,4,Badak Bejuang,sex,laki_laki,,1545,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05.1004,4,Badak Bejuang,sex,perempuan,,1704,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05.1004,4,Badak Bejuang,total,total,,3249,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05.1005,4,Bandar Utama,sex,laki_laki,,2746,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05.1005,4,Bandar Utama,sex,perempuan,,2786,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05.1005,4,Bandar Utama,total,total,,5532,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05,3,Tebing Tinggi Kota,sex,laki_laki,,12384,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.76.05,3,Tebing Tinggi Kota,sex,perempuan,,12824,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.76.05,3,Tebing Tinggi Kota,total,total,,25208,jiwa,2025,registration,total_population,3.1,25,,
+12.76.05,3,Tebing Tinggi Kota,age_group,0-4,laki_laki,533,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.76.05,3,Tebing Tinggi Kota,age_group,0-4,perempuan,521,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.76.05,3,Tebing Tinggi Kota,age_group,0-4,,1054,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.76.05,3,Tebing Tinggi Kota,age_group,5-9,laki_laki,922,jiwa,2025,registration,total_population,3.2,27,,5-9
+12.76.05,3,Tebing Tinggi Kota,age_group,5-9,perempuan,810,jiwa,2025,registration,total_population,3.2,27,,5-9
+12.76.05,3,Tebing Tinggi Kota,age_group,5-9,,1732,jiwa,2025,registration,total_population,3.2,27,,5-9
+12.76.05,3,Tebing Tinggi Kota,age_group,10-14,laki_laki,1072,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.76.05,3,Tebing Tinggi Kota,age_group,10-14,perempuan,984,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.76.05,3,Tebing Tinggi Kota,age_group,10-14,,2056,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.76.05,3,Tebing Tinggi Kota,age_group,15-19,laki_laki,1007,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.76.05,3,Tebing Tinggi Kota,age_group,15-19,perempuan,1066,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.76.05,3,Tebing Tinggi Kota,age_group,15-19,,2073,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.76.05,3,Tebing Tinggi Kota,age_group,20-24,laki_laki,1056,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.76.05,3,Tebing Tinggi Kota,age_group,20-24,perempuan,999,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.76.05,3,Tebing Tinggi Kota,age_group,20-24,,2055,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.76.05,3,Tebing Tinggi Kota,age_group,25-29,laki_laki,1022,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.76.05,3,Tebing Tinggi Kota,age_group,25-29,perempuan,916,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.76.05,3,Tebing Tinggi Kota,age_group,25-29,,1938,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.76.05,3,Tebing Tinggi Kota,age_group,30-34,laki_laki,911,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.76.05,3,Tebing Tinggi Kota,age_group,30-34,perempuan,854,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.76.05,3,Tebing Tinggi Kota,age_group,30-34,,1765,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.76.05,3,Tebing Tinggi Kota,age_group,35-39,laki_laki,992,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.76.05,3,Tebing Tinggi Kota,age_group,35-39,perempuan,875,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.76.05,3,Tebing Tinggi Kota,age_group,35-39,,1867,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.76.05,3,Tebing Tinggi Kota,age_group,40-44,laki_laki,1009,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.76.05,3,Tebing Tinggi Kota,age_group,40-44,perempuan,1007,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.76.05,3,Tebing Tinggi Kota,age_group,40-44,,2016,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.76.05,3,Tebing Tinggi Kota,age_group,45-49,laki_laki,870,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.76.05,3,Tebing Tinggi Kota,age_group,45-49,perempuan,890,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.76.05,3,Tebing Tinggi Kota,age_group,45-49,,1760,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.76.05,3,Tebing Tinggi Kota,age_group,50-54,laki_laki,662,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.76.05,3,Tebing Tinggi Kota,age_group,50-54,perempuan,811,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.76.05,3,Tebing Tinggi Kota,age_group,50-54,,1473,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.76.05,3,Tebing Tinggi Kota,age_group,55-59,laki_laki,631,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.76.05,3,Tebing Tinggi Kota,age_group,55-59,perempuan,745,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.76.05,3,Tebing Tinggi Kota,age_group,55-59,,1376,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.76.05,3,Tebing Tinggi Kota,age_group,60-64,laki_laki,576,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.76.05,3,Tebing Tinggi Kota,age_group,60-64,perempuan,705,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.76.05,3,Tebing Tinggi Kota,age_group,60-64,,1281,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.76.05,3,Tebing Tinggi Kota,age_group,65-69,laki_laki,464,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.76.05,3,Tebing Tinggi Kota,age_group,65-69,perempuan,628,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.76.05,3,Tebing Tinggi Kota,age_group,65-69,,1092,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.76.05,3,Tebing Tinggi Kota,age_group,70-74,laki_laki,331,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.76.05,3,Tebing Tinggi Kota,age_group,70-74,perempuan,464,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.76.05,3,Tebing Tinggi Kota,age_group,70-74,,795,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.76.05,3,Tebing Tinggi Kota,age_group,75+,laki_laki,326,jiwa,2025,registration,total_population,3.2,27,,75+
+12.76.05,3,Tebing Tinggi Kota,age_group,75+,perempuan,549,jiwa,2025,registration,total_population,3.2,27,,75+
+12.76.05,3,Tebing Tinggi Kota,age_group,75+,,875,jiwa,2025,registration,total_population,3.2,27,,75+
+12.76.05,3,Tebing Tinggi Kota,sex,laki_laki,,12384,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+12.76.05,3,Tebing Tinggi Kota,sex,perempuan,,12824,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+12.76.05,3,Tebing Tinggi Kota,total,total,,25208,jiwa,2025,registration,total_population,3.2,27,,

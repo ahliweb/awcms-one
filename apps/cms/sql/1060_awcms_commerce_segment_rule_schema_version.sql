@@ -1,4 +1,4 @@
--- Issue #390 (ADR-0051, epic #280 item 7, second half) - the rule schema a CRM
+-- Issue #390 (ADR-0052, epic #280 item 7, second half) - the rule schema a CRM
 -- segment version was written under, so booking-derived fields can join the
 -- closed vocabulary without changing what any stored version means (control
 -- C-29).
@@ -33,4 +33,4 @@ ALTER TABLE awcms_commerce_segment_versions
     CHECK (rule_schema_version >= 1);
 
 COMMENT ON COLUMN awcms_commerce_segment_versions.rule_schema_version IS
-  'Issue #390 (ADR-0051, C-29) - the rule-vocabulary schema this version was written under; it is re-validated under the same schema whenever it is read. 1 = the PRD 6.1 commerce vocabulary, 2 = adds the booking-derived fields.';
+  'Issue #390 (ADR-0052, C-29) - the rule-vocabulary schema this version was written under; it is re-validated under the same schema whenever it is read. 1 = the PRD 6.1 commerce vocabulary, 2 = adds the booking-derived fields.';

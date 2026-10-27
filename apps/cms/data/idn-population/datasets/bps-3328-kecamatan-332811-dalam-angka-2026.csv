@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.28.11.2001,4,Pedeslohor,sex,perempuan,,2823,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2001,4,Pedeslohor,total,total,,5747,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2002,4,Lumingser,sex,perempuan,,2497,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2002,4,Lumingser,total,total,,5150,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2003,4,Kedungsukun,sex,perempuan,,1313,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2003,4,Kedungsukun,total,total,,2715,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2004,4,Pagiyanten,sex,perempuan,,2798,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2004,4,Pagiyanten,total,total,,5763,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2005,4,Penarukan,sex,perempuan,,3452,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2005,4,Penarukan,total,total,,7123,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2006,4,Harjosari Lor,sex,perempuan,,5104,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2006,4,Harjosari Lor,total,total,,10393,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2021,4,Harjosari Kidul,sex,perempuan,,5218,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2021,4,Harjosari Kidul,total,total,,10758,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2007,4,Tembok Lor,sex,perempuan,,2025,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2007,4,Tembok Lor,total,total,,4148,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2008,4,Tembok Kidul,sex,perempuan,,2744,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2008,4,Tembok Kidul,total,total,,5555,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2009,4,Tembok Banjaran,sex,perempuan,,2331,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2009,4,Tembok Banjaran,total,total,,4725,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2010,4,Tembok Luwung,sex,perempuan,,5328,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2010,4,Tembok Luwung,total,total,,10767,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2011,4,Adiwerna,sex,perempuan,,6423,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2011,4,Adiwerna,total,total,,13155,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2012,4,Kalimati,sex,perempuan,,3040,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2012,4,Kalimati,total,total,,6117,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2013,4,Lemahduwur,sex,perempuan,,1905,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2013,4,Lemahduwur,total,total,,3989,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2014,4,Pesarean,sex,perempuan,,6727,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2014,4,Pesarean,total,total,,14018,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2015,4,Ujungrusi,sex,perempuan,,4534,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2015,4,Ujungrusi,total,total,,9268,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2016,4,Pagedangan,sex,perempuan,,3213,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2016,4,Pagedangan,total,total,,6588,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2017,4,Kaliwadas,sex,perempuan,,2735,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2017,4,Kaliwadas,total,total,,5656,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2018,4,Pecangakan,sex,perempuan,,1279,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2018,4,Pecangakan,total,total,,2623,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2019,4,Gumalar,sex,perempuan,,2721,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2019,4,Gumalar,total,total,,5500,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11.2020,4,Bersole,sex,perempuan,,2114,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.11.2020,4,Bersole,total,total,,4365,jiwa,2026,registration,total_population,3.1,32,,
+33.28.11,3,Adiwerna,age_group,0-4,laki_laki,5633,jiwa,2026,registration,total_population,3.2,34,,0-4
+33.28.11,3,Adiwerna,age_group,0-4,perempuan,5322,jiwa,2026,registration,total_population,3.2,34,,0-4
+33.28.11,3,Adiwerna,age_group,0-4,,10955,jiwa,2026,registration,total_population,3.2,34,,0-4
+33.28.11,3,Adiwerna,age_group,5-9,laki_laki,5609,jiwa,2026,registration,total_population,3.2,34,,5-9
+33.28.11,3,Adiwerna,age_group,5-9,perempuan,5300,jiwa,2026,registration,total_population,3.2,34,,5-9
+33.28.11,3,Adiwerna,age_group,5-9,,10909,jiwa,2026,registration,total_population,3.2,34,,5-9
+33.28.11,3,Adiwerna,age_group,10-14,laki_laki,5305,jiwa,2026,registration,total_population,3.2,34,,10-14
+33.28.11,3,Adiwerna,age_group,10-14,perempuan,5010,jiwa,2026,registration,total_population,3.2,34,,10-14
+33.28.11,3,Adiwerna,age_group,10-14,,10315,jiwa,2026,registration,total_population,3.2,34,,10-14
+33.28.11,3,Adiwerna,age_group,15-19,laki_laki,5023,jiwa,2026,registration,total_population,3.2,34,,15-19
+33.28.11,3,Adiwerna,age_group,15-19,perempuan,4907,jiwa,2026,registration,total_population,3.2,34,,15-19
+33.28.11,3,Adiwerna,age_group,15-19,,9930,jiwa,2026,registration,total_population,3.2,34,,15-19
+33.28.11,3,Adiwerna,age_group,20-24,laki_laki,4820,jiwa,2026,registration,total_population,3.2,34,,20-24
+33.28.11,3,Adiwerna,age_group,20-24,perempuan,4655,jiwa,2026,registration,total_population,3.2,34,,20-24
+33.28.11,3,Adiwerna,age_group,20-24,,9475,jiwa,2026,registration,total_population,3.2,34,,20-24
+33.28.11,3,Adiwerna,age_group,25-29,laki_laki,5506,jiwa,2026,registration,total_population,3.2,34,,25-29
+33.28.11,3,Adiwerna,age_group,25-29,perempuan,5133,jiwa,2026,registration,total_population,3.2,34,,25-29
+33.28.11,3,Adiwerna,age_group,25-29,,10639,jiwa,2026,registration,total_population,3.2,34,,25-29
+33.28.11,3,Adiwerna,age_group,30-34,laki_laki,5743,jiwa,2026,registration,total_population,3.2,34,,30-34
+33.28.11,3,Adiwerna,age_group,30-34,perempuan,5271,jiwa,2026,registration,total_population,3.2,34,,30-34
+33.28.11,3,Adiwerna,age_group,30-34,,11014,jiwa,2026,registration,total_population,3.2,34,,30-34
+33.28.11,3,Adiwerna,age_group,35-39,laki_laki,5900,jiwa,2026,registration,total_population,3.2,34,,35-39
+33.28.11,3,Adiwerna,age_group,35-39,perempuan,5350,jiwa,2026,registration,total_population,3.2,34,,35-39
+33.28.11,3,Adiwerna,age_group,35-39,,11250,jiwa,2026,registration,total_population,3.2,34,,35-39
+33.28.11,3,Adiwerna,age_group,40-44,laki_laki,5839,jiwa,2026,registration,total_population,3.2,34,,40-44
+33.28.11,3,Adiwerna,age_group,40-44,perempuan,5407,jiwa,2026,registration,total_population,3.2,34,,40-44
+33.28.11,3,Adiwerna,age_group,40-44,,11246,jiwa,2026,registration,total_population,3.2,34,,40-44
+33.28.11,3,Adiwerna,age_group,45-49,laki_laki,5355,jiwa,2026,registration,total_population,3.2,34,,45-49
+33.28.11,3,Adiwerna,age_group,45-49,perempuan,5150,jiwa,2026,registration,total_population,3.2,34,,45-49
+33.28.11,3,Adiwerna,age_group,45-49,,10505,jiwa,2026,registration,total_population,3.2,34,,45-49
+33.28.11,3,Adiwerna,age_group,50-54,laki_laki,4438,jiwa,2026,registration,total_population,3.2,34,,50-54
+33.28.11,3,Adiwerna,age_group,50-54,perempuan,4352,jiwa,2026,registration,total_population,3.2,34,,50-54
+33.28.11,3,Adiwerna,age_group,50-54,,8790,jiwa,2026,registration,total_population,3.2,34,,50-54
+33.28.11,3,Adiwerna,age_group,55-59,laki_laki,3344,jiwa,2026,registration,total_population,3.2,34,,55-59
+33.28.11,3,Adiwerna,age_group,55-59,perempuan,3516,jiwa,2026,registration,total_population,3.2,34,,55-59
+33.28.11,3,Adiwerna,age_group,55-59,,6860,jiwa,2026,registration,total_population,3.2,34,,55-59
+33.28.11,3,Adiwerna,age_group,60-64,laki_laki,2548,jiwa,2026,registration,total_population,3.2,34,,60-64
+33.28.11,3,Adiwerna,age_group,60-64,perempuan,2791,jiwa,2026,registration,total_population,3.2,34,,60-64
+33.28.11,3,Adiwerna,age_group,60-64,,5339,jiwa,2026,registration,total_population,3.2,34,,60-64
+33.28.11,3,Adiwerna,age_group,65-69,laki_laki,1892,jiwa,2026,registration,total_population,3.2,34,,65-69
+33.28.11,3,Adiwerna,age_group,65-69,perempuan,2147,jiwa,2026,registration,total_population,3.2,34,,65-69
+33.28.11,3,Adiwerna,age_group,65-69,,4039,jiwa,2026,registration,total_population,3.2,34,,65-69
+33.28.11,3,Adiwerna,age_group,70-74,laki_laki,1154,jiwa,2026,registration,total_population,3.2,34,,70-74
+33.28.11,3,Adiwerna,age_group,70-74,perempuan,1309,jiwa,2026,registration,total_population,3.2,34,,70-74
+33.28.11,3,Adiwerna,age_group,70-74,,2463,jiwa,2026,registration,total_population,3.2,34,,70-74
+33.28.11,3,Adiwerna,age_group,75+,laki_laki,800,jiwa,2026,registration,total_population,3.2,34,,75+
+33.28.11,3,Adiwerna,age_group,75+,perempuan,1080,jiwa,2026,registration,total_population,3.2,34,,75+
+33.28.11,3,Adiwerna,age_group,75+,,1880,jiwa,2026,registration,total_population,3.2,34,,75+

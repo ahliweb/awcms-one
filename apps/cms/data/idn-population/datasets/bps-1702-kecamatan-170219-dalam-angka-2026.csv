@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.19.1001,4,Kepala Siring,sex,laki_laki,,1064,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1001,4,Kepala Siring,sex,perempuan,,1054,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1001,4,Kepala Siring,total,total,,2118,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.1002,4,Talang Rimbo Baru,sex,laki_laki,,3004,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1002,4,Talang Rimbo Baru,sex,perempuan,,2964,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1002,4,Talang Rimbo Baru,total,total,,5968,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.1003,4,Talang Rimbo Lama,sex,laki_laki,,2983,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1003,4,Talang Rimbo Lama,sex,perempuan,,2944,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1003,4,Talang Rimbo Lama,total,total,,5927,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.1009,4,Banyumas,sex,laki_laki,,695,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1009,4,Banyumas,sex,perempuan,,713,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1009,4,Banyumas,total,total,,1408,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.1007,4,Pelabuhan Baru,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1007,4,Pelabuhan Baru,sex,perempuan,,566,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1007,4,Pelabuhan Baru,total,total,,1139,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.1005,4,Kampung Jawa,sex,laki_laki,,660,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1005,4,Kampung Jawa,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1005,4,Kampung Jawa,total,total,,1353,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.1006,4,Air Bang,sex,laki_laki,,4159,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1006,4,Air Bang,sex,perempuan,,4094,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1006,4,Air Bang,total,total,,8253,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.2010,4,Air Merah,sex,laki_laki,,815,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.2010,4,Air Merah,sex,perempuan,,781,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.2010,4,Air Merah,total,total,,1596,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19.1008,4,Batu Galing,sex,laki_laki,,1404,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19.1008,4,Batu Galing,sex,perempuan,,1366,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19.1008,4,Batu Galing,total,total,,2770,jiwa,2025,registration,total_population,3.1,22,,
+17.02.19,3,Curup Tengah,sex,laki_laki,,17361,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.19,3,Curup Tengah,sex,perempuan,,17098,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.19,3,Curup Tengah,total,total,,34459,jiwa,2025,registration,total_population,3.1,22,,

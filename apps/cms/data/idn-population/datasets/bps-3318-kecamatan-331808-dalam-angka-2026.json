@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3318-kecamatan-331808-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.18.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Juwana Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pati",
+  "publisherDomain": "3318",
+  "publisherWebsite": "https://patikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pati (https://patikab.bps.go.id), publikasi \"Kecamatan Juwana Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3318080",
+  "publicationNumber": "33180.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://patikab.bps.go.id/id/publication/2026/09/28/e6813eee0955850a09dc0565/kecamatan-juwana-dalam-angka-2026.html",
+  "sourceFileSha256": "45101b622840165f22a075260c79e52cea301d2b6fa37086c4c7ee1eb16d15f2",
+  "sourceFileBytes": 12142726,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statsistik Kabupaten Pati",
+  "csvPath": "datasets/bps-3318-kecamatan-331808-dalam-angka-2026.csv",
+  "csvSha256": "d33e0c347f5f30adbbce14916622cd156a549ff69f56995e8e66ef080226555e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Juwana, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Juwana, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

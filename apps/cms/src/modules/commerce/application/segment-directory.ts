@@ -39,7 +39,7 @@ const MAX_VERSIONS_IN_DETAIL = 100;
 
 export type SegmentVersionRecord = {
   version: number;
-  /** The rule schema the version was written under (ADR-0051); a version is read under the same one. */
+  /** The rule schema the version was written under (ADR-0052); a version is read under the same one. */
   ruleSchemaVersion: number;
   rules: Record<string, unknown>;
   nodeCount: number;

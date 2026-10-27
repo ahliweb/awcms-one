@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.15.2006,4,Kedatuan,sex,perempuan,,817,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.15.2006,4,Kedatuan,total,total,,1656,jiwa,2025,registration,total_population,3.1,37,,
+18.02.15.2001,4,Rengas,sex,perempuan,,1967,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.15.2001,4,Rengas,total,total,,3959,jiwa,2025,registration,total_population,3.1,37,,
+18.02.15.2002,4,Kesumadadi,sex,perempuan,,2215,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.15.2002,4,Kesumadadi,total,total,,4522,jiwa,2025,registration,total_population,3.1,37,,
+18.02.15.2007,4,Goras Jaya,sex,perempuan,,3017,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.15.2007,4,Goras Jaya,total,total,,6155,jiwa,2025,registration,total_population,3.1,37,,
+18.02.15.2004,4,Kesuma Jaya,sex,perempuan,,3017,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.15.2004,4,Kesuma Jaya,total,total,,6155,jiwa,2025,registration,total_population,3.1,37,,
+18.02.15.2008,4,Bangunsari,sex,perempuan,,846,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.15.2008,4,Bangunsari,total,total,,1712,jiwa,2025,registration,total_population,3.1,37,,
+18.02.15,3,Bekri,sex,perempuan,,15998,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.15,3,Bekri,total,total,,32594,jiwa,2025,registration,total_population,3.1,37,,
+18.02.15,3,Bekri,age_group,0-4,perempuan,912,jiwa,2025,registration,total_population,3.2,39,,0–4
+18.02.15,3,Bekri,age_group,0-4,,1848,jiwa,2025,registration,total_population,3.2,39,,0–4
+18.02.15,3,Bekri,age_group,5-9,perempuan,1207,jiwa,2025,registration,total_population,3.2,39,,5–9
+18.02.15,3,Bekri,age_group,5-9,,2513,jiwa,2025,registration,total_population,3.2,39,,5–9
+18.02.15,3,Bekri,age_group,10-14,perempuan,1291,jiwa,2025,registration,total_population,3.2,39,,10–14
+18.02.15,3,Bekri,age_group,10-14,,2623,jiwa,2025,registration,total_population,3.2,39,,10–14
+18.02.15,3,Bekri,age_group,15-19,perempuan,1124,jiwa,2025,registration,total_population,3.2,39,,15–19
+18.02.15,3,Bekri,age_group,15-19,,2326,jiwa,2025,registration,total_population,3.2,39,,15–19
+18.02.15,3,Bekri,age_group,20-24,perempuan,1082,jiwa,2025,registration,total_population,3.2,39,,20–24
+18.02.15,3,Bekri,age_group,20-24,,2248,jiwa,2025,registration,total_population,3.2,39,,20–24
+18.02.15,3,Bekri,age_group,25-29,perempuan,1080,jiwa,2025,registration,total_population,3.2,39,,25–29
+18.02.15,3,Bekri,age_group,25-29,,2261,jiwa,2025,registration,total_population,3.2,39,,25–29
+18.02.15,3,Bekri,age_group,30-34,perempuan,1033,jiwa,2025,registration,total_population,3.2,39,,30–34
+18.02.15,3,Bekri,age_group,30-34,,2080,jiwa,2025,registration,total_population,3.2,39,,30–34
+18.02.15,3,Bekri,age_group,35-39,perempuan,1108,jiwa,2025,registration,total_population,3.2,39,,35–39
+18.02.15,3,Bekri,age_group,35-39,,2216,jiwa,2025,registration,total_population,3.2,39,,35–39
+18.02.15,3,Bekri,age_group,40-44,perempuan,1202,jiwa,2025,registration,total_population,3.2,39,,40–44
+18.02.15,3,Bekri,age_group,40-44,,2362,jiwa,2025,registration,total_population,3.2,39,,40–44
+18.02.15,3,Bekri,age_group,45-49,perempuan,1133,jiwa,2025,registration,total_population,3.2,39,,45–49
+18.02.15,3,Bekri,age_group,45-49,,2388,jiwa,2025,registration,total_population,3.2,39,,45–49
+18.02.15,3,Bekri,age_group,50-54,perempuan,966,jiwa,2025,registration,total_population,3.2,39,,50–54
+18.02.15,3,Bekri,age_group,50-54,,1997,jiwa,2025,registration,total_population,3.2,39,,50–54
+18.02.15,3,Bekri,age_group,55-59,perempuan,778,jiwa,2025,registration,total_population,3.2,39,,55–59
+18.02.15,3,Bekri,age_group,55-59,,1630,jiwa,2025,registration,total_population,3.2,39,,55–59
+18.02.15,3,Bekri,age_group,60-64,perempuan,689,jiwa,2025,registration,total_population,3.2,39,,60–64
+18.02.15,3,Bekri,age_group,60-64,,1353,jiwa,2025,registration,total_population,3.2,39,,60–64
+18.02.15,3,Bekri,age_group,65-69,perempuan,592,jiwa,2025,registration,total_population,3.2,39,,65–69
+18.02.15,3,Bekri,age_group,65-69,,1174,jiwa,2025,registration,total_population,3.2,39,,65–69
+18.02.15,3,Bekri,age_group,70-74,perempuan,356,jiwa,2025,registration,total_population,3.2,39,,70–74
+18.02.15,3,Bekri,age_group,70-74,,785,jiwa,2025,registration,total_population,3.2,39,,70–74
+18.02.15,3,Bekri,age_group,75+,perempuan,529,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.15,3,Bekri,age_group,75+,,1074,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.15,3,Bekri,sex,perempuan,,15082,jiwa,2025,registration,total_population,3.2,39,,Perempuan
+18.02.15,3,Bekri,total,total,,30878,jiwa,2025,registration,total_population,3.2,39,,

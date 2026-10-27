@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.19.2001,4,Padang Bindu,sex,laki_laki,,1785,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.19.2001,4,Padang Bindu,sex,perempuan,,1610,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.19.2001,4,Padang Bindu,total,total,,3395,jiwa,2025,registration,total_population,3.1,23,,
+16.03.19.2003,4,Pagar Dewa,sex,laki_laki,,1083,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.19.2003,4,Pagar Dewa,sex,perempuan,,1013,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.19.2003,4,Pagar Dewa,total,total,,2096,jiwa,2025,registration,total_population,3.1,23,,
+16.03.19.2004,4,Pagar Jati,sex,laki_laki,,878,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.19.2004,4,Pagar Jati,sex,perempuan,,844,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.19.2004,4,Pagar Jati,total,total,,1722,jiwa,2025,registration,total_population,3.1,23,,
+16.03.19.2002,4,Betung,sex,laki_laki,,642,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.19.2002,4,Betung,sex,perempuan,,573,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.19.2002,4,Betung,total,total,,1215,jiwa,2025,registration,total_population,3.1,23,,
+16.03.19.2005,4,Hidup Baru,sex,laki_laki,,830,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.19.2005,4,Hidup Baru,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.19.2005,4,Hidup Baru,total,total,,1577,jiwa,2025,registration,total_population,3.1,23,,
+16.03.19.2006,4,Rami Pasai,sex,laki_laki,,548,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.19.2006,4,Rami Pasai,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.19.2006,4,Rami Pasai,total,total,,1074,jiwa,2025,registration,total_population,3.1,23,,
+16.03.19,3,Benakat,sex,laki_laki,,5766,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.19,3,Benakat,sex,perempuan,,5313,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.19,3,Benakat,total,total,,11079,jiwa,2025,registration,total_population,3.1,23,,

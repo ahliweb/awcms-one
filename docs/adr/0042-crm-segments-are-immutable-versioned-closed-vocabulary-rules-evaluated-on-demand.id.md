@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md)
 
-<!-- i18n-source-hash: sha256:d110b68da357aee35cdc254e6fde94f583d7b830eebfa495bf835ff27164d96e -->
+<!-- i18n-source-hash: sha256:8aeaed2f6b111266d4928d7287a393544c1e57ea87b51457a400c4e7da7a6151 -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -96,7 +96,7 @@ Membuat, versi baru, ganti nama, pensiun, pembacaan daftar anggota, dan ekspor m
 
 ## Ditunda (sengaja tidak dibangun di sini)
 
-Bidang turunan booking (menginap selesai, tanggal menginap terakhir) - setelah Gelombang C, lewat event adaptor sendiri, masing-masing dengan ADR-nya (jawaban pemilik Q7) - **dibangun oleh [ADR-0051](0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md) (issue #390) sebagai skema aturan 2, dibaca langsung lewat tautan booking, bukan lewat event**; menyambungkan segmen ke versi program loyalitas (#361) dan audiens kampanye (#362); irisan analitik per segmen (metrik bagian 8.5) sebagai konsumen; snapshot kohort atau cache hasil; evaluasi ulang terjadwal atau digerakkan event; pembangun aturan visual untuk grup bersarang (layar menawarkan pembangun semua / salah satu yang datar dan kotak JSON); domain event untuk perubahan segmen.
+Bidang turunan booking (menginap selesai, tanggal menginap terakhir) - setelah Gelombang C, lewat event adaptor sendiri, masing-masing dengan ADR-nya (jawaban pemilik Q7) - **dibangun oleh [ADR-0052](0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md) (issue #390) sebagai skema aturan 2, dibaca langsung lewat tautan booking, bukan lewat event**; menyambungkan segmen ke versi program loyalitas (#361) dan audiens kampanye (#362); irisan analitik per segmen (metrik bagian 8.5) sebagai konsumen; snapshot kohort atau cache hasil; evaluasi ulang terjadwal atau digerakkan event; pembangun aturan visual untuk grup bersarang (layar menawarkan pembangun semua / salah satu yang datar dan kotak JSON); domain event untuk perubahan segmen.
 
 ## Amandemen (#361) - 11 Oktober 2026: versi program loyalitas dapat dibatasi ke satu segmen
 

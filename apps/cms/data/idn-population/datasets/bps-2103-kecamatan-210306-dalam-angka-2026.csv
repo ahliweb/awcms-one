@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.03.06.2002,4,Kampung Hilir,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.06.2002,4,Kampung Hilir,sex,perempuan,,280,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.06.2002,4,Kampung Hilir,total,total,,550,jiwa,2025,registration,total_population,3.1,26,,
+21.03.06.2006,4,Tanjung Setelung,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.06.2006,4,Tanjung Setelung,sex,perempuan,,338,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.06.2006,4,Tanjung Setelung,total,total,,685,jiwa,2025,registration,total_population,3.1,26,,
+21.03.06.2007,4,Tanjung Balau,sex,laki_laki,,266,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.06.2007,4,Tanjung Balau,sex,perempuan,,232,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.06.2007,4,Tanjung Balau,total,total,,498,jiwa,2025,registration,total_population,3.1,26,,
+21.03.06.2010,4,Pangkalan,sex,laki_laki,,266,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.06.2010,4,Pangkalan,sex,perempuan,,251,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.06.2010,4,Pangkalan,total,total,,517,jiwa,2025,registration,total_population,3.1,26,,
+21.03.06.2011,4,Jermalik,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.06.2011,4,Jermalik,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.06.2011,4,Jermalik,total,total,,432,jiwa,2025,registration,total_population,3.1,26,,
+21.03.06,3,Serasan,age_group,0-4,laki_laki,158,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.06,3,Serasan,age_group,0-4,perempuan,176,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.06,3,Serasan,age_group,0-4,,334,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.06,3,Serasan,age_group,5-9,laki_laki,196,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.06,3,Serasan,age_group,5-9,perempuan,196,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.06,3,Serasan,age_group,5-9,,392,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.06,3,Serasan,age_group,10-14,laki_laki,227,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.06,3,Serasan,age_group,10-14,perempuan,218,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.06,3,Serasan,age_group,10-14,,445,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.06,3,Serasan,age_group,15-19,laki_laki,260,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.06,3,Serasan,age_group,15-19,perempuan,223,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.06,3,Serasan,age_group,15-19,,483,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.06,3,Serasan,age_group,20-24,laki_laki,240,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.06,3,Serasan,age_group,20-24,perempuan,226,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.06,3,Serasan,age_group,20-24,,466,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.06,3,Serasan,age_group,25-29,laki_laki,180,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.06,3,Serasan,age_group,25-29,perempuan,196,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.06,3,Serasan,age_group,25-29,,376,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.06,3,Serasan,age_group,30-34,laki_laki,164,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.06,3,Serasan,age_group,30-34,perempuan,164,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.06,3,Serasan,age_group,30-34,,328,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.06,3,Serasan,age_group,35-39,laki_laki,145,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.06,3,Serasan,age_group,35-39,perempuan,165,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.06,3,Serasan,age_group,35-39,,310,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.06,3,Serasan,age_group,40-44,laki_laki,229,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.06,3,Serasan,age_group,40-44,perempuan,200,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.06,3,Serasan,age_group,40-44,,429,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.06,3,Serasan,age_group,45-49,laki_laki,236,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.06,3,Serasan,age_group,45-49,perempuan,189,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.06,3,Serasan,age_group,45-49,,425,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.06,3,Serasan,age_group,50-54,laki_laki,172,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.06,3,Serasan,age_group,50-54,perempuan,170,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.06,3,Serasan,age_group,50-54,,342,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.06,3,Serasan,age_group,55-59,laki_laki,131,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.06,3,Serasan,age_group,55-59,perempuan,104,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.06,3,Serasan,age_group,55-59,,235,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.06,3,Serasan,age_group,60-64,laki_laki,100,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.06,3,Serasan,age_group,60-64,perempuan,125,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.06,3,Serasan,age_group,60-64,,225,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.06,3,Serasan,age_group,65-69,laki_laki,84,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.06,3,Serasan,age_group,65-69,perempuan,111,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.06,3,Serasan,age_group,65-69,,195,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.06,3,Serasan,age_group,70-74,laki_laki,72,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.06,3,Serasan,age_group,70-74,perempuan,68,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.06,3,Serasan,age_group,70-74,,140,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.06,3,Serasan,age_group,75+,laki_laki,66,jiwa,2025,registration,total_population,3.2,28,,75+
+21.03.06,3,Serasan,age_group,75+,perempuan,75,jiwa,2025,registration,total_population,3.2,28,,75+
+21.03.06,3,Serasan,age_group,75+,,141,jiwa,2025,registration,total_population,3.2,28,,75+

@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.18.1003,4,Sepuluh Ilir,sex,perempuan,,1848,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.18.1003,4,Sepuluh Ilir,total,total,,3706,jiwa,2025,registration,total_population,3.1,32,,
+16.71.18.1004,4,Sebelas Ilir,sex,perempuan,,1734,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.18.1004,4,Sebelas Ilir,total,total,,3516,jiwa,2025,registration,total_population,3.1,32,,
+16.71.18.1005,4,Kutobatu,sex,perempuan,,7126,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.18.1005,4,Kutobatu,total,total,,14206,jiwa,2025,registration,total_population,3.1,32,,
+16.71.18.1006,4,Duku,sex,perempuan,,8385,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.18.1006,4,Duku,total,total,,16568,jiwa,2025,registration,total_population,3.1,32,,
+16.71.18.1002,4,Sembilan Ilir,sex,perempuan,,6794,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.18.1002,4,Sembilan Ilir,total,total,,13444,jiwa,2025,registration,total_population,3.1,32,,
+16.71.18.1001,4,Delapan Ilir,sex,perempuan,,11512,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.18.1001,4,Delapan Ilir,total,total,,23041,jiwa,2025,registration,total_population,3.1,32,,
+16.71.18,3,Ilir Timur Tiga,sex,perempuan,,37399,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.18,3,Ilir Timur Tiga,total,total,,74481,jiwa,2025,registration,total_population,3.1,32,,

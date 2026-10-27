@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.16.2001,4,Pandan Arang,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2001,4,Pandan Arang,sex,perempuan,,513,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2001,4,Pandan Arang,total,total,,1086,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2014,4,Keban Agung,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2014,4,Keban Agung,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2014,4,Keban Agung,total,total,,1044,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2002,4,Tanjung Kurung,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2002,4,Tanjung Kurung,sex,perempuan,,296,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2002,4,Tanjung Kurung,total,total,,620,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2003,4,Nanjungan,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2003,4,Nanjungan,sex,perempuan,,705,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2003,4,Nanjungan,total,total,,1446,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2005,4,Pulau Beringin,sex,laki_laki,,692,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2005,4,Pulau Beringin,sex,perempuan,,634,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2005,4,Pulau Beringin,total,total,,1326,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2010,4,Tanjung Beringin,sex,laki_laki,,719,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2010,4,Tanjung Beringin,sex,perempuan,,657,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2010,4,Tanjung Beringin,total,total,,1376,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2011,4,Pagar Jati,sex,laki_laki,,1159,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2011,4,Pagar Jati,sex,perempuan,,1140,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2011,4,Pagar Jati,total,total,,2299,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2013,4,Jaga Baya,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2013,4,Jaga Baya,sex,perempuan,,298,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2013,4,Jaga Baya,total,total,,614,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2009,4,Sirah Pulau,sex,laki_laki,,263,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2009,4,Sirah Pulau,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2009,4,Sirah Pulau,total,total,,527,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2008,4,Tanjung Alam,sex,laki_laki,,434,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2008,4,Tanjung Alam,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2008,4,Tanjung Alam,total,total,,874,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2012,4,Karang Cahaya,sex,laki_laki,,452,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2012,4,Karang Cahaya,sex,perempuan,,461,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2012,4,Karang Cahaya,total,total,,913,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2004,4,Pagardin,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2004,4,Pagardin,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2004,4,Pagardin,total,total,,922,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2007,4,Banu Ayu,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2007,4,Banu Ayu,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2007,4,Banu Ayu,total,total,,1510,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2015,4,Padang Bindu,sex,laki_laki,,293,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2015,4,Padang Bindu,sex,perempuan,,253,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2015,4,Padang Bindu,total,total,,546,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16.2016,4,Beringin Janggut,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16.2016,4,Beringin Janggut,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16.2016,4,Beringin Janggut,total,total,,914,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16,3,Kecamatan Kikim Selatan,sex,laki_laki,,9372,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+16.04.16,3,Kecamatan Kikim Selatan,sex,perempuan,,8810,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+16.04.16,3,Kecamatan Kikim Selatan,total,total,,18182,jiwa,2025,registration,total_population,3.1,47,,
+16.04.16,3,Kikim Selatan,age_group,0-4,laki_laki,575,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+16.04.16,3,Kikim Selatan,age_group,0-4,perempuan,504,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+16.04.16,3,Kikim Selatan,age_group,0-4,,1079,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+16.04.16,3,Kikim Selatan,age_group,5-9,laki_laki,797,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+16.04.16,3,Kikim Selatan,age_group,5-9,perempuan,712,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+16.04.16,3,Kikim Selatan,age_group,5-9,,1509,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+16.04.16,3,Kikim Selatan,age_group,10-14,laki_laki,834,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+16.04.16,3,Kikim Selatan,age_group,10-14,perempuan,767,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+16.04.16,3,Kikim Selatan,age_group,10-14,,1601,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+16.04.16,3,Kikim Selatan,age_group,15-19,laki_laki,950,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+16.04.16,3,Kikim Selatan,age_group,15-19,perempuan,812,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+16.04.16,3,Kikim Selatan,age_group,15-19,,1762,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+16.04.16,3,Kikim Selatan,age_group,20-24,laki_laki,751,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+16.04.16,3,Kikim Selatan,age_group,20-24,perempuan,707,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+16.04.16,3,Kikim Selatan,age_group,20-24,,1458,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+16.04.16,3,Kikim Selatan,age_group,25-29,laki_laki,710,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+16.04.16,3,Kikim Selatan,age_group,25-29,perempuan,603,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+16.04.16,3,Kikim Selatan,age_group,25-29,,1313,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+16.04.16,3,Kikim Selatan,age_group,30-34,laki_laki,586,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+16.04.16,3,Kikim Selatan,age_group,30-34,perempuan,542,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+16.04.16,3,Kikim Selatan,age_group,30-34,,1128,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+16.04.16,3,Kikim Selatan,age_group,35-39,laki_laki,734,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+16.04.16,3,Kikim Selatan,age_group,35-39,perempuan,682,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+16.04.16,3,Kikim Selatan,age_group,35-39,,1416,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+16.04.16,3,Kikim Selatan,age_group,40-44,laki_laki,670,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+16.04.16,3,Kikim Selatan,age_group,40-44,perempuan,645,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+16.04.16,3,Kikim Selatan,age_group,40-44,,1315,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+16.04.16,3,Kikim Selatan,age_group,45-49,laki_laki,687,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+16.04.16,3,Kikim Selatan,age_group,45-49,perempuan,702,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+16.04.16,3,Kikim Selatan,age_group,45-49,,1389,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+16.04.16,3,Kikim Selatan,age_group,50-54,laki_laki,559,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+16.04.16,3,Kikim Selatan,age_group,50-54,perempuan,553,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+16.04.16,3,Kikim Selatan,age_group,50-54,,1112,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+16.04.16,3,Kikim Selatan,age_group,55-59,laki_laki,476,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+16.04.16,3,Kikim Selatan,age_group,55-59,perempuan,493,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+16.04.16,3,Kikim Selatan,age_group,55-59,,969,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+16.04.16,3,Kikim Selatan,age_group,60-64,laki_laki,338,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+16.04.16,3,Kikim Selatan,age_group,60-64,perempuan,350,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+16.04.16,3,Kikim Selatan,age_group,60-64,,688,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+16.04.16,3,Kikim Selatan,age_group,65-69,laki_laki,300,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+16.04.16,3,Kikim Selatan,age_group,65-69,perempuan,301,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+16.04.16,3,Kikim Selatan,age_group,65-69,,601,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+16.04.16,3,Kikim Selatan,age_group,70-74,laki_laki,172,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+16.04.16,3,Kikim Selatan,age_group,70-74,perempuan,186,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+16.04.16,3,Kikim Selatan,age_group,70-74,,358,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+16.04.16,3,Kikim Selatan,age_group,75+,laki_laki,233,jiwa,2025,registration,total_population,3.2,49,,75 +
+16.04.16,3,Kikim Selatan,age_group,75+,perempuan,251,jiwa,2025,registration,total_population,3.2,49,,75 +
+16.04.16,3,Kikim Selatan,age_group,75+,,484,jiwa,2025,registration,total_population,3.2,49,,75 +

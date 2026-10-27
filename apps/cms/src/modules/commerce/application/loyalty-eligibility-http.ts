@@ -14,7 +14,7 @@
  *      cannot aim a program at one (the permission checked through the one
  *      access chokepoint, so the decision is logged);
  *      and, when the segment's rule reads a booking-derived fact (rule schema
- *      2, ADR-0051), `commerce.booking_reservation_links.read` as well;
+ *      2, ADR-0052), `commerce.booking_reservation_links.read` as well;
  *   3. a live segment of THIS tenant and an existing version - `422
  *      SEGMENT_NOT_FOUND`, the same answer for an unknown, foreign, retired or
  *      non-existent version (no existence oracle across tenants).
@@ -98,7 +98,7 @@ export async function resolveEligibilityRequest(
       )
     };
   }
-  // A booking-derived rule (rule schema 2, ADR-0051) is aimed only by someone
+  // A booking-derived rule (rule schema 2, ADR-0052) is aimed only by someone
   // who may read bookings: choosing it decides who earns, by booking behaviour.
   const resolved = await resolveSegmentRules(
     tx,

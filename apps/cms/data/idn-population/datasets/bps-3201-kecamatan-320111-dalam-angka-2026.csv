@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.11.2006,4,Jampang,sex,laki_laki,,5415,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2006,4,Jampang,sex,perempuan,,5201,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2006,4,Jampang,total,total,,10616,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2007,4,Cibadung,sex,laki_laki,,5340,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2007,4,Cibadung,sex,perempuan,,5094,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2007,4,Cibadung,total,total,,10434,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2008,4,Cibinong,sex,laki_laki,,7416,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2008,4,Cibinong,sex,perempuan,,7194,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2008,4,Cibinong,total,total,,14610,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2001,4,Cidokom,sex,laki_laki,,9823,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2001,4,Cidokom,sex,perempuan,,9543,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2001,4,Cidokom,total,total,,19366,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2002,4,Padurenan,sex,laki_laki,,7227,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2002,4,Padurenan,sex,perempuan,,6988,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2002,4,Padurenan,total,total,,14215,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2004,4,Curug,sex,laki_laki,,2972,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2004,4,Curug,sex,perempuan,,2765,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2004,4,Curug,total,total,,5737,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2009,4,Rawakalong,sex,laki_laki,,5644,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2009,4,Rawakalong,sex,perempuan,,5516,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2009,4,Rawakalong,total,total,,11160,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2003,4,Pengasinan,sex,laki_laki,,9096,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2003,4,Pengasinan,sex,perempuan,,8891,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2003,4,Pengasinan,total,total,,17987,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2005,4,Gunung Sindur,sex,laki_laki,,8872,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2005,4,Gunung Sindur,sex,perempuan,,8755,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2005,4,Gunung Sindur,total,total,,17627,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11.2010,4,Pabuaran,sex,laki_laki,,5554,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11.2010,4,Pabuaran,sex,perempuan,,5380,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11.2010,4,Pabuaran,total,total,,10934,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11,3,Kecamatan Gunung Sindur,sex,laki_laki,,67359,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.11,3,Kecamatan Gunung Sindur,sex,perempuan,,65327,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.11,3,Kecamatan Gunung Sindur,total,total,,132686,jiwa,2025,registration,total_population,3.1,34,,
+32.01.11,3,Gunungsindur,age_group,0-4,laki_laki,4516,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.11,3,Gunungsindur,age_group,0-4,perempuan,4213,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.11,3,Gunungsindur,age_group,0-4,,8729,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.11,3,Gunungsindur,age_group,5-9,laki_laki,6140,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.11,3,Gunungsindur,age_group,5-9,perempuan,5606,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.11,3,Gunungsindur,age_group,5-9,,11746,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.11,3,Gunungsindur,age_group,10-14,laki_laki,6216,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.11,3,Gunungsindur,age_group,10-14,perempuan,5857,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.11,3,Gunungsindur,age_group,10-14,,12073,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.11,3,Gunungsindur,age_group,15-19,laki_laki,5549,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.11,3,Gunungsindur,age_group,15-19,perempuan,5259,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.11,3,Gunungsindur,age_group,15-19,,10808,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.11,3,Gunungsindur,age_group,20-24,laki_laki,5371,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.11,3,Gunungsindur,age_group,20-24,perempuan,5253,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.11,3,Gunungsindur,age_group,20-24,,10624,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.11,3,Gunungsindur,age_group,25-29,laki_laki,5335,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.11,3,Gunungsindur,age_group,25-29,perempuan,5382,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.11,3,Gunungsindur,age_group,25-29,,10717,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.11,3,Gunungsindur,age_group,30-34,laki_laki,5466,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.11,3,Gunungsindur,age_group,30-34,perempuan,5070,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.11,3,Gunungsindur,age_group,30-34,,10536,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.11,3,Gunungsindur,age_group,35-39,laki_laki,4889,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.11,3,Gunungsindur,age_group,35-39,perempuan,5244,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.11,3,Gunungsindur,age_group,35-39,,10133,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.11,3,Gunungsindur,age_group,40-44,laki_laki,5470,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.11,3,Gunungsindur,age_group,40-44,perempuan,5433,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.11,3,Gunungsindur,age_group,40-44,,10903,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.11,3,Gunungsindur,age_group,45-49,laki_laki,4937,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.11,3,Gunungsindur,age_group,45-49,perempuan,4800,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.11,3,Gunungsindur,age_group,45-49,,9737,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.11,3,Gunungsindur,age_group,50-54,laki_laki,4250,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.11,3,Gunungsindur,age_group,50-54,perempuan,4056,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.11,3,Gunungsindur,age_group,50-54,,8306,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.11,3,Gunungsindur,age_group,55-59,laki_laki,3321,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.11,3,Gunungsindur,age_group,55-59,perempuan,3110,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.11,3,Gunungsindur,age_group,55-59,,6431,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.11,3,Gunungsindur,age_group,60-64,laki_laki,2254,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.11,3,Gunungsindur,age_group,60-64,perempuan,2254,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.11,3,Gunungsindur,age_group,60-64,,4508,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.11,3,Gunungsindur,age_group,65-69,laki_laki,1674,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.11,3,Gunungsindur,age_group,65-69,perempuan,1667,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.11,3,Gunungsindur,age_group,65-69,,3341,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.11,3,Gunungsindur,age_group,70-74,laki_laki,1005,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.11,3,Gunungsindur,age_group,70-74,perempuan,985,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.11,3,Gunungsindur,age_group,70-74,,1990,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.11,3,Gunungsindur,age_group,75+,laki_laki,966,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.11,3,Gunungsindur,age_group,75+,perempuan,1138,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.11,3,Gunungsindur,age_group,75+,,2104,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.11,3,Kecamatan Gunung Sindur,sex,laki_laki,,67359,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+32.01.11,3,Kecamatan Gunung Sindur,sex,perempuan,,65327,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.01.11,3,Kecamatan Gunung Sindur,total,total,,132686,jiwa,2025,registration,total_population,3.2,36,,

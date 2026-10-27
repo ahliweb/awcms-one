@@ -1,0 +1,69 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.24.03.2001,4,Gentinggunung,sex,perempuan,,1526,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2001,4,Gentinggunung,total,total,,3219,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2002,4,Bringinsari,sex,perempuan,,2103,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2002,4,Bringinsari,total,total,,4571,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2003,4,Purwosari,sex,perempuan,,1496,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2003,4,Purwosari,total,total,,3027,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2004,4,Ngargosari,sex,perempuan,,1212,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2004,4,Ngargosari,total,total,,2444,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2005,4,Pesaren,sex,perempuan,,1065,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2005,4,Pesaren,total,total,,2155,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2006,4,Taman Rejo,sex,perempuan,,2351,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2006,4,Taman Rejo,total,total,,5028,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2007,4,Harjodowo,sex,perempuan,,1331,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2007,4,Harjodowo,total,total,,2662,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2008,4,Peron,sex,perempuan,,1431,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2008,4,Peron,total,total,,2920,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2009,4,Damarjati,sex,perempuan,,1001,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2009,4,Damarjati,total,total,,2050,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2010,4,Mulyosari,sex,perempuan,,1941,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2010,4,Mulyosari,total,total,,3941,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2011,4,Kalipakis,sex,perempuan,,1087,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2011,4,Kalipakis,total,total,,2226,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2012,4,Trimulyo,sex,perempuan,,1808,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2012,4,Trimulyo,total,total,,3699,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2013,4,Selokaton,sex,perempuan,,1153,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2013,4,Selokaton,total,total,,2333,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2014,4,Ngadiwarno,sex,perempuan,,2314,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2014,4,Ngadiwarno,total,total,,4733,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2015,4,Tamping Winarno,sex,perempuan,,1264,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2015,4,Tamping Winarno,total,total,,2505,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2016,4,Kebumen,sex,perempuan,,2508,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2016,4,Kebumen,total,total,,5019,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2017,4,Sukorejo,sex,perempuan,,5355,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2017,4,Sukorejo,total,total,,10628,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03.2018,4,Kalibogor,sex,perempuan,,1082,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.03.2018,4,Kalibogor,total,total,,2163,jiwa,2025,registration,total_population,3.1,27,,
+33.24.03,3,Sukorejo,age_group,0-4,perempuan,1714,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.03,3,Sukorejo,age_group,0-4,,3494,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.03,3,Sukorejo,age_group,5-9,perempuan,2327,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.03,3,Sukorejo,age_group,5-9,,4783,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.03,3,Sukorejo,age_group,10-14,perempuan,2519,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.03,3,Sukorejo,age_group,10-14,,5164,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.03,3,Sukorejo,age_group,15-19,perempuan,2324,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.03,3,Sukorejo,age_group,15-19,,4746,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.03,3,Sukorejo,age_group,20-24,perempuan,2340,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.03,3,Sukorejo,age_group,20-24,,4813,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.03,3,Sukorejo,age_group,25-29,perempuan,2305,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.03,3,Sukorejo,age_group,25-29,,4810,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.03,3,Sukorejo,age_group,30-34,perempuan,2377,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.03,3,Sukorejo,age_group,30-34,,4784,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.03,3,Sukorejo,age_group,35-39,perempuan,2252,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.03,3,Sukorejo,age_group,35-39,,4699,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.03,3,Sukorejo,age_group,40-44,perempuan,2524,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.03,3,Sukorejo,age_group,40-44,,5257,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.03,3,Sukorejo,age_group,45-49,perempuan,2373,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.03,3,Sukorejo,age_group,45-49,,4855,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.03,3,Sukorejo,age_group,50-54,perempuan,2109,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.03,3,Sukorejo,age_group,50-54,,4222,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.03,3,Sukorejo,age_group,55-59,perempuan,1933,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.03,3,Sukorejo,age_group,55-59,,3839,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.03,3,Sukorejo,age_group,60-64,perempuan,1707,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.03,3,Sukorejo,age_group,60-64,,3343,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.03,3,Sukorejo,age_group,65-69,perempuan,1428,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.03,3,Sukorejo,age_group,65-69,,2849,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.03,3,Sukorejo,age_group,70-74,perempuan,870,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.03,3,Sukorejo,age_group,70-74,,1858,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.03,3,Sukorejo,age_group,75+,perempuan,926,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.24.03,3,Sukorejo,age_group,75+,,1807,jiwa,2025,registration,total_population,3.2,29,,> 75

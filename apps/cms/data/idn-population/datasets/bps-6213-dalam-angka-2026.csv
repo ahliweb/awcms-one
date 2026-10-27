@@ -1,0 +1,108 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.12.04,3,Permata Intan,total,total,,12499,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.08,3,Sungai Babuat,total,total,,2678,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.01,3,Murung,total,total,,45156,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.03,3,Laung Tuhup,total,total,,21940,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.06,3,Barito Tuhup Raya,total,total,,5297,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.02,3,Tanah Siang,total,total,,14383,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.07,3,Tanah Siang Selatan,total,total,,6041,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.05,3,Sumber Barito,total,total,,6981,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.09,3,Seribu Riam,total,total,,3261,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12.10,3,Uut Murung,total,total,,1986,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12,2,Murung Raya,total,total,,120222,jiwa,2025,projection,total_population,3.1.1,65,,
+62.12,2,Kabupaten Murung Raya,age_group,0-4,laki_laki,6.08,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+62.12,2,Kabupaten Murung Raya,age_group,0-4,perempuan,5.82,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+62.12,2,Kabupaten Murung Raya,age_group,0-4,,11.90,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+62.12,2,Kabupaten Murung Raya,age_group,5-9,laki_laki,4.95,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+62.12,2,Kabupaten Murung Raya,age_group,5-9,perempuan,4.72,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+62.12,2,Kabupaten Murung Raya,age_group,5-9,,9.67,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+62.12,2,Kabupaten Murung Raya,age_group,10-14,laki_laki,5.12,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+62.12,2,Kabupaten Murung Raya,age_group,10-14,perempuan,5.09,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+62.12,2,Kabupaten Murung Raya,age_group,10-14,,10.21,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+62.12,2,Kabupaten Murung Raya,age_group,15-19,laki_laki,5.67,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+62.12,2,Kabupaten Murung Raya,age_group,15-19,perempuan,5.51,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+62.12,2,Kabupaten Murung Raya,age_group,15-19,,11.18,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+62.12,2,Kabupaten Murung Raya,age_group,20-24,laki_laki,5.84,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+62.12,2,Kabupaten Murung Raya,age_group,20-24,perempuan,5.64,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+62.12,2,Kabupaten Murung Raya,age_group,20-24,,11.48,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+62.12,2,Kabupaten Murung Raya,age_group,25-29,laki_laki,5.55,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+62.12,2,Kabupaten Murung Raya,age_group,25-29,perempuan,5.30,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+62.12,2,Kabupaten Murung Raya,age_group,25-29,,10.85,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+62.12,2,Kabupaten Murung Raya,age_group,30-34,laki_laki,4.87,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+62.12,2,Kabupaten Murung Raya,age_group,30-34,perempuan,4.63,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+62.12,2,Kabupaten Murung Raya,age_group,30-34,,9.50,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+62.12,2,Kabupaten Murung Raya,age_group,35-39,laki_laki,4.86,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+62.12,2,Kabupaten Murung Raya,age_group,35-39,perempuan,4.65,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+62.12,2,Kabupaten Murung Raya,age_group,35-39,,9.50,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+62.12,2,Kabupaten Murung Raya,age_group,40-44,laki_laki,4.58,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+62.12,2,Kabupaten Murung Raya,age_group,40-44,perempuan,4.17,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+62.12,2,Kabupaten Murung Raya,age_group,40-44,,8.75,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+62.12,2,Kabupaten Murung Raya,age_group,45-49,laki_laki,4.01,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+62.12,2,Kabupaten Murung Raya,age_group,45-49,perempuan,3.63,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+62.12,2,Kabupaten Murung Raya,age_group,45-49,,7.64,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+62.12,2,Kabupaten Murung Raya,age_group,50-54,laki_laki,3.43,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+62.12,2,Kabupaten Murung Raya,age_group,50-54,perempuan,2.77,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+62.12,2,Kabupaten Murung Raya,age_group,50-54,,6.20,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+62.12,2,Kabupaten Murung Raya,age_group,55-59,laki_laki,2.50,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+62.12,2,Kabupaten Murung Raya,age_group,55-59,perempuan,2.13,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+62.12,2,Kabupaten Murung Raya,age_group,55-59,,4.63,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+62.12,2,Kabupaten Murung Raya,age_group,60-64,laki_laki,1.92,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+62.12,2,Kabupaten Murung Raya,age_group,60-64,perempuan,1.60,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+62.12,2,Kabupaten Murung Raya,age_group,60-64,,3.52,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+62.12,2,Kabupaten Murung Raya,age_group,65-69,laki_laki,1.32,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+62.12,2,Kabupaten Murung Raya,age_group,65-69,perempuan,1.11,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+62.12,2,Kabupaten Murung Raya,age_group,65-69,,2.44,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+62.12,2,Kabupaten Murung Raya,age_group,70-74,laki_laki,0.77,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+62.12,2,Kabupaten Murung Raya,age_group,70-74,perempuan,0.63,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+62.12,2,Kabupaten Murung Raya,age_group,70-74,,1.40,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+62.12,2,Kabupaten Murung Raya,age_group,75+,laki_laki,0.69,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+62.12,2,Kabupaten Murung Raya,age_group,75+,perempuan,0.67,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+62.12,2,Kabupaten Murung Raya,age_group,75+,,1.36,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+62.12,2,Kabupaten Murung Raya,sex,laki_laki,,62.17,ribu_jiwa,2025,projection,total_population,3.1.2,68,,Laki-Laki
+62.12,2,Kabupaten Murung Raya,sex,perempuan,,58.06,ribu_jiwa,2025,projection,total_population,3.1.2,68,,Perempuan
+62.12,2,Kabupaten Murung Raya,total,total,,120.22,ribu_jiwa,2025,projection,total_population,3.1.2,68,,
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/padi_padian,,112673,rupiah,2025,survey_estimate,per_capita,10.1,347,,Padi-padian
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/padi_padian,,109793,rupiah,2024,survey_estimate,per_capita,10.1,347,,Padi-padian
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/umbi_umbian,,8157,rupiah,2025,survey_estimate,per_capita,10.1,347,,Umbi-umbian
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/umbi_umbian,,5471,rupiah,2024,survey_estimate,per_capita,10.1,347,,Umbi-umbian
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,98352,rupiah,2025,survey_estimate,per_capita,10.1,347,,Ikan/udang/cumi/kerang
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,76998,rupiah,2024,survey_estimate,per_capita,10.1,347,,Ikan/udang/cumi/kerang
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/daging,,63098,rupiah,2025,survey_estimate,per_capita,10.1,347,,Daging
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/daging,,52468,rupiah,2024,survey_estimate,per_capita,10.1,347,,Daging
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/telur_dan_susu,,45871,rupiah,2025,survey_estimate,per_capita,10.1,347,,Telur dan susu
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/telur_dan_susu,,42681,rupiah,2024,survey_estimate,per_capita,10.1,347,,Telur dan susu
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/sayur_sayuran,,72337,rupiah,2025,survey_estimate,per_capita,10.1,347,,Sayur-sayuran
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/sayur_sayuran,,61505,rupiah,2024,survey_estimate,per_capita,10.1,347,,Sayur-sayuran
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/kacang_kacangan,,9629,rupiah,2025,survey_estimate,per_capita,10.1,347,,Kacang-kacangan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/kacang_kacangan,,10753,rupiah,2024,survey_estimate,per_capita,10.1,347,,Kacang-kacangan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/buah_buahan,,59279,rupiah,2025,survey_estimate,per_capita,10.1,347,,Buah-buahan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/buah_buahan,,25321,rupiah,2024,survey_estimate,per_capita,10.1,347,,Buah-buahan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20416,rupiah,2025,survey_estimate,per_capita,10.1,347,,Minyak dan kelapa
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20354,rupiah,2024,survey_estimate,per_capita,10.1,347,,Minyak dan kelapa
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/bahan_minuman,,37729,rupiah,2025,survey_estimate,per_capita,10.1,347,,Bahan minuman
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/bahan_minuman,,31886,rupiah,2024,survey_estimate,per_capita,10.1,347,,Bahan minuman
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/bumbu_bumbuan,,24327,rupiah,2025,survey_estimate,per_capita,10.1,347,,Bumbu-bumbuan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/bumbu_bumbuan,,22858,rupiah,2024,survey_estimate,per_capita,10.1,347,,Bumbu-bumbuan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/konsumsi_lainnya,,23265,rupiah,2025,survey_estimate,per_capita,10.1,347,,Konsumsi lainnya
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/konsumsi_lainnya,,25306,rupiah,2024,survey_estimate,per_capita,10.1,347,,Konsumsi lainnya
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,185775,rupiah,2025,survey_estimate,per_capita,10.1,347,,Makanan dan minuman jadi
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,145686,rupiah,2024,survey_estimate,per_capita,10.1,347,,Makanan dan minuman jadi
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/rokok,,124228,rupiah,2025,survey_estimate,per_capita,10.1,347,,Rokok
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/rokok,,94741,rupiah,2024,survey_estimate,per_capita,10.1,347,,Rokok
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/jumlah_makanan,,885046,rupiah,2025,survey_estimate,per_capita,10.1,347,,Jumlah makanan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/jumlah_makanan,,725821,rupiah,2024,survey_estimate,per_capita,10.1,347,,Jumlah makanan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,376548,rupiah,2025,survey_estimate,per_capita,10.1,347,,Perumahan dan fasilitas rumah tangga
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,326079,rupiah,2024,survey_estimate,per_capita,10.1,347,,Perumahan dan fasilitas rumah tangga
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,145446,rupiah,2025,survey_estimate,per_capita,10.1,347,,Aneka barang dan jasa
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,125373,rupiah,2024,survey_estimate,per_capita,10.1,347,,Aneka barang dan jasa
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29282,rupiah,2025,survey_estimate,per_capita,10.1,347,,"Pakaian, alas kaki, dan tutup kepala"
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22585,rupiah,2024,survey_estimate,per_capita,10.1,347,,"Pakaian, alas kaki, dan tutup kepala"
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/barang_tahan_lama,,69375,rupiah,2025,survey_estimate,per_capita,10.1,347,,Barang tahan lama
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/barang_tahan_lama,,24757,rupiah,2024,survey_estimate,per_capita,10.1,347,,Barang tahan lama
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,51939,rupiah,2025,survey_estimate,per_capita,10.1,347,,"Pajak, pungutan, dan asuransi"
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48228,rupiah,2024,survey_estimate,per_capita,10.1,347,,"Pajak, pungutan, dan asuransi"
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5638,rupiah,2024,survey_estimate,per_capita,10.1,347,,Keperluan pesta dan upacara/kenduri
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,676922,rupiah,2025,survey_estimate,per_capita,10.1,347,,Jumlah bukan makanan
+62.12,2,Kabupaten Murung Raya,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,552659,rupiah,2024,survey_estimate,per_capita,10.1,347,,Jumlah bukan makanan
+62.12,2,Kabupaten Murung Raya,expenditure,total,,1561967,rupiah,2025,survey_estimate,per_capita,10.1,347,,
+62.12,2,Kabupaten Murung Raya,expenditure,total,,1278480,rupiah,2024,survey_estimate,per_capita,10.1,347,,

@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.18.2005,4,Bumi Dipasena Makmur,sex,laki_laki,,1064,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.18.2005,4,Bumi Dipasena Makmur,sex,perempuan,,921,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.18.2005,4,Bumi Dipasena Makmur,total,total,,1985,jiwa,2025,registration,total_population,3.1,32,,
+18.05.18.2008,4,Bumi Dipasena Sejahtera,sex,laki_laki,,1090,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.18.2008,4,Bumi Dipasena Sejahtera,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.18.2008,4,Bumi Dipasena Sejahtera,total,total,,2053,jiwa,2025,registration,total_population,3.1,32,,
+18.05.18.2004,4,Bumi Dipasena Abadi,sex,laki_laki,,893,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.18.2004,4,Bumi Dipasena Abadi,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.18.2004,4,Bumi Dipasena Abadi,total,total,,1657,jiwa,2025,registration,total_population,3.1,32,,
+18.05.18,3,Rawajitu Timur,sex,laki_laki,,7652,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.18,3,Rawajitu Timur,sex,perempuan,,6689,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.18,3,Rawajitu Timur,total,total,,14341,jiwa,2025,registration,total_population,3.1,32,,
+18.05.18,3,Rawa Jitu Timur,age_group,0-4,laki_laki,301,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.18,3,Rawa Jitu Timur,age_group,0-4,perempuan,269,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.18,3,Rawa Jitu Timur,age_group,0-4,,570,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.18,3,Rawa Jitu Timur,age_group,5-9,laki_laki,543,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.18,3,Rawa Jitu Timur,age_group,5-9,perempuan,435,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.18,3,Rawa Jitu Timur,age_group,5-9,,978,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.18,3,Rawa Jitu Timur,age_group,10-14,laki_laki,670,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.18,3,Rawa Jitu Timur,age_group,10-14,perempuan,606,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.18,3,Rawa Jitu Timur,age_group,10-14,,1276,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.18,3,Rawa Jitu Timur,age_group,15-19,laki_laki,727,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.18,3,Rawa Jitu Timur,age_group,15-19,perempuan,672,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.18,3,Rawa Jitu Timur,age_group,15-19,,1399,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.18,3,Rawa Jitu Timur,age_group,20-24,laki_laki,704,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.18,3,Rawa Jitu Timur,age_group,20-24,perempuan,595,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.18,3,Rawa Jitu Timur,age_group,20-24,,1299,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.18,3,Rawa Jitu Timur,age_group,25-29,laki_laki,658,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.18,3,Rawa Jitu Timur,age_group,25-29,perempuan,547,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.18,3,Rawa Jitu Timur,age_group,25-29,,1205,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.18,3,Rawa Jitu Timur,age_group,30-34,laki_laki,426,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.18,3,Rawa Jitu Timur,age_group,30-34,perempuan,431,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.18,3,Rawa Jitu Timur,age_group,30-34,,857,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.18,3,Rawa Jitu Timur,age_group,35-39,laki_laki,367,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.18,3,Rawa Jitu Timur,age_group,35-39,perempuan,436,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.18,3,Rawa Jitu Timur,age_group,35-39,,803,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.18,3,Rawa Jitu Timur,age_group,40-44,laki_laki,380,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.18,3,Rawa Jitu Timur,age_group,40-44,perempuan,444,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.18,3,Rawa Jitu Timur,age_group,40-44,,824,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.18,3,Rawa Jitu Timur,age_group,45-49,laki_laki,411,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.18,3,Rawa Jitu Timur,age_group,45-49,perempuan,672,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.18,3,Rawa Jitu Timur,age_group,45-49,,1083,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.18,3,Rawa Jitu Timur,age_group,50-54,laki_laki,643,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.18,3,Rawa Jitu Timur,age_group,50-54,perempuan,925,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.18,3,Rawa Jitu Timur,age_group,50-54,,1568,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.18,3,Rawa Jitu Timur,age_group,55-59,laki_laki,1268,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.18,3,Rawa Jitu Timur,age_group,55-59,perempuan,501,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.18,3,Rawa Jitu Timur,age_group,55-59,,1769,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.18,3,Rawa Jitu Timur,age_group,60-64,laki_laki,432,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.18,3,Rawa Jitu Timur,age_group,60-64,perempuan,97,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.18,3,Rawa Jitu Timur,age_group,60-64,,529,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.18,3,Rawa Jitu Timur,age_group,65-69,laki_laki,82,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.18,3,Rawa Jitu Timur,age_group,65-69,perempuan,34,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.18,3,Rawa Jitu Timur,age_group,65-69,,116,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.18,3,Rawa Jitu Timur,age_group,70-74,laki_laki,23,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.18,3,Rawa Jitu Timur,age_group,70-74,perempuan,16,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.18,3,Rawa Jitu Timur,age_group,70-74,,39,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.18,3,Rawa Jitu Timur,age_group,75+,laki_laki,17,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.18,3,Rawa Jitu Timur,age_group,75+,perempuan,9,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.18,3,Rawa Jitu Timur,age_group,75+,,26,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.18,3,Rawajitu Timur,sex,laki_laki,,7652,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.18,3,Rawajitu Timur,sex,perempuan,,6689,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.18,3,Rawajitu Timur,total,total,,14341,jiwa,2025,registration,total_population,3.2,34,,

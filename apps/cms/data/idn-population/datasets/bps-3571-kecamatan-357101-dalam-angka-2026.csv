@@ -1,0 +1,217 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.71.01.1004,4,Pojok,sex,laki_laki,,5945,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1004,4,Pojok,sex,perempuan,,5926,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1004,4,Pojok,total,total,,11871,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1012,4,Campurejo,sex,laki_laki,,4007,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1012,4,Campurejo,sex,perempuan,,4137,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1012,4,Campurejo,total,total,,8144,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1014,4,Tamanan,sex,laki_laki,,2697,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1014,4,Tamanan,sex,perempuan,,2571,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1014,4,Tamanan,total,total,,5268,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1003,4,Banjarmlati,sex,laki_laki,,3394,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1003,4,Banjarmlati,sex,perempuan,,3414,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1003,4,Banjarmlati,total,total,,6808,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1002,4,Bandar Kidul,sex,laki_laki,,5522,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1002,4,Bandar Kidul,sex,perempuan,,5554,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1002,4,Bandar Kidul,total,total,,11076,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1013,4,Lirboyo,sex,laki_laki,,3576,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1013,4,Lirboyo,sex,perempuan,,3689,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1013,4,Lirboyo,total,total,,7265,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1001,4,Bandar Lor,sex,laki_laki,,6218,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1001,4,Bandar Lor,sex,perempuan,,6431,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1001,4,Bandar Lor,total,total,,12649,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1011,4,Mojoroto,sex,laki_laki,,7366,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1011,4,Mojoroto,sex,perempuan,,7821,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1011,4,Mojoroto,total,total,,15187,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1005,4,Sukorame,sex,laki_laki,,4183,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1005,4,Sukorame,sex,perempuan,,4297,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1005,4,Sukorame,total,total,,8480,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1006,4,Bujel,sex,laki_laki,,4006,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1006,4,Bujel,sex,perempuan,,3925,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1006,4,Bujel,total,total,,7931,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1010,4,Ngampel,sex,laki_laki,,3468,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1010,4,Ngampel,sex,perempuan,,3416,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1010,4,Ngampel,total,total,,6884,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1007,4,Gayam,sex,laki_laki,,2423,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1007,4,Gayam,sex,perempuan,,2321,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1007,4,Gayam,total,total,,4744,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1008,4,Mrican,sex,laki_laki,,3238,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1008,4,Mrican,sex,perempuan,,3226,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1008,4,Mrican,total,total,,6464,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01.1009,4,Dermo,sex,laki_laki,,2393,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01.1009,4,Dermo,sex,perempuan,,2449,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01.1009,4,Dermo,total,total,,4842,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01,3,Mojoroto,sex,laki_laki,,58436,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+35.71.01,3,Mojoroto,sex,perempuan,,59177,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+35.71.01,3,Mojoroto,total,total,,117613,jiwa,2025,registration,total_population,3.1,28,,
+35.71.01,3,Mojoroto,age_group,0-4,laki_laki,3493,jiwa,2025,registration,total_population,3.2,30,,0–4
+35.71.01,3,Mojoroto,age_group,0-4,perempuan,3357,jiwa,2025,registration,total_population,3.2,30,,0–4
+35.71.01,3,Mojoroto,age_group,0-4,,6850,jiwa,2025,registration,total_population,3.2,30,,0–4
+35.71.01,3,Mojoroto,age_group,5-9,laki_laki,4496,jiwa,2025,registration,total_population,3.2,30,,5–9
+35.71.01,3,Mojoroto,age_group,5-9,perempuan,4168,jiwa,2025,registration,total_population,3.2,30,,5–9
+35.71.01,3,Mojoroto,age_group,5-9,,8664,jiwa,2025,registration,total_population,3.2,30,,5–9
+35.71.01,3,Mojoroto,age_group,10-14,laki_laki,5001,jiwa,2025,registration,total_population,3.2,30,,10–14
+35.71.01,3,Mojoroto,age_group,10-14,perempuan,4666,jiwa,2025,registration,total_population,3.2,30,,10–14
+35.71.01,3,Mojoroto,age_group,10-14,,9667,jiwa,2025,registration,total_population,3.2,30,,10–14
+35.71.01,3,Mojoroto,age_group,15-19,laki_laki,4796,jiwa,2025,registration,total_population,3.2,30,,15–19
+35.71.01,3,Mojoroto,age_group,15-19,perempuan,4735,jiwa,2025,registration,total_population,3.2,30,,15–19
+35.71.01,3,Mojoroto,age_group,15-19,,9531,jiwa,2025,registration,total_population,3.2,30,,15–19
+35.71.01,3,Mojoroto,age_group,20-24,laki_laki,4758,jiwa,2025,registration,total_population,3.2,30,,20–24
+35.71.01,3,Mojoroto,age_group,20-24,perempuan,4727,jiwa,2025,registration,total_population,3.2,30,,20–24
+35.71.01,3,Mojoroto,age_group,20-24,,9485,jiwa,2025,registration,total_population,3.2,30,,20–24
+35.71.01,3,Mojoroto,age_group,25-29,laki_laki,4284,jiwa,2025,registration,total_population,3.2,30,,25–29
+35.71.01,3,Mojoroto,age_group,25-29,perempuan,4393,jiwa,2025,registration,total_population,3.2,30,,25–29
+35.71.01,3,Mojoroto,age_group,25-29,,8677,jiwa,2025,registration,total_population,3.2,30,,25–29
+35.71.01,3,Mojoroto,age_group,30-34,laki_laki,4231,jiwa,2025,registration,total_population,3.2,30,,30–34
+35.71.01,3,Mojoroto,age_group,30-34,perempuan,4195,jiwa,2025,registration,total_population,3.2,30,,30–34
+35.71.01,3,Mojoroto,age_group,30-34,,8426,jiwa,2025,registration,total_population,3.2,30,,30–34
+35.71.01,3,Mojoroto,age_group,35-39,laki_laki,3987,jiwa,2025,registration,total_population,3.2,30,,35–39
+35.71.01,3,Mojoroto,age_group,35-39,perempuan,3956,jiwa,2025,registration,total_population,3.2,30,,35–39
+35.71.01,3,Mojoroto,age_group,35-39,,7943,jiwa,2025,registration,total_population,3.2,30,,35–39
+35.71.01,3,Mojoroto,age_group,40-44,laki_laki,4921,jiwa,2025,registration,total_population,3.2,30,,40–44
+35.71.01,3,Mojoroto,age_group,40-44,perempuan,4944,jiwa,2025,registration,total_population,3.2,30,,40–44
+35.71.01,3,Mojoroto,age_group,40-44,,9865,jiwa,2025,registration,total_population,3.2,30,,40–44
+35.71.01,3,Mojoroto,age_group,45-49,laki_laki,4551,jiwa,2025,registration,total_population,3.2,30,,45–49
+35.71.01,3,Mojoroto,age_group,45-49,perempuan,4381,jiwa,2025,registration,total_population,3.2,30,,45–49
+35.71.01,3,Mojoroto,age_group,45-49,,8932,jiwa,2025,registration,total_population,3.2,30,,45–49
+35.71.01,3,Mojoroto,age_group,50-54,laki_laki,3925,jiwa,2025,registration,total_population,3.2,30,,50–54
+35.71.01,3,Mojoroto,age_group,50-54,perempuan,3818,jiwa,2025,registration,total_population,3.2,30,,50–54
+35.71.01,3,Mojoroto,age_group,50-54,,7743,jiwa,2025,registration,total_population,3.2,30,,50–54
+35.71.01,3,Mojoroto,age_group,55-59,laki_laki,3281,jiwa,2025,registration,total_population,3.2,30,,55–59
+35.71.01,3,Mojoroto,age_group,55-59,perempuan,3496,jiwa,2025,registration,total_population,3.2,30,,55–59
+35.71.01,3,Mojoroto,age_group,55-59,,6777,jiwa,2025,registration,total_population,3.2,30,,55–59
+35.71.01,3,Mojoroto,age_group,60-64,laki_laki,2603,jiwa,2025,registration,total_population,3.2,30,,60–64
+35.71.01,3,Mojoroto,age_group,60-64,perempuan,3060,jiwa,2025,registration,total_population,3.2,30,,60–64
+35.71.01,3,Mojoroto,age_group,60-64,,5663,jiwa,2025,registration,total_population,3.2,30,,60–64
+35.71.01,3,Mojoroto,age_group,65-69,laki_laki,1928,jiwa,2025,registration,total_population,3.2,30,,65–69
+35.71.01,3,Mojoroto,age_group,65-69,perempuan,2218,jiwa,2025,registration,total_population,3.2,30,,65–69
+35.71.01,3,Mojoroto,age_group,65-69,,4146,jiwa,2025,registration,total_population,3.2,30,,65–69
+35.71.01,3,Mojoroto,age_group,70-74,laki_laki,1144,jiwa,2025,registration,total_population,3.2,30,,70–74
+35.71.01,3,Mojoroto,age_group,70-74,perempuan,1385,jiwa,2025,registration,total_population,3.2,30,,70–74
+35.71.01,3,Mojoroto,age_group,70-74,,2529,jiwa,2025,registration,total_population,3.2,30,,70–74
+35.71.01,3,Mojoroto,age_group,75+,laki_laki,1037,jiwa,2025,registration,total_population,3.2,30,,75+
+35.71.01,3,Mojoroto,age_group,75+,perempuan,1678,jiwa,2025,registration,total_population,3.2,30,,75+
+35.71.01,3,Mojoroto,age_group,75+,,2715,jiwa,2025,registration,total_population,3.2,30,,75+
+35.71.01,3,Mojoroto,sex,laki_laki,,58436,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+35.71.01,3,Mojoroto,sex,perempuan,,59177,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+35.71.01,3,Mojoroto,total,total,,117613,jiwa,2025,registration,total_population,3.2,30,,
+35.71.01.1004,4,Pojok,religion,islam,,11754,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1004,4,Pojok,religion,kristen,,539,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1004,4,Pojok,religion,katolik,,311,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1004,4,Pojok,religion,hindu,,9,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1012,4,Campurejo,religion,islam,,10978,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1012,4,Campurejo,religion,kristen,,58,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1012,4,Campurejo,religion,katolik,,28,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1012,4,Campurejo,religion,hindu,,8,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1014,4,Tamanan,religion,islam,,6734,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1014,4,Tamanan,religion,kristen,,34,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1014,4,Tamanan,religion,katolik,,40,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1014,4,Tamanan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.4,68,nil,Hindu
+35.71.01.1003,4,Banjarmlati,religion,islam,,11317,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1003,4,Banjarmlati,religion,kristen,,385,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1003,4,Banjarmlati,religion,katolik,,139,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1003,4,Banjarmlati,religion,hindu,,29,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1002,4,Bandar Kidul,religion,islam,,8040,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1002,4,Bandar Kidul,religion,kristen,,250,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1002,4,Bandar Kidul,religion,katolik,,163,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1002,4,Bandar Kidul,religion,hindu,,18,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1013,4,Lirboyo,religion,islam,,7678,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1013,4,Lirboyo,religion,kristen,,113,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1013,4,Lirboyo,religion,katolik,,132,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1013,4,Lirboyo,religion,hindu,,6,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1001,4,Bandar Lor,religion,islam,,4636,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1001,4,Bandar Lor,religion,kristen,,25,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1001,4,Bandar Lor,religion,katolik,,82,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1001,4,Bandar Lor,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.4,68,nil,Hindu
+35.71.01.1011,4,Mojoroto,religion,islam,,6072,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1011,4,Mojoroto,religion,kristen,,315,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1011,4,Mojoroto,religion,katolik,,74,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1011,4,Mojoroto,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.4,68,nil,Hindu
+35.71.01.1005,4,Sukorame,religion,islam,,4476,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1005,4,Sukorame,religion,kristen,,272,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1005,4,Sukorame,religion,katolik,,90,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1005,4,Sukorame,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1006,4,Bujel,religion,islam,,6695,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1006,4,Bujel,religion,kristen,,112,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1006,4,Bujel,religion,katolik,,64,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1006,4,Bujel,religion,hindu,,7,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1010,4,Ngampel,religion,islam,,13369,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1010,4,Ngampel,religion,kristen,,843,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1010,4,Ngampel,religion,katolik,,944,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1010,4,Ngampel,religion,hindu,,15,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1007,4,Gayam,religion,islam,,7749,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1007,4,Gayam,religion,kristen,,255,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1007,4,Gayam,religion,katolik,,109,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1007,4,Gayam,religion,hindu,,28,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1008,4,Mrican,religion,islam,,7090,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1008,4,Mrican,religion,kristen,,119,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1008,4,Mrican,religion,katolik,,56,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1008,4,Mrican,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.4,68,nil,Hindu
+35.71.01.1009,4,Dermo,religion,islam,,5250,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01.1009,4,Dermo,religion,kristen,,15,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01.1009,4,Dermo,religion,katolik,,3,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01.1009,4,Dermo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.4,68,nil,Hindu
+35.71.01,3,Mojoroto,religion,islam,,111838,jiwa,2025,registration,total_population,4.4.4,68,,Islam
+35.71.01,3,Mojoroto,religion,kristen,,3335,jiwa,2025,registration,total_population,4.4.4,68,,Protestan
+35.71.01,3,Mojoroto,religion,katolik,,2235,jiwa,2025,registration,total_population,4.4.4,68,,Katolik
+35.71.01,3,Mojoroto,religion,hindu,,124,jiwa,2025,registration,total_population,4.4.4,68,,Hindu
+35.71.01.1004,4,Pojok,religion,buddha,,31,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01.1004,4,Pojok,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.4.4,69,,Konghucu
+35.71.01.1004,4,Pojok,religion,lainnya,,4,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01.1004,4,Pojok,total,total,,12649,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1012,4,Campurejo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Buddha
+35.71.01.1012,4,Campurejo,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.4.4,69,,Konghucu
+35.71.01.1012,4,Campurejo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Lainnya
+35.71.01.1012,4,Campurejo,total,total,,11076,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1014,4,Tamanan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Buddha
+35.71.01.1014,4,Tamanan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1014,4,Tamanan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Lainnya
+35.71.01.1014,4,Tamanan,total,total,,6808,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1003,4,Banjarmlati,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Buddha
+35.71.01.1003,4,Banjarmlati,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1003,4,Banjarmlati,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01.1003,4,Banjarmlati,total,total,,11871,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1002,4,Bandar Kidul,religion,buddha,,6,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01.1002,4,Bandar Kidul,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1002,4,Bandar Kidul,religion,lainnya,,3,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01.1002,4,Bandar Kidul,total,total,,8480,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1013,4,Lirboyo,religion,buddha,,2,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01.1013,4,Lirboyo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1013,4,Lirboyo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Lainnya
+35.71.01.1013,4,Lirboyo,total,total,,7931,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1001,4,Bandar Lor,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01.1001,4,Bandar Lor,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1001,4,Bandar Lor,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Lainnya
+35.71.01.1001,4,Bandar Lor,total,total,,4744,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1011,4,Mojoroto,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01.1011,4,Mojoroto,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1011,4,Mojoroto,religion,lainnya,,2,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01.1011,4,Mojoroto,total,total,,6464,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1005,4,Sukorame,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Buddha
+35.71.01.1005,4,Sukorame,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1005,4,Sukorame,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Lainnya
+35.71.01.1005,4,Sukorame,total,total,,4842,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1006,4,Bujel,religion,buddha,,3,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01.1006,4,Bujel,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1006,4,Bujel,religion,lainnya,,3,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01.1006,4,Bujel,total,total,,6884,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1010,4,Ngampel,religion,buddha,,15,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01.1010,4,Ngampel,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1010,4,Ngampel,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01.1010,4,Ngampel,total,total,,15187,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1007,4,Gayam,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Buddha
+35.71.01.1007,4,Gayam,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.4.4,69,,Konghucu
+35.71.01.1007,4,Gayam,religion,lainnya,,2,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01.1007,4,Gayam,total,total,,8144,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1008,4,Mrican,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Buddha
+35.71.01.1008,4,Mrican,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1008,4,Mrican,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Lainnya
+35.71.01.1008,4,Mrican,total,total,,7265,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01.1009,4,Dermo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Buddha
+35.71.01.1009,4,Dermo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Konghucu
+35.71.01.1009,4,Dermo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.4,69,nil,Lainnya
+35.71.01.1009,4,Dermo,total,total,,5268,jiwa,2025,registration,total_population,4.4.4,69,,
+35.71.01,3,Mojoroto,religion,buddha,,59,jiwa,2025,registration,total_population,4.4.4,69,,Buddha
+35.71.01,3,Mojoroto,religion,khonghucu,,6,jiwa,2025,registration,total_population,4.4.4,69,,Konghucu
+35.71.01,3,Mojoroto,religion,lainnya,,16,jiwa,2025,registration,total_population,4.4.4,69,,Lainnya
+35.71.01,3,Mojoroto,total,total,,117613,jiwa,2025,registration,total_population,4.4.4,69,,

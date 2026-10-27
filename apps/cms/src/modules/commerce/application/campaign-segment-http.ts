@@ -110,7 +110,7 @@ export async function attachSegmentToDraft(
       )
     };
   }
-  // A booking-derived rule (rule schema 2, ADR-0051) is aimed only by someone
+  // A booking-derived rule (rule schema 2, ADR-0052) is aimed only by someone
   // who may read bookings: choosing it reveals who it selects.
   const bookingDenied = await requireBookingRuleAccess(
     tx,

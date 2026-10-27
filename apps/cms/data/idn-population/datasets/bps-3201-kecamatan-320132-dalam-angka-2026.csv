@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.32.2008,4,Leuwikaret,sex,laki_laki,,4563,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2008,4,Leuwikaret,sex,perempuan,,4143,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2008,4,Leuwikaret,total,total,,8706,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2004,4,Lulut,sex,laki_laki,,9524,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2004,4,Lulut,sex,perempuan,,8873,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2004,4,Lulut,total,total,,18397,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2007,4,Bantar Jati,sex,laki_laki,,4873,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2007,4,Bantar Jati,sex,perempuan,,4727,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2007,4,Bantar Jati,total,total,,9600,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2003,4,Nambo,sex,laki_laki,,6203,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2003,4,Nambo,sex,perempuan,,5875,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2003,4,Nambo,total,total,,12078,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2006,4,Kembang Kuning,sex,laki_laki,,9134,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2006,4,Kembang Kuning,sex,perempuan,,8951,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2006,4,Kembang Kuning,total,total,,18085,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2001,4,Klapanunggal,sex,laki_laki,,14478,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2001,4,Klapanunggal,sex,perempuan,,14224,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2001,4,Klapanunggal,total,total,,28702,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2009,4,Ligarmukti,sex,laki_laki,,2055,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2009,4,Ligarmukti,sex,perempuan,,1966,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2009,4,Ligarmukti,total,total,,4021,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2002,4,Bojong,sex,laki_laki,,9111,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2002,4,Bojong,sex,perempuan,,8961,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2002,4,Bojong,total,total,,18072,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32.2005,4,Cikahuripan,sex,laki_laki,,14116,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32.2005,4,Cikahuripan,sex,perempuan,,13594,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32.2005,4,Cikahuripan,total,total,,27710,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32,3,Klapanunggal,sex,laki_laki,,74057,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.32,3,Klapanunggal,sex,perempuan,,71314,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.32,3,Klapanunggal,total,total,,145371,jiwa,2025,registration,total_population,3.1,35,,
+32.01.32,3,Klapanunggal,age_group,0-4,laki_laki,5582,jiwa,2025,registration,total_population,3.2,37,,0-4
+32.01.32,3,Klapanunggal,age_group,0-4,perempuan,5202,jiwa,2025,registration,total_population,3.2,37,,0-4
+32.01.32,3,Klapanunggal,age_group,0-4,,10784,jiwa,2025,registration,total_population,3.2,37,,0-4
+32.01.32,3,Klapanunggal,age_group,5-9,laki_laki,7541,jiwa,2025,registration,total_population,3.2,37,,5-9
+32.01.32,3,Klapanunggal,age_group,5-9,perempuan,6901,jiwa,2025,registration,total_population,3.2,37,,5-9
+32.01.32,3,Klapanunggal,age_group,5-9,,14442,jiwa,2025,registration,total_population,3.2,37,,5-9
+32.01.32,3,Klapanunggal,age_group,10-14,laki_laki,7137,jiwa,2025,registration,total_population,3.2,37,,10-14
+32.01.32,3,Klapanunggal,age_group,10-14,perempuan,6702,jiwa,2025,registration,total_population,3.2,37,,10-14
+32.01.32,3,Klapanunggal,age_group,10-14,,13839,jiwa,2025,registration,total_population,3.2,37,,10-14
+32.01.32,3,Klapanunggal,age_group,15-19,laki_laki,6085,jiwa,2025,registration,total_population,3.2,37,,15-19
+32.01.32,3,Klapanunggal,age_group,15-19,perempuan,5759,jiwa,2025,registration,total_population,3.2,37,,15-19
+32.01.32,3,Klapanunggal,age_group,15-19,,11844,jiwa,2025,registration,total_population,3.2,37,,15-19
+32.01.32,3,Klapanunggal,age_group,20-24,laki_laki,5779,jiwa,2025,registration,total_population,3.2,37,,20-24
+32.01.32,3,Klapanunggal,age_group,20-24,perempuan,5729,jiwa,2025,registration,total_population,3.2,37,,20-24
+32.01.32,3,Klapanunggal,age_group,20-24,,11508,jiwa,2025,registration,total_population,3.2,37,,20-24
+32.01.32,3,Klapanunggal,age_group,25-29,laki_laki,6018,jiwa,2025,registration,total_population,3.2,37,,25-29
+32.01.32,3,Klapanunggal,age_group,25-29,perempuan,6001,jiwa,2025,registration,total_population,3.2,37,,25-29
+32.01.32,3,Klapanunggal,age_group,25-29,,12019,jiwa,2025,registration,total_population,3.2,37,,25-29
+32.01.32,3,Klapanunggal,age_group,30-34,laki_laki,6166,jiwa,2025,registration,total_population,3.2,37,,30-34
+32.01.32,3,Klapanunggal,age_group,30-34,perempuan,5967,jiwa,2025,registration,total_population,3.2,37,,30-34
+32.01.32,3,Klapanunggal,age_group,30-34,,12133,jiwa,2025,registration,total_population,3.2,37,,30-34
+32.01.32,3,Klapanunggal,age_group,35-39,laki_laki,5961,jiwa,2025,registration,total_population,3.2,37,,35-39
+32.01.32,3,Klapanunggal,age_group,35-39,perempuan,5899,jiwa,2025,registration,total_population,3.2,37,,35-39
+32.01.32,3,Klapanunggal,age_group,35-39,,11860,jiwa,2025,registration,total_population,3.2,37,,35-39
+32.01.32,3,Klapanunggal,age_group,40-44,laki_laki,5975,jiwa,2025,registration,total_population,3.2,37,,40-44
+32.01.32,3,Klapanunggal,age_group,40-44,perempuan,5953,jiwa,2025,registration,total_population,3.2,37,,40-44
+32.01.32,3,Klapanunggal,age_group,40-44,,11928,jiwa,2025,registration,total_population,3.2,37,,40-44
+32.01.32,3,Klapanunggal,age_group,45-49,laki_laki,5500,jiwa,2025,registration,total_population,3.2,37,,45-49
+32.01.32,3,Klapanunggal,age_group,45-49,perempuan,5477,jiwa,2025,registration,total_population,3.2,37,,45-49
+32.01.32,3,Klapanunggal,age_group,45-49,,10977,jiwa,2025,registration,total_population,3.2,37,,45-49
+32.01.32,3,Klapanunggal,age_group,50-54,laki_laki,4374,jiwa,2025,registration,total_population,3.2,37,,50-54
+32.01.32,3,Klapanunggal,age_group,50-54,perempuan,3936,jiwa,2025,registration,total_population,3.2,37,,50-54
+32.01.32,3,Klapanunggal,age_group,50-54,,8310,jiwa,2025,registration,total_population,3.2,37,,50-54
+32.01.32,3,Klapanunggal,age_group,55-59,laki_laki,2987,jiwa,2025,registration,total_population,3.2,37,,55-59
+32.01.32,3,Klapanunggal,age_group,55-59,perempuan,2731,jiwa,2025,registration,total_population,3.2,37,,55-59
+32.01.32,3,Klapanunggal,age_group,55-59,,5718,jiwa,2025,registration,total_population,3.2,37,,55-59
+32.01.32,3,Klapanunggal,age_group,60-64,laki_laki,1866,jiwa,2025,registration,total_population,3.2,37,,60-64
+32.01.32,3,Klapanunggal,age_group,60-64,perempuan,1848,jiwa,2025,registration,total_population,3.2,37,,60-64
+32.01.32,3,Klapanunggal,age_group,60-64,,3714,jiwa,2025,registration,total_population,3.2,37,,60-64
+32.01.32,3,Klapanunggal,age_group,65-69,laki_laki,1421,jiwa,2025,registration,total_population,3.2,37,,65-69
+32.01.32,3,Klapanunggal,age_group,65-69,perempuan,1425,jiwa,2025,registration,total_population,3.2,37,,65-69
+32.01.32,3,Klapanunggal,age_group,65-69,,2846,jiwa,2025,registration,total_population,3.2,37,,65-69
+32.01.32,3,Klapanunggal,age_group,70-74,laki_laki,818,jiwa,2025,registration,total_population,3.2,37,,70-74
+32.01.32,3,Klapanunggal,age_group,70-74,perempuan,762,jiwa,2025,registration,total_population,3.2,37,,70-74
+32.01.32,3,Klapanunggal,age_group,70-74,,1580,jiwa,2025,registration,total_population,3.2,37,,70-74
+32.01.32,3,Klapanunggal,age_group,75+,laki_laki,847,jiwa,2025,registration,total_population,3.2,37,,75+
+32.01.32,3,Klapanunggal,age_group,75+,perempuan,1022,jiwa,2025,registration,total_population,3.2,37,,75+
+32.01.32,3,Klapanunggal,age_group,75+,,1869,jiwa,2025,registration,total_population,3.2,37,,75+
+32.01.32,3,Kecamatan Klapanunggal,sex,laki_laki,,74057,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+32.01.32,3,Kecamatan Klapanunggal,sex,perempuan,,71314,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+32.01.32,3,Kecamatan Klapanunggal,total,total,,145371,jiwa,2025,registration,total_population,3.2,37,,

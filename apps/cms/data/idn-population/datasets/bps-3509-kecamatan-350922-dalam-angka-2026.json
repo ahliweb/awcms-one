@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3509-kecamatan-350922-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.09.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Arjasa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jember",
+  "publisherDomain": "3509",
+  "publisherWebsite": "https://jemberkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jember (https://jemberkab.bps.go.id), publikasi \"Kecamatan Arjasa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3509220",
+  "publicationNumber": "35090.26026",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jemberkab.bps.go.id/id/publication/2026/09/28/1506d6ce10a393a8f42bc016/kecamatan-arjasa-dalam-angka-2026.html",
+  "sourceFileSha256": "954e6beef0fe0f76b2f9a319147b3896e2921b5948edb96f0996d4761116a2cf",
+  "sourceFileBytes": 13469838,
+  "sourcePages": [33, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jember.",
+  "csvPath": "datasets/bps-3509-kecamatan-350922-dalam-angka-2026.csv",
+  "csvSha256": "1854ee9415c020eb44fc2c991d05c12c070fed417f65feed2b890f6473560ec4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Arjasa, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Arjasa, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

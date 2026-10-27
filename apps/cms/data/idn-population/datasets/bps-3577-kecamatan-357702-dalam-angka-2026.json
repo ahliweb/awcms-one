@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3577-kecamatan-357702-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.77.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mangu Harjo Dalam Angka 2026",
+  "publisherName": "BPS Kota Madiun",
+  "publisherDomain": "3577",
+  "publisherWebsite": "https://madiunkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Madiun (https://madiunkota.bps.go.id), publikasi \"Kecamatan Mangu Harjo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3577010",
+  "publicationNumber": "35770.26005",
+  "issn": "2797-5789",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkota.bps.go.id/id/publication/2026/09/28/dfdd02a181b1c1c30fcedd4b/kecamatan-mangu-harjo-dalam-angka-2026.html",
+  "sourceFileSha256": "d639791ba9b8f4976c21bb9649c6b75d5c674a63f215b7136caae02faf594869",
+  "sourceFileBytes": 7661420,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Madiun.",
+  "csvPath": "datasets/bps-3577-kecamatan-357702-dalam-angka-2026.csv",
+  "csvSha256": "b50fef76982848502a566cf396dbfabd79ff14ecc2b183da598d8e322e8d34eb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mangu Harjo, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mangu Harjo, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"+75\": unmatched ",
+    "table 3.2: the rows of region 35.77.02 are not stored: age_group (perempuan) vs sex value: parts sum 28985.0000 != 30286.0000 (diff 1301.0000); the source itself is inconsistent"
+  ]
+}

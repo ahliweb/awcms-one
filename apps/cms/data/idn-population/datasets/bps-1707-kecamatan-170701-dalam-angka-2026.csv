@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.01.2024,4,Kampung Muara Aman,sex,laki_laki,,971,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2024,4,Kampung Muara Aman,sex,perempuan,,962,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2024,4,Kampung Muara Aman,total,total,,1933,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2023,4,Kampung Dalam,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2023,4,Kampung Dalam,sex,perempuan,,283,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2023,4,Kampung Dalam,total,total,,606,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2033,4,Gandung Baru,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2033,4,Gandung Baru,sex,perempuan,,513,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2033,4,Gandung Baru,total,total,,1009,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2007,4,Talang Ulu,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2007,4,Talang Ulu,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2007,4,Talang Ulu,total,total,,945,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2002,4,Gandung,sex,laki_laki,,698,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2002,4,Gandung,sex,perempuan,,653,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2002,4,Gandung,total,total,,1351,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2014,4,Nangai Amen,sex,laki_laki,,599,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2014,4,Nangai Amen,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2014,4,Nangai Amen,total,total,,1184,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2028,4,Lokasari,sex,laki_laki,,478,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2028,4,Lokasari,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2028,4,Lokasari,total,total,,906,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2005,4,Tunggang,sex,laki_laki,,1210,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2005,4,Tunggang,sex,perempuan,,1177,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2005,4,Tunggang,total,total,,2387,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2016,4,Lebong Tambang,sex,laki_laki,,1371,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2016,4,Lebong Tambang,sex,perempuan,,1364,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2016,4,Lebong Tambang,total,total,,2735,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.2022,4,Ladang Palembang,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.2022,4,Ladang Palembang,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.2022,4,Ladang Palembang,total,total,,1001,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.1006,4,Pasar Muara Aman,sex,laki_laki,,653,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.1006,4,Pasar Muara Aman,sex,perempuan,,646,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.1006,4,Pasar Muara Aman,total,total,,1299,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01.1004,4,Kampung Jawa,sex,laki_laki,,1337,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01.1004,4,Kampung Jawa,sex,perempuan,,1320,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01.1004,4,Kampung Jawa,total,total,,2657,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01,3,Kecamatan Lebong Utara,sex,laki_laki,,9161,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.01,3,Kecamatan Lebong Utara,sex,perempuan,,8852,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.01,3,Kecamatan Lebong Utara,total,total,,18013,jiwa,2025,registration,total_population,3.1,27,,
+17.07.01,3,Kecamatan Lebong Utara,sex,laki_laki,,9161,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+17.07.01,3,Kecamatan Lebong Utara,sex,perempuan,,8852,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+17.07.01,3,Kecamatan Lebong Utara,total,total,,18013,jiwa,2025,registration,total_population,3.2,29,,

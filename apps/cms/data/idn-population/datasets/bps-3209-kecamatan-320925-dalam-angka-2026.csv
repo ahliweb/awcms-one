@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.25.2001,4,Kalianyar,sex,laki_laki,,2447,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.25.2001,4,Kalianyar,sex,perempuan,,2464,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.25.2001,4,Kalianyar,total,total,,4911,jiwa,2025,registration,total_population,3.1,52,,
+32.09.25.2006,4,Gujeg,sex,laki_laki,,1686,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.25.2006,4,Gujeg,sex,perempuan,,1639,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.25.2006,4,Gujeg,total,total,,3325,jiwa,2025,registration,total_population,3.1,52,,
+32.09.25.2007,4,Lemahtamba,sex,laki_laki,,2241,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.25.2007,4,Lemahtamba,sex,perempuan,,2241,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.25.2007,4,Lemahtamba,total,total,,4482,jiwa,2025,registration,total_population,3.1,52,,
+32.09.25.2008,4,Karanganyar,sex,laki_laki,,2111,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.25.2008,4,Karanganyar,sex,perempuan,,1993,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.25.2008,4,Karanganyar,total,total,,4104,jiwa,2025,registration,total_population,3.1,52,,
+32.09.25.2009,4,Kroya,sex,laki_laki,,2489,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.25.2009,4,Kroya,sex,perempuan,,2318,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.25.2009,4,Kroya,total,total,,4807,jiwa,2025,registration,total_population,3.1,52,,
+32.09.25,3,Kecamatan Panguragan,sex,laki_laki,,24725,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.25,3,Kecamatan Panguragan,sex,perempuan,,24228,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.25,3,Kecamatan Panguragan,total,total,,48953,jiwa,2025,registration,total_population,3.1,52,,
+32.09.25,3,Panguragan,age_group,0-4,laki_laki,1689,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.25,3,Panguragan,age_group,0-4,perempuan,1635,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.25,3,Panguragan,age_group,0-4,,3324,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.25,3,Panguragan,age_group,5-9,laki_laki,2114,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.25,3,Panguragan,age_group,5-9,perempuan,1972,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.25,3,Panguragan,age_group,5-9,,4086,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.25,3,Panguragan,age_group,10-14,laki_laki,2113,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.25,3,Panguragan,age_group,10-14,perempuan,1938,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.25,3,Panguragan,age_group,10-14,,4051,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.25,3,Panguragan,age_group,15-19,laki_laki,1782,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.25,3,Panguragan,age_group,15-19,perempuan,1767,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.25,3,Panguragan,age_group,15-19,,3549,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.25,3,Panguragan,age_group,20-24,laki_laki,1887,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.25,3,Panguragan,age_group,20-24,perempuan,1817,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.25,3,Panguragan,age_group,20-24,,3704,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.25,3,Panguragan,age_group,25-29,laki_laki,2196,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.25,3,Panguragan,age_group,25-29,perempuan,1886,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.25,3,Panguragan,age_group,25-29,,4082,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.25,3,Panguragan,age_group,30-34,laki_laki,2113,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.25,3,Panguragan,age_group,30-34,perempuan,1917,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.25,3,Panguragan,age_group,30-34,,4030,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.25,3,Panguragan,age_group,35-39,laki_laki,1954,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.25,3,Panguragan,age_group,35-39,perempuan,1846,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.25,3,Panguragan,age_group,35-39,,3800,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.25,3,Panguragan,age_group,40-44,laki_laki,2088,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.25,3,Panguragan,age_group,40-44,perempuan,2116,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.25,3,Panguragan,age_group,40-44,,4204,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.25,3,Panguragan,age_group,45-49,laki_laki,1702,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.25,3,Panguragan,age_group,45-49,perempuan,1781,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.25,3,Panguragan,age_group,45-49,,3483,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.25,3,Panguragan,age_group,50-54,laki_laki,1372,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.25,3,Panguragan,age_group,50-54,perempuan,1470,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.25,3,Panguragan,age_group,50-54,,2842,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.25,3,Panguragan,age_group,55-59,laki_laki,1179,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.25,3,Panguragan,age_group,55-59,perempuan,1209,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.25,3,Panguragan,age_group,55-59,,2388,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.25,3,Panguragan,age_group,60-64,laki_laki,910,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.25,3,Panguragan,age_group,60-64,perempuan,1005,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.25,3,Panguragan,age_group,60-64,,1915,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.25,3,Panguragan,age_group,65-69,laki_laki,669,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.25,3,Panguragan,age_group,65-69,perempuan,758,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.25,3,Panguragan,age_group,65-69,,1427,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.25,3,Panguragan,age_group,70-74,laki_laki,468,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.25,3,Panguragan,age_group,70-74,perempuan,506,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.25,3,Panguragan,age_group,70-74,,974,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.25,3,Panguragan,age_group,75+,laki_laki,489,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.25,3,Panguragan,age_group,75+,perempuan,605,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.25,3,Panguragan,age_group,75+,,1094,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.25,3,Kecamatan Panguragan,sex,laki_laki,,24725,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.25,3,Kecamatan Panguragan,sex,perempuan,,24228,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.25,3,Kecamatan Panguragan,total,total,,48953,jiwa,2025,registration,total_population,3.2,54,,

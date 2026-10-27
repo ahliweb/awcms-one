@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.71.02.1021,4,Sidomulyo,sex,laki_laki,,6440,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+17.71.02.1021,4,Sidomulyo,sex,perempuan,,6337,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+17.71.02.1021,4,Sidomulyo,total,total,,12777,jiwa,2025,registration,total_population,3.1,24,,
+17.71.02.1002,4,Jalan Gedang,sex,laki_laki,,3041,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+17.71.02.1002,4,Jalan Gedang,sex,perempuan,,3073,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+17.71.02.1002,4,Jalan Gedang,total,total,,6114,jiwa,2025,registration,total_population,3.1,24,,
+17.71.02.1001,4,Padang Harapan,sex,laki_laki,,2559,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+17.71.02.1001,4,Padang Harapan,sex,perempuan,,2566,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+17.71.02.1001,4,Padang Harapan,total,total,,5125,jiwa,2025,registration,total_population,3.1,24,,
+17.71.02.1027,4,Cempaka Permai,sex,laki_laki,,2899,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+17.71.02.1027,4,Cempaka Permai,sex,perempuan,,2856,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+17.71.02.1027,4,Cempaka Permai,total,total,,5755,jiwa,2025,registration,total_population,3.1,24,,
+17.71.02.1024,4,Lingkar Barat,sex,laki_laki,,4713,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+17.71.02.1024,4,Lingkar Barat,sex,perempuan,,4773,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+17.71.02.1024,4,Lingkar Barat,total,total,,9486,jiwa,2025,registration,total_population,3.1,24,,
+17.71.02,3,Gading Cempaka,sex,laki_laki,,19652,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+17.71.02,3,Gading Cempaka,sex,perempuan,,19605,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+17.71.02,3,Gading Cempaka,total,total,,39257,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.19.1001,4,Lumut,sex,laki_laki,,3339,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.19.1001,4,Lumut,sex,perempuan,,3338,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.19.1001,4,Lumut,total,total,,6677,jiwa,2025,registration,total_population,3.1,35,,
+12.01.19.2005,4,Lumut Nauli,sex,laki_laki,,629,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.19.2005,4,Lumut Nauli,sex,perempuan,,628,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.19.2005,4,Lumut Nauli,total,total,,1257,jiwa,2025,registration,total_population,3.1,35,,
+12.01.19.2006,4,Lumut Maju,sex,laki_laki,,653,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.19.2006,4,Lumut Maju,sex,perempuan,,602,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.19.2006,4,Lumut Maju,total,total,,1255,jiwa,2025,registration,total_population,3.1,35,,
+12.01.19.2002,4,Aek Gambir,sex,laki_laki,,907,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.19.2002,4,Aek Gambir,sex,perempuan,,924,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.19.2002,4,Aek Gambir,total,total,,1831,jiwa,2025,registration,total_population,3.1,35,,
+12.01.19.2003,4,Masundung,sex,laki_laki,,583,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.19.2003,4,Masundung,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.19.2003,4,Masundung,total,total,,1117,jiwa,2025,registration,total_population,3.1,35,,
+12.01.19.2007,4,Sialogo,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.19.2007,4,Sialogo,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.19.2007,4,Sialogo,total,total,,1118,jiwa,2025,registration,total_population,3.1,35,,
+12.01.19,3,Lumut,sex,laki_laki,,6664,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.19,3,Lumut,sex,perempuan,,6591,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.19,3,Lumut,total,total,,13255,jiwa,2025,registration,total_population,3.1,35,,

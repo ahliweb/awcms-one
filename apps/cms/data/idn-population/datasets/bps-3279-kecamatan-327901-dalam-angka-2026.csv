@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.79.01.1006,4,Situbatu,sex,laki_laki,,2320,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01.1006,4,Situbatu,sex,perempuan,,2228,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01.1006,4,Situbatu,total,total,,4548,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01.2005,4,Neglasari,sex,laki_laki,,2637,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01.2005,4,Neglasari,sex,perempuan,,2749,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01.2005,4,Neglasari,total,total,,5386,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01.2004,4,Cibeureum,sex,laki_laki,,1125,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01.2004,4,Cibeureum,sex,perempuan,,1132,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01.2004,4,Cibeureum,total,total,,2257,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01.2003,4,Balokang,sex,laki_laki,,5813,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01.2003,4,Balokang,sex,perempuan,,5819,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01.2003,4,Balokang,total,total,,11632,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01.1001,4,Banjar,sex,laki_laki,,8430,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01.1001,4,Banjar,sex,perempuan,,8480,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01.1001,4,Banjar,total,total,,16910,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01.1002,4,Mekarsari,sex,laki_laki,,8922,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01.1002,4,Mekarsari,sex,perempuan,,8691,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01.1002,4,Mekarsari,total,total,,17613,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01.2007,4,Jajawar,sex,laki_laki,,1391,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01.2007,4,Jajawar,sex,perempuan,,1388,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01.2007,4,Jajawar,total,total,,2779,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01,3,Kecamatan Banjar,sex,laki_laki,,30638,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.01,3,Kecamatan Banjar,sex,perempuan,,30487,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.01,3,Kecamatan Banjar,total,total,,61125,jiwa,2025,registration,total_population,3.1,28,,
+32.79.01,3,Banjar,age_group,0-4,laki_laki,2097,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+32.79.01,3,Banjar,age_group,0-4,perempuan,1929,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+32.79.01,3,Banjar,age_group,0-4,,4026,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+32.79.01,3,Banjar,age_group,5-9,laki_laki,2437,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+32.79.01,3,Banjar,age_group,5-9,perempuan,2253,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+32.79.01,3,Banjar,age_group,5-9,,4690,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+32.79.01,3,Banjar,age_group,10-14,laki_laki,2545,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.79.01,3,Banjar,age_group,10-14,perempuan,2345,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.79.01,3,Banjar,age_group,10-14,,4890,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.79.01,3,Banjar,age_group,15-19,laki_laki,2468,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.79.01,3,Banjar,age_group,15-19,perempuan,2341,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.79.01,3,Banjar,age_group,15-19,,4809,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.79.01,3,Banjar,age_group,20-24,laki_laki,2550,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.79.01,3,Banjar,age_group,20-24,perempuan,2376,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.79.01,3,Banjar,age_group,20-24,,4926,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.79.01,3,Banjar,age_group,25-29,laki_laki,2566,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.79.01,3,Banjar,age_group,25-29,perempuan,2321,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.79.01,3,Banjar,age_group,25-29,,4887,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.79.01,3,Banjar,age_group,30-34,laki_laki,2330,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.79.01,3,Banjar,age_group,30-34,perempuan,2248,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.79.01,3,Banjar,age_group,30-34,,4578,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.79.01,3,Banjar,age_group,35-39,laki_laki,2012,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+32.79.01,3,Banjar,age_group,35-39,perempuan,2130,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+32.79.01,3,Banjar,age_group,35-39,,4142,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+32.79.01,3,Banjar,age_group,40-44,laki_laki,2294,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.79.01,3,Banjar,age_group,40-44,perempuan,2198,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.79.01,3,Banjar,age_group,40-44,,4492,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.79.01,3,Banjar,age_group,45-49,laki_laki,1973,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.79.01,3,Banjar,age_group,45-49,perempuan,1968,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.79.01,3,Banjar,age_group,45-49,,3941,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.79.01,3,Banjar,age_group,50-54,laki_laki,1769,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.79.01,3,Banjar,age_group,50-54,perempuan,1878,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.79.01,3,Banjar,age_group,50-54,,3647,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.79.01,3,Banjar,age_group,55-59,laki_laki,1564,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.79.01,3,Banjar,age_group,55-59,perempuan,1764,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.79.01,3,Banjar,age_group,55-59,,3328,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.79.01,3,Banjar,age_group,60-64,laki_laki,1404,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.79.01,3,Banjar,age_group,60-64,perempuan,1605,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.79.01,3,Banjar,age_group,60-64,,3009,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.79.01,3,Banjar,age_group,65+,laki_laki,2629,jiwa,2025,registration,total_population,3.2,30,,65 +
+32.79.01,3,Banjar,age_group,65+,perempuan,3131,jiwa,2025,registration,total_population,3.2,30,,65 +
+32.79.01,3,Banjar,age_group,65+,,5760,jiwa,2025,registration,total_population,3.2,30,,65 +
+32.79.01,3,Kecamatan Banjar,sex,laki_laki,,30638,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+32.79.01,3,Kecamatan Banjar,sex,perempuan,,30487,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+32.79.01,3,Kecamatan Banjar,total,total,,61125,jiwa,2025,registration,total_population,3.2,30,,

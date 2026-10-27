@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.04.2001,4,Sinampang,sex,laki_laki,,758,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2001,4,Sinampang,sex,perempuan,,809,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2001,4,Sinampang,total,total,,1567,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2002,4,Sihorbo,sex,laki_laki,,719,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2002,4,Sihorbo,sex,perempuan,,712,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2002,4,Sihorbo,total,total,,1431,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2003,4,Soban,sex,laki_laki,,1007,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2003,4,Soban,sex,perempuan,,1035,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2003,4,Soban,total,total,,2042,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2004,4,Adian Nangka,sex,laki_laki,,739,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2004,4,Adian Nangka,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2004,4,Adian Nangka,total,total,,1472,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2005,4,Bunturaja,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2005,4,Bunturaja,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2005,4,Bunturaja,total,total,,648,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2011,4,Gomit,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2011,4,Gomit,sex,perempuan,,558,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2011,4,Gomit,total,total,,1136,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2010,4,Jumantuang,sex,laki_laki,,933,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2010,4,Jumantuang,sex,perempuan,,969,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2010,4,Jumantuang,total,total,,1902,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2006,4,Juma Siulok,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2006,4,Juma Siulok,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2006,4,Juma Siulok,total,total,,1251,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2007,4,Juma Teguh,sex,laki_laki,,1136,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2007,4,Juma Teguh,sex,perempuan,,1215,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2007,4,Juma Teguh,total,total,,2351,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2008,4,Sosor Lontung,sex,laki_laki,,1729,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2008,4,Sosor Lontung,sex,perempuan,,1778,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2008,4,Sosor Lontung,total,total,,3507,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2009,4,Huta Imbaru,sex,laki_laki,,1165,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2009,4,Huta Imbaru,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2009,4,Huta Imbaru,total,total,,2294,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2013,4,Maju,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2013,4,Maju,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2013,4,Maju,total,total,,1015,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04.2012,4,Adian Gupa,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04.2012,4,Adian Gupa,sex,perempuan,,514,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04.2012,4,Adian Gupa,total,total,,982,jiwa,2025,registration,total_population,3.1,22,,
+12.11.04,3,Siempat Nempu,sex,laki_laki,,10713,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.04,3,Siempat Nempu,sex,perempuan,,10885,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.04,3,Siempat Nempu,total,total,,21598,jiwa,2025,registration,total_population,3.1,22,,

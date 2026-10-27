@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.72.03.1001,4,Mulyojati,sex,laki_laki,,4387,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.03.1001,4,Mulyojati,sex,perempuan,,4355,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.03.1001,4,Mulyojati,total,total,,8742,jiwa,2025,registration,total_population,3.1,31,,
+18.72.03.1003,4,Mulyosari,sex,laki_laki,,1910,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.03.1003,4,Mulyosari,sex,perempuan,,1815,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.03.1003,4,Mulyosari,total,total,,3725,jiwa,2025,registration,total_population,3.1,31,,
+18.72.03.1002,4,Ganjaragung,sex,laki_laki,,3657,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.03.1002,4,Ganjaragung,sex,perempuan,,3685,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.03.1002,4,Ganjaragung,total,total,,7342,jiwa,2025,registration,total_population,3.1,31,,
+18.72.03.1004,4,Ganjarasri,sex,laki_laki,,5106,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.03.1004,4,Ganjarasri,sex,perempuan,,5132,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.03.1004,4,Ganjarasri,total,total,,10238,jiwa,2025,registration,total_population,3.1,31,,
+18.72.03,3,Metro Barat,sex,laki_laki,,15060,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.03,3,Metro Barat,sex,perempuan,,14987,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.03,3,Metro Barat,total,total,,30047,jiwa,2025,registration,total_population,3.1,31,,
+18.72.03,3,Metro Barat,age_group,0-4,laki_laki,963,jiwa,2025,registration,total_population,3.2,33,,0 - 4
+18.72.03,3,Metro Barat,age_group,0-4,perempuan,911,jiwa,2025,registration,total_population,3.2,33,,0 - 4
+18.72.03,3,Metro Barat,age_group,0-4,,1874,jiwa,2025,registration,total_population,3.2,33,,0 - 4
+18.72.03,3,Metro Barat,age_group,5-9,laki_laki,1238,jiwa,2025,registration,total_population,3.2,33,,5 - 9
+18.72.03,3,Metro Barat,age_group,5-9,perempuan,1182,jiwa,2025,registration,total_population,3.2,33,,5 - 9
+18.72.03,3,Metro Barat,age_group,5-9,,2420,jiwa,2025,registration,total_population,3.2,33,,5 - 9
+18.72.03,3,Metro Barat,age_group,10-14,laki_laki,1249,jiwa,2025,registration,total_population,3.2,33,,10 - 14
+18.72.03,3,Metro Barat,age_group,10-14,perempuan,1186,jiwa,2025,registration,total_population,3.2,33,,10 - 14
+18.72.03,3,Metro Barat,age_group,10-14,,2435,jiwa,2025,registration,total_population,3.2,33,,10 - 14
+18.72.03,3,Metro Barat,age_group,15-19,laki_laki,1207,jiwa,2025,registration,total_population,3.2,33,,15 - 19
+18.72.03,3,Metro Barat,age_group,15-19,perempuan,1131,jiwa,2025,registration,total_population,3.2,33,,15 - 19
+18.72.03,3,Metro Barat,age_group,15-19,,2338,jiwa,2025,registration,total_population,3.2,33,,15 - 19
+18.72.03,3,Metro Barat,age_group,20-24,laki_laki,1157,jiwa,2025,registration,total_population,3.2,33,,20 - 24
+18.72.03,3,Metro Barat,age_group,20-24,perempuan,1193,jiwa,2025,registration,total_population,3.2,33,,20 - 24
+18.72.03,3,Metro Barat,age_group,20-24,,2350,jiwa,2025,registration,total_population,3.2,33,,20 - 24
+18.72.03,3,Metro Barat,age_group,25-29,laki_laki,1318,jiwa,2025,registration,total_population,3.2,33,,25 - 29
+18.72.03,3,Metro Barat,age_group,25-29,perempuan,1238,jiwa,2025,registration,total_population,3.2,33,,25 - 29
+18.72.03,3,Metro Barat,age_group,25-29,,2556,jiwa,2025,registration,total_population,3.2,33,,25 - 29
+18.72.03,3,Metro Barat,age_group,30-34,laki_laki,1166,jiwa,2025,registration,total_population,3.2,33,,30 - 34
+18.72.03,3,Metro Barat,age_group,30-34,perempuan,1201,jiwa,2025,registration,total_population,3.2,33,,30 - 34
+18.72.03,3,Metro Barat,age_group,30-34,,2367,jiwa,2025,registration,total_population,3.2,33,,30 - 34
+18.72.03,3,Metro Barat,age_group,35-39,laki_laki,1079,jiwa,2025,registration,total_population,3.2,33,,35 - 39
+18.72.03,3,Metro Barat,age_group,35-39,perempuan,1075,jiwa,2025,registration,total_population,3.2,33,,35 - 39
+18.72.03,3,Metro Barat,age_group,35-39,,2154,jiwa,2025,registration,total_population,3.2,33,,35 - 39
+18.72.03,3,Metro Barat,age_group,40-44,laki_laki,1074,jiwa,2025,registration,total_population,3.2,33,,40 - 44
+18.72.03,3,Metro Barat,age_group,40-44,perempuan,1077,jiwa,2025,registration,total_population,3.2,33,,40 - 44
+18.72.03,3,Metro Barat,age_group,40-44,,2151,jiwa,2025,registration,total_population,3.2,33,,40 - 44
+18.72.03,3,Metro Barat,age_group,45-49,laki_laki,1023,jiwa,2025,registration,total_population,3.2,33,,45 - 49
+18.72.03,3,Metro Barat,age_group,45-49,perempuan,1108,jiwa,2025,registration,total_population,3.2,33,,45 - 49
+18.72.03,3,Metro Barat,age_group,45-49,,2131,jiwa,2025,registration,total_population,3.2,33,,45 - 49
+18.72.03,3,Metro Barat,age_group,50-54,laki_laki,1018,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.72.03,3,Metro Barat,age_group,50-54,perempuan,979,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.72.03,3,Metro Barat,age_group,50-54,,1997,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.72.03,3,Metro Barat,age_group,55-59,laki_laki,839,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.72.03,3,Metro Barat,age_group,55-59,perempuan,858,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.72.03,3,Metro Barat,age_group,55-59,,1697,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.72.03,3,Metro Barat,age_group,60-64,laki_laki,627,jiwa,2025,registration,total_population,3.2,33,,60 - 64
+18.72.03,3,Metro Barat,age_group,60-64,perempuan,705,jiwa,2025,registration,total_population,3.2,33,,60 - 64
+18.72.03,3,Metro Barat,age_group,60-64,,1332,jiwa,2025,registration,total_population,3.2,33,,60 - 64
+18.72.03,3,Metro Barat,age_group,65-69,laki_laki,470,jiwa,2025,registration,total_population,3.2,33,,65 - 69
+18.72.03,3,Metro Barat,age_group,65-69,perempuan,508,jiwa,2025,registration,total_population,3.2,33,,65 - 69
+18.72.03,3,Metro Barat,age_group,65-69,,978,jiwa,2025,registration,total_population,3.2,33,,65 - 69
+18.72.03,3,Metro Barat,age_group,70-74,laki_laki,317,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.72.03,3,Metro Barat,age_group,70-74,perempuan,276,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.72.03,3,Metro Barat,age_group,70-74,,593,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.72.03,3,Metro Barat,age_group,75+,laki_laki,315,jiwa,2025,registration,total_population,3.2,33,,> 75
+18.72.03,3,Metro Barat,age_group,75+,perempuan,359,jiwa,2025,registration,total_population,3.2,33,,> 75
+18.72.03,3,Metro Barat,age_group,75+,,674,jiwa,2025,registration,total_population,3.2,33,,> 75
+18.72.03,3,Metro Barat,sex,laki_laki,,15060,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+18.72.03,3,Metro Barat,sex,perempuan,,14987,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+18.72.03,3,Metro Barat,total,total,,30047,jiwa,2025,registration,total_population,3.2,33,,

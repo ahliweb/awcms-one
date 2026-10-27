@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.71.04.1014,4,Pasirmulya,sex,laki_laki,,3118,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1014,4,Pasirmulya,sex,perempuan,,3132,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1014,4,Pasirmulya,total,total,,6250,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1013,4,Pasirkuda,sex,laki_laki,,8655,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1013,4,Pasirkuda,sex,perempuan,,8522,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1013,4,Pasirkuda,total,total,,17177,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1012,4,Pasirjaya,sex,laki_laki,,11736,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1012,4,Pasirjaya,sex,perempuan,,11345,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1012,4,Pasirjaya,total,total,,23081,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1015,4,Gunungbatu,sex,laki_laki,,11386,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1015,4,Gunungbatu,sex,perempuan,,10908,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1015,4,Gunungbatu,total,total,,22294,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1016,4,Loji,sex,laki_laki,,8541,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1016,4,Loji,sex,perempuan,,8642,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1016,4,Loji,total,total,,17183,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1001,4,Menteng,sex,laki_laki,,9115,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1001,4,Menteng,sex,perempuan,,9144,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1001,4,Menteng,total,total,,18259,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1009,4,Cilendek Timur,sex,laki_laki,,9957,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1009,4,Cilendek Timur,sex,perempuan,,9819,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1009,4,Cilendek Timur,total,total,,19776,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1008,4,Cilendek Barat,sex,laki_laki,,10509,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1008,4,Cilendek Barat,sex,perempuan,,10485,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1008,4,Cilendek Barat,total,total,,20994,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1002,4,Sindangbarang,sex,laki_laki,,10604,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1002,4,Sindangbarang,sex,perempuan,,10387,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1002,4,Sindangbarang,total,total,,20991,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1004,4,Margajaya,sex,laki_laki,,3720,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1004,4,Margajaya,sex,perempuan,,3759,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1004,4,Margajaya,total,total,,7479,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1006,4,Situgede,sex,laki_laki,,6543,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1006,4,Situgede,sex,perempuan,,6312,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1006,4,Situgede,total,total,,12855,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1003,4,Bubulak,sex,laki_laki,,9628,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1003,4,Bubulak,sex,perempuan,,9348,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1003,4,Bubulak,total,total,,18976,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1007,4,Semplak,sex,laki_laki,,6762,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1007,4,Semplak,sex,perempuan,,6841,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1007,4,Semplak,total,total,,13603,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1010,4,Curugmekar,sex,laki_laki,,6928,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1010,4,Curugmekar,sex,perempuan,,7036,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1010,4,Curugmekar,total,total,,13964,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04.1011,4,Curug,sex,laki_laki,,7112,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04.1011,4,Curug,sex,perempuan,,7065,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04.1011,4,Curug,total,total,,14177,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04,3,Bogor Barat,sex,laki_laki,,131428,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki
+32.71.04,3,Bogor Barat,sex,perempuan,,129606,jiwa,2025,registration,total_population,3.1,38,,Perempuan
+32.71.04,3,Bogor Barat,total,total,,261034,jiwa,2025,registration,total_population,3.1,38,,
+32.71.04,3,Bogor Barat,age_group,0-4,laki_laki,8896,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.71.04,3,Bogor Barat,age_group,0-4,perempuan,8381,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.71.04,3,Bogor Barat,age_group,0-4,,17277,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.71.04,3,Bogor Barat,age_group,5-9,laki_laki,11675,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.71.04,3,Bogor Barat,age_group,5-9,perempuan,10912,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.71.04,3,Bogor Barat,age_group,5-9,,22587,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.71.04,3,Bogor Barat,age_group,10-14,laki_laki,11628,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.71.04,3,Bogor Barat,age_group,10-14,perempuan,10745,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.71.04,3,Bogor Barat,age_group,10-14,,22373,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.71.04,3,Bogor Barat,age_group,15-19,laki_laki,10783,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.71.04,3,Bogor Barat,age_group,15-19,perempuan,10227,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.71.04,3,Bogor Barat,age_group,15-19,,21010,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.71.04,3,Bogor Barat,age_group,20-24,laki_laki,10760,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.71.04,3,Bogor Barat,age_group,20-24,perempuan,10133,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.71.04,3,Bogor Barat,age_group,20-24,,20893,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.71.04,3,Bogor Barat,age_group,25-29,laki_laki,10603,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.71.04,3,Bogor Barat,age_group,25-29,perempuan,10279,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.71.04,3,Bogor Barat,age_group,25-29,,20882,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.71.04,3,Bogor Barat,age_group,30-34,laki_laki,9958,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.71.04,3,Bogor Barat,age_group,30-34,perempuan,9954,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.71.04,3,Bogor Barat,age_group,30-34,,19912,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.71.04,3,Bogor Barat,age_group,35-39,laki_laki,9323,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.71.04,3,Bogor Barat,age_group,35-39,perempuan,9275,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.71.04,3,Bogor Barat,age_group,35-39,,18598,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.71.04,3,Bogor Barat,age_group,40-44,laki_laki,10050,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.71.04,3,Bogor Barat,age_group,40-44,perempuan,10062,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.71.04,3,Bogor Barat,age_group,40-44,,20112,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.71.04,3,Bogor Barat,age_group,45-49,laki_laki,9509,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.71.04,3,Bogor Barat,age_group,45-49,perempuan,9453,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.71.04,3,Bogor Barat,age_group,45-49,,18962,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.71.04,3,Bogor Barat,age_group,50-54,laki_laki,8320,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.71.04,3,Bogor Barat,age_group,50-54,perempuan,8537,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.71.04,3,Bogor Barat,age_group,50-54,,16857,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.71.04,3,Bogor Barat,age_group,55-59,laki_laki,6985,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.71.04,3,Bogor Barat,age_group,55-59,perempuan,7185,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.71.04,3,Bogor Barat,age_group,55-59,,14170,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.71.04,3,Bogor Barat,age_group,60-64,laki_laki,5137,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.71.04,3,Bogor Barat,age_group,60-64,perempuan,5345,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.71.04,3,Bogor Barat,age_group,60-64,,10482,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.71.04,3,Bogor Barat,age_group,65-69,laki_laki,3748,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.71.04,3,Bogor Barat,age_group,65-69,perempuan,4219,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.71.04,3,Bogor Barat,age_group,65-69,,7967,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.71.04,3,Bogor Barat,age_group,70-74,laki_laki,2249,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.71.04,3,Bogor Barat,age_group,70-74,perempuan,2472,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.71.04,3,Bogor Barat,age_group,70-74,,4721,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.71.04,3,Bogor Barat,age_group,75+,laki_laki,1804,jiwa,2025,registration,total_population,3.2,40,,>75
+32.71.04,3,Bogor Barat,age_group,75+,perempuan,2427,jiwa,2025,registration,total_population,3.2,40,,>75
+32.71.04,3,Bogor Barat,age_group,75+,,4231,jiwa,2025,registration,total_population,3.2,40,,>75
+32.71.04,3,Bogor Barat,sex,laki_laki,,131428,jiwa,2025,registration,total_population,3.2,40,,Laki-Laki
+32.71.04,3,Bogor Barat,sex,perempuan,,129606,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+32.71.04,3,Bogor Barat,total,total,,261034,jiwa,2025,registration,total_population,3.2,40,,

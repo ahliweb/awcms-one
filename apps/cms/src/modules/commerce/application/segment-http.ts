@@ -34,7 +34,7 @@ const BOOKING_LINKS_READ_GUARD = {
 } as const;
 
 /**
- * Booking-derived rules (rule schema 2, ADR-0051 D5) are a separate power: a
+ * Booking-derived rules (rule schema 2, ADR-0052 D5) are a separate power: a
  * count of "people who no-showed" is booking behaviour, so a segment editor who
  * may not read bookings must not be able to define, count, list or export one.
  * `null` when the rule reads no booking fact or the caller holds

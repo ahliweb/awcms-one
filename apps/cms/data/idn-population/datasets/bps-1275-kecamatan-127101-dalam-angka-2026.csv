@@ -1,0 +1,172 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71.01.1012,4,Sitirejo I,sex,laki_laki,,4129,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1012,4,Sitirejo I,sex,perempuan,,4411,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1011,4,Sudirejo II,sex,laki_laki,,4956,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1011,4,Sudirejo II,sex,perempuan,,5153,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1008,4,Teladan Timur,sex,laki_laki,,5716,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1008,4,Teladan Timur,sex,perempuan,,5841,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1009,4,Teladan Barat,sex,laki_laki,,4201,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1009,4,Teladan Barat,sex,perempuan,,4268,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1007,4,Pasar Merah Barat,sex,laki_laki,,1824,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1007,4,Pasar Merah Barat,sex,perempuan,,1907,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1004,4,Mesjid,sex,laki_laki,,2004,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1004,4,Mesjid,sex,perempuan,,2087,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1006,4,Kotamatsum III,sex,laki_laki,,2981,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1006,4,Kotamatsum III,sex,perempuan,,3282,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1003,4,Sei Rengas I,sex,laki_laki,,2257,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1003,4,Sei Rengas I,sex,perempuan,,2643,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1001,4,Pasar Baru,sex,laki_laki,,1578,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1001,4,Pasar Baru,sex,perempuan,,1884,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1002,4,Pusat Pasar,sex,laki_laki,,2006,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1002,4,Pusat Pasar,sex,perempuan,,2203,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01.1005,4,Pandau Hulu I,sex,laki_laki,,2315,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01.1005,4,Pandau Hulu I,sex,perempuan,,2683,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01,3,Medan Kota,sex,laki_laki,,41236,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.01,3,Medan Kota,sex,perempuan,,43999,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.01,3,Medan Kota,age_group,0-4,laki_laki,1747,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.01,3,Medan Kota,age_group,0-4,perempuan,1627,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.01,3,Medan Kota,age_group,0-4,,3374,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.01,3,Medan Kota,age_group,5-9,laki_laki,2913,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.01,3,Medan Kota,age_group,5-9,perempuan,2676,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.01,3,Medan Kota,age_group,5-9,,5589,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.01,3,Medan Kota,age_group,10-14,laki_laki,3309,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.01,3,Medan Kota,age_group,10-14,perempuan,3299,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.01,3,Medan Kota,age_group,10-14,,6608,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.01,3,Medan Kota,age_group,15-19,laki_laki,3576,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.01,3,Medan Kota,age_group,15-19,perempuan,3361,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.01,3,Medan Kota,age_group,15-19,,6937,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.01,3,Medan Kota,age_group,20-24,laki_laki,3312,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.01,3,Medan Kota,age_group,20-24,perempuan,3247,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.01,3,Medan Kota,age_group,20-24,,6559,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.01,3,Medan Kota,age_group,25-29,laki_laki,3363,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.01,3,Medan Kota,age_group,25-29,perempuan,3132,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.01,3,Medan Kota,age_group,25-29,,6495,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.01,3,Medan Kota,age_group,30-34,laki_laki,3072,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.01,3,Medan Kota,age_group,30-34,perempuan,3112,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.01,3,Medan Kota,age_group,30-34,,6184,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.01,3,Medan Kota,age_group,35-39,laki_laki,3001,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.01,3,Medan Kota,age_group,35-39,perempuan,3186,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.01,3,Medan Kota,age_group,35-39,,6187,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.01,3,Medan Kota,age_group,40-44,laki_laki,3214,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.01,3,Medan Kota,age_group,40-44,perempuan,3383,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.01,3,Medan Kota,age_group,40-44,,6597,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.01,3,Medan Kota,age_group,45-49,laki_laki,2906,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.01,3,Medan Kota,age_group,45-49,perempuan,3188,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.01,3,Medan Kota,age_group,45-49,,6094,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.01,3,Medan Kota,age_group,50-54,laki_laki,2702,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.01,3,Medan Kota,age_group,50-54,perempuan,3004,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.01,3,Medan Kota,age_group,50-54,,5706,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.01,3,Medan Kota,age_group,55-59,laki_laki,2363,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.01,3,Medan Kota,age_group,55-59,perempuan,2713,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.01,3,Medan Kota,age_group,55-59,,5076,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.01,3,Medan Kota,age_group,60-64,laki_laki,1906,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.01,3,Medan Kota,age_group,60-64,perempuan,2344,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.01,3,Medan Kota,age_group,60-64,,4250,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.01,3,Medan Kota,age_group,65-69,laki_laki,1466,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.01,3,Medan Kota,age_group,65-69,perempuan,1959,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.01,3,Medan Kota,age_group,65-69,,3425,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.01,3,Medan Kota,age_group,70-74,laki_laki,1060,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.01,3,Medan Kota,age_group,70-74,perempuan,1452,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.01,3,Medan Kota,age_group,70-74,,2512,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.01,3,Medan Kota,age_group,75+,laki_laki,1326,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.01,3,Medan Kota,age_group,75+,perempuan,2316,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.01,3,Medan Kota,age_group,75+,,3642,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.01,3,Medan Kota,sex,laki_laki,,41236,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.71.01,3,Medan Kota,sex,perempuan,,43999,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.71.01,3,Medan Kota,total,total,,85235,jiwa,2025,registration,total_population,3.2,31,,
+12.71.01.1012,4,Sitirejo I,religion,islam,,5167,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1012,4,Sitirejo I,religion,kristen,,3107,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1012,4,Sitirejo I,religion,katolik,,216,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1012,4,Sitirejo I,religion,buddha,,46,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1011,4,Sudirejo II,religion,islam,,5006,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1011,4,Sudirejo II,religion,kristen,,4693,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1011,4,Sudirejo II,religion,katolik,,388,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1011,4,Sudirejo II,religion,buddha,,14,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1008,4,Teladan Timur,religion,islam,,5998,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1008,4,Teladan Timur,religion,kristen,,5090,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1008,4,Teladan Timur,religion,katolik,,416,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1008,4,Teladan Timur,religion,buddha,,20,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1009,4,Teladan Barat,religion,islam,,5665,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1009,4,Teladan Barat,religion,kristen,,2605,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1009,4,Teladan Barat,religion,katolik,,106,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1009,4,Teladan Barat,religion,buddha,,79,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1007,4,Pasar Merah Barat,religion,islam,,3060,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1007,4,Pasar Merah Barat,religion,kristen,,627,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1007,4,Pasar Merah Barat,religion,katolik,,33,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1007,4,Pasar Merah Barat,religion,buddha,,11,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1004,4,Mesjid,religion,islam,,2728,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1004,4,Mesjid,religion,kristen,,221,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1004,4,Mesjid,religion,katolik,,9,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1004,4,Mesjid,religion,buddha,,1132,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1006,4,Kotamatsum III,religion,islam,,4235,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1006,4,Kotamatsum III,religion,kristen,,132,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1006,4,Kotamatsum III,religion,katolik,,57,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1006,4,Kotamatsum III,religion,buddha,,1837,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1003,4,Sei Rengas I,religion,islam,,227,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1003,4,Sei Rengas I,religion,kristen,,393,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1003,4,Sei Rengas I,religion,katolik,,101,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1003,4,Sei Rengas I,religion,buddha,,4176,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1001,4,Pasar Baru,religion,islam,,129,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1001,4,Pasar Baru,religion,kristen,,281,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1001,4,Pasar Baru,religion,katolik,,67,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1001,4,Pasar Baru,religion,buddha,,2965,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1002,4,Pusat Pasar,religion,islam,,540,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1002,4,Pusat Pasar,religion,kristen,,403,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1002,4,Pusat Pasar,religion,katolik,,104,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1002,4,Pusat Pasar,religion,buddha,,3151,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1005,4,Pandau Hulu I,religion,islam,,336,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01.1005,4,Pandau Hulu I,religion,kristen,,543,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01.1005,4,Pandau Hulu I,religion,katolik,,159,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01.1005,4,Pandau Hulu I,religion,buddha,,3947,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01,3,Medan Kota,religion,islam,,41814,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.01,3,Medan Kota,religion,kristen,,23996,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.01,3,Medan Kota,religion,katolik,,1924,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.01,3,Medan Kota,religion,buddha,,17384,jiwa,2025,registration,total_population,3.6,38,,Budha
+12.71.01.1012,4,Sitirejo I,religion,hindu,,4,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1012,4,Sitirejo I,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1012,4,Sitirejo I,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1012,4,Sitirejo I,total,total,,8540,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1011,4,Sudirejo II,religion,hindu,,1,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1011,4,Sudirejo II,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1011,4,Sudirejo II,religion,kepercayaan,,7,jiwa,2025,registration,total_population,3.6,39,,Kepercayaan
+12.71.01.1011,4,Sudirejo II,total,total,,10109,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1008,4,Teladan Timur,religion,hindu,,33,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1008,4,Teladan Timur,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1008,4,Teladan Timur,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1008,4,Teladan Timur,total,total,,11557,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1009,4,Teladan Barat,religion,hindu,,14,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1009,4,Teladan Barat,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1009,4,Teladan Barat,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1009,4,Teladan Barat,total,total,,8469,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1007,4,Pasar Merah Barat,religion,hindu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Hindu
+12.71.01.1007,4,Pasar Merah Barat,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1007,4,Pasar Merah Barat,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1007,4,Pasar Merah Barat,total,total,,3731,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1004,4,Mesjid,religion,hindu,,1,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1004,4,Mesjid,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1004,4,Mesjid,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1004,4,Mesjid,total,total,,4091,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1006,4,Kotamatsum III,religion,hindu,,2,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1006,4,Kotamatsum III,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1006,4,Kotamatsum III,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1006,4,Kotamatsum III,total,total,,6263,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1003,4,Sei Rengas I,religion,hindu,,2,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1003,4,Sei Rengas I,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1003,4,Sei Rengas I,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.6,39,,Kepercayaan
+12.71.01.1003,4,Sei Rengas I,total,total,,4900,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1001,4,Pasar Baru,religion,hindu,,16,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1001,4,Pasar Baru,religion,khonghucu,,4,jiwa,2025,registration,total_population,3.6,39,,Konghucu
+12.71.01.1001,4,Pasar Baru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1001,4,Pasar Baru,total,total,,3462,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1002,4,Pusat Pasar,religion,hindu,,11,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1002,4,Pusat Pasar,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1002,4,Pusat Pasar,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1002,4,Pusat Pasar,total,total,,4209,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01.1005,4,Pandau Hulu I,religion,hindu,,13,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01.1005,4,Pandau Hulu I,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Konghucu
+12.71.01.1005,4,Pandau Hulu I,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.01.1005,4,Pandau Hulu I,total,total,,4998,jiwa,2025,registration,total_population,3.6,39,,
+12.71.01,3,Medan Kota,religion,hindu,,97,jiwa,2025,registration,total_population,3.6,39,,Hindu
+12.71.01,3,Medan Kota,religion,khonghucu,,4,jiwa,2025,registration,total_population,3.6,39,,Konghucu
+12.71.01,3,Medan Kota,religion,kepercayaan,,16,jiwa,2025,registration,total_population,3.6,39,,Kepercayaan
+12.71.01,3,Medan Kota,total,total,,85235,jiwa,2025,registration,total_population,3.6,39,,

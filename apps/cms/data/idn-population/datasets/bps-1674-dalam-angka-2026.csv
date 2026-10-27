@@ -1,0 +1,161 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.73.02,3,Lubuk Linggau Barat I,total,total,,41631,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73.06,3,Lubuk Linggau Barat II,total,total,,21148,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73.03,3,Lubuk Linggau Selatan I,total,total,,17896,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73.07,3,Lubuk Linggau Selatan II,total,total,,35961,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73.01,3,Lubuk Linggau Timur I,total,total,,36219,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73.05,3,Lubuk Linggau Timur II,total,total,,33583,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73.04,3,Lubuk Linggau Utara I,total,total,,19311,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73.08,3,Lubuk Linggau Utara II,total,total,,45708,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73,2,Kota Lubuk Linggau,total,total,,251457,jiwa,2025,registration,total_population,3.1.1,61,,
+16.73,2,Kota Lubuk Linggau,age_group,0-4,laki_laki,9403,jiwa,2025,registration,total_population,3.1.2,64,,0–4
+16.73,2,Kota Lubuk Linggau,age_group,0-4,perempuan,8650,jiwa,2025,registration,total_population,3.1.2,64,,0–4
+16.73,2,Kota Lubuk Linggau,age_group,0-4,,18053,jiwa,2025,registration,total_population,3.1.2,64,,0–4
+16.73,2,Kota Lubuk Linggau,age_group,5-9,laki_laki,11892,jiwa,2025,registration,total_population,3.1.2,64,,5–9
+16.73,2,Kota Lubuk Linggau,age_group,5-9,perempuan,10987,jiwa,2025,registration,total_population,3.1.2,64,,5–9
+16.73,2,Kota Lubuk Linggau,age_group,5-9,,22879,jiwa,2025,registration,total_population,3.1.2,64,,5–9
+16.73,2,Kota Lubuk Linggau,age_group,10-14,laki_laki,12041,jiwa,2025,registration,total_population,3.1.2,64,,10–14
+16.73,2,Kota Lubuk Linggau,age_group,10-14,perempuan,11314,jiwa,2025,registration,total_population,3.1.2,64,,10–14
+16.73,2,Kota Lubuk Linggau,age_group,10-14,,23355,jiwa,2025,registration,total_population,3.1.2,64,,10–14
+16.73,2,Kota Lubuk Linggau,age_group,15-19,laki_laki,11055,jiwa,2025,registration,total_population,3.1.2,64,,15–19
+16.73,2,Kota Lubuk Linggau,age_group,15-19,perempuan,10421,jiwa,2025,registration,total_population,3.1.2,64,,15–19
+16.73,2,Kota Lubuk Linggau,age_group,15-19,,21476,jiwa,2025,registration,total_population,3.1.2,64,,15–19
+16.73,2,Kota Lubuk Linggau,age_group,20-24,laki_laki,10477,jiwa,2025,registration,total_population,3.1.2,64,,20–24
+16.73,2,Kota Lubuk Linggau,age_group,20-24,perempuan,10073,jiwa,2025,registration,total_population,3.1.2,64,,20–24
+16.73,2,Kota Lubuk Linggau,age_group,20-24,,20550,jiwa,2025,registration,total_population,3.1.2,64,,20–24
+16.73,2,Kota Lubuk Linggau,age_group,25-29,laki_laki,10104,jiwa,2025,registration,total_population,3.1.2,64,,25–29
+16.73,2,Kota Lubuk Linggau,age_group,25-29,perempuan,9753,jiwa,2025,registration,total_population,3.1.2,64,,25–29
+16.73,2,Kota Lubuk Linggau,age_group,25-29,,19857,jiwa,2025,registration,total_population,3.1.2,64,,25–29
+16.73,2,Kota Lubuk Linggau,age_group,30-34,laki_laki,9536,jiwa,2025,registration,total_population,3.1.2,64,,30–34
+16.73,2,Kota Lubuk Linggau,age_group,30-34,perempuan,9409,jiwa,2025,registration,total_population,3.1.2,64,,30–34
+16.73,2,Kota Lubuk Linggau,age_group,30-34,,18945,jiwa,2025,registration,total_population,3.1.2,64,,30–34
+16.73,2,Kota Lubuk Linggau,age_group,35-39,laki_laki,10031,jiwa,2025,registration,total_population,3.1.2,64,,35–39
+16.73,2,Kota Lubuk Linggau,age_group,35-39,perempuan,9933,jiwa,2025,registration,total_population,3.1.2,64,,35–39
+16.73,2,Kota Lubuk Linggau,age_group,35-39,,19964,jiwa,2025,registration,total_population,3.1.2,64,,35–39
+16.73,2,Kota Lubuk Linggau,age_group,40-44,laki_laki,9541,jiwa,2025,registration,total_population,3.1.2,64,,40–44
+16.73,2,Kota Lubuk Linggau,age_group,40-44,perempuan,9606,jiwa,2025,registration,total_population,3.1.2,64,,40–44
+16.73,2,Kota Lubuk Linggau,age_group,40-44,,19147,jiwa,2025,registration,total_population,3.1.2,64,,40–44
+16.73,2,Kota Lubuk Linggau,age_group,45-49,laki_laki,8735,jiwa,2025,registration,total_population,3.1.2,64,,45–49
+16.73,2,Kota Lubuk Linggau,age_group,45-49,perempuan,8740,jiwa,2025,registration,total_population,3.1.2,64,,45–49
+16.73,2,Kota Lubuk Linggau,age_group,45-49,,17475,jiwa,2025,registration,total_population,3.1.2,64,,45–49
+16.73,2,Kota Lubuk Linggau,age_group,50-54,laki_laki,6936,jiwa,2025,registration,total_population,3.1.2,64,,50–54
+16.73,2,Kota Lubuk Linggau,age_group,50-54,perempuan,7046,jiwa,2025,registration,total_population,3.1.2,64,,50–54
+16.73,2,Kota Lubuk Linggau,age_group,50-54,,13982,jiwa,2025,registration,total_population,3.1.2,64,,50–54
+16.73,2,Kota Lubuk Linggau,age_group,55-59,laki_laki,5481,jiwa,2025,registration,total_population,3.1.2,64,,55–59
+16.73,2,Kota Lubuk Linggau,age_group,55-59,perempuan,5868,jiwa,2025,registration,total_population,3.1.2,64,,55–59
+16.73,2,Kota Lubuk Linggau,age_group,55-59,,11349,jiwa,2025,registration,total_population,3.1.2,64,,55–59
+16.73,2,Kota Lubuk Linggau,age_group,60-64,laki_laki,4365,jiwa,2025,registration,total_population,3.1.2,64,,60–64
+16.73,2,Kota Lubuk Linggau,age_group,60-64,perempuan,4798,jiwa,2025,registration,total_population,3.1.2,64,,60–64
+16.73,2,Kota Lubuk Linggau,age_group,60-64,,9163,jiwa,2025,registration,total_population,3.1.2,64,,60–64
+16.73,2,Kota Lubuk Linggau,age_group,65-69,laki_laki,3449,jiwa,2025,registration,total_population,3.1.2,64,,65–69
+16.73,2,Kota Lubuk Linggau,age_group,65-69,perempuan,3546,jiwa,2025,registration,total_population,3.1.2,64,,65–69
+16.73,2,Kota Lubuk Linggau,age_group,65-69,,6995,jiwa,2025,registration,total_population,3.1.2,64,,65–69
+16.73,2,Kota Lubuk Linggau,age_group,70-74,laki_laki,1856,jiwa,2025,registration,total_population,3.1.2,64,,70–74
+16.73,2,Kota Lubuk Linggau,age_group,70-74,perempuan,2066,jiwa,2025,registration,total_population,3.1.2,64,,70–74
+16.73,2,Kota Lubuk Linggau,age_group,70-74,,3922,jiwa,2025,registration,total_population,3.1.2,64,,70–74
+16.73,2,Kota Lubuk Linggau,age_group,75+,laki_laki,1810,jiwa,2025,registration,total_population,3.1.2,64,,75+
+16.73,2,Kota Lubuk Linggau,age_group,75+,perempuan,2535,jiwa,2025,registration,total_population,3.1.2,64,,75+
+16.73,2,Kota Lubuk Linggau,age_group,75+,,4345,jiwa,2025,registration,total_population,3.1.2,64,,75+
+16.73,2,Kota Lubuk Linggau,sex,laki_laki,,126712,jiwa,2025,registration,total_population,3.1.2,64,,Laki-Laki
+16.73,2,Kota Lubuk Linggau,sex,perempuan,,124745,jiwa,2025,registration,total_population,3.1.2,64,,Perempuan
+16.73,2,Kota Lubuk Linggau,total,total,,251457,jiwa,2025,registration,total_population,3.1.2,64,,
+16.73.02,3,Lubuk Linggau Barat I,religion,islam,,41141,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.02,3,Lubuk Linggau Barat I,religion,kristen,,295,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.02,3,Lubuk Linggau Barat I,religion,katolik,,127,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.02,3,Lubuk Linggau Barat I,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.73.02,3,Lubuk Linggau Barat I,religion,buddha,,68,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.02,3,Lubuk Linggau Barat I,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Konghucu
+16.73.06,3,Lubuk Linggau Barat II,religion,islam,,20209,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.06,3,Lubuk Linggau Barat II,religion,kristen,,249,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.06,3,Lubuk Linggau Barat II,religion,katolik,,453,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.06,3,Lubuk Linggau Barat II,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.73.06,3,Lubuk Linggau Barat II,religion,buddha,,236,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.06,3,Lubuk Linggau Barat II,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Konghucu
+16.73.03,3,Lubuk Linggau Selatan I,religion,islam,,17739,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.03,3,Lubuk Linggau Selatan I,religion,kristen,,125,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.03,3,Lubuk Linggau Selatan I,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.03,3,Lubuk Linggau Selatan I,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.73.03,3,Lubuk Linggau Selatan I,religion,buddha,,23,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.03,3,Lubuk Linggau Selatan I,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Konghucu
+16.73.07,3,Lubuk Linggau Selatan II,religion,islam,,35036,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.07,3,Lubuk Linggau Selatan II,religion,kristen,,547,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.07,3,Lubuk Linggau Selatan II,religion,katolik,,73,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.07,3,Lubuk Linggau Selatan II,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.73.07,3,Lubuk Linggau Selatan II,religion,buddha,,287,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.07,3,Lubuk Linggau Selatan II,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Konghucu
+16.73.01,3,Lubuk Linggau Timur I,religion,islam,,35075,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.01,3,Lubuk Linggau Timur I,religion,kristen,,483,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.01,3,Lubuk Linggau Timur I,religion,katolik,,276,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.01,3,Lubuk Linggau Timur I,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.73.01,3,Lubuk Linggau Timur I,religion,buddha,,381,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.01,3,Lubuk Linggau Timur I,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Konghucu
+16.73.05,3,Lubuk Linggau Timur II,religion,islam,,31303,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.05,3,Lubuk Linggau Timur II,religion,kristen,,758,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.05,3,Lubuk Linggau Timur II,religion,katolik,,321,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.05,3,Lubuk Linggau Timur II,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.73.05,3,Lubuk Linggau Timur II,religion,buddha,,1189,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.05,3,Lubuk Linggau Timur II,religion,khonghucu,,8,jiwa,2025,registration,total_population,4.3.1,127,,Konghucu
+16.73.04,3,Lubuk Linggau Utara I,religion,islam,,19236,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.04,3,Lubuk Linggau Utara I,religion,kristen,,48,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.04,3,Lubuk Linggau Utara I,religion,katolik,,20,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.04,3,Lubuk Linggau Utara I,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.73.04,3,Lubuk Linggau Utara I,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.04,3,Lubuk Linggau Utara I,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Konghucu
+16.73.08,3,Lubuk Linggau Utara II,religion,islam,,45021,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73.08,3,Lubuk Linggau Utara II,religion,kristen,,461,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73.08,3,Lubuk Linggau Utara II,religion,katolik,,111,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73.08,3,Lubuk Linggau Utara II,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.73.08,3,Lubuk Linggau Utara II,religion,buddha,,114,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73.08,3,Lubuk Linggau Utara II,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Konghucu
+16.73,2,Kota Lubuk Linggau,religion,islam,,244760,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.73,2,Kota Lubuk Linggau,religion,kristen,,2966,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.73,2,Kota Lubuk Linggau,religion,katolik,,1388,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.73,2,Kota Lubuk Linggau,religion,hindu,,30,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.73,2,Kota Lubuk Linggau,religion,buddha,,2305,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.73,2,Kota Lubuk Linggau,religion,khonghucu,,8,jiwa,2025,registration,total_population,4.3.1,127,,Konghucu
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/padi_padian,,71039,rupiah,2025,survey_estimate,per_capita,10.1,251,,Padi-padian
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/padi_padian,,75199,rupiah,2024,survey_estimate,per_capita,10.1,251,,Padi-padian
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/umbi_umbian,,6963,rupiah,2025,survey_estimate,per_capita,10.1,251,,Umbi-umbian
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/umbi_umbian,,6406,rupiah,2024,survey_estimate,per_capita,10.1,251,,Umbi-umbian
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,57358,rupiah,2025,survey_estimate,per_capita,10.1,251,,Ikan/udang/cumi/kerang
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,50438,rupiah,2024,survey_estimate,per_capita,10.1,251,,Ikan/udang/cumi/kerang
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/daging,,35131,rupiah,2025,survey_estimate,per_capita,10.1,251,,Daging
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/daging,,36484,rupiah,2024,survey_estimate,per_capita,10.1,251,,Daging
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/telur_dan_susu,,44318,rupiah,2025,survey_estimate,per_capita,10.1,251,,Telur dan susu
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/telur_dan_susu,,37663,rupiah,2024,survey_estimate,per_capita,10.1,251,,Telur dan susu
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/sayur_sayuran,,66108,rupiah,2025,survey_estimate,per_capita,10.1,251,,Sayur-sayuran
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/sayur_sayuran,,61398,rupiah,2024,survey_estimate,per_capita,10.1,251,,Sayur-sayuran
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/kacang_kacangan,,9736,rupiah,2025,survey_estimate,per_capita,10.1,251,,Kacang-kacangan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/kacang_kacangan,,9621,rupiah,2024,survey_estimate,per_capita,10.1,251,,Kacang-kacangan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/buah_buahan,,46384,rupiah,2025,survey_estimate,per_capita,10.1,251,,Buah-buahan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/buah_buahan,,53038,rupiah,2024,survey_estimate,per_capita,10.1,251,,Buah-buahan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14196,rupiah,2025,survey_estimate,per_capita,10.1,251,,Minyak dan kelapa
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12509,rupiah,2024,survey_estimate,per_capita,10.1,251,,Minyak dan kelapa
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/bahan_minuman,,18635,rupiah,2025,survey_estimate,per_capita,10.1,251,,Bahan minuman
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/bahan_minuman,,16694,rupiah,2024,survey_estimate,per_capita,10.1,251,,Bahan minuman
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/bumbu_bumbuan,,11785,rupiah,2025,survey_estimate,per_capita,10.1,251,,Bumbu-bumbuan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/bumbu_bumbuan,,11181,rupiah,2024,survey_estimate,per_capita,10.1,251,,Bumbu-bumbuan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/konsumsi_lainnya,,14254,rupiah,2025,survey_estimate,per_capita,10.1,251,,Konsumsi lainnya
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/konsumsi_lainnya,,15552,rupiah,2024,survey_estimate,per_capita,10.1,251,,Konsumsi lainnya
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,203972,rupiah,2025,survey_estimate,per_capita,10.1,251,,Makanan dan minuman jadi
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,181075,rupiah,2024,survey_estimate,per_capita,10.1,251,,Makanan dan minuman jadi
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/rokok,,67034,rupiah,2025,survey_estimate,per_capita,10.1,251,,Rokok
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/rokok,,68823,rupiah,2024,survey_estimate,per_capita,10.1,251,,Rokok
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/jumlah_makanan,,666913,rupiah,2025,survey_estimate,per_capita,10.1,251,,Jumlah makanan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/jumlah_makanan,,636082,rupiah,2024,survey_estimate,per_capita,10.1,251,,Jumlah makanan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,339167,rupiah,2025,survey_estimate,per_capita,10.1,251,,Perumahan dan fasilitas rumah tangga
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,305856,rupiah,2024,survey_estimate,per_capita,10.1,251,,Perumahan dan fasilitas rumah tangga
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,194912,rupiah,2025,survey_estimate,per_capita,10.1,251,,Aneka barang dan jasa
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,128793,rupiah,2024,survey_estimate,per_capita,10.1,251,,Aneka barang dan jasa
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36939,rupiah,2025,survey_estimate,per_capita,10.1,251,,"Pakaian, alas kaki, dan tutup kepala"
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,26182,rupiah,2024,survey_estimate,per_capita,10.1,251,,"Pakaian, alas kaki, dan tutup kepala"
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/barang_tahan_lama,,64959,rupiah,2025,survey_estimate,per_capita,10.1,251,,Barang tahan lama
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/barang_tahan_lama,,42249,rupiah,2024,survey_estimate,per_capita,10.1,251,,Barang tahan lama
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,68320,rupiah,2025,survey_estimate,per_capita,10.1,251,,"Pajak, pungutan, dan asuransi"
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,58197,rupiah,2024,survey_estimate,per_capita,10.1,251,,"Pajak, pungutan, dan asuransi"
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18366,rupiah,2025,survey_estimate,per_capita,10.1,251,,Keperluan pesta dan upacara/kenduri
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9606,rupiah,2024,survey_estimate,per_capita,10.1,251,,Keperluan pesta dan upacara/kenduri
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,722663,rupiah,2025,survey_estimate,per_capita,10.1,251,,Jumlah bukan makanan
+16.73,2,Kota Lubuk Linggau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,570882,rupiah,2024,survey_estimate,per_capita,10.1,251,,Jumlah bukan makanan
+16.73,2,Kota Lubuk Linggau,expenditure,total,,1389577,rupiah,2025,survey_estimate,per_capita,10.1,251,,
+16.73,2,Kota Lubuk Linggau,expenditure,total,,1206964,rupiah,2024,survey_estimate,per_capita,10.1,251,,

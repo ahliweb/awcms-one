@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.74.03,3,Mayangan,age_group,0-14,laki_laki,6779,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.03,3,Mayangan,age_group,0-14,perempuan,6535,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.03,3,Mayangan,age_group,0-14,,13314,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.03,3,Mayangan,age_group,15-64,laki_laki,21413,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.03,3,Mayangan,age_group,15-64,perempuan,21674,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.03,3,Mayangan,age_group,15-64,,43087,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.03,3,Mayangan,age_group,65+,laki_laki,2177,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.03,3,Mayangan,age_group,65+,perempuan,2767,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.03,3,Mayangan,age_group,65+,,4944,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.03.1010,4,Wiroborang,religion,islam,,6997,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.03.1010,4,Wiroborang,religion,kristen,,98,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.03.1010,4,Wiroborang,religion,katolik,,64,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.03.1010,4,Wiroborang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.03.1010,4,Wiroborang,religion,buddha,,34,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.03.1010,4,Wiroborang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.03.1004,4,Jati,religion,islam,,11950,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.03.1004,4,Jati,religion,kristen,,508,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.03.1004,4,Jati,religion,katolik,,274,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.03.1004,4,Jati,religion,hindu,,6,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.03.1004,4,Jati,religion,buddha,,132,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.03.1004,4,Jati,religion,lainnya,,8,jiwa,2025,registration,total_population,4.4.5,55,,Lainnya
+35.74.03.1007,4,Sukabumi,religion,islam,,9176,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.03.1007,4,Sukabumi,religion,kristen,,454,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.03.1007,4,Sukabumi,religion,katolik,,470,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.03.1007,4,Sukabumi,religion,hindu,,5,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.03.1007,4,Sukabumi,religion,buddha,,152,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.03.1007,4,Sukabumi,religion,lainnya,,6,jiwa,2025,registration,total_population,4.4.5,55,,Lainnya
+35.74.03.1002,4,Mangunharjo,religion,islam,,18176,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.03.1002,4,Mangunharjo,religion,kristen,,844,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.03.1002,4,Mangunharjo,religion,katolik,,653,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.03.1002,4,Mangunharjo,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.03.1002,4,Mangunharjo,religion,buddha,,328,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.03.1002,4,Mangunharjo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.03.1001,4,Mayangan,religion,islam,,10768,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.03.1001,4,Mayangan,religion,kristen,,109,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.03.1001,4,Mayangan,religion,katolik,,46,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.03.1001,4,Mayangan,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.03.1001,4,Mayangan,religion,buddha,,78,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.03.1001,4,Mayangan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,55,,Lainnya

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.08.19.2010,4,Sukoharjo,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2010,4,Sukoharjo,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2010,4,Sukoharjo,total,total,,1168,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2009,4,Sribudaya,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2009,4,Sribudaya,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2009,4,Sribudaya,total,total,,1052,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2007,4,Sri Mulyo,sex,laki_laki,,1774,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2007,4,Sri Mulyo,sex,perempuan,,1775,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2007,4,Sri Mulyo,total,total,,3549,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2006,4,Purwodadi,sex,laki_laki,,1846,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2006,4,Purwodadi,sex,perempuan,,1799,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2006,4,Purwodadi,total,total,,3645,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2008,4,Ulak Buntar,sex,laki_laki,,1408,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2008,4,Ulak Buntar,sex,perempuan,,1409,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2008,4,Ulak Buntar,total,total,,2817,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2001,4,Sari Guna,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2001,4,Sari Guna,sex,perempuan,,431,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2001,4,Sari Guna,total,total,,873,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2002,4,Sidowaluyo,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2002,4,Sidowaluyo,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2002,4,Sidowaluyo,total,total,,1395,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2003,4,Sugih Waras,sex,laki_laki,,695,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2003,4,Sugih Waras,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2003,4,Sugih Waras,total,total,,1393,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2004,4,Rejosari,sex,laki_laki,,1153,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2004,4,Rejosari,sex,perempuan,,1144,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2004,4,Rejosari,total,total,,2297,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2011,4,Tulung Sari,sex,laki_laki,,840,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2011,4,Tulung Sari,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2011,4,Tulung Sari,total,total,,1653,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2005,4,Petanggan,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2005,4,Petanggan,sex,perempuan,,886,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2005,4,Petanggan,total,total,,1818,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19.2012,4,Mulyasari,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19.2012,4,Mulyasari,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19.2012,4,Mulyasari,total,total,,518,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19,3,Belitang Mulya,sex,laki_laki,,11186,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.19,3,Belitang Mulya,sex,perempuan,,10992,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.19,3,Belitang Mulya,total,total,,22178,jiwa,2025,registration,total_population,3.1,28,,
+16.08.19,3,Belitang Mulya,age_group,0-4,laki_laki,618,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.19,3,Belitang Mulya,age_group,0-4,perempuan,647,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.19,3,Belitang Mulya,age_group,0-4,,1265,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.19,3,Belitang Mulya,age_group,5-9,laki_laki,927,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.19,3,Belitang Mulya,age_group,5-9,perempuan,840,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.19,3,Belitang Mulya,age_group,5-9,,1767,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.19,3,Belitang Mulya,age_group,10-14,laki_laki,937,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.19,3,Belitang Mulya,age_group,10-14,perempuan,918,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.19,3,Belitang Mulya,age_group,10-14,,1855,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.19,3,Belitang Mulya,age_group,15-19,laki_laki,820,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.19,3,Belitang Mulya,age_group,15-19,perempuan,813,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.19,3,Belitang Mulya,age_group,15-19,,1633,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.19,3,Belitang Mulya,age_group,20-24,laki_laki,859,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.19,3,Belitang Mulya,age_group,20-24,perempuan,861,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.19,3,Belitang Mulya,age_group,20-24,,1720,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.19,3,Belitang Mulya,age_group,25-29,laki_laki,872,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.19,3,Belitang Mulya,age_group,25-29,perempuan,781,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.19,3,Belitang Mulya,age_group,25-29,,1653,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.19,3,Belitang Mulya,age_group,30-34,laki_laki,772,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.19,3,Belitang Mulya,age_group,30-34,perempuan,777,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.19,3,Belitang Mulya,age_group,30-34,,1549,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.19,3,Belitang Mulya,age_group,35-39,laki_laki,771,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.19,3,Belitang Mulya,age_group,35-39,perempuan,810,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.19,3,Belitang Mulya,age_group,35-39,,1581,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.19,3,Belitang Mulya,age_group,40-44,laki_laki,830,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.19,3,Belitang Mulya,age_group,40-44,perempuan,861,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.19,3,Belitang Mulya,age_group,40-44,,1691,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.19,3,Belitang Mulya,age_group,45-49,laki_laki,882,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.19,3,Belitang Mulya,age_group,45-49,perempuan,836,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.19,3,Belitang Mulya,age_group,45-49,,1718,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.19,3,Belitang Mulya,age_group,50-54,laki_laki,749,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.19,3,Belitang Mulya,age_group,50-54,perempuan,748,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.19,3,Belitang Mulya,age_group,50-54,,1497,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.19,3,Belitang Mulya,age_group,55-59,laki_laki,592,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.19,3,Belitang Mulya,age_group,55-59,perempuan,594,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.19,3,Belitang Mulya,age_group,55-59,,1186,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.19,3,Belitang Mulya,age_group,60-64,laki_laki,538,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.19,3,Belitang Mulya,age_group,60-64,perempuan,497,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.19,3,Belitang Mulya,age_group,60-64,,1035,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.19,3,Belitang Mulya,age_group,65-69,laki_laki,414,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.19,3,Belitang Mulya,age_group,65-69,perempuan,345,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.19,3,Belitang Mulya,age_group,65-69,,759,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.19,3,Belitang Mulya,age_group,70-74,laki_laki,241,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.19,3,Belitang Mulya,age_group,70-74,perempuan,248,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.19,3,Belitang Mulya,age_group,70-74,,489,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.19,3,Belitang Mulya,age_group,75+,laki_laki,364,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.19,3,Belitang Mulya,age_group,75+,perempuan,416,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.19,3,Belitang Mulya,age_group,75+,,780,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.19,3,Belitang Mulya,sex,laki_laki,,11186,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.08.19,3,Belitang Mulya,sex,perempuan,,10992,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.08.19,3,Belitang Mulya,total,total,,22178,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-6202-kecamatan-620212-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.02.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Seranau Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Timur",
+  "publisherDomain": "6202",
+  "publisherWebsite": "https://kotimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Timur (https://kotimkab.bps.go.id), publikasi \"Kecamatan Seranau Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6202061",
+  "publicationNumber": "62020.26013",
+  "issn": "2622-2760",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kotimkab.bps.go.id/id/publication/2026/09/28/6d6312c47e141c8e6af1984b/kecamatan-seranau-dalam-angka-2026.html",
+  "sourceFileSha256": "effe2920480a1a0d82c05e3cd2771cdbbb2adf1b438e568309fb139e6d0b314e",
+  "sourceFileBytes": 8037728,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Timur.",
+  "csvPath": "datasets/bps-6202-kecamatan-620212-dalam-angka-2026.csv",
+  "csvSha256": "fee1c282ae83a48af186b7614ae7b3d7801c3f4b3eb43dc5b9963973d13ee5b7",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Seranau, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

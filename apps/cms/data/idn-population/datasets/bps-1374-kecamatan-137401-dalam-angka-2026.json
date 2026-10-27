@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1374-kecamatan-137401-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.74.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Padang Panjang Timur Dalam Angka 2026",
+  "publisherName": "BPS Kota Padang Panjang",
+  "publisherDomain": "1374",
+  "publisherWebsite": "https://padangpanjangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Padang Panjang (https://padangpanjangkota.bps.go.id), publikasi \"Kecamatan Padang Panjang Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1374020",
+  "publicationNumber": "13740.25012",
+  "issn": "3047-1265",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://padangpanjangkota.bps.go.id/id/publication/2026/09/28/3453b12412579d6c09a8ffb4/kecamatan-padang-panjang-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "35be29c560095663708ad69d0cf56d23a7faab4c6bb2488f846a7e03f7b6e401",
+  "sourceFileBytes": 6149507,
+  "sourcePages": [50, 51, 52],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Padang Panjang.",
+  "csvPath": "datasets/bps-1374-kecamatan-137401-dalam-angka-2026.csv",
+  "csvSha256": "c9fbff27db12de9e058f5d11690cdfa5a5ec1b54a7e1d9970e94c4e04e71513a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Padang Panjang Timur, 2025",
+      "printedPages": [50, 51],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Padang Panjang Timur (jiwa), 2025",
+      "printedPages": [52],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

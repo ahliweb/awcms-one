@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.18.19.2001,4,Pondowan,sex,laki_laki,,1845,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2001,4,Pondowan,sex,perempuan,,1920,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2001,4,Pondowan,total,total,,3765,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2002,4,Kedungsari,sex,laki_laki,,1939,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2002,4,Kedungsari,sex,perempuan,,1947,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2002,4,Kedungsari,total,total,,3886,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2003,4,Margomulyo,sex,laki_laki,,2348,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2003,4,Margomulyo,sex,perempuan,,2331,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2003,4,Margomulyo,total,total,,4679,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2004,4,Pakis,sex,laki_laki,,2288,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2004,4,Pakis,sex,perempuan,,2285,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2004,4,Pakis,total,total,,4573,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2005,4,Sendangrejo,sex,laki_laki,,1784,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2005,4,Sendangrejo,sex,perempuan,,1854,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2005,4,Sendangrejo,total,total,,3638,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2006,4,Jepat Kidul,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2006,4,Jepat Kidul,sex,perempuan,,781,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2006,4,Jepat Kidul,total,total,,1589,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2007,4,Tunggulsari,sex,laki_laki,,431,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2007,4,Tunggulsari,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2007,4,Tunggulsari,total,total,,871,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2008,4,Jepat Lor,sex,laki_laki,,2077,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2008,4,Jepat Lor,sex,perempuan,,2154,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2008,4,Jepat Lor,total,total,,4231,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2009,4,Tendas,sex,laki_laki,,1432,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2009,4,Tendas,sex,perempuan,,1531,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2009,4,Tendas,total,total,,2963,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2010,4,Keboromo,sex,laki_laki,,2428,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2010,4,Keboromo,sex,perempuan,,2456,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2010,4,Keboromo,total,total,,4884,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2011,4,Sambiroto,sex,laki_laki,,2169,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2011,4,Sambiroto,sex,perempuan,,2171,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2011,4,Sambiroto,total,total,,4340,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2012,4,Tayu Wetan,sex,laki_laki,,1891,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2012,4,Tayu Wetan,sex,perempuan,,2024,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2012,4,Tayu Wetan,total,total,,3915,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2013,4,Tayu Kulon,sex,laki_laki,,2071,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2013,4,Tayu Kulon,sex,perempuan,,2132,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2013,4,Tayu Kulon,total,total,,4203,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2014,4,Pundenrejo,sex,laki_laki,,2145,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2014,4,Pundenrejo,sex,perempuan,,2114,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2014,4,Pundenrejo,total,total,,4259,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2015,4,Kedungbang,sex,laki_laki,,1031,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2015,4,Kedungbang,sex,perempuan,,1022,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2015,4,Kedungbang,total,total,,2053,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2016,4,Bendokaton Kidul,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2016,4,Bendokaton Kidul,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2016,4,Bendokaton Kidul,total,total,,1592,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2017,4,Purwokerto,sex,laki_laki,,1918,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2017,4,Purwokerto,sex,perempuan,,1902,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2017,4,Purwokerto,total,total,,3820,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2018,4,Bulungan,sex,laki_laki,,2114,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2018,4,Bulungan,sex,perempuan,,2084,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2018,4,Bulungan,total,total,,4198,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2019,4,Luwang,sex,laki_laki,,1225,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2019,4,Luwang,sex,perempuan,,1242,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2019,4,Luwang,total,total,,2467,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2020,4,Dororejo,sex,laki_laki,,1321,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2020,4,Dororejo,sex,perempuan,,1261,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2020,4,Dororejo,total,total,,2582,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19.2021,4,Kalikalong,sex,laki_laki,,1988,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19.2021,4,Kalikalong,sex,perempuan,,2172,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19.2021,4,Kalikalong,total,total,,4160,jiwa,2025,registration,total_population,3.1,22,,
+33.18.19,3,Kec. Tayu,sex,laki_laki,,36030,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.19,3,Kec. Tayu,sex,perempuan,,36638,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.19,3,Kec. Tayu,total,total,,72668,jiwa,2025,registration,total_population,3.1,22,,

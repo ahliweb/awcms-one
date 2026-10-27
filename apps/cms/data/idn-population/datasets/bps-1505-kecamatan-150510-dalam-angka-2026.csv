@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.05.10.2009,4,Tanjung Sari,sex,laki_laki,,541,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2009,4,Tanjung Sari,sex,perempuan,,462,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2009,4,Tanjung Sari,total,total,,1003,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2003,4,Mekar Jaya,sex,laki_laki,,666,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2003,4,Mekar Jaya,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2003,4,Mekar Jaya,total,total,,1334,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2002,4,Trijaya,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2002,4,Trijaya,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2002,4,Trijaya,total,total,,1189,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2001,4,Bukit Subur,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2001,4,Bukit Subur,sex,perempuan,,482,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2001,4,Bukit Subur,total,total,,1019,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2007,4,Adipura Kencana,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2007,4,Adipura Kencana,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2007,4,Adipura Kencana,total,total,,1464,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2008,4,Bukit Jaya,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2008,4,Bukit Jaya,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2008,4,Bukit Jaya,total,total,,770,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2004,4,Ujung Tanjung,sex,laki_laki,,456,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2004,4,Ujung Tanjung,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2004,4,Ujung Tanjung,total,total,,882,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2005,4,Tanjung Baru,sex,laki_laki,,1032,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2005,4,Tanjung Baru,sex,perempuan,,1025,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2005,4,Tanjung Baru,total,total,,2057,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10.2010,4,Tanjung Lebar,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10.2010,4,Tanjung Lebar,sex,perempuan,,641,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10.2010,4,Tanjung Lebar,total,total,,1318,jiwa,2025,registration,total_population,3.1,28,,
+15.05.10,3,Bahar Selatan,sex,laki_laki,,7834,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.10,3,Bahar Selatan,sex,perempuan,,7431,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.10,3,Bahar Selatan,total,total,,15265,jiwa,2025,registration,total_population,3.1,28,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.16.07.2004,4,Kaloy,sex,laki_laki,,2586,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2004,4,Kaloy,sex,perempuan,,2600,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2004,4,Kaloy,total,total,,5186,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2008,4,Rongoh,sex,laki_laki,,649,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2008,4,Rongoh,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2008,4,Rongoh,total,total,,1269,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2001,4,Alur Tani Satu,sex,laki_laki,,842,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2001,4,Alur Tani Satu,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2001,4,Alur Tani Satu,total,total,,1609,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2002,4,Alur Tani Dua,sex,laki_laki,,649,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2002,4,Alur Tani Dua,sex,perempuan,,661,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2002,4,Alur Tani Dua,total,total,,1310,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2003,4,Bandar Khalifah,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2003,4,Bandar Khalifah,sex,perempuan,,600,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2003,4,Bandar Khalifah,total,total,,1188,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2005,4,Perkebunan Pulau Tiga,sex,laki_laki,,2279,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2005,4,Perkebunan Pulau Tiga,sex,perempuan,,2241,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2005,4,Perkebunan Pulau Tiga,total,total,,4520,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2007,4,Bandar Setia,sex,laki_laki,,597,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2007,4,Bandar Setia,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2007,4,Bandar Setia,total,total,,1204,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2006,4,Harum Sari,sex,laki_laki,,1023,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2006,4,Harum Sari,sex,perempuan,,1001,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2006,4,Harum Sari,total,total,,2024,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07.2010,4,Wonosari,sex,laki_laki,,1057,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07.2010,4,Wonosari,sex,perempuan,,1029,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07.2010,4,Wonosari,total,total,,2086,jiwa,2025,registration,total_population,3.1,13,,
+11.16.07,3,Tamiang Hulu,sex,laki_laki,,10270,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.07,3,Tamiang Hulu,sex,perempuan,,10126,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.07,3,Tamiang Hulu,total,total,,20396,jiwa,2025,registration,total_population,3.1,13,,

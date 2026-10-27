@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1271-kecamatan-127302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.73.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sibolga Kota Dalam Angka 2026",
+  "publisherName": "BPS Kota Sibolga",
+  "publisherDomain": "1271",
+  "publisherWebsite": "https://sibolgakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sibolga (https://sibolgakota.bps.go.id), publikasi \"Kecamatan Sibolga Kota Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1271020",
+  "publicationNumber": "12710.26009",
+  "issn": "0853-2818",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sibolgakota.bps.go.id/id/publication/2026/09/28/174a8f257badfad249671d2b/kecamatan-sibolga-kota-dalam-angka-2026.html",
+  "sourceFileSha256": "29e3723223fe93dbf112c1edf000d81f7ef829fa49cb1b4fe22fcb9f623f4831",
+  "sourceFileBytes": 8531908,
+  "sourcePages": [8, 9, 10],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Sibolga.",
+  "csvPath": "datasets/bps-1271-kecamatan-127302-dalam-angka-2026.csv",
+  "csvSha256": "16e120cedf2df58f29e8fae29aa8b19002dac4a6b62a7e57d9f895584daa8105",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Sibolga Kota, 2025",
+      "printedPages": [8, 9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sibolga Kota, 2025",
+      "printedPages": [10],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kota Beringin\": unmatched ",
+    "table 3.1: row not stored: row \"Kota Beringin\": unmatched "
+  ]
+}

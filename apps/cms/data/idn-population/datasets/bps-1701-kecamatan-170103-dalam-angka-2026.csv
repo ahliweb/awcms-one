@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.03.2004,4,Padang Lebar,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2004,4,Padang Lebar,sex,perempuan,,617,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2004,4,Padang Lebar,total,total,,1252,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2002,4,Anggut,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2002,4,Anggut,sex,perempuan,,233,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2002,4,Anggut,total,total,,460,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2005,4,Gedung Agung,sex,laki_laki,,512,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2005,4,Gedung Agung,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2005,4,Gedung Agung,total,total,,991,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2003,4,Tanjung Eran,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2003,4,Tanjung Eran,sex,perempuan,,407,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2003,4,Tanjung Eran,total,total,,847,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2001,4,Tanjung Aur I,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2001,4,Tanjung Aur I,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2001,4,Tanjung Aur I,total,total,,679,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2022,4,Puding,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2022,4,Puding,sex,perempuan,,531,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2022,4,Puding,total,total,,1109,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2019,4,Air Umban,sex,laki_laki,,512,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2019,4,Air Umban,sex,perempuan,,539,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2019,4,Air Umban,total,total,,1051,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.1018,4,Masat,sex,laki_laki,,734,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.1018,4,Masat,sex,perempuan,,770,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.1018,4,Masat,total,total,,1504,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2016,4,Ulak Lebar,sex,laki_laki,,811,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2016,4,Ulak Lebar,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2016,4,Ulak Lebar,total,total,,1626,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2020,4,Sebilo,sex,laki_laki,,275,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2020,4,Sebilo,sex,perempuan,,275,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2020,4,Sebilo,total,total,,550,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2021,4,Ganjuh,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2021,4,Ganjuh,sex,perempuan,,363,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2021,4,Ganjuh,total,total,,757,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2017,4,Kota Bumi,sex,laki_laki,,217,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2017,4,Kota Bumi,sex,perempuan,,211,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2017,4,Kota Bumi,total,total,,428,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2015,4,Batu Bandung,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2015,4,Batu Bandung,sex,perempuan,,241,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2015,4,Batu Bandung,total,total,,473,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2025,4,Beringin Datar,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2025,4,Beringin Datar,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2025,4,Beringin Datar,total,total,,557,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2024,4,Padang Mumpo,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2024,4,Padang Mumpo,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2024,4,Padang Mumpo,total,total,,664,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03.2023,4,Padang Tambak,sex,laki_laki,,290,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03.2023,4,Padang Tambak,sex,perempuan,,311,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03.2023,4,Padang Tambak,total,total,,601,jiwa,2025,registration,total_population,3.1,26,,
+17.01.03,3,Kecamatan Pino,sex,laki_laki,,6839,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.03,3,Kecamatan Pino,sex,perempuan,,6710,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.03,3,Kecamatan Pino,total,total,,13549,jiwa,2025,registration,total_population,3.1,26,,

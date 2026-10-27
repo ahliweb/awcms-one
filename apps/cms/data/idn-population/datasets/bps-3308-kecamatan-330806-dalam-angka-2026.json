@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3308-kecamatan-330806-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.08.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dukun Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magelang",
+  "publisherDomain": "3308",
+  "publisherWebsite": "https://magelangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magelang (https://magelangkab.bps.go.id), publikasi \"Kecamatan Dukun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33080.26023",
+  "issn": "2406-9949",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magelangkab.bps.go.id/id/publication/2026/09/28/d1bb806f5e99c83f6b330f91/kecamatan-dukun-dalam-angka-2026.html",
+  "sourceFileSha256": "a0f6025c5659302c80264cf129c181ac02de6d23b6bfa8a5b267e1a73873b5f4",
+  "sourceFileBytes": 6605401,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magelang",
+  "csvPath": "datasets/bps-3308-kecamatan-330806-dalam-angka-2026.csv",
+  "csvSha256": "31d4b76cf6ab7cfbf1dc98f1c2a2a3d3e8e551a22cadf25a1a4048ea052d1090",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p30",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Dukun, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p30: row not stored: row \"Jumlah/Total\": unmatched "
+  ]
+}

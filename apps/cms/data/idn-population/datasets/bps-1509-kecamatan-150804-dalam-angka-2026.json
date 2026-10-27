@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-1509-kecamatan-150804-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.08.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jujuhan Dalam Angka 2026",
+  "publisherName": "BPSKabupaten Bungo",
+  "publisherDomain": "1509",
+  "publisherWebsite": "https://bungokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPSKabupaten Bungo (https://bungokab.bps.go.id), publikasi \"Kecamatan Jujuhan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1509060",
+  "publicationNumber": "15090.26020",
+  "issn": "2714-5883",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bungokab.bps.go.id/id/publication/2026/09/28/8d59010bcb7160d352670de5/kecamatan-jujuhan-dalam-angka-2026.html",
+  "sourceFileSha256": "e63243e50130c0bec16cd953d81d0f028d35e13e34f8eb0728ee394503f0a8c8",
+  "sourceFileBytes": 14133503,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulisdari Badan Pusat StatistikKabupaten Bungo.",
+  "csvPath": "datasets/bps-1509-kecamatan-150804-dalam-angka-2026.csv",
+  "csvSha256": "641f01e2907543130f53a9ecc84da71d81e2ec28c1d15c381e41c0ecc8cb7ff6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jujuhan , 202 5",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jujuhan , 202 5",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Talang Pemesun\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Belit 7,68%\": unmatched ",
+    "table 3.1: row not stored: row \"Pulau Jelmu 7,62%\": unmatched ",
+    "table 3.1: row not stored: row \"Rantau Ikil 20,90%\": unmatched ",
+    "table 3.1: row not stored: row \"Ujung Tanjung 9,94%\": unmatched ",
+    "table 3.1: row not stored: row \"Sirih Sekapur 18,57%\": unmatched ",
+    "table 3.1: row not stored: row \"Talang Pemesun 8,17%\": unmatched ",
+    "table 3.1: row not stored: row \"Rantau Panjang 6,87%\": unmatched ",
+    "table 3.1: row not stored: row \"Jumbak 5,46%\": unmatched ",
+    "table 3.1: row not stored: row \"Baru Balai Panjang 3,55%\": unmatched ",
+    "table 3.1: row not stored: row \"Sirih Sekapur Perkembangan 11,24%\": unmatched ",
+    "table 3.1: row not stored: row \"Jujuhan 100,00%\": unmatched "
+  ]
+}

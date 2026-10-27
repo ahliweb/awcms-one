@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3201-kecamatan-320111-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.01.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunung Sindur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bogor",
+  "publisherDomain": "3201",
+  "publisherWebsite": "https://bogorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bogor (https://bogorkab.bps.go.id), publikasi \"Kecamatan Gunung Sindur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3201250",
+  "publicationNumber": "32010.26041",
+  "issn": "2597-8160",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkab.bps.go.id/id/publication/2026/09/28/05fdbb776f5da0d32208dbbc/kecamatan-gunung-sindur-dalam-angka-2026.html",
+  "sourceFileSha256": "8c73db60cf45bf37d0f5825a0f9b53ccd444e584028afc7fadef6645e3f49913",
+  "sourceFileBytes": 4757139,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bogor.",
+  "csvPath": "datasets/bps-3201-kecamatan-320111-dalam-angka-2026.csv",
+  "csvSha256": "a4fcb1f2cc7bdf492dc73b9cba0c018e983e5faf74787f4d1a88bab98e8d21a7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa/ Kelurahan di Kecamatan Gunung Sindur, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gunung Sindur, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

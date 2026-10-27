@@ -26,7 +26,7 @@
  *                        100,000-customer tenant (PRD M7: p95 <= 3 s), alone and
  *                        with several actors previewing at once. Ten rule shapes:
  *                        five over the commerce facts (rule schema 1) and five
- *                        over booking-derived facts (rule schema 2, ADR-0051,
+ *                        over booking-derived facts (rule schema 2, ADR-0052,
  *                        Issue #390) on a tenant that also holds booking links,
  *                        reservations and cancellation / no-show decisions.
  *
@@ -1532,7 +1532,7 @@ function segmentRules(raw: unknown) {
  * The rules of the M7 scenario. The first five are the ones
  * `commerce-segments.integration.test.ts` uses (rule schema 1: broad, windowed
  * and multi-fact); the last five read booking-derived facts (rule schema 2,
- * Issue #390, ADR-0051): a broad one, a window with a decision exclusion, order
+ * Issue #390, ADR-0052): a broad one, a window with a decision exclusion, order
  * and stay facts together, an OR across both booking scans, and every family at
  * once with three windows.
  */

@@ -1,5 +1,5 @@
 /**
- * The booking-derived fact scans of a CRM segment rule (Issue #390, ADR-0051,
+ * The booking-derived fact scans of a CRM segment rule (Issue #390, ADR-0052,
  * rule schema 2). Pure SQL fragments, like `segment-sql.ts`, which composes them.
  *
  * ## What a booking fact is, and where it comes from
@@ -50,7 +50,7 @@
  * One grouped scan per family, each skipped entirely when the rule reads none of
  * its facts, and each computing the all-time figure and the (up to three)
  * windowed variants as FILTERed aggregates in the same pass - the shape of the
- * order-facts scan. ADR-0051 D6 records the measurement.
+ * order-facts scan. ADR-0052 D6 records the measurement.
  */
 export type WindowSlot = "all" | "w0" | "w1" | "w2";
 

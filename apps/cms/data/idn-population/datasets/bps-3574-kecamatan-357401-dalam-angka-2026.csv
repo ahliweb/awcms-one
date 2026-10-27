@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.74.01.1003,4,Triwung Kidul,sex,laki_laki,,4381,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.01.1003,4,Triwung Kidul,sex,perempuan,,4386,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.01.1003,4,Triwung Kidul,total,total,,8767,jiwa,2025,registration,total_population,3.1,25,,
+35.74.01.1008,4,Kademangan,sex,laki_laki,,4099,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.01.1008,4,Kademangan,sex,perempuan,,4171,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.01.1008,4,Kademangan,total,total,,8270,jiwa,2025,registration,total_population,3.1,25,,
+35.74.01.1007,4,Pohsangit Kidul,sex,laki_laki,,2664,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.01.1007,4,Pohsangit Kidul,sex,perempuan,,2704,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.01.1007,4,Pohsangit Kidul,total,total,,5368,jiwa,2025,registration,total_population,3.1,25,,
+35.74.01.1009,4,Pilang,sex,laki_laki,,3486,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.01.1009,4,Pilang,sex,perempuan,,3422,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.01.1009,4,Pilang,total,total,,6908,jiwa,2025,registration,total_population,3.1,25,,
+35.74.01.1002,4,Triwung Lor,sex,laki_laki,,3731,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.01.1002,4,Triwung Lor,sex,perempuan,,3745,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.01.1002,4,Triwung Lor,total,total,,7476,jiwa,2025,registration,total_population,3.1,25,,
+35.74.01.1001,4,Ketapang,sex,laki_laki,,3919,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.01.1001,4,Ketapang,sex,perempuan,,4130,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.01.1001,4,Ketapang,total,total,,8049,jiwa,2025,registration,total_population,3.1,25,,
+35.74.01,3,Kademangan,age_group,0-14,laki_laki,5400,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.01,3,Kademangan,age_group,0-14,perempuan,5049,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.01,3,Kademangan,age_group,0-14,,10449,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.01,3,Kademangan,age_group,15-64,laki_laki,15503,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.01,3,Kademangan,age_group,15-64,perempuan,15833,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.01,3,Kademangan,age_group,15-64,,31336,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.01,3,Kademangan,age_group,65+,laki_laki,1377,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.01,3,Kademangan,age_group,65+,perempuan,1676,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.01,3,Kademangan,age_group,65+,,3053,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.01.1003,4,Triwung Kidul,religion,islam,,8738,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.01.1003,4,Triwung Kidul,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Protestan
+35.74.01.1003,4,Triwung Kidul,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Katolik
+35.74.01.1003,4,Triwung Kidul,religion,hindu,,6,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.01.1003,4,Triwung Kidul,religion,buddha,,22,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.01.1003,4,Triwung Kidul,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,55,,Lainnya
+35.74.01.1008,4,Kademangan,religion,islam,,8245,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.01.1008,4,Kademangan,religion,kristen,,5,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.01.1008,4,Kademangan,religion,katolik,,18,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.01.1008,4,Kademangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.01.1008,4,Kademangan,religion,buddha,,2,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.01.1008,4,Kademangan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.01.1007,4,Pohsangit Kidul,religion,islam,,5362,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.01.1007,4,Pohsangit Kidul,religion,kristen,,6,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.01.1007,4,Pohsangit Kidul,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Katolik
+35.74.01.1007,4,Pohsangit Kidul,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.01.1007,4,Pohsangit Kidul,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.01.1007,4,Pohsangit Kidul,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.01.1009,4,Pilang,religion,islam,,6783,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.01.1009,4,Pilang,religion,kristen,,56,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.01.1009,4,Pilang,religion,katolik,,62,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.01.1009,4,Pilang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.01.1009,4,Pilang,religion,buddha,,7,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.01.1009,4,Pilang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.01.1002,4,Triwung Lor,religion,islam,,7351,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.01.1002,4,Triwung Lor,religion,kristen,,82,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.01.1002,4,Triwung Lor,religion,katolik,,42,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.01.1002,4,Triwung Lor,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.01.1002,4,Triwung Lor,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.01.1002,4,Triwung Lor,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.01.1001,4,Ketapang,religion,islam,,7932,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.01.1001,4,Ketapang,religion,kristen,,58,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.01.1001,4,Ketapang,religion,katolik,,56,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.01.1001,4,Ketapang,religion,hindu,,3,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.01.1001,4,Ketapang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.01.1001,4,Ketapang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya

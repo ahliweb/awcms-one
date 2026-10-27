@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.71.02.1002,4,Sumahilang,sex,laki_laki,,3030,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.02.1002,4,Sumahilang,sex,perempuan,,2986,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.02.1002,4,Sumahilang,total,total,,6016,jiwa,2025,registration,total_population,3.1,22,,
+14.71.02.1003,4,Tanah Datar,sex,laki_laki,,3074,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.02.1003,4,Tanah Datar,sex,perempuan,,2941,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.02.1003,4,Tanah Datar,total,total,,6015,jiwa,2025,registration,total_population,3.1,22,,
+14.71.02.1004,4,Kota Baru,sex,laki_laki,,2731,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.02.1004,4,Kota Baru,sex,perempuan,,2648,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.02.1004,4,Kota Baru,total,total,,5379,jiwa,2025,registration,total_population,3.1,22,,
+14.71.02.1005,4,Sukaramai,sex,laki_laki,,2598,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.02.1005,4,Sukaramai,sex,perempuan,,2633,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.02.1005,4,Sukaramai,total,total,,5231,jiwa,2025,registration,total_population,3.1,22,,
+14.71.02.1006,4,Kota Tinggi,sex,laki_laki,,1231,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.02.1006,4,Kota Tinggi,sex,perempuan,,1255,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.02.1006,4,Kota Tinggi,total,total,,2486,jiwa,2025,registration,total_population,3.1,22,,
+14.71.02,3,Pekanbaru Kota,sex,laki_laki,,13660,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.02,3,Pekanbaru Kota,sex,perempuan,,13516,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.02,3,Pekanbaru Kota,total,total,,27176,jiwa,2025,registration,total_population,3.1,22,,

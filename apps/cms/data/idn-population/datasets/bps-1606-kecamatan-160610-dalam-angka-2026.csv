@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.10.2005,4,Sukamaju,sex,laki_laki,,948,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2005,4,Sukamaju,sex,perempuan,,900,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2005,4,Sukamaju,total,total,,1848,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2004,4,Suka Makmur,sex,laki_laki,,931,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2004,4,Suka Makmur,sex,perempuan,,944,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2004,4,Suka Makmur,total,total,,1875,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2002,4,Suka Damai,sex,laki_laki,,1450,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2002,4,Suka Damai,sex,perempuan,,1381,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2002,4,Suka Damai,total,total,,2831,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2001,4,Sido Mukti,sex,laki_laki,,1280,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2001,4,Sido Mukti,sex,perempuan,,1183,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2001,4,Sido Mukti,total,total,,2463,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2003,4,Sukajaya,sex,laki_laki,,1002,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2003,4,Sukajaya,sex,perempuan,,968,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2003,4,Sukajaya,total,total,,1970,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2007,4,Sidorahayu,sex,laki_laki,,1546,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2007,4,Sidorahayu,sex,perempuan,,1459,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2007,4,Sidorahayu,total,total,,3005,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2008,4,Bukit Indah,sex,laki_laki,,1388,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2008,4,Bukit Indah,sex,perempuan,,1377,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2008,4,Bukit Indah,total,total,,2765,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2011,4,Air Putih Ulu,sex,laki_laki,,1821,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2011,4,Air Putih Ulu,sex,perempuan,,1773,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2011,4,Air Putih Ulu,total,total,,3594,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2013,4,Cinta Karya,sex,laki_laki,,1263,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2013,4,Cinta Karya,sex,perempuan,,1189,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2013,4,Cinta Karya,total,total,,2452,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2012,4,Sialang Agung,sex,laki_laki,,486,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2012,4,Sialang Agung,sex,perempuan,,483,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2012,4,Sialang Agung,total,total,,969,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2009,4,Warga Mulya,sex,laki_laki,,798,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2009,4,Warga Mulya,sex,perempuan,,772,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2009,4,Warga Mulya,total,total,,1570,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2010,4,Tanjung Kaputran,sex,laki_laki,,1315,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2010,4,Tanjung Kaputran,sex,perempuan,,1263,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2010,4,Tanjung Kaputran,total,total,,2578,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10.2014,4,Air Putih Ilir,sex,laki_laki,,735,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10.2014,4,Air Putih Ilir,sex,perempuan,,689,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10.2014,4,Air Putih Ilir,total,total,,1424,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10,3,Plakat Tinggi,sex,laki_laki,,16179,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.10,3,Plakat Tinggi,sex,perempuan,,15587,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.10,3,Plakat Tinggi,total,total,,31766,jiwa,2026,registration,total_population,3.1,34,,
+16.06.10,3,Plakat Tinggi,age_group,0-14,laki_laki,4084,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.10,3,Plakat Tinggi,age_group,0-14,perempuan,4073,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.10,3,Plakat Tinggi,age_group,0-14,,8157,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.10,3,Plakat Tinggi,age_group,15-64,laki_laki,9850,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.10,3,Plakat Tinggi,age_group,15-64,perempuan,9535,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.10,3,Plakat Tinggi,age_group,15-64,,19385,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.10,3,Plakat Tinggi,age_group,65+,laki_laki,1171,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.10,3,Plakat Tinggi,age_group,65+,perempuan,1130,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.10,3,Plakat Tinggi,age_group,65+,,2301,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.10,3,Plakat Tinggi,sex,laki_laki,,15105,jiwa,2026,projection,total_population,3.2,36,,Laki-Laki
+16.06.10,3,Plakat Tinggi,sex,perempuan,,14738,jiwa,2026,projection,total_population,3.2,36,,Perempuan
+16.06.10,3,Plakat Tinggi,total,total,,29843,jiwa,2026,projection,total_population,3.2,36,,

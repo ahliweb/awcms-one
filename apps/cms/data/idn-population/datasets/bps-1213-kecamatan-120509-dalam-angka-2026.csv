@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.09.2001,4,Kepala Sungai,sex,laki_laki,,3355,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2001,4,Kepala Sungai,sex,perempuan,,3299,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2001,4,Kepala Sungai,total,total,,6654,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2013,4,Perkotaan,sex,laki_laki,,1352,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2013,4,Perkotaan,sex,perempuan,,1294,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2013,4,Perkotaan,total,total,,2646,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2002,4,Teluk,sex,laki_laki,,2979,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2002,4,Teluk,sex,perempuan,,2880,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2002,4,Teluk,total,total,,5859,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2003,4,Cinta Raja,sex,laki_laki,,569,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2003,4,Cinta Raja,sex,perempuan,,568,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2003,4,Cinta Raja,total,total,,1137,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2012,4,Telaga Jernih,sex,laki_laki,,3060,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2012,4,Telaga Jernih,sex,perempuan,,3039,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2012,4,Telaga Jernih,total,total,,6099,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2010,4,Karang Gading,sex,laki_laki,,3572,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2010,4,Karang Gading,sex,perempuan,,3506,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2010,4,Karang Gading,total,total,,7078,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2014,4,Kwala Besar,sex,laki_laki,,876,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2014,4,Kwala Besar,sex,perempuan,,833,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2014,4,Kwala Besar,total,total,,1709,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2009,4,Selotong,sex,laki_laki,,2569,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2009,4,Selotong,sex,perempuan,,2427,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2009,4,Selotong,total,total,,4996,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2008,4,Secanggang,sex,laki_laki,,3665,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2008,4,Secanggang,sex,perempuan,,3607,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2008,4,Secanggang,total,total,,7272,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2007,4,Tanjung Ibus,sex,laki_laki,,2902,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2007,4,Tanjung Ibus,sex,perempuan,,2783,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2007,4,Tanjung Ibus,total,total,,5685,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.1004,4,Hinai Kiri,sex,laki_laki,,2903,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.1004,4,Hinai Kiri,sex,perempuan,,2899,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.1004,4,Hinai Kiri,total,total,,5802,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2005,4,Kebun Kelapa,sex,laki_laki,,1616,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2005,4,Kebun Kelapa,sex,perempuan,,1656,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2005,4,Kebun Kelapa,total,total,,3272,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2006,4,Sungai Ular,sex,laki_laki,,1563,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2006,4,Sungai Ular,sex,perempuan,,1546,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2006,4,Sungai Ular,total,total,,3109,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2011,4,Jaring Halus,sex,laki_laki,,1771,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2011,4,Jaring Halus,sex,perempuan,,1530,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2011,4,Jaring Halus,total,total,,3301,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2015,4,Karang Anyar,sex,laki_laki,,3006,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2015,4,Karang Anyar,sex,perempuan,,2962,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2015,4,Karang Anyar,total,total,,5968,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2016,4,Pantai Gading,sex,laki_laki,,2102,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2016,4,Pantai Gading,sex,perempuan,,2052,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2016,4,Pantai Gading,total,total,,4154,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09.2017,4,Suka Mulia,sex,laki_laki,,2669,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09.2017,4,Suka Mulia,sex,perempuan,,2650,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09.2017,4,Suka Mulia,total,total,,5319,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.09,3,Kecamatan Secanggang,sex,laki_laki,,40529,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.09,3,Kecamatan Secanggang,sex,perempuan,,39531,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.09,3,Kecamatan Secanggang,total,total,,80060,jiwa,2025,registration,total_population,unnumbered-p39,39,,

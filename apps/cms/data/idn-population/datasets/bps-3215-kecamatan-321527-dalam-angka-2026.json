@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321527-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.27",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Telukjambe Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Telukjambe Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215032",
+  "publicationNumber": "32150.26025",
+  "issn": "2828-7266",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/b675fdf6eb1abb0ff08bfc4f/kecamatan-telukjambe-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "0347ebc17c5b74007e66275a2cb7cce2f7a35448873db9d284990e8029aeb591",
+  "sourceFileBytes": 3734614,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321527-dalam-angka-2026.csv",
+  "csvSha256": "c2212f6368f473eba363de20092a105ba19652a4bbc15f569ff70d7372515b2a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Pendudu k Menurut Desa/Kelurahan di Kecamatan Telukjambe Barat, 2026",
+      "printedPages": [],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 (age-by-sex) could not be read reliably and is not included (year of a column not determinable)"
+  ]
+}

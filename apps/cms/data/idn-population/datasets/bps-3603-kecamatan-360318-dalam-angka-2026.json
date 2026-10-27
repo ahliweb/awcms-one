@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3603-kecamatan-360318-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.03.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cikupa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tangerang",
+  "publisherDomain": "3603",
+  "publisherWebsite": "https://tangerangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tangerang (https://tangerangkab.bps.go.id), publikasi \"Kecamatan Cikupa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3603030",
+  "publicationNumber": "36030.26010",
+  "issn": "2407-4586",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkab.bps.go.id/id/publication/2026/09/28/d8381464053e068dd1a0cd7a/kecamatan-cikupa-dalam-angka-2026.html",
+  "sourceFileSha256": "0ab7fe08a842d773cea698d26207a3fc5330892e0ba0283ed20b8dc6f2a3abfd",
+  "sourceFileBytes": 16272651,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tangerang.",
+  "csvPath": "datasets/bps-3603-kecamatan-360318-dalam-angka-2026.csv",
+  "csvSha256": "56a670c66654499e9f7809ee14223f9fbea1062725089ae15edde0d90c19909b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cikupa, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cikupa, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 36.03.18 sex/laki_laki/ 2025: 107948 (table 3.1) vs 110824 (table 3.2)",
+    "cross-table disagreement, both stored as published: 36.03.18 sex/perempuan/ 2025: 104135 (table 3.1) vs 106813 (table 3.2)",
+    "cross-table disagreement, both stored as published: 36.03.18 total/total/ 2025: 212083 (table 3.1) vs 217637 (table 3.2)"
+  ]
+}

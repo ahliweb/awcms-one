@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.08.1006,4,Margatunggal,sex,laki_laki,,955,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.1006,4,Margatunggal,sex,perempuan,,968,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.1006,4,Margatunggal,total,total,,1923,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2005,4,Sidodadi,sex,laki_laki,,427,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2005,4,Sidodadi,sex,perempuan,,380,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2005,4,Sidodadi,total,total,,807,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2008,4,Sukowono,sex,laki_laki,,488,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2008,4,Sukowono,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2008,4,Sukowono,total,total,,952,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2004,4,Bumi Rejo,sex,laki_laki,,255,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2004,4,Bumi Rejo,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2004,4,Bumi Rejo,total,total,,509,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2003,4,Margoyoso,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2003,4,Margoyoso,sex,perempuan,,381,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2003,4,Margoyoso,total,total,,787,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2001,4,Giriyoso,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2001,4,Giriyoso,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2001,4,Giriyoso,total,total,,2134,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2016,4,Ngestiboga Ii,sex,laki_laki,,1445,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2016,4,Ngestiboga Ii,sex,perempuan,,1387,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2016,4,Ngestiboga Ii,total,total,,2832,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2002,4,Kertosono,sex,laki_laki,,848,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2002,4,Kertosono,sex,perempuan,,830,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2002,4,Kertosono,total,total,,1678,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2010,4,Purwodadi,sex,laki_laki,,305,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2010,4,Purwodadi,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2010,4,Purwodadi,total,total,,600,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2015,4,Ngestiboga I,sex,laki_laki,,931,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2015,4,Ngestiboga I,sex,perempuan,,900,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2015,4,Ngestiboga I,total,total,,1831,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2007,4,Margatani,sex,laki_laki,,611,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2007,4,Margatani,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2007,4,Margatani,total,total,,1210,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08.2020,4,Ngestikarya,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.08.2020,4,Ngestikarya,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.08.2020,4,Ngestikarya,total,total,,687,jiwa,2025,registration,total_population,3.1,23,,
+16.05.08,3,Jayaloka,age_group,0-14,laki_laki,2025,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.08,3,Jayaloka,age_group,0-14,perempuan,1927,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.08,3,Jayaloka,age_group,0-14,,3952,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.08,3,Jayaloka,age_group,15-64,laki_laki,6011,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.08,3,Jayaloka,age_group,15-64,perempuan,5794,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.08,3,Jayaloka,age_group,15-64,,11805,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.08,3,Jayaloka,age_group,65+,laki_laki,631,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.08,3,Jayaloka,age_group,65+,perempuan,619,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.08,3,Jayaloka,age_group,65+,,1250,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.08,3,Jayaloka,sex,laki_laki,,8667,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+16.05.08,3,Jayaloka,sex,perempuan,,8340,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+16.05.08,3,Jayaloka,total,total,,17007,jiwa,2025,registration,total_population,3.2,25,,

@@ -7,7 +7,7 @@
  * vocabulary (`domain/segment-rules.ts`); an unknown field, operator, key or a
  * depth above the bound is a `400` that names the offending path. Both methods
  * are gated on the tenant's `segments` feature (`409 FEATURE_DISABLED` off).
- * A rule that reads a booking-derived field (rule schema 2, ADR-0051) also needs
+ * A rule that reads a booking-derived field (rule schema 2, ADR-0052) also needs
  * the `booking` feature and `commerce.booking_reservation_links.read`.
  */
 import { created, fail, ok } from "../../../../../modules/_shared/api-response";

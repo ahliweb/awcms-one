@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3518-kecamatan-351810-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.18.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Baron Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nganjuk",
+  "publisherDomain": "3518",
+  "publisherWebsite": "https://nganjukkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nganjuk (https://nganjukkab.bps.go.id), publikasi \"Kecamatan Baron Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35180.2616",
+  "issn": "2776-8910",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nganjukkab.bps.go.id/id/publication/2026/09/28/94f8a712013f69f83b8356c8/kecamatan-baron-dalam-angka-2026.html",
+  "sourceFileSha256": "fa7d2d5ef4018f7f24ac65136608dfc64eb627da4acaa960a0c942d81b4fd9ab",
+  "sourceFileBytes": 11895182,
+  "sourcePages": [21, 22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nganjuk.",
+  "csvPath": "datasets/bps-3518-kecamatan-351810-dalam-angka-2026.csv",
+  "csvSha256": "840ff43d81a13e688f501c7eb1ff1873b85a1b7c409a33bc17899f0d923395dd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Baron, 2025",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Baron, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama di Kecamatan Baron, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": ["table 3.3: row not stored: row \"Desa/Villages\": unmatched "]
+}

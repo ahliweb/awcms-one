@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.14.1001,4,Kolursari,sex,laki_laki,,4167,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1001,4,Kolursari,sex,perempuan,,4273,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1001,4,Kolursari,total,total,,8440,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1002,4,Kidul Dalem,sex,laki_laki,,4750,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1002,4,Kidul Dalem,sex,perempuan,,4895,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1002,4,Kidul Dalem,total,total,,9645,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1003,4,Pogar,sex,laki_laki,,4810,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1003,4,Pogar,sex,perempuan,,4825,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1003,4,Pogar,total,total,,9635,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1004,4,Kauman,sex,laki_laki,,2377,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1004,4,Kauman,sex,perempuan,,2349,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1004,4,Kauman,total,total,,4726,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1005,4,Bendo Mungal,sex,laki_laki,,2205,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1005,4,Bendo Mungal,sex,perempuan,,2282,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1005,4,Bendo Mungal,total,total,,4487,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1006,4,Kersikan,sex,laki_laki,,2941,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1006,4,Kersikan,sex,perempuan,,2941,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1006,4,Kersikan,total,total,,5882,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1007,4,Gempeng,sex,laki_laki,,4317,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1007,4,Gempeng,sex,perempuan,,4363,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1007,4,Gempeng,total,total,,8680,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1008,4,Dermo,sex,laki_laki,,2676,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1008,4,Dermo,sex,perempuan,,2687,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1008,4,Dermo,total,total,,5363,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1009,4,Latek,sex,laki_laki,,1313,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1009,4,Latek,sex,perempuan,,1342,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1009,4,Latek,total,total,,2655,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.2010,4,Masangan,sex,laki_laki,,1277,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.2010,4,Masangan,sex,perempuan,,1292,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.2010,4,Masangan,total,total,,2569,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.2011,4,Raci,sex,laki_laki,,2582,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.2011,4,Raci,sex,perempuan,,2582,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.2011,4,Raci,total,total,,5164,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1012,4,Kalianyar,sex,laki_laki,,2297,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1012,4,Kalianyar,sex,perempuan,,2257,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1012,4,Kalianyar,total,total,,4554,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.2013,4,Manaruwi,sex,laki_laki,,2998,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.2013,4,Manaruwi,sex,perempuan,,2972,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.2013,4,Manaruwi,total,total,,5970,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.1014,4,Kalirejo,sex,laki_laki,,2694,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.1014,4,Kalirejo,sex,perempuan,,2667,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.1014,4,Kalirejo,total,total,,5361,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14.2015,4,Tambakan,sex,laki_laki,,1655,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14.2015,4,Tambakan,sex,perempuan,,1595,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14.2015,4,Tambakan,total,total,,3250,jiwa,2025,registration,total_population,3.1,29,,
+35.14.14,3,Kecamatan Bangil,sex,laki_laki,,43059,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.14,3,Kecamatan Bangil,sex,perempuan,,43322,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.14,3,Kecamatan Bangil,total,total,,86381,jiwa,2025,registration,total_population,3.1,29,,
