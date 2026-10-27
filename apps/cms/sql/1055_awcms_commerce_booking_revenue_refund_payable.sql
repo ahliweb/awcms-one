@@ -36,6 +36,11 @@
 --
 -- ## Rollout: descriptor version 1 -> 2, one rebuild per tenant
 --
+-- Run the per-tenant rebuild RIGHT AFTER this migration is applied: before it, a late
+-- live event on an older order that was both taxed and refunded can set a spurious
+-- `restated` flag (the goods shares seeded here and the tax-aware derivation of the
+-- live path disagree for that order); the rebuild clears it.
+--
 -- `commerce.booking_revenue` goes from descriptor version 1 to 2 in the same change.
 -- A tenant that already sold bookings runs ONE rebuild of the projection
 -- (`POST /api/v1/reports/projections/commerce.booking_revenue/rebuild`), which

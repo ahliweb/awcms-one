@@ -401,9 +401,12 @@ suite(
       const owner = await bootstrapOwner();
       await seedRows(owner.tenantId);
       const reader = await seedPrincipal(owner.tenantId, "csv-reader", [
-        "reporting.dashboard.read"
+        "commerce.report_booking_revenue.export"
       ]);
       const bystander = await seedPrincipal(owner.tenantId, "csv-bystander", [
+        // reporting.dashboard.read opens the screen and the JSON route but NOT
+        // the file: the export is its own key (sql/1054).
+        "reporting.dashboard.read",
         "reporting.projections.read",
         "commerce.report_retention.export",
         "commerce.report_returns.export"
@@ -474,7 +477,7 @@ suite(
         featureEnabled: true
       });
 
-      // reporting.dashboard.read and nothing else; a bad range is 400 after it.
+      // commerce.report_booking_revenue.export and nothing else; a bad range is 400 after it.
       expect((await callCsv(bystander, query)).status).toBe(403);
       expect((await callCsv(nobody, query)).status).toBe(403);
       expect((await callCsv(nobody, "?from=2026-02-30")).status).toBe(403);

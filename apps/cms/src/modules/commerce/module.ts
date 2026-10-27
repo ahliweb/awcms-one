@@ -170,6 +170,7 @@ import {
   COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE,
   COMMERCE_REPORT_RETURNS_ACTIVITY_CODE,
   COMMERCE_REPORT_RETURN_PERMISSIONS,
+  COMMERCE_REPORT_BOOKING_REVENUE_ACTIVITY_CODE,
   COMMERCE_REPORT_RETENTION_ACTIVITY_CODE,
   COMMERCE_REPORT_RETENTION_PERMISSIONS,
   COMMERCE_REPORT_TENDER_PERMISSIONS,
@@ -4975,6 +4976,13 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_REPORT_RETENTION_ACTIVITY_CODE,
       action: "export",
       description: "Export the customer-retention report as CSV (Issue #364)"
+    },
+    // Issue #478 - the booking revenue waterfall's CSV (export only; the
+    // screen and JSON route stay on reporting.dashboard.read).
+    {
+      activityCode: COMMERCE_REPORT_BOOKING_REVENUE_ACTIVITY_CODE,
+      action: "export",
+      description: "Export the booking revenue waterfall as CSV (Issue #478)"
     },
     // Issue #391 (ADR-0046) - employee-commission sale attribution.
     {

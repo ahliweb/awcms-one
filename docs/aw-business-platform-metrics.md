@@ -148,11 +148,11 @@ The owner adopted the recommended answer to each of the four questions of [#450]
 
 **Decision.** The Refunds step counts a refund when it is recorded as an obligation: the refund amount of the order's return record, or of the booking refund decision that planned it. This is the same moment `commerce.sales_daily` nets a return, so the two reports agree. The step has three parts that always add up:
 
-| Part | Meaning |
-| --- | --- |
-| Paid back | Succeeded reversal legs of the payment ledger (money has left) |
-| Refund payable | Decided and not yet paid out (planned or failed legs); a companion column beside the waterfall, like the balance outstanding |
-| Uncollected balance | Unchanged from 3.7: the unpaid part of a closed order, no money moved |
+| Part                | Meaning                                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Paid back           | Succeeded reversal legs of the payment ledger (money has left)                                                               |
+| Refund payable      | Decided and not yet paid out (planned or failed legs); a companion column beside the waterfall, like the balance outstanding |
+| Uncollected balance | Unchanged from 3.7: the unpaid part of a closed order, no money moved                                                        |
 
 Settling a leg moves an amount from payable to paid back and **never moves net**. A leg that fails stays payable until staff retry or cancel it. All three parts land on the original paid day (rule 5 of 1.1). The **cash** reading is not lost: the by-refund-day cash view of 3.6 (D4) shows each reversal leg on the day it settled.
 
@@ -160,11 +160,11 @@ Settling a leg moves an amount from payable to paid back and **never moves net**
 
 Worked example (the third row of 3.7, early cancel with half the deposit refunded):
 
-| Moment | Paid back | Refund payable | Uncollected | Net |
-| --- | --- | --- | --- | --- |
-| Decided, not yet paid out | 0 | 450,000 | 2,100,000 | 450,000 |
-| Leg settled | 450,000 | 0 | 2,100,000 | 450,000 |
-| What #389 shows today before the leg settles | 0 | n/a | 2,100,000 | 900,000 |
+| Moment                                       | Paid back | Refund payable | Uncollected | Net     |
+| -------------------------------------------- | --------- | -------------- | ----------- | ------- |
+| Decided, not yet paid out                    | 0         | 450,000        | 2,100,000   | 450,000 |
+| Leg settled                                  | 450,000   | 0              | 2,100,000   | 450,000 |
+| What #389 shows today before the leg settles | 0         | n/a            | 2,100,000   | 900,000 |
 
 The control identity (3.5) becomes `net + shipping + insurance + tax = settled - refund payable + outstanding - surplus`, with the companions after D3.
 
@@ -178,22 +178,22 @@ The control identity (3.5) becomes `net + shipping + insurance + tax = settled -
 
 **Why.** Tax collected is not revenue: the transaction price excludes amounts collected on behalf of third parties (IFRS 15.47; PSAK 72), and returning the goods returns the tax (a return or credit note reverses the output tax). Leaving the tax companion un-netted makes the companion column wrong instead of the net, and a negative net for a fully refunded order misleads any reader.
 
-| Case (subtotal, tax) | Refund or uncollected | Net (#389) | Net (D3) | Tax companion (D3) |
-| --- | --- | --- | --- | --- |
-| 1,000,000 + 100,000 tax, paid in full | Full refund 1,100,000 | -100,000 | 0 | 0 |
-| Same order | Refund 550,000 | 450,000 | 500,000 | 50,000 |
-| 3,000,000 + 330,000 tax, 30% deposit 999,000, no-show | Uncollected 2,331,000 | 669,000 | 900,000 | 99,000 |
+| Case (subtotal, tax)                                  | Refund or uncollected | Net (#389) | Net (D3) | Tax companion (D3) |
+| ----------------------------------------------------- | --------------------- | ---------- | -------- | ------------------ |
+| 1,000,000 + 100,000 tax, paid in full                 | Full refund 1,100,000 | -100,000   | 0        | 0                  |
+| Same order                                            | Refund 550,000        | 450,000    | 500,000  | 50,000             |
+| 3,000,000 + 330,000 tax, 30% deposit 999,000, no-show | Uncollected 2,331,000 | 669,000    | 900,000  | 99,000             |
 
 The third row matches the no-show row of 3.7 (net 900,000) once the 330,000 tax is allocated, and settled 999,000 = net 900,000 + tax 99,000. How the tax on a retained deposit is treated for the tenant's tax return is a tax-advisor question outside this report (O9); the allocation is the neutral default.
 
 #### D4. What is scheduled and what is not
 
-| Item | Decision | Why |
-| --- | --- | --- |
-| Cash view by refund day (3.6) | **Scheduled**, with D1; built in #478 | It is where the cash reading now lives; the settled-legs fact it needs already exists |
-| Waterfall CSV route | **Scheduled**, after D1 and D3; built in #478 | Finance reconciles from a file; building it after the columns settle avoids changing it twice. Formula neutralisation as in the other exports |
-| ADR and RevPAN as stored figures | **Not scheduled**; derive at read | A stored ratio goes stale and does not add up across days; compute it from the additive counters (net revenue, occupied and available nights) once upstream Booking exposes the nights (awcms#944) |
-| Channel and segment slices (8.5) | **Deferred** until a tenant asks | Needs the booking channel and a segment membership frozen per row (segments are evaluated on demand, ADR-0042) and the under-5-customers suppression designed first |
+| Item                             | Decision                                      | Why                                                                                                                                                                                                |
+| -------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cash view by refund day (3.6)    | **Scheduled**, with D1; built in #478         | It is where the cash reading now lives; the settled-legs fact it needs already exists                                                                                                              |
+| Waterfall CSV route              | **Scheduled**, after D1 and D3; built in #478 | Finance reconciles from a file; building it after the columns settle avoids changing it twice. Formula neutralisation as in the other exports                                                      |
+| ADR and RevPAN as stored figures | **Not scheduled**; derive at read             | A stored ratio goes stale and does not add up across days; compute it from the additive counters (net revenue, occupied and available nights) once upstream Booking exposes the nights (awcms#944) |
+| Channel and segment slices (8.5) | **Deferred** until a tenant asks              | Needs the booking channel and a segment membership frozen per row (segments are evaluated on demand, ADR-0042) and the under-5-customers suppression designed first                                |
 
 D1 to D4 build is tracked by [#478](https://github.com/ahliweb/awcms-one/issues/478).
 
@@ -209,19 +209,19 @@ Commission paid to an employee on a booking-sourced sale ([ADR-0046](adr/0046-co
 - **Allocation, once, in integer cents.** The order's components are goods (subtotal less the discount the order recorded), shipping, insurance and tax. A goods or exchange return record carries its own split (goods less the discount released, shipping, tax) and that split is used as recorded; a booking cancellation record is a lump with no split. Lumps and the uncollected balance are spread over the components that are still unrefunded with the largest-remainder function of the returns module (ties in the order goods, shipping, insurance, tax). For an order with no exact split that is exactly "in proportion to the order's own components"; after a goods return it keeps a later full refund at net 0 and tax 0. The paid-back part is then taken pro rata out of the decided split, so settling a leg moves cents between "paid back" and "payable" inside the same shares and net does not move.
 - **The three parts are goods shares.** The Refunds step is the goods share of paid back, payable and uncollected; they add up to it. The shipping, insurance and tax shares lower their own companion columns, which the report shows after their refunded share. `refundPayableBalance` is the money, all four components, still to leave: the companion beside `balanceOutstanding`.
 
-| Case | Refund | Refunds step | Net | Tax companion |
-| --- | --- | --- | --- | --- |
-| 1,000,000 + 100,000 tax, paid in full | Full 1,100,000 (paid back) | 1,000,000 | 0 | 0 |
-| Same order | 550,000, decided and not paid out | 500,000, all payable | 500,000 | 50,000 |
-| Same order | 550,000, leg settled | 500,000, all paid back | 500,000 | 50,000 |
-| 3,000,000 + 330,000 tax, deposit 999,000, no-show | Uncollected 2,331,000 | 2,100,000, all uncollected | 900,000 | 99,000 |
-| Early cancel of 3.7, no tax | 450,000 decided / settled | 2,550,000 = payable 450,000 + uncollected 2,100,000 / paid back 450,000 + uncollected 2,100,000 | 450,000 | 0 |
+| Case                                              | Refund                            | Refunds step                                                                                    | Net     | Tax companion |
+| ------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------- | ------- | ------------- |
+| 1,000,000 + 100,000 tax, paid in full             | Full 1,100,000 (paid back)        | 1,000,000                                                                                       | 0       | 0             |
+| Same order                                        | 550,000, decided and not paid out | 500,000, all payable                                                                            | 500,000 | 50,000        |
+| Same order                                        | 550,000, leg settled              | 500,000, all paid back                                                                          | 500,000 | 50,000        |
+| 3,000,000 + 330,000 tax, deposit 999,000, no-show | Uncollected 2,331,000             | 2,100,000, all uncollected                                                                      | 900,000 | 99,000        |
+| Early cancel of 3.7, no tax                       | 450,000 decided / settled         | 2,550,000 = payable 450,000 + uncollected 2,100,000 / paid back 450,000 + uncollected 2,100,000 | 450,000 | 0             |
 
 - **The identity.** `net + shipping + insurance + tax (each after its refunded share) = settled - refund payable + balance outstanding - surplus` holds per order and in the reconciliation's control totals (new keys: refund payable, net, companions, surplus). Surplus is money held above the total that has not been refunded (`paid in - max(total, refunded)`); a refund that exceeds every component can only be refunding that surplus, so the excess is not allocated to revenue.
 - **Restatement.** A newly decided refund (or a no-show) that changes a closed day is a restatement of the original paid day; settling a refund leg is not, because it never moves net.
 - **Cash view by refund day (3.6).** `GET /api/v1/reports/commerce/booking-revenue-cash?from&to`: the succeeded reversal legs of the booking-sourced orders, by the Asia/Jakarta day each settled, labelled `basis: "cash"` and shown in its own table on the screen, never in the waterfall. It is a live grouped read of the append-only ledger through the `(tenant_id, settled_at)` index (no second store, nothing to restate).
-- **Waterfall CSV.** `GET /api/v1/reports/commerce/booking-revenue.csv?from&to` on `reporting.dashboard.read`: one row per paid day with the screen's figures (gross, discounts, refunds with its three parts, net, the three companions, balance outstanding, refund payable, stays, no-shows, the restatement flag), every cell formula-neutralised, aggregates only, audited as `booking_revenue_report.export`, `no-store`, header row only while `booking` is off.
-- **Rollout.** `sql/1055` is additive (no down migration) and seeds the goods shares of existing rows from their money columns, so a tenant that has not rebuilt yet reads as before; the one rebuild per tenant that sold bookings (`POST /api/v1/reports/projections/commerce.booking_revenue/rebuild`) re-derives every row from the order, the ledger, the return records and the decisions. A rebuild is a recompute: it equals the live table byte for byte and can be repeated.
+- **Waterfall CSV.** `GET /api/v1/reports/commerce/booking-revenue.csv?from&to` on `commerce.report_booking_revenue.export` (a dedicated export key, migration `sql/1054`, not implied by `reporting.dashboard.read`; the screen shows the link only to a holder): one row per paid day with the screen's figures (gross, discounts, refunds with its three parts, net, the three companions, balance outstanding, refund payable, stays, no-shows, the restatement flag), every cell formula-neutralised, aggregates only, audited as `booking_revenue_report.export`, `no-store`, header row only while `booking` is off.
+- **Rollout.** `sql/1055` is additive (no down migration) and seeds the goods shares of existing rows from their money columns, so a tenant that has not rebuilt yet reads as before; the one rebuild per tenant that sold bookings (`POST /api/v1/reports/projections/commerce.booking_revenue/rebuild`) re-derives every row from the order, the ledger, the return records and the decisions. A rebuild is a recompute: it equals the live table byte for byte and can be repeated. **Run the per-tenant rebuild right after `sql/1055` is applied**, not at leisure: before it, a late live event on an older order that was both taxed and refunded can set a spurious `restated` flag (the seeded goods shares and the tax-aware derivation of the live path disagree for that order); the rebuild clears it.
 - **Help text.** The screen's caption now says that the figure is an operational sales measure and not a financial-statement figure, and that the books of record are the tenant's accounting system (3.9 scope note).
 
 ## 4. Occupancy

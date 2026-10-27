@@ -27,8 +27,9 @@
  * (`access-chokepoint-check.ts` reads every `.astro` under `pages/admin/` as a
  * screen that must call `loadAdminScreen`). It does no loading of its own and
  * holds no script: the CSV link is a plain GET navigation to the waterfall
- * export route (`booking-revenue.csv`, the same `reporting.dashboard.read` as
- * this screen); the freshness panel's generic projection export stays too.
+ * export route (`booking-revenue.csv`), shown only to a viewer holding its own
+ * `commerce.report_booking_revenue.export` (the route re-checks it; the screen
+ * itself is `reporting.dashboard.read`); the freshness panel's generic projection export stays too.
  */
 import { getTranslatorFor } from "../lib/i18n";
 import type { Locale } from "../lib/i18n/locales";
@@ -41,6 +42,7 @@ export type BookingRevenueView = {
   report: BookingRevenueReport;
   pipeline: BookingPipelineReport;
   cash: BookingCashRefundReport;
+  canExport: boolean;
 };
 
 const { view, locale } = Astro.props as {
@@ -262,11 +264,13 @@ function formatAge(seconds: number | null): string {
         )}
       </table>
     </div>
-    <p>
-      <a class="module-toggle" id="ops-booking-revenue-csv" href={csvHref}>
-        {t("Download CSV")}
-      </a>
-    </p>
+    {view?.canExport && (
+      <p>
+        <a class="module-toggle" id="ops-booking-revenue-csv" href={csvHref}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
     <div
       class="data-table-scroll"
       role="region"

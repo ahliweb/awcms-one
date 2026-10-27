@@ -1,6 +1,7 @@
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
 import { fetchBookingRevenueReport } from "../../../../../modules/commerce/application/booking-revenue-report";
 import { prepareOperationalRange } from "../../../../../modules/commerce/application/operational-report-http";
+import { COMMERCE_REPORT_BOOKING_REVENUE_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import { serializeBookingRevenueCsv } from "../../../../../modules/commerce/domain/booking-revenue-csv";
 import type { SalesReportRange } from "../../../../../modules/commerce/domain/sales-report-query";
 import { recordAuditEvent } from "../../../../../modules/logging/application/audit-log";
@@ -12,9 +13,10 @@ import { recordAuditEvent } from "../../../../../modules/logging/application/aud
  * discounts, refunds with its three parts (paid back, payable, uncollected), net,
  * the shipping / insurance / tax companions after their refunded share, the
  * balance outstanding, the refund payable, the stay and no-show figures and the
- * restatement flag. Gated on `reporting.dashboard.read`, the JSON route's own
- * permission (finance reconciles from a file; the file is the same aggregates the
- * screen already shows). Aggregates only; every cell is formula-neutralised.
+ * restatement flag. Gated on `commerce.report_booking_revenue.export` (migration
+ * 1054), a dedicated high-risk export key like the operational and retention
+ * CSVs, NOT implied by `reporting.dashboard.read` (the screen and the JSON route's
+ * permission): a file leaves the system. Aggregates only; every cell is formula-neutralised.
  * Audited (`booking_revenue_report.export`: the range and the row count, never a
  * cell), `Cache-Control: no-store`, bounded to 366 days. While the tenant's
  * `booking` feature is OFF the answer is `200` with the header row only.
@@ -23,9 +25,9 @@ export const GET = defineTenantRoute<SalesReportRange>({
   workClass: "reporting",
   prepare: prepareOperationalRange,
   authorize: {
-    moduleKey: "reporting",
-    activityCode: "dashboard",
-    action: "read"
+    moduleKey: "commerce",
+    activityCode: COMMERCE_REPORT_BOOKING_REVENUE_ACTIVITY_CODE,
+    action: "export"
   },
   handler: async ({ tx, tenantId, auth, prepared, locals }) => {
     const report = await fetchBookingRevenueReport(tx, tenantId, prepared);

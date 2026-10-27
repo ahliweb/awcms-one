@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-metrics.md)
 
-<!-- i18n-source-hash: sha256:2e167bc55228186a8b7f5899acf00e1bcbb414f1906e8d19556626672319e86d -->
+<!-- i18n-source-hash: sha256:d4e606ec9695875606887f55138096646d09301cb15e49d329c3c171a5a4749e -->
 
 # AW Business Platform — kontrak metrik
 
@@ -150,11 +150,11 @@ Pemilik menerima jawaban yang direkomendasikan untuk keempat pertanyaan [#450](h
 
 **Keputusan.** Langkah Refund menghitung refund saat dicatat sebagai kewajiban: jumlah refund pada catatan retur pesanan, atau pada keputusan refund booking yang merencanakannya. Ini momen yang sama dengan saat `commerce.sales_daily` menetokan retur, sehingga kedua laporan sepakat. Langkah ini punya tiga bagian yang selalu berjumlah sama:
 
-| Bagian | Arti |
-| --- | --- |
-| Dikembalikan | Leg reversal buku besar pembayaran yang berhasil (uang sudah keluar) |
-| Refund terutang | Diputuskan dan belum dibayarkan (leg terencana atau gagal); kolom pendamping di samping air terjun, seperti saldo terutang |
-| Saldo tidak tertagih | Tidak berubah dari 3.7: bagian belum dibayar pada pesanan yang ditutup, tidak ada uang berpindah |
+| Bagian               | Arti                                                                                                                       |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Dikembalikan         | Leg reversal buku besar pembayaran yang berhasil (uang sudah keluar)                                                       |
+| Refund terutang      | Diputuskan dan belum dibayarkan (leg terencana atau gagal); kolom pendamping di samping air terjun, seperti saldo terutang |
+| Saldo tidak tertagih | Tidak berubah dari 3.7: bagian belum dibayar pada pesanan yang ditutup, tidak ada uang berpindah                           |
 
 Menyelesaikan sebuah leg memindahkan jumlah dari terutang ke dikembalikan dan **tidak pernah menggeser neto**. Leg yang gagal tetap terutang sampai staf mengulang atau membatalkannya. Ketiga bagian jatuh pada hari bayar ASLI (aturan 5 dari 1.1). Pembacaan **kas** tidak hilang: tampilan kas per hari refund pada 3.6 (D4) menunjukkan setiap leg reversal pada hari ia settle.
 
@@ -162,11 +162,11 @@ Menyelesaikan sebuah leg memindahkan jumlah dari terutang ke dikembalikan dan **
 
 Contoh kerja (baris ketiga 3.7, batal dini dengan separuh uang muka dikembalikan):
 
-| Saat | Dikembalikan | Refund terutang | Tidak tertagih | Neto |
-| --- | --- | --- | --- | --- |
-| Diputuskan, belum dibayarkan | 0 | 450.000 | 2.100.000 | 450.000 |
-| Leg settle | 450.000 | 0 | 2.100.000 | 450.000 |
-| Yang ditampilkan #389 hari ini sebelum leg settle | 0 | n/a | 2.100.000 | 900.000 |
+| Saat                                              | Dikembalikan | Refund terutang | Tidak tertagih | Neto    |
+| ------------------------------------------------- | ------------ | --------------- | -------------- | ------- |
+| Diputuskan, belum dibayarkan                      | 0            | 450.000         | 2.100.000      | 450.000 |
+| Leg settle                                        | 450.000      | 0               | 2.100.000      | 450.000 |
+| Yang ditampilkan #389 hari ini sebelum leg settle | 0            | n/a             | 2.100.000      | 900.000 |
 
 Kendali kontrol (3.5) menjadi `neto + ongkir + asuransi + pajak = settled - refund terutang + outstanding - surplus`, dengan kolom pendamping setelah D3.
 
@@ -180,22 +180,22 @@ Kendali kontrol (3.5) menjadi `neto + ongkir + asuransi + pajak = settled - refu
 
 **Alasan.** Pajak yang dipungut bukan pendapatan: harga transaksi tidak mencakup jumlah yang dipungut atas nama pihak ketiga (IFRS 15.47; PSAK 72), dan mengembalikan barang mengembalikan pajaknya (retur atau nota kredit membalik pajak keluaran). Membiarkan kolom pajak tidak dinetokan membuat kolom pendamping yang salah, bukan netonya, dan neto negatif untuk pesanan yang direfund penuh menyesatkan pembaca mana pun.
 
-| Kasus (subtotal, pajak) | Refund atau tidak tertagih | Neto (#389) | Neto (D3) | Kolom pajak (D3) |
-| --- | --- | --- | --- | --- |
-| 1.000.000 + pajak 100.000, lunas | Refund penuh 1.100.000 | -100.000 | 0 | 0 |
-| Pesanan sama | Refund 550.000 | 450.000 | 500.000 | 50.000 |
-| 3.000.000 + pajak 330.000, uang muka 30% 999.000, tamu tidak hadir | Tidak tertagih 2.331.000 | 669.000 | 900.000 | 99.000 |
+| Kasus (subtotal, pajak)                                            | Refund atau tidak tertagih | Neto (#389) | Neto (D3) | Kolom pajak (D3) |
+| ------------------------------------------------------------------ | -------------------------- | ----------- | --------- | ---------------- |
+| 1.000.000 + pajak 100.000, lunas                                   | Refund penuh 1.100.000     | -100.000    | 0         | 0                |
+| Pesanan sama                                                       | Refund 550.000             | 450.000     | 500.000   | 50.000           |
+| 3.000.000 + pajak 330.000, uang muka 30% 999.000, tamu tidak hadir | Tidak tertagih 2.331.000   | 669.000     | 900.000   | 99.000           |
 
 Baris ketiga cocok dengan baris tamu tidak hadir pada 3.7 (neto 900.000) setelah pajak 330.000 dialokasikan, dan settled 999.000 = neto 900.000 + pajak 99.000. Bagaimana pajak atas uang muka yang ditahan diperlakukan untuk SPT tenant adalah pertanyaan penasihat pajak di luar laporan ini (O9); alokasi ini adalah bawaan netral.
 
 #### D4. Apa yang dijadwalkan dan apa yang tidak
 
-| Butir | Keputusan | Alasan |
-| --- | --- | --- |
-| Tampilan kas per hari refund (3.6) | **Dijadwalkan**, bersama D1; dibangun di #478 | Di sinilah pembacaan kas kini berada; fakta leg settle yang dibutuhkannya sudah ada |
-| Rute CSV air terjun | **Dijadwalkan**, setelah D1 dan D3; dibangun di #478 | Keuangan merekonsiliasi dari berkas; membangunnya setelah kolom mantap menghindari perubahan dua kali. Penetralan formula seperti ekspor lain |
-| ADR dan RevPAN sebagai angka tersimpan | **Tidak dijadwalkan**; hitung saat baca | Rasio tersimpan basi dan tidak dapat dijumlah antarhari; hitung dari counter aditif (pendapatan bersih, malam terisi dan tersedia) setelah Booking hulu membuka jumlah malam (awcms#944) |
-| Irisan kanal dan segmen (8.5) | **Ditunda** sampai ada tenant yang meminta | Butuh kanal booking dan keanggotaan segmen yang dibekukan per baris (segmen dievaluasi sesuai permintaan, ADR-0042) dan penekanan kurang dari 5 pelanggan dirancang lebih dulu |
+| Butir                                  | Keputusan                                            | Alasan                                                                                                                                                                                   |
+| -------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tampilan kas per hari refund (3.6)     | **Dijadwalkan**, bersama D1; dibangun di #478        | Di sinilah pembacaan kas kini berada; fakta leg settle yang dibutuhkannya sudah ada                                                                                                      |
+| Rute CSV air terjun                    | **Dijadwalkan**, setelah D1 dan D3; dibangun di #478 | Keuangan merekonsiliasi dari berkas; membangunnya setelah kolom mantap menghindari perubahan dua kali. Penetralan formula seperti ekspor lain                                            |
+| ADR dan RevPAN sebagai angka tersimpan | **Tidak dijadwalkan**; hitung saat baca              | Rasio tersimpan basi dan tidak dapat dijumlah antarhari; hitung dari counter aditif (pendapatan bersih, malam terisi dan tersedia) setelah Booking hulu membuka jumlah malam (awcms#944) |
+| Irisan kanal dan segmen (8.5)          | **Ditunda** sampai ada tenant yang meminta           | Butuh kanal booking dan keanggotaan segmen yang dibekukan per baris (segmen dievaluasi sesuai permintaan, ADR-0042) dan penekanan kurang dari 5 pelanggan dirancang lebih dulu           |
 
 Pembangunan D1 sampai D4 dilacak oleh [#478](https://github.com/ahliweb/awcms-one/issues/478).
 
@@ -211,19 +211,19 @@ Komisi yang dibayarkan kepada karyawan atas penjualan bersumber booking ([ADR-00
 - **Alokasi, sekali, dalam sen bulat.** Komponen pesanan adalah barang (subtotal dikurangi diskon yang dicatat pesanan), ongkir, asuransi, dan pajak. Catatan retur barang atau penukaran membawa pemisahannya sendiri (barang dikurangi diskon yang dilepas, ongkir, pajak) dan dipakai apa adanya; catatan pembatalan booking adalah angka gabungan tanpa pemisahan. Angka gabungan dan saldo tidak tertagih disebar ke komponen yang masih belum direfund dengan fungsi sisa-terbesar milik modul retur (seri menurut urutan barang, ongkir, asuransi, pajak). Untuk pesanan tanpa pemisahan eksak itu persis "sebanding dengan komponen pesanan itu sendiri"; setelah retur barang, ia menjaga refund penuh berikutnya tetap pada neto 0 dan pajak 0. Bagian yang dikembalikan lalu diambil secara pro rata dari pemisahan yang diputuskan, sehingga leg yang settle memindahkan sen antara "dikembalikan" dan "terutang" di dalam bagian yang sama dan neto tidak bergerak.
 - **Tiga bagian adalah bagian barang.** Langkah Refund adalah bagian barang dari dikembalikan, terutang, dan tidak tertagih; ketiganya menjumlah ke langkah itu. Bagian ongkir, asuransi, dan pajak mengurangi kolom pendampingnya sendiri, yang ditampilkan laporan setelah bagian yang direfund. `refundPayableBalance` adalah uang, keempat komponen, yang masih akan keluar: kolom pendamping di samping `balanceOutstanding`.
 
-| Kasus | Refund | Langkah Refund | Neto | Pendamping pajak |
-| --- | --- | --- | --- | --- |
-| 1.000.000 + pajak 100.000, lunas | Penuh 1.100.000 (dikembalikan) | 1.000.000 | 0 | 0 |
-| Pesanan sama | 550.000, diputuskan belum dibayar | 500.000, seluruhnya terutang | 500.000 | 50.000 |
-| Pesanan sama | 550.000, leg settle | 500.000, seluruhnya dikembalikan | 500.000 | 50.000 |
-| 3.000.000 + pajak 330.000, uang muka 999.000, tamu tidak hadir | Tidak tertagih 2.331.000 | 2.100.000, seluruhnya tidak tertagih | 900.000 | 99.000 |
-| Batal dini pada 3.7, tanpa pajak | 450.000 diputuskan / settle | 2.550.000 = terutang 450.000 + tidak tertagih 2.100.000 / dikembalikan 450.000 + tidak tertagih 2.100.000 | 450.000 | 0 |
+| Kasus                                                          | Refund                            | Langkah Refund                                                                                            | Neto    | Pendamping pajak |
+| -------------------------------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------- | ------- | ---------------- |
+| 1.000.000 + pajak 100.000, lunas                               | Penuh 1.100.000 (dikembalikan)    | 1.000.000                                                                                                 | 0       | 0                |
+| Pesanan sama                                                   | 550.000, diputuskan belum dibayar | 500.000, seluruhnya terutang                                                                              | 500.000 | 50.000           |
+| Pesanan sama                                                   | 550.000, leg settle               | 500.000, seluruhnya dikembalikan                                                                          | 500.000 | 50.000           |
+| 3.000.000 + pajak 330.000, uang muka 999.000, tamu tidak hadir | Tidak tertagih 2.331.000          | 2.100.000, seluruhnya tidak tertagih                                                                      | 900.000 | 99.000           |
+| Batal dini pada 3.7, tanpa pajak                               | 450.000 diputuskan / settle       | 2.550.000 = terutang 450.000 + tidak tertagih 2.100.000 / dikembalikan 450.000 + tidak tertagih 2.100.000 | 450.000 | 0                |
 
 - **Identitas.** `neto + ongkir + asuransi + pajak (masing-masing setelah bagian yang direfund) = settled - refund terutang + saldo outstanding - surplus` berlaku per pesanan dan pada total kontrol rekonsiliasi (kunci baru: refund terutang, neto, pendamping, surplus). Surplus adalah uang yang ditahan di atas total yang belum direfund (`dibayar - max(total, direfund)`); refund yang melebihi setiap komponen hanya bisa mengembalikan surplus itu, sehingga kelebihannya tidak dialokasikan ke pendapatan.
 - **Restatement.** Refund yang baru diputuskan (atau tamu tidak hadir) yang mengubah hari tertutup adalah restatement hari bayar asli; leg refund yang settle bukan, karena tidak pernah menggerakkan neto.
 - **Tampilan kas per hari refund (3.6).** `GET /api/v1/reports/commerce/booking-revenue-cash?from&to`: leg reversal berhasil dari pesanan bersumber booking, menurut hari Asia/Jakarta saat masing-masing settle, berlabel `basis: "cash"` dan ditampilkan di tabel sendiri pada layar, tidak pernah di air terjun. Ini pembacaan terkelompok langsung atas buku besar append-only lewat indeks `(tenant_id, settled_at)` (tanpa penyimpanan kedua, tidak ada yang perlu di-restatement).
-- **CSV air terjun.** `GET /api/v1/reports/commerce/booking-revenue.csv?from&to` pada `reporting.dashboard.read`: satu baris per hari bayar dengan angka layar (bruto, diskon, refund dengan tiga bagiannya, neto, tiga pendamping, saldo outstanding, refund terutang, menginap, tamu tidak hadir, bendera restatement), setiap sel dinetralkan dari formula, hanya agregat, diaudit sebagai `booking_revenue_report.export`, `no-store`, hanya baris judul selama `booking` mati.
-- **Peluncuran.** `sql/1055` bersifat aditif (tanpa migrasi turun) dan mengisi bagian barang pada baris yang ada dari kolom uangnya, sehingga tenant yang belum rebuild terbaca seperti sebelumnya; satu rebuild per tenant yang pernah menjual booking (`POST /api/v1/reports/projections/commerce.booking_revenue/rebuild`) menurunkan ulang setiap baris dari pesanan, buku besar, catatan retur, dan keputusan. Rebuild adalah hitung ulang: sama dengan tabel hidup byte demi byte dan dapat diulang.
+- **CSV air terjun.** `GET /api/v1/reports/commerce/booking-revenue.csv?from&to` pada `commerce.report_booking_revenue.export` (kunci ekspor tersendiri, migrasi `sql/1054`, tidak tersirat dari `reporting.dashboard.read`; layar hanya menampilkan tautan kepada pemegangnya): satu baris per hari bayar dengan angka layar (bruto, diskon, refund dengan tiga bagiannya, neto, tiga pendamping, saldo outstanding, refund terutang, menginap, tamu tidak hadir, bendera restatement), setiap sel dinetralkan dari formula, hanya agregat, diaudit sebagai `booking_revenue_report.export`, `no-store`, hanya baris judul selama `booking` mati.
+- **Peluncuran.** `sql/1055` bersifat aditif (tanpa migrasi turun) dan mengisi bagian barang pada baris yang ada dari kolom uangnya, sehingga tenant yang belum rebuild terbaca seperti sebelumnya; satu rebuild per tenant yang pernah menjual booking (`POST /api/v1/reports/projections/commerce.booking_revenue/rebuild`) menurunkan ulang setiap baris dari pesanan, buku besar, catatan retur, dan keputusan. Rebuild adalah hitung ulang: sama dengan tabel hidup byte demi byte dan dapat diulang. **Jalankan rebuild per tenant segera setelah `sql/1055` diterapkan**, jangan ditunda: sebelumnya, event hidup yang terlambat pada pesanan lama yang kena pajak sekaligus direfund dapat menyalakan bendera `restated` palsu (bagian barang hasil seed dan turunan sadar-pajak jalur hidup tidak sama untuk pesanan itu); rebuild menghapusnya.
 - **Teks bantuan.** Keterangan layar kini menyatakan bahwa angka itu ukuran penjualan operasional dan bukan angka laporan keuangan, dan bahwa pembukuan resmi ada di sistem akuntansi tenant (catatan cakupan 3.9).
 
 ## 4. Okupansi

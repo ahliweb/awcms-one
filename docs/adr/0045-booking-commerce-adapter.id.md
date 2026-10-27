@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0045-booking-commerce-adapter.md)
 
-<!-- i18n-source-hash: sha256:3e63b75e34ae91b05b9ead126f3757799a774aa4cc01503bcb31411a40b4be89 -->
+<!-- i18n-source-hash: sha256:3f0196a51f09e496576cd5e2560a6b92d9977bf6ab85a7784d70e51a43013382 -->
 
 # ADR-0045 — Adapter booking-commerce
 
@@ -444,5 +444,4 @@ Pemilik menerima jawaban yang direkomendasikan untuk empat pertanyaan yang ditin
 - **Bobot adalah yang masih belum direfund.** Alokasi menyebar angka gabungan ke komponen yang belum direfund; untuk pesanan tanpa pemisahan eksak itu persis proporsi pesanan itu sendiri. Ditolak: selalu proporsi asli pesanan, yang dapat mendorong sebuah komponen melewati nol sebesar satu sen setelah retur berpemisahan eksak.
 - **Bagian adalah bagian barang; pendamping adalah uang.** Tiga bagian langkah Refund dan pendamping disimpan sebagai bagian dari barang dan tiga komponen lain; `refund_payable` tetap kolom uang agar identitas kendali tidak butuh alokasi. Ditolak: dua belas kolom (tiga bagian kali empat komponen).
 - **Tampilan kas adalah pembacaan langsung, bukan proyeksi kedua.** Satu pembacaan terkelompok atas buku besar append-only lewat indeks yang ada; tidak ada yang perlu di-rebuild atau di-restatement. Tinjau ulang jika volume reversal tenant membuat rentang 366 hari lambat.
-- **CSV air terjun pada `reporting.dashboard.read`**, izin yang sama dengan layar dan rute JSON, diaudit seperti ekspor lain. Tidak ada kunci izin baru.
-
+- **CSV air terjun pada kunci ekspornya sendiri, `commerce.report_booking_revenue.export`** (migrasi `sql/1054`), konvensi CSV operasional dan retensi: berkas membawa uang per hari keluar dari sistem, sehingga tidak tersirat dari `reporting.dashboard.read`, yang tetap menjaga layar dan rute JSON. Hanya satu kunci `export` (tanpa kembaran `read`), diaudit seperti ekspor lain; layar menampilkan tautan unduh hanya kepada pemegangnya.

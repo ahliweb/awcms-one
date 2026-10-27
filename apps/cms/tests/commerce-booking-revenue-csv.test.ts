@@ -5,6 +5,8 @@
  * first column. The route (permission, `enabled: false`, audit) is
  * `tests/integration/commerce-booking-revenue-routes.integration.test.ts`.
  */
+import { readFile } from "node:fs/promises";
+
 import { describe, expect, test } from "bun:test";
 
 import type {
@@ -147,5 +149,34 @@ describe("serializeBookingRevenueCsv", () => {
     for (const column of BOOKING_REVENUE_CSV_COLUMNS) {
       expect(column).not.toMatch(/order_id|customer|phone|email|name|contact/);
     }
+  });
+});
+
+describe("the CSV is gated on its own export permission (Issue #478, sql/1054)", () => {
+  test("the route authorises commerce.report_booking_revenue.export, not reporting.dashboard.read", async () => {
+    const source = await readFile(
+      "src/pages/api/v1/reports/commerce/booking-revenue.csv.ts",
+      "utf8"
+    );
+    expect(source).toContain('moduleKey: "commerce"');
+    expect(source).toContain(
+      "activityCode: COMMERCE_REPORT_BOOKING_REVENUE_ACTIVITY_CODE"
+    );
+    expect(source).toContain('action: "export"');
+    expect(source).not.toContain('activityCode: "dashboard"');
+  });
+
+  test("the key is declared by the module and seeded by the migration", async () => {
+    const { commerceModule } = await import("../src/modules/commerce/module");
+    const declared = (commerceModule.permissions ?? []).some(
+      (p) =>
+        p.activityCode === "report_booking_revenue" && p.action === "export"
+    );
+    expect(declared).toBe(true);
+    const sql = await readFile(
+      "sql/1054_awcms_commerce_booking_revenue_export_permission.sql",
+      "utf8"
+    );
+    expect(sql).toContain("'commerce', 'report_booking_revenue', 'export'");
   });
 });
