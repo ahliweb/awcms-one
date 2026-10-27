@@ -26,11 +26,26 @@ export type CommerceOriginDecision =
 /** Same value newsletter/search settled on — long enough a shopper's whole checkout flow pays for one preflight, short enough a removed domain takes effect promptly. */
 export const COMMERCE_PREFLIGHT_MAX_AGE_SECONDS = 600;
 
+/**
+ * `Retry-After` is not a CORS-safelisted response header, so without this
+ * a cross-origin storefront sees the `429` but `headers.get("retry-after")`
+ * returns `null` and it can only say "try again later" (found by Issue
+ * #431's notification settings page). Every route in this family that
+ * rate-limits already sets it; exposing it on every granted answer keeps
+ * the policy family-wide, like the method list below.
+ */
+export const COMMERCE_EXPOSED_RESPONSE_HEADERS = ["retry-after"] as const;
+
 export function commerceCorsHeaders(
   decision: CommerceOriginDecision
 ): Record<string, string> {
   if (decision.kind === "granted") {
-    return { "access-control-allow-origin": decision.origin, vary: "Origin" };
+    return {
+      "access-control-allow-origin": decision.origin,
+      "access-control-expose-headers":
+        COMMERCE_EXPOSED_RESPONSE_HEADERS.join(", "),
+      vary: "Origin"
+    };
   }
   return { vary: "Origin" };
 }
