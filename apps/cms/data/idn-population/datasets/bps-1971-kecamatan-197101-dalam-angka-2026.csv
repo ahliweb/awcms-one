@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.71.01.1004,4,Semabung Lama,sex,laki_laki,,3879,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01.1004,4,Semabung Lama,sex,perempuan,,3742,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01.1004,4,Semabung Lama,total,total,,7621,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01.1006,4,Bacang,sex,laki_laki,,3151,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01.1006,4,Bacang,sex,perempuan,,3111,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01.1006,4,Bacang,total,total,,6262,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01.1007,4,Air Itam,sex,laki_laki,,4082,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01.1007,4,Air Itam,sex,perempuan,,3992,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01.1007,4,Air Itam,total,total,,8074,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01.1008,4,Pasir Putih,sex,laki_laki,,2452,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01.1008,4,Pasir Putih,sex,perempuan,,2337,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01.1008,4,Pasir Putih,total,total,,4789,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01.1009,4,Temberan,sex,laki_laki,,4272,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01.1009,4,Temberan,sex,perempuan,,4129,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01.1009,4,Temberan,total,total,,8401,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01.1010,4,Sinar Bulan,sex,laki_laki,,3320,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01.1010,4,Sinar Bulan,sex,perempuan,,3159,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01.1010,4,Sinar Bulan,total,total,,6479,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01.1011,4,Air Mawar,sex,laki_laki,,2097,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01.1011,4,Air Mawar,sex,perempuan,,1939,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01.1011,4,Air Mawar,total,total,,4036,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01,3,Bukit Intan,sex,laki_laki,,23253,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.01,3,Bukit Intan,sex,perempuan,,22409,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.01,3,Bukit Intan,total,total,,45662,jiwa,2025,registration,total_population,3.1,31,,
+19.71.01,3,Bukit Intan,age_group,0-4,laki_laki,1738,jiwa,2025,registration,total_population,3.2,33,,0-4
+19.71.01,3,Bukit Intan,age_group,0-4,perempuan,1625,jiwa,2025,registration,total_population,3.2,33,,0-4
+19.71.01,3,Bukit Intan,age_group,0-4,,3363,jiwa,2025,registration,total_population,3.2,33,,0-4
+19.71.01,3,Bukit Intan,age_group,5-9,laki_laki,2053,jiwa,2025,registration,total_population,3.2,33,,5-9
+19.71.01,3,Bukit Intan,age_group,5-9,perempuan,1985,jiwa,2025,registration,total_population,3.2,33,,5-9
+19.71.01,3,Bukit Intan,age_group,5-9,,4038,jiwa,2025,registration,total_population,3.2,33,,5-9
+19.71.01,3,Bukit Intan,age_group,10-14,laki_laki,2263,jiwa,2025,registration,total_population,3.2,33,,10-14
+19.71.01,3,Bukit Intan,age_group,10-14,perempuan,2016,jiwa,2025,registration,total_population,3.2,33,,10-14
+19.71.01,3,Bukit Intan,age_group,10-14,,4279,jiwa,2025,registration,total_population,3.2,33,,10-14
+19.71.01,3,Bukit Intan,age_group,15-19,laki_laki,2021,jiwa,2025,registration,total_population,3.2,33,,15-19
+19.71.01,3,Bukit Intan,age_group,15-19,perempuan,1887,jiwa,2025,registration,total_population,3.2,33,,15-19
+19.71.01,3,Bukit Intan,age_group,15-19,,3908,jiwa,2025,registration,total_population,3.2,33,,15-19
+19.71.01,3,Bukit Intan,age_group,20-24,laki_laki,1863,jiwa,2025,registration,total_population,3.2,33,,20-24
+19.71.01,3,Bukit Intan,age_group,20-24,perempuan,1796,jiwa,2025,registration,total_population,3.2,33,,20-24
+19.71.01,3,Bukit Intan,age_group,20-24,,3659,jiwa,2025,registration,total_population,3.2,33,,20-24
+19.71.01,3,Bukit Intan,age_group,25-29,laki_laki,1853,jiwa,2025,registration,total_population,3.2,33,,25-29
+19.71.01,3,Bukit Intan,age_group,25-29,perempuan,1912,jiwa,2025,registration,total_population,3.2,33,,25-29
+19.71.01,3,Bukit Intan,age_group,25-29,,3765,jiwa,2025,registration,total_population,3.2,33,,25-29
+19.71.01,3,Bukit Intan,age_group,30-34,laki_laki,1822,jiwa,2025,registration,total_population,3.2,33,,30-34
+19.71.01,3,Bukit Intan,age_group,30-34,perempuan,1777,jiwa,2025,registration,total_population,3.2,33,,30-34
+19.71.01,3,Bukit Intan,age_group,30-34,,3599,jiwa,2025,registration,total_population,3.2,33,,30-34
+19.71.01,3,Bukit Intan,age_group,35-39,laki_laki,1922,jiwa,2025,registration,total_population,3.2,33,,35-39
+19.71.01,3,Bukit Intan,age_group,35-39,perempuan,1933,jiwa,2025,registration,total_population,3.2,33,,35-39
+19.71.01,3,Bukit Intan,age_group,35-39,,3855,jiwa,2025,registration,total_population,3.2,33,,35-39
+19.71.01,3,Bukit Intan,age_group,40-44,laki_laki,1963,jiwa,2025,registration,total_population,3.2,33,,40-44
+19.71.01,3,Bukit Intan,age_group,40-44,perempuan,1825,jiwa,2025,registration,total_population,3.2,33,,40-44
+19.71.01,3,Bukit Intan,age_group,40-44,,3788,jiwa,2025,registration,total_population,3.2,33,,40-44
+19.71.01,3,Bukit Intan,age_group,45-49,laki_laki,1683,jiwa,2025,registration,total_population,3.2,33,,45-49
+19.71.01,3,Bukit Intan,age_group,45-49,perempuan,1597,jiwa,2025,registration,total_population,3.2,33,,45-49
+19.71.01,3,Bukit Intan,age_group,45-49,,3280,jiwa,2025,registration,total_population,3.2,33,,45-49
+19.71.01,3,Bukit Intan,age_group,50-54,laki_laki,1195,jiwa,2025,registration,total_population,3.2,33,,50-54
+19.71.01,3,Bukit Intan,age_group,50-54,perempuan,1136,jiwa,2025,registration,total_population,3.2,33,,50-54
+19.71.01,3,Bukit Intan,age_group,50-54,,2331,jiwa,2025,registration,total_population,3.2,33,,50-54
+19.71.01,3,Bukit Intan,age_group,55-59,laki_laki,926,jiwa,2025,registration,total_population,3.2,33,,55-59
+19.71.01,3,Bukit Intan,age_group,55-59,perempuan,848,jiwa,2025,registration,total_population,3.2,33,,55-59
+19.71.01,3,Bukit Intan,age_group,55-59,,1774,jiwa,2025,registration,total_population,3.2,33,,55-59
+19.71.01,3,Bukit Intan,age_group,60-64,laki_laki,697,jiwa,2025,registration,total_population,3.2,33,,60-64
+19.71.01,3,Bukit Intan,age_group,60-64,perempuan,674,jiwa,2025,registration,total_population,3.2,33,,60-64
+19.71.01,3,Bukit Intan,age_group,60-64,,1371,jiwa,2025,registration,total_population,3.2,33,,60-64
+19.71.01,3,Bukit Intan,age_group,65-69,laki_laki,593,jiwa,2025,registration,total_population,3.2,33,,65-69
+19.71.01,3,Bukit Intan,age_group,65-69,perempuan,613,jiwa,2025,registration,total_population,3.2,33,,65-69
+19.71.01,3,Bukit Intan,age_group,65-69,,1206,jiwa,2025,registration,total_population,3.2,33,,65-69
+19.71.01,3,Bukit Intan,age_group,70-74,laki_laki,361,jiwa,2025,registration,total_population,3.2,33,,70-74
+19.71.01,3,Bukit Intan,age_group,70-74,perempuan,397,jiwa,2025,registration,total_population,3.2,33,,70-74
+19.71.01,3,Bukit Intan,age_group,70-74,,758,jiwa,2025,registration,total_population,3.2,33,,70-74
+19.71.01,3,Bukit Intan,age_group,74+,laki_laki,300,jiwa,2025,registration,total_population,3.2,33,,>74
+19.71.01,3,Bukit Intan,age_group,74+,perempuan,388,jiwa,2025,registration,total_population,3.2,33,,>74
+19.71.01,3,Bukit Intan,age_group,74+,,688,jiwa,2025,registration,total_population,3.2,33,,>74
+19.71.01,3,Bukit Intan,sex,laki_laki,,23253,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+19.71.01,3,Bukit Intan,sex,perempuan,,22409,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+19.71.01,3,Bukit Intan,total,total,,45662,jiwa,2025,registration,total_population,3.2,33,,

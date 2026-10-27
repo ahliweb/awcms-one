@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.04.01.2003,4,Nibung,sex,laki_laki,,3384,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.2003,4,Nibung,sex,perempuan,,3132,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.2003,4,Nibung,total,total,,6516,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.1001,4,Koba,sex,laki_laki,,3605,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.1001,4,Koba,sex,perempuan,,3524,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.1001,4,Koba,total,total,,7129,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.1002,4,Arung Dalam,sex,laki_laki,,2502,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.1002,4,Arung Dalam,sex,perempuan,,2239,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.1002,4,Arung Dalam,total,total,,4741,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.2006,4,Guntung,sex,laki_laki,,755,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.2006,4,Guntung,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.2006,4,Guntung,total,total,,1402,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.2007,4,Penyak,sex,laki_laki,,2473,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.2007,4,Penyak,sex,perempuan,,2295,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.2007,4,Penyak,total,total,,4768,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.2010,4,Kurau Barat,sex,laki_laki,,1163,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.2010,4,Kurau Barat,sex,perempuan,,1097,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.2010,4,Kurau Barat,total,total,,2260,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.1019,4,Simpang Perlang,sex,laki_laki,,3482,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.1019,4,Simpang Perlang,sex,perempuan,,3211,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.1019,4,Simpang Perlang,total,total,,6693,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.1018,4,Padang Mulia,sex,laki_laki,,2738,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.1018,4,Padang Mulia,sex,perempuan,,2597,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.1018,4,Padang Mulia,total,total,,5335,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01.1017,4,Berok,sex,laki_laki,,1493,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01.1017,4,Berok,sex,perempuan,,1451,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01.1017,4,Berok,total,total,,2944,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01,3,Kecamatan Koba,sex,laki_laki,,24171,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.01,3,Kecamatan Koba,sex,perempuan,,22650,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.01,3,Kecamatan Koba,total,total,,46821,jiwa,2025,registration,total_population,3.1,33,,
+19.04.01,3,Koba,age_group,0-4,laki_laki,1718,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.01,3,Koba,age_group,0-4,perempuan,1643,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.01,3,Koba,age_group,0-4,,3361,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.01,3,Koba,age_group,5-9,laki_laki,2120,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.01,3,Koba,age_group,5-9,perempuan,2001,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.01,3,Koba,age_group,5-9,,4121,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.01,3,Koba,age_group,10-14,laki_laki,2497,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.01,3,Koba,age_group,10-14,perempuan,2203,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.01,3,Koba,age_group,10-14,,4700,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.01,3,Koba,age_group,15-19,laki_laki,2280,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.01,3,Koba,age_group,15-19,perempuan,1998,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.01,3,Koba,age_group,15-19,,4278,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.01,3,Koba,age_group,20-24,laki_laki,1914,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.01,3,Koba,age_group,20-24,perempuan,1850,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.01,3,Koba,age_group,20-24,,3764,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.01,3,Koba,age_group,25-29,laki_laki,1742,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.01,3,Koba,age_group,25-29,perempuan,1662,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.01,3,Koba,age_group,25-29,,3404,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.01,3,Koba,age_group,30-34,laki_laki,1734,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.01,3,Koba,age_group,30-34,perempuan,1628,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.01,3,Koba,age_group,30-34,,3362,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.01,3,Koba,age_group,35-39,laki_laki,2194,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.01,3,Koba,age_group,35-39,perempuan,2089,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.01,3,Koba,age_group,35-39,,4283,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.01,3,Koba,age_group,40-44,laki_laki,2110,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.01,3,Koba,age_group,40-44,perempuan,2096,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.01,3,Koba,age_group,40-44,,4206,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.01,3,Koba,age_group,45-49,laki_laki,1718,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.01,3,Koba,age_group,45-49,perempuan,1483,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.01,3,Koba,age_group,45-49,,3201,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.01,3,Koba,age_group,50-54,laki_laki,1273,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.01,3,Koba,age_group,50-54,perempuan,1132,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.01,3,Koba,age_group,50-54,,2405,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.01,3,Koba,age_group,55-59,laki_laki,950,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.01,3,Koba,age_group,55-59,perempuan,954,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.01,3,Koba,age_group,55-59,,1904,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.01,3,Koba,age_group,60-64,laki_laki,701,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.01,3,Koba,age_group,60-64,perempuan,764,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.01,3,Koba,age_group,60-64,,1465,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.01,3,Koba,age_group,65-69,laki_laki,634,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.01,3,Koba,age_group,65-69,perempuan,561,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.01,3,Koba,age_group,65-69,,1195,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.01,3,Koba,age_group,70-74,laki_laki,372,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.01,3,Koba,age_group,70-74,perempuan,278,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.01,3,Koba,age_group,70-74,,650,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.01,3,Koba,age_group,75+,laki_laki,214,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.01,3,Koba,age_group,75+,perempuan,308,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.01,3,Koba,age_group,75+,,522,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.01,3,Koba,sex,laki_laki,,24171,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+19.04.01,3,Koba,sex,perempuan,,22650,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+19.04.01,3,Koba,total,total,,46821,jiwa,2025,registration,total_population,3.2,35,,

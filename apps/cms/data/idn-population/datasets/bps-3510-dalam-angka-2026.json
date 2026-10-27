@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3510-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "35.10",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Banyuwangi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuwangi",
+  "publisherDomain": "3510",
+  "publisherWebsite": "https://banyuwangikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuwangi (https://banyuwangikab.bps.go.id), publikasi \"Kabupaten Banyuwangi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3510",
+  "publicationNumber": "35100.25009",
+  "issn": "0215-5319",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://banyuwangikab.bps.go.id/id/publication/2026/02/27/63108b9f84e4ba203dcfc418/kabupaten-banyuwangi-dalam-angka-2026.html",
+  "sourceFileSha256": "e20f57bf480fe75c4d13854ecb3ef4ff1545e8235c88840b307f2493b60f5dc5",
+  "sourceFileBytes": 6031338,
+  "sourcePages": [65, 137],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuwangi.",
+  "csvPath": "datasets/bps-3510-dalam-angka-2026.csv",
+  "csvSha256": "9f130250867a88ad765b075360e256f8e624def690117c73cf8ff1dda02b8530",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Banyuwangi, 2025",
+      "printedPages": [65],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Banyuwangi, 2025.",
+      "printedPages": [137],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (basis of 2025 not determinable)",
+    "table 10.1 (expenditure-by-commodity) could not be read reliably and is not included (rupiah figures printed with a three-digit decimal part: the table uses ',' as a thousands mark and is not read)",
+    "table 3.1.2: the rows of region 35.10 are not stored: age_group vs total: parts sum 1807340.0000 != 1812709.0000 (diff 5369.0000); the source itself is inconsistent"
+  ]
+}

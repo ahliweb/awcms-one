@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.03.2003,4,Mendahara Tengah,sex,laki_laki,,2007,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.2003,4,Mendahara Tengah,sex,perempuan,,1901,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.2003,4,Mendahara Tengah,total,total,,3908,jiwa,2025,registration,total_population,3.1,24,,
+15.07.03.2001,4,Pangkal Duri,sex,laki_laki,,1570,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.2001,4,Pangkal Duri,sex,perempuan,,1507,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.2001,4,Pangkal Duri,total,total,,3077,jiwa,2025,registration,total_population,3.1,24,,
+15.07.03.2007,4,Lagan Ilir,sex,laki_laki,,917,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.2007,4,Lagan Ilir,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.2007,4,Lagan Ilir,total,total,,1767,jiwa,2025,registration,total_population,3.1,24,,
+15.07.03.2017,4,Merbau,sex,laki_laki,,1639,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.2017,4,Merbau,sex,perempuan,,1556,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.2017,4,Merbau,total,total,,3195,jiwa,2025,registration,total_population,3.1,24,,
+15.07.03.2015,4,Sungai Tawar,sex,laki_laki,,1505,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.2015,4,Sungai Tawar,sex,perempuan,,1461,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.2015,4,Sungai Tawar,total,total,,2966,jiwa,2025,registration,total_population,3.1,24,,
+15.07.03.2014,4,Sinar Kalimantan,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.2014,4,Sinar Kalimantan,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.2014,4,Sinar Kalimantan,total,total,,955,jiwa,2025,registration,total_population,3.1,24,,
+15.07.03.2018,4,Pangkal Duri Ilir,sex,laki_laki,,687,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.2018,4,Pangkal Duri Ilir,sex,perempuan,,670,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.2018,4,Pangkal Duri Ilir,total,total,,1357,jiwa,2025,registration,total_population,3.1,24,,
+15.07.03.1002,4,Mendahara Ilir,sex,laki_laki,,3723,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.07.03.1002,4,Mendahara Ilir,sex,perempuan,,3605,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+15.07.03.1002,4,Mendahara Ilir,total,total,,7328,jiwa,2025,registration,total_population,3.1,24,,

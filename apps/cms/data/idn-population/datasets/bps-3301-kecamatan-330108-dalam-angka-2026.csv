@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.01.08.2004,4,Brebeg,sex,perempuan,,2347,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2004,4,Brebeg,total,total,,4847,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2001,4,Tritih Wetan,sex,perempuan,,5968,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2001,4,Tritih Wetan,total,total,,12038,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2013,4,Tritih Lor,sex,perempuan,,6556,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2013,4,Tritih Lor,total,total,,13045,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2002,4,Sumingkir,sex,perempuan,,3214,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2002,4,Sumingkir,total,total,,6522,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2003,4,Jeruklegi Wetan,sex,perempuan,,4258,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2003,4,Jeruklegi Wetan,total,total,,8460,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2005,4,Jeruklegi Kulon,sex,perempuan,,4496,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2005,4,Jeruklegi Kulon,total,total,,9213,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2011,4,Sawangan,sex,perempuan,,1976,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2011,4,Sawangan,total,total,,4132,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2006,4,Cilibang,sex,perempuan,,1291,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2006,4,Cilibang,total,total,,2686,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2008,4,Karangkemiri,sex,perempuan,,2348,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2008,4,Karangkemiri,total,total,,4716,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2009,4,Jambusari,sex,perempuan,,4079,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2009,4,Jambusari,total,total,,8270,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2010,4,Prapagan,sex,perempuan,,1567,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2010,4,Prapagan,total,total,,3228,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08.2012,4,Citepus,sex,perempuan,,2458,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08.2012,4,Citepus,total,total,,5124,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08,3,Jeruklegi,sex,perempuan,,40844,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.08,3,Jeruklegi,total,total,,82869,jiwa,2025,registration,total_population,3.1,7,,
+33.01.08,3,Jeruklegi,age_group,0-4,perempuan,2374,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.08,3,Jeruklegi,age_group,0-4,,4865,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.08,3,Jeruklegi,age_group,5-9,perempuan,3147,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.08,3,Jeruklegi,age_group,5-9,,6412,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.08,3,Jeruklegi,age_group,10-14,perempuan,3223,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.08,3,Jeruklegi,age_group,10-14,,6743,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.08,3,Jeruklegi,age_group,15-19,perempuan,3033,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.08,3,Jeruklegi,age_group,15-19,,6330,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.08,3,Jeruklegi,age_group,20-24,perempuan,2929,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.08,3,Jeruklegi,age_group,20-24,,6057,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.08,3,Jeruklegi,age_group,25-29,perempuan,3108,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.08,3,Jeruklegi,age_group,25-29,,6507,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.08,3,Jeruklegi,age_group,30-34,perempuan,3118,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.08,3,Jeruklegi,age_group,30-34,,6542,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.08,3,Jeruklegi,age_group,35-39,perempuan,2945,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.08,3,Jeruklegi,age_group,35-39,,5989,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.08,3,Jeruklegi,age_group,40-44,perempuan,3169,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.08,3,Jeruklegi,age_group,40-44,,6322,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.08,3,Jeruklegi,age_group,45-49,perempuan,2692,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.08,3,Jeruklegi,age_group,45-49,,5427,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.08,3,Jeruklegi,age_group,50-54,perempuan,2679,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.08,3,Jeruklegi,age_group,50-54,,5075,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.08,3,Jeruklegi,age_group,55-59,perempuan,2342,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.08,3,Jeruklegi,age_group,55-59,,4647,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.08,3,Jeruklegi,age_group,60-64,perempuan,2089,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.08,3,Jeruklegi,age_group,60-64,,4066,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.08,3,Jeruklegi,age_group,65-69,perempuan,1721,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.08,3,Jeruklegi,age_group,65-69,,3285,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.08,3,Jeruklegi,age_group,70-74,perempuan,966,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.08,3,Jeruklegi,age_group,70-74,,2030,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.08,3,Jeruklegi,age_group,75+,perempuan,1309,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.08,3,Jeruklegi,age_group,75+,,2572,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.08,3,Jeruklegi,sex,perempuan,,40844,jiwa,2025,registration,total_population,3.2,9,,Perempuan
+33.01.08,3,Jeruklegi,total,total,,82869,jiwa,2025,registration,total_population,3.2,9,,

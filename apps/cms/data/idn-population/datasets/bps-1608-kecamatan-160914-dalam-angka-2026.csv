@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.14.2004,4,Penanggungan,sex,laki_laki,,732,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2004,4,Penanggungan,sex,perempuan,,660,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2004,4,Penanggungan,total,total,,1392,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14.2002,4,Tanjung Kurung,sex,laki_laki,,778,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2002,4,Tanjung Kurung,sex,perempuan,,664,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2002,4,Tanjung Kurung,total,total,,1442,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14.2005,4,Bumi Genap,sex,laki_laki,,1122,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2005,4,Bumi Genap,sex,perempuan,,1029,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2005,4,Bumi Genap,total,total,,2151,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14.2006,4,Gedung Nyawa,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2006,4,Gedung Nyawa,sex,perempuan,,537,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2006,4,Gedung Nyawa,total,total,,1119,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14.2007,4,Gedung Wani,sex,laki_laki,,1614,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2007,4,Gedung Wani,sex,perempuan,,1477,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2007,4,Gedung Wani,total,total,,3091,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14.2008,4,Sura,sex,laki_laki,,572,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2008,4,Sura,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2008,4,Sura,total,total,,1075,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14.2001,4,Merpang,sex,laki_laki,,455,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2001,4,Merpang,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2001,4,Merpang,total,total,,852,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14.2003,4,Air Baru,sex,laki_laki,,556,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14.2003,4,Air Baru,sex,perempuan,,528,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14.2003,4,Air Baru,total,total,,1084,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14,3,Runjung Agung,sex,laki_laki,,6799,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.14,3,Runjung Agung,sex,perempuan,,6141,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.14,3,Runjung Agung,total,total,,12940,jiwa,2025,registration,total_population,3.1,27,,
+16.09.14,3,Runjung Agung,age_group,0-4,laki_laki,322,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.14,3,Runjung Agung,age_group,0-4,perempuan,307,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.14,3,Runjung Agung,age_group,0-4,,629,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.14,3,Runjung Agung,age_group,5-9,laki_laki,448,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.14,3,Runjung Agung,age_group,5-9,perempuan,348,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.14,3,Runjung Agung,age_group,5-9,,796,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.14,3,Runjung Agung,age_group,10-14,laki_laki,518,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.14,3,Runjung Agung,age_group,10-14,perempuan,450,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.14,3,Runjung Agung,age_group,10-14,,968,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.14,3,Runjung Agung,age_group,15-19,laki_laki,540,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.14,3,Runjung Agung,age_group,15-19,perempuan,500,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.14,3,Runjung Agung,age_group,15-19,,1040,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.14,3,Runjung Agung,age_group,20-24,laki_laki,575,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.14,3,Runjung Agung,age_group,20-24,perempuan,566,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.14,3,Runjung Agung,age_group,20-24,,1141,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.14,3,Runjung Agung,age_group,25-29,laki_laki,550,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.14,3,Runjung Agung,age_group,25-29,perempuan,454,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.14,3,Runjung Agung,age_group,25-29,,1004,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.14,3,Runjung Agung,age_group,30-34,laki_laki,431,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.14,3,Runjung Agung,age_group,30-34,perempuan,417,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.14,3,Runjung Agung,age_group,30-34,,848,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.14,3,Runjung Agung,age_group,35-39,laki_laki,580,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.14,3,Runjung Agung,age_group,35-39,perempuan,508,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.14,3,Runjung Agung,age_group,35-39,,1088,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.14,3,Runjung Agung,age_group,40-44,laki_laki,595,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.14,3,Runjung Agung,age_group,40-44,perempuan,518,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.14,3,Runjung Agung,age_group,40-44,,1113,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.14,3,Runjung Agung,age_group,45-49,laki_laki,574,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.14,3,Runjung Agung,age_group,45-49,perempuan,531,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.14,3,Runjung Agung,age_group,45-49,,1105,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.14,3,Runjung Agung,age_group,50-54,laki_laki,501,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.14,3,Runjung Agung,age_group,50-54,perempuan,431,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.14,3,Runjung Agung,age_group,50-54,,932,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.14,3,Runjung Agung,age_group,55-59,laki_laki,389,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.14,3,Runjung Agung,age_group,55-59,perempuan,372,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.14,3,Runjung Agung,age_group,55-59,,761,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.14,3,Runjung Agung,age_group,60-64,laki_laki,267,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.14,3,Runjung Agung,age_group,60-64,perempuan,266,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.14,3,Runjung Agung,age_group,60-64,,533,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.14,3,Runjung Agung,age_group,65-69,laki_laki,243,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.14,3,Runjung Agung,age_group,65-69,perempuan,229,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.14,3,Runjung Agung,age_group,65-69,,472,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.14,3,Runjung Agung,age_group,70-74,laki_laki,134,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.14,3,Runjung Agung,age_group,70-74,perempuan,140,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.14,3,Runjung Agung,age_group,70-74,,274,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.14,3,Runjung Agung,age_group,75+,laki_laki,132,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.14,3,Runjung Agung,age_group,75+,perempuan,104,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.14,3,Runjung Agung,age_group,75+,,236,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.14,3,Runjung Agung,sex,laki_laki,,6799,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.14,3,Runjung Agung,sex,perempuan,,6141,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.14,3,Runjung Agung,total,total,,12940,jiwa,2025,registration,total_population,3.2,29,,

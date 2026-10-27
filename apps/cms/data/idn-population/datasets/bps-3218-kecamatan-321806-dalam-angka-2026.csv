@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.18.06.2001,4,SUKAMAJU,sex,laki_laki,,4039,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.06.2001,4,SUKAMAJU,sex,perempuan,,3980,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.06.2001,4,SUKAMAJU,total,total,,8019,jiwa,2025,registration,total_population,3.1,30,,
+32.18.06.2002,4,KERTAJAYA,sex,laki_laki,,3264,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.06.2002,4,KERTAJAYA,sex,perempuan,,3174,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.06.2002,4,KERTAJAYA,total,total,,6438,jiwa,2025,registration,total_population,3.1,30,,
+32.18.06.2003,4,MANGUNJAYA,sex,laki_laki,,3449,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.06.2003,4,MANGUNJAYA,sex,perempuan,,3413,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.06.2003,4,MANGUNJAYA,total,total,,6862,jiwa,2025,registration,total_population,3.1,30,,
+32.18.06.2005,4,JANGRAGA,sex,laki_laki,,2757,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.06.2005,4,JANGRAGA,sex,perempuan,,2843,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.06.2005,4,JANGRAGA,total,total,,5600,jiwa,2025,registration,total_population,3.1,30,,
+32.18.06.2004,4,SINDANG JAYA,sex,laki_laki,,3942,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.06.2004,4,SINDANG JAYA,sex,perempuan,,3878,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.06.2004,4,SINDANG JAYA,total,total,,7820,jiwa,2025,registration,total_population,3.1,30,,
+32.18.06,3,Kecamatan Mangunjaya,sex,laki_laki,,17451,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.06,3,Kecamatan Mangunjaya,sex,perempuan,,17288,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.06,3,Kecamatan Mangunjaya,total,total,,34739,jiwa,2025,registration,total_population,3.1,30,,
+32.18.06,3,Mangunjaya,age_group,0-4,laki_laki,1094,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.06,3,Mangunjaya,age_group,0-4,perempuan,1010,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.06,3,Mangunjaya,age_group,0-4,,2104,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.06,3,Mangunjaya,age_group,5-9,laki_laki,1343,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.06,3,Mangunjaya,age_group,5-9,perempuan,1246,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.06,3,Mangunjaya,age_group,5-9,,2589,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.06,3,Mangunjaya,age_group,10-14,laki_laki,1316,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.06,3,Mangunjaya,age_group,10-14,perempuan,1216,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.06,3,Mangunjaya,age_group,10-14,,2532,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.06,3,Mangunjaya,age_group,15-19,laki_laki,1347,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.06,3,Mangunjaya,age_group,15-19,perempuan,1226,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.06,3,Mangunjaya,age_group,15-19,,2573,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.06,3,Mangunjaya,age_group,20-24,laki_laki,1310,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.06,3,Mangunjaya,age_group,20-24,perempuan,1198,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.06,3,Mangunjaya,age_group,20-24,,2508,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.06,3,Mangunjaya,age_group,25-29,laki_laki,1428,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.06,3,Mangunjaya,age_group,25-29,perempuan,1296,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.06,3,Mangunjaya,age_group,25-29,,2724,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.06,3,Mangunjaya,age_group,30-34,laki_laki,1286,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.06,3,Mangunjaya,age_group,30-34,perempuan,1243,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.06,3,Mangunjaya,age_group,30-34,,2529,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.06,3,Mangunjaya,age_group,35-39,laki_laki,1149,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.06,3,Mangunjaya,age_group,35-39,perempuan,1066,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.06,3,Mangunjaya,age_group,35-39,,2215,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.06,3,Mangunjaya,age_group,40-44,laki_laki,1150,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.06,3,Mangunjaya,age_group,40-44,perempuan,1126,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.06,3,Mangunjaya,age_group,40-44,,2276,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.06,3,Mangunjaya,age_group,45-49,laki_laki,982,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.06,3,Mangunjaya,age_group,45-49,perempuan,1093,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.06,3,Mangunjaya,age_group,45-49,,2075,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.06,3,Mangunjaya,age_group,50-54,laki_laki,1055,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.06,3,Mangunjaya,age_group,50-54,perempuan,1127,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.06,3,Mangunjaya,age_group,50-54,,2182,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.06,3,Mangunjaya,age_group,55-59,laki_laki,995,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.06,3,Mangunjaya,age_group,55-59,perempuan,1140,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.06,3,Mangunjaya,age_group,55-59,,2135,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.06,3,Mangunjaya,age_group,60-64,laki_laki,911,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.06,3,Mangunjaya,age_group,60-64,perempuan,1075,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.06,3,Mangunjaya,age_group,60-64,,1986,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.06,3,Mangunjaya,age_group,65-69,laki_laki,827,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.06,3,Mangunjaya,age_group,65-69,perempuan,914,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.06,3,Mangunjaya,age_group,65-69,,1741,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.06,3,Mangunjaya,age_group,70-74,laki_laki,623,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.06,3,Mangunjaya,age_group,70-74,perempuan,579,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.06,3,Mangunjaya,age_group,70-74,,1202,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.06,3,Mangunjaya,age_group,75+,laki_laki,635,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.06,3,Mangunjaya,age_group,75+,perempuan,733,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.06,3,Mangunjaya,age_group,75+,,1368,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.06,3,Kecamatan Mangunjaya,sex,laki_laki,,17451,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+32.18.06,3,Kecamatan Mangunjaya,sex,perempuan,,17288,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+32.18.06,3,Kecamatan Mangunjaya,total,total,,34739,jiwa,2025,registration,total_population,3.2,32,,

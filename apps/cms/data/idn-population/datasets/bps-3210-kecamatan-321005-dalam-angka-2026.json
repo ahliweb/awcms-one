@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3210-kecamatan-321005-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.10.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Argapura Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Majalengka",
+  "publisherDomain": "3210",
+  "publisherWebsite": "https://majalengkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Majalengka (https://majalengkakab.bps.go.id), publikasi \"Kecamatan Argapura Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3210050",
+  "publicationNumber": "32100.26012",
+  "issn": "2747-1020",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://majalengkakab.bps.go.id/id/publication/2026/09/28/a1a4609639d34b51c3c05e0c/kecamatan-argapura-dalam-angka-2026.html",
+  "sourceFileSha256": "d13c8ebe1344c54cb835207f8b20a980284306c6d444ec99c2c67d2687682e9a",
+  "sourceFileBytes": 20930693,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Majalengka.",
+  "csvPath": "datasets/bps-3210-kecamatan-321005-dalam-angka-2026.csv",
+  "csvSha256": "42504ff25fbfe1bc5d3cbf473864a1e1782ab6585e02a39d461365eb949da848",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Argapura, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Argapura, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

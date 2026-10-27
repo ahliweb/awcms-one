@@ -1,0 +1,50 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.09.2005,4,Maha Singkil,sex,laki_laki,,256,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2005,4,Maha Singkil,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2005,4,Maha Singkil,total,total,,502,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2006,4,Tenembak Bintang,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2006,4,Tenembak Bintang,sex,perempuan,,253,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2006,4,Tenembak Bintang,total,total,,536,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2004,4,Alur Buluh,sex,laki_laki,,167,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2004,4,Alur Buluh,sex,perempuan,,155,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2004,4,Alur Buluh,total,total,,322,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2003,4,Tualang Baru,sex,laki_laki,,260,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2003,4,Tualang Baru,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2003,4,Tualang Baru,total,total,,508,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2012,4,Rema,sex,laki_laki,,294,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2012,4,Rema,sex,perempuan,,289,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2012,4,Rema,total,total,,583,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2010,4,Kerukunan,sex,laki_laki,,285,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2010,4,Kerukunan,sex,perempuan,,293,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2010,4,Kerukunan,total,total,,578,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2008,4,Rikit Bur,sex,laki_laki,,451,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2008,4,Rikit Bur,sex,perempuan,,467,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2008,4,Rikit Bur,total,total,,918,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2016,4,Amaliah,sex,laki_laki,,250,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2016,4,Amaliah,sex,perempuan,,211,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2016,4,Amaliah,total,total,,461,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2018,4,Gumpang,sex,laki_laki,,144,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2018,4,Gumpang,sex,perempuan,,135,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2018,4,Gumpang,total,total,,279,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2014,4,Pejuang,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2014,4,Pejuang,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2014,4,Pejuang,total,total,,546,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2017,4,Sebudi Jaya,sex,laki_laki,,307,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2017,4,Sebudi Jaya,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2017,4,Sebudi Jaya,total,total,,628,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2013,4,Bambel Baru,sex,laki_laki,,472,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2013,4,Bambel Baru,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2013,4,Bambel Baru,total,total,,918,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2015,4,Darussalam,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2015,4,Darussalam,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2015,4,Darussalam,total,total,,386,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2021,4,Mbak Sako,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2021,4,Mbak Sako,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2021,4,Mbak Sako,total,total,,446,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2022,4,Darul Imami,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2022,4,Darul Imami,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2022,4,Darul Imami,total,total,,424,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09.2023,4,Rikit Bur II,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.09.2023,4,Rikit Bur II,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.09.2023,4,Rikit Bur II,total,total,,958,jiwa,2025,registration,total_population,3.1,24,,
+11.02.09,3,Bukit Tusam,total,total,,12988,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.71.06.1004,4,Tajur,sex,laki_laki,,10186,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1004,4,Tajur,sex,perempuan,,10286,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1004,4,Tajur,total,total,,20472,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06.1005,4,Parung Serab,sex,laki_laki,,9764,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1005,4,Parung Serab,sex,perempuan,,9685,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1005,4,Parung Serab,total,total,,19449,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06.1001,4,Paninggilan,sex,laki_laki,,11418,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1001,4,Paninggilan,sex,perempuan,,11462,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1001,4,Paninggilan,total,total,,22880,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06.1008,4,Paninggilan Utara,sex,laki_laki,,10120,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1008,4,Paninggilan Utara,sex,perempuan,,10169,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1008,4,Paninggilan Utara,total,total,,20289,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06.1007,4,Sudimara Selatan,sex,laki_laki,,9166,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1007,4,Sudimara Selatan,sex,perempuan,,9158,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1007,4,Sudimara Selatan,total,total,,18324,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06.1002,4,Sudimara Barat,sex,laki_laki,,10237,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1002,4,Sudimara Barat,sex,perempuan,,10300,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1002,4,Sudimara Barat,total,total,,20537,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06.1006,4,Sudimara Jaya,sex,laki_laki,,11569,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1006,4,Sudimara Jaya,sex,perempuan,,11583,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1006,4,Sudimara Jaya,total,total,,23152,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06.1003,4,Sudimara Timur,sex,laki_laki,,6578,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06.1003,4,Sudimara Timur,sex,perempuan,,6815,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06.1003,4,Sudimara Timur,total,total,,13393,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06,3,Ciledug,sex,laki_laki,,79038,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.06,3,Ciledug,sex,perempuan,,79458,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.06,3,Ciledug,total,total,,158496,jiwa,2025,registration,total_population,3.1,22,,
+36.71.06,3,Ciledug,age_group,0-4,laki_laki,4796,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.06,3,Ciledug,age_group,0-4,perempuan,4481,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.06,3,Ciledug,age_group,0-4,,9277,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.06,3,Ciledug,age_group,5-9,laki_laki,6843,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.06,3,Ciledug,age_group,5-9,perempuan,6463,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.06,3,Ciledug,age_group,5-9,,13306,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.06,3,Ciledug,age_group,10-14,laki_laki,6881,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.06,3,Ciledug,age_group,10-14,perempuan,6523,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.06,3,Ciledug,age_group,10-14,,13404,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.06,3,Ciledug,age_group,15-19,laki_laki,6420,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.06,3,Ciledug,age_group,15-19,perempuan,6093,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.06,3,Ciledug,age_group,15-19,,12513,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.06,3,Ciledug,age_group,20-24,laki_laki,6375,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.06,3,Ciledug,age_group,20-24,perempuan,6048,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.06,3,Ciledug,age_group,20-24,,12423,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.06,3,Ciledug,age_group,25-29,laki_laki,6285,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.06,3,Ciledug,age_group,25-29,perempuan,6174,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.06,3,Ciledug,age_group,25-29,,12459,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.06,3,Ciledug,age_group,30-34,laki_laki,6193,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.06,3,Ciledug,age_group,30-34,perempuan,6361,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.06,3,Ciledug,age_group,30-34,,12554,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.06,3,Ciledug,age_group,35-39,laki_laki,5919,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.06,3,Ciledug,age_group,35-39,perempuan,6063,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.06,3,Ciledug,age_group,35-39,,11982,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.06,3,Ciledug,age_group,40-44,laki_laki,6176,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.06,3,Ciledug,age_group,40-44,perempuan,6491,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.06,3,Ciledug,age_group,40-44,,12667,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.06,3,Ciledug,age_group,45-49,laki_laki,5928,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.06,3,Ciledug,age_group,45-49,perempuan,6219,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.06,3,Ciledug,age_group,45-49,,12147,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.06,3,Ciledug,age_group,50-54,laki_laki,5198,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.06,3,Ciledug,age_group,50-54,perempuan,5337,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.06,3,Ciledug,age_group,50-54,,10535,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.06,3,Ciledug,age_group,55-59,laki_laki,4161,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.06,3,Ciledug,age_group,55-59,perempuan,4532,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.06,3,Ciledug,age_group,55-59,,8693,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.06,3,Ciledug,age_group,60-64,laki_laki,3332,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.06,3,Ciledug,age_group,60-64,perempuan,3650,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.06,3,Ciledug,age_group,60-64,,6982,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.06,3,Ciledug,age_group,65-69,laki_laki,2299,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.06,3,Ciledug,age_group,65-69,perempuan,2513,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.06,3,Ciledug,age_group,65-69,,4812,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.06,3,Ciledug,age_group,70-74,laki_laki,1259,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.06,3,Ciledug,age_group,70-74,perempuan,1330,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.06,3,Ciledug,age_group,70-74,,2589,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.06,3,Ciledug,age_group,75+,laki_laki,973,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.06,3,Ciledug,age_group,75+,perempuan,1180,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.06,3,Ciledug,age_group,75+,,2153,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.06,3,Ciledug,sex,laki_laki,,79038,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+36.71.06,3,Ciledug,sex,perempuan,,79458,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+36.71.06,3,Ciledug,total,total,,158496,jiwa,2025,registration,total_population,3.2,24,,

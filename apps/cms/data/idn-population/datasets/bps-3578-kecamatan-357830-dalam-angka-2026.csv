@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.30.1002,4,Babat Jerawat,sex,laki_laki,,13618,jiwa,2024,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.30.1002,4,Babat Jerawat,sex,perempuan,,13809,jiwa,2024,registration,total_population,3.1,29,,Perempuan/Female
+35.78.30.1002,4,Babat Jerawat,total,total,,27427,jiwa,2024,registration,total_population,3.1,29,,
+35.78.30.1001,4,Pakal,sex,laki_laki,,6026,jiwa,2024,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.30.1001,4,Pakal,sex,perempuan,,6025,jiwa,2024,registration,total_population,3.1,29,,Perempuan/Female
+35.78.30.1001,4,Pakal,total,total,,12051,jiwa,2024,registration,total_population,3.1,29,,
+35.78.30.1005,4,Benowo,sex,laki_laki,,6407,jiwa,2024,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.30.1005,4,Benowo,sex,perempuan,,6182,jiwa,2024,registration,total_population,3.1,29,,Perempuan/Female
+35.78.30.1005,4,Benowo,total,total,,12589,jiwa,2024,registration,total_population,3.1,29,,
+35.78.30.1004,4,Sumber Rejo,sex,laki_laki,,6808,jiwa,2024,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.30.1004,4,Sumber Rejo,sex,perempuan,,6611,jiwa,2024,registration,total_population,3.1,29,,Perempuan/Female
+35.78.30.1004,4,Sumber Rejo,total,total,,13419,jiwa,2024,registration,total_population,3.1,29,,
+35.78.30,3,Kecamatan Pakal,sex,laki_laki,,32859,jiwa,2024,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.30,3,Kecamatan Pakal,sex,perempuan,,32627,jiwa,2024,registration,total_population,3.1,29,,Perempuan/Female
+35.78.30,3,Kecamatan Pakal,total,total,,65486,jiwa,2024,registration,total_population,3.1,29,,
+35.78.30,3,Pakal,age_group,0-4,laki_laki,2151,jiwa,2024,registration,total_population,3.2,31,,0-4
+35.78.30,3,Pakal,age_group,0-4,perempuan,2050,jiwa,2024,registration,total_population,3.2,31,,0-4
+35.78.30,3,Pakal,age_group,0-4,,4201,jiwa,2024,registration,total_population,3.2,31,,0-4
+35.78.30,3,Pakal,age_group,5-9,laki_laki,2590,jiwa,2024,registration,total_population,3.2,31,,5-9
+35.78.30,3,Pakal,age_group,5-9,perempuan,2509,jiwa,2024,registration,total_population,3.2,31,,5-9
+35.78.30,3,Pakal,age_group,5-9,,5099,jiwa,2024,registration,total_population,3.2,31,,5-9
+35.78.30,3,Pakal,age_group,10-14,laki_laki,2726,jiwa,2024,registration,total_population,3.2,31,,10-14
+35.78.30,3,Pakal,age_group,10-14,perempuan,2585,jiwa,2024,registration,total_population,3.2,31,,10-14
+35.78.30,3,Pakal,age_group,10-14,,5311,jiwa,2024,registration,total_population,3.2,31,,10-14
+35.78.30,3,Pakal,age_group,15-19,laki_laki,2795,jiwa,2024,registration,total_population,3.2,31,,15-19
+35.78.30,3,Pakal,age_group,15-19,perempuan,2585,jiwa,2024,registration,total_population,3.2,31,,15-19
+35.78.30,3,Pakal,age_group,15-19,,5380,jiwa,2024,registration,total_population,3.2,31,,15-19
+35.78.30,3,Pakal,age_group,20-24,laki_laki,2674,jiwa,2024,registration,total_population,3.2,31,,20-24
+35.78.30,3,Pakal,age_group,20-24,perempuan,2631,jiwa,2024,registration,total_population,3.2,31,,20-24
+35.78.30,3,Pakal,age_group,20-24,,5305,jiwa,2024,registration,total_population,3.2,31,,20-24
+35.78.30,3,Pakal,age_group,25-29,laki_laki,2687,jiwa,2024,registration,total_population,3.2,31,,25-29
+35.78.30,3,Pakal,age_group,25-29,perempuan,2621,jiwa,2024,registration,total_population,3.2,31,,25-29
+35.78.30,3,Pakal,age_group,25-29,,5308,jiwa,2024,registration,total_population,3.2,31,,25-29
+35.78.30,3,Pakal,age_group,30-34,laki_laki,2575,jiwa,2024,registration,total_population,3.2,31,,30-34
+35.78.30,3,Pakal,age_group,30-34,perempuan,2589,jiwa,2024,registration,total_population,3.2,31,,30-34
+35.78.30,3,Pakal,age_group,30-34,,5164,jiwa,2024,registration,total_population,3.2,31,,30-34
+35.78.30,3,Pakal,age_group,35-39,laki_laki,2295,jiwa,2024,registration,total_population,3.2,31,,35-39
+35.78.30,3,Pakal,age_group,35-39,perempuan,2255,jiwa,2024,registration,total_population,3.2,31,,35-39
+35.78.30,3,Pakal,age_group,35-39,,4550,jiwa,2024,registration,total_population,3.2,31,,35-39
+35.78.30,3,Pakal,age_group,40-44,laki_laki,2661,jiwa,2024,registration,total_population,3.2,31,,40-44
+35.78.30,3,Pakal,age_group,40-44,perempuan,2675,jiwa,2024,registration,total_population,3.2,31,,40-44
+35.78.30,3,Pakal,age_group,40-44,,5336,jiwa,2024,registration,total_population,3.2,31,,40-44
+35.78.30,3,Pakal,age_group,45-49,laki_laki,2450,jiwa,2024,registration,total_population,3.2,31,,45-49
+35.78.30,3,Pakal,age_group,45-49,perempuan,2577,jiwa,2024,registration,total_population,3.2,31,,45-49
+35.78.30,3,Pakal,age_group,45-49,,5027,jiwa,2024,registration,total_population,3.2,31,,45-49
+35.78.30,3,Pakal,age_group,50-54,laki_laki,2315,jiwa,2024,registration,total_population,3.2,31,,50-54
+35.78.30,3,Pakal,age_group,50-54,perempuan,2324,jiwa,2024,registration,total_population,3.2,31,,50-54
+35.78.30,3,Pakal,age_group,50-54,,4639,jiwa,2024,registration,total_population,3.2,31,,50-54
+35.78.30,3,Pakal,age_group,55-59,laki_laki,1862,jiwa,2024,registration,total_population,3.2,31,,55-59
+35.78.30,3,Pakal,age_group,55-59,perempuan,1959,jiwa,2024,registration,total_population,3.2,31,,55-59
+35.78.30,3,Pakal,age_group,55-59,,3821,jiwa,2024,registration,total_population,3.2,31,,55-59
+35.78.30,3,Pakal,age_group,60-64,laki_laki,1277,jiwa,2024,registration,total_population,3.2,31,,60-64
+35.78.30,3,Pakal,age_group,60-64,perempuan,1292,jiwa,2024,registration,total_population,3.2,31,,60-64
+35.78.30,3,Pakal,age_group,60-64,,2569,jiwa,2024,registration,total_population,3.2,31,,60-64
+35.78.30,3,Pakal,age_group,65-69,laki_laki,934,jiwa,2024,registration,total_population,3.2,31,,65-69
+35.78.30,3,Pakal,age_group,65-69,perempuan,915,jiwa,2024,registration,total_population,3.2,31,,65-69
+35.78.30,3,Pakal,age_group,65-69,,1849,jiwa,2024,registration,total_population,3.2,31,,65-69
+35.78.30,3,Pakal,age_group,70-74,laki_laki,513,jiwa,2024,registration,total_population,3.2,31,,70-74
+35.78.30,3,Pakal,age_group,70-74,perempuan,549,jiwa,2024,registration,total_population,3.2,31,,70-74
+35.78.30,3,Pakal,age_group,70-74,,1062,jiwa,2024,registration,total_population,3.2,31,,70-74
+35.78.30,3,Pakal,age_group,75+,laki_laki,354,jiwa,2024,registration,total_population,3.2,31,,75+
+35.78.30,3,Pakal,age_group,75+,perempuan,511,jiwa,2024,registration,total_population,3.2,31,,75+
+35.78.30,3,Pakal,age_group,75+,,865,jiwa,2024,registration,total_population,3.2,31,,75+
+35.78.30,3,Kecamatan Pakal,sex,laki_laki,,32859,jiwa,2024,registration,total_population,3.2,31,,Laki-Laki
+35.78.30,3,Kecamatan Pakal,sex,perempuan,,32627,jiwa,2024,registration,total_population,3.2,31,,Perempuan
+35.78.30,3,Kecamatan Pakal,total,total,,65486,jiwa,2024,registration,total_population,3.2,31,,

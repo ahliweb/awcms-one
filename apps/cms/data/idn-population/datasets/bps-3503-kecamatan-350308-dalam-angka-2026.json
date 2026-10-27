@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3503-kecamatan-350308-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.03.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Watulimo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Trenggalek",
+  "publisherDomain": "3503",
+  "publisherWebsite": "https://trenggalekkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Trenggalek (https://trenggalekkab.bps.go.id), publikasi \"Kecamatan Watulimo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3503030",
+  "publicationNumber": "35030",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://trenggalekkab.bps.go.id/id/publication/2026/09/28/70afab01e6f8005e8983e3f8/kecamatan-watulimo-dalam-angka-2026.html",
+  "sourceFileSha256": "f7227ee48a906cedbb9f4f142af970479892b01962a6403454c54d9f05f1bf51",
+  "sourceFileBytes": 5107154,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Trenggalek.",
+  "csvPath": "datasets/bps-3503-kecamatan-350308-dalam-angka-2026.csv",
+  "csvSha256": "60fbcb57bd95b38ee9bc6a6070a634d53ea6a9ae492eeca25def694b0af39ac9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Watulimo, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Watulimo, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gemahrejo\": unmatched ",
+    "table 3.1: row not stored: row \"Gemahrejo\": unmatched "
+  ]
+}

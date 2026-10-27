@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3314-kecamatan-331417-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.14.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukodono Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sragen",
+  "publisherDomain": "3314",
+  "publisherWebsite": "https://sragenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sragen (https://sragenkab.bps.go.id), publikasi \"Kecamatan Sukodono Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3314170",
+  "publicationNumber": "3314026023",
+  "issn": "0852-2693",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sragenkab.bps.go.id/id/publication/2026/09/28/14d33bd48bdaeafcdddeaf41/kecamatan-sukodono-dalam-angka-2026.html",
+  "sourceFileSha256": "34d0fed2a7f7a53fc912e8aaeddeba6ed976423624a0c45a2354a931ede6bdd6",
+  "sourceFileBytes": 13509857,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sragen.",
+  "csvPath": "datasets/bps-3314-kecamatan-331417-dalam-angka-2026.csv",
+  "csvSha256": "aa8aef17704d1e96a1e9b5d74675e68ebd1e4566e3b46acddbe7eee8eff068db",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sukodono, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukodono, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

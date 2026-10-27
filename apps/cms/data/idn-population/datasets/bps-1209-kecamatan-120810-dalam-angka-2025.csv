@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08.10,3,Pamatang Sidamanik,age_group,0-4,laki_laki,473,jiwa,2024,registration,total_population,3.2,27,,0 –4
+12.08.10,3,Pamatang Sidamanik,age_group,0-4,perempuan,420,jiwa,2024,registration,total_population,3.2,27,,0 –4
+12.08.10,3,Pamatang Sidamanik,age_group,0-4,,893,jiwa,2024,registration,total_population,3.2,27,,0 –4
+12.08.10,3,Pamatang Sidamanik,age_group,5-9,laki_laki,849,jiwa,2024,registration,total_population,3.2,27,,5 – 9
+12.08.10,3,Pamatang Sidamanik,age_group,5-9,perempuan,713,jiwa,2024,registration,total_population,3.2,27,,5 – 9
+12.08.10,3,Pamatang Sidamanik,age_group,5-9,,1562,jiwa,2024,registration,total_population,3.2,27,,5 – 9
+12.08.10,3,Pamatang Sidamanik,age_group,10-14,laki_laki,949,jiwa,2024,registration,total_population,3.2,27,,10 – 14
+12.08.10,3,Pamatang Sidamanik,age_group,10-14,perempuan,871,jiwa,2024,registration,total_population,3.2,27,,10 – 14
+12.08.10,3,Pamatang Sidamanik,age_group,10-14,,1820,jiwa,2024,registration,total_population,3.2,27,,10 – 14
+12.08.10,3,Pamatang Sidamanik,age_group,15-19,laki_laki,1019,jiwa,2024,registration,total_population,3.2,27,,15 – 19
+12.08.10,3,Pamatang Sidamanik,age_group,15-19,perempuan,938,jiwa,2024,registration,total_population,3.2,27,,15 – 19
+12.08.10,3,Pamatang Sidamanik,age_group,15-19,,1957,jiwa,2024,registration,total_population,3.2,27,,15 – 19
+12.08.10,3,Pamatang Sidamanik,age_group,20-24,laki_laki,955,jiwa,2024,registration,total_population,3.2,27,,20 – 24
+12.08.10,3,Pamatang Sidamanik,age_group,20-24,perempuan,957,jiwa,2024,registration,total_population,3.2,27,,20 – 24
+12.08.10,3,Pamatang Sidamanik,age_group,20-24,,1912,jiwa,2024,registration,total_population,3.2,27,,20 – 24
+12.08.10,3,Pamatang Sidamanik,age_group,25-29,laki_laki,832,jiwa,2024,registration,total_population,3.2,27,,25 – 29
+12.08.10,3,Pamatang Sidamanik,age_group,25-29,perempuan,762,jiwa,2024,registration,total_population,3.2,27,,25 – 29
+12.08.10,3,Pamatang Sidamanik,age_group,25-29,,1594,jiwa,2024,registration,total_population,3.2,27,,25 – 29
+12.08.10,3,Pamatang Sidamanik,age_group,30-34,laki_laki,779,jiwa,2024,registration,total_population,3.2,27,,30 – 34
+12.08.10,3,Pamatang Sidamanik,age_group,30-34,perempuan,666,jiwa,2024,registration,total_population,3.2,27,,30 – 34
+12.08.10,3,Pamatang Sidamanik,age_group,30-34,,1445,jiwa,2024,registration,total_population,3.2,27,,30 – 34
+12.08.10,3,Pamatang Sidamanik,age_group,35-39,laki_laki,760,jiwa,2024,registration,total_population,3.2,27,,35 – 39
+12.08.10,3,Pamatang Sidamanik,age_group,35-39,perempuan,731,jiwa,2024,registration,total_population,3.2,27,,35 – 39
+12.08.10,3,Pamatang Sidamanik,age_group,35-39,,1491,jiwa,2024,registration,total_population,3.2,27,,35 – 39
+12.08.10,3,Pamatang Sidamanik,age_group,40-44,laki_laki,765,jiwa,2024,registration,total_population,3.2,27,,40 – 44
+12.08.10,3,Pamatang Sidamanik,age_group,40-44,perempuan,779,jiwa,2024,registration,total_population,3.2,27,,40 – 44
+12.08.10,3,Pamatang Sidamanik,age_group,40-44,,1544,jiwa,2024,registration,total_population,3.2,27,,40 – 44
+12.08.10,3,Pamatang Sidamanik,age_group,45-49,laki_laki,696,jiwa,2024,registration,total_population,3.2,27,,45 – 49
+12.08.10,3,Pamatang Sidamanik,age_group,45-49,perempuan,638,jiwa,2024,registration,total_population,3.2,27,,45 – 49
+12.08.10,3,Pamatang Sidamanik,age_group,45-49,,1334,jiwa,2024,registration,total_population,3.2,27,,45 – 49
+12.08.10,3,Pamatang Sidamanik,age_group,50-54,laki_laki,592,jiwa,2024,registration,total_population,3.2,27,,50 – 54
+12.08.10,3,Pamatang Sidamanik,age_group,50-54,perempuan,633,jiwa,2024,registration,total_population,3.2,27,,50 – 54
+12.08.10,3,Pamatang Sidamanik,age_group,50-54,,1225,jiwa,2024,registration,total_population,3.2,27,,50 – 54
+12.08.10,3,Pamatang Sidamanik,age_group,55-59,laki_laki,497,jiwa,2024,registration,total_population,3.2,27,,55 – 59
+12.08.10,3,Pamatang Sidamanik,age_group,55-59,perempuan,554,jiwa,2024,registration,total_population,3.2,27,,55 – 59
+12.08.10,3,Pamatang Sidamanik,age_group,55-59,,1051,jiwa,2024,registration,total_population,3.2,27,,55 – 59
+12.08.10,3,Pamatang Sidamanik,age_group,60-64,laki_laki,414,jiwa,2024,registration,total_population,3.2,27,,60 – 64
+12.08.10,3,Pamatang Sidamanik,age_group,60-64,perempuan,498,jiwa,2024,registration,total_population,3.2,27,,60 – 64
+12.08.10,3,Pamatang Sidamanik,age_group,60-64,,912,jiwa,2024,registration,total_population,3.2,27,,60 – 64
+12.08.10,3,Pamatang Sidamanik,age_group,65-69,laki_laki,347,jiwa,2024,registration,total_population,3.2,27,,65 – 69
+12.08.10,3,Pamatang Sidamanik,age_group,65-69,perempuan,454,jiwa,2024,registration,total_population,3.2,27,,65 – 69
+12.08.10,3,Pamatang Sidamanik,age_group,65-69,,801,jiwa,2024,registration,total_population,3.2,27,,65 – 69
+12.08.10,3,Pamatang Sidamanik,age_group,70-74,laki_laki,195,jiwa,2024,registration,total_population,3.2,27,,70 – 74
+12.08.10,3,Pamatang Sidamanik,age_group,70-74,perempuan,298,jiwa,2024,registration,total_population,3.2,27,,70 – 74
+12.08.10,3,Pamatang Sidamanik,age_group,70-74,,493,jiwa,2024,registration,total_population,3.2,27,,70 – 74
+12.08.10,3,Pamatang Sidamanik,age_group,75+,laki_laki,222,jiwa,2024,registration,total_population,3.2,27,,75 +
+12.08.10,3,Pamatang Sidamanik,age_group,75+,perempuan,444,jiwa,2024,registration,total_population,3.2,27,,75 +
+12.08.10,3,Pamatang Sidamanik,age_group,75+,,666,jiwa,2024,registration,total_population,3.2,27,,75 +
+12.08.10,3,Pamatang Sidamanik,sex,laki_laki,,10344,jiwa,2024,registration,total_population,3.2,27,,Laki-Laki
+12.08.10,3,Pamatang Sidamanik,sex,perempuan,,10356,jiwa,2024,registration,total_population,3.2,27,,Perempuan
+12.08.10,3,Pamatang Sidamanik,total,total,,20700,jiwa,2024,registration,total_population,3.2,27,,

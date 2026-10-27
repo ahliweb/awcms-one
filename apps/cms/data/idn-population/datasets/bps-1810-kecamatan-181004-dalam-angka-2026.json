@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1810-kecamatan-181004-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.10.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pardasuka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pardasuka",
+  "publisherDomain": "1810",
+  "publisherWebsite": "https://pringsewukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pardasuka (https://pringsewukab.bps.go.id), publikasi \"Kecamatan Pardasuka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1810010",
+  "publicationNumber": "18100.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pringsewukab.bps.go.id/id/publication/2026/09/28/6f441c7125f3e5fad4afc314/kecamatan-pardasuka-dalam-angka-2026.html",
+  "sourceFileSha256": "91db9e1b072b5b1963739b7d45d2b3810357d306f11bacdf2092ff3bd855ddc3",
+  "sourceFileBytes": 13558898,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pardasuka.",
+  "csvPath": "datasets/bps-1810-kecamatan-181004-dalam-angka-2026.csv",
+  "csvSha256": "ef84dd65344a73cdea38b7aeae5c88d69e5274d7834ebb0d6c6c61148b026709",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pardasuka, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pardasuka, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Suka Negri\": unmatched ",
+    "table 3.1: row not stored: row \"Wargo Mulyo\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Negri\": unmatched ",
+    "table 3.1: row not stored: row \"Wargo Mulyo\": unmatched ",
+    "table 3.2: row not stored: row \"Pringsewu\": unmatched "
+  ]
+}

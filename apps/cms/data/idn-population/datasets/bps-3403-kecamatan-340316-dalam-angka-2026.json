@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3403-kecamatan-340316-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.03.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Girisubo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunungkidul",
+  "publisherDomain": "3403",
+  "publisherWebsite": "https://gunungkidulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunungkidul (https://gunungkidulkab.bps.go.id), publikasi \"Kecamatan Girisubo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "34030.26015",
+  "issn": "2087-605X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gunungkidulkab.bps.go.id/id/publication/2026/09/28/e58f30e18f01c0aa28a5ddc2/kecamatan-girisubo-dalam-angka-2026.html",
+  "sourceFileSha256": "a30a074af45dfd147f0f7282bc64ffdea7cfaa12e0447f3acca2fa7695dbe795",
+  "sourceFileBytes": 9493613,
+  "sourcePages": [25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gunungkidul.",
+  "csvPath": "datasets/bps-3403-kecamatan-340316-dalam-angka-2026.csv",
+  "csvSha256": "f3c9f41539108b567355b2d05a9cf05d27d5f89bd9bc3604ea93566f4241be19",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Girisubo, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 3.1: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

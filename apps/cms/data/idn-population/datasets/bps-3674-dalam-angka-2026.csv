@@ -1,0 +1,122 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.74.07,3,Setu,total,total,,96980,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74.01,3,Serpong,total,total,,172931,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74.06,3,Pamulang,total,total,,339054,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74.04,3,Ciputat,total,total,,233528,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74.05,3,Ciputat Timur,total,total,,175673,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74.03,3,Pondok Aren,total,total,,310955,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74.02,3,Serpong Utara,total,total,,145190,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74,2,Kota Tangerang Selatan,total,total,,1474311,jiwa,2025,registration,total_population,3.1.1,62,,
+36.74,2,Kota Tangerang Selatan,age_group,0-4,,76244,jiwa,2025,registration,total_population,3.1.2,65,,0–4
+36.74,2,Kota Tangerang Selatan,age_group,5-9,,120593,jiwa,2025,registration,total_population,3.1.2,65,,5–9
+36.74,2,Kota Tangerang Selatan,age_group,10-14,,122519,jiwa,2025,registration,total_population,3.1.2,65,,10–14
+36.74,2,Kota Tangerang Selatan,age_group,15-19,,115810,jiwa,2025,registration,total_population,3.1.2,65,,15–19
+36.74,2,Kota Tangerang Selatan,age_group,20-24,,116208,jiwa,2025,registration,total_population,3.1.2,65,,20–24
+36.74,2,Kota Tangerang Selatan,age_group,25-29,,119281,jiwa,2025,registration,total_population,3.1.2,65,,25–29
+36.74,2,Kota Tangerang Selatan,age_group,30-34,,121192,jiwa,2025,registration,total_population,3.1.2,65,,30–34
+36.74,2,Kota Tangerang Selatan,age_group,35-39,,112942,jiwa,2025,registration,total_population,3.1.2,65,,35–39
+36.74,2,Kota Tangerang Selatan,age_group,40-44,,118939,jiwa,2025,registration,total_population,3.1.2,65,,40–44
+36.74,2,Kota Tangerang Selatan,age_group,45-49,,112486,jiwa,2025,registration,total_population,3.1.2,65,,45–49
+36.74,2,Kota Tangerang Selatan,age_group,50-54,,100489,jiwa,2025,registration,total_population,3.1.2,65,,50–54
+36.74,2,Kota Tangerang Selatan,age_group,55-59,,84180,jiwa,2025,registration,total_population,3.1.2,65,,55–59
+36.74,2,Kota Tangerang Selatan,age_group,60-64,,62999,jiwa,2025,registration,total_population,3.1.2,65,,60–64
+36.74,2,Kota Tangerang Selatan,age_group,65-69,,44007,jiwa,2025,registration,total_population,3.1.2,65,,65–69
+36.74,2,Kota Tangerang Selatan,age_group,70-74,,25196,jiwa,2025,registration,total_population,3.1.2,65,,70–74
+36.74,2,Kota Tangerang Selatan,age_group,75+,,21226,jiwa,2025,registration,total_population,3.1.2,65,,75+
+36.74,2,Kota Tangerang Selatan,sex,laki_laki,,733953,jiwa,2025,registration,total_population,3.1.2,65,,Laki-Laki
+36.74,2,Kota Tangerang Selatan,sex,perempuan,,740358,jiwa,2025,registration,total_population,3.1.2,65,,Perempuan
+36.74,2,Kota Tangerang Selatan,total,total,,1474311,jiwa,2025,registration,total_population,3.1.2,65,,
+36.74.07,3,Setu,religion,islam,,88672,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74.07,3,Setu,religion,kristen,,5335,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74.07,3,Setu,religion,katolik,,2007,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74.07,3,Setu,religion,hindu,,197,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74.07,3,Setu,religion,buddha,,704,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74.07,3,Setu,religion,lainnya,,65,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74.01,3,Serpong,religion,islam,,140915,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74.01,3,Serpong,religion,kristen,,15706,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74.01,3,Serpong,religion,katolik,,12148,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74.01,3,Serpong,religion,hindu,,406,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74.01,3,Serpong,religion,buddha,,3571,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74.01,3,Serpong,religion,lainnya,,185,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74.06,3,Pamulang,religion,islam,,310619,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74.06,3,Pamulang,religion,kristen,,18378,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74.06,3,Pamulang,religion,katolik,,7242,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74.06,3,Pamulang,religion,hindu,,777,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74.06,3,Pamulang,religion,buddha,,1707,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74.06,3,Pamulang,religion,lainnya,,331,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74.04,3,Ciputat,religion,islam,,217744,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74.04,3,Ciputat,religion,kristen,,10078,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74.04,3,Ciputat,religion,katolik,,4464,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74.04,3,Ciputat,religion,hindu,,404,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74.04,3,Ciputat,religion,buddha,,769,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74.04,3,Ciputat,religion,lainnya,,69,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74.05,3,Ciputat Timur,religion,islam,,165132,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74.05,3,Ciputat Timur,religion,kristen,,6248,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74.05,3,Ciputat Timur,religion,katolik,,3482,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74.05,3,Ciputat Timur,religion,hindu,,404,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74.05,3,Ciputat Timur,religion,buddha,,387,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74.05,3,Ciputat Timur,religion,lainnya,,20,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74.03,3,Pondok Aren,religion,islam,,286925,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74.03,3,Pondok Aren,religion,kristen,,14185,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74.03,3,Pondok Aren,religion,katolik,,8265,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74.03,3,Pondok Aren,religion,hindu,,605,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74.03,3,Pondok Aren,religion,buddha,,968,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74.03,3,Pondok Aren,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74.02,3,Serpong Utara,religion,islam,,105387,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74.02,3,Serpong Utara,religion,kristen,,18444,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74.02,3,Serpong Utara,religion,katolik,,14836,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74.02,3,Serpong Utara,religion,hindu,,393,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74.02,3,Serpong Utara,religion,buddha,,6051,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74.02,3,Serpong Utara,religion,lainnya,,79,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74,2,Tangerang Selatan,religion,islam,,1315394,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+36.74,2,Tangerang Selatan,religion,kristen,,88374,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+36.74,2,Tangerang Selatan,religion,katolik,,52444,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+36.74,2,Tangerang Selatan,religion,hindu,,3186,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+36.74,2,Tangerang Selatan,religion,buddha,,14157,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+36.74,2,Tangerang Selatan,religion,lainnya,,756,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/padi_padian,,74588,rupiah,2025,survey_estimate,per_capita,10.1,248,,Padi-padian
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/padi_padian,,86039,rupiah,2024,survey_estimate,per_capita,10.1,248,,Padi-padian
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/umbi_umbian,,13315,rupiah,2025,survey_estimate,per_capita,10.1,248,,Umbi-umbian
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/umbi_umbian,,13849,rupiah,2024,survey_estimate,per_capita,10.1,248,,Umbi-umbian
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,79041,rupiah,2025,survey_estimate,per_capita,10.1,248,,Ikan/udang/cumi/kerang
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,80237,rupiah,2024,survey_estimate,per_capita,10.1,248,,Ikan/udang/cumi/kerang
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/daging,,65517,rupiah,2025,survey_estimate,per_capita,10.1,248,,Daging
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/daging,,74492,rupiah,2024,survey_estimate,per_capita,10.1,248,,Daging
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,54204,rupiah,2025,survey_estimate,per_capita,10.1,248,,Telur dan susu
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,57329,rupiah,2024,survey_estimate,per_capita,10.1,248,,Telur dan susu
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,81186,rupiah,2025,survey_estimate,per_capita,10.1,248,,Sayur-sayuran
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,83261,rupiah,2024,survey_estimate,per_capita,10.1,248,,Sayur-sayuran
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,17132,rupiah,2025,survey_estimate,per_capita,10.1,248,,Kacang-kacangan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,18667,rupiah,2024,survey_estimate,per_capita,10.1,248,,Kacang-kacangan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/buah_buahan,,69766,rupiah,2025,survey_estimate,per_capita,10.1,248,,Buah-buahan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/buah_buahan,,60202,rupiah,2024,survey_estimate,per_capita,10.1,248,,Buah-buahan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20156,rupiah,2025,survey_estimate,per_capita,10.1,248,,Minyak dan kelapa
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22502,rupiah,2024,survey_estimate,per_capita,10.1,248,,Minyak dan kelapa
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/bahan_minuman,,23761,rupiah,2025,survey_estimate,per_capita,10.1,248,,Bahan minuman
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/bahan_minuman,,22871,rupiah,2024,survey_estimate,per_capita,10.1,248,,Bahan minuman
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,19972,rupiah,2025,survey_estimate,per_capita,10.1,248,,Bumbu-bumbuan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,21002,rupiah,2024,survey_estimate,per_capita,10.1,248,,Bumbu-bumbuan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,15590,rupiah,2025,survey_estimate,per_capita,10.1,248,,Konsumsi lainnya
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,17096,rupiah,2024,survey_estimate,per_capita,10.1,248,,Konsumsi lainnya
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,373816,rupiah,2025,survey_estimate,per_capita,10.1,248,,Makanan dan minuman jadi
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,361728,rupiah,2024,survey_estimate,per_capita,10.1,248,,Makanan dan minuman jadi
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/rokok,,95108,rupiah,2025,survey_estimate,per_capita,10.1,248,,Rokok
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/rokok,,86304,rupiah,2024,survey_estimate,per_capita,10.1,248,,Rokok
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,1003151,rupiah,2025,survey_estimate,per_capita,10.1,248,,Jumlah makanan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,1005580,rupiah,2024,survey_estimate,per_capita,10.1,248,,Jumlah makanan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,842403,rupiah,2025,survey_estimate,per_capita,10.1,248,,Perumahan dan fasilitas rumah tangga
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,875635,rupiah,2024,survey_estimate,per_capita,10.1,248,,Perumahan dan fasilitas rumah tangga
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,511187,rupiah,2025,survey_estimate,per_capita,10.1,248,,Aneka barang dan jasa
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,409479,rupiah,2024,survey_estimate,per_capita,10.1,248,,Aneka barang dan jasa
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,71315,rupiah,2025,survey_estimate,per_capita,10.1,248,,"Pakaian, alas kaki, dan tutup kepala"
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,53830,rupiah,2024,survey_estimate,per_capita,10.1,248,,"Pakaian, alas kaki, dan tutup kepala"
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,51485,rupiah,2025,survey_estimate,per_capita,10.1,248,,Barang tahan lama
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,78240,rupiah,2024,survey_estimate,per_capita,10.1,248,,Barang tahan lama
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,150526,rupiah,2025,survey_estimate,per_capita,10.1,248,,"Pajak, pungutan, dan asuransi"
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,134754,rupiah,2024,survey_estimate,per_capita,10.1,248,,"Pajak, pungutan, dan asuransi"
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,30060,rupiah,2025,survey_estimate,per_capita,10.1,248,,Keperluan pesta dan upacara/kenduri
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,75081,rupiah,2024,survey_estimate,per_capita,10.1,248,,Keperluan pesta dan upacara/kenduri
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1656976,rupiah,2025,survey_estimate,per_capita,10.1,248,,Jumlah bukan makanan
+36.74,2,Kota Tangerang Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1627018,rupiah,2024,survey_estimate,per_capita,10.1,248,,Jumlah bukan makanan
+36.74,2,Kota Tangerang Selatan,expenditure,total,,2660127,rupiah,2025,survey_estimate,per_capita,10.1,248,,
+36.74,2,Kota Tangerang Selatan,expenditure,total,,2632598,rupiah,2024,survey_estimate,per_capita,10.1,248,,

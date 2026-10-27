@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1611-kecamatan-161108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.11.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sikap Dalam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Empat Lawang",
+  "publisherDomain": "1611",
+  "publisherWebsite": "https://empatlawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Empat Lawang (https://empatlawangkab.bps.go.id), publikasi \"Kecamatan Sikap Dalam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1611051",
+  "publicationNumber": "16110.26014",
+  "issn": "3047-1605",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://empatlawangkab.bps.go.id/id/publication/2026/09/28/e7ca510ccafdd2b92579c4fd/kecamatan-sikap-dalam-dalam-angka-2026.html",
+  "sourceFileSha256": "931d62b9a1e8a1f12ce8ae388e2e6b718a1e6c7a5c69a4b98d1e993162e58d3f",
+  "sourceFileBytes": 10010076,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Empat Lawang.",
+  "csvPath": "datasets/bps-1611-kecamatan-161108-dalam-angka-2026.csv",
+  "csvSha256": "6df27da90636207bf94e2507c49492b1c55e2cceb1a3cef38cb4a6e0435bdade",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sikap Dalam, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sikap Dalam, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

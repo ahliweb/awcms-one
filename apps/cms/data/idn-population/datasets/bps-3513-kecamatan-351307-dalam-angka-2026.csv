@@ -1,0 +1,42 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.07.2001,4,ANDUNGBIRU,sex,laki_laki,,2367,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2001,4,ANDUNGBIRU,sex,perempuan,,2336,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2001,4,ANDUNGBIRU,total,total,,4703,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2013,4,PEDAGANGAN,sex,laki_laki,,3020,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2013,4,PEDAGANGAN,sex,perempuan,,3148,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2013,4,PEDAGANGAN,total,total,,6168,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2012,4,PESAWAHAN,sex,laki_laki,,3050,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2012,4,PESAWAHAN,sex,perempuan,,3162,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2012,4,PESAWAHAN,total,total,,6212,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2011,4,RACEK,sex,laki_laki,,2305,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2011,4,RACEK,sex,perempuan,,2391,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2011,4,RACEK,total,total,,4696,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2008,4,RANUAGUNG,sex,laki_laki,,3850,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2008,4,RANUAGUNG,sex,perempuan,,3790,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2008,4,RANUAGUNG,total,total,,7640,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2005,4,RANUGEDANG,sex,laki_laki,,2448,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2005,4,RANUGEDANG,sex,perempuan,,2447,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2005,4,RANUGEDANG,total,total,,4895,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2014,4,REJING,sex,laki_laki,,2734,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2014,4,REJING,sex,perempuan,,2826,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2014,4,REJING,total,total,,5560,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2007,4,SEGARAN,sex,laki_laki,,1549,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2007,4,SEGARAN,sex,perempuan,,1541,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2007,4,SEGARAN,total,total,,3090,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2015,4,TEGALWATU,sex,laki_laki,,2154,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2015,4,TEGALWATU,sex,perempuan,,2296,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2015,4,TEGALWATU,total,total,,4450,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2006,4,TIRIS,sex,laki_laki,,2825,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2006,4,TIRIS,sex,perempuan,,2791,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2006,4,TIRIS,total,total,,5616,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2002,4,TLOGOARGO,sex,laki_laki,,1228,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2002,4,TLOGOARGO,sex,perempuan,,1199,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2002,4,TLOGOARGO,total,total,,2427,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2004,4,TLOGOSARI,sex,laki_laki,,2090,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07.2004,4,TLOGOSARI,sex,perempuan,,2124,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2004,4,TLOGOSARI,total,total,,4214,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07.2010,4,WEDUSAN,sex,perempuan,,1806,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07.2010,4,WEDUSAN,total,total,,3664,jiwa,2025,registration,total_population,3.1,24,,
+35.13.07,3,KECAMATAN TIRIS,sex,laki_laki,,36737,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.07,3,KECAMATAN TIRIS,sex,perempuan,,37228,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.07,3,KECAMATAN TIRIS,total,total,,73965,jiwa,2025,registration,total_population,3.1,24,,

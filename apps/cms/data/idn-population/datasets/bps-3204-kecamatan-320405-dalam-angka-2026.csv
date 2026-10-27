@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.05.2005,4,Cibiru Hilir,sex,laki_laki,,7125,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.05.2005,4,Cibiru Hilir,sex,perempuan,,7120,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.05.2005,4,Cibiru Hilir,total,total,,14245,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.05.2004,4,Cinunuk,sex,laki_laki,,25713,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.05.2004,4,Cinunuk,sex,perempuan,,25384,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.05.2004,4,Cinunuk,total,total,,51097,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.05.2003,4,Cimekar,sex,laki_laki,,19395,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.05.2003,4,Cimekar,sex,perempuan,,19194,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.05.2003,4,Cimekar,total,total,,38589,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.05.2001,4,Cileunyi Kulon,sex,laki_laki,,13688,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.05.2001,4,Cileunyi Kulon,sex,perempuan,,13332,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.05.2001,4,Cileunyi Kulon,total,total,,27020,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.05.2002,4,Cileunyi Wetan,sex,laki_laki,,17548,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.05.2002,4,Cileunyi Wetan,sex,perempuan,,16879,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.05.2002,4,Cileunyi Wetan,total,total,,34427,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.05.2006,4,Cibiru Wetan,sex,laki_laki,,10205,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.05.2006,4,Cibiru Wetan,sex,perempuan,,10106,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.05.2006,4,Cibiru Wetan,total,total,,20311,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.05,3,Kecamatan Cileunyi,sex,laki_laki,,93674,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.05,3,Kecamatan Cileunyi,sex,perempuan,,92015,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.05,3,Kecamatan Cileunyi,total,total,,185689,jiwa,2025,registration,total_population,unnumbered-p28,28,,

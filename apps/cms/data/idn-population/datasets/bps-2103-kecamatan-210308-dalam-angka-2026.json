@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-2103-kecamatan-210308-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.03.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bunguran Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Natuna",
+  "publisherDomain": "2103",
+  "publisherWebsite": "https://natunakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Natuna (https://natunakab.bps.go.id), publikasi \"Kecamatan Bunguran Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2103041",
+  "publicationNumber": "2103.26011",
+  "issn": "2963-6957",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://natunakab.bps.go.id/id/publication/2026/09/28/5402a96100220f86a7b23c50/kecamatan-bunguran-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "b88e9a8d01d3a73a7ac017ad39792b82a18cc1935814e4030700294b8ed12758",
+  "sourceFileBytes": 9693044,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Natuna.",
+  "csvPath": "datasets/bps-2103-kecamatan-210308-dalam-angka-2026.csv",
+  "csvSha256": "f0c95ab4670a6b516533292a65c67f911995ce79f57d4ec5ddcebe8fec55e0ed",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bunguran Utara, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bunguran Utara, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Bunguran Utara Bunguran Utara District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Bunguran Utara Bunguran Utara District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Bunguran Utara Bunguran Utara District\": unmatched "
+  ]
+}

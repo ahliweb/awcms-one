@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1706-kecamatan-170607-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.06.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Air Rami Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mukomuko",
+  "publisherDomain": "1706",
+  "publisherWebsite": "https://mukomukokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mukomuko (https://mukomukokab.bps.go.id), publikasi \"Kecamatan Air Rami Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1101002.1706011",
+  "publicationNumber": "17060.26019",
+  "issn": "2797-1449",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mukomukokab.bps.go.id/id/publication/2026/09/28/d7d2f5af8486217df8ac1790/kecamatan-air-rami-dalam-angka-2026.html",
+  "sourceFileSha256": "cfc0578793459a7af2c04b5a0af994bcdb6108302af8e47cc138ef190ac1b987",
+  "sourceFileBytes": 8118517,
+  "sourcePages": [25, 26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mukomuko.",
+  "csvPath": "datasets/bps-1706-kecamatan-170607-dalam-angka-2026.csv",
+  "csvSha256": "4e373ede38d55e487a282c3b65d02bc6412f372f467972fd82d9a483980d4a15",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Air Rami, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Air Rami, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 13 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.3: 10 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

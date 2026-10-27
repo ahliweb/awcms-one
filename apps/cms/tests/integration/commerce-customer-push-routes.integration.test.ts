@@ -1010,6 +1010,74 @@ suite("customer Web Push routes (Issue #430)", () => {
     expect(audit[0]!.n).toBe(2);
   });
 
+  test.each([
+    ["blocked", "ACCOUNT_BLOCKED"],
+    ["unverified", "ACCOUNT_NOT_VERIFIED"]
+  ] as const)(
+    "PUT preferences: a %s account can always WITHDRAW a purpose (recorded) but cannot enable one (ADR-0048)",
+    async (state, deniedCode) => {
+      if (skipUnlessHandlerReady()) return;
+      const { owner } = await readyTenant(true);
+      const shopper = await seedShopper(owner.tenantId);
+      const put = (body: unknown) =>
+        invoke<
+          Envelope<{ preferences: { purpose: string; enabled: boolean }[] }>
+        >(preferencesPut, {
+          method: "PUT",
+          path: `${BASE}/preferences`,
+          headers: headersFor(shopper, ORIGIN_A),
+          body
+        });
+
+      // Enabled while the account is still in good standing ...
+      const on = await put({
+        purposes: { payment_updates: true },
+        textVersion: VERSION
+      });
+      expect(on.status).toBe(200);
+
+      // ... then it becomes blocked / loses its verified e-mail.
+      const admin = getHandlerAdminSql();
+      if (state === "blocked") {
+        await admin`UPDATE awcms_commerce_customer_accounts SET status = 'blocked' WHERE id = ${shopper.accountId}`;
+      } else {
+        await admin`UPDATE awcms_commerce_customer_accounts SET email_verified_at = NULL WHERE id = ${shopper.accountId}`;
+      }
+
+      const enable = await put({
+        purposes: { order_updates: true },
+        textVersion: VERSION
+      });
+      expect(enable.status).toBe(403);
+      expect(enable.body.error?.code).toBe(deniedCode);
+
+      // A mixed body enables something, so it keeps the strict gate.
+      const mixed = await put({
+        purposes: { payment_updates: false, order_updates: true },
+        textVersion: VERSION
+      });
+      expect(mixed.status).toBe(403);
+
+      const off = await put({ purposes: { payment_updates: false } });
+      expect(off.status).toBe(200);
+      expect(
+        off.body.data.preferences.find((p) => p.purpose === "payment_updates")!
+          .enabled
+      ).toBe(false);
+
+      const stored = (await admin`
+        SELECT enabled FROM awcms_commerce_push_preferences
+        WHERE account_id = ${shopper.accountId} AND purpose = 'payment_updates'
+      `) as { enabled: boolean }[];
+      expect(stored[0]!.enabled).toBe(false);
+      const audit = (await admin`
+        SELECT count(*)::int AS n FROM awcms_audit_events
+        WHERE action = 'commerce.customer_push.preferences_changed'
+      `) as { n: number }[];
+      expect(audit[0]!.n).toBe(2);
+    }
+  );
+
   // -------------------------------------------------------------------------
   // CORS and preflight (TS-H3)
   // -------------------------------------------------------------------------

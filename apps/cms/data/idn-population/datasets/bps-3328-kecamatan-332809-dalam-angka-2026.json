@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pangkah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Pangkah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328090",
+  "publicationNumber": "33280",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/976410a2d545a5627b08392a/kecamatan-pangkah-dalam-angka-2026.html",
+  "sourceFileSha256": "2729bd1ea3b4093b937d87dc488197b482b09c93dd713265a7f6d83c298eb600",
+  "sourceFileBytes": 5803063,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332809-dalam-angka-2026.csv",
+  "csvSha256": "afa0faebac860b37bee9a1437a4c8f18e077ad260e0c4f813406dd51551a6c6e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pangkah, 2026",
+      "printedPages": [32, 33],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pangkah, 2026",
+      "printedPages": [34],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Purbayasa\": unmatched ",
+    "table 3.1: row not stored: row \"Purbayasa\": unmatched "
+  ]
+}

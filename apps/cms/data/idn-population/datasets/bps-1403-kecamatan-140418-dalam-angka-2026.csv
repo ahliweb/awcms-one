@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.18.1001,4,Concong Luar,sex,laki_laki,,1631,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.18.1001,4,Concong Luar,sex,perempuan,,1526,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.18.1001,4,Concong Luar,total,total,,3157,jiwa,2026,registration,total_population,3.1,29,,
+14.04.18.2004,4,Kampung Baru,sex,laki_laki,,899,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.18.2004,4,Kampung Baru,sex,perempuan,,820,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.18.2004,4,Kampung Baru,total,total,,1719,jiwa,2026,registration,total_population,3.1,29,,
+14.04.18.2003,4,Concong Tengah,sex,laki_laki,,1056,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.18.2003,4,Concong Tengah,sex,perempuan,,931,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.18.2003,4,Concong Tengah,total,total,,1987,jiwa,2026,registration,total_population,3.1,29,,
+14.04.18.2002,4,Concong Dalam,sex,laki_laki,,594,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.18.2002,4,Concong Dalam,sex,perempuan,,534,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.18.2002,4,Concong Dalam,total,total,,1128,jiwa,2026,registration,total_population,3.1,29,,
+14.04.18.2006,4,Sungai Berapit,sex,laki_laki,,554,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.18.2006,4,Sungai Berapit,sex,perempuan,,509,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.18.2006,4,Sungai Berapit,total,total,,1063,jiwa,2026,registration,total_population,3.1,29,,
+14.04.18.2005,4,Panglima Raja,sex,laki_laki,,1713,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.18.2005,4,Panglima Raja,sex,perempuan,,1587,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.18.2005,4,Panglima Raja,total,total,,3300,jiwa,2026,registration,total_population,3.1,29,,
+14.04.18,3,Concong,sex,laki_laki,,6447,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.18,3,Concong,sex,perempuan,,5907,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.18,3,Concong,total,total,,12354,jiwa,2026,registration,total_population,3.1,29,,

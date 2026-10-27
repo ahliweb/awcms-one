@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3329-kecamatan-332917-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.29.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banjarharjo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Brebes",
+  "publisherDomain": "3329",
+  "publisherWebsite": "https://brebeskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Brebes (https://brebeskab.bps.go.id), publikasi \"Kecamatan Banjarharjo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3329090",
+  "publicationNumber": "33290.26014",
+  "issn": "2621-184X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://brebeskab.bps.go.id/id/publication/2026/09/28/9c52ddd018ebca9bf56be854/kecamatan-banjarharjo-dalam-angka-2026.html",
+  "sourceFileSha256": "d835f14d474ab3751b4a2ecf03fd237dc58de2be4c5cfcb838185d9ab2af1f34",
+  "sourceFileBytes": 6042324,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Brebes.",
+  "csvPath": "datasets/bps-3329-kecamatan-332917-dalam-angka-2026.csv",
+  "csvSha256": "7c404412e08302f6ad8530d741c9b2a0ea717fb0b19b277b4b9a13b3d151be25",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Banjarharjo, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banjarharjo, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.2.1 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu\" not recognised)",
+    "table 3.1: row not stored: row \"010. Parireja\": unmatched ",
+    "table 3.1: row not stored: row \"010. Parireja\": unmatched "
+  ]
+}

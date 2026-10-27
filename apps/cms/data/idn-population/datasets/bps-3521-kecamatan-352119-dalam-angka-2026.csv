@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.19.2001,4,Jatirejo,sex,laki_laki,,1805,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2001,4,Jatirejo,sex,perempuan,,1870,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2001,4,Jatirejo,total,total,,3675,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19.2002,4,Cangakan,sex,laki_laki,,1251,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2002,4,Cangakan,sex,perempuan,,1251,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2002,4,Cangakan,total,total,,2502,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19.2003,4,Karang Malang,sex,laki_laki,,1103,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2003,4,Karang Malang,sex,perempuan,,1116,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2003,4,Karang Malang,total,total,,2219,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19.2005,4,Kasreman,sex,laki_laki,,1502,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2005,4,Kasreman,sex,perempuan,,1547,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2005,4,Kasreman,total,total,,3049,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19.2006,4,Lego Kulon,sex,laki_laki,,1374,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2006,4,Lego Kulon,sex,perempuan,,1366,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2006,4,Lego Kulon,total,total,,2740,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19.2007,4,Tawun,sex,laki_laki,,2462,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2007,4,Tawun,sex,perempuan,,2357,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2007,4,Tawun,total,total,,4819,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19.2008,4,Kiyonten,sex,laki_laki,,1422,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2008,4,Kiyonten,sex,perempuan,,1400,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2008,4,Kiyonten,total,total,,2822,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19.2004,4,Gunungsari,sex,laki_laki,,1920,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19.2004,4,Gunungsari,sex,perempuan,,1938,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19.2004,4,Gunungsari,total,total,,3858,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.19,3,Kecamatan Kasreman,sex,laki_laki,,12839,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.19,3,Kecamatan Kasreman,sex,perempuan,,12845,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.19,3,Kecamatan Kasreman,total,total,,25684,jiwa,2025,registration,total_population,unnumbered-p38,38,,

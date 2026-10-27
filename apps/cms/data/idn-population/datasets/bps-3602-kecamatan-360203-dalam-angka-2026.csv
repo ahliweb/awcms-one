@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.03.2001,4,Bayah Barat,sex,laki_laki,,4311,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2001,4,Bayah Barat,sex,perempuan,,4260,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2001,4,Bayah Barat,total,total,,8571,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2011,4,Darmasari,sex,laki_laki,,1857,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2011,4,Darmasari,sex,perempuan,,1864,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2011,4,Darmasari,total,total,,3721,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2002,4,Sawarna,sex,laki_laki,,3039,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2002,4,Sawarna,sex,perempuan,,2911,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2002,4,Sawarna,total,total,,5950,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2006,4,Cidikit,sex,laki_laki,,2126,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2006,4,Cidikit,sex,perempuan,,2062,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2006,4,Cidikit,total,total,,4188,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2013,4,Bayah Timur,sex,laki_laki,,3224,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2013,4,Bayah Timur,sex,perempuan,,3161,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2013,4,Bayah Timur,total,total,,6385,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2008,4,Cimancak,sex,laki_laki,,2094,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2008,4,Cimancak,sex,perempuan,,2063,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2008,4,Cimancak,total,total,,4157,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2007,4,Suwakan,sex,laki_laki,,1940,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2007,4,Suwakan,sex,perempuan,,1847,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2007,4,Suwakan,total,total,,3787,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2016,4,Pasirgombong,sex,laki_laki,,1309,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2016,4,Pasirgombong,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2016,4,Pasirgombong,total,total,,2572,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2014,4,Cisuren,sex,laki_laki,,1825,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2014,4,Cisuren,sex,perempuan,,1793,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2014,4,Cisuren,total,total,,3618,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2018,4,Pamubulan,sex,laki_laki,,2371,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2018,4,Pamubulan,sex,perempuan,,2323,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2018,4,Pamubulan,total,total,,4694,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03.2017,4,Sawarna timur,sex,laki_laki,,1299,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+36.02.03.2017,4,Sawarna timur,sex,perempuan,,1229,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+36.02.03.2017,4,Sawarna timur,total,total,,2528,jiwa,2025,registration,total_population,3.1,27,,
+36.02.03,3,Bayah,age_group,0-4,laki_laki,1689,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+36.02.03,3,Bayah,age_group,0-4,perempuan,1634,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+36.02.03,3,Bayah,age_group,0-4,,3323,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+36.02.03,3,Bayah,age_group,5-9,laki_laki,2385,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+36.02.03,3,Bayah,age_group,5-9,perempuan,2053,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+36.02.03,3,Bayah,age_group,5-9,,4438,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+36.02.03,3,Bayah,age_group,10-14,laki_laki,2269,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+36.02.03,3,Bayah,age_group,10-14,perempuan,2179,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+36.02.03,3,Bayah,age_group,10-14,,4448,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+36.02.03,3,Bayah,age_group,15-19,laki_laki,1910,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+36.02.03,3,Bayah,age_group,15-19,perempuan,1929,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+36.02.03,3,Bayah,age_group,15-19,,3839,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+36.02.03,3,Bayah,age_group,20-24,laki_laki,2132,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+36.02.03,3,Bayah,age_group,20-24,perempuan,2068,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+36.02.03,3,Bayah,age_group,20-24,,4200,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+36.02.03,3,Bayah,age_group,25-29,laki_laki,2185,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+36.02.03,3,Bayah,age_group,25-29,perempuan,1964,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+36.02.03,3,Bayah,age_group,25-29,,4149,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+36.02.03,3,Bayah,age_group,30-34,laki_laki,1846,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+36.02.03,3,Bayah,age_group,30-34,perempuan,1710,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+36.02.03,3,Bayah,age_group,30-34,,3556,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+36.02.03,3,Bayah,age_group,35-39,laki_laki,1761,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+36.02.03,3,Bayah,age_group,35-39,perempuan,1777,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+36.02.03,3,Bayah,age_group,35-39,,3538,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+36.02.03,3,Bayah,age_group,40-44,laki_laki,1773,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+36.02.03,3,Bayah,age_group,40-44,perempuan,1936,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+36.02.03,3,Bayah,age_group,40-44,,3709,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+36.02.03,3,Bayah,age_group,45-49,laki_laki,1721,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+36.02.03,3,Bayah,age_group,45-49,perempuan,1781,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+36.02.03,3,Bayah,age_group,45-49,,3502,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+36.02.03,3,Bayah,age_group,50-54,laki_laki,1556,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+36.02.03,3,Bayah,age_group,50-54,perempuan,1453,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+36.02.03,3,Bayah,age_group,50-54,,3009,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+36.02.03,3,Bayah,age_group,55-59,laki_laki,1287,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+36.02.03,3,Bayah,age_group,55-59,perempuan,1346,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+36.02.03,3,Bayah,age_group,55-59,,2633,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+36.02.03,3,Bayah,age_group,60-64,laki_laki,970,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+36.02.03,3,Bayah,age_group,60-64,perempuan,1009,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+36.02.03,3,Bayah,age_group,60-64,,1979,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+36.02.03,3,Bayah,age_group,65-69,laki_laki,826,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+36.02.03,3,Bayah,age_group,65-69,perempuan,747,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+36.02.03,3,Bayah,age_group,65-69,,1573,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+36.02.03,3,Bayah,age_group,70-74,laki_laki,479,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+36.02.03,3,Bayah,age_group,70-74,perempuan,462,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+36.02.03,3,Bayah,age_group,70-74,,941,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+36.02.03,3,Bayah,age_group,75+,laki_laki,606,jiwa,2025,registration,total_population,3.2,29,,75 +
+36.02.03,3,Bayah,age_group,75+,perempuan,728,jiwa,2025,registration,total_population,3.2,29,,75 +
+36.02.03,3,Bayah,age_group,75+,,1334,jiwa,2025,registration,total_population,3.2,29,,75 +

@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321503-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Telukjambe Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Telukjambe Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215031",
+  "publicationNumber": "32150.26024",
+  "issn": "2828-7258",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/84d731679c55275000b3faa2/kecamatan-telukjambe-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "c2b1ead98d08ea6b904cc8df3922d5b96fc29e913ae0c19e9803714621488109",
+  "sourceFileBytes": 11024051,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321503-dalam-angka-2026.csv",
+  "csvSha256": "1d55105787f20dbe1c088b238b958f064d550bb542d36707e3b638d40ee296e6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Telukjambe Timur, 202 5",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Telukjambe Timur, 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Desa/Village\": unmatched ",
+    "table 3.1: row not stored: row \"Desa/Village\": unmatched ",
+    "table 3.1: the rows of region 32.15.03 are not stored: sex split vs total: parts sum 151250.0000 != 150250.0000 (diff 1000.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 32.15.03 are not stored: sex split vs total: parts sum 151250.0000 != 150250.0000 (diff 1000.0000); the source itself is inconsistent"
+  ]
+}

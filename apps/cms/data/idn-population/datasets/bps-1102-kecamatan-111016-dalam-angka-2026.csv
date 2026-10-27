@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.16.2002,4,Asantola,sex,laki_laki,,451,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.10.16.2002,4,Asantola,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.10.16.2002,4,Asantola,total,total,,842,jiwa,2025,registration,total_population,3.1,34,,
+11.10.16.2003,4,Ujung Sialit,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.10.16.2003,4,Ujung Sialit,sex,perempuan,,656,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.10.16.2003,4,Ujung Sialit,total,total,,1290,jiwa,2025,registration,total_population,3.1,34,,
+11.10.16.2001,4,Haloban,sex,laki_laki,,453,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.10.16.2001,4,Haloban,sex,perempuan,,439,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.10.16.2001,4,Haloban,total,total,,892,jiwa,2025,registration,total_population,3.1,34,,
+11.10.16.2004,4,Suka Makmur,sex,laki_laki,,173,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.10.16.2004,4,Suka Makmur,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.10.16.2004,4,Suka Makmur,total,total,,352,jiwa,2025,registration,total_population,3.1,34,,
+11.10.16,3,Kecamatan Pulau Banyak Barat,sex,laki_laki,,1711,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.10.16,3,Kecamatan Pulau Banyak Barat,sex,perempuan,,1665,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.10.16,3,Kecamatan Pulau Banyak Barat,total,total,,3376,jiwa,2025,registration,total_population,3.1,34,,

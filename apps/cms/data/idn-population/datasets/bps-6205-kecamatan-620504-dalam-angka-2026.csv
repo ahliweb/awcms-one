@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.05.04.2003,4,Liju,sex,laki_laki,,147,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2003,4,Liju,sex,perempuan,,109,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2003,4,Liju,total,total,,256,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2001,4,Sampirang I,sex,laki_laki,,168,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2001,4,Sampirang I,sex,perempuan,,142,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2001,4,Sampirang I,total,total,,310,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2002,4,Sampirang II,sex,laki_laki,,217,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2002,4,Sampirang II,sex,perempuan,,190,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2002,4,Sampirang II,total,total,,407,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2007,4,Benangin I,sex,laki_laki,,800,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2007,4,Benangin I,sex,perempuan,,725,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2007,4,Benangin I,total,total,,1525,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2006,4,Benangin V,sex,laki_laki,,462,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2006,4,Benangin V,sex,perempuan,,456,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2006,4,Benangin V,total,total,,918,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2008,4,Muara Wakat,sex,laki_laki,,218,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2008,4,Muara Wakat,sex,perempuan,,181,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2008,4,Muara Wakat,total,total,,399,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2012,4,Mampuak I,sex,laki_laki,,362,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2012,4,Mampuak I,sex,perempuan,,327,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2012,4,Mampuak I,total,total,,689,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2013,4,Jamut,sex,laki_laki,,213,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2013,4,Jamut,sex,perempuan,,202,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2013,4,Jamut,total,total,,415,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2014,4,Sei Liju,sex,laki_laki,,279,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2014,4,Sei Liju,sex,perempuan,,249,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2014,4,Sei Liju,total,total,,528,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04.2015,4,Mampuak II,sex,laki_laki,,296,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04.2015,4,Mampuak II,sex,perempuan,,251,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04.2015,4,Mampuak II,total,total,,547,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04,3,Teweh Timur,sex,laki_laki,,3736,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.04,3,Teweh Timur,sex,perempuan,,3362,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.04,3,Teweh Timur,total,total,,7098,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.04,3,Teweh Timur,age_group,0-4,laki_laki,235,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.04,3,Teweh Timur,age_group,0-4,perempuan,241,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.04,3,Teweh Timur,age_group,0-4,,476,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.04,3,Teweh Timur,age_group,5-9,laki_laki,304,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.04,3,Teweh Timur,age_group,5-9,perempuan,277,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.04,3,Teweh Timur,age_group,5-9,,581,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.04,3,Teweh Timur,age_group,10-14,laki_laki,294,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.04,3,Teweh Timur,age_group,10-14,perempuan,275,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.04,3,Teweh Timur,age_group,10-14,,569,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.04,3,Teweh Timur,age_group,15-19,laki_laki,302,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.04,3,Teweh Timur,age_group,15-19,perempuan,285,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.04,3,Teweh Timur,age_group,15-19,,587,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.04,3,Teweh Timur,age_group,20-24,laki_laki,329,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.04,3,Teweh Timur,age_group,20-24,perempuan,316,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.04,3,Teweh Timur,age_group,20-24,,645,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.04,3,Teweh Timur,age_group,25-29,laki_laki,297,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.04,3,Teweh Timur,age_group,25-29,perempuan,287,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.04,3,Teweh Timur,age_group,25-29,,584,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.04,3,Teweh Timur,age_group,30-34,laki_laki,298,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.04,3,Teweh Timur,age_group,30-34,perempuan,235,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.04,3,Teweh Timur,age_group,30-34,,533,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.04,3,Teweh Timur,age_group,35-39,laki_laki,290,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.04,3,Teweh Timur,age_group,35-39,perempuan,242,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.04,3,Teweh Timur,age_group,35-39,,532,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.04,3,Teweh Timur,age_group,40-44,laki_laki,272,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.04,3,Teweh Timur,age_group,40-44,perempuan,228,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.04,3,Teweh Timur,age_group,40-44,,500,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.04,3,Teweh Timur,age_group,45-49,laki_laki,276,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.04,3,Teweh Timur,age_group,45-49,perempuan,220,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.04,3,Teweh Timur,age_group,45-49,,496,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.04,3,Teweh Timur,age_group,50-54,laki_laki,240,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.04,3,Teweh Timur,age_group,50-54,perempuan,195,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.04,3,Teweh Timur,age_group,50-54,,435,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.04,3,Teweh Timur,age_group,55-59,laki_laki,194,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.04,3,Teweh Timur,age_group,55-59,perempuan,190,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.04,3,Teweh Timur,age_group,55-59,,384,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.04,3,Teweh Timur,age_group,60-64,laki_laki,136,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.04,3,Teweh Timur,age_group,60-64,perempuan,170,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.04,3,Teweh Timur,age_group,60-64,,306,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.04,3,Teweh Timur,age_group,65-69,laki_laki,119,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.04,3,Teweh Timur,age_group,65-69,perempuan,94,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.04,3,Teweh Timur,age_group,65-69,,213,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.04,3,Teweh Timur,age_group,70-74,laki_laki,69,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.04,3,Teweh Timur,age_group,70-74,perempuan,43,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.04,3,Teweh Timur,age_group,70-74,,112,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.04,3,Teweh Timur,age_group,75+,laki_laki,81,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.04,3,Teweh Timur,age_group,75+,perempuan,64,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.04,3,Teweh Timur,age_group,75+,,145,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.04,3,Teweh Timur,sex,laki_laki,,3736,jiwa,2025,registration,total_population,unnumbered-p43,43,,Laki-laki
+62.05.04,3,Teweh Timur,sex,perempuan,,3362,jiwa,2025,registration,total_population,unnumbered-p43,43,,Perempuan
+62.05.04,3,Teweh Timur,total,total,,7098,jiwa,2025,registration,total_population,unnumbered-p43,43,,

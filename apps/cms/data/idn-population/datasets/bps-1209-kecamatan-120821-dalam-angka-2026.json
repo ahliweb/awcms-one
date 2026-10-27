@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1209-kecamatan-120821-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.08.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pematang Bandar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Simalungun",
+  "publisherDomain": "1209",
+  "publisherWebsite": "https://simalungunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simalungun (https://simalungunkab.bps.go.id), publikasi \"Kecamatan Pematang Bandar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1209180",
+  "publicationNumber": "12090.26025",
+  "issn": "2830-7291",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://simalungunkab.bps.go.id/id/publication/2026/09/28/665fd316471d6db2cb094b43/kecamatan-pematang-bandar-dalam-angka-2026.html",
+  "sourceFileSha256": "438c04b362e0fc4826e12c8a9b6b7b6dc7cad9a5e45b96db74e999c5cdbac47e",
+  "sourceFileBytes": 10138528,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simalungun.",
+  "csvPath": "datasets/bps-1209-kecamatan-120821-dalam-angka-2026.csv",
+  "csvSha256": "5cad313b2372eb090b22f7e1e37007462f1bd9df79803b62d2b3f4f107a50c5c",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Raya Kahean, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Raya Kahean\": unmatched "
+  ]
+}

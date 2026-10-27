@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332009-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Keling Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Keling Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320110",
+  "publicationNumber": "33200.26020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/3a89724e757e9e04b6f78f03/kecamatan-keling-dalam-angka-2026.html",
+  "sourceFileSha256": "42674ab6514b753414e6fb16fe71ed22cb802c8cf612e8aecb2d514d1c68c065",
+  "sourceFileBytes": 11797501,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332009-dalam-angka-2026.csv",
+  "csvSha256": "ce1d6558fe48468472562dcdc664ae007484b6c5014c68ea0aefde697ee62b53",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Keling, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Tempur 1.908\": unmatched ",
+    "table 3.1: row not stored: row \"002 Damarwulan 4.312\": unmatched ",
+    "table 3.1: row not stored: row \"003 Kunir 1.456\": unmatched ",
+    "table 3.1: row not stored: row \"004 Watuaji 1.701\": unmatched ",
+    "table 3.1: row not stored: row \"005 Klepu 2.340\": unmatched ",
+    "table 3.1: row not stored: row \"006 Tunahan 4.158\": unmatched ",
+    "table 3.1: row not stored: row \"007 Kaligarang 2.936\": unmatched ",
+    "table 3.1: row not stored: row \"008 Keling 3.034\": unmatched ",
+    "table 3.1: row not stored: row \"009 Gelang 1.431\": unmatched ",
+    "table 3.1: row not stored: row \"010 Jlegong 1.858\": unmatched ",
+    "table 3.1: row not stored: row \"011 Kelet 4.735\": unmatched ",
+    "table 3.1: row not stored: row \"019 Bumiharjo 4.540\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Keling 34.409\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

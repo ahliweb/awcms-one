@@ -1,0 +1,224 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.04,3,Kapuas Kuala,total,total,,22.87,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.13,3,Tamban Catur,total,total,,17.30,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.03,3,Kapuas Timur,total,total,,32.38,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.01,3,Selat,total,total,,74.10,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.17,3,Bataguh,total,total,,45.28,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.08,3,Basarang,total,total,,25.82,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.02,3,Kapuas Hilir,total,total,,14.82,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.06,3,Pulau Petak,total,total,,24.33,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.07,3,Kapuas Murung,total,total,,29.27,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.16,3,Dadahup,total,total,,14.20,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.05,3,Kapuas Barat,total,total,,22.96,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.09,3,Mantangai,total,total,,49.00,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.10,3,Timpah,total,total,,12.90,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.11,3,Kapuas Tengah,total,total,,19.83,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.14,3,Pasak Talawang,total,total,,10.93,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.12,3,Kapuas Hulu,total,total,,11.92,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03.15,3,Mandau Talawang,total,total,,7.18,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03,2,Kapuas,total,total,,435.07,ribu_jiwa,2025,projection,total_population,3.1.1,62,,
+62.03,2,Kabupaten Kapuas,age_group,0-4,laki_laki,21.05,ribu_jiwa,2025,projection,total_population,3.1.2,65,,0–4
+62.03,2,Kabupaten Kapuas,age_group,0-4,perempuan,20.17,ribu_jiwa,2025,projection,total_population,3.1.2,65,,0–4
+62.03,2,Kabupaten Kapuas,age_group,0-4,,41.21,ribu_jiwa,2025,projection,total_population,3.1.2,65,,0–4
+62.03,2,Kabupaten Kapuas,age_group,5-9,laki_laki,14.15,ribu_jiwa,2025,projection,total_population,3.1.2,65,,5–9
+62.03,2,Kabupaten Kapuas,age_group,5-9,perempuan,13.57,ribu_jiwa,2025,projection,total_population,3.1.2,65,,5–9
+62.03,2,Kabupaten Kapuas,age_group,5-9,,27.72,ribu_jiwa,2025,projection,total_population,3.1.2,65,,5–9
+62.03,2,Kabupaten Kapuas,age_group,10-14,laki_laki,16.21,ribu_jiwa,2025,projection,total_population,3.1.2,65,,10–14
+62.03,2,Kabupaten Kapuas,age_group,10-14,perempuan,15.29,ribu_jiwa,2025,projection,total_population,3.1.2,65,,10–14
+62.03,2,Kabupaten Kapuas,age_group,10-14,,31.50,ribu_jiwa,2025,projection,total_population,3.1.2,65,,10–14
+62.03,2,Kabupaten Kapuas,age_group,15-19,laki_laki,18.10,ribu_jiwa,2025,projection,total_population,3.1.2,65,,15–19
+62.03,2,Kabupaten Kapuas,age_group,15-19,perempuan,16.83,ribu_jiwa,2025,projection,total_population,3.1.2,65,,15–19
+62.03,2,Kabupaten Kapuas,age_group,15-19,,34.93,ribu_jiwa,2025,projection,total_population,3.1.2,65,,15–19
+62.03,2,Kabupaten Kapuas,age_group,20-24,laki_laki,19.49,ribu_jiwa,2025,projection,total_population,3.1.2,65,,20–24
+62.03,2,Kabupaten Kapuas,age_group,20-24,perempuan,18.27,ribu_jiwa,2025,projection,total_population,3.1.2,65,,20–24
+62.03,2,Kabupaten Kapuas,age_group,20-24,,37.76,ribu_jiwa,2025,projection,total_population,3.1.2,65,,20–24
+62.03,2,Kabupaten Kapuas,age_group,25-29,laki_laki,19.59,ribu_jiwa,2025,projection,total_population,3.1.2,65,,25–29
+62.03,2,Kabupaten Kapuas,age_group,25-29,perempuan,18.48,ribu_jiwa,2025,projection,total_population,3.1.2,65,,25–29
+62.03,2,Kabupaten Kapuas,age_group,25-29,,38.07,ribu_jiwa,2025,projection,total_population,3.1.2,65,,25–29
+62.03,2,Kabupaten Kapuas,age_group,30-34,laki_laki,18.89,ribu_jiwa,2025,projection,total_population,3.1.2,65,,30–34
+62.03,2,Kabupaten Kapuas,age_group,30-34,perempuan,17.18,ribu_jiwa,2025,projection,total_population,3.1.2,65,,30–34
+62.03,2,Kabupaten Kapuas,age_group,30-34,,36.08,ribu_jiwa,2025,projection,total_population,3.1.2,65,,30–34
+62.03,2,Kabupaten Kapuas,age_group,35-39,laki_laki,18.28,ribu_jiwa,2025,projection,total_population,3.1.2,65,,35–39
+62.03,2,Kabupaten Kapuas,age_group,35-39,perempuan,16.41,ribu_jiwa,2025,projection,total_population,3.1.2,65,,35–39
+62.03,2,Kabupaten Kapuas,age_group,35-39,,34.69,ribu_jiwa,2025,projection,total_population,3.1.2,65,,35–39
+62.03,2,Kabupaten Kapuas,age_group,40-44,laki_laki,16.27,ribu_jiwa,2025,projection,total_population,3.1.2,65,,40–44
+62.03,2,Kabupaten Kapuas,age_group,40-44,perempuan,15.13,ribu_jiwa,2025,projection,total_population,3.1.2,65,,40–44
+62.03,2,Kabupaten Kapuas,age_group,40-44,,31.39,ribu_jiwa,2025,projection,total_population,3.1.2,65,,40–44
+62.03,2,Kabupaten Kapuas,age_group,45-49,laki_laki,15.09,ribu_jiwa,2025,projection,total_population,3.1.2,65,,45–49
+62.03,2,Kabupaten Kapuas,age_group,45-49,perempuan,14.23,ribu_jiwa,2025,projection,total_population,3.1.2,65,,45–49
+62.03,2,Kabupaten Kapuas,age_group,45-49,,29.32,ribu_jiwa,2025,projection,total_population,3.1.2,65,,45–49
+62.03,2,Kabupaten Kapuas,age_group,50-54,laki_laki,13.22,ribu_jiwa,2025,projection,total_population,3.1.2,65,,50–54
+62.03,2,Kabupaten Kapuas,age_group,50-54,perempuan,12.83,ribu_jiwa,2025,projection,total_population,3.1.2,65,,50–54
+62.03,2,Kabupaten Kapuas,age_group,50-54,,26.05,ribu_jiwa,2025,projection,total_population,3.1.2,65,,50–54
+62.03,2,Kabupaten Kapuas,age_group,55-59,laki_laki,11.10,ribu_jiwa,2025,projection,total_population,3.1.2,65,,55–59
+62.03,2,Kabupaten Kapuas,age_group,55-59,perempuan,10.90,ribu_jiwa,2025,projection,total_population,3.1.2,65,,55–59
+62.03,2,Kabupaten Kapuas,age_group,55-59,,22.00,ribu_jiwa,2025,projection,total_population,3.1.2,65,,55–59
+62.03,2,Kabupaten Kapuas,age_group,60-64,laki_laki,8.64,ribu_jiwa,2025,projection,total_population,3.1.2,65,,60–64
+62.03,2,Kabupaten Kapuas,age_group,60-64,perempuan,8.19,ribu_jiwa,2025,projection,total_population,3.1.2,65,,60–64
+62.03,2,Kabupaten Kapuas,age_group,60-64,,16.83,ribu_jiwa,2025,projection,total_population,3.1.2,65,,60–64
+62.03,2,Kabupaten Kapuas,age_group,65-69,laki_laki,6.15,ribu_jiwa,2025,projection,total_population,3.1.2,65,,65–69
+62.03,2,Kabupaten Kapuas,age_group,65-69,perempuan,5.92,ribu_jiwa,2025,projection,total_population,3.1.2,65,,65–69
+62.03,2,Kabupaten Kapuas,age_group,65-69,,12.07,ribu_jiwa,2025,projection,total_population,3.1.2,65,,65–69
+62.03,2,Kabupaten Kapuas,age_group,70-74,laki_laki,3.80,ribu_jiwa,2025,projection,total_population,3.1.2,65,,70–74
+62.03,2,Kabupaten Kapuas,age_group,70-74,perempuan,3.77,ribu_jiwa,2025,projection,total_population,3.1.2,65,,70–74
+62.03,2,Kabupaten Kapuas,age_group,70-74,,7.57,ribu_jiwa,2025,projection,total_population,3.1.2,65,,70–74
+62.03,2,Kabupaten Kapuas,age_group,75+,laki_laki,3.68,ribu_jiwa,2025,projection,total_population,3.1.2,65,,75+
+62.03,2,Kabupaten Kapuas,age_group,75+,perempuan,4.19,ribu_jiwa,2025,projection,total_population,3.1.2,65,,75+
+62.03,2,Kabupaten Kapuas,age_group,75+,,7.87,ribu_jiwa,2025,projection,total_population,3.1.2,65,,75+
+62.03,2,Kapuas,sex,laki_laki,,223.72,ribu_jiwa,2025,projection,total_population,3.1.2,65,,Laki-Laki
+62.03,2,Kapuas,sex,perempuan,,211.35,ribu_jiwa,2025,projection,total_population,3.1.2,65,,Perempuan
+62.03,2,Kapuas,total,total,,435.07,ribu_jiwa,2025,projection,total_population,3.1.2,65,,
+62.03.04,3,Kapuas Kuala,religion,islam,,21240,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.04,3,Kapuas Kuala,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.04,3,Kapuas Kuala,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Katolik
+62.03.04,3,Kapuas Kuala,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.04,3,Kapuas Kuala,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.04,3,Kapuas Kuala,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.13,3,Tamban Catur,religion,islam,,16616,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.13,3,Tamban Catur,religion,kristen,,276,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.13,3,Tamban Catur,religion,katolik,,22,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.13,3,Tamban Catur,religion,hindu,,371,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.13,3,Tamban Catur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.13,3,Tamban Catur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Lainnya
+62.03.03,3,Kapuas Timur,religion,islam,,31589,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.03,3,Kapuas Timur,religion,kristen,,64,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.03,3,Kapuas Timur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Katolik
+62.03.03,3,Kapuas Timur,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.03,3,Kapuas Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.03,3,Kapuas Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Lainnya
+62.03.01,3,Selat,religion,islam,,64429,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.01,3,Selat,religion,kristen,,7118,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.01,3,Selat,religion,katolik,,546,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.01,3,Selat,religion,hindu,,150,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.01,3,Selat,religion,buddha,,18,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.01,3,Selat,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.17,3,Bataguh,religion,islam,,39564,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.17,3,Bataguh,religion,kristen,,169,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.17,3,Bataguh,religion,katolik,,109,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.17,3,Bataguh,religion,hindu,,1338,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.17,3,Bataguh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.17,3,Bataguh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Lainnya
+62.03.08,3,Basarang,religion,islam,,21121,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.08,3,Basarang,religion,kristen,,683,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.08,3,Basarang,religion,katolik,,81,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.08,3,Basarang,religion,hindu,,3214,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.08,3,Basarang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.08,3,Basarang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Lainnya
+62.03.02,3,Kapuas Hilir,religion,islam,,11846,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.02,3,Kapuas Hilir,religion,kristen,,3179,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.02,3,Kapuas Hilir,religion,katolik,,118,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.02,3,Kapuas Hilir,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.02,3,Kapuas Hilir,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.02,3,Kapuas Hilir,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.06,3,Pulau Petak,religion,islam,,22858,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.06,3,Pulau Petak,religion,kristen,,329,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.06,3,Pulau Petak,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.06,3,Pulau Petak,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.06,3,Pulau Petak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.06,3,Pulau Petak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Lainnya
+62.03.07,3,Kapuas Murung,religion,islam,,27771,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.07,3,Kapuas Murung,religion,kristen,,182,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.07,3,Kapuas Murung,religion,katolik,,29,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.07,3,Kapuas Murung,religion,hindu,,263,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.07,3,Kapuas Murung,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.07,3,Kapuas Murung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Lainnya
+62.03.16,3,Dadahup,religion,islam,,12325,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.16,3,Dadahup,religion,kristen,,875,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.16,3,Dadahup,religion,katolik,,90,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.16,3,Dadahup,religion,hindu,,193,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.16,3,Dadahup,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.16,3,Dadahup,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Lainnya
+62.03.05,3,Kapuas Barat,religion,islam,,18297,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.05,3,Kapuas Barat,religion,kristen,,3692,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.05,3,Kapuas Barat,religion,katolik,,285,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.05,3,Kapuas Barat,religion,hindu,,184,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.05,3,Kapuas Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.05,3,Kapuas Barat,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.09,3,Mantangai,religion,islam,,37462,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.09,3,Mantangai,religion,kristen,,6520,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.09,3,Mantangai,religion,katolik,,191,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.09,3,Mantangai,religion,hindu,,2151,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.09,3,Mantangai,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.09,3,Mantangai,religion,lainnya,,43,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.10,3,Timpah,religion,islam,,5117,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.10,3,Timpah,religion,kristen,,5580,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.10,3,Timpah,religion,katolik,,40,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.10,3,Timpah,religion,hindu,,3053,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.10,3,Timpah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,156,nil,Budha
+62.03.10,3,Timpah,religion,lainnya,,23,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.11,3,Kapuas Tengah,religion,islam,,7948,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.11,3,Kapuas Tengah,religion,kristen,,8220,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.11,3,Kapuas Tengah,religion,katolik,,76,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.11,3,Kapuas Tengah,religion,hindu,,4496,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.11,3,Kapuas Tengah,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.11,3,Kapuas Tengah,religion,lainnya,,40,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.14,3,Pasak Talawang,religion,islam,,3205,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.14,3,Pasak Talawang,religion,kristen,,3199,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.14,3,Pasak Talawang,religion,katolik,,158,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.14,3,Pasak Talawang,religion,hindu,,2941,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.14,3,Pasak Talawang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.14,3,Pasak Talawang,religion,lainnya,,43,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.12,3,Kapuas Hulu,religion,islam,,2586,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.12,3,Kapuas Hulu,religion,kristen,,5895,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.12,3,Kapuas Hulu,religion,katolik,,102,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.12,3,Kapuas Hulu,religion,hindu,,2761,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.12,3,Kapuas Hulu,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.12,3,Kapuas Hulu,religion,lainnya,,316,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03.15,3,Mandau Talawang,religion,islam,,1618,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03.15,3,Mandau Talawang,religion,kristen,,3220,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03.15,3,Mandau Talawang,religion,katolik,,157,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03.15,3,Mandau Talawang,religion,hindu,,2121,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03.15,3,Mandau Talawang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03.15,3,Mandau Talawang,religion,lainnya,,42,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03,2,Kapuas,religion,islam,,345592,jiwa,2025,registration,total_population,4.3.1,156,,Islam
+62.03,2,Kapuas,religion,kristen,,49208,jiwa,2025,registration,total_population,4.3.1,156,,Kristen
+62.03,2,Kapuas,religion,katolik,,2005,jiwa,2025,registration,total_population,4.3.1,156,,Katolik
+62.03,2,Kapuas,religion,hindu,,23288,jiwa,2025,registration,total_population,4.3.1,156,,Hindu
+62.03,2,Kapuas,religion,buddha,,38,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+62.03,2,Kapuas,religion,lainnya,,516,jiwa,2025,registration,total_population,4.3.1,156,,Lainnya
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/padi_padian,,98084,rupiah,2024,survey_estimate,per_capita,10.1,327,,Padi-padian
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/padi_padian,,84319,rupiah,2025,survey_estimate,per_capita,10.1,327,,Padi-padian
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/umbi_umbian,,6156,rupiah,2024,survey_estimate,per_capita,10.1,327,,Umbi-umbian
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/umbi_umbian,,5539,rupiah,2025,survey_estimate,per_capita,10.1,327,,Umbi-umbian
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,75923,rupiah,2024,survey_estimate,per_capita,10.1,327,,Ikan/udang/cumi/kerang
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,72628,rupiah,2025,survey_estimate,per_capita,10.1,327,,Ikan/udang/cumi/kerang
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/daging,,32508,rupiah,2024,survey_estimate,per_capita,10.1,327,,Daging
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/daging,,29366,rupiah,2025,survey_estimate,per_capita,10.1,327,,Daging
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/telur_dan_susu,,32127,rupiah,2024,survey_estimate,per_capita,10.1,327,,Telur dan susu
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/telur_dan_susu,,34552,rupiah,2025,survey_estimate,per_capita,10.1,327,,Telur dan susu
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/sayur_sayuran,,44986,rupiah,2024,survey_estimate,per_capita,10.1,327,,Sayur-sayuran
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/sayur_sayuran,,49342,rupiah,2025,survey_estimate,per_capita,10.1,327,,Sayur-sayuran
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/kacang_kacangan,,9729,rupiah,2024,survey_estimate,per_capita,10.1,327,,Kacang-kacangan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/kacang_kacangan,,8966,rupiah,2025,survey_estimate,per_capita,10.1,327,,Kacang-kacangan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/buah_buahan,,30547,rupiah,2024,survey_estimate,per_capita,10.1,327,,Buah-buahan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/buah_buahan,,26468,rupiah,2025,survey_estimate,per_capita,10.1,327,,Buah-buahan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16496,rupiah,2024,survey_estimate,per_capita,10.1,327,,Minyak dan kelapa
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16899,rupiah,2025,survey_estimate,per_capita,10.1,327,,Minyak dan kelapa
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/bahan_minuman,,26212,rupiah,2024,survey_estimate,per_capita,10.1,327,,Bahan minuman
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/bahan_minuman,,26395,rupiah,2025,survey_estimate,per_capita,10.1,327,,Bahan minuman
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/bumbu_bumbuan,,19111,rupiah,2024,survey_estimate,per_capita,10.1,327,,Bumbu-bumbuan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/bumbu_bumbuan,,20990,rupiah,2025,survey_estimate,per_capita,10.1,327,,Bumbu-bumbuan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/konsumsi_lainnya,,15209,rupiah,2024,survey_estimate,per_capita,10.1,327,,Konsumsi lainnya
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/konsumsi_lainnya,,17267,rupiah,2025,survey_estimate,per_capita,10.1,327,,Konsumsi lainnya
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,155545,rupiah,2024,survey_estimate,per_capita,10.1,327,,Makanan dan minuman jadi
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,173687,rupiah,2025,survey_estimate,per_capita,10.1,327,,Makanan dan minuman jadi
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/rokok,,76844,rupiah,2024,survey_estimate,per_capita,10.1,327,,Rokok
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/rokok,,87828,rupiah,2025,survey_estimate,per_capita,10.1,327,,Rokok
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/jumlah_makanan,,639476,rupiah,2024,survey_estimate,per_capita,10.1,327,,Jumlah makanan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/jumlah_makanan,,654247,rupiah,2025,survey_estimate,per_capita,10.1,327,,Jumlah makanan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,290748,rupiah,2024,survey_estimate,per_capita,10.1,327,,Perumahan dan fasilitas rumah tangga
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,290807,rupiah,2025,survey_estimate,per_capita,10.1,327,,Perumahan dan fasilitas rumah tangga
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,109595,rupiah,2024,survey_estimate,per_capita,10.1,327,,Aneka barang dan jasa
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,94604,rupiah,2025,survey_estimate,per_capita,10.1,327,,Aneka barang dan jasa
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,21066,rupiah,2024,survey_estimate,per_capita,10.1,327,,"Pakaian, alas kaki, dan tutup kepala"
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22553,rupiah,2025,survey_estimate,per_capita,10.1,327,,"Pakaian, alas kaki, dan tutup kepala"
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/barang_tahan_lama,,58402,rupiah,2024,survey_estimate,per_capita,10.1,327,,Barang tahan lama
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/barang_tahan_lama,,44001,rupiah,2025,survey_estimate,per_capita,10.1,327,,Barang tahan lama
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40461,rupiah,2024,survey_estimate,per_capita,10.1,327,,"Pajak, pungutan, dan asuransi"
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41299,rupiah,2025,survey_estimate,per_capita,10.1,327,,"Pajak, pungutan, dan asuransi"
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19420,rupiah,2024,survey_estimate,per_capita,10.1,327,,Keperluan pesta dan upacara/kenduri
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,21048,rupiah,2025,survey_estimate,per_capita,10.1,327,,Keperluan pesta dan upacara/kenduri
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,539691,rupiah,2024,survey_estimate,per_capita,10.1,327,,Jumlah bukan makanan
+62.03,2,Kabupaten Kapuas,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,514312,rupiah,2025,survey_estimate,per_capita,10.1,327,,Jumlah bukan makanan
+62.03,2,Kabupaten Kapuas,expenditure,total,,1179167,rupiah,2024,survey_estimate,per_capita,10.1,327,,
+62.03,2,Kabupaten Kapuas,expenditure,total,,1168559,rupiah,2025,survey_estimate,per_capita,10.1,327,,

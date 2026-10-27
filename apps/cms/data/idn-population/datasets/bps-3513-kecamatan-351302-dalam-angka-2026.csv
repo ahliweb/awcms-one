@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.02.2001,4,LEDOKOMBO,sex,laki_laki,,1157,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2001,4,LEDOKOMBO,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2001,4,LEDOKOMBO,total,total,,2331,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2002,4,PANDANSARI,sex,laki_laki,,2227,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2002,4,PANDANSARI,sex,perempuan,,2294,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2002,4,PANDANSARI,total,total,,4521,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2003,4,SUMBER,sex,laki_laki,,2810,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2003,4,SUMBER,sex,perempuan,,2737,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2003,4,SUMBER,total,total,,5547,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2004,4,WONOKERSO,sex,laki_laki,,1137,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2004,4,WONOKERSO,sex,perempuan,,1136,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2004,4,WONOKERSO,total,total,,2273,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2005,4,GEMITO,sex,laki_laki,,1221,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2005,4,GEMITO,sex,perempuan,,1231,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2005,4,GEMITO,total,total,,2452,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2006,4,TUKUL,sex,laki_laki,,1365,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2006,4,TUKUL,sex,perempuan,,1357,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2006,4,TUKUL,total,total,,2722,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2007,4,SUMBERANOM,sex,laki_laki,,807,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2007,4,SUMBERANOM,sex,perempuan,,811,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2007,4,SUMBERANOM,total,total,,1618,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2008,4,CEPOKO,sex,laki_laki,,1981,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2008,4,CEPOKO,sex,perempuan,,2102,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2008,4,CEPOKO,total,total,,4083,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02.2009,4,REMBA'AN,sex,laki_laki,,750,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02.2009,4,REMBA'AN,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02.2009,4,REMBA'AN,total,total,,1533,jiwa,2025,registration,total_population,3.1,24,,
+35.13.02,3,Kecamatan Sumber,sex,laki_laki,,13455,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.02,3,Kecamatan Sumber,sex,perempuan,,13625,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.02,3,Kecamatan Sumber,total,total,,27080,jiwa,2025,registration,total_population,3.1,24,,

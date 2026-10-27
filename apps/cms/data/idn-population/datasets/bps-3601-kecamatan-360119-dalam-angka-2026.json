@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360119-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kaduhejo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Kaduhejo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601171",
+  "publicationNumber": "36010.26033",
+  "issn": "3064-3783",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/eb1a7163edd2ef85b9a2aac5/kecamatan-kaduhejo-dalam-angka-2026.html",
+  "sourceFileSha256": "5945b1586ef3a8f2df53ae980ee7b46b6cbb1bc99e33f4ffe8c497ad8137fb5c",
+  "sourceFileBytes": 8569146,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360119-dalam-angka-2026.csv",
+  "csvSha256": "dffaa3890179d5dd9aa4d7b057beca55bca94d27be772cd6619cf9ca058c7262",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kaduhejo, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bayumundu\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN KADUHEJO KADUHEJO DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"Bayumundu\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN KADUHEJO KADUHEJO DISTRICT\": unmatched "
+  ]
+}

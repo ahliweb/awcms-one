@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.12.23,3,Bonatua Lunasi,age_group,0-4,laki_laki,178,jiwa,2025,registration,total_population,3.2,28,,0 – 4
+12.12.23,3,Bonatua Lunasi,age_group,0-4,perempuan,187,jiwa,2025,registration,total_population,3.2,28,,0 – 4
+12.12.23,3,Bonatua Lunasi,age_group,0-4,,365,jiwa,2025,registration,total_population,3.2,28,,0 – 4
+12.12.23,3,Bonatua Lunasi,age_group,5-9,laki_laki,281,jiwa,2025,registration,total_population,3.2,28,,5 – 9
+12.12.23,3,Bonatua Lunasi,age_group,5-9,perempuan,228,jiwa,2025,registration,total_population,3.2,28,,5 – 9
+12.12.23,3,Bonatua Lunasi,age_group,5-9,,509,jiwa,2025,registration,total_population,3.2,28,,5 – 9
+12.12.23,3,Bonatua Lunasi,age_group,10-14,laki_laki,341,jiwa,2025,registration,total_population,3.2,28,,10 – 14
+12.12.23,3,Bonatua Lunasi,age_group,10-14,perempuan,304,jiwa,2025,registration,total_population,3.2,28,,10 – 14
+12.12.23,3,Bonatua Lunasi,age_group,10-14,,645,jiwa,2025,registration,total_population,3.2,28,,10 – 14
+12.12.23,3,Bonatua Lunasi,age_group,15-19,laki_laki,331,jiwa,2025,registration,total_population,3.2,28,,15 – 19
+12.12.23,3,Bonatua Lunasi,age_group,15-19,perempuan,317,jiwa,2025,registration,total_population,3.2,28,,15 – 19
+12.12.23,3,Bonatua Lunasi,age_group,15-19,,648,jiwa,2025,registration,total_population,3.2,28,,15 – 19
+12.12.23,3,Bonatua Lunasi,age_group,20-24,laki_laki,313,jiwa,2025,registration,total_population,3.2,28,,20 – 24
+12.12.23,3,Bonatua Lunasi,age_group,20-24,perempuan,299,jiwa,2025,registration,total_population,3.2,28,,20 – 24
+12.12.23,3,Bonatua Lunasi,age_group,20-24,,612,jiwa,2025,registration,total_population,3.2,28,,20 – 24
+12.12.23,3,Bonatua Lunasi,age_group,25-29,laki_laki,244,jiwa,2025,registration,total_population,3.2,28,,25 – 29
+12.12.23,3,Bonatua Lunasi,age_group,25-29,perempuan,251,jiwa,2025,registration,total_population,3.2,28,,25 – 29
+12.12.23,3,Bonatua Lunasi,age_group,25-29,,495,jiwa,2025,registration,total_population,3.2,28,,25 – 29
+12.12.23,3,Bonatua Lunasi,age_group,30-34,laki_laki,200,jiwa,2025,registration,total_population,3.2,28,,30 – 34
+12.12.23,3,Bonatua Lunasi,age_group,30-34,perempuan,165,jiwa,2025,registration,total_population,3.2,28,,30 – 34
+12.12.23,3,Bonatua Lunasi,age_group,30-34,,365,jiwa,2025,registration,total_population,3.2,28,,30 – 34
+12.12.23,3,Bonatua Lunasi,age_group,35-39,laki_laki,181,jiwa,2025,registration,total_population,3.2,28,,35 – 39
+12.12.23,3,Bonatua Lunasi,age_group,35-39,perempuan,193,jiwa,2025,registration,total_population,3.2,28,,35 – 39
+12.12.23,3,Bonatua Lunasi,age_group,35-39,,374,jiwa,2025,registration,total_population,3.2,28,,35 – 39
+12.12.23,3,Bonatua Lunasi,age_group,40-44,laki_laki,197,jiwa,2025,registration,total_population,3.2,28,,40 – 44
+12.12.23,3,Bonatua Lunasi,age_group,40-44,perempuan,200,jiwa,2025,registration,total_population,3.2,28,,40 – 44
+12.12.23,3,Bonatua Lunasi,age_group,40-44,,397,jiwa,2025,registration,total_population,3.2,28,,40 – 44
+12.12.23,3,Bonatua Lunasi,age_group,45-49,laki_laki,192,jiwa,2025,registration,total_population,3.2,28,,45 – 49
+12.12.23,3,Bonatua Lunasi,age_group,45-49,perempuan,187,jiwa,2025,registration,total_population,3.2,28,,45 – 49
+12.12.23,3,Bonatua Lunasi,age_group,45-49,,379,jiwa,2025,registration,total_population,3.2,28,,45 – 49
+12.12.23,3,Bonatua Lunasi,age_group,50-54,laki_laki,169,jiwa,2025,registration,total_population,3.2,28,,50 – 54
+12.12.23,3,Bonatua Lunasi,age_group,50-54,perempuan,175,jiwa,2025,registration,total_population,3.2,28,,50 – 54
+12.12.23,3,Bonatua Lunasi,age_group,50-54,,344,jiwa,2025,registration,total_population,3.2,28,,50 – 54
+12.12.23,3,Bonatua Lunasi,age_group,55-59,laki_laki,143,jiwa,2025,registration,total_population,3.2,28,,55 – 59
+12.12.23,3,Bonatua Lunasi,age_group,55-59,perempuan,146,jiwa,2025,registration,total_population,3.2,28,,55 – 59
+12.12.23,3,Bonatua Lunasi,age_group,55-59,,289,jiwa,2025,registration,total_population,3.2,28,,55 – 59
+12.12.23,3,Bonatua Lunasi,age_group,60-64,laki_laki,138,jiwa,2025,registration,total_population,3.2,28,,60 – 64
+12.12.23,3,Bonatua Lunasi,age_group,60-64,perempuan,158,jiwa,2025,registration,total_population,3.2,28,,60 – 64
+12.12.23,3,Bonatua Lunasi,age_group,60-64,,296,jiwa,2025,registration,total_population,3.2,28,,60 – 64
+12.12.23,3,Bonatua Lunasi,age_group,65-69,laki_laki,93,jiwa,2025,registration,total_population,3.2,28,,65 – 69
+12.12.23,3,Bonatua Lunasi,age_group,65-69,perempuan,126,jiwa,2025,registration,total_population,3.2,28,,65 – 69
+12.12.23,3,Bonatua Lunasi,age_group,65-69,,219,jiwa,2025,registration,total_population,3.2,28,,65 – 69
+12.12.23,3,Bonatua Lunasi,age_group,70-74,laki_laki,66,jiwa,2025,registration,total_population,3.2,28,,70 – 74
+12.12.23,3,Bonatua Lunasi,age_group,70-74,perempuan,117,jiwa,2025,registration,total_population,3.2,28,,70 – 74
+12.12.23,3,Bonatua Lunasi,age_group,70-74,,183,jiwa,2025,registration,total_population,3.2,28,,70 – 74
+12.12.23,3,Bonatua Lunasi,age_group,75+,laki_laki,87,jiwa,2025,registration,total_population,3.2,28,,75+
+12.12.23,3,Bonatua Lunasi,age_group,75+,perempuan,193,jiwa,2025,registration,total_population,3.2,28,,75+
+12.12.23,3,Bonatua Lunasi,age_group,75+,,280,jiwa,2025,registration,total_population,3.2,28,,75+
+12.12.23,3,Bonatua Lunasi,sex,laki_laki,,3154,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+12.12.23,3,Bonatua Lunasi,sex,perempuan,,3246,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+12.12.23,3,Bonatua Lunasi,total,total,,6400,jiwa,2025,registration,total_population,3.2,28,,

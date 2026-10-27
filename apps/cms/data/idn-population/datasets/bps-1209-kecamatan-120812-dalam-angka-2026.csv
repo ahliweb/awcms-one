@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08.12,3,Hatonduhan,age_group,0-4,laki_laki,655,jiwa,2025,registration,total_population,1.2,10,,0 –4
+12.08.12,3,Hatonduhan,age_group,0-4,perempuan,565,jiwa,2025,registration,total_population,1.2,10,,0 –4
+12.08.12,3,Hatonduhan,age_group,0-4,,1220,jiwa,2025,registration,total_population,1.2,10,,0 –4
+12.08.12,3,Hatonduhan,age_group,5-9,laki_laki,1158,jiwa,2025,registration,total_population,1.2,10,,5 – 9
+12.08.12,3,Hatonduhan,age_group,5-9,perempuan,1061,jiwa,2025,registration,total_population,1.2,10,,5 – 9
+12.08.12,3,Hatonduhan,age_group,5-9,,2219,jiwa,2025,registration,total_population,1.2,10,,5 – 9
+12.08.12,3,Hatonduhan,age_group,10-14,laki_laki,1372,jiwa,2025,registration,total_population,1.2,10,,10 – 14
+12.08.12,3,Hatonduhan,age_group,10-14,perempuan,1273,jiwa,2025,registration,total_population,1.2,10,,10 – 14
+12.08.12,3,Hatonduhan,age_group,10-14,,2645,jiwa,2025,registration,total_population,1.2,10,,10 – 14
+12.08.12,3,Hatonduhan,age_group,15-19,laki_laki,1378,jiwa,2025,registration,total_population,1.2,10,,15 – 19
+12.08.12,3,Hatonduhan,age_group,15-19,perempuan,1304,jiwa,2025,registration,total_population,1.2,10,,15 – 19
+12.08.12,3,Hatonduhan,age_group,15-19,,2682,jiwa,2025,registration,total_population,1.2,10,,15 – 19
+12.08.12,3,Hatonduhan,age_group,20-24,laki_laki,1263,jiwa,2025,registration,total_population,1.2,10,,20 – 24
+12.08.12,3,Hatonduhan,age_group,20-24,perempuan,1191,jiwa,2025,registration,total_population,1.2,10,,20 – 24
+12.08.12,3,Hatonduhan,age_group,20-24,,2454,jiwa,2025,registration,total_population,1.2,10,,20 – 24
+12.08.12,3,Hatonduhan,age_group,25-29,laki_laki,1094,jiwa,2025,registration,total_population,1.2,10,,25 – 29
+12.08.12,3,Hatonduhan,age_group,25-29,perempuan,1080,jiwa,2025,registration,total_population,1.2,10,,25 – 29
+12.08.12,3,Hatonduhan,age_group,25-29,,2174,jiwa,2025,registration,total_population,1.2,10,,25 – 29
+12.08.12,3,Hatonduhan,age_group,30-34,laki_laki,943,jiwa,2025,registration,total_population,1.2,10,,30 – 34
+12.08.12,3,Hatonduhan,age_group,30-34,perempuan,872,jiwa,2025,registration,total_population,1.2,10,,30 – 34
+12.08.12,3,Hatonduhan,age_group,30-34,,1815,jiwa,2025,registration,total_population,1.2,10,,30 – 34
+12.08.12,3,Hatonduhan,age_group,35-39,laki_laki,818,jiwa,2025,registration,total_population,1.2,10,,35 – 39
+12.08.12,3,Hatonduhan,age_group,35-39,perempuan,746,jiwa,2025,registration,total_population,1.2,10,,35 – 39
+12.08.12,3,Hatonduhan,age_group,35-39,,1564,jiwa,2025,registration,total_population,1.2,10,,35 – 39
+12.08.12,3,Hatonduhan,age_group,40-44,laki_laki,875,jiwa,2025,registration,total_population,1.2,10,,40 – 44
+12.08.12,3,Hatonduhan,age_group,40-44,perempuan,867,jiwa,2025,registration,total_population,1.2,10,,40 – 44
+12.08.12,3,Hatonduhan,age_group,40-44,,1742,jiwa,2025,registration,total_population,1.2,10,,40 – 44
+12.08.12,3,Hatonduhan,age_group,45-49,laki_laki,768,jiwa,2025,registration,total_population,1.2,10,,45 – 49
+12.08.12,3,Hatonduhan,age_group,45-49,perempuan,744,jiwa,2025,registration,total_population,1.2,10,,45 – 49
+12.08.12,3,Hatonduhan,age_group,45-49,,1512,jiwa,2025,registration,total_population,1.2,10,,45 – 49
+12.08.12,3,Hatonduhan,age_group,50-54,laki_laki,675,jiwa,2025,registration,total_population,1.2,10,,50 – 54
+12.08.12,3,Hatonduhan,age_group,50-54,perempuan,720,jiwa,2025,registration,total_population,1.2,10,,50 – 54
+12.08.12,3,Hatonduhan,age_group,50-54,,1395,jiwa,2025,registration,total_population,1.2,10,,50 – 54
+12.08.12,3,Hatonduhan,age_group,55-59,laki_laki,582,jiwa,2025,registration,total_population,1.2,10,,55 – 59
+12.08.12,3,Hatonduhan,age_group,55-59,perempuan,679,jiwa,2025,registration,total_population,1.2,10,,55 – 59
+12.08.12,3,Hatonduhan,age_group,55-59,,1261,jiwa,2025,registration,total_population,1.2,10,,55 – 59
+12.08.12,3,Hatonduhan,age_group,60-64,laki_laki,510,jiwa,2025,registration,total_population,1.2,10,,60 – 64
+12.08.12,3,Hatonduhan,age_group,60-64,perempuan,592,jiwa,2025,registration,total_population,1.2,10,,60 – 64
+12.08.12,3,Hatonduhan,age_group,60-64,,1102,jiwa,2025,registration,total_population,1.2,10,,60 – 64
+12.08.12,3,Hatonduhan,age_group,65-69,laki_laki,360,jiwa,2025,registration,total_population,1.2,10,,65 – 69
+12.08.12,3,Hatonduhan,age_group,65-69,perempuan,477,jiwa,2025,registration,total_population,1.2,10,,65 – 69
+12.08.12,3,Hatonduhan,age_group,65-69,,837,jiwa,2025,registration,total_population,1.2,10,,65 – 69
+12.08.12,3,Hatonduhan,age_group,70-74,laki_laki,218,jiwa,2025,registration,total_population,1.2,10,,70 – 74
+12.08.12,3,Hatonduhan,age_group,70-74,perempuan,345,jiwa,2025,registration,total_population,1.2,10,,70 – 74
+12.08.12,3,Hatonduhan,age_group,70-74,,563,jiwa,2025,registration,total_population,1.2,10,,70 – 74
+12.08.12,3,Hatonduhan,age_group,75+,laki_laki,259,jiwa,2025,registration,total_population,1.2,10,,75 +
+12.08.12,3,Hatonduhan,age_group,75+,perempuan,511,jiwa,2025,registration,total_population,1.2,10,,75 +
+12.08.12,3,Hatonduhan,age_group,75+,,770,jiwa,2025,registration,total_population,1.2,10,,75 +
+12.08.12,3,Hatonduhan,sex,laki_laki,,12928,jiwa,2025,registration,total_population,1.2,10,,Laki-Laki
+12.08.12,3,Hatonduhan,sex,perempuan,,13027,jiwa,2025,registration,total_population,1.2,10,,Perempuan
+12.08.12,3,Hatonduhan,total,total,,25955,jiwa,2025,registration,total_population,1.2,10,,

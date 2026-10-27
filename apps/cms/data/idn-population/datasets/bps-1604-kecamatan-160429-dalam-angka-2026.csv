@@ -1,0 +1,23 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.29.2006,4,Rambai Kaca,sex,laki_laki,,1030,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2006,4,Rambai Kaca,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2005,4,Kapitan,sex,laki_laki,,213,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2005,4,Kapitan,sex,perempuan,,212,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2001,4,Sukamerindu,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2001,4,Sukamerindu,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2004,4,Gunung Liwat,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2004,4,Gunung Liwat,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2003,4,Karang Caya,sex,laki_laki,,604,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2003,4,Karang Caya,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2002,4,Guru Agung,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2002,4,Guru Agung,sex,perempuan,,494,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2010,4,Tanjung Agung,sex,laki_laki,,311,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2010,4,Tanjung Agung,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2009,4,Sukaraja,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2009,4,Sukaraja,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2008,4,Tanjung Raya,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2008,4,Tanjung Raya,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29.2007,4,Pagar Kaya,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29.2007,4,Pagar Kaya,sex,perempuan,,251,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.29,3,Sukamerindu,sex,laki_laki,,4211,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.29,3,Sukamerindu,sex,perempuan,,3936,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female

@@ -1,0 +1,75 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.01,3,Bahorok,total,total,,41445,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.21,3,Sirapit,total,total,,16653,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.02,3,Salapian,total,total,,26159,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.22,3,Kutambaru,total,total,,14067,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.04,3,Sei Bingai,total,total,,51462,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.03,3,Kuala,total,total,,40206,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.06,3,Selesai,total,total,,72377,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.05,3,Binjai,total,total,,46877,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.07,3,Stabat,total,total,,90877,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.08,3,Wampu,total,total,,42261,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.19,3,Batang Serangan,total,total,,35656,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.20,3,Sawit Seberang,total,total,,25688,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.12,3,Padang Tualang,total,total,,52736,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.10,3,Hinai,total,total,,52506,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.09,3,Secanggang,total,total,,70270,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.11,3,Tanjung Pura,total,total,,68810,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.13,3,Gebang,total,total,,47366,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.14,3,Babalan,total,total,,56535,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.17,3,Sei Lepan,total,total,,49481,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.16,3,Besitang,total,total,,45150,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.15,3,Pangkalan Susu,total,total,,43741,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05.23,3,Pematang Jaya,total,total,,12830,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05,2,Kabupaten Langkat,total,total,,1027104,jiwa,2020,projection,total_population,3.1.1,89,,
+12.05,2,Kabupaten Langkat,age_group,0-4,laki_laki,49718,jiwa,2025,projection,total_population,3.1.2,94,,0 – 4
+12.05,2,Kabupaten Langkat,age_group,0-4,perempuan,47672,jiwa,2025,projection,total_population,3.1.2,94,,0 – 4
+12.05,2,Kabupaten Langkat,age_group,0-4,,97390,jiwa,2025,projection,total_population,3.1.2,94,,0 – 4
+12.05,2,Kabupaten Langkat,age_group,5-9,laki_laki,46472,jiwa,2025,projection,total_population,3.1.2,94,,5 – 9
+12.05,2,Kabupaten Langkat,age_group,5-9,perempuan,44345,jiwa,2025,projection,total_population,3.1.2,94,,5 – 9
+12.05,2,Kabupaten Langkat,age_group,5-9,,90817,jiwa,2025,projection,total_population,3.1.2,94,,5 – 9
+12.05,2,Kabupaten Langkat,age_group,10-14,laki_laki,47978,jiwa,2025,projection,total_population,3.1.2,94,,10 – 14
+12.05,2,Kabupaten Langkat,age_group,10-14,perempuan,45035,jiwa,2025,projection,total_population,3.1.2,94,,10 – 14
+12.05,2,Kabupaten Langkat,age_group,10-14,,93013,jiwa,2025,projection,total_population,3.1.2,94,,10 – 14
+12.05,2,Kabupaten Langkat,age_group,15-19,laki_laki,39138,jiwa,2025,projection,total_population,3.1.2,94,,15 – 19
+12.05,2,Kabupaten Langkat,age_group,15-19,perempuan,36433,jiwa,2025,projection,total_population,3.1.2,94,,15 – 19
+12.05,2,Kabupaten Langkat,age_group,15-19,,75571,jiwa,2025,projection,total_population,3.1.2,94,,15 – 19
+12.05,2,Kabupaten Langkat,age_group,20-24,laki_laki,40115,jiwa,2025,projection,total_population,3.1.2,94,,20 – 24
+12.05,2,Kabupaten Langkat,age_group,20-24,perempuan,38249,jiwa,2025,projection,total_population,3.1.2,94,,20 – 24
+12.05,2,Kabupaten Langkat,age_group,20-24,,78364,jiwa,2025,projection,total_population,3.1.2,94,,20 – 24
+12.05,2,Kabupaten Langkat,age_group,25-29,laki_laki,45135,jiwa,2025,projection,total_population,3.1.2,94,,25 – 29
+12.05,2,Kabupaten Langkat,age_group,25-29,perempuan,43282,jiwa,2025,projection,total_population,3.1.2,94,,25 – 29
+12.05,2,Kabupaten Langkat,age_group,25-29,,88417,jiwa,2025,projection,total_population,3.1.2,94,,25 – 29
+12.05,2,Kabupaten Langkat,age_group,30-34,laki_laki,45157,jiwa,2025,projection,total_population,3.1.2,94,,30 – 34
+12.05,2,Kabupaten Langkat,age_group,30-34,perempuan,42831,jiwa,2025,projection,total_population,3.1.2,94,,30 – 34
+12.05,2,Kabupaten Langkat,age_group,30-34,,87988,jiwa,2025,projection,total_population,3.1.2,94,,30 – 34
+12.05,2,Kabupaten Langkat,age_group,35-39,laki_laki,42264,jiwa,2025,projection,total_population,3.1.2,94,,35 – 39
+12.05,2,Kabupaten Langkat,age_group,35-39,perempuan,41439,jiwa,2025,projection,total_population,3.1.2,94,,35 – 39
+12.05,2,Kabupaten Langkat,age_group,35-39,,83703,jiwa,2025,projection,total_population,3.1.2,94,,35 – 39
+12.05,2,Kabupaten Langkat,age_group,40-44,laki_laki,39950,jiwa,2025,projection,total_population,3.1.2,94,,40 – 44
+12.05,2,Kabupaten Langkat,age_group,40-44,perempuan,39375,jiwa,2025,projection,total_population,3.1.2,94,,40 – 44
+12.05,2,Kabupaten Langkat,age_group,40-44,,79325,jiwa,2025,projection,total_population,3.1.2,94,,40 – 44
+12.05,2,Kabupaten Langkat,age_group,45-49,laki_laki,36672,jiwa,2025,projection,total_population,3.1.2,94,,45 – 49
+12.05,2,Kabupaten Langkat,age_group,45-49,perempuan,37077,jiwa,2025,projection,total_population,3.1.2,94,,45 – 49
+12.05,2,Kabupaten Langkat,age_group,45-49,,73749,jiwa,2025,projection,total_population,3.1.2,94,,45 – 49
+12.05,2,Kabupaten Langkat,age_group,50-54,laki_laki,32542,jiwa,2025,projection,total_population,3.1.2,94,,50 – 54
+12.05,2,Kabupaten Langkat,age_group,50-54,perempuan,33571,jiwa,2025,projection,total_population,3.1.2,94,,50 – 54
+12.05,2,Kabupaten Langkat,age_group,50-54,,66113,jiwa,2025,projection,total_population,3.1.2,94,,50 – 54
+12.05,2,Kabupaten Langkat,age_group,55-59,laki_laki,27795,jiwa,2025,projection,total_population,3.1.2,94,,55 – 59
+12.05,2,Kabupaten Langkat,age_group,55-59,perempuan,28803,jiwa,2025,projection,total_population,3.1.2,94,,55 – 59
+12.05,2,Kabupaten Langkat,age_group,55-59,,56598,jiwa,2025,projection,total_population,3.1.2,94,,55 – 59
+12.05,2,Kabupaten Langkat,age_group,60-64,laki_laki,22660,jiwa,2025,projection,total_population,3.1.2,94,,60 – 64
+12.05,2,Kabupaten Langkat,age_group,60-64,perempuan,23635,jiwa,2025,projection,total_population,3.1.2,94,,60 – 64
+12.05,2,Kabupaten Langkat,age_group,60-64,,46295,jiwa,2025,projection,total_population,3.1.2,94,,60 – 64
+12.05,2,Kabupaten Langkat,age_group,65-69,laki_laki,16785,jiwa,2025,projection,total_population,3.1.2,94,,65 – 69
+12.05,2,Kabupaten Langkat,age_group,65-69,perempuan,17558,jiwa,2025,projection,total_population,3.1.2,94,,65 – 69
+12.05,2,Kabupaten Langkat,age_group,65-69,,34343,jiwa,2025,projection,total_population,3.1.2,94,,65 – 69
+12.05,2,Kabupaten Langkat,age_group,70-74,laki_laki,10691,jiwa,2025,projection,total_population,3.1.2,94,,70 – 74
+12.05,2,Kabupaten Langkat,age_group,70-74,perempuan,11379,jiwa,2025,projection,total_population,3.1.2,94,,70 – 74
+12.05,2,Kabupaten Langkat,age_group,70-74,,22070,jiwa,2025,projection,total_population,3.1.2,94,,70 – 74
+12.05,2,Kabupaten Langkat,age_group,75+,laki_laki,7079,jiwa,2025,projection,total_population,3.1.2,94,,75 ke atas
+12.05,2,Kabupaten Langkat,age_group,75+,perempuan,9134,jiwa,2025,projection,total_population,3.1.2,94,,75 ke atas
+12.05,2,Kabupaten Langkat,age_group,75+,,16213,jiwa,2025,projection,total_population,3.1.2,94,,75 ke atas
+12.05,2,Kabupaten Langkat,sex,laki_laki,,550151,jiwa,2025,projection,total_population,3.1.2,94,,Laki-laki
+12.05,2,Kabupaten Langkat,sex,perempuan,,539818,jiwa,2025,projection,total_population,3.1.2,94,,Perempuan
+12.05,2,Kabupaten Langkat,total,total,,1089969,jiwa,2025,projection,total_population,3.1.2,94,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3517-kecamatan-351713-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.17.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tembelang Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN JOMBANG",
+  "publisherDomain": "3517",
+  "publisherWebsite": "https://jombangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN JOMBANG (https://jombangkab.bps.go.id), publikasi \"Kecamatan Tembelang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3517150",
+  "publicationNumber": "35170.25020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jombangkab.bps.go.id/id/publication/2026/09/28/e6b3d6bef8819cbeceea0c56/kecamatan-tembelang-dalam-angka-2026.html",
+  "sourceFileSha256": "beece42733992a10f35916b58381f24b9811149a95cfd3335fdf0482790ee201",
+  "sourceFileBytes": 13755622,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik.",
+  "csvPath": "datasets/bps-3517-kecamatan-351713-dalam-angka-2026.csv",
+  "csvSha256": "2780b9704bf11bbd5add357b6efbf09b7ba19c7555d10ee71a2dc2281aee00eb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tembelang, 2025",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tembelang, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

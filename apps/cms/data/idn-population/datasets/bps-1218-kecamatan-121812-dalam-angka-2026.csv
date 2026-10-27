@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.12.2015,4,Kelapa Bajohom,sex,laki_laki,,719,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2015,4,Kelapa Bajohom,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2015,4,Kelapa Bajohom,total,total,,1466,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2011,4,Kuala Bali,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2011,4,Kuala Bali,sex,perempuan,,772,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2011,4,Kuala Bali,total,total,,1519,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2014,4,Karang Tengah,sex,laki_laki,,1018,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2014,4,Karang Tengah,sex,perempuan,,1011,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2014,4,Karang Tengah,total,total,,2029,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2010,4,Tanjung Harap,sex,laki_laki,,1339,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2010,4,Tanjung Harap,sex,perempuan,,1379,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2010,4,Tanjung Harap,total,total,,2718,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2018,4,Manggis,sex,laki_laki,,359,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2018,4,Manggis,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2018,4,Manggis,total,total,,726,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2032,4,Serbajadi,sex,laki_laki,,188,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2032,4,Serbajadi,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2032,4,Serbajadi,total,total,,383,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2038,4,Bah Siduadua,sex,laki_laki,,810,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2038,4,Bah Siduadua,sex,perempuan,,830,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2038,4,Bah Siduadua,total,total,,1640,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2033,4,Tambak Cekur,sex,laki_laki,,491,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2033,4,Tambak Cekur,sex,perempuan,,487,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2033,4,Tambak Cekur,total,total,,978,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2021,4,Pulau Tagor,sex,laki_laki,,1564,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2021,4,Pulau Tagor,sex,perempuan,,1542,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2021,4,Pulau Tagor,total,total,,3106,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12.2020,4,Pulau Gambar,sex,laki_laki,,4186,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12.2020,4,Pulau Gambar,sex,perempuan,,4148,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12.2020,4,Pulau Gambar,total,total,,8334,jiwa,2025,registration,total_population,3.1,28,,
+12.18.12,3,Serbajadi,sex,laki_laki,,11421,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.12,3,Serbajadi,sex,perempuan,,11478,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.12,3,Serbajadi,total,total,,22899,jiwa,2025,registration,total_population,3.1,28,,

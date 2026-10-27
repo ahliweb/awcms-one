@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.17.2012,4,Damak Tolong Buho,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2012,4,Damak Tolong Buho,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2012,4,Damak Tolong Buho,total,total,,702,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2001,4,Gudang Garam,sex,laki_laki,,556,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2001,4,Gudang Garam,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2001,4,Gudang Garam,total,total,,1092,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2002,4,Dolok Masango,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2002,4,Dolok Masango,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2002,4,Dolok Masango,total,total,,1286,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2010,4,Bintang Bayu,sex,laki_laki,,575,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2010,4,Bintang Bayu,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2010,4,Bintang Bayu,total,total,,1140,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2019,4,Siahap,sex,laki_laki,,411,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2019,4,Siahap,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2019,4,Siahap,total,total,,822,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2006,4,Bandar Magodang,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2006,4,Bandar Magodang,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2006,4,Bandar Magodang,total,total,,450,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2016,4,Kampung Kristen,sex,laki_laki,,99,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2016,4,Kampung Kristen,sex,perempuan,,82,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2016,4,Kampung Kristen,total,total,,181,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2007,4,Ujung Negeri Hulu,sex,laki_laki,,234,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2007,4,Ujung Negeri Hulu,sex,perempuan,,270,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2007,4,Ujung Negeri Hulu,total,total,,504,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2005,4,Ujung Negeri Kahan,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2005,4,Ujung Negeri Kahan,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2005,4,Ujung Negeri Kahan,total,total,,1113,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2004,4,Bandar Negeri,sex,laki_laki,,337,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2004,4,Bandar Negeri,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2004,4,Bandar Negeri,total,total,,647,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2009,4,Marihat Dolok,sex,laki_laki,,287,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2009,4,Marihat Dolok,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2009,4,Marihat Dolok,total,total,,575,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2015,4,Huta Durian,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2015,4,Huta Durian,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2015,4,Huta Durian,total,total,,938,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2011,4,Bandar Pinang Kebun,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2011,4,Bandar Pinang Kebun,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2011,4,Bandar Pinang Kebun,total,total,,458,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2013,4,Bandar Pinang Rambe,sex,laki_laki,,90,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2013,4,Bandar Pinang Rambe,sex,perempuan,,81,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2013,4,Bandar Pinang Rambe,total,total,,171,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17.2003,4,Panombean,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17.2003,4,Panombean,sex,perempuan,,461,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17.2003,4,Panombean,total,total,,929,jiwa,2025,registration,total_population,3.1,28,,
+12.18.17,3,Kecamatan Bintang Bayu,sex,laki_laki,,6773,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.17,3,Kecamatan Bintang Bayu,sex,perempuan,,6726,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.17,3,Kecamatan Bintang Bayu,total,total,,13499,jiwa,2025,registration,total_population,3.1,28,,

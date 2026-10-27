@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.16.2001,4,Kuto,sex,laki_laki,,3161,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2001,4,Kuto,sex,perempuan,,3201,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2001,4,Kuto,total,total,,6362,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2002,4,Tamansari,sex,laki_laki,,1593,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2002,4,Tamansari,sex,perempuan,,1641,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2002,4,Tamansari,total,total,,3234,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2003,4,Ganten,sex,laki_laki,,1258,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2003,4,Ganten,sex,perempuan,,1231,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2003,4,Ganten,total,total,,2489,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2004,4,Gempolan,sex,laki_laki,,1719,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2004,4,Gempolan,sex,perempuan,,1696,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2004,4,Gempolan,total,total,,3415,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2005,4,Plosorejo,sex,laki_laki,,1215,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2005,4,Plosorejo,sex,perempuan,,1195,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2005,4,Plosorejo,total,total,,2410,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2006,4,Karangrejo,sex,laki_laki,,3161,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2006,4,Karangrejo,sex,perempuan,,3113,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2006,4,Karangrejo,total,total,,6274,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2007,4,Kwadungan,sex,laki_laki,,1694,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2007,4,Kwadungan,sex,perempuan,,1700,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2007,4,Kwadungan,total,total,,3394,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2008,4,Botok,sex,laki_laki,,1455,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2008,4,Botok,sex,perempuan,,1455,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2008,4,Botok,total,total,,2910,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2009,4,Sumberejo,sex,laki_laki,,1891,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2009,4,Sumberejo,sex,perempuan,,1902,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2009,4,Sumberejo,total,total,,3793,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16.2010,4,Tawangsari,sex,laki_laki,,2378,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16.2010,4,Tawangsari,sex,perempuan,,2373,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16.2010,4,Tawangsari,total,total,,4751,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16,3,Kecamatan Kerjo,sex,laki_laki,,19525,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.16,3,Kecamatan Kerjo,sex,perempuan,,19507,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.16,3,Kecamatan Kerjo,total,total,,39032,jiwa,2025,registration,total_population,3.1,27,,
+33.13.16,3,Kerjo,age_group,0-4,laki_laki,1106,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.16,3,Kerjo,age_group,0-4,perempuan,976,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.16,3,Kerjo,age_group,0-4,,2082,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.16,3,Kerjo,age_group,5-9,laki_laki,1467,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.16,3,Kerjo,age_group,5-9,perempuan,1336,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.16,3,Kerjo,age_group,5-9,,2803,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.16,3,Kerjo,age_group,10-14,laki_laki,1554,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.16,3,Kerjo,age_group,10-14,perempuan,1464,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.16,3,Kerjo,age_group,10-14,,3018,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.16,3,Kerjo,age_group,15-19,laki_laki,1617,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.16,3,Kerjo,age_group,15-19,perempuan,1419,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.16,3,Kerjo,age_group,15-19,,3036,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.16,3,Kerjo,age_group,20-24,laki_laki,1435,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.16,3,Kerjo,age_group,20-24,perempuan,1341,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.16,3,Kerjo,age_group,20-24,,2776,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.16,3,Kerjo,age_group,25-29,laki_laki,1450,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.16,3,Kerjo,age_group,25-29,perempuan,1324,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.16,3,Kerjo,age_group,25-29,,2774,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.16,3,Kerjo,age_group,30-34,laki_laki,1293,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.16,3,Kerjo,age_group,30-34,perempuan,1180,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.16,3,Kerjo,age_group,30-34,,2473,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.16,3,Kerjo,age_group,35-39,laki_laki,1207,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.16,3,Kerjo,age_group,35-39,perempuan,1285,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.16,3,Kerjo,age_group,35-39,,2492,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.16,3,Kerjo,age_group,40-44,laki_laki,1523,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.16,3,Kerjo,age_group,40-44,perempuan,1566,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.16,3,Kerjo,age_group,40-44,,3089,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.16,3,Kerjo,age_group,45-49,laki_laki,1458,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.16,3,Kerjo,age_group,45-49,perempuan,1385,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.16,3,Kerjo,age_group,45-49,,2843,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.16,3,Kerjo,age_group,50-54,laki_laki,1204,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.16,3,Kerjo,age_group,50-54,perempuan,1297,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.16,3,Kerjo,age_group,50-54,,2501,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.16,3,Kerjo,age_group,55-59,laki_laki,1112,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.16,3,Kerjo,age_group,55-59,perempuan,1145,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.16,3,Kerjo,age_group,55-59,,2257,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.16,3,Kerjo,age_group,60-64,laki_laki,905,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.16,3,Kerjo,age_group,60-64,perempuan,1137,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.16,3,Kerjo,age_group,60-64,,2042,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.16,3,Kerjo,age_group,65-69,laki_laki,891,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.16,3,Kerjo,age_group,65-69,perempuan,1016,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.16,3,Kerjo,age_group,65-69,,1907,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.16,3,Kerjo,age_group,70-74,laki_laki,648,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.16,3,Kerjo,age_group,70-74,perempuan,691,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.16,3,Kerjo,age_group,70-74,,1339,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.16,3,Kerjo,age_group,75+,laki_laki,655,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.16,3,Kerjo,age_group,75+,perempuan,945,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.16,3,Kerjo,age_group,75+,,1600,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.16,3,Kecamatan Kerjo,sex,laki_laki,,19525,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.16,3,Kecamatan Kerjo,sex,perempuan,,19507,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.16,3,Kecamatan Kerjo,total,total,,39032,jiwa,2025,registration,total_population,3.2,29,,

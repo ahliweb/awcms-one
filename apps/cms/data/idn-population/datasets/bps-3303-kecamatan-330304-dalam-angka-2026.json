@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3303-kecamatan-330304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.03.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kaligondang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Purbalingga",
+  "publisherDomain": "3303",
+  "publisherWebsite": "https://purbalinggakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Purbalingga (https://purbalinggakab.bps.go.id), publikasi \"Kecamatan Kaligondang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3303050",
+  "publicationNumber": "33030.26013",
+  "issn": "2579-8081",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://purbalinggakab.bps.go.id/id/publication/2026/09/28/0139bf320d5a60cd5eb581e3/kecamatan-kaligondang-dalam-angka-2026.html",
+  "sourceFileSha256": "bcd3258e73b63b00d39e90bd25fc59e0a14a5828443f2d2cf42561bbafc20163",
+  "sourceFileBytes": 14625542,
+  "sourcePages": [19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Purbalingga. ISSN 2579-8081 TIM PENYUSUN KECAMATAN KALIGONDANG DALAM ANGKA 2026 Volume 31, 2026 Pengarah: Slamet Romelan Penanggungjawab: Gita Yudianingsih Penyunting: Tata Pacu Maulidina ak ab .b ps .g o. id Pengumpul Data, Penulis Naskah, dan Penata Letak: Luxia Fajarati Silkya Nurul Hanifin Tata Pacu Maulidina Agung Setiadhi gg Pengolah Data: Tata Pacu Maulidina Luxia Fajarati Silkya Nurul Hanifin ba lin Perancang Kover: Tata Pacu Maulidina ht tp s: //p ur Perancang Infografis: Tata Pacu Maulidina Luxia Fajarati o. ps .g ak ab .b gg lin ba ur //p s: ht tp id KONTRIBUTOR DATA id o. ps .g ak ab .b gg lin ba ur //p 11. 12. 13. 14. 15. 16. 17. 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30. s: 7. 8. 9. 10. Kementerian Pendidikan Dasar dan Menengah Badan Pusat Statistik Pengadilan Agama Kabupaten Purbalingga Kementerian Haji dan Umrah Kabupaten Purbalingga Kementerian Agama Purbalingga Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana Kabupaten Purbalingga Dinas Pendidikan dan Kebudayaan Kabupaten Purbalingga Dinas Kependudukan dan Pencatatan Sipil Kabupaten Purbalingga Dinas Pertanian, Pangan, dan Perikanan Kabupaten Purbalingga Dinas Sosial, Pemberdayaan Masyarakat dan Desa, dan Pemberdayaan Perempuan dan Perlindungan Anak Kabupaten Purbalingga Dinas Perindustrian dan Tenaga Kerja Kabupaten Purbalingga Balai Penyuluhan Pertanian Kecamatan Kaligondang Kantor Desa Lamongan Kantor Desa Tejasari Kantor Desa Cilapar Kantor Desa Penolih Kantor Desa Sinduraja Kantor Desa Selakambang Kantor Desa Selanegara Kantor Desa Kaligondang Kantor Desa Brecek Kantor Desa Sempor Lor Kantor Desa Penaruban Kantor Desa Kalikajar Kantor Desa Kembaran Wetan Kantor Desa Slinga Kantor Desa Arenan Kantor Desa Sidanegara Kantor Desa Pagerandong Kantor Desa Sidareja ht tp 1. 2. 3. 4. 5. 6. o. ps .g ak ab .b gg lin ba ur //p s: ht tp id o. ps .g ak ab .b gg lin ba ur //p s: ht tp id o. ps .g ak ab .b gg lin ba ur //p s: ht tp id",
+  "csvPath": "datasets/bps-3303-kecamatan-330304-dalam-angka-2026.csv",
+  "csvSha256": "be1c102652a51ff23fd872c9640b20e70c844366078fd1ef22b4efe194cc7d55",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kaligondang, 2025 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [19, 20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kaligondang, 2025 0–4 5–9 Kelurahan/Desa Laki-Laki Perempuan Laki-Laki Perempuan",
+      "printedPages": [22, 23, 24, 25, 26, 27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Brecek -0,28\": unmatched ",
+    "table 3.1.2 is not included: its published figures do not add up (sex/laki_laki/- 2025: parts sum 1364.0000 != 2113.0000 (diff 749.0000)); the source itself is inconsistent"
+  ]
+}

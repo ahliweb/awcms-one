@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.24.2001,4,Sidoharjo,sex,laki_laki,,5392,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.24.2001,4,Sidoharjo,sex,perempuan,,5496,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.24.2001,4,Sidoharjo,total,total,,10888,jiwa,2025,registration,total_population,3.1,24,,
+18.01.24.2002,4,Sidomakmur,sex,laki_laki,,1478,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.24.2002,4,Sidomakmur,sex,perempuan,,1415,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.24.2002,4,Sidomakmur,total,total,,2893,jiwa,2025,registration,total_population,3.1,24,,
+18.01.24.2003,4,Sidoreno,sex,laki_laki,,1107,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.24.2003,4,Sidoreno,sex,perempuan,,1079,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.24.2003,4,Sidoreno,total,total,,2186,jiwa,2025,registration,total_population,3.1,24,,
+18.01.24.2004,4,Bali Nuraga,sex,laki_laki,,1734,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.24.2004,4,Bali Nuraga,sex,perempuan,,1691,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.24.2004,4,Bali Nuraga,total,total,,3425,jiwa,2025,registration,total_population,3.1,24,,
+18.01.24,3,Way Panji,sex,laki_laki,,9711,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.24,3,Way Panji,sex,perempuan,,9681,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.24,3,Way Panji,total,total,,19392,jiwa,2025,registration,total_population,3.1,24,,

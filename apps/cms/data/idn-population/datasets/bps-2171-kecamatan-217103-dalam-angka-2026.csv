@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.03.1003,4,Tanjung Riau,sex,laki_laki,,26569,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.03.1003,4,Tanjung Riau,sex,perempuan,,25645,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.03.1003,4,Tanjung Riau,total,total,,52214,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.03.1006,4,Tiban Baru,sex,laki_laki,,14612,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.03.1006,4,Tiban Baru,sex,perempuan,,14858,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.03.1006,4,Tiban Baru,total,total,,29470,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.03.1007,4,Tiban Lama,sex,laki_laki,,11435,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.03.1007,4,Tiban Lama,sex,perempuan,,11015,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.03.1007,4,Tiban Lama,total,total,,22450,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.03.1005,4,Tiban Indah,sex,laki_laki,,15210,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.03.1005,4,Tiban Indah,sex,perempuan,,15370,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.03.1005,4,Tiban Indah,total,total,,30580,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.03.1008,4,Patam Lestari,sex,laki_laki,,17649,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.03.1008,4,Patam Lestari,sex,perempuan,,17376,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.03.1008,4,Patam Lestari,total,total,,35025,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.03.1001,4,Sungai Harapan,sex,laki_laki,,12420,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.03.1001,4,Sungai Harapan,sex,perempuan,,12187,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.03.1001,4,Sungai Harapan,total,total,,24607,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.03.1002,4,Tanjung Pinggir,sex,laki_laki,,2962,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.03.1002,4,Tanjung Pinggir,sex,perempuan,,2868,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.03.1002,4,Tanjung Pinggir,total,total,,5830,jiwa,2025,registration,total_population,unnumbered-p21,21,,

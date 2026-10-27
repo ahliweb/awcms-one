@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1473-kecamatan-147203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.72.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bukit Kapur Dalam Angka 2026",
+  "publisherName": "BPS Kota Dumai",
+  "publisherDomain": "1473",
+  "publisherWebsite": "https://dumaikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Dumai (https://dumaikota.bps.go.id), publikasi \"Kecamatan Bukit Kapur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1473010",
+  "publicationNumber": "14730.26006",
+  "issn": "0852-1492",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://dumaikota.bps.go.id/id/publication/2026/09/28/6abc491a444808784074dac4/kecamatan-bukit-kapur-dalam-angka-2026.html",
+  "sourceFileSha256": "95424f4aeaaad90fc5f1e4c9d84f816109ebd5c3fb10a425c47e7411bde9a348",
+  "sourceFileBytes": 10202237,
+  "sourcePages": [31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Dumai.",
+  "csvPath": "datasets/bps-1473-kecamatan-147203-dalam-angka-2026.csv",
+  "csvSha256": "8031193f0bf2f3e5234d7ba6b0c0534ec32f1eae662417d0671c9811cd55b1c2",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bukit Kapur, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Kecamatan Bukit Kapur/ Bukit Kapur District\": unmatched "
+  ]
+}

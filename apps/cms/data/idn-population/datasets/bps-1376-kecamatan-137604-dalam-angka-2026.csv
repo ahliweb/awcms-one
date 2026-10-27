@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.76.04.1006,4,Koto Panjang Dalam,sex,laki_laki,,1278,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+13.76.04.1006,4,Koto Panjang Dalam,sex,perempuan,,1239,jiwa,2025,registration,total_population,3.1,43,,Perempuan/
+13.76.04.1006,4,Koto Panjang Dalam,total,total,,2517,jiwa,2025,registration,total_population,3.1,43,,
+13.76.04.1005,4,Koto Panjang Padang,sex,laki_laki,,1097,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+13.76.04.1005,4,Koto Panjang Padang,sex,perempuan,,1099,jiwa,2025,registration,total_population,3.1,43,,Perempuan/
+13.76.04.1005,4,Koto Panjang Padang,total,total,,2196,jiwa,2025,registration,total_population,3.1,43,,
+13.76.04.1004,4,Padang Sikabu,sex,laki_laki,,1077,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+13.76.04.1004,4,Padang Sikabu,sex,perempuan,,1024,jiwa,2025,registration,total_population,3.1,43,,Perempuan/
+13.76.04.1004,4,Padang Sikabu,total,total,,2101,jiwa,2025,registration,total_population,3.1,43,,
+13.76.04.1003,4,Parambahan,sex,laki_laki,,669,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+13.76.04.1003,4,Parambahan,sex,perempuan,,665,jiwa,2025,registration,total_population,3.1,43,,Perempuan/
+13.76.04.1003,4,Parambahan,total,total,,1334,jiwa,2025,registration,total_population,3.1,43,,
+13.76.04.1001,4,Sungai Durian,sex,laki_laki,,1413,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+13.76.04.1001,4,Sungai Durian,sex,perempuan,,1448,jiwa,2025,registration,total_population,3.1,43,,Perempuan/
+13.76.04.1001,4,Sungai Durian,total,total,,2861,jiwa,2025,registration,total_population,3.1,43,,
+13.76.04,3,Lamposi Tigo Nagori,sex,laki_laki,,6376,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+13.76.04,3,Lamposi Tigo Nagori,sex,perempuan,,6250,jiwa,2025,registration,total_population,3.1,43,,Perempuan/
+13.76.04,3,Lamposi Tigo Nagori,total,total,,12626,jiwa,2025,registration,total_population,3.1,43,,

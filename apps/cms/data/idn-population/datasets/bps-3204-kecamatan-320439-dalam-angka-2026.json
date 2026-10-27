@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3204-kecamatan-320439-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.04.39",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciwidey Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bandung",
+  "publisherDomain": "3204",
+  "publisherWebsite": "https://bandungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bandung (https://bandungkab.bps.go.id), publikasi \"Kecamatan Ciwidey Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3204010",
+  "publicationNumber": "32040.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkab.bps.go.id/id/publication/2026/09/28/b1cecbaaad50203889cc836e/kecamatan-ciwidey-dalam-angka-2026.html",
+  "sourceFileSha256": "42bc377cc0ea0ca009bddfd4e9b0eb07505df881d5d812d6cfcea16979ca8059",
+  "sourceFileBytes": 6398974,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung.",
+  "csvPath": "datasets/bps-3204-kecamatan-320439-dalam-angka-2026.csv",
+  "csvSha256": "615fd5082d34a953ca9adb1f65f0f53d131f491a1594360de3a75834d02e5f74",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ciwidey, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

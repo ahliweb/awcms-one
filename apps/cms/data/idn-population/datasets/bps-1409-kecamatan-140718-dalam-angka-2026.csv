@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.18.2008,4,Pasir Putih,sex,laki_laki,,3131,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2008,4,Pasir Putih,sex,perempuan,,2958,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2008,4,Pasir Putih,total,total,,6089,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2004,4,Balai Jaya,sex,laki_laki,,3603,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2004,4,Balai Jaya,sex,perempuan,,3336,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2004,4,Balai Jaya,total,total,,6939,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2005,4,Balam Sempurna,sex,laki_laki,,7322,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2005,4,Balam Sempurna,sex,perempuan,,6817,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2005,4,Balam Sempurna,total,total,,14139,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.1002,4,Balam Sempurna Kota,sex,laki_laki,,2393,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.1002,4,Balam Sempurna Kota,sex,perempuan,,2252,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.1002,4,Balam Sempurna Kota,total,total,,4645,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2003,4,Balam Jaya,sex,laki_laki,,3016,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2003,4,Balam Jaya,sex,perempuan,,2944,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2003,4,Balam Jaya,total,total,,5960,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.1001,4,Balai Jaya Kota,sex,laki_laki,,4132,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.1001,4,Balai Jaya Kota,sex,perempuan,,3905,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.1001,4,Balai Jaya Kota,total,total,,8037,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2009,4,Pasir Putih Utara,sex,laki_laki,,976,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2009,4,Pasir Putih Utara,sex,perempuan,,898,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2009,4,Pasir Putih Utara,total,total,,1874,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2007,4,Kencana,sex,laki_laki,,1264,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2007,4,Kencana,sex,perempuan,,1156,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2007,4,Kencana,total,total,,2420,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2006,4,Bagan Bhakti,sex,laki_laki,,929,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2006,4,Bagan Bhakti,sex,perempuan,,918,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2006,4,Bagan Bhakti,total,total,,1847,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2010,4,Pasir Putih Barat,sex,laki_laki,,877,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2010,4,Pasir Putih Barat,sex,perempuan,,832,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2010,4,Pasir Putih Barat,total,total,,1709,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+14.07.18.2011,4,Lubuk Jawi,sex,laki_laki,,1184,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+14.07.18.2011,4,Lubuk Jawi,sex,perempuan,,1149,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Femal
+14.07.18.2011,4,Lubuk Jawi,total,total,,2333,jiwa,2025,registration,total_population,unnumbered-p16,16,,

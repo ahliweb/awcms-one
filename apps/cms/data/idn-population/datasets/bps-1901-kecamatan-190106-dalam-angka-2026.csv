@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.01.06.2002,4,Kapuk,sex,perempuan,,777,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2002,4,Kapuk,total,total,,1602,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06.2004,4,Neknang,sex,perempuan,,1343,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2004,4,Neknang,total,total,,2780,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06.2005,4,Tiang Tarah,sex,perempuan,,929,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2005,4,Tiang Tarah,total,total,,1979,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06.2003,4,Dalil,sex,perempuan,,1649,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2003,4,Dalil,total,total,,3490,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06.2001,4,Bakam,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2001,4,Bakam,total,total,,2014,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06.2007,4,Mabat,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2007,4,Mabat,total,total,,1662,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06.2008,4,Bukit Layang,sex,perempuan,,1927,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2008,4,Bukit Layang,total,total,,4009,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06.2009,4,Maras Senang,sex,perempuan,,484,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06.2009,4,Maras Senang,total,total,,997,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06,3,Kecamatan Bakam,sex,perempuan,,9450,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.06,3,Kecamatan Bakam,total,total,,19727,jiwa,2025,registration,total_population,3.1,26,,
+19.01.06,3,Bakam,age_group,0-4,perempuan,694,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.06,3,Bakam,age_group,0-4,,1476,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.06,3,Bakam,age_group,5-9,perempuan,892,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.06,3,Bakam,age_group,5-9,,1782,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.06,3,Bakam,age_group,10-14,perempuan,900,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.06,3,Bakam,age_group,10-14,,1890,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.06,3,Bakam,age_group,15-19,perempuan,842,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.06,3,Bakam,age_group,15-19,,1707,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.06,3,Bakam,age_group,20-24,perempuan,786,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.06,3,Bakam,age_group,20-24,,1611,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.06,3,Bakam,age_group,25-29,perempuan,744,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.06,3,Bakam,age_group,25-29,,1487,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.06,3,Bakam,age_group,30-34,perempuan,669,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.06,3,Bakam,age_group,30-34,,1363,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.06,3,Bakam,age_group,35-39,perempuan,812,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.06,3,Bakam,age_group,35-39,,1747,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.06,3,Bakam,age_group,40-44,perempuan,699,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.06,3,Bakam,age_group,40-44,,1547,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.06,3,Bakam,age_group,45-49,perempuan,672,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.06,3,Bakam,age_group,45-49,,1435,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.06,3,Bakam,age_group,50-54,perempuan,519,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.06,3,Bakam,age_group,50-54,,1102,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.06,3,Bakam,age_group,55-59,perempuan,393,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.06,3,Bakam,age_group,55-59,,861,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.06,3,Bakam,age_group,60-64,perempuan,338,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.06,3,Bakam,age_group,60-64,,707,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.06,3,Bakam,age_group,65-69,perempuan,219,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.06,3,Bakam,age_group,65-69,,471,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.06,3,Bakam,age_group,70-74,perempuan,106,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.06,3,Bakam,age_group,70-74,,241,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.06,3,Bakam,age_group,75+,perempuan,165,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.06,3,Bakam,age_group,75+,,300,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.06,3,Kecamatan Bakam,sex,perempuan,,9450,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+19.01.06,3,Kecamatan Bakam,total,total,,19727,jiwa,2025,registration,total_population,3.2,28,,

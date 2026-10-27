@@ -1,0 +1,154 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.05.04,3,Kelapa,total,total,,36215,jiwa,2025,registration,total_population,3.1.1,56,,
+19.05.05,3,Tempilang,total,total,,30609,jiwa,2025,registration,total_population,3.1.1,56,,
+19.05.01,3,Mentok,total,total,,56769,jiwa,2025,registration,total_population,3.1.1,56,,
+19.05.02,3,Simpang Teritip,total,total,,33410,jiwa,2025,registration,total_population,3.1.1,56,,
+19.05.03,3,Jebus,total,total,,24490,jiwa,2025,registration,total_population,3.1.1,56,,
+19.05.06,3,Parittiga,total,total,,38749,jiwa,2025,registration,total_population,3.1.1,56,,
+19.05,2,Bangka Barat,total,total,,220242,jiwa,2025,registration,total_population,3.1.1,56,,
+19.05,2,Kabupaten Bangka Barat,age_group,0-4,laki_laki,7438,jiwa,2025,registration,total_population,3.1.2,59,,0–4
+19.05,2,Kabupaten Bangka Barat,age_group,0-4,perempuan,6816,jiwa,2025,registration,total_population,3.1.2,59,,0–4
+19.05,2,Kabupaten Bangka Barat,age_group,0-4,,14254,jiwa,2025,registration,total_population,3.1.2,59,,0–4
+19.05,2,Kabupaten Bangka Barat,age_group,5-9,laki_laki,9646,jiwa,2025,registration,total_population,3.1.2,59,,5–9
+19.05,2,Kabupaten Bangka Barat,age_group,5-9,perempuan,8868,jiwa,2025,registration,total_population,3.1.2,59,,5–9
+19.05,2,Kabupaten Bangka Barat,age_group,5-9,,18514,jiwa,2025,registration,total_population,3.1.2,59,,5–9
+19.05,2,Kabupaten Bangka Barat,age_group,10-14,laki_laki,10975,jiwa,2025,registration,total_population,3.1.2,59,,10–14
+19.05,2,Kabupaten Bangka Barat,age_group,10-14,perempuan,10318,jiwa,2025,registration,total_population,3.1.2,59,,10–14
+19.05,2,Kabupaten Bangka Barat,age_group,10-14,,21293,jiwa,2025,registration,total_population,3.1.2,59,,10–14
+19.05,2,Kabupaten Bangka Barat,age_group,15-19,laki_laki,10580,jiwa,2025,registration,total_population,3.1.2,59,,15–19
+19.05,2,Kabupaten Bangka Barat,age_group,15-19,perempuan,10038,jiwa,2025,registration,total_population,3.1.2,59,,15–19
+19.05,2,Kabupaten Bangka Barat,age_group,15-19,,20618,jiwa,2025,registration,total_population,3.1.2,59,,15–19
+19.05,2,Kabupaten Bangka Barat,age_group,20-24,laki_laki,9561,jiwa,2025,registration,total_population,3.1.2,59,,20–24
+19.05,2,Kabupaten Bangka Barat,age_group,20-24,perempuan,9223,jiwa,2025,registration,total_population,3.1.2,59,,20–24
+19.05,2,Kabupaten Bangka Barat,age_group,20-24,,18784,jiwa,2025,registration,total_population,3.1.2,59,,20–24
+19.05,2,Kabupaten Bangka Barat,age_group,25-29,laki_laki,8706,jiwa,2025,registration,total_population,3.1.2,59,,25–29
+19.05,2,Kabupaten Bangka Barat,age_group,25-29,perempuan,7707,jiwa,2025,registration,total_population,3.1.2,59,,25–29
+19.05,2,Kabupaten Bangka Barat,age_group,25-29,,16413,jiwa,2025,registration,total_population,3.1.2,59,,25–29
+19.05,2,Kabupaten Bangka Barat,age_group,30-34,laki_laki,7469,jiwa,2025,registration,total_population,3.1.2,59,,30–34
+19.05,2,Kabupaten Bangka Barat,age_group,30-34,perempuan,7075,jiwa,2025,registration,total_population,3.1.2,59,,30–34
+19.05,2,Kabupaten Bangka Barat,age_group,30-34,,14544,jiwa,2025,registration,total_population,3.1.2,59,,30–34
+19.05,2,Kabupaten Bangka Barat,age_group,35-39,laki_laki,9331,jiwa,2025,registration,total_population,3.1.2,59,,35–39
+19.05,2,Kabupaten Bangka Barat,age_group,35-39,perempuan,9062,jiwa,2025,registration,total_population,3.1.2,59,,35–39
+19.05,2,Kabupaten Bangka Barat,age_group,35-39,,18393,jiwa,2025,registration,total_population,3.1.2,59,,35–39
+19.05,2,Kabupaten Bangka Barat,age_group,40-44,laki_laki,9562,jiwa,2025,registration,total_population,3.1.2,59,,40–44
+19.05,2,Kabupaten Bangka Barat,age_group,40-44,perempuan,8759,jiwa,2025,registration,total_population,3.1.2,59,,40–44
+19.05,2,Kabupaten Bangka Barat,age_group,40-44,,18321,jiwa,2025,registration,total_population,3.1.2,59,,40–44
+19.05,2,Kabupaten Bangka Barat,age_group,45-49,laki_laki,8749,jiwa,2025,registration,total_population,3.1.2,59,,45–49
+19.05,2,Kabupaten Bangka Barat,age_group,45-49,perempuan,7667,jiwa,2025,registration,total_population,3.1.2,59,,45–49
+19.05,2,Kabupaten Bangka Barat,age_group,45-49,,16416,jiwa,2025,registration,total_population,3.1.2,59,,45–49
+19.05,2,Kabupaten Bangka Barat,age_group,50-54,laki_laki,6633,jiwa,2025,registration,total_population,3.1.2,59,,50–54
+19.05,2,Kabupaten Bangka Barat,age_group,50-54,perempuan,5711,jiwa,2025,registration,total_population,3.1.2,59,,50–54
+19.05,2,Kabupaten Bangka Barat,age_group,50-54,,12344,jiwa,2025,registration,total_population,3.1.2,59,,50–54
+19.05,2,Kabupaten Bangka Barat,age_group,55-59,laki_laki,4922,jiwa,2025,registration,total_population,3.1.2,59,,55–59
+19.05,2,Kabupaten Bangka Barat,age_group,55-59,perempuan,4481,jiwa,2025,registration,total_population,3.1.2,59,,55–59
+19.05,2,Kabupaten Bangka Barat,age_group,55-59,,9403,jiwa,2025,registration,total_population,3.1.2,59,,55–59
+19.05,2,Kabupaten Bangka Barat,age_group,60-64,laki_laki,3711,jiwa,2025,registration,total_population,3.1.2,59,,60–64
+19.05,2,Kabupaten Bangka Barat,age_group,60-64,perempuan,3501,jiwa,2025,registration,total_population,3.1.2,59,,60–64
+19.05,2,Kabupaten Bangka Barat,age_group,60-64,,7212,jiwa,2025,registration,total_population,3.1.2,59,,60–64
+19.05,2,Kabupaten Bangka Barat,age_group,65-69,laki_laki,2853,jiwa,2025,registration,total_population,3.1.2,59,,65–69
+19.05,2,Kabupaten Bangka Barat,age_group,65-69,perempuan,3017,jiwa,2025,registration,total_population,3.1.2,59,,65–69
+19.05,2,Kabupaten Bangka Barat,age_group,65-69,,5870,jiwa,2025,registration,total_population,3.1.2,59,,65–69
+19.05,2,Kabupaten Bangka Barat,age_group,70-74,laki_laki,1832,jiwa,2025,registration,total_population,3.1.2,59,,70–74
+19.05,2,Kabupaten Bangka Barat,age_group,70-74,perempuan,1950,jiwa,2025,registration,total_population,3.1.2,59,,70–74
+19.05,2,Kabupaten Bangka Barat,age_group,70-74,,3782,jiwa,2025,registration,total_population,3.1.2,59,,70–74
+19.05,2,Kabupaten Bangka Barat,age_group,75+,laki_laki,1711,jiwa,2025,registration,total_population,3.1.2,59,,75+
+19.05,2,Kabupaten Bangka Barat,age_group,75+,perempuan,2370,jiwa,2025,registration,total_population,3.1.2,59,,75+
+19.05,2,Kabupaten Bangka Barat,age_group,75+,,4081,jiwa,2025,registration,total_population,3.1.2,59,,75+
+19.05,2,Bangka Barat,sex,laki_laki,,113679,jiwa,2025,registration,total_population,3.1.2,59,,Laki-Laki
+19.05,2,Bangka Barat,sex,perempuan,,106563,jiwa,2025,registration,total_population,3.1.2,59,,Perempuan
+19.05,2,Bangka Barat,total,total,,220242,jiwa,2025,registration,total_population,3.1.2,59,,
+19.05.04,3,Kelapa,religion,islam,,35709,jiwa,2025,registration,total_population,4.3.1,153,,Islam
+19.05.04,3,Kelapa,religion,kristen,,361,jiwa,2025,registration,total_population,4.3.1,153,,Protestan
+19.05.04,3,Kelapa,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,153,,Katolik
+19.05.04,3,Kelapa,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,153,nil,Hindu
+19.05.04,3,Kelapa,religion,buddha,,100,jiwa,2025,registration,total_population,4.3.1,153,,Budha
+19.05.04,3,Kelapa,religion,khonghucu,,28,jiwa,2025,registration,total_population,4.3.1,153,,Konghucu
+19.05.04,3,Kelapa,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,153,nil,Kepercayaan
+19.05.05,3,Tempilang,religion,islam,,30267,jiwa,2025,registration,total_population,4.3.1,153,,Islam
+19.05.05,3,Tempilang,religion,kristen,,146,jiwa,2025,registration,total_population,4.3.1,153,,Protestan
+19.05.05,3,Tempilang,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,153,,Katolik
+19.05.05,3,Tempilang,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,153,,Hindu
+19.05.05,3,Tempilang,religion,buddha,,106,jiwa,2025,registration,total_population,4.3.1,153,,Budha
+19.05.05,3,Tempilang,religion,khonghucu,,72,jiwa,2025,registration,total_population,4.3.1,153,,Konghucu
+19.05.05,3,Tempilang,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.3.1,153,,Kepercayaan
+19.05.01,3,Mentok,religion,islam,,52266,jiwa,2025,registration,total_population,4.3.1,153,,Islam
+19.05.01,3,Mentok,religion,kristen,,1179,jiwa,2025,registration,total_population,4.3.1,153,,Protestan
+19.05.01,3,Mentok,religion,katolik,,606,jiwa,2025,registration,total_population,4.3.1,153,,Katolik
+19.05.01,3,Mentok,religion,hindu,,20,jiwa,2025,registration,total_population,4.3.1,153,,Hindu
+19.05.01,3,Mentok,religion,buddha,,1451,jiwa,2025,registration,total_population,4.3.1,153,,Budha
+19.05.01,3,Mentok,religion,khonghucu,,1246,jiwa,2025,registration,total_population,4.3.1,153,,Konghucu
+19.05.01,3,Mentok,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,153,,Kepercayaan
+19.05.02,3,Simpang Teritip,religion,islam,,31900,jiwa,2025,registration,total_population,4.3.1,153,,Islam
+19.05.02,3,Simpang Teritip,religion,kristen,,215,jiwa,2025,registration,total_population,4.3.1,153,,Protestan
+19.05.02,3,Simpang Teritip,religion,katolik,,158,jiwa,2025,registration,total_population,4.3.1,153,,Katolik
+19.05.02,3,Simpang Teritip,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,153,nil,Hindu
+19.05.02,3,Simpang Teritip,religion,buddha,,332,jiwa,2025,registration,total_population,4.3.1,153,,Budha
+19.05.02,3,Simpang Teritip,religion,khonghucu,,805,jiwa,2025,registration,total_population,4.3.1,153,,Konghucu
+19.05.02,3,Simpang Teritip,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,153,nil,Kepercayaan
+19.05.03,3,Jebus,religion,islam,,23557,jiwa,2025,registration,total_population,4.3.1,153,,Islam
+19.05.03,3,Jebus,religion,kristen,,128,jiwa,2025,registration,total_population,4.3.1,153,,Protestan
+19.05.03,3,Jebus,religion,katolik,,49,jiwa,2025,registration,total_population,4.3.1,153,,Katolik
+19.05.03,3,Jebus,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,153,,Hindu
+19.05.03,3,Jebus,religion,buddha,,587,jiwa,2025,registration,total_population,4.3.1,153,,Budha
+19.05.03,3,Jebus,religion,khonghucu,,165,jiwa,2025,registration,total_population,4.3.1,153,,Konghucu
+19.05.03,3,Jebus,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,153,nil,Kepercayaan
+19.05.06,3,Parittiga,religion,islam,,30717,jiwa,2025,registration,total_population,4.3.1,153,,Islam
+19.05.06,3,Parittiga,religion,kristen,,1080,jiwa,2025,registration,total_population,4.3.1,153,,Protestan
+19.05.06,3,Parittiga,religion,katolik,,282,jiwa,2025,registration,total_population,4.3.1,153,,Katolik
+19.05.06,3,Parittiga,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,153,,Hindu
+19.05.06,3,Parittiga,religion,buddha,,5275,jiwa,2025,registration,total_population,4.3.1,153,,Budha
+19.05.06,3,Parittiga,religion,khonghucu,,1392,jiwa,2025,registration,total_population,4.3.1,153,,Konghucu
+19.05.06,3,Parittiga,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,153,nil,Kepercayaan
+19.05,2,Bangka Barat,religion,islam,,204416,jiwa,2025,registration,total_population,4.3.1,153,,Islam
+19.05,2,Bangka Barat,religion,kristen,,3109,jiwa,2025,registration,total_population,4.3.1,153,,Protestan
+19.05,2,Bangka Barat,religion,katolik,,1127,jiwa,2025,registration,total_population,4.3.1,153,,Katolik
+19.05,2,Bangka Barat,religion,hindu,,28,jiwa,2025,registration,total_population,4.3.1,153,,Hindu
+19.05,2,Bangka Barat,religion,buddha,,7851,jiwa,2025,registration,total_population,4.3.1,153,,Budha
+19.05,2,Bangka Barat,religion,khonghucu,,3708,jiwa,2025,registration,total_population,4.3.1,153,,Konghucu
+19.05,2,Bangka Barat,religion,kepercayaan,,3,jiwa,2025,registration,total_population,4.3.1,153,,Kepercayaan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/padi_padian,,100774,rupiah,2023,survey_estimate,per_capita,10.1,362,,Padi-padian
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/padi_padian,,101898,rupiah,2025,survey_estimate,per_capita,10.1,362,,Padi-padian
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/umbi_umbian,,5436,rupiah,2023,survey_estimate,per_capita,10.1,362,,Umbi-umbian
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/umbi_umbian,,6482,rupiah,2025,survey_estimate,per_capita,10.1,362,,Umbi-umbian
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,103926,rupiah,2023,survey_estimate,per_capita,10.1,362,,Ikan/udang/cumi/kerang
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,115903,rupiah,2025,survey_estimate,per_capita,10.1,362,,Ikan/udang/cumi/kerang
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/daging,,36524,rupiah,2023,survey_estimate,per_capita,10.1,362,,Daging
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/daging,,36874,rupiah,2025,survey_estimate,per_capita,10.1,362,,Daging
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/telur_dan_susu,,50252,rupiah,2023,survey_estimate,per_capita,10.1,362,,Telur dan susu
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/telur_dan_susu,,48174,rupiah,2025,survey_estimate,per_capita,10.1,362,,Telur dan susu
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/sayur_sayuran,,68970,rupiah,2023,survey_estimate,per_capita,10.1,362,,Sayur-sayuran
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/sayur_sayuran,,76044,rupiah,2025,survey_estimate,per_capita,10.1,362,,Sayur-sayuran
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/kacang_kacangan,,9461,rupiah,2023,survey_estimate,per_capita,10.1,362,,Kacang-kacangan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/kacang_kacangan,,11794,rupiah,2025,survey_estimate,per_capita,10.1,362,,Kacang-kacangan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/buah_buahan,,55923,rupiah,2023,survey_estimate,per_capita,10.1,362,,Buah-buahan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/buah_buahan,,49557,rupiah,2025,survey_estimate,per_capita,10.1,362,,Buah-buahan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,11502,rupiah,2023,survey_estimate,per_capita,10.1,362,,Minyak dan kelapa
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14407,rupiah,2025,survey_estimate,per_capita,10.1,362,,Minyak dan kelapa
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/bahan_minuman,,20783,rupiah,2023,survey_estimate,per_capita,10.1,362,,Bahan minuman
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/bahan_minuman,,23598,rupiah,2025,survey_estimate,per_capita,10.1,362,,Bahan minuman
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,16099,rupiah,2023,survey_estimate,per_capita,10.1,362,,Bumbu-bumbuan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,15592,rupiah,2025,survey_estimate,per_capita,10.1,362,,Bumbu-bumbuan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,19506,rupiah,2023,survey_estimate,per_capita,10.1,362,,Konsumsi lainnya
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,18580,rupiah,2025,survey_estimate,per_capita,10.1,362,,Konsumsi lainnya
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,243519,rupiah,2023,survey_estimate,per_capita,10.1,362,,Makanan dan minuman jadi
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,232887,rupiah,2025,survey_estimate,per_capita,10.1,362,,Makanan dan minuman jadi
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/rokok,,149273,rupiah,2023,survey_estimate,per_capita,10.1,362,,Rokok
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/rokok,,150447,rupiah,2025,survey_estimate,per_capita,10.1,362,,Rokok
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/jumlah_makanan,,891948,rupiah,2023,survey_estimate,per_capita,10.1,362,,Jumlah makanan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/jumlah_makanan,,902192,rupiah,2025,survey_estimate,per_capita,10.1,362,,Jumlah makanan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,406168,rupiah,2023,survey_estimate,per_capita,10.1,362,,Perumahan dan fasilitas rumah tangga
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,456707,rupiah,2025,survey_estimate,per_capita,10.1,362,,Perumahan dan fasilitas rumah tangga
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,139517,rupiah,2023,survey_estimate,per_capita,10.1,362,,Aneka barang dan jasa
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,134453,rupiah,2025,survey_estimate,per_capita,10.1,362,,Aneka barang dan jasa
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31037,rupiah,2023,survey_estimate,per_capita,10.1,362,,"Pakaian, alas kaki, dan tutup kepala"
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36811,rupiah,2025,survey_estimate,per_capita,10.1,362,,"Pakaian, alas kaki, dan tutup kepala"
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,44714,rupiah,2023,survey_estimate,per_capita,10.1,362,,Barang tahan lama
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,57105,rupiah,2025,survey_estimate,per_capita,10.1,362,,Barang tahan lama
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,70548,rupiah,2023,survey_estimate,per_capita,10.1,362,,"Pajak, pungutan, dan asuransi"
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,70104,rupiah,2025,survey_estimate,per_capita,10.1,362,,"Pajak, pungutan, dan asuransi"
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18089,rupiah,2023,survey_estimate,per_capita,10.1,362,,Keperluan pesta dan upacara/kenduri
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13785,rupiah,2025,survey_estimate,per_capita,10.1,362,,Keperluan pesta dan upacara/kenduri
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,710073,rupiah,2023,survey_estimate,per_capita,10.1,362,,Jumlah bukan makanan
+19.05,2,Kabupaten Bangka Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,768955,rupiah,2025,survey_estimate,per_capita,10.1,362,,Jumlah bukan makanan
+19.05,2,Kabupaten Bangka Barat,expenditure,total,,1602021,rupiah,2023,survey_estimate,per_capita,10.1,362,,
+19.05,2,Kabupaten Bangka Barat,expenditure,total,,1671157,rupiah,2025,survey_estimate,per_capita,10.1,362,,

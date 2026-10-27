@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.02.2018,4,Gunung Batu,sex,laki_laki,,1073,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2018,4,Gunung Batu,sex,perempuan,,1000,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2018,4,Gunung Batu,total,total,,2073,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2019,4,Kemu,sex,laki_laki,,2144,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2019,4,Kemu,sex,perempuan,,2072,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2019,4,Kemu,total,total,,4216,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2016,4,Simpang Pancur,sex,laki_laki,,1091,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2016,4,Simpang Pancur,sex,perempuan,,1022,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2016,4,Simpang Pancur,total,total,,2113,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2017,4,Pagar Agung,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2017,4,Pagar Agung,sex,perempuan,,832,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2017,4,Pagar Agung,total,total,,1727,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2015,4,Tanjung Kari,sex,laki_laki,,1112,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2015,4,Tanjung Kari,sex,perempuan,,1057,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2015,4,Tanjung Kari,total,total,,2169,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2014,4,Aromantai,sex,laki_laki,,1076,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2014,4,Aromantai,sex,perempuan,,996,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2014,4,Aromantai,total,total,,2072,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2013,4,Pulau Beringin,sex,laki_laki,,2315,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2013,4,Pulau Beringin,sex,perempuan,,2215,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2013,4,Pulau Beringin,total,total,,4530,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2012,4,Tanjung Bulan,sex,laki_laki,,1374,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2012,4,Tanjung Bulan,sex,perempuan,,1377,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2012,4,Tanjung Bulan,total,total,,2751,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2022,4,Pematang Obar,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2022,4,Pematang Obar,sex,perempuan,,356,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2022,4,Pematang Obar,total,total,,827,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2020,4,Anugerah Kemu,sex,laki_laki,,810,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2020,4,Anugerah Kemu,sex,perempuan,,729,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2020,4,Anugerah Kemu,total,total,,1539,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2021,4,Kemu Ulu,sex,laki_laki,,1284,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2021,4,Kemu Ulu,sex,perempuan,,1171,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2021,4,Kemu Ulu,total,total,,2455,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2024,4,Pulau Beringin Utara,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2024,4,Pulau Beringin Utara,sex,perempuan,,1143,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2024,4,Pulau Beringin Utara,total,total,,2338,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02.2023,4,Tanjung Bulan Ulu,sex,laki_laki,,853,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02.2023,4,Tanjung Bulan Ulu,sex,perempuan,,824,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02.2023,4,Tanjung Bulan Ulu,total,total,,1677,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02,3,Pulau Beringin,sex,laki_laki,,15693,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.02,3,Pulau Beringin,sex,perempuan,,14794,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.02,3,Pulau Beringin,total,total,,30487,jiwa,2025,registration,total_population,3.1,27,,
+16.09.02,3,Pulau Beringin,age_group,0-4,laki_laki,921,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.02,3,Pulau Beringin,age_group,0-4,perempuan,800,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.02,3,Pulau Beringin,age_group,0-4,,1721,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.02,3,Pulau Beringin,age_group,5-9,laki_laki,1213,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.02,3,Pulau Beringin,age_group,5-9,perempuan,1218,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.02,3,Pulau Beringin,age_group,5-9,,2431,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.02,3,Pulau Beringin,age_group,10-14,laki_laki,1310,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.02,3,Pulau Beringin,age_group,10-14,perempuan,1266,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.02,3,Pulau Beringin,age_group,10-14,,2576,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.02,3,Pulau Beringin,age_group,15-19,laki_laki,1370,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.02,3,Pulau Beringin,age_group,15-19,perempuan,1346,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.02,3,Pulau Beringin,age_group,15-19,,2716,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.02,3,Pulau Beringin,age_group,20-24,laki_laki,1426,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.02,3,Pulau Beringin,age_group,20-24,perempuan,1417,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.02,3,Pulau Beringin,age_group,20-24,,2843,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.02,3,Pulau Beringin,age_group,25-29,laki_laki,1321,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.02,3,Pulau Beringin,age_group,25-29,perempuan,1286,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.02,3,Pulau Beringin,age_group,25-29,,2607,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.02,3,Pulau Beringin,age_group,30-34,laki_laki,1105,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.02,3,Pulau Beringin,age_group,30-34,perempuan,1025,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.02,3,Pulau Beringin,age_group,30-34,,2130,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.02,3,Pulau Beringin,age_group,35-39,laki_laki,1230,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.02,3,Pulau Beringin,age_group,35-39,perempuan,1110,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.02,3,Pulau Beringin,age_group,35-39,,2340,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.02,3,Pulau Beringin,age_group,40-44,laki_laki,1154,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.02,3,Pulau Beringin,age_group,40-44,perempuan,1132,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.02,3,Pulau Beringin,age_group,40-44,,2286,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.02,3,Pulau Beringin,age_group,45-49,laki_laki,1081,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.02,3,Pulau Beringin,age_group,45-49,perempuan,1030,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.02,3,Pulau Beringin,age_group,45-49,,2111,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.02,3,Pulau Beringin,age_group,50-54,laki_laki,986,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.02,3,Pulau Beringin,age_group,50-54,perempuan,865,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.02,3,Pulau Beringin,age_group,50-54,,1851,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.02,3,Pulau Beringin,age_group,55-59,laki_laki,785,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.02,3,Pulau Beringin,age_group,55-59,perempuan,675,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.02,3,Pulau Beringin,age_group,55-59,,1460,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.02,3,Pulau Beringin,age_group,60-64,laki_laki,611,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.02,3,Pulau Beringin,age_group,60-64,perempuan,555,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.02,3,Pulau Beringin,age_group,60-64,,1166,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.02,3,Pulau Beringin,age_group,65-69,laki_laki,568,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.02,3,Pulau Beringin,age_group,65-69,perempuan,490,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.02,3,Pulau Beringin,age_group,65-69,,1058,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.02,3,Pulau Beringin,age_group,70-74,laki_laki,276,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.02,3,Pulau Beringin,age_group,70-74,perempuan,255,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.02,3,Pulau Beringin,age_group,70-74,,531,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.02,3,Pulau Beringin,age_group,75+,laki_laki,336,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.02,3,Pulau Beringin,age_group,75+,perempuan,324,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.02,3,Pulau Beringin,age_group,75+,,660,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.02,3,Pulau Beringin,sex,laki_laki,,15693,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.02,3,Pulau Beringin,sex,perempuan,,14794,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.02,3,Pulau Beringin,total,total,,30487,jiwa,2025,registration,total_population,3.2,29,,

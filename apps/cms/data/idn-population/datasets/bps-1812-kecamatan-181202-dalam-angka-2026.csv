@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.12.02.2005,4,Gunung Menanti,sex,laki_laki,,1646,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2005,4,Gunung Menanti,sex,perempuan,,1573,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2005,4,Gunung Menanti,total,total,,3219,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2009,4,Margo Dadi,sex,laki_laki,,3117,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2009,4,Margo Dadi,sex,perempuan,,3056,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2009,4,Margo Dadi,total,total,,6173,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2007,4,Murni Jaya,sex,laki_laki,,2376,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2007,4,Murni Jaya,sex,perempuan,,2253,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2007,4,Murni Jaya,total,total,,4629,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2003,4,Margo Mulyo,sex,laki_laki,,2665,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2003,4,Margo Mulyo,sex,perempuan,,2514,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2003,4,Margo Mulyo,total,total,,5179,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2006,4,Daya Asri,sex,laki_laki,,2282,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2006,4,Daya Asri,sex,perempuan,,2323,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2006,4,Daya Asri,total,total,,4605,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.1001,4,Daya Murni,sex,laki_laki,,4674,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.1001,4,Daya Murni,sex,perempuan,,4710,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.1001,4,Daya Murni,total,total,,9384,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2002,4,Daya Sakti,sex,laki_laki,,2565,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2002,4,Daya Sakti,sex,perempuan,,2466,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2002,4,Daya Sakti,total,total,,5031,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2004,4,Makarti,sex,laki_laki,,2717,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2004,4,Makarti,sex,perempuan,,2727,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2004,4,Makarti,total,total,,5444,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2008,4,Sumber Rejo,sex,laki_laki,,1888,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2008,4,Sumber Rejo,sex,perempuan,,1835,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2008,4,Sumber Rejo,total,total,,3723,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02.2010,4,Gunung Timbul,sex,laki_laki,,1115,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02.2010,4,Gunung Timbul,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02.2010,4,Gunung Timbul,total,total,,2233,jiwa,2025,registration,total_population,3.1,28,,
+18.12.02,3,Tumi Jajar,sex,laki_laki,,25045,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.02,3,Tumi Jajar,sex,perempuan,,24575,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.02,3,Tumi Jajar,total,total,,49620,jiwa,2025,registration,total_population,3.1,28,,

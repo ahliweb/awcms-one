@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1209-kecamatan-120810-dalam-angka-2025",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.08.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pamatang Sidamanik Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Simalungun",
+  "publisherDomain": "1209",
+  "publisherWebsite": "https://simalungunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simalungun (https://simalungunkab.bps.go.id), publikasi \"Kecamatan Pamatang Sidamanik Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1209091",
+  "publicationNumber": "12090.24020",
+  "issn": "2961-7154",
+  "publicationYear": 2025,
+  "releaseDate": "2025-09-26",
+  "publicationUrl": "https://simalungunkab.bps.go.id/id/publication/2025/09/26/9b04f786430cfbcf79911bd9/kecamatan-pamatang-sidamanik-dalam-angka-2025.html",
+  "sourceFileSha256": "d5f4a3ebdf924e5327cbd4275e5511577d3eb81edfd03f25ae1cd7b3e5413f01",
+  "sourceFileBytes": 12961615,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simalungun.",
+  "csvPath": "datasets/bps-1209-kecamatan-120810-dalam-angka-2025.csv",
+  "csvSha256": "2ed9a42b5d0440513964ad3165a1321a7928149de0c6f8edc10161f5960c2488",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pamatang Sidamanik, 2024",
+      "printedPages": [27],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

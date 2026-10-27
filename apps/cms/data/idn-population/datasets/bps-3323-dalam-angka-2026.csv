@@ -1,0 +1,98 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.23,2,Kabupaten Temanggung,age_group,0-4,laki_laki,29640,jiwa,2025,projection,total_population,3.1.2,50,,0–4
+33.23,2,Kabupaten Temanggung,age_group,0-4,perempuan,28460,jiwa,2025,projection,total_population,3.1.2,50,,0–4
+33.23,2,Kabupaten Temanggung,age_group,0-4,,58100,jiwa,2025,projection,total_population,3.1.2,50,,0–4
+33.23,2,Kabupaten Temanggung,age_group,5-9,laki_laki,28560,jiwa,2025,projection,total_population,3.1.2,50,,5–9
+33.23,2,Kabupaten Temanggung,age_group,5-9,perempuan,27770,jiwa,2025,projection,total_population,3.1.2,50,,5–9
+33.23,2,Kabupaten Temanggung,age_group,5-9,,56330,jiwa,2025,projection,total_population,3.1.2,50,,5–9
+33.23,2,Kabupaten Temanggung,age_group,10-14,laki_laki,29750,jiwa,2025,projection,total_population,3.1.2,50,,10–14
+33.23,2,Kabupaten Temanggung,age_group,10-14,perempuan,28300,jiwa,2025,projection,total_population,3.1.2,50,,10–14
+33.23,2,Kabupaten Temanggung,age_group,10-14,,58050,jiwa,2025,projection,total_population,3.1.2,50,,10–14
+33.23,2,Kabupaten Temanggung,age_group,15-19,laki_laki,30620,jiwa,2025,projection,total_population,3.1.2,50,,15–19
+33.23,2,Kabupaten Temanggung,age_group,15-19,perempuan,28890,jiwa,2025,projection,total_population,3.1.2,50,,15–19
+33.23,2,Kabupaten Temanggung,age_group,15-19,,59510,jiwa,2025,projection,total_population,3.1.2,50,,15–19
+33.23,2,Kabupaten Temanggung,age_group,20-24,laki_laki,30230,jiwa,2025,projection,total_population,3.1.2,50,,20–24
+33.23,2,Kabupaten Temanggung,age_group,20-24,perempuan,28830,jiwa,2025,projection,total_population,3.1.2,50,,20–24
+33.23,2,Kabupaten Temanggung,age_group,20-24,,59060,jiwa,2025,projection,total_population,3.1.2,50,,20–24
+33.23,2,Kabupaten Temanggung,age_group,25-29,laki_laki,30050,jiwa,2025,projection,total_population,3.1.2,50,,25–29
+33.23,2,Kabupaten Temanggung,age_group,25-29,perempuan,28250,jiwa,2025,projection,total_population,3.1.2,50,,25–29
+33.23,2,Kabupaten Temanggung,age_group,25-29,,58300,jiwa,2025,projection,total_population,3.1.2,50,,25–29
+33.23,2,Kabupaten Temanggung,age_group,30-34,laki_laki,29390,jiwa,2025,projection,total_population,3.1.2,50,,30–34
+33.23,2,Kabupaten Temanggung,age_group,30-34,perempuan,28890,jiwa,2025,projection,total_population,3.1.2,50,,30–34
+33.23,2,Kabupaten Temanggung,age_group,30-34,,58280,jiwa,2025,projection,total_population,3.1.2,50,,30–34
+33.23,2,Kabupaten Temanggung,age_group,35-39,laki_laki,29880,jiwa,2025,projection,total_population,3.1.2,50,,35–39
+33.23,2,Kabupaten Temanggung,age_group,35-39,perempuan,28580,jiwa,2025,projection,total_population,3.1.2,50,,35–39
+33.23,2,Kabupaten Temanggung,age_group,35-39,,58460,jiwa,2025,projection,total_population,3.1.2,50,,35–39
+33.23,2,Kabupaten Temanggung,age_group,40-44,laki_laki,27620,jiwa,2025,projection,total_population,3.1.2,50,,40–44
+33.23,2,Kabupaten Temanggung,age_group,40-44,perempuan,27150,jiwa,2025,projection,total_population,3.1.2,50,,40–44
+33.23,2,Kabupaten Temanggung,age_group,40-44,,54770,jiwa,2025,projection,total_population,3.1.2,50,,40–44
+33.23,2,Kabupaten Temanggung,age_group,45-49,laki_laki,28690,jiwa,2025,projection,total_population,3.1.2,50,,45–49
+33.23,2,Kabupaten Temanggung,age_group,45-49,perempuan,29230,jiwa,2025,projection,total_population,3.1.2,50,,45–49
+33.23,2,Kabupaten Temanggung,age_group,45-49,,57920,jiwa,2025,projection,total_population,3.1.2,50,,45–49
+33.23,2,Kabupaten Temanggung,age_group,50-54,laki_laki,28310,jiwa,2025,projection,total_population,3.1.2,50,,50–54
+33.23,2,Kabupaten Temanggung,age_group,50-54,perempuan,28610,jiwa,2025,projection,total_population,3.1.2,50,,50–54
+33.23,2,Kabupaten Temanggung,age_group,50-54,,56920,jiwa,2025,projection,total_population,3.1.2,50,,50–54
+33.23,2,Kabupaten Temanggung,age_group,55-59,laki_laki,26860,jiwa,2025,projection,total_population,3.1.2,50,,55–59
+33.23,2,Kabupaten Temanggung,age_group,55-59,perempuan,28030,jiwa,2025,projection,total_population,3.1.2,50,,55–59
+33.23,2,Kabupaten Temanggung,age_group,55-59,,54890,jiwa,2025,projection,total_population,3.1.2,50,,55–59
+33.23,2,Kabupaten Temanggung,age_group,60-64,laki_laki,22230,jiwa,2025,projection,total_population,3.1.2,50,,60–64
+33.23,2,Kabupaten Temanggung,age_group,60-64,perempuan,23170,jiwa,2025,projection,total_population,3.1.2,50,,60–64
+33.23,2,Kabupaten Temanggung,age_group,60-64,,45400,jiwa,2025,projection,total_population,3.1.2,50,,60–64
+33.23,2,Kabupaten Temanggung,age_group,65-69,laki_laki,17520,jiwa,2025,projection,total_population,3.1.2,50,,65–69
+33.23,2,Kabupaten Temanggung,age_group,65-69,perempuan,18610,jiwa,2025,projection,total_population,3.1.2,50,,65–69
+33.23,2,Kabupaten Temanggung,age_group,65-69,,36130,jiwa,2025,projection,total_population,3.1.2,50,,65–69
+33.23,2,Kabupaten Temanggung,age_group,70-74,laki_laki,12490,jiwa,2025,projection,total_population,3.1.2,50,,70–74
+33.23,2,Kabupaten Temanggung,age_group,70-74,perempuan,13380,jiwa,2025,projection,total_population,3.1.2,50,,70–74
+33.23,2,Kabupaten Temanggung,age_group,70-74,,25870,jiwa,2025,projection,total_population,3.1.2,50,,70–74
+33.23,2,Kabupaten Temanggung,age_group,75+,laki_laki,10190,jiwa,2025,projection,total_population,3.1.2,50,,75+
+33.23,2,Kabupaten Temanggung,age_group,75+,perempuan,12960,jiwa,2025,projection,total_population,3.1.2,50,,75+
+33.23,2,Kabupaten Temanggung,age_group,75+,,23150,jiwa,2025,projection,total_population,3.1.2,50,,75+
+33.23,2,Kabupaten Temanggung,sex,laki_laki,,412030,jiwa,2025,projection,total_population,3.1.2,50,,Laki-Laki
+33.23,2,Kabupaten Temanggung,sex,perempuan,,409110,jiwa,2025,projection,total_population,3.1.2,50,,Perempuan
+33.23,2,Kabupaten Temanggung,total,total,,821140,jiwa,2025,projection,total_population,3.1.2,50,,
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/padi_padian,,72489,rupiah,2024,survey_estimate,per_capita,10.1,257,,Padi-padian
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/padi_padian,,68677,rupiah,2025,survey_estimate,per_capita,10.1,257,,Padi-padian
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/umbi_umbian,,4754,rupiah,2024,survey_estimate,per_capita,10.1,257,,Umbi-umbian
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/umbi_umbian,,5166,rupiah,2025,survey_estimate,per_capita,10.1,257,,Umbi-umbian
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,18638,rupiah,2024,survey_estimate,per_capita,10.1,257,,Ikan/udang/cumi/kerang
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,19799,rupiah,2025,survey_estimate,per_capita,10.1,257,,Ikan/udang/cumi/kerang
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/daging,,33297,rupiah,2024,survey_estimate,per_capita,10.1,257,,Daging
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/daging,,30679,rupiah,2025,survey_estimate,per_capita,10.1,257,,Daging
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/telur_dan_susu,,28771,rupiah,2024,survey_estimate,per_capita,10.1,257,,Telur dan susu
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/telur_dan_susu,,29856,rupiah,2025,survey_estimate,per_capita,10.1,257,,Telur dan susu
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/sayur_sayuran,,48193,rupiah,2024,survey_estimate,per_capita,10.1,257,,Sayur-sayuran
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/sayur_sayuran,,48847,rupiah,2025,survey_estimate,per_capita,10.1,257,,Sayur-sayuran
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/kacang_kacangan,,14857,rupiah,2024,survey_estimate,per_capita,10.1,257,,Kacang-kacangan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/kacang_kacangan,,16469,rupiah,2025,survey_estimate,per_capita,10.1,257,,Kacang-kacangan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/buah_buahan,,27330,rupiah,2024,survey_estimate,per_capita,10.1,257,,Buah-buahan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/buah_buahan,,30440,rupiah,2025,survey_estimate,per_capita,10.1,257,,Buah-buahan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18210,rupiah,2024,survey_estimate,per_capita,10.1,257,,Minyak dan kelapa
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16181,rupiah,2025,survey_estimate,per_capita,10.1,257,,Minyak dan kelapa
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/bahan_minuman,,29027,rupiah,2024,survey_estimate,per_capita,10.1,257,,Bahan minuman
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/bahan_minuman,,27995,rupiah,2025,survey_estimate,per_capita,10.1,257,,Bahan minuman
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/bumbu_bumbuan,,9728,rupiah,2024,survey_estimate,per_capita,10.1,257,,Bumbu-bumbuan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/bumbu_bumbuan,,10191,rupiah,2025,survey_estimate,per_capita,10.1,257,,Bumbu-bumbuan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/konsumsi_lainnya,,10702,rupiah,2024,survey_estimate,per_capita,10.1,257,,Konsumsi lainnya
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/konsumsi_lainnya,,9627,rupiah,2025,survey_estimate,per_capita,10.1,257,,Konsumsi lainnya
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,172199,rupiah,2024,survey_estimate,per_capita,10.1,257,,Makanan dan minuman jadi
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,161577,rupiah,2025,survey_estimate,per_capita,10.1,257,,Makanan dan minuman jadi
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/rokok,,57825,rupiah,2024,survey_estimate,per_capita,10.1,257,,Rokok
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/rokok,,48775,rupiah,2025,survey_estimate,per_capita,10.1,257,,Rokok
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/jumlah_makanan,,546018,rupiah,2024,survey_estimate,per_capita,10.1,257,,Jumlah makanan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/jumlah_makanan,,524276,rupiah,2025,survey_estimate,per_capita,10.1,257,,Jumlah makanan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,229668,rupiah,2024,survey_estimate,per_capita,10.1,257,,Perumahan dan fasilitas rumah tangga
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,257819,rupiah,2025,survey_estimate,per_capita,10.1,257,,Perumahan dan fasilitas rumah tangga
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,126902,rupiah,2024,survey_estimate,per_capita,10.1,257,,Aneka barang dan jasa
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,146850,rupiah,2025,survey_estimate,per_capita,10.1,257,,Aneka barang dan jasa
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34206,rupiah,2024,survey_estimate,per_capita,10.1,257,,"Pakaian, alas kaki, dan tutup kepala"
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39886,rupiah,2025,survey_estimate,per_capita,10.1,257,,"Pakaian, alas kaki, dan tutup kepala"
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/barang_tahan_lama,,49639,rupiah,2024,survey_estimate,per_capita,10.1,257,,Barang tahan lama
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/barang_tahan_lama,,61736,rupiah,2025,survey_estimate,per_capita,10.1,257,,Barang tahan lama
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,47555,rupiah,2024,survey_estimate,per_capita,10.1,257,,"Pajak, pungutan, dan asuransi"
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49165,rupiah,2025,survey_estimate,per_capita,10.1,257,,"Pajak, pungutan, dan asuransi"
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,35216,rupiah,2024,survey_estimate,per_capita,10.1,257,,Keperluan pesta dan upacara/kenduri
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,30343,rupiah,2025,survey_estimate,per_capita,10.1,257,,Keperluan pesta dan upacara/kenduri
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,523186,rupiah,2024,survey_estimate,per_capita,10.1,257,,Jumlah bukan makanan
+33.23,2,Kabupaten Temanggung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,585799,rupiah,2025,survey_estimate,per_capita,10.1,257,,Jumlah bukan makanan
+33.23,2,Kabupaten Temanggung,expenditure,total,,1069204,rupiah,2024,survey_estimate,per_capita,10.1,257,,
+33.23,2,Kabupaten Temanggung,expenditure,total,,1110075,rupiah,2025,survey_estimate,per_capita,10.1,257,,

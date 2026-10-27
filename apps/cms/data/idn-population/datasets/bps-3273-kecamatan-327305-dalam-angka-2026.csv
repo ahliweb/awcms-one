@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.73.05.1006,4,Campaka,sex,laki_laki,,9406,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.05.1006,4,Campaka,sex,perempuan,,9583,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.05.1006,4,Campaka,total,total,,18989,jiwa,2025,registration,total_population,3.1,37,,
+32.73.05.1001,4,Maleber,sex,laki_laki,,9842,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.05.1001,4,Maleber,sex,perempuan,,10006,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.05.1001,4,Maleber,total,total,,19848,jiwa,2025,registration,total_population,3.1,37,,
+32.73.05.1005,4,Garuda,sex,laki_laki,,5216,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.05.1005,4,Garuda,sex,perempuan,,5216,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.05.1005,4,Garuda,total,total,,10432,jiwa,2025,registration,total_population,3.1,37,,
+32.73.05.1002,4,Dungus Cariang,sex,laki_laki,,9339,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.05.1002,4,Dungus Cariang,sex,perempuan,,9488,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.05.1002,4,Dungus Cariang,total,total,,18827,jiwa,2025,registration,total_population,3.1,37,,
+32.73.05.1003,4,Ciroyom,sex,laki_laki,,10177,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.05.1003,4,Ciroyom,sex,perempuan,,9986,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.05.1003,4,Ciroyom,total,total,,20163,jiwa,2025,registration,total_population,3.1,37,,
+32.73.05.1004,4,Kebon Jeruk,sex,laki_laki,,5624,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.05.1004,4,Kebon Jeruk,sex,perempuan,,5741,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.05.1004,4,Kebon Jeruk,total,total,,11365,jiwa,2025,registration,total_population,3.1,37,,
+32.73.05,3,Andir,age_group,0-4,laki_laki,2795,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.05,3,Andir,age_group,0-4,perempuan,2683,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.05,3,Andir,age_group,0-4,,5478,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.05,3,Andir,age_group,5-9,laki_laki,3728,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.05,3,Andir,age_group,5-9,perempuan,3708,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.05,3,Andir,age_group,5-9,,7436,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.05,3,Andir,age_group,10-14,laki_laki,4002,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.05,3,Andir,age_group,10-14,perempuan,3798,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.05,3,Andir,age_group,10-14,,7800,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.05,3,Andir,age_group,15-19,laki_laki,3924,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.05,3,Andir,age_group,15-19,perempuan,3804,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.05,3,Andir,age_group,15-19,,7728,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.05,3,Andir,age_group,20-24,laki_laki,4230,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.05,3,Andir,age_group,20-24,perempuan,3996,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.05,3,Andir,age_group,20-24,,8226,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.05,3,Andir,age_group,25-29,laki_laki,3872,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.05,3,Andir,age_group,25-29,perempuan,3783,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.05,3,Andir,age_group,25-29,,7655,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.05,3,Andir,age_group,30-34,laki_laki,3769,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.05,3,Andir,age_group,30-34,perempuan,3465,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.05,3,Andir,age_group,30-34,,7234,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.05,3,Andir,age_group,35-39,laki_laki,3113,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.05,3,Andir,age_group,35-39,perempuan,3264,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.05,3,Andir,age_group,35-39,,6377,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.05,3,Andir,age_group,40-44,laki_laki,3724,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.05,3,Andir,age_group,40-44,perempuan,3689,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.05,3,Andir,age_group,40-44,,7413,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.05,3,Andir,age_group,45-49,laki_laki,3887,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.05,3,Andir,age_group,45-49,perempuan,3792,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.05,3,Andir,age_group,45-49,,7679,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.05,3,Andir,age_group,50-54,laki_laki,3435,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.05,3,Andir,age_group,50-54,perempuan,3496,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.05,3,Andir,age_group,50-54,,6931,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.05,3,Andir,age_group,55-59,laki_laki,2956,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.05,3,Andir,age_group,55-59,perempuan,3017,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.05,3,Andir,age_group,55-59,,5973,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.05,3,Andir,age_group,60-64,laki_laki,2152,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.05,3,Andir,age_group,60-64,perempuan,2376,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.05,3,Andir,age_group,60-64,,4528,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.05,3,Andir,age_group,65-69,laki_laki,1724,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.05,3,Andir,age_group,65-69,perempuan,1978,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.05,3,Andir,age_group,65-69,,3702,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.05,3,Andir,age_group,70-74,laki_laki,1128,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.05,3,Andir,age_group,70-74,perempuan,1374,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.05,3,Andir,age_group,70-74,,2502,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.05,3,Andir,age_group,75+,laki_laki,1165,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.05,3,Andir,age_group,75+,perempuan,1797,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.05,3,Andir,age_group,75+,,2962,jiwa,2025,registration,total_population,3.2,39,,75+

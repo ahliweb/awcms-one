@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-1111-kecamatan-110825-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.08.25",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Geureudong Pase Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Utara",
+  "publisherDomain": "1111",
+  "publisherWebsite": "https://acehutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Utara (https://acehutarakab.bps.go.id), publikasi \"Kecamatan Geureudong Pase Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1111041",
+  "publicationNumber": "11110.26016",
+  "issn": "2528-5327",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehutarakab.bps.go.id/id/publication/2026/09/28/a1edb4f81f1e25a8354c02ea/kecamatan-geureudong-pase-dalam-angka-2026.html",
+  "sourceFileSha256": "f06e7301ff742a96addec0e4ccd880552e89c09058873bd96fd060bc8a490891",
+  "sourceFileBytes": 1727334,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Utara.",
+  "csvPath": "datasets/bps-1111-kecamatan-110825-dalam-angka-2026.csv",
+  "csvSha256": "2d1b8333c16eb6bce15a13da5e836e11c06c972d97ede9684f73d80eab72d4da",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di KecamatanGeureudong Pase, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Geureudong Pase, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Suka Damai 22,49%\": unmatched ",
+    "table 3.1: row not stored: row \"Pulo Meuria 9,88%\": unmatched ",
+    "table 3.1: row not stored: row \"Krueng Mbang 5,52%\": unmatched ",
+    "table 3.1: row not stored: row \"Dayah Seupeng 12,33%\": unmatched ",
+    "table 3.1: row not stored: row \"Uram Jalan 5,03%\": unmatched ",
+    "table 3.1: row not stored: row \"Peudari 15,55%\": unmatched ",
+    "table 3.1: row not stored: row \"Rayeuk Jawa 10,24%\": unmatched ",
+    "table 3.1: row not stored: row \"Darussalam 7,29%\": unmatched ",
+    "table 3.1: row not stored: row \"Alue Awe 5,03%\": unmatched ",
+    "table 3.1: row not stored: row \"Lhok Asan 3,80%\": unmatched ",
+    "table 3.1: row not stored: row \"Darul Aman 2,83%\": unmatched ",
+    "table 3.1: row not stored: row \"Geureudong Pase 100,00%\": unmatched "
+  ]
+}

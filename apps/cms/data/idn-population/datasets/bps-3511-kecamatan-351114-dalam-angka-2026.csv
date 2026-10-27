@@ -1,0 +1,9 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.11.14,3,Klabang,age_group,0-14,perempuan,1574,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.14,3,Klabang,age_group,0-14,,3252,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.14,3,Klabang,age_group,15-64,perempuan,6436,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.14,3,Klabang,age_group,15-64,,12637,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.14,3,Klabang,age_group,65+,perempuan,1712,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.14,3,Klabang,age_group,65+,,2929,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.14,3,Kecamatan Klabang,sex,perempuan,,9722,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+35.11.14,3,Kecamatan Klabang,total,total,,18818,jiwa,2025,registration,total_population,3.2,27,,

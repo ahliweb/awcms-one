@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.08.2003,4,Sungai Simbar,sex,laki_laki,,1541,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.2003,4,Sungai Simbar,sex,perempuan,,1331,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.2003,4,Sungai Simbar,total,total,,2872,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.2002,4,Kuala Selat,sex,laki_laki,,1318,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.2002,4,Kuala Selat,sex,perempuan,,1130,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.2002,4,Kuala Selat,total,total,,2448,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.2004,4,Penjuru,sex,laki_laki,,2297,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.2004,4,Penjuru,sex,perempuan,,2144,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.2004,4,Penjuru,total,total,,4441,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.2006,4,Air Tawar,sex,laki_laki,,3749,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.2006,4,Air Tawar,sex,perempuan,,3391,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.2006,4,Air Tawar,total,total,,7140,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.2007,4,Tanjung Raja,sex,laki_laki,,1735,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.2007,4,Tanjung Raja,sex,perempuan,,1592,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.2007,4,Tanjung Raja,total,total,,3327,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.2008,4,Sungai Teritip,sex,laki_laki,,1018,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.2008,4,Sungai Teritip,sex,perempuan,,927,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.2008,4,Sungai Teritip,total,total,,1945,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.2011,4,Makmur Jaya,sex,laki_laki,,799,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.2011,4,Makmur Jaya,sex,perempuan,,765,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.2011,4,Makmur Jaya,total,total,,1564,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.1009,4,Amal Bakti,sex,laki_laki,,524,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.1009,4,Amal Bakti,sex,perempuan,,510,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.1009,4,Amal Bakti,total,total,,1034,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08.1010,4,Bandar Sri Gemilang,sex,laki_laki,,1498,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08.1010,4,Bandar Sri Gemilang,sex,perempuan,,1415,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08.1010,4,Bandar Sri Gemilang,total,total,,2913,jiwa,2026,registration,total_population,3.1,29,,
+14.04.08,3,Kateman,sex,laki_laki,,24210,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.08,3,Kateman,sex,perempuan,,22699,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.08,3,Kateman,total,total,,46909,jiwa,2026,registration,total_population,3.1,29,,

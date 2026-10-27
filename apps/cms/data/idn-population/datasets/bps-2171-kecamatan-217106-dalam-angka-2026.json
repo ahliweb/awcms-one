@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-2171-kecamatan-217106-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.71.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubuk Baja Dalam Angka 2026",
+  "publisherName": "BPS Kota Batam",
+  "publisherDomain": "2171",
+  "publisherWebsite": "https://batamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batam (https://batamkota.bps.go.id), publikasi \"Kecamatan Lubuk Baja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2171070",
+  "publicationNumber": "21710.26010",
+  "issn": "2987-1220",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batamkota.bps.go.id/id/publication/2026/09/28/81fa903f21eed51387b154f0/kecamatan-lubuk-baja-dalam-angka-2026.html",
+  "sourceFileSha256": "de7550c2cd8e70f47fca0775b488a052ad078bf592a49785a237770eda670040",
+  "sourceFileBytes": 12617786,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batam.",
+  "csvPath": "datasets/bps-2171-kecamatan-217106-dalam-angka-2026.csv",
+  "csvSha256": "d1760fae5def749554815195d0ee21dd97b08039ffdbf2fd7f23f4927f77ecc8",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p43",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lubuk Baja, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p43: row not stored: row \"Kecamatan Lubuk Baja Lubuk Baja District\": unmatched "
+  ]
+}

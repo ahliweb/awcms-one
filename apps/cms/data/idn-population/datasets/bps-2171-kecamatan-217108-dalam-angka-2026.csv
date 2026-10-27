@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.08.1004,4,Sembulang,sex,laki_laki,,2064,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1004,4,Sembulang,sex,perempuan,,1841,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1004,4,Sembulang,total,total,,3905,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08.1002,4,Karas,sex,laki_laki,,1529,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1002,4,Karas,sex,perempuan,,1329,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1002,4,Karas,total,total,,2858,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08.1003,4,Galang Baru,sex,laki_laki,,1958,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1003,4,Galang Baru,sex,perempuan,,1719,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1003,4,Galang Baru,total,total,,3677,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08.1007,4,Pulau Abang,sex,laki_laki,,945,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1007,4,Pulau Abang,sex,perempuan,,941,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1007,4,Pulau Abang,total,total,,1886,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08.1005,4,Rempang Cate,sex,laki_laki,,2637,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1005,4,Rempang Cate,sex,perempuan,,2294,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1005,4,Rempang Cate,total,total,,4931,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08.1001,4,Sijantung,sex,laki_laki,,1266,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1001,4,Sijantung,sex,perempuan,,1141,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1001,4,Sijantung,total,total,,2407,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08.1006,4,Subang Mas,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1006,4,Subang Mas,sex,perempuan,,395,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1006,4,Subang Mas,total,total,,852,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08.1008,4,Air Raja,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+21.71.08.1008,4,Air Raja,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+21.71.08.1008,4,Air Raja,total,total,,592,jiwa,2025,registration,total_population,3.1,21,,
+21.71.08,3,Galang,age_group,0-4,laki_laki,710,jiwa,2025,registration,total_population,3.2,23,,0–4
+21.71.08,3,Galang,age_group,0-4,perempuan,642,jiwa,2025,registration,total_population,3.2,23,,0–4
+21.71.08,3,Galang,age_group,0-4,,1352,jiwa,2025,registration,total_population,3.2,23,,0–4
+21.71.08,3,Galang,age_group,5-9,laki_laki,1011,jiwa,2025,registration,total_population,3.2,23,,5–9
+21.71.08,3,Galang,age_group,5-9,perempuan,928,jiwa,2025,registration,total_population,3.2,23,,5–9
+21.71.08,3,Galang,age_group,5-9,,1939,jiwa,2025,registration,total_population,3.2,23,,5–9
+21.71.08,3,Galang,age_group,10-14,laki_laki,1155,jiwa,2025,registration,total_population,3.2,23,,10–14
+21.71.08,3,Galang,age_group,10-14,perempuan,947,jiwa,2025,registration,total_population,3.2,23,,10–14
+21.71.08,3,Galang,age_group,10-14,,2102,jiwa,2025,registration,total_population,3.2,23,,10–14
+21.71.08,3,Galang,age_group,15-19,laki_laki,881,jiwa,2025,registration,total_population,3.2,23,,15–19
+21.71.08,3,Galang,age_group,15-19,perempuan,859,jiwa,2025,registration,total_population,3.2,23,,15–19
+21.71.08,3,Galang,age_group,15-19,,1740,jiwa,2025,registration,total_population,3.2,23,,15–19
+21.71.08,3,Galang,age_group,20-24,laki_laki,944,jiwa,2025,registration,total_population,3.2,23,,20–24
+21.71.08,3,Galang,age_group,20-24,perempuan,882,jiwa,2025,registration,total_population,3.2,23,,20–24
+21.71.08,3,Galang,age_group,20-24,,1826,jiwa,2025,registration,total_population,3.2,23,,20–24
+21.71.08,3,Galang,age_group,25-29,laki_laki,849,jiwa,2025,registration,total_population,3.2,23,,25–29
+21.71.08,3,Galang,age_group,25-29,perempuan,724,jiwa,2025,registration,total_population,3.2,23,,25–29
+21.71.08,3,Galang,age_group,25-29,,1573,jiwa,2025,registration,total_population,3.2,23,,25–29
+21.71.08,3,Galang,age_group,30-34,laki_laki,862,jiwa,2025,registration,total_population,3.2,23,,30–34
+21.71.08,3,Galang,age_group,30-34,perempuan,729,jiwa,2025,registration,total_population,3.2,23,,30–34
+21.71.08,3,Galang,age_group,30-34,,1591,jiwa,2025,registration,total_population,3.2,23,,30–34
+21.71.08,3,Galang,age_group,35-39,laki_laki,839,jiwa,2025,registration,total_population,3.2,23,,35–39
+21.71.08,3,Galang,age_group,35-39,perempuan,741,jiwa,2025,registration,total_population,3.2,23,,35–39
+21.71.08,3,Galang,age_group,35-39,,1580,jiwa,2025,registration,total_population,3.2,23,,35–39
+21.71.08,3,Galang,age_group,40-44,laki_laki,866,jiwa,2025,registration,total_population,3.2,23,,40–44
+21.71.08,3,Galang,age_group,40-44,perempuan,772,jiwa,2025,registration,total_population,3.2,23,,40–44
+21.71.08,3,Galang,age_group,40-44,,1638,jiwa,2025,registration,total_population,3.2,23,,40–44
+21.71.08,3,Galang,age_group,45-49,laki_laki,829,jiwa,2025,registration,total_population,3.2,23,,45–49
+21.71.08,3,Galang,age_group,45-49,perempuan,788,jiwa,2025,registration,total_population,3.2,23,,45–49
+21.71.08,3,Galang,age_group,45-49,,1617,jiwa,2025,registration,total_population,3.2,23,,45–49
+21.71.08,3,Galang,age_group,50-54,laki_laki,693,jiwa,2025,registration,total_population,3.2,23,,50–54
+21.71.08,3,Galang,age_group,50-54,perempuan,641,jiwa,2025,registration,total_population,3.2,23,,50–54
+21.71.08,3,Galang,age_group,50-54,,1334,jiwa,2025,registration,total_population,3.2,23,,50–54
+21.71.08,3,Galang,age_group,55-59,laki_laki,505,jiwa,2025,registration,total_population,3.2,23,,55–59
+21.71.08,3,Galang,age_group,55-59,perempuan,385,jiwa,2025,registration,total_population,3.2,23,,55–59
+21.71.08,3,Galang,age_group,55-59,,890,jiwa,2025,registration,total_population,3.2,23,,55–59
+21.71.08,3,Galang,age_group,60-64,laki_laki,404,jiwa,2025,registration,total_population,3.2,23,,60–64
+21.71.08,3,Galang,age_group,60-64,perempuan,327,jiwa,2025,registration,total_population,3.2,23,,60–64
+21.71.08,3,Galang,age_group,60-64,,731,jiwa,2025,registration,total_population,3.2,23,,60–64
+21.71.08,3,Galang,age_group,65-69,laki_laki,271,jiwa,2025,registration,total_population,3.2,23,,65–69
+21.71.08,3,Galang,age_group,65-69,perempuan,247,jiwa,2025,registration,total_population,3.2,23,,65–69
+21.71.08,3,Galang,age_group,65-69,,518,jiwa,2025,registration,total_population,3.2,23,,65–69
+21.71.08,3,Galang,age_group,70-74,laki_laki,158,jiwa,2025,registration,total_population,3.2,23,,70–74
+21.71.08,3,Galang,age_group,70-74,perempuan,141,jiwa,2025,registration,total_population,3.2,23,,70–74
+21.71.08,3,Galang,age_group,70-74,,299,jiwa,2025,registration,total_population,3.2,23,,70–74
+21.71.08,3,Galang,age_group,75+,laki_laki,192,jiwa,2025,registration,total_population,3.2,23,,>75
+21.71.08,3,Galang,age_group,75+,perempuan,186,jiwa,2025,registration,total_population,3.2,23,,>75
+21.71.08,3,Galang,age_group,75+,,378,jiwa,2025,registration,total_population,3.2,23,,>75

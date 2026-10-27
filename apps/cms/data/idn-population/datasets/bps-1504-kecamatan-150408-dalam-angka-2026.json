@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1504-kecamatan-150408-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.04.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Maro Sebo Ilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batang Hari",
+  "publisherDomain": "1504",
+  "publisherWebsite": "https://batangharikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batang Hari (https://batangharikab.bps.go.id), publikasi \"Kecamatan Maro Sebo Ilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1504042",
+  "publicationNumber": "15040.26011",
+  "issn": "2723-5017",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batangharikab.bps.go.id/id/publication/2026/09/28/93ee6c1275d83976bb1a565e/kecamatan-maro-sebo-ilir-dalam-angka-2026.html",
+  "sourceFileSha256": "ed657926d428878cfe0dfc33f1adad4d05a4d50e800227dba5c9d22e0a5c10da",
+  "sourceFileBytes": 10096372,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batang Hari .",
+  "csvPath": "datasets/bps-1504-kecamatan-150408-dalam-angka-2026.csv",
+  "csvSha256": "cc02ef88eead000f55e279904e34925217a718da3b30837b80f54749d569f341",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Maro Sebo Ilir , 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Maro Sebo Ilir , 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Terusan\": ambiguous 15.04.08.1008,15.04.08.2006",
+    "table 3.1: row not stored: row \"Terusan\": ambiguous 15.04.08.1008,15.04.08.2006",
+    "table 3.1: row not stored: row \"Terusan\": ambiguous 15.04.08.1008,15.04.08.2006",
+    "table 3.1: row not stored: row \"Terusan\": ambiguous 15.04.08.1008,15.04.08.2006"
+  ]
+}

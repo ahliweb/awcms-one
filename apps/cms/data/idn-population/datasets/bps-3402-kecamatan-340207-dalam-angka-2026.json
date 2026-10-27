@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3402-kecamatan-340207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.02.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pajangan Dalam Angka 2026",
+  "publisherName": "BPS Kabupate Bantul",
+  "publisherDomain": "3402",
+  "publisherWebsite": "https://bantulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupate Bantul (https://bantulkab.bps.go.id), publikasi \"Kecamatan Pajangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3402160",
+  "publicationNumber": "34020.26021",
+  "issn": "0852-291X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bantulkab.bps.go.id/id/publication/2026/09/28/89312feb9863d2693f107d77/kecamatan-pajangan-dalam-angka-2026.html",
+  "sourceFileSha256": "532f6daba507954d0e324f7502de31721c182f72daf99a9440dff7d44a3090d3",
+  "sourceFileBytes": 10260213,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bantul",
+  "csvPath": "datasets/bps-3402-kecamatan-340207-dalam-angka-2026.csv",
+  "csvSha256": "2d2b38ab3c4a715f816ee0671d18d2ab734ada23d8f15ab2cf1a542a5c3a2c28",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pajangan, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pajangan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karangampel Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Karangampel Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212100",
+  "publicationNumber": "32120.25017",
+  "issn": "2807-4653",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/f9b2f34968baba5b86241a18/kecamatan-karangampel-dalam-angka-2026.html",
+  "sourceFileSha256": "4042c56731dcbc2352e19fa1b5568d5369b8eb3dacf29cbdf35810f31d307af0",
+  "sourceFileBytes": 21452291,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321210-dalam-angka-2026.csv",
+  "csvSha256": "40d97f865336a18723f6a5f665f8f4d5cb8cbeb3f5b7f32968e2a0a80636e4c2",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karangampel, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

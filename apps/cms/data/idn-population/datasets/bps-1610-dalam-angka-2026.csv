@@ -1,0 +1,217 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.01,3,Muara Kuang,total,total,,21394,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.14,3,Rambang Kuang,total,total,,21553,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.15,3,Lubuk Keliat,total,total,,18777,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.02,3,Tanjung Batu,total,total,,50468,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.16,3,Payaraman,total,total,,27951,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.06,3,Rantau Alai,total,total,,11977,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.13,3,Kandis,total,total,,11449,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.03,3,Tanjung Raja,total,total,,46738,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.11,3,Rantau Panjang,total,total,,18376,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.12,3,Sungai Pinang,total,total,,27773,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.05,3,Pemulutan,total,total,,50967,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.09,3,Pemulutan Selatan,total,total,,18615,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.10,3,Pemulutan Barat,total,total,,14988,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.04,3,Indralaya,total,total,,44712,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.07,3,Indralaya Utara,total,total,,43107,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10.08,3,Indralaya Selatan,total,total,,23430,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10,2,Ogan Ilir,total,total,,452275,jiwa,2025,registration,total_population,3.1.1,54,,
+16.10,2,Kabupaten Ogan Ilir,age_group,0-4,laki_laki,15959,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+16.10,2,Kabupaten Ogan Ilir,age_group,0-4,perempuan,14737,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+16.10,2,Kabupaten Ogan Ilir,age_group,0-4,,30696,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+16.10,2,Kabupaten Ogan Ilir,age_group,5-9,laki_laki,21112,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+16.10,2,Kabupaten Ogan Ilir,age_group,5-9,perempuan,19366,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+16.10,2,Kabupaten Ogan Ilir,age_group,5-9,,40478,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+16.10,2,Kabupaten Ogan Ilir,age_group,10-14,laki_laki,21774,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+16.10,2,Kabupaten Ogan Ilir,age_group,10-14,perempuan,20300,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+16.10,2,Kabupaten Ogan Ilir,age_group,10-14,,42074,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+16.10,2,Kabupaten Ogan Ilir,age_group,15-19,laki_laki,19330,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+16.10,2,Kabupaten Ogan Ilir,age_group,15-19,perempuan,18491,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+16.10,2,Kabupaten Ogan Ilir,age_group,15-19,,37821,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+16.10,2,Kabupaten Ogan Ilir,age_group,20-24,laki_laki,19205,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+16.10,2,Kabupaten Ogan Ilir,age_group,20-24,perempuan,18257,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+16.10,2,Kabupaten Ogan Ilir,age_group,20-24,,37462,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+16.10,2,Kabupaten Ogan Ilir,age_group,25-29,laki_laki,18420,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+16.10,2,Kabupaten Ogan Ilir,age_group,25-29,perempuan,17031,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+16.10,2,Kabupaten Ogan Ilir,age_group,25-29,,35451,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+16.10,2,Kabupaten Ogan Ilir,age_group,30-34,laki_laki,16521,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+16.10,2,Kabupaten Ogan Ilir,age_group,30-34,perempuan,14817,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+16.10,2,Kabupaten Ogan Ilir,age_group,30-34,,31338,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+16.10,2,Kabupaten Ogan Ilir,age_group,35-39,laki_laki,18517,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+16.10,2,Kabupaten Ogan Ilir,age_group,35-39,perempuan,17289,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+16.10,2,Kabupaten Ogan Ilir,age_group,35-39,,35806,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+16.10,2,Kabupaten Ogan Ilir,age_group,40-44,laki_laki,16694,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+16.10,2,Kabupaten Ogan Ilir,age_group,40-44,perempuan,16346,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+16.10,2,Kabupaten Ogan Ilir,age_group,40-44,,33040,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+16.10,2,Kabupaten Ogan Ilir,age_group,45-49,laki_laki,14696,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+16.10,2,Kabupaten Ogan Ilir,age_group,45-49,perempuan,14761,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+16.10,2,Kabupaten Ogan Ilir,age_group,45-49,,29457,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+16.10,2,Kabupaten Ogan Ilir,age_group,50-54,laki_laki,12889,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+16.10,2,Kabupaten Ogan Ilir,age_group,50-54,perempuan,12941,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+16.10,2,Kabupaten Ogan Ilir,age_group,50-54,,25830,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+16.10,2,Kabupaten Ogan Ilir,age_group,55-59,laki_laki,10180,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+16.10,2,Kabupaten Ogan Ilir,age_group,55-59,perempuan,11579,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+16.10,2,Kabupaten Ogan Ilir,age_group,55-59,,21759,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+16.10,2,Kabupaten Ogan Ilir,age_group,60-64,laki_laki,9055,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+16.10,2,Kabupaten Ogan Ilir,age_group,60-64,perempuan,9695,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+16.10,2,Kabupaten Ogan Ilir,age_group,60-64,,18750,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+16.10,2,Kabupaten Ogan Ilir,age_group,65-69,laki_laki,6851,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+16.10,2,Kabupaten Ogan Ilir,age_group,65-69,perempuan,7541,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+16.10,2,Kabupaten Ogan Ilir,age_group,65-69,,14392,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+16.10,2,Kabupaten Ogan Ilir,age_group,70-74,laki_laki,3906,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+16.10,2,Kabupaten Ogan Ilir,age_group,70-74,perempuan,4385,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+16.10,2,Kabupaten Ogan Ilir,age_group,70-74,,8291,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+16.10,2,Kabupaten Ogan Ilir,age_group,75+,laki_laki,3826,jiwa,2025,registration,total_population,3.1.2,57,,75+
+16.10,2,Kabupaten Ogan Ilir,age_group,75+,perempuan,5804,jiwa,2025,registration,total_population,3.1.2,57,,75+
+16.10,2,Kabupaten Ogan Ilir,age_group,75+,,9630,jiwa,2025,registration,total_population,3.1.2,57,,75+
+16.10,2,Ogan Ilir,sex,laki_laki,,228935,jiwa,2025,registration,total_population,3.1.2,57,,Laki-Laki
+16.10,2,Ogan Ilir,sex,perempuan,,223340,jiwa,2025,registration,total_population,3.1.2,57,,Perempuan
+16.10,2,Ogan Ilir,total,total,,452275,jiwa,2025,registration,total_population,3.1.2,57,,
+16.10.01,3,Muara Kuang,religion,islam,,21388,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.01,3,Muara Kuang,religion,kristen,,5,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.01,3,Muara Kuang,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.01,3,Muara Kuang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.01,3,Muara Kuang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.01,3,Muara Kuang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.14,3,Rambang Kuang,religion,islam,,21534,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.14,3,Rambang Kuang,religion,kristen,,14,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.14,3,Rambang Kuang,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.14,3,Rambang Kuang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.14,3,Rambang Kuang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.14,3,Rambang Kuang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.15,3,Lubuk Keliat,religion,islam,,18710,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.15,3,Lubuk Keliat,religion,kristen,,50,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.15,3,Lubuk Keliat,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.15,3,Lubuk Keliat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.15,3,Lubuk Keliat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.15,3,Lubuk Keliat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.02,3,Tanjung Batu,religion,islam,,50459,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.02,3,Tanjung Batu,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.02,3,Tanjung Batu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Katolik
+16.10.02,3,Tanjung Batu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.02,3,Tanjung Batu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.02,3,Tanjung Batu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.16,3,Payaraman,religion,islam,,27950,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.16,3,Payaraman,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.16,3,Payaraman,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Katolik
+16.10.16,3,Payaraman,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.16,3,Payaraman,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.16,3,Payaraman,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.06,3,Rantau Alai,religion,islam,,11866,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.06,3,Rantau Alai,religion,kristen,,75,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.06,3,Rantau Alai,religion,katolik,,36,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.06,3,Rantau Alai,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.06,3,Rantau Alai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.06,3,Rantau Alai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.13,3,Kandis,religion,islam,,11449,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.13,3,Kandis,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Protestan
+16.10.13,3,Kandis,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Katolik
+16.10.13,3,Kandis,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.13,3,Kandis,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.13,3,Kandis,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.03,3,Tanjung Raja,religion,islam,,46683,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.03,3,Tanjung Raja,religion,kristen,,45,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.03,3,Tanjung Raja,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.03,3,Tanjung Raja,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.03,3,Tanjung Raja,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.10.03,3,Tanjung Raja,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+16.10.11,3,Rantau Panjang,religion,islam,,18375,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.11,3,Rantau Panjang,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Protestan
+16.10.11,3,Rantau Panjang,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.11,3,Rantau Panjang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.11,3,Rantau Panjang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.11,3,Rantau Panjang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.12,3,Sungai Pinang,religion,islam,,27772,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.12,3,Sungai Pinang,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.12,3,Sungai Pinang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Katolik
+16.10.12,3,Sungai Pinang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.12,3,Sungai Pinang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.12,3,Sungai Pinang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.05,3,Pemulutan,religion,islam,,50635,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.05,3,Pemulutan,religion,kristen,,28,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.05,3,Pemulutan,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.05,3,Pemulutan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.05,3,Pemulutan,religion,buddha,,289,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.10.05,3,Pemulutan,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+16.10.09,3,Pemulutan Selatan,religion,islam,,18615,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.09,3,Pemulutan Selatan,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Protestan
+16.10.09,3,Pemulutan Selatan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Katolik
+16.10.09,3,Pemulutan Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.09,3,Pemulutan Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.09,3,Pemulutan Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.10,3,Pemulutan Barat,religion,islam,,14988,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.10,3,Pemulutan Barat,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Protestan
+16.10.10,3,Pemulutan Barat,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Katolik
+16.10.10,3,Pemulutan Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.10,3,Pemulutan Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.10,3,Pemulutan Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.04,3,Indralaya,religion,islam,,44585,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.04,3,Indralaya,religion,kristen,,119,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.04,3,Indralaya,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.04,3,Indralaya,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.10.04,3,Indralaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.04,3,Indralaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.07,3,Indralaya Utara,religion,islam,,42637,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.07,3,Indralaya Utara,religion,kristen,,405,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.07,3,Indralaya Utara,religion,katolik,,45,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10.07,3,Indralaya Utara,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.10.07,3,Indralaya Utara,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.10.07,3,Indralaya Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10.08,3,Indralaya Selatan,religion,islam,,23429,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10.08,3,Indralaya Selatan,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10.08,3,Indralaya Selatan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Katolik
+16.10.08,3,Indralaya Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Hindu
+16.10.08,3,Indralaya Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Budha
+16.10.08,3,Indralaya Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,nil,Lainnya
+16.10,2,Ogan Ilir,religion,islam,,451075,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+16.10,2,Ogan Ilir,religion,kristen,,753,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+16.10,2,Ogan Ilir,religion,katolik,,133,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+16.10,2,Ogan Ilir,religion,hindu,,15,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+16.10,2,Ogan Ilir,religion,buddha,,296,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+16.10,2,Ogan Ilir,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/padi_padian,,88629,rupiah,2024,survey_estimate,per_capita,10.1,285,,Padi-padian
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/padi_padian,,83761,rupiah,2025,survey_estimate,per_capita,10.1,285,,Padi-padian
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/umbi_umbian,,7765,rupiah,2024,survey_estimate,per_capita,10.1,285,,Umbi-umbian
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/umbi_umbian,,8314,rupiah,2025,survey_estimate,per_capita,10.1,285,,Umbi-umbian
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,52603,rupiah,2024,survey_estimate,per_capita,10.1,285,,Ikan/udang/cumi/kerang
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,59514,rupiah,2025,survey_estimate,per_capita,10.1,285,,Ikan/udang/cumi/kerang
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/daging,,21152,rupiah,2024,survey_estimate,per_capita,10.1,285,,Daging
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/daging,,27013,rupiah,2025,survey_estimate,per_capita,10.1,285,,Daging
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/telur_dan_susu,,35333,rupiah,2024,survey_estimate,per_capita,10.1,285,,Telur dan susu
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/telur_dan_susu,,32590,rupiah,2025,survey_estimate,per_capita,10.1,285,,Telur dan susu
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/sayur_sayuran,,52886,rupiah,2024,survey_estimate,per_capita,10.1,285,,Sayur-sayuran
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/sayur_sayuran,,55919,rupiah,2025,survey_estimate,per_capita,10.1,285,,Sayur-sayuran
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/kacang_kacangan,,9508,rupiah,2024,survey_estimate,per_capita,10.1,285,,Kacang-kacangan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/kacang_kacangan,,10535,rupiah,2025,survey_estimate,per_capita,10.1,285,,Kacang-kacangan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/buah_buahan,,45998,rupiah,2024,survey_estimate,per_capita,10.1,285,,Buah-buahan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/buah_buahan,,46317,rupiah,2025,survey_estimate,per_capita,10.1,285,,Buah-buahan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13271,rupiah,2024,survey_estimate,per_capita,10.1,285,,Minyak dan kelapa
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17767,rupiah,2025,survey_estimate,per_capita,10.1,285,,Minyak dan kelapa
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/bahan_minuman,,23477,rupiah,2024,survey_estimate,per_capita,10.1,285,,Bahan minuman
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/bahan_minuman,,26109,rupiah,2025,survey_estimate,per_capita,10.1,285,,Bahan minuman
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,19228,rupiah,2024,survey_estimate,per_capita,10.1,285,,Bumbu-bumbuan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,17231,rupiah,2025,survey_estimate,per_capita,10.1,285,,Bumbu-bumbuan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,19516,rupiah,2024,survey_estimate,per_capita,10.1,285,,Konsumsi lainnya
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,18137,rupiah,2025,survey_estimate,per_capita,10.1,285,,Konsumsi lainnya
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,169736,rupiah,2024,survey_estimate,per_capita,10.1,285,,Makanan dan minuman jadi
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,205804,rupiah,2025,survey_estimate,per_capita,10.1,285,,Makanan dan minuman jadi
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/rokok,,89993,rupiah,2024,survey_estimate,per_capita,10.1,285,,Rokok
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/rokok,,83750,rupiah,2025,survey_estimate,per_capita,10.1,285,,Rokok
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/jumlah_makanan,,649093,rupiah,2024,survey_estimate,per_capita,10.1,285,,Jumlah makanan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/jumlah_makanan,,692761,rupiah,2025,survey_estimate,per_capita,10.1,285,,Jumlah makanan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,213016,rupiah,2024,survey_estimate,per_capita,10.1,285,,Perumahan dan fasilitas rumah tangga
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,183800,rupiah,2025,survey_estimate,per_capita,10.1,285,,Perumahan dan fasilitas rumah tangga
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,97377,rupiah,2024,survey_estimate,per_capita,10.1,285,,Aneka barang dan jasa
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,89257,rupiah,2025,survey_estimate,per_capita,10.1,285,,Aneka barang dan jasa
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25357,rupiah,2024,survey_estimate,per_capita,10.1,285,,"Pakaian, alas kaki, dan tutup kepala"
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23741,rupiah,2025,survey_estimate,per_capita,10.1,285,,"Pakaian, alas kaki, dan tutup kepala"
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/barang_tahan_lama,,37550,rupiah,2024,survey_estimate,per_capita,10.1,285,,Barang tahan lama
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/barang_tahan_lama,,16303,rupiah,2025,survey_estimate,per_capita,10.1,285,,Barang tahan lama
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41366,rupiah,2024,survey_estimate,per_capita,10.1,285,,"Pajak, pungutan, dan asuransi"
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35669,rupiah,2025,survey_estimate,per_capita,10.1,285,,"Pajak, pungutan, dan asuransi"
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,29771,rupiah,2024,survey_estimate,per_capita,10.1,285,,Keperluan pesta dan upacara/kenduri
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15054,rupiah,2025,survey_estimate,per_capita,10.1,285,,Keperluan pesta dan upacara/kenduri
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,444437,rupiah,2024,survey_estimate,per_capita,10.1,285,,Jumlah bukan makanan
+16.10,2,Kabupaten Ogan Ilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,363824,rupiah,2025,survey_estimate,per_capita,10.1,285,,Jumlah bukan makanan
+16.10,2,Kabupaten Ogan Ilir,expenditure,total,,1093530,rupiah,2024,survey_estimate,per_capita,10.1,285,,
+16.10,2,Kabupaten Ogan Ilir,expenditure,total,,1056585,rupiah,2025,survey_estimate,per_capita,10.1,285,,

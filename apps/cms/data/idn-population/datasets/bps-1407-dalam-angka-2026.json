@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-1407-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "14.06",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Rokan Hulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rokan Hulu",
+  "publisherDomain": "1407",
+  "publisherWebsite": "https://rohulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rokan Hulu (https://rohulkab.bps.go.id), publikasi \"Kabupaten Rokan Hulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1407",
+  "publicationNumber": "14070.26002",
+  "issn": "2355-4525",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://rohulkab.bps.go.id/id/publication/2026/02/27/58da30f7e10f9edfb0d1740d/kabupaten-rokan-hulu-dalam-angka-2026.html",
+  "sourceFileSha256": "b1788a6ff5ad74f9ea972413ab756b9b2150bbb51296b4162c92462c2e698b49",
+  "sourceFileBytes": 38507901,
+  "sourcePages": [56, 121, 260],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rokan Hulu.",
+  "csvPath": "datasets/bps-1407-dalam-angka-2026.csv",
+  "csvSha256": "e420dc614c138a42f5c23f59948a0b14cd37a8144ea21290ef2fd48c2cb92066",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Rokan Hulu (jiwa) , 2025",
+      "printedPages": [56],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Rokan Hulu, 2025",
+      "printedPages": [121],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas diKabupaten Rokan Hulu (rupiah), 2024 dan 2025",
+      "printedPages": [260],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (heading says jiwa but only some figures carry decimals)"
+  ]
+}

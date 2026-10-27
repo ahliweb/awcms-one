@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.08.14.2003,4,Sukosari,sex,laki_laki,,947,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2003,4,Sukosari,sex,perempuan,,939,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2003,4,Sukosari,total,total,,1886,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2009,4,Kedungsari,sex,laki_laki,,1317,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2009,4,Kedungsari,sex,perempuan,,1256,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2009,4,Kedungsari,total,total,,2573,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2002,4,Salamkanci,sex,laki_laki,,2073,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2002,4,Salamkanci,sex,perempuan,,2058,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2002,4,Salamkanci,total,total,,4131,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2008,4,Banyuwangi,sex,laki_laki,,3502,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2008,4,Banyuwangi,sex,perempuan,,3311,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2008,4,Banyuwangi,total,total,,6813,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2007,4,Trasan,sex,laki_laki,,3821,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2007,4,Trasan,sex,perempuan,,3784,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2007,4,Trasan,total,total,,7605,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2001,4,Bandongan,sex,laki_laki,,3542,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2001,4,Bandongan,sex,perempuan,,3545,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2001,4,Bandongan,total,total,,7087,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2010,4,Sukodadi,sex,laki_laki,,1380,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2010,4,Sukodadi,sex,perempuan,,1304,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2010,4,Sukodadi,total,total,,2684,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2004,4,Tonoboyo,sex,laki_laki,,1799,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2004,4,Tonoboyo,sex,perempuan,,1738,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2004,4,Tonoboyo,total,total,,3537,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2011,4,Kebonagung,sex,laki_laki,,1556,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2011,4,Kebonagung,sex,perempuan,,1449,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2011,4,Kebonagung,total,total,,3005,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2012,4,Kalegen,sex,laki_laki,,1594,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2012,4,Kalegen,sex,perempuan,,1515,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2012,4,Kalegen,total,total,,3109,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2013,4,Ngepanrejo,sex,laki_laki,,2527,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2013,4,Ngepanrejo,sex,perempuan,,2412,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2013,4,Ngepanrejo,total,total,,4939,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2005,4,Gandusari,sex,laki_laki,,2531,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2005,4,Gandusari,sex,perempuan,,2418,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2005,4,Gandusari,total,total,,4949,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2006,4,Sidorejo,sex,laki_laki,,1820,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2006,4,Sidorejo,sex,perempuan,,1833,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2006,4,Sidorejo,total,total,,3653,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14.2014,4,Rejosari,sex,laki_laki,,4219,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14.2014,4,Rejosari,sex,perempuan,,3935,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14.2014,4,Rejosari,total,total,,8154,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.14,3,Kecamatan Bandongan,sex,laki_laki,,32628,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.14,3,Kecamatan Bandongan,sex,perempuan,,31497,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.14,3,Kecamatan Bandongan,total,total,,64125,jiwa,2025,registration,total_population,unnumbered-p30,30,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1405-kecamatan-140804-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.08.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tualang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Siak",
+  "publisherDomain": "1405",
+  "publisherWebsite": "https://siakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Siak (https://siakkab.bps.go.id), publikasi \"Kecamatan Tualang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1405",
+  "publicationNumber": "14050.26007",
+  "issn": "2714-9919",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://siakkab.bps.go.id/id/publication/2026/09/28/06502215c48b6ab5666d45aa/kecamatan-tualang-dalam-angka-2026.html",
+  "sourceFileSha256": "5805024a0dd37f2b86642b9ebc12196a86b1708be9d6da74946fada43eaf4f63",
+  "sourceFileBytes": 7326876,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Siak.",
+  "csvPath": "datasets/bps-1405-kecamatan-140804-dalam-angka-2026.csv",
+  "csvSha256": "db638bdfe5a9f973616d115c699a1f2169c7c62c14b482bf0066252cecdb26f6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tualang, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tualang, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

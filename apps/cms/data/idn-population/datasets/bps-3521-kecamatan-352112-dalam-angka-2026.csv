@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.12.2001,4,BANYUBIRU,sex,laki_laki,,3791,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2001,4,BANYUBIRU,sex,perempuan,,3741,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2001,4,BANYUBIRU,total,total,,7532,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2002,4,KEDUNGGUDEL,sex,laki_laki,,2519,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2002,4,KEDUNGGUDEL,sex,perempuan,,2564,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2002,4,KEDUNGGUDEL,total,total,,5083,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2005,4,KAYUTREJO,sex,laki_laki,,1663,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2005,4,KAYUTREJO,sex,perempuan,,1674,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2005,4,KAYUTREJO,total,total,,3337,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2003,4,SEKARALAS,sex,laki_laki,,2723,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2003,4,SEKARALAS,sex,perempuan,,2698,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2003,4,SEKARALAS,total,total,,5421,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2004,4,SEKARPUTIH,sex,laki_laki,,2886,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2004,4,SEKARPUTIH,sex,perempuan,,2897,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2004,4,SEKARPUTIH,total,total,,5783,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2011,4,SIDOMAKMUR,sex,laki_laki,,2380,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2011,4,SIDOMAKMUR,sex,perempuan,,2367,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2011,4,SIDOMAKMUR,total,total,,4747,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2006,4,SIDOLAJU,sex,laki_laki,,4414,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2006,4,SIDOLAJU,sex,perempuan,,4412,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2006,4,SIDOLAJU,total,total,,8826,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2007,4,KARANGBANYU,sex,laki_laki,,3208,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2007,4,KARANGBANYU,sex,perempuan,,3242,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2007,4,KARANGBANYU,total,total,,6450,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2012,4,WALIKUKUN,sex,laki_laki,,3993,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2012,4,WALIKUKUN,sex,perempuan,,4107,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2012,4,WALIKUKUN,total,total,,8100,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2008,4,WIDODAREN,sex,laki_laki,,3373,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2008,4,WIDODAREN,sex,perempuan,,3292,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2008,4,WIDODAREN,total,total,,6665,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2009,4,GENDINGAN,sex,laki_laki,,3418,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2009,4,GENDINGAN,sex,perempuan,,3469,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2009,4,GENDINGAN,total,total,,6887,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12.2010,4,KAUMAN,sex,laki_laki,,2545,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12.2010,4,KAUMAN,sex,perempuan,,2544,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12.2010,4,KAUMAN,total,total,,5089,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.12,3,Kecamatan WIDODAREN,sex,laki_laki,,36913,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.12,3,Kecamatan WIDODAREN,sex,perempuan,,37007,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.12,3,Kecamatan WIDODAREN,total,total,,73920,jiwa,2025,registration,total_population,unnumbered-p38,38,,

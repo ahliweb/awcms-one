@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.31.1001,4,Sangkunur,sex,laki_laki,,3024,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.1001,4,Sangkunur,sex,perempuan,,2881,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.1001,4,Sangkunur,total,total,,5905,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.1002,4,Rianiate,sex,laki_laki,,3003,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.1002,4,Rianiate,sex,perempuan,,2783,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.1002,4,Rianiate,total,total,,5786,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2003,4,Simatohir,sex,laki_laki,,276,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2003,4,Simatohir,sex,perempuan,,273,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2003,4,Simatohir,total,total,,549,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2004,4,Perkebunan,sex,laki_laki,,307,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2004,4,Perkebunan,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2004,4,Perkebunan,total,total,,586,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2005,4,Bandar Tarutung,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2005,4,Bandar Tarutung,sex,perempuan,,894,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2005,4,Bandar Tarutung,total,total,,1812,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2006,4,Aek Pardomuan,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2006,4,Aek Pardomuan,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2006,4,Aek Pardomuan,total,total,,921,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2007,4,Tindoan Laut,sex,laki_laki,,734,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2007,4,Tindoan Laut,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2007,4,Tindoan Laut,total,total,,1457,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2008,4,Simataniari,sex,laki_laki,,818,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2008,4,Simataniari,sex,perempuan,,805,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2008,4,Simataniari,total,total,,1623,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2009,4,Batu Godang,sex,laki_laki,,1814,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2009,4,Batu Godang,sex,perempuan,,1686,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2009,4,Batu Godang,total,total,,3500,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31.2010,4,Malombu,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31.2010,4,Malombu,sex,perempuan,,683,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31.2010,4,Malombu,total,total,,1442,jiwa,2025,registration,total_population,3.1,26,,
+12.03.31,3,Angkola Sangkunur,sex,laki_laki,,12116,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.31,3,Angkola Sangkunur,sex,perempuan,,11465,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.31,3,Angkola Sangkunur,total,total,,23581,jiwa,2025,registration,total_population,3.1,26,,

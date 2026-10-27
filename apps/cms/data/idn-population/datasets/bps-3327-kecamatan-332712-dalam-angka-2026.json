@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3327-kecamatan-332712-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.27.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Comal Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pemalang",
+  "publisherDomain": "3327",
+  "publisherWebsite": "https://pemalangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pemalang (https://pemalangkab.bps.go.id), publikasi \"Kecamatan Comal Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3327120",
+  "publicationNumber": "33270.26019",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pemalangkab.bps.go.id/id/publication/2026/09/28/2f364569a4a3e9a65c34d8ed/kecamatan-comal-dalam-angka-2026.html",
+  "sourceFileSha256": "0e1084792271433553b90e60a855413aa5953a6719a22869ef81167690900789",
+  "sourceFileBytes": 19795890,
+  "sourcePages": [47, 48, 49],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pemalang.",
+  "csvPath": "datasets/bps-3327-kecamatan-332712-dalam-angka-2026.csv",
+  "csvSha256": "fa44f2b559e7ce01b34f5f7f4a89c44aaa6f92335239b7da265b5a37fadf6bc4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Comal, 2025",
+      "printedPages": [47, 48],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Comal, 2025",
+      "printedPages": [49],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pacangakan\": unmatched ",
+    "table 3.1: row not stored: row \"Pacangakan\": unmatched "
+  ]
+}

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.14.2007,4,Dandang,sex,laki_laki,,842,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2007,4,Dandang,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2007,4,Dandang,total,total,,1624,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2005,4,Balai Banjang,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2005,4,Balai Banjang,sex,perempuan,,439,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2005,4,Balai Banjang,total,total,,946,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2001,4,Jangkang,sex,laki_laki,,1130,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2001,4,Jangkang,sex,perempuan,,1019,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2001,4,Jangkang,total,total,,2149,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2004,4,Kaburan,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2004,4,Kaburan,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2004,4,Kaburan,total,total,,697,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2003,4,Sei Ringin,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2003,4,Sei Ringin,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2003,4,Sei Ringin,total,total,,1170,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2008,4,Hurung Kampin,sex,laki_laki,,134,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2008,4,Hurung Kampin,sex,perempuan,,150,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2008,4,Hurung Kampin,total,total,,284,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2002,4,Tumbang Tukun,sex,laki_laki,,650,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2002,4,Tumbang Tukun,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2002,4,Tumbang Tukun,total,total,,1230,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2006,4,Tumbang Diring,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2006,4,Tumbang Diring,sex,perempuan,,302,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2006,4,Tumbang Diring,total,total,,615,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2009,4,Batu Sambung,sex,laki_laki,,192,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2009,4,Batu Sambung,sex,perempuan,,193,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2009,4,Batu Sambung,total,total,,385,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14.2010,4,Tumbang Nusa,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14.2010,4,Tumbang Nusa,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14.2010,4,Tumbang Nusa,total,total,,447,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14,3,Pasak Talawang,sex,laki_laki,,5023,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.14,3,Pasak Talawang,sex,perempuan,,4524,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.14,3,Pasak Talawang,total,total,,9547,jiwa,2025,registration,total_population,3.1,30,,
+62.03.14,3,Pasak Talawang,age_group,0-4,laki_laki,314,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.14,3,Pasak Talawang,age_group,0-4,perempuan,253,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.14,3,Pasak Talawang,age_group,0-4,,567,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.14,3,Pasak Talawang,age_group,5-9,laki_laki,437,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.14,3,Pasak Talawang,age_group,5-9,perempuan,443,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.14,3,Pasak Talawang,age_group,5-9,,880,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.14,3,Pasak Talawang,age_group,10-14,laki_laki,456,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.14,3,Pasak Talawang,age_group,10-14,perempuan,445,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.14,3,Pasak Talawang,age_group,10-14,,901,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.14,3,Pasak Talawang,age_group,15-19,laki_laki,464,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.14,3,Pasak Talawang,age_group,15-19,perempuan,426,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.14,3,Pasak Talawang,age_group,15-19,,890,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.14,3,Pasak Talawang,age_group,20-24,laki_laki,459,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.14,3,Pasak Talawang,age_group,20-24,perempuan,497,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.14,3,Pasak Talawang,age_group,20-24,,956,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.14,3,Pasak Talawang,age_group,25-29,laki_laki,462,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.14,3,Pasak Talawang,age_group,25-29,perempuan,434,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.14,3,Pasak Talawang,age_group,25-29,,896,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.14,3,Pasak Talawang,age_group,30-34,laki_laki,474,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.14,3,Pasak Talawang,age_group,30-34,perempuan,416,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.14,3,Pasak Talawang,age_group,30-34,,890,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.14,3,Pasak Talawang,age_group,35-39,laki_laki,436,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.14,3,Pasak Talawang,age_group,35-39,perempuan,326,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.14,3,Pasak Talawang,age_group,35-39,,762,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.14,3,Pasak Talawang,age_group,40-44,laki_laki,354,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.14,3,Pasak Talawang,age_group,40-44,perempuan,347,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.14,3,Pasak Talawang,age_group,40-44,,701,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.14,3,Pasak Talawang,age_group,45-49,laki_laki,328,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.14,3,Pasak Talawang,age_group,45-49,perempuan,279,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.14,3,Pasak Talawang,age_group,45-49,,607,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.14,3,Pasak Talawang,age_group,50-54,laki_laki,264,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.14,3,Pasak Talawang,age_group,50-54,perempuan,222,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.14,3,Pasak Talawang,age_group,50-54,,486,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.14,3,Pasak Talawang,age_group,55-59,laki_laki,205,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.14,3,Pasak Talawang,age_group,55-59,perempuan,148,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.14,3,Pasak Talawang,age_group,55-59,,353,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.14,3,Pasak Talawang,age_group,60-64,laki_laki,150,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.14,3,Pasak Talawang,age_group,60-64,perempuan,101,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.14,3,Pasak Talawang,age_group,60-64,,251,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.14,3,Pasak Talawang,age_group,65-69,laki_laki,104,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.14,3,Pasak Talawang,age_group,65-69,perempuan,83,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.14,3,Pasak Talawang,age_group,65-69,,187,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.14,3,Pasak Talawang,age_group,70-74,laki_laki,54,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.14,3,Pasak Talawang,age_group,70-74,perempuan,43,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.14,3,Pasak Talawang,age_group,70-74,,97,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.14,3,Pasak Talawang,age_group,75+,laki_laki,62,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.14,3,Pasak Talawang,age_group,75+,perempuan,61,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.14,3,Pasak Talawang,age_group,75+,,123,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.14,3,Pasak Talawang,sex,laki_laki,,5023,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+62.03.14,3,Pasak Talawang,sex,perempuan,,4524,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+62.03.14,3,Pasak Talawang,total,total,,9547,jiwa,2025,registration,total_population,3.2,32,,

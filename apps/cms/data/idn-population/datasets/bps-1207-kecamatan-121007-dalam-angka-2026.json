@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1207-kecamatan-121007-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.10.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bilah Barat Dalam Angka 2026",
+  "publisherName": "BPS Labuhanbatu",
+  "publisherDomain": "1207",
+  "publisherWebsite": "https://labuhanbatukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Labuhanbatu (https://labuhanbatukab.bps.go.id), publikasi \"Kecamatan Bilah Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1207080",
+  "publicationNumber": "12070.26007",
+  "issn": "2807-5137",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://labuhanbatukab.bps.go.id/id/publication/2026/09/28/c40f84cfc62de965e0397e68/kecamatan-bilah-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "61a6abc69be999fcf0a3ff079cf782541378c32ef15e5e70a38ed04f5dd28fde",
+  "sourceFileBytes": 4115984,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Labuhanbatu.",
+  "csvPath": "datasets/bps-1207-kecamatan-121007-dalam-angka-2026.csv",
+  "csvSha256": "9cb98be5af097e85c60cf0831a2c5988eb98a8a2731bf5535b7aa0db90646656",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bilah Barat, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bilah Barat (jiwa), 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Afdeling I Rantauprapat\": unmatched ",
+    "table 3.1: row not stored: row \"Afdeling II Rantauprapat\": unmatched ",
+    "table 3.1: row not stored: row \"Afdeling I Rantauprapat\": unmatched ",
+    "table 3.1: row not stored: row \"Afdeling II Rantauprapat\": unmatched ",
+    "cross-table disagreement, both stored as published: 12.10.07 sex/laki_laki/ 2025: 20820 (table 3.1) vs 20803 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.10.07 sex/perempuan/ 2025: 20257 (table 3.1) vs 20238 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.10.07 total/total/ 2025: 41077 (table 3.1) vs 41041 (table 3.2)"
+  ]
+}

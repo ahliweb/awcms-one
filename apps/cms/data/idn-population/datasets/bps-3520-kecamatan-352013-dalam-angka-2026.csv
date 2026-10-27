@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.13.2002,4,Mantren,sex,perempuan,,1615,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2002,4,Mantren,total,total,,3165,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2003,4,Gondang,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2003,4,Gondang,total,total,,881,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2004,4,Sambirembe,sex,perempuan,,678,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2004,4,Sambirembe,total,total,,1317,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2005,4,Patihan,sex,perempuan,,1353,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2005,4,Patihan,total,total,,2699,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.1001,4,Karangrejo,sex,perempuan,,1137,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.1001,4,Karangrejo,total,total,,2230,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.1006,4,Manisrejo,sex,perempuan,,709,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.1006,4,Manisrejo,total,total,,1407,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2007,4,Pelem,sex,perempuan,,1491,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2007,4,Pelem,total,total,,2875,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2009,4,Gebyog,sex,perempuan,,1116,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2009,4,Gebyog,total,total,,2207,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2011,4,Prampelan,sex,perempuan,,716,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2011,4,Prampelan,total,total,,1380,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2012,4,Grabahan,sex,perempuan,,493,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2012,4,Grabahan,total,total,,933,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2013,4,Kauman,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2013,4,Kauman,total,total,,2487,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2010,4,Maron,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2010,4,Maron,total,total,,1078,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13.2008,4,Baluk,sex,perempuan,,1011,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13.2008,4,Baluk,total,total,,2022,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13,3,Kecamatan Karangrejo,sex,perempuan,,12571,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.13,3,Kecamatan Karangrejo,total,total,,24681,jiwa,2025,registration,total_population,3.1,29,,
+35.20.13,3,Karangrejo,age_group,0-4,perempuan,530,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.13,3,Karangrejo,age_group,0-4,,1110,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.13,3,Karangrejo,age_group,5-9,perempuan,663,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.13,3,Karangrejo,age_group,5-9,,1449,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.13,3,Karangrejo,age_group,10-14,perempuan,788,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.13,3,Karangrejo,age_group,10-14,,1642,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.13,3,Karangrejo,age_group,15-19,perempuan,855,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.13,3,Karangrejo,age_group,15-19,,1796,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.13,3,Karangrejo,age_group,20-24,perempuan,852,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.13,3,Karangrejo,age_group,20-24,,1688,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.13,3,Karangrejo,age_group,25-29,perempuan,754,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.13,3,Karangrejo,age_group,25-29,,1606,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.13,3,Karangrejo,age_group,30-34,perempuan,723,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.13,3,Karangrejo,age_group,30-34,,1522,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.13,3,Karangrejo,age_group,35-39,perempuan,750,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.13,3,Karangrejo,age_group,35-39,,1512,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.13,3,Karangrejo,age_group,40-44,perempuan,953,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.13,3,Karangrejo,age_group,40-44,,1875,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.13,3,Karangrejo,age_group,45-49,perempuan,920,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.13,3,Karangrejo,age_group,45-49,,1827,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.13,3,Karangrejo,age_group,50-54,perempuan,942,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.13,3,Karangrejo,age_group,50-54,,1807,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.13,3,Karangrejo,age_group,55-59,perempuan,896,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.13,3,Karangrejo,age_group,55-59,,1660,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.13,3,Karangrejo,age_group,60-64,perempuan,860,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.13,3,Karangrejo,age_group,60-64,,1506,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.13,3,Karangrejo,age_group,65-69,perempuan,738,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.13,3,Karangrejo,age_group,65-69,,1388,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.13,3,Karangrejo,age_group,70-74,perempuan,557,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.13,3,Karangrejo,age_group,70-74,,1014,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.13,3,Karangrejo,age_group,75+,perempuan,790,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.13,3,Karangrejo,age_group,75+,,1279,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.13,3,Kecamatan Karangrejo,sex,perempuan,,12571,jiwa,2025,registration,total_population,3.3,32,,Perempuan
+35.20.13,3,Kecamatan Karangrejo,total,total,,24681,jiwa,2025,registration,total_population,3.3,32,,

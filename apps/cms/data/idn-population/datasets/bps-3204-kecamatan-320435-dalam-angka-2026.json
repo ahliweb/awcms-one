@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-3204-kecamatan-320435-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.04.35",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Paseh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bandung",
+  "publisherDomain": "3204",
+  "publisherWebsite": "https://bandungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bandung (https://bandungkab.bps.go.id), publikasi \"Kecamatan Paseh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3204080",
+  "publicationNumber": "32040.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkab.bps.go.id/id/publication/2026/09/28/ae5744e46626ad9df96b30ed/kecamatan-paseh-dalam-angka-2026.html",
+  "sourceFileSha256": "266b1390ecf232dc51457b671efed5f6c074d4168564d2d0b4ea89185fda3b33",
+  "sourceFileBytes": 4936932,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung.",
+  "csvPath": "datasets/bps-3204-kecamatan-320435-dalam-angka-2026.csv",
+  "csvSha256": "b57c260854fb2a47c6ea5f0a549e1ff2977b5689a90c939ae82d47b25cb82719",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Paseh, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Paseh, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Loa 8.40\": unmatched ",
+    "table 3.1: row not stored: row \"Drawati 8.98\": unmatched ",
+    "table 3.1: row not stored: row \"Cipaku 12.10\": unmatched ",
+    "table 3.1: row not stored: row \"Sindangsari 10.42\": unmatched ",
+    "table 3.1: row not stored: row \"Sukamantri 12.54\": unmatched ",
+    "table 3.1: row not stored: row \"Sukamanah 9.27\": unmatched ",
+    "table 3.1: row not stored: row \"Mekarpawitan 7.43\": unmatched ",
+    "table 3.1: row not stored: row \"Cijagra 5.85\": unmatched ",
+    "table 3.1: row not stored: row \"Tangsimekar 6.64\": unmatched ",
+    "table 3.1: row not stored: row \"Cipedes 9.55\": unmatched ",
+    "table 3.1: row not stored: row \"Karangtunggal 4.18\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Paseh 100.00\": unmatched ",
+    "table 3.2: the rows of region 32.04.35 are not stored: age_group vs total: parts sum 144044.0000 != 150461.0000 (diff 6417.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.03.2001,4,Telaga Pulang,sex,laki_laki,,1480,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2001,4,Telaga Pulang,sex,perempuan,,1285,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2001,4,Telaga Pulang,total,total,,2765,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03.2014,4,Sembuluh II,sex,laki_laki,,2176,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2014,4,Sembuluh II,sex,perempuan,,1972,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2014,4,Sembuluh II,total,total,,4148,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03.2002,4,Cempaka Baru,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2002,4,Cempaka Baru,sex,perempuan,,280,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2002,4,Cempaka Baru,total,total,,583,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03.2003,4,Palingkau,sex,laki_laki,,124,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2003,4,Palingkau,sex,perempuan,,110,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2003,4,Palingkau,total,total,,234,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03.2004,4,Ulak Batu,sex,laki_laki,,148,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2004,4,Ulak Batu,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2004,4,Ulak Batu,total,total,,275,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03.2005,4,Paren,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2005,4,Paren,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2005,4,Paren,total,total,,526,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03.2006,4,Banua Usang,sex,laki_laki,,594,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2006,4,Banua Usang,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2006,4,Banua Usang,total,total,,1129,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03.2013,4,Sembuluh I,sex,laki_laki,,2249,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03.2013,4,Sembuluh I,sex,perempuan,,2073,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03.2013,4,Sembuluh I,total,total,,4322,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03,3,Danau Sembuluh,sex,laki_laki,,7346,jiwa,2025,registration,total_population,3.1,1,,Laki-Laki/Male
+62.07.03,3,Danau Sembuluh,sex,perempuan,,6636,jiwa,2025,registration,total_population,3.1,1,,Perempuan/Fema
+62.07.03,3,Danau Sembuluh,total,total,,13982,jiwa,2025,registration,total_population,3.1,1,,
+62.07.03,3,Danau Sembuluh,age_group,0-14,laki_laki,1897,jiwa,2025,registration,total_population,3.2,1,,0-14
+62.07.03,3,Danau Sembuluh,age_group,0-14,perempuan,1769,jiwa,2025,registration,total_population,3.2,1,,0-14
+62.07.03,3,Danau Sembuluh,age_group,0-14,,3666,jiwa,2025,registration,total_population,3.2,1,,0-14
+62.07.03,3,Danau Sembuluh,age_group,15-64,laki_laki,5259,jiwa,2025,registration,total_population,3.2,1,,15-64
+62.07.03,3,Danau Sembuluh,age_group,15-64,perempuan,4664,jiwa,2025,registration,total_population,3.2,1,,15-64
+62.07.03,3,Danau Sembuluh,age_group,15-64,,9923,jiwa,2025,registration,total_population,3.2,1,,15-64
+62.07.03,3,Danau Sembuluh,age_group,65+,laki_laki,190,jiwa,2025,registration,total_population,3.2,1,,65+
+62.07.03,3,Danau Sembuluh,age_group,65+,perempuan,203,jiwa,2025,registration,total_population,3.2,1,,65+
+62.07.03,3,Danau Sembuluh,age_group,65+,,393,jiwa,2025,registration,total_population,3.2,1,,65+
+62.07.03,3,Danau Sembuluh,sex,laki_laki,,7346,jiwa,2025,registration,total_population,3.2,1,,Laki-Laki
+62.07.03,3,Danau Sembuluh,sex,perempuan,,6636,jiwa,2025,registration,total_population,3.2,1,,Perempuan
+62.07.03,3,Danau Sembuluh,total,total,,13982,jiwa,2025,registration,total_population,3.2,1,,

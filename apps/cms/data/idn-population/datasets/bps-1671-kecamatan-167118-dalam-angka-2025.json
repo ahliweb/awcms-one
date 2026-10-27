@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1671-kecamatan-167118-dalam-angka-2025",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.71.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ilir Timur Tiga Dalam Angka 2025",
+  "publisherName": "BPS Kota Palembang",
+  "publisherDomain": "1671",
+  "publisherWebsite": "https://palembangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Palembang (https://palembangkota.bps.go.id), publikasi \"Kecamatan Ilir Timur Tiga Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1671062",
+  "publicationNumber": "16710.26007",
+  "issn": "2723-8377",
+  "publicationYear": 2025,
+  "releaseDate": "2025-09-26",
+  "publicationUrl": "https://palembangkota.bps.go.id/id/publication/2025/09/26/9406c2c4031838e8c2ba150d/kecamatan-ilir-timur-tiga-dalam-angka-2025.html",
+  "sourceFileSha256": "748afe0e82ade764b186815c157dfb1bab93fcf23e4bfcab565b2324d9446e05",
+  "sourceFileBytes": 13675037,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palembang.",
+  "csvPath": "datasets/bps-1671-kecamatan-167118-dalam-angka-2025.csv",
+  "csvSha256": "63423b1116fb91b3cf40468b41e2a3dfdb0099e99a93536f777ace025b5ea5ee",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Ilir Timur Tiga, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ilir Timur Tiga, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"+ 75\": unmatched ",
+    "table 3.2: the rows of region 16.71.18 are not stored: age_group (perempuan) vs sex value: parts sum 36132.0000 != 37399.0000 (diff 1267.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,71 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.01.06.2001,4,Sikampuh,sex,perempuan,,4381,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2001,4,Sikampuh,total,total,,8898,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2015,4,Karangturi,sex,perempuan,,2387,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2015,4,Karangturi,total,total,,4788,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2003,4,Ayamalas,sex,perempuan,,3456,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2003,4,Ayamalas,total,total,,6996,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2006,4,Karangmangu,sex,perempuan,,4343,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2006,4,Karangmangu,total,total,,8826,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2007,4,Pucung Kidul,sex,perempuan,,3006,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2007,4,Pucung Kidul,total,total,,6113,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2008,4,Mergawati,sex,perempuan,,2353,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2008,4,Mergawati,total,total,,4762,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2009,4,Pucung Lor,sex,perempuan,,2284,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2009,4,Pucung Lor,total,total,,4639,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2010,4,Bajing,sex,perempuan,,3875,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2010,4,Bajing,total,total,,7770,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2005,4,Kroya,sex,perempuan,,4295,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2005,4,Kroya,total,total,,8629,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2004,4,Pesanggrahan,sex,perempuan,,2146,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2004,4,Pesanggrahan,total,total,,4372,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2002,4,Pekuncen,sex,perempuan,,4269,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2002,4,Pekuncen,total,total,,8790,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2016,4,Bajing Kulon,sex,perempuan,,3760,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2016,4,Bajing Kulon,total,total,,7511,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2012,4,Kedawung,sex,perempuan,,4884,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2012,4,Kedawung,total,total,,10034,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2013,4,Mujur,sex,perempuan,,3953,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2013,4,Mujur,total,total,,8126,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2011,4,Gentasari,sex,perempuan,,6726,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2011,4,Gentasari,total,total,,13742,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2017,4,Mujur Lor,sex,perempuan,,2022,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2017,4,Mujur Lor,total,total,,4042,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06.2014,4,Buntu,sex,perempuan,,1858,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06.2014,4,Buntu,total,total,,3783,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06,3,Kroya,sex,perempuan,,59998,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.06,3,Kroya,total,total,,121821,jiwa,2025,registration,total_population,3.1,7,,
+33.01.06,3,Kroya,age_group,0-4,perempuan,3132,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.06,3,Kroya,age_group,0-4,,6573,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.06,3,Kroya,age_group,5-9,perempuan,4387,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.06,3,Kroya,age_group,5-9,,9121,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.06,3,Kroya,age_group,10-14,perempuan,4418,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.06,3,Kroya,age_group,10-14,,9337,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.06,3,Kroya,age_group,15-19,perempuan,4477,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.06,3,Kroya,age_group,15-19,,9171,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.06,3,Kroya,age_group,20-24,perempuan,4245,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.06,3,Kroya,age_group,20-24,,8773,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.06,3,Kroya,age_group,25-29,perempuan,4319,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.06,3,Kroya,age_group,25-29,,9119,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.06,3,Kroya,age_group,30-34,perempuan,4077,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.06,3,Kroya,age_group,30-34,,8603,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.06,3,Kroya,age_group,35-39,perempuan,4215,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.06,3,Kroya,age_group,35-39,,8712,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.06,3,Kroya,age_group,40-44,perempuan,5043,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.06,3,Kroya,age_group,40-44,,10065,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.06,3,Kroya,age_group,45-49,perempuan,4594,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.06,3,Kroya,age_group,45-49,,9162,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.06,3,Kroya,age_group,50-54,perempuan,4036,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.06,3,Kroya,age_group,50-54,,7946,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.06,3,Kroya,age_group,55-59,perempuan,3704,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.06,3,Kroya,age_group,55-59,,7035,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.06,3,Kroya,age_group,60-64,perempuan,3122,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.06,3,Kroya,age_group,60-64,,6019,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.06,3,Kroya,age_group,65-69,perempuan,2463,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.06,3,Kroya,age_group,65-69,,4810,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.06,3,Kroya,age_group,70-74,perempuan,1692,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.06,3,Kroya,age_group,70-74,,3413,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.06,3,Kroya,age_group,75+,perempuan,2074,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.06,3,Kroya,age_group,75+,,3962,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.06,3,Kroya,sex,perempuan,,59998,jiwa,2025,registration,total_population,3.2,9,,Perempuan
+33.01.06,3,Kroya,total,total,,121821,jiwa,2025,registration,total_population,3.2,9,,

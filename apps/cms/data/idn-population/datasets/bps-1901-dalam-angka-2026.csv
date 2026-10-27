@@ -1,0 +1,124 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.01.04,3,Mendo Barat,total,total,,53.24,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01.03,3,Merawang,total,total,,31.87,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01.08,3,Puding Besar,total,total,,20.95,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01.01,3,Sungailiat,total,total,,97.32,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01.05,3,Pemali,total,total,,36.36,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01.06,3,Bakam,total,total,,19.73,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01.02,3,Belinyu,total,total,,52.04,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01.07,3,Riau Silip,total,total,,30.26,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01,2,Bangka,total,total,,341.76,ribu_jiwa,2025,registration,total_population,3.1.1,74,,
+19.01,2,Kabupaten Bangka,age_group,0-4,laki_laki,11145,jiwa,2025,registration,total_population,3.1.2,77,,0–4
+19.01,2,Kabupaten Bangka,age_group,0-4,perempuan,10594,jiwa,2025,registration,total_population,3.1.2,77,,0–4
+19.01,2,Kabupaten Bangka,age_group,0-4,,21739,jiwa,2025,registration,total_population,3.1.2,77,,0–4
+19.01,2,Kabupaten Bangka,age_group,5-9,laki_laki,14977,jiwa,2025,registration,total_population,3.1.2,77,,5–9
+19.01,2,Kabupaten Bangka,age_group,5-9,perempuan,14085,jiwa,2025,registration,total_population,3.1.2,77,,5–9
+19.01,2,Kabupaten Bangka,age_group,5-9,,29062,jiwa,2025,registration,total_population,3.1.2,77,,5–9
+19.01,2,Kabupaten Bangka,age_group,10-14,laki_laki,17183,jiwa,2025,registration,total_population,3.1.2,77,,10–14
+19.01,2,Kabupaten Bangka,age_group,10-14,perempuan,15930,jiwa,2025,registration,total_population,3.1.2,77,,10–14
+19.01,2,Kabupaten Bangka,age_group,10-14,,33113,jiwa,2025,registration,total_population,3.1.2,77,,10–14
+19.01,2,Kabupaten Bangka,age_group,15-19,laki_laki,15570,jiwa,2025,registration,total_population,3.1.2,77,,15–19
+19.01,2,Kabupaten Bangka,age_group,15-19,perempuan,14921,jiwa,2025,registration,total_population,3.1.2,77,,15–19
+19.01,2,Kabupaten Bangka,age_group,15-19,,30491,jiwa,2025,registration,total_population,3.1.2,77,,15–19
+19.01,2,Kabupaten Bangka,age_group,20-24,laki_laki,14534,jiwa,2025,registration,total_population,3.1.2,77,,20–24
+19.01,2,Kabupaten Bangka,age_group,20-24,perempuan,13818,jiwa,2025,registration,total_population,3.1.2,77,,20–24
+19.01,2,Kabupaten Bangka,age_group,20-24,,28352,jiwa,2025,registration,total_population,3.1.2,77,,20–24
+19.01,2,Kabupaten Bangka,age_group,25-29,laki_laki,13010,jiwa,2025,registration,total_population,3.1.2,77,,25–29
+19.01,2,Kabupaten Bangka,age_group,25-29,perempuan,12293,jiwa,2025,registration,total_population,3.1.2,77,,25–29
+19.01,2,Kabupaten Bangka,age_group,25-29,,25303,jiwa,2025,registration,total_population,3.1.2,77,,25–29
+19.01,2,Kabupaten Bangka,age_group,30-34,laki_laki,11720,jiwa,2025,registration,total_population,3.1.2,77,,30–34
+19.01,2,Kabupaten Bangka,age_group,30-34,perempuan,11311,jiwa,2025,registration,total_population,3.1.2,77,,30–34
+19.01,2,Kabupaten Bangka,age_group,30-34,,23031,jiwa,2025,registration,total_population,3.1.2,77,,30–34
+19.01,2,Kabupaten Bangka,age_group,35-39,laki_laki,14206,jiwa,2025,registration,total_population,3.1.2,77,,35–39
+19.01,2,Kabupaten Bangka,age_group,35-39,perempuan,13572,jiwa,2025,registration,total_population,3.1.2,77,,35–39
+19.01,2,Kabupaten Bangka,age_group,35-39,,27778,jiwa,2025,registration,total_population,3.1.2,77,,35–39
+19.01,2,Kabupaten Bangka,age_group,40-44,laki_laki,14564,jiwa,2025,registration,total_population,3.1.2,77,,40–44
+19.01,2,Kabupaten Bangka,age_group,40-44,perempuan,13168,jiwa,2025,registration,total_population,3.1.2,77,,40–44
+19.01,2,Kabupaten Bangka,age_group,40-44,,27732,jiwa,2025,registration,total_population,3.1.2,77,,40–44
+19.01,2,Kabupaten Bangka,age_group,45-49,laki_laki,13388,jiwa,2025,registration,total_population,3.1.2,77,,45–49
+19.01,2,Kabupaten Bangka,age_group,45-49,perempuan,11869,jiwa,2025,registration,total_population,3.1.2,77,,45–49
+19.01,2,Kabupaten Bangka,age_group,45-49,,25257,jiwa,2025,registration,total_population,3.1.2,77,,45–49
+19.01,2,Kabupaten Bangka,age_group,50-54,laki_laki,10279,jiwa,2025,registration,total_population,3.1.2,77,,50–54
+19.01,2,Kabupaten Bangka,age_group,50-54,perempuan,9387,jiwa,2025,registration,total_population,3.1.2,77,,50–54
+19.01,2,Kabupaten Bangka,age_group,50-54,,19666,jiwa,2025,registration,total_population,3.1.2,77,,50–54
+19.01,2,Kabupaten Bangka,age_group,55-59,laki_laki,8082,jiwa,2025,registration,total_population,3.1.2,77,,55–59
+19.01,2,Kabupaten Bangka,age_group,55-59,perempuan,7338,jiwa,2025,registration,total_population,3.1.2,77,,55–59
+19.01,2,Kabupaten Bangka,age_group,55-59,,15420,jiwa,2025,registration,total_population,3.1.2,77,,55–59
+19.01,2,Kabupaten Bangka,age_group,60-64,laki_laki,6031,jiwa,2025,registration,total_population,3.1.2,77,,60–64
+19.01,2,Kabupaten Bangka,age_group,60-64,perempuan,5927,jiwa,2025,registration,total_population,3.1.2,77,,60–64
+19.01,2,Kabupaten Bangka,age_group,60-64,,11958,jiwa,2025,registration,total_population,3.1.2,77,,60–64
+19.01,2,Kabupaten Bangka,age_group,65-69,laki_laki,4860,jiwa,2025,registration,total_population,3.1.2,77,,65–69
+19.01,2,Kabupaten Bangka,age_group,65-69,perempuan,5266,jiwa,2025,registration,total_population,3.1.2,77,,65–69
+19.01,2,Kabupaten Bangka,age_group,65-69,,10126,jiwa,2025,registration,total_population,3.1.2,77,,65–69
+19.01,2,Kabupaten Bangka,age_group,70-74,laki_laki,3173,jiwa,2025,registration,total_population,3.1.2,77,,70–74
+19.01,2,Kabupaten Bangka,age_group,70-74,perempuan,3381,jiwa,2025,registration,total_population,3.1.2,77,,70–74
+19.01,2,Kabupaten Bangka,age_group,70-74,,6554,jiwa,2025,registration,total_population,3.1.2,77,,70–74
+19.01,2,Kabupaten Bangka,age_group,75+,laki_laki,2708,jiwa,2025,registration,total_population,3.1.2,77,,75+
+19.01,2,Kabupaten Bangka,age_group,75+,perempuan,3470,jiwa,2025,registration,total_population,3.1.2,77,,75+
+19.01,2,Kabupaten Bangka,age_group,75+,,6178,jiwa,2025,registration,total_population,3.1.2,77,,75+
+19.01,2,Bangka,sex,laki_laki,,175430,jiwa,2025,registration,total_population,3.1.2,77,,Laki-Laki
+19.01,2,Bangka,sex,perempuan,,166330,jiwa,2025,registration,total_population,3.1.2,77,,Perempuan
+19.01,2,Bangka,total,total,,341760,jiwa,2025,registration,total_population,3.1.2,77,,
+19.01.04,3,Mendo Barat,religion,islam,,52608,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.04,3,Mendo Barat,religion,kristen,,226,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.04,3,Mendo Barat,religion,katolik,,199,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.04,3,Mendo Barat,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,194,,Hindu
+19.01.04,3,Mendo Barat,religion,buddha,,127,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.04,3,Mendo Barat,religion,khonghucu,,61,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01.04,3,Mendo Barat,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya
+19.01.03,3,Merawang,religion,islam,,27158,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.03,3,Merawang,religion,kristen,,637,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.03,3,Merawang,religion,katolik,,415,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.03,3,Merawang,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,194,,Hindu
+19.01.03,3,Merawang,religion,buddha,,1911,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.03,3,Merawang,religion,khonghucu,,1628,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01.03,3,Merawang,religion,lainnya,,118,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya
+19.01.08,3,Puding Besar,religion,islam,,20924,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.08,3,Puding Besar,religion,kristen,,19,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.08,3,Puding Besar,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.08,3,Puding Besar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,194,nil,Hindu
+19.01.08,3,Puding Besar,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.08,3,Puding Besar,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,194,nil,Konghucu
+19.01.08,3,Puding Besar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,194,nil,Lainnya
+19.01.01,3,Sungailiat,religion,islam,,76987,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.01,3,Sungailiat,religion,kristen,,4223,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.01,3,Sungailiat,religion,katolik,,1506,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.01,3,Sungailiat,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,194,,Hindu
+19.01.01,3,Sungailiat,religion,buddha,,10336,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.01,3,Sungailiat,religion,khonghucu,,4024,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01.01,3,Sungailiat,religion,lainnya,,222,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya
+19.01.05,3,Pemali,religion,islam,,32036,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.05,3,Pemali,religion,kristen,,969,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.05,3,Pemali,religion,katolik,,334,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.05,3,Pemali,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,194,,Hindu
+19.01.05,3,Pemali,religion,buddha,,1836,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.05,3,Pemali,religion,khonghucu,,1105,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01.05,3,Pemali,religion,lainnya,,71,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya
+19.01.06,3,Bakam,religion,islam,,19212,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.06,3,Bakam,religion,kristen,,92,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.06,3,Bakam,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.06,3,Bakam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,194,nil,Hindu
+19.01.06,3,Bakam,religion,buddha,,269,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.06,3,Bakam,religion,khonghucu,,129,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01.06,3,Bakam,religion,lainnya,,16,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya
+19.01.02,3,Belinyu,religion,islam,,41923,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.02,3,Belinyu,religion,kristen,,1439,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.02,3,Belinyu,religion,katolik,,740,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.02,3,Belinyu,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,194,,Hindu
+19.01.02,3,Belinyu,religion,buddha,,6685,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.02,3,Belinyu,religion,khonghucu,,1069,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01.02,3,Belinyu,religion,lainnya,,175,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya
+19.01.07,3,Riau Silip,religion,islam,,27208,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01.07,3,Riau Silip,religion,kristen,,530,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01.07,3,Riau Silip,religion,katolik,,425,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01.07,3,Riau Silip,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,194,,Hindu
+19.01.07,3,Riau Silip,religion,buddha,,1590,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01.07,3,Riau Silip,religion,khonghucu,,459,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01.07,3,Riau Silip,religion,lainnya,,48,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya
+19.01,2,Kab. Bangka,religion,islam,,298056,jiwa,2025,registration,total_population,4.3.1,194,,Islam
+19.01,2,Kab. Bangka,religion,kristen,,8135,jiwa,2025,registration,total_population,4.3.1,194,,Protestan
+19.01,2,Kab. Bangka,religion,katolik,,3629,jiwa,2025,registration,total_population,4.3.1,194,,Katolik
+19.01,2,Kab. Bangka,religion,hindu,,43,jiwa,2025,registration,total_population,4.3.1,194,,Hindu
+19.01,2,Kab. Bangka,religion,buddha,,22759,jiwa,2025,registration,total_population,4.3.1,194,,Budha
+19.01,2,Kab. Bangka,religion,khonghucu,,8475,jiwa,2025,registration,total_population,4.3.1,194,,Konghucu
+19.01,2,Kab. Bangka,religion,lainnya,,663,jiwa,2025,registration,total_population,4.3.1,194,,Lainnya

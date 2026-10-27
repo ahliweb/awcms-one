@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1810-kecamatan-181002-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.10.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gading Rejo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pringsewu",
+  "publisherDomain": "1810",
+  "publisherWebsite": "https://pringsewukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pringsewu (https://pringsewukab.bps.go.id), publikasi \"Kecamatan Gading Rejo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1810050",
+  "publicationNumber": "18100.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pringsewukab.bps.go.id/id/publication/2026/09/28/4325ea72292072157765297f/kecamatan-gading-rejo-dalam-angka-2026.html",
+  "sourceFileSha256": "fd6527bc37018b64177d96da65314b0c968e90ccb25ec4c004bb582aab084c3e",
+  "sourceFileBytes": 26007795,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pringsewu.",
+  "csvPath": "datasets/bps-1810-kecamatan-181002-dalam-angka-2026.csv",
+  "csvSha256": "85b4ccfce1dd02c983c4825652d0b13320af380e66256d930ec63bb7034d557c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gadingrejo, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gadingrejo, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bulukarto\": unmatched ",
+    "table 3.1: row not stored: row \"Jogyakarta\": unmatched ",
+    "table 3.1: row not stored: row \"Jogyakarta Selatan\": unmatched ",
+    "table 3.1: row not stored: row \"Bulukarto\": unmatched ",
+    "table 3.1: row not stored: row \"Jogyakarta\": unmatched ",
+    "table 3.1: row not stored: row \"Jogyakarta Selatan\": unmatched "
+  ]
+}

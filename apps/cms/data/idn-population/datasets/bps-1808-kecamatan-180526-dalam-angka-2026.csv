@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.26.2002,4,Paduan Rajawali,sex,laki_laki,,1392,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2002,4,Paduan Rajawali,sex,perempuan,,1273,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2002,4,Paduan Rajawali,total,total,,2665,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26.2001,4,Bangun Rejo,sex,laki_laki,,1138,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2001,4,Bangun Rejo,sex,perempuan,,1045,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2001,4,Bangun Rejo,total,total,,2183,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26.2004,4,Sukarame,sex,laki_laki,,1193,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2004,4,Sukarame,sex,perempuan,,1122,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2004,4,Sukarame,total,total,,2315,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26.2005,4,Bina Bumi,sex,laki_laki,,1078,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2005,4,Bina Bumi,sex,perempuan,,1074,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2005,4,Bina Bumi,total,total,,2152,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26.2003,4,Karya Bhakti,sex,laki_laki,,1434,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2003,4,Karya Bhakti,sex,perempuan,,1443,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2003,4,Karya Bhakti,total,total,,2877,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26.2007,4,Kecubung Raya,sex,laki_laki,,942,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2007,4,Kecubung Raya,sex,perempuan,,907,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2007,4,Kecubung Raya,total,total,,1849,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26.2008,4,Marga Jaya,sex,laki_laki,,307,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2008,4,Marga Jaya,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2008,4,Marga Jaya,total,total,,588,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26.2006,4,Mulyo Aji,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26.2006,4,Mulyo Aji,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26.2006,4,Mulyo Aji,total,total,,1789,jiwa,2025,registration,total_population,3.1,30,,
+18.05.26,3,Meraksa Aji,sex,laki_laki,,8402,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.26,3,Meraksa Aji,sex,perempuan,,8016,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.26,3,Meraksa Aji,total,total,,16418,jiwa,2025,registration,total_population,3.1,30,,

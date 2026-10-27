@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3578-kecamatan-357819-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.78.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Benowo Dalam Angka 2026",
+  "publisherName": "BPS Kota Surabaya",
+  "publisherDomain": "3578",
+  "publisherWebsite": "https://surabayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surabaya (https://surabayakota.bps.go.id), publikasi \"Kecamatan Benowo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3578280",
+  "publicationNumber": "35780.25038",
+  "issn": "3110-5270",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surabayakota.bps.go.id/id/publication/2026/09/28/93fa0aefd4673062ee546a2a/kecamatan-benowo-dalam-angka-2026.html",
+  "sourceFileSha256": "48c0ef5c68d48b12558dca37eb27e3bb4e2120a737cc876d313fb25094ff73c4",
+  "sourceFileBytes": 23144296,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surabaya.",
+  "csvPath": "datasets/bps-3578-kecamatan-357819-dalam-angka-2026.csv",
+  "csvSha256": "b7b0c42f697f7d0ccf0590eda72aab99c790a229cd050acfd5983e4f0f48871f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Benowo, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Benowo, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tambak Oso Wilangon\": unmatched ",
+    "table 3.1: row not stored: row \"Tambak Oso Wilangon\": unmatched "
+  ]
+}

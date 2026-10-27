@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3175-kecamatan-317204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.72.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cilincing Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Utara",
+  "publisherDomain": "3175",
+  "publisherWebsite": "https://jakutkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Utara (https://jakutkota.bps.go.id), publikasi \"Kecamatan Cilincing Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3175060",
+  "publicationNumber": "31750.26007",
+  "issn": "0852-2332",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakutkota.bps.go.id/id/publication/2026/09/28/3e84ddfe3e8fa3c661656b31/kecamatan-cilincing-dalam-angka-2026.html",
+  "sourceFileSha256": "79655fcac79d2889465fbbdaa04360216e799be3e171c66554cdcb5ac2c4371a",
+  "sourceFileBytes": 15004368,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Utara.",
+  "csvPath": "datasets/bps-3175-kecamatan-317204-dalam-angka-2026.csv",
+  "csvSha256": "34a06b4bd874faf8c5ff07702789c89dbddc41adbc49ae25be37015f84c884db",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cilincing, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cilincing, 202 4",
+      "printedPages": [35],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sukapura 14,99%\": unmatched ",
+    "table 3.1: row not stored: row \"Rorotan 13,51%\": unmatched ",
+    "table 3.1: row not stored: row \"Cilincing 13,20%\": unmatched ",
+    "table 3.1: row not stored: row \"Semper Timur 10,37%\": unmatched ",
+    "table 3.1: row not stored: row \"Semper Barat 19,24%\": unmatched ",
+    "table 3.1 is not included: its published figures do not add up (sex/perempuan/- 2025: parts sum 219629.0000 != 177.0000 (diff 219452.0000)); the source itself is inconsistent"
+  ]
+}

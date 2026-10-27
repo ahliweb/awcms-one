@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.72.04.1002,4,Tejosari,sex,laki_laki,,1980,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.04.1002,4,Tejosari,sex,perempuan,,1966,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.04.1002,4,Tejosari,total,total,,3946,jiwa,2025,registration,total_population,3.1,31,,
+18.72.04.1005,4,Tejoagung,sex,laki_laki,,3570,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.04.1005,4,Tejoagung,sex,perempuan,,3550,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.04.1005,4,Tejoagung,total,total,,7120,jiwa,2025,registration,total_population,3.1,31,,
+18.72.04.1003,4,Iringmulyo,sex,laki_laki,,6858,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.04.1003,4,Iringmulyo,sex,perempuan,,6838,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.04.1003,4,Iringmulyo,total,total,,13696,jiwa,2025,registration,total_population,3.1,31,,
+18.72.04.1004,4,Yosorejo,sex,laki_laki,,3483,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.04.1004,4,Yosorejo,sex,perempuan,,3711,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.04.1004,4,Yosorejo,total,total,,7194,jiwa,2025,registration,total_population,3.1,31,,
+18.72.04.1001,4,Yosodadi,sex,laki_laki,,5178,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.04.1001,4,Yosodadi,sex,perempuan,,5077,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.04.1001,4,Yosodadi,total,total,,10255,jiwa,2025,registration,total_population,3.1,31,,
+18.72.04,3,Metro Timur,sex,laki_laki,,21069,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.04,3,Metro Timur,sex,perempuan,,21142,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.04,3,Metro Timur,total,total,,42211,jiwa,2025,registration,total_population,3.1,31,,

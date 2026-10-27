@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1906-kecamatan-190603-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.06.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dendang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belitung Timur",
+  "publisherDomain": "1906",
+  "publisherWebsite": "https://belitungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belitung Timur (https://belitungtimurkab.bps.go.id), publikasi \"Kecamatan Dendang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "19060.26008",
+  "issn": "3063-9891",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://belitungtimurkab.bps.go.id/id/publication/2026/09/28/784c1a07bc7270b39d0635b2/kecamatan-dendang-dalam-angka-2026.html",
+  "sourceFileSha256": "bc502e895271b671b8c715630aa12b5694cd7ad4bac6213e580ba797e950b0f1",
+  "sourceFileBytes": 5553947,
+  "sourcePages": [18, 19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Belitung Timur.",
+  "csvPath": "datasets/bps-1906-kecamatan-190603-dalam-angka-2026.csv",
+  "csvSha256": "5b03ab80c5ee8c2dcaec366805d6c8cd4873a5cbfd536457209f66e19379e5fa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Dendang, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dendang, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 19.06.03 are not stored: age_group (perempuan) vs sex value: parts sum 5345.0000 != 5368.0000 (diff 23.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.05.2005,4,Keraswetan,sex,laki_laki,,1352,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2005,4,Keraswetan,sex,perempuan,,1421,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2005,4,Keraswetan,total,total,,2773,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2006,4,Keniten,sex,laki_laki,,1789,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2006,4,Keniten,sex,perempuan,,1852,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2006,4,Keniten,total,total,,3641,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2007,4,Tambakromo,sex,laki_laki,,1605,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2007,4,Tambakromo,sex,perempuan,,1756,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2007,4,Tambakromo,total,total,,3361,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2009,4,Tepas,sex,laki_laki,,2582,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2009,4,Tepas,sex,perempuan,,2660,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2009,4,Tepas,total,total,,5242,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2010,4,Geneng,sex,laki_laki,,3733,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2010,4,Geneng,sex,perempuan,,3912,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2010,4,Geneng,total,total,,7645,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2011,4,Sidorejo,sex,laki_laki,,1919,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2011,4,Sidorejo,sex,perempuan,,1981,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2011,4,Sidorejo,total,total,,3900,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2012,4,Baderan,sex,laki_laki,,1794,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2012,4,Baderan,sex,perempuan,,1776,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2012,4,Baderan,total,total,,3570,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2018,4,Klampisan,sex,laki_laki,,1425,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2018,4,Klampisan,sex,perempuan,,1507,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2018,4,Klampisan,total,total,,2932,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2013,4,Kasreman,sex,laki_laki,,1642,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2013,4,Kasreman,sex,perempuan,,1766,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2013,4,Kasreman,total,total,,3408,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2014,4,Kersikan,sex,laki_laki,,1088,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2014,4,Kersikan,sex,perempuan,,1115,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2014,4,Kersikan,total,total,,2203,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2015,4,Dempel,sex,laki_laki,,2277,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2015,4,Dempel,sex,perempuan,,2283,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2015,4,Dempel,total,total,,4560,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2016,4,Klitik,sex,laki_laki,,2867,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2016,4,Klitik,sex,perempuan,,2914,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2016,4,Klitik,total,total,,5781,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05.2017,4,Kersoharjo,sex,laki_laki,,1956,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05.2017,4,Kersoharjo,sex,perempuan,,1972,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05.2017,4,Kersoharjo,total,total,,3928,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.05,3,Kecamatan Geneng,sex,laki_laki,,26029,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.05,3,Kecamatan Geneng,sex,perempuan,,26915,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.05,3,Kecamatan Geneng,total,total,,52944,jiwa,2025,registration,total_population,unnumbered-p38,38,,

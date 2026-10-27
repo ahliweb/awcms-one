@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3514-kecamatan-351413-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.14.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Beji Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pasuruan",
+  "publisherDomain": "3514",
+  "publisherWebsite": "https://pasuruankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pasuruan (https://pasuruankab.bps.go.id), publikasi \"Kecamatan Beji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3514.010",
+  "publicationNumber": "35140.26018",
+  "issn": "2808-6570",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pasuruankab.bps.go.id/id/publication/2026/09/28/16e735594b0c4ebcb270bf34/kecamatan-beji-dalam-angka-2026.html",
+  "sourceFileSha256": "50e8f004d50c8cb615c35f1f76433d0e110692bae4c403444e065f45653a359b",
+  "sourceFileBytes": 6433599,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pasuruan.",
+  "csvPath": "datasets/bps-3514-kecamatan-351413-dalam-angka-2026.csv",
+  "csvSha256": "214cf2b0733503811a22b7bdc0a21d775e175aa78796507fc9b6b6221437aca5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Beji, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

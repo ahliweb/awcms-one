@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1901-kecamatan-190104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.01.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mendo Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangka",
+  "publisherDomain": "1901",
+  "publisherWebsite": "https://bangkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangka (https://bangkakab.bps.go.id), publikasi \"Kecamatan Mendo Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1901070",
+  "publicationNumber": "19010.25007",
+  "issn": "2655-4178",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkakab.bps.go.id/id/publication/2026/09/28/592200e6ee884556e5157128/kecamatan-mendo-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "a33da1e11f48944c29683ad0c921413c00ae0f1862d0fbab71991d5cf7cd9d64",
+  "sourceFileBytes": 14409420,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangka.",
+  "csvPath": "datasets/bps-1901-kecamatan-190104-dalam-angka-2026.csv",
+  "csvSha256": "789ec4ebabd297cdff86a15e2230581d6d99a62f9c1591416f6ad9c285db45ab",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mendo Barat, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mendo Barat, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

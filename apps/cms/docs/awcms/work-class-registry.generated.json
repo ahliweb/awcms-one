@@ -3269,6 +3269,18 @@
       "rationale": "Scheduled subscription-ladder sweep (identity-access:subscription-lifecycle, ADR-0084) — one bounded read plus at most one UPDATE per tenant, tolerant of delay by construction: every transition is anchored to a date the billing cycle owns, so running late changes what happens, never whether it happens. Every withTenantOrThrow call inside subscription-lifecycle-job.ts passes workClass: \"maintenance\" explicitly."
     },
     {
+      "path": "scripts/idn-population-activate.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "Operator-run population dataset activation (idn-population:activate, awcms-one ADR-0051) — a short status flip plus a superseding update, run by hand and never on a timer. Same class and reasoning as idn-regions-activate."
+    },
+    {
+      "path": "scripts/idn-population-import.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "One-shot reference-data import (idn-population:import, awcms-one ADR-0051) — a BPS publication's figures written in a single transaction, run by hand after a reviewed dataset is added, never on a timer. Tolerant of delay and never latency-sensitive; same class and reasoning as idn-regions-import."
+    },
+    {
       "path": "scripts/idn-regions-activate.ts",
       "workClass": "maintenance",
       "source": "registry",

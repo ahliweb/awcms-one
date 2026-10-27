@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1609-kecamatan-160807-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.08.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Madang Suku I Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ulu Timur",
+  "publisherDomain": "1609",
+  "publisherWebsite": "https://okutimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ulu Timur (https://okutimurkab.bps.go.id), publikasi \"Kecamatan Madang Suku I Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1609050",
+  "publicationNumber": "16090.26007",
+  "issn": "2962-5114",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okutimurkab.bps.go.id/id/publication/2026/09/28/ed7986107b7f493fccccc4d5/kecamatan-madang-suku-i-dalam-angka-2026.html",
+  "sourceFileSha256": "99e3edf57d51f7c131792f1a3052a34f9d097bdce9fd9893655ad7fc34e06946",
+  "sourceFileBytes": 6525417,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ulu Timur.",
+  "csvPath": "datasets/bps-1609-kecamatan-160807-dalam-angka-2026.csv",
+  "csvSha256": "afeaf3685db686dc5e1b6b1d7ae7b8ada4638212b530efb2ed65a9e75640cecc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Madang Suku I, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Madang Suku I, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"SP Karta Mulya\": unmatched ",
+    "table 3.1: row not stored: row \"SP Karta Mulya\": unmatched "
+  ]
+}

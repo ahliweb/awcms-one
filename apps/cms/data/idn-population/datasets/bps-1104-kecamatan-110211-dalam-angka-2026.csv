@@ -1,0 +1,56 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.11.2010,4,Penguhapan,sex,laki_laki,,190,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2010,4,Penguhapan,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2010,4,Penguhapan,total,total,,379,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2009,4,Salim Pipit,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2009,4,Salim Pipit,sex,perempuan,,304,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2009,4,Salim Pipit,total,total,,644,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2007,4,Lawe Sumur,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2007,4,Lawe Sumur,sex,perempuan,,315,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2007,4,Lawe Sumur,total,total,,635,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2016,4,Lumban Sitio Tio,sex,laki_laki,,136,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2016,4,Lumban Sitio Tio,sex,perempuan,,119,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2016,4,Lumban Sitio Tio,total,total,,255,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2005,4,Meranti,sex,laki_laki,,91,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2005,4,Meranti,sex,perempuan,,94,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2005,4,Meranti,total,total,,185,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2012,4,Mutiara Damai,sex,laki_laki,,224,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2012,4,Mutiara Damai,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2012,4,Mutiara Damai,total,total,,464,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2011,4,Lumban Tua,sex,laki_laki,,219,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2011,4,Lumban Tua,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2011,4,Lumban Tua,total,total,,428,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2013,4,Dolok Nauli,sex,laki_laki,,148,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2013,4,Dolok Nauli,sex,perempuan,,135,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2013,4,Dolok Nauli,total,total,,283,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2014,4,Tuhi Jongkat,sex,laki_laki,,179,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2014,4,Tuhi Jongkat,sex,perempuan,,174,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2014,4,Tuhi Jongkat,total,total,,353,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2004,4,Titi Mas,sex,laki_laki,,275,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2004,4,Titi Mas,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2004,4,Titi Mas,total,total,,552,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2018,4,Alur Baning,sex,laki_laki,,273,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2018,4,Alur Baning,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2018,4,Alur Baning,total,total,,525,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2022,4,Sumukh Alas,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2022,4,Sumukh Alas,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2022,4,Sumukh Alas,total,total,,437,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2021,4,Tuah Mesade,sex,laki_laki,,192,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2021,4,Tuah Mesade,sex,perempuan,,193,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2021,4,Tuah Mesade,total,total,,385,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2019,4,Lingga Alas,sex,laki_laki,,125,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.11.2019,4,Lingga Alas,sex,perempuan,,134,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.11.2019,4,Lingga Alas,total,total,,259,jiwa,2025,registration,total_population,3.1,28,,
+11.02.11.2025,4,Tanoh Subukh,sex,laki_laki,,85,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.11.2025,4,Tanoh Subukh,sex,perempuan,,98,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.11.2025,4,Tanoh Subukh,total,total,,183,jiwa,2025,registration,total_population,3.1,29,,
+11.02.11.2026,4,Pinggan Mbelang,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.11.2026,4,Pinggan Mbelang,sex,perempuan,,212,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.11.2026,4,Pinggan Mbelang,total,total,,420,jiwa,2025,registration,total_population,3.1,29,,
+11.02.11.2028,4,Ukekh Deleng,sex,laki_laki,,130,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.11.2028,4,Ukekh Deleng,sex,perempuan,,165,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.11.2028,4,Ukekh Deleng,total,total,,295,jiwa,2025,registration,total_population,3.1,29,,
+11.02.11.2029,4,Alas Mesikhat,sex,laki_laki,,158,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.11.2029,4,Alas Mesikhat,sex,perempuan,,168,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.11.2029,4,Alas Mesikhat,total,total,,326,jiwa,2025,registration,total_population,3.1,29,,
+11.02.11,3,Babul Rahmah,total,total,,10827,jiwa,2025,registration,total_population,3.1,29,,

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.31.2008,4,Sukajadi,sex,laki_laki,,9935,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2008,4,Sukajadi,sex,perempuan,,9652,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2008,4,Sukajadi,total,total,,19587,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31.2005,4,Sukaluyu,sex,laki_laki,,9426,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2005,4,Sukaluyu,sex,perempuan,,9310,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2005,4,Sukaluyu,total,total,,18736,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31.2007,4,Sukajaya,sex,laki_laki,,8232,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2007,4,Sukajaya,sex,perempuan,,7701,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2007,4,Sukajaya,total,total,,15933,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31.2006,4,Sukaresmi,sex,laki_laki,,7832,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2006,4,Sukaresmi,sex,perempuan,,7552,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2006,4,Sukaresmi,total,total,,15384,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31.2003,4,Pasir Eurih,sex,laki_laki,,6028,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2003,4,Pasir Eurih,sex,perempuan,,5587,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2003,4,Pasir Eurih,total,total,,11615,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31.2004,4,Taman Sari,sex,laki_laki,,8118,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2004,4,Taman Sari,sex,perempuan,,7431,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2004,4,Taman Sari,total,total,,15549,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31.2001,4,Sukamantri,sex,laki_laki,,6320,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2001,4,Sukamantri,sex,perempuan,,5951,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2001,4,Sukamantri,total,total,,12271,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31.2002,4,Sirnagalih,sex,laki_laki,,5517,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31.2002,4,Sirnagalih,sex,perempuan,,5251,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31.2002,4,Sirnagalih,total,total,,10768,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+32.01.31,3,Kecamatan Tamansari,sex,laki_laki,,61408,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-Laki/Male
+32.01.31,3,Kecamatan Tamansari,sex,perempuan,,58435,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+32.01.31,3,Kecamatan Tamansari,total,total,,119843,jiwa,2025,registration,total_population,unnumbered-p34,34,,

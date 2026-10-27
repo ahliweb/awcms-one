@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.04.2001,4,Tanjung Hanau,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04.2001,4,Tanjung Hanau,sex,perempuan,,494,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04.2001,4,Tanjung Hanau,total,total,,1107,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04.2002,4,Parang Batang,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04.2002,4,Parang Batang,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04.2002,4,Parang Batang,total,total,,1322,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04.2003,4,Bahaur,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04.2003,4,Bahaur,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04.2003,4,Bahaur,total,total,,1395,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04.2004,4,Pembuang Hulu I,sex,laki_laki,,3366,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04.2004,4,Pembuang Hulu I,sex,perempuan,,3156,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04.2004,4,Pembuang Hulu I,total,total,,6522,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04.2005,4,Pembuang Hulu Ii,sex,laki_laki,,2814,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04.2005,4,Pembuang Hulu Ii,sex,perempuan,,2739,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04.2005,4,Pembuang Hulu Ii,total,total,,5553,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04.2006,4,Derangga,sex,laki_laki,,1728,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04.2006,4,Derangga,sex,perempuan,,1553,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04.2006,4,Derangga,total,total,,3281,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04.2011,4,Paring Raya,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04.2011,4,Paring Raya,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04.2011,4,Paring Raya,total,total,,533,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04,3,Hanau,sex,laki_laki,,10217,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.04,3,Hanau,sex,perempuan,,9496,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.04,3,Hanau,total,total,,19713,jiwa,2025,registration,total_population,3.1,34,,
+62.07.04,3,Hanau,age_group,0-14,laki_laki,2725,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.04,3,Hanau,age_group,0-14,perempuan,2503,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.04,3,Hanau,age_group,0-14,,5228,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.04,3,Hanau,age_group,15-64,laki_laki,7109,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.04,3,Hanau,age_group,15-64,perempuan,6583,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.04,3,Hanau,age_group,15-64,,13692,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.04,3,Hanau,age_group,65+,laki_laki,383,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.04,3,Hanau,age_group,65+,perempuan,410,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.04,3,Hanau,age_group,65+,,793,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.04,3,Hanau,sex,laki_laki,,10217,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+62.07.04,3,Hanau,sex,perempuan,,9496,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+62.07.04,3,Hanau,total,total,,19713,jiwa,2025,registration,total_population,3.2,36,,

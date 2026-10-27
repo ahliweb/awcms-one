@@ -1,0 +1,17 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.01.1006,4,Dua Puluh Tujuh Ilir,sex,perempuan,,1246,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01.1006,4,Dua Puluh Tujuh Ilir,total,total,,2492,jiwa,2025,registration,total_population,3.1,32,,
+16.71.01.1005,4,Dua Puluh Delapan Ilir,sex,perempuan,,1480,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01.1005,4,Dua Puluh Delapan Ilir,total,total,,2966,jiwa,2025,registration,total_population,3.1,32,,
+16.71.01.1004,4,Dua Puluh Sembilan Ilir,sex,perempuan,,4231,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01.1004,4,Dua Puluh Sembilan Ilir,total,total,,8096,jiwa,2025,registration,total_population,3.1,32,,
+16.71.01.1003,4,Tiga Puluh Ilir,sex,perempuan,,10168,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01.1003,4,Tiga Puluh Ilir,total,total,,19791,jiwa,2025,registration,total_population,3.1,32,,
+16.71.01.1002,4,Tiga Puluh Dua Ilir,sex,perempuan,,6517,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01.1002,4,Tiga Puluh Dua Ilir,total,total,,13669,jiwa,2025,registration,total_population,3.1,32,,
+16.71.01.1001,4,Tiga Puluh Lima Ilir,sex,perempuan,,6091,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01.1001,4,Tiga Puluh Lima Ilir,total,total,,11829,jiwa,2025,registration,total_population,3.1,32,,
+16.71.01.1007,4,Kemang Manis,sex,perempuan,,3784,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01.1007,4,Kemang Manis,total,total,,7533,jiwa,2025,registration,total_population,3.1,32,,
+16.71.01,3,Ilir Barat Dua,sex,perempuan,,33517,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.01,3,Ilir Barat Dua,total,total,,66376,jiwa,2025,registration,total_population,3.1,32,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.33.2008,4,Ganda Ria,sex,laki_laki,,3400,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2008,4,Ganda Ria,sex,perempuan,,3315,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2008,4,Ganda Ria,total,total,,6715,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33.2007,4,Kosambi Dalam,sex,laki_laki,,4652,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2007,4,Kosambi Dalam,sex,perempuan,,4579,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2007,4,Kosambi Dalam,total,total,,9231,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33.2005,4,Klutuk,sex,laki_laki,,1960,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2005,4,Klutuk,sex,perempuan,,1845,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2005,4,Klutuk,total,total,,3805,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33.2001,4,Mekar Baru,sex,laki_laki,,2652,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2001,4,Mekar Baru,sex,perempuan,,2615,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2001,4,Mekar Baru,total,total,,5267,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33.2004,4,Waliwis,sex,laki_laki,,2574,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2004,4,Waliwis,sex,perempuan,,2530,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2004,4,Waliwis,total,total,,5104,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33.2003,4,Cijeruk,sex,laki_laki,,3260,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2003,4,Cijeruk,sex,perempuan,,3190,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2003,4,Cijeruk,total,total,,6450,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33.2002,4,Kedaung,sex,laki_laki,,2270,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2002,4,Kedaung,sex,perempuan,,2230,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2002,4,Kedaung,total,total,,4500,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33.2006,4,Jenggot,sex,laki_laki,,3792,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33.2006,4,Jenggot,sex,perempuan,,3560,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33.2006,4,Jenggot,total,total,,7352,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33,3,Kecamatan Mekar Baru,sex,laki_laki,,24560,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.33,3,Kecamatan Mekar Baru,sex,perempuan,,23864,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.33,3,Kecamatan Mekar Baru,total,total,,48424,jiwa,2025,registration,total_population,3.1,25,,
+36.03.33,3,Mekar Baru,age_group,0-4,laki_laki,2045,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.33,3,Mekar Baru,age_group,0-4,perempuan,1838,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.33,3,Mekar Baru,age_group,0-4,,3883,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.33,3,Mekar Baru,age_group,5-9,laki_laki,2540,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.33,3,Mekar Baru,age_group,5-9,perempuan,2348,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.33,3,Mekar Baru,age_group,5-9,,4888,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.33,3,Mekar Baru,age_group,10-14,laki_laki,2304,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.33,3,Mekar Baru,age_group,10-14,perempuan,2158,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.33,3,Mekar Baru,age_group,10-14,,4462,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.33,3,Mekar Baru,age_group,15-19,laki_laki,1677,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.33,3,Mekar Baru,age_group,15-19,perempuan,1596,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.33,3,Mekar Baru,age_group,15-19,,3273,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.33,3,Mekar Baru,age_group,20-24,laki_laki,1976,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.33,3,Mekar Baru,age_group,20-24,perempuan,1700,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.33,3,Mekar Baru,age_group,20-24,,3676,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.33,3,Mekar Baru,age_group,25-29,laki_laki,2271,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.33,3,Mekar Baru,age_group,25-29,perempuan,2088,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.33,3,Mekar Baru,age_group,25-29,,4359,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.33,3,Mekar Baru,age_group,30-34,laki_laki,2195,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.33,3,Mekar Baru,age_group,30-34,perempuan,2080,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.33,3,Mekar Baru,age_group,30-34,,4275,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.33,3,Mekar Baru,age_group,35-39,laki_laki,2080,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.33,3,Mekar Baru,age_group,35-39,perempuan,1996,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.33,3,Mekar Baru,age_group,35-39,,4076,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.33,3,Mekar Baru,age_group,40-44,laki_laki,1765,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.33,3,Mekar Baru,age_group,40-44,perempuan,1833,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.33,3,Mekar Baru,age_group,40-44,,3598,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.33,3,Mekar Baru,age_group,45-49,laki_laki,1479,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.33,3,Mekar Baru,age_group,45-49,perempuan,1484,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.33,3,Mekar Baru,age_group,45-49,,2963,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.33,3,Mekar Baru,age_group,50-54,laki_laki,1105,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.33,3,Mekar Baru,age_group,50-54,perempuan,1183,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.33,3,Mekar Baru,age_group,50-54,,2288,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.33,3,Mekar Baru,age_group,55-59,laki_laki,976,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.33,3,Mekar Baru,age_group,55-59,perempuan,1080,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.33,3,Mekar Baru,age_group,55-59,,2056,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.33,3,Mekar Baru,age_group,60-64,laki_laki,746,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.33,3,Mekar Baru,age_group,60-64,perempuan,823,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.33,3,Mekar Baru,age_group,60-64,,1569,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.33,3,Mekar Baru,age_group,65-69,laki_laki,628,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.33,3,Mekar Baru,age_group,65-69,perempuan,658,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.33,3,Mekar Baru,age_group,65-69,,1286,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.33,3,Mekar Baru,age_group,70-74,laki_laki,360,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.33,3,Mekar Baru,age_group,70-74,perempuan,385,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.33,3,Mekar Baru,age_group,70-74,,745,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.33,3,Mekar Baru,age_group,75+,laki_laki,413,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.33,3,Mekar Baru,age_group,75+,perempuan,614,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.33,3,Mekar Baru,age_group,75+,,1027,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.33,3,Kecamatan Mekar Baru,sex,laki_laki,,24560,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+36.03.33,3,Kecamatan Mekar Baru,sex,perempuan,,23864,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+36.03.33,3,Kecamatan Mekar Baru,total,total,,48424,jiwa,2025,registration,total_population,3.2,27,,

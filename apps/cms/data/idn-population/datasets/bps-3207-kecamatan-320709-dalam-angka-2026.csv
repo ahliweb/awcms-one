@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.09.2014,4,Sindangsari,sex,laki_laki,,1543,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2014,4,Sindangsari,sex,perempuan,,1608,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2014,4,Sindangsari,total,total,,3151,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2001,4,Kawali,sex,laki_laki,,2347,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2001,4,Kawali,sex,perempuan,,2326,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2001,4,Kawali,total,total,,4673,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2004,4,Karangpawitan,sex,laki_laki,,2452,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2004,4,Karangpawitan,sex,perempuan,,2468,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2004,4,Karangpawitan,total,total,,4920,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2015,4,Kawalimukti,sex,laki_laki,,2157,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2015,4,Kawalimukti,sex,perempuan,,2189,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2015,4,Kawalimukti,total,total,,4346,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2002,4,Talagasari,sex,laki_laki,,1614,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2002,4,Talagasari,sex,perempuan,,1630,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2002,4,Talagasari,total,total,,3244,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2016,4,Selasari,sex,laki_laki,,1464,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2016,4,Selasari,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2016,4,Selasari,total,total,,2831,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2006,4,Margamulya,sex,laki_laki,,1578,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2006,4,Margamulya,sex,perempuan,,1544,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2006,4,Margamulya,total,total,,3122,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2005,4,Winduraja,sex,laki_laki,,3260,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2005,4,Winduraja,sex,perempuan,,3139,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2005,4,Winduraja,total,total,,6399,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2013,4,Purwasari,sex,laki_laki,,1534,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2013,4,Purwasari,sex,perempuan,,1494,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2013,4,Purwasari,total,total,,3028,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2011,4,Citeureup,sex,laki_laki,,2393,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2011,4,Citeureup,sex,perempuan,,2346,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2011,4,Citeureup,total,total,,4739,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09.2019,4,Linggapura,sex,laki_laki,,2168,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09.2019,4,Linggapura,sex,perempuan,,2155,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09.2019,4,Linggapura,total,total,,4323,jiwa,2025,registration,total_population,3.1,34,,
+32.07.09,3,Kecamatan Kawali,sex,laki_laki,,22510,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.09,3,Kecamatan Kawali,sex,perempuan,,22266,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.09,3,Kecamatan Kawali,total,total,,44776,jiwa,2025,registration,total_population,3.1,34,,

@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-1215-kecamatan-121602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.16.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pollung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Humbang Hasundutan",
+  "publisherDomain": "1215",
+  "publisherWebsite": "https://humbanghasundutankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Humbang Hasundutan (https://humbanghasundutankab.bps.go.id), publikasi \"Kecamatan Pollung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1215040",
+  "publicationNumber": "12150.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://humbanghasundutankab.bps.go.id/id/publication/2026/09/28/266d9e528a1d3036ff56a4d1/kecamatan-pollung-dalam-angka-2026.html",
+  "sourceFileSha256": "77b182be0b04890f9f23b066c840cc29c7b3527d599ccf17202699c4e67ee4c9",
+  "sourceFileBytes": 7461609,
+  "sourcePages": [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Humbang Hasundutan.",
+  "csvPath": "datasets/bps-1215-kecamatan-121602-dalam-angka-2026.csv",
+  "csvSha256": "361dabc4bcdd6623b71565cb339e32cb6f6f324595e980c07c141319166e5a3b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pollung, 2024",
+      "printedPages": [30, 31],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pollung, 2024",
+      "printedPages": [32, 33, 34, 35, 36, 37, 38, 39],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 12.16.02.2009 are not stored: sex split vs total: parts sum 1449.0000 != 85.0000 (diff 1364.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2008 are not stored: sex split vs total: parts sum 1656.0000 != 103.0000 (diff 1553.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2010 are not stored: sex split vs total: parts sum 1566.0000 != 79.0000 (diff 1487.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2011 are not stored: sex split vs total: parts sum 2594.0000 != 143.0000 (diff 2451.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2006 are not stored: sex split vs total: parts sum 2660.0000 != 174.0000 (diff 2486.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2003 are not stored: sex split vs total: parts sum 1778.0000 != 118.0000 (diff 1660.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2001 are not stored: sex split vs total: parts sum 1271.0000 != 92.0000 (diff 1179.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2005 are not stored: sex split vs total: parts sum 2538.0000 != 168.0000 (diff 2370.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2002 are not stored: sex split vs total: parts sum 1907.0000 != 124.0000 (diff 1783.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2007 are not stored: sex split vs total: parts sum 1417.0000 != 86.0000 (diff 1331.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2004 are not stored: sex split vs total: parts sum 2612.0000 != 148.0000 (diff 2464.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2012 are not stored: sex split vs total: parts sum 563.0000 != 34.0000 (diff 529.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02.2013 are not stored: sex split vs total: parts sum 1372.0000 != 77.0000 (diff 1295.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.16.02 are not stored: sex split vs total: parts sum 23383.0000 != 1431.0000 (diff 21952.0000); the source itself is inconsistent"
+  ]
+}

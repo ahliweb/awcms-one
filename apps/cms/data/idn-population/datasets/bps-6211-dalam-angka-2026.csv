@@ -1,0 +1,129 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.10,2,Kabupaten Gunung Mas,age_group,0-4,laki_laki,7.32,ribu_jiwa,2025,projection,total_population,3.1.2,60,,0–4
+62.10,2,Kabupaten Gunung Mas,age_group,0-4,perempuan,7.01,ribu_jiwa,2025,projection,total_population,3.1.2,60,,0–4
+62.10,2,Kabupaten Gunung Mas,age_group,0-4,,14.33,ribu_jiwa,2025,projection,total_population,3.1.2,60,,0–4
+62.10,2,Kabupaten Gunung Mas,age_group,5-9,laki_laki,6.21,ribu_jiwa,2025,projection,total_population,3.1.2,60,,5–9
+62.10,2,Kabupaten Gunung Mas,age_group,5-9,perempuan,5.87,ribu_jiwa,2025,projection,total_population,3.1.2,60,,5–9
+62.10,2,Kabupaten Gunung Mas,age_group,5-9,,12.07,ribu_jiwa,2025,projection,total_population,3.1.2,60,,5–9
+62.10,2,Kabupaten Gunung Mas,age_group,10-14,laki_laki,6.20,ribu_jiwa,2025,projection,total_population,3.1.2,60,,10–14
+62.10,2,Kabupaten Gunung Mas,age_group,10-14,perempuan,5.90,ribu_jiwa,2025,projection,total_population,3.1.2,60,,10–14
+62.10,2,Kabupaten Gunung Mas,age_group,10-14,,12.1,ribu_jiwa,2025,projection,total_population,3.1.2,60,,10–14
+62.10,2,Kabupaten Gunung Mas,age_group,15-19,laki_laki,6.28,ribu_jiwa,2025,projection,total_population,3.1.2,60,,15–19
+62.10,2,Kabupaten Gunung Mas,age_group,15-19,perempuan,5.88,ribu_jiwa,2025,projection,total_population,3.1.2,60,,15–19
+62.10,2,Kabupaten Gunung Mas,age_group,15-19,,12.15,ribu_jiwa,2025,projection,total_population,3.1.2,60,,15–19
+62.10,2,Kabupaten Gunung Mas,age_group,20-24,laki_laki,7.16,ribu_jiwa,2025,projection,total_population,3.1.2,60,,20–24
+62.10,2,Kabupaten Gunung Mas,age_group,20-24,perempuan,6.60,ribu_jiwa,2025,projection,total_population,3.1.2,60,,20–24
+62.10,2,Kabupaten Gunung Mas,age_group,20-24,,13.75,ribu_jiwa,2025,projection,total_population,3.1.2,60,,20–24
+62.10,2,Kabupaten Gunung Mas,age_group,25-29,laki_laki,6.75,ribu_jiwa,2025,projection,total_population,3.1.2,60,,25–29
+62.10,2,Kabupaten Gunung Mas,age_group,25-29,perempuan,6.34,ribu_jiwa,2025,projection,total_population,3.1.2,60,,25–29
+62.10,2,Kabupaten Gunung Mas,age_group,25-29,,13.09,ribu_jiwa,2025,projection,total_population,3.1.2,60,,25–29
+62.10,2,Kabupaten Gunung Mas,age_group,30-34,laki_laki,7.37,ribu_jiwa,2025,projection,total_population,3.1.2,60,,30–34
+62.10,2,Kabupaten Gunung Mas,age_group,30-34,perempuan,6.63,ribu_jiwa,2025,projection,total_population,3.1.2,60,,30–34
+62.10,2,Kabupaten Gunung Mas,age_group,30-34,,14,ribu_jiwa,2025,projection,total_population,3.1.2,60,,30–34
+62.10,2,Kabupaten Gunung Mas,age_group,35-39,laki_laki,6.81,ribu_jiwa,2025,projection,total_population,3.1.2,60,,35–39
+62.10,2,Kabupaten Gunung Mas,age_group,35-39,perempuan,5.91,ribu_jiwa,2025,projection,total_population,3.1.2,60,,35–39
+62.10,2,Kabupaten Gunung Mas,age_group,35-39,,12.72,ribu_jiwa,2025,projection,total_population,3.1.2,60,,35–39
+62.10,2,Kabupaten Gunung Mas,age_group,40-44,laki_laki,5.94,ribu_jiwa,2025,projection,total_population,3.1.2,60,,40–44
+62.10,2,Kabupaten Gunung Mas,age_group,40-44,perempuan,5.00,ribu_jiwa,2025,projection,total_population,3.1.2,60,,40–44
+62.10,2,Kabupaten Gunung Mas,age_group,40-44,,10.94,ribu_jiwa,2025,projection,total_population,3.1.2,60,,40–44
+62.10,2,Kabupaten Gunung Mas,age_group,45-49,laki_laki,4.96,ribu_jiwa,2025,projection,total_population,3.1.2,60,,45–49
+62.10,2,Kabupaten Gunung Mas,age_group,45-49,perempuan,4.09,ribu_jiwa,2025,projection,total_population,3.1.2,60,,45–49
+62.10,2,Kabupaten Gunung Mas,age_group,45-49,,9.04,ribu_jiwa,2025,projection,total_population,3.1.2,60,,45–49
+62.10,2,Kabupaten Gunung Mas,age_group,50-54,laki_laki,4.00,ribu_jiwa,2025,projection,total_population,3.1.2,60,,50–54
+62.10,2,Kabupaten Gunung Mas,age_group,50-54,perempuan,3.36,ribu_jiwa,2025,projection,total_population,3.1.2,60,,50–54
+62.10,2,Kabupaten Gunung Mas,age_group,50-54,,7.36,ribu_jiwa,2025,projection,total_population,3.1.2,60,,50–54
+62.10,2,Kabupaten Gunung Mas,age_group,55-59,laki_laki,3.07,ribu_jiwa,2025,projection,total_population,3.1.2,60,,55–59
+62.10,2,Kabupaten Gunung Mas,age_group,55-59,perempuan,2.55,ribu_jiwa,2025,projection,total_population,3.1.2,60,,55–59
+62.10,2,Kabupaten Gunung Mas,age_group,55-59,,5.62,ribu_jiwa,2025,projection,total_population,3.1.2,60,,55–59
+62.10,2,Kabupaten Gunung Mas,age_group,60-64,laki_laki,2.26,ribu_jiwa,2025,projection,total_population,3.1.2,60,,60–64
+62.10,2,Kabupaten Gunung Mas,age_group,60-64,perempuan,1.90,ribu_jiwa,2025,projection,total_population,3.1.2,60,,60–64
+62.10,2,Kabupaten Gunung Mas,age_group,60-64,,4.16,ribu_jiwa,2025,projection,total_population,3.1.2,60,,60–64
+62.10,2,Kabupaten Gunung Mas,age_group,65-69,laki_laki,1.49,ribu_jiwa,2025,projection,total_population,3.1.2,60,,65–69
+62.10,2,Kabupaten Gunung Mas,age_group,65-69,perempuan,1.44,ribu_jiwa,2025,projection,total_population,3.1.2,60,,65–69
+62.10,2,Kabupaten Gunung Mas,age_group,65-69,,2.92,ribu_jiwa,2025,projection,total_population,3.1.2,60,,65–69
+62.10,2,Kabupaten Gunung Mas,age_group,70-74,laki_laki,0.96,ribu_jiwa,2025,projection,total_population,3.1.2,60,,70–74
+62.10,2,Kabupaten Gunung Mas,age_group,70-74,perempuan,0.98,ribu_jiwa,2025,projection,total_population,3.1.2,60,,70–74
+62.10,2,Kabupaten Gunung Mas,age_group,70-74,,1.94,ribu_jiwa,2025,projection,total_population,3.1.2,60,,70–74
+62.10,2,Kabupaten Gunung Mas,age_group,75+,laki_laki,0.96,ribu_jiwa,2025,projection,total_population,3.1.2,60,,75+
+62.10,2,Kabupaten Gunung Mas,age_group,75+,perempuan,1.08,ribu_jiwa,2025,projection,total_population,3.1.2,60,,75+
+62.10,2,Kabupaten Gunung Mas,age_group,75+,,2.04,ribu_jiwa,2025,projection,total_population,3.1.2,60,,75+
+62.10,2,Kabupaten Gunung Mas,sex,laki_laki,,77.73,ribu_jiwa,2025,projection,total_population,3.1.2,60,,Laki-Laki
+62.10,2,Kabupaten Gunung Mas,sex,perempuan,,70.51,ribu_jiwa,2025,projection,total_population,3.1.2,60,,Perempuan
+62.10,2,Kabupaten Gunung Mas,total,total,,148.23,ribu_jiwa,2025,projection,total_population,3.1.2,60,,
+62.10.06,3,Manuhing,religion,islam,,4899,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.06,3,Manuhing,religion,kristen,,5935,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.06,3,Manuhing,religion,katolik,,531,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.06,3,Manuhing,religion,hindu,,1139,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.06,3,Manuhing,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.06,3,Manuhing,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+62.10.11,3,Manuhing Raya,religion,islam,,277,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.11,3,Manuhing Raya,religion,kristen,,4353,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.11,3,Manuhing Raya,religion,katolik,,75,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.11,3,Manuhing Raya,religion,hindu,,1211,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.11,3,Manuhing Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.11,3,Manuhing Raya,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+62.10.05,3,Rungan,religion,islam,,3246,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.05,3,Rungan,religion,kristen,,6252,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.05,3,Rungan,religion,katolik,,245,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.05,3,Rungan,religion,hindu,,1870,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.05,3,Rungan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.05,3,Rungan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Lainnya
+62.10.10,3,Rungan Hulu,religion,islam,,441,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.10,3,Rungan Hulu,religion,kristen,,4243,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.10,3,Rungan Hulu,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.10,3,Rungan Hulu,religion,hindu,,2270,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.10,3,Rungan Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.10,3,Rungan Hulu,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+62.10.12,3,Rungan Barat,religion,islam,,1101,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.12,3,Rungan Barat,religion,kristen,,3305,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.12,3,Rungan Barat,religion,katolik,,220,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.12,3,Rungan Barat,religion,hindu,,1975,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.12,3,Rungan Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.12,3,Rungan Barat,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+62.10.01,3,Sepang,religion,islam,,1659,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.01,3,Sepang,religion,kristen,,6985,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.01,3,Sepang,religion,katolik,,197,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.01,3,Sepang,religion,hindu,,548,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.01,3,Sepang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.01,3,Sepang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Lainnya
+62.10.07,3,Mihing Raya,religion,islam,,718,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.07,3,Mihing Raya,religion,kristen,,5995,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.07,3,Mihing Raya,religion,katolik,,90,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.07,3,Mihing Raya,religion,hindu,,1198,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.07,3,Mihing Raya,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+62.10.07,3,Mihing Raya,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+62.10.02,3,Kurun,religion,islam,,9557,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.02,3,Kurun,religion,kristen,,23509,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.02,3,Kurun,religion,katolik,,1510,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.02,3,Kurun,religion,hindu,,1623,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.02,3,Kurun,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+62.10.02,3,Kurun,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+62.10.03,3,Tewah,religion,islam,,4867,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.03,3,Tewah,religion,kristen,,15453,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.03,3,Tewah,religion,katolik,,160,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.03,3,Tewah,religion,hindu,,988,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.03,3,Tewah,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+62.10.03,3,Tewah,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya
+62.10.04,3,Kahayan Hulu Utara,religion,islam,,843,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.04,3,Kahayan Hulu Utara,religion,kristen,,6562,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.04,3,Kahayan Hulu Utara,religion,katolik,,105,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.04,3,Kahayan Hulu Utara,religion,hindu,,1047,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.04,3,Kahayan Hulu Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.04,3,Kahayan Hulu Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Lainnya
+62.10.08,3,Damang Batu,religion,islam,,132,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.08,3,Damang Batu,religion,kristen,,3872,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.08,3,Damang Batu,religion,katolik,,101,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.08,3,Damang Batu,religion,hindu,,959,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.08,3,Damang Batu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.08,3,Damang Batu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Lainnya
+62.10.09,3,Miri Manasa,religion,islam,,134,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10.09,3,Miri Manasa,religion,kristen,,3253,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10.09,3,Miri Manasa,religion,katolik,,24,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10.09,3,Miri Manasa,religion,hindu,,648,jiwa,2025,registration,total_population,4.3.1,138,,Hindu
+62.10.09,3,Miri Manasa,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Budha
+62.10.09,3,Miri Manasa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,138,nil,Lainnya
+62.10,2,Gunung Mas,religion,islam,,27874,jiwa,2025,registration,total_population,4.3.1,138,,Islam
+62.10,2,Gunung Mas,religion,kristen,,89717,jiwa,2025,registration,total_population,4.3.1,138,,Protestan
+62.10,2,Gunung Mas,religion,katolik,,3266,jiwa,2025,registration,total_population,4.3.1,138,,Katolik
+62.10,2,Gunung Mas,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,138,,Budha
+62.10,2,Gunung Mas,religion,lainnya,,27,jiwa,2025,registration,total_population,4.3.1,138,,Lainnya

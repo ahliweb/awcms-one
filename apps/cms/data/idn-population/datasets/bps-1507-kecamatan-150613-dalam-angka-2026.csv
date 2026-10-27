@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.06.13.2004,4,Sungai Rambai,sex,laki_laki,,1436,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.2004,4,Sungai Rambai,sex,perempuan,,1352,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.2004,4,Sungai Rambai,total,total,,2788,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13.2003,4,Teluk Ketapang,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.2003,4,Teluk Ketapang,sex,perempuan,,873,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.2003,4,Teluk Ketapang,total,total,,1821,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13.1001,4,Senyerang,sex,laki_laki,,2447,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.1001,4,Senyerang,sex,perempuan,,2301,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.1001,4,Senyerang,total,total,,4748,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13.2007,4,Lumahan,sex,laki_laki,,1174,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.2007,4,Lumahan,sex,perempuan,,1108,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.2007,4,Lumahan,total,total,,2282,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13.2006,4,Kempas Jaya,sex,laki_laki,,1820,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.2006,4,Kempas Jaya,sex,perempuan,,1760,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.2006,4,Kempas Jaya,total,total,,3580,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13.2009,4,Sungsang,sex,laki_laki,,864,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.2009,4,Sungsang,sex,perempuan,,844,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.2009,4,Sungsang,total,total,,1708,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13.2010,4,Sungai Kepayang,sex,laki_laki,,636,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.2010,4,Sungai Kepayang,sex,perempuan,,643,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.2010,4,Sungai Kepayang,total,total,,1279,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13.2008,4,Sungai Landak,sex,laki_laki,,1416,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13.2008,4,Sungai Landak,sex,perempuan,,1394,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13.2008,4,Sungai Landak,total,total,,2810,jiwa,2025,registration,total_population,3.1,22,,
+15.06.13,3,Senyerang,sex,laki_laki,,13422,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+15.06.13,3,Senyerang,sex,perempuan,,12694,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Fem
+15.06.13,3,Senyerang,total,total,,26116,jiwa,2025,registration,total_population,3.1,22,,

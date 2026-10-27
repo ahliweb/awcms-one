@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3215-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "32.15",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Karawang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kabupaten Karawang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215",
+  "publicationNumber": "32150.25001",
+  "issn": "0215-4307",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/02/27/19fdf541dcc230061c0159bd/kabupaten-karawang-dalam-angka-2026.html",
+  "sourceFileSha256": "db9dc2c2ade2103fb58e059376d38e9bc4f23c73fb768eebe6481386c8040166",
+  "sourceFileBytes": 4750109,
+  "sourcePages": [51, 54, 288],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik XXX.",
+  "csvPath": "datasets/bps-3215-dalam-angka-2026.csv",
+  "csvSha256": "f232051a5052918bec12c293758898146c9d5fd0f90b304e28ffa087a7192ee4",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Karawang, 2025",
+      "printedPages": [51],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Karawang (jiwa), 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Karawang (rupiah), 2024 dan 2025",
+      "printedPages": [288],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321526-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.26",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karawang Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://karawangkab.bps.go.id), publikasi \"Kecamatan Karawang Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215112",
+  "publicationNumber": "32150.26008",
+  "issn": "2828-7436",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/1d909a7f24ec2314def385e7/kecamatan-karawang-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "520067209a2bd3b864fbb568f7c9a949aa7b9c533dd13caffb77d5a6bb7fbc67",
+  "sourceFileBytes": 3630693,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Karawang",
+  "csvPath": "datasets/bps-3215-kecamatan-321526-dalam-angka-2026.csv",
+  "csvSha256": "88524d8eb73ff119c8921a38eb051538ef3961f4ff3d0ff268d38ed5048fa299",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Karawang Timur, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karawang Timur, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Karawang Timur 100.00\": unmatched ",
+    "table 3.1: 24 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "cross-table disagreement, both stored as published: 32.15.26 sex/laki_laki/ 2025: 70217 (table 3.1) vs 71833 (table 3.2)",
+    "cross-table disagreement, both stored as published: 32.15.26 sex/perempuan/ 2025: 69189 (table 3.1) vs 67573 (table 3.2)"
+  ]
+}

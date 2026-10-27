@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.32.1001,4,Bintuju,sex,laki_laki,,1208,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.1001,4,Bintuju,sex,perempuan,,1213,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.1001,4,Bintuju,total,total,,2421,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.1002,4,Huta Tonga,sex,laki_laki,,1030,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.1002,4,Huta Tonga,sex,perempuan,,1038,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.1002,4,Huta Tonga,total,total,,2068,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2003,4,Basilam Baru,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2003,4,Basilam Baru,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2003,4,Basilam Baru,total,total,,421,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2004,4,Sipangko,sex,laki_laki,,606,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2004,4,Sipangko,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2004,4,Sipangko,total,total,,1227,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2005,4,Huta Holbung,sex,laki_laki,,665,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2005,4,Huta Holbung,sex,perempuan,,652,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2005,4,Huta Holbung,total,total,,1317,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2006,4,Muara Tais I,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2006,4,Muara Tais I,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2006,4,Muara Tais I,total,total,,1153,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2007,4,Muara Tais II,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2007,4,Muara Tais II,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2007,4,Muara Tais II,total,total,,1086,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2008,4,Muara Tais III,sex,laki_laki,,264,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2008,4,Muara Tais III,sex,perempuan,,308,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2008,4,Muara Tais III,total,total,,572,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2009,4,Janji Mauli MT,sex,laki_laki,,117,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2009,4,Janji Mauli MT,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2009,4,Janji Mauli MT,total,total,,244,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2010,4,Pargumbangan,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2010,4,Pargumbangan,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2010,4,Pargumbangan,total,total,,891,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2011,4,Pangaribuan,sex,laki_laki,,359,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2011,4,Pangaribuan,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2011,4,Pangaribuan,total,total,,709,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2012,4,Pasir Matogu,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2012,4,Pasir Matogu,sex,perempuan,,293,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2012,4,Pasir Matogu,total,total,,576,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2013,4,Sori Manaon,sex,laki_laki,,428,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2013,4,Sori Manaon,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2013,4,Sori Manaon,total,total,,861,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2014,4,Muara Purba Nauli,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2014,4,Muara Purba Nauli,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2014,4,Muara Purba Nauli,total,total,,704,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32.2015,4,Tatengger,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32.2015,4,Tatengger,sex,perempuan,,386,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32.2015,4,Tatengger,total,total,,776,jiwa,2025,registration,total_population,3.1,26,,
+12.03.32,3,Angkola Muara Tais,sex,laki_laki,,7506,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.32,3,Angkola Muara Tais,sex,perempuan,,7520,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.32,3,Angkola Muara Tais,total,total,,15026,jiwa,2025,registration,total_population,3.1,26,,

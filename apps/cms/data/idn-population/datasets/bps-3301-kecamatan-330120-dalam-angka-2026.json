@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3301-kecamatan-330120-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.01.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bantarsari Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN CILACAP",
+  "publisherDomain": "3301",
+  "publisherWebsite": "https://cilacapkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN CILACAP (https://cilacapkab.bps.go.id), publikasi \"Kecamatan Bantarsari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3301110",
+  "publicationNumber": "33010.25019",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilacapkab.bps.go.id/id/publication/2026/09/28/0299e16f296324edfea1f057/kecamatan-bantarsari-dalam-angka-2026.html",
+  "sourceFileSha256": "8652ee731a51c61b595856a751aab4f465cf54e78d4950147edc5a4eba864d6e",
+  "sourceFileBytes": 6006908,
+  "sourcePages": [7, 8, 9],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cilacap.",
+  "csvPath": "datasets/bps-3301-kecamatan-330120-dalam-angka-2026.csv",
+  "csvSha256": "8bae20d9b78ee4a43653ebc236fa905d0eecc5c6d8639e66001f9c61ff5dd5f8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bantarsari, 2025",
+      "printedPages": [7, 8],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bantarsari, 2025",
+      "printedPages": [9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

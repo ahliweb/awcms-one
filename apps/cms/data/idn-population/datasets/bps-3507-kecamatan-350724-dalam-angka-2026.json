@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350724-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.24",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Singosari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Singosari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507280",
+  "publicationNumber": "35070.26034",
+  "issn": "2829-0739",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2026/09/28/26900bca0ceca8d084441720/kecamatan-singosari-dalam-angka-2026.html",
+  "sourceFileSha256": "a7b7fd089e6d46dc71fa41c49a372870ec6f80a76c3023b5c47ac1ce70caa653",
+  "sourceFileBytes": 5587024,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350724-dalam-angka-2026.csv",
+  "csvSha256": "13ee7be0bc6219382ee4a62583af02e823315251c1788da309255d8e217a9153",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Singosari, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Singosari, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

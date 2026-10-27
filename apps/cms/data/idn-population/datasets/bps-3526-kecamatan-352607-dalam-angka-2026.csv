@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.26.07.2005,4,Tolbuk,sex,laki_laki,,713,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2005,4,Tolbuk,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2005,4,Tolbuk,total,total,,1465,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2007,4,Ra'as,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2007,4,Ra'as,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2007,4,Ra'as,total,total,,832,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2008,4,Polongan,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2008,4,Polongan,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2008,4,Polongan,total,total,,1007,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2009,4,Karang Asem,sex,laki_laki,,305,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2009,4,Karang Asem,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2009,4,Karang Asem,total,total,,628,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2013,4,Bragang,sex,laki_laki,,1938,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2013,4,Bragang,sex,perempuan,,1893,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2013,4,Bragang,total,total,,3831,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2014,4,Lergunong,sex,laki_laki,,1817,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2014,4,Lergunong,sex,perempuan,,1836,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2014,4,Lergunong,total,total,,3653,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2015,4,Panyaksagan,sex,laki_laki,,1674,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2015,4,Panyaksagan,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2015,4,Panyaksagan,total,total,,3349,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2021,4,Larangan Glintong,sex,laki_laki,,1218,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2021,4,Larangan Glintong,sex,perempuan,,1205,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2021,4,Larangan Glintong,total,total,,2423,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2016,4,Manonggal,sex,laki_laki,,893,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2016,4,Manonggal,sex,perempuan,,901,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2016,4,Manonggal,total,total,,1794,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2020,4,Larangan Sorjan,sex,laki_laki,,815,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2020,4,Larangan Sorjan,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2020,4,Larangan Sorjan,total,total,,1628,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2011,4,Bulung,sex,laki_laki,,1069,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2011,4,Bulung,sex,perempuan,,1048,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2011,4,Bulung,total,total,,2117,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2010,4,Trogan,sex,laki_laki,,868,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2010,4,Trogan,sex,perempuan,,849,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2010,4,Trogan,total,total,,1717,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2022,4,Ko'ol,sex,laki_laki,,1059,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2022,4,Ko'ol,sex,perempuan,,1036,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2022,4,Ko'ol,total,total,,2095,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2004,4,Tobaddung,sex,laki_laki,,906,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2004,4,Tobaddung,sex,perempuan,,906,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2004,4,Tobaddung,total,total,,1812,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2003,4,Mrandung,sex,laki_laki,,1046,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2003,4,Mrandung,sex,perempuan,,1033,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2003,4,Mrandung,total,total,,2079,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2002,4,Buluk Agung,sex,laki_laki,,2078,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2002,4,Buluk Agung,sex,perempuan,,2059,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2002,4,Buluk Agung,total,total,,4137,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2017,4,Bator,sex,laki_laki,,2217,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2017,4,Bator,sex,perempuan,,2215,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2017,4,Bator,total,total,,4432,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2001,4,Klampis Barat,sex,laki_laki,,1384,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2001,4,Klampis Barat,sex,perempuan,,1339,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2001,4,Klampis Barat,total,total,,2723,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07.2018,4,Klampis Timur,sex,laki_laki,,848,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07.2018,4,Klampis Timur,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07.2018,4,Klampis Timur,total,total,,1699,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07,3,Kecamatan Klampis,sex,laki_laki,,27052,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.07,3,Kecamatan Klampis,sex,perempuan,,27000,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.07,3,Kecamatan Klampis,total,total,,54052,jiwa,2025,registration,total_population,3.1,31,,
+35.26.07,3,Klampis,age_group,0-4,laki_laki,1860,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.07,3,Klampis,age_group,0-4,perempuan,1679,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.07,3,Klampis,age_group,0-4,,3539,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.07,3,Klampis,age_group,5-9,laki_laki,2466,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.07,3,Klampis,age_group,5-9,perempuan,2250,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.07,3,Klampis,age_group,5-9,,4716,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.07,3,Klampis,age_group,10-14,laki_laki,2345,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.07,3,Klampis,age_group,10-14,perempuan,2231,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.07,3,Klampis,age_group,10-14,,4576,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.07,3,Klampis,age_group,15-19,laki_laki,1722,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.07,3,Klampis,age_group,15-19,perempuan,1587,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.07,3,Klampis,age_group,15-19,,3309,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.07,3,Klampis,age_group,20-24,laki_laki,2106,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.07,3,Klampis,age_group,20-24,perempuan,2042,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.07,3,Klampis,age_group,20-24,,4148,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.07,3,Klampis,age_group,25-29,laki_laki,2241,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.07,3,Klampis,age_group,25-29,perempuan,2164,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.07,3,Klampis,age_group,25-29,,4405,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.07,3,Klampis,age_group,30-34,laki_laki,1959,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.07,3,Klampis,age_group,30-34,perempuan,1887,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.07,3,Klampis,age_group,30-34,,3846,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.07,3,Klampis,age_group,35-39,laki_laki,2015,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.07,3,Klampis,age_group,35-39,perempuan,2084,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.07,3,Klampis,age_group,35-39,,4099,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.07,3,Klampis,age_group,40-44,laki_laki,2008,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.07,3,Klampis,age_group,40-44,perempuan,2162,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.07,3,Klampis,age_group,40-44,,4170,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.07,3,Klampis,age_group,45-49,laki_laki,1959,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.07,3,Klampis,age_group,45-49,perempuan,2017,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.07,3,Klampis,age_group,45-49,,3976,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.07,3,Klampis,age_group,50-54,laki_laki,1573,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.07,3,Klampis,age_group,50-54,perempuan,1834,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.07,3,Klampis,age_group,50-54,,3407,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.07,3,Klampis,age_group,55-59,laki_laki,1349,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.07,3,Klampis,age_group,55-59,perempuan,1742,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.07,3,Klampis,age_group,55-59,,3091,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.07,3,Klampis,age_group,60-64,laki_laki,1182,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.07,3,Klampis,age_group,60-64,perempuan,1602,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.07,3,Klampis,age_group,60-64,,2784,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.07,3,Klampis,age_group,65-69,laki_laki,1061,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.07,3,Klampis,age_group,65-69,perempuan,1315,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.07,3,Klampis,age_group,65-69,,2376,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.07,3,Klampis,age_group,70-74,laki_laki,596,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.07,3,Klampis,age_group,70-74,perempuan,150,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.07,3,Klampis,age_group,70-74,,746,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.07,3,Klampis,age_group,75+,laki_laki,610,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.07,3,Klampis,age_group,75+,perempuan,254,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.07,3,Klampis,age_group,75+,,864,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.07,3,Klampis,sex,laki_laki,,27052,jiwa,2025,registration,total_population,3.3,35,,Laki-Laki
+35.26.07,3,Klampis,sex,perempuan,,27000,jiwa,2025,registration,total_population,3.3,35,,Perempuan
+35.26.07,3,Klampis,total,total,,54052,jiwa,2025,registration,total_population,3.3,35,,

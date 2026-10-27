@@ -1,0 +1,173 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.01,3,Kalijambe,religion,islam,,56309,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.01,3,Kalijambe,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.01,3,Kalijambe,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.01,3,Kalijambe,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.01,3,Kalijambe,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+33.14.01,3,Kalijambe,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.02,3,Plupuh,religion,islam,,53742,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.02,3,Plupuh,religion,kristen,,77,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.02,3,Plupuh,religion,katolik,,47,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.02,3,Plupuh,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.02,3,Plupuh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+33.14.02,3,Plupuh,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.03,3,Masaran,religion,islam,,80917,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.03,3,Masaran,religion,kristen,,894,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.03,3,Masaran,religion,katolik,,166,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.03,3,Masaran,religion,hindu,,235,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.03,3,Masaran,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.03,3,Masaran,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.04,3,Kedawung,religion,islam,,68425,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.04,3,Kedawung,religion,kristen,,633,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.04,3,Kedawung,religion,katolik,,159,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.04,3,Kedawung,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.04,3,Kedawung,religion,buddha,,17,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.04,3,Kedawung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.05,3,Sambirejo,religion,islam,,41739,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.05,3,Sambirejo,religion,kristen,,587,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.05,3,Sambirejo,religion,katolik,,67,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.05,3,Sambirejo,religion,hindu,,15,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.05,3,Sambirejo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+33.14.05,3,Sambirejo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.06,3,Gondang,religion,islam,,48195,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.06,3,Gondang,religion,kristen,,580,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.06,3,Gondang,religion,katolik,,180,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.06,3,Gondang,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.06,3,Gondang,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.06,3,Gondang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.07,3,Sambungmacan,religion,islam,,49971,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.07,3,Sambungmacan,religion,kristen,,687,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.07,3,Sambungmacan,religion,katolik,,60,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.07,3,Sambungmacan,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.07,3,Sambungmacan,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.07,3,Sambungmacan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.08,3,Ngrampal,religion,islam,,43955,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.08,3,Ngrampal,religion,kristen,,207,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.08,3,Ngrampal,religion,katolik,,159,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.08,3,Ngrampal,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.08,3,Ngrampal,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.08,3,Ngrampal,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.09,3,Karangmalang,religion,islam,,71607,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.09,3,Karangmalang,religion,kristen,,1770,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.09,3,Karangmalang,religion,katolik,,1191,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.09,3,Karangmalang,religion,hindu,,24,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.09,3,Karangmalang,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.09,3,Karangmalang,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.10,3,Sragen,religion,islam,,67636,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.10,3,Sragen,religion,kristen,,3451,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.10,3,Sragen,religion,katolik,,2136,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.10,3,Sragen,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.10,3,Sragen,religion,buddha,,45,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.10,3,Sragen,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.11,3,Sidoharjo,religion,islam,,58778,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.11,3,Sidoharjo,religion,kristen,,355,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.11,3,Sidoharjo,religion,katolik,,682,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.11,3,Sidoharjo,religion,hindu,,22,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.11,3,Sidoharjo,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.11,3,Sidoharjo,religion,lainnya,,12,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.12,3,Tanon,religion,islam,,60695,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.12,3,Tanon,religion,kristen,,172,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.12,3,Tanon,religion,katolik,,268,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.12,3,Tanon,religion,hindu,,16,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.12,3,Tanon,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.12,3,Tanon,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.13,3,Gemolong,religion,islam,,54104,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.13,3,Gemolong,religion,kristen,,354,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.13,3,Gemolong,religion,katolik,,279,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.13,3,Gemolong,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.13,3,Gemolong,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.13,3,Gemolong,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.14,3,Miri,religion,islam,,38521,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.14,3,Miri,religion,kristen,,100,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.14,3,Miri,religion,katolik,,53,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.14,3,Miri,religion,hindu,,21,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.14,3,Miri,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+33.14.14,3,Miri,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.15,3,Sumberlawang,religion,islam,,51477,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.15,3,Sumberlawang,religion,kristen,,214,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.15,3,Sumberlawang,religion,katolik,,104,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.15,3,Sumberlawang,religion,hindu,,390,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.15,3,Sumberlawang,religion,buddha,,18,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.15,3,Sumberlawang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.16,3,Mondokan,religion,islam,,41768,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.16,3,Mondokan,religion,kristen,,89,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.16,3,Mondokan,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.16,3,Mondokan,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.16,3,Mondokan,religion,buddha,,31,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.16,3,Mondokan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.17,3,Sukodono,religion,islam,,35063,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.17,3,Sukodono,religion,kristen,,68,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.17,3,Sukodono,religion,katolik,,29,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.17,3,Sukodono,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+33.14.17,3,Sukodono,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.17,3,Sukodono,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.18,3,Gesi,religion,islam,,23739,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.18,3,Gesi,religion,kristen,,145,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.18,3,Gesi,religion,katolik,,58,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.18,3,Gesi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+33.14.18,3,Gesi,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.18,3,Gesi,religion,lainnya,,32,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14.19,3,Tangen,religion,islam,,30169,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.19,3,Tangen,religion,kristen,,231,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.19,3,Tangen,religion,katolik,,36,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.19,3,Tangen,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.19,3,Tangen,religion,buddha,,27,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.19,3,Tangen,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14.20,3,Jenar,religion,islam,,30663,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14.20,3,Jenar,religion,kristen,,164,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14.20,3,Jenar,religion,katolik,,117,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14.20,3,Jenar,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14.20,3,Jenar,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14.20,3,Jenar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+33.14,2,Kabupaten Sragen,religion,islam,,1007473,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+33.14,2,Kabupaten Sragen,religion,kristen,,10799,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+33.14,2,Kabupaten Sragen,religion,katolik,,5826,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+33.14,2,Kabupaten Sragen,religion,hindu,,786,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+33.14,2,Kabupaten Sragen,religion,buddha,,213,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+33.14,2,Kabupaten Sragen,religion,lainnya,,66,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/padi_padian,,86155,rupiah,2024,survey_estimate,per_capita,10.1,394,,Padi-padian
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/padi_padian,,76322,rupiah,2025,survey_estimate,per_capita,10.1,394,,Padi-padian
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/umbi_umbian,,6957,rupiah,2024,survey_estimate,per_capita,10.1,394,,Umbi-umbian
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/umbi_umbian,,6957,rupiah,2025,survey_estimate,per_capita,10.1,394,,Umbi-umbian
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,29015,rupiah,2024,survey_estimate,per_capita,10.1,394,,Ikan/udang/cumi/kerang
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,32382,rupiah,2025,survey_estimate,per_capita,10.1,394,,Ikan/udang/cumi/kerang
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/daging,,27985,rupiah,2024,survey_estimate,per_capita,10.1,394,,Daging
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/daging,,35061,rupiah,2025,survey_estimate,per_capita,10.1,394,,Daging
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/telur_dan_susu,,36006,rupiah,2024,survey_estimate,per_capita,10.1,394,,Telur dan susu
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/telur_dan_susu,,41176,rupiah,2025,survey_estimate,per_capita,10.1,394,,Telur dan susu
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/sayur_sayuran,,62785,rupiah,2024,survey_estimate,per_capita,10.1,394,,Sayur-sayuran
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/sayur_sayuran,,71483,rupiah,2025,survey_estimate,per_capita,10.1,394,,Sayur-sayuran
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/kacang_kacangan,,19527,rupiah,2024,survey_estimate,per_capita,10.1,394,,Kacang-kacangan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/kacang_kacangan,,22035,rupiah,2025,survey_estimate,per_capita,10.1,394,,Kacang-kacangan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/buah_buahan,,36993,rupiah,2024,survey_estimate,per_capita,10.1,394,,Buah-buahan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/buah_buahan,,50741,rupiah,2025,survey_estimate,per_capita,10.1,394,,Buah-buahan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17451,rupiah,2024,survey_estimate,per_capita,10.1,394,,Minyak dan kelapa
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20762,rupiah,2025,survey_estimate,per_capita,10.1,394,,Minyak dan kelapa
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/bahan_minuman,,24218,rupiah,2024,survey_estimate,per_capita,10.1,394,,Bahan minuman
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/bahan_minuman,,26256,rupiah,2025,survey_estimate,per_capita,10.1,394,,Bahan minuman
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/bumbu_bumbuan,,16017,rupiah,2024,survey_estimate,per_capita,10.1,394,,Bumbu-bumbuan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/bumbu_bumbuan,,17339,rupiah,2025,survey_estimate,per_capita,10.1,394,,Bumbu-bumbuan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/konsumsi_lainnya,,13613,rupiah,2024,survey_estimate,per_capita,10.1,394,,Konsumsi lainnya
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/konsumsi_lainnya,,11304,rupiah,2025,survey_estimate,per_capita,10.1,394,,Konsumsi lainnya
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,209114,rupiah,2024,survey_estimate,per_capita,10.1,394,,Makanan dan minuman jadi
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,228078,rupiah,2025,survey_estimate,per_capita,10.1,394,,Makanan dan minuman jadi
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/rokok,,84515,rupiah,2024,survey_estimate,per_capita,10.1,394,,Rokok
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/rokok,,77655,rupiah,2025,survey_estimate,per_capita,10.1,394,,Rokok
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/jumlah_makanan,,670352,rupiah,2024,survey_estimate,per_capita,10.1,394,,Jumlah makanan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/jumlah_makanan,,717551,rupiah,2025,survey_estimate,per_capita,10.1,394,,Jumlah makanan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,319064,rupiah,2024,survey_estimate,per_capita,10.1,394,,Perumahan dan fasilitas rumah tangga
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,374658,rupiah,2025,survey_estimate,per_capita,10.1,394,,Perumahan dan fasilitas rumah tangga
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,140371,rupiah,2024,survey_estimate,per_capita,10.1,394,,Aneka komoditas dan jasa
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,173762,rupiah,2025,survey_estimate,per_capita,10.1,394,,Aneka komoditas dan jasa
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20119,rupiah,2024,survey_estimate,per_capita,10.1,394,,"Pakaian, alas kaki, dan tutup kepala"
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22875,rupiah,2025,survey_estimate,per_capita,10.1,394,,"Pakaian, alas kaki, dan tutup kepala"
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/komoditas_tahan_lama,,46266,rupiah,2024,survey_estimate,per_capita,10.1,394,,Komoditas tahan lama
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/komoditas_tahan_lama,,62269,rupiah,2025,survey_estimate,per_capita,10.1,394,,Komoditas tahan lama
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40183,rupiah,2024,survey_estimate,per_capita,10.1,394,,"Pajak, pungutan, dan asuransi"
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,64624,rupiah,2025,survey_estimate,per_capita,10.1,394,,"Pajak, pungutan, dan asuransi"
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15155,rupiah,2024,survey_estimate,per_capita,10.1,394,,Keperluan pesta dan upacara/kenduri
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,29841,rupiah,2025,survey_estimate,per_capita,10.1,394,,Keperluan pesta dan upacara/kenduri
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,581158,rupiah,2024,survey_estimate,per_capita,10.1,394,,Jumlah bukan makanan
+33.14,2,Kabupaten Sragen,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,728030,rupiah,2025,survey_estimate,per_capita,10.1,394,,Jumlah bukan makanan
+33.14,2,Kabupaten Sragen,expenditure,total,,1251510,rupiah,2024,survey_estimate,per_capita,10.1,394,,
+33.14,2,Kabupaten Sragen,expenditure,total,,1445581,rupiah,2025,survey_estimate,per_capita,10.1,394,,

@@ -1,0 +1,69 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.28.08.2001,4,Penujah,sex,perempuan,,1254,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2001,4,Penujah,total,total,,2450,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2002,4,Karang Anyar,sex,perempuan,,4556,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2002,4,Karang Anyar,total,total,,9332,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2003,4,Tonggara,sex,perempuan,,2778,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2003,4,Tonggara,total,total,,5579,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2004,4,Kedung Banteng,sex,perempuan,,3882,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2004,4,Kedung Banteng,total,total,,7814,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2005,4,Dukuhjati Wetan,sex,perempuan,,1417,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2005,4,Dukuhjati Wetan,total,total,,2792,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2006,4,Sumingkir,sex,perempuan,,1673,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2006,4,Sumingkir,total,total,,3429,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2007,4,Margamulya,sex,perempuan,,1949,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2007,4,Margamulya,total,total,,3952,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2008,4,Kebandingan,sex,perempuan,,2974,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2008,4,Kebandingan,total,total,,5978,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2009,4,Karangmalang,sex,perempuan,,2525,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2009,4,Karangmalang,total,total,,5216,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08.2010,4,Semedo,sex,perempuan,,1541,jiwa,2026,registration,total_population,3.1,32,,Perempuan
+33.28.08.2010,4,Semedo,total,total,,3108,jiwa,2026,registration,total_population,3.1,32,,
+33.28.08,3,Kedungbanteng,age_group,0-4,laki_laki,1902,jiwa,2026,registration,total_population,3.2,34,,0-4
+33.28.08,3,Kedungbanteng,age_group,0-4,perempuan,1841,jiwa,2026,registration,total_population,3.2,34,,0-4
+33.28.08,3,Kedungbanteng,age_group,0-4,,3743,jiwa,2026,registration,total_population,3.2,34,,0-4
+33.28.08,3,Kedungbanteng,age_group,5-9,laki_laki,1689,jiwa,2026,registration,total_population,3.2,34,,5-9
+33.28.08,3,Kedungbanteng,age_group,5-9,perempuan,1702,jiwa,2026,registration,total_population,3.2,34,,5-9
+33.28.08,3,Kedungbanteng,age_group,5-9,,3391,jiwa,2026,registration,total_population,3.2,34,,5-9
+33.28.08,3,Kedungbanteng,age_group,10-14,laki_laki,1798,jiwa,2026,registration,total_population,3.2,34,,10-14
+33.28.08,3,Kedungbanteng,age_group,10-14,perempuan,1693,jiwa,2026,registration,total_population,3.2,34,,10-14
+33.28.08,3,Kedungbanteng,age_group,10-14,,3491,jiwa,2026,registration,total_population,3.2,34,,10-14
+33.28.08,3,Kedungbanteng,age_group,15-19,laki_laki,1889,jiwa,2026,registration,total_population,3.2,34,,15-19
+33.28.08,3,Kedungbanteng,age_group,15-19,perempuan,1726,jiwa,2026,registration,total_population,3.2,34,,15-19
+33.28.08,3,Kedungbanteng,age_group,15-19,,3615,jiwa,2026,registration,total_population,3.2,34,,15-19
+33.28.08,3,Kedungbanteng,age_group,20-24,laki_laki,1822,jiwa,2026,registration,total_population,3.2,34,,20-24
+33.28.08,3,Kedungbanteng,age_group,20-24,perempuan,1770,jiwa,2026,registration,total_population,3.2,34,,20-24
+33.28.08,3,Kedungbanteng,age_group,20-24,,3592,jiwa,2026,registration,total_population,3.2,34,,20-24
+33.28.08,3,Kedungbanteng,age_group,25-29,laki_laki,1903,jiwa,2026,registration,total_population,3.2,34,,25-29
+33.28.08,3,Kedungbanteng,age_group,25-29,perempuan,1756,jiwa,2026,registration,total_population,3.2,34,,25-29
+33.28.08,3,Kedungbanteng,age_group,25-29,,3659,jiwa,2026,registration,total_population,3.2,34,,25-29
+33.28.08,3,Kedungbanteng,age_group,30-34,laki_laki,1874,jiwa,2026,registration,total_population,3.2,34,,30-34
+33.28.08,3,Kedungbanteng,age_group,30-34,perempuan,1732,jiwa,2026,registration,total_population,3.2,34,,30-34
+33.28.08,3,Kedungbanteng,age_group,30-34,,3606,jiwa,2026,registration,total_population,3.2,34,,30-34
+33.28.08,3,Kedungbanteng,age_group,35-39,laki_laki,1841,jiwa,2026,registration,total_population,3.2,34,,35-39
+33.28.08,3,Kedungbanteng,age_group,35-39,perempuan,1745,jiwa,2026,registration,total_population,3.2,34,,35-39
+33.28.08,3,Kedungbanteng,age_group,35-39,,3586,jiwa,2026,registration,total_population,3.2,34,,35-39
+33.28.08,3,Kedungbanteng,age_group,40-44,laki_laki,1756,jiwa,2026,registration,total_population,3.2,34,,40-44
+33.28.08,3,Kedungbanteng,age_group,40-44,perempuan,1659,jiwa,2026,registration,total_population,3.2,34,,40-44
+33.28.08,3,Kedungbanteng,age_group,40-44,,3415,jiwa,2026,registration,total_population,3.2,34,,40-44
+33.28.08,3,Kedungbanteng,age_group,45-49,laki_laki,1684,jiwa,2026,registration,total_population,3.2,34,,45-49
+33.28.08,3,Kedungbanteng,age_group,45-49,perempuan,1673,jiwa,2026,registration,total_population,3.2,34,,45-49
+33.28.08,3,Kedungbanteng,age_group,45-49,,3357,jiwa,2026,registration,total_population,3.2,34,,45-49
+33.28.08,3,Kedungbanteng,age_group,50-54,laki_laki,1536,jiwa,2026,registration,total_population,3.2,34,,50-54
+33.28.08,3,Kedungbanteng,age_group,50-54,perempuan,1558,jiwa,2026,registration,total_population,3.2,34,,50-54
+33.28.08,3,Kedungbanteng,age_group,50-54,,3094,jiwa,2026,registration,total_population,3.2,34,,50-54
+33.28.08,3,Kedungbanteng,age_group,55-59,laki_laki,1221,jiwa,2026,registration,total_population,3.2,34,,55-59
+33.28.08,3,Kedungbanteng,age_group,55-59,perempuan,1282,jiwa,2026,registration,total_population,3.2,34,,55-59
+33.28.08,3,Kedungbanteng,age_group,55-59,,2503,jiwa,2026,registration,total_population,3.2,34,,55-59
+33.28.08,3,Kedungbanteng,age_group,60-64,laki_laki,926,jiwa,2026,registration,total_population,3.2,34,,60-64
+33.28.08,3,Kedungbanteng,age_group,60-64,perempuan,999,jiwa,2026,registration,total_population,3.2,34,,60-64
+33.28.08,3,Kedungbanteng,age_group,60-64,,1925,jiwa,2026,registration,total_population,3.2,34,,60-64
+33.28.08,3,Kedungbanteng,age_group,65-69,laki_laki,790,jiwa,2026,registration,total_population,3.2,34,,65-69
+33.28.08,3,Kedungbanteng,age_group,65-69,perempuan,889,jiwa,2026,registration,total_population,3.2,34,,65-69
+33.28.08,3,Kedungbanteng,age_group,65-69,,1679,jiwa,2026,registration,total_population,3.2,34,,65-69
+33.28.08,3,Kedungbanteng,age_group,70-74,laki_laki,545,jiwa,2026,registration,total_population,3.2,34,,70-74
+33.28.08,3,Kedungbanteng,age_group,70-74,perempuan,683,jiwa,2026,registration,total_population,3.2,34,,70-74
+33.28.08,3,Kedungbanteng,age_group,70-74,,1228,jiwa,2026,registration,total_population,3.2,34,,70-74
+33.28.08,3,Kedungbanteng,age_group,75+,laki_laki,531,jiwa,2026,registration,total_population,3.2,34,,75+
+33.28.08,3,Kedungbanteng,age_group,75+,perempuan,652,jiwa,2026,registration,total_population,3.2,34,,75+
+33.28.08,3,Kedungbanteng,age_group,75+,,1183,jiwa,2026,registration,total_population,3.2,34,,75+

@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.12.02.2017,4,Padang Bakjok,sex,laki_laki,,351,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2017,4,Padang Bakjok,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2017,4,Padang Bakjok,total,total,,672,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2018,4,Suak Nibong,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2018,4,Suak Nibong,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2018,4,Suak Nibong,total,total,,760,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2015,4,Drien Kipah,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2015,4,Drien Kipah,sex,perempuan,,270,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2015,4,Drien Kipah,total,total,,542,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2014,4,Bineh Krueng,sex,laki_laki,,534,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2014,4,Bineh Krueng,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2014,4,Bineh Krueng,total,total,,1117,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2016,4,Drien Jalo,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2016,4,Drien Jalo,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2016,4,Drien Jalo,total,total,,635,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2005,4,Padang Kawa,sex,laki_laki,,371,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2005,4,Padang Kawa,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2005,4,Padang Kawa,total,total,,762,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2003,4,mesjid,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2003,4,mesjid,sex,perempuan,,194,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2003,4,mesjid,total,total,,372,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2001,4,Adan,sex,laki_laki,,983,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2001,4,Adan,sex,perempuan,,913,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2001,4,Adan,total,total,,1896,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2002,4,Pante Geulumpang,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2002,4,Pante Geulumpang,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2002,4,Pante Geulumpang,total,total,,837,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2007,4,Padang Bak Jeumpa,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2007,4,Padang Bak Jeumpa,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2007,4,Padang Bak Jeumpa,total,total,,1068,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2006,4,Blang Padang,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2006,4,Blang Padang,sex,perempuan,,478,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2006,4,Blang Padang,total,total,,967,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02.2008,4,Suak Labu,sex,laki_laki,,327,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02.2008,4,Suak Labu,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02.2008,4,Suak Labu,total,total,,676,jiwa,2025,registration,total_population,3.1,21,,
+11.12.02,3,Tangan-Tangan,sex,laki_laki,,7160,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.02,3,Tangan-Tangan,sex,perempuan,,7097,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.02,3,Tangan-Tangan,total,total,,14257,jiwa,2025,registration,total_population,3.1,21,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.09.08.2001,4,Batu Tambun,sex,laki_laki,,166,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2001,4,Batu Tambun,sex,perempuan,,150,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2001,4,Batu Tambun,total,total,,316,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08.2002,4,Kinipan,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2002,4,Kinipan,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2002,4,Kinipan,total,total,,619,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08.2003,4,Ginih,sex,laki_laki,,157,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2003,4,Ginih,sex,perempuan,,136,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2003,4,Ginih,total,total,,293,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08.2004,4,Benakitan,sex,laki_laki,,176,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2004,4,Benakitan,sex,perempuan,,158,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2004,4,Benakitan,total,total,,334,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08.2005,4,Liku,sex,laki_laki,,102,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2005,4,Liku,sex,perempuan,,105,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2005,4,Liku,total,total,,207,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08.2006,4,Mengkalang,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2006,4,Mengkalang,sex,perempuan,,212,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2006,4,Mengkalang,total,total,,449,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08.2007,4,Karang Mas,sex,laki_laki,,141,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2007,4,Karang Mas,sex,perempuan,,132,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2007,4,Karang Mas,total,total,,273,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08.2008,4,Kina,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08.2008,4,Kina,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08.2008,4,Kina,total,total,,450,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08,3,Kecamatan Batangkawa,sex,laki_laki,,1718,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.08,3,Kecamatan Batangkawa,sex,perempuan,,1595,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.08,3,Kecamatan Batangkawa,total,total,,3313,jiwa,2025,registration,total_population,3.1,28,,
+62.09.08,3,Batang Kawa,age_group,0-4,laki_laki,87,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.08,3,Batang Kawa,age_group,0-4,perempuan,91,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.08,3,Batang Kawa,age_group,0-4,,178,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.08,3,Batang Kawa,age_group,5-9,laki_laki,154,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.08,3,Batang Kawa,age_group,5-9,perempuan,135,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.08,3,Batang Kawa,age_group,5-9,,289,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.08,3,Batang Kawa,age_group,10-14,laki_laki,130,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.08,3,Batang Kawa,age_group,10-14,perempuan,156,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.08,3,Batang Kawa,age_group,10-14,,286,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.08,3,Batang Kawa,age_group,15-19,laki_laki,124,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.08,3,Batang Kawa,age_group,15-19,perempuan,133,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.08,3,Batang Kawa,age_group,15-19,,257,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.08,3,Batang Kawa,age_group,20-24,laki_laki,168,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.08,3,Batang Kawa,age_group,20-24,perempuan,135,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.08,3,Batang Kawa,age_group,20-24,,303,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.08,3,Batang Kawa,age_group,25-29,laki_laki,148,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.08,3,Batang Kawa,age_group,25-29,perempuan,121,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.08,3,Batang Kawa,age_group,25-29,,269,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.08,3,Batang Kawa,age_group,30-34,laki_laki,115,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.08,3,Batang Kawa,age_group,30-34,perempuan,125,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.08,3,Batang Kawa,age_group,30-34,,240,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.08,3,Batang Kawa,age_group,35-39,laki_laki,124,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.08,3,Batang Kawa,age_group,35-39,perempuan,103,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.08,3,Batang Kawa,age_group,35-39,,227,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.08,3,Batang Kawa,age_group,40-44,laki_laki,137,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.08,3,Batang Kawa,age_group,40-44,perempuan,118,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.08,3,Batang Kawa,age_group,40-44,,255,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.08,3,Batang Kawa,age_group,45-49,laki_laki,131,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.08,3,Batang Kawa,age_group,45-49,perempuan,100,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.08,3,Batang Kawa,age_group,45-49,,231,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.08,3,Batang Kawa,age_group,50-54,laki_laki,87,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.08,3,Batang Kawa,age_group,50-54,perempuan,76,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.08,3,Batang Kawa,age_group,50-54,,163,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.08,3,Batang Kawa,age_group,55-59,laki_laki,77,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.08,3,Batang Kawa,age_group,55-59,perempuan,71,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.08,3,Batang Kawa,age_group,55-59,,148,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.08,3,Batang Kawa,age_group,60-64,laki_laki,63,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.08,3,Batang Kawa,age_group,60-64,perempuan,72,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.08,3,Batang Kawa,age_group,60-64,,135,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.08,3,Batang Kawa,age_group,65-69,laki_laki,61,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.08,3,Batang Kawa,age_group,65-69,perempuan,69,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.08,3,Batang Kawa,age_group,65-69,,130,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.08,3,Batang Kawa,age_group,70-74,laki_laki,41,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.08,3,Batang Kawa,age_group,70-74,perempuan,31,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.08,3,Batang Kawa,age_group,70-74,,72,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.08,3,Batang Kawa,age_group,75+,laki_laki,71,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.08,3,Batang Kawa,age_group,75+,perempuan,59,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.08,3,Batang Kawa,age_group,75+,,130,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.08,3,Kecamatan Batangkawa,sex,laki_laki,,1718,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki/Male
+62.09.08,3,Kecamatan Batangkawa,sex,perempuan,,1595,jiwa,2025,registration,total_population,3.2,30,,Perempuan/Female
+62.09.08,3,Kecamatan Batangkawa,total,total,,3313,jiwa,2025,registration,total_population,3.2,30,,

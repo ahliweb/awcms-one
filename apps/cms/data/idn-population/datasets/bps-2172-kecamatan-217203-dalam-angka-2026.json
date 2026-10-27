@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-2172-kecamatan-217203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.72.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanjungpinang Kota Dalam Angka 2026",
+  "publisherName": "BPS Kota Tanjungpinang",
+  "publisherDomain": "2172",
+  "publisherWebsite": "https://tanjungpinangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tanjungpinang (https://tanjungpinangkota.bps.go.id), publikasi \"Kecamatan Tanjungpinang Kota Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2172030",
+  "publicationNumber": "21720.26011",
+  "issn": "2723-4819",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjungpinangkota.bps.go.id/id/publication/2026/09/28/afb1402bb4e75ba8364cb914/kecamatan-tanjungpinang-kota-dalam-angka-2026.html",
+  "sourceFileSha256": "02a461e028a2534b97a61dc96fdd55a7acfb4cd9423980ec91b8858a81143efb",
+  "sourceFileBytes": 13417476,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tanjungpinang",
+  "csvPath": "datasets/bps-2172-kecamatan-217203-dalam-angka-2026.csv",
+  "csvSha256": "6ae043b95a2603505efc6cc55df58fc4f70bad5c6db734967534301590134dfb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tanjungpinang Kota , 202 5",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tanjungpinang Kota , 202 5",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kota\": unmatched ",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

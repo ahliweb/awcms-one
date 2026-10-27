@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.13.03.2006,4,Kuning,sex,laki_laki,,173,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2006,4,Kuning,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2006,4,Kuning,total,total,,352,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2003,4,Padang Pasir,sex,laki_laki,,179,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2003,4,Padang Pasir,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2003,4,Padang Pasir,total,total,,371,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2008,4,Mangang,sex,laki_laki,,148,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2008,4,Mangang,sex,perempuan,,166,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2008,4,Mangang,total,total,,314,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2014,4,Kota Rikit Gaib,sex,laki_laki,,278,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2014,4,Kota Rikit Gaib,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2014,4,Kota Rikit Gaib,total,total,,599,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2001,4,Ampa Kolak,sex,laki_laki,,220,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2001,4,Ampa Kolak,sex,perempuan,,212,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2001,4,Ampa Kolak,total,total,,432,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2012,4,Cane Uken,sex,laki_laki,,184,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2012,4,Cane Uken,sex,perempuan,,191,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2012,4,Cane Uken,total,total,,375,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2013,4,Tungel,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2013,4,Tungel,sex,perempuan,,302,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2013,4,Tungel,total,total,,564,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2011,4,Rempelam,sex,laki_laki,,126,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2011,4,Rempelam,sex,perempuan,,138,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2011,4,Rempelam,total,total,,264,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2002,4,Cane Toa,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2002,4,Cane Toa,sex,perempuan,,222,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2002,4,Cane Toa,total,total,,448,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2018,4,Tungel Baru,sex,laki_laki,,206,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2018,4,Tungel Baru,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2018,4,Tungel Baru,total,total,,435,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2016,4,Lukup Baru,sex,laki_laki,,139,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2016,4,Lukup Baru,sex,perempuan,,110,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2016,4,Lukup Baru,total,total,,249,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03.2017,4,Penomon Jaya,sex,laki_laki,,189,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03.2017,4,Penomon Jaya,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03.2017,4,Penomon Jaya,total,total,,386,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03,3,Rikit Gaib,sex,laki_laki,,2555,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.13.03,3,Rikit Gaib,sex,perempuan,,2687,jiwa,2025,registration,total_population,3.1,24,,Perempuan/
+11.13.03,3,Rikit Gaib,total,total,,5242,jiwa,2025,registration,total_population,3.1,24,,
+11.13.03,3,Rikit Gaib,age_group,0-4,laki_laki,263,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.13.03,3,Rikit Gaib,age_group,0-4,perempuan,270,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.13.03,3,Rikit Gaib,age_group,0-4,,533,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.13.03,3,Rikit Gaib,age_group,5-9,laki_laki,293,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.13.03,3,Rikit Gaib,age_group,5-9,perempuan,263,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.13.03,3,Rikit Gaib,age_group,5-9,,556,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.13.03,3,Rikit Gaib,age_group,10-14,laki_laki,248,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.13.03,3,Rikit Gaib,age_group,10-14,perempuan,247,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.13.03,3,Rikit Gaib,age_group,10-14,,495,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.13.03,3,Rikit Gaib,age_group,15-19,laki_laki,206,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.13.03,3,Rikit Gaib,age_group,15-19,perempuan,236,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.13.03,3,Rikit Gaib,age_group,15-19,,442,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.13.03,3,Rikit Gaib,age_group,20-24,laki_laki,195,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.13.03,3,Rikit Gaib,age_group,20-24,perempuan,223,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.13.03,3,Rikit Gaib,age_group,20-24,,418,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.13.03,3,Rikit Gaib,age_group,25-29,laki_laki,211,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.13.03,3,Rikit Gaib,age_group,25-29,perempuan,244,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.13.03,3,Rikit Gaib,age_group,25-29,,455,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.13.03,3,Rikit Gaib,age_group,30-34,laki_laki,222,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.13.03,3,Rikit Gaib,age_group,30-34,perempuan,223,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.13.03,3,Rikit Gaib,age_group,30-34,,445,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.13.03,3,Rikit Gaib,age_group,35-39,laki_laki,206,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.13.03,3,Rikit Gaib,age_group,35-39,perempuan,227,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.13.03,3,Rikit Gaib,age_group,35-39,,433,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.13.03,3,Rikit Gaib,age_group,40-44,laki_laki,192,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.13.03,3,Rikit Gaib,age_group,40-44,perempuan,158,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.13.03,3,Rikit Gaib,age_group,40-44,,350,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.13.03,3,Rikit Gaib,age_group,45-49,laki_laki,136,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.13.03,3,Rikit Gaib,age_group,45-49,perempuan,140,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.13.03,3,Rikit Gaib,age_group,45-49,,276,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.13.03,3,Rikit Gaib,age_group,50-54,laki_laki,119,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.13.03,3,Rikit Gaib,age_group,50-54,perempuan,114,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.13.03,3,Rikit Gaib,age_group,50-54,,233,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.13.03,3,Rikit Gaib,age_group,55-59,laki_laki,89,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.13.03,3,Rikit Gaib,age_group,55-59,perempuan,93,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.13.03,3,Rikit Gaib,age_group,55-59,,182,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.13.03,3,Rikit Gaib,age_group,60-64,laki_laki,56,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.13.03,3,Rikit Gaib,age_group,60-64,perempuan,84,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.13.03,3,Rikit Gaib,age_group,60-64,,140,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.13.03,3,Rikit Gaib,age_group,65-69,laki_laki,51,jiwa,2025,registration,total_population,3.2,26,,65-69
+11.13.03,3,Rikit Gaib,age_group,65-69,perempuan,76,jiwa,2025,registration,total_population,3.2,26,,65-69
+11.13.03,3,Rikit Gaib,age_group,65-69,,127,jiwa,2025,registration,total_population,3.2,26,,65-69
+11.13.03,3,Rikit Gaib,age_group,70-74,laki_laki,33,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.13.03,3,Rikit Gaib,age_group,70-74,perempuan,20,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.13.03,3,Rikit Gaib,age_group,70-74,,53,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.13.03,3,Rikit Gaib,age_group,75+,laki_laki,35,jiwa,2025,registration,total_population,3.2,26,,75
+11.13.03,3,Rikit Gaib,age_group,75+,perempuan,69,jiwa,2025,registration,total_population,3.2,26,,75
+11.13.03,3,Rikit Gaib,age_group,75+,,104,jiwa,2025,registration,total_population,3.2,26,,75
+11.13.03,3,Rikit Gaib,sex,laki_laki,,2555,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+11.13.03,3,Rikit Gaib,sex,perempuan,,2687,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+11.13.03,3,Rikit Gaib,total,total,,5242,jiwa,2025,registration,total_population,3.2,26,,

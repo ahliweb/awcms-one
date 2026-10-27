@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3174-kecamatan-317302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.73.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Grogol Petamburan Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Barat",
+  "publisherDomain": "3174",
+  "publisherWebsite": "https://jakbarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Barat (https://jakbarkota.bps.go.id), publikasi \"Kecamatan Grogol Petamburan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3174040",
+  "publicationNumber": "31740.26008",
+  "issn": "0852-2235",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakbarkota.bps.go.id/id/publication/2026/09/28/279704c46e5b0a147fc2fd39/kecamatan-grogol-petamburan-dalam-angka-2026.html",
+  "sourceFileSha256": "3efa5ea8505cc871eb4f46770fd67c3330a3633705ff925b9a7ed71fbccefcbd",
+  "sourceFileBytes": 4366324,
+  "sourcePages": [29, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Jakarta Barat",
+  "csvPath": "datasets/bps-3174-kecamatan-317302-dalam-angka-2026.csv",
+  "csvSha256": "52aa81a8612333bf28cbc0abbff8d85220b4d3b32289b8a0e74526393171a1c8",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Grogol Petamburan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Grogol Petamburan, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.4: the rows of region 31.73.02 are not stored: age_group (perempuan) vs sex value: parts sum 114144.0000 != 114114.0000 (diff 30.0000); the source itself is inconsistent"
+  ]
+}

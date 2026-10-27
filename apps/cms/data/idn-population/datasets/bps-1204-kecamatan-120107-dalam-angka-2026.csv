@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.07.2002,4,Tapian Nauli I,sex,laki_laki,,2052,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2002,4,Tapian Nauli I,sex,perempuan,,1922,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2002,4,Tapian Nauli I,total,total,,3974,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.2006,4,Mela Dolok,sex,laki_laki,,67,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2006,4,Mela Dolok,sex,perempuan,,74,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2006,4,Mela Dolok,total,total,,141,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.2005,4,Aloban Bair,sex,laki_laki,,246,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2005,4,Aloban Bair,sex,perempuan,,270,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2005,4,Aloban Bair,total,total,,516,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.2003,4,Tapian Nauli III,sex,laki_laki,,1153,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2003,4,Tapian Nauli III,sex,perempuan,,1133,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2003,4,Tapian Nauli III,total,total,,2286,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.1001,4,Tapian Nauli II,sex,laki_laki,,2303,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.1001,4,Tapian Nauli II,sex,perempuan,,2240,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.1001,4,Tapian Nauli II,total,total,,4543,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.2004,4,Tapian Nauli IV,sex,laki_laki,,921,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2004,4,Tapian Nauli IV,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2004,4,Tapian Nauli IV,total,total,,1888,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.2007,4,Mela I,sex,laki_laki,,1692,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2007,4,Mela I,sex,perempuan,,1658,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2007,4,Mela I,total,total,,3350,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.2008,4,Mela II,sex,laki_laki,,1588,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2008,4,Mela II,sex,perempuan,,1534,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2008,4,Mela II,total,total,,3122,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07.2009,4,Bair,sex,laki_laki,,78,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07.2009,4,Bair,sex,perempuan,,87,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07.2009,4,Bair,total,total,,165,jiwa,2025,registration,total_population,3.1,35,,
+12.01.07,3,Tapian Nauli,sex,laki_laki,,10100,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.07,3,Tapian Nauli,sex,perempuan,,9885,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.07,3,Tapian Nauli,total,total,,19985,jiwa,2025,registration,total_population,3.1,35,,

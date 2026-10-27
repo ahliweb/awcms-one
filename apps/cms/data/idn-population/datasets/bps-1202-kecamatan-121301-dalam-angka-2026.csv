@@ -1,0 +1,124 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.01.2002,4,Aek Banir,sex,laki_laki,,1372,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2002,4,Aek Banir,sex,perempuan,,1388,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2002,4,Aek Banir,total,total,,2760,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2029,4,Sipapaga,sex,laki_laki,,1021,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2029,4,Sipapaga,sex,perempuan,,1003,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2029,4,Sipapaga,total,total,,2024,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2021,4,Perbangunan,sex,laki_laki,,1234,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2021,4,Perbangunan,sex,perempuan,,1161,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2021,4,Perbangunan,total,total,,2395,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2024,4,Pidoli Lombang,sex,laki_laki,,3561,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2024,4,Pidoli Lombang,sex,perempuan,,3669,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2024,4,Pidoli Lombang,total,total,,7230,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2004,4,Darussalam,sex,laki_laki,,1392,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2004,4,Darussalam,sex,perempuan,,1381,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2004,4,Darussalam,total,total,,2773,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2028,4,Siobon Julu,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2028,4,Siobon Julu,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2028,4,Siobon Julu,total,total,,862,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2019,4,Panyabungan Julu,sex,laki_laki,,1171,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2019,4,Panyabungan Julu,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2019,4,Panyabungan Julu,total,total,,2363,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2020,4,Panyabungan Tonga,sex,laki_laki,,1256,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2020,4,Panyabungan Tonga,sex,perempuan,,1328,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2020,4,Panyabungan Tonga,total,total,,2584,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2018,4,Panyabungan Jae,sex,laki_laki,,1129,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2018,4,Panyabungan Jae,sex,perempuan,,1162,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2018,4,Panyabungan Jae,total,total,,2291,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2001,4,Adian Jior,sex,laki_laki,,640,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2001,4,Adian Jior,sex,perempuan,,672,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2001,4,Adian Jior,total,total,,1312,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2006,4,Gunung Manaon,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2006,4,Gunung Manaon,sex,perempuan,,584,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2006,4,Gunung Manaon,total,total,,1112,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2027,4,Sigalapang Julu,sex,laki_laki,,1044,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2027,4,Sigalapang Julu,sex,perempuan,,1028,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2027,4,Sigalapang Julu,total,total,,2072,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2013,4,Kampung Padang,sex,laki_laki,,851,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2013,4,Kampung Padang,sex,perempuan,,885,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2013,4,Kampung Padang,total,total,,1736,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2012,4,Ipar Bondar,sex,laki_laki,,851,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2012,4,Ipar Bondar,sex,perempuan,,892,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2012,4,Ipar Bondar,total,total,,1743,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2007,4,Gunung Tua Jae,sex,laki_laki,,1131,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2007,4,Gunung Tua Jae,sex,perempuan,,1153,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2007,4,Gunung Tua Jae,total,total,,2284,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2016,4,Manyabar,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2016,4,Manyabar,sex,perempuan,,555,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2016,4,Manyabar,total,total,,1097,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2026,4,Sarak Matua,sex,laki_laki,,452,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2026,4,Sarak Matua,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2026,4,Sarak Matua,total,total,,829,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2005,4,Gunung Barani,sex,laki_laki,,699,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2005,4,Gunung Barani,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2005,4,Gunung Barani,total,total,,1468,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2025,4,Salambue,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2025,4,Salambue,sex,perempuan,,549,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2025,4,Salambue,total,total,,1123,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2003,4,Aek Mata,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+12.13.01.2003,4,Aek Mata,sex,perempuan,,486,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+12.13.01.2003,4,Aek Mata,total,total,,1023,jiwa,2025,registration,total_population,3.1,24,,
+12.13.01.2010,4,Huta Lombang Lubis,sex,laki_laki,,570,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2010,4,Huta Lombang Lubis,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2010,4,Huta Lombang Lubis,total,total,,1191,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2017,4,Pagaran Tonga,sex,laki_laki,,399,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2017,4,Pagaran Tonga,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2017,4,Pagaran Tonga,total,total,,810,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2030,4,Sopo Batu,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2030,4,Sopo Batu,sex,perempuan,,390,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2030,4,Sopo Batu,total,total,,782,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2008,4,Gunung Tua Julu,sex,laki_laki,,1126,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2008,4,Gunung Tua Julu,sex,perempuan,,1204,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2008,4,Gunung Tua Julu,total,total,,2330,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2009,4,Gunung Tua Tonga,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2009,4,Gunung Tua Tonga,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2009,4,Gunung Tua Tonga,total,total,,1432,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2015,4,Lumban Pasir,sex,laki_laki,,1132,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2015,4,Lumban Pasir,sex,perempuan,,1155,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2015,4,Lumban Pasir,total,total,,2287,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2037,4,Siobon Jae,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2037,4,Siobon Jae,sex,perempuan,,346,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2037,4,Siobon Jae,total,total,,718,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2039,4,Saba Jambu,sex,laki_laki,,158,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2039,4,Saba Jambu,sex,perempuan,,181,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2039,4,Saba Jambu,total,total,,339,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2038,4,Panggorengan,sex,laki_laki,,783,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2038,4,Panggorengan,sex,perempuan,,832,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2038,4,Panggorengan,total,total,,1615,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.2040,4,Manyabar Jae,sex,laki_laki,,365,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.2040,4,Manyabar Jae,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.2040,4,Manyabar Jae,total,total,,750,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1023,4,Pidoli Dolok,sex,laki_laki,,1757,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1023,4,Pidoli Dolok,sex,perempuan,,1796,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1023,4,Pidoli Dolok,total,total,,3553,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1011,4,Kota Siantar,sex,laki_laki,,3603,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1011,4,Kota Siantar,sex,perempuan,,3639,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1011,4,Kota Siantar,total,total,,7242,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1031,4,Panyabungan Ii,sex,laki_laki,,3876,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1031,4,Panyabungan Ii,sex,perempuan,,3862,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1031,4,Panyabungan Ii,total,total,,7738,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1032,4,Panyabungan Iii,sex,laki_laki,,2068,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1032,4,Panyabungan Iii,sex,perempuan,,2076,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1032,4,Panyabungan Iii,total,total,,4144,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1033,4,Panyabungan I,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1033,4,Panyabungan I,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1033,4,Panyabungan I,total,total,,791,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1022,4,Pasar Hilir,sex,laki_laki,,1088,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1022,4,Pasar Hilir,sex,perempuan,,1146,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1022,4,Pasar Hilir,total,total,,2234,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1014,4,Kayu Jati,sex,laki_laki,,2378,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1014,4,Kayu Jati,sex,perempuan,,2473,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1014,4,Kayu Jati,total,total,,4851,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1036,4,Dalan Lidang,sex,laki_laki,,2638,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1036,4,Dalan Lidang,sex,perempuan,,2611,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1036,4,Dalan Lidang,total,total,,5249,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01.1035,4,Sipolu Polu,sex,laki_laki,,5533,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01.1035,4,Sipolu Polu,sex,perempuan,,5451,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01.1035,4,Sipolu Polu,total,total,,10984,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01,3,Kecamatan Panyabungan,sex,laki_laki,,49726,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki
+12.13.01,3,Kecamatan Panyabungan,sex,perempuan,,50395,jiwa,2025,registration,total_population,3.1,25,,Perempuan
+12.13.01,3,Kecamatan Panyabungan,total,total,,100121,jiwa,2025,registration,total_population,3.1,25,,
+12.13.01,3,Kecamatan Panyabungan,sex,laki_laki,,49726,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+12.13.01,3,Kecamatan Panyabungan,sex,perempuan,,50395,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+12.13.01,3,Kecamatan Panyabungan,total,total,,100121,jiwa,2025,registration,total_population,3.2,28,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.03.2007,4,Bandungrejo,sex,laki_laki,,5025,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2007,4,Bandungrejo,sex,perempuan,,4960,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2007,4,Bandungrejo,total,total,,9985,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2006,4,Sumberbening,sex,laki_laki,,3252,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2006,4,Sumberbening,sex,perempuan,,3168,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2006,4,Sumberbening,total,total,,6420,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2005,4,Srigonco,sex,laki_laki,,2774,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2005,4,Srigonco,sex,perempuan,,2717,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2005,4,Srigonco,total,total,,5491,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2004,4,Wonorejo,sex,laki_laki,,776,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2004,4,Wonorejo,sex,perempuan,,770,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2004,4,Wonorejo,total,total,,1546,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2003,4,Bantur,sex,laki_laki,,6629,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2003,4,Bantur,sex,perempuan,,6505,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2003,4,Bantur,total,total,,13134,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2008,4,Pringgodani,sex,laki_laki,,4124,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2008,4,Pringgodani,sex,perempuan,,4136,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2008,4,Pringgodani,total,total,,8260,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2002,4,Rejosari,sex,laki_laki,,4064,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2002,4,Rejosari,sex,perempuan,,4046,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2002,4,Rejosari,total,total,,8110,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2001,4,Wonokerto,sex,laki_laki,,4950,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2001,4,Wonokerto,sex,perempuan,,4986,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2001,4,Wonokerto,total,total,,9936,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2009,4,Rejoyoso,sex,laki_laki,,4549,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2009,4,Rejoyoso,sex,perempuan,,4535,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2009,4,Rejoyoso,total,total,,9084,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03.2010,4,Karangsari,sex,laki_laki,,4098,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03.2010,4,Karangsari,sex,perempuan,,4169,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03.2010,4,Karangsari,total,total,,8267,jiwa,2025,registration,total_population,3.1,27,,
+35.07.03,3,Kecamatan Bantur,sex,laki_laki,,40241,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.03,3,Kecamatan Bantur,sex,perempuan,,39992,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.03,3,Kecamatan Bantur,total,total,,80233,jiwa,2025,registration,total_population,3.1,27,,

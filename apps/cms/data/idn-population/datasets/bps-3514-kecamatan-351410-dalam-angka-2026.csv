@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.10.2001,4,Jatiarjo,sex,laki_laki,,4018,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2001,4,Jatiarjo,sex,perempuan,,3893,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2001,4,Jatiarjo,total,total,,7911,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2002,4,Watuagung,sex,laki_laki,,2586,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2002,4,Watuagung,sex,perempuan,,2583,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2002,4,Watuagung,total,total,,5169,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2003,4,Dayurejo,sex,laki_laki,,5649,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2003,4,Dayurejo,sex,perempuan,,5605,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2003,4,Dayurejo,total,total,,11254,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2004,4,Bulukandang,sex,laki_laki,,2808,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2004,4,Bulukandang,sex,perempuan,,2721,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2004,4,Bulukandang,total,total,,5529,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2005,4,Ketanireng,sex,laki_laki,,2203,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2005,4,Ketanireng,sex,perempuan,,2165,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2005,4,Ketanireng,total,total,,4368,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2006,4,Sukolelo,sex,laki_laki,,2043,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2006,4,Sukolelo,sex,perempuan,,2040,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2006,4,Sukolelo,total,total,,4083,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.1007,4,Ledug,sex,laki_laki,,3062,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.1007,4,Ledug,sex,perempuan,,2964,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.1007,4,Ledug,total,total,,6026,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.1008,4,Pecalukan,sex,laki_laki,,5113,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.1008,4,Pecalukan,sex,perempuan,,4838,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.1008,4,Pecalukan,total,total,,9951,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.1009,4,Prigen,sex,laki_laki,,2880,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.1009,4,Prigen,sex,perempuan,,2965,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.1009,4,Prigen,total,total,,5845,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2010,4,Lumbangrejo,sex,laki_laki,,3272,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2010,4,Lumbangrejo,sex,perempuan,,3186,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2010,4,Lumbangrejo,total,total,,6458,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2011,4,Sukoreno,sex,laki_laki,,3634,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2011,4,Sukoreno,sex,perempuan,,3616,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2011,4,Sukoreno,total,total,,7250,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2012,4,Sekarjoho,sex,laki_laki,,1939,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2012,4,Sekarjoho,sex,perempuan,,1880,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2012,4,Sekarjoho,total,total,,3819,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2013,4,Gambiran,sex,laki_laki,,4030,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2013,4,Gambiran,sex,perempuan,,3978,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2013,4,Gambiran,total,total,,8008,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10.2014,4,Candiwates,sex,laki_laki,,2927,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10.2014,4,Candiwates,sex,perempuan,,2786,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10.2014,4,Candiwates,total,total,,5713,jiwa,2025,registration,total_population,3.1,29,,
+35.14.10,3,Kecamatan Prigen,sex,laki_laki,,46164,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.10,3,Kecamatan Prigen,sex,perempuan,,45220,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.10,3,Kecamatan Prigen,total,total,,91384,jiwa,2025,registration,total_population,3.1,29,,

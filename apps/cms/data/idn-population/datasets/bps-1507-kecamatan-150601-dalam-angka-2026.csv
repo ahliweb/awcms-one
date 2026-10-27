@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.06.01.1005,4,PELABUHAN DAGANG,sex,laki_laki,,1161,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.1005,4,PELABUHAN DAGANG,sex,perempuan,,1135,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.1005,4,PELABUHAN DAGANG,total,total,,2296,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2001,4,BADANG,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2001,4,BADANG,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2001,4,BADANG,total,total,,839,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2002,4,TANJUNG TAYAS,sex,laki_laki,,621,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2002,4,TANJUNG TAYAS,sex,perempuan,,589,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2002,4,TANJUNG TAYAS,total,total,,1210,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2003,4,KUALA DASAL,sex,laki_laki,,1022,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2003,4,KUALA DASAL,sex,perempuan,,981,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2003,4,KUALA DASAL,total,total,,2003,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2004,4,PEMATANG PAUH,sex,laki_laki,,716,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2004,4,PEMATANG PAUH,sex,perempuan,,753,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2004,4,PEMATANG PAUH,total,total,,1469,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2006,4,TAMAN RAJA,sex,laki_laki,,1120,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2006,4,TAMAN RAJA,sex,perempuan,,1005,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2006,4,TAMAN RAJA,total,total,,2125,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2017,4,BRASAU,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2017,4,BRASAU,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2017,4,BRASAU,total,total,,1326,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2019,4,GEMURUH,sex,laki_laki,,713,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2019,4,GEMURUH,sex,perempuan,,713,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2019,4,GEMURUH,total,total,,1426,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2020,4,PEMATANG TEMBESU,sex,laki_laki,,1124,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2020,4,PEMATANG TEMBESU,sex,perempuan,,1093,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2020,4,PEMATANG TEMBESU,total,total,,2217,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01.2021,4,BADANG SEPAKAT,sex,laki_laki,,388,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01.2021,4,BADANG SEPAKAT,sex,perempuan,,370,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01.2021,4,BADANG SEPAKAT,total,total,,758,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01,3,Tungkal Ulu,sex,laki_laki,,7961,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+15.06.01,3,Tungkal Ulu,sex,perempuan,,7708,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Fem
+15.06.01,3,Tungkal Ulu,total,total,,15669,jiwa,2025,registration,total_population,3.1,24,,
+15.06.01,3,Tungkal Ulu,age_group,0-4,laki_laki,544,jiwa,2025,registration,total_population,3.2,26,,0-4
+15.06.01,3,Tungkal Ulu,age_group,0-4,perempuan,519,jiwa,2025,registration,total_population,3.2,26,,0-4
+15.06.01,3,Tungkal Ulu,age_group,0-4,,1063,jiwa,2025,registration,total_population,3.2,26,,0-4
+15.06.01,3,Tungkal Ulu,age_group,5-9,laki_laki,709,jiwa,2025,registration,total_population,3.2,26,,05-09
+15.06.01,3,Tungkal Ulu,age_group,5-9,perempuan,635,jiwa,2025,registration,total_population,3.2,26,,05-09
+15.06.01,3,Tungkal Ulu,age_group,5-9,,1344,jiwa,2025,registration,total_population,3.2,26,,05-09
+15.06.01,3,Tungkal Ulu,age_group,10-14,laki_laki,814,jiwa,2025,registration,total_population,3.2,26,,10-14
+15.06.01,3,Tungkal Ulu,age_group,10-14,perempuan,786,jiwa,2025,registration,total_population,3.2,26,,10-14
+15.06.01,3,Tungkal Ulu,age_group,10-14,,1600,jiwa,2025,registration,total_population,3.2,26,,10-14
+15.06.01,3,Tungkal Ulu,age_group,15-19,laki_laki,719,jiwa,2025,registration,total_population,3.2,26,,15-19
+15.06.01,3,Tungkal Ulu,age_group,15-19,perempuan,705,jiwa,2025,registration,total_population,3.2,26,,15-19
+15.06.01,3,Tungkal Ulu,age_group,15-19,,1424,jiwa,2025,registration,total_population,3.2,26,,15-19
+15.06.01,3,Tungkal Ulu,age_group,20-24,laki_laki,698,jiwa,2025,registration,total_population,3.2,26,,20-24
+15.06.01,3,Tungkal Ulu,age_group,20-24,perempuan,682,jiwa,2025,registration,total_population,3.2,26,,20-24
+15.06.01,3,Tungkal Ulu,age_group,20-24,,1380,jiwa,2025,registration,total_population,3.2,26,,20-24
+15.06.01,3,Tungkal Ulu,age_group,25-29,laki_laki,580,jiwa,2025,registration,total_population,3.2,26,,25-29
+15.06.01,3,Tungkal Ulu,age_group,25-29,perempuan,603,jiwa,2025,registration,total_population,3.2,26,,25-29
+15.06.01,3,Tungkal Ulu,age_group,25-29,,1183,jiwa,2025,registration,total_population,3.2,26,,25-29
+15.06.01,3,Tungkal Ulu,age_group,30-34,laki_laki,583,jiwa,2025,registration,total_population,3.2,26,,30-34
+15.06.01,3,Tungkal Ulu,age_group,30-34,perempuan,523,jiwa,2025,registration,total_population,3.2,26,,30-34
+15.06.01,3,Tungkal Ulu,age_group,30-34,,1106,jiwa,2025,registration,total_population,3.2,26,,30-34
+15.06.01,3,Tungkal Ulu,age_group,35-39,laki_laki,566,jiwa,2025,registration,total_population,3.2,26,,35-39
+15.06.01,3,Tungkal Ulu,age_group,35-39,perempuan,560,jiwa,2025,registration,total_population,3.2,26,,35-39
+15.06.01,3,Tungkal Ulu,age_group,35-39,,1126,jiwa,2025,registration,total_population,3.2,26,,35-39
+15.06.01,3,Tungkal Ulu,age_group,40-44,laki_laki,614,jiwa,2025,registration,total_population,3.2,26,,40-44
+15.06.01,3,Tungkal Ulu,age_group,40-44,perempuan,684,jiwa,2025,registration,total_population,3.2,26,,40-44
+15.06.01,3,Tungkal Ulu,age_group,40-44,,1298,jiwa,2025,registration,total_population,3.2,26,,40-44
+15.06.01,3,Tungkal Ulu,age_group,45-49,laki_laki,650,jiwa,2025,registration,total_population,3.2,26,,45-49
+15.06.01,3,Tungkal Ulu,age_group,45-49,perempuan,576,jiwa,2025,registration,total_population,3.2,26,,45-49
+15.06.01,3,Tungkal Ulu,age_group,45-49,,1226,jiwa,2025,registration,total_population,3.2,26,,45-49
+15.06.01,3,Tungkal Ulu,age_group,50-54,laki_laki,488,jiwa,2025,registration,total_population,3.2,26,,50-54
+15.06.01,3,Tungkal Ulu,age_group,50-54,perempuan,461,jiwa,2025,registration,total_population,3.2,26,,50-54
+15.06.01,3,Tungkal Ulu,age_group,50-54,,949,jiwa,2025,registration,total_population,3.2,26,,50-54
+15.06.01,3,Tungkal Ulu,age_group,55-59,laki_laki,378,jiwa,2025,registration,total_population,3.2,26,,55-59
+15.06.01,3,Tungkal Ulu,age_group,55-59,perempuan,374,jiwa,2025,registration,total_population,3.2,26,,55-59
+15.06.01,3,Tungkal Ulu,age_group,55-59,,752,jiwa,2025,registration,total_population,3.2,26,,55-59
+15.06.01,3,Tungkal Ulu,age_group,60-64,laki_laki,239,jiwa,2025,registration,total_population,3.2,26,,60-64
+15.06.01,3,Tungkal Ulu,age_group,60-64,perempuan,245,jiwa,2025,registration,total_population,3.2,26,,60-64
+15.06.01,3,Tungkal Ulu,age_group,60-64,,484,jiwa,2025,registration,total_population,3.2,26,,60-64
+15.06.01,3,Tungkal Ulu,age_group,65-69,laki_laki,199,jiwa,2025,registration,total_population,3.2,26,,65-69
+15.06.01,3,Tungkal Ulu,age_group,65-69,perempuan,166,jiwa,2025,registration,total_population,3.2,26,,65-69
+15.06.01,3,Tungkal Ulu,age_group,65-69,,365,jiwa,2025,registration,total_population,3.2,26,,65-69
+15.06.01,3,Tungkal Ulu,age_group,70-74,laki_laki,97,jiwa,2025,registration,total_population,3.2,26,,70-74
+15.06.01,3,Tungkal Ulu,age_group,70-74,perempuan,81,jiwa,2025,registration,total_population,3.2,26,,70-74
+15.06.01,3,Tungkal Ulu,age_group,70-74,,178,jiwa,2025,registration,total_population,3.2,26,,70-74
+15.06.01,3,Tungkal Ulu,age_group,75+,laki_laki,83,jiwa,2025,registration,total_population,3.2,26,,75+
+15.06.01,3,Tungkal Ulu,age_group,75+,perempuan,108,jiwa,2025,registration,total_population,3.2,26,,75+
+15.06.01,3,Tungkal Ulu,age_group,75+,,191,jiwa,2025,registration,total_population,3.2,26,,75+
+15.06.01,3,Tungkal Ulu,sex,laki_laki,,7961,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+15.06.01,3,Tungkal Ulu,sex,perempuan,,7708,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+15.06.01,3,Tungkal Ulu,total,total,,15669,jiwa,2025,registration,total_population,3.2,26,,

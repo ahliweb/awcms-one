@@ -1,0 +1,108 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71.08.1005,4,Belawan Sicanang,sex,laki_laki,,9139,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+12.71.08.1005,4,Belawan Sicanang,sex,perempuan,,8589,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+12.71.08.1003,4,Belawan Bahagia,sex,laki_laki,,6740,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+12.71.08.1003,4,Belawan Bahagia,sex,perempuan,,6634,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+12.71.08.1004,4,Belawan Bahari,sex,laki_laki,,6494,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+12.71.08.1004,4,Belawan Bahari,sex,perempuan,,6285,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+12.71.08.1002,4,Belawan II,sex,laki_laki,,12027,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+12.71.08.1002,4,Belawan II,sex,perempuan,,11700,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+12.71.08.1006,4,Bagan Deli,sex,laki_laki,,9366,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+12.71.08.1006,4,Bagan Deli,sex,perempuan,,8778,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+12.71.08.1001,4,Belawan I,sex,laki_laki,,11689,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+12.71.08.1001,4,Belawan I,sex,perempuan,,11415,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+12.71.08,3,Medan Belawan,sex,laki_laki,,55455,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+12.71.08,3,Medan Belawan,sex,perempuan,,53401,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+12.71.08,3,Medan Belawan,age_group,0-4,laki_laki,2913,jiwa,2025,registration,total_population,3.2,,,0 - 4
+12.71.08,3,Medan Belawan,age_group,0-4,perempuan,2619,jiwa,2025,registration,total_population,3.2,,,0 - 4
+12.71.08,3,Medan Belawan,age_group,0-4,,5532,jiwa,2025,registration,total_population,3.2,,,0 - 4
+12.71.08,3,Medan Belawan,age_group,5-9,laki_laki,4808,jiwa,2025,registration,total_population,3.2,,,5 - 9
+12.71.08,3,Medan Belawan,age_group,5-9,perempuan,4370,jiwa,2025,registration,total_population,3.2,,,5 - 9
+12.71.08,3,Medan Belawan,age_group,5-9,,9178,jiwa,2025,registration,total_population,3.2,,,5 - 9
+12.71.08,3,Medan Belawan,age_group,10-14,laki_laki,5375,jiwa,2025,registration,total_population,3.2,,,10 -14
+12.71.08,3,Medan Belawan,age_group,10-14,perempuan,4970,jiwa,2025,registration,total_population,3.2,,,10 -14
+12.71.08,3,Medan Belawan,age_group,10-14,,10345,jiwa,2025,registration,total_population,3.2,,,10 -14
+12.71.08,3,Medan Belawan,age_group,15-19,laki_laki,5590,jiwa,2025,registration,total_population,3.2,,,15 - 19
+12.71.08,3,Medan Belawan,age_group,15-19,perempuan,5283,jiwa,2025,registration,total_population,3.2,,,15 - 19
+12.71.08,3,Medan Belawan,age_group,15-19,,10873,jiwa,2025,registration,total_population,3.2,,,15 - 19
+12.71.08,3,Medan Belawan,age_group,20-24,laki_laki,5231,jiwa,2025,registration,total_population,3.2,,,20 - 24
+12.71.08,3,Medan Belawan,age_group,20-24,perempuan,5084,jiwa,2025,registration,total_population,3.2,,,20 - 24
+12.71.08,3,Medan Belawan,age_group,20-24,,10315,jiwa,2025,registration,total_population,3.2,,,20 - 24
+12.71.08,3,Medan Belawan,age_group,25-29,laki_laki,4690,jiwa,2025,registration,total_population,3.2,,,25 - 29
+12.71.08,3,Medan Belawan,age_group,25-29,perempuan,4223,jiwa,2025,registration,total_population,3.2,,,25 - 29
+12.71.08,3,Medan Belawan,age_group,25-29,,8913,jiwa,2025,registration,total_population,3.2,,,25 - 29
+12.71.08,3,Medan Belawan,age_group,30-34,laki_laki,4196,jiwa,2025,registration,total_population,3.2,,,30 -34
+12.71.08,3,Medan Belawan,age_group,30-34,perempuan,3609,jiwa,2025,registration,total_population,3.2,,,30 -34
+12.71.08,3,Medan Belawan,age_group,30-34,,7805,jiwa,2025,registration,total_population,3.2,,,30 -34
+12.71.08,3,Medan Belawan,age_group,35-39,laki_laki,3921,jiwa,2025,registration,total_population,3.2,,,35 - 39
+12.71.08,3,Medan Belawan,age_group,35-39,perempuan,3543,jiwa,2025,registration,total_population,3.2,,,35 - 39
+12.71.08,3,Medan Belawan,age_group,35-39,,7464,jiwa,2025,registration,total_population,3.2,,,35 - 39
+12.71.08,3,Medan Belawan,age_group,40-44,laki_laki,4030,jiwa,2025,registration,total_population,3.2,,,40 - 44
+12.71.08,3,Medan Belawan,age_group,40-44,perempuan,3818,jiwa,2025,registration,total_population,3.2,,,40 - 44
+12.71.08,3,Medan Belawan,age_group,40-44,,7848,jiwa,2025,registration,total_population,3.2,,,40 - 44
+12.71.08,3,Medan Belawan,age_group,45-49,laki_laki,3626,jiwa,2025,registration,total_population,3.2,,,45 - 49
+12.71.08,3,Medan Belawan,age_group,45-49,perempuan,3429,jiwa,2025,registration,total_population,3.2,,,45 - 49
+12.71.08,3,Medan Belawan,age_group,45-49,,7055,jiwa,2025,registration,total_population,3.2,,,45 - 49
+12.71.08,3,Medan Belawan,age_group,50-54,laki_laki,3106,jiwa,2025,registration,total_population,3.2,,,50 - 54
+12.71.08,3,Medan Belawan,age_group,50-54,perempuan,3237,jiwa,2025,registration,total_population,3.2,,,50 - 54
+12.71.08,3,Medan Belawan,age_group,50-54,,6343,jiwa,2025,registration,total_population,3.2,,,50 - 54
+12.71.08,3,Medan Belawan,age_group,55-59,laki_laki,2570,jiwa,2025,registration,total_population,3.2,,,55 - 59
+12.71.08,3,Medan Belawan,age_group,55-59,perempuan,2759,jiwa,2025,registration,total_population,3.2,,,55 - 59
+12.71.08,3,Medan Belawan,age_group,55-59,,5329,jiwa,2025,registration,total_population,3.2,,,55 - 59
+12.71.08,3,Medan Belawan,age_group,60-64,laki_laki,1928,jiwa,2025,registration,total_population,3.2,,,60 - 64
+12.71.08,3,Medan Belawan,age_group,60-64,perempuan,2213,jiwa,2025,registration,total_population,3.2,,,60 - 64
+12.71.08,3,Medan Belawan,age_group,60-64,,4141,jiwa,2025,registration,total_population,3.2,,,60 - 64
+12.71.08,3,Medan Belawan,age_group,65-69,laki_laki,1623,jiwa,2025,registration,total_population,3.2,,,65 - 69
+12.71.08,3,Medan Belawan,age_group,65-69,perempuan,1823,jiwa,2025,registration,total_population,3.2,,,65 - 69
+12.71.08,3,Medan Belawan,age_group,65-69,,3446,jiwa,2025,registration,total_population,3.2,,,65 - 69
+12.71.08,3,Medan Belawan,age_group,70-74,laki_laki,921,jiwa,2025,registration,total_population,3.2,,,70 - 74
+12.71.08,3,Medan Belawan,age_group,70-74,perempuan,1096,jiwa,2025,registration,total_population,3.2,,,70 - 74
+12.71.08,3,Medan Belawan,age_group,70-74,,2017,jiwa,2025,registration,total_population,3.2,,,70 - 74
+12.71.08,3,Medan Belawan,age_group,75+,laki_laki,927,jiwa,2025,registration,total_population,3.2,,,75 +
+12.71.08,3,Medan Belawan,age_group,75+,perempuan,1325,jiwa,2025,registration,total_population,3.2,,,75 +
+12.71.08,3,Medan Belawan,age_group,75+,,2252,jiwa,2025,registration,total_population,3.2,,,75 +
+12.71.08,3,Medan Belawan,sex,laki_laki,,55455,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+12.71.08,3,Medan Belawan,sex,perempuan,,53401,jiwa,2025,registration,total_population,3.2,,,Perempuan
+12.71.08,3,Medan Belawan,total,total,,108856,jiwa,2025,registration,total_population,3.2,,,
+12.71.08.1005,4,Belawan Sicanang,religion,islam,,11913,jiwa,2025,registration,total_population,3.6,,,Islam
+12.71.08.1005,4,Belawan Sicanang,religion,kristen,,5400,jiwa,2025,registration,total_population,3.6,,,Protestan
+12.71.08.1005,4,Belawan Sicanang,religion,katolik,,407,jiwa,2025,registration,total_population,3.6,,,Katolik
+12.71.08.1005,4,Belawan Sicanang,religion,buddha,,8,jiwa,2025,registration,total_population,3.6,,,Buddha
+12.71.08.1005,4,Belawan Sicanang,religion,hindu,,0,jiwa,2025,registration,total_population,3.6,,nil,Hindu
+12.71.08.1005,4,Belawan Sicanang,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,,nil,Khonghucu
+12.71.08.1003,4,Belawan Bahagia,religion,islam,,11045,jiwa,2025,registration,total_population,3.6,,,Islam
+12.71.08.1003,4,Belawan Bahagia,religion,kristen,,2064,jiwa,2025,registration,total_population,3.6,,,Protestan
+12.71.08.1003,4,Belawan Bahagia,religion,katolik,,126,jiwa,2025,registration,total_population,3.6,,,Katolik
+12.71.08.1003,4,Belawan Bahagia,religion,buddha,,139,jiwa,2025,registration,total_population,3.6,,,Buddha
+12.71.08.1003,4,Belawan Bahagia,religion,hindu,,0,jiwa,2025,registration,total_population,3.6,,nil,Hindu
+12.71.08.1003,4,Belawan Bahagia,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,,nil,Khonghucu
+12.71.08.1004,4,Belawan Bahari,religion,islam,,7687,jiwa,2025,registration,total_population,3.6,,,Islam
+12.71.08.1004,4,Belawan Bahari,religion,kristen,,4437,jiwa,2025,registration,total_population,3.6,,,Protestan
+12.71.08.1004,4,Belawan Bahari,religion,katolik,,383,jiwa,2025,registration,total_population,3.6,,,Katolik
+12.71.08.1004,4,Belawan Bahari,religion,buddha,,272,jiwa,2025,registration,total_population,3.6,,,Buddha
+12.71.08.1004,4,Belawan Bahari,religion,hindu,,0,jiwa,2025,registration,total_population,3.6,,nil,Hindu
+12.71.08.1004,4,Belawan Bahari,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,,nil,Khonghucu
+12.71.08.1002,4,Belawan II,religion,islam,,21166,jiwa,2025,registration,total_population,3.6,,,Islam
+12.71.08.1002,4,Belawan II,religion,kristen,,2075,jiwa,2025,registration,total_population,3.6,,,Protestan
+12.71.08.1002,4,Belawan II,religion,katolik,,81,jiwa,2025,registration,total_population,3.6,,,Katolik
+12.71.08.1002,4,Belawan II,religion,buddha,,392,jiwa,2025,registration,total_population,3.6,,,Buddha
+12.71.08.1002,4,Belawan II,religion,hindu,,13,jiwa,2025,registration,total_population,3.6,,,Hindu
+12.71.08.1002,4,Belawan II,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,,nil,Khonghucu
+12.71.08.1006,4,Bagan Deli,religion,islam,,14662,jiwa,2025,registration,total_population,3.6,,,Islam
+12.71.08.1006,4,Bagan Deli,religion,kristen,,3261,jiwa,2025,registration,total_population,3.6,,,Protestan
+12.71.08.1006,4,Bagan Deli,religion,katolik,,213,jiwa,2025,registration,total_population,3.6,,,Katolik
+12.71.08.1006,4,Bagan Deli,religion,buddha,,8,jiwa,2025,registration,total_population,3.6,,,Buddha
+12.71.08.1006,4,Bagan Deli,religion,hindu,,0,jiwa,2025,registration,total_population,3.6,,nil,Hindu
+12.71.08.1006,4,Bagan Deli,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,,nil,Khonghucu
+12.71.08.1001,4,Belawan I,religion,islam,,20701,jiwa,2025,registration,total_population,3.6,,,Islam
+12.71.08.1001,4,Belawan I,religion,kristen,,1267,jiwa,2025,registration,total_population,3.6,,,Protestan
+12.71.08.1001,4,Belawan I,religion,katolik,,79,jiwa,2025,registration,total_population,3.6,,,Katolik
+12.71.08.1001,4,Belawan I,religion,buddha,,1053,jiwa,2025,registration,total_population,3.6,,,Buddha
+12.71.08.1001,4,Belawan I,religion,hindu,,4,jiwa,2025,registration,total_population,3.6,,,Hindu
+12.71.08.1001,4,Belawan I,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,,nil,Khonghucu
+12.71.08,3,Medan Belawan,religion,islam,,87174,jiwa,2025,registration,total_population,3.6,,,Islam
+12.71.08,3,Medan Belawan,religion,kristen,,18504,jiwa,2025,registration,total_population,3.6,,,Protestan
+12.71.08,3,Medan Belawan,religion,katolik,,1289,jiwa,2025,registration,total_population,3.6,,,Katolik
+12.71.08,3,Medan Belawan,religion,buddha,,1872,jiwa,2025,registration,total_population,3.6,,,Buddha
+12.71.08,3,Medan Belawan,religion,hindu,,17,jiwa,2025,registration,total_population,3.6,,,Hindu
+12.71.08,3,Medan Belawan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,,nil,Khonghucu

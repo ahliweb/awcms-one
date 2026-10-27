@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.12.2011,4,Rawa Betik,sex,perempuan,,1091,jiwa,2026,registration,total_population,3.1,38,,Perempuan/Female
+18.02.12.2011,4,Rawa Betik,total,total,,2220,jiwa,2026,registration,total_population,3.1,38,,
+18.02.12.2002,4,Sumber Katon,sex,perempuan,,2060,jiwa,2026,registration,total_population,3.1,38,,Perempuan/Female
+18.02.12.2002,4,Sumber Katon,total,total,,4129,jiwa,2026,registration,total_population,3.1,38,,
+18.02.12.2003,4,Sri Katon,sex,perempuan,,2115,jiwa,2026,registration,total_population,3.1,38,,Perempuan/Female
+18.02.12.2003,4,Sri Katon,total,total,,4334,jiwa,2026,registration,total_population,3.1,38,,
+18.02.12.2012,4,Sri Mulya Jaya,sex,perempuan,,1120,jiwa,2026,registration,total_population,3.1,38,,Perempuan/Female
+18.02.12.2012,4,Sri Mulya Jaya,total,total,,2299,jiwa,2026,registration,total_population,3.1,38,,
+18.02.12.2010,4,Mataram Ilir,sex,perempuan,,4845,jiwa,2026,registration,total_population,3.1,38,,Perempuan/Female
+18.02.12.2010,4,Mataram Ilir,total,total,,9901,jiwa,2026,registration,total_population,3.1,38,,
+18.02.12,3,Seputih Surabaya,sex,perempuan,,25238,jiwa,2026,registration,total_population,3.1,38,,Perempuan/Female
+18.02.12,3,Seputih Surabaya,total,total,,51525,jiwa,2026,registration,total_population,3.1,38,,
+18.02.12,3,Seputih Surabaya,age_group,0-4,perempuan,1550,jiwa,2026,registration,total_population,3.2,40,,0-4
+18.02.12,3,Seputih Surabaya,age_group,0-4,,3188,jiwa,2026,registration,total_population,3.2,40,,0-4
+18.02.12,3,Seputih Surabaya,age_group,5-9,perempuan,1941,jiwa,2026,registration,total_population,3.2,40,,5-9
+18.02.12,3,Seputih Surabaya,age_group,5-9,,3994,jiwa,2026,registration,total_population,3.2,40,,5-9
+18.02.12,3,Seputih Surabaya,age_group,10-14,perempuan,2182,jiwa,2026,registration,total_population,3.2,40,,10-14
+18.02.12,3,Seputih Surabaya,age_group,10-14,,4384,jiwa,2026,registration,total_population,3.2,40,,10-14
+18.02.12,3,Seputih Surabaya,age_group,15-19,perempuan,1727,jiwa,2026,registration,total_population,3.2,40,,15-19
+18.02.12,3,Seputih Surabaya,age_group,15-19,,3574,jiwa,2026,registration,total_population,3.2,40,,15-19
+18.02.12,3,Seputih Surabaya,age_group,20-24,perempuan,1796,jiwa,2026,registration,total_population,3.2,40,,20-24
+18.02.12,3,Seputih Surabaya,age_group,20-24,,3668,jiwa,2026,registration,total_population,3.2,40,,20-24
+18.02.12,3,Seputih Surabaya,age_group,25-29,perempuan,2115,jiwa,2026,registration,total_population,3.2,40,,25-29
+18.02.12,3,Seputih Surabaya,age_group,25-29,,4281,jiwa,2026,registration,total_population,3.2,40,,25-29
+18.02.12,3,Seputih Surabaya,age_group,30-34,perempuan,1907,jiwa,2026,registration,total_population,3.2,40,,30-34
+18.02.12,3,Seputih Surabaya,age_group,30-34,,3922,jiwa,2026,registration,total_population,3.2,40,,30-34
+18.02.12,3,Seputih Surabaya,age_group,35-39,perempuan,2061,jiwa,2026,registration,total_population,3.2,40,,35-39
+18.02.12,3,Seputih Surabaya,age_group,35-39,,4096,jiwa,2026,registration,total_population,3.2,40,,35-39
+18.02.12,3,Seputih Surabaya,age_group,40-44,perempuan,1864,jiwa,2026,registration,total_population,3.2,40,,40-44
+18.02.12,3,Seputih Surabaya,age_group,40-44,,3765,jiwa,2026,registration,total_population,3.2,40,,40-44
+18.02.12,3,Seputih Surabaya,age_group,45-49,perempuan,1984,jiwa,2026,registration,total_population,3.2,40,,45-49
+18.02.12,3,Seputih Surabaya,age_group,45-49,,3965,jiwa,2026,registration,total_population,3.2,40,,45-49
+18.02.12,3,Seputih Surabaya,age_group,50-54,perempuan,1714,jiwa,2026,registration,total_population,3.2,40,,50-54
+18.02.12,3,Seputih Surabaya,age_group,50-54,,3399,jiwa,2026,registration,total_population,3.2,40,,50-54
+18.02.12,3,Seputih Surabaya,age_group,55-59,perempuan,1349,jiwa,2026,registration,total_population,3.2,40,,55-59
+18.02.12,3,Seputih Surabaya,age_group,55-59,,2893,jiwa,2026,registration,total_population,3.2,40,,55-59
+18.02.12,3,Seputih Surabaya,age_group,60-64,perempuan,1266,jiwa,2026,registration,total_population,3.2,40,,60-64
+18.02.12,3,Seputih Surabaya,age_group,60-64,,2528,jiwa,2026,registration,total_population,3.2,40,,60-64
+18.02.12,3,Seputih Surabaya,age_group,65-69,perempuan,829,jiwa,2026,registration,total_population,3.2,40,,65-69
+18.02.12,3,Seputih Surabaya,age_group,65-69,,1869,jiwa,2026,registration,total_population,3.2,40,,65-69
+18.02.12,3,Seputih Surabaya,age_group,70-74,perempuan,537,jiwa,2026,registration,total_population,3.2,40,,70-74
+18.02.12,3,Seputih Surabaya,age_group,70-74,,1185,jiwa,2026,registration,total_population,3.2,40,,70-74
+18.02.12,3,Seputih Surabaya,age_group,75+,perempuan,942,jiwa,2026,registration,total_population,3.2,40,,75+
+18.02.12,3,Seputih Surabaya,age_group,75+,,1813,jiwa,2026,registration,total_population,3.2,40,,75+
+18.02.12,3,Seputih Surabaya,sex,perempuan,,25764,jiwa,2026,registration,total_population,3.2,40,,Perempuan
+18.02.12,3,Seputih Surabaya,total,total,,52524,jiwa,2026,registration,total_population,3.2,40,,

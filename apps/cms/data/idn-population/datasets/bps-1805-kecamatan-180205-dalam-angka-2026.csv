@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.05.1003,4,Adipuro,sex,laki_laki,,3323,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.1003,4,Adipuro,sex,perempuan,,3178,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.1003,4,Adipuro,total,total,,6501,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2001,4,Depok Rejo,sex,laki_laki,,3505,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2001,4,Depok Rejo,sex,perempuan,,3375,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2001,4,Depok Rejo,total,total,,6880,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2008,4,Tempuran,sex,laki_laki,,2995,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2008,4,Tempuran,sex,perempuan,,2952,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2008,4,Tempuran,total,total,,5947,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.1007,4,Simbar Waringin,sex,laki_laki,,2832,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.1007,4,Simbar Waringin,sex,perempuan,,2765,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.1007,4,Simbar Waringin,total,total,,5597,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.1004,4,Trimurjo,sex,laki_laki,,1990,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.1004,4,Trimurjo,sex,perempuan,,1919,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.1004,4,Trimurjo,total,total,,3909,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2005,4,Notoharjo,sex,laki_laki,,2273,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2005,4,Notoharjo,sex,perempuan,,2230,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2005,4,Notoharjo,total,total,,4503,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2012,4,Untoro,sex,laki_laki,,1608,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2012,4,Untoro,sex,perempuan,,1599,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2012,4,Untoro,total,total,,3207,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2009,4,Purwoadi,sex,laki_laki,,1404,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2009,4,Purwoadi,sex,perempuan,,1360,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2009,4,Purwoadi,total,total,,2764,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2006,4,Purwodadi,sex,laki_laki,,1841,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2006,4,Purwodadi,sex,perempuan,,1743,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2006,4,Purwodadi,total,total,,3584,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2010,4,Pujodadi,sex,laki_laki,,1210,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2010,4,Pujodadi,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2010,4,Pujodadi,total,total,,2339,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2011,4,Pujokerto,sex,laki_laki,,1424,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2011,4,Pujokerto,sex,perempuan,,1348,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2011,4,Pujokerto,total,total,,2772,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2014,4,Pujo Basuki,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2014,4,Pujo Basuki,sex,perempuan,,730,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2014,4,Pujo Basuki,total,total,,1471,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05.2013,4,Pujoasri,sex,laki_laki,,784,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05.2013,4,Pujoasri,sex,perempuan,,780,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05.2013,4,Pujoasri,total,total,,1564,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05,3,Trimurjo,sex,laki_laki,,28751,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki/Male
+18.02.05,3,Trimurjo,sex,perempuan,,27720,jiwa,2025,registration,total_population,3.1,39,,Perempuan/Female
+18.02.05,3,Trimurjo,total,total,,56471,jiwa,2025,registration,total_population,3.1,39,,
+18.02.05,3,Trimurjo,age_group,0-4,laki_laki,1496,jiwa,2025,registration,total_population,3.2,41,,0-4
+18.02.05,3,Trimurjo,age_group,0-4,perempuan,1361,jiwa,2025,registration,total_population,3.2,41,,0-4
+18.02.05,3,Trimurjo,age_group,0-4,,2857,jiwa,2025,registration,total_population,3.2,41,,0-4
+18.02.05,3,Trimurjo,age_group,5-9,laki_laki,2095,jiwa,2025,registration,total_population,3.2,41,,5-9
+18.02.05,3,Trimurjo,age_group,5-9,perempuan,1966,jiwa,2025,registration,total_population,3.2,41,,5-9
+18.02.05,3,Trimurjo,age_group,5-9,,4061,jiwa,2025,registration,total_population,3.2,41,,5-9
+18.02.05,3,Trimurjo,age_group,10-14,laki_laki,2381,jiwa,2025,registration,total_population,3.2,41,,10-14
+18.02.05,3,Trimurjo,age_group,10-14,perempuan,2195,jiwa,2025,registration,total_population,3.2,41,,10-14
+18.02.05,3,Trimurjo,age_group,10-14,,4576,jiwa,2025,registration,total_population,3.2,41,,10-14
+18.02.05,3,Trimurjo,age_group,15-19,laki_laki,2039,jiwa,2025,registration,total_population,3.2,41,,15-19
+18.02.05,3,Trimurjo,age_group,15-19,perempuan,2034,jiwa,2025,registration,total_population,3.2,41,,15-19
+18.02.05,3,Trimurjo,age_group,15-19,,4073,jiwa,2025,registration,total_population,3.2,41,,15-19
+18.02.05,3,Trimurjo,age_group,20-24,laki_laki,2145,jiwa,2025,registration,total_population,3.2,41,,20-24
+18.02.05,3,Trimurjo,age_group,20-24,perempuan,2087,jiwa,2025,registration,total_population,3.2,41,,20-24
+18.02.05,3,Trimurjo,age_group,20-24,,4232,jiwa,2025,registration,total_population,3.2,41,,20-24
+18.02.05,3,Trimurjo,age_group,25-29,laki_laki,2176,jiwa,2025,registration,total_population,3.2,41,,25-29
+18.02.05,3,Trimurjo,age_group,25-29,perempuan,1885,jiwa,2025,registration,total_population,3.2,41,,25-29
+18.02.05,3,Trimurjo,age_group,25-29,,4061,jiwa,2025,registration,total_population,3.2,41,,25-29
+18.02.05,3,Trimurjo,age_group,30-34,laki_laki,1826,jiwa,2025,registration,total_population,3.2,41,,30-34
+18.02.05,3,Trimurjo,age_group,30-34,perempuan,1770,jiwa,2025,registration,total_population,3.2,41,,30-34
+18.02.05,3,Trimurjo,age_group,30-34,,3596,jiwa,2025,registration,total_population,3.2,41,,30-34
+18.02.05,3,Trimurjo,age_group,35-39,laki_laki,1736,jiwa,2025,registration,total_population,3.2,41,,35-39
+18.02.05,3,Trimurjo,age_group,35-39,perempuan,1803,jiwa,2025,registration,total_population,3.2,41,,35-39
+18.02.05,3,Trimurjo,age_group,35-39,,3539,jiwa,2025,registration,total_population,3.2,41,,35-39
+18.02.05,3,Trimurjo,age_group,40-44,laki_laki,2014,jiwa,2025,registration,total_population,3.2,41,,40-44
+18.02.05,3,Trimurjo,age_group,40-44,perempuan,2139,jiwa,2025,registration,total_population,3.2,41,,40-44
+18.02.05,3,Trimurjo,age_group,40-44,,4153,jiwa,2025,registration,total_population,3.2,41,,40-44
+18.02.05,3,Trimurjo,age_group,45-49,laki_laki,2237,jiwa,2025,registration,total_population,3.2,41,,45-49
+18.02.05,3,Trimurjo,age_group,45-49,perempuan,2238,jiwa,2025,registration,total_population,3.2,41,,45-49
+18.02.05,3,Trimurjo,age_group,45-49,,4475,jiwa,2025,registration,total_population,3.2,41,,45-49
+18.02.05,3,Trimurjo,age_group,50-54,laki_laki,2143,jiwa,2025,registration,total_population,3.2,41,,50-54
+18.02.05,3,Trimurjo,age_group,50-54,perempuan,2049,jiwa,2025,registration,total_population,3.2,41,,50-54
+18.02.05,3,Trimurjo,age_group,50-54,,4192,jiwa,2025,registration,total_population,3.2,41,,50-54
+18.02.05,3,Trimurjo,age_group,55-59,laki_laki,1817,jiwa,2025,registration,total_population,3.2,41,,55-59
+18.02.05,3,Trimurjo,age_group,55-59,perempuan,1650,jiwa,2025,registration,total_population,3.2,41,,55-59
+18.02.05,3,Trimurjo,age_group,55-59,,3467,jiwa,2025,registration,total_population,3.2,41,,55-59
+18.02.05,3,Trimurjo,age_group,60-64,laki_laki,1415,jiwa,2025,registration,total_population,3.2,41,,60-64
+18.02.05,3,Trimurjo,age_group,60-64,perempuan,1518,jiwa,2025,registration,total_population,3.2,41,,60-64
+18.02.05,3,Trimurjo,age_group,60-64,,2933,jiwa,2025,registration,total_population,3.2,41,,60-64
+18.02.05,3,Trimurjo,age_group,65-69,laki_laki,1350,jiwa,2025,registration,total_population,3.2,41,,65-69
+18.02.05,3,Trimurjo,age_group,65-69,perempuan,1243,jiwa,2025,registration,total_population,3.2,41,,65-69
+18.02.05,3,Trimurjo,age_group,65-69,,2593,jiwa,2025,registration,total_population,3.2,41,,65-69
+18.02.05,3,Trimurjo,age_group,70-74,laki_laki,906,jiwa,2025,registration,total_population,3.2,41,,70-74
+18.02.05,3,Trimurjo,age_group,70-74,perempuan,796,jiwa,2025,registration,total_population,3.2,41,,70-74
+18.02.05,3,Trimurjo,age_group,70-74,,1702,jiwa,2025,registration,total_population,3.2,41,,70-74
+18.02.05,3,Trimurjo,age_group,75+,laki_laki,975,jiwa,2025,registration,total_population,3.2,41,,75+
+18.02.05,3,Trimurjo,age_group,75+,perempuan,986,jiwa,2025,registration,total_population,3.2,41,,75+
+18.02.05,3,Trimurjo,age_group,75+,,1961,jiwa,2025,registration,total_population,3.2,41,,75+
+18.02.05,3,Trimurjo,sex,laki_laki,,28751,jiwa,2025,registration,total_population,3.2,41,,Laki-Laki
+18.02.05,3,Trimurjo,sex,perempuan,,27720,jiwa,2025,registration,total_population,3.2,41,,Perempuan
+18.02.05,3,Trimurjo,total,total,,56471,jiwa,2025,registration,total_population,3.2,41,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.01.2008,4,Sumberoto,sex,laki_laki,,4348,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2008,4,Sumberoto,sex,perempuan,,4303,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2008,4,Sumberoto,total,total,,8651,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2007,4,Purworejo,sex,laki_laki,,4297,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2007,4,Purworejo,sex,perempuan,,4202,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2007,4,Purworejo,total,total,,8499,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2009,4,Mentaraman,sex,laki_laki,,2992,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2009,4,Mentaraman,sex,perempuan,,2988,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2009,4,Mentaraman,total,total,,5980,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2006,4,Donomulyo,sex,laki_laki,,6246,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2006,4,Donomulyo,sex,perempuan,,6423,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2006,4,Donomulyo,total,total,,12669,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2005,4,Tempursari,sex,laki_laki,,2630,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2005,4,Tempursari,sex,perempuan,,2600,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2005,4,Tempursari,total,total,,5230,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2004,4,Tlogosari,sex,laki_laki,,1719,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2004,4,Tlogosari,sex,perempuan,,1773,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2004,4,Tlogosari,total,total,,3492,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2003,4,Kedungsalam,sex,laki_laki,,5722,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2003,4,Kedungsalam,sex,perempuan,,5473,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2003,4,Kedungsalam,total,total,,11195,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2001,4,Tulungrejo,sex,laki_laki,,1773,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2001,4,Tulungrejo,sex,perempuan,,1748,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2001,4,Tulungrejo,total,total,,3521,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01.2010,4,Purwodadi,sex,laki_laki,,2473,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01.2010,4,Purwodadi,sex,perempuan,,2398,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01.2010,4,Purwodadi,total,total,,4871,jiwa,2025,registration,total_population,3.1,27,,
+35.07.01,3,Kecamatan Donomulyo,sex,laki_laki,,35396,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.01,3,Kecamatan Donomulyo,sex,perempuan,,35111,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.01,3,Kecamatan Donomulyo,total,total,,70507,jiwa,2025,registration,total_population,3.1,27,,

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.04.03.1001,4,Sungai Selan,sex,laki_laki,,4781,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.1001,4,Sungai Selan,sex,perempuan,,4402,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.1001,4,Sungai Selan,total,total,,9183,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2004,4,Lampur,sex,laki_laki,,2661,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2004,4,Lampur,sex,perempuan,,2539,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2004,4,Lampur,total,total,,5200,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2002,4,Kerantai,sex,laki_laki,,551,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2002,4,Kerantai,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2002,4,Kerantai,total,total,,1077,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2003,4,Keretak,sex,laki_laki,,1564,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2003,4,Keretak,sex,perempuan,,1441,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2003,4,Keretak,total,total,,3005,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2005,4,Sarang Mandi,sex,laki_laki,,1444,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2005,4,Sarang Mandi,sex,perempuan,,1290,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2005,4,Sarang Mandi,total,total,,2734,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2006,4,Munggu,sex,laki_laki,,1673,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2006,4,Munggu,sex,perempuan,,1444,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2006,4,Munggu,total,total,,3117,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2007,4,Kemingking,sex,laki_laki,,1230,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2007,4,Kemingking,sex,perempuan,,1045,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2007,4,Kemingking,total,total,,2275,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2008,4,Sungai Selan Atas,sex,laki_laki,,2154,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2008,4,Sungai Selan Atas,sex,perempuan,,2029,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2008,4,Sungai Selan Atas,total,total,,4183,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2011,4,Kerakas,sex,laki_laki,,848,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2011,4,Kerakas,sex,perempuan,,778,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2011,4,Kerakas,total,total,,1626,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2009,4,Tanjung Pura,sex,laki_laki,,597,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2009,4,Tanjung Pura,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2009,4,Tanjung Pura,total,total,,1108,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2013,4,Keretak Atas,sex,laki_laki,,733,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2013,4,Keretak Atas,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2013,4,Keretak Atas,total,total,,1413,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03.2012,4,Melabun,sex,laki_laki,,1060,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03.2012,4,Melabun,sex,perempuan,,996,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03.2012,4,Melabun,total,total,,2056,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03,3,Kecamatan Sungai Selan,sex,laki_laki,,20559,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.03,3,Kecamatan Sungai Selan,sex,perempuan,,18802,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.03,3,Kecamatan Sungai Selan,total,total,,39361,jiwa,2025,registration,total_population,3.1,33,,
+19.04.03,3,Sungai Selan,age_group,0-4,laki_laki,1425,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.03,3,Sungai Selan,age_group,0-4,perempuan,1304,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.03,3,Sungai Selan,age_group,0-4,,2729,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.03,3,Sungai Selan,age_group,5-9,laki_laki,1866,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.03,3,Sungai Selan,age_group,5-9,perempuan,1676,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.03,3,Sungai Selan,age_group,5-9,,3542,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.03,3,Sungai Selan,age_group,10-14,laki_laki,2049,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.03,3,Sungai Selan,age_group,10-14,perempuan,1841,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.03,3,Sungai Selan,age_group,10-14,,3890,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.03,3,Sungai Selan,age_group,15-19,laki_laki,1876,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.03,3,Sungai Selan,age_group,15-19,perempuan,1765,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.03,3,Sungai Selan,age_group,15-19,,3641,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.03,3,Sungai Selan,age_group,20-24,laki_laki,1802,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.03,3,Sungai Selan,age_group,20-24,perempuan,1685,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.03,3,Sungai Selan,age_group,20-24,,3487,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.03,3,Sungai Selan,age_group,25-29,laki_laki,1666,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.03,3,Sungai Selan,age_group,25-29,perempuan,1434,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.03,3,Sungai Selan,age_group,25-29,,3100,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.03,3,Sungai Selan,age_group,30-34,laki_laki,1422,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.03,3,Sungai Selan,age_group,30-34,perempuan,1338,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.03,3,Sungai Selan,age_group,30-34,,2760,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.03,3,Sungai Selan,age_group,35-39,laki_laki,1774,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.03,3,Sungai Selan,age_group,35-39,perempuan,1526,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.03,3,Sungai Selan,age_group,35-39,,3300,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.03,3,Sungai Selan,age_group,40-44,laki_laki,1589,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.03,3,Sungai Selan,age_group,40-44,perempuan,1407,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.03,3,Sungai Selan,age_group,40-44,,2996,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.03,3,Sungai Selan,age_group,45-49,laki_laki,1464,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.03,3,Sungai Selan,age_group,45-49,perempuan,1318,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.03,3,Sungai Selan,age_group,45-49,,2782,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.03,3,Sungai Selan,age_group,50-54,laki_laki,1141,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.03,3,Sungai Selan,age_group,50-54,perempuan,1045,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.03,3,Sungai Selan,age_group,50-54,,2186,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.03,3,Sungai Selan,age_group,55-59,laki_laki,827,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.03,3,Sungai Selan,age_group,55-59,perempuan,797,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.03,3,Sungai Selan,age_group,55-59,,1624,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.03,3,Sungai Selan,age_group,60-64,laki_laki,646,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.03,3,Sungai Selan,age_group,60-64,perempuan,602,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.03,3,Sungai Selan,age_group,60-64,,1248,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.03,3,Sungai Selan,age_group,65-69,laki_laki,486,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.03,3,Sungai Selan,age_group,65-69,perempuan,481,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.03,3,Sungai Selan,age_group,65-69,,967,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.03,3,Sungai Selan,age_group,70-74,laki_laki,267,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.03,3,Sungai Selan,age_group,70-74,perempuan,243,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.03,3,Sungai Selan,age_group,70-74,,510,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.03,3,Sungai Selan,age_group,75+,laki_laki,259,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.03,3,Sungai Selan,age_group,75+,perempuan,340,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.03,3,Sungai Selan,age_group,75+,,599,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.03,3,Sungai Selan,sex,laki_laki,,20559,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+19.04.03,3,Sungai Selan,sex,perempuan,,18802,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+19.04.03,3,Sungai Selan,total,total,,39361,jiwa,2025,registration,total_population,3.2,35,,

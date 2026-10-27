@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-6213-kecamatan-621209-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.12.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Seribu Riam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Murung Raya",
+  "publisherDomain": "6213",
+  "publisherWebsite": "https://murakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Murung Raya (https://murakab.bps.go.id), publikasi \"Kecamatan Seribu Riam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.62120",
+  "publicationNumber": "62130.6014",
+  "issn": "2302-7185",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://murakab.bps.go.id/id/publication/2026/09/28/e6602340717f86cb70341d5c/kecamatan-seribu-riam-dalam-angka-2026.html",
+  "sourceFileSha256": "84301d35bc410dc98e890e9e1806c7ac74c1b0a928a7b829c9d463dfd003d6ae",
+  "sourceFileBytes": 12191813,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Murung Raya.",
+  "csvPath": "datasets/bps-6213-kecamatan-621209-dalam-angka-2026.csv",
+  "csvSha256": "fe5be1d8125d4a00ec2985f64f2454af352af507e93b670e5de9863391c1f1f9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa1/ Kelurahan di Kecamatan Seribu Riam, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Seribu Riam, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

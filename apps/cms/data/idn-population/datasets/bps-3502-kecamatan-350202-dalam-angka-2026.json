@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3502-kecamatan-350202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.02.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ngrayun Dalam Angka 2026",
+  "publisherName": "BPS Ponorogo",
+  "publisherDomain": "3502",
+  "publisherWebsite": "https://ponorogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Ponorogo (https://ponorogokab.bps.go.id), publikasi \"Kecamatan Ngrayun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3502010",
+  "publicationNumber": "35020.26005",
+  "issn": "2829-7202",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ponorogokab.bps.go.id/id/publication/2026/09/28/a23effd3f84003cd5122a4c6/kecamatan-ngrayun-dalam-angka-2026.html",
+  "sourceFileSha256": "4b58fa7580d0842cc7a0e7cb946abb0df5c5fd161d8a12ca2c4b220a85a5eda0",
+  "sourceFileBytes": 1506096,
+  "sourcePages": [31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ponorogo.",
+  "csvPath": "datasets/bps-3502-kecamatan-350202-dalam-angka-2026.csv",
+  "csvSha256": "97220a619e93245a302264917ceae5f5b102c78d04ea18da0dd94496fa4c2690",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ngrayun, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ngrayun, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

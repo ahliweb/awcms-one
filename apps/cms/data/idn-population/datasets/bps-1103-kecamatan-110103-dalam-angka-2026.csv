@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.01.03.2016,4,Ujung Padang,sex,laki_laki,,236,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2016,4,Ujung Padang,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2016,4,Ujung Padang,total,total,,464,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2017,4,Indra Damai,sex,laki_laki,,1006,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2017,4,Indra Damai,sex,perempuan,,897,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2017,4,Indra Damai,total,total,,1903,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2003,4,Barat Daya,sex,laki_laki,,264,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2003,4,Barat Daya,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2003,4,Barat Daya,total,total,,524,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2004,4,Sialang,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2004,4,Sialang,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2004,4,Sialang,total,total,,653,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2005,4,Kapeh,sex,laki_laki,,252,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2005,4,Kapeh,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2005,4,Kapeh,total,total,,506,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2006,4,Pulo Ie,sex,laki_laki,,275,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2006,4,Pulo Ie,sex,perempuan,,256,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2006,4,Pulo Ie,total,total,,531,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2011,4,Jua,sex,laki_laki,,55,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2011,4,Jua,sex,perempuan,,51,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2011,4,Jua,total,total,,106,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2012,4,Pasi Meurapat,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2012,4,Pasi Meurapat,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2012,4,Pasi Meurapat,total,total,,458,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2010,4,Ujung,sex,laki_laki,,114,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2010,4,Ujung,sex,perempuan,,119,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2010,4,Ujung,total,total,,233,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2009,4,Luar,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2009,4,Luar,sex,perempuan,,142,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2009,4,Luar,total,total,,257,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2008,4,Kedai Kandang,sex,laki_laki,,236,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2008,4,Kedai Kandang,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2008,4,Kedai Kandang,total,total,,474,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2002,4,Rantau Binuang,sex,laki_laki,,403,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2002,4,Rantau Binuang,sex,perempuan,,398,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2002,4,Rantau Binuang,total,total,,801,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2013,4,Ujung Pasir,sex,laki_laki,,131,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2013,4,Ujung Pasir,sex,perempuan,,142,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2013,4,Ujung Pasir,total,total,,273,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03.2007,4,Kedai Runding,sex,laki_laki,,1491,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03.2007,4,Kedai Runding,sex,perempuan,,1530,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03.2007,4,Kedai Runding,total,total,,3021,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03,3,Kluet Selatan,sex,laki_laki,,7273,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.01.03,3,Kluet Selatan,sex,perempuan,,7219,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.01.03,3,Kluet Selatan,total,total,,14492,jiwa,2025,registration,total_population,3.1,21,,
+11.01.03,3,Kluet Selatan,age_group,0-4,laki_laki,543,jiwa,2025,registration,total_population,3.2,23,,0-4
+11.01.03,3,Kluet Selatan,age_group,0-4,perempuan,575,jiwa,2025,registration,total_population,3.2,23,,0-4
+11.01.03,3,Kluet Selatan,age_group,0-4,,1118,jiwa,2025,registration,total_population,3.2,23,,0-4
+11.01.03,3,Kluet Selatan,age_group,5-9,laki_laki,620,jiwa,2025,registration,total_population,3.2,23,,5-9
+11.01.03,3,Kluet Selatan,age_group,5-9,perempuan,578,jiwa,2025,registration,total_population,3.2,23,,5-9
+11.01.03,3,Kluet Selatan,age_group,5-9,,1198,jiwa,2025,registration,total_population,3.2,23,,5-9
+11.01.03,3,Kluet Selatan,age_group,10-14,laki_laki,627,jiwa,2025,registration,total_population,3.2,23,,10-14
+11.01.03,3,Kluet Selatan,age_group,10-14,perempuan,549,jiwa,2025,registration,total_population,3.2,23,,10-14
+11.01.03,3,Kluet Selatan,age_group,10-14,,1176,jiwa,2025,registration,total_population,3.2,23,,10-14
+11.01.03,3,Kluet Selatan,age_group,15-19,laki_laki,604,jiwa,2025,registration,total_population,3.2,23,,15-19
+11.01.03,3,Kluet Selatan,age_group,15-19,perempuan,553,jiwa,2025,registration,total_population,3.2,23,,15-19
+11.01.03,3,Kluet Selatan,age_group,15-19,,1157,jiwa,2025,registration,total_population,3.2,23,,15-19
+11.01.03,3,Kluet Selatan,age_group,20-24,laki_laki,762,jiwa,2025,registration,total_population,3.2,23,,20-24
+11.01.03,3,Kluet Selatan,age_group,20-24,perempuan,666,jiwa,2025,registration,total_population,3.2,23,,20-24
+11.01.03,3,Kluet Selatan,age_group,20-24,,1428,jiwa,2025,registration,total_population,3.2,23,,20-24
+11.01.03,3,Kluet Selatan,age_group,25-29,laki_laki,717,jiwa,2025,registration,total_population,3.2,23,,25-29
+11.01.03,3,Kluet Selatan,age_group,25-29,perempuan,623,jiwa,2025,registration,total_population,3.2,23,,25-29
+11.01.03,3,Kluet Selatan,age_group,25-29,,1340,jiwa,2025,registration,total_population,3.2,23,,25-29
+11.01.03,3,Kluet Selatan,age_group,30-34,laki_laki,538,jiwa,2025,registration,total_population,3.2,23,,30-34
+11.01.03,3,Kluet Selatan,age_group,30-34,perempuan,497,jiwa,2025,registration,total_population,3.2,23,,30-34
+11.01.03,3,Kluet Selatan,age_group,30-34,,1035,jiwa,2025,registration,total_population,3.2,23,,30-34
+11.01.03,3,Kluet Selatan,age_group,35-39,laki_laki,514,jiwa,2025,registration,total_population,3.2,23,,35-39
+11.01.03,3,Kluet Selatan,age_group,35-39,perempuan,487,jiwa,2025,registration,total_population,3.2,23,,35-39
+11.01.03,3,Kluet Selatan,age_group,35-39,,1001,jiwa,2025,registration,total_population,3.2,23,,35-39
+11.01.03,3,Kluet Selatan,age_group,40-44,laki_laki,479,jiwa,2025,registration,total_population,3.2,23,,40-44
+11.01.03,3,Kluet Selatan,age_group,40-44,perempuan,507,jiwa,2025,registration,total_population,3.2,23,,40-44
+11.01.03,3,Kluet Selatan,age_group,40-44,,986,jiwa,2025,registration,total_population,3.2,23,,40-44
+11.01.03,3,Kluet Selatan,age_group,45-49,laki_laki,470,jiwa,2025,registration,total_population,3.2,23,,45-49
+11.01.03,3,Kluet Selatan,age_group,45-49,perempuan,526,jiwa,2025,registration,total_population,3.2,23,,45-49
+11.01.03,3,Kluet Selatan,age_group,45-49,,996,jiwa,2025,registration,total_population,3.2,23,,45-49
+11.01.03,3,Kluet Selatan,age_group,50-54,laki_laki,485,jiwa,2025,registration,total_population,3.2,23,,50-54
+11.01.03,3,Kluet Selatan,age_group,50-54,perempuan,508,jiwa,2025,registration,total_population,3.2,23,,50-54
+11.01.03,3,Kluet Selatan,age_group,50-54,,993,jiwa,2025,registration,total_population,3.2,23,,50-54
+11.01.03,3,Kluet Selatan,age_group,55-59,laki_laki,396,jiwa,2025,registration,total_population,3.2,23,,55-59
+11.01.03,3,Kluet Selatan,age_group,55-59,perempuan,394,jiwa,2025,registration,total_population,3.2,23,,55-59
+11.01.03,3,Kluet Selatan,age_group,55-59,,790,jiwa,2025,registration,total_population,3.2,23,,55-59
+11.01.03,3,Kluet Selatan,age_group,60-64,laki_laki,262,jiwa,2025,registration,total_population,3.2,23,,60-64
+11.01.03,3,Kluet Selatan,age_group,60-64,perempuan,353,jiwa,2025,registration,total_population,3.2,23,,60-64
+11.01.03,3,Kluet Selatan,age_group,60-64,,615,jiwa,2025,registration,total_population,3.2,23,,60-64
+11.01.03,3,Kluet Selatan,age_group,65-69,laki_laki,172,jiwa,2025,registration,total_population,3.2,23,,65-69
+11.01.03,3,Kluet Selatan,age_group,65-69,perempuan,218,jiwa,2025,registration,total_population,3.2,23,,65-69
+11.01.03,3,Kluet Selatan,age_group,65-69,,390,jiwa,2025,registration,total_population,3.2,23,,65-69
+11.01.03,3,Kluet Selatan,age_group,70-74,laki_laki,116,jiwa,2025,registration,total_population,3.2,23,,70-74
+11.01.03,3,Kluet Selatan,age_group,70-74,perempuan,158,jiwa,2025,registration,total_population,3.2,23,,70-74
+11.01.03,3,Kluet Selatan,age_group,70-74,,274,jiwa,2025,registration,total_population,3.2,23,,70-74
+11.01.03,3,Kluet Selatan,age_group,75+,laki_laki,130,jiwa,2025,registration,total_population,3.2,23,,75+
+11.01.03,3,Kluet Selatan,age_group,75+,perempuan,188,jiwa,2025,registration,total_population,3.2,23,,75+
+11.01.03,3,Kluet Selatan,age_group,75+,,318,jiwa,2025,registration,total_population,3.2,23,,75+

@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.08.26.2005,4,Jamuan,sex,laki_laki,,909,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2005,4,Jamuan,sex,perempuan,,939,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2005,4,Jamuan,total,total,,1848,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26.2008,4,Blang Pala,sex,laki_laki,,441,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2008,4,Blang Pala,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2008,4,Blang Pala,total,total,,899,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26.2007,4,Sangkelan,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2007,4,Sangkelan,sex,perempuan,,518,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2007,4,Sangkelan,total,total,,1013,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26.2003,4,Ulee Nyeue,sex,laki_laki,,753,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2003,4,Ulee Nyeue,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2003,4,Ulee Nyeue,total,total,,1541,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26.2004,4,Paya Uleue,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2004,4,Paya Uleue,sex,perempuan,,226,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2004,4,Paya Uleue,total,total,,447,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26.2002,4,Cot Jabet,sex,laki_laki,,213,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2002,4,Cot Jabet,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2002,4,Cot Jabet,total,total,,422,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26.2001,4,Paya Dua,sex,laki_laki,,601,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2001,4,Paya Dua,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2001,4,Paya Dua,total,total,,1245,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26.2009,4,Paya Beunyot,sex,laki_laki,,288,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26.2009,4,Paya Beunyot,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26.2009,4,Paya Beunyot,total,total,,594,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26,3,Banda Baro,sex,laki_laki,,4230,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.26,3,Banda Baro,sex,perempuan,,4454,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.26,3,Banda Baro,total,total,,8684,jiwa,2025,registration,total_population,3.1,28,,
+11.08.26,3,Banda Baro,age_group,0-4,laki_laki,387,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.26,3,Banda Baro,age_group,0-4,perempuan,388,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.26,3,Banda Baro,age_group,0-4,,775,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.26,3,Banda Baro,age_group,5-9,laki_laki,462,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.26,3,Banda Baro,age_group,5-9,perempuan,405,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.26,3,Banda Baro,age_group,5-9,,867,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.26,3,Banda Baro,age_group,10-14,laki_laki,406,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.26,3,Banda Baro,age_group,10-14,perempuan,376,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.26,3,Banda Baro,age_group,10-14,,782,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.26,3,Banda Baro,age_group,15-19,laki_laki,321,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.26,3,Banda Baro,age_group,15-19,perempuan,331,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.26,3,Banda Baro,age_group,15-19,,652,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.26,3,Banda Baro,age_group,20-24,laki_laki,336,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.26,3,Banda Baro,age_group,20-24,perempuan,335,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.26,3,Banda Baro,age_group,20-24,,671,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.26,3,Banda Baro,age_group,25-29,laki_laki,345,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.26,3,Banda Baro,age_group,25-29,perempuan,390,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.26,3,Banda Baro,age_group,25-29,,735,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.26,3,Banda Baro,age_group,30-34,laki_laki,372,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.26,3,Banda Baro,age_group,30-34,perempuan,326,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.26,3,Banda Baro,age_group,30-34,,698,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.26,3,Banda Baro,age_group,35-39,laki_laki,335,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.26,3,Banda Baro,age_group,35-39,perempuan,329,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.26,3,Banda Baro,age_group,35-39,,664,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.26,3,Banda Baro,age_group,40-44,laki_laki,275,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.26,3,Banda Baro,age_group,40-44,perempuan,300,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.26,3,Banda Baro,age_group,40-44,,575,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.26,3,Banda Baro,age_group,45-49,laki_laki,269,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.26,3,Banda Baro,age_group,45-49,perempuan,292,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.26,3,Banda Baro,age_group,45-49,,561,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.26,3,Banda Baro,age_group,50-54,laki_laki,185,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.26,3,Banda Baro,age_group,50-54,perempuan,233,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.26,3,Banda Baro,age_group,50-54,,418,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.26,3,Banda Baro,age_group,55-59,laki_laki,160,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.26,3,Banda Baro,age_group,55-59,perempuan,213,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.26,3,Banda Baro,age_group,55-59,,373,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.26,3,Banda Baro,age_group,60-64,laki_laki,141,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.26,3,Banda Baro,age_group,60-64,perempuan,164,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.26,3,Banda Baro,age_group,60-64,,305,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.26,3,Banda Baro,age_group,65+,laki_laki,236,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.26,3,Banda Baro,age_group,65+,perempuan,372,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.26,3,Banda Baro,age_group,65+,,608,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.26,3,Banda Baro,sex,laki_laki,,4230,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+11.08.26,3,Banda Baro,sex,perempuan,,4454,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+11.08.26,3,Banda Baro,total,total,,8684,jiwa,2025,registration,total_population,3.2,30,,

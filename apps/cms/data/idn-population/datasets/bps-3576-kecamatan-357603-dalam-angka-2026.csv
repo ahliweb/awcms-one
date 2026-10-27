@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.76.03.1001,4,Kranggan,religion,islam,,12323,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.03.1001,4,Kranggan,religion,kristen,,774,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.03.1001,4,Kranggan,religion,katolik,,138,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.03.1001,4,Kranggan,religion,hindu,,5,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.03.1001,4,Kranggan,religion,buddha,,70,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.03.1001,4,Kranggan,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.03.1003,4,Meri,religion,islam,,8869,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.03.1003,4,Meri,religion,kristen,,505,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.03.1003,4,Meri,religion,katolik,,110,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.03.1003,4,Meri,religion,hindu,,9,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.03.1003,4,Meri,religion,buddha,,18,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.03.1003,4,Meri,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.03.1004,4,Jagalan,religion,islam,,2605,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.03.1004,4,Jagalan,religion,kristen,,245,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.03.1004,4,Jagalan,religion,katolik,,51,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.03.1004,4,Jagalan,religion,hindu,,7,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.03.1004,4,Jagalan,religion,buddha,,39,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.03.1004,4,Jagalan,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.03.1002,4,Miji,religion,islam,,8173,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.03.1002,4,Miji,religion,kristen,,381,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.03.1002,4,Miji,religion,katolik,,80,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.03.1002,4,Miji,religion,hindu,,12,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.03.1002,4,Miji,religion,buddha,,21,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.03.1002,4,Miji,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.03.1005,4,Sentanan,religion,islam,,1411,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.03.1005,4,Sentanan,religion,kristen,,411,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.03.1005,4,Sentanan,religion,katolik,,90,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.03.1005,4,Sentanan,religion,hindu,,2,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.03.1005,4,Sentanan,religion,buddha,,253,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.03.1005,4,Sentanan,religion,khonghucu,,10,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.03.1006,4,Purwotengah,religion,islam,,1169,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.03.1006,4,Purwotengah,religion,kristen,,194,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.03.1006,4,Purwotengah,religion,katolik,,73,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.03.1006,4,Purwotengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.03.1006,4,Purwotengah,religion,buddha,,124,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.03.1006,4,Purwotengah,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.03,3,Kecamatan Kranggan,religion,islam,,34550,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.03,3,Kecamatan Kranggan,religion,kristen,,2510,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.03,3,Kecamatan Kranggan,religion,katolik,,542,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.03,3,Kecamatan Kranggan,religion,hindu,,35,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.03,3,Kecamatan Kranggan,religion,buddha,,525,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.03,3,Kecamatan Kranggan,religion,khonghucu,,20,jiwa,2025,registration,total_population,4.4.1,74,,

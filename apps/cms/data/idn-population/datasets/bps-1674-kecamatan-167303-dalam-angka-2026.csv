@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.73.03.1001,4,LUBUK KUPANG,sex,laki_laki,,2333,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03.1001,4,LUBUK KUPANG,sex,perempuan,,2239,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03.1001,4,LUBUK KUPANG,total,total,,4572,jiwa,2025,registration,total_population,3.1,26,,
+16.73.03.1003,4,RAHMAH,sex,laki_laki,,1700,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03.1003,4,RAHMAH,sex,perempuan,,1658,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03.1003,4,RAHMAH,total,total,,3358,jiwa,2025,registration,total_population,3.1,26,,
+16.73.03.1008,4,JUKUNG,sex,laki_laki,,1102,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03.1008,4,JUKUNG,sex,perempuan,,1070,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03.1008,4,JUKUNG,total,total,,2172,jiwa,2025,registration,total_population,3.1,26,,
+16.73.03.1009,4,AIR KATI,sex,laki_laki,,907,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03.1009,4,AIR KATI,sex,perempuan,,908,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03.1009,4,AIR KATI,total,total,,1815,jiwa,2025,registration,total_population,3.1,26,,
+16.73.03.1010,4,AIR TEMAN,sex,laki_laki,,1687,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03.1010,4,AIR TEMAN,sex,perempuan,,1679,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03.1010,4,AIR TEMAN,total,total,,3366,jiwa,2025,registration,total_population,3.1,26,,
+16.73.03.1011,4,PERUMNAS RAHMAH,sex,laki_laki,,676,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03.1011,4,PERUMNAS RAHMAH,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03.1011,4,PERUMNAS RAHMAH,total,total,,1331,jiwa,2025,registration,total_population,3.1,26,,
+16.73.03.1012,4,LUBUK BINJAI,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03.1012,4,LUBUK BINJAI,sex,perempuan,,611,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03.1012,4,LUBUK BINJAI,total,total,,1282,jiwa,2025,registration,total_population,3.1,26,,
+16.73.03,3,Lubuk Linggau Selatan I,sex,laki_laki,,9076,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.03,3,Lubuk Linggau Selatan I,sex,perempuan,,8820,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.03,3,Lubuk Linggau Selatan I,total,total,,17896,jiwa,2025,registration,total_population,3.1,26,,

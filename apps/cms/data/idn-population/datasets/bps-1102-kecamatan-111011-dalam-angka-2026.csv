@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.11.2001,4,Lae Balno,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.10.11.2001,4,Lae Balno,sex,perempuan,,574,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.10.11.2001,4,Lae Balno,total,total,,1179,jiwa,2025,registration,total_population,3.1,19,,
+11.10.11.2002,4,Napagaluh,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.10.11.2002,4,Napagaluh,sex,perempuan,,485,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.10.11.2002,4,Napagaluh,total,total,,984,jiwa,2025,registration,total_population,3.1,19,,
+11.10.11.2003,4,Sikoran,sex,laki_laki,,456,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.10.11.2003,4,Sikoran,sex,perempuan,,407,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.10.11.2003,4,Sikoran,total,total,,863,jiwa,2025,registration,total_population,3.1,19,,
+11.10.11.2004,4,Situbuh-Tubuh,sex,laki_laki,,647,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.10.11.2004,4,Situbuh-Tubuh,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.10.11.2004,4,Situbuh-Tubuh,total,total,,1254,jiwa,2025,registration,total_population,3.1,19,,
+11.10.11.2005,4,Biskang,sex,laki_laki,,955,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.10.11.2005,4,Biskang,sex,perempuan,,931,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.10.11.2005,4,Biskang,total,total,,1886,jiwa,2025,registration,total_population,3.1,19,,
+11.10.11.2006,4,Sintuban Makmur,sex,laki_laki,,1556,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.10.11.2006,4,Sintuban Makmur,sex,perempuan,,1409,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.10.11.2006,4,Sintuban Makmur,total,total,,2965,jiwa,2025,registration,total_population,3.1,19,,
+11.10.11,3,Kecamatan Danau Paris,sex,laki_laki,,4718,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.10.11,3,Kecamatan Danau Paris,sex,perempuan,,4413,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.10.11,3,Kecamatan Danau Paris,total,total,,9131,jiwa,2025,registration,total_population,3.1,19,,

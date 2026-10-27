@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Modo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Modo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3524090",
+  "publicationNumber": "35240.26014",
+  "issn": "2598-4632",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/9c14765dea816390a8cd35fa/kecamatan-modo-dalam-angka-2026.html",
+  "sourceFileSha256": "65361fbb17ec6a8268ad5341ff6d924af9ee8a1d9909aa06459024a33ce5e15a",
+  "sourceFileBytes": 3775578,
+  "sourcePages": [26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352403-dalam-angka-2026.csv",
+  "csvSha256": "90dcd9a1b1efe7a4de6d4ba1c7f9b30970f5eaf67264590b572d0c82c4d6b052",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan MODO, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Usia 0-4\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 5-9\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 10-14\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 15-19\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 20-24\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 25-29\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 30-34\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 35-39\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 40-44\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 45-49\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 50-54\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 55-59\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 60-64\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

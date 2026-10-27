@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.14.2002,4,BOJONGMANGGU,sex,laki_laki,,5895,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.14.2002,4,BOJONGMANGGU,sex,perempuan,,5848,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.14.2002,4,BOJONGMANGGU,total,total,,11743,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.14.2006,4,LANGONSARI,sex,laki_laki,,9124,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.14.2006,4,LANGONSARI,sex,perempuan,,8701,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.14.2006,4,LANGONSARI,total,total,,17825,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.14.2001,4,SUKASARI,sex,laki_laki,,7145,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.14.2001,4,SUKASARI,sex,perempuan,,6985,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.14.2001,4,SUKASARI,total,total,,14130,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.14.2005,4,RANCAMULYA,sex,laki_laki,,12317,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.14.2005,4,RANCAMULYA,sex,perempuan,,11900,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.14.2005,4,RANCAMULYA,total,total,,24217,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.14.2003,4,RANCATUNGKU,sex,laki_laki,,6184,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.14.2003,4,RANCATUNGKU,sex,perempuan,,5906,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.14.2003,4,RANCATUNGKU,total,total,,12090,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.14.2004,4,BOJONGKUNCI,sex,laki_laki,,9001,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.14.2004,4,BOJONGKUNCI,sex,perempuan,,8737,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.14.2004,4,BOJONGKUNCI,total,total,,17738,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.14,3,Kecamatan Pameungpeuk,sex,laki_laki,,49666,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.14,3,Kecamatan Pameungpeuk,sex,perempuan,,48077,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.14,3,Kecamatan Pameungpeuk,total,total,,97743,jiwa,2025,registration,total_population,unnumbered-p28,28,,

@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.01.2005,4,Munggu,sex,laki_laki,,958,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2005,4,Munggu,sex,perempuan,,928,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2005,4,Munggu,total,total,,1886,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2006,4,Serimenanti,sex,laki_laki,,594,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2006,4,Serimenanti,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2006,4,Serimenanti,total,total,,1179,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2007,4,Rantau Sialang,sex,laki_laki,,522,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2007,4,Rantau Sialang,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2007,4,Rantau Sialang,total,total,,1028,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2008,4,Kuang Anyar,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2008,4,Kuang Anyar,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2008,4,Kuang Anyar,total,total,,857,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2009,4,Kasah,sex,laki_laki,,519,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2009,4,Kasah,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2009,4,Kasah,total,total,,1025,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.1011,4,Muara Kuang,sex,laki_laki,,908,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.1011,4,Muara Kuang,sex,perempuan,,859,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.1011,4,Muara Kuang,total,total,,1767,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2031,4,Tanabang Ilir,sex,laki_laki,,748,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2031,4,Tanabang Ilir,sex,perempuan,,695,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2031,4,Tanabang Ilir,total,total,,1443,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2013,4,Seri Kembang,sex,laki_laki,,938,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2013,4,Seri Kembang,sex,perempuan,,912,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2013,4,Seri Kembang,total,total,,1850,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2014,4,Nagasari,sex,laki_laki,,1073,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2014,4,Nagasari,sex,perempuan,,992,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2014,4,Nagasari,total,total,,2065,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2015,4,Sukacinta,sex,laki_laki,,1290,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2015,4,Sukacinta,sex,perempuan,,1205,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2015,4,Sukacinta,total,total,,2495,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2016,4,Kelampadu,sex,laki_laki,,702,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2016,4,Kelampadu,sex,perempuan,,649,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2016,4,Kelampadu,total,total,,1351,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2029,4,Sukajadi,sex,laki_laki,,937,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2029,4,Sukajadi,sex,perempuan,,895,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2029,4,Sukajadi,total,total,,1832,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01.2012,4,Tanabang Ulu,sex,laki_laki,,572,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01.2012,4,Tanabang Ulu,sex,perempuan,,528,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01.2012,4,Tanabang Ulu,total,total,,1100,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01,3,MUARA KUANG,sex,laki_laki,,10995,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.01,3,MUARA KUANG,sex,perempuan,,10399,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.01,3,MUARA KUANG,total,total,,21394,jiwa,2025,registration,total_population,3.1,27,,
+16.10.01,3,Muara Kuang,age_group,0-4,laki_laki,655,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.01,3,Muara Kuang,age_group,0-4,perempuan,596,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.01,3,Muara Kuang,age_group,0-4,,1251,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.01,3,Muara Kuang,age_group,5-9,laki_laki,949,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.01,3,Muara Kuang,age_group,5-9,perempuan,856,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.01,3,Muara Kuang,age_group,5-9,,1805,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.01,3,Muara Kuang,age_group,10-14,laki_laki,1057,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.01,3,Muara Kuang,age_group,10-14,perempuan,969,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.01,3,Muara Kuang,age_group,10-14,,2026,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.01,3,Muara Kuang,age_group,15-19,laki_laki,1017,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.01,3,Muara Kuang,age_group,15-19,perempuan,926,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.01,3,Muara Kuang,age_group,15-19,,1943,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.01,3,Muara Kuang,age_group,20-24,laki_laki,933,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.01,3,Muara Kuang,age_group,20-24,perempuan,887,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.01,3,Muara Kuang,age_group,20-24,,1820,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.01,3,Muara Kuang,age_group,25-29,laki_laki,826,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.01,3,Muara Kuang,age_group,25-29,perempuan,723,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.01,3,Muara Kuang,age_group,25-29,,1549,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.01,3,Muara Kuang,age_group,30-34,laki_laki,624,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.01,3,Muara Kuang,age_group,30-34,perempuan,602,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.01,3,Muara Kuang,age_group,30-34,,1226,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.01,3,Muara Kuang,age_group,35-39,laki_laki,851,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.01,3,Muara Kuang,age_group,35-39,perempuan,778,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.01,3,Muara Kuang,age_group,35-39,,1629,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.01,3,Muara Kuang,age_group,40-44,laki_laki,840,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.01,3,Muara Kuang,age_group,40-44,perempuan,812,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.01,3,Muara Kuang,age_group,40-44,,1652,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.01,3,Muara Kuang,age_group,45-49,laki_laki,780,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.01,3,Muara Kuang,age_group,45-49,perempuan,720,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.01,3,Muara Kuang,age_group,45-49,,1500,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.01,3,Muara Kuang,age_group,50-54,laki_laki,631,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.01,3,Muara Kuang,age_group,50-54,perempuan,619,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.01,3,Muara Kuang,age_group,50-54,,1250,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.01,3,Muara Kuang,age_group,55-59,laki_laki,530,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.01,3,Muara Kuang,age_group,55-59,perempuan,571,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.01,3,Muara Kuang,age_group,55-59,,1101,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.01,3,Muara Kuang,age_group,60-64,laki_laki,441,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.01,3,Muara Kuang,age_group,60-64,perempuan,460,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.01,3,Muara Kuang,age_group,60-64,,901,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.01,3,Muara Kuang,age_group,65-69,laki_laki,360,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.01,3,Muara Kuang,age_group,65-69,perempuan,345,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.01,3,Muara Kuang,age_group,65-69,,705,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.01,3,Muara Kuang,age_group,70-75,laki_laki,212,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.01,3,Muara Kuang,age_group,70-75,perempuan,228,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.01,3,Muara Kuang,age_group,70-75,,440,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.01,3,Muara Kuang,age_group,75+,laki_laki,229,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.01,3,Muara Kuang,age_group,75+,perempuan,307,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.01,3,Muara Kuang,age_group,75+,,536,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.01,3,Muara Kuang,sex,laki_laki,,10935,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.10.01,3,Muara Kuang,sex,perempuan,,10399,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.10.01,3,Muara Kuang,total,total,,21334,jiwa,2025,registration,total_population,3.2,29,,

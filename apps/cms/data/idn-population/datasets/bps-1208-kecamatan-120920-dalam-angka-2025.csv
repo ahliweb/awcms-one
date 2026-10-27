@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.20.1004,4,Sentang,sex,laki_laki,,5175,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1004,4,Sentang,sex,perempuan,,5189,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1004,4,Sentang,total,total,,10364,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1010,4,Kedai Ledang,sex,laki_laki,,2759,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1010,4,Kedai Ledang,sex,perempuan,,2752,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1010,4,Kedai Ledang,total,total,,5511,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1009,4,Kisaran Naga,sex,laki_laki,,3312,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1009,4,Kisaran Naga,sex,perempuan,,3261,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1009,4,Kisaran Naga,total,total,,6573,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1001,4,Teladan,sex,laki_laki,,3175,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1001,4,Teladan,sex,perempuan,,3325,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1001,4,Teladan,total,total,,6500,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1008,4,Kisaran Timur,sex,laki_laki,,1565,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1008,4,Kisaran Timur,sex,perempuan,,1565,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1008,4,Kisaran Timur,total,total,,3130,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1005,4,Selawan,sex,laki_laki,,3873,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1005,4,Selawan,sex,perempuan,,3916,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1005,4,Selawan,total,total,,7789,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1006,4,Mutiara,sex,laki_laki,,5514,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1006,4,Mutiara,sex,perempuan,,5747,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1006,4,Mutiara,total,total,,11261,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1003,4,Siumbut Baru,sex,laki_laki,,4001,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1003,4,Siumbut Baru,sex,perempuan,,3929,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1003,4,Siumbut Baru,total,total,,7930,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1002,4,Siumbut - Umbut,sex,laki_laki,,4273,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1002,4,Siumbut - Umbut,sex,perempuan,,4254,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1002,4,Siumbut - Umbut,total,total,,8527,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1011,4,Karang Anyer,sex,laki_laki,,2224,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1011,4,Karang Anyer,sex,perempuan,,2214,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1011,4,Karang Anyer,total,total,,4438,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1012,4,Gambir Baru,sex,laki_laki,,2934,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1012,4,Gambir Baru,sex,perempuan,,3012,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1012,4,Gambir Baru,total,total,,5946,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20.1007,4,Lestari,sex,laki_laki,,4113,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20.1007,4,Lestari,sex,perempuan,,4203,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20.1007,4,Lestari,total,total,,8316,jiwa,2024,registration,total_population,3.1,28,,
+12.09.20,3,Kota Kisaran Timur,sex,laki_laki,,42918,jiwa,2024,registration,total_population,3.1,28,,Laki-Laki
+12.09.20,3,Kota Kisaran Timur,sex,perempuan,,43367,jiwa,2024,registration,total_population,3.1,28,,Perempuan
+12.09.20,3,Kota Kisaran Timur,total,total,,86285,jiwa,2024,registration,total_population,3.1,28,,

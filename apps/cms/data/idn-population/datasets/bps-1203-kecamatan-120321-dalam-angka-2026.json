@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1203-kecamatan-120321-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.03.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sayur Matinggi Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN TAPANULI SELATAN",
+  "publisherDomain": "1203",
+  "publisherWebsite": "https://tapanuliselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN TAPANULI SELATAN (https://tapanuliselatankab.bps.go.id), publikasi \"Kecamatan Sayur Matinggi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1203011",
+  "publicationNumber": "12030",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanuliselatankab.bps.go.id/id/publication/2026/09/28/30a1a2a2e387a6ed69cedb22/kecamatan-sayur-matinggi-dalam-angka-2026.html",
+  "sourceFileSha256": "8c0045030eaa1cb339fb32d4cd0f0bc113596b6602f2b992f879215a4a5ebb4d",
+  "sourceFileBytes": 4063139,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Selatan.",
+  "csvPath": "datasets/bps-1203-kecamatan-120321-dalam-angka-2026.csv",
+  "csvSha256": "adecc734662931782178a9b21a798d6f7587efc8a1de05ad0157ce044e2d491a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sayur Matinggi, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sayur Matinggi, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"0 4\": unmatched ",
+    "table 3.2: row not stored: row \"5 9\": unmatched ",
+    "table 3.2: the rows of region 12.03.21 are not stored: age_group (perempuan) vs sex value: parts sum 12094.0000 != 14145.0000 (diff 2051.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.72.03.1002,4,Martoba,sex,laki_laki,,5040,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03.1002,4,Martoba,sex,perempuan,,5019,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03.1002,4,Martoba,total,total,,10059,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03.1001,4,Melayu,sex,laki_laki,,4102,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03.1001,4,Melayu,sex,perempuan,,4215,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03.1001,4,Melayu,total,total,,8317,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03.1003,4,Baru,sex,laki_laki,,3416,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03.1003,4,Baru,sex,perempuan,,3439,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03.1003,4,Baru,total,total,,6855,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03.1004,4,Sukadame,sex,laki_laki,,2625,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03.1004,4,Sukadame,sex,perempuan,,2780,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03.1004,4,Sukadame,total,total,,5405,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03.1007,4,Bane,sex,laki_laki,,3377,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03.1007,4,Bane,sex,perempuan,,3540,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03.1007,4,Bane,total,total,,6917,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03.1006,4,Sigulang-Gulang,sex,laki_laki,,3119,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03.1006,4,Sigulang-Gulang,sex,perempuan,,3147,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03.1006,4,Sigulang-Gulang,total,total,,6266,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03.1005,4,Kahean,sex,laki_laki,,3729,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03.1005,4,Kahean,sex,perempuan,,3854,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03.1005,4,Kahean,total,total,,7583,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03,3,Siantar Utara,sex,laki_laki,,25408,jiwa,2026,registration,total_population,3.1,41,,Laki-Laki/Male
+12.72.03,3,Siantar Utara,sex,perempuan,,25994,jiwa,2026,registration,total_population,3.1,41,,Perempuan/Female
+12.72.03,3,Siantar Utara,total,total,,51402,jiwa,2026,registration,total_population,3.1,41,,
+12.72.03,3,Siantar Utara,age_group,0-4,laki_laki,1236,jiwa,2026,registration,total_population,3.2,43,,0-4
+12.72.03,3,Siantar Utara,age_group,0-4,perempuan,1081,jiwa,2026,registration,total_population,3.2,43,,0-4
+12.72.03,3,Siantar Utara,age_group,0-4,,2317,jiwa,2026,registration,total_population,3.2,43,,0-4
+12.72.03,3,Siantar Utara,age_group,5-9,laki_laki,1782,jiwa,2026,registration,total_population,3.2,43,,5-9
+12.72.03,3,Siantar Utara,age_group,5-9,perempuan,1752,jiwa,2026,registration,total_population,3.2,43,,5-9
+12.72.03,3,Siantar Utara,age_group,5-9,,3534,jiwa,2026,registration,total_population,3.2,43,,5-9
+12.72.03,3,Siantar Utara,age_group,10-14,laki_laki,2321,jiwa,2026,registration,total_population,3.2,43,,10-14
+12.72.03,3,Siantar Utara,age_group,10-14,perempuan,2142,jiwa,2026,registration,total_population,3.2,43,,10-14
+12.72.03,3,Siantar Utara,age_group,10-14,,4463,jiwa,2026,registration,total_population,3.2,43,,10-14
+12.72.03,3,Siantar Utara,age_group,15-19,laki_laki,2462,jiwa,2026,registration,total_population,3.2,43,,15-19
+12.72.03,3,Siantar Utara,age_group,15-19,perempuan,2295,jiwa,2026,registration,total_population,3.2,43,,15-19
+12.72.03,3,Siantar Utara,age_group,15-19,,4757,jiwa,2026,registration,total_population,3.2,43,,15-19
+12.72.03,3,Siantar Utara,age_group,20-24,laki_laki,2317,jiwa,2026,registration,total_population,3.2,43,,20-24
+12.72.03,3,Siantar Utara,age_group,20-24,perempuan,2287,jiwa,2026,registration,total_population,3.2,43,,20-24
+12.72.03,3,Siantar Utara,age_group,20-24,,4604,jiwa,2026,registration,total_population,3.2,43,,20-24
+12.72.03,3,Siantar Utara,age_group,25-29,laki_laki,2081,jiwa,2026,registration,total_population,3.2,43,,25-29
+12.72.03,3,Siantar Utara,age_group,25-29,perempuan,1932,jiwa,2026,registration,total_population,3.2,43,,25-29
+12.72.03,3,Siantar Utara,age_group,25-29,,4013,jiwa,2026,registration,total_population,3.2,43,,25-29
+12.72.03,3,Siantar Utara,age_group,30-34,laki_laki,1887,jiwa,2026,registration,total_population,3.2,43,,30-34
+12.72.03,3,Siantar Utara,age_group,30-34,perempuan,1813,jiwa,2026,registration,total_population,3.2,43,,30-34
+12.72.03,3,Siantar Utara,age_group,30-34,,3700,jiwa,2026,registration,total_population,3.2,43,,30-34
+12.72.03,3,Siantar Utara,age_group,35-39,laki_laki,1857,jiwa,2026,registration,total_population,3.2,43,,35-39
+12.72.03,3,Siantar Utara,age_group,35-39,perempuan,1798,jiwa,2026,registration,total_population,3.2,43,,35-39
+12.72.03,3,Siantar Utara,age_group,35-39,,3655,jiwa,2026,registration,total_population,3.2,43,,35-39
+12.72.03,3,Siantar Utara,age_group,40-44,laki_laki,1948,jiwa,2026,registration,total_population,3.2,43,,40-44
+12.72.03,3,Siantar Utara,age_group,40-44,perempuan,1833,jiwa,2026,registration,total_population,3.2,43,,40-44
+12.72.03,3,Siantar Utara,age_group,40-44,,3781,jiwa,2026,registration,total_population,3.2,43,,40-44
+12.72.03,3,Siantar Utara,age_group,45-49,laki_laki,1762,jiwa,2026,registration,total_population,3.2,43,,45-49
+12.72.03,3,Siantar Utara,age_group,45-49,perempuan,1707,jiwa,2026,registration,total_population,3.2,43,,45-49
+12.72.03,3,Siantar Utara,age_group,45-49,,3469,jiwa,2026,registration,total_population,3.2,43,,45-49
+12.72.03,3,Siantar Utara,age_group,50-54,laki_laki,1487,jiwa,2026,registration,total_population,3.2,43,,50-54
+12.72.03,3,Siantar Utara,age_group,50-54,perempuan,1552,jiwa,2026,registration,total_population,3.2,43,,50-54
+12.72.03,3,Siantar Utara,age_group,50-54,,3039,jiwa,2026,registration,total_population,3.2,43,,50-54
+12.72.03,3,Siantar Utara,age_group,55-59,laki_laki,1269,jiwa,2026,registration,total_population,3.2,43,,55-59
+12.72.03,3,Siantar Utara,age_group,55-59,perempuan,1535,jiwa,2026,registration,total_population,3.2,43,,55-59
+12.72.03,3,Siantar Utara,age_group,55-59,,2804,jiwa,2026,registration,total_population,3.2,43,,55-59
+12.72.03,3,Siantar Utara,age_group,60-64,laki_laki,1024,jiwa,2026,registration,total_population,3.2,43,,60-64
+12.72.03,3,Siantar Utara,age_group,60-64,perempuan,1311,jiwa,2026,registration,total_population,3.2,43,,60-64
+12.72.03,3,Siantar Utara,age_group,60-64,,2335,jiwa,2026,registration,total_population,3.2,43,,60-64
+12.72.03,3,Siantar Utara,age_group,65-69,laki_laki,816,jiwa,2026,registration,total_population,3.2,43,,65-69
+12.72.03,3,Siantar Utara,age_group,65-69,perempuan,1138,jiwa,2026,registration,total_population,3.2,43,,65-69
+12.72.03,3,Siantar Utara,age_group,65-69,,1954,jiwa,2026,registration,total_population,3.2,43,,65-69
+12.72.03,3,Siantar Utara,age_group,70-74,laki_laki,537,jiwa,2026,registration,total_population,3.2,43,,70-74
+12.72.03,3,Siantar Utara,age_group,70-74,perempuan,777,jiwa,2026,registration,total_population,3.2,43,,70-74
+12.72.03,3,Siantar Utara,age_group,70-74,,1314,jiwa,2026,registration,total_population,3.2,43,,70-74
+12.72.03,3,Siantar Utara,age_group,75+,laki_laki,622,jiwa,2026,registration,total_population,3.2,43,,75+
+12.72.03,3,Siantar Utara,age_group,75+,perempuan,1041,jiwa,2026,registration,total_population,3.2,43,,75+
+12.72.03,3,Siantar Utara,age_group,75+,,1663,jiwa,2026,registration,total_population,3.2,43,,75+
+12.72.03,3,Siantar Utara,sex,laki_laki,,25408,jiwa,2026,registration,total_population,3.2,43,,Laki-Laki
+12.72.03,3,Siantar Utara,sex,perempuan,,25994,jiwa,2026,registration,total_population,3.2,43,,Perempuan
+12.72.03,3,Siantar Utara,total,total,,51402,jiwa,2026,registration,total_population,3.2,43,,

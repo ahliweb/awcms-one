@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320813-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cilimus Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Cilimus Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208170",
+  "publicationNumber": "32080.25023",
+  "issn": "2830-4284",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/ee257c0f3c90dc6dd701e9c8/kecamatan-cilimus-dalam-angka-2026.html",
+  "sourceFileSha256": "8bc5e6a8be5f9c138c38c2cc88b95cce730bbab88370226074ca5a66dd31747e",
+  "sourceFileBytes": 2984294,
+  "sourcePages": [37, 38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320813-dalam-angka-2026.csv",
+  "csvSha256": "b9917e8b2338183cbb7b2c0cb9fcd86dd2dbcb2d93157bf69555d78ad0fc7b00",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Cilimus, 2025",
+      "printedPages": [37, 38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cilimus, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Kecamatan Cilimus Cilimus District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Cilimus Cilimus District\": unmatched ",
+    "table 3.1.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Cilimus Cilimus District\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Cilimus Cilimus District\": unmatched "
+  ]
+}

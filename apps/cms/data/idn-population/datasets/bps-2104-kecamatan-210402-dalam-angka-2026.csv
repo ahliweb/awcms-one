@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.02.2001,4,Pekajang,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2001,4,Pekajang,sex,perempuan,,231,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2001,4,Pekajang,total,total,,514,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2006,4,Kelumu,sex,laki_laki,,512,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2006,4,Kelumu,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2006,4,Kelumu,total,total,,944,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2003,4,Mepar,sex,laki_laki,,568,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2003,4,Mepar,sex,perempuan,,554,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2003,4,Mepar,total,total,,1122,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2002,4,Kelombok,sex,laki_laki,,166,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2002,4,Kelombok,sex,perempuan,,153,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2002,4,Kelombok,total,total,,319,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2008,4,Merawang,sex,laki_laki,,698,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2008,4,Merawang,sex,perempuan,,685,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2008,4,Merawang,total,total,,1383,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.1010,4,Daik,sex,laki_laki,,1675,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.1010,4,Daik,sex,perempuan,,1631,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.1010,4,Daik,total,total,,3306,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2009,4,Panggak Darat,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2009,4,Panggak Darat,sex,perempuan,,318,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2009,4,Panggak Darat,total,total,,630,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2011,4,Panggak Laut,sex,laki_laki,,280,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2011,4,Panggak Laut,sex,perempuan,,290,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2011,4,Panggak Laut,total,total,,570,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2012,4,Musai,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2012,4,Musai,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2012,4,Musai,total,total,,662,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2007,4,Mentuda,sex,laki_laki,,740,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2007,4,Mentuda,sex,perempuan,,705,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2007,4,Mentuda,total,total,,1445,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.2019,4,Nerekeh,sex,laki_laki,,169,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.2019,4,Nerekeh,sex,perempuan,,169,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.2019,4,Nerekeh,total,total,,338,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02.1020,4,Daik Sepincan,sex,laki_laki,,765,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02.1020,4,Daik Sepincan,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02.1020,4,Daik Sepincan,total,total,,1497,jiwa,2025,registration,total_population,3.1,19,,
+21.04.02,3,Kecamatan Lingga,sex,laki_laki,,6520,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.02,3,Kecamatan Lingga,sex,perempuan,,6210,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.02,3,Kecamatan Lingga,total,total,,12730,jiwa,2025,registration,total_population,3.1,19,,

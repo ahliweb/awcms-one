@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1609-kecamatan-160816-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.08.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jaya Pura Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ulu Timur",
+  "publisherDomain": "1609",
+  "publisherWebsite": "https://okutimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ulu Timur (https://okutimurkab.bps.go.id), publikasi \"Kecamatan Jaya Pura Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1609032",
+  "publicationNumber": "16090.26005",
+  "issn": "2962-5084",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okutimurkab.bps.go.id/id/publication/2026/09/28/419bdfbd71299e7f64927d84/kecamatan-jaya-pura-dalam-angka-2026.html",
+  "sourceFileSha256": "4267e03073dd5c11e748c40adbcb45e056cd9206ce5f7806325c5cd30e4efb92",
+  "sourceFileBytes": 7255102,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ulu Timur.",
+  "csvPath": "datasets/bps-1609-kecamatan-160816-dalam-angka-2026.csv",
+  "csvSha256": "9e58d43ecd3d243828e093aa9837fdd9cf8a1fd9fa28c8f78a72087f1f116a4a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Buay Pemuka Bangsa Raja, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jayapura, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Buay Pemuka Bangsa Raja\": unmatched "
+  ]
+}

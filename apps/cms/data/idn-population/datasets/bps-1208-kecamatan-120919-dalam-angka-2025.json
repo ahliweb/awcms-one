@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1208-kecamatan-120919-dalam-angka-2025",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.09.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Kisaran Barat Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Asahan",
+  "publisherDomain": "1208",
+  "publisherWebsite": "https://asahankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Asahan (https://asahankab.bps.go.id), publikasi \"Kecamatan Kota Kisaran Barat Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1208160",
+  "publicationNumber": "12080.25027",
+  "issn": null,
+  "publicationYear": 2025,
+  "releaseDate": "2025-09-26",
+  "publicationUrl": "https://asahankab.bps.go.id/id/publication/2025/09/26/a9b6f3996453d075c88ca016/kecamatan-kota-kisaran-barat-dalam-angka-2025.html",
+  "sourceFileSha256": "b79cd6cda1bdcb3a358f54e5b62004e27ee0da5a426fbe05f33f86f42e632bc4",
+  "sourceFileBytes": 7456011,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Asahan.",
+  "csvPath": "datasets/bps-1208-kecamatan-120919-dalam-angka-2025.csv",
+  "csvSha256": "1ebe2a11688092ee43a91f2e3c73b67c61893cf9e6f36fff1398fa6145ab4858",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Kota Kisaran Barat, 2024",
+      "printedPages": [24, 25],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

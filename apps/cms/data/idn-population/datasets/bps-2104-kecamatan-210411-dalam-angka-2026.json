@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-2104-kecamatan-210411-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.04.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Katang Bidare Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lingga",
+  "publisherDomain": "2104",
+  "publisherWebsite": "https://linggakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lingga (https://linggakab.bps.go.id), publikasi \"Kecamatan Katang Bidare Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2104053",
+  "publicationNumber": "21040.26018",
+  "issn": "3164-5887",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://linggakab.bps.go.id/id/publication/2026/09/28/354d76db2a50207d083a6619/kecamatan-katang-bidare-dalam-angka-2026.html",
+  "sourceFileSha256": "cc0a9e3d15a19adf5860684ae350fe2c76e620350171b4140ee1bf6e202a4d58",
+  "sourceFileBytes": 12569779,
+  "sourcePages": [19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lingga.",
+  "csvPath": "datasets/bps-2104-kecamatan-210411-dalam-angka-2026.csv",
+  "csvSha256": "4cdc77fe1ae844b3ca5235a3b5b6a892a5ce862083b773361652ae23f0799025",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Katang Bidare, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

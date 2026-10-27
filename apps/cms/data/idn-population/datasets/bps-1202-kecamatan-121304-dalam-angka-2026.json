@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1202-kecamatan-121304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.13.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panyabungan Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mandailing Natal",
+  "publisherDomain": "1202",
+  "publisherWebsite": "https://mandailingnatalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mandailing Natal (https://mandailingnatalkab.bps.go.id), publikasi \"Kecamatan Panyabungan Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1202051",
+  "publicationNumber": "12020.26024",
+  "issn": "3048-4111",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mandailingnatalkab.bps.go.id/id/publication/2026/09/28/e537ff04ea43709e741a8b20/kecamatan-panyabungan-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "e63f45600d7606e653a31a043f84feb6934741db790bc0039cfb55ac40449a4a",
+  "sourceFileBytes": 3107377,
+  "sourcePages": [23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi ht tp buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mandailing Natal. ISSN 3048-4111 TIM PENYUSUN Kecamatan Panyabungan Selatan Dalam Angka 2026 Volume 15, 2026 ps .g o .id Pengarah Dedi Kintoro ka b .b Penanggung Jawab Dedi Kintoro ai lin gn at al Penyunting Tim Diseminasi BPS Kabupaten Mandailing Natal s: //m an d Pengolah Data dan Penulis Naskah Tim Diseminasi BPS Kabupaten Mandailing Natal ht tp Penata Letak Tim Diseminasi BPS Kabupaten Mandailing Natal v at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KONTRIBUTOR DATA 1. Kementerian Agama 2. Kementerian Pendidikan dan Kebudayaan .id 3. Badan Pusat Statistik ps .g o 4. Dinas Kependudukan dan Pencatatan Sipil Kabupaten Mandailing Natal ka b 6. Kecamatan Panyabungan Selatan .b 5. Dinas Kesehatan Kabupaten Mandailing Natal ht tp s: //m an d ai lin gn at al 7. Website Data Pokok Pendidikan Dasar dan Menengah vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b KATA PENGANTAR Dengan memanjatkan puji syukur ke hadirat Tuhan Yang Maha Esa, saya menyambut gembira penerbitan Publikasi Kecamatan Panyabungan Selatan Dalam Angka 2024. Penerbitan ini merupakan hasil dari usaha nyata yang bersifat luas dan komprehensif untuk menyediakan data bagi perencana pembangunan. .id Saya percaya bahwa pembangunan data yang terdapat dalam terbitan ini ps .g o akan memungkinkan para perencana untuk lebih memantapkan sistem perencanaan secara nyata, terarah, terpadu, dan berdaya guna. .b Terima kasih saya ucapkan kepada Kecamatan Naga Juang yang telah ka b berupaya dengan sungguh-sungguh memberikan bantuan sehingga at al dapat terwujudnya publikasi ini. gn Akhirnya saya mengharapkan agar ht tp s: //m an d ai lin kegiatan pengumpulan data di setiap sektor pembangunan di tingkat kecamatan makin lebih tepat, akurat dan efektif, serta berdaya guna sehingga data yang benar dapat diinformasikan dan disebarluaskan kepada masyarakat dan instansi yang memerlukan. Panyabungan Selatan, September 2026 Kepala Badan Pusat Statistik Kabupaten Mandailing Natal Dedi Kintoro vii at al gn lin ai an d //m s: tp ht .id ps .g o .b ka b",
+  "csvPath": "datasets/bps-1202-kecamatan-121304-dalam-angka-2026.csv",
+  "csvSha256": "c085ec916945ad3541fb0750e74e401d9ce4d0f7ac23e62c2b02ab4c8f6320a9",
+  "tablesUsed": [
+    {
+      "table": "1.2",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Panyabungan Selatan, 2026 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [23],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.3 (age-by-sex) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 1.2: 6 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

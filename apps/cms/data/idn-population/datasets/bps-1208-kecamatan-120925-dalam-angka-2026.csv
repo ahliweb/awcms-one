@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.25.2001,4,Sei Lunang,sex,perempuan,,1201,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.09.25.2001,4,Sei Lunang,total,total,,2448,jiwa,2025,registration,total_population,3.1,29,,
+12.09.25.2002,4,Sei Pasir,sex,perempuan,,968,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.09.25.2002,4,Sei Pasir,total,total,,1953,jiwa,2025,registration,total_population,3.1,29,,
+12.09.25.2003,4,Sei Tempurung,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.09.25.2003,4,Sei Tempurung,total,total,,1248,jiwa,2025,registration,total_population,3.1,29,,
+12.09.25.2004,4,Sarang Helang,sex,perempuan,,613,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.09.25.2004,4,Sarang Helang,total,total,,1243,jiwa,2025,registration,total_population,3.1,29,,
+12.09.25.2005,4,Sei Sembilang,sex,perempuan,,1565,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.09.25.2005,4,Sei Sembilang,total,total,,3297,jiwa,2025,registration,total_population,3.1,29,,
+12.09.25,3,Sei Kepayang Timur,sex,perempuan,,4965,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.09.25,3,Sei Kepayang Timur,total,total,,10189,jiwa,2025,registration,total_population,3.1,29,,
+12.09.25,3,Sei Kepayang Timur,age_group,0-4,perempuan,276,jiwa,2025,registration,total_population,3.5,33,,0–4
+12.09.25,3,Sei Kepayang Timur,age_group,0-4,,589,jiwa,2025,registration,total_population,3.5,33,,0–4
+12.09.25,3,Sei Kepayang Timur,age_group,5-9,perempuan,495,jiwa,2025,registration,total_population,3.5,33,,5–9
+12.09.25,3,Sei Kepayang Timur,age_group,5-9,,977,jiwa,2025,registration,total_population,3.5,33,,5–9
+12.09.25,3,Sei Kepayang Timur,age_group,10-14,perempuan,523,jiwa,2025,registration,total_population,3.5,33,,10–14
+12.09.25,3,Sei Kepayang Timur,age_group,10-14,,1033,jiwa,2025,registration,total_population,3.5,33,,10–14
+12.09.25,3,Sei Kepayang Timur,age_group,15-19,perempuan,457,jiwa,2025,registration,total_population,3.5,33,,15–19
+12.09.25,3,Sei Kepayang Timur,age_group,15-19,,1003,jiwa,2025,registration,total_population,3.5,33,,15–19
+12.09.25,3,Sei Kepayang Timur,age_group,20-24,perempuan,499,jiwa,2025,registration,total_population,3.5,33,,20–24
+12.09.25,3,Sei Kepayang Timur,age_group,20-24,,1000,jiwa,2025,registration,total_population,3.5,33,,20–24
+12.09.25,3,Sei Kepayang Timur,age_group,25-29,perempuan,436,jiwa,2025,registration,total_population,3.5,33,,25–29
+12.09.25,3,Sei Kepayang Timur,age_group,25-29,,878,jiwa,2025,registration,total_population,3.5,33,,25–29
+12.09.25,3,Sei Kepayang Timur,age_group,30-34,perempuan,352,jiwa,2025,registration,total_population,3.5,33,,30–34
+12.09.25,3,Sei Kepayang Timur,age_group,30-34,,779,jiwa,2025,registration,total_population,3.5,33,,30–34
+12.09.25,3,Sei Kepayang Timur,age_group,35-39,perempuan,344,jiwa,2025,registration,total_population,3.5,33,,35–39
+12.09.25,3,Sei Kepayang Timur,age_group,35-39,,730,jiwa,2025,registration,total_population,3.5,33,,35–39
+12.09.25,3,Sei Kepayang Timur,age_group,40-44,perempuan,293,jiwa,2025,registration,total_population,3.5,33,,40–44
+12.09.25,3,Sei Kepayang Timur,age_group,40-44,,663,jiwa,2025,registration,total_population,3.5,33,,40–44
+12.09.25,3,Sei Kepayang Timur,age_group,45-49,perempuan,284,jiwa,2025,registration,total_population,3.5,33,,45–49
+12.09.25,3,Sei Kepayang Timur,age_group,45-49,,599,jiwa,2025,registration,total_population,3.5,33,,45–49
+12.09.25,3,Sei Kepayang Timur,age_group,50-54,perempuan,263,jiwa,2025,registration,total_population,3.5,33,,50–54
+12.09.25,3,Sei Kepayang Timur,age_group,50-54,,542,jiwa,2025,registration,total_population,3.5,33,,50–54
+12.09.25,3,Sei Kepayang Timur,age_group,55-59,perempuan,213,jiwa,2025,registration,total_population,3.5,33,,55–59
+12.09.25,3,Sei Kepayang Timur,age_group,55-59,,429,jiwa,2025,registration,total_population,3.5,33,,55–59
+12.09.25,3,Sei Kepayang Timur,age_group,60-64,perempuan,184,jiwa,2025,registration,total_population,3.5,33,,60–64
+12.09.25,3,Sei Kepayang Timur,age_group,60-64,,345,jiwa,2025,registration,total_population,3.5,33,,60–64
+12.09.25,3,Sei Kepayang Timur,age_group,65-69,perempuan,146,jiwa,2025,registration,total_population,3.5,33,,65–69
+12.09.25,3,Sei Kepayang Timur,age_group,65-69,,267,jiwa,2025,registration,total_population,3.5,33,,65–69
+12.09.25,3,Sei Kepayang Timur,age_group,70-74,perempuan,78,jiwa,2025,registration,total_population,3.5,33,,70–74
+12.09.25,3,Sei Kepayang Timur,age_group,70-74,,144,jiwa,2025,registration,total_population,3.5,33,,70–74
+12.09.25,3,Sei Kepayang Timur,age_group,75+,perempuan,122,jiwa,2025,registration,total_population,3.5,33,,75+
+12.09.25,3,Sei Kepayang Timur,age_group,75+,,211,jiwa,2025,registration,total_population,3.5,33,,75+
+12.09.25,3,Sei Kepayang Timur,sex,perempuan,,4965,jiwa,2025,registration,total_population,3.5,33,,Perempuan
+12.09.25,3,Sei Kepayang Timur,total,total,,10189,jiwa,2025,registration,total_population,3.5,33,,

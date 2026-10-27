@@ -1,0 +1,80 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.71.03.1002,4,Menteng,sex,perempuan,,26814,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.03.1002,4,Menteng,total,total,,53994,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.03.1001,4,Palangka,sex,perempuan,,23582,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.03.1001,4,Palangka,total,total,,47234,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.03.1003,4,Bukit Tunggal,sex,perempuan,,28642,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.03.1003,4,Bukit Tunggal,total,total,,58250,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.03.1004,4,Petuk Katimpun,sex,perempuan,,2048,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.03.1004,4,Petuk Katimpun,total,total,,4207,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.03,3,Jekan Raya,sex,perempuan,,81086,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.03,3,Jekan Raya,total,total,,163685,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.03,3,Jekan Raya,age_group,0-4,perempuan,4512,jiwa,2025,registration,total_population,3.1.2,38,,0–4
+62.71.03,3,Jekan Raya,age_group,0-4,,9435,jiwa,2025,registration,total_population,3.1.2,38,,0–4
+62.71.03,3,Jekan Raya,age_group,5-9,perempuan,6917,jiwa,2025,registration,total_population,3.1.2,38,,5–9
+62.71.03,3,Jekan Raya,age_group,5-9,,14320,jiwa,2025,registration,total_population,3.1.2,38,,5–9
+62.71.03,3,Jekan Raya,age_group,10-14,perempuan,7086,jiwa,2025,registration,total_population,3.1.2,38,,10–14
+62.71.03,3,Jekan Raya,age_group,10-14,,14584,jiwa,2025,registration,total_population,3.1.2,38,,10–14
+62.71.03,3,Jekan Raya,age_group,15-19,perempuan,6714,jiwa,2025,registration,total_population,3.1.2,38,,15–19
+62.71.03,3,Jekan Raya,age_group,15-19,,13995,jiwa,2025,registration,total_population,3.1.2,38,,15–19
+62.71.03,3,Jekan Raya,age_group,20-24,perempuan,6586,jiwa,2025,registration,total_population,3.1.2,38,,20–24
+62.71.03,3,Jekan Raya,age_group,20-24,,13429,jiwa,2025,registration,total_population,3.1.2,38,,20–24
+62.71.03,3,Jekan Raya,age_group,25-29,perempuan,6969,jiwa,2025,registration,total_population,3.1.2,38,,25–29
+62.71.03,3,Jekan Raya,age_group,25-29,,13896,jiwa,2025,registration,total_population,3.1.2,38,,25–29
+62.71.03,3,Jekan Raya,age_group,30-34,perempuan,7115,jiwa,2025,registration,total_population,3.1.2,38,,30–34
+62.71.03,3,Jekan Raya,age_group,30-34,,14102,jiwa,2025,registration,total_population,3.1.2,38,,30–34
+62.71.03,3,Jekan Raya,age_group,35-39,perempuan,7050,jiwa,2025,registration,total_population,3.1.2,38,,35–39
+62.71.03,3,Jekan Raya,age_group,35-39,,13656,jiwa,2025,registration,total_population,3.1.2,38,,35–39
+62.71.03,3,Jekan Raya,age_group,40-44,perempuan,6398,jiwa,2025,registration,total_population,3.1.2,38,,40–44
+62.71.03,3,Jekan Raya,age_group,40-44,,12632,jiwa,2025,registration,total_population,3.1.2,38,,40–44
+62.71.03,3,Jekan Raya,age_group,45-49,perempuan,5822,jiwa,2025,registration,total_population,3.1.2,38,,45–49
+62.71.03,3,Jekan Raya,age_group,45-49,,11827,jiwa,2025,registration,total_population,3.1.2,38,,45–49
+62.71.03,3,Jekan Raya,age_group,50-54,perempuan,4823,jiwa,2025,registration,total_population,3.1.2,38,,50–54
+62.71.03,3,Jekan Raya,age_group,50-54,,9770,jiwa,2025,registration,total_population,3.1.2,38,,50–54
+62.71.03,3,Jekan Raya,age_group,55-59,perempuan,3843,jiwa,2025,registration,total_population,3.1.2,38,,55–59
+62.71.03,3,Jekan Raya,age_group,55-59,,7718,jiwa,2025,registration,total_population,3.1.2,38,,55–59
+62.71.03,3,Jekan Raya,age_group,60-64,perempuan,3078,jiwa,2025,registration,total_population,3.1.2,38,,60–64
+62.71.03,3,Jekan Raya,age_group,60-64,,6024,jiwa,2025,registration,total_population,3.1.2,38,,60–64
+62.71.03,3,Jekan Raya,age_group,65-69,perempuan,2062,jiwa,2025,registration,total_population,3.1.2,38,,65–69
+62.71.03,3,Jekan Raya,age_group,65-69,,4173,jiwa,2025,registration,total_population,3.1.2,38,,65–69
+62.71.03,3,Jekan Raya,age_group,70-74,perempuan,1075,jiwa,2025,registration,total_population,3.1.2,38,,70–74
+62.71.03,3,Jekan Raya,age_group,70-74,,2224,jiwa,2025,registration,total_population,3.1.2,38,,70–74
+62.71.03,3,Jekan Raya,age_group,75+,perempuan,1036,jiwa,2025,registration,total_population,3.1.2,38,,75+
+62.71.03,3,Jekan Raya,age_group,75+,,1900,jiwa,2025,registration,total_population,3.1.2,38,,75+
+62.71.03,3,Jekan Raya,sex,perempuan,,81086,jiwa,2025,registration,total_population,3.1.2,38,,Perempuan
+62.71.03,3,Jekan Raya,total,total,,163685,jiwa,2025,registration,total_population,3.1.2,38,,
+62.71.03.1002,4,Menteng,religion,islam,,31631,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.03.1002,4,Menteng,religion,kristen,,19549,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.03.1002,4,Menteng,religion,katolik,,1117,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.03.1002,4,Menteng,religion,hindu,,990,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.03.1001,4,Palangka,religion,islam,,27902,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.03.1001,4,Palangka,religion,kristen,,17014,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.03.1001,4,Palangka,religion,katolik,,1494,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.03.1001,4,Palangka,religion,hindu,,606,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.03.1003,4,Bukit Tunggal,religion,islam,,39623,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.03.1003,4,Bukit Tunggal,religion,kristen,,15226,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.03.1003,4,Bukit Tunggal,religion,katolik,,2037,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.03.1003,4,Bukit Tunggal,religion,hindu,,667,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.03.1004,4,Petuk Katimpun,religion,islam,,3034,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.03.1004,4,Petuk Katimpun,religion,kristen,,950,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.03.1004,4,Petuk Katimpun,religion,katolik,,91,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.03.1004,4,Petuk Katimpun,religion,hindu,,37,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.03,3,Jekan Raya,religion,islam,,102190,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.03,3,Jekan Raya,religion,kristen,,52739,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.03,3,Jekan Raya,religion,katolik,,4739,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.03,3,Jekan Raya,religion,hindu,,2300,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.03.1002,4,Menteng,religion,buddha,,95,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.03.1002,4,Menteng,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.03.1002,4,Menteng,religion,kepercayaan,,13,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.03.1001,4,Palangka,religion,buddha,,70,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.03.1001,4,Palangka,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.03.1001,4,Palangka,religion,kepercayaan,,4,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.03.1003,4,Bukit Tunggal,religion,buddha,,94,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.03.1003,4,Bukit Tunggal,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.5.1,96,,Konghucu
+62.71.03.1003,4,Bukit Tunggal,religion,kepercayaan,,6,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.03.1004,4,Petuk Katimpun,religion,buddha,,5,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.03.1004,4,Petuk Katimpun,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.03.1004,4,Petuk Katimpun,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.03,3,Jekan Raya,religion,buddha,,264,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.03,3,Jekan Raya,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.5.1,96,,Konghucu
+62.71.03,3,Jekan Raya,religion,kepercayaan,,25,jiwa,2025,registration,total_population,4.5.1,96,,Aliran

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.05.1001,4,Labuhan Ruku,sex,laki_laki,,3469,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.1001,4,Labuhan Ruku,sex,perempuan,,3303,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.1001,4,Labuhan Ruku,total,total,,6772,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2004,4,Dahari Selebar,sex,laki_laki,,2230,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2004,4,Dahari Selebar,sex,perempuan,,2107,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2004,4,Dahari Selebar,total,total,,4337,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2006,4,Mesjid Lama,sex,laki_laki,,2171,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2006,4,Mesjid Lama,sex,perempuan,,2083,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2006,4,Mesjid Lama,total,total,,4254,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2007,4,Padang Genting,sex,laki_laki,,1972,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2007,4,Padang Genting,sex,perempuan,,1963,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2007,4,Padang Genting,total,total,,3935,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2008,4,Pahang,sex,laki_laki,,2110,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2008,4,Pahang,sex,perempuan,,2068,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2008,4,Pahang,total,total,,4178,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2009,4,Panjang,sex,laki_laki,,621,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2009,4,Panjang,sex,perempuan,,701,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2009,4,Panjang,total,total,,1322,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2014,4,Gunung Rante,sex,laki_laki,,467,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2014,4,Gunung Rante,sex,perempuan,,487,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2014,4,Gunung Rante,total,total,,954,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2015,4,Dahari Indah,sex,laki_laki,,1531,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2015,4,Dahari Indah,sex,perempuan,,1456,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2015,4,Dahari Indah,total,total,,2987,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2016,4,Indra Yaman,sex,laki_laki,,3087,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2016,4,Indra Yaman,sex,perempuan,,3021,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2016,4,Indra Yaman,total,total,,6108,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05.2017,4,Benteng,sex,laki_laki,,1853,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05.2017,4,Benteng,sex,perempuan,,1759,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05.2017,4,Benteng,total,total,,3612,jiwa,2025,registration,total_population,3.2.1,27,,
+12.19.05,3,Talawi,sex,laki_laki,,19511,jiwa,2025,registration,total_population,3.2.1,27,,Laki-Laki/Male
+12.19.05,3,Talawi,sex,perempuan,,18948,jiwa,2025,registration,total_population,3.2.1,27,,Perempuan/Female
+12.19.05,3,Talawi,total,total,,38459,jiwa,2025,registration,total_population,3.2.1,27,,

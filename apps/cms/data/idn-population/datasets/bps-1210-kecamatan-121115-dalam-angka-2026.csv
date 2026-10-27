@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.15.2001,4,Sitinjo,sex,laki_laki,,2450,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.15.2001,4,Sitinjo,sex,perempuan,,2399,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.15.2001,4,Sitinjo,total,total,,4849,jiwa,2025,registration,total_population,3.1,22,,
+12.11.15.2002,4,Sitinjo I,sex,laki_laki,,1147,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.15.2002,4,Sitinjo I,sex,perempuan,,1152,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.15.2002,4,Sitinjo I,total,total,,2299,jiwa,2025,registration,total_population,3.1,22,,
+12.11.15.2003,4,Sitinjo II,sex,laki_laki,,2433,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.15.2003,4,Sitinjo II,sex,perempuan,,2413,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.15.2003,4,Sitinjo II,total,total,,4846,jiwa,2025,registration,total_population,3.1,22,,
+12.11.15.1004,4,Panji Dabutar,sex,laki_laki,,1929,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.15.1004,4,Panji Dabutar,sex,perempuan,,1888,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.15.1004,4,Panji Dabutar,total,total,,3817,jiwa,2025,registration,total_population,3.1,22,,
+12.11.15,3,Sitinjo,sex,laki_laki,,7959,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.15,3,Sitinjo,sex,perempuan,,7852,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.15,3,Sitinjo,total,total,,15811,jiwa,2025,registration,total_population,3.1,22,,

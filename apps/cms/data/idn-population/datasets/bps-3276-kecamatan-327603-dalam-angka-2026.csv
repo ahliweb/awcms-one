@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.03.1003,4,Pengasinan,sex,laki_laki,,15581,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03.1003,4,Pengasinan,sex,perempuan,,15237,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03.1003,4,Pengasinan,total,total,,30818,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03.1002,4,Bedahan,sex,laki_laki,,19811,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03.1002,4,Bedahan,sex,perempuan,,19449,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03.1002,4,Bedahan,total,total,,39260,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03.1001,4,Pasir Putih,sex,laki_laki,,17576,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03.1001,4,Pasir Putih,sex,perempuan,,17298,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03.1001,4,Pasir Putih,total,total,,34874,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03.1011,4,Sawangan Baru,sex,laki_laki,,10150,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03.1011,4,Sawangan Baru,sex,perempuan,,10110,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03.1011,4,Sawangan Baru,total,total,,20260,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03.1010,4,Sawangan,sex,laki_laki,,10724,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03.1010,4,Sawangan,sex,perempuan,,10571,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03.1010,4,Sawangan,total,total,,21295,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03.1012,4,Kedaung,sex,laki_laki,,8749,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03.1012,4,Kedaung,sex,perempuan,,8595,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03.1012,4,Kedaung,total,total,,17344,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03.1009,4,Cinangka,sex,laki_laki,,11931,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03.1009,4,Cinangka,sex,perempuan,,11742,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03.1009,4,Cinangka,total,total,,23673,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03,3,Kecamatan Sawangan,sex,laki_laki,,94522,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.03,3,Kecamatan Sawangan,sex,perempuan,,93002,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.03,3,Kecamatan Sawangan,total,total,,187524,jiwa,2025,registration,total_population,3.1,19,,
+32.76.03,3,Sawangan,age_group,0-4,laki_laki,6749,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.03,3,Sawangan,age_group,0-4,perempuan,6463,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.03,3,Sawangan,age_group,0-4,,13212,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.03,3,Sawangan,age_group,5-9,laki_laki,8940,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.03,3,Sawangan,age_group,5-9,perempuan,8097,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.03,3,Sawangan,age_group,5-9,,17037,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.03,3,Sawangan,age_group,10-14,laki_laki,8701,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.03,3,Sawangan,age_group,10-14,perempuan,8106,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.03,3,Sawangan,age_group,10-14,,16807,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.03,3,Sawangan,age_group,15-19,laki_laki,7976,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.03,3,Sawangan,age_group,15-19,perempuan,7479,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.03,3,Sawangan,age_group,15-19,,15455,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.03,3,Sawangan,age_group,20-24,laki_laki,7789,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.03,3,Sawangan,age_group,20-24,perempuan,7739,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.03,3,Sawangan,age_group,20-24,,15528,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.03,3,Sawangan,age_group,25-29,laki_laki,7638,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.03,3,Sawangan,age_group,25-29,perempuan,7723,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.03,3,Sawangan,age_group,25-29,,15361,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.03,3,Sawangan,age_group,30-34,laki_laki,7541,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.03,3,Sawangan,age_group,30-34,perempuan,7840,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.03,3,Sawangan,age_group,30-34,,15381,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.03,3,Sawangan,age_group,35-39,laki_laki,6711,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.03,3,Sawangan,age_group,35-39,perempuan,7044,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.03,3,Sawangan,age_group,35-39,,13755,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.03,3,Sawangan,age_group,40-44,laki_laki,7271,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.03,3,Sawangan,age_group,40-44,perempuan,7478,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.03,3,Sawangan,age_group,40-44,,14749,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.03,3,Sawangan,age_group,45-49,laki_laki,7060,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.03,3,Sawangan,age_group,45-49,perempuan,7217,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.03,3,Sawangan,age_group,45-49,,14277,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.03,3,Sawangan,age_group,50-54,laki_laki,6304,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.03,3,Sawangan,age_group,50-54,perempuan,6134,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.03,3,Sawangan,age_group,50-54,,12438,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.03,3,Sawangan,age_group,55-59,laki_laki,4826,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.03,3,Sawangan,age_group,55-59,perempuan,4444,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.03,3,Sawangan,age_group,55-59,,9270,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.03,3,Sawangan,age_group,60-64,laki_laki,3096,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.03,3,Sawangan,age_group,60-64,perempuan,3075,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.03,3,Sawangan,age_group,60-64,,6171,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.03,3,Sawangan,age_group,65-69,laki_laki,1959,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.03,3,Sawangan,age_group,65-69,perempuan,1953,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.03,3,Sawangan,age_group,65-69,,3912,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.03,3,Sawangan,age_group,70-74,laki_laki,1088,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.03,3,Sawangan,age_group,70-74,perempuan,1142,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.03,3,Sawangan,age_group,70-74,,2230,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.03,3,Sawangan,age_group,75+,laki_laki,873,jiwa,2025,registration,total_population,3.2,22,,75+
+32.76.03,3,Sawangan,age_group,75+,perempuan,1068,jiwa,2025,registration,total_population,3.2,22,,75+
+32.76.03,3,Sawangan,age_group,75+,,1941,jiwa,2025,registration,total_population,3.2,22,,75+
+32.76.03,3,Kecamatan Sawangan,sex,laki_laki,,94522,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+32.76.03,3,Kecamatan Sawangan,sex,perempuan,,93002,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+32.76.03,3,Kecamatan Sawangan,total,total,,187524,jiwa,2025,registration,total_population,3.2,22,,

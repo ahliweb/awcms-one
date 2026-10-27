@@ -1,0 +1,159 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.08.03,3,Banjit,total,total,,48789,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.04,3,Baradatu,total,total,,46264,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.10,3,Gunung Labuhan,total,total,,32209,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.02,3,Kasui,total,total,,34069,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.09,3,Rebang Tangkas,total,total,,24463,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.01,3,Blambangan Umpu,total,total,,39021,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.08,3,Way Tuba,total,total,,27488,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.07,3,Negeri Agung,total,total,,38363,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.15,3,Umpu Semenguk,total,total,,34653,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.05,3,Bahuga,total,total,,12708,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.13,3,Buay Bahuga,total,total,,22286,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.14,3,Bumi Agung,total,total,,29891,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.06,3,Pakuan Ratu,total,total,,47140,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.11,3,Negara Batin,total,total,,40109,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.12,3,Negeri Besar,total,total,,22111,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08,2,Way Kanan,total,total,,499564,jiwa,2025,registration,total_population,3.1.1,127,,
+18.08.03,3,Banjit,religion,islam,,42334,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.03,3,Banjit,religion,kristen,,191,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.03,3,Banjit,religion,katolik,,497,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.03,3,Banjit,religion,hindu,,5484,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.03,3,Banjit,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Budha
+18.08.03,3,Banjit,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.04,3,Baradatu,religion,islam,,44207,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.04,3,Baradatu,religion,kristen,,731,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.04,3,Baradatu,religion,katolik,,1004,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.04,3,Baradatu,religion,hindu,,36,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.04,3,Baradatu,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Budha
+18.08.04,3,Baradatu,religion,lainnya,,137,jiwa,2025,registration,total_population,4.5.1,239,,Lainnya
+18.08.10,3,Gunung Labuhan,religion,islam,,32002,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.10,3,Gunung Labuhan,religion,kristen,,29,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.10,3,Gunung Labuhan,religion,katolik,,41,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.10,3,Gunung Labuhan,religion,hindu,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Hindu
+18.08.10,3,Gunung Labuhan,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Budha
+18.08.10,3,Gunung Labuhan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.02,3,Kasui,religion,islam,,33607,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.02,3,Kasui,religion,kristen,,172,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.02,3,Kasui,religion,katolik,,17,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.02,3,Kasui,religion,hindu,,218,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.02,3,Kasui,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Budha
+18.08.02,3,Kasui,religion,lainnya,,1,jiwa,2025,registration,total_population,4.5.1,239,,Lainnya
+18.08.09,3,Rebang Tangkas,religion,islam,,23817,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.09,3,Rebang Tangkas,religion,kristen,,478,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.09,3,Rebang Tangkas,religion,katolik,,27,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.09,3,Rebang Tangkas,religion,hindu,,48,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.09,3,Rebang Tangkas,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Budha
+18.08.09,3,Rebang Tangkas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.01,3,Blambangan Umpu,religion,islam,,38416,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.01,3,Blambangan Umpu,religion,kristen,,176,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.01,3,Blambangan Umpu,religion,katolik,,140,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.01,3,Blambangan Umpu,religion,hindu,,102,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.01,3,Blambangan Umpu,religion,buddha,,36,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.01,3,Blambangan Umpu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.08,3,Way Tuba,religion,islam,,26833,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.08,3,Way Tuba,religion,kristen,,239,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.08,3,Way Tuba,religion,katolik,,146,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.08,3,Way Tuba,religion,hindu,,107,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.08,3,Way Tuba,religion,buddha,,12,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.08,3,Way Tuba,religion,lainnya,,3,jiwa,2025,registration,total_population,4.5.1,239,,Lainnya
+18.08.07,3,Negeri Agung,religion,islam,,33558,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.07,3,Negeri Agung,religion,kristen,,498,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.07,3,Negeri Agung,religion,katolik,,175,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.07,3,Negeri Agung,religion,hindu,,4059,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.07,3,Negeri Agung,religion,buddha,,60,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.07,3,Negeri Agung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.15,3,Umpu Semenguk,religion,islam,,33757,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.15,3,Umpu Semenguk,religion,kristen,,265,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.15,3,Umpu Semenguk,religion,katolik,,328,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.15,3,Umpu Semenguk,religion,hindu,,156,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.15,3,Umpu Semenguk,religion,buddha,,9,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.15,3,Umpu Semenguk,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.05,3,Bahuga,religion,islam,,12063,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.05,3,Bahuga,religion,kristen,,11,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.05,3,Bahuga,religion,katolik,,98,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.05,3,Bahuga,religion,hindu,,417,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.05,3,Bahuga,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Budha
+18.08.05,3,Bahuga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.13,3,Buay Bahuga,religion,islam,,21984,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.13,3,Buay Bahuga,religion,kristen,,59,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.13,3,Buay Bahuga,religion,katolik,,88,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.13,3,Buay Bahuga,religion,hindu,,135,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.13,3,Buay Bahuga,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Budha
+18.08.13,3,Buay Bahuga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.14,3,Bumi Agung,religion,islam,,28856,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.14,3,Bumi Agung,religion,kristen,,181,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.14,3,Bumi Agung,religion,katolik,,291,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.14,3,Bumi Agung,religion,hindu,,438,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.14,3,Bumi Agung,religion,buddha,,19,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.14,3,Bumi Agung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.06,3,Pakuan Ratu,religion,islam,,44532,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.06,3,Pakuan Ratu,religion,kristen,,597,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.06,3,Pakuan Ratu,religion,katolik,,193,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.06,3,Pakuan Ratu,religion,hindu,,1663,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.06,3,Pakuan Ratu,religion,buddha,,4,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.06,3,Pakuan Ratu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.11,3,Negara Batin,religion,islam,,38467,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.11,3,Negara Batin,religion,kristen,,504,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.11,3,Negara Batin,religion,katolik,,285,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.11,3,Negara Batin,religion,hindu,,564,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.11,3,Negara Batin,religion,buddha,,2,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.11,3,Negara Batin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08.12,3,Negeri Besar,religion,islam,,21558,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08.12,3,Negeri Besar,religion,kristen,,294,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08.12,3,Negeri Besar,religion,katolik,,82,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08.12,3,Negeri Besar,religion,hindu,,43,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08.12,3,Negeri Besar,religion,buddha,,4,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08.12,3,Negeri Besar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.1,239,nil,Lainnya
+18.08,2,Way Kanan,religion,islam,,475991,jiwa,2025,registration,total_population,4.5.1,239,,Islam
+18.08,2,Way Kanan,religion,kristen,,4425,jiwa,2025,registration,total_population,4.5.1,239,,Protestan
+18.08,2,Way Kanan,religion,katolik,,3412,jiwa,2025,registration,total_population,4.5.1,239,,Katolik
+18.08,2,Way Kanan,religion,hindu,,13470,jiwa,2025,registration,total_population,4.5.1,239,,Hindu
+18.08,2,Way Kanan,religion,buddha,,146,jiwa,2025,registration,total_population,4.5.1,239,,Budha
+18.08,2,Way Kanan,religion,lainnya,,141,jiwa,2025,registration,total_population,4.5.1,239,,Lainnya
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/padi_padian,,110673,rupiah,2024,survey_estimate,per_capita,10.1,451,,Padi-padian
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/padi_padian,,93352,rupiah,2025,survey_estimate,per_capita,10.1,451,,Padi-padian
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/umbi_umbian,,4137,rupiah,2024,survey_estimate,per_capita,10.1,451,,Umbi-umbian
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/umbi_umbian,,4271,rupiah,2025,survey_estimate,per_capita,10.1,451,,Umbi-umbian
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,49748,rupiah,2024,survey_estimate,per_capita,10.1,451,,Ikan/udang/cumi/kerang
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,49728,rupiah,2025,survey_estimate,per_capita,10.1,451,,Ikan/udang/cumi/kerang
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/daging,,24686,rupiah,2024,survey_estimate,per_capita,10.1,451,,Daging
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/daging,,25238,rupiah,2025,survey_estimate,per_capita,10.1,451,,Daging
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/telur_dan_susu,,33398,rupiah,2024,survey_estimate,per_capita,10.1,451,,Telur dan susu
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/telur_dan_susu,,35830,rupiah,2025,survey_estimate,per_capita,10.1,451,,Telur dan susu
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/sayur_sayuran,,72755,rupiah,2024,survey_estimate,per_capita,10.1,451,,Sayur-sayuran
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/sayur_sayuran,,75534,rupiah,2025,survey_estimate,per_capita,10.1,451,,Sayur-sayuran
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/kacang_kacangan,,14836,rupiah,2024,survey_estimate,per_capita,10.1,451,,Kacang-kacangan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/kacang_kacangan,,14700,rupiah,2025,survey_estimate,per_capita,10.1,451,,Kacang-kacangan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/buah_buahan,,36790,rupiah,2024,survey_estimate,per_capita,10.1,451,,Buah-buahan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/buah_buahan,,39831,rupiah,2025,survey_estimate,per_capita,10.1,451,,Buah-buahan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22255,rupiah,2024,survey_estimate,per_capita,10.1,451,,Minyak dan kelapa
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22009,rupiah,2025,survey_estimate,per_capita,10.1,451,,Minyak dan kelapa
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/bahan_minuman,,25469,rupiah,2024,survey_estimate,per_capita,10.1,451,,Bahan minuman
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/bahan_minuman,,30468,rupiah,2025,survey_estimate,per_capita,10.1,451,,Bahan minuman
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/bumbu_bumbuan,,15810,rupiah,2024,survey_estimate,per_capita,10.1,451,,Bumbu-bumbuan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/bumbu_bumbuan,,15116,rupiah,2025,survey_estimate,per_capita,10.1,451,,Bumbu-bumbuan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/konsumsi_lainnya,,12271,rupiah,2024,survey_estimate,per_capita,10.1,451,,Konsumsi lainnya
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/konsumsi_lainnya,,11165,rupiah,2025,survey_estimate,per_capita,10.1,451,,Konsumsi lainnya
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,163660,rupiah,2024,survey_estimate,per_capita,10.1,451,,Makanan dan minuman jadi
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,164937,rupiah,2025,survey_estimate,per_capita,10.1,451,,Makanan dan minuman jadi
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/rokok,,97990,rupiah,2024,survey_estimate,per_capita,10.1,451,,Rokok
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/rokok,,100465,rupiah,2025,survey_estimate,per_capita,10.1,451,,Rokok
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/jumlah_makanan,,684479,rupiah,2024,survey_estimate,per_capita,10.1,451,,Jumlah makanan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/jumlah_makanan,,682262,rupiah,2025,survey_estimate,per_capita,10.1,451,,Jumlah makanan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,243289,rupiah,2024,survey_estimate,per_capita,10.1,451,,Perumahan dan fasilitas rumah tangga
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,253428,rupiah,2025,survey_estimate,per_capita,10.1,451,,Perumahan dan fasilitas rumah tangga
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,108293,rupiah,2024,survey_estimate,per_capita,10.1,451,,Aneka komoditas dan jasa
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,123300,rupiah,2025,survey_estimate,per_capita,10.1,451,,Aneka komoditas dan jasa
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32379,rupiah,2024,survey_estimate,per_capita,10.1,451,,"Pakaian, alas kaki, dan tutup kepala"
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36738,rupiah,2025,survey_estimate,per_capita,10.1,451,,"Pakaian, alas kaki, dan tutup kepala"
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/komoditas_tahan_lama,,40398,rupiah,2024,survey_estimate,per_capita,10.1,451,,Komoditas tahan lama
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/komoditas_tahan_lama,,50262,rupiah,2025,survey_estimate,per_capita,10.1,451,,Komoditas tahan lama
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42311,rupiah,2024,survey_estimate,per_capita,10.1,451,,"Pajak, pungutan, dan asuransi"
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44419,rupiah,2025,survey_estimate,per_capita,10.1,451,,"Pajak, pungutan, dan asuransi"
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,36822,rupiah,2024,survey_estimate,per_capita,10.1,451,,Keperluan pesta dan upacara/kenduri
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17011,rupiah,2025,survey_estimate,per_capita,10.1,451,,Keperluan pesta dan upacara/kenduri
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,503492,rupiah,2024,survey_estimate,per_capita,10.1,451,,Jumlah bukan makanan
+18.08,2,Kabupaten Way Kanan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,525159,rupiah,2025,survey_estimate,per_capita,10.1,451,,Jumlah bukan makanan
+18.08,2,Kabupaten Way Kanan,expenditure,total,,1187971,rupiah,2024,survey_estimate,per_capita,10.1,451,,
+18.08,2,Kabupaten Way Kanan,expenditure,total,,1207802,rupiah,2025,survey_estimate,per_capita,10.1,451,,

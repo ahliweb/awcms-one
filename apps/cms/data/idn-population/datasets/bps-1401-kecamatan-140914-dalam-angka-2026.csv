@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.14.2004,4,Kampung Baru Sentajo,sex,laki_laki,,761,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2004,4,Kampung Baru Sentajo,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2004,4,Kampung Baru Sentajo,total,total,,1530,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2003,4,Koto Sentajo,sex,laki_laki,,1278,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2003,4,Koto Sentajo,sex,perempuan,,1264,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2003,4,Koto Sentajo,total,total,,2542,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2002,4,Muaro Sentajo,sex,laki_laki,,1006,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2002,4,Muaro Sentajo,sex,perempuan,,1009,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2002,4,Muaro Sentajo,total,total,,2015,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.1015,4,Beringin Jaya,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.1015,4,Beringin Jaya,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.1015,4,Beringin Jaya,total,total,,1244,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2009,4,Jalur Patah,sex,laki_laki,,1299,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2009,4,Jalur Patah,sex,perempuan,,1256,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2009,4,Jalur Patah,total,total,,2555,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2006,4,Teratak Air Hitam,sex,laki_laki,,1297,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2006,4,Teratak Air Hitam,sex,perempuan,,1350,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2006,4,Teratak Air Hitam,total,total,,2647,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2008,4,Parit Teratak Air Hitam,sex,laki_laki,,397,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2008,4,Parit Teratak Air Hitam,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2008,4,Parit Teratak Air Hitam,total,total,,773,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2007,4,Seberang Teratak Air Hitam,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2007,4,Seberang Teratak Air Hitam,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2007,4,Seberang Teratak Air Hitam,total,total,,383,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2011,4,Marsawa,sex,laki_laki,,2141,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2011,4,Marsawa,sex,perempuan,,2035,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2011,4,Marsawa,total,total,,4176,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2012,4,Langsat Hulu,sex,laki_laki,,1818,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2012,4,Langsat Hulu,sex,perempuan,,1719,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2012,4,Langsat Hulu,total,total,,3537,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2013,4,Muara Langsat,sex,laki_laki,,1826,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2013,4,Muara Langsat,sex,perempuan,,1806,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2013,4,Muara Langsat,total,total,,3632,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14.2014,4,Geringging Jaya,sex,laki_laki,,1024,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14.2014,4,Geringging Jaya,sex,perempuan,,977,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14.2014,4,Geringging Jaya,total,total,,2001,jiwa,2025,registration,total_population,3.1,22,,
+14.09.14,3,Sentajo Raya,sex,laki_laki,,16947,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.14,3,Sentajo Raya,sex,perempuan,,16497,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.14,3,Sentajo Raya,total,total,,33444,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.11,2,Kabupaten Solok Selatan,age_group,0-4,perempuan,9.45,ribu_jiwa,2025,projection,total_population,3.1.2,101,,0–4
+13.11,2,Kabupaten Solok Selatan,age_group,0-4,,19.31,ribu_jiwa,2025,projection,total_population,3.1.2,101,,0–4
+13.11,2,Kabupaten Solok Selatan,age_group,5-9,perempuan,7.93,ribu_jiwa,2025,projection,total_population,3.1.2,101,,5–9
+13.11,2,Kabupaten Solok Selatan,age_group,5-9,,16.08,ribu_jiwa,2025,projection,total_population,3.1.2,101,,5–9
+13.11,2,Kabupaten Solok Selatan,age_group,10-14,perempuan,7.45,ribu_jiwa,2025,projection,total_population,3.1.2,101,,10–14
+13.11,2,Kabupaten Solok Selatan,age_group,10-14,,15.27,ribu_jiwa,2025,projection,total_population,3.1.2,101,,10–14
+13.11,2,Kabupaten Solok Selatan,age_group,15-19,perempuan,7.82,ribu_jiwa,2025,projection,total_population,3.1.2,101,,15–19
+13.11,2,Kabupaten Solok Selatan,age_group,15-19,,16.21,ribu_jiwa,2025,projection,total_population,3.1.2,101,,15–19
+13.11,2,Kabupaten Solok Selatan,age_group,20-24,perempuan,8.49,ribu_jiwa,2025,projection,total_population,3.1.2,101,,20–24
+13.11,2,Kabupaten Solok Selatan,age_group,20-24,,17.26,ribu_jiwa,2025,projection,total_population,3.1.2,101,,20–24
+13.11,2,Kabupaten Solok Selatan,age_group,25-29,perempuan,8.40,ribu_jiwa,2025,projection,total_population,3.1.2,101,,25–29
+13.11,2,Kabupaten Solok Selatan,age_group,25-29,,17.34,ribu_jiwa,2025,projection,total_population,3.1.2,101,,25–29
+13.11,2,Kabupaten Solok Selatan,age_group,30-34,perempuan,7.58,ribu_jiwa,2025,projection,total_population,3.1.2,101,,30–34
+13.11,2,Kabupaten Solok Selatan,age_group,30-34,,15.41,ribu_jiwa,2025,projection,total_population,3.1.2,101,,30–34
+13.11,2,Kabupaten Solok Selatan,age_group,35-39,perempuan,7.63,ribu_jiwa,2025,projection,total_population,3.1.2,101,,35–39
+13.11,2,Kabupaten Solok Selatan,age_group,35-39,,15.34,ribu_jiwa,2025,projection,total_population,3.1.2,101,,35–39
+13.11,2,Kabupaten Solok Selatan,age_group,40-44,perempuan,6.96,ribu_jiwa,2025,projection,total_population,3.1.2,101,,40–44
+13.11,2,Kabupaten Solok Selatan,age_group,40-44,,14.15,ribu_jiwa,2025,projection,total_population,3.1.2,101,,40–44
+13.11,2,Kabupaten Solok Selatan,age_group,45-49,perempuan,6.37,ribu_jiwa,2025,projection,total_population,3.1.2,101,,45–49
+13.11,2,Kabupaten Solok Selatan,age_group,45-49,,13.07,ribu_jiwa,2025,projection,total_population,3.1.2,101,,45–49
+13.11,2,Kabupaten Solok Selatan,age_group,50-54,perempuan,5.40,ribu_jiwa,2025,projection,total_population,3.1.2,101,,50–54
+13.11,2,Kabupaten Solok Selatan,age_group,50-54,,11.02,ribu_jiwa,2025,projection,total_population,3.1.2,101,,50–54
+13.11,2,Kabupaten Solok Selatan,age_group,55-59,perempuan,4.41,ribu_jiwa,2025,projection,total_population,3.1.2,101,,55–59
+13.11,2,Kabupaten Solok Selatan,age_group,55-59,,9.03,ribu_jiwa,2025,projection,total_population,3.1.2,101,,55–59
+13.11,2,Kabupaten Solok Selatan,age_group,60-64,perempuan,3.49,ribu_jiwa,2025,projection,total_population,3.1.2,101,,60–64
+13.11,2,Kabupaten Solok Selatan,age_group,60-64,,6.91,ribu_jiwa,2025,projection,total_population,3.1.2,101,,60–64
+13.11,2,Kabupaten Solok Selatan,age_group,65-69,perempuan,2.71,ribu_jiwa,2025,projection,total_population,3.1.2,101,,65–69
+13.11,2,Kabupaten Solok Selatan,age_group,65-69,,5.19,ribu_jiwa,2025,projection,total_population,3.1.2,101,,65–69
+13.11,2,Kabupaten Solok Selatan,age_group,70-74,perempuan,1.83,ribu_jiwa,2025,projection,total_population,3.1.2,101,,70–74
+13.11,2,Kabupaten Solok Selatan,age_group,70-74,,3.55,ribu_jiwa,2025,projection,total_population,3.1.2,101,,70–74
+13.11,2,Kabupaten Solok Selatan,age_group,75+,perempuan,1.84,ribu_jiwa,2025,projection,total_population,3.1.2,101,,75+
+13.11,2,Kabupaten Solok Selatan,age_group,75+,,3.38,ribu_jiwa,2025,projection,total_population,3.1.2,101,,75+
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/padi_padian,,117925,rupiah,2024,survey_estimate,per_capita,10.1,433,,Padi-padian
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/padi_padian,,114870,rupiah,2025,survey_estimate,per_capita,10.1,433,,Padi-padian
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/umbi_umbian,,12372,rupiah,2024,survey_estimate,per_capita,10.1,433,,Umbi-umbian
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/umbi_umbian,,12764,rupiah,2025,survey_estimate,per_capita,10.1,433,,Umbi-umbian
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,60674,rupiah,2024,survey_estimate,per_capita,10.1,433,,Ikan/udang/cumi/kerang
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,68039,rupiah,2025,survey_estimate,per_capita,10.1,433,,Ikan/udang/cumi/kerang
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/daging,,33871,rupiah,2024,survey_estimate,per_capita,10.1,433,,Daging
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/daging,,36760,rupiah,2025,survey_estimate,per_capita,10.1,433,,Daging
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,29597,rupiah,2024,survey_estimate,per_capita,10.1,433,,Telur dan susu
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,35278,rupiah,2025,survey_estimate,per_capita,10.1,433,,Telur dan susu
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,98103,rupiah,2024,survey_estimate,per_capita,10.1,433,,Sayur-sayuran
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,90770,rupiah,2025,survey_estimate,per_capita,10.1,433,,Sayur-sayuran
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,12473,rupiah,2024,survey_estimate,per_capita,10.1,433,,Kacang-kacangan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,13543,rupiah,2025,survey_estimate,per_capita,10.1,433,,Kacang-kacangan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/buah_buahan,,32856,rupiah,2024,survey_estimate,per_capita,10.1,433,,Buah-buahan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/buah_buahan,,49308,rupiah,2025,survey_estimate,per_capita,10.1,433,,Buah-buahan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,33806,rupiah,2024,survey_estimate,per_capita,10.1,433,,Minyak dan kelapa
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,37503,rupiah,2025,survey_estimate,per_capita,10.1,433,,Minyak dan kelapa
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/bahan_minuman,,22845,rupiah,2024,survey_estimate,per_capita,10.1,433,,Bahan minuman
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/bahan_minuman,,24436,rupiah,2025,survey_estimate,per_capita,10.1,433,,Bahan minuman
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,9988,rupiah,2024,survey_estimate,per_capita,10.1,433,,Bumbu-bumbuan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,10661,rupiah,2025,survey_estimate,per_capita,10.1,433,,Bumbu-bumbuan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,9821,rupiah,2024,survey_estimate,per_capita,10.1,433,,Konsumsi lainnya
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,10196,rupiah,2025,survey_estimate,per_capita,10.1,433,,Konsumsi lainnya
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,204421,rupiah,2024,survey_estimate,per_capita,10.1,433,,Makanan dan minuman jadi
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,208799,rupiah,2025,survey_estimate,per_capita,10.1,433,,Makanan dan minuman jadi
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/rokok,,136838,rupiah,2024,survey_estimate,per_capita,10.1,433,,Rokok
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/rokok,,129230,rupiah,2025,survey_estimate,per_capita,10.1,433,,Rokok
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,815590,rupiah,2024,survey_estimate,per_capita,10.1,433,,Jumlah makanan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,842158,rupiah,2025,survey_estimate,per_capita,10.1,433,,Jumlah makanan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,296084,rupiah,2024,survey_estimate,per_capita,10.1,433,,Perumahan dan fasilitas rumah tangga
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,302132,rupiah,2025,survey_estimate,per_capita,10.1,433,,Perumahan dan fasilitas rumah tangga
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,135490,rupiah,2024,survey_estimate,per_capita,10.1,433,,Aneka barang dan jasa
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,170783,rupiah,2025,survey_estimate,per_capita,10.1,433,,Aneka barang dan jasa
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,49137,rupiah,2024,survey_estimate,per_capita,10.1,433,,"Pakaian, alas kaki, dan tutup kepala"
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,54079,rupiah,2025,survey_estimate,per_capita,10.1,433,,"Pakaian, alas kaki, dan tutup kepala"
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,189954,rupiah,2024,survey_estimate,per_capita,10.1,433,,Barang tahan lama
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,71153,rupiah,2025,survey_estimate,per_capita,10.1,433,,Barang tahan lama
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,60825,rupiah,2024,survey_estimate,per_capita,10.1,433,,"Pajak, pungutan, dan asuransi"
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61006,rupiah,2025,survey_estimate,per_capita,10.1,433,,"Pajak, pungutan, dan asuransi"
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17391,rupiah,2024,survey_estimate,per_capita,10.1,433,,Keperluan pesta dan upacara/kenduri
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,3297,rupiah,2025,survey_estimate,per_capita,10.1,433,,Keperluan pesta dan upacara/kenduri
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,748882,rupiah,2024,survey_estimate,per_capita,10.1,433,,Jumlah bukan makanan
+13.11,2,Kabupaten Solok Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,662451,rupiah,2025,survey_estimate,per_capita,10.1,433,,Jumlah bukan makanan
+13.11,2,Kabupaten Solok Selatan,expenditure,total,,1564472,rupiah,2024,survey_estimate,per_capita,10.1,433,,
+13.11,2,Kabupaten Solok Selatan,expenditure,total,,1504609,rupiah,2025,survey_estimate,per_capita,10.1,433,,

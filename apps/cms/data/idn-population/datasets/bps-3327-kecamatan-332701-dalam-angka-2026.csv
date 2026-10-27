@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.01.2001,4,Plakaran,sex,laki_laki,,2895,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2001,4,Plakaran,sex,perempuan,,2743,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2001,4,Plakaran,total,total,,5638,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2002,4,Mandiraja,sex,laki_laki,,3981,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2002,4,Mandiraja,sex,perempuan,,3698,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2002,4,Mandiraja,total,total,,7679,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2003,4,Walangsanga,sex,laki_laki,,4344,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2003,4,Walangsanga,sex,perempuan,,4183,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2003,4,Walangsanga,total,total,,8527,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2004,4,Sima,sex,laki_laki,,7563,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2004,4,Sima,sex,perempuan,,7302,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2004,4,Sima,total,total,,14865,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2006,4,Banyumudal,sex,laki_laki,,9973,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2006,4,Banyumudal,sex,perempuan,,9796,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2006,4,Banyumudal,total,total,,19769,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2005,4,Moga,sex,laki_laki,,4818,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2005,4,Moga,sex,perempuan,,4566,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2005,4,Moga,total,total,,9384,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2007,4,Wangkelang,sex,laki_laki,,1537,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2007,4,Wangkelang,sex,perempuan,,1524,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2007,4,Wangkelang,total,total,,3061,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2008,4,Kebanggan,sex,laki_laki,,1201,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2008,4,Kebanggan,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2008,4,Kebanggan,total,total,,2349,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01.2009,4,Pepedan,sex,laki_laki,,1105,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01.2009,4,Pepedan,sex,perempuan,,1003,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01.2009,4,Pepedan,total,total,,2108,jiwa,2025,registration,total_population,3.1,45,,
+33.27.01,3,Kecamatan Moga,sex,laki_laki,,41969,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+33.27.01,3,Kecamatan Moga,sex,perempuan,,40378,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.01,3,Kecamatan Moga,total,total,,82347,jiwa,2025,registration,total_population,3.1,45,,

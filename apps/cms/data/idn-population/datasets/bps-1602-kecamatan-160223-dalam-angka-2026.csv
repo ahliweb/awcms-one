@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.02.23.2001,4,Benawa,sex,laki_laki,,1061,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2001,4,Benawa,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2001,4,Benawa,total,total,,2116,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2011,4,Panca Tunggal Benawa,sex,laki_laki,,579,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2011,4,Panca Tunggal Benawa,sex,perempuan,,560,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2011,4,Panca Tunggal Benawa,total,total,,1139,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2013,4,Sinar Harapan Mulya,sex,laki_laki,,1102,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2013,4,Sinar Harapan Mulya,sex,perempuan,,1051,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2013,4,Sinar Harapan Mulya,total,total,,2153,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2012,4,Bumi Harapan,sex,laki_laki,,1426,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2012,4,Bumi Harapan,sex,perempuan,,1331,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2012,4,Bumi Harapan,total,total,,2757,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2010,4,Mulya Guna,sex,laki_laki,,2888,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2010,4,Mulya Guna,sex,perempuan,,2712,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2010,4,Mulya Guna,total,total,,5600,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2002,4,Serapek,sex,laki_laki,,482,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2002,4,Serapek,sex,perempuan,,441,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2002,4,Serapek,total,total,,923,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2003,4,Sugih Waras,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2003,4,Sugih Waras,sex,perempuan,,710,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2003,4,Sugih Waras,total,total,,1419,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2014,4,Seriguna,sex,laki_laki,,1192,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2014,4,Seriguna,sex,perempuan,,1143,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2014,4,Seriguna,total,total,,2335,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2004,4,Muara Telang,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2004,4,Muara Telang,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2004,4,Muara Telang,total,total,,662,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2005,4,Kuripan,sex,laki_laki,,675,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2005,4,Kuripan,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2005,4,Kuripan,total,total,,1322,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2007,4,Penyandingan,sex,laki_laki,,758,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2007,4,Penyandingan,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2007,4,Penyandingan,total,total,,1513,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2006,4,Cintamarga,sex,laki_laki,,405,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2006,4,Cintamarga,sex,perempuan,,380,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2006,4,Cintamarga,total,total,,785,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23.2009,4,Ulak Ketapang,sex,laki_laki,,307,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23.2009,4,Ulak Ketapang,sex,perempuan,,291,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23.2009,4,Ulak Ketapang,total,total,,598,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23,3,Kecamatan Teluk Gelam,sex,laki_laki,,12931,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.23,3,Kecamatan Teluk Gelam,sex,perempuan,,12385,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.23,3,Kecamatan Teluk Gelam,total,total,,25316,jiwa,2025,registration,total_population,3.1,31,,
+16.02.23,3,Teluk Gelam,age_group,0-4,laki_laki,744,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.23,3,Teluk Gelam,age_group,0-4,perempuan,706,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.23,3,Teluk Gelam,age_group,0-4,,1450,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.23,3,Teluk Gelam,age_group,5-9,laki_laki,1143,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.23,3,Teluk Gelam,age_group,5-9,perempuan,1027,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.23,3,Teluk Gelam,age_group,5-9,,2170,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.23,3,Teluk Gelam,age_group,10-14,laki_laki,1211,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.23,3,Teluk Gelam,age_group,10-14,perempuan,1100,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.23,3,Teluk Gelam,age_group,10-14,,2311,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.23,3,Teluk Gelam,age_group,15-19,laki_laki,1096,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.23,3,Teluk Gelam,age_group,15-19,perempuan,1025,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.23,3,Teluk Gelam,age_group,15-19,,2121,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.23,3,Teluk Gelam,age_group,20-24,laki_laki,1065,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.23,3,Teluk Gelam,age_group,20-24,perempuan,976,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.23,3,Teluk Gelam,age_group,20-24,,2041,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.23,3,Teluk Gelam,age_group,25-29,laki_laki,1003,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.23,3,Teluk Gelam,age_group,25-29,perempuan,927,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.23,3,Teluk Gelam,age_group,25-29,,1930,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.23,3,Teluk Gelam,age_group,30-34,laki_laki,889,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.23,3,Teluk Gelam,age_group,30-34,perempuan,870,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.23,3,Teluk Gelam,age_group,30-34,,1759,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.23,3,Teluk Gelam,age_group,35-39,laki_laki,960,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.23,3,Teluk Gelam,age_group,35-39,perempuan,962,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.23,3,Teluk Gelam,age_group,35-39,,1922,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.23,3,Teluk Gelam,age_group,40-44,laki_laki,898,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.23,3,Teluk Gelam,age_group,40-44,perempuan,963,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.23,3,Teluk Gelam,age_group,40-44,,1861,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.23,3,Teluk Gelam,age_group,45-49,laki_laki,928,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.23,3,Teluk Gelam,age_group,45-49,perempuan,839,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.23,3,Teluk Gelam,age_group,45-49,,1767,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.23,3,Teluk Gelam,age_group,50-54,laki_laki,755,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.23,3,Teluk Gelam,age_group,50-54,perempuan,792,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.23,3,Teluk Gelam,age_group,50-54,,1547,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.23,3,Teluk Gelam,age_group,55-59,laki_laki,717,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.23,3,Teluk Gelam,age_group,55-59,perempuan,652,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.23,3,Teluk Gelam,age_group,55-59,,1369,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.23,3,Teluk Gelam,age_group,60-64,laki_laki,582,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.23,3,Teluk Gelam,age_group,60-64,perempuan,556,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.23,3,Teluk Gelam,age_group,60-64,,1138,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.23,3,Teluk Gelam,age_group,65-69,laki_laki,392,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.23,3,Teluk Gelam,age_group,65-69,perempuan,420,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.23,3,Teluk Gelam,age_group,65-69,,812,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.23,3,Teluk Gelam,age_group,70-74,laki_laki,267,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.23,3,Teluk Gelam,age_group,70-74,perempuan,247,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.23,3,Teluk Gelam,age_group,70-74,,514,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.23,3,Teluk Gelam,age_group,74+,laki_laki,281,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.23,3,Teluk Gelam,age_group,74+,perempuan,323,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.23,3,Teluk Gelam,age_group,74+,,604,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.23,3,Kecamatan Teluk Gelam,sex,laki_laki,,12931,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+16.02.23,3,Kecamatan Teluk Gelam,sex,perempuan,,12385,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+16.02.23,3,Kecamatan Teluk Gelam,total,total,,25316,jiwa,2025,registration,total_population,3.2,33,,

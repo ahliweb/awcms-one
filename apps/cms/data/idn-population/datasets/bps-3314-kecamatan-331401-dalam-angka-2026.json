@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3314-kecamatan-331401-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.14.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kalijambe Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sragen",
+  "publisherDomain": "3314",
+  "publisherWebsite": "https://sragenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sragen (https://sragenkab.bps.go.id), publikasi \"Kecamatan Kalijambe Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3314010",
+  "publicationNumber": "3314026007",
+  "issn": "0852-260X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sragenkab.bps.go.id/id/publication/2026/09/28/49a7737cc72507131d8086c1/kecamatan-kalijambe-dalam-angka-2026.html",
+  "sourceFileSha256": "e8988cfb51c408cd2874d38a476764d3eb2a42dc23058405c76688eaf0468dbe",
+  "sourceFileBytes": 20969211,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sragen.",
+  "csvPath": "datasets/bps-3314-kecamatan-331401-dalam-angka-2026.csv",
+  "csvSha256": "0d6e2cac7f0678b830a31b89baf10d0e68b5cd148d20997af287f035462f7849",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kalijambe, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kalijambe, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"009 Samberembe\": unmatched ",
+    "table 3.1: row not stored: row \"009 Samberembe\": unmatched "
+  ]
+}

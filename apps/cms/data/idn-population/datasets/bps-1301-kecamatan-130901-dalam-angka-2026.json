@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1301-kecamatan-130901-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.09.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pagai Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepulauan Mentawai",
+  "publisherDomain": "1301",
+  "publisherWebsite": "https://mentawaikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepulauan Mentawai (https://mentawaikab.bps.go.id), publikasi \"Kecamatan Pagai Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "13010.26011",
+  "issn": "3089-0462",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mentawaikab.bps.go.id/id/publication/2026/09/28/0dc399da3992b4a7909814fa/kecamatan-pagai-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "ac23b2f2574be2153420dd5f2311b91bbea702c896a51db3b54c4b4fb83e7e42",
+  "sourceFileBytes": 10454387,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepulauan Mentawai.",
+  "csvPath": "datasets/bps-1301-kecamatan-130901-dalam-angka-2026.csv",
+  "csvSha256": "4cebb25ed018d693953eee5b3091f55b4cfdb15002dc97d5aa0cb705527ab748",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Pagai Utara, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pagai Utara (jiwa), 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

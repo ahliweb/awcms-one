@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.21.2002,4,Toto Harjo,sex,laki_laki,,1144,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.21.2002,4,Toto Harjo,sex,perempuan,,1119,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.21.2002,4,Toto Harjo,total,total,,2263,jiwa,2025,registration,total_population,3.1,24,,
+18.01.21.2005,4,Kelawi,sex,laki_laki,,2297,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.21.2005,4,Kelawi,sex,perempuan,,2278,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.21.2005,4,Kelawi,total,total,,4575,jiwa,2025,registration,total_population,3.1,24,,
+18.01.21.2004,4,Bakauheni,sex,laki_laki,,7042,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.21.2004,4,Bakauheni,sex,perempuan,,6940,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.21.2004,4,Bakauheni,total,total,,13982,jiwa,2025,registration,total_population,3.1,24,,
+18.01.21.2003,4,Hatta,sex,laki_laki,,1914,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.21.2003,4,Hatta,sex,perempuan,,1865,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.21.2003,4,Hatta,total,total,,3779,jiwa,2025,registration,total_population,3.1,24,,
+18.01.21.2001,4,Semanak,sex,laki_laki,,689,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.21.2001,4,Semanak,sex,perempuan,,710,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.21.2001,4,Semanak,total,total,,1399,jiwa,2025,registration,total_population,3.1,24,,
+18.01.21,3,Bakauheni,sex,laki_laki,,13086,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.21,3,Bakauheni,sex,perempuan,,12912,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.21,3,Bakauheni,total,total,,25998,jiwa,2025,registration,total_population,3.1,24,,

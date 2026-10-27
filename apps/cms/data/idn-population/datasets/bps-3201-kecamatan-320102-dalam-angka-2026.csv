@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.02.2010,4,Karanggan,sex,laki_laki,,12523,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2010,4,Karanggan,sex,perempuan,,12377,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2010,4,Karanggan,total,total,,24900,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2004,4,Gunung Putri,sex,laki_laki,,10222,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2004,4,Gunung Putri,sex,perempuan,,10016,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2004,4,Gunung Putri,total,total,,20238,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2006,4,Tlajung Udik,sex,laki_laki,,22877,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2006,4,Tlajung Udik,sex,perempuan,,22520,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2006,4,Tlajung Udik,total,total,,45397,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2005,4,Bojong Nangka,sex,laki_laki,,13560,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2005,4,Bojong Nangka,sex,perempuan,,13394,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2005,4,Bojong Nangka,total,total,,26954,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2007,4,Cicadas,sex,laki_laki,,21507,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2007,4,Cicadas,sex,perempuan,,20997,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2007,4,Cicadas,total,total,,42504,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2001,4,Wanaherang,sex,laki_laki,,16569,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2001,4,Wanaherang,sex,perempuan,,16499,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2001,4,Wanaherang,total,total,,33068,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2008,4,Cikeas Udik,sex,laki_laki,,14005,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2008,4,Cikeas Udik,sex,perempuan,,12173,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2008,4,Cikeas Udik,total,total,,26178,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2009,4,Nagrak,sex,laki_laki,,9284,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2009,4,Nagrak,sex,perempuan,,9416,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2009,4,Nagrak,total,total,,18700,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2003,4,Ciangsana,sex,laki_laki,,17398,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2003,4,Ciangsana,sex,perempuan,,17723,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2003,4,Ciangsana,total,total,,35121,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02.2002,4,Bojong Kulur,sex,laki_laki,,18876,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02.2002,4,Bojong Kulur,sex,perempuan,,19444,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02.2002,4,Bojong Kulur,total,total,,38320,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02,3,Gunung Putri,sex,laki_laki,,156821,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.01.02,3,Gunung Putri,sex,perempuan,,154559,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.01.02,3,Gunung Putri,total,total,,311380,jiwa,2025,registration,total_population,3.1,32,,
+32.01.02,3,Gunungputri,age_group,0-4,laki_laki,9249,jiwa,2025,registration,total_population,3.2,34,,0-4
+32.01.02,3,Gunungputri,age_group,0-4,perempuan,8649,jiwa,2025,registration,total_population,3.2,34,,0-4
+32.01.02,3,Gunungputri,age_group,0-4,,17898,jiwa,2025,registration,total_population,3.2,34,,0-4
+32.01.02,3,Gunungputri,age_group,5-9,laki_laki,12348,jiwa,2025,registration,total_population,3.2,34,,5-9
+32.01.02,3,Gunungputri,age_group,5-9,perempuan,11801,jiwa,2025,registration,total_population,3.2,34,,5-9
+32.01.02,3,Gunungputri,age_group,5-9,,24149,jiwa,2025,registration,total_population,3.2,34,,5-9
+32.01.02,3,Gunungputri,age_group,10-14,laki_laki,13794,jiwa,2025,registration,total_population,3.2,34,,10-14
+32.01.02,3,Gunungputri,age_group,10-14,perempuan,12753,jiwa,2025,registration,total_population,3.2,34,,10-14
+32.01.02,3,Gunungputri,age_group,10-14,,26547,jiwa,2025,registration,total_population,3.2,34,,10-14
+32.01.02,3,Gunungputri,age_group,15-19,laki_laki,13401,jiwa,2025,registration,total_population,3.2,34,,15-19
+32.01.02,3,Gunungputri,age_group,15-19,perempuan,13014,jiwa,2025,registration,total_population,3.2,34,,15-19
+32.01.02,3,Gunungputri,age_group,15-19,,26415,jiwa,2025,registration,total_population,3.2,34,,15-19
+32.01.02,3,Gunungputri,age_group,20-24,laki_laki,15232,jiwa,2025,registration,total_population,3.2,34,,20-24
+32.01.02,3,Gunungputri,age_group,20-24,perempuan,13695,jiwa,2025,registration,total_population,3.2,34,,20-24
+32.01.02,3,Gunungputri,age_group,20-24,,28927,jiwa,2025,registration,total_population,3.2,34,,20-24
+32.01.02,3,Gunungputri,age_group,25-29,laki_laki,13794,jiwa,2025,registration,total_population,3.2,34,,25-29
+32.01.02,3,Gunungputri,age_group,25-29,perempuan,13119,jiwa,2025,registration,total_population,3.2,34,,25-29
+32.01.02,3,Gunungputri,age_group,25-29,,26913,jiwa,2025,registration,total_population,3.2,34,,25-29
+32.01.02,3,Gunungputri,age_group,30-34,laki_laki,11710,jiwa,2025,registration,total_population,3.2,34,,30-34
+32.01.02,3,Gunungputri,age_group,30-34,perempuan,11564,jiwa,2025,registration,total_population,3.2,34,,30-34
+32.01.02,3,Gunungputri,age_group,30-34,,23274,jiwa,2025,registration,total_population,3.2,34,,30-34
+32.01.02,3,Gunungputri,age_group,35-39,laki_laki,10246,jiwa,2025,registration,total_population,3.2,34,,35-39
+32.01.02,3,Gunungputri,age_group,35-39,perempuan,10592,jiwa,2025,registration,total_population,3.2,34,,35-39
+32.01.02,3,Gunungputri,age_group,35-39,,20838,jiwa,2025,registration,total_population,3.2,34,,35-39
+32.01.02,3,Gunungputri,age_group,40-44,laki_laki,11380,jiwa,2025,registration,total_population,3.2,34,,40-44
+32.01.02,3,Gunungputri,age_group,40-44,perempuan,12843,jiwa,2025,registration,total_population,3.2,34,,40-44
+32.01.02,3,Gunungputri,age_group,40-44,,24223,jiwa,2025,registration,total_population,3.2,34,,40-44
+32.01.02,3,Gunungputri,age_group,45-49,laki_laki,11980,jiwa,2025,registration,total_population,3.2,34,,45-49
+32.01.02,3,Gunungputri,age_group,45-49,perempuan,13762,jiwa,2025,registration,total_population,3.2,34,,45-49
+32.01.02,3,Gunungputri,age_group,45-49,,25742,jiwa,2025,registration,total_population,3.2,34,,45-49
+32.01.02,3,Gunungputri,age_group,50-54,laki_laki,11606,jiwa,2025,registration,total_population,3.2,34,,50-54
+32.01.02,3,Gunungputri,age_group,50-54,perempuan,12006,jiwa,2025,registration,total_population,3.2,34,,50-54
+32.01.02,3,Gunungputri,age_group,50-54,,23612,jiwa,2025,registration,total_population,3.2,34,,50-54
+32.01.02,3,Gunungputri,age_group,55-59,laki_laki,9350,jiwa,2025,registration,total_population,3.2,34,,55-59
+32.01.02,3,Gunungputri,age_group,55-59,perempuan,8512,jiwa,2025,registration,total_population,3.2,34,,55-59
+32.01.02,3,Gunungputri,age_group,55-59,,17862,jiwa,2025,registration,total_population,3.2,34,,55-59
+32.01.02,3,Gunungputri,age_group,60-64,laki_laki,5929,jiwa,2025,registration,total_population,3.2,34,,60-64
+32.01.02,3,Gunungputri,age_group,60-64,perempuan,5089,jiwa,2025,registration,total_population,3.2,34,,60-64
+32.01.02,3,Gunungputri,age_group,60-64,,11018,jiwa,2025,registration,total_population,3.2,34,,60-64
+32.01.02,3,Gunungputri,age_group,65-69,laki_laki,3318,jiwa,2025,registration,total_population,3.2,34,,65-69
+32.01.02,3,Gunungputri,age_group,65-69,perempuan,3211,jiwa,2025,registration,total_population,3.2,34,,65-69
+32.01.02,3,Gunungputri,age_group,65-69,,6529,jiwa,2025,registration,total_population,3.2,34,,65-69
+32.01.02,3,Gunungputri,age_group,70-74,laki_laki,1889,jiwa,2025,registration,total_population,3.2,34,,70-74
+32.01.02,3,Gunungputri,age_group,70-74,perempuan,1784,jiwa,2025,registration,total_population,3.2,34,,70-74
+32.01.02,3,Gunungputri,age_group,70-74,,3673,jiwa,2025,registration,total_population,3.2,34,,70-74
+32.01.02,3,Gunungputri,age_group,75+,laki_laki,1595,jiwa,2025,registration,total_population,3.2,34,,75+
+32.01.02,3,Gunungputri,age_group,75+,perempuan,2165,jiwa,2025,registration,total_population,3.2,34,,75+
+32.01.02,3,Gunungputri,age_group,75+,,3760,jiwa,2025,registration,total_population,3.2,34,,75+
+32.01.02,3,Gunung Putri,sex,laki_laki,,156821,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+32.01.02,3,Gunung Putri,sex,perempuan,,154559,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+32.01.02,3,Gunung Putri,total,total,,311380,jiwa,2025,registration,total_population,3.2,34,,

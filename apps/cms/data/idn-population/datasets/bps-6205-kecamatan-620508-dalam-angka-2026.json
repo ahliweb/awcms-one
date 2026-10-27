@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-6205-kecamatan-620508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.05.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Teweh Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "6205",
+  "publisherWebsite": "https://barutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://barutkab.bps.go.id), publikasi \"Kecamatan Teweh Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "62050.26021",
+  "issn": "2622-141",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://barutkab.bps.go.id/id/publication/2026/09/28/7abf4019f997a816ad434c33/kecamatan-teweh-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "fc9df16bf905b5be2f9d8f9a646a9a13106d01cde9a19964c6079482adedbb90",
+  "sourceFileBytes": 5145559,
+  "sourcePages": [39, 41],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Utara",
+  "csvPath": "datasets/bps-6205-kecamatan-620508-dalam-angka-2026.csv",
+  "csvSha256": "bfeaeadb9514a7642f99f252eb8943f94e8e8a738b56f1a7de8f625fe49400ed",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p39",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Teweh Selatan, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "unnumbered-p41",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Teweh Selatan, 2025",
+      "printedPages": [41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p39: row not stored: row \"004 II\": unmatched "
+  ]
+}

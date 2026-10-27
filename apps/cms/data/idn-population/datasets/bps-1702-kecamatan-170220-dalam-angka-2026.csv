@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.20.2001,4,Kepala Curup,sex,laki_laki,,969,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.20.2001,4,Kepala Curup,sex,perempuan,,894,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.20.2001,4,Kepala Curup,total,total,,1863,jiwa,2025,registration,total_population,3.1,22,,
+17.02.20.2003,4,Simpang Beliti,sex,laki_laki,,1420,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.20.2003,4,Simpang Beliti,sex,perempuan,,1369,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.20.2003,4,Simpang Beliti,total,total,,2789,jiwa,2025,registration,total_population,3.1,22,,
+17.02.20.2002,4,Kampung Jeruk,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.20.2002,4,Kampung Jeruk,sex,perempuan,,1091,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.20.2002,4,Kampung Jeruk,total,total,,2230,jiwa,2025,registration,total_population,3.1,22,,
+17.02.20.2005,4,Air Apo,sex,laki_laki,,893,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.20.2005,4,Air Apo,sex,perempuan,,852,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.20.2005,4,Air Apo,total,total,,1745,jiwa,2025,registration,total_population,3.1,22,,
+17.02.20.2004,4,Taba Padang,sex,laki_laki,,517,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.20.2004,4,Taba Padang,sex,perempuan,,467,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.20.2004,4,Taba Padang,total,total,,984,jiwa,2025,registration,total_population,3.1,22,,
+17.02.20,3,Bindu Riang,sex,laki_laki,,4938,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.20,3,Bindu Riang,sex,perempuan,,4673,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.20,3,Bindu Riang,total,total,,9611,jiwa,2025,registration,total_population,3.1,22,,

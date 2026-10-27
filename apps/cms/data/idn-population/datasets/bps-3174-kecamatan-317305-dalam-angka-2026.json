@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3174-kecamatan-317305-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.73.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kebon Jeruk Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Barat",
+  "publisherDomain": "3174",
+  "publisherWebsite": "https://jakbarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Barat (https://jakbarkota.bps.go.id), publikasi \"Kecamatan Kebon Jeruk Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102002.317404",
+  "publicationNumber": "31740.26006",
+  "issn": "0852-2235",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakbarkota.bps.go.id/id/publication/2026/09/28/4afd72a320c254f3f0b512c2/kecamatan-kebon-jeruk-dalam-angka-2026.html",
+  "sourceFileSha256": "aca7b174b20170dc4427a5883fa4cfdc77d92195b43c6ef27100c3bdda19b7b2",
+  "sourceFileBytes": 4146276,
+  "sourcePages": [26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Barat",
+  "csvPath": "datasets/bps-3174-kecamatan-317305-dalam-angka-2026.csv",
+  "csvSha256": "3a1820ae4208c73d43eb3d0cd0862f88b4a3d428ec4ab7a594d54df655a6bb02",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kebon Jeruk, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 (age-by-sex) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

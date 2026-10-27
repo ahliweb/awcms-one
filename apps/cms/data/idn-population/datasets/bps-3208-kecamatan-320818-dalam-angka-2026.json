@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320818-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cigugur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Cigugur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208140",
+  "publicationNumber": "32080.25021",
+  "issn": "2830-425X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/a94bea73aafab96c32d1fe11/kecamatan-cigugur-dalam-angka-2026.html",
+  "sourceFileSha256": "161abc3b6656e0ee9cc02a955158ddc963b187f9100a213542ff80fe76343745",
+  "sourceFileBytes": 3115739,
+  "sourcePages": [39, 40, 41, 42],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320818-dalam-angka-2026.csv",
+  "csvSha256": "fd32aa94454e09bde33b8c8660636d1aed08ae34e91b0b2e1c587232c0f28492",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cigugur 2025",
+      "printedPages": [39, 40, 41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cigugur, 2025",
+      "printedPages": [42],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Kecamatan Cigugur Cigugur District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Cigugur Cigugur District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Cigugur Cigugur District\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Cigugur Cigugur District\": unmatched ",
+    "table 3.1.2: row not stored: row \"2024\": unmatched ",
+    "table 3.1.1: the rows of region 32.08.18.1001 are not stored: sex split vs total: parts sum 8402.0000 != 4201.0000 (diff 4201.0000); the source itself is inconsistent"
+  ]
+}

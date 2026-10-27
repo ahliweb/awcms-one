@@ -1,0 +1,147 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.04.01,3,Jenamas,total,total,,8830,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04.02,3,Dusun Hilir,total,total,,16015,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04.03,3,Karau Kuala,total,total,,15255,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04.06,3,Dusun Selatan,total,total,,60494,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04.04,3,Dusun utara,total,total,,16951,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04.05,3,Gunung Bintang Awai,total,total,,19510,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04,2,Barito Selatan,total,total,,137055,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04,2,Kabupaten Barito Selatan,age_group,0-4,laki_laki,5.84,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+62.04,2,Kabupaten Barito Selatan,age_group,0-4,perempuan,5.60,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+62.04,2,Kabupaten Barito Selatan,age_group,0-4,,11.44,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+62.04,2,Kabupaten Barito Selatan,age_group,5-9,laki_laki,5.41,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+62.04,2,Kabupaten Barito Selatan,age_group,5-9,perempuan,5.18,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+62.04,2,Kabupaten Barito Selatan,age_group,5-9,,10.59,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+62.04,2,Kabupaten Barito Selatan,age_group,10-14,laki_laki,5.02,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+62.04,2,Kabupaten Barito Selatan,age_group,10-14,perempuan,4.73,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+62.04,2,Kabupaten Barito Selatan,age_group,10-14,,9.75,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+62.04,2,Kabupaten Barito Selatan,age_group,15-19,laki_laki,5.64,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+62.04,2,Kabupaten Barito Selatan,age_group,15-19,perempuan,5.24,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+62.04,2,Kabupaten Barito Selatan,age_group,15-19,,10.88,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+62.04,2,Kabupaten Barito Selatan,age_group,20-24,laki_laki,6.07,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+62.04,2,Kabupaten Barito Selatan,age_group,20-24,perempuan,5.68,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+62.04,2,Kabupaten Barito Selatan,age_group,20-24,,11.75,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+62.04,2,Kabupaten Barito Selatan,age_group,25-29,laki_laki,5.81,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+62.04,2,Kabupaten Barito Selatan,age_group,25-29,perempuan,5.40,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+62.04,2,Kabupaten Barito Selatan,age_group,25-29,,11.21,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+62.04,2,Kabupaten Barito Selatan,age_group,30-34,laki_laki,5.31,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+62.04,2,Kabupaten Barito Selatan,age_group,30-34,perempuan,4.96,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+62.04,2,Kabupaten Barito Selatan,age_group,30-34,,10.26,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+62.04,2,Kabupaten Barito Selatan,age_group,35-39,laki_laki,5.14,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+62.04,2,Kabupaten Barito Selatan,age_group,35-39,perempuan,5.09,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+62.04,2,Kabupaten Barito Selatan,age_group,35-39,,10.24,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+62.04,2,Kabupaten Barito Selatan,age_group,40-44,laki_laki,5.10,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+62.04,2,Kabupaten Barito Selatan,age_group,40-44,perempuan,4.97,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+62.04,2,Kabupaten Barito Selatan,age_group,40-44,,10.07,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+62.04,2,Kabupaten Barito Selatan,age_group,45-49,laki_laki,5.00,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+62.04,2,Kabupaten Barito Selatan,age_group,45-49,perempuan,4.85,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+62.04,2,Kabupaten Barito Selatan,age_group,45-49,,9.85,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+62.04,2,Kabupaten Barito Selatan,age_group,50-54,laki_laki,4.57,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+62.04,2,Kabupaten Barito Selatan,age_group,50-54,perempuan,4.32,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+62.04,2,Kabupaten Barito Selatan,age_group,50-54,,8.89,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+62.04,2,Kabupaten Barito Selatan,age_group,55-59,laki_laki,3.72,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+62.04,2,Kabupaten Barito Selatan,age_group,55-59,perempuan,3.54,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+62.04,2,Kabupaten Barito Selatan,age_group,55-59,,7.26,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+62.04,2,Kabupaten Barito Selatan,age_group,60-64,laki_laki,2.92,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+62.04,2,Kabupaten Barito Selatan,age_group,60-64,perempuan,2.81,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+62.04,2,Kabupaten Barito Selatan,age_group,60-64,,5.73,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+62.04,2,Kabupaten Barito Selatan,age_group,65-69,laki_laki,2.12,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+62.04,2,Kabupaten Barito Selatan,age_group,65-69,perempuan,2.05,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+62.04,2,Kabupaten Barito Selatan,age_group,65-69,,4.17,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+62.04,2,Kabupaten Barito Selatan,age_group,70-74,laki_laki,1.24,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+62.04,2,Kabupaten Barito Selatan,age_group,70-74,perempuan,1.34,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+62.04,2,Kabupaten Barito Selatan,age_group,70-74,,2.58,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+62.04,2,Kabupaten Barito Selatan,age_group,75+,laki_laki,1.04,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+62.04,2,Kabupaten Barito Selatan,age_group,75+,perempuan,1.35,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+62.04,2,Kabupaten Barito Selatan,age_group,75+,,2.4,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+62.04,2,Kabupaten Barito Selatan,sex,laki_laki,,69.94,ribu_jiwa,2025,projection,total_population,3.1.2,57,,Laki-Laki
+62.04,2,Kabupaten Barito Selatan,sex,perempuan,,67.11,ribu_jiwa,2025,projection,total_population,3.1.2,57,,Perempuan
+62.04,2,Kabupaten Barito Selatan,total,total,,137.06,ribu_jiwa,2025,projection,total_population,3.1.2,57,,
+62.04.01,3,Jenamas,religion,islam,,8947,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+62.04.01,3,Jenamas,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+62.04.01,3,Jenamas,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Katolik
+62.04.01,3,Jenamas,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+62.04.01,3,Jenamas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+62.04.01,3,Jenamas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+62.04.02,3,Dusun Hilir,religion,islam,,15234,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+62.04.02,3,Dusun Hilir,religion,kristen,,1348,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+62.04.02,3,Dusun Hilir,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+62.04.02,3,Dusun Hilir,religion,hindu,,60,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+62.04.02,3,Dusun Hilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+62.04.02,3,Dusun Hilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+62.04.03,3,Karau Kuala,religion,islam,,13917,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+62.04.03,3,Karau Kuala,religion,kristen,,1531,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+62.04.03,3,Karau Kuala,religion,katolik,,227,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+62.04.03,3,Karau Kuala,religion,hindu,,184,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+62.04.03,3,Karau Kuala,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+62.04.03,3,Karau Kuala,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+62.04.06,3,Dusun Selatan,religion,islam,,8250,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+62.04.06,3,Dusun Selatan,religion,kristen,,5391,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+62.04.06,3,Dusun Selatan,religion,katolik,,2578,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+62.04.06,3,Dusun Selatan,religion,hindu,,796,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+62.04.06,3,Dusun Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+62.04.06,3,Dusun Selatan,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,139,,Lainnya
+62.04.04,3,Dusun Utara,religion,islam,,10050,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+62.04.04,3,Dusun Utara,religion,kristen,,5812,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+62.04.04,3,Dusun Utara,religion,katolik,,3442,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+62.04.04,3,Dusun Utara,religion,hindu,,963,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+62.04.04,3,Dusun Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+62.04.04,3,Dusun Utara,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,139,,Lainnya
+62.04.05,3,Gunung Bintang Awai,religion,islam,,42817,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+62.04.05,3,Gunung Bintang Awai,religion,kristen,,11392,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+62.04.05,3,Gunung Bintang Awai,religion,katolik,,3305,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+62.04.05,3,Gunung Bintang Awai,religion,hindu,,2264,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+62.04.05,3,Gunung Bintang Awai,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+62.04.05,3,Gunung Bintang Awai,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,139,,Lainnya
+62.04,2,Barito Selatan,religion,islam,,99215,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+62.04,2,Barito Selatan,religion,kristen,,25483,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+62.04,2,Barito Selatan,religion,katolik,,9559,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+62.04,2,Barito Selatan,religion,hindu,,4271,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+62.04,2,Barito Selatan,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+62.04,2,Barito Selatan,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,139,,Lainnya
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/padi_padian,,113161,rupiah,2024,survey_estimate,per_capita,10.1,309,,Padi-padian
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/padi_padian,,103326,rupiah,2025,survey_estimate,per_capita,10.1,309,,Padi-padian
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/umbi_umbian,,4608,rupiah,2024,survey_estimate,per_capita,10.1,309,,Umbi-umbian
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/umbi_umbian,,6627,rupiah,2025,survey_estimate,per_capita,10.1,309,,Umbi-umbian
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,87907,rupiah,2024,survey_estimate,per_capita,10.1,309,,Ikan/udang/cumi/kerang
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,89254,rupiah,2025,survey_estimate,per_capita,10.1,309,,Ikan/udang/cumi/kerang
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/daging,,41193,rupiah,2024,survey_estimate,per_capita,10.1,309,,Daging
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/daging,,39168,rupiah,2025,survey_estimate,per_capita,10.1,309,,Daging
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,44405,rupiah,2024,survey_estimate,per_capita,10.1,309,,Telur dan susu
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,40634,rupiah,2025,survey_estimate,per_capita,10.1,309,,Telur dan susu
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,50749,rupiah,2024,survey_estimate,per_capita,10.1,309,,Sayur-sayuran
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,60279,rupiah,2025,survey_estimate,per_capita,10.1,309,,Sayur-sayuran
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,8426,rupiah,2024,survey_estimate,per_capita,10.1,309,,Kacang-kacangan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,10298,rupiah,2025,survey_estimate,per_capita,10.1,309,,Kacang-kacangan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/buah_buahan,,34970,rupiah,2024,survey_estimate,per_capita,10.1,309,,Buah-buahan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/buah_buahan,,30856,rupiah,2025,survey_estimate,per_capita,10.1,309,,Buah-buahan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19796,rupiah,2024,survey_estimate,per_capita,10.1,309,,Minyak dan kelapa
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19891,rupiah,2025,survey_estimate,per_capita,10.1,309,,Minyak dan kelapa
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/bahan_minuman,,31970,rupiah,2024,survey_estimate,per_capita,10.1,309,,Bahan minuman
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/bahan_minuman,,32894,rupiah,2025,survey_estimate,per_capita,10.1,309,,Bahan minuman
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,24194,rupiah,2024,survey_estimate,per_capita,10.1,309,,Bumbu-bumbuan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,22820,rupiah,2025,survey_estimate,per_capita,10.1,309,,Bumbu-bumbuan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,21421,rupiah,2024,survey_estimate,per_capita,10.1,309,,Konsumsi lainnya
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,19431,rupiah,2025,survey_estimate,per_capita,10.1,309,,Konsumsi lainnya
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,156588,rupiah,2024,survey_estimate,per_capita,10.1,309,,Makanan dan minuman jadi
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,178644,rupiah,2025,survey_estimate,per_capita,10.1,309,,Makanan dan minuman jadi
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/rokok,,92541,rupiah,2024,survey_estimate,per_capita,10.1,309,,Rokok
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/rokok,,98877,rupiah,2025,survey_estimate,per_capita,10.1,309,,Rokok
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,731930,rupiah,2024,survey_estimate,per_capita,10.1,309,,Jumlah makanan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,753000,rupiah,2025,survey_estimate,per_capita,10.1,309,,Jumlah makanan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,335075,rupiah,2024,survey_estimate,per_capita,10.1,309,,Perumahan dan fasilitas rumah tangga
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,336820,rupiah,2025,survey_estimate,per_capita,10.1,309,,Perumahan dan fasilitas rumah tangga
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120997,rupiah,2024,survey_estimate,per_capita,10.1,309,,Aneka barang dan jasa
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,116464,rupiah,2025,survey_estimate,per_capita,10.1,309,,Aneka barang dan jasa
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25097,rupiah,2024,survey_estimate,per_capita,10.1,309,,"Pakaian, alas kaki, dan tutup kepala"
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23988,rupiah,2025,survey_estimate,per_capita,10.1,309,,"Pakaian, alas kaki, dan tutup kepala"
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,30359,rupiah,2024,survey_estimate,per_capita,10.1,309,,Barang tahan lama
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,47095,rupiah,2025,survey_estimate,per_capita,10.1,309,,Barang tahan lama
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49948,rupiah,2024,survey_estimate,per_capita,10.1,309,,"Pajak, pungutan, dan asuransi"
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46952,rupiah,2025,survey_estimate,per_capita,10.1,309,,"Pajak, pungutan, dan asuransi"
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14080,rupiah,2024,survey_estimate,per_capita,10.1,309,,Keperluan pesta dan upacara/kenduri
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8304,rupiah,2025,survey_estimate,per_capita,10.1,309,,Keperluan pesta dan upacara/kenduri
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,575556,rupiah,2024,survey_estimate,per_capita,10.1,309,,Jumlah bukan makanan
+62.04,2,Kabupaten Barito Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,579622,rupiah,2025,survey_estimate,per_capita,10.1,309,,Jumlah bukan makanan
+62.04,2,Kabupaten Barito Selatan,expenditure,total,,1307487,rupiah,2024,survey_estimate,per_capita,10.1,309,,
+62.04,2,Kabupaten Barito Selatan,expenditure,total,,1332621,rupiah,2025,survey_estimate,per_capita,10.1,309,,

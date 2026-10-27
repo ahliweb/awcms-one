@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.77.02.1009,4,Nambangan Kidul,sex,laki_laki,,4574,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1009,4,Nambangan Kidul,sex,perempuan,,4779,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1009,4,Nambangan Kidul,total,total,,9353,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1008,4,Nambangan Lor,sex,laki_laki,,5970,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1008,4,Nambangan Lor,sex,perempuan,,5920,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1008,4,Nambangan Lor,total,total,,11890,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1001,4,Mangu Harjo,sex,laki_laki,,3751,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1001,4,Mangu Harjo,sex,perempuan,,3771,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1001,4,Mangu Harjo,total,total,,7522,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1007,4,Pangongangan,sex,laki_laki,,1591,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1007,4,Pangongangan,sex,perempuan,,1700,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1007,4,Pangongangan,total,total,,3291,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1005,4,Winongo,sex,laki_laki,,3768,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1005,4,Winongo,sex,perempuan,,4071,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1005,4,Winongo,total,total,,7839,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1006,4,Madiun Lor,sex,laki_laki,,3563,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1006,4,Madiun Lor,sex,perempuan,,3836,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1006,4,Madiun Lor,total,total,,7399,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1003,4,Patihan,sex,laki_laki,,2344,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1003,4,Patihan,sex,perempuan,,2364,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1003,4,Patihan,total,total,,4708,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1004,4,Ngegong,sex,laki_laki,,1662,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1004,4,Ngegong,sex,perempuan,,1706,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1004,4,Ngegong,total,total,,3368,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02.1002,4,Sogaten,sex,laki_laki,,2206,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02.1002,4,Sogaten,sex,perempuan,,2139,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02.1002,4,Sogaten,total,total,,4345,jiwa,2025,registration,total_population,3.1,28,,
+35.77.02,3,Mangu Harjo,sex,laki_laki,,29429,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.77.02,3,Mangu Harjo,sex,perempuan,,30286,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.77.02,3,Mangu Harjo,total,total,,59715,jiwa,2025,registration,total_population,3.1,28,,

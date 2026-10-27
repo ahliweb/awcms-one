@@ -1,0 +1,29 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.15.2003,4,Alur Langsat,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2003,4,Alur Langsat,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2003,4,Alur Langsat,total,total,,370,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2008,4,Lawe Tungkal,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2008,4,Lawe Tungkal,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2008,4,Lawe Tungkal,total,total,,541,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2006,4,Rumah Luar,sex,laki_laki,,243,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2006,4,Rumah Luar,sex,perempuan,,242,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2006,4,Rumah Luar,total,total,,485,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2004,4,Rambah Sayang,sex,laki_laki,,182,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2004,4,Rambah Sayang,sex,perempuan,,207,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2004,4,Rambah Sayang,total,total,,389,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2002,4,Jambur Damar,sex,laki_laki,,236,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2002,4,Jambur Damar,sex,perempuan,,196,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2002,4,Jambur Damar,total,total,,432,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2007,4,Tenembak Alas,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2007,4,Tenembak Alas,sex,perempuan,,232,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2007,4,Tenembak Alas,total,total,,476,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2012,4,Timang Rasa,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2012,4,Timang Rasa,sex,perempuan,,183,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2012,4,Timang Rasa,total,total,,406,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2015,4,Kute Mejile,sex,laki_laki,,144,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2015,4,Kute Mejile,sex,perempuan,,124,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2015,4,Kute Mejile,total,total,,268,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15.2009,4,Salim Pinim II,sex,laki_laki,,128,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.15.2009,4,Salim Pinim II,sex,perempuan,,123,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.15.2009,4,Salim Pinim II,total,total,,251,jiwa,2025,registration,total_population,3.1,24,,
+11.02.15,3,Tanoh Alas,total,total,,5573,jiwa,2025,registration,total_population,3.1,24,,

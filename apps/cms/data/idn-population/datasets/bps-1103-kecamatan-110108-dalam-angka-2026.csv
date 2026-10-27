@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.01.08.2010,4,Gunung Kerambil,sex,laki_laki,,482,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2010,4,Gunung Kerambil,sex,perempuan,,611,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2010,4,Gunung Kerambil,total,total,,1093,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2011,4,Air Berudang,sex,laki_laki,,909,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2011,4,Air Berudang,sex,perempuan,,932,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2011,4,Air Berudang,total,total,,1841,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2001,4,Lhok Keutapang,sex,laki_laki,,829,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2001,4,Lhok Keutapang,sex,perempuan,,893,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2001,4,Lhok Keutapang,total,total,,1722,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2002,4,Hilir,sex,laki_laki,,846,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2002,4,Hilir,sex,perempuan,,893,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2002,4,Hilir,total,total,,1739,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2007,4,Pasar,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2007,4,Pasar,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2007,4,Pasar,total,total,,788,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2003,4,Padang,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2003,4,Padang,sex,perempuan,,398,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2003,4,Padang,total,total,,747,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2006,4,Tepi Air,sex,laki_laki,,246,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2006,4,Tepi Air,sex,perempuan,,262,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2006,4,Tepi Air,total,total,,508,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2004,4,Hulu,sex,laki_laki,,455,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2004,4,Hulu,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2004,4,Hulu,total,total,,959,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2005,4,Jambo Apha,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2005,4,Jambo Apha,sex,perempuan,,691,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2005,4,Jambo Apha,total,total,,1325,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2008,4,Lhok Bengkuang,sex,laki_laki,,1421,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2008,4,Lhok Bengkuang,sex,perempuan,,1436,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2008,4,Lhok Bengkuang,total,total,,2857,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2012,4,Batu Itam,sex,laki_laki,,1103,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2012,4,Batu Itam,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2012,4,Batu Itam,total,total,,2164,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2013,4,Panjupian,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2013,4,Panjupian,sex,perempuan,,338,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2013,4,Panjupian,total,total,,710,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2014,4,Lhok Rukam,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2014,4,Lhok Rukam,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2014,4,Lhok Rukam,total,total,,676,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2015,4,Air Pinang,sex,laki_laki,,564,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2015,4,Air Pinang,sex,perempuan,,495,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2015,4,Air Pinang,total,total,,1059,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2009,4,Panton Luas,sex,laki_laki,,179,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2009,4,Panton Luas,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2009,4,Panton Luas,total,total,,358,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08.2016,4,Lhok Bengkuang Timur,sex,laki_laki,,1160,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08.2016,4,Lhok Bengkuang Timur,sex,perempuan,,1176,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08.2016,4,Lhok Bengkuang Timur,total,total,,2336,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08,3,Tapaktuan,sex,laki_laki,,10265,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.08,3,Tapaktuan,sex,perempuan,,10617,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.08,3,Tapaktuan,total,total,,20882,jiwa,2025,registration,total_population,3.1,20,,
+11.01.08,3,Tapaktuan,age_group,0-4,laki_laki,780,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.08,3,Tapaktuan,age_group,0-4,perempuan,708,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.08,3,Tapaktuan,age_group,0-4,,1488,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.08,3,Tapaktuan,age_group,5-9,laki_laki,930,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.08,3,Tapaktuan,age_group,5-9,perempuan,811,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.08,3,Tapaktuan,age_group,5-9,,1741,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.08,3,Tapaktuan,age_group,10-14,laki_laki,921,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.08,3,Tapaktuan,age_group,10-14,perempuan,921,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.08,3,Tapaktuan,age_group,10-14,,1842,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.08,3,Tapaktuan,age_group,15-19,laki_laki,985,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.08,3,Tapaktuan,age_group,15-19,perempuan,904,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.08,3,Tapaktuan,age_group,15-19,,1889,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.08,3,Tapaktuan,age_group,20-24,laki_laki,1000,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.08,3,Tapaktuan,age_group,20-24,perempuan,1000,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.08,3,Tapaktuan,age_group,20-24,,2000,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.08,3,Tapaktuan,age_group,25-29,laki_laki,895,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.08,3,Tapaktuan,age_group,25-29,perempuan,834,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.08,3,Tapaktuan,age_group,25-29,,1729,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.08,3,Tapaktuan,age_group,30-34,laki_laki,800,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.08,3,Tapaktuan,age_group,30-34,perempuan,755,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.08,3,Tapaktuan,age_group,30-34,,1555,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.08,3,Tapaktuan,age_group,35-39,laki_laki,770,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.08,3,Tapaktuan,age_group,35-39,perempuan,805,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.08,3,Tapaktuan,age_group,35-39,,1575,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.08,3,Tapaktuan,age_group,40-44,laki_laki,748,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.08,3,Tapaktuan,age_group,40-44,perempuan,854,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.08,3,Tapaktuan,age_group,40-44,,1602,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.08,3,Tapaktuan,age_group,45-49,laki_laki,667,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.08,3,Tapaktuan,age_group,45-49,perempuan,797,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.08,3,Tapaktuan,age_group,45-49,,1464,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.08,3,Tapaktuan,age_group,50-54,laki_laki,734,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.08,3,Tapaktuan,age_group,50-54,perempuan,860,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.08,3,Tapaktuan,age_group,50-54,,1594,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.08,3,Tapaktuan,age_group,55-59,laki_laki,659,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.08,3,Tapaktuan,age_group,55-59,perempuan,720,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.08,3,Tapaktuan,age_group,55-59,,1379,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.08,3,Tapaktuan,age_group,60-64,laki_laki,425,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.08,3,Tapaktuan,age_group,60-64,perempuan,555,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.08,3,Tapaktuan,age_group,60-64,,980,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.08,3,Tapaktuan,age_group,65-69,laki_laki,319,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.08,3,Tapaktuan,age_group,65-69,perempuan,394,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.08,3,Tapaktuan,age_group,65-69,,713,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.08,3,Tapaktuan,age_group,70-74,laki_laki,189,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.08,3,Tapaktuan,age_group,70-74,perempuan,224,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.08,3,Tapaktuan,age_group,70-74,,413,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.08,3,Tapaktuan,age_group,75+,laki_laki,136,jiwa,2025,registration,total_population,3.2,22,,75+
+11.01.08,3,Tapaktuan,age_group,75+,perempuan,275,jiwa,2025,registration,total_population,3.2,22,,75+
+11.01.08,3,Tapaktuan,age_group,75+,,411,jiwa,2025,registration,total_population,3.2,22,,75+

@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.08.2001,4,Bangsri,sex,laki_laki,,2427,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2001,4,Bangsri,sex,perempuan,,2493,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2001,4,Bangsri,total,total,,4920,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2002,4,Ngemplak,sex,laki_laki,,2259,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2002,4,Ngemplak,sex,perempuan,,2288,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2002,4,Ngemplak,total,total,,4547,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2003,4,Doplang,sex,laki_laki,,1782,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2003,4,Doplang,sex,perempuan,,1896,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2003,4,Doplang,total,total,,3678,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2004,4,Gerdu,sex,laki_laki,,1776,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2004,4,Gerdu,sex,perempuan,,1719,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2004,4,Gerdu,total,total,,3495,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2005,4,Karang,sex,laki_laki,,2387,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2005,4,Karang,sex,perempuan,,2365,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2005,4,Karang,total,total,,4752,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2006,4,Salam,sex,laki_laki,,1524,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2006,4,Salam,sex,perempuan,,1488,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2006,4,Salam,total,total,,3012,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2007,4,Karangpandan,sex,laki_laki,,2854,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2007,4,Karangpandan,sex,perempuan,,2872,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2007,4,Karangpandan,total,total,,5726,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2008,4,Tohkuning,sex,laki_laki,,2943,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2008,4,Tohkuning,sex,perempuan,,3003,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2008,4,Tohkuning,total,total,,5946,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2009,4,Gondangmanis,sex,laki_laki,,1440,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2009,4,Gondangmanis,sex,perempuan,,1448,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2009,4,Gondangmanis,total,total,,2888,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2010,4,Dayu,sex,laki_laki,,1334,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2010,4,Dayu,sex,perempuan,,1412,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2010,4,Dayu,total,total,,2746,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08.2011,4,Harjosari,sex,laki_laki,,1846,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08.2011,4,Harjosari,sex,perempuan,,1831,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08.2011,4,Harjosari,total,total,,3677,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08,3,Kecamatan Karangpandan,sex,laki_laki,,22572,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.08,3,Kecamatan Karangpandan,sex,perempuan,,22815,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.08,3,Kecamatan Karangpandan,total,total,,45387,jiwa,2025,registration,total_population,3.1,27,,
+33.13.08,3,Karangpandan,age_group,0-4,laki_laki,1338,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.08,3,Karangpandan,age_group,0-4,perempuan,1222,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.08,3,Karangpandan,age_group,0-4,,2560,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.08,3,Karangpandan,age_group,5-9,laki_laki,1705,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.08,3,Karangpandan,age_group,5-9,perempuan,1604,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.08,3,Karangpandan,age_group,5-9,,3309,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.08,3,Karangpandan,age_group,10-14,laki_laki,1814,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.08,3,Karangpandan,age_group,10-14,perempuan,1725,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.08,3,Karangpandan,age_group,10-14,,3539,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.08,3,Karangpandan,age_group,15-19,laki_laki,1821,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.08,3,Karangpandan,age_group,15-19,perempuan,1728,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.08,3,Karangpandan,age_group,15-19,,3549,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.08,3,Karangpandan,age_group,20-24,laki_laki,1704,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.08,3,Karangpandan,age_group,20-24,perempuan,1690,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.08,3,Karangpandan,age_group,20-24,,3394,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.08,3,Karangpandan,age_group,25-29,laki_laki,1555,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.08,3,Karangpandan,age_group,25-29,perempuan,1579,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.08,3,Karangpandan,age_group,25-29,,3134,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.08,3,Karangpandan,age_group,30-34,laki_laki,1481,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.08,3,Karangpandan,age_group,30-34,perempuan,1433,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.08,3,Karangpandan,age_group,30-34,,2914,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.08,3,Karangpandan,age_group,35-39,laki_laki,1422,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.08,3,Karangpandan,age_group,35-39,perempuan,1527,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.08,3,Karangpandan,age_group,35-39,,2949,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.08,3,Karangpandan,age_group,40-44,laki_laki,1805,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.08,3,Karangpandan,age_group,40-44,perempuan,1772,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.08,3,Karangpandan,age_group,40-44,,3577,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.08,3,Karangpandan,age_group,45-49,laki_laki,1754,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.08,3,Karangpandan,age_group,45-49,perempuan,1631,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.08,3,Karangpandan,age_group,45-49,,3385,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.08,3,Karangpandan,age_group,50-54,laki_laki,1477,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.08,3,Karangpandan,age_group,50-54,perempuan,1402,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.08,3,Karangpandan,age_group,50-54,,2879,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.08,3,Karangpandan,age_group,55-59,laki_laki,1331,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.08,3,Karangpandan,age_group,55-59,perempuan,1437,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.08,3,Karangpandan,age_group,55-59,,2768,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.08,3,Karangpandan,age_group,60-64,laki_laki,1006,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.08,3,Karangpandan,age_group,60-64,perempuan,1182,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.08,3,Karangpandan,age_group,60-64,,2188,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.08,3,Karangpandan,age_group,65-69,laki_laki,1013,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.08,3,Karangpandan,age_group,65-69,perempuan,1103,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.08,3,Karangpandan,age_group,65-69,,2116,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.08,3,Karangpandan,age_group,70-74,laki_laki,631,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.08,3,Karangpandan,age_group,70-74,perempuan,692,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.08,3,Karangpandan,age_group,70-74,,1323,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.08,3,Karangpandan,age_group,75+,laki_laki,715,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.08,3,Karangpandan,age_group,75+,perempuan,1088,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.08,3,Karangpandan,age_group,75+,,1803,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.08,3,Kecamatan Karangpandan,sex,laki_laki,,22572,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.08,3,Kecamatan Karangpandan,sex,perempuan,,22815,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.08,3,Kecamatan Karangpandan,total,total,,45387,jiwa,2025,registration,total_population,3.2,29,,

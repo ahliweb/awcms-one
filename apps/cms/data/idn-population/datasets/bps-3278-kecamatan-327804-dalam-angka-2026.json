@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-3278-kecamatan-327804-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.78.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Indihiang Dalam Angka 2026",
+  "publisherName": "BPS Kota Tasikmalaya",
+  "publisherDomain": "3278",
+  "publisherWebsite": "https://tasikmalayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tasikmalaya (https://tasikmalayakota.bps.go.id), publikasi \"Kecamatan Indihiang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3278070",
+  "publicationNumber": "32780.26012",
+  "issn": "2598-4462",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tasikmalayakota.bps.go.id/id/publication/2026/09/28/43aadaedbfd9cdd43e7bf2de/kecamatan-indihiang-dalam-angka-2026.html",
+  "sourceFileSha256": "e8657e93e203039d7116265263d1fed127928991fc26422ad1a3f805cfa7236f",
+  "sourceFileBytes": 13565099,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Tasikmalaya. ht tp",
+  "csvPath": "datasets/bps-3278-kecamatan-327804-dalam-angka-2026.csv",
+  "csvSha256": "b3904b96f73803ec9f9f2b59aeea5b4b7b2e530a78d556825886ab1c3f2d71dd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Indihiang, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Indihiang, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Panyingkiran 14.35\": unmatched ",
+    "table 3.1: row not stored: row \"Parakannyasag 18.28\": unmatched ",
+    "table 3.1: row not stored: row \"Sirnagalih 13.33\": unmatched ",
+    "table 3.1: row not stored: row \"Indihiang 15.54\": unmatched ",
+    "table 3.1: row not stored: row \"Sukamajukidul 16.52\": unmatched ",
+    "table 3.1: row not stored: row \"Sukamajukaler 21.98\": unmatched ",
+    "table 3.1: row not stored: row \"Indihiang 100.00\": unmatched "
+  ]
+}

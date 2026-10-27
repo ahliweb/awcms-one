@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1701-kecamatan-170107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.01.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kedurang Ilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bengkulu Selatan",
+  "publisherDomain": "1701",
+  "publisherWebsite": "https://bengkuluselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bengkulu Selatan (https://bengkuluselatankab.bps.go.id), publikasi \"Kecamatan Kedurang Ilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1701045",
+  "publicationNumber": "17010.26018",
+  "issn": "2598-7178",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bengkuluselatankab.bps.go.id/id/publication/2026/09/28/2c6c538e7b8d59b7ad9fac2f/kecamatan-kedurang-ilir-dalam-angka-2026.html",
+  "sourceFileSha256": "94c24827cf8b4ce8d9fcefb7a6de0f9e85c9acbecbd43419d8e440c9e90457e0",
+  "sourceFileBytes": 20711631,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bengkulu Selatan.",
+  "csvPath": "datasets/bps-1701-kecamatan-170107-dalam-angka-2026.csv",
+  "csvSha256": "6578b0629df4ce410f16a8f2c03606b22721da0f06addd315e7254cabf6be354",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kedurang Ilir, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

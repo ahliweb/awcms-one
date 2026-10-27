@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160721-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Selat Penuguan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Selat Penuguan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1607032",
+  "publicationNumber": "16070.26010",
+  "issn": "3064-4771",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/2b77cc7ba8f9bea11e40b352/kecamatan-selat-penuguan-dalam-angka-2026.html",
+  "sourceFileSha256": "8c32add04a2d5ac972f28766f373dd67f7c0717d1f8442f0c355084f49857a36",
+  "sourceFileBytes": 12699967,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160721-dalam-angka-2026.csv",
+  "csvSha256": "096fb93eb5ab722ec0b34c12dc67720d251c3cc446457f4d80ac9d102be86bfa",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Selat Penuguan, 2026",
+      "printedPages": [35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sumber Rejo 1.041\": unmatched ",
+    "table 3.1: row not stored: row \"Sumber Agung 542\": unmatched ",
+    "table 3.1: row not stored: row \"Wonodadi 642\": unmatched ",
+    "table 3.1: row not stored: row \"Songo Makmur 817\": unmatched ",
+    "table 3.1: row not stored: row \"Bumi Rejo 878\": unmatched ",
+    "table 3.1: row not stored: row \"Mekar Sari 878\": unmatched ",
+    "table 3.1: row not stored: row \"Sumber Mukti 1.797\": unmatched ",
+    "table 3.1: row not stored: row \"Kelapa Dua 1.132\": unmatched ",
+    "table 3.1: row not stored: row \"Penuguan 2.482\": unmatched ",
+    "table 3.1: row not stored: row \"Ringin Harjo 978\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Manunggal 1.125\": unmatched ",
+    "table 3.1: row not stored: row \"Purwodadi 511\": unmatched ",
+    "table 3.1: row not stored: row \"Selat Penuguan 12.823\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

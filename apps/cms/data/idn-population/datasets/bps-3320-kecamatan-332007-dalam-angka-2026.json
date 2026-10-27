@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332007-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mlonggo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Mlonggo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320090",
+  "publicationNumber": "33200.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/69d48b525fea3585f76368f9/kecamatan-mlonggo-dalam-angka-2026.html",
+  "sourceFileSha256": "9bad7a91f39599bd09cab218e9632f2fd5306403d0ce8c5d1807af8b2aaf7eb0",
+  "sourceFileBytes": 12169902,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332007-dalam-angka-2026.csv",
+  "csvSha256": "1f723d55cc5b531ce963f6209c39bf0d7e763c9796198c9f23f2d635ce8e710d",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mlonggo, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Mororejo 547\": unmatched ",
+    "table 3.1: row not stored: row \"002 Suwawal 6.397\": unmatched ",
+    "table 3.1: row not stored: row \"003 Sinanggul 7.707\": unmatched ",
+    "table 3.1: row not stored: row \"004 Jambu Timur 5.944\": unmatched ",
+    "table 3.1: row not stored: row \"005 Jambu 6.268\": unmatched ",
+    "table 3.1: row not stored: row \"006 Sekuro 5.663\": unmatched ",
+    "table 3.1: row not stored: row \"007 Srobyong 4.819\": unmatched ",
+    "table 3.1: row not stored: row \"008 Karanggondang 8.937\": unmatched ",
+    "table 3.1: row not stored: row \"Mlonggo 46.282\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

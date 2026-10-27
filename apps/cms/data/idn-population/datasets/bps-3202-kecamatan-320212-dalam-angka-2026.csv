@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.12.2004,4,Cisarua,sex,laki_laki,,7496,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2004,4,Cisarua,sex,perempuan,,7407,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2004,4,Cisarua,total,total,,14903,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2009,4,Balekambang,sex,laki_laki,,4727,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2009,4,Balekambang,sex,perempuan,,4556,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2009,4,Balekambang,total,total,,9283,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2013,4,Nagrak Selatan,sex,laki_laki,,4071,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2013,4,Nagrak Selatan,sex,perempuan,,3981,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2013,4,Nagrak Selatan,total,total,,8052,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2003,4,Nagrak Utara,sex,laki_laki,,8910,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2003,4,Nagrak Utara,sex,perempuan,,8768,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2003,4,Nagrak Utara,total,total,,17678,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2001,4,Kalaparea,sex,laki_laki,,4793,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2001,4,Kalaparea,sex,perempuan,,4635,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2001,4,Kalaparea,total,total,,9428,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2011,4,Darmareja,sex,laki_laki,,4489,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2011,4,Darmareja,sex,perempuan,,4234,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2011,4,Darmareja,total,total,,8723,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2014,4,Girijaya,sex,laki_laki,,5912,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2014,4,Girijaya,sex,perempuan,,5697,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2014,4,Girijaya,total,total,,11609,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2010,4,Babakan Panjang,sex,laki_laki,,2740,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2010,4,Babakan Panjang,sex,perempuan,,2618,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2010,4,Babakan Panjang,total,total,,5358,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2002,4,Pawenang,sex,laki_laki,,3171,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2002,4,Pawenang,sex,perempuan,,3070,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2002,4,Pawenang,total,total,,6241,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12.2012,4,Cihanyawar,sex,laki_laki,,3300,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12.2012,4,Cihanyawar,sex,perempuan,,3153,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12.2012,4,Cihanyawar,total,total,,6453,jiwa,2025,registration,total_population,3.1,24,,
+32.02.12,3,Nagrak,sex,laki_laki,,49609,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.12,3,Nagrak,sex,perempuan,,48119,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.12,3,Nagrak,total,total,,97728,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3201-kecamatan-320116-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.01.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cibungbulang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bogor",
+  "publisherDomain": "3201",
+  "publisherWebsite": "https://bogorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bogor (https://bogorkab.bps.go.id), publikasi \"Kecamatan Cibungbulang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3201080",
+  "publicationNumber": "32010.26012",
+  "issn": "2597-8055",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkab.bps.go.id/id/publication/2026/09/28/3c1260836cbd3da47860a907/kecamatan-cibungbulang-dalam-angka-2026.html",
+  "sourceFileSha256": "80003deda56df2866ed3be89fba16eab40f2b7a97d2ca9551dcce9f76bdd2726",
+  "sourceFileBytes": 9466133,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bogor.",
+  "csvPath": "datasets/bps-3201-kecamatan-320116-dalam-angka-2026.csv",
+  "csvSha256": "97bc36688c0e8245410a71ce32cb391020e9b0c55e94917f12b6284af0c002fd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa di Kecamatan Cibungbulang, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cibungbulang, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Cibatok 2\": unmatched ",
+    "table 3.1: row not stored: row \"Cibatok 1\": unmatched ",
+    "table 3.1: row not stored: row \"Cimanggu 2\": unmatched ",
+    "table 3.1: row not stored: row \"Cimanggu 1\": unmatched ",
+    "table 3.1: row not stored: row \"Cibatok 2\": unmatched ",
+    "table 3.1: row not stored: row \"Cibatok 1\": unmatched ",
+    "table 3.1: row not stored: row \"Cimanggu 2\": unmatched ",
+    "table 3.1: row not stored: row \"Cimanggu 1\": unmatched "
+  ]
+}

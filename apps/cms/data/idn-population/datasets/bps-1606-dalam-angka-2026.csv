@@ -1,0 +1,216 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06,2,Kabupaten Musi Banyuasin,age_group,0-4,perempuan,26871,jiwa,2025,registration,total_population,3.1.2,67,,0–4
+16.06,2,Kabupaten Musi Banyuasin,age_group,0-4,,56224,jiwa,2025,registration,total_population,3.1.2,67,,0–4
+16.06,2,Kabupaten Musi Banyuasin,age_group,5-9,perempuan,35004,jiwa,2025,registration,total_population,3.1.2,67,,5–9
+16.06,2,Kabupaten Musi Banyuasin,age_group,5-9,,72657,jiwa,2025,registration,total_population,3.1.2,67,,5–9
+16.06,2,Kabupaten Musi Banyuasin,age_group,10-14,perempuan,35610,jiwa,2025,registration,total_population,3.1.2,67,,10–14
+16.06,2,Kabupaten Musi Banyuasin,age_group,10-14,,73639,jiwa,2025,registration,total_population,3.1.2,67,,10–14
+16.06,2,Kabupaten Musi Banyuasin,age_group,15-19,perempuan,31696,jiwa,2025,registration,total_population,3.1.2,67,,15–19
+16.06,2,Kabupaten Musi Banyuasin,age_group,15-19,,65356,jiwa,2025,registration,total_population,3.1.2,67,,15–19
+16.06,2,Kabupaten Musi Banyuasin,age_group,20-24,perempuan,30689,jiwa,2025,registration,total_population,3.1.2,67,,20–24
+16.06,2,Kabupaten Musi Banyuasin,age_group,20-24,,63023,jiwa,2025,registration,total_population,3.1.2,67,,20–24
+16.06,2,Kabupaten Musi Banyuasin,age_group,25-29,perempuan,27683,jiwa,2025,registration,total_population,3.1.2,67,,25–29
+16.06,2,Kabupaten Musi Banyuasin,age_group,25-29,,56882,jiwa,2025,registration,total_population,3.1.2,67,,25–29
+16.06,2,Kabupaten Musi Banyuasin,age_group,30-34,perempuan,27294,jiwa,2025,registration,total_population,3.1.2,67,,30–34
+16.06,2,Kabupaten Musi Banyuasin,age_group,30-34,,55174,jiwa,2025,registration,total_population,3.1.2,67,,30–34
+16.06,2,Kabupaten Musi Banyuasin,age_group,35-39,perempuan,31000,jiwa,2025,registration,total_population,3.1.2,67,,35–39
+16.06,2,Kabupaten Musi Banyuasin,age_group,35-39,,62055,jiwa,2025,registration,total_population,3.1.2,67,,35–39
+16.06,2,Kabupaten Musi Banyuasin,age_group,40-44,perempuan,28868,jiwa,2025,registration,total_population,3.1.2,67,,40–44
+16.06,2,Kabupaten Musi Banyuasin,age_group,40-44,,59344,jiwa,2025,registration,total_population,3.1.2,67,,40–44
+16.06,2,Kabupaten Musi Banyuasin,age_group,45-49,perempuan,24476,jiwa,2025,registration,total_population,3.1.2,67,,45–49
+16.06,2,Kabupaten Musi Banyuasin,age_group,45-49,,50788,jiwa,2025,registration,total_population,3.1.2,67,,45–49
+16.06,2,Kabupaten Musi Banyuasin,age_group,50-54,perempuan,19466,jiwa,2025,registration,total_population,3.1.2,67,,50–54
+16.06,2,Kabupaten Musi Banyuasin,age_group,50-54,,40365,jiwa,2025,registration,total_population,3.1.2,67,,50–54
+16.06,2,Kabupaten Musi Banyuasin,age_group,55-59,perempuan,15510,jiwa,2025,registration,total_population,3.1.2,67,,55–59
+16.06,2,Kabupaten Musi Banyuasin,age_group,55-59,,32046,jiwa,2025,registration,total_population,3.1.2,67,,55–59
+16.06,2,Kabupaten Musi Banyuasin,age_group,60-64,perempuan,11910,jiwa,2025,registration,total_population,3.1.2,67,,60–64
+16.06,2,Kabupaten Musi Banyuasin,age_group,60-64,,24571,jiwa,2025,registration,total_population,3.1.2,67,,60–64
+16.06,2,Kabupaten Musi Banyuasin,age_group,65-69,perempuan,9443,jiwa,2025,registration,total_population,3.1.2,67,,65–69
+16.06,2,Kabupaten Musi Banyuasin,age_group,65-69,,19277,jiwa,2025,registration,total_population,3.1.2,67,,65–69
+16.06,2,Kabupaten Musi Banyuasin,age_group,70-74,perempuan,5575,jiwa,2025,registration,total_population,3.1.2,67,,70–74
+16.06,2,Kabupaten Musi Banyuasin,age_group,70-74,,11791,jiwa,2025,registration,total_population,3.1.2,67,,70–74
+16.06,2,Kabupaten Musi Banyuasin,age_group,75+,perempuan,7783,jiwa,2025,registration,total_population,3.1.2,67,,75+
+16.06,2,Kabupaten Musi Banyuasin,age_group,75+,,15031,jiwa,2025,registration,total_population,3.1.2,67,,75+
+16.06,2,Kabupaten Musi Banyuasin,sex,perempuan,,368878,jiwa,2025,registration,total_population,3.1.2,67,,Perempuan
+16.06,2,Kabupaten Musi Banyuasin,total,total,,758223,jiwa,2025,registration,total_population,3.1.2,67,,
+16.06.05,3,Sanga Desa,sex,perempuan,,18860,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.05,3,Sanga Desa,total,total,,38451,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.06,3,Babat Toman,sex,perempuan,,21985,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.06,3,Babat Toman,total,total,,44908,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.04,3,Batanghari Leko,sex,perempuan,,12668,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.04,3,Batanghari Leko,total,total,,26656,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.10,3,Plakat Tinggi,sex,perempuan,,15414,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.10,3,Plakat Tinggi,total,total,,31411,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.03,3,Sungai Keruh,sex,perempuan,,13258,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.03,3,Sungai Keruh,total,total,,27179,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.15,3,Jirak Jaya,sex,perempuan,,11217,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.15,3,Jirak Jaya,total,total,,23186,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.01,3,Sekayu,sex,perempuan,,52057,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.01,3,Sekayu,total,total,,105806,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.02,3,Lais,sex,perempuan,,29153,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.02,3,Lais,total,total,,59866,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.07,3,Sungai Lilin,sex,perempuan,,35500,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.07,3,Sungai Lilin,total,total,,72529,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.08,3,Keluang,sex,perempuan,,19110,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.08,3,Keluang,total,total,,38815,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.14,3,Babat Supat,sex,perempuan,,21018,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.14,3,Babat Supat,total,total,,42834,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.09,3,Bayung Lencir,sex,perempuan,,50518,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.09,3,Bayung Lencir,total,total,,105729,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.11,3,Lalan,sex,perempuan,,22752,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.11,3,Lalan,total,total,,47158,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.12,3,Tungkal Jaya,sex,perempuan,,30397,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06.12,3,Tungkal Jaya,total,total,,62977,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06,2,Musi Banyuasin,sex,perempuan,,368878,jiwa,2025,registration,total_population,3.1.3,68,,Perempuan
+16.06,2,Musi Banyuasin,total,total,,758223,jiwa,2025,registration,total_population,3.1.3,68,,
+16.06.05,3,Sanga Desa,religion,islam,,38144,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.05,3,Sanga Desa,religion,kristen,,182,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.05,3,Sanga Desa,religion,katolik,,108,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.05,3,Sanga Desa,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.05,3,Sanga Desa,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.05,3,Sanga Desa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.05,3,Sanga Desa,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.06,3,Babat Toman,religion,islam,,44400,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.06,3,Babat Toman,religion,kristen,,456,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.06,3,Babat Toman,religion,katolik,,37,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.06,3,Babat Toman,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.06.06,3,Babat Toman,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.06.06,3,Babat Toman,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.06,3,Babat Toman,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.04,3,Batanghari Leko,religion,islam,,25983,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.04,3,Batanghari Leko,religion,kristen,,298,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.04,3,Batanghari Leko,religion,katolik,,27,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.04,3,Batanghari Leko,religion,hindu,,329,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.04,3,Batanghari Leko,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.04,3,Batanghari Leko,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.04,3,Batanghari Leko,religion,kepercayaan,,19,jiwa,2025,registration,total_population,4.3.1,155,,Aliran
+16.06.10,3,Plakat Tinggi,religion,islam,,31066,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.10,3,Plakat Tinggi,religion,kristen,,166,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.10,3,Plakat Tinggi,religion,katolik,,67,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.10,3,Plakat Tinggi,religion,hindu,,112,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.10,3,Plakat Tinggi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.10,3,Plakat Tinggi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.10,3,Plakat Tinggi,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.03,3,Sungai Keruh,religion,islam,,27168,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.03,3,Sungai Keruh,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.03,3,Sungai Keruh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Katolik
+16.06.03,3,Sungai Keruh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.06.03,3,Sungai Keruh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.03,3,Sungai Keruh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.03,3,Sungai Keruh,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.15,3,Jirak Jaya,religion,islam,,23021,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.15,3,Jirak Jaya,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.15,3,Jirak Jaya,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Katolik
+16.06.15,3,Jirak Jaya,religion,hindu,,159,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.15,3,Jirak Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.15,3,Jirak Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.15,3,Jirak Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.01,3,Sekayu,religion,islam,,105297,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.01,3,Sekayu,religion,kristen,,341,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.01,3,Sekayu,religion,katolik,,67,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.01,3,Sekayu,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.01,3,Sekayu,religion,buddha,,84,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.06.01,3,Sekayu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.01,3,Sekayu,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.02,3,Lais,religion,islam,,59675,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.02,3,Lais,religion,kristen,,184,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.02,3,Lais,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.02,3,Lais,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.02,3,Lais,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.06.02,3,Lais,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.02,3,Lais,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.07,3,Sungai Lilin,religion,islam,,71479,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.07,3,Sungai Lilin,religion,kristen,,808,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.07,3,Sungai Lilin,religion,katolik,,228,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.07,3,Sungai Lilin,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.07,3,Sungai Lilin,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.06.07,3,Sungai Lilin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.07,3,Sungai Lilin,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.08,3,Keluang,religion,islam,,38672,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.08,3,Keluang,religion,kristen,,123,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.08,3,Keluang,religion,katolik,,16,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.08,3,Keluang,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.08,3,Keluang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.08,3,Keluang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.08,3,Keluang,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,155,,Aliran
+16.06.14,3,Babat Supat,religion,islam,,42470,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.14,3,Babat Supat,religion,kristen,,154,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.14,3,Babat Supat,religion,katolik,,89,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.14,3,Babat Supat,religion,hindu,,121,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.14,3,Babat Supat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.14,3,Babat Supat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.14,3,Babat Supat,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.09,3,Bayung Lencir,religion,islam,,98909,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.09,3,Bayung Lencir,religion,kristen,,5158,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.09,3,Bayung Lencir,religion,katolik,,761,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.09,3,Bayung Lencir,religion,hindu,,890,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.09,3,Bayung Lencir,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.06.09,3,Bayung Lencir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.09,3,Bayung Lencir,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.11,3,Lalan,religion,islam,,45131,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.11,3,Lalan,religion,kristen,,674,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.11,3,Lalan,religion,katolik,,109,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.11,3,Lalan,religion,hindu,,1244,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.11,3,Lalan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.06.11,3,Lalan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.11,3,Lalan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06.12,3,Tungkal Jaya,religion,islam,,60235,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06.12,3,Tungkal Jaya,religion,kristen,,1712,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06.12,3,Tungkal Jaya,religion,katolik,,291,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06.12,3,Tungkal Jaya,religion,hindu,,728,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06.12,3,Tungkal Jaya,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.06.12,3,Tungkal Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06.12,3,Tungkal Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Aliran
+16.06,2,Musi Banyuasin,religion,islam,,742342,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.06,2,Musi Banyuasin,religion,kristen,,10287,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.06,2,Musi Banyuasin,religion,katolik,,1812,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.06,2,Musi Banyuasin,religion,hindu,,3635,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.06,2,Musi Banyuasin,religion,buddha,,127,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.06,2,Musi Banyuasin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Others
+16.06,2,Musi Banyuasin,religion,kepercayaan,,20,jiwa,2025,registration,total_population,4.3.1,155,,Aliran
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/padi_padian,,91754.81,rupiah,2024,survey_estimate,per_capita,10.1,329,,Padi-padian
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/padi_padian,,82856.42,rupiah,2025,survey_estimate,per_capita,10.1,329,,Padi-padian
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/umbi_umbian,,8320.99,rupiah,2024,survey_estimate,per_capita,10.1,329,,Umbi-umbian
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/umbi_umbian,,9810.69,rupiah,2025,survey_estimate,per_capita,10.1,329,,Umbi-umbian
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,74443.58,rupiah,2024,survey_estimate,per_capita,10.1,329,,Ikan/udang/cumi/kerang
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,72272.62,rupiah,2025,survey_estimate,per_capita,10.1,329,,Ikan/udang/cumi/kerang
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/daging,,37705.60,rupiah,2024,survey_estimate,per_capita,10.1,329,,Daging
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/daging,,40222.49,rupiah,2025,survey_estimate,per_capita,10.1,329,,Daging
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/telur_dan_susu,,42633.01,rupiah,2024,survey_estimate,per_capita,10.1,329,,Telur dan susu
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/telur_dan_susu,,45014.03,rupiah,2025,survey_estimate,per_capita,10.1,329,,Telur dan susu
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/sayur_sayuran,,73747.55,rupiah,2024,survey_estimate,per_capita,10.1,329,,Sayur-sayuran
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/sayur_sayuran,,73420.95,rupiah,2025,survey_estimate,per_capita,10.1,329,,Sayur-sayuran
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/kacang_kacangan,,12539.23,rupiah,2024,survey_estimate,per_capita,10.1,329,,Kacang-kacangan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/kacang_kacangan,,12656.00,rupiah,2025,survey_estimate,per_capita,10.1,329,,Kacang-kacangan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/buah_buahan,,50540.53,rupiah,2024,survey_estimate,per_capita,10.1,329,,Buah-buahan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/buah_buahan,,52967.58,rupiah,2025,survey_estimate,per_capita,10.1,329,,Buah-buahan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19315.45,rupiah,2024,survey_estimate,per_capita,10.1,329,,Minyak dan kelapa
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20159.74,rupiah,2025,survey_estimate,per_capita,10.1,329,,Minyak dan kelapa
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/bahan_minuman,,23695.04,rupiah,2024,survey_estimate,per_capita,10.1,329,,Bahan minuman
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/bahan_minuman,,24696.73,rupiah,2025,survey_estimate,per_capita,10.1,329,,Bahan minuman
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/bumbu_bumbuan,,20529.05,rupiah,2024,survey_estimate,per_capita,10.1,329,,Bumbu-bumbuan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/bumbu_bumbuan,,20748.29,rupiah,2025,survey_estimate,per_capita,10.1,329,,Bumbu-bumbuan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/konsumsi_lainnya,,17616.62,rupiah,2024,survey_estimate,per_capita,10.1,329,,Konsumsi lainnya
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/konsumsi_lainnya,,18549.91,rupiah,2025,survey_estimate,per_capita,10.1,329,,Konsumsi lainnya
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,183554.25,rupiah,2024,survey_estimate,per_capita,10.1,329,,Makanan dan minuman jadi
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,186553.85,rupiah,2025,survey_estimate,per_capita,10.1,329,,Makanan dan minuman jadi
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/rokok,,116010.26,rupiah,2024,survey_estimate,per_capita,10.1,329,,Rokok
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/rokok,,112461.24,rupiah,2025,survey_estimate,per_capita,10.1,329,,Rokok
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/jumlah_makanan,,772405.98,rupiah,2024,survey_estimate,per_capita,10.1,329,,Jumlah Makanan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/jumlah_makanan,,772390.54,rupiah,2025,survey_estimate,per_capita,10.1,329,,Jumlah Makanan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,348516.70,rupiah,2024,survey_estimate,per_capita,10.1,329,,Perumahan dan fasilitas rumah tangga
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,324195.90,rupiah,2025,survey_estimate,per_capita,10.1,329,,Perumahan dan fasilitas rumah tangga
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,93825.41,rupiah,2024,survey_estimate,per_capita,10.1,329,,Aneka barang dan jasa
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,108795.39,rupiah,2025,survey_estimate,per_capita,10.1,329,,Aneka barang dan jasa
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29779.61,rupiah,2024,survey_estimate,per_capita,10.1,329,,"Pakaian, alas kaki, dan tutup kepala"
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28468.30,rupiah,2025,survey_estimate,per_capita,10.1,329,,"Pakaian, alas kaki, dan tutup kepala"
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/barang_tahan_lama,,74412.79,rupiah,2024,survey_estimate,per_capita,10.1,329,,Barang tahan lama
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/barang_tahan_lama,,22074.50,rupiah,2025,survey_estimate,per_capita,10.1,329,,Barang tahan lama
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48468.23,rupiah,2024,survey_estimate,per_capita,10.1,329,,"Pajak, pungutan, dan asuransi"
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38971.58,rupiah,2025,survey_estimate,per_capita,10.1,329,,"Pajak, pungutan, dan asuransi"
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,34974.40,rupiah,2024,survey_estimate,per_capita,10.1,329,,Keperluan pesta dan upacara/kenduri
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10428.76,rupiah,2025,survey_estimate,per_capita,10.1,329,,Keperluan pesta dan upacara/kenduri
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,629977.14,rupiah,2024,survey_estimate,per_capita,10.1,329,,Jumlah Bukan Makanan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,532934.44,rupiah,2025,survey_estimate,per_capita,10.1,329,,Jumlah Bukan Makanan
+16.06,2,Kabupaten Musi Banyuasin,expenditure,total,,1402383.12,rupiah,2024,survey_estimate,per_capita,10.1,329,,
+16.06,2,Kabupaten Musi Banyuasin,expenditure,total,,1305324.98,rupiah,2025,survey_estimate,per_capita,10.1,329,,

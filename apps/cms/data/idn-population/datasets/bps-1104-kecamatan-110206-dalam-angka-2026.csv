@@ -1,0 +1,50 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.06.2010,4,Muara Situlen,sex,laki_laki,,494,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2010,4,Muara Situlen,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2010,4,Muara Situlen,total,total,,995,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2013,4,Pardamean,sex,laki_laki,,6,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2013,4,Pardamean,sex,perempuan,,3,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2013,4,Pardamean,total,total,,9,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2011,4,Sejahtera,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2011,4,Sejahtera,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2011,4,Sejahtera,total,total,,482,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2006,4,Lawe Perbunga,sex,laki_laki,,768,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2006,4,Lawe Perbunga,sex,perempuan,,799,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2006,4,Lawe Perbunga,total,total,,1567,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2005,4,Cinta Damai,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2005,4,Cinta Damai,sex,perempuan,,678,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2005,4,Cinta Damai,total,total,,1287,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2001,4,Pardomuan II,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2001,4,Pardomuan II,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2001,4,Pardomuan II,total,total,,1028,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2004,4,Pardomuan I,sex,laki_laki,,357,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2004,4,Pardomuan I,sex,perempuan,,360,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2004,4,Pardomuan I,total,total,,717,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2016,4,Muara Setia,sex,laki_laki,,286,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2016,4,Muara Setia,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2016,4,Muara Setia,total,total,,580,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2018,4,Sejahtera Baru,sex,laki_laki,,220,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2018,4,Sejahtera Baru,sex,perempuan,,224,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2018,4,Sejahtera Baru,total,total,,444,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2017,4,Tanoh Alas,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2017,4,Tanoh Alas,sex,perempuan,,436,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2017,4,Tanoh Alas,total,total,,878,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2015,4,Cinta Makmur,sex,laki_laki,,408,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2015,4,Cinta Makmur,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2015,4,Cinta Makmur,total,total,,830,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2014,4,Lawe Mantik,sex,laki_laki,,475,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2014,4,Lawe Mantik,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2014,4,Lawe Mantik,total,total,,933,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2012,4,Kute Makmur,sex,laki_laki,,279,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2012,4,Kute Makmur,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2012,4,Kute Makmur,total,total,,557,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2024,4,Lawe Tawakh,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2024,4,Lawe Tawakh,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2024,4,Lawe Tawakh,total,total,,511,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2025,4,Sabilussalam,sex,laki_laki,,255,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2025,4,Sabilussalam,sex,perempuan,,235,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2025,4,Sabilussalam,total,total,,490,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06.2027,4,Pintu Alas,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.06.2027,4,Pintu Alas,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.06.2027,4,Pintu Alas,total,total,,718,jiwa,2025,registration,total_population,3.1,24,,
+11.02.06,3,Babul Makmur,total,total,,15632,jiwa,2025,registration,total_population,3.1,24,,

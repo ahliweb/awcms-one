@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.14.1002,4,Plaju Darat,sex,laki_laki,,11611,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14.1002,4,Plaju Darat,sex,perempuan,,11552,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14.1002,4,Plaju Darat,total,total,,23163,jiwa,2025,registration,total_population,3.1,32,,
+16.71.14.1006,4,Talangputri,sex,laki_laki,,8963,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14.1006,4,Talangputri,sex,perempuan,,8686,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14.1006,4,Talangputri,total,total,,17649,jiwa,2025,registration,total_population,3.1,32,,
+16.71.14.1005,4,Komperta,sex,laki_laki,,1457,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14.1005,4,Komperta,sex,perempuan,,1392,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14.1005,4,Komperta,total,total,,2849,jiwa,2025,registration,total_population,3.1,32,,
+16.71.14.1003,4,Plaju Ilir,sex,laki_laki,,6971,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14.1003,4,Plaju Ilir,sex,perempuan,,6939,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14.1003,4,Plaju Ilir,total,total,,13910,jiwa,2025,registration,total_population,3.1,32,,
+16.71.14.1007,4,Talangbubuk,sex,laki_laki,,4992,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14.1007,4,Talangbubuk,sex,perempuan,,4922,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14.1007,4,Talangbubuk,total,total,,9914,jiwa,2025,registration,total_population,3.1,32,,
+16.71.14.1001,4,Plaju Ulu,sex,laki_laki,,10749,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14.1001,4,Plaju Ulu,sex,perempuan,,10727,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14.1001,4,Plaju Ulu,total,total,,21476,jiwa,2025,registration,total_population,3.1,32,,
+16.71.14.1004,4,Baguskuning,sex,laki_laki,,5293,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14.1004,4,Baguskuning,sex,perempuan,,5305,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14.1004,4,Baguskuning,total,total,,10598,jiwa,2025,registration,total_population,3.1,32,,
+16.71.14,3,Plaju,sex,laki_laki,,50036,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.14,3,Plaju,sex,perempuan,,49523,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.14,3,Plaju,total,total,,99559,jiwa,2025,registration,total_population,3.1,32,,

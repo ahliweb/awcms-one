@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.09.2004,4,Barambang,sex,laki_laki,,937,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2004,4,Barambang,sex,perempuan,,915,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2004,4,Barambang,total,total,,1852,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.1001,4,Sosorgadong,sex,laki_laki,,1726,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.1001,4,Sosorgadong,sex,perempuan,,1724,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.1001,4,Sosorgadong,total,total,,3450,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.2005,4,Siantar Ca,sex,laki_laki,,1263,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2005,4,Siantar Ca,sex,perempuan,,1356,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2005,4,Siantar Ca,total,total,,2619,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.2006,4,Muara Bolak,sex,laki_laki,,1041,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2006,4,Muara Bolak,sex,perempuan,,1121,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2006,4,Muara Bolak,total,total,,2162,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.2008,4,Siantar Dolok,sex,laki_laki,,180,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2008,4,Siantar Dolok,sex,perempuan,,162,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2008,4,Siantar Dolok,total,total,,342,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.2009,4,Baringin,sex,laki_laki,,355,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2009,4,Baringin,sex,perempuan,,333,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2009,4,Baringin,total,total,,688,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.2007,4,Huta Tombak,sex,laki_laki,,250,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2007,4,Huta Tombak,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2007,4,Huta Tombak,total,total,,486,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.2003,4,Sibintang,sex,laki_laki,,986,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2003,4,Sibintang,sex,perempuan,,1025,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2003,4,Sibintang,total,total,,2011,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09.2002,4,Unte Boang,sex,laki_laki,,790,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09.2002,4,Unte Boang,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09.2002,4,Unte Boang,total,total,,1605,jiwa,2025,registration,total_population,3.1,35,,
+12.01.09,3,Sosorgadong,sex,laki_laki,,7528,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.09,3,Sosorgadong,sex,perempuan,,7687,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.09,3,Sosorgadong,total,total,,15215,jiwa,2025,registration,total_population,3.1,35,,

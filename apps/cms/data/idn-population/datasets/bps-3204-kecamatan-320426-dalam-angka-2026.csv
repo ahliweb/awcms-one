@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.26.2006,4,Mandalawangi,sex,laki_laki,,2736,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2006,4,Mandalawangi,sex,perempuan,,2366,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2006,4,Mandalawangi,total,total,,5102,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26.2002,4,Bojong,sex,laki_laki,,3641,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2002,4,Bojong,sex,perempuan,,3466,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2002,4,Bojong,total,total,,7107,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26.2004,4,Ciherang,sex,laki_laki,,4401,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2004,4,Ciherang,sex,perempuan,,4208,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2004,4,Ciherang,total,total,,8609,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26.2003,4,Ciaro,sex,laki_laki,,4924,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2003,4,Ciaro,sex,perempuan,,4638,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2003,4,Ciaro,total,total,,9562,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26.2001,4,Nagreg,sex,laki_laki,,3733,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2001,4,Nagreg,sex,perempuan,,3615,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2001,4,Nagreg,total,total,,7348,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26.2005,4,Citaman,sex,laki_laki,,5097,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2005,4,Citaman,sex,perempuan,,4847,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2005,4,Citaman,total,total,,9944,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26.2007,4,Nagreg Kendan,sex,laki_laki,,3221,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2007,4,Nagreg Kendan,sex,perempuan,,3150,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2007,4,Nagreg Kendan,total,total,,6371,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26.2008,4,Ganjar Sabar,sex,laki_laki,,4959,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26.2008,4,Ganjar Sabar,sex,perempuan,,4852,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26.2008,4,Ganjar Sabar,total,total,,9811,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.26,3,Kecamatan Nagreg,sex,laki_laki,,32712,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.26,3,Kecamatan Nagreg,sex,perempuan,,31142,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.26,3,Kecamatan Nagreg,total,total,,63854,jiwa,2025,registration,total_population,unnumbered-p28,28,,

@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.02.07.2009,4,Muara Jernih,sex,laki_laki,,1407,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+15.02.07.2009,4,Muara Jernih,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+15.02.07.2009,4,Muara Jernih,total,total,,2774,jiwa,2025,registration,total_population,3.1,45,,
+15.02.07.2011,4,Pulau Aro,sex,laki_laki,,1265,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+15.02.07.2011,4,Pulau Aro,sex,perempuan,,1260,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+15.02.07.2011,4,Pulau Aro,total,total,,2525,jiwa,2025,registration,total_population,3.1,45,,
+15.02.07.2010,4,Kapuk,sex,laki_laki,,1019,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+15.02.07.2010,4,Kapuk,sex,perempuan,,1001,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+15.02.07.2010,4,Kapuk,total,total,,2020,jiwa,2025,registration,total_population,3.1,45,,
+15.02.07.2012,4,Rantau Ngarau,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+15.02.07.2012,4,Rantau Ngarau,sex,perempuan,,390,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+15.02.07.2012,4,Rantau Ngarau,total,total,,790,jiwa,2025,registration,total_population,3.1,45,,
+15.02.07.2013,4,Medan Baru,sex,laki_laki,,250,jiwa,2025,registration,total_population,3.1,45,,Laki-Laki/Male
+15.02.07.2013,4,Medan Baru,sex,perempuan,,234,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+15.02.07.2013,4,Medan Baru,total,total,,484,jiwa,2025,registration,total_population,3.1,45,,

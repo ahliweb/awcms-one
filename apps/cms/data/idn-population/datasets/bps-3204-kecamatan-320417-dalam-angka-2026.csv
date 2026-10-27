@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.17.2008,4,Cikalong,sex,laki_laki,,3684,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2008,4,Cikalong,sex,perempuan,,3517,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2008,4,Cikalong,total,total,,7201,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2006,4,Mekarsari,sex,laki_laki,,4559,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2006,4,Mekarsari,sex,perempuan,,4312,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2006,4,Mekarsari,total,total,,8871,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2005,4,Cipinang,sex,laki_laki,,5392,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2005,4,Cipinang,sex,perempuan,,5357,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2005,4,Cipinang,total,total,,10749,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2001,4,Cimaung,sex,laki_laki,,6410,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2001,4,Cimaung,sex,perempuan,,6229,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2001,4,Cimaung,total,total,,12639,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2004,4,Campakamulya,sex,laki_laki,,5344,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2004,4,Campakamulya,sex,perempuan,,5015,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2004,4,Campakamulya,total,total,,10359,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2003,4,Pasirhuni,sex,laki_laki,,4491,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2003,4,Pasirhuni,sex,perempuan,,4317,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2003,4,Pasirhuni,total,total,,8808,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2002,4,Jagabaya,sex,laki_laki,,9024,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2002,4,Jagabaya,sex,perempuan,,8779,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2002,4,Jagabaya,total,total,,17803,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2009,4,Malasari,sex,laki_laki,,3874,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2009,4,Malasari,sex,perempuan,,3756,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2009,4,Malasari,total,total,,7630,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2007,4,Sukamaju,sex,laki_laki,,3173,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2007,4,Sukamaju,sex,perempuan,,3065,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2007,4,Sukamaju,total,total,,6238,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17.2010,4,Warjabakti,sex,laki_laki,,3460,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17.2010,4,Warjabakti,sex,perempuan,,3365,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17.2010,4,Warjabakti,total,total,,6825,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.17,3,Kecamatan Cimaung,sex,laki_laki,,49411,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.17,3,Kecamatan Cimaung,sex,perempuan,,47712,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.17,3,Kecamatan Cimaung,total,total,,97123,jiwa,2025,registration,total_population,unnumbered-p28,28,,

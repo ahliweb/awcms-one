@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.06.1001,4,Kampung Pelita,sex,laki_laki,,3995,jiwa,2025,registration,total_population,unnumbered-p43,,,Laki-Laki/Male
+21.71.06.1001,4,Kampung Pelita,sex,perempuan,,4051,jiwa,2025,registration,total_population,unnumbered-p43,,,Perempuan/Female
+21.71.06.1001,4,Kampung Pelita,total,total,,8046,jiwa,2025,registration,total_population,unnumbered-p43,,,
+21.71.06.1003,4,Lubuk Baja Kota,sex,laki_laki,,6418,jiwa,2025,registration,total_population,unnumbered-p43,,,Laki-Laki/Male
+21.71.06.1003,4,Lubuk Baja Kota,sex,perempuan,,6788,jiwa,2025,registration,total_population,unnumbered-p43,,,Perempuan/Female
+21.71.06.1003,4,Lubuk Baja Kota,total,total,,13206,jiwa,2025,registration,total_population,unnumbered-p43,,,
+21.71.06.1004,4,Batu Selicin,sex,laki_laki,,7902,jiwa,2025,registration,total_population,unnumbered-p43,,,Laki-Laki/Male
+21.71.06.1004,4,Batu Selicin,sex,perempuan,,8726,jiwa,2025,registration,total_population,unnumbered-p43,,,Perempuan/Female
+21.71.06.1004,4,Batu Selicin,total,total,,16628,jiwa,2025,registration,total_population,unnumbered-p43,,,
+21.71.06.1005,4,Tanjung Uma,sex,laki_laki,,14790,jiwa,2025,registration,total_population,unnumbered-p43,,,Laki-Laki/Male
+21.71.06.1005,4,Tanjung Uma,sex,perempuan,,13978,jiwa,2025,registration,total_population,unnumbered-p43,,,Perempuan/Female
+21.71.06.1005,4,Tanjung Uma,total,total,,28768,jiwa,2025,registration,total_population,unnumbered-p43,,,
+21.71.06.1006,4,Baloi Indah,sex,laki_laki,,12964,jiwa,2025,registration,total_population,unnumbered-p43,,,Laki-Laki/Male
+21.71.06.1006,4,Baloi Indah,sex,perempuan,,13332,jiwa,2025,registration,total_population,unnumbered-p43,,,Perempuan/Female
+21.71.06.1006,4,Baloi Indah,total,total,,26296,jiwa,2025,registration,total_population,unnumbered-p43,,,

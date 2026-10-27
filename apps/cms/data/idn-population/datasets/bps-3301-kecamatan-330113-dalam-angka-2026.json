@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3301-kecamatan-330113-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.01.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cimanggu Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN CILACAP",
+  "publisherDomain": "3301",
+  "publisherWebsite": "https://cilacapkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN CILACAP (https://cilacapkab.bps.go.id), publikasi \"Kecamatan Cimanggu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3301040",
+  "publicationNumber": "33010.25012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilacapkab.bps.go.id/id/publication/2026/09/28/e89f2b6d593c5fc51b9967cb/kecamatan-cimanggu-dalam-angka-2026.html",
+  "sourceFileSha256": "58837b04cd81e325178fd70f8615985f99c230acf7deecbd04aa5a516b09a3bc",
+  "sourceFileBytes": 7206505,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cilacap.",
+  "csvPath": "datasets/bps-3301-kecamatan-330113-dalam-angka-2026.csv",
+  "csvSha256": "fc3cea640a0def292e5418a3e82bbe07232e3bf38f53fe49ccb4bab9169395b1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cimanggu, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cimanggu, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

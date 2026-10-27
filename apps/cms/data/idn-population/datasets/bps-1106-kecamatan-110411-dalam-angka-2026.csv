@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.04.11.2002,4,Gunung Bukit,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2002,4,Gunung Bukit,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2002,4,Gunung Bukit,total,total,,1231,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2005,4,Lot Kala,sex,laki_laki,,909,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2005,4,Lot Kala,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2005,4,Lot Kala,total,total,,1839,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2006,4,Mendale,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2006,4,Mendale,sex,perempuan,,500,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2006,4,Mendale,total,total,,1008,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2003,4,Jongok Meluem,sex,laki_laki,,580,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2003,4,Jongok Meluem,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2003,4,Jongok Meluem,total,total,,1184,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2007,4,Paya Reje Tami Delem,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2007,4,Paya Reje Tami Delem,sex,perempuan,,262,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2007,4,Paya Reje Tami Delem,total,total,,544,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2009,4,Pinangan,sex,laki_laki,,1130,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2009,4,Pinangan,sex,perempuan,,1088,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2009,4,Pinangan,total,total,,2218,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2008,4,Paya Tumpi,sex,laki_laki,,405,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2008,4,Paya Tumpi,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2008,4,Paya Tumpi,total,total,,826,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2001,4,Bukit Sama,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2001,4,Bukit Sama,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2001,4,Bukit Sama,total,total,,456,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2004,4,Kelupak Mata,sex,laki_laki,,364,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2004,4,Kelupak Mata,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2004,4,Kelupak Mata,total,total,,719,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2013,4,Gunung Balohen,sex,laki_laki,,408,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2013,4,Gunung Balohen,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2013,4,Gunung Balohen,total,total,,822,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2010,4,Bukit,sex,laki_laki,,311,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2010,4,Bukit,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2010,4,Bukit,total,total,,592,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2015,4,Kala Lengkio,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2015,4,Kala Lengkio,sex,perempuan,,392,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2015,4,Kala Lengkio,total,total,,821,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2012,4,Gunung Bahgie,sex,laki_laki,,290,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2012,4,Gunung Bahgie,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2012,4,Gunung Bahgie,total,total,,554,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2019,4,Timangan Gading,sex,laki_laki,,921,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2019,4,Timangan Gading,sex,perempuan,,926,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2019,4,Timangan Gading,total,total,,1847,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2017,4,Paya Tumpi Baru,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2017,4,Paya Tumpi Baru,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2017,4,Paya Tumpi Baru,total,total,,929,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2016,4,Kute Lot,sex,laki_laki,,1010,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2016,4,Kute Lot,sex,perempuan,,991,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2016,4,Kute Lot,total,total,,2001,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11.2020,4,Telege Atu,sex,laki_laki,,87,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11.2020,4,Telege Atu,sex,perempuan,,99,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11.2020,4,Telege Atu,total,total,,186,jiwa,2025,registration,total_population,3.1,19,,
+11.04.11,3,Kecamatan Kebayakan,sex,laki_laki,,10029,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.11,3,Kecamatan Kebayakan,sex,perempuan,,9898,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+11.04.11,3,Kecamatan Kebayakan,total,total,,19927,jiwa,2025,registration,total_population,3.1,19,,

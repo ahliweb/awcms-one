@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.09.2001,4,Kedung Waduk,sex,laki_laki,,5032,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2001,4,Kedung Waduk,sex,perempuan,,5023,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2001,4,Kedung Waduk,total,total,,10055,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.2002,4,Jurangjero,sex,laki_laki,,5272,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2002,4,Jurangjero,sex,perempuan,,5568,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2002,4,Jurangjero,total,total,,10840,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.2003,4,Saradan,sex,laki_laki,,3578,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2003,4,Saradan,sex,perempuan,,3583,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2003,4,Saradan,total,total,,7161,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.2004,4,Plosokerep,sex,laki_laki,,3619,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2004,4,Plosokerep,sex,perempuan,,3612,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2004,4,Plosokerep,total,total,,7231,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.2005,4,Guworejo,sex,laki_laki,,1414,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2005,4,Guworejo,sex,perempuan,,1507,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2005,4,Guworejo,total,total,,2921,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.2006,4,Puro,sex,laki_laki,,2667,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2006,4,Puro,sex,perempuan,,2694,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2006,4,Puro,total,total,,5361,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.2007,4,Mojorejo,sex,laki_laki,,2665,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2007,4,Mojorejo,sex,perempuan,,2815,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2007,4,Mojorejo,total,total,,5480,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.2008,4,Pelem Gadung,sex,laki_laki,,5774,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.2008,4,Pelem Gadung,sex,perempuan,,6001,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.2008,4,Pelem Gadung,total,total,,11775,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.1009,4,Plumbungan,sex,laki_laki,,3067,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.1009,4,Plumbungan,sex,perempuan,,3120,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.1009,4,Plumbungan,total,total,,6187,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09.1010,4,Kroyo,sex,laki_laki,,3893,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09.1010,4,Kroyo,sex,perempuan,,3931,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09.1010,4,Kroyo,total,total,,7824,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09,3,Kecamatan Karangmalang,sex,laki_laki,,36981,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.09,3,Kecamatan Karangmalang,sex,perempuan,,37854,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.09,3,Kecamatan Karangmalang,total,total,,74835,jiwa,2025,registration,total_population,3.1,32,,
+33.14.09,3,Karangmalang,age_group,0-4,laki_laki,1989,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.09,3,Karangmalang,age_group,0-4,perempuan,1933,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.09,3,Karangmalang,age_group,0-4,,3922,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.09,3,Karangmalang,age_group,5-9,laki_laki,2720,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.09,3,Karangmalang,age_group,5-9,perempuan,2533,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.09,3,Karangmalang,age_group,5-9,,5253,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.09,3,Karangmalang,age_group,10-14,laki_laki,2928,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.09,3,Karangmalang,age_group,10-14,perempuan,2751,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.09,3,Karangmalang,age_group,10-14,,5679,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.09,3,Karangmalang,age_group,15-19,laki_laki,3133,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.09,3,Karangmalang,age_group,15-19,perempuan,3025,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.09,3,Karangmalang,age_group,15-19,,6158,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.09,3,Karangmalang,age_group,20-24,laki_laki,2924,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.09,3,Karangmalang,age_group,20-24,perempuan,2694,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.09,3,Karangmalang,age_group,20-24,,5618,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.09,3,Karangmalang,age_group,25-29,laki_laki,2758,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.09,3,Karangmalang,age_group,25-29,perempuan,2621,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.09,3,Karangmalang,age_group,25-29,,5379,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.09,3,Karangmalang,age_group,30-34,laki_laki,2435,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.09,3,Karangmalang,age_group,30-34,perempuan,2391,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.09,3,Karangmalang,age_group,30-34,,4826,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.09,3,Karangmalang,age_group,35-39,laki_laki,2245,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.09,3,Karangmalang,age_group,35-39,perempuan,2376,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.09,3,Karangmalang,age_group,35-39,,4621,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.09,3,Karangmalang,age_group,40-44,laki_laki,2946,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.09,3,Karangmalang,age_group,40-44,perempuan,3143,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.09,3,Karangmalang,age_group,40-44,,6089,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.09,3,Karangmalang,age_group,45-49,laki_laki,2945,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.09,3,Karangmalang,age_group,45-49,perempuan,3073,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.09,3,Karangmalang,age_group,45-49,,6018,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.09,3,Karangmalang,age_group,50-54,laki_laki,2587,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.09,3,Karangmalang,age_group,50-54,perempuan,2706,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.09,3,Karangmalang,age_group,50-54,,5293,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.09,3,Karangmalang,age_group,55-59,laki_laki,2223,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.09,3,Karangmalang,age_group,55-59,perempuan,2309,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.09,3,Karangmalang,age_group,55-59,,4532,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.09,3,Karangmalang,age_group,60-64,laki_laki,1704,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.09,3,Karangmalang,age_group,60-64,perempuan,2015,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.09,3,Karangmalang,age_group,60-64,,3719,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.09,3,Karangmalang,age_group,65-69,laki_laki,1516,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.09,3,Karangmalang,age_group,65-69,perempuan,1761,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.09,3,Karangmalang,age_group,65-69,,3277,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.09,3,Karangmalang,age_group,70-74,laki_laki,990,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.09,3,Karangmalang,age_group,70-74,perempuan,1021,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.09,3,Karangmalang,age_group,70-74,,2011,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.09,3,Karangmalang,age_group,75+,laki_laki,938,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.09,3,Karangmalang,age_group,75+,perempuan,1502,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.09,3,Karangmalang,age_group,75+,,2440,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.09,3,Kecamatan Karangmalang,sex,laki_laki,,36981,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+33.14.09,3,Kecamatan Karangmalang,sex,perempuan,,37854,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+33.14.09,3,Kecamatan Karangmalang,total,total,,74835,jiwa,2025,registration,total_population,3.2,34,,

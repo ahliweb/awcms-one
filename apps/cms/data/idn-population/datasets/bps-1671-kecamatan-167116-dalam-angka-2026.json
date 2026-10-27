@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1671-kecamatan-167116-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.71.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sematangborang Dalam Angka 2026",
+  "publisherName": "BPS Kota Palembang",
+  "publisherDomain": "1671",
+  "publisherWebsite": "https://palembangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Palembang (https://palembangkota.bps.go.id), publikasi \"Kecamatan Sematangborang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1671071",
+  "publicationNumber": "16710.26021",
+  "issn": "2723-8334",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://palembangkota.bps.go.id/id/publication/2026/09/28/fcfbbb5eafd729894c6e390e/kecamatan-sematangborang-dalam-angka-2026.html",
+  "sourceFileSha256": "dae9ee012be6f1ca3f351a2c5e3d8a8a43c20f8016653ef6f3350ac4b3f601cb",
+  "sourceFileBytes": 12966671,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palembang.",
+  "csvPath": "datasets/bps-1671-kecamatan-167116-dalam-angka-2026.csv",
+  "csvSha256": "6302707699d9e08b19edf10ec7b54c784c8b381142dad318a0d133aff97e6796",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Sematangborang, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sematangborang, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"2. Srimulyo\": unmatched ",
+    "table 3.1: row not stored: row \"2. Srimulyo\": unmatched ",
+    "table 3.1: row not stored: row \"Sematangborang 100.00\": unmatched ",
+    "table 3.2: row not stored: row \"+ 75\": unmatched ",
+    "table 3.2: the rows of region 16.71.16 are not stored: age_group (perempuan) vs sex value: parts sum 34705.0000 != 35126.0000 (diff 421.0000); the source itself is inconsistent"
+  ]
+}

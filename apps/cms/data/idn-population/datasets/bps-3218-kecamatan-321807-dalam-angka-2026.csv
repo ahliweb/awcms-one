@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.18.07.2001,4,PANYUTRAN,sex,laki_laki,,1568,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2001,4,PANYUTRAN,sex,perempuan,,1509,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2001,4,PANYUTRAN,total,total,,3077,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2011,4,BOJONGSARI,sex,laki_laki,,1159,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2011,4,BOJONGSARI,sex,perempuan,,1260,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2011,4,BOJONGSARI,total,total,,2419,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2002,4,CIGANJENG,sex,laki_laki,,2280,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2002,4,CIGANJENG,sex,perempuan,,2291,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2002,4,CIGANJENG,total,total,,4571,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2004,4,SUKANAGARA,sex,laki_laki,,3897,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2004,4,SUKANAGARA,sex,perempuan,,3919,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2004,4,SUKANAGARA,total,total,,7816,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2012,4,SINDANGWANGI,sex,laki_laki,,2240,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2012,4,SINDANGWANGI,sex,perempuan,,2234,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2012,4,SINDANGWANGI,total,total,,4474,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2003,4,KARANGSARI,sex,laki_laki,,2790,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2003,4,KARANGSARI,sex,perempuan,,2703,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2003,4,KARANGSARI,total,total,,5493,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2005,4,PALEDAH,sex,laki_laki,,3318,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2005,4,PALEDAH,sex,perempuan,,3306,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2005,4,PALEDAH,total,total,,6624,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2013,4,MARUYUNG SARI,sex,laki_laki,,3575,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2013,4,MARUYUNG SARI,sex,perempuan,,3519,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2013,4,MARUYUNG SARI,total,total,,7094,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2006,4,KARANGPAWITAN,sex,laki_laki,,4110,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2006,4,KARANGPAWITAN,sex,perempuan,,4024,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2006,4,KARANGPAWITAN,total,total,,8134,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2007,4,PADAHERANG,sex,laki_laki,,3722,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2007,4,PADAHERANG,sex,perempuan,,3675,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2007,4,PADAHERANG,total,total,,7397,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2008,4,KEDUNGWULUH,sex,laki_laki,,2073,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2008,4,KEDUNGWULUH,sex,perempuan,,2087,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2008,4,KEDUNGWULUH,total,total,,4160,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2014,4,KARANGMULYA,sex,laki_laki,,2421,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2014,4,KARANGMULYA,sex,perempuan,,2376,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2014,4,KARANGMULYA,total,total,,4797,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2009,4,CIBOGO,sex,laki_laki,,1469,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2009,4,CIBOGO,sex,perempuan,,1448,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2009,4,CIBOGO,total,total,,2917,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07.2010,4,PASIRGEULIS,sex,laki_laki,,1654,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07.2010,4,PASIRGEULIS,sex,perempuan,,1678,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07.2010,4,PASIRGEULIS,total,total,,3332,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07,3,Kecamatan Padaherang,sex,laki_laki,,36276,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.07,3,Kecamatan Padaherang,sex,perempuan,,36029,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.07,3,Kecamatan Padaherang,total,total,,72305,jiwa,2025,registration,total_population,3.1,30,,
+32.18.07,3,Padaherang,age_group,0-4,laki_laki,2065,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.07,3,Padaherang,age_group,0-4,perempuan,2021,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.07,3,Padaherang,age_group,0-4,,4086,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.07,3,Padaherang,age_group,5-9,laki_laki,2607,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.07,3,Padaherang,age_group,5-9,perempuan,2399,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.07,3,Padaherang,age_group,5-9,,5006,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.07,3,Padaherang,age_group,10-14,laki_laki,2659,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.07,3,Padaherang,age_group,10-14,perempuan,2514,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.07,3,Padaherang,age_group,10-14,,5173,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.07,3,Padaherang,age_group,15-19,laki_laki,2863,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.07,3,Padaherang,age_group,15-19,perempuan,2620,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.07,3,Padaherang,age_group,15-19,,5483,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.07,3,Padaherang,age_group,20-24,laki_laki,2713,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.07,3,Padaherang,age_group,20-24,perempuan,2479,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.07,3,Padaherang,age_group,20-24,,5192,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.07,3,Padaherang,age_group,25-29,laki_laki,2934,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.07,3,Padaherang,age_group,25-29,perempuan,2626,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.07,3,Padaherang,age_group,25-29,,5560,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.07,3,Padaherang,age_group,30-34,laki_laki,2802,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.07,3,Padaherang,age_group,30-34,perempuan,2572,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.07,3,Padaherang,age_group,30-34,,5374,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.07,3,Padaherang,age_group,35-39,laki_laki,2417,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.07,3,Padaherang,age_group,35-39,perempuan,2253,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.07,3,Padaherang,age_group,35-39,,4670,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.07,3,Padaherang,age_group,40-44,laki_laki,2358,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.07,3,Padaherang,age_group,40-44,perempuan,2347,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.07,3,Padaherang,age_group,40-44,,4705,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.07,3,Padaherang,age_group,45-49,laki_laki,2200,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.07,3,Padaherang,age_group,45-49,perempuan,2288,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.07,3,Padaherang,age_group,45-49,,4488,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.07,3,Padaherang,age_group,50-54,laki_laki,2204,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.07,3,Padaherang,age_group,50-54,perempuan,2475,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.07,3,Padaherang,age_group,50-54,,4679,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.07,3,Padaherang,age_group,55-59,laki_laki,2139,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.07,3,Padaherang,age_group,55-59,perempuan,2487,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.07,3,Padaherang,age_group,55-59,,4626,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.07,3,Padaherang,age_group,60-64,laki_laki,1990,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.07,3,Padaherang,age_group,60-64,perempuan,2123,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.07,3,Padaherang,age_group,60-64,,4113,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.07,3,Padaherang,age_group,65-69,laki_laki,1713,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.07,3,Padaherang,age_group,65-69,perempuan,1927,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.07,3,Padaherang,age_group,65-69,,3640,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.07,3,Padaherang,age_group,70-74,laki_laki,1227,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.07,3,Padaherang,age_group,70-74,perempuan,1291,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.07,3,Padaherang,age_group,70-74,,2518,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.07,3,Padaherang,age_group,75+,laki_laki,1385,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.07,3,Padaherang,age_group,75+,perempuan,1607,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.07,3,Padaherang,age_group,75+,,2992,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.07,3,Kecamatan Padaherang,sex,laki_laki,,36276,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+32.18.07,3,Kecamatan Padaherang,sex,perempuan,,36029,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+32.18.07,3,Kecamatan Padaherang,total,total,,72305,jiwa,2025,registration,total_population,3.2,32,,

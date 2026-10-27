@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160701-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banyuasin I Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Banyuasin I Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1607060",
+  "publicationNumber": "16070.26015",
+  "issn": "3064-4763",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/34368dc34938c5d9bef8c2de/kecamatan-banyuasin-i-dalam-angka-2026.html",
+  "sourceFileSha256": "b6da23dafd2f1a7fb6eef59e59a5790780ac09e46fea667b155a85e9785b7d7f",
+  "sourceFileBytes": 12456161,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160701-dalam-angka-2026.csv",
+  "csvSha256": "0b4abd895ca09cbde4fb3455ee3ac4311a60e116bef21d3be4e16e7a3edd8cee",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banyuasin I, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sungai Rebo 4.207\": unmatched ",
+    "table 3.1: row not stored: row \"Sungai Gerong 2.023\": unmatched ",
+    "table 3.1: row not stored: row \"Mariana 5.250\": unmatched ",
+    "table 3.1: row not stored: row \"Tirto Sari 2.215\": unmatched ",
+    "table 3.1: row not stored: row \"Pematang Palas 1.038\": unmatched ",
+    "table 3.1: row not stored: row \"Perajen 3.021\": unmatched ",
+    "table 3.1: row not stored: row \"Pulau Borang 2.582\": unmatched ",
+    "table 3.1: row not stored: row \"Merah Mata 3.918\": unmatched ",
+    "table 3.1: row not stored: row \"Cinta Manis Lama 1.337\": unmatched ",
+    "table 3.1: row not stored: row \"Perambahan 1.016\": unmatched ",
+    "table 3.1: row not stored: row \"Mariana Ilir 4.010\": unmatched ",
+    "table 3.1: row not stored: row \"Duren Ijo 782\": unmatched ",
+    "table 3.1: row not stored: row \"Perambahan Baru 296\": unmatched ",
+    "table 3.1: row not stored: row \"Banyuasin I 31.695\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

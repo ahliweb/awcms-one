@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352409-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sekaran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Sekaran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3524210",
+  "publicationNumber": "35240.26027",
+  "issn": "2798-7914",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/f26d942e4dc3dc9b2187c391/kecamatan-sekaran-dalam-angka-2026.html",
+  "sourceFileSha256": "d450ef8f56caf8839a9cdefc0e9ede4e53b87960dff221ea00c2a1f0b08d51be",
+  "sourceFileBytes": 3474149,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352409-dalam-angka-2026.csv",
+  "csvSha256": "b03174311b7cf5c231e5eb3b8891dc5a6b3cc2dc9a27018290edd402868c387e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan SEKARAN, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"0 (4) - 4\": unmatched ",
+    "table 3.2: row not stored: row \"1.222 5 - 9\": unmatched ",
+    "table 3.2: row not stored: row \"10 1.398 - 14\": unmatched ",
+    "table 3.2: row not stored: row \"1.407 15 - 19\": unmatched ",
+    "table 3.2: row not stored: row \"1.385 20 - 24\": unmatched ",
+    "table 3.2: row not stored: row \"1.549 25 - 29\": unmatched ",
+    "table 3.2: row not stored: row \"1.590 30 - 34\": unmatched ",
+    "table 3.2: row not stored: row \"1.488 35 - 39\": unmatched ",
+    "table 3.2: row not stored: row \"1.376 40 - 44\": unmatched ",
+    "table 3.2: row not stored: row \"1.357 45 - 49\": unmatched ",
+    "table 3.2: row not stored: row \"1.428 50 - 54\": unmatched ",
+    "table 3.2: row not stored: row \"1.308 55 - 59\": unmatched ",
+    "table 3.2: row not stored: row \"1.474 60 - 64\": unmatched ",
+    "table 3.2: row not stored: row \"1.295 65-69\": unmatched ",
+    "table 3.2: row not stored: row \"1.085 70-74\": unmatched ",
+    "table 3.2: row not stored: row \"739 75+\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

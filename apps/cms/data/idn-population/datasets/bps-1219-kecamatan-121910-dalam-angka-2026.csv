@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.10.2009,4,Kwala Gunung,sex,laki_laki,,1080,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2009,4,Kwala Gunung,sex,perempuan,,1006,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2009,4,Kwala Gunung,total,total,,2086,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2010,4,Cahaya Pardomuan,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2010,4,Cahaya Pardomuan,sex,perempuan,,763,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2010,4,Cahaya Pardomuan,total,total,,1522,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2007,4,Simpang Dolok,sex,laki_laki,,1643,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2007,4,Simpang Dolok,sex,perempuan,,1727,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2007,4,Simpang Dolok,total,total,,3370,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2002,4,Empat Negeri,sex,laki_laki,,2318,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2002,4,Empat Negeri,sex,perempuan,,2257,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2002,4,Empat Negeri,total,total,,4575,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2005,4,Lubuk Besar,sex,laki_laki,,1620,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2005,4,Lubuk Besar,sex,perempuan,,1601,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2005,4,Lubuk Besar,total,total,,3221,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2006,4,Pulau Sejuk,sex,laki_laki,,2573,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2006,4,Pulau Sejuk,sex,perempuan,,2454,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2006,4,Pulau Sejuk,total,total,,5027,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2008,4,Air Hitam,sex,laki_laki,,2318,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2008,4,Air Hitam,sex,perempuan,,2332,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2008,4,Air Hitam,total,total,,4650,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2003,4,Sumber Rejo,sex,laki_laki,,1016,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2003,4,Sumber Rejo,sex,perempuan,,1029,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2003,4,Sumber Rejo,total,total,,2045,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10.2004,4,Lubuk Hulu,sex,laki_laki,,1033,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10.2004,4,Lubuk Hulu,sex,perempuan,,987,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10.2004,4,Lubuk Hulu,total,total,,2020,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10,3,Datuk Lima Puluh,sex,laki_laki,,14907,jiwa,2025,registration,total_population,3.2.1,28,,Laki-Laki/Male
+12.19.10,3,Datuk Lima Puluh,sex,perempuan,,14664,jiwa,2025,registration,total_population,3.2.1,28,,Perempuan/Female
+12.19.10,3,Datuk Lima Puluh,total,total,,29571,jiwa,2025,registration,total_population,3.2.1,28,,
+12.19.10,3,Datuk Lima Puluh,age_group,0-4,laki_laki,975,jiwa,2025,registration,total_population,3.2.2,30,,0-4
+12.19.10,3,Datuk Lima Puluh,age_group,0-4,perempuan,885,jiwa,2025,registration,total_population,3.2.2,30,,0-4
+12.19.10,3,Datuk Lima Puluh,age_group,0-4,,1860,jiwa,2025,registration,total_population,3.2.2,30,,0-4
+12.19.10,3,Datuk Lima Puluh,age_group,5-9,laki_laki,1332,jiwa,2025,registration,total_population,3.2.2,30,,5-9
+12.19.10,3,Datuk Lima Puluh,age_group,5-9,perempuan,1236,jiwa,2025,registration,total_population,3.2.2,30,,5-9
+12.19.10,3,Datuk Lima Puluh,age_group,5-9,,2568,jiwa,2025,registration,total_population,3.2.2,30,,5-9
+12.19.10,3,Datuk Lima Puluh,age_group,10-14,laki_laki,1553,jiwa,2025,registration,total_population,3.2.2,30,,10-14
+12.19.10,3,Datuk Lima Puluh,age_group,10-14,perempuan,1420,jiwa,2025,registration,total_population,3.2.2,30,,10-14
+12.19.10,3,Datuk Lima Puluh,age_group,10-14,,2973,jiwa,2025,registration,total_population,3.2.2,30,,10-14
+12.19.10,3,Datuk Lima Puluh,age_group,15-19,laki_laki,1467,jiwa,2025,registration,total_population,3.2.2,30,,15-19
+12.19.10,3,Datuk Lima Puluh,age_group,15-19,perempuan,1385,jiwa,2025,registration,total_population,3.2.2,30,,15-19
+12.19.10,3,Datuk Lima Puluh,age_group,15-19,,2852,jiwa,2025,registration,total_population,3.2.2,30,,15-19
+12.19.10,3,Datuk Lima Puluh,age_group,20-24,laki_laki,1326,jiwa,2025,registration,total_population,3.2.2,30,,20-24
+12.19.10,3,Datuk Lima Puluh,age_group,20-24,perempuan,1273,jiwa,2025,registration,total_population,3.2.2,30,,20-24
+12.19.10,3,Datuk Lima Puluh,age_group,20-24,,2599,jiwa,2025,registration,total_population,3.2.2,30,,20-24
+12.19.10,3,Datuk Lima Puluh,age_group,25-29,laki_laki,1252,jiwa,2025,registration,total_population,3.2.2,30,,25-29
+12.19.10,3,Datuk Lima Puluh,age_group,25-29,perempuan,1149,jiwa,2025,registration,total_population,3.2.2,30,,25-29
+12.19.10,3,Datuk Lima Puluh,age_group,25-29,,2401,jiwa,2025,registration,total_population,3.2.2,30,,25-29
+12.19.10,3,Datuk Lima Puluh,age_group,30-34,laki_laki,1128,jiwa,2025,registration,total_population,3.2.2,30,,30-34
+12.19.10,3,Datuk Lima Puluh,age_group,30-34,perempuan,1058,jiwa,2025,registration,total_population,3.2.2,30,,30-34
+12.19.10,3,Datuk Lima Puluh,age_group,30-34,,2186,jiwa,2025,registration,total_population,3.2.2,30,,30-34
+12.19.10,3,Datuk Lima Puluh,age_group,35-39,laki_laki,1014,jiwa,2025,registration,total_population,3.2.2,30,,35-39
+12.19.10,3,Datuk Lima Puluh,age_group,35-39,perempuan,1006,jiwa,2025,registration,total_population,3.2.2,30,,35-39
+12.19.10,3,Datuk Lima Puluh,age_group,35-39,,2020,jiwa,2025,registration,total_population,3.2.2,30,,35-39
+12.19.10,3,Datuk Lima Puluh,age_group,40-44,laki_laki,1030,jiwa,2025,registration,total_population,3.2.2,30,,40-44
+12.19.10,3,Datuk Lima Puluh,age_group,40-44,perempuan,1014,jiwa,2025,registration,total_population,3.2.2,30,,40-44
+12.19.10,3,Datuk Lima Puluh,age_group,40-44,,2044,jiwa,2025,registration,total_population,3.2.2,30,,40-44
+12.19.10,3,Datuk Lima Puluh,age_group,45-49,laki_laki,887,jiwa,2025,registration,total_population,3.2.2,30,,45-49
+12.19.10,3,Datuk Lima Puluh,age_group,45-49,perempuan,951,jiwa,2025,registration,total_population,3.2.2,30,,45-49
+12.19.10,3,Datuk Lima Puluh,age_group,45-49,,1838,jiwa,2025,registration,total_population,3.2.2,30,,45-49
+12.19.10,3,Datuk Lima Puluh,age_group,50-54,laki_laki,740,jiwa,2025,registration,total_population,3.2.2,30,,50-54
+12.19.10,3,Datuk Lima Puluh,age_group,50-54,perempuan,821,jiwa,2025,registration,total_population,3.2.2,30,,50-54
+12.19.10,3,Datuk Lima Puluh,age_group,50-54,,1561,jiwa,2025,registration,total_population,3.2.2,30,,50-54
+12.19.10,3,Datuk Lima Puluh,age_group,55-59,laki_laki,676,jiwa,2025,registration,total_population,3.2.2,30,,55-59
+12.19.10,3,Datuk Lima Puluh,age_group,55-59,perempuan,658,jiwa,2025,registration,total_population,3.2.2,30,,55-59
+12.19.10,3,Datuk Lima Puluh,age_group,55-59,,1334,jiwa,2025,registration,total_population,3.2.2,30,,55-59
+12.19.10,3,Datuk Lima Puluh,age_group,60-64,laki_laki,546,jiwa,2025,registration,total_population,3.2.2,30,,60-64
+12.19.10,3,Datuk Lima Puluh,age_group,60-64,perempuan,628,jiwa,2025,registration,total_population,3.2.2,30,,60-64
+12.19.10,3,Datuk Lima Puluh,age_group,60-64,,1174,jiwa,2025,registration,total_population,3.2.2,30,,60-64
+12.19.10,3,Datuk Lima Puluh,age_group,65-69,laki_laki,461,jiwa,2025,registration,total_population,3.2.2,30,,65-69
+12.19.10,3,Datuk Lima Puluh,age_group,65-69,perempuan,474,jiwa,2025,registration,total_population,3.2.2,30,,65-69
+12.19.10,3,Datuk Lima Puluh,age_group,65-69,,935,jiwa,2025,registration,total_population,3.2.2,30,,65-69
+12.19.10,3,Datuk Lima Puluh,age_group,70-74,laki_laki,245,jiwa,2025,registration,total_population,3.2.2,30,,70-74
+12.19.10,3,Datuk Lima Puluh,age_group,70-74,perempuan,320,jiwa,2025,registration,total_population,3.2.2,30,,70-74
+12.19.10,3,Datuk Lima Puluh,age_group,70-74,,565,jiwa,2025,registration,total_population,3.2.2,30,,70-74
+12.19.10,3,Datuk Lima Puluh,age_group,75+,laki_laki,275,jiwa,2025,registration,total_population,3.2.2,30,,75+
+12.19.10,3,Datuk Lima Puluh,age_group,75+,perempuan,386,jiwa,2025,registration,total_population,3.2.2,30,,75+
+12.19.10,3,Datuk Lima Puluh,age_group,75+,,661,jiwa,2025,registration,total_population,3.2.2,30,,75+
+12.19.10,3,Datuk Lima Puluh,sex,laki_laki,,14907,jiwa,2025,registration,total_population,3.2.2,30,,Laki-Laki
+12.19.10,3,Datuk Lima Puluh,sex,perempuan,,14664,jiwa,2025,registration,total_population,3.2.2,30,,Perempuan
+12.19.10,3,Datuk Lima Puluh,total,total,,29571,jiwa,2025,registration,total_population,3.2.2,30,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350712-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumber Pucung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Sumber Pucung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507170",
+  "publicationNumber": "35070.26023",
+  "issn": "2828-9749",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2026/09/28/6fa3bd47d9fd85e51c7d4402/kecamatan-sumber-pucung-dalam-angka-2026.html",
+  "sourceFileSha256": "06ea7f7a21d6f5095f80cc5039f3792c7739c5124ea3d4cb5cf3c07f827e2958",
+  "sourceFileBytes": 6764945,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350712-dalam-angka-2026.csv",
+  "csvSha256": "d2653977f79bba569a7ad825e9b60abf34131f716880ee9f3a84246cf5f13640",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sumberpucung, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumberpucung, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3218-kecamatan-321805-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.18.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Langkaplancar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pangandaran",
+  "publisherDomain": "3218",
+  "publisherWebsite": "https://pangandarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pangandaran (https://pangandarankab.bps.go.id), publikasi \"Kecamatan Langkaplancar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3218040",
+  "publicationNumber": "32180.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pangandarankab.bps.go.id/id/publication/2026/09/28/c44d12aa0d4afd7d0a460f93/kecamatan-langkaplancar-dalam-angka-2026.html",
+  "sourceFileSha256": "63cc8a447a32ad49cd84ed9ef7d86b37b0b92e261bc3b565eadb22573207ee08",
+  "sourceFileBytes": 3508547,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pangandaran.",
+  "csvPath": "datasets/bps-3218-kecamatan-321805-dalam-angka-2026.csv",
+  "csvSha256": "c7215b31e4df4ae21660c40e51f6bcd7b84a8d91c8de7a8e7a31995bc8adfee5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Langkaplancar, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Langkaplancar, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

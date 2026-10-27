@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.15.15.2001,4,Kandangrejo,sex,laki_laki,,2616,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2001,4,Kandangrejo,sex,perempuan,,2582,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2001,4,Kandangrejo,total,total,,5198,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2002,4,Selojari,sex,laki_laki,,1208,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2002,4,Selojari,sex,perempuan,,1193,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2002,4,Selojari,total,total,,2401,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2003,4,Taruman,sex,laki_laki,,2621,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2003,4,Taruman,sex,perempuan,,2623,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2003,4,Taruman,total,total,,5244,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2004,4,Penganten,sex,laki_laki,,2424,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2004,4,Penganten,sex,perempuan,,2337,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2004,4,Penganten,total,total,,4761,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2005,4,Klambu,sex,laki_laki,,2909,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2005,4,Klambu,sex,perempuan,,2913,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2005,4,Klambu,total,total,,5822,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2006,4,Menawan,sex,laki_laki,,2568,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2006,4,Menawan,sex,perempuan,,2468,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2006,4,Menawan,total,total,,5036,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2007,4,Terkesi,sex,laki_laki,,3327,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2007,4,Terkesi,sex,perempuan,,3283,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2007,4,Terkesi,total,total,,6610,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2008,4,Jenengan,sex,laki_laki,,1495,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2008,4,Jenengan,sex,perempuan,,1398,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2008,4,Jenengan,total,total,,2893,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15.2009,4,Wandan Kemiri,sex,laki_laki,,1158,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15.2009,4,Wandan Kemiri,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15.2009,4,Wandan Kemiri,total,total,,2276,jiwa,2025,registration,total_population,3.1,25,,
+33.15.15,3,Kecamatan Klam bu,sex,laki_laki,,20326,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.15,3,Kecamatan Klam bu,sex,perempuan,,19915,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.15,3,Kecamatan Klam bu,total,total,,40241,jiwa,2025,registration,total_population,3.1,25,,

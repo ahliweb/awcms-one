@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320921-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunungjati Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Gunungjati Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209171",
+  "publicationNumber": "32090.26044",
+  "issn": "2714-9161",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/8f1386ec12cb3d14a2439029/kecamatan-gunungjati-dalam-angka-2026.html",
+  "sourceFileSha256": "d16641b4f3487078f308eacfdd75c03c1cb879877ca2b82b143b910e3e15ffb3",
+  "sourceFileBytes": 21103032,
+  "sourcePages": [55, 56, 57],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320921-dalam-angka-2026.csv",
+  "csvSha256": "f4f9773aaf4d7f6e66d78d7e989914a2bb171d1d620706806cbea483a98c5795",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gunung Jati, 2025",
+      "printedPages": [55, 56],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gunung Jati, 2025",
+      "printedPages": [57],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"004 Klayan 11.47\": unmatched "
+  ]
+}

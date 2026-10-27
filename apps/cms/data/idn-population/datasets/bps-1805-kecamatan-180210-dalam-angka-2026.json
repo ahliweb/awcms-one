@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1805-kecamatan-180210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.02.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Seputih Banyak Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Tengah",
+  "publisherDomain": "1805",
+  "publisherWebsite": "https://lampungtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Tengah (https://lampungtengahkab.bps.go.id), publikasi \"Kecamatan Seputih Banyak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1805110",
+  "publicationNumber": "1805.250026",
+  "issn": "2714-7215",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtengahkab.bps.go.id/id/publication/2026/09/28/11940c3bc57dcea4c36ef83c/kecamatan-seputih-banyak-dalam-angka-2026.html",
+  "sourceFileSha256": "13835c8a09c0a90b7a10f790c2d739bb111578fee63daa64a8d8bbe625701b51",
+  "sourceFileBytes": 10593135,
+  "sourcePages": [38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Lampung Tengah.",
+  "csvPath": "datasets/bps-1805-kecamatan-180210-dalam-angka-2026.csv",
+  "csvSha256": "e141507620fb32229158a55ef1608de1761b2ced67c30be2082e763e5981a1fe",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Seputih Banyak, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.2: 32 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

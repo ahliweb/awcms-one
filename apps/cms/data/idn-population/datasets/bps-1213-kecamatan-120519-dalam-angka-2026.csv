@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.19.2003,4,Sei Musam,sex,laki_laki,,2555,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.2003,4,Sei Musam,sex,perempuan,,2452,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.2003,4,Sei Musam,total,total,,5007,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19.2005,4,Namo Sialang,sex,laki_laki,,2500,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.2005,4,Namo Sialang,sex,perempuan,,2495,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.2005,4,Namo Sialang,total,total,,4995,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19.2004,4,Sei Serdang,sex,laki_laki,,1865,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.2004,4,Sei Serdang,sex,perempuan,,1727,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.2004,4,Sei Serdang,total,total,,3592,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19.2002,4,Sei Bamban,sex,laki_laki,,5512,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.2002,4,Sei Bamban,sex,perempuan,,5395,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.2002,4,Sei Bamban,total,total,,10907,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19.1001,4,Batang Serangan,sex,laki_laki,,2282,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.1001,4,Batang Serangan,sex,perempuan,,2201,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.1001,4,Batang Serangan,total,total,,4483,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19.2006,4,Kwala Musam,sex,laki_laki,,2143,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.2006,4,Kwala Musam,sex,perempuan,,2138,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.2006,4,Kwala Musam,total,total,,4281,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19.2007,4,Karya Jadi,sex,laki_laki,,1878,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.2007,4,Karya Jadi,sex,perempuan,,1843,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.2007,4,Karya Jadi,total,total,,3721,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19.2008,4,Paluh Pakeh Babussalam,sex,laki_laki,,1076,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19.2008,4,Paluh Pakeh Babussalam,sex,perempuan,,1002,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19.2008,4,Paluh Pakeh Babussalam,total,total,,2078,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.19,3,Kecamatan Batang Serangan,sex,laki_laki,,19811,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.19,3,Kecamatan Batang Serangan,sex,perempuan,,19253,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.19,3,Kecamatan Batang Serangan,total,total,,39064,jiwa,2025,registration,total_population,unnumbered-p39,39,,

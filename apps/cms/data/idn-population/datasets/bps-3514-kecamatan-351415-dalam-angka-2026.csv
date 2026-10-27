@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.15.2001,4,Kalisat,sex,laki_laki,,2775,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2001,4,Kalisat,sex,perempuan,,3061,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2001,4,Kalisat,total,total,,5836,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2002,4,Tampung,sex,laki_laki,,1994,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2002,4,Tampung,sex,perempuan,,2090,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2002,4,Tampung,total,total,,4084,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2003,4,Pajaran,sex,laki_laki,,2273,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2003,4,Pajaran,sex,perempuan,,2391,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2003,4,Pajaran,total,total,,4664,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2004,4,Siyar,sex,laki_laki,,1260,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2004,4,Siyar,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2004,4,Siyar,total,total,,2523,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2005,4,Genengwaru,sex,laki_laki,,1217,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2005,4,Genengwaru,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2005,4,Genengwaru,total,total,,2480,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2006,4,Kanigoro,sex,laki_laki,,941,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2006,4,Kanigoro,sex,perempuan,,989,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2006,4,Kanigoro,total,total,,1930,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2008,4,Krengih,sex,laki_laki,,960,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2008,4,Krengih,sex,perempuan,,985,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2008,4,Krengih,total,total,,1945,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2007,4,Sumber Glagah,sex,laki_laki,,1115,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2007,4,Sumber Glagah,sex,perempuan,,1240,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2007,4,Sumber Glagah,total,total,,2355,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2009,4,Rembang,sex,laki_laki,,3695,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2009,4,Rembang,sex,perempuan,,3787,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2009,4,Rembang,total,total,,7482,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2010,4,Orobulu,sex,laki_laki,,2149,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2010,4,Orobulu,sex,perempuan,,2199,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2010,4,Orobulu,total,total,,4348,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2011,4,Kedung Banteng,sex,laki_laki,,2196,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2011,4,Kedung Banteng,sex,perempuan,,2332,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2011,4,Kedung Banteng,total,total,,4528,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2012,4,Oro Oro Ombo Wetan,sex,laki_laki,,3948,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2012,4,Oro Oro Ombo Wetan,sex,perempuan,,4006,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2012,4,Oro Oro Ombo Wetan,total,total,,7954,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2013,4,Oro Oro Ombo Kulon,sex,laki_laki,,3430,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2013,4,Oro Oro Ombo Kulon,sex,perempuan,,3445,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2013,4,Oro Oro Ombo Kulon,total,total,,6875,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2014,4,Pekoren,sex,laki_laki,,3026,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2014,4,Pekoren,sex,perempuan,,3066,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2014,4,Pekoren,total,total,,6092,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2015,4,Pejangkungan,sex,laki_laki,,1273,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2015,4,Pejangkungan,sex,perempuan,,1300,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2015,4,Pejangkungan,total,total,,2573,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2016,4,Pandean,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2016,4,Pandean,sex,perempuan,,1663,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2016,4,Pandean,total,total,,3308,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15.2017,4,Mojoparon,sex,laki_laki,,1743,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15.2017,4,Mojoparon,sex,perempuan,,1716,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15.2017,4,Mojoparon,total,total,,3459,jiwa,2025,registration,total_population,3.1,29,,
+35.14.15,3,Kecamatan Rembang,sex,laki_laki,,35640,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.15,3,Kecamatan Rembang,sex,perempuan,,36796,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.15,3,Kecamatan Rembang,total,total,,72436,jiwa,2025,registration,total_population,3.1,29,,

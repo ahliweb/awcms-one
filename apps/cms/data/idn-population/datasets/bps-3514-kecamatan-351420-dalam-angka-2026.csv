@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.20.2001,4,Kebon Rejo,sex,laki_laki,,1879,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2001,4,Kebon Rejo,sex,perempuan,,1896,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2001,4,Kebon Rejo,total,total,,3775,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2002,4,Karang Lo,sex,laki_laki,,2064,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2002,4,Karang Lo,sex,perempuan,,2148,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2002,4,Karang Lo,total,total,,4212,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2003,4,Rebalas,sex,laki_laki,,3903,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2003,4,Rebalas,sex,perempuan,,4099,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2003,4,Rebalas,total,total,,8002,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2004,4,Plososari,sex,laki_laki,,3836,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2004,4,Plososari,sex,perempuan,,4087,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2004,4,Plososari,total,total,,7923,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.1005,4,Grati Tunon,sex,laki_laki,,3141,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.1005,4,Grati Tunon,sex,perempuan,,3222,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.1005,4,Grati Tunon,total,total,,6363,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2006,4,Kalipang,sex,laki_laki,,4705,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2006,4,Kalipang,sex,perempuan,,4627,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2006,4,Kalipang,total,total,,9332,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2007,4,Trewung,sex,laki_laki,,980,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2007,4,Trewung,sex,perempuan,,986,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2007,4,Trewung,total,total,,1966,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2008,4,Kambingan Rejo,sex,laki_laki,,1450,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2008,4,Kambingan Rejo,sex,perempuan,,1469,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2008,4,Kambingan Rejo,total,total,,2919,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2009,4,Karang Kliwon,sex,laki_laki,,1127,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2009,4,Karang Kliwon,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2009,4,Karang Kliwon,total,total,,2245,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2010,4,Kedawung Kulon,sex,laki_laki,,3146,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2010,4,Kedawung Kulon,sex,perempuan,,3231,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2010,4,Kedawung Kulon,total,total,,6377,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2011,4,Kedawung Wetan,sex,laki_laki,,3768,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2011,4,Kedawung Wetan,sex,perempuan,,3788,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2011,4,Kedawung Wetan,total,total,,7556,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2012,4,Sumber Agung,sex,laki_laki,,1844,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2012,4,Sumber Agung,sex,perempuan,,1835,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2012,4,Sumber Agung,total,total,,3679,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2013,4,Ranu Klindungan,sex,laki_laki,,2059,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2013,4,Ranu Klindungan,sex,perempuan,,2079,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2013,4,Ranu Klindungan,total,total,,4138,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2014,4,Sumber Dawesari,sex,laki_laki,,5109,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2014,4,Sumber Dawesari,sex,perempuan,,5096,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2014,4,Sumber Dawesari,total,total,,10205,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20.2015,4,Cukur Gondang,sex,laki_laki,,2236,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20.2015,4,Cukur Gondang,sex,perempuan,,2343,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20.2015,4,Cukur Gondang,total,total,,4579,jiwa,2025,registration,total_population,3.1,29,,
+35.14.20,3,Kecamatan Grati,sex,laki_laki,,41247,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.20,3,Kecamatan Grati,sex,perempuan,,42024,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.20,3,Kecamatan Grati,total,total,,83271,jiwa,2025,registration,total_population,3.1,29,,

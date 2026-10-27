@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-3518-kecamatan-351820-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.18.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jatikalen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nganjuk",
+  "publisherDomain": "3518",
+  "publisherWebsite": "https://nganjukkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nganjuk (https://nganjukkab.bps.go.id), publikasi \"Kecamatan Jatikalen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35180.2625",
+  "issn": "2615-0492",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nganjukkab.bps.go.id/id/publication/2026/09/28/f3927a61e48bde751ee04d1f/kecamatan-jatikalen-dalam-angka-2026.html",
+  "sourceFileSha256": "91290e8cd327a4d61fdbbaca1e402f10a906a48919ce097207e62cad1f78d995",
+  "sourceFileBytes": 6706017,
+  "sourcePages": [20, 21, 22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nganjuk.",
+  "csvPath": "datasets/bps-3518-kecamatan-351820-dalam-angka-2026.csv",
+  "csvSha256": "5d4539344b8f81a280f01e5eca1809601b6e63c8240215f219dcf500613523df",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Jatikalen, 2025",
+      "printedPages": [20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jatikalen, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama di Kecamatan Jatikalen, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Munug\": unmatched ",
+    "table 3.1: row not stored: row \"Munug\": unmatched ",
+    "table 3.3: row not stored: row \"Desa/Villages\": unmatched ",
+    "table 3.3: row not stored: row \"Munug\": unmatched "
+  ]
+}

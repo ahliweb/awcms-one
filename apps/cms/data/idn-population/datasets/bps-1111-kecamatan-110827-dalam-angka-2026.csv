@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.08.27.2001,4,Alue Dua,sex,laki_laki,,2033,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.27.2001,4,Alue Dua,sex,perempuan,,2032,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.27.2001,4,Alue Dua,total,total,,4065,jiwa,2025,registration,total_population,3.1,28,,
+11.08.27.2004,4,Alue Papeun,sex,laki_laki,,1416,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.27.2004,4,Alue Papeun,sex,perempuan,,1384,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.27.2004,4,Alue Papeun,total,total,,2800,jiwa,2025,registration,total_population,3.1,28,,
+11.08.27.2005,4,Blang Jrat,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.27.2005,4,Blang Jrat,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.27.2005,4,Blang Jrat,total,total,,655,jiwa,2025,registration,total_population,3.1,28,,
+11.08.27.2006,4,Blang Pohroh,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.27.2006,4,Blang Pohroh,sex,perempuan,,366,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.27.2006,4,Blang Pohroh,total,total,,718,jiwa,2025,registration,total_population,3.1,28,,
+11.08.27.2003,4,Darussalam,sex,laki_laki,,812,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.27.2003,4,Darussalam,sex,perempuan,,803,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.27.2003,4,Darussalam,total,total,,1615,jiwa,2025,registration,total_population,3.1,28,,
+11.08.27.2002,4,Seumirah,sex,laki_laki,,2210,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.27.2002,4,Seumirah,sex,perempuan,,2286,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.27.2002,4,Seumirah,total,total,,4496,jiwa,2025,registration,total_population,3.1,28,,
+11.08.27,3,Nisam Antara,sex,laki_laki,,7146,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.27,3,Nisam Antara,sex,perempuan,,7203,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.27,3,Nisam Antara,total,total,,14349,jiwa,2025,registration,total_population,3.1,28,,
+11.08.27,3,Nisam Antara,age_group,0-4,laki_laki,679,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.27,3,Nisam Antara,age_group,0-4,perempuan,658,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.27,3,Nisam Antara,age_group,0-4,,1337,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.27,3,Nisam Antara,age_group,5-9,laki_laki,849,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.27,3,Nisam Antara,age_group,5-9,perempuan,811,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.27,3,Nisam Antara,age_group,5-9,,1660,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.27,3,Nisam Antara,age_group,10-14,laki_laki,785,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.27,3,Nisam Antara,age_group,10-14,perempuan,742,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.27,3,Nisam Antara,age_group,10-14,,1527,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.27,3,Nisam Antara,age_group,15-19,laki_laki,601,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.27,3,Nisam Antara,age_group,15-19,perempuan,508,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.27,3,Nisam Antara,age_group,15-19,,1109,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.27,3,Nisam Antara,age_group,20-24,laki_laki,588,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.27,3,Nisam Antara,age_group,20-24,perempuan,547,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.27,3,Nisam Antara,age_group,20-24,,1135,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.27,3,Nisam Antara,age_group,25-29,laki_laki,566,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.27,3,Nisam Antara,age_group,25-29,perempuan,561,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.27,3,Nisam Antara,age_group,25-29,,1127,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.27,3,Nisam Antara,age_group,30-34,laki_laki,509,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.27,3,Nisam Antara,age_group,30-34,perempuan,478,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.27,3,Nisam Antara,age_group,30-34,,987,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.27,3,Nisam Antara,age_group,35-39,laki_laki,565,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.27,3,Nisam Antara,age_group,35-39,perempuan,614,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.27,3,Nisam Antara,age_group,35-39,,1179,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.27,3,Nisam Antara,age_group,40-44,laki_laki,501,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.27,3,Nisam Antara,age_group,40-44,perempuan,473,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.27,3,Nisam Antara,age_group,40-44,,974,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.27,3,Nisam Antara,age_group,45-49,laki_laki,405,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.27,3,Nisam Antara,age_group,45-49,perempuan,424,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.27,3,Nisam Antara,age_group,45-49,,829,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.27,3,Nisam Antara,age_group,50-54,laki_laki,326,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.27,3,Nisam Antara,age_group,50-54,perempuan,323,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.27,3,Nisam Antara,age_group,50-54,,649,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.27,3,Nisam Antara,age_group,55-59,laki_laki,231,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.27,3,Nisam Antara,age_group,55-59,perempuan,265,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.27,3,Nisam Antara,age_group,55-59,,496,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.27,3,Nisam Antara,age_group,60-64,laki_laki,182,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.27,3,Nisam Antara,age_group,60-64,perempuan,252,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.27,3,Nisam Antara,age_group,60-64,,434,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.27,3,Nisam Antara,age_group,65+,laki_laki,359,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.27,3,Nisam Antara,age_group,65+,perempuan,547,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.27,3,Nisam Antara,age_group,65+,,906,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.27,3,Nisam Antara,sex,laki_laki,,7146,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+11.08.27,3,Nisam Antara,sex,perempuan,,7203,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+11.08.27,3,Nisam Antara,total,total,,14349,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.29.2010,4,Padaasih,sex,laki_laki,,5384,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2010,4,Padaasih,sex,perempuan,,5112,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2010,4,Padaasih,total,total,,10496,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2004,4,Cisaat,sex,laki_laki,,4527,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2004,4,Cisaat,sex,perempuan,,4545,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2004,4,Cisaat,total,total,,9072,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2006,4,Babakan,sex,laki_laki,,3867,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2006,4,Babakan,sex,perempuan,,3718,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2006,4,Babakan,total,total,,7585,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2007,4,Sukamantri,sex,laki_laki,,4391,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2007,4,Sukamantri,sex,perempuan,,4492,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2007,4,Sukamantri,total,total,,8883,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2003,4,Sukamanah,sex,laki_laki,,5963,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2003,4,Sukamanah,sex,perempuan,,5884,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2003,4,Sukamanah,total,total,,11847,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2005,4,Nagrak,sex,laki_laki,,5998,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2005,4,Nagrak,sex,perempuan,,5997,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2005,4,Nagrak,total,total,,11995,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2008,4,Cibatu,sex,laki_laki,,6010,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2008,4,Cibatu,sex,perempuan,,5880,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2008,4,Cibatu,total,total,,11890,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2011,4,Cibolang Kaler,sex,laki_laki,,6003,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2011,4,Cibolang Kaler,sex,perempuan,,5901,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2011,4,Cibolang Kaler,total,total,,11904,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2012,4,Kutasirna,sex,laki_laki,,2878,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2012,4,Kutasirna,sex,perempuan,,2689,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2012,4,Kutasirna,total,total,,5567,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2009,4,Selajambe,sex,laki_laki,,5436,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2009,4,Selajambe,sex,perempuan,,5309,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2009,4,Selajambe,total,total,,10745,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2002,4,Sukasari,sex,laki_laki,,5784,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2002,4,Sukasari,sex,perempuan,,5664,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2002,4,Sukasari,total,total,,11448,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2001,4,Gunungjaya,sex,laki_laki,,4013,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2001,4,Gunungjaya,sex,perempuan,,3809,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2001,4,Gunungjaya,total,total,,7822,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29.2013,4,Sukaresmi,sex,laki_laki,,8548,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29.2013,4,Sukaresmi,sex,perempuan,,8468,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29.2013,4,Sukaresmi,total,total,,17016,jiwa,2025,registration,total_population,3.1,24,,
+32.02.29,3,Cisaat,sex,laki_laki,,68802,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.29,3,Cisaat,sex,perempuan,,67468,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.29,3,Cisaat,total,total,,136270,jiwa,2025,registration,total_population,3.1,24,,

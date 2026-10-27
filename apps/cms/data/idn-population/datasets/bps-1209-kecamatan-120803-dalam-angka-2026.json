@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1209-kecamatan-120803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.08.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunung Maligas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Simalungun",
+  "publisherDomain": "1209",
+  "publisherWebsite": "https://simalungunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simalungun (https://simalungunkab.bps.go.id), publikasi \"Kecamatan Gunung Maligas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1209162",
+  "publicationNumber": "12090.26011",
+  "issn": "2830-6716",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://simalungunkab.bps.go.id/id/publication/2026/09/28/82467aed570b2258d46a0cb9/kecamatan-gunung-maligas-dalam-angka-2026.html",
+  "sourceFileSha256": "7e2314abb45a813966dcb3f2b387eaadc82af68928adeca28764edd219d1bea0",
+  "sourceFileBytes": 9961266,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simalungun.",
+  "csvPath": "datasets/bps-1209-kecamatan-120803-dalam-angka-2026.csv",
+  "csvSha256": "19816b9e63076e14e875fb454102a8b78fc621a1187e7064b14c19b63f802d9b",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gunung Maligas, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

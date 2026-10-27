@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.09.2002,4,Beurandeh,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2002,4,Beurandeh,sex,perempuan,,342,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2002,4,Beurandeh,total,total,,731,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2011,4,Durung,sex,laki_laki,,710,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2011,4,Durung,sex,perempuan,,694,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2011,4,Durung,total,total,,1404,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2010,4,Gampong Baro,sex,laki_laki,,113,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2010,4,Gampong Baro,sex,perempuan,,95,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2010,4,Gampong Baro,total,total,,208,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2003,4,Ie Seum,sex,laki_laki,,285,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2003,4,Ie Seum,sex,perempuan,,258,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2003,4,Ie Seum,total,total,,543,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2009,4,Ladong,sex,laki_laki,,1096,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2009,4,Ladong,sex,perempuan,,1035,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2009,4,Ladong,total,total,,2131,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2013,4,Lamnga,sex,laki_laki,,653,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2013,4,Lamnga,sex,perempuan,,636,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2013,4,Lamnga,total,total,,1289,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2005,4,Lamreh,sex,laki_laki,,967,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2005,4,Lamreh,sex,perempuan,,925,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2005,4,Lamreh,total,total,,1892,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2004,4,Meunasah Keudee,sex,laki_laki,,700,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2004,4,Meunasah Keudee,sex,perempuan,,677,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2004,4,Meunasah Keudee,total,total,,1377,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2001,4,Meunasah Kulam,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2001,4,Meunasah Kulam,sex,perempuan,,450,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2001,4,Meunasah Kulam,total,total,,886,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2006,4,Meunasah Mon,sex,laki_laki,,846,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2006,4,Meunasah Mon,sex,perempuan,,786,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2006,4,Meunasah Mon,total,total,,1632,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2012,4,Neuheun,sex,laki_laki,,4673,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2012,4,Neuheun,sex,perempuan,,4585,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2012,4,Neuheun,total,total,,9258,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2007,4,Paya Kameng,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2007,4,Paya Kameng,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2007,4,Paya Kameng,total,total,,522,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09.2008,4,Ruyung,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09.2008,4,Ruyung,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09.2008,4,Ruyung,total,total,,856,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09,3,Mesjid Raya,sex,laki_laki,,11574,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.09,3,Mesjid Raya,sex,perempuan,,11155,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.09,3,Mesjid Raya,total,total,,22729,jiwa,2025,registration,total_population,3.1,30,,
+11.06.09,3,Mesjid Raya,age_group,0-4,laki_laki,828,jiwa,2025,registration,total_population,3.2,32,,00-04
+11.06.09,3,Mesjid Raya,age_group,0-4,perempuan,764,jiwa,2025,registration,total_population,3.2,32,,00-04
+11.06.09,3,Mesjid Raya,age_group,0-4,,1592,jiwa,2025,registration,total_population,3.2,32,,00-04
+11.06.09,3,Mesjid Raya,age_group,5-9,laki_laki,1078,jiwa,2025,registration,total_population,3.2,32,,05-09
+11.06.09,3,Mesjid Raya,age_group,5-9,perempuan,1030,jiwa,2025,registration,total_population,3.2,32,,05-09
+11.06.09,3,Mesjid Raya,age_group,5-9,,2108,jiwa,2025,registration,total_population,3.2,32,,05-09
+11.06.09,3,Mesjid Raya,age_group,10-14,laki_laki,1176,jiwa,2025,registration,total_population,3.2,32,,10-14
+11.06.09,3,Mesjid Raya,age_group,10-14,perempuan,1115,jiwa,2025,registration,total_population,3.2,32,,10-14
+11.06.09,3,Mesjid Raya,age_group,10-14,,2291,jiwa,2025,registration,total_population,3.2,32,,10-14
+11.06.09,3,Mesjid Raya,age_group,15-19,laki_laki,1181,jiwa,2025,registration,total_population,3.2,32,,15-19
+11.06.09,3,Mesjid Raya,age_group,15-19,perempuan,1089,jiwa,2025,registration,total_population,3.2,32,,15-19
+11.06.09,3,Mesjid Raya,age_group,15-19,,2270,jiwa,2025,registration,total_population,3.2,32,,15-19
+11.06.09,3,Mesjid Raya,age_group,20-24,laki_laki,998,jiwa,2025,registration,total_population,3.2,32,,20-24
+11.06.09,3,Mesjid Raya,age_group,20-24,perempuan,902,jiwa,2025,registration,total_population,3.2,32,,20-24
+11.06.09,3,Mesjid Raya,age_group,20-24,,1900,jiwa,2025,registration,total_population,3.2,32,,20-24
+11.06.09,3,Mesjid Raya,age_group,25-29,laki_laki,959,jiwa,2025,registration,total_population,3.2,32,,25-29
+11.06.09,3,Mesjid Raya,age_group,25-29,perempuan,850,jiwa,2025,registration,total_population,3.2,32,,25-29
+11.06.09,3,Mesjid Raya,age_group,25-29,,1809,jiwa,2025,registration,total_population,3.2,32,,25-29
+11.06.09,3,Mesjid Raya,age_group,30-34,laki_laki,863,jiwa,2025,registration,total_population,3.2,32,,30-34
+11.06.09,3,Mesjid Raya,age_group,30-34,perempuan,823,jiwa,2025,registration,total_population,3.2,32,,30-34
+11.06.09,3,Mesjid Raya,age_group,30-34,,1686,jiwa,2025,registration,total_population,3.2,32,,30-34
+11.06.09,3,Mesjid Raya,age_group,35-39,laki_laki,887,jiwa,2025,registration,total_population,3.2,32,,35-39
+11.06.09,3,Mesjid Raya,age_group,35-39,perempuan,893,jiwa,2025,registration,total_population,3.2,32,,35-39
+11.06.09,3,Mesjid Raya,age_group,35-39,,1780,jiwa,2025,registration,total_population,3.2,32,,35-39
+11.06.09,3,Mesjid Raya,age_group,40-44,laki_laki,860,jiwa,2025,registration,total_population,3.2,32,,40-44
+11.06.09,3,Mesjid Raya,age_group,40-44,perempuan,935,jiwa,2025,registration,total_population,3.2,32,,40-44
+11.06.09,3,Mesjid Raya,age_group,40-44,,1795,jiwa,2025,registration,total_population,3.2,32,,40-44
+11.06.09,3,Mesjid Raya,age_group,45-49,laki_laki,756,jiwa,2025,registration,total_population,3.2,32,,45-49
+11.06.09,3,Mesjid Raya,age_group,45-49,perempuan,790,jiwa,2025,registration,total_population,3.2,32,,45-49
+11.06.09,3,Mesjid Raya,age_group,45-49,,1546,jiwa,2025,registration,total_population,3.2,32,,45-49
+11.06.09,3,Mesjid Raya,age_group,50-54,laki_laki,680,jiwa,2025,registration,total_population,3.2,32,,50-54
+11.06.09,3,Mesjid Raya,age_group,50-54,perempuan,596,jiwa,2025,registration,total_population,3.2,32,,50-54
+11.06.09,3,Mesjid Raya,age_group,50-54,,1276,jiwa,2025,registration,total_population,3.2,32,,50-54
+11.06.09,3,Mesjid Raya,age_group,55-59,laki_laki,473,jiwa,2025,registration,total_population,3.2,32,,55-59
+11.06.09,3,Mesjid Raya,age_group,55-59,perempuan,478,jiwa,2025,registration,total_population,3.2,32,,55-59
+11.06.09,3,Mesjid Raya,age_group,55-59,,951,jiwa,2025,registration,total_population,3.2,32,,55-59
+11.06.09,3,Mesjid Raya,age_group,60-64,laki_laki,361,jiwa,2025,registration,total_population,3.2,32,,60-64
+11.06.09,3,Mesjid Raya,age_group,60-64,perempuan,318,jiwa,2025,registration,total_population,3.2,32,,60-64
+11.06.09,3,Mesjid Raya,age_group,60-64,,679,jiwa,2025,registration,total_population,3.2,32,,60-64
+11.06.09,3,Mesjid Raya,age_group,65-69,laki_laki,208,jiwa,2025,registration,total_population,3.2,32,,65-69
+11.06.09,3,Mesjid Raya,age_group,65-69,perempuan,231,jiwa,2025,registration,total_population,3.2,32,,65-69
+11.06.09,3,Mesjid Raya,age_group,65-69,,439,jiwa,2025,registration,total_population,3.2,32,,65-69
+11.06.09,3,Mesjid Raya,age_group,70-74,laki_laki,145,jiwa,2025,registration,total_population,3.2,32,,70-74
+11.06.09,3,Mesjid Raya,age_group,70-74,perempuan,136,jiwa,2025,registration,total_population,3.2,32,,70-74
+11.06.09,3,Mesjid Raya,age_group,70-74,,281,jiwa,2025,registration,total_population,3.2,32,,70-74
+11.06.09,3,Mesjid Raya,age_group,75+,laki_laki,121,jiwa,2025,registration,total_population,3.2,32,,>75
+11.06.09,3,Mesjid Raya,age_group,75+,perempuan,205,jiwa,2025,registration,total_population,3.2,32,,>75
+11.06.09,3,Mesjid Raya,age_group,75+,,326,jiwa,2025,registration,total_population,3.2,32,,>75
+11.06.09,3,Mesjid Raya,sex,laki_laki,,11574,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+11.06.09,3,Mesjid Raya,sex,perempuan,,11155,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+11.06.09,3,Mesjid Raya,total,total,,22729,jiwa,2025,registration,total_population,3.2,32,,

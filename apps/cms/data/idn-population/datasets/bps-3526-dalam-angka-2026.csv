@@ -1,0 +1,161 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.26.04,3,Kamal,religion,islam,,49032,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.04,3,Kamal,religion,kristen,,233,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.04,3,Kamal,religion,katolik,,75,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.04,3,Kamal,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,116,,Hindu
+35.26.04,3,Kamal,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.04,3,Kamal,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.12,3,Labang,religion,islam,,38998,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.12,3,Labang,religion,kristen,,23,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.12,3,Labang,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.12,3,Labang,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,116,,Hindu
+35.26.12,3,Labang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,116,,Budha
+35.26.12,3,Labang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.11,3,Kwanyar,religion,islam,,50658,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.11,3,Kwanyar,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.11,3,Kwanyar,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Katolik
+35.26.11,3,Kwanyar,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,116,,Hindu
+35.26.11,3,Kwanyar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.11,3,Kwanyar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.16,3,Modung,religion,islam,,37805,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.16,3,Modung,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.16,3,Modung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Katolik
+35.26.16,3,Modung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.16,3,Modung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.16,3,Modung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.15,3,Blega,religion,islam,,57367,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.15,3,Blega,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.15,3,Blega,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.15,3,Blega,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.15,3,Blega,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.15,3,Blega,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.17,3,Konang,religion,islam,,52976,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.17,3,Konang,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.17,3,Konang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Katolik
+35.26.17,3,Konang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.17,3,Konang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,116,,Budha
+35.26.17,3,Konang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.18,3,Galis,religion,islam,,83727,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.18,3,Galis,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Protestan
+35.26.18,3,Galis,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.18,3,Galis,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.18,3,Galis,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.18,3,Galis,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,116,,Lainnya
+35.26.13,3,Tanah Merah,religion,islam,,69045,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.13,3,Tanah Merah,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.13,3,Tanah Merah,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.13,3,Tanah Merah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.13,3,Tanah Merah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.13,3,Tanah Merah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.14,3,Tragah,religion,islam,,29856,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.14,3,Tragah,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.14,3,Tragah,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Katolik
+35.26.14,3,Tragah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.14,3,Tragah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.14,3,Tragah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.02,3,Socah,religion,islam,,62979,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.02,3,Socah,religion,kristen,,50,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.02,3,Socah,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.02,3,Socah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.02,3,Socah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.02,3,Socah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.01,3,Bangkalan,religion,islam,,88702,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.01,3,Bangkalan,religion,kristen,,423,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.01,3,Bangkalan,religion,katolik,,272,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.01,3,Bangkalan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,116,,Hindu
+35.26.01,3,Bangkalan,religion,buddha,,78,jiwa,2025,registration,total_population,4.3.1,116,,Budha
+35.26.01,3,Bangkalan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,116,,Lainnya
+35.26.03,3,Burneh,religion,islam,,63038,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.03,3,Burneh,religion,kristen,,25,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.03,3,Burneh,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.03,3,Burneh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.03,3,Burneh,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,116,,Budha
+35.26.03,3,Burneh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.05,3,Arosbaya,religion,islam,,46100,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.05,3,Arosbaya,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.05,3,Arosbaya,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.05,3,Arosbaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.05,3,Arosbaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.05,3,Arosbaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.06,3,Geger,religion,islam,,80203,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.06,3,Geger,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Protestan
+35.26.06,3,Geger,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.06,3,Geger,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.06,3,Geger,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.06,3,Geger,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.10,3,Kokop,religion,islam,,63063,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.10,3,Kokop,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.10,3,Kokop,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Katolik
+35.26.10,3,Kokop,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.10,3,Kokop,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.10,3,Kokop,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.09,3,Tanjung Bumi,religion,islam,,53966,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.09,3,Tanjung Bumi,religion,kristen,,58,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.09,3,Tanjung Bumi,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.09,3,Tanjung Bumi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.09,3,Tanjung Bumi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.09,3,Tanjung Bumi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.08,3,Sepulu,religion,islam,,43112,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.08,3,Sepulu,religion,kristen,,50,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.08,3,Sepulu,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26.08,3,Sepulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.08,3,Sepulu,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,116,,Budha
+35.26.08,3,Sepulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26.07,3,Klampis,religion,islam,,52242,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26.07,3,Klampis,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26.07,3,Klampis,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Katolik
+35.26.07,3,Klampis,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Hindu
+35.26.07,3,Klampis,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Budha
+35.26.07,3,Klampis,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,116,nil,Lainnya
+35.26,2,Kabupaten Bangkalan,religion,islam,,1022869,jiwa,2025,registration,total_population,4.3.1,116,,Islam
+35.26,2,Kabupaten Bangkalan,religion,kristen,,918,jiwa,2025,registration,total_population,4.3.1,116,,Protestan
+35.26,2,Kabupaten Bangkalan,religion,katolik,,407,jiwa,2025,registration,total_population,4.3.1,116,,Katolik
+35.26,2,Kabupaten Bangkalan,religion,hindu,,15,jiwa,2025,registration,total_population,4.3.1,116,,Hindu
+35.26,2,Kabupaten Bangkalan,religion,buddha,,82,jiwa,2025,registration,total_population,4.3.1,116,,Budha
+35.26,2,Kabupaten Bangkalan,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,116,,Lainnya
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/padi_padian,,94037,rupiah,2024,survey_estimate,per_capita,10.1,238,,Padi-padian
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/padi_padian,,107061,rupiah,2025,survey_estimate,per_capita,10.1,238,,Padi-padian
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/umbi_umbian,,5806,rupiah,2024,survey_estimate,per_capita,10.1,238,,Umbi-umbian
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/umbi_umbian,,5411,rupiah,2025,survey_estimate,per_capita,10.1,238,,Umbi-umbian
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,52726,rupiah,2024,survey_estimate,per_capita,10.1,238,,Ikan/udang/cumi/kerang
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,56012,rupiah,2025,survey_estimate,per_capita,10.1,238,,Ikan/udang/cumi/kerang
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/daging,,21098,rupiah,2024,survey_estimate,per_capita,10.1,238,,Daging
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/daging,,24894,rupiah,2025,survey_estimate,per_capita,10.1,238,,Daging
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/telur_dan_susu,,19035,rupiah,2024,survey_estimate,per_capita,10.1,238,,Telur dan susu
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/telur_dan_susu,,24003,rupiah,2025,survey_estimate,per_capita,10.1,238,,Telur dan susu
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/sayur_sayuran,,37984,rupiah,2024,survey_estimate,per_capita,10.1,238,,Sayur-sayuran
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/sayur_sayuran,,38063,rupiah,2025,survey_estimate,per_capita,10.1,238,,Sayur-sayuran
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/kacang_kacangan,,11817,rupiah,2024,survey_estimate,per_capita,10.1,238,,Kacang-kacangan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/kacang_kacangan,,11352,rupiah,2025,survey_estimate,per_capita,10.1,238,,Kacang-kacangan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/buah_buahan,,19637,rupiah,2024,survey_estimate,per_capita,10.1,238,,Buah-buahan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/buah_buahan,,25952,rupiah,2025,survey_estimate,per_capita,10.1,238,,Buah-buahan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15229,rupiah,2024,survey_estimate,per_capita,10.1,238,,Minyak dan kelapa
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15900,rupiah,2025,survey_estimate,per_capita,10.1,238,,Minyak dan kelapa
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/bahan_minuman,,12688,rupiah,2024,survey_estimate,per_capita,10.1,238,,Bahan minuman
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/bahan_minuman,,15331,rupiah,2025,survey_estimate,per_capita,10.1,238,,Bahan minuman
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/bumbu_bumbuan,,11479,rupiah,2024,survey_estimate,per_capita,10.1,238,,Bumbu-bumbuan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/bumbu_bumbuan,,14692,rupiah,2025,survey_estimate,per_capita,10.1,238,,Bumbu-bumbuan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/konsumsi_lainnya,,10725,rupiah,2024,survey_estimate,per_capita,10.1,238,,Konsumsi lainnya
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/konsumsi_lainnya,,11402,rupiah,2025,survey_estimate,per_capita,10.1,238,,Konsumsi lainnya
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,128117,rupiah,2024,survey_estimate,per_capita,10.1,238,,Makanan dan minuman jadi
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,140706,rupiah,2025,survey_estimate,per_capita,10.1,238,,Makanan dan minuman jadi
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/rokok,,77982,rupiah,2024,survey_estimate,per_capita,10.1,238,,Rokok
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/rokok,,76453,rupiah,2025,survey_estimate,per_capita,10.1,238,,Rokok
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/jumlah_makanan,,518358,rupiah,2024,survey_estimate,per_capita,10.1,238,,Jumlah makanan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/jumlah_makanan,,567232,rupiah,2025,survey_estimate,per_capita,10.1,238,,Jumlah makanan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,184290,rupiah,2024,survey_estimate,per_capita,10.1,238,,Perumahan dan fasilitas rumah tangga
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,180879,rupiah,2025,survey_estimate,per_capita,10.1,238,,Perumahan dan fasilitas rumah tangga
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,64316,rupiah,2024,survey_estimate,per_capita,10.1,238,,Aneka barang dan jasa
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,76610,rupiah,2025,survey_estimate,per_capita,10.1,238,,Aneka barang dan jasa
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,14637,rupiah,2024,survey_estimate,per_capita,10.1,238,,"Pakaian, alas kaki, dan tutup kepala"
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,16906,rupiah,2025,survey_estimate,per_capita,10.1,238,,"Pakaian, alas kaki, dan tutup kepala"
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/barang_tahan_lama,,7924,rupiah,2024,survey_estimate,per_capita,10.1,238,,Barang tahan lama
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/barang_tahan_lama,,8779,rupiah,2025,survey_estimate,per_capita,10.1,238,,Barang tahan lama
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,17057,rupiah,2024,survey_estimate,per_capita,10.1,238,,"Pajak, pungutan, dan asuransi"
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,16795,rupiah,2025,survey_estimate,per_capita,10.1,238,,"Pajak, pungutan, dan asuransi"
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9519,rupiah,2024,survey_estimate,per_capita,10.1,238,,Keperluan pesta dan upacara/kenduri
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15670,rupiah,2025,survey_estimate,per_capita,10.1,238,,Keperluan pesta dan upacara/kenduri
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,297742,rupiah,2024,survey_estimate,per_capita,10.1,238,,Jumlah bukan makanan
+35.26,2,Kabupaten Bangkalan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,315639,rupiah,2025,survey_estimate,per_capita,10.1,238,,Jumlah bukan makanan
+35.26,2,Kabupaten Bangkalan,expenditure,total,,816100,rupiah,2024,survey_estimate,per_capita,10.1,238,,
+35.26,2,Kabupaten Bangkalan,expenditure,total,,882871,rupiah,2025,survey_estimate,per_capita,10.1,238,,

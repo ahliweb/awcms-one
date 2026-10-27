@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1311-kecamatan-131002-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.10.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulau Punjung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Dharmasraya",
+  "publisherDomain": "1311",
+  "publisherWebsite": "https://dharmasrayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Dharmasraya (https://dharmasrayakab.bps.go.id), publikasi \"Kecamatan Pulau Punjung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1311040",
+  "publicationNumber": "13110.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://dharmasrayakab.bps.go.id/id/publication/2026/09/28/cd2a73a3da39d088d38a302b/kecamatan-pulau-punjung-dalam-angka-2026.html",
+  "sourceFileSha256": "50b6f3db7773070c3cdf2bc942df10de7049db228c3ac397e466544788ba6d25",
+  "sourceFileBytes": 12788624,
+  "sourcePages": [23, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Dharmasraya. TIM PENYUSUN KECAMATAN PULAU PUNJUNG DALAM ANGKA 2026 Volume 26, 2026 o. ab .b ps .g Penanggung Jawab Eriwarman id Pengarah Eriwarman ra y ak Penyunting Latifa Ramadhani Jamal ht tp s: //d ha rm as Pengolah Data dan Penulis Naskah Latifa Ramadhani Jamal • Taufiq Agung Kurniawan • Novan Arlando Penata Letak Latifa Ramadhani Jamal o. ab .b ps .g ak ra y as rm ha //d s: tp ht id KONTRIBUTOR DATA Kementerian Dalam Negeri Pemerintah Daerah Kabupaten Dharmasraya UPT BPTP Kabupaten Dharmasraya Dinas Kependudukan dan Catatan Sipil Kabupaten Dharmasraya Badan Kepegawaian Dan Pengembangan Sumber Daya Manusia (BKPSDM) Kabupaten Dharmasraya 6. Kementerian Pendidikan dan Kebudayaan 7. Dinas Pendidikan Kabupaten Dharmasraya 8. Dinas Kesehatan Kabupaten Dharmasraya 9. Dinas Sosial, Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan Perlindungan Anak Kabupaten Dharmasraya 10. Dinas Pertanian Kabupaten Dharmasraya 11. Dinas Pangan dan Perikanan Kabupaten Dharmasraya 12. Dinas Kebudayaan, Pariwisata, Pemuda dan Olahraga Kabupaten Dharmasraya 13. UPTD PKB Dinas Perhubungan Kabupaten Dharmasraya 14. UPTD Pengelolaan Pendapatan Daerah Kabupaten Dharmasraya 15. PT POS Indonesia (Persero) Kota Sawahlunto 16. Dinas Koperasi, Usaha Kecil, Menengah, dan Perdagangan Kabupaten Dharmasraya 17. Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Kabupaten Dharmasraya 18. Pemerintahan Kecamatan se-Dharmasraya ht tp s: //d ha rm as ra y ak ab .b ps .g o. id 1. 2. 3. 4. 5. o. ab .b ps .g ak ra y as rm ha //d s: tp ht id KATA PENGANTAR ht tp s: //d ha rm as ra y ak ab .b ps .g o. id Kecamatan Pulau Punjung Dalam Angka 2026 merupakan publikasi tahunan yang diterbitkan oleh BPS Kabupaten Dharmasraya. Publikasi ini diharapkan dapat membantu melengkapi penyusunan rencana pembangunan di Kabupaten Dharmasraya. Publikasi ini dapat terwujud berkat kerja sama dan bantuan dari berbagai pihak baik instansi pemerintah maupun swasta. Kepada semua pihak yang telah memberikan bantuan disampaikan penghargaan dan terima kasih yang sebesar-besarnya. Walaupun publikasi ini telah disiapkan sebaik-baiknya, namun disadari masih ada kekurangan dan kesalahan yang terjadi. Untuk perbaikan publikasi ini, tanggapan dan saran yang bersifat konstruktif dari para pemakai sangat diharapkan. Dharmasraya, September 2026 Kepala BPS Kabupaten Dharmasraya ERIWARMAN vii o. ab .b ps .g ak ra y as rm ha //d s: tp ht id",
+  "csvPath": "datasets/bps-1311-kecamatan-131002-dalam-angka-2026.csv",
+  "csvSha256": "8d63d9dc060f3e13f59fc0e814e2330e56ef23be376104e09f423d5196c06f94",
+  "tablesUsed": [
+    {
+      "table": "3.2.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Nagari di Kecamatan Pulau Punjung, 2025 Penduduk Desa Laki-Laki Perempuan Jumlah",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pulau Punjung, 2025 Jenis Kelamin Kelompok Umur Laki-Laki Perempuan Jumlah",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2.1: row not stored: row \"IV Koto Pulau Punjung\": unmatched "
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3603-kecamatan-360322-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.03.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pagedangan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tangerang",
+  "publisherDomain": "3603",
+  "publisherWebsite": "https://tangerangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tangerang (https://tangerangkab.bps.go.id), publikasi \"Kecamatan Pagedangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3603070",
+  "publicationNumber": "36030.26015",
+  "issn": "2407-4705",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkab.bps.go.id/id/publication/2026/09/28/eab42de256c730977035062a/kecamatan-pagedangan-dalam-angka-2026.html",
+  "sourceFileSha256": "23fa5511eb5530bd2f370fc49c14f5e360c5ff30be7c9b5ca4e7d50cc5938b6b",
+  "sourceFileBytes": 11900023,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tangerang.",
+  "csvPath": "datasets/bps-3603-kecamatan-360322-dalam-angka-2026.csv",
+  "csvSha256": "b7cd51c9c3c1f0a231f48a8fc78191d8f69c0eb31199ea2d81a3b7161e128230",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pagedangan, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.2: row not stored: row \"Kecamatan Pagedangan Pagedangan District\": unmatched ",
+    "table 3.2: 44 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

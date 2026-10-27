@@ -1,0 +1,129 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.09.10,3,Teluk Pandan,age_group,0-5,laki_laki,1776,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.10,3,Teluk Pandan,age_group,0-5,perempuan,1660,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.10,3,Teluk Pandan,age_group,0-5,,3436,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.10,3,Teluk Pandan,age_group,6-10,laki_laki,1947,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.10,3,Teluk Pandan,age_group,6-10,perempuan,1811,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.10,3,Teluk Pandan,age_group,6-10,,3758,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.10,3,Teluk Pandan,age_group,11-17,laki_laki,2763,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.10,3,Teluk Pandan,age_group,11-17,perempuan,2650,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.10,3,Teluk Pandan,age_group,11-17,,5413,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.10,3,Teluk Pandan,age_group,18-22,laki_laki,1602,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.10,3,Teluk Pandan,age_group,18-22,perempuan,1607,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.10,3,Teluk Pandan,age_group,18-22,,3209,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.10,3,Teluk Pandan,age_group,23-27,laki_laki,1759,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.10,3,Teluk Pandan,age_group,23-27,perempuan,1505,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.10,3,Teluk Pandan,age_group,23-27,,3264,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.10,3,Teluk Pandan,age_group,28-32,laki_laki,1610,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.10,3,Teluk Pandan,age_group,28-32,perempuan,1414,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.10,3,Teluk Pandan,age_group,28-32,,3024,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.10,3,Teluk Pandan,age_group,33-38,laki_laki,1832,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.10,3,Teluk Pandan,age_group,33-38,perempuan,1712,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.10,3,Teluk Pandan,age_group,33-38,,3544,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.10,3,Teluk Pandan,age_group,39-43,laki_laki,1719,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.10,3,Teluk Pandan,age_group,39-43,perempuan,1585,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.10,3,Teluk Pandan,age_group,39-43,,3304,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.10,3,Teluk Pandan,age_group,44-48,laki_laki,1429,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.10,3,Teluk Pandan,age_group,44-48,perempuan,1279,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.10,3,Teluk Pandan,age_group,44-48,,2708,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.10,3,Teluk Pandan,age_group,49-53,laki_laki,1169,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.10,3,Teluk Pandan,age_group,49-53,perempuan,1151,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.10,3,Teluk Pandan,age_group,49-53,,2320,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.10,3,Teluk Pandan,age_group,54-58,laki_laki,1063,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.10,3,Teluk Pandan,age_group,54-58,perempuan,1018,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.10,3,Teluk Pandan,age_group,54-58,,2081,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.10,3,Teluk Pandan,age_group,59-63,laki_laki,797,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.10,3,Teluk Pandan,age_group,59-63,perempuan,721,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.10,3,Teluk Pandan,age_group,59-63,,1518,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.10,3,Teluk Pandan,age_group,64-68,laki_laki,662,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.10,3,Teluk Pandan,age_group,64-68,perempuan,603,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.10,3,Teluk Pandan,age_group,64-68,,1265,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.10,3,Teluk Pandan,age_group,69-73,laki_laki,416,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.10,3,Teluk Pandan,age_group,69-73,perempuan,366,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.10,3,Teluk Pandan,age_group,69-73,,782,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.10,3,Teluk Pandan,age_group,74+,laki_laki,585,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.10,3,Teluk Pandan,age_group,74+,perempuan,505,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.10,3,Teluk Pandan,age_group,74+,,1090,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.10,3,Teluk Pandan,sex,laki_laki,,21129,jiwa,2025,registration,total_population,3.2,32,,Laki-laki/Male
+18.09.10,3,Teluk Pandan,sex,perempuan,,19587,jiwa,2025,registration,total_population,3.2,32,,Perempuan/Female
+18.09.10,3,Teluk Pandan,total,total,,40716,jiwa,2025,registration,total_population,3.2,32,,
+18.09.10.2001,4,Batu Menyan,religion,islam,,2607,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2001,4,Batu Menyan,religion,kristen,,4,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10.2001,4,Batu Menyan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.10.2001,4,Batu Menyan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.10.2003,4,Gebang,religion,islam,,7600,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2003,4,Gebang,religion,kristen,,28,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10.2003,4,Gebang,religion,katolik,,5,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.10.2003,4,Gebang,religion,hindu,,3,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.10.2007,4,Sidodadi,religion,islam,,2604,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2007,4,Sidodadi,religion,kristen,,1,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10.2007,4,Sidodadi,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.10.2007,4,Sidodadi,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.10.2004,4,Hanura,religion,islam,,6341,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2004,4,Hanura,religion,kristen,,266,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10.2004,4,Hanura,religion,katolik,,158,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.10.2004,4,Hanura,religion,hindu,,14,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.10.2002,4,Cilimus,religion,islam,,2475,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2002,4,Cilimus,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.10.2002,4,Cilimus,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.10.2002,4,Cilimus,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.10.2005,4,Hurun,religion,islam,,3638,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2005,4,Hurun,religion,kristen,,18,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10.2005,4,Hurun,religion,katolik,,3,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.10.2005,4,Hurun,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.10.2008,4,Sukajaya Lempasing,religion,islam,,7751,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2008,4,Sukajaya Lempasing,religion,kristen,,66,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10.2008,4,Sukajaya Lempasing,religion,katolik,,30,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.10.2008,4,Sukajaya Lempasing,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.10.2006,4,Munca,religion,islam,,1170,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2006,4,Munca,religion,kristen,,15,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10.2006,4,Munca,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.10.2006,4,Munca,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.10.2010,4,Tanjung Agung,religion,islam,,4183,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10.2010,4,Tanjung Agung,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.10.2010,4,Tanjung Agung,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.10.2010,4,Tanjung Agung,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.10,3,Teluk Pandan,religion,islam,,40030,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.10,3,Teluk Pandan,religion,kristen,,398,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.10,3,Teluk Pandan,religion,katolik,,196,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.10,3,Teluk Pandan,religion,hindu,,22,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.10.2001,4,Batu Menyan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.10.2001,4,Batu Menyan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2001,4,Batu Menyan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2001,4,Batu Menyan,total,total,,2611,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2003,4,Gebang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.10.2003,4,Gebang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2003,4,Gebang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2003,4,Gebang,total,total,,7636,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2007,4,Sidodadi,religion,buddha,,62,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.10.2007,4,Sidodadi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2007,4,Sidodadi,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2007,4,Sidodadi,total,total,,2668,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2004,4,Hanura,religion,buddha,,7,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.10.2004,4,Hanura,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2004,4,Hanura,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2004,4,Hanura,total,total,,6786,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2002,4,Cilimus,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.10.2002,4,Cilimus,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2002,4,Cilimus,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2002,4,Cilimus,total,total,,2475,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2005,4,Hurun,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.10.2005,4,Hurun,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2005,4,Hurun,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2005,4,Hurun,total,total,,3659,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2008,4,Sukajaya Lempasing,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.10.2008,4,Sukajaya Lempasing,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2008,4,Sukajaya Lempasing,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2008,4,Sukajaya Lempasing,total,total,,7852,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2006,4,Munca,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.10.2006,4,Munca,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2006,4,Munca,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2006,4,Munca,total,total,,1185,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10.2010,4,Tanjung Agung,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.10.2010,4,Tanjung Agung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10.2010,4,Tanjung Agung,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10.2010,4,Tanjung Agung,total,total,,4183,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.10,3,Teluk Pandan,religion,buddha,,70,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.10,3,Teluk Pandan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.10,3,Teluk Pandan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.10,3,Teluk Pandan,total,total,,40716,jiwa,2025,registration,total_population,4.4.3,57,,

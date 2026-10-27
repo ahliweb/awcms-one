@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1114-kecamatan-111610-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.16.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bandar Pusaka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tamiang",
+  "publisherDomain": "1114",
+  "publisherWebsite": "https://acehtamiangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tamiang (https://acehtamiangkab.bps.go.id), publikasi \"Kecamatan Bandar Pusaka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1114080",
+  "publicationNumber": "11140.26011",
+  "issn": "2962-4916",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtamiangkab.bps.go.id/id/publication/2026/09/28/518b00ecb735a10af8a0c3c6/kecamatan-bandar-pusaka-dalam-angka-2026.html",
+  "sourceFileSha256": "5ebfb6a0334ce93e81ee348de87ff3f20311f93e71b887d64f9a53292db6cf4f",
+  "sourceFileBytes": 3572029,
+  "sourcePages": [13, 14, 15],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Tamiang",
+  "csvPath": "datasets/bps-1114-kecamatan-111610-dalam-angka-2026.csv",
+  "csvSha256": "6017c5c3fde4c2f7e0911d885f05d519203d87148ddfddee5723fb5191d8f58f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Bandar Pusaka, 2025",
+      "printedPages": [13, 14],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bandar Pusaka, 2025",
+      "printedPages": [15],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Perk. Alur Jambu\": unmatched ",
+    "table 3.1: row not stored: row \"Perk. Alur Jambu\": unmatched "
+  ]
+}

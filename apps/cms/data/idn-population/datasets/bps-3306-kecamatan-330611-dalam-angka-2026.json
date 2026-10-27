@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3306-kecamatan-330611-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.06.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pituruh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Purworejo",
+  "publisherDomain": "3306",
+  "publisherWebsite": "https://purworejokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Purworejo (https://purworejokab.bps.go.id), publikasi \"Kecamatan Pituruh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33060.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://purworejokab.bps.go.id/id/publication/2026/09/28/c32aabaec5eb3a2b1d368542/kecamatan-pituruh-dalam-angka-2026.html",
+  "sourceFileSha256": "f4c12902e9bda697694cd6358b6a20d60e84c7d0d111d616678a136bdd7193c6",
+  "sourceFileBytes": 8815341,
+  "sourcePages": [25, 26, 27, 28, 29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Purworejo.",
+  "csvPath": "datasets/bps-3306-kecamatan-330611-dalam-angka-2026.csv",
+  "csvSha256": "66fa5263101ad0bb75f408721e086f66b9002af3a395cbbd24523458972a8468",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pituruh, 2025",
+      "printedPages": [25, 26, 27, 28, 29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pituruh, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.07.2048,4,TUHA SUWIEK,sex,laki_laki,,108,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2048,4,TUHA SUWIEK,sex,perempuan,,108,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2048,4,TUHA SUWIEK,total,total,,216,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2047,4,MESJID SUWIEK,sex,laki_laki,,304,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2047,4,MESJID SUWIEK,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2047,4,MESJID SUWIEK,total,total,,627,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2046,4,TEUNGOH SUWIEK,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2046,4,TEUNGOH SUWIEK,sex,perempuan,,207,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2046,4,TEUNGOH SUWIEK,total,total,,432,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2040,4,PEUTOE,sex,laki_laki,,365,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2040,4,PEUTOE,sex,perempuan,,366,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2040,4,PEUTOE,total,total,,731,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2045,4,GLEE GAPUI,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2045,4,GLEE GAPUI,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2045,4,GLEE GAPUI,total,total,,532,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2041,4,BLANG RAPAI,sex,laki_laki,,161,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2041,4,BLANG RAPAI,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2041,4,BLANG RAPAI,total,total,,356,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2044,4,BALEE BAROH GAPUI,sex,laki_laki,,161,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2044,4,BALEE BAROH GAPUI,sex,perempuan,,211,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2044,4,BALEE BAROH GAPUI,total,total,,372,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2042,4,NEULOP II,sex,laki_laki,,419,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2042,4,NEULOP II,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2042,4,NEULOP II,total,total,,847,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2043,4,BARO GAPUI,sex,laki_laki,,155,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2043,4,BARO GAPUI,sex,perempuan,,171,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2043,4,BARO GAPUI,total,total,,326,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2026,4,MESJID DIJIEM,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2026,4,MESJID DIJIEM,sex,perempuan,,348,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2026,4,MESJID DIJIEM,total,total,,662,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2024,4,GUCI,sex,laki_laki,,147,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2024,4,GUCI,sex,perempuan,,159,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2024,4,GUCI,total,total,,306,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2038,4,DAYAH BIE,sex,laki_laki,,194,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2038,4,DAYAH BIE,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2038,4,DAYAH BIE,total,total,,386,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2004,4,JURONG,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2004,4,JURONG,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2004,4,JURONG,total,total,,451,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2036,4,BARO BLUEK,sex,laki_laki,,129,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2036,4,BARO BLUEK,sex,perempuan,,133,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2036,4,BARO BLUEK,total,total,,262,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2034,4,RUMIA,sex,laki_laki,,100,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2034,4,RUMIA,sex,perempuan,,120,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2034,4,RUMIA,total,total,,220,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2005,4,KEUTAPANG,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2005,4,KEUTAPANG,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2005,4,KEUTAPANG,total,total,,641,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2032,4,COT SEUKEE,sex,laki_laki,,152,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2032,4,COT SEUKEE,sex,perempuan,,159,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2032,4,COT SEUKEE,total,total,,311,jiwa,2025,registration,total_population,3.1,36,,
+11.07.07.2033,4,DRIEN,sex,laki_laki,,108,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.07.2033,4,DRIEN,sex,perempuan,,109,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.07.2033,4,DRIEN,total,total,,217,jiwa,2025,registration,total_population,3.1,36,,

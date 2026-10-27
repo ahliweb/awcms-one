@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3519-kecamatan-351901-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.19.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kebonsari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Madiun",
+  "publisherDomain": "3519",
+  "publisherWebsite": "https://madiunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Madiun (https://madiunkab.bps.go.id), publikasi \"Kecamatan Kebonsari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.35190010",
+  "publicationNumber": "35190.26005",
+  "issn": "2598-6619",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkab.bps.go.id/id/publication/2026/09/28/59406912dd8bfd5e1f2a90c6/kecamatan-kebonsari-dalam-angka-2026.html",
+  "sourceFileSha256": "f54c6193e5ea625bda2de057476827db2e2acf94bb6aff9bb1bebcfece7b330e",
+  "sourceFileBytes": 4776345,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Madiun.",
+  "csvPath": "datasets/bps-3519-kecamatan-351901-dalam-angka-2026.csv",
+  "csvSha256": "9a565b4bfe44bae4f309a3e3f314d444e2bff613fdbc70833c3b28126126e07d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kebonsari, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kebonsari, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Kebonsari 29.,270\": unmatched ",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: the rows of region 35.19.01 are not stored: age_group (laki_laki) vs sex value: parts sum 29270.0000 != 29068.0000 (diff 202.0000); the source itself is inconsistent"
+  ]
+}

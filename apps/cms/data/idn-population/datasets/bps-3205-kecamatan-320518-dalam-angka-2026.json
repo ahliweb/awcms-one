@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3205-kecamatan-320518-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.05.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cigedug Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Garut",
+  "publisherDomain": "3205",
+  "publisherWebsite": "https://garutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Garut (https://garutkab.bps.go.id), publikasi \"Kecamatan Cigedug Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3205151",
+  "publicationNumber": "32050.26023",
+  "issn": "2830-1307",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://garutkab.bps.go.id/id/publication/2026/09/28/d806656f99992125e1f501c3/kecamatan-cigedug-dalam-angka-2026.html",
+  "sourceFileSha256": "af73bfb8d352dab5244e94ffb21eaf9fee662da72053ba4b46c51911e274605d",
+  "sourceFileBytes": 3851267,
+  "sourcePages": [24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Garut",
+  "csvPath": "datasets/bps-3205-kecamatan-320518-dalam-angka-2026.csv",
+  "csvSha256": "4d0f537e45393de89df25182ed57da8ca242aceef5f9aed1694fbd2d503b0c17",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cigedug 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

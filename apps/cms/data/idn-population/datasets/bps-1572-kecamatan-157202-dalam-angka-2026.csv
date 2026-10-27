@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.02.2001,4,Koto Renah,sex,laki_laki,,990,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02.2001,4,Koto Renah,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02.2001,4,Koto Renah,total,total,,1953,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02.2002,4,Koto Keras,sex,laki_laki,,888,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02.2002,4,Koto Keras,sex,perempuan,,904,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02.2002,4,Koto Keras,total,total,,1792,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02.2003,4,Koto Bento,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02.2003,4,Koto Bento,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02.2003,4,Koto Bento,total,total,,1004,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02.2005,4,Koto Tengah,sex,laki_laki,,665,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02.2005,4,Koto Tengah,sex,perempuan,,694,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02.2005,4,Koto Tengah,total,total,,1359,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02.2004,4,Koto Lolo,sex,laki_laki,,1015,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02.2004,4,Koto Lolo,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02.2004,4,Koto Lolo,total,total,,2038,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02.2011,4,Seberang,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02.2011,4,Seberang,sex,perempuan,,588,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02.2011,4,Seberang,total,total,,1162,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02.2010,4,Sungai Liuk,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02.2010,4,Sungai Liuk,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02.2010,4,Sungai Liuk,total,total,,1081,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02,3,Kecamatan Pesisir Bukit,sex,laki_laki,,6437,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.72.02,3,Kecamatan Pesisir Bukit,sex,perempuan,,6591,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.72.02,3,Kecamatan Pesisir Bukit,total,total,,13028,jiwa,2025,registration,total_population,3.1,32,,
+15.72.02,3,Pesisir Bukit,age_group,0-4,laki_laki,385,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+15.72.02,3,Pesisir Bukit,age_group,0-4,perempuan,382,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+15.72.02,3,Pesisir Bukit,age_group,0-4,,767,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+15.72.02,3,Pesisir Bukit,age_group,5-9,laki_laki,491,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+15.72.02,3,Pesisir Bukit,age_group,5-9,perempuan,477,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+15.72.02,3,Pesisir Bukit,age_group,5-9,,968,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+15.72.02,3,Pesisir Bukit,age_group,10-14,laki_laki,503,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+15.72.02,3,Pesisir Bukit,age_group,10-14,perempuan,455,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+15.72.02,3,Pesisir Bukit,age_group,10-14,,958,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+15.72.02,3,Pesisir Bukit,age_group,15-19,laki_laki,514,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+15.72.02,3,Pesisir Bukit,age_group,15-19,perempuan,524,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+15.72.02,3,Pesisir Bukit,age_group,15-19,,1038,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+15.72.02,3,Pesisir Bukit,age_group,20-24,laki_laki,522,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+15.72.02,3,Pesisir Bukit,age_group,20-24,perempuan,497,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+15.72.02,3,Pesisir Bukit,age_group,20-24,,1019,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+15.72.02,3,Pesisir Bukit,age_group,25-29,laki_laki,502,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+15.72.02,3,Pesisir Bukit,age_group,25-29,perempuan,526,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+15.72.02,3,Pesisir Bukit,age_group,25-29,,1028,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+15.72.02,3,Pesisir Bukit,age_group,30-34,laki_laki,461,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+15.72.02,3,Pesisir Bukit,age_group,30-34,perempuan,417,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+15.72.02,3,Pesisir Bukit,age_group,30-34,,878,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+15.72.02,3,Pesisir Bukit,age_group,35-39,laki_laki,418,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+15.72.02,3,Pesisir Bukit,age_group,35-39,perempuan,421,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+15.72.02,3,Pesisir Bukit,age_group,35-39,,839,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+15.72.02,3,Pesisir Bukit,age_group,40-44,laki_laki,482,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+15.72.02,3,Pesisir Bukit,age_group,40-44,perempuan,517,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+15.72.02,3,Pesisir Bukit,age_group,40-44,,999,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+15.72.02,3,Pesisir Bukit,age_group,45-49,laki_laki,534,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+15.72.02,3,Pesisir Bukit,age_group,45-49,perempuan,516,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+15.72.02,3,Pesisir Bukit,age_group,45-49,,1050,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+15.72.02,3,Pesisir Bukit,age_group,50-54,laki_laki,466,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+15.72.02,3,Pesisir Bukit,age_group,50-54,perempuan,444,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+15.72.02,3,Pesisir Bukit,age_group,50-54,,910,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+15.72.02,3,Pesisir Bukit,age_group,55-59,laki_laki,303,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+15.72.02,3,Pesisir Bukit,age_group,55-59,perempuan,330,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+15.72.02,3,Pesisir Bukit,age_group,55-59,,633,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+15.72.02,3,Pesisir Bukit,age_group,60-64,laki_laki,228,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+15.72.02,3,Pesisir Bukit,age_group,60-64,perempuan,294,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+15.72.02,3,Pesisir Bukit,age_group,60-64,,522,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+15.72.02,3,Pesisir Bukit,age_group,65-69,laki_laki,253,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+15.72.02,3,Pesisir Bukit,age_group,65-69,perempuan,319,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+15.72.02,3,Pesisir Bukit,age_group,65-69,,572,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+15.72.02,3,Pesisir Bukit,age_group,70-74,laki_laki,199,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+15.72.02,3,Pesisir Bukit,age_group,70-74,perempuan,219,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+15.72.02,3,Pesisir Bukit,age_group,70-74,,418,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+15.72.02,3,Pesisir Bukit,age_group,75+,laki_laki,176,jiwa,2025,registration,total_population,3.2,34,,75+
+15.72.02,3,Pesisir Bukit,age_group,75+,perempuan,253,jiwa,2025,registration,total_population,3.2,34,,75+
+15.72.02,3,Pesisir Bukit,age_group,75+,,429,jiwa,2025,registration,total_population,3.2,34,,75+
+15.72.02,3,Kecamatan Pesisir Bukit,sex,laki_laki,,6437,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+15.72.02,3,Kecamatan Pesisir Bukit,sex,perempuan,,6591,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+15.72.02,3,Kecamatan Pesisir Bukit,total,total,,13028,jiwa,2025,registration,total_population,3.2,34,,

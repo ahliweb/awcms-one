@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3518-kecamatan-351818-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.18.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ngluyu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nganjuk",
+  "publisherDomain": "3518",
+  "publisherWebsite": "https://nganjukkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nganjuk (https://nganjukkab.bps.go.id), publikasi \"Kecamatan Ngluyu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35180.2623",
+  "issn": "2620-7656",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nganjukkab.bps.go.id/id/publication/2026/09/28/1c0b576dbd3f09bb09e6e083/kecamatan-ngluyu-dalam-angka-2026.html",
+  "sourceFileSha256": "9aa76f5be5e32e3a1236055f7977554d68f9c92a29fadaa3d1c0101f9d9d303a",
+  "sourceFileBytes": 6234455,
+  "sourcePages": [18, 19, 20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nganjuk.",
+  "csvPath": "datasets/bps-3518-kecamatan-351818-dalam-angka-2026.csv",
+  "csvSha256": "4f024c1a0c6f30736e333086cd2082066624ebd6b70c7afa827e15d1a494209c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Ngluyu, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ngluyu, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama di Kecamatan Ngluyu, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": ["table 3.3: row not stored: row \"Desa/Villages\": unmatched "]
+}

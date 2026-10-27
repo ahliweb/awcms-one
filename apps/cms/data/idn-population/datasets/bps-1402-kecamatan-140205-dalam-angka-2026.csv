@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.02.05.2003,4,Semelinang Tebing,religion,islam,,2493,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2003,4,Semelinang Tebing,religion,katolik,,31,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.2003,4,Semelinang Tebing,religion,kristen,,533,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2003,4,Semelinang Tebing,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2003,4,Semelinang Tebing,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2003,4,Semelinang Tebing,total,total,,3057,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2010,4,Pauh Ranap,religion,islam,,5236,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2010,4,Pauh Ranap,religion,katolik,,512,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.2010,4,Pauh Ranap,religion,kristen,,4020,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2010,4,Pauh Ranap,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.1,59,,Hindu
+14.02.05.2010,4,Pauh Ranap,religion,buddha,,4,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.05.2010,4,Pauh Ranap,total,total,,9773,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2007,4,Baturijal Hulu,religion,islam,,1826,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2007,4,Baturijal Hulu,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.05.2007,4,Baturijal Hulu,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Protestan
+14.02.05.2007,4,Baturijal Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2007,4,Baturijal Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2007,4,Baturijal Hulu,total,total,,1826,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.1008,4,Baturijal Hilir,religion,islam,,2191,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.1008,4,Baturijal Hilir,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.1008,4,Baturijal Hilir,religion,kristen,,16,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.1008,4,Baturijal Hilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.1008,4,Baturijal Hilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.1008,4,Baturijal Hilir,total,total,,2208,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.1005,4,Peranap,religion,islam,,9218,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.1005,4,Peranap,religion,katolik,,75,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.1005,4,Peranap,religion,kristen,,435,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.1005,4,Peranap,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.1005,4,Peranap,religion,buddha,,10,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.05.1005,4,Peranap,total,total,,9738,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2004,4,Gumanti,religion,islam,,2588,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2004,4,Gumanti,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.05.2004,4,Gumanti,religion,kristen,,1,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2004,4,Gumanti,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2004,4,Gumanti,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2004,4,Gumanti,total,total,,2589,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2009,4,Semelinang Darat,religion,islam,,2334,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2009,4,Semelinang Darat,religion,katolik,,23,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.2009,4,Semelinang Darat,religion,kristen,,197,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2009,4,Semelinang Darat,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2009,4,Semelinang Darat,religion,buddha,,6,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.05.2009,4,Semelinang Darat,total,total,,2560,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2013,4,Pandan Wangi,religion,islam,,2484,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2013,4,Pandan Wangi,religion,katolik,,4,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.2013,4,Pandan Wangi,religion,kristen,,126,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2013,4,Pandan Wangi,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2013,4,Pandan Wangi,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2013,4,Pandan Wangi,total,total,,2614,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2012,4,Serai Wangi,religion,islam,,1366,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2012,4,Serai Wangi,religion,katolik,,20,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.2012,4,Serai Wangi,religion,kristen,,36,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2012,4,Serai Wangi,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2012,4,Serai Wangi,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2012,4,Serai Wangi,total,total,,1422,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2017,4,Katipo Pura,religion,islam,,1131,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2017,4,Katipo Pura,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.05.2017,4,Katipo Pura,religion,kristen,,26,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2017,4,Katipo Pura,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2017,4,Katipo Pura,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2017,4,Katipo Pura,total,total,,1157,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2020,4,Setako Raya,religion,islam,,948,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2020,4,Setako Raya,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.05.2020,4,Setako Raya,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Protestan
+14.02.05.2020,4,Setako Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2020,4,Setako Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2020,4,Setako Raya,total,total,,948,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05.2019,4,Baturijal Barat,religion,islam,,1288,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05.2019,4,Baturijal Barat,religion,katolik,,7,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05.2019,4,Baturijal Barat,religion,kristen,,43,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05.2019,4,Baturijal Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.05.2019,4,Baturijal Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.05.2019,4,Baturijal Barat,total,total,,1338,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.05,3,Peranap,religion,islam,,33103,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.05,3,Peranap,religion,katolik,,673,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.05,3,Peranap,religion,kristen,,5433,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.05,3,Peranap,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.1,59,,Hindu
+14.02.05,3,Peranap,religion,buddha,,20,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.05,3,Peranap,total,total,,39230,jiwa,2025,registration,total_population,4.4.1,59,,

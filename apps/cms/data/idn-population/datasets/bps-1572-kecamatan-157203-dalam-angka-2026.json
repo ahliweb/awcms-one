@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-1572-kecamatan-157203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.72.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Hamparan Rawang Dalam Angka 2026",
+  "publisherName": "BPS Kota Sungai Penuh",
+  "publisherDomain": "1572",
+  "publisherWebsite": "https://sungaipenuhkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sungai Penuh (https://sungaipenuhkota.bps.go.id), publikasi \"Kecamatan Hamparan Rawang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1572040",
+  "publicationNumber": "15720.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sungaipenuhkota.bps.go.id/id/publication/2026/09/28/be3ec2bcfa5b70ee478131bf/kecamatan-hamparan-rawang-dalam-angka-2026.html",
+  "sourceFileSha256": "e0f8645ff599cea462e87a4c5f8cc3774222d695ef04504dbc91197ae692ef7f",
+  "sourceFileBytes": 12822325,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sungai Penuh .",
+  "csvPath": "datasets/bps-1572-kecamatan-157203-dalam-angka-2026.csv",
+  "csvSha256": "e0aa09f61784eb4cee96cabc996879286b901d79fe992f8adc27a26380d20fde",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Hamparan Rawang , 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Hamparan Rawang , 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 15.72.03.2012 are not stored: sex split vs total: parts sum 1022.0000 != 1035.0000 (diff 13.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2004 are not stored: sex split vs total: parts sum 1802.0000 != 1756.0000 (diff 46.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2010 are not stored: sex split vs total: parts sum 3080.0000 != 3103.0000 (diff 23.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2007 are not stored: sex split vs total: parts sum 796.0000 != 775.0000 (diff 21.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2009 are not stored: sex split vs total: parts sum 1248.0000 != 1267.0000 (diff 19.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2001 are not stored: sex split vs total: parts sum 802.0000 != 820.0000 (diff 18.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2005 are not stored: sex split vs total: parts sum 582.0000 != 562.0000 (diff 20.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2013 are not stored: sex split vs total: parts sum 1154.0000 != 1147.0000 (diff 7.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2002 are not stored: sex split vs total: parts sum 1166.0000 != 1155.0000 (diff 11.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2003 are not stored: sex split vs total: parts sum 658.0000 != 648.0000 (diff 10.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2006 are not stored: sex split vs total: parts sum 1960.0000 != 1992.0000 (diff 32.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2008 are not stored: sex split vs total: parts sum 1350.0000 != 1327.0000 (diff 23.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03.2011 are not stored: sex split vs total: parts sum 728.0000 != 729.0000 (diff 1.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 15.72.03 are not stored: sex split vs total: parts sum 16348.0000 != 16316.0000 (diff 32.0000); the source itself is inconsistent"
+  ]
+}

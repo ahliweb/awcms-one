@@ -1,0 +1,115 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.07.2001,4,BANGKE,sex,laki_laki,,310,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2001,4,BANGKE,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2001,4,BANGKE,total,total,,587,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2002,4,TEBAT LANGSAT,sex,laki_laki,,182,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2002,4,TEBAT LANGSAT,sex,perempuan,,148,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2002,4,TEBAT LANGSAT,total,total,,330,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2003,4,SINGAPURE,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2003,4,SINGAPURE,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2003,4,SINGAPURE,total,total,,572,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2004,4,GUNUNG LIWAT,sex,laki_laki,,83,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2004,4,GUNUNG LIWAT,sex,perempuan,,95,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2004,4,GUNUNG LIWAT,total,total,,178,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2005,4,KEBUN JATI,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2005,4,KEBUN JATI,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2005,4,KEBUN JATI,total,total,,377,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2006,4,BINTUHAN,sex,laki_laki,,117,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2006,4,BINTUHAN,sex,perempuan,,108,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2006,4,BINTUHAN,total,total,,225,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2007,4,MUTAR ALAM BARU,sex,laki_laki,,198,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2007,4,MUTAR ALAM BARU,sex,perempuan,,163,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2007,4,MUTAR ALAM BARU,total,total,,361,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2008,4,PANDAN ARANG ULU,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2008,4,PANDAN ARANG ULU,sex,perempuan,,188,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2008,4,PANDAN ARANG ULU,total,total,,396,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2009,4,MUTAR ALAM LAMA,sex,laki_laki,,162,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2009,4,MUTAR ALAM LAMA,sex,perempuan,,140,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2009,4,MUTAR ALAM LAMA,total,total,,302,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2010,4,TANJUNG RAMAN,sex,laki_laki,,123,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2010,4,TANJUNG RAMAN,sex,perempuan,,120,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2010,4,TANJUNG RAMAN,total,total,,243,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2011,4,TUNGGUL BUTE,sex,laki_laki,,1207,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2011,4,TUNGGUL BUTE,sex,perempuan,,1066,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2011,4,TUNGGUL BUTE,total,total,,2273,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2012,4,KARANG ENDAH,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2012,4,KARANG ENDAH,sex,perempuan,,244,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2012,4,KARANG ENDAH,total,total,,502,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2013,4,KARANG AGUNG,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2013,4,KARANG AGUNG,sex,perempuan,,265,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2013,4,KARANG AGUNG,total,total,,562,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2014,4,SUKA RAJA,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2014,4,SUKA RAJA,sex,perempuan,,220,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2014,4,SUKA RAJA,total,total,,438,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2015,4,GEDUNG AGUNG,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2015,4,GEDUNG AGUNG,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2015,4,GEDUNG AGUNG,total,total,,625,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2016,4,KOTA AGUNG,sex,laki_laki,,1058,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2016,4,KOTA AGUNG,sex,perempuan,,993,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2016,4,KOTA AGUNG,total,total,,2051,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2017,4,LAWANG AGUNG,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2017,4,LAWANG AGUNG,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2017,4,LAWANG AGUNG,total,total,,615,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2018,4,SUKARAMI,sex,laki_laki,,627,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2018,4,SUKARAMI,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2018,4,SUKARAMI,total,total,,1178,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2019,4,TANJUNG BERINGIN,sex,laki_laki,,219,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2019,4,TANJUNG BERINGIN,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2019,4,TANJUNG BERINGIN,total,total,,428,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2031,4,MUARA GULA,sex,laki_laki,,192,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2031,4,MUARA GULA,sex,perempuan,,198,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2031,4,MUARA GULA,total,total,,390,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07.2032,4,TANJUNG BULAN,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.04.07.2032,4,TANJUNG BULAN,sex,perempuan,,456,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.04.07.2032,4,TANJUNG BULAN,total,total,,941,jiwa,2025,registration,total_population,3.1,32,,
+16.04.07,3,Kota Agung,age_group,0-4,laki_laki,485,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+16.04.07,3,Kota Agung,age_group,0-4,perempuan,425,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+16.04.07,3,Kota Agung,age_group,0-4,,910,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+16.04.07,3,Kota Agung,age_group,5-9,laki_laki,606,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+16.04.07,3,Kota Agung,age_group,5-9,perempuan,564,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+16.04.07,3,Kota Agung,age_group,5-9,,1170,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+16.04.07,3,Kota Agung,age_group,10-14,laki_laki,673,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+16.04.07,3,Kota Agung,age_group,10-14,perempuan,563,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+16.04.07,3,Kota Agung,age_group,10-14,,1236,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+16.04.07,3,Kota Agung,age_group,15-19,laki_laki,637,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+16.04.07,3,Kota Agung,age_group,15-19,perempuan,606,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+16.04.07,3,Kota Agung,age_group,15-19,,1243,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+16.04.07,3,Kota Agung,age_group,20-24,laki_laki,592,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+16.04.07,3,Kota Agung,age_group,20-24,perempuan,580,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+16.04.07,3,Kota Agung,age_group,20-24,,1172,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+16.04.07,3,Kota Agung,age_group,25-29,laki_laki,563,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+16.04.07,3,Kota Agung,age_group,25-29,perempuan,481,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+16.04.07,3,Kota Agung,age_group,25-29,,1044,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+16.04.07,3,Kota Agung,age_group,30-34,laki_laki,542,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+16.04.07,3,Kota Agung,age_group,30-34,perempuan,417,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+16.04.07,3,Kota Agung,age_group,30-34,,959,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+16.04.07,3,Kota Agung,age_group,35-39,laki_laki,544,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+16.04.07,3,Kota Agung,age_group,35-39,perempuan,508,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+16.04.07,3,Kota Agung,age_group,35-39,,1052,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+16.04.07,3,Kota Agung,age_group,40-44,laki_laki,594,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+16.04.07,3,Kota Agung,age_group,40-44,perempuan,514,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+16.04.07,3,Kota Agung,age_group,40-44,,1108,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+16.04.07,3,Kota Agung,age_group,45-49,laki_laki,582,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+16.04.07,3,Kota Agung,age_group,45-49,perempuan,516,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+16.04.07,3,Kota Agung,age_group,45-49,,1098,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+16.04.07,3,Kota Agung,age_group,50-54,laki_laki,487,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+16.04.07,3,Kota Agung,age_group,50-54,perempuan,431,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+16.04.07,3,Kota Agung,age_group,50-54,,918,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+16.04.07,3,Kota Agung,age_group,55-59,laki_laki,341,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+16.04.07,3,Kota Agung,age_group,55-59,perempuan,380,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+16.04.07,3,Kota Agung,age_group,55-59,,721,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+16.04.07,3,Kota Agung,age_group,60-64,laki_laki,317,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+16.04.07,3,Kota Agung,age_group,60-64,perempuan,304,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+16.04.07,3,Kota Agung,age_group,60-64,,621,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+16.04.07,3,Kota Agung,age_group,65-69,laki_laki,283,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+16.04.07,3,Kota Agung,age_group,65-69,perempuan,289,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+16.04.07,3,Kota Agung,age_group,65-69,,572,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+16.04.07,3,Kota Agung,age_group,70-74,laki_laki,148,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+16.04.07,3,Kota Agung,age_group,70-74,perempuan,148,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+16.04.07,3,Kota Agung,age_group,70-74,,296,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+16.04.07,3,Kota Agung,age_group,75+,laki_laki,195,jiwa,2025,registration,total_population,3.2,34,,75 +
+16.04.07,3,Kota Agung,age_group,75+,perempuan,271,jiwa,2025,registration,total_population,3.2,34,,75 +
+16.04.07,3,Kota Agung,age_group,75+,,466,jiwa,2025,registration,total_population,3.2,34,,75 +
+16.04.07,3,Kota Agung,sex,laki_laki,,7589,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+16.04.07,3,Kota Agung,sex,perempuan,,6997,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+16.04.07,3,Kota Agung,total,total,,14586,jiwa,2025,registration,total_population,3.2,34,,

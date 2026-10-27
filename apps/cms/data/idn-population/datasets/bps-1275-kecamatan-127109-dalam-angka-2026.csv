@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71.09.1005,4,Harjosari II,sex,laki_laki,,18630,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09.1005,4,Harjosari II,sex,perempuan,,18997,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09.1005,4,Harjosari II,total,total,,37627,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09.1002,4,Sitirejo II,sex,laki_laki,,4405,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09.1002,4,Sitirejo II,sex,perempuan,,4443,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09.1002,4,Sitirejo II,total,total,,8848,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09.1003,4,Sitirejo III,sex,laki_laki,,6069,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09.1003,4,Sitirejo III,sex,perempuan,,6294,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09.1003,4,Sitirejo III,total,total,,12363,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09.1004,4,Harjosari I,sex,laki_laki,,17700,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09.1004,4,Harjosari I,sex,perempuan,,17972,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09.1004,4,Harjosari I,total,total,,35672,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09.1001,4,Amplas,sex,laki_laki,,8505,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09.1001,4,Amplas,sex,perempuan,,8560,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09.1001,4,Amplas,total,total,,17065,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09.1006,4,Timbang Deli,sex,laki_laki,,9511,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09.1006,4,Timbang Deli,sex,perempuan,,9442,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09.1006,4,Timbang Deli,total,total,,18953,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09.1007,4,Bangun Mulia,sex,laki_laki,,1635,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09.1007,4,Bangun Mulia,sex,perempuan,,1703,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09.1007,4,Bangun Mulia,total,total,,3338,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09,3,Medan Amplas,sex,laki_laki,,66455,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.09,3,Medan Amplas,sex,perempuan,,67411,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.09,3,Medan Amplas,total,total,,133866,jiwa,2025,registration,total_population,3.1,29,,
+12.71.09,3,Medan Amplas,age_group,0-4,laki_laki,3427,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.09,3,Medan Amplas,age_group,0-4,perempuan,3209,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.09,3,Medan Amplas,age_group,0-4,,6636,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.09,3,Medan Amplas,age_group,5-9,laki_laki,5661,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.09,3,Medan Amplas,age_group,5-9,perempuan,5203,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.09,3,Medan Amplas,age_group,5-9,,10864,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.09,3,Medan Amplas,age_group,10-14,laki_laki,6098,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.09,3,Medan Amplas,age_group,10-14,perempuan,5672,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.09,3,Medan Amplas,age_group,10-14,,11770,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.09,3,Medan Amplas,age_group,15-19,laki_laki,6027,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.09,3,Medan Amplas,age_group,15-19,perempuan,5545,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.09,3,Medan Amplas,age_group,15-19,,11572,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.09,3,Medan Amplas,age_group,20-24,laki_laki,5632,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.09,3,Medan Amplas,age_group,20-24,perempuan,5447,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.09,3,Medan Amplas,age_group,20-24,,11079,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.09,3,Medan Amplas,age_group,25-29,laki_laki,5733,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.09,3,Medan Amplas,age_group,25-29,perempuan,5491,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.09,3,Medan Amplas,age_group,25-29,,11224,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.09,3,Medan Amplas,age_group,30-34,laki_laki,5273,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.09,3,Medan Amplas,age_group,30-34,perempuan,5379,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.09,3,Medan Amplas,age_group,30-34,,10652,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.09,3,Medan Amplas,age_group,35-39,laki_laki,5193,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.09,3,Medan Amplas,age_group,35-39,perempuan,5062,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.09,3,Medan Amplas,age_group,35-39,,10255,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.09,3,Medan Amplas,age_group,40-44,laki_laki,5146,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.09,3,Medan Amplas,age_group,40-44,perempuan,5099,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.09,3,Medan Amplas,age_group,40-44,,10245,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.09,3,Medan Amplas,age_group,45-49,laki_laki,4443,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.09,3,Medan Amplas,age_group,45-49,perempuan,4758,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.09,3,Medan Amplas,age_group,45-49,,9201,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.09,3,Medan Amplas,age_group,50-54,laki_laki,3901,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.09,3,Medan Amplas,age_group,50-54,perempuan,4394,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.09,3,Medan Amplas,age_group,50-54,,8295,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.09,3,Medan Amplas,age_group,55-59,laki_laki,3365,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.09,3,Medan Amplas,age_group,55-59,perempuan,3862,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.09,3,Medan Amplas,age_group,55-59,,7227,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.09,3,Medan Amplas,age_group,60-64,laki_laki,2522,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.09,3,Medan Amplas,age_group,60-64,perempuan,3102,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.09,3,Medan Amplas,age_group,60-64,,5624,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.09,3,Medan Amplas,age_group,65-69,laki_laki,1887,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.09,3,Medan Amplas,age_group,65-69,perempuan,2291,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.09,3,Medan Amplas,age_group,65-69,,4178,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.09,3,Medan Amplas,age_group,70-74,laki_laki,1153,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.09,3,Medan Amplas,age_group,70-74,perempuan,1353,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.09,3,Medan Amplas,age_group,70-74,,2506,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.09,3,Medan Amplas,age_group,75+,laki_laki,994,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.09,3,Medan Amplas,age_group,75+,perempuan,1544,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.09,3,Medan Amplas,age_group,75+,,2538,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.09,3,Medan Amplas,sex,laki_laki,,66455,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.71.09,3,Medan Amplas,sex,perempuan,,67411,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.71.09,3,Medan Amplas,total,total,,133866,jiwa,2025,registration,total_population,3.2,31,,

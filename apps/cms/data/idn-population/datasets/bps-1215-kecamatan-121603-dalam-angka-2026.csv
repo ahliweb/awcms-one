@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.16.03.2003,4,Tipang,sex,laki_laki,,1005,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03.2003,4,Tipang,sex,perempuan,,998,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03.2003,4,Tipang,total,total,,2003,jiwa,2025,registration,total_population,3.1,15,,
+12.16.03.2001,4,Marbun Toruan,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03.2001,4,Marbun Toruan,sex,perempuan,,629,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03.2001,4,Marbun Toruan,total,total,,1264,jiwa,2025,registration,total_population,3.1,15,,
+12.16.03.2006,4,Siunong Unong Julu,sex,laki_laki,,336,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03.2006,4,Siunong Unong Julu,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03.2006,4,Siunong Unong Julu,total,total,,650,jiwa,2025,registration,total_population,3.1,15,,
+12.16.03.2002,4,Simamora,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03.2002,4,Simamora,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03.2002,4,Simamora,total,total,,880,jiwa,2025,registration,total_population,3.1,15,,
+12.16.03.2004,4,Sinambela,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03.2004,4,Sinambela,sex,perempuan,,573,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03.2004,4,Sinambela,total,total,,1098,jiwa,2025,registration,total_population,3.1,15,,
+12.16.03.2005,4,Simangulampe,sex,laki_laki,,318,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03.2005,4,Simangulampe,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03.2005,4,Simangulampe,total,total,,669,jiwa,2025,registration,total_population,3.1,15,,
+12.16.03.2007,4,Marbun Tonga Marbun Dolok,sex,laki_laki,,676,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03.2007,4,Marbun Tonga Marbun Dolok,sex,perempuan,,682,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03.2007,4,Marbun Tonga Marbun Dolok,total,total,,1358,jiwa,2025,registration,total_population,3.1,15,,
+12.16.03,3,Bakti Raja,sex,laki_laki,,3935,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+12.16.03,3,Bakti Raja,sex,perempuan,,3987,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+12.16.03,3,Bakti Raja,total,total,,7922,jiwa,2025,registration,total_population,3.1,15,,

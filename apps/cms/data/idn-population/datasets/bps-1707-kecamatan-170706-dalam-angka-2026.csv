@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.06.2002,4,Tik Sirong,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.2002,4,Tik Sirong,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.2002,4,Tik Sirong,total,total,,693,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06.2003,4,Suka Negeri,sex,laki_laki,,900,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.2003,4,Suka Negeri,sex,perempuan,,905,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.2003,4,Suka Negeri,total,total,,1805,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06.2004,4,Ajai Siang,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.2004,4,Ajai Siang,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.2004,4,Ajai Siang,total,total,,668,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06.2005,4,Talang Donok,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.2005,4,Talang Donok,sex,perempuan,,266,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.2005,4,Talang Donok,total,total,,527,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06.2006,4,Talang Donok I,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.2006,4,Talang Donok I,sex,perempuan,,296,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.2006,4,Talang Donok I,total,total,,610,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06.2007,4,Talang Baru I,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.2007,4,Talang Baru I,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.2007,4,Talang Baru I,total,total,,660,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06.2008,4,Talang Baru II,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.2008,4,Talang Baru II,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.2008,4,Talang Baru II,total,total,,753,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06.1001,4,Topos,sex,laki_laki,,571,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06.1001,4,Topos,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06.1001,4,Topos,total,total,,1154,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06,3,Kecamatan Topos,sex,laki_laki,,3499,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.07.06,3,Kecamatan Topos,sex,perempuan,,3371,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.07.06,3,Kecamatan Topos,total,total,,6870,jiwa,2025,registration,total_population,3.1,27,,
+17.07.06,3,Topos,age_group,0-14,laki_laki,730,jiwa,2025,registration,total_population,3.2,29,,0-14
+17.07.06,3,Topos,age_group,0-14,perempuan,710,jiwa,2025,registration,total_population,3.2,29,,0-14
+17.07.06,3,Topos,age_group,0-14,,1440,jiwa,2025,registration,total_population,3.2,29,,0-14
+17.07.06,3,Topos,age_group,15-64,laki_laki,2537,jiwa,2025,registration,total_population,3.2,29,,15-64
+17.07.06,3,Topos,age_group,15-64,perempuan,2396,jiwa,2025,registration,total_population,3.2,29,,15-64
+17.07.06,3,Topos,age_group,15-64,,4933,jiwa,2025,registration,total_population,3.2,29,,15-64
+17.07.06,3,Topos,age_group,65+,laki_laki,232,jiwa,2025,registration,total_population,3.2,29,,≥65
+17.07.06,3,Topos,age_group,65+,perempuan,265,jiwa,2025,registration,total_population,3.2,29,,≥65
+17.07.06,3,Topos,age_group,65+,,497,jiwa,2025,registration,total_population,3.2,29,,≥65
+17.07.06,3,Kecamatan Topos,sex,laki_laki,,3499,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+17.07.06,3,Kecamatan Topos,sex,perempuan,,3371,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+17.07.06,3,Kecamatan Topos,total,total,,6870,jiwa,2025,registration,total_population,3.2,29,,

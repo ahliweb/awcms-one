@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.10.08.2001,4,Sinar Baru,sex,laki_laki,,1043,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2001,4,Sinar Baru,sex,perempuan,,993,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2001,4,Sinar Baru,total,total,,2036,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2002,4,Sukoharjo I,sex,laki_laki,,2803,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2002,4,Sukoharjo I,sex,perempuan,,2709,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2002,4,Sukoharjo I,total,total,,5512,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2003,4,Sukoharjo II,sex,laki_laki,,1862,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2003,4,Sukoharjo II,sex,perempuan,,1791,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2003,4,Sukoharjo II,total,total,,3653,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2005,4,Sukoharjo IV,sex,laki_laki,,947,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2005,4,Sukoharjo IV,sex,perempuan,,855,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2005,4,Sukoharjo IV,total,total,,1802,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2006,4,Panggung Rejo,sex,laki_laki,,1405,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2006,4,Panggung Rejo,sex,perempuan,,1348,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2006,4,Panggung Rejo,total,total,,2753,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2007,4,Pandansari,sex,laki_laki,,1729,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2007,4,Pandansari,sex,perempuan,,1739,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2007,4,Pandansari,total,total,,3468,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2008,4,Pandansurat,sex,laki_laki,,2256,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2008,4,Pandansurat,sex,perempuan,,2053,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2008,4,Pandansurat,total,total,,4309,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2004,4,Sukoharjo III,sex,laki_laki,,2469,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2004,4,Sukoharjo III,sex,perempuan,,2416,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2004,4,Sukoharjo III,total,total,,4885,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2009,4,Keputran,sex,laki_laki,,1436,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2009,4,Keputran,sex,perempuan,,1428,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2009,4,Keputran,total,total,,2864,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2010,4,Sukoyoso,sex,laki_laki,,1003,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2010,4,Sukoyoso,sex,perempuan,,1032,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2010,4,Sukoyoso,total,total,,2035,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2011,4,Siliwangi,sex,laki_laki,,1372,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2011,4,Siliwangi,sex,perempuan,,1327,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2011,4,Siliwangi,total,total,,2699,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2012,4,Waringinsari Barat,sex,laki_laki,,3470,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2012,4,Waringinsari Barat,sex,perempuan,,3358,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2012,4,Waringinsari Barat,total,total,,6828,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2013,4,Pandansari Selatan,sex,laki_laki,,1865,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2013,4,Pandansari Selatan,sex,perempuan,,1750,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2013,4,Pandansari Selatan,total,total,,3615,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2014,4,Sinar Baru Timur,sex,laki_laki,,1160,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2014,4,Sinar Baru Timur,sex,perempuan,,1081,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2014,4,Sinar Baru Timur,total,total,,2241,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2015,4,Panggungrejo Utara,sex,laki_laki,,1090,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2015,4,Panggungrejo Utara,sex,perempuan,,1022,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2015,4,Panggungrejo Utara,total,total,,2112,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08.2016,4,Sukoharjo III Barat,sex,laki_laki,,2370,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08.2016,4,Sukoharjo III Barat,sex,perempuan,,2313,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08.2016,4,Sukoharjo III Barat,total,total,,4683,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08,3,Sukoharjo,sex,laki_laki,,28280,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki
+18.10.08,3,Sukoharjo,sex,perempuan,,27215,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.08,3,Sukoharjo,total,total,,55495,jiwa,2025,registration,total_population,3.1,32,,
+18.10.08,3,Sukoharjo,age_group,0-4,laki_laki,1771,jiwa,2025,registration,total_population,3.2,34,,0-4
+18.10.08,3,Sukoharjo,age_group,0-4,perempuan,1690,jiwa,2025,registration,total_population,3.2,34,,0-4
+18.10.08,3,Sukoharjo,age_group,0-4,,3461,jiwa,2025,registration,total_population,3.2,34,,0-4
+18.10.08,3,Sukoharjo,age_group,5-9,laki_laki,2250,jiwa,2025,registration,total_population,3.2,34,,5-9
+18.10.08,3,Sukoharjo,age_group,5-9,perempuan,2180,jiwa,2025,registration,total_population,3.2,34,,5-9
+18.10.08,3,Sukoharjo,age_group,5-9,,4430,jiwa,2025,registration,total_population,3.2,34,,5-9
+18.10.08,3,Sukoharjo,age_group,10-14,laki_laki,2428,jiwa,2025,registration,total_population,3.2,34,,10-14
+18.10.08,3,Sukoharjo,age_group,10-14,perempuan,2339,jiwa,2025,registration,total_population,3.2,34,,10-14
+18.10.08,3,Sukoharjo,age_group,10-14,,4767,jiwa,2025,registration,total_population,3.2,34,,10-14
+18.10.08,3,Sukoharjo,age_group,15-19,laki_laki,2319,jiwa,2025,registration,total_population,3.2,34,,15-19
+18.10.08,3,Sukoharjo,age_group,15-19,perempuan,2150,jiwa,2025,registration,total_population,3.2,34,,15-19
+18.10.08,3,Sukoharjo,age_group,15-19,,4469,jiwa,2025,registration,total_population,3.2,34,,15-19
+18.10.08,3,Sukoharjo,age_group,20-24,laki_laki,2243,jiwa,2025,registration,total_population,3.2,34,,20-24
+18.10.08,3,Sukoharjo,age_group,20-24,perempuan,2164,jiwa,2025,registration,total_population,3.2,34,,20-24
+18.10.08,3,Sukoharjo,age_group,20-24,,4407,jiwa,2025,registration,total_population,3.2,34,,20-24
+18.10.08,3,Sukoharjo,age_group,25-29,laki_laki,2343,jiwa,2025,registration,total_population,3.2,34,,25-29
+18.10.08,3,Sukoharjo,age_group,25-29,perempuan,2177,jiwa,2025,registration,total_population,3.2,34,,25-29
+18.10.08,3,Sukoharjo,age_group,25-29,,4520,jiwa,2025,registration,total_population,3.2,34,,25-29
+18.10.08,3,Sukoharjo,age_group,30-34,laki_laki,2002,jiwa,2025,registration,total_population,3.2,34,,30-34
+18.10.08,3,Sukoharjo,age_group,30-34,perempuan,1904,jiwa,2025,registration,total_population,3.2,34,,30-34
+18.10.08,3,Sukoharjo,age_group,30-34,,3906,jiwa,2025,registration,total_population,3.2,34,,30-34
+18.10.08,3,Sukoharjo,age_group,35-39,laki_laki,1885,jiwa,2025,registration,total_population,3.2,34,,35-39
+18.10.08,3,Sukoharjo,age_group,35-39,perempuan,1824,jiwa,2025,registration,total_population,3.2,34,,35-39
+18.10.08,3,Sukoharjo,age_group,35-39,,3709,jiwa,2025,registration,total_population,3.2,34,,35-39
+18.10.08,3,Sukoharjo,age_group,40-44,laki_laki,2007,jiwa,2025,registration,total_population,3.2,34,,40-44
+18.10.08,3,Sukoharjo,age_group,40-44,perempuan,1901,jiwa,2025,registration,total_population,3.2,34,,40-44
+18.10.08,3,Sukoharjo,age_group,40-44,,3908,jiwa,2025,registration,total_population,3.2,34,,40-44
+18.10.08,3,Sukoharjo,age_group,45-49,laki_laki,1994,jiwa,2025,registration,total_population,3.2,34,,45-49
+18.10.08,3,Sukoharjo,age_group,45-49,perempuan,2001,jiwa,2025,registration,total_population,3.2,34,,45-49
+18.10.08,3,Sukoharjo,age_group,45-49,,3995,jiwa,2025,registration,total_population,3.2,34,,45-49
+18.10.08,3,Sukoharjo,age_group,50-54,laki_laki,1816,jiwa,2025,registration,total_population,3.2,34,,50-54
+18.10.08,3,Sukoharjo,age_group,50-54,perempuan,1803,jiwa,2025,registration,total_population,3.2,34,,50-54
+18.10.08,3,Sukoharjo,age_group,50-54,,3619,jiwa,2025,registration,total_population,3.2,34,,50-54
+18.10.08,3,Sukoharjo,age_group,55-59,laki_laki,1514,jiwa,2025,registration,total_population,3.2,34,,55-59
+18.10.08,3,Sukoharjo,age_group,55-59,perempuan,1405,jiwa,2025,registration,total_population,3.2,34,,55-59
+18.10.08,3,Sukoharjo,age_group,55-59,,2919,jiwa,2025,registration,total_population,3.2,34,,55-59
+18.10.08,3,Sukoharjo,age_group,60-64,laki_laki,1349,jiwa,2025,registration,total_population,3.2,34,,60-64
+18.10.08,3,Sukoharjo,age_group,60-64,perempuan,1348,jiwa,2025,registration,total_population,3.2,34,,60-64
+18.10.08,3,Sukoharjo,age_group,60-64,,2697,jiwa,2025,registration,total_population,3.2,34,,60-64
+18.10.08,3,Sukoharjo,age_group,65+,laki_laki,2359,jiwa,2025,registration,total_population,3.2,34,,65+
+18.10.08,3,Sukoharjo,age_group,65+,perempuan,2329,jiwa,2025,registration,total_population,3.2,34,,65+
+18.10.08,3,Sukoharjo,age_group,65+,,4688,jiwa,2025,registration,total_population,3.2,34,,65+

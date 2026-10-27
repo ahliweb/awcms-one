@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.11.1003,4,Labuhan Dalam,sex,laki_laki,,6294,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.11.1003,4,Labuhan Dalam,sex,perempuan,,6089,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.11.1003,4,Labuhan Dalam,total,total,,12383,jiwa,2025,registration,total_population,3.1,26,,
+18.71.11.1001,4,Tanjung Senang,sex,laki_laki,,8520,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.11.1001,4,Tanjung Senang,sex,perempuan,,8667,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.11.1001,4,Tanjung Senang,total,total,,17187,jiwa,2025,registration,total_population,3.1,26,,
+18.71.11.1002,4,Way Kandis,sex,laki_laki,,8180,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.11.1002,4,Way Kandis,sex,perempuan,,8152,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.11.1002,4,Way Kandis,total,total,,16332,jiwa,2025,registration,total_population,3.1,26,,
+18.71.11.1004,4,Perumnas Way Kandis,sex,laki_laki,,4156,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.11.1004,4,Perumnas Way Kandis,sex,perempuan,,4347,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.11.1004,4,Perumnas Way Kandis,total,total,,8503,jiwa,2025,registration,total_population,3.1,26,,
+18.71.11.1005,4,Pematang Wangi,sex,laki_laki,,4322,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.11.1005,4,Pematang Wangi,sex,perempuan,,4382,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.11.1005,4,Pematang Wangi,total,total,,8704,jiwa,2025,registration,total_population,3.1,26,,
+18.71.11,3,Tanjung Senang,sex,laki_laki,,31472,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.11,3,Tanjung Senang,sex,perempuan,,31637,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.11,3,Tanjung Senang,total,total,,63109,jiwa,2025,registration,total_population,3.1,26,,

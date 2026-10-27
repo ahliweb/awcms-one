@@ -773,9 +773,24 @@ export async function handleCustomerPushPreferencesPut(
     getDatabaseClient(),
     ctx.request,
     async (tx, tenant): Promise<PreferencesOutcome> => {
-      const auth = await gate(tx, tenant.tenantId, ctx.request, {
-        requireVerified: true
-      });
+      // Withdrawal must always be possible (ADR-0048): a body whose every
+      // change is `enabled: false` is gated like the DELETE routes (blocked
+      // and unverified accounts allowed); enabling anything, or a body that
+      // does not parse, keeps the strict gate. Validation is unchanged: the
+      // same parser runs below and reports its errors after the gate.
+      const early =
+        body.kind === "ok" ? parsePreferencesBody(body.value) : null;
+      const pureWithdrawal =
+        early !== null &&
+        early.ok &&
+        early.value.changes.length > 0 &&
+        early.value.changes.every((change) => change.enabled === false);
+      const auth = await gate(
+        tx,
+        tenant.tenantId,
+        ctx.request,
+        pureWithdrawal ? { allowBlocked: true } : { requireVerified: true }
+      );
       if (auth.kind !== "ok") return auth;
 
       const budget = await checkSharedRateLimit(
@@ -788,7 +803,7 @@ export async function handleCustomerPushPreferencesPut(
 
       if (body.kind !== "ok") return { kind: "body", failure: body };
 
-      const parsed = parsePreferencesBody(body.value);
+      const parsed = early ?? parsePreferencesBody(body.value);
       if (!parsed.ok) return { kind: "invalid", errors: parsed.errors };
 
       const applied = await applyPreferenceChanges(

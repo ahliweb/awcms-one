@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-2105-kecamatan-210501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.05.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siantan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepulauan Anambas",
+  "publisherDomain": "2105",
+  "publisherWebsite": "https://anambaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepulauan Anambas (https://anambaskab.bps.go.id), publikasi \"Kecamatan Siantan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2105040",
+  "publicationNumber": "21050.26010",
+  "issn": "2597-596X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://anambaskab.bps.go.id/id/publication/2026/09/28/11126d3057f2312fc1fe999c/kecamatan-siantan-dalam-angka-2026.html",
+  "sourceFileSha256": "f0cdcd44af0bee669efec31308e7de2b0e135fdb4d5e3b9cff1a141a4f9d77aa",
+  "sourceFileBytes": 8118584,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepulauan Anambas.",
+  "csvPath": "datasets/bps-2105-kecamatan-210501-dalam-angka-2026.csv",
+  "csvSha256": "e5d22f117bb1093bbc646670a32cdb894504f6c3804bf14d5f8e566051fe9bb4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Siantan, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siantan, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"003 Tarempa Barat\": unmatched ",
+    "table 3.1: row not stored: row \"004 Tarempa\": unmatched ",
+    "table 3.1: row not stored: row \"003 Tarempa Barat\": unmatched ",
+    "table 3.1: row not stored: row \"004 Tarempa\": unmatched "
+  ]
+}

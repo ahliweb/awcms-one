@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.09.2006,4,Perdamaian,sex,laki_laki,,826,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2006,4,Perdamaian,sex,perempuan,,822,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2006,4,Perdamaian,total,total,,1648,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2003,4,Sungai Gedang,sex,laki_laki,,1684,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2003,4,Sungai Gedang,sex,perempuan,,1700,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2003,4,Sungai Gedang,total,total,,3384,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.1001,4,Sungai Benteng,sex,laki_laki,,3102,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.1001,4,Sungai Benteng,sex,perempuan,,3020,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.1001,4,Sungai Benteng,total,total,,6122,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2005,4,Bukit Murau,sex,laki_laki,,1252,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2005,4,Bukit Murau,sex,perempuan,,1173,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2005,4,Bukit Murau,total,total,,2425,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2007,4,Pasar Singkut,sex,laki_laki,,3300,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2007,4,Pasar Singkut,sex,perempuan,,3142,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2007,4,Pasar Singkut,total,total,,6442,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2002,4,Bukit Tigo,sex,laki_laki,,2643,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2002,4,Bukit Tigo,sex,perempuan,,2549,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2002,4,Bukit Tigo,total,total,,5192,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2004,4,Payo Lebar,sex,laki_laki,,2901,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2004,4,Payo Lebar,sex,perempuan,,2830,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2004,4,Payo Lebar,total,total,,5731,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2009,4,Simpang Nibung,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2009,4,Simpang Nibung,sex,perempuan,,709,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2009,4,Simpang Nibung,total,total,,1438,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2008,4,Siliwangi,sex,laki_laki,,2071,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2008,4,Siliwangi,sex,perempuan,,1993,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2008,4,Siliwangi,total,total,,4064,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2012,4,Argo Sari,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2012,4,Argo Sari,sex,perempuan,,677,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2012,4,Argo Sari,total,total,,1349,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2011,4,Bukit Bumi Raya,sex,laki_laki,,1131,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2011,4,Bukit Bumi Raya,sex,perempuan,,1069,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2011,4,Bukit Bumi Raya,total,total,,2200,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09.2010,4,Bukit Talang Mas,sex,laki_laki,,1075,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09.2010,4,Bukit Talang Mas,sex,perempuan,,1016,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09.2010,4,Bukit Talang Mas,total,total,,2091,jiwa,2025,registration,total_population,3.1,28,,
+15.03.09,3,Singkut,sex,laki_laki,,22111,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.09,3,Singkut,sex,perempuan,,21403,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.09,3,Singkut,total,total,,43514,jiwa,2025,registration,total_population,3.1,28,,

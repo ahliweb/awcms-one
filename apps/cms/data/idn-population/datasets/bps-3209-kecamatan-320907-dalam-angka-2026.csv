@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.07.2010,4,Picungpugur,sex,laki_laki,,839,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2010,4,Picungpugur,sex,perempuan,,836,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2010,4,Picungpugur,total,total,,1675,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2001,4,Leuwidingding,sex,laki_laki,,1702,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2001,4,Leuwidingding,sex,perempuan,,1665,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2001,4,Leuwidingding,total,total,,3367,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2002,4,Asem,sex,laki_laki,,1897,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2002,4,Asem,sex,perempuan,,1850,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2002,4,Asem,total,total,,3747,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2003,4,Cipeujeuh Kulon,sex,laki_laki,,3204,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2003,4,Cipeujeuh Kulon,sex,perempuan,,3057,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2003,4,Cipeujeuh Kulon,total,total,,6261,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2005,4,Sindanglaut,sex,laki_laki,,2485,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2005,4,Sindanglaut,sex,perempuan,,2389,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2005,4,Sindanglaut,total,total,,4874,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2004,4,Cipeujeuh Wetan,sex,laki_laki,,4547,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2004,4,Cipeujeuh Wetan,sex,perempuan,,4455,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2004,4,Cipeujeuh Wetan,total,total,,9002,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2006,4,Lemahabang Kulon,sex,laki_laki,,2453,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2006,4,Lemahabang Kulon,sex,perempuan,,2427,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2006,4,Lemahabang Kulon,total,total,,4880,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2007,4,Lemahabang,sex,laki_laki,,1816,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2007,4,Lemahabang,sex,perempuan,,1820,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2007,4,Lemahabang,total,total,,3636,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2008,4,Sigong,sex,laki_laki,,3496,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2008,4,Sigong,sex,perempuan,,3408,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2008,4,Sigong,total,total,,6904,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2009,4,Sarajaya,sex,laki_laki,,2568,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2009,4,Sarajaya,sex,perempuan,,2509,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2009,4,Sarajaya,total,total,,5077,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2011,4,Tuk Karangsuwung,sex,laki_laki,,1740,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2011,4,Tuk Karangsuwung,sex,perempuan,,1662,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2011,4,Tuk Karangsuwung,total,total,,3402,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2012,4,Belawa,sex,laki_laki,,3215,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2012,4,Belawa,sex,perempuan,,3104,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2012,4,Belawa,total,total,,6319,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07.2013,4,Wangkelang,sex,laki_laki,,1416,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07.2013,4,Wangkelang,sex,perempuan,,1397,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07.2013,4,Wangkelang,total,total,,2813,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07,3,Kecamatan Lemahabang,sex,laki_laki,,31378,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.07,3,Kecamatan Lemahabang,sex,perempuan,,30579,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.07,3,Kecamatan Lemahabang,total,total,,61957,jiwa,2025,registration,total_population,3.1,52,,
+32.09.07,3,Lemahabang,age_group,0-4,laki_laki,2074,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.07,3,Lemahabang,age_group,0-4,perempuan,2013,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.07,3,Lemahabang,age_group,0-4,,4087,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.07,3,Lemahabang,age_group,5-9,laki_laki,2758,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.07,3,Lemahabang,age_group,5-9,perempuan,2549,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.07,3,Lemahabang,age_group,5-9,,5307,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.07,3,Lemahabang,age_group,10-14,laki_laki,2689,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.07,3,Lemahabang,age_group,10-14,perempuan,2488,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.07,3,Lemahabang,age_group,10-14,,5177,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.07,3,Lemahabang,age_group,15-19,laki_laki,2497,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.07,3,Lemahabang,age_group,15-19,perempuan,2385,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.07,3,Lemahabang,age_group,15-19,,4882,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.07,3,Lemahabang,age_group,20-24,laki_laki,2550,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.07,3,Lemahabang,age_group,20-24,perempuan,2317,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.07,3,Lemahabang,age_group,20-24,,4867,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.07,3,Lemahabang,age_group,25-29,laki_laki,2583,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.07,3,Lemahabang,age_group,25-29,perempuan,2396,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.07,3,Lemahabang,age_group,25-29,,4979,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.07,3,Lemahabang,age_group,30-34,laki_laki,2349,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.07,3,Lemahabang,age_group,30-34,perempuan,2209,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.07,3,Lemahabang,age_group,30-34,,4558,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.07,3,Lemahabang,age_group,35-39,laki_laki,2199,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.07,3,Lemahabang,age_group,35-39,perempuan,2050,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.07,3,Lemahabang,age_group,35-39,,4249,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.07,3,Lemahabang,age_group,40-44,laki_laki,2337,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.07,3,Lemahabang,age_group,40-44,perempuan,2315,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.07,3,Lemahabang,age_group,40-44,,4652,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.07,3,Lemahabang,age_group,45-49,laki_laki,2241,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.07,3,Lemahabang,age_group,45-49,perempuan,2227,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.07,3,Lemahabang,age_group,45-49,,4468,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.07,3,Lemahabang,age_group,50-54,laki_laki,1976,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.07,3,Lemahabang,age_group,50-54,perempuan,2017,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.07,3,Lemahabang,age_group,50-54,,3993,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.07,3,Lemahabang,age_group,55-59,laki_laki,1729,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.07,3,Lemahabang,age_group,55-59,perempuan,1692,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.07,3,Lemahabang,age_group,55-59,,3421,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.07,3,Lemahabang,age_group,60-64,laki_laki,1209,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.07,3,Lemahabang,age_group,60-64,perempuan,1339,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.07,3,Lemahabang,age_group,60-64,,2548,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.07,3,Lemahabang,age_group,65-69,laki_laki,956,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.07,3,Lemahabang,age_group,65-69,perempuan,1013,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.07,3,Lemahabang,age_group,65-69,,1969,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.07,3,Lemahabang,age_group,70-74,laki_laki,600,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.07,3,Lemahabang,age_group,70-74,perempuan,661,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.07,3,Lemahabang,age_group,70-74,,1261,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.07,3,Lemahabang,age_group,75+,laki_laki,631,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.07,3,Lemahabang,age_group,75+,perempuan,908,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.07,3,Lemahabang,age_group,75+,,1539,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.07,3,Kecamatan Lemahabang,sex,laki_laki,,31378,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.07,3,Kecamatan Lemahabang,sex,perempuan,,30579,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.07,3,Kecamatan Lemahabang,total,total,,61957,jiwa,2025,registration,total_population,3.2,54,,

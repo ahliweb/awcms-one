@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3403-kecamatan-340312-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.03.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Semin Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunungkidul",
+  "publisherDomain": "3403",
+  "publisherWebsite": "https://gunungkidulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunungkidul (https://gunungkidulkab.bps.go.id), publikasi \"Kecamatan Semin Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3403150",
+  "publicationNumber": "34030.26025",
+  "issn": "2614-9834",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gunungkidulkab.bps.go.id/id/publication/2026/09/28/980306b5c2e82fcf214fc360/kecamatan-semin-dalam-angka-2026.html",
+  "sourceFileSha256": "ee7d8ab6527fbaed2b8dd382600dfef1c4382cbd8f363eaeeeca9f22b5406f3d",
+  "sourceFileBytes": 7178498,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gunungkidul.",
+  "csvPath": "datasets/bps-3403-kecamatan-340312-dalam-angka-2026.csv",
+  "csvSha256": "17843e6c6ac29604e8491a9b0167325a7ef758f51b2a44d190a8f0150d326f20",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Semin, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

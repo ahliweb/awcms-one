@@ -1,0 +1,116 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.74.05,3,Datuk Bandar,total,total,,41428,jiwa,2020,projection,total_population,3.1.1,81,,
+12.74.05,3,Datuk Bandar,total,total,,45017,jiwa,2024,projection,total_population,3.1.1,81,,
+12.74.05,3,Datuk Bandar,total,total,,45909,jiwa,2025,projection,total_population,3.1.1,81,,
+12.74.06,3,Datuk Bandar Timur,total,total,,30407,jiwa,2020,projection,total_population,3.1.1,81,,
+12.74.06,3,Datuk Bandar Timur,total,total,,32024,jiwa,2024,projection,total_population,3.1.1,81,,
+12.74.06,3,Datuk Bandar Timur,total,total,,32403,jiwa,2025,projection,total_population,3.1.1,81,,
+12.74.01,3,Tanjungbalai Selatan,total,total,,19223,jiwa,2020,projection,total_population,3.1.1,81,,
+12.74.01,3,Tanjungbalai Selatan,total,total,,19337,jiwa,2024,projection,total_population,3.1.1,81,,
+12.74.01,3,Tanjungbalai Selatan,total,total,,19342,jiwa,2025,projection,total_population,3.1.1,81,,
+12.74.02,3,Tanjungbalai Utara,total,total,,16128,jiwa,2020,projection,total_population,3.1.1,81,,
+12.74.02,3,Tanjungbalai Utara,total,total,,16313,jiwa,2024,projection,total_population,3.1.1,81,,
+12.74.02,3,Tanjungbalai Utara,total,total,,16340,jiwa,2025,projection,total_population,3.1.1,81,,
+12.74.03,3,Sei Tualang Raso,total,total,,27207,jiwa,2020,projection,total_population,3.1.1,81,,
+12.74.03,3,Sei Tualang Raso,total,total,,29322,jiwa,2024,projection,total_population,3.1.1,81,,
+12.74.03,3,Sei Tualang Raso,total,total,,29841,jiwa,2025,projection,total_population,3.1.1,81,,
+12.74.04,3,Teluk Nibung,total,total,,41143,jiwa,2020,projection,total_population,3.1.1,81,,
+12.74.04,3,Teluk Nibung,total,total,,43634,jiwa,2024,projection,total_population,3.1.1,81,,
+12.74.04,3,Teluk Nibung,total,total,,44228,jiwa,2025,projection,total_population,3.1.1,81,,
+12.74,2,Kota Tanjung Balai,total,total,,175536,jiwa,2020,projection,total_population,3.1.1,81,,
+12.74,2,Kota Tanjung Balai,total,total,,185647,jiwa,2024,projection,total_population,3.1.1,81,,
+12.74,2,Kota Tanjung Balai,total,total,,188063,jiwa,2025,projection,total_population,3.1.1,81,,
+12.74.05,3,Datuk Bandar,religion,islam,,33168,jiwa,2024,registration,total_population,4.5.1,190,,Islam
+12.74.05,3,Datuk Bandar,religion,kristen,,8941,jiwa,2024,registration,total_population,4.5.1,190,,Protestan
+12.74.05,3,Datuk Bandar,religion,katolik,,1057,jiwa,2024,registration,total_population,4.5.1,190,,Katolik
+12.74.05,3,Datuk Bandar,religion,hindu,,6,jiwa,2024,registration,total_population,4.5.1,190,,Hindu
+12.74.05,3,Datuk Bandar,religion,buddha,,100,jiwa,2024,registration,total_population,4.5.1,190,,Budha
+12.74.05,3,Datuk Bandar,religion,khonghucu,,2,jiwa,2024,registration,total_population,4.5.1,190,,Konghucu
+12.74.05,3,Datuk Bandar,religion,lainnya,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Lainnya
+12.74.06,3,Datuk Bandar Timur,religion,islam,,31296,jiwa,2024,registration,total_population,4.5.1,190,,Islam
+12.74.06,3,Datuk Bandar Timur,religion,kristen,,865,jiwa,2024,registration,total_population,4.5.1,190,,Protestan
+12.74.06,3,Datuk Bandar Timur,religion,katolik,,90,jiwa,2024,registration,total_population,4.5.1,190,,Katolik
+12.74.06,3,Datuk Bandar Timur,religion,hindu,,2,jiwa,2024,registration,total_population,4.5.1,190,,Hindu
+12.74.06,3,Datuk Bandar Timur,religion,buddha,,895,jiwa,2024,registration,total_population,4.5.1,190,,Budha
+12.74.06,3,Datuk Bandar Timur,religion,khonghucu,,12,jiwa,2024,registration,total_population,4.5.1,190,,Konghucu
+12.74.06,3,Datuk Bandar Timur,religion,lainnya,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Lainnya
+12.74.01,3,Tanjungbalai Selatan,religion,islam,,13122,jiwa,2024,registration,total_population,4.5.1,190,,Islam
+12.74.01,3,Tanjungbalai Selatan,religion,kristen,,878,jiwa,2024,registration,total_population,4.5.1,190,,Protestan
+12.74.01,3,Tanjungbalai Selatan,religion,katolik,,135,jiwa,2024,registration,total_population,4.5.1,190,,Katolik
+12.74.01,3,Tanjungbalai Selatan,religion,hindu,,23,jiwa,2024,registration,total_population,4.5.1,190,,Hindu
+12.74.01,3,Tanjungbalai Selatan,religion,buddha,,5865,jiwa,2024,registration,total_population,4.5.1,190,,Budha
+12.74.01,3,Tanjungbalai Selatan,religion,khonghucu,,22,jiwa,2024,registration,total_population,4.5.1,190,,Konghucu
+12.74.01,3,Tanjungbalai Selatan,religion,lainnya,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Lainnya
+12.74.02,3,Tanjungbalai Utara,religion,islam,,16104,jiwa,2024,registration,total_population,4.5.1,190,,Islam
+12.74.02,3,Tanjungbalai Utara,religion,kristen,,1207,jiwa,2024,registration,total_population,4.5.1,190,,Protestan
+12.74.02,3,Tanjungbalai Utara,religion,katolik,,73,jiwa,2024,registration,total_population,4.5.1,190,,Katolik
+12.74.02,3,Tanjungbalai Utara,religion,hindu,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Hindu
+12.74.02,3,Tanjungbalai Utara,religion,buddha,,1124,jiwa,2024,registration,total_population,4.5.1,190,,Budha
+12.74.02,3,Tanjungbalai Utara,religion,khonghucu,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Konghucu
+12.74.02,3,Tanjungbalai Utara,religion,lainnya,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Lainnya
+12.74.03,3,Sei Tualang Raso,religion,islam,,27194,jiwa,2024,registration,total_population,4.5.1,190,,Islam
+12.74.03,3,Sei Tualang Raso,religion,kristen,,1075,jiwa,2024,registration,total_population,4.5.1,190,,Protestan
+12.74.03,3,Sei Tualang Raso,religion,katolik,,98,jiwa,2024,registration,total_population,4.5.1,190,,Katolik
+12.74.03,3,Sei Tualang Raso,religion,hindu,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Hindu
+12.74.03,3,Sei Tualang Raso,religion,buddha,,212,jiwa,2024,registration,total_population,4.5.1,190,,Budha
+12.74.03,3,Sei Tualang Raso,religion,khonghucu,,1,jiwa,2024,registration,total_population,4.5.1,190,,Konghucu
+12.74.03,3,Sei Tualang Raso,religion,lainnya,,7,jiwa,2024,registration,total_population,4.5.1,190,,Lainnya
+12.74.04,3,Teluk Nibung,religion,islam,,44151,jiwa,2024,registration,total_population,4.5.1,190,,Islam
+12.74.04,3,Teluk Nibung,religion,kristen,,101,jiwa,2024,registration,total_population,4.5.1,190,,Protestan
+12.74.04,3,Teluk Nibung,religion,katolik,,6,jiwa,2024,registration,total_population,4.5.1,190,,Katolik
+12.74.04,3,Teluk Nibung,religion,hindu,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Hindu
+12.74.04,3,Teluk Nibung,religion,buddha,,107,jiwa,2024,registration,total_population,4.5.1,190,,Budha
+12.74.04,3,Teluk Nibung,religion,khonghucu,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Konghucu
+12.74.04,3,Teluk Nibung,religion,lainnya,,0,jiwa,2024,registration,total_population,4.5.1,190,nil,Lainnya
+12.74,2,Kota Tanjung Balai,religion,islam,,165035,jiwa,2024,registration,total_population,4.5.1,190,,Islam
+12.74,2,Kota Tanjung Balai,religion,kristen,,13067,jiwa,2024,registration,total_population,4.5.1,190,,Protestan
+12.74,2,Kota Tanjung Balai,religion,katolik,,1459,jiwa,2024,registration,total_population,4.5.1,190,,Katolik
+12.74,2,Kota Tanjung Balai,religion,hindu,,31,jiwa,2024,registration,total_population,4.5.1,190,,Hindu
+12.74,2,Kota Tanjung Balai,religion,buddha,,8303,jiwa,2024,registration,total_population,4.5.1,190,,Budha
+12.74,2,Kota Tanjung Balai,religion,khonghucu,,37,jiwa,2024,registration,total_population,4.5.1,190,,Konghucu
+12.74,2,Kota Tanjung Balai,religion,lainnya,,7,jiwa,2024,registration,total_population,4.5.1,190,,Lainnya
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/padi_padian,,91319,rupiah,2024,survey_estimate,per_capita,10.1,323,,Padi-padian
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/padi_padian,,81078,rupiah,2023,survey_estimate,per_capita,10.1,323,,Padi-padian
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/umbi_umbian,,7553,rupiah,2024,survey_estimate,per_capita,10.1,323,,Umbi-umbian
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/umbi_umbian,,5108,rupiah,2023,survey_estimate,per_capita,10.1,323,,Umbi-umbian
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,103120,rupiah,2024,survey_estimate,per_capita,10.1,323,,Ikan/udang/cumi/kerang
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,96071,rupiah,2023,survey_estimate,per_capita,10.1,323,,Ikan/udang/cumi/kerang
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/daging,,23254,rupiah,2024,survey_estimate,per_capita,10.1,323,,Daging
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/daging,,22851,rupiah,2023,survey_estimate,per_capita,10.1,323,,Daging
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/telur_dan_susu,,28386,rupiah,2024,survey_estimate,per_capita,10.1,323,,Telur dan susu
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/telur_dan_susu,,37972,rupiah,2023,survey_estimate,per_capita,10.1,323,,Telur dan susu
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/sayur_sayuran,,62137,rupiah,2024,survey_estimate,per_capita,10.1,323,,Sayur-sayuran
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/sayur_sayuran,,50833,rupiah,2023,survey_estimate,per_capita,10.1,323,,Sayur-sayuran
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/kacang_kacangan,,7630,rupiah,2024,survey_estimate,per_capita,10.1,323,,Kacang-kacangan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/kacang_kacangan,,6916,rupiah,2023,survey_estimate,per_capita,10.1,323,,Kacang-kacangan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/buah_buahan,,40718,rupiah,2024,survey_estimate,per_capita,10.1,323,,Buah-buahan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/buah_buahan,,33304,rupiah,2023,survey_estimate,per_capita,10.1,323,,Buah-buahan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21846,rupiah,2024,survey_estimate,per_capita,10.1,323,,Minyak dan kelapa
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17898,rupiah,2023,survey_estimate,per_capita,10.1,323,,Minyak dan kelapa
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/bahan_minuman,,18164,rupiah,2024,survey_estimate,per_capita,10.1,323,,Bahan minuman
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/bahan_minuman,,17553,rupiah,2023,survey_estimate,per_capita,10.1,323,,Bahan minuman
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/bumbu_bumbuan,,13020,rupiah,2024,survey_estimate,per_capita,10.1,323,,Bumbu-bumbuan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/bumbu_bumbuan,,12840,rupiah,2023,survey_estimate,per_capita,10.1,323,,Bumbu-bumbuan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/konsumsi_lainnya,,9005,rupiah,2024,survey_estimate,per_capita,10.1,323,,Konsumsi lainnya
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/konsumsi_lainnya,,8086,rupiah,2023,survey_estimate,per_capita,10.1,323,,Konsumsi lainnya
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,243259,rupiah,2024,survey_estimate,per_capita,10.1,323,,Makanan dan minuman jadi
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,232673,rupiah,2023,survey_estimate,per_capita,10.1,323,,Makanan dan minuman jadi
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/rokok,,118285,rupiah,2024,survey_estimate,per_capita,10.1,323,,Rokok
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/rokok,,102973,rupiah,2023,survey_estimate,per_capita,10.1,323,,Rokok
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/jumlah_makanan,,787697,rupiah,2024,survey_estimate,per_capita,10.1,323,,Jumlah makanan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/jumlah_makanan,,726156,rupiah,2023,survey_estimate,per_capita,10.1,323,,Jumlah makanan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,271998,rupiah,2024,survey_estimate,per_capita,10.1,323,,Perumahan dan fasilitas rumah tangga
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,262997,rupiah,2023,survey_estimate,per_capita,10.1,323,,Perumahan dan fasilitas rumah tangga
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,129209,rupiah,2024,survey_estimate,per_capita,10.1,323,,Aneka barang dan jasa
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120615,rupiah,2023,survey_estimate,per_capita,10.1,323,,Aneka barang dan jasa
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,42205,rupiah,2024,survey_estimate,per_capita,10.1,323,,"Pakaian, alas kaki, dan tutup kepala"
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36506,rupiah,2023,survey_estimate,per_capita,10.1,323,,"Pakaian, alas kaki, dan tutup kepala"
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/barang_tahan_lama,,28569,rupiah,2024,survey_estimate,per_capita,10.1,323,,Barang tahan lama
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/barang_tahan_lama,,20040,rupiah,2023,survey_estimate,per_capita,10.1,323,,Barang tahan lama
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46825,rupiah,2024,survey_estimate,per_capita,10.1,323,,"Pajak, pungutan, dan asuransi"
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43980,rupiah,2023,survey_estimate,per_capita,10.1,323,,"Pajak, pungutan, dan asuransi"
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,3138,rupiah,2023,survey_estimate,per_capita,10.1,323,,Keperluan pesta dan upacara/kenduri
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,534756,rupiah,2024,survey_estimate,per_capita,10.1,323,,Jumlah bukan makanan
+12.74,2,Kota Tanjungbalai,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,487277,rupiah,2023,survey_estimate,per_capita,10.1,323,,Jumlah bukan makanan
+12.74,2,Kota Tanjungbalai,expenditure,total,,1322453,rupiah,2024,survey_estimate,per_capita,10.1,323,,
+12.74,2,Kota Tanjungbalai,expenditure,total,,1212640,rupiah,2023,survey_estimate,per_capita,10.1,323,,

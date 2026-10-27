@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.03.1002,4,Bangka,sex,laki_laki,,12835,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.03.1002,4,Bangka,sex,perempuan,,12545,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.03.1002,4,Bangka,total,total,,25380,jiwa,2025,registration,total_population,3.1,26,,
+31.74.03.1003,4,Pela Mampang,sex,laki_laki,,25333,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.03.1003,4,Pela Mampang,sex,perempuan,,25182,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.03.1003,4,Pela Mampang,total,total,,50515,jiwa,2025,registration,total_population,3.1,26,,
+31.74.03.1004,4,Tegal Parang,sex,laki_laki,,19906,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.03.1004,4,Tegal Parang,sex,perempuan,,19536,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.03.1004,4,Tegal Parang,total,total,,39442,jiwa,2025,registration,total_population,3.1,26,,
+31.74.03.1005,4,Kuningan Barat,sex,laki_laki,,7516,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.03.1005,4,Kuningan Barat,sex,perempuan,,7521,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.03,3,Mampang Prapatan,sex,laki_laki,,76417,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.03,3,Mampang Prapatan,sex,perempuan,,75278,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.74.03,3,Mampang Prapatan,total,total,,151695,jiwa,2025,registration,total_population,3.1,26,,

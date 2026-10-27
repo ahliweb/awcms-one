@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.39.2009,4,Suranenggala Kulon,sex,laki_laki,,3074,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2009,4,Suranenggala Kulon,sex,perempuan,,3005,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2009,4,Suranenggala Kulon,total,total,,6079,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2006,4,Surakarta,sex,laki_laki,,2742,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2006,4,Surakarta,sex,perempuan,,2702,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2006,4,Surakarta,total,total,,5444,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2005,4,Keraton,sex,laki_laki,,2478,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2005,4,Keraton,sex,perempuan,,2483,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2005,4,Keraton,total,total,,4961,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2004,4,Purwawinangun,sex,laki_laki,,4652,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2004,4,Purwawinangun,sex,perempuan,,4638,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2004,4,Purwawinangun,total,total,,9290,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2003,4,Muara,sex,laki_laki,,2366,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2003,4,Muara,sex,perempuan,,2265,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2003,4,Muara,total,total,,4631,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2007,4,Karangreja,sex,laki_laki,,2592,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2007,4,Karangreja,sex,perempuan,,2625,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2007,4,Karangreja,total,total,,5217,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2008,4,Suranenggala Kidul,sex,laki_laki,,2691,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2008,4,Suranenggala Kidul,sex,perempuan,,2664,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2008,4,Suranenggala Kidul,total,total,,5355,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2010,4,Suranenggala Lor,sex,laki_laki,,2509,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2010,4,Suranenggala Lor,sex,perempuan,,2475,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2010,4,Suranenggala Lor,total,total,,4984,jiwa,2025,registration,total_population,3.1,52,,
+32.09.39.2011,4,Suranenggala,sex,laki_laki,,2689,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.39.2011,4,Suranenggala,sex,perempuan,,2697,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.39.2011,4,Suranenggala,total,total,,5386,jiwa,2025,registration,total_population,3.1,52,,

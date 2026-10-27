@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.07.2007,4,Lembor,sex,laki_laki,,1380,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2007,4,Lembor,sex,perempuan,,1368,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2007,4,Lembor,total,total,,2748,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2005,4,Tlogoretno,sex,laki_laki,,910,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2005,4,Tlogoretno,sex,perempuan,,916,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2005,4,Tlogoretno,total,total,,1826,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2003,4,Sidomukti,sex,laki_laki,,2610,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2003,4,Sidomukti,sex,perempuan,,2659,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2003,4,Sidomukti,total,total,,5269,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2001,4,Lohgung,sex,laki_laki,,1833,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2001,4,Lohgung,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2001,4,Lohgung,total,total,,3621,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2002,4,Labuhan,sex,laki_laki,,3459,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2002,4,Labuhan,sex,perempuan,,3472,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2002,4,Labuhan,total,total,,6931,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2004,4,Brengkok,sex,laki_laki,,7247,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2004,4,Brengkok,sex,perempuan,,7048,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2004,4,Brengkok,total,total,,14295,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2006,4,Sendangharjo,sex,laki_laki,,3463,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2006,4,Sendangharjo,sex,perempuan,,3449,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2006,4,Sendangharjo,total,total,,6912,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2008,4,Sedayulawas,sex,laki_laki,,9013,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2008,4,Sedayulawas,sex,perempuan,,8443,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2008,4,Sedayulawas,total,total,,17456,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.2009,4,Sumberagung,sex,laki_laki,,1752,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.2009,4,Sumberagung,sex,perempuan,,1645,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.2009,4,Sumberagung,total,total,,3397,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07.1010,4,Brondong,sex,laki_laki,,8380,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07.1010,4,Brondong,sex,perempuan,,8277,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07.1010,4,Brondong,total,total,,16657,jiwa,2025,registration,total_population,3.1,29,,
+35.24.07,3,Kecamatan Brondong,sex,laki_laki,,40047,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.24.07,3,Kecamatan Brondong,sex,perempuan,,39065,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.24.07,3,Kecamatan Brondong,total,total,,79112,jiwa,2025,registration,total_population,3.1,29,,

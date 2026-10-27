@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71,2,Kota Bandar Lampung,age_group,0-4,laki_laki,35.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,0 - 4
+18.71,2,Kota Bandar Lampung,age_group,0-4,perempuan,33.7,ribu_jiwa,2025,registration,total_population,3.1.2,87,,0 - 4
+18.71,2,Kota Bandar Lampung,age_group,0-4,,69.6,ribu_jiwa,2025,registration,total_population,3.1.2,87,,0 - 4
+18.71,2,Kota Bandar Lampung,age_group,5-9,laki_laki,49.2,ribu_jiwa,2025,registration,total_population,3.1.2,87,,5 - 9
+18.71,2,Kota Bandar Lampung,age_group,5-9,perempuan,45.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,5 - 9
+18.71,2,Kota Bandar Lampung,age_group,5-9,,95.0,ribu_jiwa,2025,registration,total_population,3.1.2,87,,5 - 9
+18.71,2,Kota Bandar Lampung,age_group,10-14,laki_laki,51.2,ribu_jiwa,2025,registration,total_population,3.1.2,87,,10 - 14
+18.71,2,Kota Bandar Lampung,age_group,10-14,perempuan,48.0,ribu_jiwa,2025,registration,total_population,3.1.2,87,,10 - 14
+18.71,2,Kota Bandar Lampung,age_group,10-14,,99.2,ribu_jiwa,2025,registration,total_population,3.1.2,87,,10 - 14
+18.71,2,Kota Bandar Lampung,age_group,15-19,laki_laki,46.4,ribu_jiwa,2025,registration,total_population,3.1.2,87,,15 - 19
+18.71,2,Kota Bandar Lampung,age_group,15-19,perempuan,44.0,ribu_jiwa,2025,registration,total_population,3.1.2,87,,15 - 19
+18.71,2,Kota Bandar Lampung,age_group,15-19,,90.4,ribu_jiwa,2025,registration,total_population,3.1.2,87,,15 - 19
+18.71,2,Kota Bandar Lampung,age_group,20-24,laki_laki,43.3,ribu_jiwa,2025,registration,total_population,3.1.2,87,,20 - 24
+18.71,2,Kota Bandar Lampung,age_group,20-24,perempuan,41.3,ribu_jiwa,2025,registration,total_population,3.1.2,87,,20 - 24
+18.71,2,Kota Bandar Lampung,age_group,20-24,,84.6,ribu_jiwa,2025,registration,total_population,3.1.2,87,,20 - 24
+18.71,2,Kota Bandar Lampung,age_group,25-29,laki_laki,43.5,ribu_jiwa,2025,registration,total_population,3.1.2,87,,25 - 29
+18.71,2,Kota Bandar Lampung,age_group,25-29,perempuan,42.4,ribu_jiwa,2025,registration,total_population,3.1.2,87,,25 - 29
+18.71,2,Kota Bandar Lampung,age_group,25-29,,85.8,ribu_jiwa,2025,registration,total_population,3.1.2,87,,25 - 29
+18.71,2,Kota Bandar Lampung,age_group,30-34,laki_laki,41.2,ribu_jiwa,2025,registration,total_population,3.1.2,87,,30 - 34
+18.71,2,Kota Bandar Lampung,age_group,30-34,perempuan,41.2,ribu_jiwa,2025,registration,total_population,3.1.2,87,,30 - 34
+18.71,2,Kota Bandar Lampung,age_group,30-34,,82.5,ribu_jiwa,2025,registration,total_population,3.1.2,87,,30 - 34
+18.71,2,Kota Bandar Lampung,age_group,35-39,laki_laki,41.7,ribu_jiwa,2025,registration,total_population,3.1.2,87,,35 - 39
+18.71,2,Kota Bandar Lampung,age_group,35-39,perempuan,41.5,ribu_jiwa,2025,registration,total_population,3.1.2,87,,35 - 39
+18.71,2,Kota Bandar Lampung,age_group,35-39,,83.3,ribu_jiwa,2025,registration,total_population,3.1.2,87,,35 - 39
+18.71,2,Kota Bandar Lampung,age_group,40-44,laki_laki,42.5,ribu_jiwa,2025,registration,total_population,3.1.2,87,,40 - 44
+18.71,2,Kota Bandar Lampung,age_group,40-44,perempuan,41.6,ribu_jiwa,2025,registration,total_population,3.1.2,87,,40 - 44
+18.71,2,Kota Bandar Lampung,age_group,40-44,,84.1,ribu_jiwa,2025,registration,total_population,3.1.2,87,,40 - 44
+18.71,2,Kota Bandar Lampung,age_group,45-49,laki_laki,38.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,45 - 49
+18.71,2,Kota Bandar Lampung,age_group,45-49,perempuan,37.5,ribu_jiwa,2025,registration,total_population,3.1.2,87,,45 - 49
+18.71,2,Kota Bandar Lampung,age_group,45-49,,76.4,ribu_jiwa,2025,registration,total_population,3.1.2,87,,45 - 49
+18.71,2,Kota Bandar Lampung,age_group,50-54,laki_laki,31.8,ribu_jiwa,2025,registration,total_population,3.1.2,87,,50 - 54
+18.71,2,Kota Bandar Lampung,age_group,50-54,perempuan,32.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,50 - 54
+18.71,2,Kota Bandar Lampung,age_group,50-54,,64.7,ribu_jiwa,2025,registration,total_population,3.1.2,87,,50 - 54
+18.71,2,Kota Bandar Lampung,age_group,55-59,laki_laki,26.8,ribu_jiwa,2025,registration,total_population,3.1.2,87,,55 - 59
+18.71,2,Kota Bandar Lampung,age_group,55-59,perempuan,28.0,ribu_jiwa,2025,registration,total_population,3.1.2,87,,55 - 59
+18.71,2,Kota Bandar Lampung,age_group,55-59,,54.8,ribu_jiwa,2025,registration,total_population,3.1.2,87,,55 - 59
+18.71,2,Kota Bandar Lampung,age_group,60-64,laki_laki,20.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,60 - 64
+18.71,2,Kota Bandar Lampung,age_group,60-64,perempuan,23.1,ribu_jiwa,2025,registration,total_population,3.1.2,87,,60 - 64
+18.71,2,Kota Bandar Lampung,age_group,60-64,,44.0,ribu_jiwa,2025,registration,total_population,3.1.2,87,,60 - 64
+18.71,2,Kota Bandar Lampung,age_group,65-69,laki_laki,16.2,ribu_jiwa,2025,registration,total_population,3.1.2,87,,65 - 69
+18.71,2,Kota Bandar Lampung,age_group,65-69,perempuan,16.6,ribu_jiwa,2025,registration,total_population,3.1.2,87,,65 - 69
+18.71,2,Kota Bandar Lampung,age_group,65-69,,32.8,ribu_jiwa,2025,registration,total_population,3.1.2,87,,65 - 69
+18.71,2,Kota Bandar Lampung,age_group,70-74,laki_laki,9.5,ribu_jiwa,2025,registration,total_population,3.1.2,87,,70 - 74
+18.71,2,Kota Bandar Lampung,age_group,70-74,perempuan,9.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,70 - 74
+18.71,2,Kota Bandar Lampung,age_group,70-74,,19.4,ribu_jiwa,2025,registration,total_population,3.1.2,87,,70 - 74
+18.71,2,Kota Bandar Lampung,age_group,75+,laki_laki,9.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,75+
+18.71,2,Kota Bandar Lampung,age_group,75+,perempuan,11.7,ribu_jiwa,2025,registration,total_population,3.1.2,87,,75+
+18.71,2,Kota Bandar Lampung,age_group,75+,,21.6,ribu_jiwa,2025,registration,total_population,3.1.2,87,,75+
+18.71,2,Bandar Lampung,sex,laki_laki,,548.9,ribu_jiwa,2025,registration,total_population,3.1.2,87,,Laki-laki
+18.71,2,Bandar Lampung,sex,perempuan,,539.3,ribu_jiwa,2025,registration,total_population,3.1.2,87,,Perempuan
+18.71,2,Bandar Lampung,total,total,,1088.2,ribu_jiwa,2025,registration,total_population,3.1.2,87,,

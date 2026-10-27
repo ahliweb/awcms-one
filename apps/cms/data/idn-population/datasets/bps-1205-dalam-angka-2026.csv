@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.02.11,3,Parmonangan,total,total,,15499,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.03,3,Adiankoting,total,total,,15479,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.04,3,Sipoholon,total,total,,26034,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.01,3,Tarutung,total,total,,44947,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.02,3,Siatas Barita,total,total,,15552,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.05,3,Pahae Julu,total,total,,14356,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.06,3,Pahae Jae,total,total,,12355,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.08,3,Purbatua,total,total,,8576,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.07,3,Simangumban,total,total,,8622,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.13,3,Pangaribuan,total,total,,31930,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.14,3,Garoga,total,total,,19554,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.12,3,Sipahutar,total,total,,29878,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.09,3,Siborongborong,total,total,,55080,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.10,3,Pagaran,total,total,,20175,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02.15,3,Muara,total,total,,15653,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02,2,Tapanuli Utara,total,total,,333690,ribu_jiwa,2025,registration,total_population,unnumbered-p41,41,,
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/padi_padian,,128345,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Padi-padian
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/padi_padian,,115602,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Padi-padian
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/umbi_umbian,,6694,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Umbi-umbian
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/umbi_umbian,,5978,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Umbi-umbian
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,108727,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Ikan/udang/cumi/kerang
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,100477,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Ikan/udang/cumi/kerang
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/daging,,51537,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Daging
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/daging,,41700,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Daging
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/telur_dan_susu,,45916,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Telur dan susu
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/telur_dan_susu,,43313,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Telur dan susu
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/sayur_sayuran,,60803,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Sayur-sayuran
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/sayur_sayuran,,59817,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Sayur-sayuran
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/kacang_kacangan,,11178,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Kacang-kacangan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/kacang_kacangan,,9884,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Kacang-kacangan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/buah_buahan,,40054,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Buah-buahan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20028,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Minyak dan kelapa
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/bahan_minuman,,29668,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Bahan minuman
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/bahan_minuman,,28986,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Bahan minuman
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,15248,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Bumbu-bumbuan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,13885,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Bumbu-bumbuan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,7054,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Konsumsi lainnya
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,7390,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Konsumsi lainnya
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,123938,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Makanan dan minuman jadi
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,119814,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Makanan dan minuman jadi
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/rokok,,132504,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Rokok
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/rokok,,121088,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Rokok
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/jumlah_makanan,,787236,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Jumlah makanan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/jumlah_makanan,,726673,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Jumlah makanan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,223650,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Perumahan dan fasilitas rumah tangga
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,189799,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Perumahan dan fasilitas rumah tangga
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,132962,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Aneka barang dan jasa
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,113869,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Aneka barang dan jasa
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28328,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,"Pakaian, alas kaki, dan tutup kepala"
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31733,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,"Pakaian, alas kaki, dan tutup kepala"
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,9175,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Barang tahan lama
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,9635,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Barang tahan lama
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49303,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,"Pajak, pungutan, dan asuransi"
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39720,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,"Pajak, pungutan, dan asuransi"
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,3680,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Keperluan pesta dan upacara/kenduri
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22685,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Keperluan pesta dan upacara/kenduri
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,447098,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,Jumlah bukan makanan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,407441,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,Jumlah bukan makanan
+12.02,2,Kabupaten Tapanuli Utara,expenditure,total,,1234333,rupiah,2025,survey_estimate,per_capita,unnumbered-p256,256,,
+12.02,2,Kabupaten Tapanuli Utara,expenditure,total,,1134114,rupiah,2024,survey_estimate,per_capita,unnumbered-p256,256,,

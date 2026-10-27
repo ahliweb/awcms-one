@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3521-kecamatan-352108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.21.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Padas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ngawi",
+  "publisherDomain": "3521",
+  "publisherWebsite": "https://ngawikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ngawi (https://ngawikab.bps.go.id), publikasi \"Kecamatan Padas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3521100",
+  "publicationNumber": "35210.26008",
+  "issn": "2797-6726",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ngawikab.bps.go.id/id/publication/2026/09/28/38ef2172de7fbdb570cb9789/kecamatan-padas-dalam-angka-2026.html",
+  "sourceFileSha256": "c501c71b391f607ca724aa14ff8a0fdd27b23c3a6776796b9d965cdec077474e",
+  "sourceFileBytes": 15899291,
+  "sourcePages": [38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ngawi.",
+  "csvPath": "datasets/bps-3521-kecamatan-352108-dalam-angka-2026.csv",
+  "csvSha256": "3c0235cb44315e9a3825681b7a18e9541246a88c0eced454c450250bb2c78910",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p38",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Padas, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

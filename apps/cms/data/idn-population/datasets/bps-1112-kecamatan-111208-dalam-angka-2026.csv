@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.12.08.2008,4,Padang Geulumpang,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2008,4,Padang Geulumpang,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2008,4,Padang Geulumpang,total,total,,495,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2006,4,Ladang Neubok,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2006,4,Ladang Neubok,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2006,4,Ladang Neubok,total,total,,915,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2005,4,Cot Mane,sex,laki_laki,,689,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2005,4,Cot Mane,sex,perempuan,,712,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2005,4,Cot Mane,total,total,,1401,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2003,4,Kuta Jeumpa,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2003,4,Kuta Jeumpa,sex,perempuan,,616,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2003,4,Kuta Jeumpa,total,total,,1232,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2004,4,Alue Sungai Pinang,sex,laki_laki,,913,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2004,4,Alue Sungai Pinang,sex,perempuan,,933,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2004,4,Alue Sungai Pinang,total,total,,1846,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2002,4,Alue Rambot,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2002,4,Alue Rambot,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2002,4,Alue Rambot,total,total,,688,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2001,4,Baru,sex,laki_laki,,418,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2001,4,Baru,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2001,4,Baru,total,total,,794,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2010,4,Kuta Makmur,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2010,4,Kuta Makmur,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2010,4,Kuta Makmur,total,total,,807,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08.2011,4,Jeumpa Barat,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08.2011,4,Jeumpa Barat,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08.2011,4,Jeumpa Barat,total,total,,1063,jiwa,2025,registration,total_population,3.1,22,,
+11.12.08,3,Jeumpa,sex,laki_laki,,5927,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.12.08,3,Jeumpa,sex,perempuan,,5834,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+11.12.08,3,Jeumpa,total,total,,11761,jiwa,2025,registration,total_population,3.1,22,,

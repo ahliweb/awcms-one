@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.10.2001,4,Gosong Telaga Utara,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10.2001,4,Gosong Telaga Utara,sex,perempuan,,548,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10.2001,4,Gosong Telaga Utara,total,total,,1113,jiwa,2025,registration,total_population,3.1,33,,
+11.10.10.2002,4,Gosong Telaga Selatan,sex,laki_laki,,504,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10.2002,4,Gosong Telaga Selatan,sex,perempuan,,489,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10.2002,4,Gosong Telaga Selatan,total,total,,993,jiwa,2025,registration,total_population,3.1,33,,
+11.10.10.2005,4,Gosong Telaga Timur,sex,laki_laki,,934,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10.2005,4,Gosong Telaga Timur,sex,perempuan,,969,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10.2005,4,Gosong Telaga Timur,total,total,,1903,jiwa,2025,registration,total_population,3.1,33,,
+11.10.10.2007,4,Telaga Bakti,sex,laki_laki,,843,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10.2007,4,Telaga Bakti,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10.2007,4,Telaga Bakti,total,total,,1612,jiwa,2025,registration,total_population,3.1,33,,
+11.10.10.2003,4,Kampung Baru,sex,laki_laki,,1186,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10.2003,4,Kampung Baru,sex,perempuan,,1068,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10.2003,4,Kampung Baru,total,total,,2254,jiwa,2025,registration,total_population,3.1,33,,
+11.10.10.2004,4,Ketapang Indah,sex,laki_laki,,1278,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10.2004,4,Ketapang Indah,sex,perempuan,,1275,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10.2004,4,Ketapang Indah,total,total,,2553,jiwa,2025,registration,total_population,3.1,33,,
+11.10.10.2006,4,Gosong Telaga Barat,sex,laki_laki,,600,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10.2006,4,Gosong Telaga Barat,sex,perempuan,,606,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10.2006,4,Gosong Telaga Barat,total,total,,1206,jiwa,2025,registration,total_population,3.1,33,,
+11.10.10,3,Kecamatan Singkil Utara,sex,laki_laki,,5910,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.10,3,Kecamatan Singkil Utara,sex,perempuan,,5724,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.10,3,Kecamatan Singkil Utara,total,total,,11634,jiwa,2025,registration,total_population,3.1,33,,

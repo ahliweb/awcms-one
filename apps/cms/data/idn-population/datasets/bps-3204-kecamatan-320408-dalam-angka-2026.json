@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3204-kecamatan-320408-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.04.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bojongsoang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bandung",
+  "publisherDomain": "3204",
+  "publisherWebsite": "https://bandungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bandung (https://bandungkab.bps.go.id), publikasi \"Kecamatan Bojongsoang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3204280",
+  "publicationNumber": "32040.26028",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkab.bps.go.id/id/publication/2026/09/28/e84fcae56259d650ed4c711e/kecamatan-bojongsoang-dalam-angka-2026.html",
+  "sourceFileSha256": "7c51a6456a130bce52eef2a5526369aad5dd26038b303b8ab78d1da7f88aaa3f",
+  "sourceFileBytes": 8056968,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung.",
+  "csvPath": "datasets/bps-3204-kecamatan-320408-dalam-angka-2026.csv",
+  "csvSha256": "4e757f8d9fdc5e24289a110b3db72cbca6b0e48914f10a181d53fb0634d01de2",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bojongsoang , 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

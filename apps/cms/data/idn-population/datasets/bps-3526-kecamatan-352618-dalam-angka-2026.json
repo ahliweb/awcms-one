@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3526-kecamatan-352618-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.26.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Galis Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangkalan",
+  "publisherDomain": "3526",
+  "publisherWebsite": "https://bangkalankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangkalan (https://bangkalankab.bps.go.id), publikasi \"Kecamatan Galis Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3526070",
+  "publicationNumber": "35260.26015",
+  "issn": "2808-0270",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkalankab.bps.go.id/id/publication/2026/09/28/7344949d1b8449ac970ab816/kecamatan-galis-dalam-angka-2026.html",
+  "sourceFileSha256": "d9a2158a314fcef33a645651019c78b9ca39163434178d2ee1ecfac1b2395bfb",
+  "sourceFileBytes": 22086219,
+  "sourcePages": [31, 32, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangkalan.",
+  "csvPath": "datasets/bps-3526-kecamatan-352618-dalam-angka-2026.csv",
+  "csvSha256": "7d23c948f5a6f6b77ea9e1b4dc3d2bc50a43767770ba77cccb31a58015f73bd0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Galis, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Galis, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Paka'an Daya\": unmatched ",
+    "table 3.1: row not stored: row \"Lantek Timur\": unmatched ",
+    "table 3.1: row not stored: row \"Paka'an Daya\": unmatched ",
+    "table 3.1: row not stored: row \"Lantek Timur\": unmatched ",
+    "table 3.1: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched ",
+    "table 3.3: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched "
+  ]
+}

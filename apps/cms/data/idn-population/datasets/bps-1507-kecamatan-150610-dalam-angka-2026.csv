@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.06.10.2004,4,Teluk Pulai Raya,sex,laki_laki,,928,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.2004,4,Teluk Pulai Raya,sex,perempuan,,875,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.2004,4,Teluk Pulai Raya,total,total,,1803,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10.2007,4,Kuala Kahar,sex,laki_laki,,474,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.2007,4,Kuala Kahar,sex,perempuan,,454,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.2007,4,Kuala Kahar,total,total,,928,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10.2006,4,Harapan Jaya,sex,laki_laki,,634,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.2006,4,Harapan Jaya,sex,perempuan,,585,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.2006,4,Harapan Jaya,total,total,,1219,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10.1001,4,Tungkal V,sex,laki_laki,,705,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.1001,4,Tungkal V,sex,perempuan,,600,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.1001,4,Tungkal V,total,total,,1305,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10.2005,4,Mekar Alam,sex,laki_laki,,486,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.2005,4,Mekar Alam,sex,perempuan,,434,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.2005,4,Mekar Alam,total,total,,920,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10.2002,4,Tungkal IV Desa,sex,laki_laki,,611,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.2002,4,Tungkal IV Desa,sex,perempuan,,550,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.2002,4,Tungkal IV Desa,total,total,,1161,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10.2003,4,Kuala Baru,sex,laki_laki,,467,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.2003,4,Kuala Baru,sex,perempuan,,449,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.2003,4,Kuala Baru,total,total,,916,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10.2008,4,Muara Seberang,sex,laki_laki,,584,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10.2008,4,Muara Seberang,sex,perempuan,,462,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10.2008,4,Muara Seberang,total,total,,1046,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10,3,Seberang Kota,sex,laki_laki,,4889,jiwa,2026,registration,total_population,3.1,23,,Laki-Laki/
+15.06.10,3,Seberang Kota,sex,perempuan,,4409,jiwa,2026,registration,total_population,3.1,23,,Perempuan/
+15.06.10,3,Seberang Kota,total,total,,9298,jiwa,2026,registration,total_population,3.1,23,,
+15.06.10,3,Seberang Kota,age_group,0-4,laki_laki,305,jiwa,2025,registration,total_population,3.2,25,,0-4
+15.06.10,3,Seberang Kota,age_group,0-4,perempuan,263,jiwa,2025,registration,total_population,3.2,25,,0-4
+15.06.10,3,Seberang Kota,age_group,0-4,,568,jiwa,2025,registration,total_population,3.2,25,,0-4
+15.06.10,3,Seberang Kota,age_group,5-9,laki_laki,351,jiwa,2025,registration,total_population,3.2,25,,5-9
+15.06.10,3,Seberang Kota,age_group,5-9,perempuan,368,jiwa,2025,registration,total_population,3.2,25,,5-9
+15.06.10,3,Seberang Kota,age_group,5-9,,719,jiwa,2025,registration,total_population,3.2,25,,5-9
+15.06.10,3,Seberang Kota,age_group,10-14,laki_laki,399,jiwa,2025,registration,total_population,3.2,25,,10-14
+15.06.10,3,Seberang Kota,age_group,10-14,perempuan,340,jiwa,2025,registration,total_population,3.2,25,,10-14
+15.06.10,3,Seberang Kota,age_group,10-14,,739,jiwa,2025,registration,total_population,3.2,25,,10-14
+15.06.10,3,Seberang Kota,age_group,15-19,laki_laki,362,jiwa,2025,registration,total_population,3.2,25,,15-19
+15.06.10,3,Seberang Kota,age_group,15-19,perempuan,336,jiwa,2025,registration,total_population,3.2,25,,15-19
+15.06.10,3,Seberang Kota,age_group,15-19,,698,jiwa,2025,registration,total_population,3.2,25,,15-19
+15.06.10,3,Seberang Kota,age_group,20-24,laki_laki,367,jiwa,2025,registration,total_population,3.2,25,,20-24
+15.06.10,3,Seberang Kota,age_group,20-24,perempuan,375,jiwa,2025,registration,total_population,3.2,25,,20-24
+15.06.10,3,Seberang Kota,age_group,20-24,,742,jiwa,2025,registration,total_population,3.2,25,,20-24
+15.06.10,3,Seberang Kota,age_group,25-29,laki_laki,410,jiwa,2025,registration,total_population,3.2,25,,25-29
+15.06.10,3,Seberang Kota,age_group,25-29,perempuan,361,jiwa,2025,registration,total_population,3.2,25,,25-29
+15.06.10,3,Seberang Kota,age_group,25-29,,771,jiwa,2025,registration,total_population,3.2,25,,25-29
+15.06.10,3,Seberang Kota,age_group,30-34,laki_laki,340,jiwa,2025,registration,total_population,3.2,25,,30-34
+15.06.10,3,Seberang Kota,age_group,30-34,perempuan,301,jiwa,2025,registration,total_population,3.2,25,,30-34
+15.06.10,3,Seberang Kota,age_group,30-34,,641,jiwa,2025,registration,total_population,3.2,25,,30-34
+15.06.10,3,Seberang Kota,age_group,35-39,laki_laki,395,jiwa,2025,registration,total_population,3.2,25,,35-39
+15.06.10,3,Seberang Kota,age_group,35-39,perempuan,336,jiwa,2025,registration,total_population,3.2,25,,35-39
+15.06.10,3,Seberang Kota,age_group,35-39,,731,jiwa,2025,registration,total_population,3.2,25,,35-39
+15.06.10,3,Seberang Kota,age_group,40-44,laki_laki,458,jiwa,2025,registration,total_population,3.2,25,,40-44
+15.06.10,3,Seberang Kota,age_group,40-44,perempuan,342,jiwa,2025,registration,total_population,3.2,25,,40-44
+15.06.10,3,Seberang Kota,age_group,40-44,,800,jiwa,2025,registration,total_population,3.2,25,,40-44
+15.06.10,3,Seberang Kota,age_group,45-49,laki_laki,349,jiwa,2025,registration,total_population,3.2,25,,45-49
+15.06.10,3,Seberang Kota,age_group,45-49,perempuan,304,jiwa,2025,registration,total_population,3.2,25,,45-49
+15.06.10,3,Seberang Kota,age_group,45-49,,653,jiwa,2025,registration,total_population,3.2,25,,45-49
+15.06.10,3,Seberang Kota,age_group,50-54,laki_laki,321,jiwa,2025,registration,total_population,3.2,25,,50-54
+15.06.10,3,Seberang Kota,age_group,50-54,perempuan,268,jiwa,2025,registration,total_population,3.2,25,,50-54
+15.06.10,3,Seberang Kota,age_group,50-54,,589,jiwa,2025,registration,total_population,3.2,25,,50-54
+15.06.10,3,Seberang Kota,age_group,55-59,laki_laki,267,jiwa,2025,registration,total_population,3.2,25,,55-59
+15.06.10,3,Seberang Kota,age_group,55-59,perempuan,233,jiwa,2025,registration,total_population,3.2,25,,55-59
+15.06.10,3,Seberang Kota,age_group,55-59,,500,jiwa,2025,registration,total_population,3.2,25,,55-59
+15.06.10,3,Seberang Kota,age_group,60-64,laki_laki,198,jiwa,2025,registration,total_population,3.2,25,,60-64
+15.06.10,3,Seberang Kota,age_group,60-64,perempuan,173,jiwa,2025,registration,total_population,3.2,25,,60-64
+15.06.10,3,Seberang Kota,age_group,60-64,,371,jiwa,2025,registration,total_population,3.2,25,,60-64
+15.06.10,3,Seberang Kota,age_group,65-69,laki_laki,147,jiwa,2025,registration,total_population,3.2,25,,65-69
+15.06.10,3,Seberang Kota,age_group,65-69,perempuan,155,jiwa,2025,registration,total_population,3.2,25,,65-69
+15.06.10,3,Seberang Kota,age_group,65-69,,302,jiwa,2025,registration,total_population,3.2,25,,65-69
+15.06.10,3,Seberang Kota,age_group,70-74,laki_laki,96,jiwa,2025,registration,total_population,3.2,25,,70-74
+15.06.10,3,Seberang Kota,age_group,70-74,perempuan,87,jiwa,2025,registration,total_population,3.2,25,,70-74
+15.06.10,3,Seberang Kota,age_group,70-74,,183,jiwa,2025,registration,total_population,3.2,25,,70-74
+15.06.10,3,Seberang Kota,age_group,75+,laki_laki,124,jiwa,2025,registration,total_population,3.2,25,,75+
+15.06.10,3,Seberang Kota,age_group,75+,perempuan,167,jiwa,2025,registration,total_population,3.2,25,,75+
+15.06.10,3,Seberang Kota,age_group,75+,,291,jiwa,2025,registration,total_population,3.2,25,,75+
+15.06.10,3,Seberang Kota,sex,laki_laki,,4889,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+15.06.10,3,Seberang Kota,sex,perempuan,,4409,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+15.06.10,3,Seberang Kota,total,total,,9298,jiwa,2025,registration,total_population,3.2,25,,

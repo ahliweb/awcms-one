@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3323-kecamatan-332302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.23.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tembarak Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Temanggung",
+  "publisherDomain": "3323",
+  "publisherWebsite": "https://temanggungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Temanggung (https://temanggungkab.bps.go.id), publikasi \"Kecamatan Tembarak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3323040",
+  "publicationNumber": "33230.26010",
+  "issn": "2614-9109",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://temanggungkab.bps.go.id/id/publication/2026/09/28/02040aec51348ed7f92f9a5d/kecamatan-tembarak-dalam-angka-2026.html",
+  "sourceFileSha256": "7936fbad09ae5708655eb820768e9a41b17ec37669d55b963a24358571c2c34e",
+  "sourceFileBytes": 7572420,
+  "sourcePages": [25, 27],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Temanggung.",
+  "csvPath": "datasets/bps-3323-kecamatan-332302-dalam-angka-2026.csv",
+  "csvSha256": "22992d8881f2ecd020d4e5e96384ea492036ea16f49581a8090da78c33a2a2cb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tembarak, 2026",
+      "printedPages": [25],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tembarak, 2026",
+      "printedPages": [27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: 37 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

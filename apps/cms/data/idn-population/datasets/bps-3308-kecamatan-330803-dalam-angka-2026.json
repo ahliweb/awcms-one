@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3308-kecamatan-330803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.08.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ngluwar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magelang",
+  "publisherDomain": "3308",
+  "publisherWebsite": "https://magelangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magelang (https://magelangkab.bps.go.id), publikasi \"Kecamatan Ngluwar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33080.25018",
+  "issn": "2406-9930",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magelangkab.bps.go.id/id/publication/2026/09/28/a5c11d363db57dc0f896a440/kecamatan-ngluwar-dalam-angka-2026.html",
+  "sourceFileSha256": "f1b3f616043db692f1fc254ea24f06ec77972d15d7bf1b98f40d653e6cad5b52",
+  "sourceFileBytes": 9418312,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magelang",
+  "csvPath": "datasets/bps-3308-kecamatan-330803-dalam-angka-2026.csv",
+  "csvSha256": "5ab4a2c7709805a2fe2865cdfdeb237fcbcc20808ac1226fb8752fd1be062291",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p30",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ngluwar, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p30: row not stored: row \"Jumlah/Total\": unmatched "
+  ]
+}

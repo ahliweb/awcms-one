@@ -1,0 +1,66 @@
+{
+  "datasetCode": "bps-1810-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "18.10",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Pringsewu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pringsewu",
+  "publisherDomain": "1810",
+  "publisherWebsite": "https://pringsewukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pringsewu (https://pringsewukab.bps.go.id), publikasi \"Kabupaten Pringsewu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1810",
+  "publicationNumber": "18100.26002",
+  "issn": "2654-6736",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://pringsewukab.bps.go.id/id/publication/2026/02/27/45d6cae80092805b08f25535/kabupaten-pringsewu-dalam-angka-2026.html",
+  "sourceFileSha256": "b2b1dffb4ce79802f2a7e13982adee444694fc7b3443a0acc01063698599d823",
+  "sourceFileBytes": 6220550,
+  "sourcePages": [55, 58, 159, 344],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Pringsewu.",
+  "csvPath": "datasets/bps-1810-dalam-angka-2026.csv",
+  "csvSha256": "08ed28ac2652b5046cc01b4257a923ab56147db4cd640d3e896c6c572d9be427",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Pringsewu, 2025",
+      "printedPages": [55],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Pringsewu (jiwa), 2025",
+      "printedPages": [58],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Pringsewu, 2025",
+      "printedPages": [159],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Pringsewu (rupiah), 2024 dan 2025",
+      "printedPages": [344],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table unnumbered-p148 (age-by-region) could not be read reliably and is not included (unit or year not determinable)",
+    "table 3.1.1: row not stored: row \"Kabupaten Pringsewu/ Pringsewu Regency\": unmatched "
+  ]
+}

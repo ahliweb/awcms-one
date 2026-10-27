@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Suboh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Suboh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512050",
+  "publicationNumber": "35120.26009",
+  "issn": "2808-6112",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/48e380bf75bf212b90e1984e/kecamatan-suboh-dalam-angka-2026.html",
+  "sourceFileSha256": "bffe9a3e9c0553baacb6b0cf3c77ae679292b8d196979af243136a6a626e21cc",
+  "sourceFileBytes": 5913820,
+  "sourcePages": [36, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351203-dalam-angka-2026.csv",
+  "csvSha256": "c262a8b6a0458b9ccbc6522c89c55c23db39d976474e6f85b0212f421aa636ba",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Suboh, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Suboh, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Kongh uchu Confuci an\" not recognised)",
+    "table 3.1: row not stored: row \"Total\": unmatched "
+  ]
+}

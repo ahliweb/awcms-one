@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.15.2001,4,Sewurejo,sex,laki_laki,,3193,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2001,4,Sewurejo,sex,perempuan,,3229,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2001,4,Sewurejo,total,total,,6422,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2002,4,Ngadirejo,sex,laki_laki,,2530,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2002,4,Ngadirejo,sex,perempuan,,2544,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2002,4,Ngadirejo,total,total,,5074,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2003,4,Mojogedang,sex,laki_laki,,2137,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2003,4,Mojogedang,sex,perempuan,,2222,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2003,4,Mojogedang,total,total,,4359,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2004,4,Pojok,sex,laki_laki,,3186,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2004,4,Pojok,sex,perempuan,,3193,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2004,4,Pojok,total,total,,6379,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2005,4,Mojoroto,sex,laki_laki,,1245,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2005,4,Mojoroto,sex,perempuan,,1238,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2005,4,Mojoroto,total,total,,2483,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2006,4,Kaliboto,sex,laki_laki,,3389,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2006,4,Kaliboto,sex,perempuan,,3391,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2006,4,Kaliboto,total,total,,6780,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2007,4,Buntar,sex,laki_laki,,1847,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2007,4,Buntar,sex,perempuan,,1861,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2007,4,Buntar,total,total,,3708,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2008,4,Gebyog,sex,laki_laki,,3696,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2008,4,Gebyog,sex,perempuan,,3696,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2008,4,Gebyog,total,total,,7392,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2009,4,Gentungan,sex,laki_laki,,2986,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2009,4,Gentungan,sex,perempuan,,2934,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2009,4,Gentungan,total,total,,5920,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2010,4,Pendem,sex,laki_laki,,2568,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2010,4,Pendem,sex,perempuan,,2588,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2010,4,Pendem,total,total,,5156,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2011,4,Pereng,sex,laki_laki,,2764,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2011,4,Pereng,sex,perempuan,,2841,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2011,4,Pereng,total,total,,5605,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2012,4,Munggur,sex,laki_laki,,3290,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2012,4,Munggur,sex,perempuan,,3301,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2012,4,Munggur,total,total,,6591,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15.2013,4,Kedungjeruk,sex,laki_laki,,3727,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15.2013,4,Kedungjeruk,sex,perempuan,,3731,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15.2013,4,Kedungjeruk,total,total,,7458,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15,3,Kecamatan Mojogedang,sex,laki_laki,,36558,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.15,3,Kecamatan Mojogedang,sex,perempuan,,36769,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.15,3,Kecamatan Mojogedang,total,total,,73327,jiwa,2025,registration,total_population,3.1,27,,
+33.13.15,3,Mojogedang,age_group,0-4,laki_laki,2404,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.15,3,Mojogedang,age_group,0-4,perempuan,2193,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.15,3,Mojogedang,age_group,0-4,,4597,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.15,3,Mojogedang,age_group,5-9,laki_laki,2947,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.15,3,Mojogedang,age_group,5-9,perempuan,2745,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.15,3,Mojogedang,age_group,5-9,,5692,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.15,3,Mojogedang,age_group,10-14,laki_laki,3062,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.15,3,Mojogedang,age_group,10-14,perempuan,2831,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.15,3,Mojogedang,age_group,10-14,,5893,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.15,3,Mojogedang,age_group,15-19,laki_laki,2931,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.15,3,Mojogedang,age_group,15-19,perempuan,2814,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.15,3,Mojogedang,age_group,15-19,,5745,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.15,3,Mojogedang,age_group,20-24,laki_laki,2841,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.15,3,Mojogedang,age_group,20-24,perempuan,2757,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.15,3,Mojogedang,age_group,20-24,,5598,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.15,3,Mojogedang,age_group,25-29,laki_laki,2647,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.15,3,Mojogedang,age_group,25-29,perempuan,2670,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.15,3,Mojogedang,age_group,25-29,,5317,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.15,3,Mojogedang,age_group,30-34,laki_laki,2623,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.15,3,Mojogedang,age_group,30-34,perempuan,2518,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.15,3,Mojogedang,age_group,30-34,,5141,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.15,3,Mojogedang,age_group,35-39,laki_laki,2350,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.15,3,Mojogedang,age_group,35-39,perempuan,2256,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.15,3,Mojogedang,age_group,35-39,,4606,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.15,3,Mojogedang,age_group,40-44,laki_laki,2850,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.15,3,Mojogedang,age_group,40-44,perempuan,3084,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.15,3,Mojogedang,age_group,40-44,,5934,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.15,3,Mojogedang,age_group,45-49,laki_laki,2802,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.15,3,Mojogedang,age_group,45-49,perempuan,2727,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.15,3,Mojogedang,age_group,45-49,,5529,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.15,3,Mojogedang,age_group,50-54,laki_laki,2207,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.15,3,Mojogedang,age_group,50-54,perempuan,2299,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.15,3,Mojogedang,age_group,50-54,,4506,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.15,3,Mojogedang,age_group,55-59,laki_laki,2046,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.15,3,Mojogedang,age_group,55-59,perempuan,2117,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.15,3,Mojogedang,age_group,55-59,,4163,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.15,3,Mojogedang,age_group,60-64,laki_laki,1508,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.15,3,Mojogedang,age_group,60-64,perempuan,1814,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.15,3,Mojogedang,age_group,60-64,,3322,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.15,3,Mojogedang,age_group,65-69,laki_laki,1456,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.15,3,Mojogedang,age_group,65-69,perempuan,1569,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.15,3,Mojogedang,age_group,65-69,,3025,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.15,3,Mojogedang,age_group,70-74,laki_laki,956,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.15,3,Mojogedang,age_group,70-74,perempuan,977,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.15,3,Mojogedang,age_group,70-74,,1933,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.15,3,Mojogedang,age_group,75+,laki_laki,928,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.15,3,Mojogedang,age_group,75+,perempuan,1398,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.15,3,Mojogedang,age_group,75+,,2326,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.15,3,Kecamatan Mojogedang,sex,laki_laki,,36558,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.15,3,Kecamatan Mojogedang,sex,perempuan,,36769,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.15,3,Kecamatan Mojogedang,total,total,,73327,jiwa,2025,registration,total_population,3.2,29,,

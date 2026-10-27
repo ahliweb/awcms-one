@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.02.2001,4,Danau Cala,sex,laki_laki,,1559,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2001,4,Danau Cala,sex,perempuan,,1440,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2001,4,Danau Cala,total,total,,2999,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2002,4,Rantau Keroya,sex,laki_laki,,1449,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2002,4,Rantau Keroya,sex,perempuan,,1276,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2002,4,Rantau Keroya,total,total,,2725,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2003,4,Tanjung Agung Timur,sex,laki_laki,,1195,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2003,4,Tanjung Agung Timur,sex,perempuan,,1093,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2003,4,Tanjung Agung Timur,total,total,,2288,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2004,4,Petaling,sex,laki_laki,,2859,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2004,4,Petaling,sex,perempuan,,2688,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2004,4,Petaling,total,total,,5547,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2005,4,Lais,sex,laki_laki,,3083,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2005,4,Lais,sex,perempuan,,3032,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2005,4,Lais,total,total,,6115,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2006,4,Teluk,sex,laki_laki,,1976,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2006,4,Teluk,sex,perempuan,,1802,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2006,4,Teluk,total,total,,3778,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2007,4,Epil,sex,laki_laki,,2810,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2007,4,Epil,sex,perempuan,,2804,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2007,4,Epil,total,total,,5614,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2008,4,Purwosari,sex,laki_laki,,2030,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2008,4,Purwosari,sex,perempuan,,1903,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2008,4,Purwosari,total,total,,3933,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2009,4,Teluk Kijing I,sex,laki_laki,,2624,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2009,4,Teluk Kijing I,sex,perempuan,,2441,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2009,4,Teluk Kijing I,total,total,,5065,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2010,4,Teluk Kijing Ii,sex,laki_laki,,3097,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2010,4,Teluk Kijing Ii,sex,perempuan,,2862,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2010,4,Teluk Kijing Ii,total,total,,5959,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2011,4,Teluk Kijing Iii,sex,laki_laki,,2699,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2011,4,Teluk Kijing Iii,sex,perempuan,,2675,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2011,4,Teluk Kijing Iii,total,total,,5374,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2012,4,Tanjung Agung Utara,sex,laki_laki,,1179,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2012,4,Tanjung Agung Utara,sex,perempuan,,1096,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2012,4,Tanjung Agung Utara,total,total,,2275,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2013,4,Tanjung Agung Barat,sex,laki_laki,,1355,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2013,4,Tanjung Agung Barat,sex,perempuan,,1290,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2013,4,Tanjung Agung Barat,total,total,,2645,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2014,4,Tanjung Agung Selatan,sex,laki_laki,,1027,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2014,4,Tanjung Agung Selatan,sex,perempuan,,997,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2014,4,Tanjung Agung Selatan,total,total,,2024,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2015,4,Lais Utara,sex,laki_laki,,1452,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2015,4,Lais Utara,sex,perempuan,,1409,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2015,4,Lais Utara,total,total,,2861,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02.2016,4,Epil Barat,sex,laki_laki,,536,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02.2016,4,Epil Barat,sex,perempuan,,496,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02.2016,4,Epil Barat,total,total,,1032,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02,3,Lais,sex,laki_laki,,30930,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+16.06.02,3,Lais,sex,perempuan,,29304,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+16.06.02,3,Lais,total,total,,60234,jiwa,2026,registration,total_population,3.1,32,,
+16.06.02,3,Lais,age_group,0-14,laki_laki,7552,jiwa,2026,projection,total_population,3.2,34,,0-14
+16.06.02,3,Lais,age_group,0-14,perempuan,7090,jiwa,2026,projection,total_population,3.2,34,,0-14
+16.06.02,3,Lais,age_group,0-14,,14642,jiwa,2026,projection,total_population,3.2,34,,0-14
+16.06.02,3,Lais,age_group,15-64,laki_laki,19133,jiwa,2026,projection,total_population,3.2,34,,15-64
+16.06.02,3,Lais,age_group,15-64,perempuan,17748,jiwa,2026,projection,total_population,3.2,34,,15-64
+16.06.02,3,Lais,age_group,15-64,,36881,jiwa,2026,projection,total_population,3.2,34,,15-64
+16.06.02,3,Lais,age_group,65+,laki_laki,1554,jiwa,2026,projection,total_population,3.2,34,,65+
+16.06.02,3,Lais,age_group,65+,perempuan,1987,jiwa,2026,projection,total_population,3.2,34,,65+
+16.06.02,3,Lais,age_group,65+,,3541,jiwa,2026,projection,total_population,3.2,34,,65+
+16.06.02,3,Lais,sex,laki_laki,,28239,jiwa,2026,projection,total_population,3.2,34,,Laki-Laki
+16.06.02,3,Lais,sex,perempuan,,26825,jiwa,2026,projection,total_population,3.2,34,,Perempuan
+16.06.02,3,Lais,total,total,,55064,jiwa,2026,projection,total_population,3.2,34,,

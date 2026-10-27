@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.01.2012,4,Sidomulyo,sex,laki_laki,,1383,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2012,4,Sidomulyo,sex,perempuan,,1373,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2012,4,Sidomulyo,total,total,,2756,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2003,4,Aek Nauli,sex,laki_laki,,508,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2003,4,Aek Nauli,sex,perempuan,,525,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2003,4,Aek Nauli,total,total,,1033,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2010,4,Sei Buah Keras,sex,laki_laki,,1730,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2010,4,Sei Buah Keras,sex,perempuan,,1600,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2010,4,Sei Buah Keras,total,total,,3330,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2011,4,Sei Rakyat,sex,laki_laki,,857,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2011,4,Sei Rakyat,sex,perempuan,,855,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2011,4,Sei Rakyat,total,total,,1712,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2013,4,Tanjung Sigoni,sex,laki_laki,,464,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2013,4,Tanjung Sigoni,sex,perempuan,,499,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2013,4,Tanjung Sigoni,total,total,,963,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2008,4,Pakam Raya,sex,laki_laki,,1797,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2008,4,Pakam Raya,sex,perempuan,,1805,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2008,4,Pakam Raya,total,total,,3602,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2007,4,Pakam,sex,laki_laki,,1839,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2007,4,Pakam,sex,perempuan,,1748,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2007,4,Pakam,total,total,,3587,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2005,4,Lalang,sex,laki_laki,,4968,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2005,4,Lalang,sex,perempuan,,4893,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2005,4,Lalang,total,total,,9861,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2006,4,Medang,sex,laki_laki,,2904,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2006,4,Medang,sex,perempuan,,2742,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2006,4,Medang,total,total,,5646,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2004,4,Durian,sex,laki_laki,,1626,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2004,4,Durian,sex,perempuan,,1610,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2004,4,Durian,total,total,,3236,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2014,4,Nenas Siam,sex,laki_laki,,1880,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2014,4,Nenas Siam,sex,perempuan,,1786,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2014,4,Nenas Siam,total,total,,3666,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.1002,4,Pangkalan Dodek Baru,sex,laki_laki,,1872,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.1002,4,Pangkalan Dodek Baru,sex,perempuan,,1745,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.1002,4,Pangkalan Dodek Baru,total,total,,3617,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.1001,4,Pangkalan Dodek,sex,laki_laki,,2347,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.1001,4,Pangkalan Dodek,sex,perempuan,,2175,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.1001,4,Pangkalan Dodek,total,total,,4522,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2020,4,Sei Raja,sex,laki_laki,,532,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2020,4,Sei Raja,sex,perempuan,,549,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2020,4,Sei Raja,total,total,,1081,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2015,4,Pakam Raya Selatan,sex,laki_laki,,902,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2015,4,Pakam Raya Selatan,sex,perempuan,,926,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2015,4,Pakam Raya Selatan,total,total,,1828,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2016,4,Mandarsah,sex,laki_laki,,1068,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2016,4,Mandarsah,sex,perempuan,,1070,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2016,4,Mandarsah,total,total,,2138,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2017,4,Medang Baru,sex,laki_laki,,635,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2017,4,Medang Baru,sex,perempuan,,662,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2017,4,Medang Baru,total,total,,1297,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.2018,4,Pematang Nibung,sex,laki_laki,,911,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.2018,4,Pematang Nibung,sex,perempuan,,872,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.2018,4,Pematang Nibung,total,total,,1783,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01.1021,4,Pagurawan,sex,laki_laki,,1486,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01.1021,4,Pagurawan,sex,perempuan,,1405,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01.1021,4,Pagurawan,total,total,,2891,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.01,3,MEDANG DERAS,sex,laki_laki,,32032,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.01,3,MEDANG DERAS,sex,perempuan,,31209,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.01,3,MEDANG DERAS,total,total,,63241,jiwa,2025,registration,total_population,unnumbered-p28,28,,

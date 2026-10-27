@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.17.02.2001,4,Mlatirejo,sex,laki_laki,,541,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2001,4,Mlatirejo,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2001,4,Mlatirejo,total,total,,1112,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2002,4,Sendangmulyo,sex,laki_laki,,2246,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2002,4,Sendangmulyo,sex,perempuan,,2261,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2002,4,Sendangmulyo,total,total,,4507,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2003,4,Pondokrejo,sex,laki_laki,,718,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2003,4,Pondokrejo,sex,perempuan,,691,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2003,4,Pondokrejo,total,total,,1409,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2004,4,W arugunung,sex,laki_laki,,867,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2004,4,W arugunung,sex,perempuan,,899,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2004,4,W arugunung,total,total,,1766,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2005,4,Pinggan,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2005,4,Pinggan,sex,perempuan,,721,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2005,4,Pinggan,total,total,,1462,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2007,4,Lambangan Kulon,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2007,4,Lambangan Kulon,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2007,4,Lambangan Kulon,total,total,,1068,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2008,4,Lambangan W etan,sex,laki_laki,,822,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2008,4,Lambangan W etan,sex,perempuan,,774,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2008,4,Lambangan W etan,total,total,,1596,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2009,4,Sumbermulyo,sex,laki_laki,,658,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2009,4,Sumbermulyo,sex,perempuan,,616,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2009,4,Sumbermulyo,total,total,,1274,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2010,4,Karangasem,sex,laki_laki,,1026,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2010,4,Karangasem,sex,perempuan,,1000,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2010,4,Karangasem,total,total,,2026,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2011,4,Pasedan,sex,laki_laki,,2123,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2011,4,Pasedan,sex,perempuan,,2055,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2011,4,Pasedan,total,total,,4178,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2012,4,Ngulaan,sex,laki_laki,,561,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2012,4,Ngulaan,sex,perempuan,,554,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2012,4,Ngulaan,total,total,,1115,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2013,4,Jukung,sex,laki_laki,,1104,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2013,4,Jukung,sex,perempuan,,1155,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2013,4,Jukung,total,total,,2259,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2014,4,Bulu,sex,laki_laki,,522,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2014,4,Bulu,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2014,4,Bulu,total,total,,1031,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2015,4,Mantingan,sex,laki_laki,,876,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2015,4,Mantingan,sex,perempuan,,863,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2015,4,Mantingan,total,total,,1739,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02.2016,4,Kadiwono,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02.2016,4,Kadiwono,sex,perempuan,,568,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02.2016,4,Kadiwono,total,total,,1103,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02,3,Kecamatan Bulu,sex,laki_laki,,14569,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+33.17.02,3,Kecamatan Bulu,sex,perempuan,,14470,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+33.17.02,3,Kecamatan Bulu,total,total,,29039,jiwa,2025,registration,total_population,3.1,31,,
+33.17.02,3,Bulu,age_group,0-14,laki_laki,2938,jiwa,2025,projection,total_population,3.2,33,,0 - 14
+33.17.02,3,Bulu,age_group,0-14,perempuan,2710,jiwa,2025,projection,total_population,3.2,33,,0 - 14
+33.17.02,3,Bulu,age_group,0-14,,5648,jiwa,2025,projection,total_population,3.2,33,,0 - 14
+33.17.02,3,Bulu,age_group,15-64,laki_laki,10277,jiwa,2025,projection,total_population,3.2,33,,15 - 64
+33.17.02,3,Bulu,age_group,15-64,perempuan,10005,jiwa,2025,projection,total_population,3.2,33,,15 - 64
+33.17.02,3,Bulu,age_group,15-64,,20282,jiwa,2025,projection,total_population,3.2,33,,15 - 64
+33.17.02,3,Bulu,age_group,60+,laki_laki,2291,jiwa,2025,projection,total_population,3.2,33,,60+
+33.17.02,3,Bulu,age_group,60+,perempuan,2484,jiwa,2025,projection,total_population,3.2,33,,60+
+33.17.02,3,Bulu,age_group,60+,,4775,jiwa,2025,projection,total_population,3.2,33,,60+
+33.17.02,3,Bulu,age_group,65+,laki_laki,1500,jiwa,2025,projection,total_population,3.2,33,,65+
+33.17.02,3,Bulu,age_group,65+,perempuan,1673,jiwa,2025,projection,total_population,3.2,33,,65+
+33.17.02,3,Bulu,age_group,65+,,3173,jiwa,2025,projection,total_population,3.2,33,,65+

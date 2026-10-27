@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.77.03.2003,4,Purwodadi,sex,laki_laki,,742,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2003,4,Purwodadi,sex,perempuan,,710,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2003,4,Purwodadi,total,total,,1452,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2005,4,Ujung Gurap,sex,laki_laki,,640,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2005,4,Ujung Gurap,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2005,4,Ujung Gurap,total,total,,1272,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2007,4,Baruas,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2007,4,Baruas,sex,perempuan,,450,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2007,4,Baruas,total,total,,880,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2009,4,Aek Bayur,sex,laki_laki,,906,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2009,4,Aek Bayur,sex,perempuan,,860,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2009,4,Aek Bayur,total,total,,1766,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2006,4,Aek Tuhul,sex,laki_laki,,1105,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2006,4,Aek Tuhul,sex,perempuan,,1091,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2006,4,Aek Tuhul,total,total,,2196,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2010,4,Pudun Jae,sex,laki_laki,,2190,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2010,4,Pudun Jae,sex,perempuan,,2150,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2010,4,Pudun Jae,total,total,,4340,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2011,4,Pudun Julu,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2011,4,Pudun Julu,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2011,4,Pudun Julu,total,total,,1062,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2008,4,Siloting,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2008,4,Siloting,sex,perempuan,,626,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2008,4,Siloting,total,total,,1248,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2012,4,Batang Bahal,sex,laki_laki,,601,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2012,4,Batang Bahal,sex,perempuan,,570,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2012,4,Batang Bahal,total,total,,1171,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2013,4,Aek Najaji,sex,laki_laki,,95,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2013,4,Aek Najaji,sex,perempuan,,93,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2013,4,Aek Najaji,total,total,,188,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2015,4,Bargot Topong,sex,laki_laki,,740,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2015,4,Bargot Topong,sex,perempuan,,724,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2015,4,Bargot Topong,total,total,,1464,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.2014,4,Simirik,sex,laki_laki,,998,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.2014,4,Simirik,sex,perempuan,,966,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.2014,4,Simirik,total,total,,1964,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.1001,4,Batunadua Jae,sex,laki_laki,,4610,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.1001,4,Batunadua Jae,sex,perempuan,,4755,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.1001,4,Batunadua Jae,total,total,,9365,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03.1002,4,Batunadua Julu,sex,laki_laki,,1197,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03.1002,4,Batunadua Julu,sex,perempuan,,1244,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03.1002,4,Batunadua Julu,total,total,,2441,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03,3,Padangsidimpuan Batunadua,sex,laki_laki,,15698,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.03,3,Padangsidimpuan Batunadua,sex,perempuan,,15697,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.03,3,Padangsidimpuan Batunadua,total,total,,31395,jiwa,2025,registration,total_population,3.1,25,,
+12.77.03,3,Padangsidimpuan Batunadua,age_group,0-4,laki_laki,1138,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.03,3,Padangsidimpuan Batunadua,age_group,0-4,perempuan,1052,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.03,3,Padangsidimpuan Batunadua,age_group,0-4,,2190,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.03,3,Padangsidimpuan Batunadua,age_group,5-9,laki_laki,1601,jiwa,2025,registration,total_population,3.2,27,,05-09
+12.77.03,3,Padangsidimpuan Batunadua,age_group,5-9,perempuan,1463,jiwa,2025,registration,total_population,3.2,27,,05-09
+12.77.03,3,Padangsidimpuan Batunadua,age_group,5-9,,3064,jiwa,2025,registration,total_population,3.2,27,,05-09
+12.77.03,3,Padangsidimpuan Batunadua,age_group,10-14,laki_laki,1642,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.03,3,Padangsidimpuan Batunadua,age_group,10-14,perempuan,1563,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.03,3,Padangsidimpuan Batunadua,age_group,10-14,,3205,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.03,3,Padangsidimpuan Batunadua,age_group,15-19,laki_laki,1495,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.03,3,Padangsidimpuan Batunadua,age_group,15-19,perempuan,1512,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.03,3,Padangsidimpuan Batunadua,age_group,15-19,,3007,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.03,3,Padangsidimpuan Batunadua,age_group,20-24,laki_laki,1383,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.03,3,Padangsidimpuan Batunadua,age_group,20-24,perempuan,1351,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.03,3,Padangsidimpuan Batunadua,age_group,20-24,,2734,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.03,3,Padangsidimpuan Batunadua,age_group,25-29,laki_laki,1288,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.03,3,Padangsidimpuan Batunadua,age_group,25-29,perempuan,1283,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.03,3,Padangsidimpuan Batunadua,age_group,25-29,,2571,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.03,3,Padangsidimpuan Batunadua,age_group,30-34,laki_laki,1299,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.03,3,Padangsidimpuan Batunadua,age_group,30-34,perempuan,1205,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.03,3,Padangsidimpuan Batunadua,age_group,30-34,,2504,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.03,3,Padangsidimpuan Batunadua,age_group,35-39,laki_laki,1241,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.03,3,Padangsidimpuan Batunadua,age_group,35-39,perempuan,1274,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.03,3,Padangsidimpuan Batunadua,age_group,35-39,,2515,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.03,3,Padangsidimpuan Batunadua,age_group,40-44,laki_laki,1191,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.03,3,Padangsidimpuan Batunadua,age_group,40-44,perempuan,1157,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.03,3,Padangsidimpuan Batunadua,age_group,40-44,,2348,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.03,3,Padangsidimpuan Batunadua,age_group,45-49,laki_laki,946,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.03,3,Padangsidimpuan Batunadua,age_group,45-49,perempuan,901,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.03,3,Padangsidimpuan Batunadua,age_group,45-49,,1847,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.03,3,Padangsidimpuan Batunadua,age_group,50-54,laki_laki,705,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.03,3,Padangsidimpuan Batunadua,age_group,50-54,perempuan,744,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.03,3,Padangsidimpuan Batunadua,age_group,50-54,,1449,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.03,3,Padangsidimpuan Batunadua,age_group,55-59,laki_laki,586,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.03,3,Padangsidimpuan Batunadua,age_group,55-59,perempuan,654,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.03,3,Padangsidimpuan Batunadua,age_group,55-59,,1240,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.03,3,Padangsidimpuan Batunadua,age_group,60-64,laki_laki,492,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.03,3,Padangsidimpuan Batunadua,age_group,60-64,perempuan,604,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.03,3,Padangsidimpuan Batunadua,age_group,60-64,,1096,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.03,3,Padangsidimpuan Batunadua,age_group,65-69,laki_laki,363,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.03,3,Padangsidimpuan Batunadua,age_group,65-69,perempuan,464,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.03,3,Padangsidimpuan Batunadua,age_group,65-69,,827,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.03,3,Padangsidimpuan Batunadua,age_group,70-74,laki_laki,185,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.03,3,Padangsidimpuan Batunadua,age_group,70-74,perempuan,237,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.03,3,Padangsidimpuan Batunadua,age_group,70-74,,422,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.03,3,Padangsidimpuan Batunadua,age_group,75+,laki_laki,143,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.03,3,Padangsidimpuan Batunadua,age_group,75+,perempuan,233,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.03,3,Padangsidimpuan Batunadua,age_group,75+,,376,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.03,3,Padangsidimpuan Batunadua,sex,laki_laki,,15698,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+12.77.03,3,Padangsidimpuan Batunadua,sex,perempuan,,15697,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+12.77.03,3,Padangsidimpuan Batunadua,total,total,,31395,jiwa,2025,registration,total_population,3.2,27,,

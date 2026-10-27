@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332407-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Boja Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Boja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33240.26012",
+  "issn": "2614-9168",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/80c0029625de3a3145c498f1/kecamatan-boja-dalam-angka-2026.html",
+  "sourceFileSha256": "780947086d30dc143f8d4acfdba916730c26eec343bcb8e9b182ed1603e72c88",
+  "sourceFileBytes": 8878500,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332407-dalam-angka-2026.csv",
+  "csvSha256": "0f9f807d85c9a3268adad318dfa8b6adf4f3bc968360f13c5ae75a2ec2025eb0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Boja, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Boja, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Metesih\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Boja Boja District\": unmatched ",
+    "table 3.1: row not stored: row \"Metesih\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Boja Boja District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Boja Boja District\": unmatched "
+  ]
+}

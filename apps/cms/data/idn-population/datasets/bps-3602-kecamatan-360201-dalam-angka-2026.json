@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Malingping Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Malingping Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3602010",
+  "publicationNumber": "36020.26016",
+  "issn": "3031-6871",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/e70f8fb5d980fd281e380380/kecamatan-malingping-dalam-angka-2026.html",
+  "sourceFileSha256": "ec2513cc35268ae0fe38ec6518838051b227708b2cbec3f40b51b404ce2d7e0b",
+  "sourceFileBytes": 8409335,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360201-dalam-angka-2026.csv",
+  "csvSha256": "e632ba50949f29d329b7a00e7c3f1d481e6a406201484d47aea2759f302979cd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Malingping, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Malingping, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sanghiang\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Malingping Malingping District\": unmatched ",
+    "table 3.1: row not stored: row \"Sanghiang\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Malingping Malingping District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Malingping Malingping District\": unmatched "
+  ]
+}

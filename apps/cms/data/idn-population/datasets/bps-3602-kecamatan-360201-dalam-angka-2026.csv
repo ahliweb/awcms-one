@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.01.2023,4,Sukamanah,sex,laki_laki,,3488,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2023,4,Sukamanah,sex,perempuan,,3355,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2023,4,Sukamanah,total,total,,6843,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2018,4,Malingping Selatan,sex,laki_laki,,2229,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2018,4,Malingping Selatan,sex,perempuan,,2241,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2018,4,Malingping Selatan,total,total,,4470,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2002,4,Cilangkahan,sex,laki_laki,,2513,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2002,4,Cilangkahan,sex,perempuan,,2486,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2002,4,Cilangkahan,total,total,,4999,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2003,4,Pagelaran,sex,laki_laki,,3457,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2003,4,Pagelaran,sex,perempuan,,3321,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2003,4,Pagelaran,total,total,,6778,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2016,4,Kersaratu,sex,laki_laki,,1563,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2016,4,Kersaratu,sex,perempuan,,1434,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2016,4,Kersaratu,total,total,,2997,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2004,4,Sukaraja,sex,laki_laki,,4856,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2004,4,Sukaraja,sex,perempuan,,4695,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2004,4,Sukaraja,total,total,,9551,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2014,4,Kadujajar,sex,laki_laki,,4216,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2014,4,Kadujajar,sex,perempuan,,3971,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2014,4,Kadujajar,total,total,,8187,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2005,4,Malingping Utara,sex,laki_laki,,3650,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2005,4,Malingping Utara,sex,perempuan,,3453,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2005,4,Malingping Utara,total,total,,7103,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2013,4,Rahong,sex,laki_laki,,2707,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2013,4,Rahong,sex,perempuan,,2715,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2013,4,Rahong,total,total,,5422,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2006,4,Bolang,sex,laki_laki,,3058,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2006,4,Bolang,sex,perempuan,,3025,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2006,4,Bolang,total,total,,6083,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2019,4,Sumberwaras,sex,laki_laki,,3688,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2019,4,Sumberwaras,sex,perempuan,,3547,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2019,4,Sumberwaras,total,total,,7235,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2009,4,Cipeundeuy,sex,laki_laki,,2384,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2009,4,Cipeundeuy,sex,perempuan,,2283,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2009,4,Cipeundeuy,total,total,,4667,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01.2024,4,Senanghati,sex,laki_laki,,1367,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.01.2024,4,Senanghati,sex,perempuan,,1274,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.01.2024,4,Senanghati,total,total,,2641,jiwa,2025,registration,total_population,3.1,26,,
+36.02.01,3,Malingping,age_group,0-4,laki_laki,3186,jiwa,2025,registration,total_population,3.2,28,,0 - 4
+36.02.01,3,Malingping,age_group,0-4,perempuan,3177,jiwa,2025,registration,total_population,3.2,28,,0 - 4
+36.02.01,3,Malingping,age_group,0-4,,6363,jiwa,2025,registration,total_population,3.2,28,,0 - 4
+36.02.01,3,Malingping,age_group,5-9,laki_laki,3906,jiwa,2025,registration,total_population,3.2,28,,5 - 9
+36.02.01,3,Malingping,age_group,5-9,perempuan,3679,jiwa,2025,registration,total_population,3.2,28,,5 - 9
+36.02.01,3,Malingping,age_group,5-9,,7585,jiwa,2025,registration,total_population,3.2,28,,5 - 9
+36.02.01,3,Malingping,age_group,10-14,laki_laki,3853,jiwa,2025,registration,total_population,3.2,28,,10 - 14
+36.02.01,3,Malingping,age_group,10-14,perempuan,3558,jiwa,2025,registration,total_population,3.2,28,,10 - 14
+36.02.01,3,Malingping,age_group,10-14,,7411,jiwa,2025,registration,total_population,3.2,28,,10 - 14
+36.02.01,3,Malingping,age_group,15-19,laki_laki,3036,jiwa,2025,registration,total_population,3.2,28,,15 - 19
+36.02.01,3,Malingping,age_group,15-19,perempuan,2984,jiwa,2025,registration,total_population,3.2,28,,15 - 19
+36.02.01,3,Malingping,age_group,15-19,,6020,jiwa,2025,registration,total_population,3.2,28,,15 - 19
+36.02.01,3,Malingping,age_group,20-24,laki_laki,3408,jiwa,2025,registration,total_population,3.2,28,,20 - 24
+36.02.01,3,Malingping,age_group,20-24,perempuan,3466,jiwa,2025,registration,total_population,3.2,28,,20 - 24
+36.02.01,3,Malingping,age_group,20-24,,6874,jiwa,2025,registration,total_population,3.2,28,,20 - 24
+36.02.01,3,Malingping,age_group,25-29,laki_laki,3821,jiwa,2025,registration,total_population,3.2,28,,25 - 29
+36.02.01,3,Malingping,age_group,25-29,perempuan,3396,jiwa,2025,registration,total_population,3.2,28,,25 - 29
+36.02.01,3,Malingping,age_group,25-29,,7217,jiwa,2025,registration,total_population,3.2,28,,25 - 29
+36.02.01,3,Malingping,age_group,30-34,laki_laki,3290,jiwa,2025,registration,total_population,3.2,28,,30 - 34
+36.02.01,3,Malingping,age_group,30-34,perempuan,2979,jiwa,2025,registration,total_population,3.2,28,,30 - 34
+36.02.01,3,Malingping,age_group,30-34,,6269,jiwa,2025,registration,total_population,3.2,28,,30 - 34
+36.02.01,3,Malingping,age_group,35-39,laki_laki,3120,jiwa,2025,registration,total_population,3.2,28,,35 - 39
+36.02.01,3,Malingping,age_group,35-39,perempuan,2910,jiwa,2025,registration,total_population,3.2,28,,35 - 39
+36.02.01,3,Malingping,age_group,35-39,,6030,jiwa,2025,registration,total_population,3.2,28,,35 - 39
+36.02.01,3,Malingping,age_group,40-44,laki_laki,2991,jiwa,2025,registration,total_population,3.2,28,,40 - 44
+36.02.01,3,Malingping,age_group,40-44,perempuan,3025,jiwa,2025,registration,total_population,3.2,28,,40 - 44
+36.02.01,3,Malingping,age_group,40-44,,6016,jiwa,2025,registration,total_population,3.2,28,,40 - 44
+36.02.01,3,Malingping,age_group,45-49,laki_laki,2660,jiwa,2025,registration,total_population,3.2,28,,45 - 49
+36.02.01,3,Malingping,age_group,45-49,perempuan,2658,jiwa,2025,registration,total_population,3.2,28,,45 - 49
+36.02.01,3,Malingping,age_group,45-49,,5318,jiwa,2025,registration,total_population,3.2,28,,45 - 49
+36.02.01,3,Malingping,age_group,50-54,laki_laki,2224,jiwa,2025,registration,total_population,3.2,28,,50 - 54
+36.02.01,3,Malingping,age_group,50-54,perempuan,2199,jiwa,2025,registration,total_population,3.2,28,,50 - 54
+36.02.01,3,Malingping,age_group,50-54,,4423,jiwa,2025,registration,total_population,3.2,28,,50 - 54
+36.02.01,3,Malingping,age_group,55-59,laki_laki,1861,jiwa,2025,registration,total_population,3.2,28,,55 - 59
+36.02.01,3,Malingping,age_group,55-59,perempuan,1877,jiwa,2025,registration,total_population,3.2,28,,55 - 59
+36.02.01,3,Malingping,age_group,55-59,,3738,jiwa,2025,registration,total_population,3.2,28,,55 - 59
+36.02.01,3,Malingping,age_group,60-64,laki_laki,1431,jiwa,2025,registration,total_population,3.2,28,,60 - 64
+36.02.01,3,Malingping,age_group,60-64,perempuan,1371,jiwa,2025,registration,total_population,3.2,28,,60 - 64
+36.02.01,3,Malingping,age_group,60-64,,2802,jiwa,2025,registration,total_population,3.2,28,,60 - 64
+36.02.01,3,Malingping,age_group,65-69,laki_laki,1104,jiwa,2025,registration,total_population,3.2,28,,65 - 69
+36.02.01,3,Malingping,age_group,65-69,perempuan,1047,jiwa,2025,registration,total_population,3.2,28,,65 - 69
+36.02.01,3,Malingping,age_group,65-69,,2151,jiwa,2025,registration,total_population,3.2,28,,65 - 69
+36.02.01,3,Malingping,age_group,70-74,laki_laki,553,jiwa,2025,registration,total_population,3.2,28,,70 - 74
+36.02.01,3,Malingping,age_group,70-74,perempuan,491,jiwa,2025,registration,total_population,3.2,28,,70 - 74
+36.02.01,3,Malingping,age_group,70-74,,1044,jiwa,2025,registration,total_population,3.2,28,,70 - 74
+36.02.01,3,Malingping,age_group,75+,laki_laki,678,jiwa,2025,registration,total_population,3.2,28,,75 +
+36.02.01,3,Malingping,age_group,75+,perempuan,878,jiwa,2025,registration,total_population,3.2,28,,75 +
+36.02.01,3,Malingping,age_group,75+,,1556,jiwa,2025,registration,total_population,3.2,28,,75 +

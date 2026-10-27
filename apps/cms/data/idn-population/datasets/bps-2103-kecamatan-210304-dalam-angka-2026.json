@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-2103-kecamatan-210304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.03.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Midai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Natuna",
+  "publisherDomain": "2103",
+  "publisherWebsite": "https://natunakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Natuna (https://natunakab.bps.go.id), publikasi \"Kecamatan Midai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2103030",
+  "publicationNumber": "2103.26009",
+  "issn": "2597-5919",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://natunakab.bps.go.id/id/publication/2026/09/28/7c0c633b1b6aa03d328a0e33/kecamatan-midai-dalam-angka-2026.html",
+  "sourceFileSha256": "e6fe304d1c39d4650db16a1fa181ccf6287a663bd1af7b37b7ec10e9661fa8c6",
+  "sourceFileBytes": 6148873,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Natuna.",
+  "csvPath": "datasets/bps-2103-kecamatan-210304-dalam-angka-2026.csv",
+  "csvSha256": "b154ac6f02c49870e60affc0efd64b4c4f1b28a1e854002f6636f9f4023a6031",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Midai, 2026",
+      "printedPages": [26, 27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Midai, 2026",
+      "printedPages": [28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Midai Midai District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Midai Midai District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Midai Midai District\": unmatched "
+  ]
+}

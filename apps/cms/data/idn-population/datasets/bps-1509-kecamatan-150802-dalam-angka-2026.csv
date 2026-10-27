@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.08.02.2004,4,Leban,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.02.2004,4,Leban,sex,perempuan,,615,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.02.2004,4,Leban,total,total,,1287,jiwa,2025,registration,total_population,3.1,32,,
+15.08.02.2005,4,Lubuk Kayu Aro,sex,laki_laki,,602,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.02.2005,4,Lubuk Kayu Aro,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.02.2005,4,Lubuk Kayu Aro,total,total,,1181,jiwa,2025,registration,total_population,3.1,32,,
+15.08.02.2002,4,Talang Sungai Bungo,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.02.2002,4,Talang Sungai Bungo,sex,perempuan,,370,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.02.2002,4,Talang Sungai Bungo,total,total,,799,jiwa,2025,registration,total_population,3.1,32,,
+15.08.02.2003,4,Rantau Pandan,sex,laki_laki,,2007,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.02.2003,4,Rantau Pandan,sex,perempuan,,1967,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.02.2003,4,Rantau Pandan,total,total,,3974,jiwa,2025,registration,total_population,3.1,32,,
+15.08.02.2001,4,Rantau Duku,sex,laki_laki,,1400,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.02.2001,4,Rantau Duku,sex,perempuan,,1398,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.02.2001,4,Rantau Duku,total,total,,2798,jiwa,2025,registration,total_population,3.1,32,,
+15.08.02.2015,4,Lubuk Mayan,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.02.2015,4,Lubuk Mayan,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.02.2015,4,Lubuk Mayan,total,total,,1069,jiwa,2025,registration,total_population,3.1,32,,
+15.08.02,3,Rantau Pandan,sex,laki_laki,,5660,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.02,3,Rantau Pandan,sex,perempuan,,5448,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.02,3,Rantau Pandan,total,total,,11108,jiwa,2025,registration,total_population,3.1,32,,
+15.08.02,3,Rantau Pandan,age_group,0-4,laki_laki,411,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.02,3,Rantau Pandan,age_group,0-4,perempuan,336,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.02,3,Rantau Pandan,age_group,0-4,,747,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.02,3,Rantau Pandan,age_group,5-9,laki_laki,540,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.02,3,Rantau Pandan,age_group,5-9,perempuan,451,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.02,3,Rantau Pandan,age_group,5-9,,991,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.02,3,Rantau Pandan,age_group,10-14,laki_laki,545,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.02,3,Rantau Pandan,age_group,10-14,perempuan,503,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.02,3,Rantau Pandan,age_group,10-14,,1048,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.02,3,Rantau Pandan,age_group,15-19,laki_laki,573,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.02,3,Rantau Pandan,age_group,15-19,perempuan,511,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.02,3,Rantau Pandan,age_group,15-19,,1084,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.02,3,Rantau Pandan,age_group,20-24,laki_laki,503,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.02,3,Rantau Pandan,age_group,20-24,perempuan,501,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.02,3,Rantau Pandan,age_group,20-24,,1004,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.02,3,Rantau Pandan,age_group,25-29,laki_laki,484,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.02,3,Rantau Pandan,age_group,25-29,perempuan,441,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.02,3,Rantau Pandan,age_group,25-29,,925,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.02,3,Rantau Pandan,age_group,30-34,laki_laki,418,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.02,3,Rantau Pandan,age_group,30-34,perempuan,447,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.02,3,Rantau Pandan,age_group,30-34,,865,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.02,3,Rantau Pandan,age_group,35-39,laki_laki,451,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.02,3,Rantau Pandan,age_group,35-39,perempuan,428,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.02,3,Rantau Pandan,age_group,35-39,,879,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.02,3,Rantau Pandan,age_group,40-44,laki_laki,435,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.02,3,Rantau Pandan,age_group,40-44,perempuan,412,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.02,3,Rantau Pandan,age_group,40-44,,847,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.02,3,Rantau Pandan,age_group,45-49,laki_laki,381,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.02,3,Rantau Pandan,age_group,45-49,perempuan,357,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.02,3,Rantau Pandan,age_group,45-49,,738,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.02,3,Rantau Pandan,age_group,50-54,laki_laki,282,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.02,3,Rantau Pandan,age_group,50-54,perempuan,258,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.02,3,Rantau Pandan,age_group,50-54,,540,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.02,3,Rantau Pandan,age_group,55-59,laki_laki,206,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.02,3,Rantau Pandan,age_group,55-59,perempuan,220,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.02,3,Rantau Pandan,age_group,55-59,,426,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.02,3,Rantau Pandan,age_group,60-64,laki_laki,173,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.02,3,Rantau Pandan,age_group,60-64,perempuan,196,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.02,3,Rantau Pandan,age_group,60-64,,369,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.02,3,Rantau Pandan,age_group,65-69,laki_laki,128,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.02,3,Rantau Pandan,age_group,65-69,perempuan,156,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.02,3,Rantau Pandan,age_group,65-69,,284,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.02,3,Rantau Pandan,age_group,70-74,laki_laki,61,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.02,3,Rantau Pandan,age_group,70-74,perempuan,91,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.02,3,Rantau Pandan,age_group,70-74,,152,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.02,3,Rantau Pandan,age_group,75+,laki_laki,69,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.02,3,Rantau Pandan,age_group,75+,perempuan,140,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.02,3,Rantau Pandan,age_group,75+,,209,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.02,3,Rantau Pandan,sex,laki_laki,,5660,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+15.08.02,3,Rantau Pandan,sex,perempuan,,5448,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+15.08.02,3,Rantau Pandan,total,total,,11108,jiwa,2025,registration,total_population,3.2,34,,

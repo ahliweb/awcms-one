@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1871-kecamatan-187111-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.71.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanjung Senang Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandar Lampung",
+  "publisherDomain": "1871",
+  "publisherWebsite": "https://bandarlampungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandar Lampung (https://bandarlampungkota.bps.go.id), publikasi \"Kecamatan Tanjung Senang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1871082",
+  "publicationNumber": "18710.26022",
+  "issn": "2085-9163",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandarlampungkota.bps.go.id/id/publication/2026/09/28/1ce4ec8a01db6541f1ab8155/kecamatan-tanjung-senang-dalam-angka-2026.html",
+  "sourceFileSha256": "79f0131d55546be0e1a4377f932781debd68e0ea3b08766060dd248f4ac20f9d",
+  "sourceFileBytes": 16785923,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandar Lampung.",
+  "csvPath": "datasets/bps-1871-kecamatan-187111-dalam-angka-2026.csv",
+  "csvSha256": "ec4264d17e1002fbf2215981854bf96bb5ffa1b73c861dbbdcbb3ddcf9b6d94b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Tanjung Senang, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

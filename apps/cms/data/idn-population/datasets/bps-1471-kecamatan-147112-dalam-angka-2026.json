@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1471-kecamatan-147112-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.71.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rumbai Dalam Angka 2026",
+  "publisherName": "BPS Kota Pekanbaru",
+  "publisherDomain": "1471",
+  "publisherWebsite": "https://pekanbarukota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pekanbaru (https://pekanbarukota.bps.go.id), publikasi \"Kecamatan Rumbai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1471080",
+  "publicationNumber": "14710.26016",
+  "issn": "3064-5816",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekanbarukota.bps.go.id/id/publication/2026/09/28/88ee4c3d33ee1300b687bb82/kecamatan-rumbai-dalam-angka-2026.html",
+  "sourceFileSha256": "d79d7321b9a93b45c1a6d1a1d325052038928358a5d45030913e6bc73308042d",
+  "sourceFileBytes": 11012902,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pekanbaru",
+  "csvPath": "datasets/bps-1471-kecamatan-147112-dalam-angka-2026.csv",
+  "csvSha256": "fe3ca9fc5a57ac3b201d77059bbbdfa64ab44766c392cc483836e3a456e04083",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Rumbai , 202 5",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rumbai , 202 5",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 14.71.12 are not stored: age_group vs total: parts sum 106278.0000 != 106548.0000 (diff 270.0000); the source itself is inconsistent"
+  ]
+}

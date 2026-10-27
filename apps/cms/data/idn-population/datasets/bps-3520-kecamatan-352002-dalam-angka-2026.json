@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3520-kecamatan-352002-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.20.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Parang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magetan",
+  "publisherDomain": "3520",
+  "publisherWebsite": "https://magetankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magetan (https://magetankab.bps.go.id), publikasi \"Kecamatan Parang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3520020",
+  "publicationNumber": "35200.26006",
+  "issn": "2797-5169",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magetankab.bps.go.id/id/publication/2026/09/28/9ce644491b5cd9252cd2d11a/kecamatan-parang-dalam-angka-2026.html",
+  "sourceFileSha256": "77a8e3b9a1458907008cdd0e418cb2ea96555f4347ffce035ed2d6a0386a1aa4",
+  "sourceFileBytes": 8620732,
+  "sourcePages": [29, 30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Magetan.",
+  "csvPath": "datasets/bps-3520-kecamatan-352002-dalam-angka-2026.csv",
+  "csvSha256": "2f5de548872cb42f11cbfc701e99e63f68ffa94d14715aa0b58182fbbd3613ae",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Parang, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Parang, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}
