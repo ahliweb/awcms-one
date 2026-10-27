@@ -27,6 +27,18 @@
  * rows, and a late refund restates the ORIGINAL paid day by construction (the
  * row's day is the order's `paid_at`, which never moves).
  *
+ * ## What changed in Issue #478 (descriptor version 2)
+ *
+ * The row now carries the refund split of metrics 3.9: the refund payable (decided,
+ * not yet paid out), the goods share of the three parts of the Refunds step and the
+ * shipping / insurance / tax cents that refunds took out of the companions. The
+ * facts add the order's return records (the obligation); the pure derivation
+ * allocates them (`domain/booking-refund-allocation.ts`). Nothing about the
+ * streams changed: a return writes an order-event row, a settled leg a ledger row,
+ * a cancellation or no-show a decision row, and each of them already triggers the
+ * recompute. A rebuild (`resetForTenant`, then the same streams) re-derives every
+ * row from current facts, so it equals the live pass byte for byte.
+ *
  * ## No second store
  *
  * The row table is a `commerce` projection table the `reporting` engine
@@ -47,7 +59,8 @@ import {
   deriveBookingOrderRow,
   emptyBookingRevenueControlTotals,
   restatedBookingDays,
-  type BookingOrderRow
+  type BookingOrderRow,
+  type BookingRevenueControlTotals
 } from "../domain/booking-revenue";
 import { toCents } from "../domain/price-calculation";
 import type {
@@ -113,6 +126,13 @@ type StoredRow = {
   uncollected: string;
   outstanding: string;
   closed: boolean;
+  refund_payable: string;
+  goods_paid_back: string;
+  goods_payable: string;
+  goods_uncollected: string;
+  shipping_refunded: string;
+  insurance_refunded: string;
+  tax_refunded: string;
 };
 
 function storedToRow(row: StoredRow): BookingOrderRow {
@@ -132,7 +152,14 @@ function storedToRow(row: StoredRow): BookingOrderRow {
     paidBackCents: toCents(String(row.paid_back)),
     uncollectedCents: toCents(String(row.uncollected)),
     outstandingCents: toCents(String(row.outstanding)),
-    closed: Boolean(row.closed)
+    closed: Boolean(row.closed),
+    refundPayableCents: toCents(String(row.refund_payable)),
+    goodsPaidBackCents: toCents(String(row.goods_paid_back)),
+    goodsPayableCents: toCents(String(row.goods_payable)),
+    goodsUncollectedCents: toCents(String(row.goods_uncollected)),
+    shippingRefundedCents: toCents(String(row.shipping_refunded)),
+    insuranceRefundedCents: toCents(String(row.insurance_refunded)),
+    taxRefundedCents: toCents(String(row.tax_refunded))
   };
 }
 
@@ -146,7 +173,9 @@ async function loadStoredRows(
   const rows = (await tx`
     SELECT order_id, to_char(paid_day, 'YYYY-MM-DD') AS paid_day, source_kind,
       stays, no_shows, no_show_retained, gross, discount, shipping, insurance,
-      tax, total, paid_in, paid_back, uncollected, outstanding, closed
+      tax, total, paid_in, paid_back, uncollected, outstanding, closed,
+      refund_payable, goods_paid_back, goods_payable, goods_uncollected,
+      shipping_refunded, insurance_refunded, tax_refunded
     FROM awcms_commerce_report_booking_orders
     WHERE tenant_id = ${tenantId}
       AND order_id = ANY(${tx.array([...orderIds], "uuid")}::uuid[])
@@ -226,7 +255,9 @@ export async function recomputeBookingRevenueRows(
         INSERT INTO awcms_commerce_report_booking_orders (
           tenant_id, order_id, paid_day, source_kind, stays, no_shows,
           no_show_retained, gross, discount, shipping, insurance, tax, total,
-          paid_in, paid_back, uncollected, outstanding, closed
+          paid_in, paid_back, uncollected, outstanding, closed,
+          refund_payable, goods_paid_back, goods_payable, goods_uncollected,
+          shipping_refunded, insurance_refunded, tax_refunded
         )
         VALUES (
           ${tenantId}, ${orderId}, ${next.paidDay}::date, ${next.sourceKind},
@@ -236,7 +267,14 @@ export async function recomputeBookingRevenueRows(
           ${cents(next.taxCents)}::numeric, ${cents(next.totalCents)}::numeric,
           ${cents(next.paidInCents)}::numeric, ${cents(next.paidBackCents)}::numeric,
           ${cents(next.uncollectedCents)}::numeric, ${cents(next.outstandingCents)}::numeric,
-          ${next.closed}
+          ${next.closed},
+          ${cents(next.refundPayableCents)}::numeric,
+          ${cents(next.goodsPaidBackCents)}::numeric,
+          ${cents(next.goodsPayableCents)}::numeric,
+          ${cents(next.goodsUncollectedCents)}::numeric,
+          ${cents(next.shippingRefundedCents)}::numeric,
+          ${cents(next.insuranceRefundedCents)}::numeric,
+          ${cents(next.taxRefundedCents)}::numeric
         )
         ON CONFLICT (tenant_id, order_id) DO UPDATE SET
           paid_day = EXCLUDED.paid_day,
@@ -255,6 +293,13 @@ export async function recomputeBookingRevenueRows(
           uncollected = EXCLUDED.uncollected,
           outstanding = EXCLUDED.outstanding,
           closed = EXCLUDED.closed,
+          refund_payable = EXCLUDED.refund_payable,
+          goods_paid_back = EXCLUDED.goods_paid_back,
+          goods_payable = EXCLUDED.goods_payable,
+          goods_uncollected = EXCLUDED.goods_uncollected,
+          shipping_refunded = EXCLUDED.shipping_refunded,
+          insurance_refunded = EXCLUDED.insurance_refunded,
+          tax_refunded = EXCLUDED.tax_refunded,
           updated_at = now()
       `;
     }
@@ -342,17 +387,7 @@ export async function computeBookingRevenueSourceTotals(
   return totals;
 }
 
-function controlRecord(totals: {
-  orders: number;
-  stays: number;
-  noShows: number;
-  grossCents: bigint;
-  discountCents: bigint;
-  paidBackCents: bigint;
-  uncollectedCents: bigint;
-  outstandingCents: bigint;
-  settledCents: bigint;
-}) {
+function controlRecord(totals: BookingRevenueControlTotals) {
   return {
     [BOOKING_REVENUE_CONTROL_KEYS.orders]: totals.orders,
     [BOOKING_REVENUE_CONTROL_KEYS.stays]: totals.stays,
@@ -366,7 +401,15 @@ function controlRecord(totals: {
     [BOOKING_REVENUE_CONTROL_KEYS.outstandingCents]: Number(
       totals.outstandingCents
     ),
-    [BOOKING_REVENUE_CONTROL_KEYS.settledCents]: Number(totals.settledCents)
+    [BOOKING_REVENUE_CONTROL_KEYS.settledCents]: Number(totals.settledCents),
+    [BOOKING_REVENUE_CONTROL_KEYS.refundPayableCents]: Number(
+      totals.refundPayableCents
+    ),
+    [BOOKING_REVENUE_CONTROL_KEYS.netCents]: Number(totals.netCents),
+    [BOOKING_REVENUE_CONTROL_KEYS.companionsCents]: Number(
+      totals.companionsCents
+    ),
+    [BOOKING_REVENUE_CONTROL_KEYS.surplusCents]: Number(totals.surplusCents)
   };
 }
 
@@ -386,7 +429,15 @@ export const BOOKING_REVENUE_DIMENSIONAL: ProjectionDimensionalContract = {
         (COALESCE(sum(paid_back), 0) * 100)::bigint::text AS paid_back_cents,
         (COALESCE(sum(uncollected), 0) * 100)::bigint::text AS uncollected_cents,
         (COALESCE(sum(outstanding), 0) * 100)::bigint::text AS outstanding_cents,
-        (COALESCE(sum(paid_in - paid_back), 0) * 100)::bigint::text AS settled_cents
+        (COALESCE(sum(paid_in - paid_back), 0) * 100)::bigint::text AS settled_cents,
+        (COALESCE(sum(refund_payable), 0) * 100)::bigint::text AS refund_payable_cents,
+        (COALESCE(sum(gross - discount - goods_paid_back - goods_payable
+          - goods_uncollected), 0) * 100)::bigint::text AS net_cents,
+        (COALESCE(sum(shipping - shipping_refunded + insurance - insurance_refunded
+          + tax - tax_refunded), 0) * 100)::bigint::text AS companions_cents,
+        (COALESCE(sum(GREATEST(
+          paid_in - GREATEST(total, paid_back + refund_payable), 0)), 0)
+          * 100)::bigint::text AS surplus_cents
       FROM awcms_commerce_report_booking_orders
       WHERE tenant_id = ${tenantId}
     `) as Record<string, unknown>[];
@@ -400,7 +451,11 @@ export const BOOKING_REVENUE_DIMENSIONAL: ProjectionDimensionalContract = {
       paidBackCents: BigInt(String(row.paid_back_cents ?? "0")),
       uncollectedCents: BigInt(String(row.uncollected_cents ?? "0")),
       outstandingCents: BigInt(String(row.outstanding_cents ?? "0")),
-      settledCents: BigInt(String(row.settled_cents ?? "0"))
+      settledCents: BigInt(String(row.settled_cents ?? "0")),
+      refundPayableCents: BigInt(String(row.refund_payable_cents ?? "0")),
+      netCents: BigInt(String(row.net_cents ?? "0")),
+      companionsCents: BigInt(String(row.companions_cents ?? "0")),
+      surplusCents: BigInt(String(row.surplus_cents ?? "0"))
     });
   },
   computeSourceTotals: async (tx, tenantId) =>
@@ -413,13 +468,17 @@ export const BOOKING_REVENUE_DIMENSIONAL: ProjectionDimensionalContract = {
         count(*)::int AS orders,
         sum(gross)::text AS gross,
         sum(discount)::text AS discounts,
-        sum(paid_back)::text AS refunds_paid_back,
-        sum(uncollected)::text AS refunds_uncollected,
-        sum(gross - discount - paid_back - uncollected)::text AS net,
-        sum(shipping)::text AS shipping,
-        sum(insurance)::text AS insurance,
-        sum(tax)::text AS tax,
+        sum(goods_paid_back + goods_payable + goods_uncollected)::text AS refunds,
+        sum(goods_paid_back)::text AS refunds_paid_back,
+        sum(goods_payable)::text AS refunds_payable,
+        sum(goods_uncollected)::text AS refunds_uncollected,
+        sum(gross - discount - goods_paid_back - goods_payable
+          - goods_uncollected)::text AS net,
+        sum(shipping - shipping_refunded)::text AS shipping,
+        sum(insurance - insurance_refunded)::text AS insurance,
+        sum(tax - tax_refunded)::text AS tax,
         sum(outstanding)::text AS balance_outstanding,
+        sum(refund_payable)::text AS refund_payable_balance,
         sum(stays)::int AS stays,
         sum(no_shows)::int AS no_shows,
         sum(no_show_retained)::text AS no_show_retained
@@ -434,13 +493,16 @@ export const BOOKING_REVENUE_DIMENSIONAL: ProjectionDimensionalContract = {
         "orders",
         "gross",
         "discounts",
+        "refunds",
         "refunds_paid_back",
+        "refunds_payable",
         "refunds_uncollected",
         "net",
         "shipping",
         "insurance",
         "tax",
         "balance_outstanding",
+        "refund_payable_balance",
         "stays",
         "no_shows",
         "no_show_retained"

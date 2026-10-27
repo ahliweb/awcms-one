@@ -389,6 +389,8 @@ describe("no CSV writer in src/ keeps its own copy of the rule", () => {
       "reads an uploaded text/csv body for the importer",
     "src/pages/api/v1/reports/commerce/retention.csv.ts":
       "serves serializeRetentionReportCsv's output",
+    "src/pages/api/v1/reports/commerce/booking-revenue.csv.ts":
+      "serves serializeBookingRevenueCsv's output (issue #478)",
     // awcms-one (issue #497): the BPS population importer's CSV PARSER. It reads
     // a repo file extracted from a public statistical publication and never
     // writes a cell.

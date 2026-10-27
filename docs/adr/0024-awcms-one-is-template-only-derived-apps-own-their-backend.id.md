@@ -1,13 +1,13 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)
 
-<!-- i18n-source-hash: sha256:ec2f100f7f1473ba96e31c3bc9b274c38308f4f52852aa260fa292a885b74c03 -->
+<!-- i18n-source-hash: sha256:69d77fe0307046624b333d89067c2a2f0c817af9264c7995444f6d16c2d71ce0 -->
 
 # ADR-0024 — awcms-one hanya template; aplikasi turunan memiliki backend dan runtime sendiri
 
 - **Status:** Accepted
 - **Tanggal:** 3 Oktober 2026
 - **Pengambil keputusan:** ahliweb
-- **Terkait:** [ADR-0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md); issue [#297](https://github.com/ahliweb/awcms-one/issues/297)
+- **Terkait:** [ADR-0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md); issue [#297](https://github.com/ahliweb/awcms-one/issues/297); issue [#476](https://github.com/ahliweb/awcms-one/issues/476) ([studi kasus OMES-Web](../template.id.md#studi-kasus-omes-web-produk-turunan) menerapkan ADR ini pada produk turunan yang hidup)
 
 ## Konteks
 

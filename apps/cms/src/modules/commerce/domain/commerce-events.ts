@@ -343,3 +343,28 @@ export const COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME =
   "commerce.order_cancelled_commission_reverser";
 export const COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME =
   "commerce.refund_settled_commission_reverser";
+
+/**
+ * Issue #432 (ADR-0048 Q4, approved 24 October 2026): the store replied in a
+ * customer's inbox. `awcms.commerce.conversation.store_replied` is appended by
+ * `postStoreReply` (`application/conversation-directory.ts`) in the SAME
+ * transaction as the stored reply, on the CONVERSATION aggregate
+ * (`commerce.conversation`, aggregate id = the conversation id). The payload
+ * carries `conversationId` only - never the subject, the body or the customer -
+ * so the customer-push consumer (purpose `support_replies`) reads the account
+ * from the conversation row. Registered in
+ * `domain-event-runtime/domain/event-type-registry.ts`, `module.ts`'s
+ * `events.publishes` and `asyncapi/awcms-domain-events.asyncapi.yaml` in the
+ * same change.
+ */
+export const COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE =
+  "awcms.commerce.conversation.store_replied";
+export const COMMERCE_CONVERSATION_AGGREGATE_TYPE = "commerce.conversation";
+
+/**
+ * Issue #432 (ADR-0048 section 5.4): turns the transactional events above into
+ * outbox rows for the customers who opted in to Web Push. A shipped consumer's
+ * name is permanent (it keys delivery rows and the effect ledger).
+ */
+export const COMMERCE_CUSTOMER_PUSH_ENQUEUER_CONSUMER_NAME =
+  "commerce.customer_push_enqueuer";

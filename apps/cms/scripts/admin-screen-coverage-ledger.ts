@@ -54,19 +54,15 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.settings.read",
   "comments.settings.update",
 
-  // commerce (4) - Issues #378 and #380 (ADR-0045) landed the booking
+  // commerce (1) - Issues #378 and #380 (ADR-0045) landed the booking
   // adapter's ROUTES ahead of its screens. Issue #385 built the offering-link
   // and deposit-policy screens; Issue #381 built the cancellation-policy
   // screen and the booking panel on the order detail page, which claim the
-  // cancellation keys and `commerce.booking_reservation_links.read`. What
-  // remains is the reservation-link `create` surface, whose screen arrives
-  // with the adapter's reservation issues - and, from Issue #383, the three
-  // till keys of the front-desk surface (check-in, check-out, taking the
-  // balance), whose cashier / front-desk SCREENS are Issue #388's. The POS API
-  // exists first; no admin page drives them yet.
-  "commerce.booking_balance_payments.create",
-  "commerce.booking_check_ins.create",
-  "commerce.booking_check_outs.create",
+  // cancellation keys and `commerce.booking_reservation_links.read`; Issue #388
+  // built the cashier / front-desk tab of `/admin/commerce-pos`, which claims
+  // the three till keys of Issue #383 (check-in, check-out, taking the
+  // balance). What remains is the reservation-link `create` surface, whose
+  // screen arrives with the adapter's reservation issues.
   "commerce.booking_reservation_links.create",
 
   // email (6)
@@ -246,6 +242,12 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "commerce.commission_settings.read",
   "commerce.commission_staff_links.manage",
   "commerce.commission_staff_links.read",
+  // commerce customer Web Push (1) — ADR-0048 / Issue #430. API-first: the
+  // aggregate diagnostics read (`GET /api/v1/commerce/customer-push/diagnostics`)
+  // ships without a screen; ADR-0048 lists "a staff UI for customer devices"
+  // under what is not here yet, and a counts-only diagnostics tile is the
+  // recorded follow-up. The key leaves this list when a screen claims it.
+  "commerce.customer_push.read",
   // hr_workforce attendance (7) — ADR-0132 / Issue #947. Same posture: API-first
   // and `experimental`; the attendance and correction-inbox screens are the
   // recorded follow-up that flips the module to `active`.

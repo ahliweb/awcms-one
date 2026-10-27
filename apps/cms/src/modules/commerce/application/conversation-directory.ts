@@ -18,6 +18,12 @@
  * `sql/927`'s header for why a join-derived value was rejected.
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
+import {
+  COMMERCE_CONVERSATION_AGGREGATE_TYPE,
+  COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE,
+  COMMERCE_EVENT_VERSION
+} from "../domain/commerce-events";
 import { enqueueDirectAddressEmail } from "../../email/application/direct-address-notification";
 import {
   fetchActiveEmailTemplateByKey,
@@ -37,6 +43,7 @@ import {
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "conversation";
+const PRODUCER_MODULE = "commerce";
 
 export const CONVERSATION_LIST_DEFAULT_LIMIT = 10;
 export const CONVERSATION_LIST_MAX_LIMIT = 50;
@@ -561,6 +568,23 @@ export async function postStoreReply(
       correlationId
     });
   }
+
+  // Issue #432 (ADR-0048 Q4): announce the reply in the SAME transaction as the
+  // stored message, so a customer-push consumer sees it exactly when the reply
+  // exists and never for a reply that rolled back. The payload is the
+  // conversation id and nothing else: never the subject, the body or the
+  // customer. The domain-event consumer (not this request) decides whether a
+  // push is due, so the staff reply never waits on a push service.
+  await appendDomainEvent(tx, tenantId, {
+    eventType: COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE,
+    eventVersion: COMMERCE_EVENT_VERSION,
+    aggregateType: COMMERCE_CONVERSATION_AGGREGATE_TYPE,
+    aggregateId: conversationId,
+    producerModule: PRODUCER_MODULE,
+    correlationId,
+    actorTenantUserId: senderTenantUserId,
+    payload: { conversationId }
+  });
 
   const contact = await fetchAccountContactForConversation(
     tx,

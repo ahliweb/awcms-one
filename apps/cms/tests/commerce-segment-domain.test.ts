@@ -21,11 +21,15 @@ import {
   validateUpdateSegmentInput
 } from "../src/modules/commerce/domain/segment";
 import {
+  BOOKING_RULE_FIELDS,
   FIELD_SPECS,
   SEGMENT_RULE_FIELDS,
   SEGMENT_RULE_LIMITS,
+  SEGMENT_RULE_SCHEMA_VERSION,
   SEGMENT_SMALL_GROUP_THRESHOLD,
+  segmentRuleFieldsFor,
   suppressSmallCount,
+  usesBookingFields,
   validateSegmentRules
 } from "../src/modules/commerce/domain/segment-rules";
 import { segmentNeeds } from "../src/modules/commerce/application/segment-sql";
@@ -44,8 +48,8 @@ function errorsOf(raw: unknown): { field: string; message: string }[] {
 }
 
 describe("the closed vocabulary (C-25)", () => {
-  test("every PRD 6.1 commerce field is present and nothing booking-derived is (owner answer Q7)", () => {
-    expect([...SEGMENT_RULE_FIELDS].sort() as string[]).toEqual(
+  test("rule schema 1 is exactly the PRD 6.1 commerce list and nothing booking-derived (owner answer Q7)", () => {
+    expect([...segmentRuleFieldsFor(1)].sort() as string[]).toEqual(
       [
         "customer_since",
         "first_order_date",
@@ -58,9 +62,34 @@ describe("the closed vocabulary (C-25)", () => {
         "paid_spend"
       ].sort()
     );
-    for (const name of SEGMENT_RULE_FIELDS) {
-      expect(name).not.toMatch(/stay|booking|reservation|check/);
+    for (const name of segmentRuleFieldsFor(1)) {
+      expect(name).not.toMatch(/stay|booking|reservation|check|show|cancel/);
     }
+  });
+
+  test("rule schema 2 adds exactly the five booking-derived fields (ADR-0052) and keeps every schema 1 field", () => {
+    expect(SEGMENT_RULE_SCHEMA_VERSION).toBe(2);
+    const added = segmentRuleFieldsFor(2).filter(
+      (name) => !segmentRuleFieldsFor(1).includes(name)
+    );
+    expect([...added].sort() as string[]).toEqual(
+      [
+        "booking_count",
+        "cancellation_count",
+        "last_stay_date",
+        "no_show_count",
+        "stay_count"
+      ].sort()
+    );
+    expect([...BOOKING_RULE_FIELDS].sort()).toEqual([...added].sort());
+    // Superset: nothing of schema 1 disappears or changes its spec.
+    for (const name of segmentRuleFieldsFor(1)) {
+      expect(segmentRuleFieldsFor(2)).toContain(name);
+      expect(FIELD_SPECS[name].since).toBe(1);
+    }
+    expect([...SEGMENT_RULE_FIELDS].sort()).toEqual(
+      [...segmentRuleFieldsFor(2)].sort()
+    );
   });
 
   test("every field/operator pair the table declares validates with a value of its type", () => {
@@ -330,7 +359,9 @@ describe("segmentNeeds - which relations a rule reads", () => {
     expect(needs(leaf("level", "eq", 1))).toEqual({
       facts: false,
       accounts: false,
-      loyalty: false
+      loyalty: false,
+      bookings: false,
+      decisions: false
     });
   });
 
@@ -352,6 +383,216 @@ describe("segmentNeeds - which relations a rule reads", () => {
       const op = field.endsWith("date") ? "never" : "gte";
       expect(needs(leaf(field, op, value)).facts).toBe(true);
     }
+  });
+
+  test("booking-derived fields turn on only their own scan, never the order scan (ADR-0052)", () => {
+    for (const field of ["booking_count", "stay_count"]) {
+      expect(needs(leaf(field, "gte", 1))).toEqual({
+        facts: false,
+        accounts: false,
+        loyalty: false,
+        bookings: true,
+        decisions: false
+      });
+    }
+    expect(needs(leaf("last_stay_date", "never")).bookings).toBe(true);
+    for (const field of ["no_show_count", "cancellation_count"]) {
+      expect(needs(leaf(field, "gte", 1))).toEqual({
+        facts: false,
+        accounts: false,
+        loyalty: false,
+        bookings: false,
+        decisions: true
+      });
+    }
+  });
+});
+
+describe("rule schema 2 - the booking-derived fields (ADR-0052, C-29)", () => {
+  const bookingLeaves = [
+    leaf("booking_count", "gte", 1, { windowDays: 365 }),
+    leaf("stay_count", "eq", 0),
+    leaf("last_stay_date", "before", { daysAgo: 180 }),
+    leaf("last_stay_date", "never"),
+    leaf("no_show_count", "gt", 1, { windowDays: 730 }),
+    leaf("cancellation_count", "lte", 2)
+  ];
+
+  test("each booking field validates under schema 2 and round-trips to its canonical form", () => {
+    for (const raw of bookingLeaves) {
+      const result = validateSegmentRules(raw);
+      expect(result.valid).toBe(true);
+      if (result.valid) expect(result.canonical).toEqual(raw);
+    }
+  });
+
+  test("the default schema is the current one", () => {
+    expect(validateSegmentRules(bookingLeaves[0]).valid).toBe(
+      validateSegmentRules(bookingLeaves[0], SEGMENT_RULE_SCHEMA_VERSION).valid
+    );
+  });
+
+  test("a version written under schema 1 refuses every booking field and says which schema it needs", () => {
+    for (const raw of bookingLeaves) {
+      const result = validateSegmentRules(raw, 1);
+      expect(result.valid).toBe(false);
+      if (!result.valid) {
+        expect(result.errors[0]!.field).toBe("rules.field");
+        expect(result.errors[0]!.message).toContain("needs rule schema 2");
+        expect(result.errors[0]!.message).toContain("schema 1");
+      }
+    }
+    // Nested too: one booking leaf anywhere refuses the whole rule.
+    expect(
+      validateSegmentRules(
+        { and: [leaf("level", "eq", 1), { not: bookingLeaves[1] }] },
+        1
+      ).valid
+    ).toBe(false);
+  });
+
+  test("old rules are unchanged: every schema 1 rule validates under both schemas to the same tree and canonical form", () => {
+    const old = [
+      leaf("level", "in", [3, 1]),
+      leaf("order_count", "gte", 2, { windowDays: 90 }),
+      leaf("paid_spend", "gt", "1000.5"),
+      leaf("last_order_date", "never"),
+      leaf("loyalty_balance", "lt", -3),
+      {
+        and: [
+          leaf("has_account", "eq", true),
+          { or: [leaf("customer_since", "before", { daysAgo: 30 })] }
+        ]
+      }
+    ];
+    for (const raw of old) {
+      const one = validateSegmentRules(raw, 1);
+      const two = validateSegmentRules(raw, 2);
+      expect(one.valid && two.valid).toBe(true);
+      if (one.valid && two.valid) {
+        expect(two.node).toEqual(one.node);
+        expect(two.canonical).toEqual(one.canonical);
+        expect(two.stats).toEqual(one.stats);
+      }
+    }
+  });
+
+  test("the schema 1 error for an unknown field lists only schema 1 fields", () => {
+    const result = validateSegmentRules(leaf("email_domain", "eq", 1), 1);
+    expect(result.valid).toBe(false);
+    if (!result.valid) {
+      expect(result.errors[0]!.message).toContain("order_count");
+      expect(result.errors[0]!.message).not.toContain("stay_count");
+    }
+    const two = validateSegmentRules(leaf("email_domain", "eq", 1));
+    if (!two.valid) expect(two.errors[0]!.message).toContain("stay_count");
+  });
+
+  test("booking counts take windows like order_count, share the three-window bound, and last_stay_date takes none", () => {
+    expect(
+      validateSegmentRules({
+        and: [
+          leaf("order_count", "gte", 1, { windowDays: 30 }),
+          leaf("booking_count", "gte", 1, { windowDays: 90 }),
+          leaf("stay_count", "gte", 1, { windowDays: 365 }),
+          leaf("no_show_count", "gte", 1, { windowDays: 730 })
+        ]
+      }).valid
+    ).toBe(false);
+    expect(
+      validateSegmentRules({
+        and: [
+          leaf("booking_count", "gte", 1, { windowDays: 90 }),
+          leaf("no_show_count", "gte", 1, { windowDays: 90 }),
+          leaf("stay_count", "gte", 1, { windowDays: 365 })
+        ]
+      }).valid
+    ).toBe(true);
+    expect(
+      errorsOf(
+        leaf("last_stay_date", "before", { daysAgo: 1 }, { windowDays: 30 })
+      )[0]!.field
+    ).toBe("rules.windowDays");
+  });
+
+  test("operands stay typed: a string, a float, a negative count and an unknown operator are refused for the new fields", () => {
+    for (const bad of ["3", 1.5, -1, null]) {
+      for (const field of [
+        "booking_count",
+        "stay_count",
+        "no_show_count",
+        "cancellation_count"
+      ]) {
+        expect(validateSegmentRules(leaf(field, "gte", bad)).valid).toBe(false);
+      }
+    }
+    expect(errorsOf(leaf("stay_count", "before", 1))[0]!.field).toBe(
+      "rules.op"
+    );
+    expect(errorsOf(leaf("last_stay_date", "gte", 1))[0]!.field).toBe(
+      "rules.op"
+    );
+    expect(
+      validateSegmentRules(leaf("last_stay_date", "before", "2026-01-31")).valid
+    ).toBe(false);
+    expect(validateSegmentRules(leaf("last_stay_date", "never", 1)).valid).toBe(
+      false
+    );
+  });
+
+  test("injection strings stay data in the new fields too", () => {
+    for (const attack of ["1; DROP TABLE x", "' OR 1=1 --", "stay_count"]) {
+      for (const field of [
+        "booking_count",
+        "stay_count",
+        "no_show_count",
+        "cancellation_count"
+      ]) {
+        expect(validateSegmentRules(leaf(field, "gte", attack)).valid).toBe(
+          false
+        );
+      }
+      expect(
+        validateSegmentRules(leaf("last_stay_date", "before", attack)).valid
+      ).toBe(false);
+    }
+  });
+
+  test("usesBookingFields sees a booking leaf at any depth and only those", () => {
+    const parse = (raw: unknown) => {
+      const result = validateSegmentRules(raw);
+      if (!result.valid) throw new Error("invalid");
+      return result.node;
+    };
+    expect(usesBookingFields(parse(leaf("order_count", "gte", 1)))).toBe(false);
+    expect(usesBookingFields(parse(bookingLeaves[1]))).toBe(true);
+    expect(
+      usesBookingFields(
+        parse({
+          and: [
+            leaf("level", "eq", 1),
+            { or: [{ not: leaf("no_show_count", "gt", 0) }] }
+          ]
+        })
+      )
+    ).toBe(true);
+  });
+
+  test("create and update stamp the current schema on the version they write", () => {
+    const created = validateCreateSegmentInput({
+      name: "Win back",
+      rules: bookingLeaves[2]
+    });
+    expect(created.valid && created.value.ruleSchemaVersion).toBe(
+      SEGMENT_RULE_SCHEMA_VERSION
+    );
+    const updated = validateUpdateSegmentInput({
+      baseVersion: 1,
+      rules: bookingLeaves[1]
+    });
+    expect(updated.valid && updated.value.rules?.ruleSchemaVersion).toBe(
+      SEGMENT_RULE_SCHEMA_VERSION
+    );
   });
 });
 

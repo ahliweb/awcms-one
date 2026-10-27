@@ -36,10 +36,14 @@ import { POST as authLogin } from "../../src/pages/api/v1/auth/login";
 import { PATCH as patchModuleSettings } from "../../src/pages/api/v1/tenant/modules/[moduleKey]/settings";
 import { GET as revenueJson } from "../../src/pages/api/v1/reports/commerce/booking-revenue";
 import { GET as pipelineJson } from "../../src/pages/api/v1/reports/commerce/booking-pipeline";
+import { GET as revenueCsv } from "../../src/pages/api/v1/reports/commerce/booking-revenue.csv";
+import { GET as cashJson } from "../../src/pages/api/v1/reports/commerce/booking-revenue-cash";
 
 const OWNER_PASSWORD = "integration-test-owner-password";
 const REVENUE_PATH = "/api/v1/reports/commerce/booking-revenue";
 const PIPELINE_PATH = "/api/v1/reports/commerce/booking-pipeline";
+const CSV_PATH = "/api/v1/reports/commerce/booking-revenue.csv";
+const CASH_PATH = "/api/v1/reports/commerce/booking-revenue-cash";
 
 type Principal = { tenantId: string; token: string; tenantUserId: string };
 
@@ -154,7 +158,10 @@ type RevenueBody = {
     gross: string;
     refunds: string;
     refundsPaidBack: string;
+    refundsPayable: string;
     refundsUncollected: string;
+    refundPayableBalance: string;
+    tax: string;
     net: string;
     balanceOutstanding: string;
     noShows: number;
@@ -166,6 +173,19 @@ type RevenueBody = {
 
 const dayAgo = (n: number) =>
   resolveSalesReportDay(new Date(Date.now() - n * 86_400_000));
+
+/** The CSV handler returns text, which `invoke` would try to parse as JSON, so call it directly. */
+function callCsv(who: Principal, query = ""): Promise<Response> {
+  const url = `http://integration.test${CSV_PATH}${query}`;
+  return revenueCsv({
+    request: new Request(url, { headers: headers(who) }),
+    url: new URL(url),
+    params: {},
+    locals: { correlationId: "corr-478" },
+    cookies: createCookieJar(),
+    clientAddress: "127.0.0.1"
+  } as never) as Promise<Response>;
+}
 
 /** Two booking orders on one past day: a no-show with its balance uncollected, and a fully paid stay. */
 async function seedRows(tenantId: string): Promise<void> {
@@ -180,10 +200,11 @@ async function seedRows(tenantId: string): Promise<void> {
     INSERT INTO awcms_commerce_report_booking_orders
       (tenant_id, order_id, paid_day, source_kind, stays, no_shows, no_show_retained,
        gross, discount, shipping, insurance, tax, total, paid_in, paid_back,
-       uncollected, outstanding, closed)
+       uncollected, outstanding, closed, goods_uncollected)
     VALUES (${tenantId}, gen_random_uuid(), ${dayAgo(2)}::date, 'reservation', ${stays},
       ${noShows}, ${retained}::numeric, 3000000, 0, 0, 0, 0, 3000000,
-      ${paidIn}::numeric, 0, ${uncollected}::numeric, 0, ${noShows > 0})`;
+      ${paidIn}::numeric, 0, ${uncollected}::numeric, 0, ${noShows > 0},
+      ${uncollected}::numeric)`;
   await insert(1, 1, "900000", "2100000", "900000");
   await insert(1, 0, "3000000", "0", "0");
 }
@@ -261,8 +282,10 @@ suite(
         day: dayAgo(2),
         gross: "6000000.00",
         refundsPaidBack: "0.00",
+        refundsPayable: "0.00",
         refundsUncollected: "2100000.00",
         refunds: "2100000.00",
+        refundPayableBalance: "0.00",
         net: "3900000.00",
         noShows: 1,
         noShowRatePercent: "50.0",
@@ -322,8 +345,13 @@ suite(
       ]);
       const nobody = await seedPrincipal(owner.tenantId, "nobody", []);
 
-      for (const path of [REVENUE_PATH, PIPELINE_PATH]) {
-        const handler = path === REVENUE_PATH ? revenueJson : pipelineJson;
+      for (const path of [REVENUE_PATH, PIPELINE_PATH, CASH_PATH]) {
+        const handler =
+          path === REVENUE_PATH
+            ? revenueJson
+            : path === CASH_PATH
+              ? cashJson
+              : pipelineJson;
         expect(
           (await invoke<Envelope>(handler, { path, headers: headers(reader) }))
             .status
@@ -366,6 +394,173 @@ suite(
         expect(bad.status).toBe(400);
         expect(bad.body.error?.code).toBe("VALIDATION_ERROR");
       }
+    });
+
+    test("#478 waterfall CSV: the same columns as the screen, aggregates only, no-store, audited; permission, enabled:false and the range check", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      await seedRows(owner.tenantId);
+      const reader = await seedPrincipal(owner.tenantId, "csv-reader", [
+        "commerce.report_booking_revenue.export"
+      ]);
+      const bystander = await seedPrincipal(owner.tenantId, "csv-bystander", [
+        // reporting.dashboard.read opens the screen and the JSON route but NOT
+        // the file: the export is its own key (sql/1062).
+        "reporting.dashboard.read",
+        "reporting.projections.read",
+        "commerce.report_retention.export",
+        "commerce.report_returns.export"
+      ]);
+      const nobody = await seedPrincipal(owner.tenantId, "csv-nobody", []);
+      const query = `?from=${dayAgo(5)}&to=${dayAgo(0)}`;
+
+      // booking OFF (the default): 200 with the header row only.
+      const off = await callCsv(reader, query);
+      expect(off.status).toBe(200);
+      expect(off.headers.get("content-type")).toContain("text/csv");
+      const offLines = (await off.text()).split("\r\n");
+      expect(offLines[0]).toContain("basis,day,orders,gross,discounts,refunds");
+      expect(offLines).toHaveLength(2);
+      expect(offLines[1]).toBe("");
+
+      expect((await setBooking(owner, true)).status).toBe(200);
+      const on = await callCsv(reader, query);
+      expect(on.status).toBe(200);
+      expect(on.headers.get("cache-control")).toBe("no-store");
+      expect(on.headers.get("content-disposition")).toBe(
+        `attachment; filename="booking-revenue-${dayAgo(5)}-${dayAgo(0)}.csv"`
+      );
+      const text = await on.text();
+      const lines = text.split("\r\n");
+      expect(lines).toHaveLength(3);
+      const header = lines[0]!.split(",");
+      const cells = Object.fromEntries(
+        header.map((name, index) => [name, lines[1]!.split(",")[index]])
+      );
+      expect(cells).toMatchObject({
+        basis: "paid_day",
+        day: dayAgo(2),
+        orders: "2",
+        gross: "6000000.00",
+        refunds: "2100000.00",
+        refunds_paid_back: "0.00",
+        refunds_payable: "0.00",
+        refunds_uncollected: "2100000.00",
+        net: "3900000.00",
+        refund_payable_balance: "0.00",
+        no_shows: "1",
+        restated: "false"
+      });
+      // No cell was neutralised (nothing here begins with a formula leader),
+      // and no id, customer or contact is in the file.
+      expect(text).not.toContain("'");
+      expect(text).not.toMatch(/customer|phone|[0-9a-f]{8}-[0-9a-f]{4}-4/i);
+
+      // The export is audited: who, the range and the row count, never a cell.
+      const audit = (await getHandlerAdminSql()`
+        SELECT action, resource_type, attributes FROM awcms_audit_events
+        WHERE tenant_id = ${owner.tenantId} AND action = 'booking_revenue_report.export'
+        ORDER BY created_at
+      `) as {
+        action: string;
+        resource_type: string;
+        attributes: { rowCount: number; featureEnabled: boolean };
+      }[];
+      expect(audit).toHaveLength(2);
+      expect(audit[0]!.attributes).toMatchObject({
+        rowCount: 0,
+        featureEnabled: false
+      });
+      expect(audit[1]!.resource_type).toBe("booking_revenue_report");
+      expect(audit[1]!.attributes).toMatchObject({
+        rowCount: 1,
+        featureEnabled: true
+      });
+
+      // commerce.report_booking_revenue.export and nothing else; a bad range is 400 after it.
+      expect((await callCsv(bystander, query)).status).toBe(403);
+      expect((await callCsv(nobody, query)).status).toBe(403);
+      expect((await callCsv(nobody, "?from=2026-02-30")).status).toBe(403);
+      const bad = await callCsv(reader, "?from=2026-05-02&to=2026-05-01");
+      expect(bad.status).toBe(400);
+      const anonymous = await revenueCsv({
+        request: new Request(`http://integration.test${CSV_PATH}`, {
+          headers: { "x-awcms-tenant-id": owner.tenantId }
+        }),
+        url: new URL(`http://integration.test${CSV_PATH}`),
+        params: {},
+        locals: { correlationId: "corr-478-anon" },
+        cookies: createCookieJar(),
+        clientAddress: "127.0.0.1"
+      } as never);
+      expect(anonymous.status).toBe(401);
+    });
+
+    test("#478 cash view: enabled:false while booking is OFF, an empty labelled cash answer while it is ON, range validation after the permission check", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      const reader = await seedPrincipal(owner.tenantId, "cash-reader", [
+        "reporting.dashboard.read"
+      ]);
+      const nobody = await seedPrincipal(owner.tenantId, "cash-nobody", []);
+      const path = `${CASH_PATH}?from=${dayAgo(5)}&to=${dayAgo(0)}`;
+      type CashBody = {
+        enabled: boolean;
+        basis: string;
+        timeZone: string;
+        from: string;
+        to: string;
+        days: unknown[];
+        totals: { legs: number; refundsPaidOut: string };
+      };
+
+      const off = await invoke<Envelope<CashBody>>(cashJson, {
+        path,
+        headers: headers(reader)
+      });
+      expect(off.status).toBe(200);
+      expect(off.body.data).toMatchObject({
+        enabled: false,
+        basis: "cash",
+        days: []
+      });
+
+      expect((await setBooking(owner, true)).status).toBe(200);
+      const on = await invoke<Envelope<CashBody>>(cashJson, {
+        path,
+        headers: headers(reader)
+      });
+      expect(on.status).toBe(200);
+      expect(on.body.data).toMatchObject({
+        enabled: true,
+        basis: "cash",
+        timeZone: "Asia/Jakarta",
+        from: dayAgo(5),
+        to: dayAgo(0),
+        days: [],
+        totals: { legs: 0, refundsPaidOut: "0.00" }
+      });
+      // The default range is the last 30 days.
+      const defaults = await invoke<Envelope<CashBody>>(cashJson, {
+        path: CASH_PATH,
+        headers: headers(reader)
+      });
+      expect(defaults.body.data.to).toBe(dayAgo(0));
+
+      expect(
+        (
+          await invoke<Envelope>(cashJson, {
+            path: `${CASH_PATH}?from=2026-02-30`,
+            headers: headers(nobody)
+          })
+        ).status
+      ).toBe(403);
+      const bad = await invoke<Envelope>(cashJson, {
+        path: `${CASH_PATH}?from=2026-05-02&to=2026-05-01`,
+        headers: headers(reader)
+      });
+      expect(bad.status).toBe(400);
+      expect(bad.body.error?.code).toBe("VALIDATION_ERROR");
     });
 
     test("the pipeline is enabled=false while booking is OFF and an empty live read while it is ON with no holds", async () => {

@@ -76,6 +76,7 @@ bun run dev
 2. **`SITE_PROFILE`** in `apps/storefront/.env.example` matches the profile chosen — `bun run build` with no override should ship exactly that profile's pages.
 3. **No leftover BjekMart-only artefact** — `tools/seed-borneojek-mart.ts` and `tools/seed-data/contoh/**` should be gone; `tests/seed-profil.test.mjs`'s reference-example test cases self-skip once they are.
 4. **`cd apps/storefront && SITE_PROFILE=<chosen> bun run check`** passes, and a real `bun run build` produces only the chosen profile's routes.
+5. **The printed post-init checklist** (`docs/template.md`, "Post-init checklist") — `template:init` ends by printing it. It names what it did NOT rewrite: the README title/body, `AGENTS.md`, `CONTRIBUTING*`, `GOVERNANCE*`, `docs/template.md` and `compose.production.yaml` still say awcms-one/BjekMart. Never search-and-replace the production Compose project, volume or image names: they may name resources that already persist.
 
 ## Common mistakes
 

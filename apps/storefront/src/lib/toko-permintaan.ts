@@ -77,6 +77,26 @@ export class TokoApiError extends Error {
   }
 }
 
+/**
+ * A `429 RATE_LIMITED` whose body carries no `details.retryAfter` (the customer
+ * push routes, issue #431, send only the `Retry-After` HEADER) gets that header's
+ * seconds folded into `details`, so `TokoApiError.retryAfterSeconds` reads one
+ * place. A cross-origin browser can read the header only when the CMS lists it in
+ * `Access-Control-Expose-Headers`; when it does not, `get()` is `null` and the
+ * error simply has no wait to show - never a thrown error. Every other code, and
+ * every body that already has `retryAfter`, is returned untouched.
+ */
+function withRetryAfter(code: string, details: unknown, response: Response): unknown {
+  if (code !== "RATE_LIMITED") return details;
+  if (typeof details === "object" && details !== null && "retryAfter" in details) return details;
+
+  const header = response.headers?.get("retry-after") ?? null;
+  if (header === null || !/^\d+$/.test(header)) return details;
+
+  const base = typeof details === "object" && details !== null && !Array.isArray(details) ? details : {};
+  return { ...base, retryAfter: Number(header) };
+}
+
 type Envelope<T> =
   | { success: true; data: T }
   | { success: false; error: { code: string; message: string; details?: unknown } };
@@ -139,7 +159,12 @@ export async function kirimPermintaan<T>(
   }
 
   if (!payload.success) {
-    throw new TokoApiError(payload.error.message, response.status, payload.error.code, payload.error.details);
+    throw new TokoApiError(
+      payload.error.message,
+      response.status,
+      payload.error.code,
+      withRetryAfter(payload.error.code, payload.error.details, response)
+    );
   }
 
   return payload.data;
