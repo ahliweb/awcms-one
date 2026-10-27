@@ -54,19 +54,15 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.settings.read",
   "comments.settings.update",
 
-  // commerce (4) - Issues #378 and #380 (ADR-0045) landed the booking
+  // commerce (1) - Issues #378 and #380 (ADR-0045) landed the booking
   // adapter's ROUTES ahead of its screens. Issue #385 built the offering-link
   // and deposit-policy screens; Issue #381 built the cancellation-policy
   // screen and the booking panel on the order detail page, which claim the
-  // cancellation keys and `commerce.booking_reservation_links.read`. What
-  // remains is the reservation-link `create` surface, whose screen arrives
-  // with the adapter's reservation issues - and, from Issue #383, the three
-  // till keys of the front-desk surface (check-in, check-out, taking the
-  // balance), whose cashier / front-desk SCREENS are Issue #388's. The POS API
-  // exists first; no admin page drives them yet.
-  "commerce.booking_balance_payments.create",
-  "commerce.booking_check_ins.create",
-  "commerce.booking_check_outs.create",
+  // cancellation keys and `commerce.booking_reservation_links.read`; Issue #388
+  // built the cashier / front-desk tab of `/admin/commerce-pos`, which claims
+  // the three till keys of Issue #383 (check-in, check-out, taking the
+  // balance). What remains is the reservation-link `create` surface, whose
+  // screen arrives with the adapter's reservation issues.
   "commerce.booking_reservation_links.create",
 
   // email (6)
