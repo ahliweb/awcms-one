@@ -782,6 +782,14 @@ export const COMMERCE_REPORT_RETURNS_ACTIVITY_CODE = "report_returns";
 // `reporting.dashboard.read`, or by another report key: counting how many
 // customers came back is not listing who they are.
 export const COMMERCE_REPORT_RETENTION_ACTIVITY_CODE = "report_retention";
+// Issue #478 - the booking revenue waterfall's CSV. One `export` key only: the
+// on-screen waterfall stays on `reporting.dashboard.read` (like the sales
+// reports it sits beside), but the FILE is a bulk read of every paid day's
+// money in a form that leaves the system, so it follows the operational and
+// retention CSVs: a dedicated commerce activity, NOT implied by
+// `reporting.dashboard.read` or by another report key (migration 1054).
+export const COMMERCE_REPORT_BOOKING_REVENUE_ACTIVITY_CODE =
+  "report_booking_revenue";
 
 export const COMMERCE_REPORT_TENDER_PERMISSIONS = {
   read: "commerce.report_tenders.read",
@@ -816,6 +824,10 @@ export const COMMERCE_REPORT_RETURN_PERMISSIONS = {
 export const COMMERCE_REPORT_RETENTION_PERMISSIONS = {
   read: "commerce.report_retention.read",
   export: "commerce.report_retention.export"
+} as const;
+
+export const COMMERCE_REPORT_BOOKING_REVENUE_PERMISSIONS = {
+  export: "commerce.report_booking_revenue.export"
 } as const;
 
 /**
