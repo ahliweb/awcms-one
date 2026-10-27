@@ -1,0 +1,9 @@
+{
+  "lockfileVersion": 1,
+  "packages": {
+    "sharp": ["sharp@0.35.5", "", { "dependencies": {} }, "sha512-x"],
+    "@scope/pkg": ["@scope/pkg@2.0.1", "", {}, "sha512-y"],
+    "shell-quote": ["shell-quote@1.12.0", "", {}, "sha512-z"],
+    "astro/shell-quote": ["shell-quote@1.8.0", "", {}, "sha512-w"],
+  }
+}
