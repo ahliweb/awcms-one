@@ -29,6 +29,14 @@ export type CustomerPushDiagnostics = {
       status: string;
       count: number;
     }[];
+    /**
+     * Issue #432: why messages did not go out, from the FIXED `last_error`
+     * vocabulary (`consent_withdrawn`, `account_blocked`, `session_ended`,
+     * `endpoint_gone`, `provider_rejected`, `rate_limited`, ...), by status. A
+     * `retry_wait` row with `rate_limited` is a send deferred by the account's
+     * hourly or daily cap; with `provider_unavailable` it is a backoff.
+     */
+    byReason: { status: string; reason: string; count: number }[];
   };
   preferences: {
     purpose: string;
@@ -61,6 +69,13 @@ export async function fetchCustomerPushDiagnostics(
     WHERE tenant_id = ${tenantId}
     GROUP BY purpose, status
   `) as { purpose: string; status: string; n: number }[];
+
+  const reasonRows = (await tx`
+    SELECT status, last_error, count(*)::int AS n
+    FROM awcms_commerce_push_messages
+    WHERE tenant_id = ${tenantId} AND last_error IS NOT NULL
+    GROUP BY status, last_error
+  `) as { status: string; last_error: string; n: number }[];
 
   const preferenceRows = (await tx`
     SELECT purpose, enabled, count(*)::int AS n
@@ -103,6 +118,16 @@ export async function fetchCustomerPushDiagnostics(
           (a, b) =>
             a.purpose.localeCompare(b.purpose) ||
             a.status.localeCompare(b.status)
+        ),
+      byReason: reasonRows
+        .map((row) => ({
+          status: row.status,
+          reason: row.last_error,
+          count: row.n
+        }))
+        .sort(
+          (a, b) =>
+            a.status.localeCompare(b.status) || a.reason.localeCompare(b.reason)
         )
     },
     // The reserved `marketing` row is reported too: it proves nothing is

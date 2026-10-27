@@ -83,6 +83,18 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # the next run's scan.
 */15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-auth-purge.lock $AWCMS_RUN_JOB commerce:customer-auth:purge >> $AWCMS_JOB_LOG/commerce-customer-auth-purge.log 2>&1
 
+# commerce — Drain the due customer Web Push outbox (Issue #432, ADR-0048) for
+# every active tenant that turned the customerPush feature on: claim with a
+# lease, re-check eligibility at send time (revoked device, withdrawn
+# preference, blocked account, ended session, stale origin all cancel with no
+# provider call), apply the per-account cap (12 per hour, 40 per day), send
+# through the upstream Web Push provider with a TTL and an Urgency header, and
+# record every attempt. A 404/410 from the push service revokes the device;
+# other failures back off exponentially. `sent` means the push service
+# accepted the request, never that a device displayed it. Idempotent: a sent
+# row is terminal and a claimed row is invisible until its lease lapses.
+* * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-push-dispatch.lock $AWCMS_RUN_JOB commerce:customer-push:dispatch >> $AWCMS_JOB_LOG/commerce-customer-push-dispatch.log 2>&1
+
 # commerce — Customer Web Push housekeeping across all tenants (Issue #430,
 # ADR-0048): revokes the devices of ended customer sessions and of blocked
 # accounts (destroying their stored credentials), then purges tombstoned

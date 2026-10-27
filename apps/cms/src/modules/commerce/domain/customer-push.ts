@@ -119,7 +119,14 @@ export const CUSTOMER_PUSH_ERROR_CODES = [
   "provider_rejected",
   "provider_unavailable",
   "endpoint_gone",
-  "config_unavailable"
+  "config_unavailable",
+  // Issue #432 (the dispatcher): the customer withdrew the purpose (or the
+  // wording version they consented to is no longer current), the device's
+  // storefront origin stopped being one of the tenant's domains, and a send
+  // deferred because the account is at its hourly or daily cap.
+  "consent_withdrawn",
+  "origin_revoked",
+  "rate_limited"
 ] as const;
 
 export type CustomerPushErrorCode = (typeof CUSTOMER_PUSH_ERROR_CODES)[number];

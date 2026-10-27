@@ -2,11 +2,11 @@
  * The thin customer-push outbox repository (Issue #430, ADR-0048 option C).
  *
  * Scope of #430: the table (`sql/1057`) and exactly the operations the device
- * lifecycle and the next issue need to plug into. The domain-event consumers
- * (which decide WHAT to send), the claim/send/finalize loop and the dispatch
- * job are #432; they call `enqueueCustomerPushMessage` and the cap helpers here
- * and add the dispatch functions beside them. Nothing in #430 enqueues a
- * message; the only writer in #430 is {@link cancelPendingMessagesForDevices}.
+ * lifecycle and the next issue need to plug into. The domain-event consumer
+ * (`customer-push-enqueue.ts`, which decides WHAT to send) and the
+ * claim/send/finalize loop (`customer-push-dispatch.ts`) are #432; they call
+ * `enqueueCustomerPushMessage`, the cap helpers and
+ * {@link expireOverdueCustomerPushMessages} here.
  *
  * Every function takes an already-open transaction. No function selects a
  * credential: the outbox holds generic template text and a fixed path only
@@ -52,7 +52,31 @@ export async function cancelPendingMessagesForDevices(
   return rows.length;
 }
 
-/** Messages of the account created in each rolling window that still count against the cap (a cancelled or expired row never reached anybody). */
+/**
+ * Serialises the cap check and the insert of ONE account's notifications. A
+ * transaction-scoped advisory lock, not a row lock on the account: the consumer
+ * runs as `awcms_worker`, which has no UPDATE on accounts and so cannot take
+ * `FOR UPDATE` on one (and should not be granted it for this).
+ */
+async function lockAccountNotificationCap(
+  tx: Bun.SQL,
+  tenantId: string,
+  accountId: string
+): Promise<void> {
+  await tx`
+    SELECT pg_advisory_xact_lock(
+      hashtextextended(${`commerce.customer_push.cap:${tenantId}:${accountId}`}, 0)
+    )
+  `;
+}
+
+/**
+ * NOTIFICATIONS of the account created in each rolling window that still count
+ * against the cap. A notification is one source EVENT, so an event fanned out to
+ * three devices counts once (ADR-0048 section 5.4: "12 per rolling hour" is what
+ * the customer receives, not how many browsers they own). A cancelled or expired
+ * row never reached anybody and does not count.
+ */
 export async function countRecentMessagesForAccount(
   tx: Bun.SQL,
   tenantId: string,
@@ -63,8 +87,9 @@ export async function countRecentMessagesForAccount(
 
   const rows = (await tx`
     SELECT
-      count(*) FILTER (WHERE created_at >= ${hourStart})::int AS last_hour,
-      count(*)::int AS last_day
+      count(DISTINCT source_event_id)
+        FILTER (WHERE created_at >= ${hourStart})::int AS last_hour,
+      count(DISTINCT source_event_id)::int AS last_day
     FROM awcms_commerce_push_messages
     WHERE tenant_id = ${tenantId} AND account_id = ${accountId}
       AND created_at >= ${dayStart}
@@ -75,6 +100,29 @@ export async function countRecentMessagesForAccount(
     lastHour: rows[0]?.last_hour ?? 0,
     lastDay: rows[0]?.last_day ?? 0
   };
+}
+
+/** Whether this event already counts for the account (an earlier device of the same event was enqueued): its later devices ride on that slot. */
+async function eventAlreadyCounted(
+  tx: Bun.SQL,
+  tenantId: string,
+  accountId: string,
+  sourceEventId: string,
+  now: Date
+): Promise<boolean> {
+  const { dayStart } = notificationWindowStarts(now);
+
+  const rows = (await tx`
+    SELECT 1 AS present
+    FROM awcms_commerce_push_messages
+    WHERE tenant_id = ${tenantId} AND account_id = ${accountId}
+      AND source_event_id = ${sourceEventId}
+      AND created_at >= ${dayStart}
+      AND status NOT IN ('cancelled', 'expired')
+    LIMIT 1
+  `) as unknown[];
+
+  return rows.length > 0;
 }
 
 export type EnqueueCustomerPushInput = {
@@ -105,8 +153,8 @@ export type EnqueueCustomerPushOutcome =
 /**
  * Inserts one message for one device, once per (event, device): the dedupe key is
  * the event id and the device id, `ON CONFLICT DO NOTHING` (ADR-0048 I7). The
- * per-account cap is checked under a lock on the account row so two concurrent
- * consumers cannot both pass it. The click target is the FIXED path of the
+ * per-account cap is checked under an advisory lock on the account so two
+ * concurrent consumers cannot both pass it. The click target is the FIXED path of the
  * purpose, never an argument. Over the cap: nothing is inserted and the caller
  * counts `suppressed_rate_limit`.
  */
@@ -115,21 +163,31 @@ export async function enqueueCustomerPushMessage(
   input: EnqueueCustomerPushInput,
   now: Date = new Date()
 ): Promise<EnqueueCustomerPushOutcome> {
-  await tx`
-    SELECT id FROM awcms_commerce_customer_accounts
-    WHERE tenant_id = ${input.tenantId} AND id = ${input.accountId}
-    FOR NO KEY UPDATE
-  `;
+  await lockAccountNotificationCap(tx, input.tenantId, input.accountId);
 
-  const decision = evaluateNotificationCap(
-    await countRecentMessagesForAccount(
+  // A later device of an event that already holds a slot never trips the cap on
+  // its own: the cap limits notifications, and the event is one of them.
+  if (
+    !(await eventAlreadyCounted(
       tx,
       input.tenantId,
       input.accountId,
+      input.sourceEventId,
       now
-    )
-  );
-  if (!decision.allowed) return { kind: "suppressed", reason: decision.reason };
+    ))
+  ) {
+    const decision = evaluateNotificationCap(
+      await countRecentMessagesForAccount(
+        tx,
+        input.tenantId,
+        input.accountId,
+        now
+      )
+    );
+    if (!decision.allowed) {
+      return { kind: "suppressed", reason: decision.reason };
+    }
+  }
 
   const dedupeKey = `${input.sourceEventId}:${input.deviceId}`;
 
@@ -151,4 +209,41 @@ export async function enqueueCustomerPushMessage(
 
   const row = rows[0];
   return row ? { kind: "enqueued", messageId: row.id } : { kind: "duplicate" };
+}
+
+/**
+ * Moves what is still waiting past its `expires_at` to `expired` (ADR-0048 5.5:
+ * "after this a queued message is expired, never sent late"). Called by the
+ * dispatcher before it claims and by the maintenance job, which runs even when
+ * the feature is off, so a message queued before the kill switch does not sit in
+ * `queued` forever. A `sending` row whose lease has lapsed is included: its
+ * worker is gone, and it is no longer sendable. Bounded; fixed `last_error`.
+ * Returns how many rows moved.
+ */
+export async function expireOverdueCustomerPushMessages(
+  tx: Bun.SQL,
+  tenantId: string,
+  now: Date,
+  limit: number
+): Promise<number> {
+  const rows = (await tx`
+    UPDATE awcms_commerce_push_messages
+    SET status = 'expired', last_error = 'expired', next_attempt_at = NULL,
+        updated_at = now()
+    WHERE id IN (
+      SELECT id FROM awcms_commerce_push_messages
+      WHERE tenant_id = ${tenantId}
+        AND expires_at <= ${now}
+        AND (
+          status IN ('queued', 'retry_wait')
+          OR (status = 'sending' AND next_attempt_at <= ${now})
+        )
+      ORDER BY expires_at
+      LIMIT ${limit}
+      FOR UPDATE SKIP LOCKED
+    )
+    RETURNING id
+  `) as IdRow[];
+
+  return rows.length;
 }

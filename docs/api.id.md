@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:75d9eb1cfa3f6b623f2d425ccda4ad701245e758e987dcd08f02e96715d5a776 -->
+<!-- i18n-source-hash: sha256:63180f82d8bb0dfe26abf40628126dd5d5a3dc0595fc274e3c858caa0c1fcabe -->
 
 # API
 
@@ -413,7 +413,9 @@ Semua di bawah `/api/v1/commerce/storefront/account/push/`, setiap rute `Authori
 
 `POST .../account/logout` (yang sudah ada) kini juga mencabut perangkat push yang didaftarkan sesi yang logout, dalam transaksi yang sama; `PATCH /api/v1/commerce/customers/{id}` dengan `status: "blocked"` mencabut perangkat akun dalam transaksi yang sama.
 
-**API owner: diagnostik push pelanggan.** `GET /api/v1/commerce/customer-push/diagnostics` (`commerce.customer_push.read`; `409 FEATURE_DISABLED` selama fitur mati): hanya hitungan agregat, `{ generatedAt, devices: { active, revoked, gone, disabled }, accountsWithActiveDevice, messages: { byStatus, byPurposeAndStatus[] }, preferences[{ purpose, enabled, withdrawn }] }`. Tanpa endpoint (dimasker atau tidak), id perangkat, id akun atau pelanggan, token, atau teks pesan; `sent` berarti layanan push menerima permintaan, dan tidak ada yang disebut "delivered".
+**API owner: diagnostik push pelanggan.** `GET /api/v1/commerce/customer-push/diagnostics` (`commerce.customer_push.read`; `409 FEATURE_DISABLED` selama fitur mati): hanya hitungan agregat, `{ generatedAt, devices: { active, revoked, gone, disabled }, accountsWithActiveDevice, messages: { byStatus, byPurposeAndStatus[], byReason[] }, preferences[{ purpose, enabled, withdrawn }] }`. `byReason` (issue #432) adalah `[{ status, reason, count }]` atas kosakata `last_error` tetap (`consent_withdrawn`, `account_blocked`, `session_ended`, `device_revoked`, `endpoint_gone`, `provider_rejected`, `provider_unavailable`, `rate_limited`, ...): mengapa pesan tidak keluar, tidak pernah teks provider. `retry_wait` dengan `rate_limited` adalah pengiriman yang ditunda oleh batas per jam atau per hari akun. Tanpa endpoint (dimasker atau tidak), id perangkat, id akun atau pelanggan, token, atau teks pesan; `sent` berarti layanan push menerima permintaan, dan tidak ada yang disebut "delivered".
+
+**Notifikasi yang dihasilkan permukaan ini (issue #432).** Pelanggan yang mengaktifkan sebuah tujuan menerima notifikasi peramban untuk peristiwa pada [tabel fan-out di `docs/cms.id.md`](cms.id.md): pembayaran dikonfirmasi, status pengiriman dan pemenuhan, pembatalan, kedaluwarsa, refund selesai, retur dicatat, dan balasan staf di kotak masuk. Payload adalah teks generik dan path tetap (`/akun/pesanan`, `/akun/pesan`) pada origin storefront perangkat; tidak ada pengenal pesanan, jumlah, atau nama di dalamnya atau di URL, sehingga klik membuka halaman dan halaman mengautentikasi dengan bearer tersimpan sebelum menampilkan sesuatu yang privat. Sisi pengiriman tidak menambah atau mengubah route apa pun.
 
 ## API pemilik: adaptor inventori (issue #282, epic #281, [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md))
 
@@ -558,6 +560,8 @@ Kedua puluh tujuh event terdaftar di tiga tempat yang dijaga selaras `awcms` (`d
 | `commerce.document_delivery`                                       | `awcms.commerce.document.delivery_requested` — (#295) satu per permintaan pengiriman yang diserahkan ke outbox e-mail atau WhatsApp (atau ditolak saat penyerahan); id, nomor dokumen, kanal dan status penyerahan, tidak pernah penerima atau isi pesan                                                                        |
 | `commerce.loyalty_account`                                         | `awcms.commerce.loyalty.entry_recorded` — (#289) satu event per entri buku besar (earn, redeem, expire, adjustment, reversal); hanya id, jenis, dan poin                                                                                                                                                                        |
 | `commerce.quotation` / `commerce.work_order` / `commerce.document` | `awcms.commerce.quotation.{accepted,converted}`, `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued` — (#286) id, nomor, status, dan jumlah, tidak pernah nama pelanggan atau catatan teks bebas                                                                                                       |
+
+Sejak issue #432 tabel ini juga memuat `commerce.conversation`: `awcms.commerce.conversation.store_replied`, ditambahkan oleh balasan staf (`POST /api/v1/commerce/conversations/{id}/messages`) dalam transaksi yang sama dengan pesan tersimpan, payload hanya `conversationId`. Tabel ini mendahului peristiwa retur, refund, booking, dan penyelesaian; berkas AsyncAPI adalah daftar yang otoritatif.
 
 `categories` masih tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk `awcms_offices`; soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir.
 

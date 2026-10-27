@@ -41,6 +41,7 @@ async function main() {
               status: "success" as const,
               itemCounts: {
                 tenantsChecked: tenants.length,
+                expiredMessages: 0,
                 sweptSessionEnded: 0,
                 sweptAccountBlocked: 0,
                 purgedDevices: 0,
@@ -52,6 +53,7 @@ async function main() {
           }
 
           const totals = {
+            expiredMessages: 0,
             sweptSessionEnded: 0,
             sweptAccountBlocked: 0,
             purgedDevices: 0,
@@ -68,6 +70,7 @@ async function main() {
               { now: new Date() }
             );
 
+            totals.expiredMessages += tenantResult.expiredMessages;
             totals.sweptSessionEnded += tenantResult.sweptSessionEnded;
             totals.sweptAccountBlocked += tenantResult.sweptAccountBlocked;
             totals.purgedDevices += tenantResult.purgedDevices;

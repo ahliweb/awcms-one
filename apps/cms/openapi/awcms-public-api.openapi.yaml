@@ -51259,6 +51259,18 @@ components:
                     type: string
                   count:
                     type: integer
+            byReason:
+              type: array
+              description: "Issue #432. Why messages did not go out, from the fixed `last_error` vocabulary (never provider text), by status. `retry_wait` with `rate_limited` is a send deferred by the account's hourly or daily cap; with `provider_unavailable` it is a backoff."
+              items:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  reason:
+                    type: string
+                  count:
+                    type: integer
         preferences:
           type: array
           items:

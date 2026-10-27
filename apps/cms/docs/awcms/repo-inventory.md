@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 360   |
+| Migrations                          | 361   |
 | `awcms_*` tables                    | 325   |
 | Tables with `FORCE` RLS             | 305   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 926   |
+| Test files                          | 928   |
 | Route files                         | 848   |
 | ADR                                 | 294   |
 
@@ -419,6 +419,7 @@
 | 358 | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`                   |
 | 359 | `sql/1058_awcms_commerce_customer_push_worker_grants.sql`                   |
 | 360 | `sql/1059_awcms_commerce_customer_push_permissions.sql`                     |
+| 361 | `sql/1061_awcms_commerce_customer_push_fanout_worker_grants.sql`            |
 
 ### Tables & Row-Level Security
 
@@ -754,9 +755,9 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 666        |
+| `(root)`      | 667        |
 | `e2e`         | 27         |
-| `integration` | 232        |
+| `integration` | 233        |
 | `unit`        | 1          |
 
 ### Routes

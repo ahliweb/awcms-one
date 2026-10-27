@@ -449,7 +449,8 @@ export async function tombstoneCustomerPushDevices(
   return tombstoned;
 }
 
-async function auditRevocation(
+/** One audit event per revocation, ids only (never an endpoint, key or text); shared with the dispatcher, which revokes a device whose push service says it is gone. */
+export async function auditRevocation(
   tx: Bun.SQL,
   tenantId: string,
   accountId: string | null,
@@ -676,36 +677,49 @@ export type CustomerPushDeliveryTarget = {
 };
 
 /**
- * Decrypts an ACTIVE device into the upstream provider's `PushTarget`. This is
- * the single read of the raw endpoint and auth secret. `null` when the device is
- * absent or not active. Throws a `FieldEncryptionError` when the ciphertext cannot
- * be read (wrong ring, tampered, wrong tenant or endpoint): the caller treats any
- * throw as "cannot decrypt" and falls back to nothing. Decrypt OUTSIDE the
- * claim/finalize transactions, immediately before the provider call.
+ * The raw credential row of an ACTIVE device: the three stored values and the
+ * identifiers they are bound to (the AAD). Selected here and nowhere else apart
+ * from the key-rotation file. Callers hand it straight to
+ * {@link buildCustomerPushDeliveryTarget}; it is never logged or returned.
  */
-export async function loadCustomerPushDeliveryTarget(
+export type CustomerPushCredentialRow = {
+  id: string;
+  account_id: string;
+  session_id: string | null;
+  storefront_origin: string;
+  endpoint_hash: string;
+  endpoint_masked: string;
+  endpoint_ciphertext: string;
+  p256dh_key: string;
+  auth_secret_ciphertext: string;
+};
+
+/**
+ * Reads the credential row of an ACTIVE device (`null` when absent or not
+ * active). A plain SELECT: no decryption, so the dispatcher can do it inside its
+ * short pre-send transaction and decrypt AFTER the transaction has closed - a
+ * ciphertext that cannot be read is not a database failure and must not feed the
+ * database circuit breaker (upstream's Issue #1089 L1 lesson).
+ */
+export async function readCustomerPushCredentialRow(
   tx: Bun.SQL,
   tenantId: string,
-  deviceId: string,
-  ring: KeyRing
-): Promise<CustomerPushDeliveryTarget | null> {
+  deviceId: string
+): Promise<CustomerPushCredentialRow | null> {
   const rows = (await tx`
     SELECT id, account_id, session_id, storefront_origin, endpoint_hash,
            endpoint_masked, endpoint_ciphertext, p256dh_key,
            auth_secret_ciphertext
     FROM awcms_commerce_push_devices
     WHERE tenant_id = ${tenantId} AND id = ${deviceId} AND status = 'active'
-  `) as {
-    id: string;
-    account_id: string;
-    session_id: string | null;
-    storefront_origin: string;
-    endpoint_hash: string;
-    endpoint_masked: string;
+  `) as (Omit<
+    CustomerPushCredentialRow,
+    "endpoint_ciphertext" | "p256dh_key" | "auth_secret_ciphertext"
+  > & {
     endpoint_ciphertext: string | null;
     p256dh_key: string | null;
     auth_secret_ciphertext: string | null;
-  }[];
+  })[];
 
   const row = rows[0];
   if (
@@ -717,6 +731,25 @@ export async function loadCustomerPushDeliveryTarget(
     return null;
   }
 
+  return {
+    ...row,
+    endpoint_ciphertext: row.endpoint_ciphertext,
+    p256dh_key: row.p256dh_key,
+    auth_secret_ciphertext: row.auth_secret_ciphertext
+  };
+}
+
+/**
+ * Decrypts a credential row into the upstream provider's `PushTarget`. Pure CPU:
+ * no query. Throws a `FieldEncryptionError` when the ciphertext cannot be read
+ * (wrong ring, tampered, wrong tenant or endpoint); the caller treats any throw
+ * as "cannot decrypt" and never falls back to anything.
+ */
+export function buildCustomerPushDeliveryTarget(
+  tenantId: string,
+  row: CustomerPushCredentialRow,
+  ring: KeyRing
+): CustomerPushDeliveryTarget {
   return {
     deviceId: row.id,
     accountId: row.account_id,
@@ -740,4 +773,20 @@ export async function loadCustomerPushDeliveryTarget(
       )
     }
   };
+}
+
+/**
+ * Decrypts an ACTIVE device into the upstream provider's `PushTarget`: the two
+ * halves above composed. `null` when the device is absent or not active. Throws a
+ * `FieldEncryptionError` when the ciphertext cannot be read. The dispatcher
+ * calls the halves separately (read in its transaction, decrypt after it).
+ */
+export async function loadCustomerPushDeliveryTarget(
+  tx: Bun.SQL,
+  tenantId: string,
+  deviceId: string,
+  ring: KeyRing
+): Promise<CustomerPushDeliveryTarget | null> {
+  const row = await readCustomerPushCredentialRow(tx, tenantId, deviceId);
+  return row ? buildCustomerPushDeliveryTarget(tenantId, row, ring) : null;
 }
