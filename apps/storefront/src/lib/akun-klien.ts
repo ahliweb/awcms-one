@@ -567,3 +567,69 @@ export async function batalkanReservasi(
   if (!result) throw new TokoApiError("The cancellation answer could not be read.", 200, "INVALID_RESPONSE");
   return result;
 }
+
+// ---------------------------------------------------------------------------
+// Issue #431 (ADR-0048 section 6.1) - the customer's OWN Web Push devices and
+// consent. Bearer-only, wrapped in the same `denganPembersihanSesi`, so a `401`
+// clears the stored session like every other call here. The neutral `404` (the
+// `customerPush` flag off, an unresolvable tenant) is an ordinary
+// `TokoApiError` with `status` 404: the page hides the control on it, and a
+// 404 on a DELETE is read by the caller as "already gone".
+//
+// What these functions never do: hold the browser's push subscription (that is
+// `push-alur.ts`), put the bearer anywhere but the `Authorization` header, or
+// return the raw endpoint/keys of a device (the server only ever answers a
+// masked endpoint).
+// ---------------------------------------------------------------------------
+
+const PUSH_BASE = "/account/push";
+
+/** `GET …/account/push/subscriptions` - capability, preferences and this account's active devices, as the raw body (`parseStatus` in `push-pelanggan.ts` validates it). */
+export function ambilStatusPush(): Promise<unknown> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(`${PUSH_BASE}/subscriptions`, "GET", undefined, authHeader())
+  );
+}
+
+/** The body of `POST …/subscriptions`: `PushSubscription.toJSON()`'s `endpoint` and `keys`, plus the consent the shopper gave. The server's strict schema answers `400` to any other key. */
+export type DaftarPushInput = {
+  endpoint: string;
+  keys: { p256dh: string; auth: string };
+  consent: { purposes: string[]; textVersion: string };
+};
+
+/** `POST …/account/push/subscriptions` - `201` (new, revived, transferred) or `200` (no-op); both carry `{device, preferences}`. */
+export function daftarkanPerangkatPush(input: DaftarPushInput): Promise<unknown> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(`${PUSH_BASE}/subscriptions`, "POST", input, authHeader())
+  );
+}
+
+/** `DELETE …/account/push/subscriptions/{id}` - `204`. `404` for a device that is not this account's or is already gone. */
+export function cabutPerangkatPush(id: string): Promise<void> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<void>(`${PUSH_BASE}/subscriptions/${encodeURIComponent(id)}`, "DELETE", undefined, authHeader())
+  );
+}
+
+/** `DELETE …/account/push/subscriptions` - every device of this account, `204`, idempotent. */
+export function cabutSemuaPerangkatPush(): Promise<void> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<void>(`${PUSH_BASE}/subscriptions`, "DELETE", undefined, authHeader())
+  );
+}
+
+/** `PUT …/account/push/preferences` - turning a purpose ON needs the consent text version the shopper saw; turning one OFF needs none. `marketing` is refused by the server and is not offered. */
+export function ubahPreferensiPush(
+  purposes: Record<string, boolean>,
+  textVersion?: string
+): Promise<unknown> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(
+      `${PUSH_BASE}/preferences`,
+      "PUT",
+      textVersion === undefined ? { purposes } : { purposes, textVersion },
+      authHeader()
+    )
+  );
+}

@@ -20,12 +20,17 @@ import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import { getSiteIdentity } from "../../../../lib/awcms/profil";
 import { getStoreSettings } from "../../../../lib/awcms/pemasaran";
 import { ROUTES } from "../../../../config/routes";
+import { PUSH_SETTINGS_PATH, isCustomerPushEnabled } from "../../../../lib/push-konfig";
 import "../../../../styles/toko.css";
 import "../../../../styles/akun.css";
 
 const identity = await getSiteIdentity();
 const storeSettings = await getStoreSettings();
 const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+// Issue #431: the "Notifikasi" card exists only in a build with the opt-in
+// `PUBLIC_CUSTOMER_PUSH` flag; its script then reveals it only if the CMS
+// reports the capability (the neutral 404 keeps it hidden).
+const pushAktif = isCustomerPushEnabled();
 
 /**
  * The `/akun*` side navigation (issue #168, 2026-09 redesign), matching the
@@ -109,6 +114,25 @@ const SIDENAV_ACTIVE = "ringkasan";
         <button type="button" class="btn btn--secondary btn--sm" data-keluar>Keluar</button>
       </div>
 
+      <div
+        data-keluar-gagal
+        class="toko-banner toko-banner--danger"
+        role="alert"
+        tabindex="-1"
+        hidden
+      >
+        <p data-keluar-gagal-pesan></p>
+        <div class="akun-actions">
+          <button type="button" class="btn btn--primary btn--sm" data-keluar-ulang>Coba keluar lagi</button>
+          <button type="button" class="btn btn--secondary btn--sm" data-keluar-lokal>
+            Keluar di perangkat ini saja
+          </button>
+        </div>
+        <p class="akun-countdown">
+          "Keluar di perangkat ini saja" mematikan notifikasi dan menghapus sesi di perangkat ini; sesi di server berakhir sendiri.
+        </p>
+      </div>
+
       <div class="akun-layout">
         <nav class="akun-sidenav" aria-label="Menu akun">
           {
@@ -166,6 +190,22 @@ const SIDENAV_ACTIVE = "ringkasan";
               </div>
             </form>
           </div>
+
+          {
+            pushAktif && (
+              <div class="akun-card" data-notif-kartu hidden>
+                <h2>Notifikasi</h2>
+                <p data-notif-kartu-ringkasan role="status" aria-live="polite">
+                  Dapatkan kabar pesanan dan pembayaran di perangkat ini.
+                </p>
+                <div class="akun-actions">
+                  <a class="btn btn--secondary btn--sm" href={PUSH_SETTINGS_PATH}>
+                    Atur notifikasi
+                  </a>
+                </div>
+              </div>
+            )
+          }
 
           <div class="akun-card">
             <h2>Preferensi promo</h2>
