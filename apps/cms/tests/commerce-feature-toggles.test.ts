@@ -33,6 +33,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.segments).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.campaignSegmentAudience).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.customerPush).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
@@ -50,7 +51,8 @@ describe("resolveCommerceFeatures", () => {
             key !== "segments" &&
             key !== "loyaltySegments" &&
             key !== "campaignSegmentAudience" &&
-            key !== "booking"
+            key !== "booking" &&
+            key !== "customerPush"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -85,7 +87,8 @@ describe("resolveCommerceFeatures", () => {
       segments: false,
       loyaltySegments: false,
       campaignSegmentAudience: false,
-      booking: false
+      booking: false,
+      customerPush: false
     });
   });
 
@@ -110,7 +113,8 @@ describe("resolveCommerceFeatures", () => {
       segments: false,
       loyaltySegments: false,
       campaignSegmentAudience: false,
-      booking: false
+      booking: false,
+      customerPush: false
     });
   });
 
@@ -177,7 +181,8 @@ describe("resolveCommerceFeatures", () => {
       segments: false,
       loyaltySegments: false,
       campaignSegmentAudience: false,
-      booking: false
+      booking: false,
+      customerPush: false
     });
     // ...and the flags that default off can be turned on.
     expect(

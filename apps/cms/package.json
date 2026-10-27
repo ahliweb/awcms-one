@@ -86,6 +86,8 @@
     "commerce:whatsapp:dispatch": "bun scripts/commerce-whatsapp-dispatch.ts",
     "commerce:payments:reconcile": "bun scripts/commerce-payments-reconcile.ts",
     "commerce:campaigns:dispatch": "bun scripts/commerce-campaigns-dispatch.ts",
+    "commerce:customer-push:maintenance": "bun scripts/commerce-customer-push-maintenance.ts",
+    "commerce:customer-push:rekey": "bun scripts/commerce-customer-push-rekey.ts",
     "commerce:whatsapp:purge": "bun scripts/commerce-whatsapp-purge.ts",
     "commerce:deploy:preflight": "bun scripts/commerce-deploy-preflight.ts",
     "commerce:tax:cutover": "bun scripts/commerce-tax-cutover.ts",

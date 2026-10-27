@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:63dbebf1b9b14d1a5176a57ff9af14b7135e7fb65e07ce7b85cc9ad07e9871bf -->
+<!-- i18n-source-hash: sha256:282d7f1df27b433fb325cbe4e36053a9092e341f0f603ff304cc3c586a5bca06 -->
 
 # Deployment
 
@@ -104,6 +104,38 @@ Sinkronisasi subtree pada `3c7fc29` ([issue #427](https://github.com/ahliweb/awc
 5. **Penanganan kegagalan.** Batalkan pendaftaran atau cabut izin pada sebuah perangkat lalu kirim lagi: layanan push menjawab `404` atau `410`, langganan dipensiunkan dan tidak dicoba ulang.
 
 **Rollback.** Roll-forward aplikasi lebih disarankan. Sinkronisasi ini menambah satu migrasi (`sql/315`, kolom penerima nullable pada tabel pesan push) dan tidak ada perubahan destruktif, sehingga rollback image tidak memerlukan langkah database; jika muncul cacat, atur `PUSH_PAYLOAD_FORMAT=legacy` (service worker membaca kedua bentuk) atau `PUSH_ENABLED=false`, lalu roll-forward dengan perbaikan, bukan memulihkan database yang lebih lama.
+
+## Web Push pelanggan: pengaturan operator, gerbang aktivasi, dan runbook (issue #430, [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md))
+
+Peramban pembeli dapat didaftarkan untuk notifikasi pesanan, pembayaran, dan dukungan lewat provider `push_delivery`, pasangan VAPID, dan cincin kunci di atas. Fitur ini **mati di setiap deployment**: fitur commerce `customerPush` per tenant bawaannya mati, dan setiap rute push pelanggan lalu menjawab `404` netral. #430 menyediakan perangkat, persetujuan, rute, dan pemeliharaan; UI storefront dan service worker (#431) serta sisi pengiriman (#432) terpisah.
+
+| Pengaturan                                                                                        | Bawaan | Yang harus benar pada sebuah deployment                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PUSH_ENABLED=true`, `PUSH_PROVIDER=web_push`, pasangan VAPID, `PUSH_AUTH_SECRET_ENCRYPTION_KEYS` | kosong | Keempatnya, atau jawaban kapabilitas `enabled: false` (`push_not_configured`) dan pendaftaran `409 PUSH_UNAVAILABLE`. Tidak ada cadangan teks-biasa: tanpa cincin, perangkat tak dapat disimpan.                                                                                                                                                                                                                                                                      |
+| `COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS`                                                     | kosong | **Khusus operator.** Daftar dipisah koma berisi nama host persis atau pola `*.sufiks.contoh` yang ditambahkan ke allowlist layanan push bawaan (`fcm.googleapis.com`, `updates.push.services.mozilla.com`, `web.push.apple.com`, `*.notify.windows.com`). Tambahkan hanya layanan push yang sudah Anda verifikasi; tidak pernah nilai tenant atau permintaan. `config:validate` melaporkan entri yang diabaikan (literal IP, satu label, `localhost`, lebih dari 32). |
+| `APP_URL`                                                                                         | wajib  | Origin CMS. Storefront yang disajikan dari origin ini tidak didukung pada v1 dan permintaan darinya ditolak (`origin_not_supported` / `ORIGIN_NOT_ALLOWED`); sajikan storefront dari origin sendiri dan petakan hostnya pada domain tenant.                                                                                                                                                                                                                           |
+| `APP_ENV=development`                                                                             | kosong | Hanya dengan itu origin storefront `http://localhost` diterima. Jangan pernah diset di produksi.                                                                                                                                                                                                                                                                                                                                                                      |
+
+**Gerbang aktivasi produksi (ADR-0048 D8), per deployment, semuanya wajib sebelum flag fitur dinyalakan untuk sebuah tenant:** tinjauan penasihat hukum atas teks persetujuan dan privasi (teks terbit sebagai draf berversi, `draft-2026-10`); pasangan VAPID dan cincin kunci terkonfigurasi; matriks uji operator ([`apps/cms/docs/awcms/push-notifications-test-matrix.md`](../apps/cms/docs/awcms/push-notifications-test-matrix.md)) hijau; UAT perangkat pada aplikasi iPhone terpasang, Chrome Android, dan Chrome desktop. Aplikasi hanya menegakkan flag. Catat tinjauan itu dalam arsip deployment sendiri.
+
+**Job.** `commerce:customer-push:maintenance` berjalan tiap 15 menit dari crontab hasil generate (tanpa kunci, tanpa jaringan; juga berjalan saat fitur mati). `commerce:customer-push:rekey` manual.
+
+**Rotasi kunci.** Tambahkan kunci baru di depan `PUSH_AUTH_SECRET_ENCRYPTION_KEYS`, deploy, jalankan `bun run commerce:customer-push:rekey` (dan `push:auth-secret:backfill --rekey` upstream untuk perangkat staf) sampai tak ada sisa, lalu pensiunkan kunci lama. Keluar `2` bila ada tenant yang belum selesai dan `3` bila ada baris yang tak dapat didekripsi dengan cincin (dihitung, tak disentuh). Merotasi pasangan VAPID membatalkan semua langganan: set perangkat terdampak ke `disabled` (alasan `vapid_rotated`) dan minta pelanggan mengaktifkan lagi.
+
+```sql
+-- Jalankan sebagai peran superuser/BYPASSRLS (tabel ini FORCE RLS), atau lebih dulu `SET app.current_tenant_id = '<uuid tenant>'` di sesi sebagai peran aplikasi.
+-- CHECK kredensial-hanya-bila-aktif mengharuskan ketiga kolom kredensial dikosongkan dalam pernyataan yang sama.
+UPDATE awcms_commerce_push_devices
+   SET status = 'disabled', status_reason = 'vapid_rotated', revoked_at = now(),
+       endpoint_ciphertext = NULL, p256dh_key = NULL, auth_secret_ciphertext = NULL
+ WHERE status = 'active' AND tenant_id = '<uuid tenant>';
+```
+
+Gunakan `status_reason = 'kill_switch'` dengan pernyataan yang sama saat meninggalkan fitur.
+
+**Saklar mati dan rollback.** Matikan fitur `customerPush` tenant: rute menjawab `404` netral, perangkat yang ada tetap tak aktif, dan job pemeliharaan terus membersihkan. Untuk meninggalkan fitur, cabut perangkat lewat `DELETE .../account/push/subscriptions` per pelanggan atau lewat SQL (`status = 'revoked'` dengan kredensial dikosongkan). Skema bersifat aditif dan tanpa migrasi turun; maju-gulung (roll forward) aplikasi. Logout, pemblokiran pelanggan, dan kedaluwarsa sesi sudah mencabut perangkat tanpa flag.
+
+**Backup dan restore.** Pulihkan perangkat dan sesi pelanggan bersama dan deploy kunci cincin yang sama dengan yang menulis backup, atau ciphertext tak dapat dibaca. Setelah restore point-in-time ke saat lebih awal, logout yang terjadi kemudian hilang untuk kedua tabel: anggap semua perangkat patut dicurigai dan cabut semuanya.
 
 ## Apa yang boleh menjangkau `apps/cms`: proses build, dan — sejak issue #30 — browser pembaca
 

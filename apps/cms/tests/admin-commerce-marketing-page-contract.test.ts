@@ -34,7 +34,10 @@ const API_FIRST_COMMERCE_KEYS: ReadonlySet<string> = new Set([
   "commerce.commission_settings.read",
   "commerce.commission_settings.manage",
   "commerce.commission_staff_links.read",
-  "commerce.commission_staff_links.manage"
+  "commerce.commission_staff_links.manage",
+  // Issue #430: aggregate-only diagnostics; the admin screen is deferred (the
+  // NOT_YET_SCREENED ledger entry names the reason).
+  "commerce.customer_push.read"
 ]);
 
 type Triple = `${string}.${string}.${string}`;
