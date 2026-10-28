@@ -235,25 +235,25 @@ English at the bare path is the authoritative source; Indonesian at `<name>.id.m
 
 This repository's own code — `packages/gerbang/`, `tools/`, `tests/`, and their identifiers, comments, and gate/test messages — is written in **English** throughout. This is a deliberate choice for this repo's own new code, made because there is no existing convention here to match and English is the safer default for tooling that local CI and any future contributor's editor all read directly. `apps/cms` carries `ahliweb/awcms`'s own, separate convention as embedded code; this repository does not govern or change it.
 
-## Orchestrator & Agent (model AI)
+## Orchestrator & agents (AI models)
 
-> Standar lintas-portofolio dari [`ahliweb/personal-coding`](https://github.com/ahliweb/personal-coding/blob/main/docs/tingkatan-model-ai-claude-openai.md) (docs/tingkatan-model-ai-claude-openai.md, snapshot 2026-10-28). Harga, effort, dan lini model dipelihara di sana — jangan disalin ke repo ini.
+> Portfolio-wide standard from [`ahliweb/personal-coding`](https://github.com/ahliweb/personal-coding/blob/main/docs/tingkatan-model-ai-claude-openai.md) (docs/tingkatan-model-ai-claude-openai.md, snapshot 2026-10-28). Prices, effort levels and model lines are maintained there — do not copy them into this repository.
 
-Pekerjaan yang perlu dipecah ke beberapa agent memakai pola **orchestrator → agent**. Orchestrator memecah pekerjaan, membagi tugas, mengatur ketergantungan, lalu memeriksa dan menyatukan hasil; agent mengerjakan satu bagian yang sudah dibatasi.
+Work that needs splitting across several agents uses the **orchestrator → agent** pattern. The orchestrator breaks the work down, assigns tasks, manages dependencies, then checks and integrates the results; an agent carries out one bounded part.
 
-| Peran | Claude Code | Codex / OpenAI |
+| Role | Claude Code | Codex / OpenAI |
 | --- | --- | --- |
 | Orchestrator | Opus 5.5, effort `high` | GPT-6.1 Sol, `high` |
-| Agent kompleks — lintas komponen, keamanan, integrasi, risiko regresi | Sonnet 5.5, `medium` (subagent `pelaksana-kompleks`) | GPT-6.1 Sol atau Terra, `medium` |
-| Agent sederhana — mekanis, terdefinisi jelas, risiko rendah | Haiku 5.5, `low` (subagent `pelaksana-sederhana`) | GPT-6 Luna atau Terra, `low` |
+| Complex agent — cross-component, security, integration, regression risk | Sonnet 5.5, `medium` (subagent `pelaksana-kompleks`) | GPT-6.1 Sol or Terra, `medium` |
+| Simple agent — mechanical, well-defined, low risk | Haiku 5.5, `low` (subagent `pelaksana-sederhana`) | GPT-6 Luna or Terra, `low` |
 
-Pekerjaan kritis (arsitektur, keamanan, migrasi besar): orchestrator Fable 5.1 `high`–`xhigh`, agent kompleks Opus 5.5 `high`.
+Critical work (architecture, security, large migrations): orchestrator Fable 5.1 `high`–`xhigh`, complex agent Opus 5.5 `high`.
 
-Aturan:
+Rules:
 
-1. **Jangan memecah tugas kecil.** Coba satu model kuat (Opus 5.5 / GPT-6.1 Sol) dengan effort rendah lebih dulu.
-2. **Naikkan, jangan menebak.** Agent sederhana yang menemukan ambiguitas, risiko, atau sentuhan arsitektur berhenti dan mengembalikan tugas ke orchestrator, yang memindahkannya ke agent kompleks.
-3. **Agent paralel terisolasi.** Tidak boleh menyentuh file atau modul yang sama; tugas yang saling bergantung dijalankan berurutan.
-4. **Verifikasi tetap di orchestrator.** Diff, uji, dan angka dicek sendiri sebelum dipakai; laporan agent bukan bukti.
-5. **Agent tetap di scope-nya.** Tidak mengubah arsitektur, tidak mendelegasikan lagi, tidak menyentuh area di luar tugas.
-6. **Aturan repo ini tetap berlaku** untuk setiap agent — alur kerja, gerbang, guardrail keamanan, konvensi commit.
+1. **Do not split small tasks.** Try one strong model (Opus 5.5 / GPT-6.1 Sol) at low effort first.
+2. **Escalate, don't guess.** A simple agent that finds ambiguity, risk, or an architectural touch stops and returns the task to the orchestrator, which moves it to a complex agent.
+3. **Parallel agents are isolated.** They must not touch the same files or modules; dependent tasks run sequentially.
+4. **Verification stays with the orchestrator.** Diffs, tests, and numbers are checked first-hand before they are used; an agent's report is not evidence.
+5. **Agents stay in scope.** They do not change the architecture, do not delegate further, and do not touch areas outside their task.
+6. **This repository's rules still apply** to every agent — workflow, gates, security guardrails, commit conventions.
