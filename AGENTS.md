@@ -234,3 +234,26 @@ Pushing that tag (`git push origin vX.Y.Z`) does **not** publish anything by its
 English at the bare path is the authoritative source; Indonesian at `<name>.id.md` is the mirror, recording the hash of the English it was translated from. This document's mirror is [`AGENTS.id.md`](AGENTS.id.md).
 
 This repository's own code — `packages/gerbang/`, `tools/`, `tests/`, and their identifiers, comments, and gate/test messages — is written in **English** throughout. This is a deliberate choice for this repo's own new code, made because there is no existing convention here to match and English is the safer default for tooling that local CI and any future contributor's editor all read directly. `apps/cms` carries `ahliweb/awcms`'s own, separate convention as embedded code; this repository does not govern or change it.
+
+## Orchestrator & agents (AI models)
+
+> Portfolio-wide standard from [`ahliweb/personal-coding`](https://github.com/ahliweb/personal-coding/blob/main/docs/tingkatan-model-ai-claude-openai.md) (docs/tingkatan-model-ai-claude-openai.md, snapshot 2026-10-28). Prices, effort levels and model lines are maintained there — do not copy them into this repository.
+
+Work that needs splitting across several agents uses the **orchestrator → agent** pattern. The orchestrator breaks the work down, assigns tasks, manages dependencies, then checks and integrates the results; an agent carries out one bounded part.
+
+| Role | Claude Code | Codex / OpenAI |
+| --- | --- | --- |
+| Orchestrator | Opus 5.5, effort `high` | GPT-6.1 Sol, `high` |
+| Complex agent — cross-component, security, integration, regression risk | Sonnet 5.5, `medium` (subagent `pelaksana-kompleks`) | GPT-6.1 Sol or Terra, `medium` |
+| Simple agent — mechanical, well-defined, low risk | Haiku 5.5, `low` (subagent `pelaksana-sederhana`) | GPT-6 Luna or Terra, `low` |
+
+Critical work (architecture, security, large migrations): orchestrator Fable 5.1 `high`–`xhigh`, complex agent Opus 5.5 `high`.
+
+Rules:
+
+1. **Do not split small tasks.** Try one strong model (Opus 5.5 / GPT-6.1 Sol) at low effort first.
+2. **Escalate, don't guess.** A simple agent that finds ambiguity, risk, or an architectural touch stops and returns the task to the orchestrator, which moves it to a complex agent.
+3. **Parallel agents are isolated.** They must not touch the same files or modules; dependent tasks run sequentially.
+4. **Verification stays with the orchestrator.** Diffs, tests, and numbers are checked first-hand before they are used; an agent's report is not evidence.
+5. **Agents stay in scope.** They do not change the architecture, do not delegate further, and do not touch areas outside their task.
+6. **This repository's rules still apply** to every agent — workflow, gates, security guardrails, commit conventions.
