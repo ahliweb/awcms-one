@@ -216,6 +216,23 @@ A change affecting public behaviour, workspace structure, dependencies, or deplo
 
 Pushing that tag (`git push origin vX.Y.Z`) does **not** publish anything by itself any more (issue #225, ADR-0023) — there is no tag-push workflow left to trigger it. A trusted release host runs `bun run release:images -- --publish --tag vX.Y.Z` (builds, signs, scans, and pushes the `apps/cms` images to GHCR) and then `bun run release:publish -- vX.Y.Z --evidence <evidence-dir>`, which takes that version's `CHANGELOG.md` section (via `tools/rilis-catatan.mjs`) and creates or updates the matching GitHub Release — idempotently, so re-running it can back-fill an older tag or re-publish one's notes without failing on a Release that already exists. See [`docs/rilis.md`](docs/rilis.md)'s "Release runbook" for the full four-step sequence.
 
+## Product development flow v2.0.0
+
+Product work in this repository follows the portfolio's 18-step product development flow **v2.0.0** ([`alur-pengembangan-produk.md`](https://github.com/ahliweb/personal-coding/blob/main/docs/alur-pengembangan-produk.md)), which upstream adopts in [ahliweb/awcms ADR-0156](https://github.com/ahliweb/awcms/pull/1213). Place the work at its step before starting. What changed from v1: UX/UI is validated at **step 4**, before the ERD; the old steps 4-7 are now 5-8, and step 8 is the API contract plus a mock generated from it; step 11 runs per slice; gates 9 (Definition of Ready) and 15 (Go/No-Go) are unchanged.
+
+For this repository, where `apps/cms` is a backend this repo owns ([ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)), the per-slice realisation of step 11 is:
+
+- **11.1 Frontend** - the storefronts and apps (`apps/storefront` and the other front-ends), built against the mock generated from the step 8 contract.
+- **11.2 Backend** - the `apps/cms` modules (for example `commerce`) that implement the contract.
+- **11.3 Integration** - the front-end switched from the mock to the real backend, with the end-to-end evidence.
+
+Two rules follow, and a reviewer may refuse a PR for either:
+
+- **A screen with no data source in the contract is not ready** (a blocking defect at gate 9). Do not start 11.1 for it.
+- **Authorization is never frontend-only.** Hiding a control is a UX choice; permission checks stay in the backend and the database (RBAC/ABAC/RLS).
+
+`apps/cms/docs/awcms/alur-pengembangan.md` is upstream's copy of the flow and still shows the v1 numbering (UX/UI after the contract) until the next subtree sync brings it up to date. Do not edit it here (see "The subtree embed" above); the v2 numbering applies regardless.
+
 ## Definition of Done
 
 - [ ] The change is scoped to one workspace (or explicitly, deliberately, more than one) — see "Workspace boundaries" above.
