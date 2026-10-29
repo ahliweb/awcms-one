@@ -218,7 +218,7 @@ Pushing that tag (`git push origin vX.Y.Z`) does **not** publish anything by its
 
 ## Product development flow v2.0.0
 
-Product work in this repository follows the portfolio's 18-step product development flow **v2.0.0** ([`alur-pengembangan-produk.md`](https://github.com/ahliweb/personal-coding/blob/main/docs/alur-pengembangan-produk.md)), which upstream adopts in [ahliweb/awcms ADR-0156](https://github.com/ahliweb/awcms/pull/1213). Place the work at its step before starting. What changed from v1: UX/UI is validated at **step 4**, before the ERD; the old steps 4-7 are now 5-8, and step 8 is the API contract plus a mock generated from it; step 11 runs per slice; gates 9 (Definition of Ready) and 15 (Go/No-Go) are unchanged.
+Product work in this repository follows the portfolio's 18-step product development flow **v2.0.0** ([`alur-pengembangan-produk.md`](https://github.com/ahliweb/personal-coding/blob/main/docs/alur-pengembangan-produk.md)), which upstream adopts in [ahliweb/awcms ADR-0156](https://github.com/ahliweb/awcms/blob/main/docs/adr/0156-adopt-development-flow-v2-validated-ux-before-data-model-frontend-backend-integration-per-slice.md). Place the work at its step before starting. What changed from v1: UX/UI is validated at **step 4**, before the ERD; the old steps 4-7 are now 5-8, and step 8 is the API contract plus a mock generated from it; step 11 runs per slice; gates 9 (Definition of Ready) and 15 (Go/No-Go) are unchanged.
 
 For this repository, where `apps/cms` is a backend this repo owns ([ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)), the per-slice realisation of step 11 is:
 
