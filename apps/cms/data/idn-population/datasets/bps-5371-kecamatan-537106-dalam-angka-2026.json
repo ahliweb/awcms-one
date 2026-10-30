@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-5371-kecamatan-537106-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.71.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Lama Dalam Angka 2026",
+  "publisherName": "BPS Kota Kupang",
+  "publisherDomain": "5371",
+  "publisherWebsite": "https://kupangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Kupang (https://kupangkota.bps.go.id), publikasi \"Kecamatan Kota Lama Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5371041",
+  "publicationNumber": "53710.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kupangkota.bps.go.id/id/publication/2026/09/28/d9b286b062743396196e5fca/kecamatan-kota-lama-dalam-angka-2026.html",
+  "sourceFileSha256": "08694bed39cc28f76f3288f713ffd384715bdebdeb9f34fe9648fcdda78a3b5f",
+  "sourceFileBytes": 2462942,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Kupang.",
+  "csvPath": "datasets/bps-5371-kecamatan-537106-dalam-angka-2026.csv",
+  "csvSha256": "dc9353562f4eac385083bbc286e7e3bef5bd540e4d0a2b083520f071043c859c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kota Lama, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lahi Lai Bissi Kopan\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kota Lama Kota Lama District\": unmatched ",
+    "table 3.1: row not stored: row \"Lahi Lai Bissi Kopan\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kota Lama Kota Lama District\": unmatched "
+  ]
+}

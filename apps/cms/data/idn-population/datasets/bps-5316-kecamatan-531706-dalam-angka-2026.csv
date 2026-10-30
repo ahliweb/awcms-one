@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.17.06.2003,4,Weluk Prai Memang,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2003,4,Weluk Prai Memang,sex,perempuan,,517,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2003,4,Weluk Prai Memang,total,total,,1071,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2002,4,Mara Desa,sex,laki_laki,,355,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2002,4,Mara Desa,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2002,4,Mara Desa,total,total,,676,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2001,4,Bolu Bokat,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2001,4,Bolu Bokat,sex,perempuan,,578,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2001,4,Bolu Bokat,total,total,,1196,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2004,4,Bolu Bokat Utara,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2004,4,Bolu Bokat Utara,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2004,4,Bolu Bokat Utara,total,total,,931,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2005,4,Maradesa Timur,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2005,4,Maradesa Timur,sex,perempuan,,258,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2005,4,Maradesa Timur,total,total,,555,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2006,4,Maradesa Selatan,sex,laki_laki,,294,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2006,4,Maradesa Selatan,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2006,4,Maradesa Selatan,total,total,,582,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2007,4,Bolu Bokat Barat,sex,laki_laki,,404,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2007,4,Bolu Bokat Barat,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2007,4,Bolu Bokat Barat,total,total,,789,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2009,4,Sambali Loku,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2009,4,Sambali Loku,sex,perempuan,,666,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2009,4,Sambali Loku,total,total,,1375,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2008,4,Wangga Waiyengu,sex,laki_laki,,581,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2008,4,Wangga Waiyengu,sex,perempuan,,576,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2008,4,Wangga Waiyengu,total,total,,1157,jiwa,2025,registration,total_population,3.1,,,
+53.17.06.2010,4,Holur Kambata,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06.2010,4,Holur Kambata,sex,perempuan,,410,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06.2010,4,Holur Kambata,total,total,,916,jiwa,2025,registration,total_population,3.1,,,
+53.17.06,3,Umbu Ratu Nggay Tengah,sex,laki_laki,,4805,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.06,3,Umbu Ratu Nggay Tengah,sex,perempuan,,4443,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.06,3,Umbu Ratu Nggay Tengah,total,total,,9248,jiwa,2025,registration,total_population,3.1,,,

@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.05.1006,4,Madawat,sex,laki_laki,,4355,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.05.1006,4,Madawat,sex,perempuan,,4598,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.07.05.1006,4,Madawat,total,total,,8953,jiwa,2025,registration,total_population,3.1,26,,
+53.07.05.1007,4,Nangalimang,sex,laki_laki,,1874,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.05.1007,4,Nangalimang,sex,perempuan,,1930,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.07.05.1007,4,Nangalimang,total,total,,3804,jiwa,2025,registration,total_population,3.1,26,,
+53.07.05.1008,4,Kabor,sex,laki_laki,,1653,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.05.1008,4,Kabor,sex,perempuan,,1650,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.07.05.1008,4,Kabor,total,total,,3303,jiwa,2025,registration,total_population,3.1,26,,
+53.07.05.1009,4,Kota Uneng,sex,laki_laki,,5479,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.05.1009,4,Kota Uneng,sex,perempuan,,5699,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.07.05.1009,4,Kota Uneng,total,total,,11178,jiwa,2025,registration,total_population,3.1,26,,
+53.07.05.2014,4,Pemana,sex,laki_laki,,1612,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.05.2014,4,Pemana,sex,perempuan,,1712,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.07.05.2014,4,Pemana,total,total,,3324,jiwa,2025,registration,total_population,3.1,26,,
+53.07.05.2015,4,Samparong,sex,laki_laki,,544,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.05.2015,4,Samparong,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.07.05.2015,4,Samparong,total,total,,1078,jiwa,2025,registration,total_population,3.1,26,,
+53.07.05.2016,4,Gunung Sari,sex,laki_laki,,841,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.05.2016,4,Gunung Sari,sex,perempuan,,885,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.07.05.2016,4,Gunung Sari,total,total,,1726,jiwa,2025,registration,total_population,3.1,26,,

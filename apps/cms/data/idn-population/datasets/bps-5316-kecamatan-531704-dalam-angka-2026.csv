@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.17.04.2001,4,Mbilur Pangadu,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2001,4,Mbilur Pangadu,sex,perempuan,,549,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2001,4,Mbilur Pangadu,total,total,,1127,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2009,4,Padira Tana,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2009,4,Padira Tana,sex,perempuan,,643,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2009,4,Padira Tana,total,total,,1288,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2002,4,Soru,sex,laki_laki,,584,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2002,4,Soru,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2002,4,Soru,total,total,,1125,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2007,4,Lenang,sex,laki_laki,,700,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2007,4,Lenang,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2007,4,Lenang,total,total,,1386,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2010,4,Ngadu Bolu,sex,laki_laki,,460,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2010,4,Ngadu Bolu,sex,perempuan,,450,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2010,4,Ngadu Bolu,total,total,,910,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2008,4,Tana Mbanas,sex,laki_laki,,771,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2008,4,Tana Mbanas,sex,perempuan,,790,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2008,4,Tana Mbanas,total,total,,1561,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2014,4,Tana Mbanas Selatan,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2014,4,Tana Mbanas Selatan,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2014,4,Tana Mbanas Selatan,total,total,,1276,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2015,4,Tana Mbanas Barat,sex,laki_laki,,357,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2015,4,Tana Mbanas Barat,sex,perempuan,,346,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2015,4,Tana Mbanas Barat,total,total,,703,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2016,4,Ngadu Olu,sex,laki_laki,,448,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2016,4,Ngadu Olu,sex,perempuan,,430,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2016,4,Ngadu Olu,total,total,,878,jiwa,2025,registration,total_population,3.1,,,
+53.17.04.2017,4,Lenang Selatan,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04.2017,4,Lenang Selatan,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04.2017,4,Lenang Selatan,total,total,,1160,jiwa,2025,registration,total_population,3.1,,,
+53.17.04,3,Umbu Ratu Nggay,sex,laki_laki,,6410,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.04,3,Umbu Ratu Nggay,sex,perempuan,,6158,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.04,3,Umbu Ratu Nggay,total,total,,12568,jiwa,2025,registration,total_population,3.1,,,

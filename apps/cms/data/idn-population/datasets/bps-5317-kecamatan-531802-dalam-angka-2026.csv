@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.02.2002,4,Wano Talla,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2002,4,Wano Talla,sex,perempuan,,508,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2002,4,Wano Talla,total,total,,1007,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2003,4,Wee Paboba,sex,laki_laki,,951,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2003,4,Wee Paboba,sex,perempuan,,900,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2003,4,Wee Paboba,total,total,,1851,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2004,4,Mataloko,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2004,4,Mataloko,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2004,4,Mataloko,total,total,,1218,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2006,4,Puu Potto,sex,laki_laki,,583,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2006,4,Puu Potto,sex,perempuan,,559,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2006,4,Puu Potto,total,total,,1142,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2005,4,Wee Namba,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2005,4,Wee Namba,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2005,4,Wee Namba,total,total,,916,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2001,4,Mali Mada,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2001,4,Mali Mada,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2001,4,Mali Mada,total,total,,1322,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2012,4,Mawo Maliti,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2012,4,Mawo Maliti,sex,perempuan,,542,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2012,4,Mawo Maliti,total,total,,1069,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2007,4,Bodo Ponda,sex,laki_laki,,454,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2007,4,Bodo Ponda,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2007,4,Bodo Ponda,total,total,,920,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2010,4,Pandua Tana,sex,laki_laki,,474,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2010,4,Pandua Tana,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2010,4,Pandua Tana,total,total,,940,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2009,4,Odi Paurata,sex,laki_laki,,581,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2009,4,Odi Paurata,sex,perempuan,,610,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2009,4,Odi Paurata,total,total,,1191,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02.2008,4,Reda Wano,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02.2008,4,Reda Wano,sex,perempuan,,424,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02.2008,4,Reda Wano,total,total,,911,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02,3,Wewewa Utara,sex,laki_laki,,7062,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.02,3,Wewewa Utara,sex,perempuan,,6991,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.02,3,Wewewa Utara,total,total,,14053,jiwa,2025,registration,total_population,3.1,24,,
+53.18.02,3,Wewewa Utara,sex,laki_laki,,7062,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.18.02,3,Wewewa Utara,sex,perempuan,,6991,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.18.02,3,Wewewa Utara,total,total,,14053,jiwa,2025,registration,total_population,3.2,26,,

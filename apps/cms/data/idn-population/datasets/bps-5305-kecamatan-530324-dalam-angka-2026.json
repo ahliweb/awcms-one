@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5305-kecamatan-530324-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.03.24",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Biboki Feotleu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Utara Regency",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Utara Regency (https://timortengahutarakab.bps.go.id), publikasi \"Kecamatan Biboki Feotleu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305062",
+  "publicationNumber": "53050.26032",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/09/28/48f3465afd463f7c1707eed0/kecamatan-biboki-feotleu-dalam-angka-2026.html",
+  "sourceFileSha256": "2ec9cc2aac92febbaf102eab7dba5e7ab856c33b4a28e79fa5e10085f7eb20ca",
+  "sourceFileBytes": 9261442,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Timor Tengah Utara",
+  "csvPath": "datasets/bps-5305-kecamatan-530324-dalam-angka-2026.csv",
+  "csvSha256": "af9afe735ba4f42990033d1dee65bf991166ce5014e248801c4475ae782b490b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Biboki Feotleu, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Biboki Feotleu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

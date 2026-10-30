@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.01.2013,4,Mbatakapidu,sex,laki_laki,,1131,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.01.2013,4,Mbatakapidu,sex,perempuan,,1101,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.01.2013,4,Mbatakapidu,total,total,,2232,jiwa,2025,registration,total_population,3.1,30,,
+53.11.01.2012,4,Lukukamaru,sex,laki_laki,,444,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.01.2012,4,Lukukamaru,sex,perempuan,,409,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.01.2012,4,Lukukamaru,total,total,,853,jiwa,2025,registration,total_population,3.1,30,,
+53.11.01.1004,4,Kamalaputi,sex,laki_laki,,4325,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.01.1004,4,Kamalaputi,sex,perempuan,,4240,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.01.1004,4,Kamalaputi,total,total,,8565,jiwa,2025,registration,total_population,3.1,30,,
+53.11.01.1003,4,Matawai,sex,laki_laki,,1853,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.01.1003,4,Matawai,sex,perempuan,,1874,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.01.1003,4,Matawai,total,total,,3727,jiwa,2025,registration,total_population,3.1,30,,
+53.11.01.1002,4,Hambala,sex,laki_laki,,4353,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.01.1002,4,Hambala,sex,perempuan,,4202,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.01.1002,4,Hambala,total,total,,8555,jiwa,2025,registration,total_population,3.1,30,,
+53.11.01.1001,4,Kambajawa,sex,laki_laki,,5665,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.01.1001,4,Kambajawa,sex,perempuan,,5623,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.01.1001,4,Kambajawa,total,total,,11288,jiwa,2025,registration,total_population,3.1,30,,
+53.11.01,3,Kota Waingapu,sex,laki_laki,,19020,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.01,3,Kota Waingapu,sex,perempuan,,18629,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.01,3,Kota Waingapu,total,total,,37649,jiwa,2025,registration,total_population,3.1,30,,
+53.11.01,3,Kota Waingapu,sex,laki_laki,,19020,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+53.11.01,3,Kota Waingapu,sex,perempuan,,18629,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+53.11.01,3,Kota Waingapu,total,total,,37649,jiwa,2025,registration,total_population,3.2,32,,

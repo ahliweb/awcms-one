@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5314-kecamatan-531403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.14.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lobalain Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rote Ndao",
+  "publisherDomain": "5314",
+  "publisherWebsite": "https://rotendaokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rote Ndao (https://rotendaokab.bps.go.id), publikasi \"Kecamatan Lobalain Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53140.26010",
+  "issn": "2598-5396",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rotendaokab.bps.go.id/id/publication/2026/09/28/b9bb9994a93158e9cef9d2a7/kecamatan-lobalain-dalam-angka-2026.html",
+  "sourceFileSha256": "bf72fa914571d45831f23b7a875e9de1d05d7257e6856504a100b5b18e5a2de5",
+  "sourceFileBytes": 10608420,
+  "sourcePages": [21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rote Ndao.",
+  "csvPath": "datasets/bps-5314-kecamatan-531403-dalam-angka-2026.csv",
+  "csvSha256": "c7e41c2bd84ad4999edb947d7484ef60bc0d27204d1ea072debe334e083d9827",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lobalain, 2025",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

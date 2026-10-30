@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Soe Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Kota Soe Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304030",
+  "publicationNumber": "53040.26009",
+  "issn": "2598-1676",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/448a6377429e41bbc96ba31c/kecamatan-kota-soe-dalam-angka-2026.html",
+  "sourceFileSha256": "3e608498a389568a34c05d42fcb3b42a9ac40af3aaba78b8976451e569dfd4a4",
+  "sourceFileBytes": 1321927,
+  "sourcePages": [32, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530201-dalam-angka-2026.csv",
+  "csvSha256": "0a5d801070a72c81d42e24386ef4226b25f7c21ddc2c15a17fee56a783f7dc24",
+  "tablesUsed": [
+    {
+      "table": "1.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kota Soe 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "1.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kota Soe 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.3: row not stored: row \"Karang Siri\": unmatched ",
+    "table 1.3: the rows of region 53.02.01.2013 are not stored: sex split vs total: parts sum 2410.0000 != 2050.0000 (diff 360.0000); the source itself is inconsistent",
+    "table 1.3: the rows of region 53.02.01.1007 are not stored: sex split vs total: parts sum 5864.0000 != 5814.0000 (diff 50.0000); the source itself is inconsistent",
+    "table 1.4: the rows of region 53.02.01 are not stored: age_group (perempuan) vs sex value: parts sum 21308.0000 != 21368.0000 (diff 60.0000); the source itself is inconsistent"
+  ]
+}

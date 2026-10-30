@@ -1,0 +1,273 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.02,3,Miomaffo Barat,total,total,,16012,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.11,3,Miomaffo Tengah,total,total,,6619,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.12,3,Musi,total,total,,5173,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.13,3,Mutis,total,total,,7546,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.01,3,Miomaffo Timur,total,total,,13616,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.04,3,Noemuti,total,total,,13918,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.14,3,Bikomi Selatan,total,total,,12102,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.15,3,Bikomi Tengah,total,total,,8181,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.16,3,Bikomi Nilulat,total,total,,5133,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.17,3,Bikomi Utara,total,total,,6705,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.18,3,Naibenu,total,total,,5983,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.10,3,Noemuti Timur,total,total,,4635,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.05,3,Kota Kefamenanu,total,total,,50917,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.08,3,Insana,total,total,,22885,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.09,3,Insana Utara,total,total,,11115,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.20,3,Insana Barat,total,total,,11808,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.21,3,Insana Tengah,total,total,,11350,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.19,3,Insana Fafinesu,total,total,,6498,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.03,3,Biboki Selatan,total,total,,9898,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.22,3,Biboki Tanpah,total,total,,5841,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.23,3,Biboki Moenleu,total,total,,8665,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.06,3,Biboki Utara,total,total,,11956,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.07,3,Biboki Anleu,total,total,,18609,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03.24,3,Biboki Feotleu,total,total,,4472,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03,2,Timor Tengah Utara,total,total,,279637,jiwa,2025,projection,total_population,3.1.1,53,,
+53.03,2,Kabupaten Timor Tengah Utara,age_group,0-4,laki_laki,13768,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+53.03,2,Kabupaten Timor Tengah Utara,age_group,0-4,perempuan,13314,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+53.03,2,Kabupaten Timor Tengah Utara,age_group,0-4,,27082,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+53.03,2,Kabupaten Timor Tengah Utara,age_group,5-9,laki_laki,13954,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+53.03,2,Kabupaten Timor Tengah Utara,age_group,5-9,perempuan,13437,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+53.03,2,Kabupaten Timor Tengah Utara,age_group,5-9,,27391,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+53.03,2,Kabupaten Timor Tengah Utara,age_group,10-14,laki_laki,13497,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+53.03,2,Kabupaten Timor Tengah Utara,age_group,10-14,perempuan,12973,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+53.03,2,Kabupaten Timor Tengah Utara,age_group,10-14,,26470,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+53.03,2,Kabupaten Timor Tengah Utara,age_group,15-19,laki_laki,12224,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+53.03,2,Kabupaten Timor Tengah Utara,age_group,15-19,perempuan,11772,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+53.03,2,Kabupaten Timor Tengah Utara,age_group,15-19,,23996,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+53.03,2,Kabupaten Timor Tengah Utara,age_group,20-24,laki_laki,12529,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+53.03,2,Kabupaten Timor Tengah Utara,age_group,20-24,perempuan,11960,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+53.03,2,Kabupaten Timor Tengah Utara,age_group,20-24,,24489,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+53.03,2,Kabupaten Timor Tengah Utara,age_group,25-29,laki_laki,11434,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+53.03,2,Kabupaten Timor Tengah Utara,age_group,25-29,perempuan,10739,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+53.03,2,Kabupaten Timor Tengah Utara,age_group,25-29,,22173,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+53.03,2,Kabupaten Timor Tengah Utara,age_group,30-34,laki_laki,11161,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+53.03,2,Kabupaten Timor Tengah Utara,age_group,30-34,perempuan,10428,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+53.03,2,Kabupaten Timor Tengah Utara,age_group,30-34,,21589,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+53.03,2,Kabupaten Timor Tengah Utara,age_group,35-39,laki_laki,8746,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+53.03,2,Kabupaten Timor Tengah Utara,age_group,35-39,perempuan,9072,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+53.03,2,Kabupaten Timor Tengah Utara,age_group,35-39,,17818,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+53.03,2,Kabupaten Timor Tengah Utara,age_group,40-44,laki_laki,8355,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+53.03,2,Kabupaten Timor Tengah Utara,age_group,40-44,perempuan,8867,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+53.03,2,Kabupaten Timor Tengah Utara,age_group,40-44,,17222,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+53.03,2,Kabupaten Timor Tengah Utara,age_group,45-49,laki_laki,7265,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+53.03,2,Kabupaten Timor Tengah Utara,age_group,45-49,perempuan,7686,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+53.03,2,Kabupaten Timor Tengah Utara,age_group,45-49,,14951,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+53.03,2,Kabupaten Timor Tengah Utara,age_group,50-54,laki_laki,6467,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+53.03,2,Kabupaten Timor Tengah Utara,age_group,50-54,perempuan,6837,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+53.03,2,Kabupaten Timor Tengah Utara,age_group,50-54,,13304,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+53.03,2,Kabupaten Timor Tengah Utara,age_group,55-59,laki_laki,6139,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+53.03,2,Kabupaten Timor Tengah Utara,age_group,55-59,perempuan,6395,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+53.03,2,Kabupaten Timor Tengah Utara,age_group,55-59,,12534,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+53.03,2,Kabupaten Timor Tengah Utara,age_group,60-64,laki_laki,5006,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+53.03,2,Kabupaten Timor Tengah Utara,age_group,60-64,perempuan,5291,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+53.03,2,Kabupaten Timor Tengah Utara,age_group,60-64,,10297,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+53.03,2,Kabupaten Timor Tengah Utara,age_group,65-69,laki_laki,3862,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+53.03,2,Kabupaten Timor Tengah Utara,age_group,65-69,perempuan,4179,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+53.03,2,Kabupaten Timor Tengah Utara,age_group,65-69,,8041,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+53.03,2,Kabupaten Timor Tengah Utara,age_group,70-74,laki_laki,2731,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+53.03,2,Kabupaten Timor Tengah Utara,age_group,70-74,perempuan,2794,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+53.03,2,Kabupaten Timor Tengah Utara,age_group,70-74,,5525,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+53.03,2,Kabupaten Timor Tengah Utara,age_group,75+,laki_laki,3219,jiwa,2025,projection,total_population,3.1.2,56,,75+
+53.03,2,Kabupaten Timor Tengah Utara,age_group,75+,perempuan,3536,jiwa,2025,projection,total_population,3.1.2,56,,75+
+53.03,2,Kabupaten Timor Tengah Utara,age_group,75+,,6755,jiwa,2025,projection,total_population,3.1.2,56,,75+
+53.03,2,Timor Tengah Utara,sex,laki_laki,,140357,jiwa,2025,projection,total_population,3.1.2,56,,Laki-Laki
+53.03,2,Timor Tengah Utara,sex,perempuan,,139280,jiwa,2025,projection,total_population,3.1.2,56,,Perempuan
+53.03,2,Timor Tengah Utara,total,total,,279637,jiwa,2025,projection,total_population,3.1.2,56,,
+53.03.02,3,Miomaffo Barat,religion,islam,,118,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.02,3,Miomaffo Barat,religion,kristen,,1849,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.02,3,Miomaffo Barat,religion,katolik,,14354,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.02,3,Miomaffo Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.02,3,Miomaffo Barat,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,125,,Budha
+53.03.02,3,Miomaffo Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.11,3,Miomaffo Tengah,religion,islam,,11,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.11,3,Miomaffo Tengah,religion,kristen,,78,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.11,3,Miomaffo Tengah,religion,katolik,,8668,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.11,3,Miomaffo Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.11,3,Miomaffo Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.11,3,Miomaffo Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.12,3,Musi,religion,islam,,1,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.12,3,Musi,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.12,3,Musi,religion,katolik,,5107,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.12,3,Musi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.12,3,Musi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.12,3,Musi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.13,3,Mutis,religion,islam,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Islam
+53.03.13,3,Mutis,religion,kristen,,33,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.13,3,Mutis,religion,katolik,,7680,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.13,3,Mutis,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.13,3,Mutis,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.13,3,Mutis,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.01,3,Miomaffo Timur,religion,islam,,8,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.01,3,Miomaffo Timur,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.01,3,Miomaffo Timur,religion,katolik,,17244,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.01,3,Miomaffo Timur,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03.01,3,Miomaffo Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.01,3,Miomaffo Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.04,3,Noemuti,religion,islam,,14,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.04,3,Noemuti,religion,kristen,,635,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.04,3,Noemuti,religion,katolik,,12777,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.04,3,Noemuti,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.04,3,Noemuti,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.04,3,Noemuti,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.14,3,Bikomi Selatan,religion,islam,,139,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.14,3,Bikomi Selatan,religion,kristen,,1199,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.14,3,Bikomi Selatan,religion,katolik,,9864,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.14,3,Bikomi Selatan,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03.14,3,Bikomi Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.14,3,Bikomi Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.15,3,Bikomi Tengah,religion,islam,,2,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.15,3,Bikomi Tengah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.15,3,Bikomi Tengah,religion,katolik,,1700,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.15,3,Bikomi Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.15,3,Bikomi Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.15,3,Bikomi Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.16,3,Bikomi Nilulat,religion,islam,,1,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.16,3,Bikomi Nilulat,religion,kristen,,219,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.16,3,Bikomi Nilulat,religion,katolik,,8458,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.16,3,Bikomi Nilulat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.16,3,Bikomi Nilulat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.16,3,Bikomi Nilulat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.17,3,Bikomi Utara,religion,islam,,5,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.17,3,Bikomi Utara,religion,kristen,,320,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.17,3,Bikomi Utara,religion,katolik,,6499,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.17,3,Bikomi Utara,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03.17,3,Bikomi Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.17,3,Bikomi Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.18,3,Naibenu,religion,islam,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Islam
+53.03.18,3,Naibenu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.18,3,Naibenu,religion,katolik,,5648,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.18,3,Naibenu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.18,3,Naibenu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.18,3,Naibenu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.10,3,Noemuti Timur,religion,islam,,12,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.10,3,Noemuti Timur,religion,kristen,,824,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.10,3,Noemuti Timur,religion,katolik,,3724,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.10,3,Noemuti Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.10,3,Noemuti Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.10,3,Noemuti Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.05,3,Kota Kefamenanu,religion,islam,,3825,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.05,3,Kota Kefamenanu,religion,kristen,,11272,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.05,3,Kota Kefamenanu,religion,katolik,,34370,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.05,3,Kota Kefamenanu,religion,hindu,,104,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03.05,3,Kota Kefamenanu,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,125,,Budha
+53.03.05,3,Kota Kefamenanu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.08,3,Insana,religion,islam,,453,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.08,3,Insana,religion,kristen,,437,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.08,3,Insana,religion,katolik,,20618,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.08,3,Insana,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03.08,3,Insana,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,125,,Budha
+53.03.08,3,Insana,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.09,3,Insana Utara,religion,islam,,436,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.09,3,Insana Utara,religion,kristen,,220,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.09,3,Insana Utara,religion,katolik,,10277,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.09,3,Insana Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.09,3,Insana Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.09,3,Insana Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.20,3,Insana Barat,religion,islam,,12,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.20,3,Insana Barat,religion,kristen,,427,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.20,3,Insana Barat,religion,katolik,,11331,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.20,3,Insana Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.20,3,Insana Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.20,3,Insana Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.21,3,Insana Tengah,religion,islam,,23,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.21,3,Insana Tengah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.21,3,Insana Tengah,religion,katolik,,11517,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.21,3,Insana Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.21,3,Insana Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.21,3,Insana Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.19,3,Insana Fafinesu,religion,islam,,10,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.19,3,Insana Fafinesu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.19,3,Insana Fafinesu,religion,katolik,,6154,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.19,3,Insana Fafinesu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.19,3,Insana Fafinesu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.19,3,Insana Fafinesu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.03,3,Biboki Selatan,religion,islam,,8,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.03,3,Biboki Selatan,religion,kristen,,187,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.03,3,Biboki Selatan,religion,katolik,,9355,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.03,3,Biboki Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.03,3,Biboki Selatan,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,125,,Budha
+53.03.03,3,Biboki Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.22,3,Biboki Tanpah,religion,islam,,6,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.22,3,Biboki Tanpah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.22,3,Biboki Tanpah,religion,katolik,,6054,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.22,3,Biboki Tanpah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.22,3,Biboki Tanpah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.22,3,Biboki Tanpah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.23,3,Biboki Moenleu,religion,islam,,17,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.23,3,Biboki Moenleu,religion,kristen,,181,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.23,3,Biboki Moenleu,religion,katolik,,8434,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.23,3,Biboki Moenleu,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03.23,3,Biboki Moenleu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.23,3,Biboki Moenleu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.06,3,Biboki Utara,religion,islam,,43,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.06,3,Biboki Utara,religion,kristen,,429,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.06,3,Biboki Utara,religion,katolik,,16896,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.06,3,Biboki Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.06,3,Biboki Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.06,3,Biboki Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.07,3,Biboki Anleu,religion,islam,,44,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.07,3,Biboki Anleu,religion,kristen,,1698,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03.07,3,Biboki Anleu,religion,katolik,,10475,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.07,3,Biboki Anleu,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03.07,3,Biboki Anleu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.07,3,Biboki Anleu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03.24,3,Biboki Feotleu,religion,islam,,1,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03.24,3,Biboki Feotleu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Protestan
+53.03.24,3,Biboki Feotleu,religion,katolik,,4599,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03.24,3,Biboki Feotleu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Hindu
+53.03.24,3,Biboki Feotleu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Budha
+53.03.24,3,Biboki Feotleu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03,2,Timor Tengah Utara,religion,islam,,5189,jiwa,2025,registration,total_population,4.3.1,125,,Islam
+53.03,2,Timor Tengah Utara,religion,kristen,,20008,jiwa,2025,registration,total_population,4.3.1,125,,Protestan
+53.03,2,Timor Tengah Utara,religion,katolik,,251803,jiwa,2025,registration,total_population,4.3.1,125,,Katolik
+53.03,2,Timor Tengah Utara,religion,hindu,,122,jiwa,2025,registration,total_population,4.3.1,125,,Hindu
+53.03,2,Timor Tengah Utara,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,125,,Budha
+53.03,2,Timor Tengah Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,125,nil,Lainnya
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/padi_padian,,113603,rupiah,2025,survey_estimate,per_capita,10.1,278,,Padi-padian
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/padi_padian,,127383,rupiah,2024,survey_estimate,per_capita,10.1,278,,Padi-padian
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/umbi_umbian,,6299,rupiah,2025,survey_estimate,per_capita,10.1,278,,Umbi-umbian
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/umbi_umbian,,3955,rupiah,2024,survey_estimate,per_capita,10.1,278,,Umbi-umbian
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,24736,rupiah,2025,survey_estimate,per_capita,10.1,278,,Ikan/udang/cumi/kerang
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,30576,rupiah,2024,survey_estimate,per_capita,10.1,278,,Ikan/udang/cumi/kerang
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/daging,,60829,rupiah,2025,survey_estimate,per_capita,10.1,278,,Daging
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/daging,,59990,rupiah,2024,survey_estimate,per_capita,10.1,278,,Daging
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/telur_dan_susu,,22138,rupiah,2025,survey_estimate,per_capita,10.1,278,,Telur dan susu
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/telur_dan_susu,,21631,rupiah,2024,survey_estimate,per_capita,10.1,278,,Telur dan susu
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/sayur_sayuran,,63254,rupiah,2025,survey_estimate,per_capita,10.1,278,,Sayur-sayuran
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/sayur_sayuran,,62425,rupiah,2024,survey_estimate,per_capita,10.1,278,,Sayur-sayuran
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/kacang_kacangan,,13337,rupiah,2025,survey_estimate,per_capita,10.1,278,,Kacang-kacangan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/kacang_kacangan,,12124,rupiah,2024,survey_estimate,per_capita,10.1,278,,Kacang-kacangan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/buah_buahan,,16318,rupiah,2025,survey_estimate,per_capita,10.1,278,,Buah-buahan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/buah_buahan,,17709,rupiah,2024,survey_estimate,per_capita,10.1,278,,Buah-buahan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12265,rupiah,2025,survey_estimate,per_capita,10.1,278,,Minyak dan kelapa
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12852,rupiah,2024,survey_estimate,per_capita,10.1,278,,Minyak dan kelapa
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/bahan_minuman,,19912,rupiah,2025,survey_estimate,per_capita,10.1,278,,Bahan minuman
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/bahan_minuman,,20080,rupiah,2024,survey_estimate,per_capita,10.1,278,,Bahan minuman
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,8020,rupiah,2025,survey_estimate,per_capita,10.1,278,,Bumbu-bumbuan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,8284,rupiah,2024,survey_estimate,per_capita,10.1,278,,Bumbu-bumbuan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,8860,rupiah,2025,survey_estimate,per_capita,10.1,278,,Konsumsi lainnya
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,8519,rupiah,2024,survey_estimate,per_capita,10.1,278,,Konsumsi lainnya
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,115356,rupiah,2025,survey_estimate,per_capita,10.1,278,,Makanan dan minuman jadi
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,113089,rupiah,2024,survey_estimate,per_capita,10.1,278,,Makanan dan minuman jadi
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/rokok,,36732,rupiah,2025,survey_estimate,per_capita,10.1,278,,Rokok
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/rokok,,49202,rupiah,2024,survey_estimate,per_capita,10.1,278,,Rokok
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/jumlah_makanan,,521659,rupiah,2025,survey_estimate,per_capita,10.1,278,,Jumlah makanan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/jumlah_makanan,,547818,rupiah,2024,survey_estimate,per_capita,10.1,278,,Jumlah makanan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,247446,rupiah,2025,survey_estimate,per_capita,10.1,278,,Perumahan dan fasilitas rumah tangga
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,250060,rupiah,2024,survey_estimate,per_capita,10.1,278,,Perumahan dan fasilitas rumah tangga
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,93831,rupiah,2025,survey_estimate,per_capita,10.1,278,,Aneka barang dan jasa
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,96267,rupiah,2024,survey_estimate,per_capita,10.1,278,,Aneka barang dan jasa
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18720,rupiah,2025,survey_estimate,per_capita,10.1,278,,"Pakaian, alas kaki, dan tutup kepala"
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15394,rupiah,2024,survey_estimate,per_capita,10.1,278,,"Pakaian, alas kaki, dan tutup kepala"
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,32340,rupiah,2025,survey_estimate,per_capita,10.1,278,,Barang tahan lama
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,22059,rupiah,2024,survey_estimate,per_capita,10.1,278,,Barang tahan lama
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40535,rupiah,2025,survey_estimate,per_capita,10.1,278,,"Pajak, pungutan, dan asuransi"
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35294,rupiah,2024,survey_estimate,per_capita,10.1,278,,"Pajak, pungutan, dan asuransi"
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19659,rupiah,2025,survey_estimate,per_capita,10.1,278,,Keperluan pesta dan upacara/kenduri
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24581,rupiah,2024,survey_estimate,per_capita,10.1,278,,Keperluan pesta dan upacara/kenduri
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,452531,rupiah,2025,survey_estimate,per_capita,10.1,278,,Jumlah bukan makanan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,443656,rupiah,2024,survey_estimate,per_capita,10.1,278,,Jumlah bukan makanan
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,total,,974190,rupiah,2025,survey_estimate,per_capita,10.1,278,,
+53.03,2,Kabupaten Timor Tengah Utara,expenditure,total,,991474,rupiah,2024,survey_estimate,per_capita,10.1,278,,

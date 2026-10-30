@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-5317-kecamatan-531806-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.18.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kodi Bangedo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5317",
+  "publisherWebsite": "https://sumbabaratdayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://sumbabaratdayakab.bps.go.id), publikasi \"Kecamatan Kodi Bangedo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5317010",
+  "publicationNumber": "53170.26005",
+  "issn": "3032-0038",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratdayakab.bps.go.id/id/publication/2026/09/28/69beebbe4e430812fd072f1e/kecamatan-kodi-bangedo-dalam-angka-2026.html",
+  "sourceFileSha256": "1d1eecdb17dff86aa708c1cc17bde5b6de4a5f5da6a792788d7d03303bc90677",
+  "sourceFileBytes": 13096884,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota SUMBA BARAT DAYA.",
+  "csvPath": "datasets/bps-5317-kecamatan-531806-dalam-angka-2026.csv",
+  "csvSha256": "c345a4d1276afead62e146bd4fe8f6c4fcd5078530367b6cebbbe41007004b1b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kodi Bangedo, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kodi Bangedo, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Merakehe\": unmatched ",
+    "table 3.1: row not stored: row \"Ana Gogka\": unmatched ",
+    "table 3.1: row not stored: row \"Merakehe\": unmatched ",
+    "table 3.1: row not stored: row \"Ana Gogka\": unmatched ",
+    "table 3.1: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

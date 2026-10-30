@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.20.04.2001,4,Raerobo,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2001,4,Raerobo,sex,perempuan,,560,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2001,4,Raerobo,total,total,,1112,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2002,4,Mehona,sex,laki_laki,,483,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2002,4,Mehona,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2002,4,Mehona,total,total,,916,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2003,4,Waduwalla,sex,laki_laki,,492,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2003,4,Waduwalla,sex,perempuan,,480,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2003,4,Waduwalla,total,total,,972,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2004,4,Ledeke,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2004,4,Ledeke,sex,perempuan,,465,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2004,4,Ledeke,total,total,,964,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2005,4,Eilogo,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2005,4,Eilogo,sex,perempuan,,510,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2005,4,Eilogo,total,total,,1000,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2006,4,Deme,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2006,4,Deme,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2006,4,Deme,total,total,,879,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2007,4,Kotahawu,sex,laki_laki,,602,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2007,4,Kotahawu,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2007,4,Kotahawu,total,total,,1138,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2008,4,Dainao,sex,laki_laki,,433,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2008,4,Dainao,sex,perempuan,,399,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2008,4,Dainao,total,total,,832,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2009,4,Eikare,sex,laki_laki,,293,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2009,4,Eikare,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2009,4,Eikare,total,total,,598,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2010,4,Loborui,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2010,4,Loborui,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2010,4,Loborui,total,total,,890,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2011,4,Halla Paji,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2011,4,Halla Paji,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2011,4,Halla Paji,total,total,,835,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04.2012,4,Ledetalo,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04.2012,4,Ledetalo,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04.2012,4,Ledetalo,total,total,,856,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04,3,Sabu Liae,sex,laki_laki,,5603,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.04,3,Sabu Liae,sex,perempuan,,5389,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.04,3,Sabu Liae,total,total,,10992,jiwa,2025,registration,total_population,3.1,16,,
+53.20.04,3,Sabu Liae,age_group,0-4,laki_laki,406,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.04,3,Sabu Liae,age_group,0-4,perempuan,331,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.04,3,Sabu Liae,age_group,0-4,,737,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.04,3,Sabu Liae,age_group,5-9,laki_laki,514,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.04,3,Sabu Liae,age_group,5-9,perempuan,463,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.04,3,Sabu Liae,age_group,5-9,,977,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.04,3,Sabu Liae,age_group,10-14,laki_laki,591,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.04,3,Sabu Liae,age_group,10-14,perempuan,637,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.04,3,Sabu Liae,age_group,10-14,,1228,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.04,3,Sabu Liae,age_group,15-19,laki_laki,646,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.04,3,Sabu Liae,age_group,15-19,perempuan,619,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.04,3,Sabu Liae,age_group,15-19,,1265,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.04,3,Sabu Liae,age_group,20-24,laki_laki,581,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.04,3,Sabu Liae,age_group,20-24,perempuan,534,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.04,3,Sabu Liae,age_group,20-24,,1115,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.04,3,Sabu Liae,age_group,25-29,laki_laki,490,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.04,3,Sabu Liae,age_group,25-29,perempuan,500,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.04,3,Sabu Liae,age_group,25-29,,990,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.04,3,Sabu Liae,age_group,30-34,laki_laki,450,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.04,3,Sabu Liae,age_group,30-34,perempuan,359,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.04,3,Sabu Liae,age_group,30-34,,809,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.04,3,Sabu Liae,age_group,35-39,laki_laki,377,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.04,3,Sabu Liae,age_group,35-39,perempuan,333,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.04,3,Sabu Liae,age_group,35-39,,710,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.04,3,Sabu Liae,age_group,40-44,laki_laki,283,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.04,3,Sabu Liae,age_group,40-44,perempuan,295,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.04,3,Sabu Liae,age_group,40-44,,578,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.04,3,Sabu Liae,age_group,45-49,laki_laki,261,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.04,3,Sabu Liae,age_group,45-49,perempuan,271,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.04,3,Sabu Liae,age_group,45-49,,532,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.04,3,Sabu Liae,age_group,50-54,laki_laki,235,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.04,3,Sabu Liae,age_group,50-54,perempuan,225,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.04,3,Sabu Liae,age_group,50-54,,460,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.04,3,Sabu Liae,age_group,55-59,laki_laki,209,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.04,3,Sabu Liae,age_group,55-59,perempuan,179,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.04,3,Sabu Liae,age_group,55-59,,388,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.04,3,Sabu Liae,age_group,60-64,laki_laki,183,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.04,3,Sabu Liae,age_group,60-64,perempuan,177,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.04,3,Sabu Liae,age_group,60-64,,360,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.04,3,Sabu Liae,age_group,65-69,laki_laki,145,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.04,3,Sabu Liae,age_group,65-69,perempuan,166,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.04,3,Sabu Liae,age_group,65-69,,311,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.04,3,Sabu Liae,age_group,70-74,laki_laki,88,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.04,3,Sabu Liae,age_group,70-74,perempuan,89,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.04,3,Sabu Liae,age_group,70-74,,177,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.04,3,Sabu Liae,age_group,75+,laki_laki,144,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.04,3,Sabu Liae,age_group,75+,perempuan,211,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.04,3,Sabu Liae,age_group,75+,,355,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.04,3,Sabu Liae,sex,laki_laki,,5603,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki
+53.20.04,3,Sabu Liae,sex,perempuan,,5389,jiwa,2025,registration,total_population,3.2,18,,Perempuan
+53.20.04,3,Sabu Liae,total,total,,10992,jiwa,2025,registration,total_population,3.2,18,,

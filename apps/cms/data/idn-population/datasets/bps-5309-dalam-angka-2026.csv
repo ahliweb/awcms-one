@@ -1,0 +1,231 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.01,3,Wulanggitang,total,total,,15393,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.02,3,Titehena,total,total,,13740,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.16,3,Ile Bura,total,total,,8141,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.05,3,Tanjung Bunga,total,total,,15207,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.15,3,Lewolema,total,total,,10499,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.03,3,Larantuka,total,total,,41944,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.04,3,Ile Mandiri,total,total,,12653,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.14,3,Demon Pagong,total,total,,5171,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.06,3,Solor Barat,total,total,,12013,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.19,3,Solor Selatan,total,total,,8015,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.07,3,Solor Timur,total,total,,17446,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.08,3,Adonara Barat,total,total,,14256,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.18,3,Adonara Tengah,total,total,,14568,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.10,3,Adonara Timur,total,total,,32010,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.13,3,Ile Boleng,total,total,,19081,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.12,3,Witihama,total,total,,19026,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.11,3,Kelubagolit,total,total,,13807,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06.17,3,Adonara,total,total,,12794,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06,2,Kabupaten Flores Timur,total,total,,296760,jiwa,2025,projection,total_population,3.1.1,48,,
+53.06,2,Kabupaten Flores Timur,age_group,0-4,laki_laki,13857,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+53.06,2,Kabupaten Flores Timur,age_group,0-4,perempuan,13403,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+53.06,2,Kabupaten Flores Timur,age_group,0-4,,27260,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+53.06,2,Kabupaten Flores Timur,age_group,5-9,laki_laki,14364,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+53.06,2,Kabupaten Flores Timur,age_group,5-9,perempuan,13313,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+53.06,2,Kabupaten Flores Timur,age_group,5-9,,27677,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+53.06,2,Kabupaten Flores Timur,age_group,10-14,laki_laki,13199,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+53.06,2,Kabupaten Flores Timur,age_group,10-14,perempuan,12377,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+53.06,2,Kabupaten Flores Timur,age_group,10-14,,25576,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+53.06,2,Kabupaten Flores Timur,age_group,15-19,laki_laki,11555,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+53.06,2,Kabupaten Flores Timur,age_group,15-19,perempuan,10870,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+53.06,2,Kabupaten Flores Timur,age_group,15-19,,22425,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+53.06,2,Kabupaten Flores Timur,age_group,20-24,laki_laki,12251,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+53.06,2,Kabupaten Flores Timur,age_group,20-24,perempuan,11899,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+53.06,2,Kabupaten Flores Timur,age_group,20-24,,24150,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+53.06,2,Kabupaten Flores Timur,age_group,25-29,laki_laki,13004,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+53.06,2,Kabupaten Flores Timur,age_group,25-29,perempuan,12223,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+53.06,2,Kabupaten Flores Timur,age_group,25-29,,25227,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+53.06,2,Kabupaten Flores Timur,age_group,30-34,laki_laki,12071,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+53.06,2,Kabupaten Flores Timur,age_group,30-34,perempuan,11639,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+53.06,2,Kabupaten Flores Timur,age_group,30-34,,23710,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+53.06,2,Kabupaten Flores Timur,age_group,35-39,laki_laki,9931,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+53.06,2,Kabupaten Flores Timur,age_group,35-39,perempuan,9714,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+53.06,2,Kabupaten Flores Timur,age_group,35-39,,19645,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+53.06,2,Kabupaten Flores Timur,age_group,40-44,laki_laki,8814,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+53.06,2,Kabupaten Flores Timur,age_group,40-44,perempuan,8920,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+53.06,2,Kabupaten Flores Timur,age_group,40-44,,17734,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+53.06,2,Kabupaten Flores Timur,age_group,45-49,laki_laki,7979,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+53.06,2,Kabupaten Flores Timur,age_group,45-49,perempuan,8944,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+53.06,2,Kabupaten Flores Timur,age_group,45-49,,16923,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+53.06,2,Kabupaten Flores Timur,age_group,50-54,laki_laki,7571,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+53.06,2,Kabupaten Flores Timur,age_group,50-54,perempuan,8532,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+53.06,2,Kabupaten Flores Timur,age_group,50-54,,16103,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+53.06,2,Kabupaten Flores Timur,age_group,55-59,laki_laki,6309,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+53.06,2,Kabupaten Flores Timur,age_group,55-59,perempuan,7681,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+53.06,2,Kabupaten Flores Timur,age_group,55-59,,13990,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+53.06,2,Kabupaten Flores Timur,age_group,60-64,laki_laki,5193,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+53.06,2,Kabupaten Flores Timur,age_group,60-64,perempuan,6404,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+53.06,2,Kabupaten Flores Timur,age_group,60-64,,11597,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+53.06,2,Kabupaten Flores Timur,age_group,65-69,laki_laki,3939,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+53.06,2,Kabupaten Flores Timur,age_group,65-69,perempuan,5288,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+53.06,2,Kabupaten Flores Timur,age_group,65-69,,9227,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+53.06,2,Kabupaten Flores Timur,age_group,70-74,laki_laki,2910,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+53.06,2,Kabupaten Flores Timur,age_group,70-74,perempuan,4301,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+53.06,2,Kabupaten Flores Timur,age_group,70-74,,7211,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+53.06,2,Kabupaten Flores Timur,age_group,75+,laki_laki,3172,jiwa,2025,projection,total_population,3.1.2,51,,75+
+53.06,2,Kabupaten Flores Timur,age_group,75+,perempuan,5133,jiwa,2025,projection,total_population,3.1.2,51,,75+
+53.06,2,Kabupaten Flores Timur,age_group,75+,,8305,jiwa,2025,projection,total_population,3.1.2,51,,75+
+53.06,2,Kabupaten Flores Timur,sex,laki_laki,,146119,jiwa,2025,projection,total_population,3.1.2,51,,Laki-Laki
+53.06,2,Kabupaten Flores Timur,sex,perempuan,,150641,jiwa,2025,projection,total_population,3.1.2,51,,Perempuan
+53.06,2,Kabupaten Flores Timur,total,total,,296760,jiwa,2025,projection,total_population,3.1.2,51,,
+53.06.01,3,Wulanggitang,religion,islam,,246,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.01,3,Wulanggitang,religion,kristen,,108,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06.01,3,Wulanggitang,religion,katolik,,14209,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.01,3,Wulanggitang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.01,3,Wulanggitang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.01,3,Wulanggitang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.02,3,Titehena,religion,islam,,354,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.02,3,Titehena,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.02,3,Titehena,religion,katolik,,9746,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.02,3,Titehena,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.02,3,Titehena,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.02,3,Titehena,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.16,3,Ile Bura,religion,islam,,47,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.16,3,Ile Bura,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.16,3,Ile Bura,religion,katolik,,4920,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.16,3,Ile Bura,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.16,3,Ile Bura,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.16,3,Ile Bura,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.05,3,Tanjung Bunga,religion,islam,,840,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.05,3,Tanjung Bunga,religion,kristen,,57,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06.05,3,Tanjung Bunga,religion,katolik,,14159,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.05,3,Tanjung Bunga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.05,3,Tanjung Bunga,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.05,3,Tanjung Bunga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.15,3,Lewolema,religion,islam,,52,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.15,3,Lewolema,religion,kristen,,32,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06.15,3,Lewolema,religion,katolik,,6613,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.15,3,Lewolema,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.15,3,Lewolema,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.15,3,Lewolema,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.03,3,Larantuka,religion,islam,,9365,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.03,3,Larantuka,religion,kristen,,1304,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06.03,3,Larantuka,religion,katolik,,24659,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.03,3,Larantuka,religion,hindu,,156,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+53.06.03,3,Larantuka,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.03,3,Larantuka,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.04,3,Ile Mandiri,religion,islam,,589,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.04,3,Ile Mandiri,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.04,3,Ile Mandiri,religion,katolik,,9332,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.04,3,Ile Mandiri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.04,3,Ile Mandiri,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.04,3,Ile Mandiri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.14,3,Demon Pagong,religion,islam,,10,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.14,3,Demon Pagong,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.14,3,Demon Pagong,religion,katolik,,6999,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.14,3,Demon Pagong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.14,3,Demon Pagong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.14,3,Demon Pagong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.06,3,Solor Barat,religion,islam,,55,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.06,3,Solor Barat,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.06,3,Solor Barat,religion,katolik,,7510,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.06,3,Solor Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.06,3,Solor Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.06,3,Solor Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.19,3,Solor Selatan,religion,islam,,24,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.19,3,Solor Selatan,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.19,3,Solor Selatan,religion,katolik,,4559,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.19,3,Solor Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.19,3,Solor Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.19,3,Solor Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.07,3,Solor Timur,religion,islam,,12693,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.07,3,Solor Timur,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06.07,3,Solor Timur,religion,katolik,,3883,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.07,3,Solor Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.07,3,Solor Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.07,3,Solor Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.08,3,Adonara Barat,religion,islam,,1814,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.08,3,Adonara Barat,religion,kristen,,65,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06.08,3,Adonara Barat,religion,katolik,,6695,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.08,3,Adonara Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.08,3,Adonara Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.08,3,Adonara Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.18,3,Adonara Tengah,religion,islam,,2380,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.18,3,Adonara Tengah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.18,3,Adonara Tengah,religion,katolik,,11967,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.18,3,Adonara Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.18,3,Adonara Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.18,3,Adonara Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.10,3,Adonara Timur,religion,islam,,17784,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.10,3,Adonara Timur,religion,kristen,,245,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06.10,3,Adonara Timur,religion,katolik,,10144,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.10,3,Adonara Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.10,3,Adonara Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.10,3,Adonara Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.13,3,Ile Boleng,religion,islam,,1676,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.13,3,Ile Boleng,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.13,3,Ile Boleng,religion,katolik,,13556,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.13,3,Ile Boleng,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.13,3,Ile Boleng,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.13,3,Ile Boleng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.12,3,Witihama,religion,islam,,4168,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.12,3,Witihama,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.12,3,Witihama,religion,katolik,,10396,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.12,3,Witihama,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.12,3,Witihama,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.12,3,Witihama,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.11,3,Kelubagolit,religion,islam,,3091,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.11,3,Kelubagolit,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.11,3,Kelubagolit,religion,katolik,,7110,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.11,3,Kelubagolit,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.11,3,Kelubagolit,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.11,3,Kelubagolit,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06.17,3,Adonara,religion,islam,,5460,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06.17,3,Adonara,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.06.17,3,Adonara,religion,katolik,,3973,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06.17,3,Adonara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.06.17,3,Adonara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06.17,3,Adonara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06,2,Kabupaten Flores Timur,religion,islam,,61893,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.06,2,Kabupaten Flores Timur,religion,kristen,,1916,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.06,2,Kabupaten Flores Timur,religion,katolik,,177347,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.06,2,Kabupaten Flores Timur,religion,hindu,,156,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+53.06,2,Kabupaten Flores Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.06,2,Kabupaten Flores Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/padi_padian,,152605,rupiah,2024,survey_estimate,per_capita,10.1,212,,Padi-padian
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/padi_padian,,141947,rupiah,2025,survey_estimate,per_capita,10.1,212,,Padi-padian
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/umbi_umbian,,3963,rupiah,2024,survey_estimate,per_capita,10.1,212,,Umbi-umbian
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/umbi_umbian,,4742,rupiah,2025,survey_estimate,per_capita,10.1,212,,Umbi-umbian
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,56180,rupiah,2024,survey_estimate,per_capita,10.1,212,,Ikan/udang/cumi/kerang
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,62541,rupiah,2025,survey_estimate,per_capita,10.1,212,,Ikan/udang/cumi/kerang
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/daging,,8252,rupiah,2024,survey_estimate,per_capita,10.1,212,,Daging
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/daging,,15795,rupiah,2025,survey_estimate,per_capita,10.1,212,,Daging
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/telur_dan_susu,,19404,rupiah,2024,survey_estimate,per_capita,10.1,212,,Telur dan susu
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/telur_dan_susu,,27882,rupiah,2025,survey_estimate,per_capita,10.1,212,,Telur dan susu
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/sayur_sayuran,,41287,rupiah,2024,survey_estimate,per_capita,10.1,212,,Sayur-sayuran
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/sayur_sayuran,,52647,rupiah,2025,survey_estimate,per_capita,10.1,212,,Sayur-sayuran
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/kacang_kacangan,,4833,rupiah,2024,survey_estimate,per_capita,10.1,212,,Kacang-kacangan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/kacang_kacangan,,8331,rupiah,2025,survey_estimate,per_capita,10.1,212,,Kacang-kacangan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/buah_buahan,,19070,rupiah,2024,survey_estimate,per_capita,10.1,212,,Buah-buahan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/buah_buahan,,30392,rupiah,2025,survey_estimate,per_capita,10.1,212,,Buah-buahan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16815,rupiah,2024,survey_estimate,per_capita,10.1,212,,Minyak dan kelapa
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19250,rupiah,2025,survey_estimate,per_capita,10.1,212,,Minyak dan kelapa
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/bahan_minuman,,21265,rupiah,2024,survey_estimate,per_capita,10.1,212,,Bahan minuman
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/bahan_minuman,,23656,rupiah,2025,survey_estimate,per_capita,10.1,212,,Bahan minuman
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,9253,rupiah,2024,survey_estimate,per_capita,10.1,212,,Bumbu-bumbuan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,10997,rupiah,2025,survey_estimate,per_capita,10.1,212,,Bumbu-bumbuan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,7159,rupiah,2024,survey_estimate,per_capita,10.1,212,,Konsumsi lainnya
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,8390,rupiah,2025,survey_estimate,per_capita,10.1,212,,Konsumsi lainnya
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,57288,rupiah,2024,survey_estimate,per_capita,10.1,212,,Makanan dan minuman jadi
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,79176,rupiah,2025,survey_estimate,per_capita,10.1,212,,Makanan dan minuman jadi
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/rokok,,57403,rupiah,2024,survey_estimate,per_capita,10.1,212,,Rokok
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/rokok,,66666,rupiah,2025,survey_estimate,per_capita,10.1,212,,Rokok
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/jumlah_makanan,,474777,rupiah,2024,survey_estimate,per_capita,10.1,212,,Jumlah makanan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/jumlah_makanan,,552412,rupiah,2025,survey_estimate,per_capita,10.1,212,,Jumlah makanan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,250874,rupiah,2024,survey_estimate,per_capita,10.1,212,,Perumahan dan fasilitas rumah tangga
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,248162,rupiah,2025,survey_estimate,per_capita,10.1,212,,Perumahan dan fasilitas rumah tangga
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,69897,rupiah,2024,survey_estimate,per_capita,10.1,212,,Aneka barang dan jasa
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,77499,rupiah,2025,survey_estimate,per_capita,10.1,212,,Aneka barang dan jasa
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15634,rupiah,2024,survey_estimate,per_capita,10.1,212,,"Pakaian, alas kaki, dan tutup kepala"
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15685,rupiah,2025,survey_estimate,per_capita,10.1,212,,"Pakaian, alas kaki, dan tutup kepala"
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,13757,rupiah,2024,survey_estimate,per_capita,10.1,212,,Barang tahan lama
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,15322,rupiah,2025,survey_estimate,per_capita,10.1,212,,Barang tahan lama
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,26111,rupiah,2024,survey_estimate,per_capita,10.1,212,,"Pajak, pungutan, dan asuransi"
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,34960,rupiah,2025,survey_estimate,per_capita,10.1,212,,"Pajak, pungutan, dan asuransi"
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8047,rupiah,2024,survey_estimate,per_capita,10.1,212,,Keperluan pesta dan upacara/kenduri
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5999,rupiah,2025,survey_estimate,per_capita,10.1,212,,Keperluan pesta dan upacara/kenduri
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,384320,rupiah,2024,survey_estimate,per_capita,10.1,212,,Jumlah bukan makanan
+53.06,2,Kabupaten Flores Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,397626,rupiah,2025,survey_estimate,per_capita,10.1,212,,Jumlah bukan makanan
+53.06,2,Kabupaten Flores Timur,expenditure,total,,859097,rupiah,2024,survey_estimate,per_capita,10.1,212,,
+53.06,2,Kabupaten Flores Timur,expenditure,total,,950038,rupiah,2025,survey_estimate,per_capita,10.1,212,,

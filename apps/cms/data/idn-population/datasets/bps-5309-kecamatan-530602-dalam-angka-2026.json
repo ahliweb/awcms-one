@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5309-kecamatan-530602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.06.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Titehena Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Flores Timur",
+  "publisherDomain": "5309",
+  "publisherWebsite": "https://florestimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Flores Timur (https://florestimurkab.bps.go.id), publikasi \"Kecamatan Titehena Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.530911",
+  "publicationNumber": "53090.26013",
+  "issn": "2579-6984",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://florestimurkab.bps.go.id/id/publication/2026/09/28/82e25e6eba7727dae2ae699e/kecamatan-titehena-dalam-angka-2026.html",
+  "sourceFileSha256": "b874d30ce711c5ef1f091b670d225a8c46945b507c527d7fba3046abab5ffb1f",
+  "sourceFileBytes": 4607312,
+  "sourcePages": [23, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota TITEHENA",
+  "csvPath": "datasets/bps-5309-kecamatan-530602-dalam-angka-2026.csv",
+  "csvSha256": "90ac1ed17d7d44137b687c416e8bd7bb7c7c419e8029885c9f8134cc64925c6f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan TITEHENA, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan TITEHENA, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tnawahang\": unmatched ",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

@@ -1,0 +1,45 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.12.11.2004,4,Hoba Wawi,sex,laki_laki,,639,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2004,4,Hoba Wawi,sex,perempuan,,696,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2004,4,Hoba Wawi,total,total,,1335,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2010,4,Rua,sex,laki_laki,,697,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2010,4,Rua,sex,perempuan,,636,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2010,4,Rua,total,total,,1333,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2006,4,Pahola,sex,laki_laki,,710,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2006,4,Pahola,sex,perempuan,,742,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2006,4,Pahola,total,total,,1452,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2005,4,Wai Hura,sex,laki_laki,,977,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2005,4,Wai Hura,sex,perempuan,,979,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2005,4,Wai Hura,total,total,,1956,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2007,4,Bali Loku,sex,laki_laki,,981,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2007,4,Bali Loku,sex,perempuan,,976,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2007,4,Bali Loku,total,total,,1957,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2002,4,Hupu Mada,sex,laki_laki,,1249,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2002,4,Hupu Mada,sex,perempuan,,927,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2002,4,Hupu Mada,total,total,,2176,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2001,4,Katiku Loku,sex,laki_laki,,409,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2001,4,Katiku Loku,sex,perempuan,,403,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2001,4,Katiku Loku,total,total,,812,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2008,4,Tara Manu,sex,laki_laki,,869,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2008,4,Tara Manu,sex,perempuan,,565,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2008,4,Tara Manu,total,total,,1434,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2003,4,Praibakul,sex,laki_laki,,786,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2003,4,Praibakul,sex,perempuan,,753,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2003,4,Praibakul,total,total,,1539,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2009,4,Mamodu,sex,laki_laki,,551,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2009,4,Mamodu,sex,perempuan,,498,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2009,4,Mamodu,total,total,,1049,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2011,4,Rewa Rara,sex,laki_laki,,480,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2011,4,Rewa Rara,sex,perempuan,,454,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2011,4,Rewa Rara,total,total,,934,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2013,4,Ana Wolu,sex,laki_laki,,325,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2013,4,Ana Wolu,sex,perempuan,,287,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2013,4,Ana Wolu,total,total,,612,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2012,4,Wei Mangoma,sex,laki_laki,,618,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2012,4,Wei Mangoma,sex,perempuan,,608,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2012,4,Wei Mangoma,total,total,,1226,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11.2014,4,Pari Rara,sex,laki_laki,,460,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11.2014,4,Pari Rara,sex,perempuan,,436,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.11.2014,4,Pari Rara,total,total,,896,jiwa,2024,registration,total_population,3.1,20,,
+53.12.11,3,Wanokaka,sex,laki_laki,,9751,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.11,3,Wanokaka,total,total,,18711,jiwa,2024,registration,total_population,3.1,20,,

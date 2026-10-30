@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.14.07.2003,4,Oenggaut,sex,laki_laki,,686,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.07.2003,4,Oenggaut,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.07.2003,4,Oenggaut,total,total,,1378,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.07.2001,4,Sedeoen,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.07.2001,4,Sedeoen,sex,perempuan,,675,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.07.2001,4,Sedeoen,total,total,,1365,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.07.2004,4,Bo'a,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.07.2004,4,Bo'a,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.07.2004,4,Bo'a,total,total,,1132,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.07.2005,4,Oenitas,sex,laki_laki,,1109,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.07.2005,4,Oenitas,sex,perempuan,,1031,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.07.2005,4,Oenitas,total,total,,2140,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.07.2006,4,Oelolot,sex,laki_laki,,795,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.07.2006,4,Oelolot,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.07.2006,4,Oelolot,total,total,,1547,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.07.2007,4,Mbueain,sex,laki_laki,,595,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.07.2007,4,Mbueain,sex,perempuan,,613,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.07.2007,4,Mbueain,total,total,,1208,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.07,3,Kecamatan Rote Barat,sex,laki_laki,,5111,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.07,3,Kecamatan Rote Barat,sex,perempuan,,5038,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.07,3,Kecamatan Rote Barat,total,total,,10149,jiwa,2025,registration,total_population,3.1.1,21,,

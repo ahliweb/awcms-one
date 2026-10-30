@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5314-kecamatan-531409-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.14.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ndao Nuse Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rote Ndao",
+  "publisherDomain": "5314",
+  "publisherWebsite": "https://rotendaokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rote Ndao (https://rotendaokab.bps.go.id), publikasi \"Kecamatan Ndao Nuse Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5314071",
+  "publicationNumber": "53140.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rotendaokab.bps.go.id/id/publication/2026/09/28/16df2aa441af85f14d313bf7/kecamatan-ndao-nuse-dalam-angka-2026.html",
+  "sourceFileSha256": "1e6d8ffe6b9c49893f30f08663d1f6326b7e71cd84c175df39025b85751226a0",
+  "sourceFileBytes": 11123076,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rote Ndao.",
+  "csvPath": "datasets/bps-5314-kecamatan-531409-dalam-angka-2026.csv",
+  "csvSha256": "ccb59d34518ad855932fb14a360ef4a854099a0c561663c039d735d9b09bd5a9",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Ndao Nuse, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-5305-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "53.03",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Timor Tengah Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah UtaraBPS-Statistics Timor Tengah Utara Regency Sumber Ilustrasi",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah UtaraBPS-Statistics Timor Tengah Utara Regency Sumber Ilustrasi (https://timortengahutarakab.bps.go.id), publikasi \"Kabupaten Timor Tengah Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305",
+  "publicationNumber": "53050.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/02/27/8d3f7a66e53f67eaea0e35a5/kabupaten-timor-tengah-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "5f80ca4fd2f7690e67702cc66205d2649bef573a24b0dffed21c2655f2aef022",
+  "sourceFileBytes": 9823698,
+  "sourcePages": [53, 56, 125, 278],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik.",
+  "csvPath": "datasets/bps-5305-dalam-angka-2026.csv",
+  "csvSha256": "fb5723231f6d4d211da3f1fe8d29b3a1291e79718fb89b57ca5179f368d6b7ab",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Timor Tengah Utara, 2025",
+      "printedPages": [53],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Timor Tengah Utara (jiwa), 2025",
+      "printedPages": [56],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Timor Tengah Utara, 2025",
+      "printedPages": [125],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Timor Tengah Utara (rupiah), 2024 dan 2025",
+      "printedPages": [278],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.06.2003,4,Pota Wangka,sex,laki_laki,,705,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2003,4,Pota Wangka,sex,perempuan,,643,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2003,4,Pota Wangka,total,total,,1348,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2002,4,Golo Ketak,sex,laki_laki,,1065,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2002,4,Golo Ketak,sex,perempuan,,1105,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2002,4,Golo Ketak,total,total,,2170,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2001,4,Mbuit,sex,laki_laki,,1916,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2001,4,Mbuit,sex,perempuan,,1875,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2001,4,Mbuit,total,total,,3791,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2008,4,Golo Lujang,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2008,4,Golo Lujang,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2008,4,Golo Lujang,total,total,,1487,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2007,4,Sepang,sex,laki_laki,,1000,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2007,4,Sepang,sex,perempuan,,990,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2007,4,Sepang,total,total,,1990,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2005,4,Golo Sepang,sex,laki_laki,,2083,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2005,4,Golo Sepang,sex,perempuan,,2054,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2005,4,Golo Sepang,total,total,,4137,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2009,4,Batu Tiga,sex,laki_laki,,520,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2009,4,Batu Tiga,sex,perempuan,,521,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2009,4,Batu Tiga,total,total,,1041,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2004,4,Tanjung Boleng,sex,laki_laki,,1399,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2004,4,Tanjung Boleng,sex,perempuan,,1357,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2004,4,Tanjung Boleng,total,total,,2756,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2020,4,Golo Nobo,sex,laki_laki,,298,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2020,4,Golo Nobo,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2020,4,Golo Nobo,total,total,,580,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06.2021,4,Beo Sepang,sex,laki_laki,,409,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06.2021,4,Beo Sepang,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06.2021,4,Beo Sepang,total,total,,824,jiwa,2025,registration,total_population,3.1,23,,
+53.15.06,3,Kecamatan Boleng,sex,laki_laki,,11013,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.06,3,Kecamatan Boleng,sex,perempuan,,10799,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.06,3,Kecamatan Boleng,total,total,,21812,jiwa,2025,registration,total_population,3.1,23,,

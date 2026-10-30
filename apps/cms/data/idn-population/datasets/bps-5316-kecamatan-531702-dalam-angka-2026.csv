@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.17.02.2010,4,Umbu Langang,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2010,4,Umbu Langang,sex,perempuan,,498,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2010,4,Umbu Langang,total,total,,1009,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2009,4,Umbu Pabal,sex,laki_laki,,936,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2009,4,Umbu Pabal,sex,perempuan,,864,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2009,4,Umbu Pabal,total,total,,1800,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2008,4,Umbu Mamijuk,sex,laki_laki,,913,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2008,4,Umbu Mamijuk,sex,perempuan,,887,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2008,4,Umbu Mamijuk,total,total,,1800,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2006,4,Wairasa,sex,laki_laki,,1652,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2006,4,Wairasa,sex,perempuan,,1618,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2006,4,Wairasa,total,total,,3270,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2007,4,Umbu Kawolu,sex,laki_laki,,624,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2007,4,Umbu Kawolu,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2007,4,Umbu Kawolu,total,total,,1171,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2005,4,Anajiaka,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2005,4,Anajiaka,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2005,4,Anajiaka,total,total,,1351,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2003,4,Pondok,sex,laki_laki,,707,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2003,4,Pondok,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2003,4,Pondok,total,total,,1338,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2004,4,Maderi,sex,laki_laki,,797,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2004,4,Maderi,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2004,4,Maderi,total,total,,1495,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2002,4,Praimadeta,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2002,4,Praimadeta,sex,perempuan,,561,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2002,4,Praimadeta,total,total,,1195,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2021,4,Umbu Pabal Selatan,sex,laki_laki,,450,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2021,4,Umbu Pabal Selatan,sex,perempuan,,450,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2021,4,Umbu Pabal Selatan,total,total,,900,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2022,4,Umbu Jodu,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2022,4,Umbu Jodu,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2022,4,Umbu Jodu,total,total,,1047,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2023,4,Anapalu,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2023,4,Anapalu,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2023,4,Anapalu,total,total,,1155,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2024,4,Daha Elu,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2024,4,Daha Elu,sex,perempuan,,482,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2024,4,Daha Elu,total,total,,1006,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2025,4,Dewa Tana,sex,laki_laki,,558,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2025,4,Dewa Tana,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2025,4,Dewa Tana,total,total,,1084,jiwa,2025,registration,total_population,3.1,,,
+53.17.02.2027,4,Mata Waikajawi,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02.2027,4,Mata Waikajawi,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02.2027,4,Mata Waikajawi,total,total,,865,jiwa,2025,registration,total_population,3.1,,,
+53.17.02,3,Umbu Ratu Nggay Barat,sex,laki_laki,,10571,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.02,3,Umbu Ratu Nggay Barat,sex,perempuan,,9915,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.02,3,Umbu Ratu Nggay Barat,total,total,,20486,jiwa,2025,registration,total_population,3.1,,,

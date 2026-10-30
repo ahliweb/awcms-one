@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.14.2009,4,Mau Ramba,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.14.2009,4,Mau Ramba,sex,perempuan,,322,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.14.2009,4,Mau Ramba,total,total,,675,jiwa,2025,registration,total_population,3.1,28,,
+53.11.14.2001,4,Kamanggih,sex,laki_laki,,913,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.14.2001,4,Kamanggih,sex,perempuan,,894,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.14.2001,4,Kamanggih,total,total,,1807,jiwa,2025,registration,total_population,3.1,28,,
+53.11.14.2007,4,Kataka,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.14.2007,4,Kataka,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.14.2007,4,Kataka,total,total,,1222,jiwa,2025,registration,total_population,3.1,28,,
+53.11.14.2006,4,Matawai Katingga,sex,laki_laki,,385,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.14.2006,4,Matawai Katingga,sex,perempuan,,330,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.14.2006,4,Matawai Katingga,total,total,,715,jiwa,2025,registration,total_population,3.1,28,,
+53.11.14.2005,4,Kota Kawau,sex,laki_laki,,1007,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.14.2005,4,Kota Kawau,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.14.2005,4,Kota Kawau,total,total,,1970,jiwa,2025,registration,total_population,3.1,28,,
+53.11.14.2004,4,Lai Mbonga,sex,laki_laki,,381,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.14.2004,4,Lai Mbonga,sex,perempuan,,356,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.14.2004,4,Lai Mbonga,total,total,,737,jiwa,2025,registration,total_population,3.1,28,,
+53.11.14,3,Kahaungu Eti,sex,laki_laki,,5597,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.14,3,Kahaungu Eti,sex,perempuan,,5273,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.14,3,Kahaungu Eti,total,total,,10870,jiwa,2025,registration,total_population,3.1,28,,
+53.11.14,3,Kahaungu Eti,age_group,0-14,laki_laki,37852,jiwa,2025,registration,total_population,3.2,30,,0-14
+53.11.14,3,Kahaungu Eti,age_group,0-14,perempuan,35561,jiwa,2025,registration,total_population,3.2,30,,0-14
+53.11.14,3,Kahaungu Eti,age_group,0-14,,72413,jiwa,2025,registration,total_population,3.2,30,,0-14
+53.11.14,3,Kahaungu Eti,age_group,15-64,laki_laki,97436,jiwa,2025,registration,total_population,3.2,30,,15-64
+53.11.14,3,Kahaungu Eti,age_group,15-64,perempuan,93841,jiwa,2025,registration,total_population,3.2,30,,15-64
+53.11.14,3,Kahaungu Eti,age_group,15-64,,191277,jiwa,2025,registration,total_population,3.2,30,,15-64
+53.11.14,3,Kahaungu Eti,age_group,65+,laki_laki,10387,jiwa,2025,registration,total_population,3.2,30,,65+
+53.11.14,3,Kahaungu Eti,age_group,65+,perempuan,10009,jiwa,2025,registration,total_population,3.2,30,,65+
+53.11.14,3,Kahaungu Eti,age_group,65+,,20396,jiwa,2025,registration,total_population,3.2,30,,65+

@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.13.2001,4,Natarmage,sex,laki_laki,,668,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.13.2001,4,Natarmage,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.13.2001,4,Natarmage,total,total,,1308,jiwa,2025,registration,total_population,3.1,26,,
+53.07.13.2002,4,Tanarawa,sex,laki_laki,,776,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.13.2002,4,Tanarawa,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.13.2002,4,Tanarawa,total,total,,1558,jiwa,2025,registration,total_population,3.1,26,,
+53.07.13.2003,4,Pruda,sex,laki_laki,,820,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.13.2003,4,Pruda,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.13.2003,4,Pruda,total,total,,1635,jiwa,2025,registration,total_population,3.1,26,,
+53.07.13.2004,4,Werang,sex,laki_laki,,870,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.13.2004,4,Werang,sex,perempuan,,867,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.13.2004,4,Werang,total,total,,1737,jiwa,2025,registration,total_population,3.1,26,,
+53.07.13.2005,4,Tua Bao,sex,laki_laki,,474,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.13.2005,4,Tua Bao,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.13.2005,4,Tua Bao,total,total,,953,jiwa,2025,registration,total_population,3.1,26,,
+53.07.13.2006,4,Ilin Medo,sex,laki_laki,,516,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.13.2006,4,Ilin Medo,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.13.2006,4,Ilin Medo,total,total,,992,jiwa,2025,registration,total_population,3.1,26,,
+53.07.13.2007,4,Watu Moning,sex,laki_laki,,477,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.13.2007,4,Watu Moning,sex,perempuan,,470,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.13.2007,4,Watu Moning,total,total,,947,jiwa,2025,registration,total_population,3.1,26,,

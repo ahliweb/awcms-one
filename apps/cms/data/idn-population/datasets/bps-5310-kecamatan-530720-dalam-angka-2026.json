@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530720-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Doreng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://sikkakab.bps.go.id), publikasi \"Kecamatan Doreng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5310031",
+  "publicationNumber": "53100.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/f3f353d3feacaf48ac490bd7/kecamatan-doreng-dalam-angka-2026.html",
+  "sourceFileSha256": "0b9b92bee4e1ee33f1f9b2632e25573564f6a3f748876a5891a1e4488b57c43c",
+  "sourceFileBytes": 10963570,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530720-dalam-angka-2026.csv",
+  "csvSha256": "9662fadf6601a17aa685abfc813b5e24091cbcb9473fd836b400240bba4a132e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Doreng, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Doreng, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 53.07.20 are not stored: age_group vs total: parts sum 13012.0000 != 20186.0000 (diff 7174.0000); the source itself is inconsistent"
+  ]
+}

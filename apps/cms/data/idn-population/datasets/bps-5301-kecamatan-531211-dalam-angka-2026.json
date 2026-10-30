@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5301-kecamatan-531211-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.12.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wanokaka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat",
+  "publisherDomain": "5301",
+  "publisherWebsite": "https://sumbabaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat (https://sumbabaratkab.bps.go.id), publikasi \"Kecamatan Wanokaka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5301022",
+  "publicationNumber": "53010.26005",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratkab.bps.go.id/id/publication/2026/09/28/07dff64c091452a981a2737a/kecamatan-wanokaka-dalam-angka-2026.html",
+  "sourceFileSha256": "cf7856dc8d0f9eb1908cfc31e5aea5ee1b6134a5f773f5d782082d7ad4f0c5dc",
+  "sourceFileBytes": 15577331,
+  "sourcePages": [20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat.",
+  "csvPath": "datasets/bps-5301-kecamatan-531211-dalam-angka-2026.csv",
+  "csvSha256": "68278a1873350c09a1d4174cf88f4d11c857d27a2d7e0e685cdfe317302e056f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Wanokaka, 2024",
+      "printedPages": [20, 21],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

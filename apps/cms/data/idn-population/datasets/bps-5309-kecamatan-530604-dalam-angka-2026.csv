@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.04.2002,4,LEWOLOBA,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2002,4,LEWOLOBA,sex,perempuan,,684,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2002,4,LEWOLOBA,total,total,,1319,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04.2001,4,WAILOLONG,sex,laki_laki,,992,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2001,4,WAILOLONG,sex,perempuan,,949,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2001,4,WAILOLONG,total,total,,1941,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04.2005,4,RIANG KEMIE,sex,laki_laki,,1186,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2005,4,RIANG KEMIE,sex,perempuan,,1189,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2005,4,RIANG KEMIE,total,total,,2375,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04.2006,4,LEWOHALA,sex,laki_laki,,879,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2006,4,LEWOHALA,sex,perempuan,,873,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2006,4,LEWOHALA,total,total,,1752,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04.2007,4,HALAKODANUAN,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2007,4,HALAKODANUAN,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2007,4,HALAKODANUAN,total,total,,564,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04.2004,4,WATOTUTU,sex,laki_laki,,727,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2004,4,WATOTUTU,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2004,4,WATOTUTU,total,total,,1459,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04.2008,4,MUDAKEPUTU,sex,laki_laki,,555,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2008,4,MUDAKEPUTU,sex,perempuan,,544,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2008,4,MUDAKEPUTU,total,total,,1099,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04.2003,4,TIWATOBI,sex,laki_laki,,904,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04.2003,4,TIWATOBI,sex,perempuan,,909,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04.2003,4,TIWATOBI,total,total,,1813,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04,3,Kecamatan Ile Mandiri,sex,laki_laki,,6148,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.04,3,Kecamatan Ile Mandiri,sex,perempuan,,6174,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.04,3,Kecamatan Ile Mandiri,total,total,,12322,jiwa,2025,registration,total_population,3.1,22,,
+53.06.04,3,Ile Mandiri,age_group,0-4,laki_laki,335,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.04,3,Ile Mandiri,age_group,0-4,perempuan,338,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.04,3,Ile Mandiri,age_group,0-4,,673,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.04,3,Ile Mandiri,age_group,5-9,laki_laki,521,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.04,3,Ile Mandiri,age_group,5-9,perempuan,509,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.04,3,Ile Mandiri,age_group,5-9,,1030,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.04,3,Ile Mandiri,age_group,10-14,laki_laki,549,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.04,3,Ile Mandiri,age_group,10-14,perempuan,512,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.04,3,Ile Mandiri,age_group,10-14,,1061,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.04,3,Ile Mandiri,age_group,15-19,laki_laki,560,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.04,3,Ile Mandiri,age_group,15-19,perempuan,522,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.04,3,Ile Mandiri,age_group,15-19,,1082,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.04,3,Ile Mandiri,age_group,20-24,laki_laki,545,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.04,3,Ile Mandiri,age_group,20-24,perempuan,542,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.04,3,Ile Mandiri,age_group,20-24,,1087,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.04,3,Ile Mandiri,age_group,25-29,laki_laki,567,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.04,3,Ile Mandiri,age_group,25-29,perempuan,556,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.04,3,Ile Mandiri,age_group,25-29,,1123,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.04,3,Ile Mandiri,age_group,30-34,laki_laki,513,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.04,3,Ile Mandiri,age_group,30-34,perempuan,477,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.04,3,Ile Mandiri,age_group,30-34,,990,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.04,3,Ile Mandiri,age_group,35-39,laki_laki,442,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.04,3,Ile Mandiri,age_group,35-39,perempuan,419,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.04,3,Ile Mandiri,age_group,35-39,,861,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.04,3,Ile Mandiri,age_group,40-44,laki_laki,381,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.04,3,Ile Mandiri,age_group,40-44,perempuan,388,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.04,3,Ile Mandiri,age_group,40-44,,769,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.04,3,Ile Mandiri,age_group,45-49,laki_laki,336,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.04,3,Ile Mandiri,age_group,45-49,perempuan,362,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.04,3,Ile Mandiri,age_group,45-49,,698,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.04,3,Ile Mandiri,age_group,50-54,laki_laki,324,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.04,3,Ile Mandiri,age_group,50-54,perempuan,332,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.04,3,Ile Mandiri,age_group,50-54,,656,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.04,3,Ile Mandiri,age_group,55-59,laki_laki,297,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.04,3,Ile Mandiri,age_group,55-59,perempuan,316,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.04,3,Ile Mandiri,age_group,55-59,,613,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.04,3,Ile Mandiri,age_group,60-64,laki_laki,247,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.04,3,Ile Mandiri,age_group,60-64,perempuan,295,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.04,3,Ile Mandiri,age_group,60-64,,542,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.04,3,Ile Mandiri,age_group,65-69,laki_laki,218,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.04,3,Ile Mandiri,age_group,65-69,perempuan,223,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.04,3,Ile Mandiri,age_group,65-69,,441,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.04,3,Ile Mandiri,age_group,70-74,laki_laki,134,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.04,3,Ile Mandiri,age_group,70-74,perempuan,159,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.04,3,Ile Mandiri,age_group,70-74,,293,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.04,3,Ile Mandiri,age_group,75+,laki_laki,179,jiwa,2025,registration,total_population,3.2,24,,>75
+53.06.04,3,Ile Mandiri,age_group,75+,perempuan,224,jiwa,2025,registration,total_population,3.2,24,,>75
+53.06.04,3,Ile Mandiri,age_group,75+,,403,jiwa,2025,registration,total_population,3.2,24,,>75
+53.06.04,3,Kecamatan Ile Mandiri,sex,laki_laki,,6148,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+53.06.04,3,Kecamatan Ile Mandiri,sex,perempuan,,6174,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+53.06.04,3,Kecamatan Ile Mandiri,total,total,,12322,jiwa,2025,registration,total_population,3.2,24,,

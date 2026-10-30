@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.18.2001,4,Watumbelar,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.18.2001,4,Watumbelar,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.18.2001,4,Watumbelar,total,total,,932,jiwa,2025,registration,total_population,3.1,28,,
+53.11.18.2003,4,Umamanu,sex,laki_laki,,611,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.18.2003,4,Umamanu,sex,perempuan,,540,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.18.2003,4,Umamanu,total,total,,1151,jiwa,2025,registration,total_population,3.1,28,,
+53.11.18.2005,4,Kangeli,sex,laki_laki,,1067,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.18.2005,4,Kangeli,sex,perempuan,,976,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.18.2005,4,Kangeli,total,total,,2043,jiwa,2025,registration,total_population,3.1,28,,
+53.11.18.2004,4,Mondu Lambi,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.18.2004,4,Mondu Lambi,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.18.2004,4,Mondu Lambi,total,total,,847,jiwa,2025,registration,total_population,3.1,28,,
+53.11.18.2002,4,Bidi Praing,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.18.2002,4,Bidi Praing,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.18.2002,4,Bidi Praing,total,total,,829,jiwa,2025,registration,total_population,3.1,28,,
+53.11.18,3,Lewa Tidahu,sex,laki_laki,,4363,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.18,3,Lewa Tidahu,sex,perempuan,,4089,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.18,3,Lewa Tidahu,total,total,,8452,jiwa,2025,registration,total_population,3.1,28,,
+53.11.18,3,Lewa Tidahu,sex,laki_laki,,4363,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.11.18,3,Lewa Tidahu,sex,perempuan,,4089,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.11.18,3,Lewa Tidahu,total,total,,8452,jiwa,2025,registration,total_population,3.2,30,,

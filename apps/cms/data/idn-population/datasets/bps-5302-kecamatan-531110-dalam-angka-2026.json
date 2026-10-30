@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5302-kecamatan-531110-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.11.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pahunga Lodu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Timur",
+  "publisherDomain": "5302",
+  "publisherWebsite": "https://sumbatimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Timur (https://sumbatimurkab.bps.go.id), publikasi \"Kecamatan Pahunga Lodu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5302040",
+  "publicationNumber": "53020.26016",
+  "issn": "2598-1781",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbatimurkab.bps.go.id/id/publication/2026/09/28/5d2a1ba3e931cc998b309173/kecamatan-pahunga-lodu-dalam-angka-2026.html",
+  "sourceFileSha256": "00dbba984d2dad72f0a4fc34e3dd4d9ddd5fa02c01251d7ca75904cca4a529a3",
+  "sourceFileBytes": 1541142,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Timur",
+  "csvPath": "datasets/bps-5302-kecamatan-531110-dalam-angka-2026.csv",
+  "csvSha256": "805e37ee12cee452850f84b86bfadf7c19a453d57a30b747271c4e5bb72258f1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan PAHUNGA LODU, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

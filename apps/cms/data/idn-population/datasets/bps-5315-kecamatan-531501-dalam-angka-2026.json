@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5315-kecamatan-531501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.15.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Macang Pacar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5315",
+  "publisherWebsite": "https://manggaraibaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://manggaraibaratkab.bps.go.id), publikasi \"Kecamatan Macang Pacar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5315050",
+  "publicationNumber": "53150.26016",
+  "issn": "2623-0984",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraibaratkab.bps.go.id/id/publication/2026/09/28/197a149064ed37bc37e99442/kecamatan-macang-pacar-dalam-angka-2026.html",
+  "sourceFileSha256": "7e02ee2978f8e63eedbc4a04130fe96384fa3bc36a7c6fc038e90b74769aebd5",
+  "sourceFileBytes": 4321360,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Barat.",
+  "csvPath": "datasets/bps-5315-kecamatan-531501-dalam-angka-2026.csv",
+  "csvSha256": "8d8cf8bdaa4ef7140a8e125879138605f5fdc36a6e9a7b3087c709364dc0ac7d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Macang Pacar, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

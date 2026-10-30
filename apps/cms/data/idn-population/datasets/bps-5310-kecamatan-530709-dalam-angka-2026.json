@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530709-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Waigete Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://sikkakab.bps.go.id), publikasi \"Kecamatan Waigete Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5310041",
+  "publicationNumber": "53100.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/06d8bb3e0444030c97ebfc84/kecamatan-waigete-dalam-angka-2026.html",
+  "sourceFileSha256": "25a9965f633db54820433b17a13a027b05f5ff41919f97bc74e29b47ea4d26d9",
+  "sourceFileBytes": 10982741,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530709-dalam-angka-2026.csv",
+  "csvSha256": "850525e57cbad3ecab4f1248a1c9ff40e4744c4731014558abc09b20c82b430f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Waigete, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Waigete, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Wairbeleler\": unmatched ",
+    "table 3.1: row not stored: row \"Wairbeleler\": unmatched ",
+    "table 3.2: the rows of region 53.07.09 are not stored: sex split vs total: parts sum 84108.0000 != 28036.0000 (diff 56072.0000); the source itself is inconsistent"
+  ]
+}

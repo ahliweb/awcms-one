@@ -1,0 +1,242 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.07.01,3,Sungai Raya,total,total,,24790,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.11,3,Capkala,total,total,,10156,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.15,3,Sungai Raya Kepulauan,total,total,,31802,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.02,3,Samalantan,total,total,,23892,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.08,3,Monterado,total,total,,36550,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.16,3,Lembah Bawang,total,total,,6744,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.04,3,Bengkayang,total,total,,36823,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.09,3,Teriak,total,total,,18485,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.14,3,Sungai Betung,total,total,,13272,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.03,3,Ledo,total,total,,15100,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.10,3,Suti Semarang,total,total,,6354,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.13,3,Lumar,total,total,,8953,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.06,3,Sanggau Ledo,total,total,,16483,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.17,3,Tujuh Belas,total,total,,16544,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.05,3,Seluas,total,total,,21625,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.07,3,Jagoi Babang,total,total,,11569,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07.12,3,Siding,total,total,,8681,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07,2,Kabupaten Bengkayang,total,total,,307823,jiwa,2025,projection,total_population,3.1.1,57,,
+61.07,2,Kabupaten Bengkayang,age_group,0-4,laki_laki,13872,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+61.07,2,Kabupaten Bengkayang,age_group,0-4,perempuan,13303,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+61.07,2,Kabupaten Bengkayang,age_group,0-4,,27175,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+61.07,2,Kabupaten Bengkayang,age_group,5-9,laki_laki,12938,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+61.07,2,Kabupaten Bengkayang,age_group,5-9,perempuan,12438,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+61.07,2,Kabupaten Bengkayang,age_group,5-9,,25376,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+61.07,2,Kabupaten Bengkayang,age_group,10-14,laki_laki,13123,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+61.07,2,Kabupaten Bengkayang,age_group,10-14,perempuan,12447,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+61.07,2,Kabupaten Bengkayang,age_group,10-14,,25570,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+61.07,2,Kabupaten Bengkayang,age_group,15-19,laki_laki,13500,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+61.07,2,Kabupaten Bengkayang,age_group,15-19,perempuan,12710,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+61.07,2,Kabupaten Bengkayang,age_group,15-19,,26210,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+61.07,2,Kabupaten Bengkayang,age_group,20-24,laki_laki,13743,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+61.07,2,Kabupaten Bengkayang,age_group,20-24,perempuan,12847,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+61.07,2,Kabupaten Bengkayang,age_group,20-24,,26590,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+61.07,2,Kabupaten Bengkayang,age_group,25-29,laki_laki,13855,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+61.07,2,Kabupaten Bengkayang,age_group,25-29,perempuan,12742,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+61.07,2,Kabupaten Bengkayang,age_group,25-29,,26597,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+61.07,2,Kabupaten Bengkayang,age_group,30-34,laki_laki,13473,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+61.07,2,Kabupaten Bengkayang,age_group,30-34,perempuan,12268,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+61.07,2,Kabupaten Bengkayang,age_group,30-34,,25741,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+61.07,2,Kabupaten Bengkayang,age_group,35-39,laki_laki,13615,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+61.07,2,Kabupaten Bengkayang,age_group,35-39,perempuan,11971,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+61.07,2,Kabupaten Bengkayang,age_group,35-39,,25586,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+61.07,2,Kabupaten Bengkayang,age_group,40-44,laki_laki,11552,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+61.07,2,Kabupaten Bengkayang,age_group,40-44,perempuan,10467,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+61.07,2,Kabupaten Bengkayang,age_group,40-44,,22019,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+61.07,2,Kabupaten Bengkayang,age_group,45-49,laki_laki,10478,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+61.07,2,Kabupaten Bengkayang,age_group,45-49,perempuan,9313,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+61.07,2,Kabupaten Bengkayang,age_group,45-49,,19791,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+61.07,2,Kabupaten Bengkayang,age_group,50-54,laki_laki,8809,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+61.07,2,Kabupaten Bengkayang,age_group,50-54,perempuan,7712,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+61.07,2,Kabupaten Bengkayang,age_group,50-54,,16521,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+61.07,2,Kabupaten Bengkayang,age_group,55-59,laki_laki,6813,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+61.07,2,Kabupaten Bengkayang,age_group,55-59,perempuan,6139,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+61.07,2,Kabupaten Bengkayang,age_group,55-59,,12952,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+61.07,2,Kabupaten Bengkayang,age_group,60-64,laki_laki,5159,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+61.07,2,Kabupaten Bengkayang,age_group,60-64,perempuan,5046,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+61.07,2,Kabupaten Bengkayang,age_group,60-64,,10205,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+61.07,2,Kabupaten Bengkayang,age_group,65-69,laki_laki,3865,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+61.07,2,Kabupaten Bengkayang,age_group,65-69,perempuan,3836,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+61.07,2,Kabupaten Bengkayang,age_group,65-69,,7701,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+61.07,2,Kabupaten Bengkayang,age_group,70-74,laki_laki,2526,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+61.07,2,Kabupaten Bengkayang,age_group,70-74,perempuan,2659,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+61.07,2,Kabupaten Bengkayang,age_group,70-74,,5185,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+61.07,2,Kabupaten Bengkayang,age_group,75+,laki_laki,2262,jiwa,2025,projection,total_population,3.1.2,60,,75+
+61.07,2,Kabupaten Bengkayang,age_group,75+,perempuan,2342,jiwa,2025,projection,total_population,3.1.2,60,,75+
+61.07,2,Kabupaten Bengkayang,age_group,75+,,4604,jiwa,2025,projection,total_population,3.1.2,60,,75+
+61.07,2,Kabupaten Bengkayang,sex,laki_laki,,159583,jiwa,2025,projection,total_population,3.1.2,60,,Laki-Laki
+61.07,2,Kabupaten Bengkayang,sex,perempuan,,148240,jiwa,2025,projection,total_population,3.1.2,60,,Perempuan
+61.07,2,Kabupaten Bengkayang,total,total,,307823,jiwa,2025,projection,total_population,3.1.2,60,,
+61.07.01,3,Sungai Raya,religion,islam,,15395,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.01,3,Sungai Raya,religion,kristen,,751,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.01,3,Sungai Raya,religion,katolik,,238,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.01,3,Sungai Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+61.07.01,3,Sungai Raya,religion,buddha,,5554,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.01,3,Sungai Raya,religion,khonghucu,,1799,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.01,3,Sungai Raya,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.11,3,Capkala,religion,islam,,3500,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.11,3,Capkala,religion,kristen,,1536,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.11,3,Capkala,religion,katolik,,5110,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.11,3,Capkala,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.11,3,Capkala,religion,buddha,,179,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.11,3,Capkala,religion,khonghucu,,6,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.11,3,Capkala,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+61.07.15,3,Sungai Raya Kepulauan,religion,islam,,21116,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.15,3,Sungai Raya Kepulauan,religion,kristen,,380,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.15,3,Sungai Raya Kepulauan,religion,katolik,,370,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.15,3,Sungai Raya Kepulauan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.15,3,Sungai Raya Kepulauan,religion,buddha,,6269,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.15,3,Sungai Raya Kepulauan,religion,khonghucu,,588,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.15,3,Sungai Raya Kepulauan,religion,lainnya,,19,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.02,3,Samalantan,religion,islam,,4511,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.02,3,Samalantan,religion,kristen,,11315,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.02,3,Samalantan,religion,katolik,,8761,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.02,3,Samalantan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+61.07.02,3,Samalantan,religion,buddha,,50,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.02,3,Samalantan,religion,khonghucu,,6,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.02,3,Samalantan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+61.07.08,3,Monterado,religion,islam,,11090,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.08,3,Monterado,religion,kristen,,12969,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.08,3,Monterado,religion,katolik,,10847,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.08,3,Monterado,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+61.07.08,3,Monterado,religion,buddha,,119,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.08,3,Monterado,religion,khonghucu,,9,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.08,3,Monterado,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.16,3,Lembah Bawang,religion,islam,,2156,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.16,3,Lembah Bawang,religion,kristen,,2260,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.16,3,Lembah Bawang,religion,katolik,,2242,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.16,3,Lembah Bawang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+61.07.16,3,Lembah Bawang,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.16,3,Lembah Bawang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.16,3,Lembah Bawang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+61.07.04,3,Bengkayang,religion,islam,,10299,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.04,3,Bengkayang,religion,kristen,,8251,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.04,3,Bengkayang,religion,katolik,,13652,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.04,3,Bengkayang,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.04,3,Bengkayang,religion,buddha,,2800,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.04,3,Bengkayang,religion,khonghucu,,61,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.04,3,Bengkayang,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.09,3,Teriak,religion,islam,,858,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.09,3,Teriak,religion,kristen,,6130,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.09,3,Teriak,religion,katolik,,11272,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.09,3,Teriak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+61.07.09,3,Teriak,religion,buddha,,58,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.09,3,Teriak,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.09,3,Teriak,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.14,3,Sungai Betung,religion,islam,,1313,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.14,3,Sungai Betung,religion,kristen,,7140,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.14,3,Sungai Betung,religion,katolik,,4470,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.14,3,Sungai Betung,religion,hindu,,151,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.14,3,Sungai Betung,religion,buddha,,50,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.14,3,Sungai Betung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.14,3,Sungai Betung,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.03,3,Ledo,religion,islam,,5291,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.03,3,Ledo,religion,kristen,,3483,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.03,3,Ledo,religion,katolik,,7048,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.03,3,Ledo,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.03,3,Ledo,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.03,3,Ledo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.03,3,Ledo,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.10,3,Suti Semarang,religion,islam,,842,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.10,3,Suti Semarang,religion,kristen,,3092,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.10,3,Suti Semarang,religion,katolik,,2250,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.10,3,Suti Semarang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+61.07.10,3,Suti Semarang,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.10,3,Suti Semarang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.10,3,Suti Semarang,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.13,3,Lumar,religion,islam,,1273,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.13,3,Lumar,religion,kristen,,3336,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.13,3,Lumar,religion,katolik,,4079,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.13,3,Lumar,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.13,3,Lumar,religion,buddha,,22,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.13,3,Lumar,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.13,3,Lumar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+61.07.06,3,Sanggau Ledo,religion,islam,,9027,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.06,3,Sanggau Ledo,religion,kristen,,3169,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.06,3,Sanggau Ledo,religion,katolik,,3693,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.06,3,Sanggau Ledo,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.06,3,Sanggau Ledo,religion,buddha,,131,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.06,3,Sanggau Ledo,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.06,3,Sanggau Ledo,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.17,3,Tujuh Belas,religion,islam,,9006,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.17,3,Tujuh Belas,religion,kristen,,2728,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.17,3,Tujuh Belas,religion,katolik,,3724,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.17,3,Tujuh Belas,religion,hindu,,60,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.17,3,Tujuh Belas,religion,buddha,,17,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.17,3,Tujuh Belas,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.17,3,Tujuh Belas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+61.07.05,3,Seluas,religion,islam,,6029,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.05,3,Seluas,religion,kristen,,6452,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.05,3,Seluas,religion,katolik,,9346,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.05,3,Seluas,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.05,3,Seluas,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.05,3,Seluas,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07.05,3,Seluas,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07.07,3,Jagoi Babang,religion,islam,,3877,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.07,3,Jagoi Babang,religion,kristen,,3034,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.07,3,Jagoi Babang,religion,katolik,,3221,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.07,3,Jagoi Babang,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07.07,3,Jagoi Babang,religion,buddha,,28,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.07,3,Jagoi Babang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.07,3,Jagoi Babang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+61.07.12,3,Siding,religion,islam,,81,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07.12,3,Siding,religion,kristen,,5222,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07.12,3,Siding,religion,katolik,,3281,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07.12,3,Siding,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+61.07.12,3,Siding,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07.12,3,Siding,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Khonghucu
+61.07.12,3,Siding,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+61.07,2,Kabupaten Bengkayang,religion,islam,,105664,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+61.07,2,Kabupaten Bengkayang,religion,kristen,,81248,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+61.07,2,Kabupaten Bengkayang,religion,katolik,,93604,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+61.07,2,Kabupaten Bengkayang,religion,hindu,,262,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+61.07,2,Kabupaten Bengkayang,religion,buddha,,15327,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+61.07,2,Kabupaten Bengkayang,religion,khonghucu,,2479,jiwa,2025,registration,total_population,4.3.1,120,,Khonghucu
+61.07,2,Kabupaten Bengkayang,religion,lainnya,,66,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/padi_padian,,105282,rupiah,2024,survey_estimate,per_capita,10.1,248,,Padi-padian
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/padi_padian,,100335,rupiah,2025,survey_estimate,per_capita,10.1,248,,Padi-padian
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/umbi_umbian,,4381,rupiah,2024,survey_estimate,per_capita,10.1,248,,Umbi-umbian
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/umbi_umbian,,3811,rupiah,2025,survey_estimate,per_capita,10.1,248,,Umbi-umbian
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,76438,rupiah,2024,survey_estimate,per_capita,10.1,248,,Ikan/udang/cumi/kerang
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,74359,rupiah,2025,survey_estimate,per_capita,10.1,248,,Ikan/udang/cumi/kerang
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/daging,,52101,rupiah,2024,survey_estimate,per_capita,10.1,248,,Daging
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/daging,,46115,rupiah,2025,survey_estimate,per_capita,10.1,248,,Daging
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/telur_dan_susu,,33512,rupiah,2024,survey_estimate,per_capita,10.1,248,,Telur dan susu
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/telur_dan_susu,,40426,rupiah,2025,survey_estimate,per_capita,10.1,248,,Telur dan susu
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/sayur_sayuran,,54034,rupiah,2024,survey_estimate,per_capita,10.1,248,,Sayur-sayuran
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/sayur_sayuran,,56961,rupiah,2025,survey_estimate,per_capita,10.1,248,,Sayur-sayuran
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/kacang_kacangan,,10150,rupiah,2024,survey_estimate,per_capita,10.1,248,,Kacang-kacangan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/kacang_kacangan,,9927,rupiah,2025,survey_estimate,per_capita,10.1,248,,Kacang-kacangan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/buah_buahan,,27714,rupiah,2024,survey_estimate,per_capita,10.1,248,,Buah-buahan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/buah_buahan,,27528,rupiah,2025,survey_estimate,per_capita,10.1,248,,Buah-buahan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15865,rupiah,2024,survey_estimate,per_capita,10.1,248,,Minyak dan kelapa
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16244,rupiah,2025,survey_estimate,per_capita,10.1,248,,Minyak dan kelapa
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/bahan_minuman,,21107,rupiah,2024,survey_estimate,per_capita,10.1,248,,Bahan minuman
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/bahan_minuman,,24141,rupiah,2025,survey_estimate,per_capita,10.1,248,,Bahan minuman
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/bumbu_bumbuan,,18601,rupiah,2024,survey_estimate,per_capita,10.1,248,,Bumbu-bumbuan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/bumbu_bumbuan,,18202,rupiah,2025,survey_estimate,per_capita,10.1,248,,Bumbu-bumbuan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/konsumsi_lainnya,,13383,rupiah,2024,survey_estimate,per_capita,10.1,248,,Konsumsi lainnya
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/konsumsi_lainnya,,9859,rupiah,2025,survey_estimate,per_capita,10.1,248,,Konsumsi lainnya
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,160383,rupiah,2024,survey_estimate,per_capita,10.1,248,,Makanan dan minuman jadi
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,156038,rupiah,2025,survey_estimate,per_capita,10.1,248,,Makanan dan minuman jadi
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/rokok,,93545,rupiah,2024,survey_estimate,per_capita,10.1,248,,Rokok
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/rokok,,101906,rupiah,2025,survey_estimate,per_capita,10.1,248,,Rokok
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/jumlah_makanan,,686495,rupiah,2024,survey_estimate,per_capita,10.1,248,,Jumlah makanan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/jumlah_makanan,,685852,rupiah,2025,survey_estimate,per_capita,10.1,248,,Jumlah makanan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,312873,rupiah,2024,survey_estimate,per_capita,10.1,248,,Perumahan dan fasilitas rumah tangga
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,285714,rupiah,2025,survey_estimate,per_capita,10.1,248,,Perumahan dan fasilitas rumah tangga
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,109125,rupiah,2024,survey_estimate,per_capita,10.1,248,,Aneka barang dan jasa
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,112899,rupiah,2025,survey_estimate,per_capita,10.1,248,,Aneka barang dan jasa
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22411,rupiah,2024,survey_estimate,per_capita,10.1,248,,"Pakaian, alas kaki, dan tutup kepala"
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23304,rupiah,2025,survey_estimate,per_capita,10.1,248,,"Pakaian, alas kaki, dan tutup kepala"
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/barang_tahan_lama,,21875,rupiah,2024,survey_estimate,per_capita,10.1,248,,Barang tahan lama
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/barang_tahan_lama,,22570,rupiah,2025,survey_estimate,per_capita,10.1,248,,Barang tahan lama
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45676,rupiah,2024,survey_estimate,per_capita,10.1,248,,"Pajak, pungutan, dan asuransi"
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46092,rupiah,2025,survey_estimate,per_capita,10.1,248,,"Pajak, pungutan, dan asuransi"
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7171,rupiah,2024,survey_estimate,per_capita,10.1,248,,Keperluan pesta dan upacara/kenduri
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,3838,rupiah,2025,survey_estimate,per_capita,10.1,248,,Keperluan pesta dan upacara/kenduri
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,519131,rupiah,2024,survey_estimate,per_capita,10.1,248,,Jumlah bukan makanan
+61.07,2,Kabupaten Bengkayang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,494418,rupiah,2025,survey_estimate,per_capita,10.1,248,,Jumlah bukan makanan
+61.07,2,Kabupaten Bengkayang,expenditure,total,,1205626,rupiah,2024,survey_estimate,per_capita,10.1,248,,
+61.07,2,Kabupaten Bengkayang,expenditure,total,,1180270,rupiah,2025,survey_estimate,per_capita,10.1,248,,

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5315-kecamatan-531511-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.15.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pacar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5315",
+  "publisherWebsite": "https://manggaraibaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://manggaraibaratkab.bps.go.id), publikasi \"Kecamatan Pacar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5315051",
+  "publicationNumber": "53150.26008",
+  "issn": "2623-0984",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraibaratkab.bps.go.id/id/publication/2026/09/28/5536080e0475bf36f5b906d1/kecamatan-pacar-dalam-angka-2026.html",
+  "sourceFileSha256": "dd67e5397405909e63daf8097a9b9db5c2cf06e8e7d7c70736f844a247be3661",
+  "sourceFileBytes": 4332213,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Barat.",
+  "csvPath": "datasets/bps-5315-kecamatan-531511-dalam-angka-2026.csv",
+  "csvSha256": "33bd89f462311156e9e8952766a1c196695840b300ee58d64b966ffd5f84c9e3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pacar, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

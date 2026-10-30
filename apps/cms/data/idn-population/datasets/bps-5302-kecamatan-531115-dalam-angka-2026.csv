@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.15.2003,4,Karipi,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.11.15.2003,4,Karipi,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.11.15.2003,4,Karipi,total,total,,634,jiwa,2025,registration,total_population,3.1,26,,
+53.11.15.2004,4,Wangga Meti,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.11.15.2004,4,Wangga Meti,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.11.15.2004,4,Wangga Meti,total,total,,663,jiwa,2025,registration,total_population,3.1,26,,
+53.11.15.2005,4,Katiku Wai,sex,laki_laki,,852,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.11.15.2005,4,Katiku Wai,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.11.15.2005,4,Katiku Wai,total,total,,1650,jiwa,2025,registration,total_population,3.1,26,,
+53.11.15.2002,4,Katiku Tana,sex,laki_laki,,854,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.11.15.2002,4,Katiku Tana,sex,perempuan,,740,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.11.15.2002,4,Katiku Tana,total,total,,1594,jiwa,2025,registration,total_population,3.1,26,,
+53.11.15,3,Matawai La Pawu,sex,laki_laki,,3841,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.11.15,3,Matawai La Pawu,sex,perempuan,,3517,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.11.15,3,Matawai La Pawu,total,total,,7358,jiwa,2025,registration,total_population,3.1,26,,

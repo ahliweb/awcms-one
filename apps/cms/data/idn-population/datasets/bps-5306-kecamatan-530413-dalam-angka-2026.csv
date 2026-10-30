@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.04.13.2003,4,Dua Koran,sex,laki_laki,,776,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2003,4,Dua Koran,sex,perempuan,,761,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2003,4,Dua Koran,total,total,,1537,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2006,4,Faturika,sex,laki_laki,,715,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2006,4,Faturika,sex,perempuan,,753,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2006,4,Faturika,total,total,,1468,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2007,4,Leuntolu,sex,laki_laki,,1555,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2007,4,Leuntolu,sex,perempuan,,1524,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2007,4,Leuntolu,total,total,,3079,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2001,4,Mandeu Raimanus,sex,laki_laki,,987,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2001,4,Mandeu Raimanus,sex,perempuan,,1036,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2001,4,Mandeu Raimanus,total,total,,2023,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2005,4,Rafae,sex,laki_laki,,1041,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2005,4,Rafae,sex,perempuan,,1064,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2005,4,Rafae,total,total,,2105,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2002,4,Renrua,sex,laki_laki,,889,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2002,4,Renrua,sex,perempuan,,844,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2002,4,Renrua,total,total,,1733,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2009,4,Tasain,sex,laki_laki,,880,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2009,4,Tasain,sex,perempuan,,864,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2009,4,Tasain,total,total,,1744,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2008,4,Teun,sex,laki_laki,,1285,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2008,4,Teun,sex,perempuan,,1280,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2008,4,Teun,total,total,,2565,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2004,4,Mandeu,sex,laki_laki,,1586,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13.2004,4,Mandeu,sex,perempuan,,1620,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13.2004,4,Mandeu,total,total,,3206,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13,3,Rai Manuk,sex,laki_laki,,9714,jiwa,2026,registration,total_population,1.3,27,,Laki-Laki/Male
+53.04.13,3,Rai Manuk,sex,perempuan,,9746,jiwa,2026,registration,total_population,1.3,27,,Perempuan/Femal
+53.04.13,3,Rai Manuk,total,total,,19460,jiwa,2026,registration,total_population,1.3,27,,
+53.04.13.2003,4,Dua Koran,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2003,4,Dua Koran,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2003,4,Dua Koran,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2006,4,Faturika,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2006,4,Faturika,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2006,4,Faturika,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2007,4,Leuntolu,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2007,4,Leuntolu,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2007,4,Leuntolu,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2001,4,Mandeu Raimanus,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2001,4,Mandeu Raimanus,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2001,4,Mandeu Raimanus,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2005,4,Rafae,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2005,4,Rafae,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2005,4,Rafae,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2002,4,Renrua,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2002,4,Renrua,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2002,4,Renrua,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2009,4,Tasain,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2009,4,Tasain,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2009,4,Tasain,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2008,4,Teun,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2008,4,Teun,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2008,4,Teun,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13.2004,4,Mandeu,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13.2004,4,Mandeu,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13.2004,4,Mandeu,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,
+53.04.13,3,Rai Manuk,sex,laki_laki,,0,jiwa,2026,registration,total_population,1.4,27,,Laki-Laki
+53.04.13,3,Rai Manuk,sex,perempuan,,0,jiwa,2026,registration,total_population,1.4,27,,Perempuan
+53.04.13,3,Rai Manuk,total,total,,0,jiwa,2026,registration,total_population,1.4,27,,

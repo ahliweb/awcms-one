@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.09.2009,4,Nanga Bere,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2009,4,Nanga Bere,sex,perempuan,,740,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2009,4,Nanga Bere,total,total,,1528,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2010,4,Benteng Dewa,sex,laki_laki,,1002,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2010,4,Benteng Dewa,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2010,4,Benteng Dewa,total,total,,2025,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2008,4,Nanga Lili,sex,laki_laki,,1480,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2008,4,Nanga Lili,sex,perempuan,,1460,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2008,4,Nanga Lili,total,total,,2940,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2001,4,Repi,sex,laki_laki,,899,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2001,4,Repi,sex,perempuan,,882,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2001,4,Repi,total,total,,1781,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2002,4,Watu Waja,sex,laki_laki,,523,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2002,4,Watu Waja,sex,perempuan,,550,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2002,4,Watu Waja,total,total,,1073,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2003,4,Surunumbeng,sex,laki_laki,,916,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2003,4,Surunumbeng,sex,perempuan,,919,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2003,4,Surunumbeng,total,total,,1835,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2004,4,Munting,sex,laki_laki,,1024,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2004,4,Munting,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2004,4,Munting,total,total,,2047,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2006,4,Lalong,sex,laki_laki,,1138,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2006,4,Lalong,sex,perempuan,,1169,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2006,4,Lalong,total,total,,2307,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2005,4,Kakor,sex,laki_laki,,1233,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2005,4,Kakor,sex,perempuan,,1223,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2005,4,Kakor,total,total,,2456,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2007,4,Wae Mose,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2007,4,Wae Mose,sex,perempuan,,730,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2007,4,Wae Mose,total,total,,1489,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2013,4,Watu Tiri,sex,laki_laki,,1088,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2013,4,Watu Tiri,sex,perempuan,,1095,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2013,4,Watu Tiri,total,total,,2183,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2014,4,Benteng Tado,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2014,4,Benteng Tado,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2014,4,Benteng Tado,total,total,,1202,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2011,4,Watu Rambung,sex,laki_laki,,1331,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2011,4,Watu Rambung,sex,perempuan,,1335,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2011,4,Watu Rambung,total,total,,2666,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2012,4,Lendong,sex,laki_laki,,940,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2012,4,Lendong,sex,perempuan,,947,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2012,4,Lendong,total,total,,1887,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09.2015,4,Modo,sex,laki_laki,,294,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09.2015,4,Modo,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09.2015,4,Modo,total,total,,573,jiwa,2025,registration,total_population,3.1,23,,
+53.15.09,3,Kecamatan Lembor Selatan,sex,laki_laki,,14025,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.09,3,Kecamatan Lembor Selatan,sex,perempuan,,13967,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.09,3,Kecamatan Lembor Selatan,total,total,,27992,jiwa,2025,registration,total_population,3.1,23,,

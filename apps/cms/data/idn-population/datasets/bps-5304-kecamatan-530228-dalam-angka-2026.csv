@@ -1,0 +1,9 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.28.2001,4,Sillu,sex,laki_laki,,415,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.02.28.2003,4,Kaeneno,total,total,,1410,jiwa,2025,registration,total_population,3.1,,,
+53.02.28.2004,4,Oeleon,total,total,,1342,jiwa,2025,registration,total_population,3.1,,,
+53.02.28.2005,4,Tunis,total,total,,1671,jiwa,2025,registration,total_population,3.1,,,
+53.02.28.2006,4,Bileon,total,total,,1058,jiwa,2025,registration,total_population,3.1,,,
+53.02.28,3,Fautmolo,sex,laki_laki,,4105,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.02.28,3,Fautmolo,sex,perempuan,,4210,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.02.28,3,Fautmolo,total,total,,8315,jiwa,2025,registration,total_population,3.1,,,

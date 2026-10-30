@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5317-kecamatan-531807-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.18.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kodi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat Daya",
+  "publisherDomain": "5317",
+  "publisherWebsite": "https://sumbabaratdayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat Daya (https://sumbabaratdayakab.bps.go.id), publikasi \"Kecamatan Kodi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5317020",
+  "publicationNumber": "53170.26007",
+  "issn": "3032-0038",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratdayakab.bps.go.id/id/publication/2026/09/28/b8c021375ad9f038bdb586e7/kecamatan-kodi-dalam-angka-2026.html",
+  "sourceFileSha256": "3932116a81a9b570ed265e94ebdab2dc9bd075486984fc14b9deb96e18a05451",
+  "sourceFileBytes": 12022521,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat Daya.",
+  "csvPath": "datasets/bps-5317-kecamatan-531807-dalam-angka-2026.csv",
+  "csvSha256": "6d027e774deb0c7c475dfe0e6e574378605a4156ed69aeb8c1e2d1e17cefc239",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kodi, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kodi, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Mali Iha\": unmatched ",
+    "table 3.1: row not stored: row \"Mali Iha\": unmatched "
+  ]
+}

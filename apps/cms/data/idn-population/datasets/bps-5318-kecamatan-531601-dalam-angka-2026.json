@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-5318-kecamatan-531601-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.16.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Aesesa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nagekeo",
+  "publisherDomain": "5318",
+  "publisherWebsite": "https://nagekeokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nagekeo (https://nagekeokab.bps.go.id), publikasi \"Kecamatan Aesesa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5318060",
+  "publicationNumber": "53180.26010",
+  "issn": "2598-5353",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nagekeokab.bps.go.id/id/publication/2026/09/28/a650e9f969d2b7db14a46a55/kecamatan-aesesa-dalam-angka-2026.html",
+  "sourceFileSha256": "9fbbbd69cd8dedbe17aab24777e1aa76be94badaa2ebb650fe943b52f059a091",
+  "sourceFileBytes": 6418569,
+  "sourcePages": [26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nagekeo",
+  "csvPath": "datasets/bps-5318-kecamatan-531601-dalam-angka-2026.csv",
+  "csvSha256": "b620c18950278d5a67064a0ae2c90a02729bb7fdfb579b68f29a776c7b508acf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Aesesa, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tedakisa\": unmatched ",
+    "table 3.1: row not stored: row \"Aeramo\": unmatched "
+  ]
+}

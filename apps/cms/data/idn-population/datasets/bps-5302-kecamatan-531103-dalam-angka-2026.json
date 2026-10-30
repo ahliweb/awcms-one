@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5302-kecamatan-531103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.11.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lewa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Timur",
+  "publisherDomain": "5302",
+  "publisherWebsite": "https://sumbatimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Timur (https://sumbatimurkab.bps.go.id), publikasi \"Kecamatan Lewa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5302010",
+  "publicationNumber": "53020.26008",
+  "issn": "2598-330X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbatimurkab.bps.go.id/id/publication/2026/09/28/3db5dc243036c422e74de764/kecamatan-lewa-dalam-angka-2026.html",
+  "sourceFileSha256": "61ab81b5939420eebe3f40e46478ac3c7e996594b3125645a9b2de8e0c6aff0b",
+  "sourceFileBytes": 1684069,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Timur",
+  "csvPath": "datasets/bps-5302-kecamatan-531103-dalam-angka-2026.csv",
+  "csvSha256": "cb0b82250c20a78b1f424883518b69c65681eac2c012b6e80f8ec3726bbacdb1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lewa, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lewa, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

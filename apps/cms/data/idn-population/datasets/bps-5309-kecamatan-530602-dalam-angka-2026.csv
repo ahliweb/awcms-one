@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.02.2011,4,Adabang,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2011,4,Adabang,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2011,4,Adabang,total,total,,1047,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2001,4,Kobasoma,sex,laki_laki,,428,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2001,4,Kobasoma,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2001,4,Kobasoma,total,total,,916,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2009,4,Konga,sex,laki_laki,,488,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2009,4,Konga,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2009,4,Konga,total,total,,969,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2010,4,Ile Gerong,sex,laki_laki,,301,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2010,4,Ile Gerong,sex,perempuan,,280,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2010,4,Ile Gerong,total,total,,581,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2002,4,Lewolaga,sex,laki_laki,,708,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2002,4,Lewolaga,sex,perempuan,,745,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2002,4,Lewolaga,total,total,,1453,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2003,4,Lewoingu,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2003,4,Lewoingu,sex,perempuan,,451,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2003,4,Lewoingu,total,total,,889,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2004,4,Tuakepa,sex,laki_laki,,675,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2004,4,Tuakepa,sex,perempuan,,664,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2004,4,Tuakepa,total,total,,1339,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2006,4,Leraboleng,sex,laki_laki,,785,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2006,4,Leraboleng,sex,perempuan,,803,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2006,4,Leraboleng,total,total,,1588,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2008,4,Watowara,sex,laki_laki,,754,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2008,4,Watowara,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2008,4,Watowara,total,total,,1523,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2007,4,Serinuho,sex,laki_laki,,482,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2007,4,Serinuho,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2007,4,Serinuho,total,total,,956,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2012,4,Duntana Lewoingu,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2012,4,Duntana Lewoingu,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2012,4,Duntana Lewoingu,total,total,,513,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2014,4,Bokang Wolomatang,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2014,4,Bokang Wolomatang,sex,perempuan,,188,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2014,4,Bokang Wolomatang,total,total,,374,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02.2013,4,Duli Jaya,sex,laki_laki,,182,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02.2013,4,Duli Jaya,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02.2013,4,Duli Jaya,total,total,,386,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02,3,Kecamatan Titehena,sex,laki_laki,,6823,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.06.02,3,Kecamatan Titehena,sex,perempuan,,6905,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.06.02,3,Kecamatan Titehena,total,total,,13728,jiwa,2025,registration,total_population,3.1,23,,
+53.06.02,3,Titehena,age_group,0-4,laki_laki,371,jiwa,2025,registration,total_population,3.2,25,,00-04
+53.06.02,3,Titehena,age_group,0-4,perempuan,341,jiwa,2025,registration,total_population,3.2,25,,00-04
+53.06.02,3,Titehena,age_group,0-4,,712,jiwa,2025,registration,total_population,3.2,25,,00-04
+53.06.02,3,Titehena,age_group,5-9,laki_laki,577,jiwa,2025,registration,total_population,3.2,25,,05-09
+53.06.02,3,Titehena,age_group,5-9,perempuan,515,jiwa,2025,registration,total_population,3.2,25,,05-09
+53.06.02,3,Titehena,age_group,5-9,,1092,jiwa,2025,registration,total_population,3.2,25,,05-09
+53.06.02,3,Titehena,age_group,10-14,laki_laki,650,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.06.02,3,Titehena,age_group,10-14,perempuan,545,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.06.02,3,Titehena,age_group,10-14,,1195,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.06.02,3,Titehena,age_group,15-19,laki_laki,658,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.06.02,3,Titehena,age_group,15-19,perempuan,557,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.06.02,3,Titehena,age_group,15-19,,1215,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.06.02,3,Titehena,age_group,20-24,laki_laki,686,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.06.02,3,Titehena,age_group,20-24,perempuan,651,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.06.02,3,Titehena,age_group,20-24,,1337,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.06.02,3,Titehena,age_group,25-29,laki_laki,671,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.06.02,3,Titehena,age_group,25-29,perempuan,610,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.06.02,3,Titehena,age_group,25-29,,1281,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.06.02,3,Titehena,age_group,30-34,laki_laki,482,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.06.02,3,Titehena,age_group,30-34,perempuan,447,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.06.02,3,Titehena,age_group,30-34,,929,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.06.02,3,Titehena,age_group,35-39,laki_laki,392,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.06.02,3,Titehena,age_group,35-39,perempuan,463,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.06.02,3,Titehena,age_group,35-39,,855,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.06.02,3,Titehena,age_group,40-44,laki_laki,392,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.06.02,3,Titehena,age_group,40-44,perempuan,377,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.06.02,3,Titehena,age_group,40-44,,769,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.06.02,3,Titehena,age_group,45-49,laki_laki,390,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.06.02,3,Titehena,age_group,45-49,perempuan,479,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.06.02,3,Titehena,age_group,45-49,,869,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.06.02,3,Titehena,age_group,50-54,laki_laki,425,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.06.02,3,Titehena,age_group,50-54,perempuan,463,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.06.02,3,Titehena,age_group,50-54,,888,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.06.02,3,Titehena,age_group,55-59,laki_laki,305,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.06.02,3,Titehena,age_group,55-59,perempuan,374,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.06.02,3,Titehena,age_group,55-59,,679,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.06.02,3,Titehena,age_group,60-64,laki_laki,267,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.06.02,3,Titehena,age_group,60-64,perempuan,319,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.06.02,3,Titehena,age_group,60-64,,586,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.06.02,3,Titehena,age_group,65-69,laki_laki,243,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.06.02,3,Titehena,age_group,65-69,perempuan,266,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.06.02,3,Titehena,age_group,65-69,,509,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.06.02,3,Titehena,age_group,70-74,laki_laki,129,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.06.02,3,Titehena,age_group,70-74,perempuan,208,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.06.02,3,Titehena,age_group,70-74,,337,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.06.02,3,Titehena,age_group,75+,laki_laki,185,jiwa,2025,registration,total_population,3.2,25,,>75
+53.06.02,3,Titehena,age_group,75+,perempuan,290,jiwa,2025,registration,total_population,3.2,25,,>75
+53.06.02,3,Titehena,age_group,75+,,475,jiwa,2025,registration,total_population,3.2,25,,>75

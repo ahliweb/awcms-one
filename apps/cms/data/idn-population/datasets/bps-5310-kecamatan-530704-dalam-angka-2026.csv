@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.04.2001,4,Nita,sex,laki_laki,,1854,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2001,4,Nita,sex,perempuan,,1717,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2001,4,Nita,total,total,,3571,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2002,4,Takaplager,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2002,4,Takaplager,sex,perempuan,,603,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2002,4,Takaplager,total,total,,1521,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2003,4,Tebuk,sex,laki_laki,,957,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2003,4,Tebuk,sex,perempuan,,1064,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2003,4,Tebuk,total,total,,2021,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2004,4,Ladogahar,sex,laki_laki,,561,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2004,4,Ladogahar,sex,perempuan,,670,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2004,4,Ladogahar,total,total,,1231,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2005,4,Nitakloang,sex,laki_laki,,1116,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2005,4,Nitakloang,sex,perempuan,,1149,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2005,4,Nitakloang,total,total,,2265,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2006,4,Wuliwutik,sex,laki_laki,,834,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2006,4,Wuliwutik,sex,perempuan,,814,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2006,4,Wuliwutik,total,total,,1648,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2007,4,Lusitada,sex,laki_laki,,794,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2007,4,Lusitada,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2007,4,Lusitada,total,total,,1711,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2008,4,Bloro,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2008,4,Bloro,sex,perempuan,,859,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2008,4,Bloro,total,total,,1623,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2009,4,Riit,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2009,4,Riit,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2009,4,Riit,total,total,,1355,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2010,4,Tilang,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2010,4,Tilang,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2010,4,Tilang,total,total,,2039,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2011,4,Nirangkliung,sex,laki_laki,,667,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2011,4,Nirangkliung,sex,perempuan,,761,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2011,4,Nirangkliung,total,total,,1428,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2017,4,Mahebora,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2017,4,Mahebora,sex,perempuan,,374,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2017,4,Mahebora,total,total,,730,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2018,4,Nangablo,sex,laki_laki,,434,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2018,4,Nangablo,sex,perempuan,,467,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2018,4,Nangablo,total,total,,901,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2019,4,Kara Kabu,sex,laki_laki,,419,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2019,4,Kara Kabu,sex,perempuan,,424,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2019,4,Kara Kabu,total,total,,843,jiwa,2025,registration,total_population,3.1,27,,
+53.07.04.2020,4,Tada Lado,sex,laki_laki,,467,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.04.2020,4,Tada Lado,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.07.04.2020,4,Tada Lado,total,total,,922,jiwa,2025,registration,total_population,3.1,27,,

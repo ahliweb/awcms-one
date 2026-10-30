@@ -1,0 +1,192 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.01.07,3,Selakau,total,total,,39502,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.19,3,Selakau Timur,total,total,,12921,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.05,3,Pemangkat,total,total,,54259,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.13,3,Semparuk,total,total,,31676,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.18,3,Salatiga,total,total,,19068,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.04,3,Tebas,total,total,,84000,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.12,3,Tekarang,total,total,,18759,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.01,3,Sambas,total,total,,60235,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.10,3,Subah,total,total,,25746,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.15,3,Sebawi,total,total,,21483,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.14,3,Sajad,total,total,,14870,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.03,3,Jawai,total,total,,51152,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.16,3,Jawai Selatan,total,total,,23139,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.02,3,Teluk Keramat,total,total,,77706,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.11,3,Galing,total,total,,26054,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.17,3,Tangaran,total,total,,26842,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.06,3,Sejangkung,total,total,,28508,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.09,3,Sajingan Besar,total,total,,14361,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01.08,3,Paloh,total,total,,31171,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01,2,Kabupaten Sambas,total,total,,661452,jiwa,2025,projection,total_population,3.1.1,80,,
+61.01,2,Kabupaten Sambas,age_group,0-4,laki_laki,29062,jiwa,2025,projection,total_population,3.1.2,83,,0–4
+61.01,2,Kabupaten Sambas,age_group,0-4,perempuan,27866,jiwa,2025,projection,total_population,3.1.2,83,,0–4
+61.01,2,Kabupaten Sambas,age_group,0-4,,56928,jiwa,2025,projection,total_population,3.1.2,83,,0–4
+61.01,2,Kabupaten Sambas,age_group,5-9,laki_laki,28678,jiwa,2025,projection,total_population,3.1.2,83,,5–9
+61.01,2,Kabupaten Sambas,age_group,5-9,perempuan,27057,jiwa,2025,projection,total_population,3.1.2,83,,5–9
+61.01,2,Kabupaten Sambas,age_group,5-9,,55735,jiwa,2025,projection,total_population,3.1.2,83,,5–9
+61.01,2,Kabupaten Sambas,age_group,10-14,laki_laki,28576,jiwa,2025,projection,total_population,3.1.2,83,,10–14
+61.01,2,Kabupaten Sambas,age_group,10-14,perempuan,27460,jiwa,2025,projection,total_population,3.1.2,83,,10–14
+61.01,2,Kabupaten Sambas,age_group,10-14,,56036,jiwa,2025,projection,total_population,3.1.2,83,,10–14
+61.01,2,Kabupaten Sambas,age_group,15-19,laki_laki,29035,jiwa,2025,projection,total_population,3.1.2,83,,15–19
+61.01,2,Kabupaten Sambas,age_group,15-19,perempuan,27153,jiwa,2025,projection,total_population,3.1.2,83,,15–19
+61.01,2,Kabupaten Sambas,age_group,15-19,,56188,jiwa,2025,projection,total_population,3.1.2,83,,15–19
+61.01,2,Kabupaten Sambas,age_group,20-24,laki_laki,27074,jiwa,2025,projection,total_population,3.1.2,83,,20–24
+61.01,2,Kabupaten Sambas,age_group,20-24,perempuan,26015,jiwa,2025,projection,total_population,3.1.2,83,,20–24
+61.01,2,Kabupaten Sambas,age_group,20-24,,53089,jiwa,2025,projection,total_population,3.1.2,83,,20–24
+61.01,2,Kabupaten Sambas,age_group,25-29,laki_laki,25373,jiwa,2025,projection,total_population,3.1.2,83,,25–29
+61.01,2,Kabupaten Sambas,age_group,25-29,perempuan,24405,jiwa,2025,projection,total_population,3.1.2,83,,25–29
+61.01,2,Kabupaten Sambas,age_group,25-29,,49778,jiwa,2025,projection,total_population,3.1.2,83,,25–29
+61.01,2,Kabupaten Sambas,age_group,30-34,laki_laki,24513,jiwa,2025,projection,total_population,3.1.2,83,,30–34
+61.01,2,Kabupaten Sambas,age_group,30-34,perempuan,22867,jiwa,2025,projection,total_population,3.1.2,83,,30–34
+61.01,2,Kabupaten Sambas,age_group,30-34,,47380,jiwa,2025,projection,total_population,3.1.2,83,,30–34
+61.01,2,Kabupaten Sambas,age_group,35-39,laki_laki,25533,jiwa,2025,projection,total_population,3.1.2,83,,35–39
+61.01,2,Kabupaten Sambas,age_group,35-39,perempuan,22867,jiwa,2025,projection,total_population,3.1.2,83,,35–39
+61.01,2,Kabupaten Sambas,age_group,35-39,,48400,jiwa,2025,projection,total_population,3.1.2,83,,35–39
+61.01,2,Kabupaten Sambas,age_group,40-44,laki_laki,25904,jiwa,2025,projection,total_population,3.1.2,83,,40–44
+61.01,2,Kabupaten Sambas,age_group,40-44,perempuan,23515,jiwa,2025,projection,total_population,3.1.2,83,,40–44
+61.01,2,Kabupaten Sambas,age_group,40-44,,49419,jiwa,2025,projection,total_population,3.1.2,83,,40–44
+61.01,2,Kabupaten Sambas,age_group,45-49,laki_laki,23473,jiwa,2025,projection,total_population,3.1.2,83,,45–49
+61.01,2,Kabupaten Sambas,age_group,45-49,perempuan,22240,jiwa,2025,projection,total_population,3.1.2,83,,45–49
+61.01,2,Kabupaten Sambas,age_group,45-49,,45713,jiwa,2025,projection,total_population,3.1.2,83,,45–49
+61.01,2,Kabupaten Sambas,age_group,50-54,laki_laki,20761,jiwa,2025,projection,total_population,3.1.2,83,,50–54
+61.01,2,Kabupaten Sambas,age_group,50-54,perempuan,19731,jiwa,2025,projection,total_population,3.1.2,83,,50–54
+61.01,2,Kabupaten Sambas,age_group,50-54,,40492,jiwa,2025,projection,total_population,3.1.2,83,,50–54
+61.01,2,Kabupaten Sambas,age_group,55-59,laki_laki,16000,jiwa,2025,projection,total_population,3.1.2,83,,55–59
+61.01,2,Kabupaten Sambas,age_group,55-59,perempuan,15244,jiwa,2025,projection,total_population,3.1.2,83,,55–59
+61.01,2,Kabupaten Sambas,age_group,55-59,,31244,jiwa,2025,projection,total_population,3.1.2,83,,55–59
+61.01,2,Kabupaten Sambas,age_group,60-64,laki_laki,12159,jiwa,2025,projection,total_population,3.1.2,83,,60–64
+61.01,2,Kabupaten Sambas,age_group,60-64,perempuan,12673,jiwa,2025,projection,total_population,3.1.2,83,,60–64
+61.01,2,Kabupaten Sambas,age_group,60-64,,24832,jiwa,2025,projection,total_population,3.1.2,83,,60–64
+61.01,2,Kabupaten Sambas,age_group,65-69,laki_laki,9158,jiwa,2025,projection,total_population,3.1.2,83,,65–69
+61.01,2,Kabupaten Sambas,age_group,65-69,perempuan,10579,jiwa,2025,projection,total_population,3.1.2,83,,65–69
+61.01,2,Kabupaten Sambas,age_group,65-69,,19737,jiwa,2025,projection,total_population,3.1.2,83,,65–69
+61.01,2,Kabupaten Sambas,age_group,70-74,laki_laki,6562,jiwa,2025,projection,total_population,3.1.2,83,,70–74
+61.01,2,Kabupaten Sambas,age_group,70-74,perempuan,7636,jiwa,2025,projection,total_population,3.1.2,83,,70–74
+61.01,2,Kabupaten Sambas,age_group,70-74,,14198,jiwa,2025,projection,total_population,3.1.2,83,,70–74
+61.01,2,Kabupaten Sambas,age_group,75+,laki_laki,5057,jiwa,2025,projection,total_population,3.1.2,83,,75+
+61.01,2,Kabupaten Sambas,age_group,75+,perempuan,7226,jiwa,2025,projection,total_population,3.1.2,83,,75+
+61.01,2,Kabupaten Sambas,age_group,75+,,12283,jiwa,2025,projection,total_population,3.1.2,83,,75+
+61.01,2,Kabupaten Sambas,sex,laki_laki,,336918,jiwa,2025,projection,total_population,3.1.2,83,,Laki-Laki
+61.01,2,Kabupaten Sambas,sex,perempuan,,324534,jiwa,2025,projection,total_population,3.1.2,83,,Perempuan
+61.01,2,Kabupaten Sambas,total,total,,661452,jiwa,2025,projection,total_population,3.1.2,83,,
+61.01.07,3,Selakau,religion,islam,,34742,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.07,3,Selakau,religion,kristen,,209,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.07,3,Selakau,religion,katolik,,118,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.07,3,Selakau,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.07,3,Selakau,religion,buddha,,3748,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.07,3,Selakau,religion,lainnya,,274,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.19,3,Selakau Timur,religion,islam,,13672,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.19,3,Selakau Timur,religion,kristen,,98,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.19,3,Selakau Timur,religion,katolik,,26,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.19,3,Selakau Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.19,3,Selakau Timur,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.19,3,Selakau Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+61.01.05,3,Pemangkat,religion,islam,,40148,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.05,3,Pemangkat,religion,kristen,,719,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.05,3,Pemangkat,religion,katolik,,872,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.05,3,Pemangkat,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.05,3,Pemangkat,religion,buddha,,9207,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.05,3,Pemangkat,religion,lainnya,,1925,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.13,3,Semparuk,religion,islam,,28726,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.13,3,Semparuk,religion,kristen,,75,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.13,3,Semparuk,religion,katolik,,72,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.13,3,Semparuk,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.13,3,Semparuk,religion,buddha,,1605,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.13,3,Semparuk,religion,lainnya,,245,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.18,3,Salatiga,religion,islam,,17973,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.18,3,Salatiga,religion,kristen,,101,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.18,3,Salatiga,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.18,3,Salatiga,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.18,3,Salatiga,religion,buddha,,1646,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.18,3,Salatiga,religion,lainnya,,112,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.04,3,Tebas,religion,islam,,70312,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.04,3,Tebas,religion,kristen,,2510,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.04,3,Tebas,religion,katolik,,2584,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.04,3,Tebas,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.04,3,Tebas,religion,buddha,,7404,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.04,3,Tebas,religion,lainnya,,147,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.12,3,Tekarang,religion,islam,,18232,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.12,3,Tekarang,religion,kristen,,27,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.12,3,Tekarang,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.12,3,Tekarang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.12,3,Tekarang,religion,buddha,,363,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.12,3,Tekarang,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.01,3,Sambas,religion,islam,,54908,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.01,3,Sambas,religion,kristen,,878,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.01,3,Sambas,religion,katolik,,1478,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.01,3,Sambas,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.01,3,Sambas,religion,buddha,,4240,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.01,3,Sambas,religion,lainnya,,119,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.10,3,Subah,religion,islam,,16489,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.10,3,Subah,religion,kristen,,4186,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.10,3,Subah,religion,katolik,,4277,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.10,3,Subah,religion,hindu,,136,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.10,3,Subah,religion,buddha,,86,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.10,3,Subah,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.15,3,Sebawi,religion,islam,,19963,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.15,3,Sebawi,religion,kristen,,110,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.15,3,Sebawi,religion,katolik,,49,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.15,3,Sebawi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.15,3,Sebawi,religion,buddha,,1455,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.15,3,Sebawi,religion,lainnya,,69,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.14,3,Sajad,religion,islam,,14428,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.14,3,Sajad,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.14,3,Sajad,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.14,3,Sajad,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.14,3,Sajad,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.14,3,Sajad,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+61.01.03,3,Jawai,religion,islam,,47641,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.03,3,Jawai,religion,kristen,,171,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.03,3,Jawai,religion,katolik,,57,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.03,3,Jawai,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.03,3,Jawai,religion,buddha,,1274,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.03,3,Jawai,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.16,3,Jawai Selatan,religion,islam,,17811,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.16,3,Jawai Selatan,religion,kristen,,170,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.16,3,Jawai Selatan,religion,katolik,,56,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.16,3,Jawai Selatan,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.16,3,Jawai Selatan,religion,buddha,,3909,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.16,3,Jawai Selatan,religion,lainnya,,74,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.02,3,Teluk Keramat,religion,islam,,76021,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.02,3,Teluk Keramat,religion,kristen,,370,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.02,3,Teluk Keramat,religion,katolik,,289,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.02,3,Teluk Keramat,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01.02,3,Teluk Keramat,religion,buddha,,1056,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.02,3,Teluk Keramat,religion,lainnya,,32,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.11,3,Galing,religion,islam,,26276,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.11,3,Galing,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.11,3,Galing,religion,katolik,,71,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.11,3,Galing,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.11,3,Galing,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.11,3,Galing,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+61.01.17,3,Tangaran,religion,islam,,26788,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.17,3,Tangaran,religion,kristen,,5,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.17,3,Tangaran,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.17,3,Tangaran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.17,3,Tangaran,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.17,3,Tangaran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+61.01.06,3,Sejangkung,religion,islam,,28165,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.06,3,Sejangkung,religion,kristen,,66,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.06,3,Sejangkung,religion,katolik,,62,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.06,3,Sejangkung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.06,3,Sejangkung,religion,buddha,,131,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.06,3,Sejangkung,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01.09,3,Sajingan Besar,religion,islam,,1902,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.09,3,Sajingan Besar,religion,kristen,,2345,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.09,3,Sajingan Besar,religion,katolik,,8766,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.09,3,Sajingan Besar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.09,3,Sajingan Besar,religion,buddha,,43,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.09,3,Sajingan Besar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Lainnya
+61.01.08,3,Paloh,religion,islam,,30129,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01.08,3,Paloh,religion,kristen,,445,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01.08,3,Paloh,religion,katolik,,231,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01.08,3,Paloh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,165,nil,Hindu
+61.01.08,3,Paloh,religion,buddha,,1289,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01.08,3,Paloh,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya
+61.01,2,Kabupaten Sambas,religion,islam,,584326,jiwa,2025,registration,total_population,4.3.1,165,,Islam
+61.01,2,Kabupaten Sambas,religion,kristen,,12495,jiwa,2025,registration,total_population,4.3.1,165,,Protestan
+61.01,2,Kabupaten Sambas,religion,katolik,,19035,jiwa,2025,registration,total_population,4.3.1,165,,Katolik
+61.01,2,Kabupaten Sambas,religion,hindu,,174,jiwa,2025,registration,total_population,4.3.1,165,,Hindu
+61.01,2,Kabupaten Sambas,religion,buddha,,37477,jiwa,2025,registration,total_population,4.3.1,165,,Budha
+61.01,2,Kabupaten Sambas,religion,lainnya,,3030,jiwa,2025,registration,total_population,4.3.1,165,,Lainnya

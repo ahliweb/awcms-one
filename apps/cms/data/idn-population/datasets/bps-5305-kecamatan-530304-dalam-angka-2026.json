@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5305-kecamatan-530304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.03.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Noemuti Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Utara Regency",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Utara Regency (https://timortengahutarakab.bps.go.id), publikasi \"Kecamatan Noemuti Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305021",
+  "publicationNumber": "53050.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/09/28/74665bd30e3c22dcf7b95c0b/kecamatan-noemuti-dalam-angka-2026.html",
+  "sourceFileSha256": "28065c2846a9f0767e086978e161fe00f8345f35963b04191e9e9e074dee617f",
+  "sourceFileBytes": 11524921,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Timor Tengah Utara",
+  "csvPath": "datasets/bps-5305-kecamatan-530304-dalam-angka-2026.csv",
+  "csvSha256": "73df95cb58ecba6ddacd1c4600670a20c55545111e1aa0269e9f1db63cc959da",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Noemuti, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Noemuti, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Oeprigi\": unmatched ",
+    "table 3.1: row not stored: row \"Oeprigi\": unmatched "
+  ]
+}

@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.16.2001,4,Riang Baring,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16.2001,4,Riang Baring,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16.2001,4,Riang Baring,total,total,,788,jiwa,2025,registration,total_population,3.1,,,
+53.06.16.2002,4,Lewotobi,sex,laki_laki,,774,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16.2002,4,Lewotobi,sex,perempuan,,781,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16.2002,4,Lewotobi,total,total,,1555,jiwa,2025,registration,total_population,3.1,,,
+53.06.16.2003,4,Nurabelen,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16.2003,4,Nurabelen,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16.2003,4,Nurabelen,total,total,,877,jiwa,2025,registration,total_population,3.1,,,
+53.06.16.2004,4,Nobo,sex,laki_laki,,832,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16.2004,4,Nobo,sex,perempuan,,825,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16.2004,4,Nobo,total,total,,1657,jiwa,2025,registration,total_population,3.1,,,
+53.06.16.2005,4,Lewoawang,sex,laki_laki,,708,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16.2005,4,Lewoawang,sex,perempuan,,683,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16.2005,4,Lewoawang,total,total,,1391,jiwa,2025,registration,total_population,3.1,,,
+53.06.16.2007,4,Riang Rita,sex,laki_laki,,405,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16.2007,4,Riang Rita,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16.2007,4,Riang Rita,total,total,,833,jiwa,2025,registration,total_population,3.1,,,
+53.06.16.2006,4,Duli Pali,sex,laki_laki,,377,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16.2006,4,Duli Pali,sex,perempuan,,365,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16.2006,4,Duli Pali,total,total,,742,jiwa,2025,registration,total_population,3.1,,,
+53.06.16,3,Kecamatan Ile Bura,sex,laki_laki,,3950,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.06.16,3,Kecamatan Ile Bura,sex,perempuan,,3893,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.06.16,3,Kecamatan Ile Bura,total,total,,7843,jiwa,2025,registration,total_population,3.1,,,
+53.06.16,3,Ile Bura,age_group,0-4,laki_laki,200,jiwa,2025,registration,total_population,3.2,25,,00-04
+53.06.16,3,Ile Bura,age_group,0-4,perempuan,179,jiwa,2025,registration,total_population,3.2,25,,00-04
+53.06.16,3,Ile Bura,age_group,0-4,,379,jiwa,2025,registration,total_population,3.2,25,,00-04
+53.06.16,3,Ile Bura,age_group,5-9,laki_laki,336,jiwa,2025,registration,total_population,3.2,25,,05-09
+53.06.16,3,Ile Bura,age_group,5-9,perempuan,278,jiwa,2025,registration,total_population,3.2,25,,05-09
+53.06.16,3,Ile Bura,age_group,5-9,,614,jiwa,2025,registration,total_population,3.2,25,,05-09
+53.06.16,3,Ile Bura,age_group,10-14,laki_laki,396,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.06.16,3,Ile Bura,age_group,10-14,perempuan,367,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.06.16,3,Ile Bura,age_group,10-14,,763,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.06.16,3,Ile Bura,age_group,15-19,laki_laki,395,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.06.16,3,Ile Bura,age_group,15-19,perempuan,392,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.06.16,3,Ile Bura,age_group,15-19,,787,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.06.16,3,Ile Bura,age_group,20-24,laki_laki,350,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.06.16,3,Ile Bura,age_group,20-24,perempuan,331,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.06.16,3,Ile Bura,age_group,20-24,,681,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.06.16,3,Ile Bura,age_group,25-29,laki_laki,325,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.06.16,3,Ile Bura,age_group,25-29,perempuan,299,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.06.16,3,Ile Bura,age_group,25-29,,624,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.06.16,3,Ile Bura,age_group,30-34,laki_laki,277,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.06.16,3,Ile Bura,age_group,30-34,perempuan,278,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.06.16,3,Ile Bura,age_group,30-34,,555,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.06.16,3,Ile Bura,age_group,35-39,laki_laki,269,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.06.16,3,Ile Bura,age_group,35-39,perempuan,233,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.06.16,3,Ile Bura,age_group,35-39,,502,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.06.16,3,Ile Bura,age_group,40-44,laki_laki,256,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.06.16,3,Ile Bura,age_group,40-44,perempuan,233,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.06.16,3,Ile Bura,age_group,40-44,,489,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.06.16,3,Ile Bura,age_group,45-49,laki_laki,205,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.06.16,3,Ile Bura,age_group,45-49,perempuan,228,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.06.16,3,Ile Bura,age_group,45-49,,433,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.06.16,3,Ile Bura,age_group,50-54,laki_laki,225,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.06.16,3,Ile Bura,age_group,50-54,perempuan,240,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.06.16,3,Ile Bura,age_group,50-54,,465,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.06.16,3,Ile Bura,age_group,55-59,laki_laki,210,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.06.16,3,Ile Bura,age_group,55-59,perempuan,211,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.06.16,3,Ile Bura,age_group,55-59,,421,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.06.16,3,Ile Bura,age_group,60-64,laki_laki,172,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.06.16,3,Ile Bura,age_group,60-64,perempuan,191,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.06.16,3,Ile Bura,age_group,60-64,,363,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.06.16,3,Ile Bura,age_group,65-69,laki_laki,132,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.06.16,3,Ile Bura,age_group,65-69,perempuan,158,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.06.16,3,Ile Bura,age_group,65-69,,290,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.06.16,3,Ile Bura,age_group,70-74,laki_laki,93,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.06.16,3,Ile Bura,age_group,70-74,perempuan,114,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.06.16,3,Ile Bura,age_group,70-74,,207,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.06.16,3,Ile Bura,age_group,75+,laki_laki,109,jiwa,2025,registration,total_population,3.2,25,,>75
+53.06.16,3,Ile Bura,age_group,75+,perempuan,161,jiwa,2025,registration,total_population,3.2,25,,>75
+53.06.16,3,Ile Bura,age_group,75+,,270,jiwa,2025,registration,total_population,3.2,25,,>75
+53.06.16,3,Kecamatan Ile Bura,sex,laki_laki,,3950,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+53.06.16,3,Kecamatan Ile Bura,sex,perempuan,,3893,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+53.06.16,3,Kecamatan Ile Bura,total,total,,7843,jiwa,2025,registration,total_population,3.2,25,,

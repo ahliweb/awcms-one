@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.05.2015,4,Kolaka,sex,laki_laki,,649,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2015,4,Kolaka,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2015,4,Kolaka,total,total,,1296,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2006,4,Lewobunga,sex,laki_laki,,215,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2006,4,Lewobunga,sex,perempuan,,191,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2006,4,Lewobunga,total,total,,406,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2007,4,Sinamalaka,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2007,4,Sinamalaka,sex,perempuan,,600,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2007,4,Sinamalaka,total,total,,1209,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2008,4,Ratulodong,sex,laki_laki,,1043,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2008,4,Ratulodong,sex,perempuan,,1062,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2008,4,Ratulodong,total,total,,2105,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2009,4,Sinar Hadigala,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2009,4,Sinar Hadigala,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2009,4,Sinar Hadigala,total,total,,807,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2016,4,Bandona,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2016,4,Bandona,sex,perempuan,,357,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2016,4,Bandona,total,total,,749,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2010,4,Bahinga,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2010,4,Bahinga,sex,perempuan,,685,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2010,4,Bahinga,total,total,,1348,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2011,4,Waibao,sex,laki_laki,,1030,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2011,4,Waibao,sex,perempuan,,1029,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2011,4,Waibao,total,total,,2059,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2017,4,Nusanipa,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2017,4,Nusanipa,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2017,4,Nusanipa,total,total,,716,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2012,4,Lamatutu,sex,laki_laki,,502,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2012,4,Lamatutu,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2012,4,Lamatutu,total,total,,993,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2013,4,Laton Liwo,sex,laki_laki,,298,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2013,4,Laton Liwo,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2013,4,Laton Liwo,total,total,,597,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2018,4,Patisirawalang,sex,laki_laki,,712,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2018,4,Patisirawalang,sex,perempuan,,714,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2018,4,Patisirawalang,total,total,,1426,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2020,4,Gekeng Deran,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2020,4,Gekeng Deran,sex,perempuan,,216,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2020,4,Gekeng Deran,total,total,,409,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2021,4,Aransina,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2021,4,Aransina,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2021,4,Aransina,total,total,,856,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2023,4,Lamanabi,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2023,4,Lamanabi,sex,perempuan,,165,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2023,4,Lamanabi,total,total,,370,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05.2022,4,Laton Liwo II,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05.2022,4,Laton Liwo II,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05.2022,4,Laton Liwo II,total,total,,358,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05,3,Kecamatan Tanjung Bunga,sex,laki_laki,,7885,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.05,3,Kecamatan Tanjung Bunga,sex,perempuan,,7819,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.05,3,Kecamatan Tanjung Bunga,total,total,,15704,jiwa,2025,registration,total_population,3.1,18,,
+53.06.05,3,Tanjung Bunga,age_group,0-40,laki_laki,490,jiwa,2025,registration,total_population,3.2,20,,00-40
+53.06.05,3,Tanjung Bunga,age_group,0-40,perempuan,437,jiwa,2025,registration,total_population,3.2,20,,00-40
+53.06.05,3,Tanjung Bunga,age_group,0-40,,927,jiwa,2025,registration,total_population,3.2,20,,00-40
+53.06.05,3,Tanjung Bunga,age_group,5-9,laki_laki,738,jiwa,2025,registration,total_population,3.2,20,,05-09
+53.06.05,3,Tanjung Bunga,age_group,5-9,perempuan,736,jiwa,2025,registration,total_population,3.2,20,,05-09
+53.06.05,3,Tanjung Bunga,age_group,5-9,,1474,jiwa,2025,registration,total_population,3.2,20,,05-09
+53.06.05,3,Tanjung Bunga,age_group,10-14,laki_laki,847,jiwa,2025,registration,total_population,3.2,20,,10-14
+53.06.05,3,Tanjung Bunga,age_group,10-14,perempuan,730,jiwa,2025,registration,total_population,3.2,20,,10-14
+53.06.05,3,Tanjung Bunga,age_group,10-14,,1577,jiwa,2025,registration,total_population,3.2,20,,10-14
+53.06.05,3,Tanjung Bunga,age_group,15-19,laki_laki,832,jiwa,2025,registration,total_population,3.2,20,,15-19
+53.06.05,3,Tanjung Bunga,age_group,15-19,perempuan,794,jiwa,2025,registration,total_population,3.2,20,,15-19
+53.06.05,3,Tanjung Bunga,age_group,15-19,,1626,jiwa,2025,registration,total_population,3.2,20,,15-19
+53.06.05,3,Tanjung Bunga,age_group,20-24,laki_laki,780,jiwa,2025,registration,total_population,3.2,20,,20-24
+53.06.05,3,Tanjung Bunga,age_group,20-24,perempuan,729,jiwa,2025,registration,total_population,3.2,20,,20-24
+53.06.05,3,Tanjung Bunga,age_group,20-24,,1509,jiwa,2025,registration,total_population,3.2,20,,20-24
+53.06.05,3,Tanjung Bunga,age_group,25-29,laki_laki,762,jiwa,2025,registration,total_population,3.2,20,,25-29
+53.06.05,3,Tanjung Bunga,age_group,25-29,perempuan,656,jiwa,2025,registration,total_population,3.2,20,,25-29
+53.06.05,3,Tanjung Bunga,age_group,25-29,,1418,jiwa,2025,registration,total_population,3.2,20,,25-29
+53.06.05,3,Tanjung Bunga,age_group,30-34,laki_laki,563,jiwa,2025,registration,total_population,3.2,20,,30-34
+53.06.05,3,Tanjung Bunga,age_group,30-34,perempuan,565,jiwa,2025,registration,total_population,3.2,20,,30-34
+53.06.05,3,Tanjung Bunga,age_group,30-34,,1128,jiwa,2025,registration,total_population,3.2,20,,30-34
+53.06.05,3,Tanjung Bunga,age_group,35-39,laki_laki,541,jiwa,2025,registration,total_population,3.2,20,,35-39
+53.06.05,3,Tanjung Bunga,age_group,35-39,perempuan,548,jiwa,2025,registration,total_population,3.2,20,,35-39
+53.06.05,3,Tanjung Bunga,age_group,35-39,,1089,jiwa,2025,registration,total_population,3.2,20,,35-39
+53.06.05,3,Tanjung Bunga,age_group,40-44,laki_laki,475,jiwa,2025,registration,total_population,3.2,20,,40-44
+53.06.05,3,Tanjung Bunga,age_group,40-44,perempuan,494,jiwa,2025,registration,total_population,3.2,20,,40-44
+53.06.05,3,Tanjung Bunga,age_group,40-44,,969,jiwa,2025,registration,total_population,3.2,20,,40-44
+53.06.05,3,Tanjung Bunga,age_group,45-49,laki_laki,407,jiwa,2025,registration,total_population,3.2,20,,45-49
+53.06.05,3,Tanjung Bunga,age_group,45-49,perempuan,427,jiwa,2025,registration,total_population,3.2,20,,45-49
+53.06.05,3,Tanjung Bunga,age_group,45-49,,834,jiwa,2025,registration,total_population,3.2,20,,45-49
+53.06.05,3,Tanjung Bunga,age_group,50-54,laki_laki,342,jiwa,2025,registration,total_population,3.2,20,,50-54
+53.06.05,3,Tanjung Bunga,age_group,50-54,perempuan,414,jiwa,2025,registration,total_population,3.2,20,,50-54
+53.06.05,3,Tanjung Bunga,age_group,50-54,,756,jiwa,2025,registration,total_population,3.2,20,,50-54
+53.06.05,3,Tanjung Bunga,age_group,55-59,laki_laki,312,jiwa,2025,registration,total_population,3.2,20,,55-59
+53.06.05,3,Tanjung Bunga,age_group,55-59,perempuan,353,jiwa,2025,registration,total_population,3.2,20,,55-59
+53.06.05,3,Tanjung Bunga,age_group,55-59,,665,jiwa,2025,registration,total_population,3.2,20,,55-59
+53.06.05,3,Tanjung Bunga,age_group,60-64,laki_laki,262,jiwa,2025,registration,total_population,3.2,20,,60-64
+53.06.05,3,Tanjung Bunga,age_group,60-64,perempuan,297,jiwa,2025,registration,total_population,3.2,20,,60-64
+53.06.05,3,Tanjung Bunga,age_group,60-64,,559,jiwa,2025,registration,total_population,3.2,20,,60-64
+53.06.05,3,Tanjung Bunga,age_group,65-69,laki_laki,212,jiwa,2025,registration,total_population,3.2,20,,65-69
+53.06.05,3,Tanjung Bunga,age_group,65-69,perempuan,244,jiwa,2025,registration,total_population,3.2,20,,65-69
+53.06.05,3,Tanjung Bunga,age_group,65-69,,456,jiwa,2025,registration,total_population,3.2,20,,65-69
+53.06.05,3,Tanjung Bunga,age_group,70-74,laki_laki,146,jiwa,2025,registration,total_population,3.2,20,,70-74
+53.06.05,3,Tanjung Bunga,age_group,70-74,perempuan,163,jiwa,2025,registration,total_population,3.2,20,,70-74
+53.06.05,3,Tanjung Bunga,age_group,70-74,,309,jiwa,2025,registration,total_population,3.2,20,,70-74
+53.06.05,3,Tanjung Bunga,age_group,75+,laki_laki,176,jiwa,2025,registration,total_population,3.2,20,,>75
+53.06.05,3,Tanjung Bunga,age_group,75+,perempuan,232,jiwa,2025,registration,total_population,3.2,20,,>75
+53.06.05,3,Tanjung Bunga,age_group,75+,,408,jiwa,2025,registration,total_population,3.2,20,,>75
+53.06.05,3,Kecamatan Tanjung Bunga,sex,laki_laki,,7885,jiwa,2025,registration,total_population,3.2,20,,Laki-Laki
+53.06.05,3,Kecamatan Tanjung Bunga,sex,perempuan,,7819,jiwa,2025,registration,total_population,3.2,20,,Perempuan
+53.06.05,3,Kecamatan Tanjung Bunga,total,total,,15704,jiwa,2025,registration,total_population,3.2,20,,

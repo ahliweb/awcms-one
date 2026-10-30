@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.09.04,3,Nanga Mahap,total,total,,28981,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09.03,3,Nanga Taman,total,total,,29731,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09.02,3,Sekadau Hulu,total,total,,32084,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09.01,3,Sekadau Hilir,total,total,,74810,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09.05,3,Belitang Hilir,total,total,,25436,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09.07,3,Belitang,total,total,,15164,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09.06,3,Belitang Hulu,total,total,,22448,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09,2,Kabupaten Sekadau,total,total,,228654,jiwa,2025,registration,total_population,3.1.1,53,,
+61.09,2,Kabupaten Sekadau,age_group,0-4,laki_laki,7719,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+61.09,2,Kabupaten Sekadau,age_group,0-4,perempuan,7061,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+61.09,2,Kabupaten Sekadau,age_group,0-4,,14780,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+61.09,2,Kabupaten Sekadau,age_group,5-9,laki_laki,9931,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+61.09,2,Kabupaten Sekadau,age_group,5-9,perempuan,9237,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+61.09,2,Kabupaten Sekadau,age_group,5-9,,19168,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+61.09,2,Kabupaten Sekadau,age_group,10-14,laki_laki,10938,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+61.09,2,Kabupaten Sekadau,age_group,10-14,perempuan,10176,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+61.09,2,Kabupaten Sekadau,age_group,10-14,,21114,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+61.09,2,Kabupaten Sekadau,age_group,15-19,laki_laki,9935,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+61.09,2,Kabupaten Sekadau,age_group,15-19,perempuan,9469,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+61.09,2,Kabupaten Sekadau,age_group,15-19,,19404,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+61.09,2,Kabupaten Sekadau,age_group,20-24,laki_laki,9927,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+61.09,2,Kabupaten Sekadau,age_group,20-24,perempuan,9388,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+61.09,2,Kabupaten Sekadau,age_group,20-24,,19315,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+61.09,2,Kabupaten Sekadau,age_group,25-29,laki_laki,9489,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+61.09,2,Kabupaten Sekadau,age_group,25-29,perempuan,8659,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+61.09,2,Kabupaten Sekadau,age_group,25-29,,18148,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+61.09,2,Kabupaten Sekadau,age_group,30-34,laki_laki,9305,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+61.09,2,Kabupaten Sekadau,age_group,30-34,perempuan,8431,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+61.09,2,Kabupaten Sekadau,age_group,30-34,,17736,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+61.09,2,Kabupaten Sekadau,age_group,35-39,laki_laki,9764,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+61.09,2,Kabupaten Sekadau,age_group,35-39,perempuan,8866,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+61.09,2,Kabupaten Sekadau,age_group,35-39,,18630,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+61.09,2,Kabupaten Sekadau,age_group,40-44,laki_laki,9452,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+61.09,2,Kabupaten Sekadau,age_group,40-44,perempuan,8460,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+61.09,2,Kabupaten Sekadau,age_group,40-44,,17912,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+61.09,2,Kabupaten Sekadau,age_group,45-49,laki_laki,8357,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+61.09,2,Kabupaten Sekadau,age_group,45-49,perempuan,7481,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+61.09,2,Kabupaten Sekadau,age_group,45-49,,15838,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+61.09,2,Kabupaten Sekadau,age_group,50-54,laki_laki,6548,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+61.09,2,Kabupaten Sekadau,age_group,50-54,perempuan,6138,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+61.09,2,Kabupaten Sekadau,age_group,50-54,,12686,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+61.09,2,Kabupaten Sekadau,age_group,55-59,laki_laki,5560,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+61.09,2,Kabupaten Sekadau,age_group,55-59,perempuan,5165,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+61.09,2,Kabupaten Sekadau,age_group,55-59,,10725,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+61.09,2,Kabupaten Sekadau,age_group,60-64,laki_laki,4219,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+61.09,2,Kabupaten Sekadau,age_group,60-64,perempuan,4020,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+61.09,2,Kabupaten Sekadau,age_group,60-64,,8239,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+61.09,2,Kabupaten Sekadau,age_group,65-69,laki_laki,3179,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+61.09,2,Kabupaten Sekadau,age_group,65-69,perempuan,3309,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+61.09,2,Kabupaten Sekadau,age_group,65-69,,6488,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+61.09,2,Kabupaten Sekadau,age_group,70-74,laki_laki,2022,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+61.09,2,Kabupaten Sekadau,age_group,70-74,perempuan,1849,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+61.09,2,Kabupaten Sekadau,age_group,70-74,,3871,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+61.09,2,Kabupaten Sekadau,age_group,75+,laki_laki,2220,jiwa,2025,registration,total_population,3.1.2,56,,75+
+61.09,2,Kabupaten Sekadau,age_group,75+,perempuan,2380,jiwa,2025,registration,total_population,3.1.2,56,,75+
+61.09,2,Kabupaten Sekadau,age_group,75+,,4600,jiwa,2025,registration,total_population,3.1.2,56,,75+
+61.09,2,Kabupaten Sekadau,sex,laki_laki,,118565,jiwa,2025,registration,total_population,3.1.2,56,,Laki-Laki
+61.09,2,Kabupaten Sekadau,sex,perempuan,,110089,jiwa,2025,registration,total_population,3.1.2,56,,Perempuan
+61.09,2,Kabupaten Sekadau,total,total,,228654,jiwa,2025,registration,total_population,3.1.2,56,,
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/padi_padian,,105870,rupiah,2024,survey_estimate,per_capita,10.1,217,,Padi-padian
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/padi_padian,,116143,rupiah,2025,survey_estimate,per_capita,10.1,217,,Padi-padian
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/umbi_umbian,,7148,rupiah,2024,survey_estimate,per_capita,10.1,217,,Umbi-umbian
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/umbi_umbian,,8533,rupiah,2025,survey_estimate,per_capita,10.1,217,,Umbi-umbian
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,105305,rupiah,2024,survey_estimate,per_capita,10.1,217,,Ikan/udang/cumi/kerang
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,123221,rupiah,2025,survey_estimate,per_capita,10.1,217,,Ikan/udang/cumi/kerang
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/daging,,76474,rupiah,2024,survey_estimate,per_capita,10.1,217,,Daging
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/daging,,82807,rupiah,2025,survey_estimate,per_capita,10.1,217,,Daging
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/telur_dan_susu,,35823,rupiah,2024,survey_estimate,per_capita,10.1,217,,Telur dan susu
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/telur_dan_susu,,38008,rupiah,2025,survey_estimate,per_capita,10.1,217,,Telur dan susu
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/sayur_sayuran,,69568,rupiah,2024,survey_estimate,per_capita,10.1,217,,Sayur-sayuran
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/sayur_sayuran,,94119,rupiah,2025,survey_estimate,per_capita,10.1,217,,Sayur-sayuran
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/kacang_kacangan,,11286,rupiah,2024,survey_estimate,per_capita,10.1,217,,Kacang-kacangan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/kacang_kacangan,,12916,rupiah,2025,survey_estimate,per_capita,10.1,217,,Kacang-kacangan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/buah_buahan,,52521,rupiah,2024,survey_estimate,per_capita,10.1,217,,Buah-buahan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/buah_buahan,,75777,rupiah,2025,survey_estimate,per_capita,10.1,217,,Buah-buahan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17403,rupiah,2024,survey_estimate,per_capita,10.1,217,,Minyak dan kelapa
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20247,rupiah,2025,survey_estimate,per_capita,10.1,217,,Minyak dan kelapa
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/bahan_minuman,,31536,rupiah,2024,survey_estimate,per_capita,10.1,217,,Bahan minuman
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/bahan_minuman,,37781,rupiah,2025,survey_estimate,per_capita,10.1,217,,Bahan minuman
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/bumbu_bumbuan,,18894,rupiah,2024,survey_estimate,per_capita,10.1,217,,Bumbu-bumbuan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/bumbu_bumbuan,,27477,rupiah,2025,survey_estimate,per_capita,10.1,217,,Bumbu-bumbuan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/konsumsi_lainnya,,17380,rupiah,2024,survey_estimate,per_capita,10.1,217,,Konsumsi lainnya
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/konsumsi_lainnya,,18018,rupiah,2025,survey_estimate,per_capita,10.1,217,,Konsumsi lainnya
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,189309,rupiah,2024,survey_estimate,per_capita,10.1,217,,Makanan dan minuman jadi
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,254507,rupiah,2025,survey_estimate,per_capita,10.1,217,,Makanan dan minuman jadi
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/rokok,,98237,rupiah,2024,survey_estimate,per_capita,10.1,217,,Rokok
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/rokok,,114252,rupiah,2025,survey_estimate,per_capita,10.1,217,,Rokok
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/jumlah_makanan,,836753,rupiah,2024,survey_estimate,per_capita,10.1,217,,Jumlah makanan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/jumlah_makanan,,1023808,rupiah,2025,survey_estimate,per_capita,10.1,217,,Jumlah makanan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,324860,rupiah,2024,survey_estimate,per_capita,10.1,217,,Perumahan dan fasilitas rumah tangga
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,350200,rupiah,2025,survey_estimate,per_capita,10.1,217,,Perumahan dan fasilitas rumah tangga
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,103206,rupiah,2024,survey_estimate,per_capita,10.1,217,,Aneka barang dan jasa
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,143472,rupiah,2025,survey_estimate,per_capita,10.1,217,,Aneka barang dan jasa
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23497,rupiah,2024,survey_estimate,per_capita,10.1,217,,"Pakaian, alas kaki, dan tutup kepala"
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28127,rupiah,2025,survey_estimate,per_capita,10.1,217,,"Pakaian, alas kaki, dan tutup kepala"
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/barang_tahan_lama,,19749,rupiah,2024,survey_estimate,per_capita,10.1,217,,Barang tahan lama
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/barang_tahan_lama,,32990,rupiah,2025,survey_estimate,per_capita,10.1,217,,Barang tahan lama
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,33816,rupiah,2024,survey_estimate,per_capita,10.1,217,,"Pajak, pungutan, dan asuransi"
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42182,rupiah,2025,survey_estimate,per_capita,10.1,217,,"Pajak, pungutan, dan asuransi"
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8148,rupiah,2024,survey_estimate,per_capita,10.1,217,,Keperluan pesta dan upacara/kenduri
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10942,rupiah,2025,survey_estimate,per_capita,10.1,217,,Keperluan pesta dan upacara/kenduri
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,513276,rupiah,2024,survey_estimate,per_capita,10.1,217,,Jumlah bukan makanan
+61.09,2,Kabupaten Sekadau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,607913,rupiah,2025,survey_estimate,per_capita,10.1,217,,Jumlah bukan makanan
+61.09,2,Kabupaten Sekadau,expenditure,total,,1350029,rupiah,2024,survey_estimate,per_capita,10.1,217,,
+61.09,2,Kabupaten Sekadau,expenditure,total,,1631721,rupiah,2025,survey_estimate,per_capita,10.1,217,,

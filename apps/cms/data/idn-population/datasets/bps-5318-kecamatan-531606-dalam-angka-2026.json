@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5318-kecamatan-531606-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.16.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Keo Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nagekeo",
+  "publisherDomain": "5318",
+  "publisherWebsite": "https://nagekeokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nagekeo (https://nagekeokab.bps.go.id), publikasi \"Kecamatan Keo Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53180.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nagekeokab.bps.go.id/id/publication/2026/09/28/d6c3b3dfe4126d2bdad706e2/kecamatan-keo-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "d12204eb12a36506f09024a99472106059f24d81a339f355b0793aaae4255653",
+  "sourceFileBytes": 9082981,
+  "sourcePages": [27, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nagekeo.",
+  "csvPath": "datasets/bps-5318-kecamatan-531606-dalam-angka-2026.csv",
+  "csvSha256": "5f2ea5835d57ea3726e40d9d61575ae8d1bae93ff0169a32f8475bbe4e747a6e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Keo Tengah, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Keo Tengah, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kotawuji Timur\": unmatched ",
+    "table 3.1: row not stored: row \"Kotawuji Barat\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Keo Tengah Keo Tengah District\": unmatched "
+  ]
+}

@@ -32,6 +32,7 @@ import {
   attributionSentence,
   cacheDir,
   coverageOfDomain,
+  districtCoverMismatch,
   findRecord,
   frontMatterText,
   loadDistrictRecords,
@@ -339,7 +340,8 @@ async function extractPdfInner(opt: ExtractOptions): Promise<ExtractOutcome> {
   report.conflicts = dd.report.conflicts;
 
   // front matter and publication metadata
-  const front = parseFrontMatter(await frontMatterText(opt.pdf));
+  const frontText = await frontMatterText(opt.pdf);
+  const front = parseFrontMatter(frontText);
   const rec = opt.record ?? null;
   const header = runningHeader(pages);
   const year = rec?.foundYear ?? header?.year ?? front.year ?? rec?.targetYear ?? 0;
@@ -352,6 +354,11 @@ async function extractPdfInner(opt: ExtractOptions): Promise<ExtractOutcome> {
   for (const r of all) rowCounts[r.dimension] = (rowCounts[r.dimension] ?? 0) + 1;
 
   const blocking: string[] = [...problems];
+  if (isDistrict) {
+    const expectedName = index.byCode.get(coverage)!.name;
+    const mismatch = districtCoverMismatch(frontText, expectedName);
+    if (mismatch) blocking.push(mismatch);
+  }
   for (const f of report.failures) blocking.push(`check ${f.check} [${f.sourceTable}] region ${f.region}: ${f.detail}`);
   // Two tables of one yearbook that print different figures for the same thing are both stored under
   // their own source_table (the importer only warns); in strict mode they still block.

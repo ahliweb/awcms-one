@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.12.1001,4,Kel. Watuneso,sex,laki_laki,,803,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.1001,4,Kel. Watuneso,sex,perempuan,,865,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.1001,4,Kel. Watuneso,total,total,,1668,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2003,4,Wolosambi,sex,laki_laki,,246,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2003,4,Wolosambi,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2003,4,Wolosambi,total,total,,527,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2007,4,Liabeke,sex,laki_laki,,419,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2007,4,Liabeke,sex,perempuan,,456,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2007,4,Liabeke,total,total,,875,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2005,4,Detupera,sex,laki_laki,,176,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2005,4,Detupera,sex,perempuan,,210,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2005,4,Detupera,total,total,,386,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2013,4,Fatamari,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2013,4,Fatamari,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2013,4,Fatamari,total,total,,752,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2016,4,Tanaroga,sex,laki_laki,,180,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2016,4,Tanaroga,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2016,4,Tanaroga,total,total,,369,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2018,4,Mbewawora,sex,laki_laki,,145,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2018,4,Mbewawora,sex,perempuan,,157,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2018,4,Mbewawora,total,total,,302,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2014,4,Ranggatalo,sex,laki_laki,,139,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2014,4,Ranggatalo,sex,perempuan,,148,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2014,4,Ranggatalo,total,total,,287,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2015,4,Nualima,sex,laki_laki,,129,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2015,4,Nualima,sex,perempuan,,137,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2015,4,Nualima,total,total,,266,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12.2017,4,Bu Tanalagu,sex,laki_laki,,200,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12.2017,4,Bu Tanalagu,sex,perempuan,,211,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12.2017,4,Bu Tanalagu,total,total,,411,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12,3,Kecamatan Lio Timur,sex,laki_laki,,3892,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.12,3,Kecamatan Lio Timur,sex,perempuan,,4194,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.12,3,Kecamatan Lio Timur,total,total,,8086,jiwa,2025,registration,total_population,3.1,24,,
+53.08.12,3,Lio Timur,age_group,0-4,laki_laki,124,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.12,3,Lio Timur,age_group,0-4,perempuan,109,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.12,3,Lio Timur,age_group,0-4,,233,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.12,3,Lio Timur,age_group,5-9,laki_laki,375,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.12,3,Lio Timur,age_group,5-9,perempuan,327,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.12,3,Lio Timur,age_group,5-9,,702,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.12,3,Lio Timur,age_group,10-14,laki_laki,438,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.12,3,Lio Timur,age_group,10-14,perempuan,389,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.12,3,Lio Timur,age_group,10-14,,827,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.12,3,Lio Timur,age_group,15-19,laki_laki,449,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.12,3,Lio Timur,age_group,15-19,perempuan,476,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.12,3,Lio Timur,age_group,15-19,,925,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.12,3,Lio Timur,age_group,20-24,laki_laki,381,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.12,3,Lio Timur,age_group,20-24,perempuan,409,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.12,3,Lio Timur,age_group,20-24,,790,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.12,3,Lio Timur,age_group,25-29,laki_laki,368,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.12,3,Lio Timur,age_group,25-29,perempuan,342,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.12,3,Lio Timur,age_group,25-29,,710,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.12,3,Lio Timur,age_group,30-34,laki_laki,256,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.12,3,Lio Timur,age_group,30-34,perempuan,229,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.12,3,Lio Timur,age_group,30-34,,485,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.12,3,Lio Timur,age_group,35-39,laki_laki,234,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.12,3,Lio Timur,age_group,35-39,perempuan,238,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.12,3,Lio Timur,age_group,35-39,,472,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.12,3,Lio Timur,age_group,40-44,laki_laki,231,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.12,3,Lio Timur,age_group,40-44,perempuan,258,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.12,3,Lio Timur,age_group,40-44,,489,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.12,3,Lio Timur,age_group,45-49,laki_laki,179,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.12,3,Lio Timur,age_group,45-49,perempuan,220,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.12,3,Lio Timur,age_group,45-49,,399,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.12,3,Lio Timur,age_group,50-54,laki_laki,183,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.12,3,Lio Timur,age_group,50-54,perempuan,268,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.12,3,Lio Timur,age_group,50-54,,451,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.12,3,Lio Timur,age_group,55-59,laki_laki,194,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.12,3,Lio Timur,age_group,55-59,perempuan,233,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.12,3,Lio Timur,age_group,55-59,,427,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.12,3,Lio Timur,age_group,60-64,laki_laki,149,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.12,3,Lio Timur,age_group,60-64,perempuan,227,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.12,3,Lio Timur,age_group,60-64,,376,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.12,3,Lio Timur,age_group,65-69,laki_laki,132,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.12,3,Lio Timur,age_group,65-69,perempuan,170,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.12,3,Lio Timur,age_group,65-69,,302,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.12,3,Lio Timur,age_group,70-74,laki_laki,83,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.12,3,Lio Timur,age_group,70-74,perempuan,124,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.12,3,Lio Timur,age_group,70-74,,207,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.12,3,Lio Timur,age_group,75+,laki_laki,116,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.12,3,Lio Timur,age_group,75+,perempuan,175,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.12,3,Lio Timur,age_group,75+,,291,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.12,3,Kecamatan Lio Timur,sex,laki_laki,,3892,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.08.12,3,Kecamatan Lio Timur,sex,perempuan,,4194,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.08.12,3,Kecamatan Lio Timur,total,total,,8086,jiwa,2025,registration,total_population,3.2,26,,

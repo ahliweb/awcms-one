@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.15.2001,4,Ile Padung,sex,laki_laki,,735,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.15.2001,4,Ile Padung,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.15.2001,4,Ile Padung,total,total,,1482,jiwa,2025,registration,total_population,3.1,22,,
+53.06.15.2002,4,Bantala,sex,laki_laki,,974,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.15.2002,4,Bantala,sex,perempuan,,974,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.15.2002,4,Bantala,total,total,,1948,jiwa,2025,registration,total_population,3.1,22,,
+53.06.15.2006,4,Riangkotek,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.15.2006,4,Riangkotek,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.15.2006,4,Riangkotek,total,total,,1067,jiwa,2025,registration,total_population,3.1,22,,
+53.06.15.2003,4,Sinar Hading,sex,laki_laki,,816,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.15.2003,4,Sinar Hading,sex,perempuan,,803,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.15.2003,4,Sinar Hading,total,total,,1619,jiwa,2025,registration,total_population,3.1,22,,
+53.06.15.2004,4,Painapang,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.15.2004,4,Painapang,sex,perempuan,,777,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.15.2004,4,Painapang,total,total,,1506,jiwa,2025,registration,total_population,3.1,22,,
+53.06.15.2005,4,Baluk Hering,sex,laki_laki,,974,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.15.2005,4,Baluk Hering,sex,perempuan,,939,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.15.2005,4,Baluk Hering,total,total,,1913,jiwa,2025,registration,total_population,3.1,22,,
+53.06.15,3,Kecamatan Lewolema,sex,laki_laki,,4995,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.15,3,Kecamatan Lewolema,sex,perempuan,,5009,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.15,3,Kecamatan Lewolema,total,total,,10004,jiwa,2025,registration,total_population,3.1,22,,
+53.06.15,3,Lewolema,age_group,0-4,laki_laki,287,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.15,3,Lewolema,age_group,0-4,perempuan,286,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.15,3,Lewolema,age_group,0-4,,573,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.15,3,Lewolema,age_group,5-9,laki_laki,407,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.15,3,Lewolema,age_group,5-9,perempuan,401,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.15,3,Lewolema,age_group,5-9,,808,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.15,3,Lewolema,age_group,10-14,laki_laki,460,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.15,3,Lewolema,age_group,10-14,perempuan,397,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.15,3,Lewolema,age_group,10-14,,857,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.15,3,Lewolema,age_group,15-19,laki_laki,441,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.15,3,Lewolema,age_group,15-19,perempuan,434,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.15,3,Lewolema,age_group,15-19,,875,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.15,3,Lewolema,age_group,20-24,laki_laki,486,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.15,3,Lewolema,age_group,20-24,perempuan,470,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.15,3,Lewolema,age_group,20-24,,956,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.15,3,Lewolema,age_group,25-29,laki_laki,519,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.15,3,Lewolema,age_group,25-29,perempuan,421,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.15,3,Lewolema,age_group,25-29,,940,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.15,3,Lewolema,age_group,30-34,laki_laki,392,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.15,3,Lewolema,age_group,30-34,perempuan,370,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.15,3,Lewolema,age_group,30-34,,762,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.15,3,Lewolema,age_group,35-39,laki_laki,329,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.15,3,Lewolema,age_group,35-39,perempuan,351,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.15,3,Lewolema,age_group,35-39,,680,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.15,3,Lewolema,age_group,40-44,laki_laki,308,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.15,3,Lewolema,age_group,40-44,perempuan,298,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.15,3,Lewolema,age_group,40-44,,606,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.15,3,Lewolema,age_group,45-49,laki_laki,244,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.15,3,Lewolema,age_group,45-49,perempuan,283,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.15,3,Lewolema,age_group,45-49,,527,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.15,3,Lewolema,age_group,50-54,laki_laki,254,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.15,3,Lewolema,age_group,50-54,perempuan,295,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.15,3,Lewolema,age_group,50-54,,549,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.15,3,Lewolema,age_group,55-59,laki_laki,241,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.15,3,Lewolema,age_group,55-59,perempuan,268,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.15,3,Lewolema,age_group,55-59,,509,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.15,3,Lewolema,age_group,60-64,laki_laki,199,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.15,3,Lewolema,age_group,60-64,perempuan,244,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.15,3,Lewolema,age_group,60-64,,443,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.15,3,Lewolema,age_group,65-69,laki_laki,177,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.15,3,Lewolema,age_group,65-69,perempuan,184,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.15,3,Lewolema,age_group,65-69,,361,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.15,3,Lewolema,age_group,70-74,laki_laki,104,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.15,3,Lewolema,age_group,70-74,perempuan,118,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.15,3,Lewolema,age_group,70-74,,222,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.15,3,Lewolema,age_group,75+,laki_laki,147,jiwa,2025,registration,total_population,3.2,24,,75+
+53.06.15,3,Lewolema,age_group,75+,perempuan,189,jiwa,2025,registration,total_population,3.2,24,,75+
+53.06.15,3,Lewolema,age_group,75+,,336,jiwa,2025,registration,total_population,3.2,24,,75+
+53.06.15,3,Kecamatan Lewolema,sex,laki_laki,,4995,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+53.06.15,3,Kecamatan Lewolema,sex,perempuan,,5009,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+53.06.15,3,Kecamatan Lewolema,total,total,,10004,jiwa,2025,registration,total_population,3.2,24,,

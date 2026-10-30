@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.20.2001,4,Waihawa,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2001,4,Waihawa,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2001,4,Waihawa,total,total,,1225,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2002,4,Nenbura,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2002,4,Nenbura,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2002,4,Nenbura,total,total,,1508,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2003,4,Wogalirit,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2003,4,Wogalirit,sex,perempuan,,731,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2003,4,Wogalirit,total,total,,1387,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2004,4,Watumerak,sex,laki_laki,,477,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2004,4,Watumerak,sex,perempuan,,529,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2004,4,Watumerak,total,total,,1006,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2005,4,Wolon Terang,sex,laki_laki,,581,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2005,4,Wolon Terang,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2005,4,Wolon Terang,total,total,,1221,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2006,4,Kloangpopot,sex,laki_laki,,833,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2006,4,Kloangpopot,sex,perempuan,,907,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2006,4,Kloangpopot,total,total,,1740,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2007,4,Wolomotong,sex,laki_laki,,1322,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2007,4,Wolomotong,sex,perempuan,,1365,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2007,4,Wolomotong,total,total,,2687,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2008,4,Mahe Tanah,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2008,4,Mahe Tanah,sex,perempuan,,643,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2008,4,Mahe Tanah,total,total,,1258,jiwa,2025,registration,total_population,3.1,26,,
+53.07.20.2009,4,Pelibaler,sex,laki_laki,,488,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.20.2009,4,Pelibaler,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.20.2009,4,Pelibaler,total,total,,980,jiwa,2025,registration,total_population,3.1,26,,

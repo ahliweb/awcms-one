@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530211-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kuan Fatu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Kuan Fatu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304000",
+  "publicationNumber": "53040.26038",
+  "issn": "0101-0101",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/bb052fc0421ac5fc450c9aa6/kecamatan-kuan-fatu-dalam-angka-2026.html",
+  "sourceFileSha256": "e9511eb757c2270a89eb61327adf70aa49de448c245238d6454c5089626a8d58",
+  "sourceFileBytes": 1419028,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530211-dalam-angka-2026.csv",
+  "csvSha256": "8f12ffcb84c40920a0093007dcb11218a6b65a1cede1ec378dc479b1546257bd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kuanfatu, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kuanfatu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (sex/laki_laki/- 2025: parts sum 9357.0000 != 10345.0000 (diff 988.0000)); the source itself is inconsistent"
+  ]
+}

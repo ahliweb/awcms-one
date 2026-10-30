@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.17.2002,4,Marisa,sex,laki_laki,,789,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.17.2002,4,Marisa,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.17.2002,4,Marisa,total,total,,1553,jiwa,2025,registration,total_population,3.1,,,
+53.05.17.2004,4,Allumang,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.17.2004,4,Allumang,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.17.2004,4,Allumang,total,total,,756,jiwa,2025,registration,total_population,3.1,,,
+53.05.17.2003,4,Lamma,sex,laki_laki,,264,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.17.2003,4,Lamma,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.17.2003,4,Lamma,total,total,,518,jiwa,2025,registration,total_population,3.1,,,
+53.05.17.2005,4,Beang Onong,sex,laki_laki,,474,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.17.2005,4,Beang Onong,sex,perempuan,,483,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.17.2005,4,Beang Onong,total,total,,957,jiwa,2025,registration,total_population,3.1,,,
+53.05.17.2006,4,Kalondama Barat,sex,laki_laki,,326,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.17.2006,4,Kalondama Barat,sex,perempuan,,284,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.17.2006,4,Kalondama Barat,total,total,,610,jiwa,2025,registration,total_population,3.1,,,
+53.05.17.2007,4,Kalondama Tengah,sex,laki_laki,,273,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.17.2007,4,Kalondama Tengah,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.17.2007,4,Kalondama Tengah,total,total,,545,jiwa,2025,registration,total_population,3.1,,,
+53.05.17,3,Pantar Barat Laut,sex,laki_laki,,3027,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.17,3,Pantar Barat Laut,sex,perempuan,,2979,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.17,3,Pantar Barat Laut,total,total,,6006,jiwa,2025,registration,total_population,3.1,,,

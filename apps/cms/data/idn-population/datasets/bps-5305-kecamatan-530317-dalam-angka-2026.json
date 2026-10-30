@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5305-kecamatan-530317-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.03.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bikomi Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Utara Regency",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Utara Regency (https://timortengahutarakab.bps.go.id), publikasi \"Kecamatan Bikomi Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305025",
+  "publicationNumber": "53050.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/09/28/0d1eac4939a3fdfb94a22f43/kecamatan-bikomi-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "2e6cf432f7460fc68dec7f280441f0552656931e031c9945b905f52ea6f9e8ae",
+  "sourceFileBytes": 18907627,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Timor Tengah Utara",
+  "csvPath": "datasets/bps-5305-kecamatan-530317-dalam-angka-2026.csv",
+  "csvSha256": "bb43c6f9dcdc889036f8179d637f689a7c74157955c64709f761a0631256df04",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bikomi Utara, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bikomi Utara, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Faennake\": unmatched ",
+    "table 3.1: row not stored: row \"Faennake\": unmatched "
+  ]
+}

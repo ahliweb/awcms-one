@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-5306-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "53.04",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Belu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belu",
+  "publisherDomain": "5306",
+  "publisherWebsite": "https://belukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belu (https://belukab.bps.go.id), publikasi \"Kabupaten Belu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5306",
+  "publicationNumber": "53060.26004",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://belukab.bps.go.id/id/publication/2026/02/27/4cc6a5fc281cdbbe386de630/kabupaten-belu-dalam-angka-2026.html",
+  "sourceFileSha256": "af26c1a06a2cfe5af8d5ecfb0706b14ad2f7c70dde38c3b6ea6a103875ec79db",
+  "sourceFileBytes": 16235488,
+  "sourcePages": [48, 51, 222],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik XXX.",
+  "csvPath": "datasets/bps-5306-dalam-angka-2026.csv",
+  "csvSha256": "54635751baaf95550f214313d61ec6e6c89cb43d24f101b7a9549a72f8116924",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Belu, 2026",
+      "printedPages": [48],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Belu (ribu jiwa), 2026",
+      "printedPages": [51],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Belu (rupiah), 2024 dan 2025",
+      "printedPages": [222],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.1.2: the rows of region 53.04 are not stored: age_group (perempuan) vs sex value: parts sum 120.2000 != 12.2000 (diff 108.0000); the source itself is inconsistent",
+    "table 3.1.1 is not included: its published figures do not add up (total/total/- 2026: parts sum 240.3000 != 240.4000 (diff 0.1000)); the source itself is inconsistent"
+  ]
+}

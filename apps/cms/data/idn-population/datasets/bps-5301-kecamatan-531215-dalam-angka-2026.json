@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5301-kecamatan-531215-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.12.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Waikabubak Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat",
+  "publisherDomain": "5301",
+  "publisherWebsite": "https://sumbabaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat (https://sumbabaratkab.bps.go.id), publikasi \"Kecamatan Kota Waikabubak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5301060",
+  "publicationNumber": "53010.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratkab.bps.go.id/id/publication/2026/09/28/418d3c4132d3d48433db5f07/kecamatan-kota-waikabubak-dalam-angka-2026.html",
+  "sourceFileSha256": "c1fd5bc2e4648c67d2c4b46c5fa3deb4cb5ed4d454008f859331f918a71ee51e",
+  "sourceFileBytes": 12606125,
+  "sourcePages": [20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat.",
+  "csvPath": "datasets/bps-5301-kecamatan-531215-dalam-angka-2026.csv",
+  "csvSha256": "70291ecb507ed7c60468404e8bd5f47f3f47d43cfeee7611fad1dd3632f3e892",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kota Waikabubak, 2025",
+      "printedPages": [20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

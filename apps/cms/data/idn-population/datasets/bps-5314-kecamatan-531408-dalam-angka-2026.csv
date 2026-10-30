@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.14.08.2005,4,Inaoe,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08.2005,4,Inaoe,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08.2005,4,Inaoe,total,total,,779,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.08.2003,4,Dodaek,sex,laki_laki,,289,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08.2003,4,Dodaek,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08.2003,4,Dodaek,total,total,,566,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.08.2004,4,Tebole,sex,laki_laki,,606,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08.2004,4,Tebole,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08.2004,4,Tebole,total,total,,1228,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.08.2002,4,Daleholu,sex,laki_laki,,721,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08.2002,4,Daleholu,sex,perempuan,,689,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08.2002,4,Daleholu,total,total,,1410,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.08.2001,4,Lenguselu,sex,laki_laki,,339,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08.2001,4,Lenguselu,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08.2001,4,Lenguselu,total,total,,671,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.08.2006,4,Nggelodae,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08.2006,4,Nggelodae,sex,perempuan,,333,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08.2006,4,Nggelodae,total,total,,675,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.08.2007,4,Pilasue,sex,laki_laki,,519,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08.2007,4,Pilasue,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08.2007,4,Pilasue,total,total,,1007,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.08,3,Kecamatan Rote Selatan,sex,laki_laki,,3208,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.08,3,Kecamatan Rote Selatan,sex,perempuan,,3128,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.08,3,Kecamatan Rote Selatan,total,total,,6336,jiwa,2025,registration,total_population,3.1.1,21,,

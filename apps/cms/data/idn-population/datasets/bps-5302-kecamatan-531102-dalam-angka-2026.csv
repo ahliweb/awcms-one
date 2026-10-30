@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.02,3,Haharu,sex,laki_laki,,3820,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+53.11.02,3,Haharu,sex,perempuan,,3436,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+53.11.02,3,Haharu,total,total,,7256,jiwa,2025,registration,total_population,3.2,32,,

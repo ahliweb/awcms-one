@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5302-kecamatan-531117-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.11.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kambata Mapambuhang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Timur",
+  "publisherDomain": "5302",
+  "publisherWebsite": "https://sumbatimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Timur (https://sumbatimurkab.bps.go.id), publikasi \"Kecamatan Kambata Mapambuhang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5302061",
+  "publicationNumber": "53020.26022",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbatimurkab.bps.go.id/id/publication/2026/09/28/91e000e58b53413910f82aeb/kecamatan-kambata-mapambuhang-dalam-angka-2026.html",
+  "sourceFileSha256": "0e244d60b51782d348239cf18eadd1d694eb6d210c1aa74bc1f44a6e30d9f8b0",
+  "sourceFileBytes": 1537155,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Timur",
+  "csvPath": "datasets/bps-5302-kecamatan-531117-dalam-angka-2026.csv",
+  "csvSha256": "9a230a80996ea3248741b526410533c73fc096cc92cc0b0235188d435fa97016",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan KAMBATA MAPAMBUHANG, 2026",
+      "printedPages": [27, 28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan KAMBATA MAPAMBUHANG, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

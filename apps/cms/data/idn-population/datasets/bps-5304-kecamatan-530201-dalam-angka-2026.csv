@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.01.2012,4,Kuatae,sex,laki_laki,,778,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.2012,4,Kuatae,sex,perempuan,,740,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.2012,4,Kuatae,total,total,,1518,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1002,4,Cendana,sex,laki_laki,,1888,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1002,4,Cendana,sex,perempuan,,1969,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1002,4,Cendana,total,total,,3857,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1001,4,Soe,sex,laki_laki,,1874,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1001,4,Soe,sex,perempuan,,1846,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1001,4,Soe,total,total,,3720,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1003,4,Oebesa,sex,laki_laki,,1547,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1003,4,Oebesa,sex,perempuan,,1543,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1003,4,Oebesa,total,total,,3090,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1008,4,Kobekamusa,sex,laki_laki,,851,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1008,4,Kobekamusa,sex,perempuan,,890,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1008,4,Kobekamusa,total,total,,1741,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1009,4,Oekefan,sex,laki_laki,,1935,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1009,4,Oekefan,sex,perempuan,,1951,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1009,4,Oekefan,total,total,,3886,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1004,4,Taubneno,sex,laki_laki,,1353,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1004,4,Taubneno,sex,perempuan,,1363,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1004,4,Taubneno,total,total,,2716,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1011,4,Kampung Baru,sex,laki_laki,,709,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1011,4,Kampung Baru,sex,perempuan,,703,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1011,4,Kampung Baru,total,total,,1412,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1005,4,Nonohonis,sex,laki_laki,,2959,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1005,4,Nonohonis,sex,perempuan,,2860,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1005,4,Nonohonis,total,total,,5819,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01.1010,4,Kota Baru,sex,laki_laki,,933,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01.1010,4,Kota Baru,sex,perempuan,,937,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01.1010,4,Kota Baru,total,total,,1870,jiwa,2025,registration,total_population,1.3,32,,
+53.02.01,3,Kota Soe,sex,laki_laki,,21401,jiwa,2025,registration,total_population,1.3,32,,Laki-Laki/Male
+53.02.01,3,Kota Soe,sex,perempuan,,21368,jiwa,2025,registration,total_population,1.3,32,,Perempuan/Female
+53.02.01,3,Kota Soe,total,total,,42769,jiwa,2025,registration,total_population,1.3,32,,

@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-5315-kecamatan-531505-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.15.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Komodo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5315",
+  "publisherWebsite": "https://manggaraibaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://manggaraibaratkab.bps.go.id), publikasi \"Kecamatan Komodo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5315010",
+  "publicationNumber": "53150.26005",
+  "issn": "2623-0984",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraibaratkab.bps.go.id/id/publication/2026/09/28/a65aa425e33c809987fed65c/kecamatan-komodo-dalam-angka-2026.html",
+  "sourceFileSha256": "9c037f89208292e8a058aeabed0a04ebfef564bc9c35ea964bea38f86dd8cd36",
+  "sourceFileBytes": 5338171,
+  "sourcePages": [23, 24, 25, 26],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Barat.",
+  "csvPath": "datasets/bps-5315-kecamatan-531505-dalam-angka-2026.csv",
+  "csvSha256": "cc25d87a6ce2487df449b43f32fc98990ccab2c4f0388f4e460cfcbf392a7473",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Komodo, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Seraya Maranu\": unmatched ",
+    "table 3.1: row not stored: row \"Seraya Maranu\": unmatched ",
+    "table 3.2: row not stored: row \"Seraya Maranu\": unmatched ",
+    "table 3.2: row not stored: row \"Seraya Maranu\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

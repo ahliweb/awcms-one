@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.16.07.2003,4,Langedhawe,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.16.07.2003,4,Langedhawe,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.16.07.2003,4,Langedhawe,total,total,,705,jiwa,2025,registration,total_population,3.1,20,,
+53.16.07.2002,4,Tengatiba,sex,laki_laki,,1395,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.16.07.2002,4,Tengatiba,sex,perempuan,,1390,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.16.07.2002,4,Tengatiba,total,total,,2785,jiwa,2025,registration,total_population,3.1,20,,
+53.16.07.2005,4,Renduwawo,sex,laki_laki,,505,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.16.07.2005,4,Renduwawo,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.16.07.2005,4,Renduwawo,total,total,,951,jiwa,2025,registration,total_population,3.1,20,,
+53.16.07.2001,4,Rendu Butowe,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.16.07.2001,4,Rendu Butowe,sex,perempuan,,646,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.16.07.2001,4,Rendu Butowe,total,total,,1259,jiwa,2025,registration,total_population,3.1,20,,
+53.16.07.2006,4,Wajomara,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.16.07.2006,4,Wajomara,sex,perempuan,,286,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.16.07.2006,4,Wajomara,total,total,,600,jiwa,2025,registration,total_population,3.1,20,,
+53.16.07,3,Aesesa Selatan,sex,laki_laki,,4139,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.16.07,3,Aesesa Selatan,sex,perempuan,,4082,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.16.07,3,Aesesa Selatan,total,total,,8221,jiwa,2025,registration,total_population,3.1,20,,

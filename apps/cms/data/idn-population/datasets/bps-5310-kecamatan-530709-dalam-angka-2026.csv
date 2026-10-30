@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.09.2001,4,Runut,sex,laki_laki,,1753,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2001,4,Runut,sex,perempuan,,1702,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2001,4,Runut,total,total,,3455,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2002,4,Egon,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2002,4,Egon,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2002,4,Egon,total,total,,1478,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2003,4,Pogon,sex,laki_laki,,1232,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2003,4,Pogon,sex,perempuan,,1327,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2003,4,Pogon,total,total,,2559,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2004,4,Aibura,sex,laki_laki,,1044,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2004,4,Aibura,sex,perempuan,,1109,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2004,4,Aibura,total,total,,2153,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2006,4,Hoder,sex,laki_laki,,1821,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2006,4,Hoder,sex,perempuan,,1840,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2006,4,Hoder,total,total,,3661,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2007,4,Wairterang,sex,laki_laki,,1263,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2007,4,Wairterang,sex,perempuan,,1310,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2007,4,Wairterang,total,total,,2573,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2008,4,Nangatobong,sex,laki_laki,,1382,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2008,4,Nangatobong,sex,perempuan,,1463,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2008,4,Nangatobong,total,total,,2845,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2009,4,Watudiran,sex,laki_laki,,1234,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2009,4,Watudiran,sex,perempuan,,1183,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2009,4,Watudiran,total,total,,2417,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2010,4,Mahe Kelan,sex,laki_laki,,782,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2010,4,Mahe Kelan,sex,perempuan,,778,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2010,4,Mahe Kelan,total,total,,1560,jiwa,2025,registration,total_population,3.1,27,,
+53.07.09.2011,4,Egon Buluk,sex,laki_laki,,840,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.09.2011,4,Egon Buluk,sex,perempuan,,881,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.09.2011,4,Egon Buluk,total,total,,1721,jiwa,2025,registration,total_population,3.1,27,,

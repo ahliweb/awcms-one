@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.01,3,Paga,total,total,,17379,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.02,3,Mego,total,total,,13953,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.17,3,Tana Wawo,total,total,,9351,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.03,3,Lela,total,total,,11995,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.11,3,Bola,total,total,,11174,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.20,3,Doreng,total,total,,12842,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.21,3,Mapitara,total,total,,7094,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.08,3,Talibura,total,total,,24251,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.09,3,Waigete,total,total,,27289,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.13,3,Waiblama,total,total,,8923,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07.10,3,Kewapante,total,total,,15992,jiwa,2025,projection,total_population,3.1.1,55,,
+53.07,2,Kabupaten Sikka,age_group,0-4,laki_laki,13744,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+53.07,2,Kabupaten Sikka,age_group,0-4,perempuan,13296,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+53.07,2,Kabupaten Sikka,age_group,0-4,,27040,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+53.07,2,Kabupaten Sikka,age_group,5-9,laki_laki,20447,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+53.07,2,Kabupaten Sikka,age_group,5-9,perempuan,19384,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+53.07,2,Kabupaten Sikka,age_group,5-9,,39831,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+53.07,2,Kabupaten Sikka,age_group,10-14,laki_laki,15819,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+53.07,2,Kabupaten Sikka,age_group,10-14,perempuan,15173,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+53.07,2,Kabupaten Sikka,age_group,10-14,,30992,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+53.07,2,Kabupaten Sikka,age_group,15-19,laki_laki,14037,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+53.07,2,Kabupaten Sikka,age_group,15-19,perempuan,13300,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+53.07,2,Kabupaten Sikka,age_group,15-19,,27337,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+53.07,2,Kabupaten Sikka,age_group,20-24,laki_laki,13648,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+53.07,2,Kabupaten Sikka,age_group,20-24,perempuan,13098,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+53.07,2,Kabupaten Sikka,age_group,20-24,,26746,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+53.07,2,Kabupaten Sikka,age_group,25-29,laki_laki,14574,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+53.07,2,Kabupaten Sikka,age_group,25-29,perempuan,14294,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+53.07,2,Kabupaten Sikka,age_group,25-29,,28868,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+53.07,2,Kabupaten Sikka,age_group,30-34,laki_laki,12920,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+53.07,2,Kabupaten Sikka,age_group,30-34,perempuan,12799,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+53.07,2,Kabupaten Sikka,age_group,30-34,,25719,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+53.07,2,Kabupaten Sikka,age_group,35-39,laki_laki,11411,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+53.07,2,Kabupaten Sikka,age_group,35-39,perempuan,11624,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+53.07,2,Kabupaten Sikka,age_group,35-39,,23035,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+53.07,2,Kabupaten Sikka,age_group,40-44,laki_laki,10217,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+53.07,2,Kabupaten Sikka,age_group,40-44,perempuan,10834,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+53.07,2,Kabupaten Sikka,age_group,40-44,,21051,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+53.07,2,Kabupaten Sikka,age_group,45-49,laki_laki,9387,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+53.07,2,Kabupaten Sikka,age_group,45-49,perempuan,10813,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+53.07,2,Kabupaten Sikka,age_group,45-49,,20200,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+53.07,2,Kabupaten Sikka,age_group,50-54,laki_laki,8025,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+53.07,2,Kabupaten Sikka,age_group,50-54,perempuan,9972,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+53.07,2,Kabupaten Sikka,age_group,50-54,,17997,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+53.07,2,Kabupaten Sikka,age_group,55-59,laki_laki,6599,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+53.07,2,Kabupaten Sikka,age_group,55-59,perempuan,8341,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+53.07,2,Kabupaten Sikka,age_group,55-59,,14940,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+53.07,2,Kabupaten Sikka,age_group,60-64,laki_laki,5791,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+53.07,2,Kabupaten Sikka,age_group,60-64,perempuan,7803,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+53.07,2,Kabupaten Sikka,age_group,60-64,,13594,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+53.07,2,Kabupaten Sikka,age_group,65-69,laki_laki,4575,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+53.07,2,Kabupaten Sikka,age_group,65-69,perempuan,6313,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+53.07,2,Kabupaten Sikka,age_group,65-69,,10888,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+53.07,2,Kabupaten Sikka,age_group,70-74,laki_laki,3613,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+53.07,2,Kabupaten Sikka,age_group,70-74,perempuan,4896,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+53.07,2,Kabupaten Sikka,age_group,70-74,,8509,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+53.07,2,Kabupaten Sikka,age_group,75+,laki_laki,3529,jiwa,2025,projection,total_population,3.1.2,60,,75+
+53.07,2,Kabupaten Sikka,age_group,75+,perempuan,5043,jiwa,2025,projection,total_population,3.1.2,60,,75+
+53.07,2,Kabupaten Sikka,age_group,75+,,8572,jiwa,2025,projection,total_population,3.1.2,60,,75+
+53.07,2,Kabupaten Sikka,sex,laki_laki,,168336,jiwa,2025,projection,total_population,3.1.2,60,,Laki-Laki
+53.07,2,Kabupaten Sikka,sex,perempuan,,176983,jiwa,2025,projection,total_population,3.1.2,60,,Perempuan
+53.07,2,Kabupaten Sikka,total,total,,345319,jiwa,2025,projection,total_population,3.1.2,60,,
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/padi_padian,,137570,rupiah,2024,survey_estimate,per_capita,10.1,253,,Padi-padian
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/padi_padian,,112355,rupiah,2025,survey_estimate,per_capita,10.1,253,,Padi-padian
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/umbi_umbian,,7221,rupiah,2024,survey_estimate,per_capita,10.1,253,,Umbi-umbian
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/umbi_umbian,,7870,rupiah,2025,survey_estimate,per_capita,10.1,253,,Umbi-umbian
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,44756,rupiah,2024,survey_estimate,per_capita,10.1,253,,Ikan/udang/cumi/kerang
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,48062,rupiah,2025,survey_estimate,per_capita,10.1,253,,Ikan/udang/cumi/kerang
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/daging,,18436,rupiah,2024,survey_estimate,per_capita,10.1,253,,Daging
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/daging,,22824,rupiah,2025,survey_estimate,per_capita,10.1,253,,Daging
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/telur_dan_susu,,19108,rupiah,2024,survey_estimate,per_capita,10.1,253,,Telur dan susu
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/telur_dan_susu,,22160,rupiah,2025,survey_estimate,per_capita,10.1,253,,Telur dan susu
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/sayur_sayuran,,39649,rupiah,2024,survey_estimate,per_capita,10.1,253,,Sayur-sayuran
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/sayur_sayuran,,44007,rupiah,2025,survey_estimate,per_capita,10.1,253,,Sayur-sayuran
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/kacang_kacangan,,3574,rupiah,2024,survey_estimate,per_capita,10.1,253,,Kacang-kacangan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/kacang_kacangan,,6343,rupiah,2025,survey_estimate,per_capita,10.1,253,,Kacang-kacangan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/buah_buahan,,20616,rupiah,2024,survey_estimate,per_capita,10.1,253,,Buah-buahan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/buah_buahan,,18766,rupiah,2025,survey_estimate,per_capita,10.1,253,,Buah-buahan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/minyak_dan_kelapa,,11523,rupiah,2024,survey_estimate,per_capita,10.1,253,,Minyak dan kelapa
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12176,rupiah,2025,survey_estimate,per_capita,10.1,253,,Minyak dan kelapa
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/bahan_minuman,,16777,rupiah,2024,survey_estimate,per_capita,10.1,253,,Bahan minuman
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/bahan_minuman,,17424,rupiah,2025,survey_estimate,per_capita,10.1,253,,Bahan minuman
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/bumbu_bumbuan,,6907,rupiah,2024,survey_estimate,per_capita,10.1,253,,Bumbu-bumbuan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/bumbu_bumbuan,,7716,rupiah,2025,survey_estimate,per_capita,10.1,253,,Bumbu-bumbuan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/konsumsi_lainnya,,6273,rupiah,2024,survey_estimate,per_capita,10.1,253,,Konsumsi lainnya
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/konsumsi_lainnya,,6520,rupiah,2025,survey_estimate,per_capita,10.1,253,,Konsumsi lainnya
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,141495,rupiah,2024,survey_estimate,per_capita,10.1,253,,Makanan dan minuman jadi
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,135797,rupiah,2025,survey_estimate,per_capita,10.1,253,,Makanan dan minuman jadi
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/rokok,,58209,rupiah,2024,survey_estimate,per_capita,10.1,253,,Rokok
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/rokok,,51574,rupiah,2025,survey_estimate,per_capita,10.1,253,,Rokok
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/jumlah_makanan,,532114,rupiah,2024,survey_estimate,per_capita,10.1,253,,Jumlah makanan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/jumlah_makanan,,513593,rupiah,2025,survey_estimate,per_capita,10.1,253,,Jumlah makanan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,197602,rupiah,2024,survey_estimate,per_capita,10.1,253,,Perumahan dan fasilitas rumah tangga
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,207614,rupiah,2025,survey_estimate,per_capita,10.1,253,,Perumahan dan fasilitas rumah tangga
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,109259,rupiah,2024,survey_estimate,per_capita,10.1,253,,Aneka barang dan jasa
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,131355,rupiah,2025,survey_estimate,per_capita,10.1,253,,Aneka barang dan jasa
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,17402,rupiah,2024,survey_estimate,per_capita,10.1,253,,"Pakaian, alas kaki, dan tutup kepala"
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19352,rupiah,2025,survey_estimate,per_capita,10.1,253,,"Pakaian, alas kaki, dan tutup kepala"
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/barang_tahan_lama,,25260,rupiah,2024,survey_estimate,per_capita,10.1,253,,Barang tahan lama
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/barang_tahan_lama,,26639,rupiah,2025,survey_estimate,per_capita,10.1,253,,Barang tahan lama
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36700,rupiah,2024,survey_estimate,per_capita,10.1,253,,"Pajak, pungutan, dan asuransi"
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43332,rupiah,2025,survey_estimate,per_capita,10.1,253,,"Pajak, pungutan, dan asuransi"
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19144,rupiah,2024,survey_estimate,per_capita,10.1,253,,Keperluan pesta dan upacara/kenduri
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14227,rupiah,2025,survey_estimate,per_capita,10.1,253,,Keperluan pesta dan upacara/kenduri
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,405366,rupiah,2024,survey_estimate,per_capita,10.1,253,,Jumlah bukan makanan
+53.07,2,Kabupaten Sikka,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,442520,rupiah,2025,survey_estimate,per_capita,10.1,253,,Jumlah bukan makanan
+53.07,2,Kabupaten Sikka,expenditure,total,,937480,rupiah,2024,survey_estimate,per_capita,10.1,253,,
+53.07,2,Kabupaten Sikka,expenditure,total,,956113,rupiah,2025,survey_estimate,per_capita,10.1,253,,

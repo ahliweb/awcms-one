@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.06.1017,4,Tanah Rata,sex,laki_laki,,2410,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.1017,4,Tanah Rata,sex,perempuan,,2386,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.1017,4,Tanah Rata,total,total,,4796,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.2014,4,Bamo,sex,laki_laki,,1326,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.2014,4,Bamo,sex,perempuan,,1325,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.2014,4,Bamo,total,total,,2651,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.1002,4,Rongga Koe,sex,laki_laki,,1693,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.1002,4,Rongga Koe,sex,perempuan,,1725,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.1002,4,Rongga Koe,total,total,,3418,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.2013,4,Komba,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.2013,4,Komba,sex,perempuan,,1232,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.2013,4,Komba,total,total,,2427,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.1001,4,Watu Nggene,sex,laki_laki,,2304,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.1001,4,Watu Nggene,sex,perempuan,,2314,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.1001,4,Watu Nggene,total,total,,4618,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.2007,4,Rana Kolong,sex,laki_laki,,1523,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.2007,4,Rana Kolong,sex,perempuan,,1481,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.2007,4,Rana Kolong,total,total,,3004,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.2006,4,Mbengan,sex,laki_laki,,1306,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.2006,4,Mbengan,sex,perempuan,,1360,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.2006,4,Mbengan,total,total,,2666,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.2003,4,Lembur,sex,laki_laki,,2004,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.2003,4,Lembur,sex,perempuan,,2011,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.2003,4,Lembur,total,total,,4015,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.2004,4,Ruan,sex,laki_laki,,1447,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.2004,4,Ruan,sex,perempuan,,1330,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.2004,4,Ruan,total,total,,2777,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06.2015,4,Pong Ruan,sex,laki_laki,,1529,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06.2015,4,Pong Ruan,sex,perempuan,,1578,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06.2015,4,Pong Ruan,total,total,,3107,jiwa,2025,registration,total_population,3.1,16,,
+53.19.06,3,Kota Komba,sex,laki_laki,,17930,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.06,3,Kota Komba,sex,perempuan,,17956,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.06,3,Kota Komba,total,total,,35886,jiwa,2025,registration,total_population,3.1,16,,

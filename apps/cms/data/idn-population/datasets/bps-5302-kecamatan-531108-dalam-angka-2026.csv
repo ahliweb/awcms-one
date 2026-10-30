@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.08.2007,4,Desa Lairuru,sex,laki_laki,,811,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2007,4,Desa Lairuru,sex,perempuan,,830,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2007,4,Desa Lairuru,total,total,,1641,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2009,4,Desa Watu Puda,sex,laki_laki,,924,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2009,4,Desa Watu Puda,sex,perempuan,,865,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2009,4,Desa Watu Puda,total,total,,1789,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2002,4,Desa Umalulu,sex,laki_laki,,753,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2002,4,Desa Umalulu,sex,perempuan,,705,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2002,4,Desa Umalulu,total,total,,1458,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2010,4,Desa Ngaru Kanoru,sex,laki_laki,,494,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2010,4,Desa Ngaru Kanoru,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2010,4,Desa Ngaru Kanoru,total,total,,960,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2008,4,Desa Watu Hadang,sex,laki_laki,,1291,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2008,4,Desa Watu Hadang,sex,perempuan,,1265,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2008,4,Desa Watu Hadang,total,total,,2556,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2006,4,Desa Mutunggeding,sex,laki_laki,,1386,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2006,4,Desa Mutunggeding,sex,perempuan,,1266,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2006,4,Desa Mutunggeding,total,total,,2652,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2005,4,Desa Matawai Atu,sex,laki_laki,,998,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2005,4,Desa Matawai Atu,sex,perempuan,,960,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2005,4,Desa Matawai Atu,total,total,,1958,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2003,4,Desa Patawang,sex,laki_laki,,1254,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2003,4,Desa Patawang,sex,perempuan,,1243,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2003,4,Desa Patawang,total,total,,2497,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.2004,4,Desa Wanga,sex,laki_laki,,1016,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.2004,4,Desa Wanga,sex,perempuan,,969,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.2004,4,Desa Wanga,total,total,,1985,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08.1001,4,Kelurahan Lumbu Kore,sex,laki_laki,,1726,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08.1001,4,Kelurahan Lumbu Kore,sex,perempuan,,1670,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08.1001,4,Kelurahan Lumbu Kore,total,total,,3396,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08,3,Umalulu,sex,laki_laki,,10653,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.08,3,Umalulu,sex,perempuan,,10239,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.08,3,Umalulu,total,total,,20892,jiwa,2025,registration,total_population,3.1,30,,
+53.11.08,3,Umalulu,sex,laki_laki,,10653,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+53.11.08,3,Umalulu,sex,perempuan,,10239,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+53.11.08,3,Umalulu,total,total,,20892,jiwa,2025,registration,total_population,3.2,32,,

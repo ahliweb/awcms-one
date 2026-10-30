@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.08.2009,4,Rende Nao,sex,laki_laki,,829,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2009,4,Rende Nao,sex,perempuan,,790,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2009,4,Rende Nao,total,total,,1619,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2008,4,Ulu Wae,sex,laki_laki,,849,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2008,4,Ulu Wae,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2008,4,Ulu Wae,total,total,,1699,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2007,4,Ngkiong Dora,sex,laki_laki,,789,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2007,4,Ngkiong Dora,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2007,4,Ngkiong Dora,total,total,,1573,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2010,4,Wangkar Weli,sex,laki_laki,,773,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2010,4,Wangkar Weli,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2010,4,Wangkar Weli,total,total,,1571,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2004,4,Rengkam,sex,laki_laki,,1160,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2004,4,Rengkam,sex,perempuan,,1162,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2004,4,Rengkam,total,total,,2322,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2003,4,Golo Lero,sex,laki_laki,,842,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2003,4,Golo Lero,sex,perempuan,,888,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2003,4,Golo Lero,total,total,,1730,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2011,4,Tango Molas,sex,laki_laki,,1181,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2011,4,Tango Molas,sex,perempuan,,1217,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2011,4,Tango Molas,total,total,,2398,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2002,4,Arus,sex,laki_laki,,1153,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2002,4,Arus,sex,perempuan,,1138,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2002,4,Arus,total,total,,2291,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2001,4,Watu Arus,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2001,4,Watu Arus,sex,perempuan,,572,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2001,4,Watu Arus,total,total,,1137,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2006,4,Benteng Rampas,sex,laki_laki,,847,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2006,4,Benteng Rampas,sex,perempuan,,835,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2006,4,Benteng Rampas,total,total,,1682,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2005,4,Compang Wunis,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2005,4,Compang Wunis,sex,perempuan,,649,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2005,4,Compang Wunis,total,total,,1340,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2018,4,Wejang Mali,sex,laki_laki,,698,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2018,4,Wejang Mali,sex,perempuan,,736,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2018,4,Wejang Mali,total,total,,1434,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2016,4,Colol,sex,laki_laki,,1312,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2016,4,Colol,sex,perempuan,,1265,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2016,4,Colol,total,total,,2577,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2012,4,Urung Dora,sex,laki_laki,,701,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2012,4,Urung Dora,sex,perempuan,,720,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2012,4,Urung Dora,total,total,,1421,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2013,4,Compang Raci,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2013,4,Compang Raci,sex,perempuan,,546,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2013,4,Compang Raci,total,total,,1120,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2015,4,Bangka Arus,sex,laki_laki,,1181,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2015,4,Bangka Arus,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2015,4,Bangka Arus,total,total,,2242,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2017,4,Benteng Wunis,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2017,4,Benteng Wunis,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2017,4,Benteng Wunis,total,total,,977,jiwa,2025,registration,total_population,3.1,21,,
+53.19.08.2014,4,Wejang Mawe,sex,laki_laki,,879,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.19.08.2014,4,Wejang Mawe,sex,perempuan,,794,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.19.08.2014,4,Wejang Mawe,total,total,,1673,jiwa,2025,registration,total_population,3.1,21,,

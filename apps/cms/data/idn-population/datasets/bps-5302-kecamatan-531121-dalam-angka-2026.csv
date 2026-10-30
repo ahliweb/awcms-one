@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.21.2001,4,Praiwitu,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.21.2001,4,Praiwitu,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.21.2001,4,Praiwitu,total,total,,868,jiwa,2025,registration,total_population,3.1,28,,
+53.11.21.2002,4,Kakaha,sex,laki_laki,,1217,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.21.2002,4,Kakaha,sex,perempuan,,1115,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.21.2002,4,Kakaha,total,total,,2332,jiwa,2025,registration,total_population,3.1,28,,
+53.11.21.2003,4,Hamba Wutang,sex,laki_laki,,785,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.21.2003,4,Hamba Wutang,sex,perempuan,,690,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.21.2003,4,Hamba Wutang,total,total,,1475,jiwa,2025,registration,total_population,3.1,28,,
+53.11.21.2004,4,Kabanda,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.21.2004,4,Kabanda,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.21.2004,4,Kabanda,total,total,,938,jiwa,2025,registration,total_population,3.1,28,,
+53.11.21.2005,4,Prau Raming,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.21.2005,4,Prau Raming,sex,perempuan,,249,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.21.2005,4,Prau Raming,total,total,,544,jiwa,2025,registration,total_population,3.1,28,,
+53.11.21,3,Ngadu Ngala,sex,laki_laki,,3254,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.21,3,Ngadu Ngala,sex,perempuan,,2903,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.21,3,Ngadu Ngala,total,total,,6157,jiwa,2025,registration,total_population,3.1,28,,

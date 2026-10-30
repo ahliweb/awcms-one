@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.71.05.1001,4,Bakunase,sex,laki_laki,,2575,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.05.1001,4,Bakunase,sex,perempuan,,2644,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.05.1001,4,Bakunase,total,total,,5219,jiwa,2025,registration,total_population,3.1,26,,
+53.71.05.1003,4,Airnona,sex,laki_laki,,3922,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.05.1003,4,Airnona,sex,perempuan,,3852,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.05.1003,4,Airnona,total,total,,7774,jiwa,2025,registration,total_population,3.1,26,,
+53.71.05.1006,4,Kuanino,sex,laki_laki,,3749,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.05.1006,4,Kuanino,sex,perempuan,,3683,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.05.1006,4,Kuanino,total,total,,7432,jiwa,2025,registration,total_population,3.1,26,,
+53.71.05.1007,4,Nunleu,sex,laki_laki,,2322,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.05.1007,4,Nunleu,sex,perempuan,,2368,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.05.1007,4,Nunleu,total,total,,4690,jiwa,2025,registration,total_population,3.1,26,,
+53.71.05.1008,4,Fontein,sex,laki_laki,,2156,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.05.1008,4,Fontein,sex,perempuan,,2099,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.05.1008,4,Fontein,total,total,,4255,jiwa,2025,registration,total_population,3.1,26,,

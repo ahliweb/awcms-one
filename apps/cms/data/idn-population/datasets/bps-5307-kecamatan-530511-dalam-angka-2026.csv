@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.11.2006,4,Pura Barat,sex,laki_laki,,434,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.11.2006,4,Pura Barat,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.11.2006,4,Pura Barat,total,total,,911,jiwa,2025,registration,total_population,3.1,,,
+53.05.11.2004,4,Pura Selatan,sex,laki_laki,,566,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.11.2004,4,Pura Selatan,sex,perempuan,,576,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.11.2004,4,Pura Selatan,total,total,,1142,jiwa,2025,registration,total_population,3.1,,,
+53.05.11.2002,4,Maru,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.11.2002,4,Maru,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.11.2002,4,Maru,total,total,,929,jiwa,2025,registration,total_population,3.1,,,
+53.05.11.2005,4,Pura Timur,sex,laki_laki,,279,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.11.2005,4,Pura Timur,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.11.2005,4,Pura Timur,total,total,,593,jiwa,2025,registration,total_population,3.1,,,
+53.05.11.2003,4,Pura Utara,sex,laki_laki,,397,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.11.2003,4,Pura Utara,sex,perempuan,,461,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.11.2003,4,Pura Utara,total,total,,858,jiwa,2025,registration,total_population,3.1,,,
+53.05.11.1001,4,Pura,sex,laki_laki,,750,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.11.1001,4,Pura,sex,perempuan,,724,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.11.1001,4,Pura,total,total,,1474,jiwa,2025,registration,total_population,3.1,,,
+53.05.11,3,Pulau Pura,sex,laki_laki,,2850,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.11,3,Pulau Pura,sex,perempuan,,3057,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.11,3,Pulau Pura,total,total,,5907,jiwa,2025,registration,total_population,3.1,,,

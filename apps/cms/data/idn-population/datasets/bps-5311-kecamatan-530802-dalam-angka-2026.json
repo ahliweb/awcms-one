@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5311-kecamatan-530802-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.08.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulau Ende Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ende",
+  "publisherDomain": "5311",
+  "publisherWebsite": "https://endekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ende (https://endekab.bps.go.id), publikasi \"Kecamatan Pulau Ende Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5311011",
+  "publicationNumber": "53110.26005",
+  "issn": "2686-3960",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://endekab.bps.go.id/id/publication/2026/09/28/cac82c9d4dc4df298aa95330/kecamatan-pulau-ende-dalam-angka-2026.html",
+  "sourceFileSha256": "3059f05060fb34846c2b7ea758e4df6c67b8150203b4096a17b0e236891c959f",
+  "sourceFileBytes": 7394207,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ende.",
+  "csvPath": "datasets/bps-5311-kecamatan-530802-dalam-angka-2026.csv",
+  "csvSha256": "2b6f5c5a9e33543552beedf81d498dee512029cbac025977a1d1c909601c88d7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pulau Ende, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pulau Ende, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"01. Ndoriwoy\": unmatched ",
+    "table 3.1: row not stored: row \"07. Redodori\": unmatched ",
+    "table 3.1: row not stored: row \"01. Ndoriwoy\": unmatched ",
+    "table 3.1: row not stored: row \"07. Redodori\": unmatched "
+  ]
+}

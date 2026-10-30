@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5318-kecamatan-531604-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.16.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mauponggo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nagekeo",
+  "publisherDomain": "5318",
+  "publisherWebsite": "https://nagekeokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nagekeo (https://nagekeokab.bps.go.id), publikasi \"Kecamatan Mauponggo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5318010",
+  "publicationNumber": "53180.26005",
+  "issn": "2622-0245",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nagekeokab.bps.go.id/id/publication/2026/09/28/f3a6ea962265647f45e4cb3b/kecamatan-mauponggo-dalam-angka-2026.html",
+  "sourceFileSha256": "bcbbc97f55ee2885d6a6ae31af9040d94808ad96df51ce82389e74ecc2abfb9c",
+  "sourceFileBytes": 5505474,
+  "sourcePages": [29, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nagekeo",
+  "csvPath": "datasets/bps-5318-kecamatan-531604-dalam-angka-2026.csv",
+  "csvSha256": "619c58a2ea10dc67b6eb88656b06c3fef7a66ae56aed75f7ec864de9d91dc6e7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mauponggo, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mauponggo, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Selalejo\": unmatched "
+  ]
+}

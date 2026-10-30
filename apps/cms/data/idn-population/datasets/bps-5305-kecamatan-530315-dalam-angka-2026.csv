@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.15.2003,4,Nimasi,sex,laki_laki,,450,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2003,4,Nimasi,sex,perempuan,,409,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2003,4,Nimasi,total,total,,859,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15.2001,4,Buk,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2001,4,Buk,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2001,4,Buk,total,total,,744,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15.2004,4,Oelbonak,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2004,4,Oelbonak,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2004,4,Oelbonak,total,total,,608,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15.2002,4,Oenenu,sex,laki_laki,,579,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2002,4,Oenenu,sex,perempuan,,558,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2002,4,Oenenu,total,total,,1137,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15.2006,4,Oenino,sex,laki_laki,,583,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2006,4,Oenino,sex,perempuan,,593,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2006,4,Oenino,total,total,,1176,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15.2007,4,Oenenu Utara,sex,laki_laki,,630,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2007,4,Oenenu Utara,sex,perempuan,,613,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2007,4,Oenenu Utara,total,total,,1243,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15.2008,4,Oenenu Selatan,sex,laki_laki,,539,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2008,4,Oenenu Selatan,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2008,4,Oenenu Selatan,total,total,,1096,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15.2009,4,Sono,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15.2009,4,Sono,sex,perempuan,,374,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15.2009,4,Sono,total,total,,764,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15,3,Bikomi Tengah,sex,laki_laki,,4177,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.15,3,Bikomi Tengah,sex,perempuan,,4151,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.15,3,Bikomi Tengah,total,total,,8328,jiwa,2025,registration,total_population,3.1,28,,
+53.03.15,3,Bikomi Tengah,age_group,0-4,laki_laki,187,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.15,3,Bikomi Tengah,age_group,0-4,perempuan,187,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.15,3,Bikomi Tengah,age_group,0-4,,374,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.15,3,Bikomi Tengah,age_group,5-9,laki_laki,380,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.15,3,Bikomi Tengah,age_group,5-9,perempuan,373,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.15,3,Bikomi Tengah,age_group,5-9,,753,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.15,3,Bikomi Tengah,age_group,10-14,laki_laki,426,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.15,3,Bikomi Tengah,age_group,10-14,perempuan,395,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.15,3,Bikomi Tengah,age_group,10-14,,821,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.15,3,Bikomi Tengah,age_group,15-19,laki_laki,429,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.15,3,Bikomi Tengah,age_group,15-19,perempuan,417,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.15,3,Bikomi Tengah,age_group,15-19,,846,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.15,3,Bikomi Tengah,age_group,20-24,laki_laki,525,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.15,3,Bikomi Tengah,age_group,20-24,perempuan,451,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.15,3,Bikomi Tengah,age_group,20-24,,976,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.15,3,Bikomi Tengah,age_group,25-29,laki_laki,381,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.15,3,Bikomi Tengah,age_group,25-29,perempuan,348,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.15,3,Bikomi Tengah,age_group,25-29,,729,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.15,3,Bikomi Tengah,age_group,30-34,laki_laki,256,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.15,3,Bikomi Tengah,age_group,30-34,perempuan,285,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.15,3,Bikomi Tengah,age_group,30-34,,541,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.15,3,Bikomi Tengah,age_group,35-39,laki_laki,275,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.15,3,Bikomi Tengah,age_group,35-39,perempuan,237,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.15,3,Bikomi Tengah,age_group,35-39,,512,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.15,3,Bikomi Tengah,age_group,40-44,laki_laki,231,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.15,3,Bikomi Tengah,age_group,40-44,perempuan,231,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.15,3,Bikomi Tengah,age_group,40-44,,462,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.15,3,Bikomi Tengah,age_group,45-49,laki_laki,182,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.15,3,Bikomi Tengah,age_group,45-49,perempuan,233,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.15,3,Bikomi Tengah,age_group,45-49,,415,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.15,3,Bikomi Tengah,age_group,50-54,laki_laki,220,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.15,3,Bikomi Tengah,age_group,50-54,perempuan,247,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.15,3,Bikomi Tengah,age_group,50-54,,467,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.15,3,Bikomi Tengah,age_group,55-59,laki_laki,219,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.15,3,Bikomi Tengah,age_group,55-59,perempuan,230,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.15,3,Bikomi Tengah,age_group,55-59,,449,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.15,3,Bikomi Tengah,age_group,60-64,laki_laki,172,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.15,3,Bikomi Tengah,age_group,60-64,perempuan,171,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.15,3,Bikomi Tengah,age_group,60-64,,343,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.15,3,Bikomi Tengah,age_group,65-69,laki_laki,113,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.15,3,Bikomi Tengah,age_group,65-69,perempuan,123,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.15,3,Bikomi Tengah,age_group,65-69,,236,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.15,3,Bikomi Tengah,age_group,70-74,laki_laki,63,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.15,3,Bikomi Tengah,age_group,70-74,perempuan,69,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.15,3,Bikomi Tengah,age_group,70-74,,132,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.15,3,Bikomi Tengah,age_group,75+,laki_laki,118,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.15,3,Bikomi Tengah,age_group,75+,perempuan,154,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.15,3,Bikomi Tengah,age_group,75+,,272,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.15,3,Bikomi Tengah,sex,laki_laki,,4177,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.15,3,Bikomi Tengah,sex,perempuan,,4151,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.15,3,Bikomi Tengah,total,total,,8328,jiwa,2025,registration,total_population,3.2,30,,

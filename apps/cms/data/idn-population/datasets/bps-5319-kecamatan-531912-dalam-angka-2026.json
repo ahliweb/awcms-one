@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5319-kecamatan-531912-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.19.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Congkar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Manggarai Timur",
+  "publisherDomain": "5319",
+  "publisherWebsite": "https://manggaraitimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Manggarai Timur (https://manggaraitimurkab.bps.go.id), publikasi \"Kecamatan Congkar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53190.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraitimurkab.bps.go.id/id/publication/2026/09/28/a1ff4f894af3c2ef6a69c4c3/kecamatan-congkar-dalam-angka-2026.html",
+  "sourceFileSha256": "0373f0a454d04baf785e6b9a8bbd591e65b33dd33d49b134087f7c831be1ad74",
+  "sourceFileBytes": 2580443,
+  "sourcePages": [14, 16],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isibuku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Timur.It is prohibited to reproduce and/or duplicate part or all of this book for commercialpurpose without permission from BPS-Statistics East Manggarai Regency TIM PENYUSUN/COMPILERS KECAMATAN CONGKAR DALAM ANGKA Congkar District in Figures 2026 s. go .id Pengarah/Director Vinsensius Wea ur ka b. bp Penanggung Jawab/Persons in Charge Vinsensius Wea gg ar ai tim Penyunting/Editors Agustinus Daul ht tp s: //m an Pengolah Data dan Penulis Naskah/Data Processor and Writers Agustinus Daul Penata Letak/Layouters Agustinus Daul  Penerjemah/Translators Agustinus Daul iii s. go .id ur ka b. bp tim ai ar gg an //m s: ht tp KONTRIBUTOR DATA/DATA CONTRIBUTORS 1. Kementerian Agama/Ministry of Religious Affair 2. Kementerian Pendidikan Dasar dan Menengah/Ministry of Primary and Secondary Education 3. Badan Pusat Statistik/BPS-Statistics Indonesia s. go .id 4. Badan Pertanahan Nasional/ National Land Agency ht tp s: //m an gg ar ai tim ur ka b. bp 5. Kantor Kecamatan Congkar v s. go .id ur ka b. bp tim ai ar gg an //m s: ht tp KATA PENGANTAR Publikasi Kecamatan Congkar Dalam Angka 2026 ini merupakan publikasi BPS yang menyajikan beragam data statistik tentang gambaran umum kondisi geografi iklim, pemerintahan, s. go .id dan perkembangan demografi kondisi dan serta sosial perekonomian ur ka b. bp Kecamatan Elar Selatan. Ragam data statistik dalam penyusunan Publikasi Kecamatan Congkar Dalam Angka 2026 diperoleh dari tim sumber data BPS dan sumber ar ai institusi gg an Congkar //m Kecamatan baik Seiring konsumen Angka struktur akan maupun dengan kebutuhan data, Publikasi terus mengalami muatannya. Untuk s: penyempurnaan, Dalam lain. meningkatnya ht tp mempermudah akses Publikasi Congkar Dalam Angka, publikasi ini dapat diakses dan diunduh melalui laman BPS Kabupaten Manggarai Timur (situs web: www.manggaraitimurkab. bps.go.id) atau kontak kami melalui alamat email: bps5319@bps.go.id. Publikasi ini dapat terwujud berkat kerja sama dan partisipasi dari berbagai pihak. Kepada semua pihak yang telah memberikan kontribusi, kami sampaikan penghargaan dan terima kasih. vii Semoga publikasi yang disajikan bermanfaat bagi pengguna untuk berbagai keperluan. Kami mengharapkan tanggapan dan saran dari para pengguna publikasi ini untuk perbaikan pada edisi yang akan datang. Borong, September 2026 PLT Kepala BPS Kabupaten Manggarai Timur ht tp s: //m an gg ar ai tim ur ka b. bp s. go .id VINSENSIUS WEA viii",
+  "csvPath": "datasets/bps-5319-kecamatan-531912-dalam-angka-2026.csv",
+  "csvSha256": "12a899fb44abe1d2f3e9a32df3ebb11fcf65759d9c401a54c51bffa0567fa93d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Congkar, 2025",
+      "printedPages": [14],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.04.2001,4,Billa,sex,laki_laki,,1140,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2001,4,Billa,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2001,4,Billa,total,total,,2288,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04.2002,4,Oelet,sex,laki_laki,,931,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2002,4,Oelet,sex,perempuan,,845,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2002,4,Oelet,total,total,,1776,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04.2004,4,Pisan,sex,laki_laki,,847,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2004,4,Pisan,sex,perempuan,,837,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2004,4,Pisan,total,total,,1684,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04.2005,4,Mauleum,sex,laki_laki,,1162,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2005,4,Mauleum,sex,perempuan,,1246,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2005,4,Mauleum,total,total,,2408,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04.2008,4,Mnela’Anen,sex,laki_laki,,1234,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2008,4,Mnela’Anen,sex,perempuan,,1290,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2008,4,Mnela’Anen,total,total,,2524,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04.2012,4,Oe’Ekam,sex,laki_laki,,1533,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2012,4,Oe’Ekam,sex,perempuan,,1541,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2012,4,Oe’Ekam,total,total,,3074,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04.2016,4,Sini,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2016,4,Sini,sex,perempuan,,266,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2016,4,Sini,total,total,,533,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04.2017,4,Tliu,sex,laki_laki,,433,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04.2017,4,Tliu,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04.2017,4,Tliu,total,total,,882,jiwa,2025,registration,total_population,3.1,27,,
+53.02.04,3,Amanuban Timur,sex,laki_laki,,8731,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.02.04,3,Amanuban Timur,sex,perempuan,,8819,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+53.02.04,3,Amanuban Timur,total,total,,17550,jiwa,2025,registration,total_population,3.1,27,,

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.04.22.1004,4,Fatukbot,sex,laki_laki,,4519,jiwa,2025,registration,total_population,1.3,29,,Laki-Laki/Male
+53.04.22.1004,4,Fatukbot,sex,perempuan,,4512,jiwa,2025,registration,total_population,1.3,29,,Perempuan/Fema
+53.04.22.1004,4,Fatukbot,total,total,,9031,jiwa,2025,registration,total_population,1.3,29,,
+53.04.22.1003,4,Lidak,sex,laki_laki,,3097,jiwa,2025,registration,total_population,1.3,29,,Laki-Laki/Male
+53.04.22.1003,4,Lidak,sex,perempuan,,3009,jiwa,2025,registration,total_population,1.3,29,,Perempuan/Fema
+53.04.22.1003,4,Lidak,total,total,,6106,jiwa,2025,registration,total_population,1.3,29,,
+53.04.22.1001,4,Manuaman,sex,laki_laki,,4156,jiwa,2025,registration,total_population,1.3,29,,Laki-Laki/Male
+53.04.22.1001,4,Manuaman,sex,perempuan,,4091,jiwa,2025,registration,total_population,1.3,29,,Perempuan/Fema
+53.04.22.1001,4,Manuaman,total,total,,8247,jiwa,2025,registration,total_population,1.3,29,,
+53.04.22.1002,4,Rinbesi,sex,laki_laki,,1795,jiwa,2025,registration,total_population,1.3,29,,Laki-Laki/Male
+53.04.22.1002,4,Rinbesi,sex,perempuan,,1729,jiwa,2025,registration,total_population,1.3,29,,Perempuan/Fema
+53.04.22.1002,4,Rinbesi,total,total,,3524,jiwa,2025,registration,total_population,1.3,29,,

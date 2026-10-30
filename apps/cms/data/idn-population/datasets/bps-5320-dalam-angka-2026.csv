@@ -1,0 +1,134 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.20.06,3,Raijua,total,total,,9298,jiwa,2025,projection,total_population,3.1.1,48,,
+53.20.05,3,Hawu Mehara,total,total,,19784,jiwa,2025,projection,total_population,3.1.1,48,,
+53.20.04,3,Sabu Liae,total,total,,11345,jiwa,2025,projection,total_population,3.1.1,48,,
+53.20.01,3,Sabu Barat,total,total,,35797,jiwa,2025,projection,total_population,3.1.1,48,,
+53.20.02,3,Sabu Tengah,total,total,,9431,jiwa,2025,projection,total_population,3.1.1,48,,
+53.20.03,3,Sabu Timur,total,total,,10604,jiwa,2025,projection,total_population,3.1.1,48,,
+53.20,2,Kabupaten Sabu Raijua,age_group,0-4,laki_laki,5256,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+53.20,2,Kabupaten Sabu Raijua,age_group,0-4,perempuan,5091,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+53.20,2,Kabupaten Sabu Raijua,age_group,0-4,,10347,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+53.20,2,Kabupaten Sabu Raijua,age_group,5-9,laki_laki,5717,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+53.20,2,Kabupaten Sabu Raijua,age_group,5-9,perempuan,5668,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+53.20,2,Kabupaten Sabu Raijua,age_group,5-9,,11385,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+53.20,2,Kabupaten Sabu Raijua,age_group,10-14,laki_laki,5046,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+53.20,2,Kabupaten Sabu Raijua,age_group,10-14,perempuan,5236,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+53.20,2,Kabupaten Sabu Raijua,age_group,10-14,,10282,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+53.20,2,Kabupaten Sabu Raijua,age_group,15-19,laki_laki,4430,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+53.20,2,Kabupaten Sabu Raijua,age_group,15-19,perempuan,4114,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+53.20,2,Kabupaten Sabu Raijua,age_group,15-19,,8544,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+53.20,2,Kabupaten Sabu Raijua,age_group,20-24,laki_laki,3844,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+53.20,2,Kabupaten Sabu Raijua,age_group,20-24,perempuan,3519,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+53.20,2,Kabupaten Sabu Raijua,age_group,20-24,,7363,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+53.20,2,Kabupaten Sabu Raijua,age_group,25-29,laki_laki,3868,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+53.20,2,Kabupaten Sabu Raijua,age_group,25-29,perempuan,3816,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+53.20,2,Kabupaten Sabu Raijua,age_group,25-29,,7684,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+53.20,2,Kabupaten Sabu Raijua,age_group,30-34,laki_laki,3956,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+53.20,2,Kabupaten Sabu Raijua,age_group,30-34,perempuan,3693,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+53.20,2,Kabupaten Sabu Raijua,age_group,30-34,,7649,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+53.20,2,Kabupaten Sabu Raijua,age_group,35-39,laki_laki,3429,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+53.20,2,Kabupaten Sabu Raijua,age_group,35-39,perempuan,3201,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+53.20,2,Kabupaten Sabu Raijua,age_group,35-39,,6630,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+53.20,2,Kabupaten Sabu Raijua,age_group,40-44,laki_laki,2853,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+53.20,2,Kabupaten Sabu Raijua,age_group,40-44,perempuan,2590,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+53.20,2,Kabupaten Sabu Raijua,age_group,40-44,,5443,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+53.20,2,Kabupaten Sabu Raijua,age_group,45-49,laki_laki,2470,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+53.20,2,Kabupaten Sabu Raijua,age_group,45-49,perempuan,2226,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+53.20,2,Kabupaten Sabu Raijua,age_group,45-49,,4696,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+53.20,2,Kabupaten Sabu Raijua,age_group,50-54,laki_laki,2136,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+53.20,2,Kabupaten Sabu Raijua,age_group,50-54,perempuan,1879,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+53.20,2,Kabupaten Sabu Raijua,age_group,50-54,,4015,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+53.20,2,Kabupaten Sabu Raijua,age_group,55-59,laki_laki,1697,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+53.20,2,Kabupaten Sabu Raijua,age_group,55-59,perempuan,1528,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+53.20,2,Kabupaten Sabu Raijua,age_group,55-59,,3225,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+53.20,2,Kabupaten Sabu Raijua,age_group,60-64,laki_laki,1298,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+53.20,2,Kabupaten Sabu Raijua,age_group,60-64,perempuan,1277,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+53.20,2,Kabupaten Sabu Raijua,age_group,60-64,,2575,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+53.20,2,Kabupaten Sabu Raijua,age_group,65-69,laki_laki,1069,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+53.20,2,Kabupaten Sabu Raijua,age_group,65-69,perempuan,1107,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+53.20,2,Kabupaten Sabu Raijua,age_group,65-69,,2176,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+53.20,2,Kabupaten Sabu Raijua,age_group,70-74,laki_laki,855,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+53.20,2,Kabupaten Sabu Raijua,age_group,70-74,perempuan,988,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+53.20,2,Kabupaten Sabu Raijua,age_group,70-74,,1843,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+53.20,2,Kabupaten Sabu Raijua,age_group,75+,laki_laki,1048,jiwa,2025,projection,total_population,3.1.2,51,,75+
+53.20,2,Kabupaten Sabu Raijua,age_group,75+,perempuan,1354,jiwa,2025,projection,total_population,3.1.2,51,,75+
+53.20,2,Kabupaten Sabu Raijua,age_group,75+,,2402,jiwa,2025,projection,total_population,3.1.2,51,,75+
+53.20,2,Kabupaten Sabu Raijua,sex,laki_laki,,48972,jiwa,2025,projection,total_population,3.1.2,51,,Laki-Laki
+53.20,2,Kabupaten Sabu Raijua,sex,perempuan,,47287,jiwa,2025,projection,total_population,3.1.2,51,,Perempuan
+53.20,2,Kabupaten Sabu Raijua,total,total,,96259,jiwa,2025,projection,total_population,3.1.2,51,,
+53.20.06,3,Raijua,religion,islam,,29,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+53.20.06,3,Raijua,religion,kristen,,8273,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+53.20.06,3,Raijua,religion,katolik,,634,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+53.20.06,3,Raijua,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+53.20.06,3,Raijua,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+53.20.06,3,Raijua,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+53.20.05,3,Hawu Mehara,religion,islam,,1,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+53.20.05,3,Hawu Mehara,religion,kristen,,11952,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+53.20.05,3,Hawu Mehara,religion,katolik,,244,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+53.20.05,3,Hawu Mehara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+53.20.05,3,Hawu Mehara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+53.20.05,3,Hawu Mehara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+53.20.04,3,Sabu Liae,religion,islam,,9,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+53.20.04,3,Sabu Liae,religion,kristen,,12682,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+53.20.04,3,Sabu Liae,religion,katolik,,569,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+53.20.04,3,Sabu Liae,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+53.20.04,3,Sabu Liae,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+53.20.04,3,Sabu Liae,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+53.20.01,3,Sabu Barat,religion,islam,,689,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+53.20.01,3,Sabu Barat,religion,kristen,,33622,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+53.20.01,3,Sabu Barat,religion,katolik,,708,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+53.20.01,3,Sabu Barat,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+53.20.01,3,Sabu Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+53.20.01,3,Sabu Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+53.20.02,3,Sabu Tengah,religion,islam,,15,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+53.20.02,3,Sabu Tengah,religion,kristen,,8884,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+53.20.02,3,Sabu Tengah,religion,katolik,,656,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+53.20.02,3,Sabu Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+53.20.02,3,Sabu Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+53.20.02,3,Sabu Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/padi_padian,,141510,rupiah,2024,survey_estimate,per_capita,10.1,268,,Padi-padian
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/padi_padian,,174584,rupiah,2025,survey_estimate,per_capita,10.1,268,,Padi-padian
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/umbi_umbian,,1450,rupiah,2024,survey_estimate,per_capita,10.1,268,,Umbi-umbian
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/umbi_umbian,,1019,rupiah,2025,survey_estimate,per_capita,10.1,268,,Umbi-umbian
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,81598,rupiah,2024,survey_estimate,per_capita,10.1,268,,Ikan/udang/cumi/kerang
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,82275,rupiah,2025,survey_estimate,per_capita,10.1,268,,Ikan/udang/cumi/kerang
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/daging,,74792,rupiah,2024,survey_estimate,per_capita,10.1,268,,Daging
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/daging,,99877,rupiah,2025,survey_estimate,per_capita,10.1,268,,Daging
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/telur_dan_susu,,27616,rupiah,2024,survey_estimate,per_capita,10.1,268,,Telur dan susu
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/telur_dan_susu,,29760,rupiah,2025,survey_estimate,per_capita,10.1,268,,Telur dan susu
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/sayur_sayuran,,66613,rupiah,2024,survey_estimate,per_capita,10.1,268,,Sayur-sayuran
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/sayur_sayuran,,74075,rupiah,2025,survey_estimate,per_capita,10.1,268,,Sayur-sayuran
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/kacang_kacangan,,14074,rupiah,2024,survey_estimate,per_capita,10.1,268,,Kacang-kacangan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/kacang_kacangan,,21934,rupiah,2025,survey_estimate,per_capita,10.1,268,,Kacang-kacangan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/buah_buahan,,14428,rupiah,2024,survey_estimate,per_capita,10.1,268,,Buah-buahan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/buah_buahan,,16553,rupiah,2025,survey_estimate,per_capita,10.1,268,,Buah-buahan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16067,rupiah,2024,survey_estimate,per_capita,10.1,268,,Minyak dan kelapa
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19516,rupiah,2025,survey_estimate,per_capita,10.1,268,,Minyak dan kelapa
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/bahan_minuman,,31183,rupiah,2024,survey_estimate,per_capita,10.1,268,,Bahan minuman
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/bahan_minuman,,29741,rupiah,2025,survey_estimate,per_capita,10.1,268,,Bahan minuman
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/bumbu_bumbuan,,7310,rupiah,2024,survey_estimate,per_capita,10.1,268,,Bumbu-bumbuan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/bumbu_bumbuan,,9806,rupiah,2025,survey_estimate,per_capita,10.1,268,,Bumbu-bumbuan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/konsumsi_lainnya,,8483,rupiah,2024,survey_estimate,per_capita,10.1,268,,Konsumsi lainnya
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/konsumsi_lainnya,,9318,rupiah,2025,survey_estimate,per_capita,10.1,268,,Konsumsi lainnya
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,86537,rupiah,2024,survey_estimate,per_capita,10.1,268,,Makanan dan minuman jadi
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,80487,rupiah,2025,survey_estimate,per_capita,10.1,268,,Makanan dan minuman jadi
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/rokok,,65900,rupiah,2024,survey_estimate,per_capita,10.1,268,,Rokok
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/rokok,,56858,rupiah,2025,survey_estimate,per_capita,10.1,268,,Rokok
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/jumlah_makanan,,637561,rupiah,2024,survey_estimate,per_capita,10.1,268,,Jumlah makanan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/jumlah_makanan,,705803,rupiah,2025,survey_estimate,per_capita,10.1,268,,Jumlah makanan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,287264,rupiah,2024,survey_estimate,per_capita,10.1,268,,Perumahan dan fasilitas rumah tangga
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,271539,rupiah,2025,survey_estimate,per_capita,10.1,268,,Perumahan dan fasilitas rumah tangga
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,106991,rupiah,2024,survey_estimate,per_capita,10.1,268,,Aneka barang dan jasa
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,100775,rupiah,2025,survey_estimate,per_capita,10.1,268,,Aneka barang dan jasa
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20459,rupiah,2024,survey_estimate,per_capita,10.1,268,,"Pakaian, alas kaki, dan tutup kepala"
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19962,rupiah,2025,survey_estimate,per_capita,10.1,268,,"Pakaian, alas kaki, dan tutup kepala"
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/barang_tahan_lama,,10894,rupiah,2024,survey_estimate,per_capita,10.1,268,,Barang tahan lama
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/barang_tahan_lama,,17268,rupiah,2025,survey_estimate,per_capita,10.1,268,,Barang tahan lama
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,52046,rupiah,2024,survey_estimate,per_capita,10.1,268,,"Pajak, pungutan, dan asuransi"
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49041,rupiah,2025,survey_estimate,per_capita,10.1,268,,"Pajak, pungutan, dan asuransi"
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,3487,rupiah,2024,survey_estimate,per_capita,10.1,268,,Keperluan pesta dan upacara/kenduri
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8615,rupiah,2025,survey_estimate,per_capita,10.1,268,,Keperluan pesta dan upacara/kenduri
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,481141,rupiah,2024,survey_estimate,per_capita,10.1,268,,Jumlah bukan makanan
+53.20,2,Kabupaten Sabu Raijua,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,467200,rupiah,2025,survey_estimate,per_capita,10.1,268,,Jumlah bukan makanan
+53.20,2,Kabupaten Sabu Raijua,expenditure,total,,1118702,rupiah,2024,survey_estimate,per_capita,10.1,268,,
+53.20,2,Kabupaten Sabu Raijua,expenditure,total,,1173004,rupiah,2025,survey_estimate,per_capita,10.1,268,,

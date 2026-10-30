@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.18.1001,4,Kota Raja,sex,laki_laki,,1610,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.1001,4,Kota Raja,sex,perempuan,,1648,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.1001,4,Kota Raja,total,total,,3258,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.1002,4,Kota Ratu,sex,laki_laki,,2881,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.1002,4,Kota Ratu,sex,perempuan,,3050,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.1002,4,Kota Ratu,total,total,,5931,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.1003,4,Roworena,sex,laki_laki,,1376,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.1003,4,Roworena,sex,perempuan,,1458,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.1003,4,Roworena,total,total,,2834,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.2004,4,Gheoghoma,sex,laki_laki,,580,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.2004,4,Gheoghoma,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.2004,4,Gheoghoma,total,total,,1201,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.2005,4,Borokanda,sex,laki_laki,,717,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.2005,4,Borokanda,sex,perempuan,,780,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.2005,4,Borokanda,total,total,,1497,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.2006,4,Watusipi,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.2006,4,Watusipi,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.2006,4,Watusipi,total,total,,716,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.1007,4,Roworena Barat,sex,laki_laki,,820,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.1007,4,Roworena Barat,sex,perempuan,,897,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.1007,4,Roworena Barat,total,total,,1717,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.2008,4,Mbomba,sex,laki_laki,,286,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.2008,4,Mbomba,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.2008,4,Mbomba,total,total,,623,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.2009,4,Embu Ndoa,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.2009,4,Embu Ndoa,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.2009,4,Embu Ndoa,total,total,,584,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18.2010,4,Raterua,sex,laki_laki,,288,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18.2010,4,Raterua,sex,perempuan,,296,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18.2010,4,Raterua,total,total,,584,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18,3,Kecamatan Ende Utara,sex,laki_laki,,9185,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.18,3,Kecamatan Ende Utara,sex,perempuan,,9760,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.18,3,Kecamatan Ende Utara,total,total,,18945,jiwa,2025,registration,total_population,3.1,24,,
+53.08.18,3,Ende Utara,age_group,0-4,laki_laki,421,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.18,3,Ende Utara,age_group,0-4,perempuan,435,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.18,3,Ende Utara,age_group,0-4,,856,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.18,3,Ende Utara,age_group,5-9,laki_laki,818,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.18,3,Ende Utara,age_group,5-9,perempuan,688,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.18,3,Ende Utara,age_group,5-9,,1506,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.18,3,Ende Utara,age_group,10-14,laki_laki,886,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.18,3,Ende Utara,age_group,10-14,perempuan,865,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.18,3,Ende Utara,age_group,10-14,,1751,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.18,3,Ende Utara,age_group,15-19,laki_laki,971,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.18,3,Ende Utara,age_group,15-19,perempuan,854,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.18,3,Ende Utara,age_group,15-19,,1825,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.18,3,Ende Utara,age_group,20-24,laki_laki,783,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.18,3,Ende Utara,age_group,20-24,perempuan,832,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.18,3,Ende Utara,age_group,20-24,,1615,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.18,3,Ende Utara,age_group,25-29,laki_laki,752,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.18,3,Ende Utara,age_group,25-29,perempuan,688,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.18,3,Ende Utara,age_group,25-29,,1440,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.18,3,Ende Utara,age_group,30-34,laki_laki,696,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.18,3,Ende Utara,age_group,30-34,perempuan,677,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.18,3,Ende Utara,age_group,30-34,,1373,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.18,3,Ende Utara,age_group,35-39,laki_laki,678,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.18,3,Ende Utara,age_group,35-39,perempuan,701,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.18,3,Ende Utara,age_group,35-39,,1379,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.18,3,Ende Utara,age_group,40-44,laki_laki,656,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.18,3,Ende Utara,age_group,40-44,perempuan,721,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.18,3,Ende Utara,age_group,40-44,,1377,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.18,3,Ende Utara,age_group,45-49,laki_laki,566,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.18,3,Ende Utara,age_group,45-49,perempuan,665,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.18,3,Ende Utara,age_group,45-49,,1231,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.18,3,Ende Utara,age_group,50-54,laki_laki,475,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.18,3,Ende Utara,age_group,50-54,perempuan,613,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.18,3,Ende Utara,age_group,50-54,,1088,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.18,3,Ende Utara,age_group,55-59,laki_laki,393,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.18,3,Ende Utara,age_group,55-59,perempuan,583,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.18,3,Ende Utara,age_group,55-59,,976,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.18,3,Ende Utara,age_group,60-64,laki_laki,386,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.18,3,Ende Utara,age_group,60-64,perempuan,503,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.18,3,Ende Utara,age_group,60-64,,889,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.18,3,Ende Utara,age_group,65-69,laki_laki,314,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.18,3,Ende Utara,age_group,65-69,perempuan,410,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.18,3,Ende Utara,age_group,65-69,,724,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.18,3,Ende Utara,age_group,70-74,laki_laki,174,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.18,3,Ende Utara,age_group,70-74,perempuan,234,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.18,3,Ende Utara,age_group,70-74,,408,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.18,3,Ende Utara,age_group,75+,laki_laki,216,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.18,3,Ende Utara,age_group,75+,perempuan,291,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.18,3,Ende Utara,age_group,75+,,507,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.18,3,Kecamatan Ende Utara,sex,laki_laki,,9185,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.08.18,3,Kecamatan Ende Utara,sex,perempuan,,9760,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.08.18,3,Kecamatan Ende Utara,total,total,,18945,jiwa,2025,registration,total_population,3.2,26,,
