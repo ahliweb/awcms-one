@@ -8,6 +8,8 @@ Branching, the homegrown changeset convention, the release cut, and this reposit
 
 One branch per issue, cut from `main`; a PR back into `main`, titled to reference the issue it closes. [`CONTRIBUTING.md`](../CONTRIBUTING.md) names the full contribution flow and the Definition of Done in [`AGENTS.md`](../AGENTS.md#definition-of-done) — this document does not repeat either, only the parts specific to how a change actually lands.
 
+Product work is placed on the portfolio's product development flow v2.0.0 before it starts (UX/UI validated at step 4; step 11 as frontend, backend, integration per slice) - see "Product development flow v2.0.0" in [`AGENTS.md`](../AGENTS.md#product-development-flow-v200).
+
 ## Branch protection on `main`
 
 Verified directly against this repository's GitHub settings, most recently re-verified for issue #214 (24 September 2026) with:

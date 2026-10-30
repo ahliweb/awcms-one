@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:19928ffefd9807dcd740ca3f82a2f235a2b8e698fabc4f167f085ac3ab03ec85 -->
+<!-- i18n-source-hash: sha256:b44f3d6843ca925c280b081deb8f325a5a2e198f35c9366335051effe5e07a69 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -216,6 +216,23 @@ Perubahan yang memengaruhi perilaku publik, struktur workspace, dependency, atau
 `bun run audit:rilis` mengawasi backlog yang menunggu dan memerah begitu melewati 20 berkas atau 14 hari — sinyal bahwa rilis sudah jatuh tempo, bukan kesalahan yang perlu diminta maaf. Seorang maintainer lalu menjalankan `bun run release`, yang melipat changeset yang menunggu ke `CHANGELOG.md`, menaikkan `package.json`, dan (dengan `--commit`) menandai tag `vX.Y.Z`.
 
 Mendorong (push) tag itu (`git push origin vX.Y.Z`) **tidak lagi** mempublikasikan apa pun dengan sendirinya (issue #225, ADR-0023) — tidak ada workflow tag-push lagi untuk memicunya. Server rilis terpercaya menjalankan `bun run release:images -- --publish --tag vX.Y.Z` (membangun, menandatangani, memindai, dan mendorong image `apps/cms` ke GHCR) lalu `bun run release:publish -- vX.Y.Z --evidence <evidence-dir>` dengan tangan, yang mengambil bagian `CHANGELOG.md` versi tersebut (lewat `tools/rilis-catatan.mjs`) dan membuat atau memperbarui GitHub Release yang sesuai — secara idempoten, sehingga menjalankannya ulang bisa mem-backfill tag lama atau menerbitkan ulang catatannya tanpa gagal pada Release yang sudah ada. Lihat "Release runbook" di [`docs/rilis.md`](docs/rilis.id.md) untuk urutan empat-langkah lengkapnya.
+
+## Alur pengembangan produk v2.0.0
+
+Pekerjaan produk di repositori ini mengikuti alur pengembangan produk 18 langkah portofolio **v2.0.0** ([`alur-pengembangan-produk.md`](https://github.com/ahliweb/personal-coding/blob/main/docs/alur-pengembangan-produk.md)), yang diadopsi upstream di [ahliweb/awcms ADR-0156](https://github.com/ahliweb/awcms/blob/main/docs/adr/0156-adopt-development-flow-v2-validated-ux-before-data-model-frontend-backend-integration-per-slice.id.md). Tempatkan pekerjaan pada langkahnya sebelum memulai. Perubahan dari v1: UX/UI divalidasi di **langkah 4**, sebelum ERD; langkah 4-7 lama kini menjadi 5-8, dan langkah 8 adalah kontrak API beserta mock yang dibangkitkan darinya; langkah 11 berjalan per slice; gerbang 9 (Definition of Ready) dan 15 (Go/No-Go) tidak berubah.
+
+Untuk repositori ini, yang `apps/cms`-nya adalah backend milik repo ini ([ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)), realisasi langkah 11 per slice adalah:
+
+- **11.1 Frontend** - storefront dan aplikasi (`apps/storefront` dan front-end lain), dibangun terhadap mock yang dibangkitkan dari kontrak langkah 8.
+- **11.2 Backend** - modul `apps/cms` (misalnya `commerce`) yang mengimplementasikan kontrak.
+- **11.3 Integrasi** - front-end dipindah dari mock ke backend sungguhan, beserta bukti end-to-end.
+
+Dua aturan mengikuti, dan reviewer boleh menolak PR karena salah satunya:
+
+- **Layar tanpa sumber data di kontrak belum siap** (cacat blocking di gerbang 9). Jangan memulai 11.1 untuknya.
+- **Otorisasi tidak pernah hanya di frontend.** Menyembunyikan kontrol adalah pilihan UX; pemeriksaan izin tetap di backend dan database (RBAC/ABAC/RLS).
+
+`apps/cms/docs/awcms/alur-pengembangan.md` adalah salinan upstream dari alur ini dan masih menampilkan penomoran v1 (UX/UI setelah kontrak) sampai sinkronisasi subtree berikutnya memperbaruinya. Jangan menyuntingnya di sini (lihat "Penyematan subtree" di atas); penomoran v2 berlaku apa pun isinya.
 
 ## Definition of Done
 
