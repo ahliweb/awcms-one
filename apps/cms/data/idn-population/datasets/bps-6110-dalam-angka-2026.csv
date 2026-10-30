@@ -1,0 +1,129 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.10.07,3,Sokan,religion,islam,,8823,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.07,3,Sokan,religion,kristen,,3415,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.07,3,Sokan,religion,katolik,,4612,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.07,3,Sokan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+61.10.07,3,Sokan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.07,3,Sokan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Khonghucu
+61.10.07,3,Sokan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10.06,3,Tanah Pinoh,religion,islam,,13825,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.06,3,Tanah Pinoh,religion,kristen,,3576,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.06,3,Tanah Pinoh,religion,katolik,,403,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.06,3,Tanah Pinoh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+61.10.06,3,Tanah Pinoh,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.06,3,Tanah Pinoh,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,119,,Khonghucu
+61.10.06,3,Tanah Pinoh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10.11,3,Tanah Pinoh Barat,religion,islam,,5031,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.11,3,Tanah Pinoh Barat,religion,kristen,,7642,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.11,3,Tanah Pinoh Barat,religion,katolik,,837,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.11,3,Tanah Pinoh Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+61.10.11,3,Tanah Pinoh Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+61.10.11,3,Tanah Pinoh Barat,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Khonghucu
+61.10.11,3,Tanah Pinoh Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10.05,3,Sayan,religion,islam,,10545,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.05,3,Sayan,religion,kristen,,7095,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.05,3,Sayan,religion,katolik,,896,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.05,3,Sayan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+61.10.05,3,Sayan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.05,3,Sayan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Khonghucu
+61.10.05,3,Sayan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10.01,3,Belimbing,religion,islam,,11173,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.01,3,Belimbing,religion,kristen,,5903,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.01,3,Belimbing,religion,katolik,,7894,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.01,3,Belimbing,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+61.10.01,3,Belimbing,religion,buddha,,83,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.01,3,Belimbing,religion,khonghucu,,35,jiwa,2025,registration,total_population,4.3.1,119,,Khonghucu
+61.10.01,3,Belimbing,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10.10,3,Belimbing Hulu,religion,islam,,4078,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.10,3,Belimbing Hulu,religion,kristen,,3305,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.10,3,Belimbing Hulu,religion,katolik,,3460,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.10,3,Belimbing Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+61.10.10,3,Belimbing Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+61.10.10,3,Belimbing Hulu,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Khonghucu
+61.10.10,3,Belimbing Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10.02,3,Nanga Pinoh,religion,islam,,36256,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.02,3,Nanga Pinoh,religion,kristen,,8084,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.02,3,Nanga Pinoh,religion,katolik,,7874,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.02,3,Nanga Pinoh,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+61.10.02,3,Nanga Pinoh,religion,buddha,,837,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.02,3,Nanga Pinoh,religion,khonghucu,,239,jiwa,2025,registration,total_population,4.3.1,119,,Khonghucu
+61.10.02,3,Nanga Pinoh,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+61.10.09,3,Pinoh Selatan,religion,islam,,6254,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.09,3,Pinoh Selatan,religion,kristen,,3315,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.09,3,Pinoh Selatan,religion,katolik,,2027,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.09,3,Pinoh Selatan,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+61.10.09,3,Pinoh Selatan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.09,3,Pinoh Selatan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Khonghucu
+61.10.09,3,Pinoh Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10.08,3,Pinoh Utara,religion,islam,,7832,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.08,3,Pinoh Utara,religion,kristen,,3603,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.08,3,Pinoh Utara,religion,katolik,,3024,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.08,3,Pinoh Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+61.10.08,3,Pinoh Utara,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.08,3,Pinoh Utara,religion,khonghucu,,9,jiwa,2025,registration,total_population,4.3.1,119,,Khonghucu
+61.10.08,3,Pinoh Utara,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+61.10.03,3,Ella Hilir,religion,islam,,8374,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.03,3,Ella Hilir,religion,kristen,,1326,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.03,3,Ella Hilir,religion,katolik,,9174,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.03,3,Ella Hilir,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+61.10.03,3,Ella Hilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+61.10.03,3,Ella Hilir,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,119,,Khonghucu
+61.10.03,3,Ella Hilir,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+61.10.04,3,Menukung,religion,islam,,4891,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10.04,3,Menukung,religion,kristen,,4463,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10.04,3,Menukung,religion,katolik,,10223,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10.04,3,Menukung,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+61.10.04,3,Menukung,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10.04,3,Menukung,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,119,,Khonghucu
+61.10.04,3,Menukung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+61.10,2,Melawi,religion,islam,,117082,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+61.10,2,Melawi,religion,kristen,,51727,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+61.10,2,Melawi,religion,katolik,,50424,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+61.10,2,Melawi,religion,hindu,,28,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+61.10,2,Melawi,religion,buddha,,957,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+61.10,2,Melawi,religion,khonghucu,,290,jiwa,2025,registration,total_population,4.3.1,119,,Khonghucu
+61.10,2,Melawi,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/padi_padian,,97192,rupiah,2024,survey_estimate,per_capita,10.1,264,,Padi-padian
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/padi_padian,,104314,rupiah,2025,survey_estimate,per_capita,10.1,264,,Padi-padian
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/umbi_umbian,,4585,rupiah,2024,survey_estimate,per_capita,10.1,264,,Umbi-umbian
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/umbi_umbian,,5187,rupiah,2025,survey_estimate,per_capita,10.1,264,,Umbi-umbian
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,62568,rupiah,2024,survey_estimate,per_capita,10.1,264,,Ikan/udang/cumi/kerang
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,71084,rupiah,2025,survey_estimate,per_capita,10.1,264,,Ikan/udang/cumi/kerang
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/daging,,62223,rupiah,2024,survey_estimate,per_capita,10.1,264,,Daging
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/daging,,64027,rupiah,2025,survey_estimate,per_capita,10.1,264,,Daging
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/telur_dan_susu,,32809,rupiah,2024,survey_estimate,per_capita,10.1,264,,Telur dan susu
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/telur_dan_susu,,37471,rupiah,2025,survey_estimate,per_capita,10.1,264,,Telur dan susu
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/sayur_sayuran,,62807,rupiah,2024,survey_estimate,per_capita,10.1,264,,Sayur-sayuran
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/sayur_sayuran,,67621,rupiah,2025,survey_estimate,per_capita,10.1,264,,Sayur-sayuran
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/kacang_kacangan,,9014,rupiah,2024,survey_estimate,per_capita,10.1,264,,Kacang-kacangan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/kacang_kacangan,,9977,rupiah,2025,survey_estimate,per_capita,10.1,264,,Kacang-kacangan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/buah_buahan,,29658,rupiah,2024,survey_estimate,per_capita,10.1,264,,Buah-buahan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/buah_buahan,,18540,rupiah,2025,survey_estimate,per_capita,10.1,264,,Buah-buahan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15888,rupiah,2024,survey_estimate,per_capita,10.1,264,,Minyak dan kelapa
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18931,rupiah,2025,survey_estimate,per_capita,10.1,264,,Minyak dan kelapa
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/bahan_minuman,,24247,rupiah,2024,survey_estimate,per_capita,10.1,264,,Bahan minuman
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/bahan_minuman,,26107,rupiah,2025,survey_estimate,per_capita,10.1,264,,Bahan minuman
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/bumbu_bumbuan,,17767,rupiah,2024,survey_estimate,per_capita,10.1,264,,Bumbu-bumbuan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/bumbu_bumbuan,,19432,rupiah,2025,survey_estimate,per_capita,10.1,264,,Bumbu-bumbuan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/konsumsi_lainnya,,13301,rupiah,2024,survey_estimate,per_capita,10.1,264,,Konsumsi lainnya
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/konsumsi_lainnya,,13359,rupiah,2025,survey_estimate,per_capita,10.1,264,,Konsumsi lainnya
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,121218,rupiah,2024,survey_estimate,per_capita,10.1,264,,Makanan dan minuman jadi
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,126693,rupiah,2025,survey_estimate,per_capita,10.1,264,,Makanan dan minuman jadi
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/rokok,,107979,rupiah,2024,survey_estimate,per_capita,10.1,264,,Rokok
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/rokok,,93038,rupiah,2025,survey_estimate,per_capita,10.1,264,,Rokok
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/jumlah_makanan,,661254,rupiah,2024,survey_estimate,per_capita,10.1,264,,Jumlah makanan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/jumlah_makanan,,675780,rupiah,2025,survey_estimate,per_capita,10.1,264,,Jumlah makanan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,322472,rupiah,2024,survey_estimate,per_capita,10.1,264,,Perumahan dan fasilitas rumah tangga
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,302009,rupiah,2025,survey_estimate,per_capita,10.1,264,,Perumahan dan fasilitas rumah tangga
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,149588,rupiah,2024,survey_estimate,per_capita,10.1,264,,Aneka barang dan jasa
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,128843,rupiah,2025,survey_estimate,per_capita,10.1,264,,Aneka barang dan jasa
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23521,rupiah,2024,survey_estimate,per_capita,10.1,264,,"Pakaian, alas kaki, dan tutup kepala"
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,26367,rupiah,2025,survey_estimate,per_capita,10.1,264,,"Pakaian, alas kaki, dan tutup kepala"
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/barang_tahan_lama,,55706,rupiah,2024,survey_estimate,per_capita,10.1,264,,Barang tahan lama
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/barang_tahan_lama,,73963,rupiah,2025,survey_estimate,per_capita,10.1,264,,Barang tahan lama
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43998,rupiah,2024,survey_estimate,per_capita,10.1,264,,"Pajak, pungutan, dan asuransi"
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41893,rupiah,2025,survey_estimate,per_capita,10.1,264,,"Pajak, pungutan, dan asuransi"
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,616085,rupiah,2024,survey_estimate,per_capita,10.1,264,,Jumlah bukan makanan
+61.10,2,Kabupaten Melawi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,584365,rupiah,2025,survey_estimate,per_capita,10.1,264,,Jumlah bukan makanan
+61.10,2,Kabupaten Melawi,expenditure,total,,1277339,rupiah,2024,survey_estimate,per_capita,10.1,264,,
+61.10,2,Kabupaten Melawi,expenditure,total,,1260145,rupiah,2025,survey_estimate,per_capita,10.1,264,,

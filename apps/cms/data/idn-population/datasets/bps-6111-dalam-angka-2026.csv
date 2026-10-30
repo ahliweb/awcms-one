@@ -1,0 +1,96 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.11.04,3,Pulau Maya,total,total,,15861,jiwa,2025,registration,total_population,3.1.1,56,,
+61.11.06,3,Kepulauan Karimata,total,total,,4068,jiwa,2025,registration,total_population,3.1.1,56,,
+61.11.01,3,Sukadana,total,total,,33145,jiwa,2025,registration,total_population,3.1.1,56,,
+61.11.02,3,Simpang Hilir,total,total,,37642,jiwa,2025,registration,total_population,3.1.1,56,,
+61.11.03,3,Teluk Batang,total,total,,24237,jiwa,2025,registration,total_population,3.1.1,56,,
+61.11.05,3,Seponti,total,total,,13087,jiwa,2025,registration,total_population,3.1.1,56,,
+61.11,2,Kayong Utara,total,total,,128040,jiwa,2025,registration,total_population,3.1.1,56,,
+61.11.04,3,Pulau Maya,religion,islam,,15418,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+61.11.04,3,Pulau Maya,religion,kristen,,54,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+61.11.04,3,Pulau Maya,religion,katolik,,85,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+61.11.04,3,Pulau Maya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+61.11.04,3,Pulau Maya,religion,buddha,,273,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+61.11.04,3,Pulau Maya,religion,lainnya,,31,jiwa,2025,registration,total_population,4.3.1,130,,Lainnya
+61.11.06,3,Kepulauan Karimata,religion,islam,,4049,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+61.11.06,3,Kepulauan Karimata,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+61.11.06,3,Kepulauan Karimata,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+61.11.06,3,Kepulauan Karimata,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+61.11.06,3,Kepulauan Karimata,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+61.11.06,3,Kepulauan Karimata,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Lainnya
+61.11.01,3,Sukadana,religion,islam,,31784,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+61.11.01,3,Sukadana,religion,kristen,,191,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+61.11.01,3,Sukadana,religion,katolik,,228,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+61.11.01,3,Sukadana,religion,hindu,,497,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+61.11.01,3,Sukadana,religion,buddha,,328,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+61.11.01,3,Sukadana,religion,lainnya,,117,jiwa,2025,registration,total_population,4.3.1,130,,Lainnya
+61.11.02,3,Simpang Hilir,religion,islam,,35429,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+61.11.02,3,Simpang Hilir,religion,kristen,,845,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+61.11.02,3,Simpang Hilir,religion,katolik,,380,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+61.11.02,3,Simpang Hilir,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+61.11.02,3,Simpang Hilir,religion,buddha,,798,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+61.11.02,3,Simpang Hilir,religion,lainnya,,185,jiwa,2025,registration,total_population,4.3.1,130,,Lainnya
+61.11.03,3,Teluk Batang,religion,islam,,23400,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+61.11.03,3,Teluk Batang,religion,kristen,,309,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+61.11.03,3,Teluk Batang,religion,katolik,,104,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+61.11.03,3,Teluk Batang,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+61.11.03,3,Teluk Batang,religion,buddha,,338,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+61.11.03,3,Teluk Batang,religion,lainnya,,73,jiwa,2025,registration,total_population,4.3.1,130,,Lainnya
+61.11.05,3,Seponti,religion,islam,,12589,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+61.11.05,3,Seponti,religion,kristen,,301,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+61.11.05,3,Seponti,religion,katolik,,157,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+61.11.05,3,Seponti,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+61.11.05,3,Seponti,religion,buddha,,39,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+61.11.05,3,Seponti,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Lainnya
+61.11,2,Kayong Utara,religion,islam,,122669,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+61.11,2,Kayong Utara,religion,kristen,,1711,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+61.11,2,Kayong Utara,religion,katolik,,956,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+61.11,2,Kayong Utara,religion,hindu,,516,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+61.11,2,Kayong Utara,religion,buddha,,1782,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+61.11,2,Kayong Utara,religion,lainnya,,406,jiwa,2025,registration,total_population,4.3.1,130,,Lainnya
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/padi_padian,,102580,rupiah,2024,survey_estimate,per_capita,10.1,309,,Padi-padian
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/padi_padian,,92703,rupiah,2025,survey_estimate,per_capita,10.1,309,,Padi-padian
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/umbi_umbian,,4667,rupiah,2024,survey_estimate,per_capita,10.1,309,,Umbi-umbian
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/umbi_umbian,,4465,rupiah,2025,survey_estimate,per_capita,10.1,309,,Umbi-umbian
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,91795,rupiah,2024,survey_estimate,per_capita,10.1,309,,Ikan/udang/cumi/kerang
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,79117,rupiah,2025,survey_estimate,per_capita,10.1,309,,Ikan/udang/cumi/kerang
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/daging,,31756,rupiah,2024,survey_estimate,per_capita,10.1,309,,Daging
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/daging,,19628,rupiah,2025,survey_estimate,per_capita,10.1,309,,Daging
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/telur_dan_susu,,40946,rupiah,2024,survey_estimate,per_capita,10.1,309,,Telur dan susu
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/telur_dan_susu,,33969,rupiah,2025,survey_estimate,per_capita,10.1,309,,Telur dan susu
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/sayur_sayuran,,52219,rupiah,2024,survey_estimate,per_capita,10.1,309,,Sayur-sayuran
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/sayur_sayuran,,53840,rupiah,2025,survey_estimate,per_capita,10.1,309,,Sayur-sayuran
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/kacang_kacangan,,11199,rupiah,2024,survey_estimate,per_capita,10.1,309,,Kacang-kacangan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/kacang_kacangan,,9905,rupiah,2025,survey_estimate,per_capita,10.1,309,,Kacang-kacangan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/buah_buahan,,28310,rupiah,2024,survey_estimate,per_capita,10.1,309,,Buah-buahan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/buah_buahan,,24269,rupiah,2025,survey_estimate,per_capita,10.1,309,,Buah-buahan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17541,rupiah,2024,survey_estimate,per_capita,10.1,309,,Minyak dan kelapa
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18474,rupiah,2025,survey_estimate,per_capita,10.1,309,,Minyak dan kelapa
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/bahan_minuman,,29260,rupiah,2024,survey_estimate,per_capita,10.1,309,,Bahan minuman
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/bahan_minuman,,26473,rupiah,2025,survey_estimate,per_capita,10.1,309,,Bahan minuman
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,15074,rupiah,2024,survey_estimate,per_capita,10.1,309,,Bumbu-bumbuan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,16819,rupiah,2025,survey_estimate,per_capita,10.1,309,,Bumbu-bumbuan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,15269,rupiah,2024,survey_estimate,per_capita,10.1,309,,Konsumsi lainnya
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,14571,rupiah,2025,survey_estimate,per_capita,10.1,309,,Konsumsi lainnya
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,187017,rupiah,2024,survey_estimate,per_capita,10.1,309,,Makanan dan minuman jadi
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,196732,rupiah,2025,survey_estimate,per_capita,10.1,309,,Makanan dan minuman jadi
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/rokok,,111022,rupiah,2024,survey_estimate,per_capita,10.1,309,,Rokok
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/rokok,,107052,rupiah,2025,survey_estimate,per_capita,10.1,309,,Rokok
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/jumlah_makanan,,738656,rupiah,2024,survey_estimate,per_capita,10.1,309,,Jumlah makanan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/jumlah_makanan,,698018,rupiah,2025,survey_estimate,per_capita,10.1,309,,Jumlah makanan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,324438,rupiah,2024,survey_estimate,per_capita,10.1,309,,Perumahan dan fasilitas rumah tangga
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,280995,rupiah,2025,survey_estimate,per_capita,10.1,309,,Perumahan dan fasilitas rumah tangga
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,130260,rupiah,2024,survey_estimate,per_capita,10.1,309,,Aneka barang dan jasa
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,122937,rupiah,2025,survey_estimate,per_capita,10.1,309,,Aneka barang dan jasa
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29993,rupiah,2024,survey_estimate,per_capita,10.1,309,,"Pakaian, alas kaki, dan tutup kepala"
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25741,rupiah,2025,survey_estimate,per_capita,10.1,309,,"Pakaian, alas kaki, dan tutup kepala"
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,99012,rupiah,2024,survey_estimate,per_capita,10.1,309,,Barang tahan lama
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,62846,rupiah,2025,survey_estimate,per_capita,10.1,309,,Barang tahan lama
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,59080,rupiah,2024,survey_estimate,per_capita,10.1,309,,"Pajak, pungutan, dan asuransi"
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49274,rupiah,2025,survey_estimate,per_capita,10.1,309,,"Pajak, pungutan, dan asuransi"
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,33027,rupiah,2024,survey_estimate,per_capita,10.1,309,,Keperluan pesta dan upacara/kenduri
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9479,rupiah,2025,survey_estimate,per_capita,10.1,309,,Keperluan pesta dan upacara/kenduri
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,675810,rupiah,2024,survey_estimate,per_capita,10.1,309,,Jumlah bukan makanan
+61.11,2,Kabupaten Kayong Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,551271,rupiah,2025,survey_estimate,per_capita,10.1,309,,Jumlah bukan makanan
+61.11,2,Kabupaten Kayong Utara,expenditure,total,,1414466,rupiah,2024,survey_estimate,per_capita,10.1,309,,
+61.11,2,Kabupaten Kayong Utara,expenditure,total,,1249289,rupiah,2025,survey_estimate,per_capita,10.1,309,,
