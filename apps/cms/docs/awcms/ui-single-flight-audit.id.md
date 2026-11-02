@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-single-flight-audit.md)
 
-<!-- i18n-source-hash: sha256:80b28661244804858c2abc0ca9396d0e326de35d4c8d9ffdc38e87427765cfbd -->
+<!-- i18n-source-hash: sha256:dfa8cee642d52fc82398eb5eb096b043e9e5fe79e73dc337d94a54d829f7b32d -->
 
 # Single flight secara bawaan: audit setiap form dan titik masuk mutasi
 
