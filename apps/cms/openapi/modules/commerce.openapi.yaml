@@ -6427,6 +6427,336 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/subscriptions:
+    get:
+      operationId: getCommerceStorefrontAccountPushState
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 6.1). Customer Web Push state: what the server knows (capability), the account's consent preferences and its active devices."
+      description: >-
+        Bearer only (`customerBearer`): no cookie, no staff credential. Behind the
+        per-tenant `customerPush` feature (default OFF = the neutral `404`, the same
+        body as an unresolvable tenant). `capability.enabled: false` is a first-class
+        `200` (no VAPID key pair or key ring, or a storefront served from the CMS
+        origin) and carries a `reason`; everything the BROWSER knows (Push API,
+        installed iOS app, permission state) is detected by the storefront. Devices
+        are listed masked (`endpointMasked`); the raw endpoint, the keys and the
+        ciphertexts are never returned. Every answer carries `Cache-Control: private,
+        no-store` and `Vary: Origin`; the CORS grant echoes only a tenant-resolved
+        origin and never allows credentials.
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The push state of the authenticated account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomerPushState"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: registerCommerceStorefrontAccountPushDevice
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 5.2, 6.1). Register or re-register this browser's push subscription. Idempotent by endpoint; one transaction; consent recorded with the wording version."
+      description: >-
+        The body is the browser's `PushSubscription.toJSON()` plus `consent`; any
+        other key (`transport`, `accountId`, `tenantId`, `title`, `body`,
+        `navigate`, ...) is a `400`. The principal is the bearer's account and
+        session, never the body. The endpoint's host must be a known browser push
+        service (Google FCM, Mozilla, Apple, Microsoft; an operator environment
+        setting can extend the list, a tenant or a request cannot) or the answer is
+        `422 ENDPOINT_NOT_ALLOWED` and nothing is written. The `Origin` must be the
+        tenant's own storefront origin (not the CMS origin): a deployment that
+        serves the storefront and the CMS from one origin is unsupported in v1
+        (`422 ORIGIN_NOT_ALLOWED`, capability reason `origin_not_supported`).
+        At most 5 active devices per account (`409 DEVICE_LIMIT`). `201` when the
+        caller newly owns the device (new, revived, or transferred from another
+        account on a shared browser - atomic, audited, the previous owner's queued
+        notifications are cancelled; the caller learns nothing about the previous
+        owner), `200` for a no-op re-registration. Body cap 8 KiB. Rate limits: 30
+        per hour per IP, 10 per hour per account.
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCustomerPushSubscribeRequest"
+      responses:
+        "200":
+          description: A no-op re-registration by the account that already owns the device.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommerceCustomerPushSubscribeResult"
+        "201":
+          description: Registered, revived or transferred to the caller.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommerceCustomerPushSubscribeResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: PUSH_UNAVAILABLE (push is not configured on this deployment) or DEVICE_LIMIT (5 active devices already).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "413":
+          description: PAYLOAD_TOO_LARGE (over 8 KiB).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE (`Content-Type` must be application/json).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: VALIDATION_ERROR, ENDPOINT_NOT_ALLOWED (host outside the push-service allowlist) or ORIGIN_NOT_ALLOWED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: revokeAllCommerceStorefrontAccountPushDevices
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 5.3). Revoke every push device of the authenticated account. Idempotent: nothing to revoke is still `204`."
+      description: >-
+        Destroys each device's stored credentials at once and cancels its queued
+        notifications. A blocked account may still call it.
+      security:
+        - customerBearer: []
+      responses:
+        "204":
+          description: Revoked (or there was nothing to revoke).
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/subscriptions/{id}:
+    delete:
+      operationId: revokeCommerceStorefrontAccountPushDevice
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 5.3). Revoke ONE of the authenticated account's push devices."
+      description: >-
+        Ownership is enforced inside the query, so an absent id, someone else's id,
+        a malformed id and an already-revoked id are the same `404`. A blocked
+        account may still revoke.
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Revoked; the device's credentials are destroyed.
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/preferences:
+    get:
+      operationId: getCommerceStorefrontAccountPushPreferences
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 2.3, 6.1). The account's consent per push purpose."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: "One entry per transactional purpose, in a fixed order; a purpose never set is `enabled: false` with no evidence."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      preferences:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    put:
+      operationId: updateCommerceStorefrontAccountPushPreferences
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 2.3, 6.1). Set consent per purpose. Only the named purposes change; every change is audited."
+      description: >-
+        Turning a purpose ON needs the current consent wording version
+        (`capability.consentTextVersion`) and is recorded with it; turning one OFF
+        never needs it (a withdrawal is always possible) and keeps its row as
+        evidence. `marketing` is reserved and refused. Transactional consent never
+        implies marketing consent. Body cap 8 KiB.
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCustomerPushPreferencesRequest"
+      responses:
+        "200":
+          description: The updated preferences.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      preferences:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "413":
+          description: PAYLOAD_TOO_LARGE (over 8 KiB).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: VALIDATION_ERROR (a missing or stale `textVersion`, an unknown purpose, `marketing`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/account/addresses:
     get:
       operationId: listCommerceStorefrontAccountAddresses
@@ -7461,6 +7791,44 @@ paths:
                     description: Matches `apps/storefront/src/lib/akun-klien.ts`'s `ambilKomisiAfiliasi` contract — `{items, nextCursor}`.
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/customer-push/diagnostics:
+    get:
+      operationId: getCommerceCustomerPushDiagnostics
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 Q10). AGGREGATE customer Web Push counts for staff: devices by status, messages by status and purpose, preferences by purpose. Gated on `commerce.customer_push.read`."
+      description: >-
+        Counts only. The answer never carries an endpoint (masked or not), a device
+        id, an account or customer id, a token or a message text. `sent` means the
+        push service accepted the request, never that anything was displayed or
+        read: no figure is called "delivered". Feature off is `409
+        FEATURE_DISABLED` (the owner-route convention).
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: The aggregate diagnostics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomerPushDiagnostics"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED - the `customerPush` feature is off for this tenant.
           content:
             application/json:
               schema:
@@ -9782,7 +10150,7 @@ paths:
       operationId: getReportsCommerceBookingRevenue
       tags:
         - Commerce
-      summary: 'Issue #389 (ADR-0045 amendment note; metrics spec sections 3, 3.7 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection. Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order''s first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment; Refunds are the money paid back plus, for a closed order (a cancellation or a no-show), the unpaid balance that will never be collected ("no money moved"), both on the ORIGINAL paid day; net is gross - discounts - refunds. Shipping, insurance and tax are companion columns beside the waterfall, and the unpaid balance of orders still open is shown as `balanceOutstanding`. Also the stay and no-show counts and the no-show rate (no-shows / stays, joined through the order). Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant''s `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes'' own permission; the projection''s freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.'
+      summary: 'Issues #389 and #478 (ADR-0045 and its "Owner decisions on the booking revenue slice"; metrics spec sections 3, 3.7, 3.9 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection (descriptor version 2). Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order''s first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment. A refund counts when it is DECIDED (the order''s return records), not when the money moves, so the Refunds step has three parts that add up: `refundsPaidBack` (succeeded reversal legs), `refundsPayable` (decided, not yet paid out) and `refundsUncollected` (the unpaid balance of a closed order, "no money moved"), all on the ORIGINAL paid day. Each refund and each uncollected amount is allocated across goods, shipping, insurance and tax (pro rata in integer cents with the largest-remainder method; an exact split on a return record wins): only the goods share is in the Refunds step, the other three lower their own companion columns, so a full refund of a taxed order gives net 0 and tax 0. Settling a refund leg moves cents from payable to paid back and never moves net. Net is gross - discounts - refunds. `shipping`, `insurance` and `tax` are companion columns after their refunded share, `balanceOutstanding` is the unpaid balance of orders still open and `refundPayableBalance` the money still to be paid out on decided refunds. The waterfall is an operational sales measure, not a financial-statement figure. The cash reading of refunds is the separate `booking-revenue-cash` view. Also the stay and no-show counts and the no-show rate. Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant''s `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes'' own permission; the projection''s freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.'
       parameters:
         - name: from
           in: query
@@ -9812,6 +10180,90 @@ paths:
                       - true
                   data:
                     $ref: "#/components/schemas/CommerceBookingRevenueReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/booking-revenue.csv:
+    get:
+      operationId: exportReportsCommerceBookingRevenueCsv
+      tags:
+        - Commerce
+      summary: "Issue #478 (metrics 3.9 D4). The booking revenue waterfall of `booking-revenue` as a CSV (`text/csv`), one row per `Asia/Jakarta` paid day with the same columns as the screen: `basis` (always `paid_day`), `day`, `orders`, `gross`, `discounts`, `refunds` with its three parts `refunds_paid_back`, `refunds_payable` and `refunds_uncollected`, `net`, the `shipping`, `insurance` and `tax` companions after their refunded share, `balance_outstanding`, `refund_payable_balance`, `stays`, `no_shows`, `no_show_retained`, `no_show_rate_percent`, `restated` and `restated_at`. Aggregates only (no order, customer, name or contact); every cell is spreadsheet-formula-neutralised. Gated on `commerce.report_booking_revenue.export` (a dedicated high-risk export key, not implied by `reporting.dashboard.read`). The export is audited as `booking_revenue_report.export` (the range and the row count, never a cell) and sent `Cache-Control: no-store`. While the tenant's `booking` feature is OFF the file is the header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: "Inclusive first paid day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days."
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: "Inclusive last paid day (`YYYY-MM-DD`). Defaults to today in the report time zone."
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/booking-revenue-cash:
+    get:
+      operationId: getReportsCommerceBookingRevenueCash
+      tags:
+        - Commerce
+      summary: 'Issue #478 (metrics 3.6 and 3.9 D4). The CASH view of the booking slice''s refunds: the succeeded reversal legs of the payment ledger of the booking-sourced orders, grouped by the `Asia/Jakarta` day each leg SETTLED. This is where the cash reading of a refund lives now that the waterfall counts a refund when it is decided; the payload says `basis: "cash"` and the two views are never mixed in one chart. A leg that is planned, processing or failed moved no money and is the waterfall''s `refundPayableBalance`, not a row here. A live read of the append-only ledger (no second store, no restatement). Aggregates only. While the tenant''s `booking` feature is OFF the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`.'
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: "Inclusive first settlement day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days."
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: "Inclusive last settlement day (`YYYY-MM-DD`). Defaults to today in the report time zone."
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: One row per settlement day that has a booking refund leg, ascending, and the range totals.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingCashRefunds"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -13853,7 +14305,11 @@ paths:
         more than 3 distinct windows or more than 8 KiB of JSON is a 400 whose
         `details` name the offending path (`rules.and[1].field`). A key outside
         `name`, `description`, `rules` - a `tenantId`, for instance - is refused
-        by name, never honoured. The stored rules are the canonical form.
+        by name, never honoured. The stored rules are the canonical form. A rule
+        that reads a booking-derived field (rule schema 2, Issue #390, ADR-0052)
+        additionally needs the tenant's `booking` feature (`409
+        FEATURE_DISABLED`) and `commerce.booking_reservation_links.read`
+        (`403`); the version is stored under rule schema 2.
       requestBody:
         required: true
         content:
@@ -13903,7 +14359,11 @@ paths:
         10 masked customers, never pageable) is present only for a caller who
         also holds `commerce.segment_members.read` and `commerce.customers.read`;
         otherwise it is null and no customer permission is needed. The walk-in
-        placeholder, blocked and erased customers are never counted.
+        placeholder, blocked and erased customers are never counted. A rule that
+        reads a booking-derived field (rule schema 2, Issue #390, ADR-0052)
+        additionally needs `commerce.booking_reservation_links.read` (`403`), and
+        - for an unsaved `rules` body, which is a definition - the tenant's
+        `booking` feature (`409 FEATURE_DISABLED`).
       requestBody:
         required: true
         content:
@@ -13993,7 +14453,7 @@ paths:
       operationId: updateCommerceSegment
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`."
+      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`. Issue #390 (ADR-0052): `rules` that read a booking-derived field additionally need the `booking` feature (`409 FEATURE_DISABLED`) and `commerce.booking_reservation_links.read` (`403`); a rename needs neither. The new version is stored under rule schema 2."
       parameters:
         - name: id
           in: path
@@ -14078,7 +14538,7 @@ paths:
       operationId: listCommerceSegmentMembers
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second)."
+      summary: "Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second). Issue #390: a version whose rules read a booking-derived field also needs `commerce.booking_reservation_links.read` (403)."
       description: >-
         Walk-in, blocked and erased customers are never members. Fields are the
         customer's name, masked phone, masked e-mail and price level. Every page
@@ -14157,7 +14617,7 @@ paths:
       operationId: exportCommerceSegmentMembersCsv
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`."
+      summary: "Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`. Issue #390: a version whose rules read a booking-derived field also needs `commerce.booking_reservation_links.read` (403)."
       description: >-
         Every cell is spreadsheet-formula-neutralised; phone and e-mail are the
         masked forms a list shows. Bounded: at most 10,000 rows with
@@ -20879,7 +21339,7 @@ components:
           description: Qualifying orders of the anonymous walk-in placeholder, all time, outside every cohort.
     CommerceBookingRevenueFigures:
       type: object
-      description: "Issue #389 (metrics spec sections 3, 3.7, 8.2). The booking-sourced revenue waterfall, its companion columns and the no-show figures of a paid day or of a whole range. Money is a `numeric(14,2)` string (ADR-0003)."
+      description: "Issues #389 and #478 (metrics spec sections 3, 3.7, 3.9, 8.2). The booking-sourced revenue waterfall, its companion columns and the no-show figures of a paid day or of a whole range. Money is a `numeric(14,2)` string (ADR-0003). The control identity is `net + shipping + insurance + tax = settled - refundPayableBalance + balanceOutstanding - surplus`."
       required:
         - orders
         - stays
@@ -20887,12 +21347,14 @@ components:
         - discounts
         - refunds
         - refundsPaidBack
+        - refundsPayable
         - refundsUncollected
         - net
         - shipping
         - insurance
         - tax
         - balanceOutstanding
+        - refundPayableBalance
         - noShows
         - noShowRetained
         - noShowRatePercent
@@ -20913,25 +21375,34 @@ components:
           description: "Reductions the order recorded before payment (voucher, points), as a positive number."
         refunds:
           type: string
-          description: "`refundsPaidBack + refundsUncollected`, positive."
+          description: "The Refunds step: `refundsPaidBack + refundsPayable + refundsUncollected`, positive. Each part is the GOODS share (subtotal less discount) of the money; the shipping, insurance and tax shares lower their own companion columns."
         refundsPaidBack:
           type: string
-          description: '"Of which paid back": the succeeded reversal legs of the payment ledger.'
+          description: '"Of which paid back": the goods share of the succeeded reversal legs of the payment ledger.'
+        refundsPayable:
+          type: string
+          description: '"Of which refund payable": the goods share of the refunds decided (a return record exists) and not yet paid out - planned, processing or failed legs. Settling a leg moves cents from here to `refundsPaidBack` and never moves `net`.'
         refundsUncollected:
           type: string
-          description: '"Of which uncollected balance (no money moved)": the unpaid part of an order a cancellation or a no-show closed.'
+          description: '"Of which uncollected balance (no money moved)": the goods share of the unpaid part of an order a cancellation or a no-show closed.'
         net:
           type: string
-          description: "`gross - discounts - refunds` (negative only when a refund returned tax or shipping the companion columns still show)."
+          description: "`gross - discounts - refunds`. Never negative: a refund of a taxed order lowers the tax companion as well, so a full refund gives net 0 and tax 0."
         shipping:
           type: string
+          description: The shipping companion after the share that refunds and the uncollected balance took out of it.
         insurance:
           type: string
+          description: The insurance companion after its refunded share.
         tax:
           type: string
+          description: The tax companion after its refunded share. Tax collected is not revenue.
         balanceOutstanding:
           type: string
           description: The unpaid balance of orders still open, shown beside the waterfall so deposit-day gross is never read as cash received.
+        refundPayableBalance:
+          type: string
+          description: "Money, all components (goods, shipping, insurance, tax), decided to be refunded and not yet paid out: how much cash is still to leave. A companion column like `balanceOutstanding`."
         noShows:
           type: integer
         noShowRetained:
@@ -20972,9 +21443,10 @@ components:
               nullable: true
     CommerceBookingRevenueReport:
       type: object
-      description: "Issue #389. The booking-sourced revenue report."
+      description: "Issues #389 and #478. The booking-sourced revenue report."
       required:
         - enabled
+        - basis
         - timeZone
         - restatementWindowDays
         - asOf
@@ -20987,6 +21459,11 @@ components:
         enabled:
           type: boolean
           description: "`false` while the `booking` feature is off: everything below is then empty."
+        basis:
+          type: string
+          enum:
+            - paid_day
+          description: "What a day means: the day of the order's first paid transition (attribution), never the day money moved - see `booking-revenue-cash` for that."
         timeZone:
           type: string
           description: The day calendar (`Asia/Jakarta`).
@@ -21010,6 +21487,72 @@ components:
             $ref: "#/components/schemas/CommerceBookingRevenueDay"
         totals:
           $ref: "#/components/schemas/CommerceBookingRevenueFigures"
+    CommerceBookingCashRefunds:
+      type: object
+      description: "Issue #478. The cash view of the booking slice's refunds, by the day the reversal legs settled."
+      required:
+        - enabled
+        - basis
+        - timeZone
+        - asOf
+        - from
+        - to
+        - currency
+        - days
+        - totals
+      properties:
+        enabled:
+          type: boolean
+          description: "`false` while the `booking` feature is off: everything below is then empty."
+        basis:
+          type: string
+          enum:
+            - cash
+          description: This view is cash - the day money moved. It is never mixed with the paid-day waterfall in one chart.
+        timeZone:
+          type: string
+          description: The day calendar (`Asia/Jakarta`).
+        asOf:
+          type: string
+          format: date-time
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        currency:
+          type: string
+          description: One currency per tenant in v1.
+        days:
+          type: array
+          items:
+            type: object
+            required:
+              - day
+              - legs
+              - refundsPaidOut
+            properties:
+              day:
+                type: string
+                format: date
+                description: The Asia/Jakarta day the reversal legs settled.
+              legs:
+                type: integer
+                description: Settled reversal legs of that day.
+              refundsPaidOut:
+                type: string
+                description: "`numeric(14,2)` string. Money that went back to customers that day."
+        totals:
+          type: object
+          required:
+            - legs
+            - refundsPaidOut
+          properties:
+            legs:
+              type: integer
+            refundsPaidOut:
+              type: string
     CommerceBookingPipeline:
       type: object
       description: "Issue #389. The booking hold pipeline as of now."
@@ -21319,6 +21862,300 @@ components:
         addedAt:
           type: string
           format: date-time
+    CommerceCustomerPushCapability:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). What the SERVER knows about customer Web Push for this deployment and this request. `enabled: false` is a normal answer, not an error."
+      required:
+        - enabled
+        - reason
+        - applicationServerKey
+        - transports
+        - purposes
+        - consentTextVersion
+        - maxDevices
+      properties:
+        enabled:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+          enum:
+            - push_not_configured
+            - origin_not_supported
+            - null
+          description: "`push_not_configured`: no VAPID key pair, key ring or `web_push` provider. `origin_not_supported`: the storefront is served from the CMS origin (unsupported in v1) or the request origin is not a valid storefront origin."
+        applicationServerKey:
+          type: string
+          nullable: true
+          description: The VAPID public key for `PushManager.subscribe()` (not a secret). `null` unless `enabled`.
+        transports:
+          type: array
+          items:
+            type: string
+            enum:
+              - web_push
+        purposes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+        consentTextVersion:
+          type: string
+          description: The version of the consent wording the page must show and echo back as `textVersion`.
+        maxDevices:
+          type: integer
+          description: Active devices allowed per account.
+    CommerceCustomerPushPurpose:
+      type: string
+      enum:
+        - order_updates
+        - payment_updates
+        - support_replies
+      description: "Issue #430. A transactional notification purpose. `marketing` is reserved and never accepted or sent in v1."
+    CommerceCustomerPushDevice:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). One active push device of the authenticated account. The raw endpoint, the keys and the ciphertexts are never returned."
+      required:
+        - id
+        - endpointMasked
+        - userAgentSummary
+        - status
+        - lastSuccessAt
+        - registeredAt
+        - current
+      properties:
+        id:
+          type: string
+          format: uuid
+        endpointMasked:
+          type: string
+          description: The push service's origin plus the last characters of the endpoint, e.g. `https://fcm.googleapis.com/...a1b2c3`.
+        userAgentSummary:
+          type: string
+          nullable: true
+          description: A coarse browser description such as `Chrome on Android (mobile)`; never the raw User-Agent.
+        status:
+          type: string
+          enum:
+            - active
+        lastSuccessAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the push service last ACCEPTED a message for this device. Not a display or read time.
+        registeredAt:
+          type: string
+          format: date-time
+        current:
+          type: boolean
+          description: True when the device was enrolled by the caller's current session.
+    CommerceCustomerPushPreference:
+      type: object
+      description: "Issue #430 (ADR-0048 section 2.3). Consent for one purpose, with its evidence. A withdrawal keeps its row."
+      required:
+        - purpose
+        - enabled
+        - consentTextVersion
+        - grantedAt
+        - revokedAt
+      properties:
+        purpose:
+          $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+        enabled:
+          type: boolean
+        consentTextVersion:
+          type: string
+          nullable: true
+        grantedAt:
+          type: string
+          format: date-time
+          nullable: true
+        revokedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceCustomerPushState:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). The response of `GET .../account/push/subscriptions`."
+      required:
+        - capability
+        - preferences
+        - devices
+      properties:
+        capability:
+          $ref: "#/components/schemas/CommerceCustomerPushCapability"
+        preferences:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        devices:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushDevice"
+    CommerceCustomerPushSubscribeRequest:
+      type: object
+      additionalProperties: false
+      description: "Issue #430 (ADR-0048 sections 6.1, 6.7). The browser's `PushSubscription.toJSON()` plus `consent`. Any other key is a 400."
+      required:
+        - endpoint
+        - keys
+        - consent
+      properties:
+        endpoint:
+          type: string
+          maxLength: 2048
+          description: An `https` URL on a known browser push service. A host outside the allowlist is `422 ENDPOINT_NOT_ALLOWED`.
+        keys:
+          type: object
+          additionalProperties: false
+          required:
+            - p256dh
+            - auth
+          properties:
+            p256dh:
+              type: string
+              description: base64url of the 65-byte uncompressed P-256 public key.
+            auth:
+              type: string
+              description: base64url of the 16-byte auth secret. Stored only as an AES-256-GCM envelope.
+        expirationTime:
+          type: number
+          nullable: true
+          description: Accepted for shape compatibility and ignored.
+        consent:
+          type: object
+          additionalProperties: false
+          required:
+            - purposes
+            - textVersion
+          properties:
+            purposes:
+              type: array
+              minItems: 1
+              items:
+                $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+            textVersion:
+              type: string
+              maxLength: 32
+              description: Must equal `capability.consentTextVersion`.
+    CommerceCustomerPushSubscribeResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          enum:
+            - true
+        data:
+          type: object
+          properties:
+            device:
+              $ref: "#/components/schemas/CommerceCustomerPushDevice"
+            preferences:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommerceCustomerPushPreference"
+    CommerceCustomerPushPreferencesRequest:
+      type: object
+      additionalProperties: false
+      description: "Issue #430. Only the purposes named change. `textVersion` is required when any purpose is set to true."
+      required:
+        - purposes
+      properties:
+        purposes:
+          type: object
+          minProperties: 1
+          additionalProperties: false
+          properties:
+            order_updates:
+              type: boolean
+            payment_updates:
+              type: boolean
+            support_replies:
+              type: boolean
+        textVersion:
+          type: string
+          maxLength: 32
+    CommerceCustomerPushDiagnostics:
+      type: object
+      description: "Issue #430 (ADR-0048 Q10). Aggregate counts only; no device, account or customer identifier, no endpoint, no message text."
+      required:
+        - generatedAt
+        - devices
+        - accountsWithActiveDevice
+        - messages
+        - preferences
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+        devices:
+          type: object
+          description: Devices by status.
+          properties:
+            active:
+              type: integer
+            revoked:
+              type: integer
+            gone:
+              type: integer
+            disabled:
+              type: integer
+        accountsWithActiveDevice:
+          type: integer
+        messages:
+          type: object
+          properties:
+            byStatus:
+              type: object
+              description: "Retained messages by status. `sent` means the push service accepted the request, nothing more."
+              properties:
+                queued:
+                  type: integer
+                sending:
+                  type: integer
+                sent:
+                  type: integer
+                retry_wait:
+                  type: integer
+                failed:
+                  type: integer
+                cancelled:
+                  type: integer
+                expired:
+                  type: integer
+            byPurposeAndStatus:
+              type: array
+              items:
+                type: object
+                properties:
+                  purpose:
+                    type: string
+                  status:
+                    type: string
+                  count:
+                    type: integer
+            byReason:
+              type: array
+              description: "Issue #432. Why messages did not go out, from the fixed `last_error` vocabulary (never provider text), by status. `retry_wait` with `rate_limited` is a send deferred by the account's hourly or daily cap; with `provider_unavailable` it is a backoff."
+              items:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  reason:
+                    type: string
+                  count:
+                    type: integer
+        preferences:
+          type: array
+          items:
+            type: object
+            properties:
+              purpose:
+                type: string
+              enabled:
+                type: integer
+              withdrawn:
+                type: integer
     CommerceAccountAddress:
       type: object
       description: "Issue #91 (implemented, contract #86). One row of `awcms_commerce_customer_addresses`, reached through the account (bearer) rather than a one-off order snapshot — `label`/`postalCode` are always present (never null), unlike the order-creation `address` shape."
@@ -22558,8 +23395,9 @@ components:
     CommerceSegmentRules:
       type: object
       description: >-
-        A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7 - no
-        booking-derived field). A node has exactly one of `and` / `or` (arrays of
+        A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7). Rule
+        schema 1 is the nine commerce fields; rule schema 2 (Issue #390,
+        ADR-0052) adds five booking-derived ones. A node has exactly one of `and` / `or` (arrays of
         1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op,
         value?, windowDays? }`. Fields and their operators: `level` (eq, in;
         1..4), `has_account` / `has_email` (eq; boolean), `customer_since`
@@ -22567,7 +23405,17 @@ components:
         integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt,
         lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date`
         / `first_order_date` (before, after with a date value, or never with no
-        value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). A date
+        value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points).
+        Schema 2 adds `booking_count` (paid, standing bookings; window on the
+        order's `paid_at`), `stay_count` (checked-in or completed stays; window on
+        the arrival), `no_show_count` and `cancellation_count` (cancellations the
+        CUSTOMER made; window on the decision's `created_at`) - all four eq, gt,
+        gte, lt, lte; integer 0..1000000; optional `windowDays` - and
+        `last_stay_date` (before, after with a date value, or never with no
+        value; no window). A booking field needs the tenant's `booking` feature
+        and `commerce.booking_reservation_links.read` to DEFINE (create, a new
+        version, an unsaved preview) and the permission alone to read, export or
+        aim a campaign / loyalty program at a saved one. A date
         value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }`
         resolved against the server's as-of. Bounds: depth 4, 25 nodes, 3
         distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order
@@ -22651,6 +23499,7 @@ components:
       type: object
       required:
         - version
+        - ruleSchemaVersion
         - rules
         - nodeCount
         - depth
@@ -22658,6 +23507,10 @@ components:
       properties:
         version:
           type: integer
+        ruleSchemaVersion:
+          type: integer
+          minimum: 1
+          description: "Issue #390 (ADR-0052, C-29). The rule schema the version was written under (1 = the nine commerce fields, 2 = adds the booking-derived fields) and is always read under: a schema-1 version never gains a schema-2 field. Versions saved before schema 2 existed are 1; new versions are 2."
         rules:
           $ref: "#/components/schemas/CommerceSegmentRules"
         nodeCount:

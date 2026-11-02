@@ -1854,6 +1854,20 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // documents for awcms_email_delivery_attempts.
   awcms_commerce_whatsapp_delivery_attempts: ["SELECT", "INSERT", "DELETE"],
   awcms_commerce_customer_sessions: ["SELECT", "DELETE"],
+  // Issue #430 (ADR-0048, sql/1058) — customer Web Push. The devices table is
+  // table-level SELECT + DELETE (the tombstone purge) with a COLUMN-ONLY UPDATE
+  // (see WORKER_COLUMN_GRANTS): the worker can never INSERT a device or rewrite
+  // the columns that decide where a delivery goes. Preferences: SELECT only (the
+  // send-time consent check). Messages: UPDATE (claim, finalize, cancel) and
+  // DELETE (retention); the consumers that INSERT run in the event runtime and
+  // are mapped by #432. Attempts: the SELECT the ON CONFLICT arbiter read needs.
+  // Messages: SELECT and DELETE only at table level since sql/1061 (Issue #432):
+  // INSERT (the enqueue consumer, which runs as the worker) and UPDATE (the
+  // dispatcher's status machine) are COLUMN-ONLY, see WORKER_COLUMN_GRANTS.
+  awcms_commerce_push_devices: ["SELECT", "DELETE"],
+  awcms_commerce_push_preferences: ["SELECT"],
+  awcms_commerce_push_messages: ["SELECT", "DELETE"],
+  awcms_commerce_push_delivery_attempts: ["SELECT", "INSERT", "DELETE"],
   // `awcms_commerce_customer_accounts` carries a `dataLifecycle` descriptor
   // with `executionMode: 'generic'` (module.ts) purely so the table answers
   // `data-lifecycle:table-coverage:check` — `deleted_at` stays NULL forever
@@ -2277,6 +2291,59 @@ export const WORKER_COLUMN_GRANTS: Record<
       "updated_at",
       "auth_secret",
       "auth_secret_ciphertext"
+    ]
+  },
+  // sql/1058 (Issue #430, ADR-0048 section 3.5): the maintenance job and the
+  // dispatcher (#432) settle a customer push device's status and the re-key job
+  // moves its credentials. NOT writable: account_id, session_id,
+  // storefront_origin, endpoint_hash, endpoint_masked - a worker able to rewrite
+  // those could redirect a delivery to another account or origin. The guard
+  // trigger additionally bounds what may be written into the credential columns.
+  awcms_commerce_push_devices: {
+    UPDATE: [
+      "status",
+      "status_reason",
+      "revoked_at",
+      "last_success_at",
+      "failure_count",
+      "updated_at",
+      "endpoint_ciphertext",
+      "p256dh_key",
+      "auth_secret_ciphertext"
+    ]
+  },
+  // sql/1061 (Issue #432, ADR-0048 section 3.5): the fan-out consumer INSERTs the
+  // thirteen columns an enqueue supplies (every other column keeps its default, so
+  // a worker cannot insert a row that is already `sent`), and the dispatcher
+  // UPDATEs only the status machine and the provider result. NOT writable after
+  // the insert: account_id, device_id, purpose, title, body, target_path, tag,
+  // dedupe_key, source_event_id, event_type, priority, expires_at - a worker able
+  // to rewrite those could redirect a message to another account, device or text.
+  awcms_commerce_push_messages: {
+    INSERT: [
+      "tenant_id",
+      "account_id",
+      "device_id",
+      "source_event_id",
+      "event_type",
+      "purpose",
+      "priority",
+      "tag",
+      "dedupe_key",
+      "title",
+      "body",
+      "target_path",
+      "expires_at"
+    ],
+    UPDATE: [
+      "status",
+      "retry_count",
+      "next_attempt_at",
+      "last_error",
+      "provider_name",
+      "provider_message_id",
+      "sent_at",
+      "updated_at"
     ]
   },
   // sql/284 (Issue #943): the booking reminder dispatcher settles an intent. The
@@ -2826,6 +2893,10 @@ export const WORKER_CREDENTIAL_COLUMN_EXCEPTIONS: Readonly<
     "LEGACY plaintext copy of the Web Push auth secret, read by push:dispatch ONLY for a row that has no ciphertext yet (sql/093). Transitional (Issue #1089): the backfill NULLs it, `security:readiness` reports how many plaintext rows remain, and the follow-up migration drops the column and this exception",
   "awcms_push_subscriptions.auth_secret_ciphertext":
     "push:dispatch decrypts the Web Push auth secret in-process to encrypt the payload; it is ciphertext under a key ring the worker already holds, AAD-bound to tenant and endpoint hash (sql/314)",
+  "awcms_commerce_push_devices.endpoint_ciphertext":
+    "the customer push dispatcher (#432) decrypts the endpoint in-process to hand it to the provider, and commerce:customer-push:rekey re-encrypts it; it is ciphertext under the auth-secret key ring the worker already holds, AAD-bound (purpose, tenant, endpoint hash) to a customer-specific purpose (sql/1056, ADR-0048)",
+  "awcms_commerce_push_devices.auth_secret_ciphertext":
+    "the customer push dispatcher (#432) decrypts the Web Push auth secret in-process to encrypt the payload, and commerce:customer-push:rekey re-encrypts it; it is ciphertext under the auth-secret key ring the worker already holds, AAD-bound to a customer-specific purpose (sql/1056, ADR-0048)",
   "awcms_omes_repository_progress_config.secret_ref":
     "omes:repository-progress:poll resolves this REFERENCE (the name of a secret held outside the database) (sql/166)",
   "awcms_telegram_bindings.chat_ciphertext":
@@ -2871,6 +2942,8 @@ export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
     "integrity hash of the template variables; not a login secret",
   "awcms_email_suppression_list.recipient_hash":
     "keyed hash of a suppressed address; not a login secret",
+  "awcms_commerce_push_devices.endpoint_hash":
+    "sha256 of the customer push endpoint URL used as the unique lookup key and as the AAD row id of the credential ciphertexts; the endpoint itself is only ever stored as a ciphertext (a credential column) and a mask",
   "awcms_idempotency_keys.request_hash":
     "keyed hash of the request body that binds a replay to its first request (ADR-0145); not a login secret",
   "awcms_idn_admin_regions.source_row_hash":

@@ -23,6 +23,16 @@
  * customers once. The pass is O(paid orders) whatever the rule's shape, and is
  * skipped entirely when the rule reads no order fact.
  *
+ * ## Booking facts (rule schema 2, Issue #390, ADR-0052)
+ *
+ * The five booking-derived fields read two more grouped scans, `b` (the
+ * customer's booking links, orders and Booking reservation status / arrival) and
+ * `bd` (the cancel / no-show decisions), built in `segment-booking-sql.ts` and
+ * joined here exactly as `f` is: each only when the rule reads one of its facts,
+ * each computing the all-time figure and the (shared, at most three) windowed
+ * variants in one pass. A rule of schema 1 joins neither, so it costs what it
+ * always did; the single-customer path narrows both by `o.customer_id`.
+ *
  * ## Eligibility is the evaluator's, not the consumer's (C-28)
  *
  * {@link eligibilityPredicate} is applied BEFORE the rule: an erased
@@ -43,6 +53,16 @@ import type {
   SegmentNode,
   SegmentRuleStats
 } from "../domain/segment-rules";
+import {
+  bookingCountColumn,
+  bookingDecisionFactsJoin,
+  bookingFactsJoin,
+  cancellationCountColumn,
+  noShowCountColumn,
+  stayCountColumn,
+  type SlotWindows,
+  type WindowSlot
+} from "./segment-booking-sql";
 
 /** The order statuses that are not revenue. The partial index of `sql/1002` carries `status` so this predicate is index-only. */
 const NON_REVENUE_STATUSES = ["cancelled", "expired"] as const;
@@ -51,11 +71,21 @@ export type SegmentNeeds = {
   facts: boolean;
   accounts: boolean;
   loyalty: boolean;
+  /** Rule schema 2 (ADR-0052): the link -> order -> reservation scan. */
+  bookings: boolean;
+  /** Rule schema 2 (ADR-0052): the refund-decision scan. */
+  decisions: boolean;
 };
 
 /** Which joined relations a rule reads, so an unused one is neither joined nor scanned. */
 export function segmentNeeds(node: SegmentNode): SegmentNeeds {
-  const needs: SegmentNeeds = { facts: false, accounts: false, loyalty: false };
+  const needs: SegmentNeeds = {
+    facts: false,
+    accounts: false,
+    loyalty: false,
+    bookings: false,
+    decisions: false
+  };
   const visit = (current: SegmentNode): void => {
     switch (current.type) {
       case "and":
@@ -79,6 +109,15 @@ export function segmentNeeds(node: SegmentNode): SegmentNeeds {
           case "first_order_date":
             needs.facts = true;
             return;
+          case "booking_count":
+          case "stay_count":
+          case "last_stay_date":
+            needs.bookings = true;
+            return;
+          case "no_show_count":
+          case "cancellation_count":
+            needs.decisions = true;
+            return;
           case "level":
           case "has_email":
           case "customer_since":
@@ -91,7 +130,10 @@ export function segmentNeeds(node: SegmentNode): SegmentNeeds {
 }
 
 /** The three windowed slots, in the order `stats.windows` lists them. */
-function windowSlot(stats: SegmentRuleStats, windowDays: number | null) {
+function windowSlot(
+  stats: SegmentRuleStats,
+  windowDays: number | null
+): WindowSlot {
   if (windowDays === null) return "all" as const;
   const index = stats.windows.indexOf(windowDays);
   if (index === 0) return "w0" as const;
@@ -113,7 +155,7 @@ function dateOperand(tx: Bun.SQL, value: SegmentDateValue, bound: Bound) {
     : tx`(${bound.asOf}::timestamptz - make_interval(days => ${value.daysAgo}::int))`;
 }
 
-function countColumn(tx: Bun.SQL, slot: ReturnType<typeof windowSlot>) {
+function countColumn(tx: Bun.SQL, slot: WindowSlot) {
   switch (slot) {
     case "all":
       return tx`COALESCE(f.cnt_all, 0)`;
@@ -126,7 +168,7 @@ function countColumn(tx: Bun.SQL, slot: ReturnType<typeof windowSlot>) {
   }
 }
 
-function spendColumn(tx: Bun.SQL, slot: ReturnType<typeof windowSlot>) {
+function spendColumn(tx: Bun.SQL, slot: WindowSlot) {
   switch (slot) {
     case "all":
       return tx`COALESCE(f.spend_all, 0)`;
@@ -182,11 +224,23 @@ function leafPredicate(
         ? tx`(c.created_at < ${operand})`
         : tx`(c.created_at > ${operand})`;
     }
-    case "order_count": {
+    case "order_count":
+    case "booking_count":
+    case "stay_count":
+    case "no_show_count":
+    case "cancellation_count": {
       const slot = windowSlot(stats, leaf.windowDays);
       return compare(
         tx,
-        countColumn(tx, slot),
+        leaf.field === "order_count"
+          ? countColumn(tx, slot)
+          : leaf.field === "booking_count"
+            ? bookingCountColumn(tx, slot)
+            : leaf.field === "stay_count"
+              ? stayCountColumn(tx, slot)
+              : leaf.field === "no_show_count"
+                ? noShowCountColumn(tx, slot)
+                : cancellationCountColumn(tx, slot),
         leaf.op,
         tx`${leaf.value}::int`
       );
@@ -213,6 +267,13 @@ function leafPredicate(
       return leaf.op === "before"
         ? tx`COALESCE(f.first_at < ${operand}, false)`
         : tx`COALESCE(f.first_at > ${operand}, false)`;
+    }
+    case "last_stay_date": {
+      if (leaf.op === "never") return tx`(b.last_stay_at IS NULL)`;
+      const operand = dateOperand(tx, leaf.value, bound);
+      return leaf.op === "before"
+        ? tx`COALESCE(b.last_stay_at < ${operand}, false)`
+        : tx`COALESCE(b.last_stay_at > ${operand}, false)`;
     }
     case "loyalty_balance":
       return compare(
@@ -343,9 +404,17 @@ function segmentTail(
 ) {
   const bound: Bound = { asOf: input.asOf };
   const needs = segmentNeeds(input.node);
+  const customerId = input.customerId ?? null;
+  const windows: SlotWindows = [
+    input.stats.windows[0] ?? null,
+    input.stats.windows[1] ?? null,
+    input.stats.windows[2] ?? null
+  ];
   return tx`
     FROM awcms_commerce_customers c
-    ${factsJoin(tx, input.tenantId, input.stats, bound, needs, input.customerId ?? null)}
+    ${factsJoin(tx, input.tenantId, input.stats, bound, needs, customerId)}
+    ${bookingFactsJoin(tx, input.tenantId, windows, bound, needs, customerId)}
+    ${bookingDecisionFactsJoin(tx, input.tenantId, windows, bound, needs, customerId)}
     ${accountsJoin(tx, needs)}
     ${loyaltyJoin(tx, needs)}
     ${reach ? reachJoin(tx) : tx``}

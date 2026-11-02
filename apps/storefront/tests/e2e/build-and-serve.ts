@@ -76,7 +76,12 @@ export async function buildAndServe(profile: string, options: BuildAndServeOptio
     // Issue #428: the opt-in iPhone install-help page is built ON here so
     // the axe/360px/footer-link gates cover it. Production builds default
     // to off (`src/lib/pasang-aplikasi.ts`).
-    PUBLIC_INSTALL_HELP: "1"
+    PUBLIC_INSTALL_HELP: "1",
+    // Issue #431: the customer Web Push settings page and the push-only worker
+    // are built ON here (toko only; other profiles ignore the flag) so the axe,
+    // 360px and push specs cover them. Production builds default to off
+    // (`src/lib/push-konfig.ts`).
+    PUBLIC_CUSTOMER_PUSH: "1"
   };
 
   const build = Bun.spawnSync(["bun", "--bun", "astro", "build"], {

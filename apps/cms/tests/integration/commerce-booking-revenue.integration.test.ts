@@ -53,6 +53,7 @@ import {
 } from "../../src/modules/commerce/application/booking-cancellation";
 import { recordBookingNoShow } from "../../src/modules/commerce/application/booking-no-show";
 import { fetchBookingPipeline } from "../../src/modules/commerce/application/booking-pipeline";
+import { fetchBookingCashRefundReport } from "../../src/modules/commerce/application/booking-cash-view";
 import { fetchBookingRevenueReport } from "../../src/modules/commerce/application/booking-revenue-report";
 import { recomputeBookingRevenueRows } from "../../src/modules/commerce/application/booking-revenue-projection";
 import { executeRefund } from "../../src/modules/commerce/application/refund-execution";
@@ -67,6 +68,7 @@ import { DEFAULT_NO_SHOW_REASON_CODE } from "../../src/modules/commerce/domain/b
 import {
   BOOKING_REVENUE_METRIC_KEYS,
   BOOKING_REVENUE_PROJECTION_KEY,
+  bookingControlTotalsIdentityHolds,
   averageDailyRate,
   revenuePerAvailableNight
 } from "../../src/modules/commerce/domain/booking-revenue";
@@ -221,7 +223,9 @@ async function rawRows(tenantId = TENANT_A) {
   return getAdminSql()`
     SELECT order_id, to_char(paid_day, 'YYYY-MM-DD') AS paid_day, source_kind, stays,
       no_shows, no_show_retained, gross, discount, shipping, insurance, tax, total,
-      paid_in, paid_back, uncollected, outstanding, closed
+      paid_in, paid_back, uncollected, outstanding, closed, refund_payable,
+      goods_paid_back, goods_payable, goods_uncollected, shipping_refunded,
+      insurance_refunded, tax_refunded
     FROM awcms_commerce_report_booking_orders
     WHERE tenant_id = ${tenantId} ORDER BY order_id
   `;
@@ -231,7 +235,10 @@ async function rowOf(orderId: string) {
   const rows = (await getAdminSql()`
     SELECT to_char(paid_day, 'YYYY-MM-DD') AS paid_day, source_kind, stays, no_shows,
       no_show_retained::text, gross::text, discount::text, paid_in::text,
-      paid_back::text, uncollected::text, outstanding::text, closed
+      paid_back::text, uncollected::text, outstanding::text, closed,
+      refund_payable::text, goods_paid_back::text, goods_payable::text,
+      goods_uncollected::text, shipping_refunded::text, insurance_refunded::text,
+      tax_refunded::text
     FROM awcms_commerce_report_booking_orders WHERE order_id = ${orderId}
   `) as Record<string, unknown>[];
   return rows[0] ?? null;
@@ -637,8 +644,11 @@ suite(
       // identity of metrics 3.5 holds on every stored row.
       const identity = (await getAdminSql()`
       SELECT count(*)::int AS broken FROM awcms_commerce_report_booking_orders
-      WHERE (gross - discount - paid_back - uncollected) + shipping + insurance + tax
-        <> (paid_in - paid_back) + outstanding - GREATEST(paid_in - total, 0)
+      WHERE (gross - discount - goods_paid_back - goods_payable - goods_uncollected)
+          + (shipping - shipping_refunded) + (insurance - insurance_refunded)
+          + (tax - tax_refunded)
+        <> (paid_in - paid_back) - refund_payable + outstanding
+          - GREATEST(paid_in - GREATEST(total, paid_back + refund_payable), 0)
     `) as { broken: number }[];
       expect(identity[0]!.broken).toBe(0);
     }, 120000);
@@ -1257,10 +1267,10 @@ suite(
         .trim()
         .split("\n");
       expect(lines[0]).toBe(
-        "day,orders,gross,discounts,refunds_paid_back,refunds_uncollected,net,shipping,insurance,tax,balance_outstanding,stays,no_shows,no_show_retained"
+        "day,orders,gross,discounts,refunds,refunds_paid_back,refunds_payable,refunds_uncollected,net,shipping,insurance,tax,balance_outstanding,refund_payable_balance,stays,no_shows,no_show_retained"
       );
       expect(lines[1]).toBe(
-        `${dayAgo(0)},1,3000000.00,0.00,0.00,0.00,3000000.00,0.00,0.00,0.00,2100000.00,1,0,0.00`
+        `${dayAgo(0)},1,3000000.00,0.00,0.00,0.00,0.00,0.00,3000000.00,0.00,0.00,0.00,2100000.00,0.00,1,0,0.00`
       );
       expect(lines.join("\n")).not.toContain(view.orderId);
       await Bun.$`rm -rf ${rootPath}`.quiet();
@@ -1326,6 +1336,516 @@ suite(
       // Open order with an uncollected balance: refused.
       await expect(attempt("50")).rejects.toThrow();
       await expect(attempt("-1")).rejects.toThrow();
+    }, 60000);
+
+    // =========================================================================
+    // Issue #478 - refunds on a decision basis (metrics 3.9 D1), tax-aware
+    // allocation (D3), the cash view by refund day and the control identity.
+    // =========================================================================
+
+    /** The tax an order was charged: the header edit a tax engine would have made at checkout (before payment). */
+    async function taxOrder(orderId: string, tax: number): Promise<void> {
+      await getAdminSql()`
+        UPDATE awcms_commerce_orders
+        SET tax = ${rp(tax)}, total = total + ${rp(tax)}::numeric
+        WHERE id = ${orderId}
+      `;
+    }
+
+    /** The metrics 3.5 / 3.9 identity on every stored row, in SQL (the same statement a reviewer would run). */
+    async function brokenIdentityRows(): Promise<number> {
+      const rows = (await getAdminSql()`
+        SELECT count(*)::int AS broken FROM awcms_commerce_report_booking_orders
+        WHERE (gross - discount - goods_paid_back - goods_payable - goods_uncollected)
+            + (shipping - shipping_refunded) + (insurance - insurance_refunded)
+            + (tax - tax_refunded)
+          <> (paid_in - paid_back) - refund_payable + outstanding
+            - GREATEST(paid_in - GREATEST(total, paid_back + refund_payable), 0)
+      `) as { broken: number }[];
+      return rows[0]!.broken;
+    }
+
+    test("#478 D1: the early cancel of 3.7 - decided but not paid out reads payable 450,000 / paid back 0 / net 450,000; once the leg settles it reads paid back 450,000 / payable 0 / net 450,000", async () => {
+      const f = await depositProduct("1000000.00");
+      await policy(f.productId, STANDARD_WINDOWS);
+      const v = await book(f, {
+        req: {
+          paymentMethod: "dp",
+          stay: { checkInDate: D(10), checkOutDate: D(13) },
+          guest: guest()
+        }
+      });
+      await pay(v.orderId, "900000.00");
+      await dispatch();
+      const cancelled = await cancel(v.reservationId, 100);
+      expect(cancelled.decision.finalRefund).toBe("450000.00");
+      await refresh();
+
+      // Decided, the leg is still pending: no money moved.
+      const decided = dayOf(await report(), dayAgo(0))!;
+      expect(decided).toMatchObject({
+        gross: "3000000.00",
+        refundsPaidBack: "0.00",
+        refundsPayable: "450000.00",
+        refundsUncollected: "2100000.00",
+        refunds: "2550000.00",
+        net: "450000.00",
+        refundPayableBalance: "450000.00",
+        balanceOutstanding: "0.00"
+      });
+      expect(await rowOf(v.orderId)).toMatchObject({
+        paid_back: "0.00",
+        refund_payable: "450000.00",
+        goods_payable: "450000.00"
+      });
+      expect(await brokenIdentityRows()).toBe(0);
+      // No cash has left: the cash view is empty.
+      const cashBefore = await inTenant((tx) =>
+        fetchBookingCashRefundReport(tx, TENANT_A, {
+          from: dayAgo(3),
+          to: dayAgo(0)
+        })
+      );
+      expect(cashBefore.days).toEqual([]);
+
+      // The leg settles: paid back moves against payable, net does not move.
+      await settleRefund(cancelled.decision.returnId!);
+      await refresh();
+      const settled = dayOf(await report(), dayAgo(0))!;
+      expect(settled).toMatchObject({
+        refundsPaidBack: "450000.00",
+        refundsPayable: "0.00",
+        refundsUncollected: "2100000.00",
+        refunds: "2550000.00",
+        net: "450000.00",
+        refundPayableBalance: "0.00"
+      });
+      expect(settled.net).toBe(decided.net);
+      expect(settled.refunds).toBe(decided.refunds);
+      // Settling a leg is not a restatement of the day.
+      expect(settled.restated).toBe(false);
+      expect(await brokenIdentityRows()).toBe(0);
+
+      // The cash reading is its own labelled view, by the day the leg settled.
+      const cash = await inTenant((tx) =>
+        fetchBookingCashRefundReport(tx, TENANT_A, {
+          from: dayAgo(3),
+          to: dayAgo(0)
+        })
+      );
+      expect(cash.basis).toBe("cash");
+      expect(cash.days).toEqual([
+        { day: dayAgo(0), legs: 1, refundsPaidOut: "450000.00" }
+      ]);
+      expect(cash.totals).toEqual({ legs: 1, refundsPaidOut: "450000.00" });
+    }, 120000);
+
+    // ---------------------------------------------------------------------------
+    test("#478 D3: a taxed order (1,000,000 + 100,000 tax) - a full refund gives net 0 and tax 0; a refund of 550,000 gives net 500,000 and tax 50,000", async () => {
+      const full = await newFixture(TENANT_A, STAFF, { price: "1000000.00" });
+      await policy(full.productId, STANDARD_WINDOWS);
+      const a = await book(full, {
+        req: {
+          stay: { checkInDate: D(10), checkOutDate: D(11) },
+          guest: guest()
+        }
+      });
+      await taxOrder(a.orderId, 100_000);
+      await pay(a.orderId, "1100000.00");
+      await dispatch();
+      const fullRefund = await cancel(a.reservationId, 200);
+      expect(fullRefund.decision.finalRefund).toBe("1100000.00");
+      await settleRefund(fullRefund.decision.returnId!);
+
+      const half = await newFixture(TENANT_A, STAFF, { price: "1000000.00" });
+      await policy(half.productId, STANDARD_WINDOWS);
+      const b = await book(half, {
+        req: {
+          stay: { checkInDate: D(10), checkOutDate: D(11) },
+          guest: guest()
+        }
+      });
+      await taxOrder(b.orderId, 100_000);
+      await pay(b.orderId, "1100000.00");
+      await dispatch();
+      const halfRefund = await cancel(b.reservationId, 100);
+      expect(halfRefund.decision.finalRefund).toBe("550000.00");
+      // Left decided, not paid out: the same net and tax.
+      await paidDaysAgo(a.orderId, 2);
+      await paidDaysAgo(b.orderId, 1);
+      await refresh();
+
+      const result = await report();
+      expect(dayOf(result, dayAgo(2))).toMatchObject({
+        gross: "1000000.00",
+        refunds: "1000000.00",
+        refundsPaidBack: "1000000.00",
+        net: "0.00",
+        tax: "0.00"
+      });
+      expect(dayOf(result, dayAgo(1))).toMatchObject({
+        gross: "1000000.00",
+        refunds: "500000.00",
+        refundsPayable: "500000.00",
+        refundsPaidBack: "0.00",
+        net: "500000.00",
+        tax: "50000.00",
+        refundPayableBalance: "550000.00"
+      });
+      expect(await brokenIdentityRows()).toBe(0);
+
+      // Paying the half refund out changes neither net nor tax.
+      await settleRefund(halfRefund.decision.returnId!);
+      await refresh();
+      expect(dayOf(await report(), dayAgo(1))).toMatchObject({
+        refundsPaidBack: "500000.00",
+        refundsPayable: "0.00",
+        net: "500000.00",
+        tax: "50000.00",
+        refundPayableBalance: "0.00"
+      });
+      expect(await brokenIdentityRows()).toBe(0);
+    }, 180000);
+
+    // ---------------------------------------------------------------------------
+    test("#478 D3: the taxed no-show of 3.9 (3,000,000 + 330,000 tax, 30% deposit 999,000) gives net 900,000 and a tax companion of 99,000", async () => {
+      const f = await depositProduct("1000000.00");
+      await policy(f.productId, undefined, { retention: "retain_deposit" });
+      const v = await book(f, {
+        req: {
+          paymentMethod: "dp",
+          stay: { checkInDate: D(10), checkOutDate: D(13) },
+          guest: guest()
+        }
+      });
+      await taxOrder(v.orderId, 330_000);
+      await pay(v.orderId, "999000.00");
+      await dispatch();
+      await arrivedHoursAgo(v.reservationId, 3);
+      await noShow(v.reservationId);
+      await refresh();
+
+      expect(await rowOf(v.orderId)).toMatchObject({
+        closed: true,
+        uncollected: "2331000.00",
+        goods_uncollected: "2100000.00",
+        tax_refunded: "231000.00"
+      });
+      const day = dayOf(await report(), dayAgo(0))!;
+      expect(day).toMatchObject({
+        gross: "3000000.00",
+        refundsUncollected: "2100000.00",
+        refunds: "2100000.00",
+        net: "900000.00",
+        tax: "99000.00",
+        balanceOutstanding: "0.00"
+      });
+      // settled 999,000 = net 900,000 + tax 99,000.
+      expect(Number(day.net) + Number(day.tax)).toBe(999_000);
+      expect(await brokenIdentityRows()).toBe(0);
+    }, 120000);
+
+    // ---------------------------------------------------------------------------
+    test("#478 D3: a goods return carries its own split and wins over pro rata; a later cancellation takes what is left, so the order still ends at net 0 and tax 0", async () => {
+      const f = await newFixture(TENANT_A, STAFF, { price: "1000000.00" });
+      await policy(f.productId, STANDARD_WINDOWS);
+      const v = await book(f, {
+        req: {
+          stay: { checkInDate: D(10), checkOutDate: D(11) },
+          guest: guest()
+        }
+      });
+      await taxOrder(v.orderId, 100_000);
+      await pay(v.orderId, "1100000.00");
+      await dispatch();
+      await refresh();
+
+      // A goods return recorded by hand: 400,000 of goods and 20,000 of tax (a 5% share).
+      await getAdminSql()`
+        INSERT INTO awcms_commerce_returns
+          (tenant_id, order_id, kind, status, goods_gross, discount_share,
+           shipping_refund, tax_refund, refund_total, source_key, actor_tenant_user_id)
+        VALUES (${TENANT_A}, ${v.orderId}, 'return', 'open', '400000.00', '0.00',
+          '0.00', '20000.00', '420000.00', 'v478-goods-return', ${STAFF})
+      `;
+      await inTenant((tx) =>
+        recomputeBookingRevenueRows(tx, TENANT_A, [v.orderId])
+      );
+      expect(await rowOf(v.orderId)).toMatchObject({
+        paid_back: "0.00",
+        refund_payable: "420000.00",
+        goods_payable: "400000.00",
+        tax_refunded: "20000.00"
+      });
+      expect(dayOf(await report(), dayAgo(0))).toMatchObject({
+        refundsPayable: "400000.00",
+        net: "600000.00",
+        tax: "80000.00"
+      });
+      expect(await brokenIdentityRows()).toBe(0);
+
+      // The cancellation refunds the rest (680,000 of 1,100,000 paid).
+      const cancelled = await cancel(v.reservationId, 200);
+      expect(cancelled.decision.finalRefund).toBe("1100000.00");
+    }, 120000);
+
+    // ---------------------------------------------------------------------------
+    test("#478 proof 1: rebuild equals the live table byte for byte with the new columns, the identity holds in the reconciliation, and a refund after a cancellation is never subtracted twice", async () => {
+      const stay = { checkInDate: D(10), checkOutDate: D(13) };
+      // A: cancelled early, half the deposit refunded, leg settled, then a
+      // goodwill reversal by hand on top (a second refund, not the same one again).
+      const fa = await depositProduct("1000000.00");
+      await policy(fa.productId, STANDARD_WINDOWS);
+      const a = await book(fa, {
+        req: { paymentMethod: "dp", stay, guest: guest() }
+      });
+      await taxOrder(a.orderId, 330_000);
+      await pay(a.orderId, "999000.00");
+      await dispatch();
+      const cancelled = await cancel(a.reservationId, 100);
+      await settleRefund(cancelled.decision.returnId!);
+      // B: a decided, unpaid refund.
+      const fb = await newFixture(TENANT_A, STAFF, { price: "500000.00" });
+      await policy(fb.productId, STANDARD_WINDOWS);
+      const b = await book(fb, { req: { stay, guest: guest() } });
+      await pay(b.orderId, "1500000.00");
+      await dispatch();
+      await cancel(b.reservationId, 100);
+      // C: a taxed no-show.
+      const fc = await depositProduct("1000000.00");
+      await policy(fc.productId, undefined, { retention: "retain_deposit" });
+      const c = await book(fc, {
+        req: { paymentMethod: "dp", stay, guest: guest() }
+      });
+      await taxOrder(c.orderId, 330_000);
+      await pay(c.orderId, "999000.00");
+      await dispatch();
+      await arrivedHoursAgo(c.reservationId, 3);
+      await noShow(c.reservationId);
+      await refresh();
+
+      const before = await dayOf(await report(), dayAgo(0))!;
+      const live = await rawRows();
+      expect(live).toHaveLength(3);
+      expect(await brokenIdentityRows()).toBe(0);
+
+      // The goodwill reversal on A: counted once, on top of the settled refund.
+      await refundByHand(a.orderId, 50_000, "goodwill-478");
+      await refresh();
+      const rowA = (await rowOf(a.orderId))!;
+      expect(rowA.paid_back).toBe(
+        (Number(cancelled.decision.finalRefund) + 50_000).toFixed(2)
+      );
+      expect(rowA.refund_payable).toBe("0.00");
+      expect(await brokenIdentityRows()).toBe(0);
+      const afterGoodwill = await rawRows();
+
+      // Rebuild: the same rows, byte for byte.
+      await rebuild(REVENUE);
+      expect(await rawRows()).toEqual(afterGoodwill);
+      expect(afterGoodwill).not.toEqual(live);
+      // Idempotent: another rebuild and another pass change nothing.
+      await rebuild(REVENUE);
+      await refresh();
+      expect(await rawRows()).toEqual(afterGoodwill);
+      expect(before).toBeTruthy();
+
+      // The reconciliation is clean and carries the new control totals; the
+      // identity holds on the totals the engine compares.
+      const run = await reconcile(REVENUE);
+      expect(run.mismatch).toBe(false);
+      for (const key of [
+        "booking_refund_payable_cents",
+        "booking_net_cents",
+        "booking_companions_cents",
+        "booking_surplus_cents"
+      ]) {
+        expect(run.details.some((detail) => detail.metricKey === key)).toBe(
+          true
+        );
+      }
+      const sourceOf = (key: string): bigint =>
+        BigInt(
+          run.details.find((detail) => detail.metricKey === key)!.sourceTotal
+        );
+      expect(
+        bookingControlTotalsIdentityHolds({
+          orders: 0,
+          stays: 0,
+          noShows: 0,
+          grossCents: sourceOf("booking_gross_cents"),
+          discountCents: sourceOf("booking_discount_cents"),
+          paidBackCents: sourceOf("booking_paid_back_cents"),
+          uncollectedCents: sourceOf("booking_uncollected_cents"),
+          outstandingCents: sourceOf("booking_outstanding_cents"),
+          settledCents: sourceOf("booking_settled_cents"),
+          refundPayableCents: sourceOf("booking_refund_payable_cents"),
+          netCents: sourceOf("booking_net_cents"),
+          companionsCents: sourceOf("booking_companions_cents"),
+          surplusCents: sourceOf("booking_surplus_cents")
+        })
+      ).toBe(true);
+
+      // Tampering with a new column is flagged.
+      await getAdminSql()`
+        UPDATE awcms_commerce_report_booking_orders
+        SET goods_payable = goods_payable + 1, refund_payable = refund_payable + 1
+        WHERE tenant_id = ${TENANT_A} AND order_id = ${b.orderId}
+      `;
+      const drift = await reconcile(REVENUE);
+      expect(drift.mismatch).toBe(true);
+    }, 240000);
+
+    // ---------------------------------------------------------------------------
+    test("#478 rollout: the descriptor is version 2, and a row written by the previous release (new columns at their defaults) reads as before until the one rebuild re-derives it", async () => {
+      expect(REVENUE.version).toBe(2);
+      const f = await newFixture(TENANT_A, STAFF, { price: "500000.00" });
+      await policy(f.productId, STANDARD_WINDOWS);
+      const v = await book(f, {
+        req: {
+          stay: { checkInDate: D(10), checkOutDate: D(11) },
+          guest: guest()
+        }
+      });
+      await pay(v.orderId, "500000.00");
+      await dispatch();
+      const cancelled = await cancel(v.reservationId, 100);
+      await settleRefund(cancelled.decision.returnId!);
+      await refresh();
+      const current = await rawRows();
+
+      // Put the row back to what release v1 left behind: money columns set, the
+      // seven new columns at their defaults (the migration seeds the goods shares).
+      await getAdminSql()`
+        UPDATE awcms_commerce_report_booking_orders
+        SET refund_payable = 0, goods_payable = 0, shipping_refunded = 0,
+            insurance_refunded = 0, tax_refunded = 0,
+            goods_paid_back = paid_back, goods_uncollected = uncollected
+        WHERE order_id = ${v.orderId}
+      `;
+      expect(dayOf(await report(), dayAgo(0))).toMatchObject({
+        refundsPaidBack: "250000.00",
+        net: "250000.00"
+      });
+      // The one rebuild per tenant re-derives every row.
+      await rebuild(REVENUE);
+      expect(await rawRows()).toEqual(current);
+    }, 120000);
+
+    // ---------------------------------------------------------------------------
+    test("#478 cash view: counts only succeeded reversal legs of booking-sourced orders, by the Asia/Jakarta day they settled; an ordinary order's refund, another tenant and a feature-off tenant are out", async () => {
+      const f = await newFixture(TENANT_A, STAFF, { price: "500000.00" });
+      const v = await book(f, {
+        req: {
+          stay: { checkInDate: D(10), checkOutDate: D(12) },
+          guest: guest()
+        }
+      });
+      await pay(v.orderId, "1000000.00");
+      await dispatch();
+      await refundByHand(v.orderId, 100_000, "cash-a-478");
+      // A reversal that settled three days ago (the instant is part of the insert:
+      // a ledger row is append-only, so it cannot be edited afterwards).
+      await getAdminSql()`
+        INSERT INTO awcms_commerce_payment_allocations
+          (tenant_id, order_id, kind, reverses_allocation_id, tender_type, amount, status,
+           source, source_key, actor_kind, created_at, settled_at)
+        SELECT tenant_id, order_id, 'reversal', id, 'manual_qris', 25000.00, 'succeeded',
+          'admin', 'cash-b-478', 'system', now() - interval '3 days', now() - interval '3 days'
+        FROM awcms_commerce_payment_allocations
+        WHERE order_id = ${v.orderId} AND kind = 'payment' LIMIT 1
+      `;
+      // An ordinary (non-booking) order's refund is not the booking slice's.
+      const plain = await ordinaryPaidOrder(
+        await customerOfOrder(v.orderId),
+        new Date()
+      );
+      await getAdminSql()`
+        INSERT INTO awcms_commerce_payment_allocations
+          (tenant_id, order_id, kind, tender_type, amount, status, source,
+           source_key, actor_kind, created_at, settled_at)
+        VALUES (${TENANT_A}, ${plain}, 'payment', 'manual_qris', 100000.00, 'succeeded',
+          'admin', 'cash-plain-pay-478', 'system', now(), now())
+      `;
+      await refundByHand(plain, 7_000, "cash-plain-478");
+
+      const cash = await inTenant((tx) =>
+        fetchBookingCashRefundReport(tx, TENANT_A, {
+          from: dayAgo(5),
+          to: dayAgo(0)
+        })
+      );
+      expect(cash).toMatchObject({
+        enabled: true,
+        basis: "cash",
+        timeZone: "Asia/Jakarta",
+        currency: "IDR"
+      });
+      expect(cash.days).toEqual([
+        { day: dayAgo(3), legs: 1, refundsPaidOut: "25000.00" },
+        { day: dayAgo(0), legs: 1, refundsPaidOut: "100000.00" }
+      ]);
+      expect(cash.totals).toEqual({ legs: 2, refundsPaidOut: "125000.00" });
+
+      // The range is respected on both ends.
+      const narrow = await inTenant((tx) =>
+        fetchBookingCashRefundReport(tx, TENANT_A, {
+          from: dayAgo(1),
+          to: dayAgo(0)
+        })
+      );
+      expect(narrow.days.map((day) => day.day)).toEqual([dayAgo(0)]);
+
+      // Another tenant sees none of it (RLS), and the feature toggle hides it.
+      const other = await inTenant(
+        (tx) =>
+          fetchBookingCashRefundReport(tx, TENANT_B, {
+            from: dayAgo(5),
+            to: dayAgo(0)
+          }),
+        TENANT_B
+      );
+      expect(other.days).toEqual([]);
+      await setBooking(false);
+      const off = await inTenant((tx) =>
+        fetchBookingCashRefundReport(tx, TENANT_A, {
+          from: dayAgo(5),
+          to: dayAgo(0)
+        })
+      );
+      expect(off).toMatchObject({ enabled: false, basis: "cash", days: [] });
+    }, 120000);
+
+    // ---------------------------------------------------------------------------
+    test("#478 the database refuses a share larger than the money it belongs to, goods shares above the goods of the order, and a negative figure", async () => {
+      const attempt = async (
+        columns: string,
+        values: string
+      ): Promise<void> => {
+        await getAdminSql().unsafe(`
+          INSERT INTO awcms_commerce_report_booking_orders
+            (tenant_id, order_id, paid_day, source_kind, stays, no_shows, no_show_retained,
+             gross, discount, shipping, insurance, tax, total, paid_in, paid_back,
+             uncollected, outstanding, closed ${columns})
+          VALUES ('${TENANT_A}', gen_random_uuid(), '2026-01-01', 'reservation', 1, 0, 0,
+            100, 0, 0, 0, 0, 100, 50, 0, 0, 50, false ${values})`);
+      };
+      // Baseline (all new columns default to 0) is accepted.
+      await attempt("", "");
+      // goods paid back above the money paid back.
+      await expect(attempt(", goods_paid_back", ", 10")).rejects.toThrow();
+      // goods payable above the refund payable.
+      await expect(attempt(", goods_payable", ", 10")).rejects.toThrow();
+      // the goods shares take more than the goods of the order.
+      await expect(
+        attempt(
+          ", goods_paid_back, paid_back, goods_payable, refund_payable",
+          ", 60, 60, 60, 60"
+        )
+      ).rejects.toThrow();
+      // a companion refunded above what was collected.
+      await expect(attempt(", tax_refunded", ", 1")).rejects.toThrow();
+      await expect(attempt(", refund_payable", ", -1")).rejects.toThrow();
     }, 60000);
   }
 );

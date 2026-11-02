@@ -11613,6 +11613,21 @@ msgstr "Pesanan lunas pertama"
 msgid "Loyalty points balance"
 msgstr "Saldo poin loyalitas"
 
+msgid "Number of confirmed bookings"
+msgstr "Jumlah pemesanan terkonfirmasi"
+
+msgid "Number of stays"
+msgstr "Jumlah menginap"
+
+msgid "Last stay (arrival)"
+msgstr "Menginap terakhir (kedatangan)"
+
+msgid "Number of no-shows"
+msgstr "Jumlah tidak hadir"
+
+msgid "Number of cancellations by the customer"
+msgstr "Jumlah pembatalan oleh pelanggan"
+
 msgid "is"
 msgstr "adalah"
 
@@ -11724,8 +11739,8 @@ msgstr "Operator kondisi"
 msgid "Condition value"
 msgstr "Nilai kondisi"
 
-msgid "Window in days (orders and spend only)"
-msgstr "Jendela dalam hari (hanya untuk pesanan dan belanja)"
+msgid "Window in days (counts and spend only)"
+msgstr "Jendela dalam hari (hanya untuk hitungan dan belanja)"
 
 msgid "days"
 msgstr "hari"
@@ -13969,8 +13984,8 @@ msgstr "Tamu tidak hadir"
 msgid "Oldest hold"
 msgstr "Penahanan tertua"
 
-msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund, a cancellation or a no-show lands on that same day. The balance still owed on open orders is shown beside the waterfall, not subtracted. Held space is not revenue."
-msgstr "Pendapatan pesanan yang membawa reservasi Booking, menurut hari pesanan pertama kali dibayar. Pengembalian dana, pembatalan, atau tamu tidak hadir jatuh pada hari yang sama. Saldo yang masih terutang pada pesanan terbuka ditampilkan di samping air terjun pendapatan, tidak dikurangkan. Ruang yang ditahan bukan pendapatan."
+msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund counts when it is decided, not when the money moves, and lands on that same day with any cancellation or no-show. Tax, shipping and insurance are lowered by their share of a refund and are not revenue. The balance still owed on open orders and the refund still to be paid out are shown beside the waterfall, not subtracted. This is an operational sales measure, not a financial-statement figure: the books of record are your accounting system. Held space is not revenue."
+msgstr "Pendapatan pesanan yang membawa reservasi Booking, menurut hari pesanan pertama kali dibayar. Pengembalian dana dihitung saat diputuskan, bukan saat uang berpindah, dan jatuh pada hari yang sama bersama pembatalan atau tamu tidak hadir. Pajak, ongkos kirim, dan asuransi dikurangi sesuai bagiannya dari pengembalian dana dan bukan pendapatan. Saldo yang masih terutang pada pesanan terbuka dan pengembalian dana yang masih harus dibayarkan ditampilkan di samping air terjun pendapatan, tidak dikurangkan. Ini ukuran penjualan operasional, bukan angka laporan keuangan: pembukuan resmi ada di sistem akuntansi Anda. Ruang yang ditahan bukan pendapatan."
 
 msgid "Value on hold"
 msgstr "Nilai yang ditahan"
@@ -13978,5 +13993,247 @@ msgstr "Nilai yang ditahan"
 msgid "{count} of {stays} ({percent}%)"
 msgstr "{count} dari {stays} ({percent}%)"
 
-msgid "{paidBack} paid back, {uncollected} uncollected (no money moved)"
-msgstr "{paidBack} dikembalikan, {uncollected} tidak tertagih (tidak ada uang berpindah)"
+msgid "{paidBack} paid back, {payable} payable, {uncollected} uncollected (no money moved)"
+msgstr "{paidBack} dikembalikan, {payable} harus dibayar, {uncollected} tidak tertagih (tidak ada uang berpindah)"
+
+# booking revenue #478 (refunds on a decision basis, cash view)
+
+msgid "Companions"
+msgstr "Pendamping"
+
+msgid "Refund payable"
+msgstr "Pengembalian dana terutang"
+
+msgid "Tax {amount}"
+msgstr "Pajak {amount}"
+
+msgid "Shipping {amount}"
+msgstr "Ongkos kirim {amount}"
+
+msgid "Insurance {amount}"
+msgstr "Asuransi {amount}"
+
+msgid "Refunds paid out (cash view)"
+msgstr "Pengembalian dana dibayarkan (tampilan kas)"
+
+msgid "Refunds paid out (cash view): money that went back to customers, by the day it was paid out. This is a cash view and is separate from the table above, which counts a refund on the day the order was paid."
+msgstr "Pengembalian dana dibayarkan (tampilan kas): uang yang kembali ke pelanggan, menurut hari pembayarannya. Ini tampilan kas dan terpisah dari tabel di atas, yang menghitung pengembalian dana pada hari pesanan dibayar."
+
+msgid "Day paid out"
+msgstr "Hari dibayarkan"
+
+msgid "Refund payments"
+msgstr "Pembayaran pengembalian dana"
+
+msgid "Paid out"
+msgstr "Dibayarkan"
+
+msgid "No booking refunds were paid out in this period"
+msgstr "Tidak ada pengembalian dana booking yang dibayarkan pada periode ini"
+
+msgid "Front desk"
+msgstr "Meja resepsionis"
+
+msgid "Go to the reservation code"
+msgstr "Ke kode reservasi"
+
+msgid "Go to the customer contact"
+msgstr "Ke kontak pelanggan"
+
+msgid "Collect the balance"
+msgstr "Terima sisa pembayaran"
+
+msgid "Look up another reservation"
+msgstr "Cari reservasi lain"
+
+msgid "Working…"
+msgstr "Memproses…"
+
+msgid "Looking up the reservation…"
+msgstr "Mencari reservasi…"
+
+msgid "Reservation {code} found."
+msgstr "Reservasi {code} ditemukan."
+
+msgid "Enter the reservation code."
+msgstr "Isi kode reservasi."
+
+msgid "That is not a reservation code. Use the full code: letters, digits and dashes."
+msgstr "Itu bukan kode reservasi. Pakai kode lengkap: huruf, angka, dan tanda hubung."
+
+msgid "Enter the customer's phone number or e-mail address."
+msgstr "Isi nomor telepon atau alamat e-mail pelanggan."
+
+msgid "That is not a valid phone number or e-mail address."
+msgstr "Itu bukan nomor telepon atau alamat e-mail yang valid."
+
+msgid "Reservation not found."
+msgstr "Reservasi tidak ditemukan."
+
+msgid "Too many lookups. Wait a moment, then try again."
+msgstr "Terlalu banyak pencarian. Tunggu sebentar, lalu coba lagi."
+
+msgid "Could not look up the reservation. Please try again."
+msgstr "Reservasi tidak dapat dicari. Silakan coba lagi."
+
+msgid "The server could not be reached. Check the connection and try again."
+msgstr "Server tidak dapat dihubungi. Periksa koneksi lalu coba lagi."
+
+msgid "Could not complete that. Please try again."
+msgstr "Tindakan itu tidak dapat diselesaikan. Silakan coba lagi."
+
+msgid "Open a register session before taking payments or checking guests in."
+msgstr "Buka sesi kasir sebelum menerima pembayaran atau melakukan check-in tamu."
+
+msgid "This register's session is being closed and accepts no more."
+msgstr "Sesi kasir ini sedang ditutup dan tidak menerima transaksi lagi."
+
+msgid "Collect the remaining balance first."
+msgstr "Lunasi sisa pembayaran dulu."
+
+msgid "Nothing is owed on this reservation."
+msgstr "Tidak ada tagihan pada reservasi ini."
+
+msgid "The non-cash payments are more than the balance. Only a cash payment may exceed it, as change."
+msgstr "Pembayaran non-tunai melebihi sisa tagihan. Hanya pembayaran tunai yang boleh melebihinya, sebagai kembalian."
+
+msgid "The reservation status changed. The card has been refreshed."
+msgstr "Status reservasi berubah. Data diperbarui."
+
+msgid "It is too early to check this guest in."
+msgstr "Belum waktunya check-in tamu ini."
+
+msgid "That request was already sent with different details. Check the card and try again."
+msgstr "Permintaan itu sudah pernah dikirim dengan rincian berbeda. Periksa kartu reservasi lalu coba lagi."
+
+msgid "Add at least one payment line with an amount."
+msgstr "Tambahkan setidaknya satu baris pembayaran beserta jumlahnya."
+
+msgid "Only one cash line is allowed."
+msgstr "Hanya satu baris tunai yang diizinkan."
+
+msgid "Check-in complete. Reservation {code} is now checked in."
+msgstr "Check-in selesai. Reservasi {code} kini sedang menginap."
+
+msgid "Check-out complete. Reservation {code} is now completed."
+msgstr "Check-out selesai. Reservasi {code} kini selesai."
+
+msgid "Balance of {amount} received."
+msgstr "Sisa pembayaran {amount} diterima."
+
+msgid "The order is paid in full."
+msgstr "Pesanan lunas."
+
+msgid "{amount} is still owed."
+msgstr "{amount} masih terutang."
+
+msgid "Change to hand back: {amount}."
+msgstr "Kembalian yang diberikan: {amount}."
+
+msgid "Recorded against your account on register {register}."
+msgstr "Dicatat atas akun Anda pada kasir {register}."
+
+msgid "Cleared. Enter another reservation code."
+msgstr "Dikosongkan. Isi kode reservasi lain."
+
+msgid "1 night"
+msgstr "1 malam"
+
+msgid "{count} nights"
+msgstr "{count} malam"
+
+msgid "This store requires the balance to be paid before check-in."
+msgstr "Toko ini mewajibkan sisa pembayaran dilunasi sebelum check-in."
+
+msgid "This store allows check-in while a balance is owed; the balance stays due."
+msgstr "Toko ini mengizinkan check-in saat masih ada tagihan; sisa tagihan tetap terutang."
+
+msgid "You do not have permission to do this."
+msgstr "Anda tidak punya izin untuk melakukan ini."
+
+msgid "Open a register session first."
+msgstr "Buka sesi kasir dulu."
+
+msgid "Only a confirmed reservation can be checked in."
+msgstr "Hanya reservasi yang sudah dikonfirmasi yang dapat di-check-in."
+
+msgid "Only a checked-in guest can be checked out."
+msgstr "Hanya tamu yang sedang menginap yang dapat di-check-out."
+
+msgid "This reservation can no longer take a payment."
+msgstr "Reservasi ini tidak dapat lagi menerima pembayaran."
+
+msgid "Find a reservation by its code together with the customer's phone or e-mail, take the balance, then check the guest in or out. Nothing you look up is kept in this browser."
+msgstr "Cari reservasi dengan kodenya beserta telepon atau e-mail pelanggan, terima sisa pembayaran, lalu check-in atau check-out tamu. Hasil pencarian tidak disimpan di peramban ini."
+
+msgid "Taking payments and checking guests in need register sessions, and the register feature is off for this store. You can look a reservation up, but not change it."
+msgstr "Menerima pembayaran dan check-in tamu memerlukan sesi kasir, sedangkan fitur kasir mati untuk toko ini. Anda dapat mencari reservasi, tetapi tidak dapat mengubahnya."
+
+msgid "Find a reservation"
+msgstr "Cari reservasi"
+
+msgid "Reservation code"
+msgstr "Kode reservasi"
+
+msgid "Type the code, or scan it, and press Enter."
+msgstr "Ketik atau pindai kodenya, lalu tekan Enter."
+
+msgid "Customer phone or e-mail"
+msgstr "Telepon atau e-mail pelanggan"
+
+msgid "Both are needed. There is no search by name, date or part of a code, so the till cannot be used to list guests."
+msgstr "Keduanya diperlukan. Tidak ada pencarian berdasarkan nama, tanggal, atau sebagian kode, sehingga kasir tidak dapat dipakai untuk mendaftar tamu."
+
+msgid "Find reservation"
+msgstr "Cari reservasi"
+
+msgid "Clear"
+msgstr "Kosongkan"
+
+msgid "There is no list of arrivals. A guest who has no reservation is an ordinary walk-in sale."
+msgstr "Tidak ada daftar kedatangan. Tamu tanpa reservasi adalah penjualan langsung biasa."
+
+msgid "Ring up a walk-in sale"
+msgstr "Catat penjualan langsung"
+
+msgid "Guest"
+msgstr "Tamu"
+
+msgid "Contact"
+msgstr "Kontak"
+
+msgid "Stay"
+msgstr "Menginap"
+
+msgid "Paid so far"
+msgstr "Sudah dibayar"
+
+msgid "Check in guest"
+msgstr "Check-in tamu"
+
+msgid "Check out guest"
+msgstr "Check-out tamu"
+
+msgid "Collect balance"
+msgstr "Terima sisa pembayaran"
+
+msgid "Payment applied"
+msgstr "Pembayaran diterapkan"
+
+msgid "Change to hand back"
+msgstr "Kembalian"
+
+msgid "Still owed after this payment"
+msgstr "Masih terutang setelah pembayaran ini"
+
+msgid "Every check-in, check-out and payment is recorded with your name and the register session."
+msgstr "Setiap check-in, check-out, dan pembayaran dicatat dengan nama Anda dan sesi kasir."
+
+msgid "Open the audit trail"
+msgstr "Buka jejak audit"
+
+msgid "These are the sale screen's shortcuts, used here for the same jobs. Change them on the New sale screen."
+msgstr "Ini pintasan layar penjualan, dipakai di sini untuk pekerjaan yang sama. Ubah di layar Penjualan baru."
+
+msgid "The front desk needs the booking feature, point of sale and permission to look up a reservation."
+msgstr "Meja resepsionis memerlukan fitur pemesanan, kasir (POS), dan izin mencari reservasi."

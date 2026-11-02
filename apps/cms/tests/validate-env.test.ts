@@ -170,4 +170,26 @@ describe("validateEnv", () => {
       }).length
     ).toBe(0);
   });
+
+  test("COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS: unset is clean, ignored entries are reported", () => {
+    expect(validateEnv(base)).toEqual([]);
+    expect(
+      validateEnv({
+        ...base,
+        COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS:
+          "push.vendor.example, *.push.vendor.example"
+      })
+    ).toEqual([]);
+    const problems = validateEnv({
+      ...base,
+      COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS: "10.0.0.5, localhost, ::1"
+    });
+    expect(
+      problems.some(
+        (p) =>
+          p.startsWith("COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS") &&
+          p.includes("10.0.0.5")
+      )
+    ).toBe(true);
+  });
 });

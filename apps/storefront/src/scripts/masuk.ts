@@ -8,6 +8,7 @@
  */
 import { mintaKode, verifikasiKode, type OtpChannel } from "../lib/akun-klien";
 import { simpanSesi } from "../lib/akun-sesi";
+import { bersihkanSebelumSesiBaru } from "../lib/push-sesi";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { ROUTES } from "../config/routes";
 import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallback";
@@ -252,6 +253,9 @@ if (root) {
         channel === "whatsapp"
           ? await verifikasiKode({ phone: phoneInput?.value.trim() ?? "", code, purpose: "login" })
           : await verifikasiKode({ email: emailInput?.value.trim() ?? "", code, purpose: "login" });
+      // ADR-0048 section 7: the OLD session is logged out on the server, and an
+      // enrolled browser stops receiving for it, BEFORE the new session is stored.
+      await bersihkanSebelumSesiBaru();
       simpanSesi({ token: result.token, expiresAt: result.expiresAt, account: result.account });
       window.location.href = kembali ?? ROUTES.account;
     } catch (error) {

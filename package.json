@@ -23,6 +23,7 @@
     "build": "cd apps/storefront && bun run build",
     "check": "cd apps/storefront && bun run check",
     "check:lockfile": "bun tools/cek-lockfile.mjs",
+    "deps:freshness": "bun tools/deps-freshness.ts",
     "check:cms": "cd apps/cms && bun run check",
     "deploy:preflight": "bun tools/deploy-preflight.mjs",
     "deploy:production": "bash tools/deploy/deploy-production.sh",

@@ -17,6 +17,7 @@ import {
   type KeysetCursor
 } from "../../_shared/keyset-pagination";
 import { maskPhone } from "../domain/phone-normalisation";
+import { revokeCustomerPushDevicesOfCustomer } from "./customer-push-devices";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "customer";
@@ -205,6 +206,18 @@ export async function updateCustomer(
   if (rows.length === 0) return null;
 
   const record = toAdminRecord(rows[0]!);
+
+  // Issue #430 (ADR-0048 5.3, T12): a blocked customer keeps no push device. The
+  // revocation runs in this transaction, so the block and the destruction of the
+  // credentials commit together (the maintenance sweep is only the backstop).
+  if (input.status === "blocked" && existing.status !== "blocked") {
+    await revokeCustomerPushDevicesOfCustomer(
+      tx,
+      tenantId,
+      customerId,
+      correlationId
+    );
+  }
 
   await recordAuditEvent(tx, {
     tenantId,

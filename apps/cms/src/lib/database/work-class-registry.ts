@@ -215,6 +215,21 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'One-shot-per-run retention sweep (commerce:whatsapp:purge, Issue #108), every 5-15 minutes, delay-tolerant like email:queue:purge; purgeWhatsappQueue passes workClass: "maintenance" explicitly.'
   },
+  "scripts/commerce-customer-push-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled customer Web Push dispatcher (commerce:customer-push:dispatch, Issue #432), every minute: claims due outbox rows, re-checks eligibility and calls the push service OUTSIDE any transaction; every dispatchCustomerPushForTenant transaction passes workClass: "background_sync" explicitly, the same recurring-but-not-latency-sensitive profile as commerce:whatsapp:dispatch and push:dispatch.'
+  },
+  "scripts/commerce-customer-push-maintenance.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled customer Web Push housekeeping (commerce:customer-push:maintenance, Issue #430), every 15 minutes: revokes the devices of ended sessions and blocked accounts, then purges tombstones, terminal messages and attempts past the 30-day window; purgeCustomerPushForTenant passes workClass: "maintenance" explicitly, delay-tolerant like commerce:whatsapp:purge.'
+  },
+  "scripts/commerce-customer-push-rekey.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Operator-run key rotation (commerce:customer-push:rekey, Issue #430): re-encrypts the customer push endpoint and auth-secret ciphertexts under the ring\'s new first key in bounded keyset batches; rekeyCustomerPushCredentialsBatch passes workClass: "maintenance" explicitly on every transaction. Manual, never on a timer.'
+  },
   "scripts/commerce-payments-reconcile.ts": {
     workClass: "background_sync",
     rationale:

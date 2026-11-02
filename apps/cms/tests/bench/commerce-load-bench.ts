@@ -24,7 +24,11 @@
  *                        `reconcileLoyaltyForTenant` finds no drift.
  *   4. segment preview   p50/p95 of the preview endpoint's evaluator on a
  *                        100,000-customer tenant (PRD M7: p95 <= 3 s), alone and
- *                        with several actors previewing at once.
+ *                        with several actors previewing at once. Ten rule shapes:
+ *                        five over the commerce facts (rule schema 1) and five
+ *                        over booking-derived facts (rule schema 2, ADR-0052,
+ *                        Issue #390) on a tenant that also holds booking links,
+ *                        reservations and cancellation / no-show decisions.
  *
  * WHY A SEPARATE TARGET. Exactly as `bench:booking`: a timing assertion in
  * `bun test` is a flaky test, so this is NOT a `*.test.ts` and is not in
@@ -1524,7 +1528,14 @@ function segmentRules(raw: unknown) {
   return { node: result.node, stats: result.stats };
 }
 
-/** The five rules `commerce-segments.integration.test.ts` (M7) uses: broad, windowed and multi-fact. */
+/**
+ * The rules of the M7 scenario. The first five are the ones
+ * `commerce-segments.integration.test.ts` uses (rule schema 1: broad, windowed
+ * and multi-fact); the last five read booking-derived facts (rule schema 2,
+ * Issue #390, ADR-0052): a broad one, a window with a decision exclusion, order
+ * and stay facts together, an OR across both booking scans, and every family at
+ * once with three windows.
+ */
 const SEGMENT_RULES: { name: string; raw: unknown }[] = [
   { name: "level_in_1_2", raw: leaf("level", "in", [1, 2]) },
   { name: "order_count_gte_2", raw: leaf("order_count", "gte", 2) },
@@ -1564,8 +1575,173 @@ const SEGMENT_RULES: { name: string; raw: unknown }[] = [
         { not: leaf("last_order_date", "never") }
       ]
     }
+  },
+  { name: "booking_stay_count_gte_1", raw: leaf("stay_count", "gte", 1) },
+  {
+    name: "booking_window_not_no_show",
+    raw: {
+      and: [
+        leaf("booking_count", "gte", 1, { windowDays: 365 }),
+        { not: leaf("no_show_count", "gte", 1) }
+      ]
+    }
+  },
+  {
+    name: "booking_orders_stay_recency_no_cancel",
+    raw: {
+      and: [
+        leaf("order_count", "gte", 2),
+        leaf("stay_count", "gte", 1, { windowDays: 180 }),
+        leaf("last_stay_date", "after", { daysAgo: 365 }),
+        { not: leaf("cancellation_count", "gte", 1) }
+      ]
+    }
+  },
+  {
+    name: "booking_or_across_scans",
+    raw: {
+      and: [
+        leaf("level", "in", [1, 2]),
+        {
+          or: [
+            leaf("no_show_count", "gte", 1),
+            leaf("cancellation_count", "gte", 1),
+            leaf("last_stay_date", "never")
+          ]
+        }
+      ]
+    }
+  },
+  {
+    name: "booking_every_family_three_windows",
+    raw: {
+      and: [
+        leaf("has_account", "eq", true),
+        leaf("loyalty_balance", "gte", 100),
+        leaf("paid_spend", "gt", "50000.00", { windowDays: 365 }),
+        leaf("booking_count", "gte", 1, { windowDays: 90 }),
+        leaf("stay_count", "gte", 1, { windowDays: 180 }),
+        leaf("no_show_count", "eq", 0, { windowDays: 365 })
+      ]
+    }
   }
 ];
+
+/**
+ * Booking facts for the segment tenant (Issue #390): 60% of the customers have
+ * one or two bookings (about 0.9 per customer overall) in the status mix of a
+ * working property, each on its own paid order with its link, and the
+ * cancelled / no-show ones with their refund decision. Loaded in bulk, so the
+ * reservation state machine's per-row UPDATE guard is switched off for the one
+ * statement that sets the final statuses and switched back on after.
+ */
+async function seedSegmentBookings(tenantId: string): Promise<void> {
+  const admin = getAdminSql();
+  const product = (await admin`
+    INSERT INTO awcms_commerce_products
+      (tenant_id, type, sku, name, slug, price, stock, status)
+    VALUES (${tenantId}, 'service', 'SEG-SVC', 'Night', 'seg-night', '500000.00', 100, 'active')
+    RETURNING id
+  `) as { id: string }[];
+  const offering = (await admin`
+    INSERT INTO awcms_booking_service_offerings
+      (tenant_id, code, name, granularity, min_nights, max_nights, confirmation_mode)
+    VALUES (${tenantId}, 'seg-stay', 'Night', 'stay', 1, 30, 'hold_then_confirm')
+    RETURNING id
+  `) as { id: string }[];
+  const offeringLink = (await admin`
+    INSERT INTO awcms_commerce_booking_offering_links
+      (tenant_id, offering_id, product_id, quantity_basis)
+    VALUES (${tenantId}, ${offering[0]!.id}, ${product[0]!.id}, 'nights')
+    RETURNING id
+  `) as { id: string }[];
+
+  await admin`DROP TABLE IF EXISTS bench_segment_bookings`;
+  await admin`
+    CREATE TEMP TABLE bench_segment_bookings AS
+    SELECT c.id AS customer_id, c.rn, n,
+      'BKPERF-' || c.rn || '-' || n AS order_code,
+      gen_random_uuid() AS reservation_id, gen_random_uuid() AS order_id,
+      gen_random_uuid() AS item_id, gen_random_uuid() AS link_id,
+      CASE (c.rn + n) % 6
+        WHEN 0 THEN 'completed' WHEN 1 THEN 'checked_in'
+        WHEN 2 THEN 'confirmed' WHEN 3 THEN 'cancelled'
+        WHEN 4 THEN 'no_show' ELSE 'completed' END AS final_status,
+      ((c.rn * 37 + n * 11) % 700) - 30 AS arrival_days_ago
+    FROM (SELECT id, row_number() OVER () AS rn FROM awcms_commerce_customers
+          WHERE tenant_id = ${tenantId}) c
+    CROSS JOIN generate_series(1, 2) n
+    WHERE c.rn % 5 < 3 AND (n = 1 OR c.rn % 2 = 0)
+  `;
+  await admin`
+    INSERT INTO awcms_commerce_orders
+      (id, tenant_id, order_code, customer_id, status, payment_method,
+       payment_status, shipping_method, subtotal, total, paid_at)
+    SELECT order_id, ${tenantId}, order_code, customer_id, 'completed',
+      'manual_bank', 'paid', 'self_pickup', '500000.00', '500000.00',
+      now() - (arrival_days_ago + 10) * interval '1 day'
+    FROM bench_segment_bookings
+  `;
+  await admin`
+    INSERT INTO awcms_commerce_order_items
+      (id, tenant_id, order_id, product_id, name, unit_price, quantity, line_total)
+    SELECT item_id, ${tenantId}, order_id, ${product[0]!.id}, 'Night',
+      '500000.00', 1, '500000.00'
+    FROM bench_segment_bookings
+  `;
+  await admin`
+    INSERT INTO awcms_booking_reservations (id, tenant_id, status, starts_at, ends_at)
+    SELECT reservation_id, ${tenantId}, 'confirmed',
+      now() - arrival_days_ago * interval '1 day',
+      now() - arrival_days_ago * interval '1 day' + interval '2 days'
+    FROM bench_segment_bookings
+  `;
+  await admin`ALTER TABLE awcms_booking_reservations DISABLE TRIGGER awcms_booking_reservations_update_guard`;
+  try {
+    await admin`
+      UPDATE awcms_booking_reservations r SET status = b.final_status
+      FROM bench_segment_bookings b
+      WHERE r.id = b.reservation_id AND b.final_status <> 'confirmed'
+    `;
+  } finally {
+    await admin`ALTER TABLE awcms_booking_reservations ENABLE TRIGGER awcms_booking_reservations_update_guard`;
+  }
+  await admin`
+    INSERT INTO awcms_commerce_booking_reservation_links
+      (id, tenant_id, order_id, order_item_id, reservation_id, offering_link_id,
+       client_key, request_hash)
+    SELECT link_id, ${tenantId}, order_id, item_id, reservation_id,
+      ${offeringLink[0]!.id}, 'ck-' || link_id, ${"h".repeat(64)}
+    FROM bench_segment_bookings
+  `;
+  await admin`
+    UPDATE awcms_commerce_booking_reservation_links l SET status = 'released'
+    FROM bench_segment_bookings b
+    WHERE l.id = b.link_id AND b.final_status IN ('cancelled', 'no_show')
+  `;
+  await admin`
+    INSERT INTO awcms_commerce_booking_refund_decisions
+      (tenant_id, order_id, reservation_link_id, trigger_kind, actor_kind,
+       policy_source, hours_before_start, refundable_percent, amount_paid,
+       computed_refund, final_refund, retained_amount, source_key, created_at)
+    SELECT ${tenantId}, order_id, link_id,
+      CASE final_status WHEN 'no_show' THEN 'no_show' ELSE 'customer_cancel' END,
+      CASE final_status WHEN 'no_show' THEN 'system' ELSE 'customer' END,
+      'none', 24, 0, '500000.00', '0.00', '0.00',
+      CASE final_status WHEN 'no_show' THEN 0.00 END,
+      'perf-' || link_id,
+      now() - greatest(arrival_days_ago - 1, 0) * interval '1 day'
+    FROM bench_segment_bookings WHERE final_status IN ('cancelled', 'no_show')
+  `;
+  await admin`DROP TABLE bench_segment_bookings`;
+  for (const table of [
+    "awcms_booking_reservations",
+    "awcms_commerce_booking_reservation_links",
+    "awcms_commerce_booking_refund_decisions"
+  ]) {
+    await admin.unsafe(`ANALYZE ${table}`);
+  }
+}
 
 async function benchSegment(profile: Profile): Promise<void> {
   const tenant = await seedTenant("segment");
@@ -1608,6 +1784,7 @@ async function benchSegment(profile: Profile): Promise<void> {
     FROM awcms_commerce_customers
     WHERE tenant_id = ${tenant.id} AND level IN (2, 3)
   `;
+  await seedSegmentBookings(tenant.id);
   await admin`ANALYZE awcms_commerce_customers`;
   await admin`ANALYZE awcms_commerce_orders`;
   await admin`ANALYZE awcms_commerce_customer_accounts`;
@@ -1616,8 +1793,15 @@ async function benchSegment(profile: Profile): Promise<void> {
   const seedMs = performance.now() - seedBegan;
   const counts = (await admin`
     SELECT (SELECT count(*) FROM awcms_commerce_customers WHERE tenant_id = ${tenant.id})::int AS customers,
-           (SELECT count(*) FROM awcms_commerce_orders WHERE tenant_id = ${tenant.id})::int AS orders
-  `) as { customers: number; orders: number }[];
+           (SELECT count(*) FROM awcms_commerce_orders WHERE tenant_id = ${tenant.id})::int AS orders,
+           (SELECT count(*) FROM awcms_commerce_booking_reservation_links WHERE tenant_id = ${tenant.id})::int AS links,
+           (SELECT count(*) FROM awcms_commerce_booking_refund_decisions WHERE tenant_id = ${tenant.id})::int AS decisions
+  `) as {
+    customers: number;
+    orders: number;
+    links: number;
+    decisions: number;
+  }[];
 
   invariant(
     counts[0]!.customers === customers,
@@ -1672,7 +1856,10 @@ async function benchSegment(profile: Profile): Promise<void> {
       memberCounts.level_in_1_2! > 40_000 &&
         memberCounts.order_count_gte_2! > 1_000 &&
         memberCounts.windowed_orders_spend_not_lapsed! > 1_000 &&
-        memberCounts.two_windows_and_never_not! > 1_000,
+        memberCounts.two_windows_and_never_not! > 1_000 &&
+        memberCounts.booking_stay_count_gte_1! > 10_000 &&
+        memberCounts.booking_window_not_no_show! > 1_000 &&
+        memberCounts.booking_or_across_scans! > 1_000,
       `segment: a rule matched an implausibly small population (${JSON.stringify(memberCounts)})`
     );
   }
@@ -1772,6 +1959,8 @@ async function benchSegment(profile: Profile): Promise<void> {
   results.segmentPreview = {
     customers: counts[0]!.customers,
     paidOrders: counts[0]!.orders,
+    bookingLinks: counts[0]!.links,
+    bookingDecisions: counts[0]!.decisions,
     seedMs: Math.round(seedMs),
     warmUpMs: latencyOf(warm),
     sequential: {

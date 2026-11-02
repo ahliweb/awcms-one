@@ -797,6 +797,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/customer-push/diagnostics.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/customers/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -2402,6 +2407,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/reports/commerce/booking-revenue-cash.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/booking-revenue.csv.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/reports/commerce/booking-revenue.ts",
       "workClass": "reporting",
       "source": "factory"
@@ -3142,6 +3157,24 @@
       "workClass": "background_sync",
       "source": "registry",
       "rationale": "Scheduled OTP/session purge sweep (commerce:customer-auth:purge, Issue #87), every 5-15 minutes — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeCustomerAuthForTenant passes workClass: \"background_sync\" explicitly."
+    },
+    {
+      "path": "scripts/commerce-customer-push-dispatch.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled customer Web Push dispatcher (commerce:customer-push:dispatch, Issue #432), every minute: claims due outbox rows, re-checks eligibility and calls the push service OUTSIDE any transaction; every dispatchCustomerPushForTenant transaction passes workClass: \"background_sync\" explicitly, the same recurring-but-not-latency-sensitive profile as commerce:whatsapp:dispatch and push:dispatch."
+    },
+    {
+      "path": "scripts/commerce-customer-push-maintenance.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "Scheduled customer Web Push housekeeping (commerce:customer-push:maintenance, Issue #430), every 15 minutes: revokes the devices of ended sessions and blocked accounts, then purges tombstones, terminal messages and attempts past the 30-day window; purgeCustomerPushForTenant passes workClass: \"maintenance\" explicitly, delay-tolerant like commerce:whatsapp:purge."
+    },
+    {
+      "path": "scripts/commerce-customer-push-rekey.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "Operator-run key rotation (commerce:customer-push:rekey, Issue #430): re-encrypts the customer push endpoint and auth-secret ciphertexts under the ring's new first key in bounded keyset batches; rekeyCustomerPushCredentialsBatch passes workClass: \"maintenance\" explicitly on every transaction. Manual, never on a timer."
     },
     {
       "path": "scripts/commerce-flash-sales-tick.ts",

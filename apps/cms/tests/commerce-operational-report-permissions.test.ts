@@ -94,11 +94,13 @@ const declared = new Set(
 describe("operational-report permissions are declared and each is enforced by its route", () => {
   test("the module declares exactly the twelve report permissions", () => {
     // Issue #364's `report_retention` pair is a different family (cohorts, not
-    // POS operational rows) and is pinned by commerce-retention-domain.test.ts.
+    // POS operational rows) and is pinned by commerce-retention-domain.test.ts, and Issue #478's
+    // `report_booking_revenue.export` by commerce-booking-revenue-csv.test.ts.
     const reportKeys = [...declared].filter(
       (key) =>
         key.startsWith("commerce.report_") &&
-        !key.startsWith("commerce.report_retention.")
+        !key.startsWith("commerce.report_retention.") &&
+        !key.startsWith("commerce.report_booking_revenue.")
     );
     expect(reportKeys.sort()).toEqual([...EXPECTED_KEYS].sort());
   });

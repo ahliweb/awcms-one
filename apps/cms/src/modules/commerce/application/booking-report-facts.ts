@@ -19,9 +19,11 @@
  * grows and a recompute can find an order's provenance at any later time.
  */
 import type { RetentionBookingFact } from "../domain/retention";
-import type {
-  BookingOrderFacts,
-  BookingSourceKind
+import {
+  NO_DECIDED_REFUNDS,
+  type BookingDecidedRefunds,
+  type BookingOrderFacts,
+  type BookingSourceKind
 } from "../domain/booking-revenue";
 import { toCents } from "../domain/price-calculation";
 
@@ -131,6 +133,14 @@ type LedgerRow = {
   paid_back: string;
 };
 
+type ReturnsRow = {
+  order_id: string;
+  goods: string;
+  shipping: string;
+  tax: string;
+  lump: string;
+};
+
 type DecisionRow = {
   order_id: string;
   no_shows: number;
@@ -143,6 +153,14 @@ type DecisionRow = {
  * {@link deriveBookingOrderRow}. An id that is not booking-sourced is simply
  * absent from the map. The ledger sums count only `succeeded` legs (a pending
  * or failed gateway leg is not money that moved).
+ *
+ * The refunds DECIDED on the order (Issue #478, metrics 3.9 D1) come from its
+ * return records: every refund, whether a goods return, an exchange, a booking
+ * cancellation or a reschedule's shortening, writes one (ADR-0033) in the same
+ * transaction as its refund legs, so a record IS the obligation. A goods or
+ * exchange record carries an exact split (goods gross less the discount released,
+ * shipping, tax) that wins over pro rata; a `cancellation` record is a lump with
+ * no split (sql/1043: one line, no shipping, no tax share), which is allocated.
  */
 export async function loadBookingOrderFacts(
   tx: Bun.SQL,
@@ -182,6 +200,20 @@ export async function loadBookingOrderFacts(
   `) as LedgerRow[];
   const ledgerByOrder = new Map(ledger.map((row) => [row.order_id, row]));
 
+  // Goods and exchange records carry an exact split; a cancellation record is a
+  // lump. Exchange refund_total can be 0; the filter keeps it in the exact side.
+  const returns = (await tx`
+    SELECT order_id,
+      COALESCE(sum(goods_gross - discount_share) FILTER (WHERE kind <> 'cancellation'), 0)::text AS goods,
+      COALESCE(sum(shipping_refund) FILTER (WHERE kind <> 'cancellation'), 0)::text AS shipping,
+      COALESCE(sum(tax_refund) FILTER (WHERE kind <> 'cancellation'), 0)::text AS tax,
+      COALESCE(sum(refund_total) FILTER (WHERE kind = 'cancellation'), 0)::text AS lump
+    FROM awcms_commerce_returns
+    WHERE tenant_id = ${tenantId} AND order_id = ANY(${ids}::uuid[])
+    GROUP BY order_id
+  `) as ReturnsRow[];
+  const returnsByOrder = new Map(returns.map((row) => [row.order_id, row]));
+
   const decisions = (await tx`
     SELECT order_id,
       (count(*) FILTER (WHERE trigger_kind = 'no_show'))::int AS no_shows,
@@ -198,6 +230,18 @@ export async function loadBookingOrderFacts(
     if (sourceKind === null) continue;
     const money = ledgerByOrder.get(header.id);
     const decided = decisionsByOrder.get(header.id);
+    const returned = returnsByOrder.get(header.id);
+    const refunds: BookingDecidedRefunds = returned
+      ? {
+          exact: {
+            goods: toCents(String(returned.goods)),
+            shipping: toCents(String(returned.shipping)),
+            insurance: 0n,
+            tax: toCents(String(returned.tax))
+          },
+          lumpCents: toCents(String(returned.lump))
+        }
+      : NO_DECIDED_REFUNDS;
     result.set(header.id, {
       orderId: header.id,
       sourceKind,
@@ -210,6 +254,7 @@ export async function loadBookingOrderFacts(
       total: String(header.total),
       paidInCents: money ? toCents(String(money.paid_in)) : 0n,
       paidBackCents: money ? toCents(String(money.paid_back)) : 0n,
+      refunds,
       stays: links.get(header.id)?.stays ?? 0,
       noShows: decided ? Number(decided.no_shows) : 0,
       noShowRetainedCents: decided ? toCents(String(decided.retained)) : 0n,

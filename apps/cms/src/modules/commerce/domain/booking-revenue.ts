@@ -1,6 +1,7 @@
 /**
- * Booking-sourced revenue rules - Issue #389, ADR-0045 (amendment note), spec
- * `docs/aw-business-platform-metrics.md` sections 3 (and 3.7), 8.2 and 8.3.
+ * Booking-sourced revenue rules - Issue #389 and Issue #478, ADR-0045 (amendment
+ * note and "Owner decisions on the booking revenue slice"), spec
+ * `docs/aw-business-platform-metrics.md` sections 3 (3.7 and 3.9), 8.2 and 8.3.
  * PURE: no database, no I/O, no clock (every function that needs "now" takes
  * it). The `commerce.booking_revenue` reporting projection, its reconciliation
  * control totals and its read route all run THESE functions, which is what
@@ -22,16 +23,29 @@
  *     identity below holds exactly. A per-line price cut is already inside the
  *     line price the order froze and is not a discount here (the order keeps
  *     no list price).
- *   * Refunds have two parts that always add up to the step: the money that
- *     actually went BACK ("paid back" - the ledger's succeeded reversal legs)
- *     and the "uncollected balance (no money moved)" - the unpaid part of an
- *     order that will now never be collected. Both land on the ORIGINAL paid
- *     day (metrics 1.1 rule 5), not on the day of the cancellation.
+ *   * Refunds count when they are DECIDED (3.9 D1), not when the money moves: the
+ *     refund of the order's return records (a goods return, an exchange, a
+ *     booking cancellation, a reschedule's shortening) is an obligation from the
+ *     moment it is recorded, the same moment `commerce.sales_daily` nets a
+ *     return. The step has three parts that always add up: "paid back" (the
+ *     ledger's succeeded reversal legs), "refund payable" (decided, not yet paid
+ *     out: planned, processing or failed legs) and "uncollected balance (no money
+ *     moved)" (the unpaid part of an order that will now never be collected). All
+ *     three land on the ORIGINAL paid day (metrics 1.1 rule 5). Settling a leg
+ *     moves cents from payable to paid back and NEVER moves net.
+ *   * Each refund and each uncollected amount is allocated across the order's
+ *     goods, shipping, insurance and tax (3.9 D3, `booking-refund-allocation.ts`),
+ *     once, in integer cents. Only the GOODS share is in the Refunds step; the
+ *     other three lower their own companion columns, so a full refund of a taxed
+ *     order gives net 0 and tax 0, never a negative net (tax collected is not
+ *     revenue).
  *   * Net = gross - discounts - refunds. A retained deposit is ordinary
  *     settled revenue and stays in net.
  *   * Shipping, insurance and tax are three companion columns, not part of the
- *     waterfall; the unpaid balance of an order still open is a fourth, so
- *     deposit-day gross is never read as cash received.
+ *     waterfall (each AFTER its refunded share); the unpaid balance of an order
+ *     still open and the refund still payable are two more, so deposit-day
+ *     gross is never read as cash received and a decided refund is never read as
+ *     paid out.
  *
  * ## The order is "closed" when nothing more will be collected
  *
@@ -41,18 +55,19 @@
  * the original day and the outstanding balance is zero. Any other order keeps
  * its balance outstanding. "Paid in" is the sum of the succeeded PAYMENT legs
  * (money that came in, whatever went back afterwards), so the uncollected part
- * does not move when a refund is paid later.
+ * does not move when a refund is decided or paid later.
  *
- * ## The control identity (metrics 3.5)
+ * ## The control identity (metrics 3.5, 3.9)
  *
- *   net + shipping + insurance + tax = settled + balance outstanding - surplus
+ *   net + shipping + insurance + tax (each after its refunded share)
+ *     = settled - refund payable + balance outstanding - surplus
  *
  * where `settled = paid in - paid back` and `surplus` is money held above the
- * total (a liability, not revenue). It holds per order BY CONSTRUCTION of
- * {@link deriveBookingOrderRow} and is the reconciliation's required control
- * total (`bookingRevenueIdentityHolds`). A refund is money, so a full refund of
- * an order that carried tax leaves the tax companion un-netted and the net
- * below zero by that amount - the identity, not the optics, is the contract.
+ * total that has not been refunded (a liability, not revenue). It holds per
+ * order BY CONSTRUCTION of {@link deriveBookingOrderRow} and is the
+ * reconciliation's required control total (`bookingRevenueIdentityHolds`). The
+ * cash reading of the refunds lives in the labelled by-refund-day view
+ * (`booking-cash-view.ts`), never in the waterfall.
  *
  * ## No-show
  *
@@ -69,6 +84,12 @@
  * read-only query (`application/booking-pipeline.ts`); {@link shapeHoldPipeline}
  * is its pure shaping.
  */
+import {
+  ZERO_COMPONENTS,
+  allocateBookingRefunds,
+  bookingSurplusHeldCents,
+  type BookingComponents
+} from "./booking-refund-allocation";
 import { fromCents, toCents } from "./price-calculation";
 import { resolveSalesReportDay } from "./sales-report-deltas";
 
@@ -101,7 +122,15 @@ export const BOOKING_REVENUE_CONTROL_KEYS = {
   paidBackCents: "booking_paid_back_cents",
   uncollectedCents: "booking_uncollected_cents",
   outstandingCents: "booking_outstanding_cents",
-  settledCents: "booking_settled_cents"
+  settledCents: "booking_settled_cents",
+  /** Issue #478 (3.9 D1): decided and not yet paid out. */
+  refundPayableCents: "booking_refund_payable_cents",
+  /** Issue #478 (3.9 D3): the waterfall's net, after the goods share of refunds and uncollected. */
+  netCents: "booking_net_cents",
+  /** Issue #478 (3.9 D3): shipping + insurance + tax, each after its refunded share. */
+  companionsCents: "booking_companions_cents",
+  /** Issue #478: money held above the total that has not been refunded. */
+  surplusCents: "booking_surplus_cents"
 } as const;
 
 /** Owner-accepted restatement window (spec 1.2, Q1): a day older than this that a late event changed is flagged. */
@@ -137,6 +166,13 @@ export type BookingOrderFacts = {
   paidInCents: bigint;
   /** Sum of the succeeded `reversal` legs of the ledger. */
   paidBackCents: bigint;
+  /**
+   * The refunds DECIDED on the order (Issue #478, 3.9 D1): the return records
+   * (`awcms_commerce_returns`). A goods or exchange record carries its own
+   * split (`exact`: goods = goods gross less the discount released, shipping, tax);
+   * a booking cancellation record is a lump (`lumpCents`, no split).
+   */
+  refunds: BookingDecidedRefunds;
   /** Reservation links of the order that are not `superseded` (a reschedule's replacement counts once); `0` for a supplementary order. */
   stays: number;
   /** No-show refund decisions of the order's links. */
@@ -146,6 +182,15 @@ export type BookingOrderFacts = {
   /** Cancellation refund decisions (customer or staff) of the order's links. */
   cancellations: number;
 };
+
+/** The refund records of one order, split by whether the record carries an exact split. */
+export type BookingDecidedRefunds = {
+  exact: BookingComponents;
+  lumpCents: bigint;
+};
+
+export const NO_DECIDED_REFUNDS: Readonly<BookingDecidedRefunds> =
+  Object.freeze({ exact: ZERO_COMPONENTS, lumpCents: 0n });
 
 /** The derived, stored row of one order. */
 export type BookingOrderRow = {
@@ -162,12 +207,26 @@ export type BookingOrderRow = {
   taxCents: bigint;
   totalCents: bigint;
   paidInCents: bigint;
+  /** Money: the succeeded reversal legs. */
   paidBackCents: bigint;
-  /** The unpaid balance of a closed order: left the order on the original day, no money moved. */
+  /** Money: decided refunds not yet paid out (Issue #478, 3.9 D1). */
+  refundPayableCents: bigint;
+  /** Money: the unpaid balance of a closed order, left the order on the original day, no money moved. */
   uncollectedCents: bigint;
   /** The unpaid balance of an order still open. */
   outstandingCents: bigint;
   closed: boolean;
+  /**
+   * The GOODS share of each part of the Refunds step (3.9 D3): they add up to
+   * the step, and settling a leg moves cents between the first two only.
+   */
+  goodsPaidBackCents: bigint;
+  goodsPayableCents: bigint;
+  goodsUncollectedCents: bigint;
+  /** The shipping / insurance / tax cents that refunds and the uncollected balance took out of their companion columns. */
+  shippingRefundedCents: bigint;
+  insuranceRefundedCents: bigint;
+  taxRefundedCents: bigint;
 };
 
 const max0 = (value: bigint): bigint => (value < 0n ? 0n : value);
@@ -203,6 +262,20 @@ export function deriveBookingOrderRow(
   );
   const closed = isBookingOrderClosed(facts);
   const unpaid = max0(totalCents - facts.paidInCents);
+  const uncollectedCents = closed ? unpaid : 0n;
+  const allocation = allocateBookingRefunds({
+    components: {
+      goods: max0(grossCents - discountCents),
+      shipping: shippingCents,
+      insurance: insuranceCents,
+      tax: taxCents
+    },
+    exact: facts.refunds.exact,
+    lumpCents: facts.refunds.lumpCents,
+    paidBackCents: facts.paidBackCents,
+    paidInCents: facts.paidInCents,
+    uncollectedCents
+  });
   return {
     paidDay: resolveSalesReportDay(facts.paidAt),
     sourceKind: facts.sourceKind,
@@ -217,41 +290,82 @@ export function deriveBookingOrderRow(
     totalCents,
     paidInCents: facts.paidInCents,
     paidBackCents: facts.paidBackCents,
-    uncollectedCents: closed ? unpaid : 0n,
+    refundPayableCents: allocation.payableCents,
+    uncollectedCents,
     outstandingCents: closed ? 0n : unpaid,
-    closed
+    closed,
+    goodsPaidBackCents: allocation.paidBack.goods,
+    goodsPayableCents: allocation.payable.goods,
+    goodsUncollectedCents: allocation.uncollected.goods,
+    shippingRefundedCents:
+      allocation.paidBack.shipping +
+      allocation.payable.shipping +
+      allocation.uncollected.shipping,
+    insuranceRefundedCents:
+      allocation.paidBack.insurance +
+      allocation.payable.insurance +
+      allocation.uncollected.insurance,
+    taxRefundedCents:
+      allocation.paidBack.tax +
+      allocation.payable.tax +
+      allocation.uncollected.tax
   };
 }
 
-/** Net revenue of one order: gross - discounts - (paid back + uncollected). */
-export function bookingOrderNetCents(row: BookingOrderRow): bigint {
+/** The Refunds step of one order: the goods share of paid back + payable + uncollected (3.9 D1, D3). */
+export function bookingOrderRefundsCents(row: BookingOrderRow): bigint {
   return (
-    row.grossCents -
-    row.discountCents -
-    row.paidBackCents -
-    row.uncollectedCents
+    row.goodsPaidBackCents + row.goodsPayableCents + row.goodsUncollectedCents
+  );
+}
+
+/** The three companion columns of one order, each AFTER its refunded share. */
+export function bookingOrderCompanionCents(row: BookingOrderRow) {
+  return {
+    shippingCents: row.shippingCents - row.shippingRefundedCents,
+    insuranceCents: row.insuranceCents - row.insuranceRefundedCents,
+    taxCents: row.taxCents - row.taxRefundedCents
+  };
+}
+
+/** Net revenue of one order: gross - discounts - the Refunds step (the goods share of refunds and of the uncollected balance). */
+export function bookingOrderNetCents(row: BookingOrderRow): bigint {
+  return row.grossCents - row.discountCents - bookingOrderRefundsCents(row);
+}
+
+/** Money held above the order total that has not been refunded: a liability, never revenue. */
+export function bookingOrderSurplusCents(row: BookingOrderRow): bigint {
+  return bookingSurplusHeldCents(
+    row.paidInCents,
+    row.totalCents,
+    row.paidBackCents + row.refundPayableCents
   );
 }
 
 /**
- * The metrics 3.5 control identity for one row:
+ * The metrics 3.5 / 3.9 control identity for one row:
  *
- *   net + shipping + insurance + tax = settled + balance outstanding - surplus
+ *   net + shipping + insurance + tax (each after its refunded share)
+ *     = settled - refund payable + balance outstanding - surplus
  *
- * with `settled = paid in - paid back` and `surplus = max(0, paid in - total)`
- * (money held above the total is a liability, not revenue). It is the
+ * with `settled = paid in - paid back` and `surplus` = money held above the
+ * total that has not been refunded (a liability, not revenue). It is the
  * reconciliation's required control total: `customer_paid` of an order with no
  * returns reads `net + companions`, and a refund lowers both sides alike.
  */
 export function bookingRevenueIdentityHolds(row: BookingOrderRow): boolean {
-  const surplus = max0(row.paidInCents - row.totalCents);
+  const companions = bookingOrderCompanionCents(row);
   const left =
     bookingOrderNetCents(row) +
-    row.shippingCents +
-    row.insuranceCents +
-    row.taxCents;
+    companions.shippingCents +
+    companions.insuranceCents +
+    companions.taxCents;
   const right =
-    row.paidInCents - row.paidBackCents + row.outstandingCents - surplus;
+    row.paidInCents -
+    row.paidBackCents -
+    row.refundPayableCents +
+    row.outstandingCents -
+    bookingOrderSurplusCents(row);
   return left === right;
 }
 
@@ -265,10 +379,16 @@ export type BookingRevenueControlTotals = {
   noShows: number;
   grossCents: bigint;
   discountCents: bigint;
+  /** Money: the succeeded reversal legs. */
   paidBackCents: bigint;
+  /** Money: the unpaid balance of closed orders. */
   uncollectedCents: bigint;
   outstandingCents: bigint;
   settledCents: bigint;
+  refundPayableCents: bigint;
+  netCents: bigint;
+  companionsCents: bigint;
+  surplusCents: bigint;
 };
 
 export function emptyBookingRevenueControlTotals(): BookingRevenueControlTotals {
@@ -281,7 +401,11 @@ export function emptyBookingRevenueControlTotals(): BookingRevenueControlTotals 
     paidBackCents: 0n,
     uncollectedCents: 0n,
     outstandingCents: 0n,
-    settledCents: 0n
+    settledCents: 0n,
+    refundPayableCents: 0n,
+    netCents: 0n,
+    companionsCents: 0n,
+    surplusCents: 0n
   };
 }
 
@@ -289,6 +413,7 @@ export function accumulateBookingRevenueControlTotals(
   totals: BookingRevenueControlTotals,
   row: BookingOrderRow
 ): void {
+  const companions = bookingOrderCompanionCents(row);
   totals.orders += 1;
   totals.stays += row.stays;
   totals.noShows += row.noShows;
@@ -298,6 +423,28 @@ export function accumulateBookingRevenueControlTotals(
   totals.uncollectedCents += row.uncollectedCents;
   totals.outstandingCents += row.outstandingCents;
   totals.settledCents += row.paidInCents - row.paidBackCents;
+  totals.refundPayableCents += row.refundPayableCents;
+  totals.netCents += bookingOrderNetCents(row);
+  totals.companionsCents +=
+    companions.shippingCents + companions.insuranceCents + companions.taxCents;
+  totals.surplusCents += bookingOrderSurplusCents(row);
+}
+
+/**
+ * The identity at the level of the control totals (the reconciliation's view of
+ * 3.9 D1): net + companions = settled - refund payable + outstanding - surplus.
+ * It holds for the sum of rows that each hold it.
+ */
+export function bookingControlTotalsIdentityHolds(
+  totals: BookingRevenueControlTotals
+): boolean {
+  return (
+    totals.netCents + totals.companionsCents ===
+    totals.settledCents -
+      totals.refundPayableCents +
+      totals.outstandingCents -
+      totals.surplusCents
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -315,14 +462,21 @@ export function bookingDayRestatementThreshold(day: string): Date {
   return new Date(endOfDay + BOOKING_REVENUE_RESTATEMENT_WINDOW_DAYS * DAY_MS);
 }
 
-/** The figures a late event can change on a day that is already closed. */
+/**
+ * The figures a late event can change on a day that is already closed: the
+ * waterfall (gross, discounts, the Refunds step) and what the refunds took out of
+ * the companions. Settling a leg moves cents between "paid back" and "payable"
+ * and never moves net (3.9 D1), so it is not here and is not a restatement.
+ */
 function waterfallFingerprint(row: BookingOrderRow | null): string {
   if (row === null) return "none";
   return [
     row.grossCents,
     row.discountCents,
-    row.paidBackCents,
-    row.uncollectedCents,
+    bookingOrderRefundsCents(row),
+    row.shippingRefundedCents,
+    row.insuranceRefundedCents,
+    row.taxRefundedCents,
     row.noShows,
     row.stays
   ].join("|");
@@ -367,12 +521,21 @@ export type BookingRevenueDaySums = {
   noShowRetainedCents: bigint;
   grossCents: bigint;
   discountCents: bigint;
+  /** The companion columns as collected, before the refunded shares. */
   shippingCents: bigint;
   insuranceCents: bigint;
   taxCents: bigint;
+  /** The goods share of each part of the Refunds step (3.9 D1, D3). */
   paidBackCents: bigint;
+  payableCents: bigint;
   uncollectedCents: bigint;
+  /** What refunds and the uncollected balance took out of each companion column. */
+  shippingRefundedCents: bigint;
+  insuranceRefundedCents: bigint;
+  taxRefundedCents: bigint;
   outstandingCents: bigint;
+  /** Money still to be paid out on decided refunds, all components (the companion column). */
+  refundPayableCents: bigint;
 };
 
 export function emptyBookingRevenueDaySums(): BookingRevenueDaySums {
@@ -387,8 +550,13 @@ export function emptyBookingRevenueDaySums(): BookingRevenueDaySums {
     insuranceCents: 0n,
     taxCents: 0n,
     paidBackCents: 0n,
+    payableCents: 0n,
     uncollectedCents: 0n,
-    outstandingCents: 0n
+    shippingRefundedCents: 0n,
+    insuranceRefundedCents: 0n,
+    taxRefundedCents: 0n,
+    outstandingCents: 0n,
+    refundPayableCents: 0n
   };
 }
 
@@ -398,17 +566,23 @@ export type BookingRevenueFigures = {
   /** Money, `numeric(14,2)` strings. */
   gross: string;
   discounts: string;
+  /** The Refunds step: the goods share of the three parts below, which always add up to it. */
   refunds: string;
-  /** Refunds, part one: the money that actually went back to the customer. */
+  /** Refunds, part one: the goods share of the money that actually went back to the customer. */
   refundsPaidBack: string;
-  /** Refunds, part two: "of which uncollected balance (no money moved)". */
+  /** Refunds, part two: the goods share of refunds decided and not yet paid out. */
+  refundsPayable: string;
+  /** Refunds, part three: "of which uncollected balance (no money moved)", goods share. */
   refundsUncollected: string;
   net: string;
+  /** The companion columns, each AFTER its refunded share (3.9 D3). */
   shipping: string;
   insurance: string;
   tax: string;
   /** The unpaid balance of orders still open, shown beside the waterfall (spec 3.7 rule 2). */
   balanceOutstanding: string;
+  /** Decided refunds not yet paid out, all components (3.9 D1): the companion that says how much cash is still to leave. */
+  refundPayableBalance: string;
   noShows: number;
   noShowRetained: string;
   /** No-shows / stays, one decimal, round-half-up; `null` with no stays. */
@@ -429,7 +603,8 @@ export function formatRatePercent(part: bigint, whole: bigint): string | null {
 export function shapeBookingRevenueFigures(
   sums: BookingRevenueDaySums
 ): BookingRevenueFigures {
-  const refundsCents = sums.paidBackCents + sums.uncollectedCents;
+  const refundsCents =
+    sums.paidBackCents + sums.payableCents + sums.uncollectedCents;
   const netCents = sums.grossCents - sums.discountCents - refundsCents;
   return {
     orders: sums.orders,
@@ -438,12 +613,16 @@ export function shapeBookingRevenueFigures(
     discounts: fromSignedCents(sums.discountCents),
     refunds: fromSignedCents(refundsCents),
     refundsPaidBack: fromSignedCents(sums.paidBackCents),
+    refundsPayable: fromSignedCents(sums.payableCents),
     refundsUncollected: fromSignedCents(sums.uncollectedCents),
     net: fromSignedCents(netCents),
-    shipping: fromSignedCents(sums.shippingCents),
-    insurance: fromSignedCents(sums.insuranceCents),
-    tax: fromSignedCents(sums.taxCents),
+    shipping: fromSignedCents(sums.shippingCents - sums.shippingRefundedCents),
+    insurance: fromSignedCents(
+      sums.insuranceCents - sums.insuranceRefundedCents
+    ),
+    tax: fromSignedCents(sums.taxCents - sums.taxRefundedCents),
     balanceOutstanding: fromSignedCents(sums.outstandingCents),
+    refundPayableBalance: fromSignedCents(sums.refundPayableCents),
     noShows: sums.noShows,
     noShowRetained: fromSignedCents(sums.noShowRetainedCents),
     noShowRatePercent: formatRatePercent(
@@ -455,7 +634,7 @@ export function shapeBookingRevenueFigures(
   };
 }
 
-/** `fromCents` is unsigned by contract; a net can be negative (see the file header). */
+/** `fromCents` is unsigned by contract; a signed figure keeps its sign. */
 export function fromSignedCents(cents: bigint): string {
   return cents < 0n ? `-${fromCents(-cents)}` : fromCents(cents);
 }
@@ -474,9 +653,39 @@ export function addBookingRevenueDaySums(
   into.insuranceCents += add.insuranceCents;
   into.taxCents += add.taxCents;
   into.paidBackCents += add.paidBackCents;
+  into.payableCents += add.payableCents;
   into.uncollectedCents += add.uncollectedCents;
+  into.shippingRefundedCents += add.shippingRefundedCents;
+  into.insuranceRefundedCents += add.insuranceRefundedCents;
+  into.taxRefundedCents += add.taxRefundedCents;
   into.outstandingCents += add.outstandingCents;
+  into.refundPayableCents += add.refundPayableCents;
   return into;
+}
+
+/** One stored row as the day sums see it: the sum of the rows of a day is the day. */
+export function bookingOrderDaySums(
+  row: BookingOrderRow
+): BookingRevenueDaySums {
+  return {
+    orders: 1,
+    stays: row.stays,
+    noShows: row.noShows,
+    noShowRetainedCents: row.noShowRetainedCents,
+    grossCents: row.grossCents,
+    discountCents: row.discountCents,
+    shippingCents: row.shippingCents,
+    insuranceCents: row.insuranceCents,
+    taxCents: row.taxCents,
+    paidBackCents: row.goodsPaidBackCents,
+    payableCents: row.goodsPayableCents,
+    uncollectedCents: row.goodsUncollectedCents,
+    shippingRefundedCents: row.shippingRefundedCents,
+    insuranceRefundedCents: row.insuranceRefundedCents,
+    taxRefundedCents: row.taxRefundedCents,
+    outstandingCents: row.outstandingCents,
+    refundPayableCents: row.refundPayableCents
+  };
 }
 
 // ---------------------------------------------------------------------------

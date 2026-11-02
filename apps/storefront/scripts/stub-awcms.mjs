@@ -221,6 +221,7 @@
 import { readFileSync } from "node:fs";
 
 import { createBookingStub } from "./stub-booking.mjs";
+import { createPushStub } from "./stub-push.mjs";
 
 const PORT = Number(process.env.STUB_PORT ?? 4310);
 const FIXTURES = new URL("../tests/fixtures/awcms/", import.meta.url);
@@ -1007,6 +1008,16 @@ const bookingStub = createBookingStub({
   normalizeEmail
 });
 
+// Issue #431 (ADR-0048): the customer Web Push routes live in
+// `scripts/stub-push.mjs`; `/account/logout` revokes the logging-out session's
+// devices through it, exactly as the CMS does in the same transaction.
+const pushStub = createPushStub({
+  envelope,
+  envelopeError,
+  findAccountByBearer,
+  sessionTokenOf: (request) => /^Bearer (.+)$/.exec(request.headers.get("authorization") ?? "")?.[1] ?? null
+});
+
 function issueSession(emailNormalized) {
   sessionSequence += 1;
   const token = `cs_stub_${sessionSequence}`;
@@ -1056,6 +1067,9 @@ function findAccountByPhone(phone) {
 }
 
 function handleAccountRequest(request, path, body, headers) {
+  // Issue #431: `/account/push/*`.
+  if (path.startsWith("/push/")) return pushStub.handle(request, path, body, headers);
+
   if (path === "/otp/request" && request.method === "POST") {
     const purpose = body?.purpose === "register" ? "register" : "login";
     // Issue #115 (contract #106 D5) — `via` defaults to `"email"`; WhatsApp
@@ -1202,7 +1216,10 @@ function handleAccountRequest(request, path, body, headers) {
     if (!account) {
       return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
     }
-    if (match) SESSIONS.delete(match[1]);
+    if (match) {
+      pushStub.revokeSessionDevices(account, match[1]);
+      SESSIONS.delete(match[1]);
+    }
     return new Response(null, { status: 204, headers });
   }
 
@@ -2171,6 +2188,11 @@ const server = Bun.serve({
     // gate in this file.
     if (url.pathname.startsWith("/stub/gateway/")) {
       return handleStubGatewayPage(request, url);
+    }
+
+    // Issue #431: test-only control of the customer Web Push stub (mode, reset).
+    if (url.pathname === "/stub/push/control" && request.method === "POST") {
+      return pushStub.handleControl(request);
     }
 
     // Issue #386: test-only control of the booking state machine (shorten the

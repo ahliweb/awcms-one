@@ -16,7 +16,10 @@ import {
   requireCampaignSegmentAudienceFeature,
   resolveCampaignSegmentPin
 } from "./campaign-segment-audience";
-import { evaluationRefusalResponse } from "./segment-http";
+import {
+  evaluationRefusalResponse,
+  requireBookingRuleAccess
+} from "./segment-http";
 
 const SEGMENTS_READ_GUARD = {
   moduleKey: "commerce",
@@ -107,6 +110,17 @@ export async function attachSegmentToDraft(
       )
     };
   }
+  // A booking-derived rule (rule schema 2, ADR-0052) is aimed only by someone
+  // who may read bookings: choosing it reveals who it selects.
+  const bookingDenied = await requireBookingRuleAccess(
+    tx,
+    tenantId,
+    tokenHash,
+    now,
+    outcome.node,
+    { requireFeature: false }
+  );
+  if (bookingDenied) return { kind: "refused", response: bookingDenied };
   return {
     kind: "ok",
     pin: { segmentId: outcome.pin.segmentId, version: outcome.pin.version }

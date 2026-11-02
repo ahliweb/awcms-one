@@ -259,6 +259,7 @@ describe("buildDomainEventConsumerRegistry", () => {
       "commerce.booking_order_cancelled_hold_releaser",
       "commerce.booking_order_paid_confirmer",
       "commerce.booking_rescheduled_link_reconciler",
+      "commerce.customer_push_enqueuer",
       "commerce.inventory_stock_cache_projector",
       "commerce.order_cancelled_loyalty_reverser",
       "commerce.order_paid_entitlement_grantor",

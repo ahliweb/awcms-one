@@ -208,6 +208,11 @@ services:
         AWCMS_API_URL: ${AWCMS_API_URL:?AWCMS_API_URL is required}
         PUBLIC_AWCMS_ORIGIN: ${PUBLIC_AWCMS_ORIGIN:?PUBLIC_AWCMS_ORIGIN is required}
         PUBLIC_GA_ID: ${PUBLIC_GA_ID:-}
+        # Build-time opt-in flags (off when empty): the iPhone install-help page
+        # (#428, ADR-0049 D5) and customer Web Push (#431, ADR-0048: worker,
+        # settings page, /akun card). See docs/deployment.md.
+        PUBLIC_INSTALL_HELP: ${PUBLIC_INSTALL_HELP:-}
+        PUBLIC_CUSTOMER_PUSH: ${PUBLIC_CUSTOMER_PUSH:-}
       # AWCMS_API_TOKEN is a BUILD secret, not a build arg — see
       # apps/storefront/Dockerfile's own header. `docker compose build` reads
       # this from BuildKit's secret store; the value never appears in this
