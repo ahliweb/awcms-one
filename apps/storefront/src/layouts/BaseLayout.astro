@@ -281,6 +281,9 @@ function jsonForScript(value: unknown): string {
   <body data-analytics-tenant-code={analyticsTenantCode} data-ga-measurement-id={gaId ?? ""}>
     <a class="skip-link" href="#konten">Lewati ke konten utama</a>
 
+    {/* The one polite status every guarded form writes "Memproses..." to (issue #513, `src/lib/kirim-tunggal.ts`). Visually hidden, so it costs no layout; present in the markup from the first paint, because a live region announces reliably only when it exists before its text changes. Empty until a guarded request is pending. */}
+    <div class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-proses-status></div>
+
     {/* Named slots, store chrome as the DEFAULT content — issue #48 fills these with the news chrome on every `/berita/**` page while every other page keeps this fallback, with no change to its own rendered HTML (a named slot with no filler renders its default verbatim). */}
     <slot name="header"><Header identity={identity} /></slot>
 

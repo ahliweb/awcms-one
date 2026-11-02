@@ -36,6 +36,7 @@
  * so a successful call's `data.message` is deliberately never rendered
  * verbatim; the fixed Indonesian sentences below say the same thing.
  */
+import { penjagaUntuk } from "../lib/kirim-tunggal";
 import { requireAwcmsOrigin } from "../lib/awcms/toko-origin";
 
 const NEWSLETTER_PATH_PREFIX = "/api/v1/newsletter";
@@ -241,11 +242,13 @@ export function wireBuletinForm(formRoot: HTMLFormElement): void {
   const submitButton = formRoot.querySelector<HTMLButtonElement>("[data-buletin-submit]");
   const statusEl = formRoot.querySelector<HTMLElement>("[data-buletin-status]");
 
-  let submitting = false;
+  // Issue #513: the subscribe call is naturally idempotent (a neutral answer for
+  // a known address, a server-side cooldown), so this is guarded but sends no key.
+  const guard = penjagaUntuk(formRoot, { kontrol: () => [submitButton] });
 
   formRoot.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (submitting) return;
+    if (guard.keadaan() !== "idle") return;
 
     // The form itself is `novalidate` (this app never lets the browser's
     // own bubble UI silently swallow a submit elsewhere either — see
@@ -281,12 +284,10 @@ export function wireBuletinForm(formRoot: HTMLFormElement): void {
       return;
     }
 
-    submitting = true;
-    if (submitButton) submitButton.disabled = true;
-    if (statusEl) statusEl.hidden = true;
-
-    subscribeToNewsletter(email)
-      .then(() => {
+    void guard.jalankan(async () => {
+      if (statusEl) statusEl.hidden = true;
+      try {
+        await subscribeToNewsletter(email);
         if (statusEl) {
           showStatus(
             statusEl,
@@ -295,14 +296,10 @@ export function wireBuletinForm(formRoot: HTMLFormElement): void {
           );
         }
         formRoot.reset();
-      })
-      .catch((error: unknown) => {
+      } catch (error) {
         if (statusEl) showStatus(statusEl, "danger", buletinErrorMessage(error));
-      })
-      .finally(() => {
-        submitting = false;
-        if (submitButton) submitButton.disabled = false;
-      });
+      }
+    });
   });
 }
 
@@ -360,27 +357,30 @@ function wireTokenPage(
   // there is nothing correct for it to do.
   actionButton.hidden = false;
 
-  let submitting = false;
+  // Confirm and unsubscribe are naturally idempotent (the token is spent on first
+  // use and a repeat answers the same neutral text): guarded, no key. A success
+  // hides the button, so the guard stays locked rather than being released.
+  const guard = penjagaUntuk(actionButton);
   actionButton.addEventListener("click", () => {
-    if (submitting) return;
-    submitting = true;
-    actionButton.disabled = true;
-    statusEl.hidden = true;
-
-    action(token)
-      .then(() => {
-        showStatus(statusEl, "info", successMessage);
-        // The token is spent server-side on first use (both routes clear
-        // their own token hash on success); hiding the button stops a
-        // reader re-clicking into a second, pointless request rather than
-        // relying on the per-IP limiter to make that harmless.
-        actionButton.hidden = true;
-      })
-      .catch((error: unknown) => {
-        showStatus(statusEl, "danger", buletinErrorMessage(error, "token"));
-        submitting = false;
-        actionButton.disabled = false;
-      });
+    void guard.jalankan(
+      async () => {
+        statusEl.hidden = true;
+        try {
+          await action(token);
+          showStatus(statusEl, "info", successMessage);
+          // The token is spent server-side on first use (both routes clear
+          // their own token hash on success); hiding the button stops a
+          // reader re-clicking into a second, pointless request rather than
+          // relying on the per-IP limiter to make that harmless.
+          actionButton.hidden = true;
+          return true;
+        } catch (error) {
+          showStatus(statusEl, "danger", buletinErrorMessage(error, "token"));
+          return false;
+        }
+      },
+      { kunciBila: (berhasil) => berhasil }
+    );
   });
 }
 

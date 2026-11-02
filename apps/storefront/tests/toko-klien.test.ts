@@ -329,3 +329,35 @@ describe("toko-klien: the booking reads (issue #386)", () => {
     expect(JSON.parse(String(lastRequest?.init.body))).toEqual({ phone: "0812" });
   });
 });
+
+describe("toko-klien: the optional Idempotency-Key on the anonymous order actions (issue #513)", () => {
+  const KUNCI = "4b9d2c7a-0e1f-4d3a-8b65-9a7c1e2f3d40";
+
+  test("submitPaymentConfirmation and cancelOrder send the header only when given a key", async () => {
+    const konfirmasi = {
+      phone: "0812",
+      method: "manual_qris" as const,
+      amount: "100000",
+      bankName: null,
+      accountName: null,
+      transferredAt: "2026-11-02T00:00:00.000Z",
+      proofMediaObjectId: null
+    };
+    mockFetch(200, { success: true, data: {} });
+    await submitPaymentConfirmation("BJM-1", konfirmasi, KUNCI);
+    expect((lastRequest?.init.headers as Record<string, string>)["Idempotency-Key"]).toBe(KUNCI);
+    expect(String(lastRequest?.init.body)).not.toContain(KUNCI);
+
+    mockFetch(200, { success: true, data: {} });
+    await submitPaymentConfirmation("BJM-1", konfirmasi);
+    expect(Object.keys(lastRequest?.init.headers as Record<string, string>)).toEqual(["Content-Type"]);
+
+    mockFetch(200, { success: true, data: {} });
+    await cancelOrder("BJM-1", { phone: "0812", reason: null }, KUNCI);
+    expect((lastRequest?.init.headers as Record<string, string>)["Idempotency-Key"]).toBe(KUNCI);
+
+    mockFetch(200, { success: true, data: {} });
+    await cancelOrder("BJM-1", { phone: "0812", reason: null });
+    expect(Object.keys(lastRequest?.init.headers as Record<string, string>)).toEqual(["Content-Type"]);
+  });
+});

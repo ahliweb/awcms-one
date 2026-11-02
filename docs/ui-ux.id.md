@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:6d3990f4f66eabde4e056df9f7ae2ed8364cd297045ad2f5bc072d625932571d -->
+<!-- i18n-source-hash: sha256:521bbede20431a75096a5f38b34004571475faf59c35d6c4e48702630a557599 -->
 
 # UI / UX
 
@@ -123,6 +123,27 @@ Daftar perangkat (dengan "Perangkat ini" sebagai lencana teks yang terlihat, tid
 **Cadangan.** `/akun/pesanan` dan `/akun/pesan` tetap sistem catatan. Klik notifikasi membuka salah satu halaman tetap itu (atau `/akun`), yang mengautentikasi dengan bearer tersimpan sebelum menampilkan apa pun yang privat.
 
 **Tidak dibangun di sini.** Push pemasaran, pelacakan klik atau baca, teks yang dapat diedit tenant, teks persetujuan Inggris, dan sisi pengiriman (#432). Kasus Safari hanya-tab adalah panduan, bukan jalan pintas: iOS mengirim push aplikasi-tertutup hanya ke aplikasi web yang terpasang.
+
+## Formulir yang mengubah data: satu penjaga permintaan berjalan, dan kunci bila ulangan bisa menggandakannya (issue #513)
+
+Pembeli yang mengetuk **Daftar** dua kali, menekan Enter saat permintaan lambat, atau yang peramban ponselnya mengulang permintaan di jaringan lemah dulu mengirim permintaan dua kali; yang pertama membuat akun dan yang kedua menjawab "Nomor telepon ini sudah terdaftar pada akun lain." untuk akun yang baru saja dibuat orang yang sama. Dua lapis memperbaikinya, karena satu lapis saja tidak cukup: **penjaga klien** di bawah menghentikan ketukan ganda yang tidak disengaja, dan **kontrak idempotensi server** (`Idempotency-Key`, unit kerja B dan C issue #513) melindungi dari ulangan, muat ulang, dan tab kedua. Kebenaran server tidak pernah bergantung pada klien.
+
+**Polanya, pada setiap formulir atau tombol yang mengirim POST, PUT, PATCH, atau DELETE** (satu modul bersama, `apps/storefront/src/lib/kirim-tunggal.ts`):
+
+- Selama satu permintaan berjalan, `submit` atau `click` kedua **diabaikan, tidak diantrekan**. Tidak ada permintaan kedua, dan tidak ada galat juga: pembeli cukup melihat yang pertama selesai.
+- Kontrol kirim di-`disabled` dan formulir (atau wilayah tempat tombolnya berada) membawa `aria-busy="true"`. Wilayah live sopan yang tersembunyi secara visual dan sudah ada di `BaseLayout` sejak render pertama (`[data-proses-status]`) mengucapkan "Memproses...". Ia tidak menambah apa pun pada tata letak sehingga tidak ada yang bergeser, dan wilayah sopan hanya mengumumkan dengan andal bila sudah ada sebelum teksnya berubah. Kontrol yang sebelumnya memegang fokus mendapatkannya kembali saat formulir bisa dipakai lagi (peramban melepas fokus dari kontrol yang menjadi disabled).
+- Keadaan dipulihkan di `finally`, jadi kegagalan tidak pernah meninggalkan formulir mati; kontrol yang sudah disabled, atau yang dimiliki bagian halaman lain (tombol kirim ulang selama hitung mundur 60 detiknya), tetap begitu.
+- **Keberhasilan yang berpindah halaman menjaga formulir tetap disabled sampai halaman dibongkar** (masuk dan daftar mengalihkan ke halaman akun, pembayaran membuka halaman gerbang yang di-host, pesan baru membuka utasnya). Tidak ada celah antara jawaban dan pengalihan tempat ketukan kedua bisa terdaftar.
+- Peristiwa `pageshow` dengan `persisted` (peramban memulihkan halaman dari cache maju/mundur setelah tombol kembali, dengan skrip membeku di tengah proses) melepas kunci, sehingga tombol kembali tidak pernah menampilkan formulir mati.
+- Tidak ada yang inline: atribut dan teks diatur dari modul eksternal, sehingga CSP turunan tidak tersentuh.
+
+**`Idempotency-Key`.** Bila mengulang permintaan yang sama akan melakukan hal itu dua kali, halaman membangkitkan kunci buram (`crypto.randomUUID()`, bentuk `[A-Za-z0-9_-]{16,128}`) per percobaan pengguna dan mengirimkannya sebagai header `Idempotency-Key` (`apps/storefront/src/lib/kunci-idempotensi.ts`). Kunci stabil di seluruh ulangan percobaan yang sama (koneksi putus, 5xx: jawabannya tidak diketahui, jadi ulangan memakai kunci yang sama dan server memutar ulang) dan dirotasi setelah jawaban tegas (respons HTTP apa pun di bawah 500: server sudah memutuskan) serta setelah permintaannya berubah. Kunci hanya ada di memori: tidak pernah di `localStorage`, `sessionStorage`, atau URL. Server yang mengabaikan header berperilaku seperti sebelumnya. `409 IDEMPOTENCY_CONFLICT` (kunci yang sama dengan isi berbeda) menampilkan "Permintaan ini bertabrakan dengan percobaan sebelumnya. Muat ulang halaman, lalu coba lagi." Checkout (id keranjang adalah kuncinya) dan booking (kode pesanan yang ditahan selamat dari muat ulang di `sessionStorage`) mempertahankan mekanisme yang sudah ada dan hanya mengadopsi penjaga.
+
+**Daftar dan masuk.** Kedua langkah `/daftar` dan `/masuk` berbagi satu penjaga, sehingga "Kirim kode", tombol kirim ulang, dan kirim verifikasi tidak pernah tumpang tindih. Langkah verifikasi mengirim satu kunci per percobaan kode yang diketik; setelah berhasil formulir tetap disabled sampai pengalihan. Tombol kirim ulang mempertahankan hitung mundurnya dan dijaga dari klik ganda sebelum hitung mundur dimulai.
+
+**Klasifikasi: formulir mana yang membawa kunci.** Operasi yang secara alami idempoten dijaga tetapi tidak diberi kunci (PUT wishlist, PATCH profil milik pemanggil sendiri, DELETE, "jadikan alamat utama", sesi gerbang pesanan yang idempoten per pesanan, konfirmasi dan berhenti berlangganan buletin, bergabung program afiliasi yang menjawab afiliasi yang sudah ada). Operasi yang membawa kunci adalah verifikasi OTP (daftar dan masuk), tambah alamat, memulai percakapan, membalas percakapan, konfirmasi pembayaran anonim, dan pembatalan pesanan anonim, selain tiga yang sudah punya (pesanan, reservasi, pembatalan reservasi). Aksi lokal murni (keranjang di `localStorage`, menyalin voucher) di luar cakupan. Tabel handler lengkap ada di PR yang memperkenalkan bagian ini dan dijaga sinkron oleh `apps/storefront/tests/kirim-tunggal-kontrak.test.ts`, yang gagal bila sebuah skrip menjangkau pemanggilan yang mengubah data tanpa mengimpor penjaga.
+
+**Yang dilakukan untuk formulir baru.** Buat penjaga sekali per formulir atau wilayah dengan `penjagaUntuk(wadah)`, letakkan permintaan di dalam `guard.jalankan(async () => ...)`, berikan `{ kunciBila: (hasil) => hasil }` bila keberhasilan mengalihkan halaman, dan buat pengelola kunci (`buatPengelolaKunci`) hanya bila mengulang permintaan itu tidak aman. Jangan menulis bendera `let submitting` lokal atau memanggil `crypto.randomUUID()` di skrip: tes kontrak sumber menolak keduanya.
 
 ## Belum dibangun
 

@@ -33,6 +33,8 @@
  */
 import { buatReservasiBooking, ambilReservasiSaya, ambilReservasiSayaByKode } from "../lib/akun-klien";
 import { bacaSesi } from "../lib/akun-sesi";
+import { penjagaUntuk } from "../lib/kirim-tunggal";
+import { buatPengelolaKunci } from "../lib/kunci-idempotensi";
 import {
   BOOKING_AKTIF_KEY,
   buatHoldAktif,
@@ -92,8 +94,11 @@ if (root) {
   const param: ParamPesan | null = parseParamPesan(window.location.search);
 
   let quote: KuotaBooking | null = null;
-  let attemptKey: string | null = null;
-  let attemptPrint = "";
+  // Issue #513: the shared key manager (this file kept its own copy before): one
+  // key per attempt, reused on a retry of the SAME request, a fresh one after a
+  // definitive answer or a changed request. In memory only; the hold itself is
+  // what survives a reload (`sessionStorage`, below).
+  const kunci = buatPengelolaKunci();
 
   // The live hold.
   let hold: {
@@ -337,9 +342,13 @@ if (root) {
     pointsNote.hidden = selectedMethod() !== "dp";
   }
 
+  const submitGuard = penjagaUntuk(form);
+  const bayarGuard = penjagaUntuk(payButton);
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    void submit();
+    // A second tap/Enter while the hold request is in flight is ignored, not queued.
+    void submitGuard.jalankan(submit);
   });
 
   async function submit(): Promise<void> {
@@ -356,16 +365,12 @@ if (root) {
       notes: notes.length > 0 ? notes : null
     };
     // One key per attempt: a retry of the SAME request reuses it, a changed request takes a new one.
-    const print = sidikPermintaan(request);
-    if (attemptKey === null || print !== attemptPrint) {
-      attemptKey = crypto.randomUUID();
-      attemptPrint = print;
-    }
+    const attemptKey = kunci.untuk(sidikPermintaan(request));
 
     show("menahan");
     try {
       const created = await buatReservasiBooking(request, attemptKey);
-      attemptKey = null;
+      kunci.sesudahBerhasil();
       rememberHold(created.orderCode);
       present({
         serverNow: created.serverNow,
@@ -385,6 +390,7 @@ if (root) {
         paymentMethod: method
       });
     } catch (error) {
+      kunci.sesudahGalat(error);
       show("form");
       handleSubmitError(error);
     }
@@ -588,7 +594,9 @@ if (root) {
 
   // --- payment handoff --------------------------------------------------------
 
-  payButton.addEventListener("click", async () => {
+  // The gateway session is idempotent per order server-side (no key). A success
+  // navigates to the hosted page, so the button stays locked until then.
+  payButton.addEventListener("click", () => {
     if (!hold) return;
     const sesi = bacaSesi();
     if (!sesi) {
@@ -597,27 +605,33 @@ if (root) {
     }
     const purpose = tujuanSesiGateway(hold.item);
     if (!purpose) return;
-    payButton.disabled = true;
-    holdStatus.textContent = "Membuka halaman pembayaran...";
-    try {
-      const session = await createGatewaySession(hold.item.orderCode, null, sesi.token, purpose);
-      if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
-        throw new Error("Gateway returned an unusable redirectUrl.");
-      }
-      window.location.assign(session.redirectUrl);
-    } catch (error) {
-      payButton.disabled = false;
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        void start();
-        return;
-      }
-      holdStatus.textContent =
-        error instanceof TokoApiError && error.code === "GATEWAY_UNAVAILABLE"
-          ? "Pembayaran online sedang tidak tersedia. Gunakan instruksi pembayaran."
-          : error instanceof TokoApiError && error.code === "RATE_LIMITED"
-            ? pesanGalatBooking("RATE_LIMITED").message
-            : "Gagal membuka halaman pembayaran. Coba lagi.";
-    }
+    const orderCode = hold.item.orderCode;
+    void bayarGuard.jalankan(
+      async () => {
+        holdStatus.textContent = "Membuka halaman pembayaran...";
+        try {
+          const session = await createGatewaySession(orderCode, null, sesi.token, purpose);
+          if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
+            throw new Error("Gateway returned an unusable redirectUrl.");
+          }
+          window.location.assign(session.redirectUrl);
+          return true;
+        } catch (error) {
+          if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+            void start();
+            return false;
+          }
+          holdStatus.textContent =
+            error instanceof TokoApiError && error.code === "GATEWAY_UNAVAILABLE"
+              ? "Pembayaran online sedang tidak tersedia. Gunakan instruksi pembayaran."
+              : error instanceof TokoApiError && error.code === "RATE_LIMITED"
+                ? pesanGalatBooking("RATE_LIMITED").message
+                : "Gagal membuka halaman pembayaran. Coba lagi.";
+          return false;
+        }
+      },
+      { kunciBila: (dialihkan) => dialihkan }
+    );
   });
 
   instructionsLink.addEventListener("click", () => {

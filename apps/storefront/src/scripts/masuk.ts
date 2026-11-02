@@ -8,6 +8,12 @@
  */
 import { mintaKode, verifikasiKode, type OtpChannel } from "../lib/akun-klien";
 import { simpanSesi } from "../lib/akun-sesi";
+import { penjagaUntuk } from "../lib/kirim-tunggal";
+import {
+  buatPengelolaKunci,
+  galatKonflikKunci,
+  PESAN_KONFLIK_KUNCI
+} from "../lib/kunci-idempotensi";
 import { bersihkanSebelumSesiBaru } from "../lib/push-sesi";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { ROUTES } from "../config/routes";
@@ -75,6 +81,19 @@ if (root) {
   const kembali = validKembaliPath(params.get("kembali"));
 
   let resendTimer: ReturnType<typeof setInterval> | undefined;
+  /** True while the resend countdown owns the resend button's disabled state. */
+  let resendBerjalan = false;
+
+  // Issue #513: ONE guard for the whole form, shared by both steps, so "Kirim
+  // kode", the resend button and the verify submit can never overlap and a second
+  // tap or Enter is ignored (not queued). The resend countdown keeps owning its
+  // own button when the guard releases. The verify step sends one
+  // `Idempotency-Key` per entered code attempt (the key is rotated after a
+  // definitive answer, reused after a dropped connection).
+  const guard = penjagaUntuk(form ?? null, {
+    tetapNonaktif: (kontrol) => kontrol === kirimUlangButton && resendBerjalan
+  });
+  const kunciVerifikasi = buatPengelolaKunci();
 
   function clearFieldErrors(): void {
     form?.querySelectorAll<HTMLElement>("[data-error-for]").forEach((el) => (el.textContent = ""));
@@ -141,6 +160,14 @@ if (root) {
         return;
       }
 
+      if (galatKonflikKunci(error)) {
+        if (submitErrorEl && submitErrorMessageEl) {
+          submitErrorEl.hidden = false;
+          submitErrorMessageEl.textContent = PESAN_KONFLIK_KUNCI;
+        }
+        return;
+      }
+
       if (error.code === "RATE_LIMITED") {
         const seconds = error.retryAfterSeconds;
         if (submitErrorEl && submitErrorMessageEl) {
@@ -163,6 +190,7 @@ if (root) {
 
   function startResendCountdown(): void {
     let remaining = RESEND_SECONDS;
+    resendBerjalan = true;
     if (kirimUlangButton) kirimUlangButton.disabled = true;
     if (countdownEl) countdownEl.textContent = String(remaining);
 
@@ -172,7 +200,9 @@ if (root) {
       if (countdownEl) countdownEl.textContent = String(Math.max(remaining, 0));
       if (remaining <= 0) {
         clearInterval(resendTimer);
-        if (kirimUlangButton) kirimUlangButton.disabled = false;
+        resendBerjalan = false;
+        // While a guarded request is pending the guard owns the button; it is released with the form.
+        if (kirimUlangButton && guard.keadaan() === "idle") kirimUlangButton.disabled = false;
       }
     }, 1000);
   }
@@ -231,8 +261,8 @@ if (root) {
     }
   }
 
-  kirimKodeButton?.addEventListener("click", () => void sendCode());
-  kirimUlangButton?.addEventListener("click", () => void sendCode());
+  kirimKodeButton?.addEventListener("click", () => void guard.jalankan(sendCode));
+  kirimUlangButton?.addEventListener("click", () => void guard.jalankan(sendCode));
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -248,18 +278,29 @@ if (root) {
       return;
     }
 
-    try {
-      const result =
-        channel === "whatsapp"
-          ? await verifikasiKode({ phone: phoneInput?.value.trim() ?? "", code, purpose: "login" })
-          : await verifikasiKode({ email: emailInput?.value.trim() ?? "", code, purpose: "login" });
-      // ADR-0048 section 7: the OLD session is logged out on the server, and an
-      // enrolled browser stops receiving for it, BEFORE the new session is stored.
-      await bersihkanSebelumSesiBaru();
-      simpanSesi({ token: result.token, expiresAt: result.expiresAt, account: result.account });
-      window.location.href = kembali ?? ROUTES.account;
-    } catch (error) {
-      showSubmitError(error, "masuk ke akun");
-    }
+    await guard.jalankan(
+      async () => {
+        const body =
+          channel === "whatsapp"
+            ? { phone: phoneInput?.value.trim() ?? "", code, purpose: "login" as const }
+            : { email: emailInput?.value.trim() ?? "", code, purpose: "login" as const };
+        try {
+          const result = await verifikasiKode(body, kunciVerifikasi.untuk(JSON.stringify(body)));
+          kunciVerifikasi.sesudahBerhasil();
+          // ADR-0048 section 7: the OLD session is logged out on the server, and an
+          // enrolled browser stops receiving for it, BEFORE the new session is stored.
+          await bersihkanSebelumSesiBaru();
+          simpanSesi({ token: result.token, expiresAt: result.expiresAt, account: result.account });
+          window.location.href = kembali ?? ROUTES.account;
+          // The redirect follows: the form stays disabled until the page unloads.
+          return true;
+        } catch (error) {
+          kunciVerifikasi.sesudahGalat(error);
+          showSubmitError(error, "masuk ke akun");
+          return false;
+        }
+      },
+      { kunciBila: (berhasil) => berhasil }
+    );
   });
 }
