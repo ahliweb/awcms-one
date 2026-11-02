@@ -12226,6 +12226,9 @@ msgstr ""
 msgid "Telegram Delivery"
 msgstr ""
 
+msgid "Channel Accounts"
+msgstr ""
+
 msgid "Tenant suspended"
 msgstr ""
 
@@ -14299,3 +14302,77 @@ msgstr ""
 
 msgid "The front desk needs the booking feature, point of sale and permission to look up a reservation."
 msgstr ""
+
+msgid "No results for “{query}”"
+msgstr ""
+
+msgid "No results match the active filters"
+msgstr ""
+
+msgid "Check the spelling, try fewer words, or clear the filters."
+msgstr ""
+
+msgid "Clear filters"
+msgstr ""
+
+msgid "sort ascending"
+msgstr ""
+
+msgid "sort descending"
+msgstr ""
+
+msgid "No rows to show"
+msgstr ""
+
+msgid "Showing {from}–{to}"
+msgstr ""
+
+msgid "Showing {from}–{to} of about {total}"
+msgstr ""
+
+msgid "Showing {from}–{to} of {total}"
+msgstr ""
+
+msgid "Rows per page"
+msgstr ""
+
+msgid "Show {size} rows per page"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Search: {value}"
+msgstr ""
+
+msgid "Status: {value}"
+msgstr ""
+
+msgid "Role: {value}"
+msgstr ""
+
+msgid "Search users"
+msgstr ""
+
+msgid "All roles"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Ascending"
+msgstr ""
+
+msgid "Descending"
+msgstr ""
+
+msgid "Active filters"
+msgstr ""
+
+msgid "Remove filter: {label}"
+msgstr ""
+
+msgid "{count} user matches your search and filters"
+msgid_plural "{count} users match your search and filters"
+msgstr[0] ""
+msgstr[1] ""

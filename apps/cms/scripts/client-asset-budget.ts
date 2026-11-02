@@ -1281,6 +1281,22 @@ export const READER_BUDGET_BYTES = 24_000;
  * fetched by the OS on install, not on every page load); the remaining 670 B is
  * the capability/standalone detection added to the push console's one script.
  * No stylesheet grew.
+ *
+ * **Raised for Issue #1196** (the admin data-page primitives, ADR-0149): +2,802 B,
+ * measured (343,542 -> 346,344 on its own base). All of it is the one shared
+ * stylesheet block (`.data-toolbar`, `.data-chip`, `.data-sort`, `.data-pager`
+ * in `admin.css`, which every admin screen already loads) plus the Users
+ * screen's own markup; the primitives are server-rendered `.astro` components
+ * and ship NO script, so no JS grew. This is the opposite of the #552 shape:
+ * the four controls were being hand-built per screen (the audit trail, the
+ * procurement and inventory filters), and the point of the primitives is that
+ * the next screen to adopt them adds markup, not another copy of these rules.
+ *
+ * **Raised for the `astro` 7.4.2 -> 7.4.4 update** (Issue #1173): +9 B,
+ * measured (346,344 -> 346,353 on the same source, built once on `main` and once
+ * with only the lockfile and `package.json` changed). Nothing in `src/` moved:
+ * the difference is the compiler's output for the same components, so there is no
+ * per-screen duplication to recover and no island to trim.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -1837,8 +1853,21 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue entries added no client byte. The budget is the measurement rounded
  * up to the next 100 B. `AGENTS.md`'s divergence line carries the figure and needs
  * the new one at integration.
+ *
+ * **Raised to 513,800 B by the awcms-one subtree sync of upstream `ab313273`
+ * (ahliweb/awcms main, 23 commits after `aa047da`)**, MEASURED 513,770 B on the
+ * merged build (510,675 B on the tree before the sync, the #388 figure above):
+ * +3,095 B. Upstream's own constant moved +2,811 B (343,542 -> 346,353 B: +2,802 B
+ * for the admin data-page primitives of ahliweb/awcms#1196 / ADR-0149, one shared
+ * `admin.css` block plus the Users screen's markup, and +9 B for `astro` 7.4.4),
+ * and the remaining +284 B is the shared `AdminLayout` CSS bundle and the compiled
+ * catalogue, which are not additive across lineages (the same effect the
+ * #260 and #427 syncs recorded). `channel-accounts` ships no admin screen yet and
+ * `hr_commission`'s intake queue is API-only, so neither added a browser byte
+ * and `commerce` itself added none. A measurement of the merged build rounded up
+ * to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 510_700;
+export const APP_BUDGET_BYTES = 513_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

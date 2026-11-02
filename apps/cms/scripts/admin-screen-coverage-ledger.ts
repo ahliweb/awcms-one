@@ -213,6 +213,13 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "hr_commission.rules.read",
   "hr_commission.rules.retire",
   "hr_commission.rules.update",
+  // hr_commission intake (2) — ADR-0147 / Issue #1189. The intake queue ships
+  // API-first like the rest of the module: the switch (`PUT /api/v1/hr-commission/
+  // intake/settings`) and the read-only exceptions list with the poster's counts
+  // (`GET .../intake/exceptions`) are the whole surface, and a page over them is
+  // the recorded follow-up (an operator can drive both from the API meanwhile).
+  "hr_commission.intake.configure",
+  "hr_commission.intake.read",
   // hr_workforce shifts (8) — ADR-0132 / Issue #946. Same posture as above:
   // API-first and `experimental`; the shift roster and template screens are the
   // recorded follow-up that flips the module to `active`.
@@ -267,5 +274,16 @@ export const NOT_YET_SCREENED: readonly string[] = [
   // (switch, DPIA reference, notice, geofences) and the evidence reader are the
   // recorded follow-up; until then both are reachable only through the API.
   "hr_workforce.attendance_evidence.read",
-  "hr_workforce.geolocation_evidence.configure"
+  "hr_workforce.geolocation_evidence.configure",
+  // channel_accounts (6) — ADR-0148 / Issue #1140. API-first and `experimental`:
+  // the connection manager (accounts, connections, capabilities with their
+  // evidence, health, assignments) is tracked separately as Issue #1154, which
+  // flips the module to `active` and adds its navigation entry in the same change
+  // (a nav entry without a page is a permanent 404).
+  "channel_accounts.accounts.create",
+  "channel_accounts.accounts.read",
+  "channel_accounts.accounts.revoke",
+  "channel_accounts.assignments.assign",
+  "channel_accounts.capabilities.configure",
+  "channel_accounts.credentials.manage"
 ];

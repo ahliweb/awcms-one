@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:2b53427aeb56f20a296d37c41a7ccf7996ae5676951700bbed4ec5b83fffe9b8 -->
+<!-- i18n-source-hash: sha256:0ab4b54ea78d3b2da353ebf4c69431d8059570408d0650ef29ed8d52583b9e48 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-173 target menjalankan berkas di `scripts/`; 64 di antaranya
+176 target menjalankan berkas di `scripts/`; 65 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -68,6 +68,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `build:preview-overlay`                   | `build-preview-overlay.ts`                     | —    |
 | `build:preview-overlay:check`             | `build-preview-overlay.ts`                     | ✅   |
 | `changesets:policy:check`                 | `changeset-policy-check.ts`                    | —    |
+| `channel-accounts:secrets:rekey`          | `channel-accounts-secrets-rekey.ts`            | —    |
 | `check:astro-frontmatter:check`           | `astro-frontmatter-typecheck.ts`               | ✅   |
 | `check:astro-scripts:check`               | `astro-script-typecheck.ts`                    | ✅   |
 | `check:docs`                              | `check-docs.mjs`                               | ✅   |
@@ -129,6 +130,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `family:conformance:check`                | `family-conformance-check.ts`                  | ✅   |
 | `form-drafts:purge`                       | `form-draft-purge.ts`                          | —    |
 | `graph:artifacts:check`                   | `graph-artifacts-check.ts`                     | —    |
+| `hr-commission:intents:post`              | `hr-commission-intents-post.ts`                | —    |
 | `i18n:catalog:check`                      | `i18n-catalog-check.ts`                        | ✅   |
 | `i18n:compile`                            | `i18n-compile.ts`                              | —    |
 | `i18n:screens:check`                      | `i18n-screen-coverage-check.ts`                | ✅   |
@@ -165,6 +167,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `modules:routes:check`                    | `validate-module-routes.ts`                    | ✅   |
 | `modules:table-writes:check`              | `table-write-ownership-check.ts`               | ✅   |
 | `news-media:reconcile`                    | `news-media-r2-reconcile.ts`                   | —    |
+| `omes:contract:preflight`                 | `omes-contract-preflight.ts`                   | ✅   |
 | `omes:repository-progress:poll`           | `omes-repository-progress-poll.ts`             | —    |
 | `openapi:bundle`                          | `openapi-bundle.ts`                            | —    |
 | `payroll:catalog-boundary:check`          | `payroll-catalog-boundary-check.ts`            | —    |

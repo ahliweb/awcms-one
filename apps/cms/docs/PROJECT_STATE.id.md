@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:8b947937033db89bb847778b021871e7d7a709a9909e56a5982fe73910009cad -->
+<!-- i18n-source-hash: sha256:fa57a195d8b94c93fd30c4e17b1338cb7172deaf3bc4d73a4633a4bdb0b0e862 -->
 
 # AWCMS — Project State & Continuation
 
@@ -130,18 +130,18 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 
 <!-- Dihasilkan `bun run project-state:inventory:generate`. JANGAN diedit tangan; gerbangnya `bun run project-state:inventory:check`. -->
 
-| Aspek                              | Nilai (ter-generate)                                                                   | Sumber kebenaran                                                                        |
-| ---------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Versi                              | **10.10.2**                                                                            | `package.json`                                                                          |
-| Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                     | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
-| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                     | `git rev-list --count v10.10.2..HEAD`                                                   |
-| Modul base                         | **34** (lihat daftar di ARCHITECTURE.md)                                               | `src/modules/index.ts`                                                                  |
-| Migrasi                            | **364** (`sql/001`–`1062`)                                                             | `ls sql/`                                                                               |
-| ADR                                | **0000**–**0146** (`0000` = template; status ADR tertinggi: **Proposed**)              | `ls docs/adr/`                                                                          |
-| Layar admin                        | **112** berkas `.astro` di `src/pages/admin/`; **0 dari 34** modul tanpa `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| Berkas `.astro`                    | **143** (88.354 baris) — soal typecheck lihat §6                                       | `find src -name '*.astro'`                                                              |
-| Gerbang                            | **68** di rantai `bun run check`                                                       | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
-| Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.6.0**              | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
+| Aspek                              | Nilai (ter-generate)                                                                                        | Sumber kebenaran                                                                        |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Versi                              | **10.10.2**                                                                                                 | `package.json`                                                                          |
+| Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                                          | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
+| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                                          | `git rev-list --count v10.10.2..HEAD`                                                   |
+| Modul base                         | **35** (lihat daftar di ARCHITECTURE.md)                                                                    | `src/modules/index.ts`                                                                  |
+| Migrasi                            | **370** (`sql/001`–`1062`)                                                                                  | `ls sql/`                                                                               |
+| ADR                                | **0000**–**0156** (`0000` = template; status ADR tertinggi: **Accepted**)                                   | `ls docs/adr/`                                                                          |
+| Layar admin                        | **112** berkas `.astro` di `src/pages/admin/`; **1 dari 35** modul tanpa `navigation:` (`channel-accounts`) | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
+| Berkas `.astro`                    | **147** (89.047 baris) — soal typecheck lihat §6                                                            | `find src -name '*.astro'`                                                              |
+| Gerbang                            | **69** di rantai `bun run check`                                                                            | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
+| Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.6.0**                                   | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 
 <!-- project-state-inventory:selesai -->
 
@@ -218,7 +218,7 @@ dirintis langsung di sini setelah pembekuan ADR-0047.)
 
 ## 3. Yang sudah selesai (jangan dibangun ulang)
 
-- **34 modul** terdaftar dengan RLS `FORCE`, pemisahan role DB
+- **35 modul** terdaftar dengan RLS `FORCE`, pemisahan role DB
   (`awcms_app`/`awcms_worker`/`awcms_setup`), admin SSR read+write (Issue #166/#171).
 - **Auth lanjutan**: MFA TOTP + session-assurance/step-up (`sql/024`), OIDC/SSO
   tenant-aware + SSRF guard + break-glass (`sql/025`/`026`), Turnstile bot protection
@@ -409,6 +409,26 @@ knowledge:check` (`graph:artifacts:check` + dry run `--check` sync wrapper)
   §Baseline/§Alur kerja Obsidian/§Keamanan dan privasi.
 
 ## 4. Backlog / langkah berikutnya
+
+- **ANTREAN INTAKE KOMISI — 28 Oktober 2026: dibangun (#1189, ADR-0147; migrasi
+  `sql/316` + `sql/317`).** Consumer berbasis event (`awcms_worker`) kini dapat
+  melaporkan penjualan ke `hr_commission` tanpa hak apa pun atas buku besar
+  akrual: ia menyerahkan lewat port baru `commission_intake` 1.0.0 (satu `INSERT
+... ON CONFLICT DO NOTHING` ke `awcms_hr_commission_intents`, `INSERT` adalah
+  satu-satunya verb worker atasnya) dan job `hr-commission:intents:post`
+  (`awcms_app`, tiap menit; satu-satunya job terjadwal yang memegang
+  `DATABASE_URL`) mengklaim, memosting lewat satu inti posting, mengulang,
+  men-fail-kan racun, dan mem-purge baris selesai setelah 30 hari. Default-deny
+  per tenant (`commission_intake_enabled`, `hr_commission.intake.configure`);
+  permintaan yang ditolak dan gagal didaftar di `GET /api/v1/hr-commission/intake/
+exceptions` (`intake.read`). Batas payroll tidak bergeser:
+  `PAYROLL_ALLOWED_GRANTEES`, allow-list worker yang kosong, dan
+  `PAYROLL_CATALOG_EXEMPTIONS` tidak berubah (kedua tabel baru ada di
+  `PAYROLL_OWNED_NON_PAYROLL_TABLES`, yang bukan pengecualian). **Terbuka:** layar
+  admin untuk daftar pengecualian dan sakelar (kedua permission ada di
+  `NOT_YET_SCREENED`); konfirmasi pemilik atas bawaan retensi 30 hari; adapter
+  hilir `ahliweb/awcms-one#391`, yang tetap dorman sampai ini di-merge dan subtree
+  disinkronkan sebagai merge commit. Peta: README `hr_commission`.
 
 - **BUG HUNT IDENTITY_ACCESS — 16 Oktober 2026: 13 dari 15 grup perbaikan
   masuk (#1057–#1069, docs #1070, pelacak #1055 ditutup); satu tindak lanjut

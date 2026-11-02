@@ -477,6 +477,7 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // schedules, schedule exceptions and the availability read. Nothing here
       // is anonymous.
       "Booking",
+      "Channel Accounts",
       "Comments",
       // "Commerce" (commerce, Issue #4, epic #1) — genuinely new surface: the
       // catalog slice (categories + products) of the re-platformed

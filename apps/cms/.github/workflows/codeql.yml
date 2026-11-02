@@ -56,14 +56,17 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4
+        uses: github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
           queries: security-extended,security-and-quality
+          # Excludes `design/` (reference-only, not shipped); the reasons are
+          # recorded in the config file itself.
+          config-file: ./.github/codeql/codeql-config.yml
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4
+        uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
         with:
           category: "/language:${{ matrix.language }}"
 
@@ -81,7 +84,7 @@ jobs:
       - name: State coverage
         if: always() && matrix.language == 'javascript-typescript'
         run: |
-          ANALYSED=$(git ls-files '*.ts' '*.mjs' '*.js' | wc -l)
+          ANALYSED=$(git ls-files '*.ts' '*.mjs' '*.js' ':!design' | wc -l)
           ASTRO=$(git ls-files '*.astro' | wc -l)
           ASTRO_LINES=$(git ls-files '*.astro' | xargs --no-run-if-empty wc -l | tail -1 | awk '{print $1}')
           {

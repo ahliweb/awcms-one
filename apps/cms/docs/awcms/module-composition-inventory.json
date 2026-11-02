@@ -1,5 +1,5 @@
 {
-  "moduleCount": 34,
+  "moduleCount": 35,
   "valid": true,
   "issueCount": 0,
   "modules": [
@@ -63,6 +63,22 @@
       "permissionCount": 32,
       "navigationCount": 6,
       "jobCount": 2,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "channel_accounts",
+      "name": "Channel Accounts",
+      "version": "0.1.0",
+      "status": "experimental",
+      "type": "system",
+      "dependencies": ["tenant_admin", "identity_access", "logging"],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 6,
+      "navigationCount": 0,
+      "jobCount": 1,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -199,15 +215,15 @@
     {
       "key": "hr_commission",
       "name": "HR Commission",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "status": "active",
       "type": "domain",
       "dependencies": ["tenant_admin", "hr_workforce", "domain_event_runtime"],
-      "capabilitiesProvided": ["commission_accrual"],
+      "capabilitiesProvided": ["commission_accrual", "commission_intake"],
       "capabilitiesConsumed": [],
-      "permissionCount": 12,
+      "permissionCount": 14,
       "navigationCount": 1,
-      "jobCount": 0,
+      "jobCount": 1,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
