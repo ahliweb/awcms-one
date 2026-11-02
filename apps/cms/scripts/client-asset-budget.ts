@@ -1899,8 +1899,16 @@ export const READER_BUDGET_BYTES = 24_000;
  * `hr_commission`'s intake queue is API-only, so neither added a browser byte
  * and `commerce` itself added none. A measurement of the merged build rounded up
  * to the next 100 B.
+ *
+ * **The `45a139fa` sync (AWCMS v10.11.0) then raises it to 525,100 B**, MEASURED
+ * 525,002 B on the merged build (513,770 B at the `ab313273` sync). Upstream's own
+ * move over the same range was 346,353 -> 358,400 B (+12,047 B: browser-side image
+ * compression on `/admin/media`, #1221, and the shared single-flight guard,
+ * #1224), and the commerce lineage rides on top of it unchanged except for the
+ * nine admin scripts that now bind through the guard instead of their own
+ * listeners. A measurement of the merged build rounded up to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 525_900;
+export const APP_BUDGET_BYTES = 525_100;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
