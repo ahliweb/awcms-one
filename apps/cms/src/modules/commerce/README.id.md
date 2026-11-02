@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:46f789f7ac952e05c11c8cd145ce94a2d97690b21336f9bafafaa7b1429632fe -->
+<!-- i18n-source-hash: sha256:b1a7999b0b221e38959897447fcca7a606906c7e0dc73dd9ab195c8d52e6a1b0 -->
 
 # `commerce`
 
