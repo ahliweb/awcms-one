@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:80c2ecd7115165acc06ba75c02a393b1c9bf277a80fda362620de3183bcb67c0 -->
+<!-- i18n-source-hash: sha256:dea0e4346b01bf3b24c9ba55a365e6236ecc3a38efba78a3319bc3b78820a0d3 -->
 
 # AWCMS — Project State & Continuation
 
@@ -139,7 +139,7 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 | Migrasi                            | **374** (`sql/001`–`1063`)                                                                                  | `ls sql/`                                                                               |
 | ADR                                | **0000**–**0156** (`0000` = template; status ADR tertinggi: **Accepted**)                                   | `ls docs/adr/`                                                                          |
 | Layar admin                        | **112** berkas `.astro` di `src/pages/admin/`; **1 dari 35** modul tanpa `navigation:` (`channel-accounts`) | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| Berkas `.astro`                    | **147** (89.122 baris) — soal typecheck lihat §6                                                            | `find src -name '*.astro'`                                                              |
+| Berkas `.astro`                    | **147** (89.087 baris) — soal typecheck lihat §6                                                            | `find src -name '*.astro'`                                                              |
 | Gerbang                            | **69** di rantai `bun run check`                                                                            | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
 | Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.6.0**                                   | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 
