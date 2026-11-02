@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.19.2005,4,Praibakul,sex,laki_laki,,620,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.19.2005,4,Praibakul,sex,perempuan,,636,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.19.2005,4,Praibakul,total,total,,1256,jiwa,2025,registration,total_population,3.1,28,,
+53.11.19.2004,4,Lailara,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.19.2004,4,Lailara,sex,perempuan,,688,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.19.2004,4,Lailara,total,total,,1344,jiwa,2025,registration,total_population,3.1,28,,
+53.11.19.2003,4,Mandahu,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.19.2003,4,Mandahu,sex,perempuan,,383,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.19.2003,4,Mandahu,total,total,,803,jiwa,2025,registration,total_population,3.1,28,,
+53.11.19.2002,4,Matawai Amahu,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.19.2002,4,Matawai Amahu,sex,perempuan,,233,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.19.2002,4,Matawai Amahu,total,total,,465,jiwa,2025,registration,total_population,3.1,28,,
+53.11.19,3,Katala Hamu Lingu,sex,laki_laki,,2386,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.19,3,Katala Hamu Lingu,sex,perempuan,,2375,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.19,3,Katala Hamu Lingu,total,total,,4761,jiwa,2025,registration,total_population,3.1,28,,
+53.11.19,3,Katala Hamu Lingu,sex,laki_laki,,2386,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.11.19,3,Katala Hamu Lingu,sex,perempuan,,2375,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.11.19,3,Katala Hamu Lingu,total,total,,4761,jiwa,2025,registration,total_population,3.2,30,,

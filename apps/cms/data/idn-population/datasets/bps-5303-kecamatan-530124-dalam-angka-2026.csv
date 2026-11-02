@@ -1,0 +1,17 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.01.24.2004,4,Oeletsala,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24.2004,4,Oeletsala,total,total,,1489,jiwa,2025,registration,total_population,3.1,26,,
+53.01.24.2003,4,Kuaklalo,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24.2003,4,Kuaklalo,total,total,,586,jiwa,2025,registration,total_population,3.1,26,,
+53.01.24.2005,4,Bokong,sex,perempuan,,1544,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24.2005,4,Bokong,total,total,,3030,jiwa,2025,registration,total_population,3.1,26,,
+53.01.24.2007,4,Baumata Timur,sex,perempuan,,1339,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24.2007,4,Baumata Timur,total,total,,2659,jiwa,2025,registration,total_population,3.1,26,,
+53.01.24.2002,4,Baumata,sex,perempuan,,1305,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24.2002,4,Baumata,total,total,,2649,jiwa,2025,registration,total_population,3.1,26,,
+53.01.24.2008,4,Baumata Barat,sex,perempuan,,1221,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24.2008,4,Baumata Barat,total,total,,2373,jiwa,2025,registration,total_population,3.1,26,,
+53.01.24.2006,4,Baumata Utara,sex,perempuan,,758,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24.2006,4,Baumata Utara,total,total,,1496,jiwa,2025,registration,total_population,3.1,26,,
+53.01.24,3,Taebenu,sex,perempuan,,9429,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.24,3,Taebenu,total,total,,18678,jiwa,2025,registration,total_population,3.1,26,,

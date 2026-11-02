@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5302-kecamatan-531108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.11.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Umalulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Timur",
+  "publisherDomain": "5302",
+  "publisherWebsite": "https://sumbatimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Timur (https://sumbatimurkab.bps.go.id), publikasi \"Kecamatan Umalulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53020.26023",
+  "issn": "1598-1757",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbatimurkab.bps.go.id/id/publication/2026/09/28/4220ff5376df2f7411737237/kecamatan-umalulu-dalam-angka-2026.html",
+  "sourceFileSha256": "5fdda1afd5e7801776a7651cc614d0b49193a13ceba2dd861329a04c1c6b9d90",
+  "sourceFileBytes": 2055648,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Timur",
+  "csvPath": "datasets/bps-5302-kecamatan-531108-dalam-angka-2026.csv",
+  "csvSha256": "d7b84ae4b1c7dc1ee2965eb5fd1a11ab7043366e5c1c3aa419e953f4ef831c13",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Umalulu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Umalulu, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

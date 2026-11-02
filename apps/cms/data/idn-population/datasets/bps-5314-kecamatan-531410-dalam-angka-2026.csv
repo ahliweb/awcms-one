@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.14.10.2001,4,Bolatena,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10.2001,4,Bolatena,sex,perempuan,,516,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10.2001,4,Bolatena,total,total,,1002,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.10.2003,4,Sotimori,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10.2003,4,Sotimori,sex,perempuan,,308,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10.2003,4,Sotimori,total,total,,664,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.10.2005,4,Daiama,sex,laki_laki,,611,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10.2005,4,Daiama,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10.2005,4,Daiama,total,total,,1233,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.10.2002,4,Lifuleo,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10.2002,4,Lifuleo,sex,perempuan,,515,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10.2002,4,Lifuleo,total,total,,985,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.10.2004,4,Daeurendale,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10.2004,4,Daeurendale,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10.2004,4,Daeurendale,total,total,,843,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.10.2006,4,Pukuafu,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10.2006,4,Pukuafu,sex,perempuan,,253,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10.2006,4,Pukuafu,total,total,,497,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.10.2007,4,Tenalai,sex,laki_laki,,256,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10.2007,4,Tenalai,sex,perempuan,,293,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10.2007,4,Tenalai,total,total,,549,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.10,3,Kecamatan Landu Leko,sex,laki_laki,,2858,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.10,3,Kecamatan Landu Leko,sex,perempuan,,2915,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.10,3,Kecamatan Landu Leko,total,total,,5773,jiwa,2025,registration,total_population,3.1.1,21,,

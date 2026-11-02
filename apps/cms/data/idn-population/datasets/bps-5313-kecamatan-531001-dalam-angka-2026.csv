@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.10.01.2002,4,Lalong,sex,laki_laki,,1077,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2002,4,Lalong,sex,perempuan,,1037,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2002,4,Lalong,total,total,,2114,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2012,4,Bangka Kenda,sex,laki_laki,,1433,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2012,4,Bangka Kenda,sex,perempuan,,1454,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2012,4,Bangka Kenda,total,total,,2887,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2005,4,Ndehes,sex,laki_laki,,1208,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2005,4,Ndehes,sex,perempuan,,1242,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2005,4,Ndehes,total,total,,2450,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2010,4,Bangka Jong,sex,laki_laki,,718,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2010,4,Bangka Jong,sex,perempuan,,696,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2010,4,Bangka Jong,total,total,,1414,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2015,4,Wae Rii,sex,laki_laki,,1354,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2015,4,Wae Rii,sex,perempuan,,1381,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2015,4,Wae Rii,total,total,,2735,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2007,4,Longko,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2007,4,Longko,sex,perempuan,,689,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2007,4,Longko,total,total,,1393,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2016,4,Ranaka,sex,laki_laki,,1027,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2016,4,Ranaka,sex,perempuan,,1006,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2016,4,Ranaka,total,total,,2033,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2013,4,Golo Mendo,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2013,4,Golo Mendo,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2013,4,Golo Mendo,total,total,,1213,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2006,4,Golo Cador,sex,laki_laki,,1371,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2006,4,Golo Cador,sex,perempuan,,1347,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2006,4,Golo Cador,total,total,,2718,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2009,4,Compang Ndehes,sex,laki_laki,,976,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2009,4,Compang Ndehes,sex,perempuan,,992,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2009,4,Compang Ndehes,total,total,,1968,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2003,4,Poco,sex,laki_laki,,600,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2003,4,Poco,sex,perempuan,,589,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2003,4,Poco,total,total,,1189,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2001,4,Satar Ngkeling,sex,laki_laki,,1151,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2001,4,Satar Ngkeling,sex,perempuan,,1195,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2001,4,Satar Ngkeling,total,total,,2346,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2017,4,Golo Watu,sex,laki_laki,,1231,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.10.01.2017,4,Golo Watu,sex,perempuan,,1227,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.10.01.2017,4,Golo Watu,total,total,,2458,jiwa,2025,registration,total_population,3.1,25,,
+53.10.01.2008,4,Ranggi,sex,laki_laki,,875,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.10.01.2008,4,Ranggi,sex,perempuan,,848,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.10.01.2008,4,Ranggi,total,total,,1723,jiwa,2025,registration,total_population,3.1,26,,
+53.10.01.2004,4,Wae Mulu,sex,laki_laki,,1300,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.10.01.2004,4,Wae Mulu,sex,perempuan,,1348,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.10.01.2004,4,Wae Mulu,total,total,,2648,jiwa,2025,registration,total_population,3.1,26,,
+53.10.01.2018,4,Benteng Poco,sex,laki_laki,,587,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.10.01.2018,4,Benteng Poco,sex,perempuan,,605,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.10.01.2018,4,Benteng Poco,total,total,,1192,jiwa,2025,registration,total_population,3.1,26,,
+53.10.01,3,Wae Rii,sex,laki_laki,,16802,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.10.01,3,Wae Rii,sex,perempuan,,16783,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.10.01,3,Wae Rii,total,total,,33585,jiwa,2025,registration,total_population,3.1,26,,
+53.10.01,3,Wae Rii,age_group,0-4,laki_laki,1070,jiwa,2025,registration,total_population,3.2,29,,0-4
+53.10.01,3,Wae Rii,age_group,0-4,perempuan,1073,jiwa,2025,registration,total_population,3.2,29,,0-4
+53.10.01,3,Wae Rii,age_group,0-4,,2143,jiwa,2025,registration,total_population,3.2,29,,0-4
+53.10.01,3,Wae Rii,age_group,5-9,laki_laki,1727,jiwa,2025,registration,total_population,3.2,29,,5-9
+53.10.01,3,Wae Rii,age_group,5-9,perempuan,1560,jiwa,2025,registration,total_population,3.2,29,,5-9
+53.10.01,3,Wae Rii,age_group,5-9,,3287,jiwa,2025,registration,total_population,3.2,29,,5-9
+53.10.01,3,Wae Rii,age_group,10-14,laki_laki,1744,jiwa,2025,registration,total_population,3.2,29,,10-14
+53.10.01,3,Wae Rii,age_group,10-14,perempuan,1610,jiwa,2025,registration,total_population,3.2,29,,10-14
+53.10.01,3,Wae Rii,age_group,10-14,,3354,jiwa,2025,registration,total_population,3.2,29,,10-14
+53.10.01,3,Wae Rii,age_group,15-19,laki_laki,1408,jiwa,2025,registration,total_population,3.2,29,,15-19
+53.10.01,3,Wae Rii,age_group,15-19,perempuan,1476,jiwa,2025,registration,total_population,3.2,29,,15-19
+53.10.01,3,Wae Rii,age_group,15-19,,2884,jiwa,2025,registration,total_population,3.2,29,,15-19
+53.10.01,3,Wae Rii,age_group,20-24,laki_laki,1890,jiwa,2025,registration,total_population,3.2,29,,20-24
+53.10.01,3,Wae Rii,age_group,20-24,perempuan,1903,jiwa,2025,registration,total_population,3.2,29,,20-24
+53.10.01,3,Wae Rii,age_group,20-24,,3793,jiwa,2025,registration,total_population,3.2,29,,20-24
+53.10.01,3,Wae Rii,age_group,25-29,laki_laki,1658,jiwa,2025,registration,total_population,3.2,29,,25-29
+53.10.01,3,Wae Rii,age_group,25-29,perempuan,1650,jiwa,2025,registration,total_population,3.2,29,,25-29
+53.10.01,3,Wae Rii,age_group,25-29,,3308,jiwa,2025,registration,total_population,3.2,29,,25-29
+53.10.01,3,Wae Rii,age_group,30-34,laki_laki,1267,jiwa,2025,registration,total_population,3.2,29,,30-34
+53.10.01,3,Wae Rii,age_group,30-34,perempuan,1238,jiwa,2025,registration,total_population,3.2,29,,30-34
+53.10.01,3,Wae Rii,age_group,30-34,,2505,jiwa,2025,registration,total_population,3.2,29,,30-34
+53.10.01,3,Wae Rii,age_group,35-39,laki_laki,1143,jiwa,2025,registration,total_population,3.2,29,,35-39
+53.10.01,3,Wae Rii,age_group,35-39,perempuan,1179,jiwa,2025,registration,total_population,3.2,29,,35-39
+53.10.01,3,Wae Rii,age_group,35-39,,2322,jiwa,2025,registration,total_population,3.2,29,,35-39
+53.10.01,3,Wae Rii,age_group,40-44,laki_laki,973,jiwa,2025,registration,total_population,3.2,29,,40-44
+53.10.01,3,Wae Rii,age_group,40-44,perempuan,1043,jiwa,2025,registration,total_population,3.2,29,,40-44
+53.10.01,3,Wae Rii,age_group,40-44,,2016,jiwa,2025,registration,total_population,3.2,29,,40-44
+53.10.01,3,Wae Rii,age_group,45-49,laki_laki,930,jiwa,2025,registration,total_population,3.2,29,,45-49
+53.10.01,3,Wae Rii,age_group,45-49,perempuan,964,jiwa,2025,registration,total_population,3.2,29,,45-49
+53.10.01,3,Wae Rii,age_group,45-49,,1894,jiwa,2025,registration,total_population,3.2,29,,45-49
+53.10.01,3,Wae Rii,age_group,50-54,laki_laki,844,jiwa,2025,registration,total_population,3.2,29,,50-54
+53.10.01,3,Wae Rii,age_group,50-54,perempuan,831,jiwa,2025,registration,total_population,3.2,29,,50-54
+53.10.01,3,Wae Rii,age_group,50-54,,1675,jiwa,2025,registration,total_population,3.2,29,,50-54
+53.10.01,3,Wae Rii,age_group,55-59,laki_laki,684,jiwa,2025,registration,total_population,3.2,29,,55-59
+53.10.01,3,Wae Rii,age_group,55-59,perempuan,731,jiwa,2025,registration,total_population,3.2,29,,55-59
+53.10.01,3,Wae Rii,age_group,55-59,,1415,jiwa,2025,registration,total_population,3.2,29,,55-59
+53.10.01,3,Wae Rii,age_group,60-64,laki_laki,505,jiwa,2025,registration,total_population,3.2,29,,60-64
+53.10.01,3,Wae Rii,age_group,60-64,perempuan,541,jiwa,2025,registration,total_population,3.2,29,,60-64
+53.10.01,3,Wae Rii,age_group,60-64,,1046,jiwa,2025,registration,total_population,3.2,29,,60-64
+53.10.01,3,Wae Rii,age_group,65-69,laki_laki,381,jiwa,2025,registration,total_population,3.2,29,,65-69
+53.10.01,3,Wae Rii,age_group,65-69,perempuan,411,jiwa,2025,registration,total_population,3.2,29,,65-69
+53.10.01,3,Wae Rii,age_group,65-69,,792,jiwa,2025,registration,total_population,3.2,29,,65-69
+53.10.01,3,Wae Rii,age_group,70-74,laki_laki,246,jiwa,2025,registration,total_population,3.2,29,,70-74
+53.10.01,3,Wae Rii,age_group,70-74,perempuan,257,jiwa,2025,registration,total_population,3.2,29,,70-74
+53.10.01,3,Wae Rii,age_group,70-74,,503,jiwa,2025,registration,total_population,3.2,29,,70-74
+53.10.01,3,Wae Rii,age_group,75+,laki_laki,332,jiwa,2025,registration,total_population,3.2,29,,>75
+53.10.01,3,Wae Rii,age_group,75+,perempuan,316,jiwa,2025,registration,total_population,3.2,29,,>75
+53.10.01,3,Wae Rii,age_group,75+,,648,jiwa,2025,registration,total_population,3.2,29,,>75
+53.10.01,3,Wae Rii,sex,laki_laki,,16802,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+53.10.01,3,Wae Rii,sex,perempuan,,16783,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+53.10.01,3,Wae Rii,total,total,,33585,jiwa,2025,registration,total_population,3.2,29,,

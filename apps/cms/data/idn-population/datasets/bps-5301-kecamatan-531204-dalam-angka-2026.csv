@@ -1,0 +1,51 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.12.04.2001,4,Lokory,sex,laki_laki,,2013,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2001,4,Lokory,sex,perempuan,,1782,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2001,4,Lokory,total,total,,3795,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2002,4,Lolo Wano,sex,laki_laki,,715,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2002,4,Lolo Wano,sex,perempuan,,706,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2002,4,Lolo Wano,total,total,,1421,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2004,4,Ngadu Pada,sex,laki_laki,,499,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2004,4,Ngadu Pada,sex,perempuan,,508,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2004,4,Ngadu Pada,total,total,,1007,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2003,4,Malata,sex,laki_laki,,796,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2003,4,Malata,sex,perempuan,,780,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2003,4,Malata,total,total,,1576,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2005,4,Lingu Lango,sex,laki_laki,,572,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2005,4,Lingu Lango,sex,perempuan,,570,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2005,4,Lingu Lango,total,total,,1142,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2011,4,Manu Kuku,sex,laki_laki,,717,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2011,4,Manu Kuku,sex,perempuan,,716,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2011,4,Manu Kuku,total,total,,1433,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2008,4,Wee Patola,sex,laki_laki,,445,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2008,4,Wee Patola,sex,perempuan,,410,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2008,4,Wee Patola,total,total,,855,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2010,4,Bondo Tera,sex,laki_laki,,569,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2010,4,Bondo Tera,sex,perempuan,,594,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2010,4,Bondo Tera,total,total,,1163,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2009,4,Zala Kadu,sex,laki_laki,,651,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2009,4,Zala Kadu,sex,perempuan,,623,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2009,4,Zala Kadu,total,total,,1274,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2012,4,Lolo Tana,sex,laki_laki,,449,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2012,4,Lolo Tana,sex,perempuan,,447,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2012,4,Lolo Tana,total,total,,896,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2013,4,Kareka Nduku Utara,sex,laki_laki,,410,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2013,4,Kareka Nduku Utara,sex,perempuan,,423,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2013,4,Kareka Nduku Utara,total,total,,833,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2014,4,Kareka Nduku Selatan,sex,laki_laki,,340,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2014,4,Kareka Nduku Selatan,sex,perempuan,,360,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2014,4,Kareka Nduku Selatan,total,total,,700,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2015,4,Manu Mada,sex,laki_laki,,750,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2015,4,Manu Mada,sex,perempuan,,725,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2015,4,Manu Mada,total,total,,1475,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2016,4,Elu Loda,sex,laki_laki,,422,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2016,4,Elu Loda,sex,perempuan,,425,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2016,4,Elu Loda,total,total,,847,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2017,4,Kalebu Ana Kaka,sex,laki_laki,,639,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2017,4,Kalebu Ana Kaka,sex,perempuan,,654,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2017,4,Kalebu Ana Kaka,total,total,,1293,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04.2018,4,Tarona,sex,laki_laki,,457,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04.2018,4,Tarona,sex,perempuan,,461,jiwa,2024,registration,total_population,3.1,22,,Perempuan/Female
+53.12.04.2018,4,Tarona,total,total,,918,jiwa,2024,registration,total_population,3.1,22,,
+53.12.04,3,Tana Righu,sex,laki_laki,,11812,jiwa,2024,registration,total_population,3.1,22,,Laki-Laki/Male
+53.12.04,3,Tana Righu,total,total,,23352,jiwa,2024,registration,total_population,3.1,22,,

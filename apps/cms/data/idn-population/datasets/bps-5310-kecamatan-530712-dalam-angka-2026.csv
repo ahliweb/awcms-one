@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.12.2001,4,Magepanda,sex,laki_laki,,1375,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2001,4,Magepanda,sex,perempuan,,1442,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2001,4,Magepanda,total,total,,2817,jiwa,2025,registration,total_population,3.1,,,
+53.07.12.2002,4,Reroroja,sex,laki_laki,,1275,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2002,4,Reroroja,sex,perempuan,,1300,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2002,4,Reroroja,total,total,,2575,jiwa,2025,registration,total_population,3.1,,,
+53.07.12.2003,4,Done,sex,laki_laki,,874,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2003,4,Done,sex,perempuan,,879,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2003,4,Done,total,total,,1753,jiwa,2025,registration,total_population,3.1,,,
+53.07.12.2004,4,Kolisia,sex,laki_laki,,917,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2004,4,Kolisia,sex,perempuan,,995,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2004,4,Kolisia,total,total,,1912,jiwa,2025,registration,total_population,3.1,,,
+53.07.12.2005,4,Kolisia B,sex,laki_laki,,760,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2005,4,Kolisia B,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2005,4,Kolisia B,total,total,,1524,jiwa,2025,registration,total_population,3.1,,,
+53.07.12.2006,4,Woda Mude,sex,laki_laki,,585,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2006,4,Woda Mude,sex,perempuan,,614,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2006,4,Woda Mude,total,total,,1199,jiwa,2025,registration,total_population,3.1,,,
+53.07.12.2007,4,Legu Woda,sex,laki_laki,,792,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2007,4,Legu Woda,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2007,4,Legu Woda,total,total,,1612,jiwa,2025,registration,total_population,3.1,,,
+53.07.12.2008,4,Waturia,sex,laki_laki,,735,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.12.2008,4,Waturia,sex,perempuan,,803,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.12.2008,4,Waturia,total,total,,1538,jiwa,2025,registration,total_population,3.1,,,

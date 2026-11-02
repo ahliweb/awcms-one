@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5309-kecamatan-530613-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.06.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ile Boleng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5309",
+  "publisherWebsite": "https://florestimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://florestimurkab.bps.go.id), publikasi \"Kecamatan Ile Boleng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53090.26009",
+  "issn": "2579-6992",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://florestimurkab.bps.go.id/id/publication/2026/09/28/c8a0a94f61988221c9c43ca8/kecamatan-ile-boleng-dalam-angka-2026.html",
+  "sourceFileSha256": "e75f3181f5f0ebf2d2232ca5efd2920de23d37ae7bfdab9fdf9354fc0d4226f4",
+  "sourceFileBytes": 14533244,
+  "sourcePages": [22, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Flores Timur.",
+  "csvPath": "datasets/bps-5309-kecamatan-530613-dalam-angka-2026.csv",
+  "csvSha256": "9d1eb4b822e3bd214596cda14311dcd4962ba654e3da9aaa4726406268129890",
+  "tablesUsed": [
+    {
+      "table": "1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ile Boleng, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ile Boleng, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.1: row not stored: row \"Nelelamadiken\": unmatched ",
+    "table 1.1: row not stored: row \"Bayuntaa\": unmatched "
+  ]
+}

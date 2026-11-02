@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5309-kecamatan-530606-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.06.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Solor Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Flores Timur",
+  "publisherDomain": "5309",
+  "publisherWebsite": "https://florestimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Flores Timur (https://florestimurkab.bps.go.id), publikasi \"Kecamatan Solor Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5309040",
+  "publicationNumber": "53090.26022",
+  "issn": "2598-1501",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://florestimurkab.bps.go.id/id/publication/2026/09/28/7e19bd7a30a026a41f3cafbe/kecamatan-solor-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "1ae2b166e5766b800379f9a6ecc4823001dcd119f3745a8d3db3d74be6c546ad",
+  "sourceFileBytes": 16715320,
+  "sourcePages": [21, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Flores Timur.",
+  "csvPath": "datasets/bps-5309-kecamatan-530606-dalam-angka-2026.csv",
+  "csvSha256": "1433a32d48bc29ab5c033c07162c6069c5e0ba7399d616fd85c3bac403afcde4",
+  "tablesUsed": [
+    {
+      "table": "1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Solor Barat, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Solor Barat, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

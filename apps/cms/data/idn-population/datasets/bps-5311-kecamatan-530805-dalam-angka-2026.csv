@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.05.2016,4,Nanganesa,sex,laki_laki,,1315,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2016,4,Nanganesa,sex,perempuan,,1356,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2016,4,Nanganesa,total,total,,2671,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.1001,4,Kel. Onelako,sex,laki_laki,,707,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.1001,4,Kel. Onelako,sex,perempuan,,738,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.1001,4,Kel. Onelako,total,total,,1445,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2003,4,Wolotopo,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2003,4,Wolotopo,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2003,4,Wolotopo,total,total,,976,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2007,4,Ngalupolo,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2007,4,Ngalupolo,sex,perempuan,,472,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2007,4,Ngalupolo,total,total,,942,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2020,4,Reka,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2020,4,Reka,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2020,4,Reka,total,total,,509,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2014,4,Kekasewa,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2014,4,Kekasewa,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2014,4,Kekasewa,total,total,,521,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2017,4,Wolokota,sex,laki_laki,,151,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2017,4,Wolokota,sex,perempuan,,164,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2017,4,Wolokota,total,total,,315,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2013,4,Nila,sex,laki_laki,,322,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2013,4,Nila,sex,perempuan,,368,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2013,4,Nila,total,total,,690,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2012,4,Ngaluroga,sex,laki_laki,,200,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2012,4,Ngaluroga,sex,perempuan,,242,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2012,4,Ngaluroga,total,total,,442,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2006,4,Puutuga,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2006,4,Puutuga,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2006,4,Puutuga,total,total,,828,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.2018,4,Kelikiku,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.2018,4,Kelikiku,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.2018,4,Kelikiku,total,total,,684,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05.1002,4,Kel. Lokoboko,sex,laki_laki,,1012,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05.1002,4,Kel. Lokoboko,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05.1002,4,Kel. Lokoboko,total,total,,2053,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05,3,Kecamatan Ndona,sex,laki_laki,,6864,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.05,3,Kecamatan Ndona,sex,perempuan,,7284,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.05,3,Kecamatan Ndona,total,total,,14148,jiwa,2025,registration,total_population,3.1,24,,
+53.08.05,3,Ndona,age_group,0-4,laki_laki,303,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.05,3,Ndona,age_group,0-4,perempuan,252,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.05,3,Ndona,age_group,0-4,,555,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.05,3,Ndona,age_group,5-9,laki_laki,567,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.05,3,Ndona,age_group,5-9,perempuan,535,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.05,3,Ndona,age_group,5-9,,1102,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.05,3,Ndona,age_group,10-14,laki_laki,685,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.05,3,Ndona,age_group,10-14,perempuan,631,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.05,3,Ndona,age_group,10-14,,1316,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.05,3,Ndona,age_group,15-19,laki_laki,652,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.05,3,Ndona,age_group,15-19,perempuan,582,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.05,3,Ndona,age_group,15-19,,1234,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.05,3,Ndona,age_group,20-24,laki_laki,557,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.05,3,Ndona,age_group,20-24,perempuan,550,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.05,3,Ndona,age_group,20-24,,1107,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.05,3,Ndona,age_group,25-29,laki_laki,518,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.05,3,Ndona,age_group,25-29,perempuan,523,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.05,3,Ndona,age_group,25-29,,1041,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.05,3,Ndona,age_group,30-34,laki_laki,520,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.05,3,Ndona,age_group,30-34,perempuan,501,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.05,3,Ndona,age_group,30-34,,1021,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.05,3,Ndona,age_group,35-39,laki_laki,494,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.05,3,Ndona,age_group,35-39,perempuan,511,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.05,3,Ndona,age_group,35-39,,1005,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.05,3,Ndona,age_group,40-44,laki_laki,510,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.05,3,Ndona,age_group,40-44,perempuan,535,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.05,3,Ndona,age_group,40-44,,1045,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.05,3,Ndona,age_group,45-49,laki_laki,415,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.05,3,Ndona,age_group,45-49,perempuan,471,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.05,3,Ndona,age_group,45-49,,886,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.05,3,Ndona,age_group,50-54,laki_laki,407,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.05,3,Ndona,age_group,50-54,perempuan,495,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.05,3,Ndona,age_group,50-54,,902,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.05,3,Ndona,age_group,55-59,laki_laki,309,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.05,3,Ndona,age_group,55-59,perempuan,402,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.05,3,Ndona,age_group,55-59,,711,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.05,3,Ndona,age_group,60-64,laki_laki,263,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.05,3,Ndona,age_group,60-64,perempuan,418,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.05,3,Ndona,age_group,60-64,,681,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.05,3,Ndona,age_group,65-69,laki_laki,256,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.05,3,Ndona,age_group,65-69,perempuan,361,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.05,3,Ndona,age_group,65-69,,617,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.05,3,Ndona,age_group,70-74,laki_laki,179,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.05,3,Ndona,age_group,70-74,perempuan,236,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.05,3,Ndona,age_group,70-74,,415,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.05,3,Ndona,age_group,75+,laki_laki,229,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.05,3,Ndona,age_group,75+,perempuan,281,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.05,3,Ndona,age_group,75+,,510,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.05,3,Kecamatan Ndona,sex,laki_laki,,6864,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.08.05,3,Kecamatan Ndona,sex,perempuan,,7284,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.08.05,3,Kecamatan Ndona,total,total,,14148,jiwa,2025,registration,total_population,3.2,26,,

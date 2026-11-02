@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.11.2001,4,Hokor,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2001,4,Hokor,sex,perempuan,,682,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2001,4,Hokor,total,total,,1310,jiwa,2025,registration,total_population,3.1,26,,
+53.07.11.2002,4,Wolonwalu,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2002,4,Wolonwalu,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2002,4,Wolonwalu,total,total,,1104,jiwa,2025,registration,total_population,3.1,26,,
+53.07.11.2003,4,Wolokoli,sex,laki_laki,,732,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2003,4,Wolokoli,sex,perempuan,,919,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2003,4,Wolokoli,total,total,,1651,jiwa,2025,registration,total_population,3.1,26,,
+53.07.11.2004,4,Bola,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2004,4,Bola,sex,perempuan,,804,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2004,4,Bola,total,total,,1513,jiwa,2025,registration,total_population,3.1,26,,
+53.07.11.2005,4,Umauta,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2005,4,Umauta,sex,perempuan,,1075,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2005,4,Umauta,total,total,,1993,jiwa,2025,registration,total_population,3.1,26,,
+53.07.11.2006,4,Ipir,sex,laki_laki,,586,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2006,4,Ipir,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2006,4,Ipir,total,total,,1182,jiwa,2025,registration,total_population,3.1,26,,
+53.07.11.2018,4,Bura Bekor,sex,laki_laki,,532,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2018,4,Bura Bekor,sex,perempuan,,575,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2018,4,Bura Bekor,total,total,,1107,jiwa,2025,registration,total_population,3.1,26,,
+53.07.11.2019,4,Watukrus,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.11.2019,4,Watukrus,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.11.2019,4,Watukrus,total,total,,1315,jiwa,2025,registration,total_population,3.1,26,,

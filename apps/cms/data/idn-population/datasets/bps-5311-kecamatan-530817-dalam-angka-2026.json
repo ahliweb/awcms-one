@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5311-kecamatan-530817-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.08.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ndori Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ende",
+  "publisherDomain": "5311",
+  "publisherWebsite": "https://endekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ende (https://endekab.bps.go.id), publikasi \"Kecamatan Ndori Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5311054",
+  "publicationNumber": "53110.26024",
+  "issn": "2686-3855",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://endekab.bps.go.id/id/publication/2026/09/28/28fa21bf9c44d5f9d21503a6/kecamatan-ndori-dalam-angka-2026.html",
+  "sourceFileSha256": "e5368267cb28993045344b7aa43e6a6ec2a6e401f7f8e0b439979c23f4f6ad24",
+  "sourceFileBytes": 8159460,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ende.",
+  "csvPath": "datasets/bps-5311-kecamatan-530817-dalam-angka-2026.csv",
+  "csvSha256": "29c6e5f765ed675764412137230de8838c038693df74b7cc48a44400f1ef3f11",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ndori, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ndori, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"07. Lunggaria\": unmatched ",
+    "table 3.1: row not stored: row \"07. Lunggaria\": unmatched "
+  ]
+}

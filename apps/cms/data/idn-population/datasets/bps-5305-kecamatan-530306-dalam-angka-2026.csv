@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.06.2006,4,Sapaen,sex,laki_laki,,439,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.2006,4,Sapaen,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.2006,4,Sapaen,total,total,,891,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06.2005,4,Taunbaen,sex,laki_laki,,453,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.2005,4,Taunbaen,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.2005,4,Taunbaen,total,total,,905,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06.2004,4,Biloe,sex,laki_laki,,837,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.2004,4,Biloe,sex,perempuan,,825,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.2004,4,Biloe,total,total,,1662,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06.2001,4,Boronubaen,sex,laki_laki,,758,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.2001,4,Boronubaen,sex,perempuan,,840,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.2001,4,Boronubaen,total,total,,1598,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06.2012,4,Lokomea,sex,laki_laki,,619,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.2012,4,Lokomea,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.2012,4,Lokomea,total,total,,1209,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06.2014,4,Hauteas Barat,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.2014,4,Hauteas Barat,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.2014,4,Hauteas Barat,total,total,,834,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06.2013,4,Taunbaen Timur,sex,laki_laki,,373,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.2013,4,Taunbaen Timur,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.2013,4,Taunbaen Timur,total,total,,751,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06.1015,4,Boronubaen Timur,sex,laki_laki,,411,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06.1015,4,Boronubaen Timur,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06.1015,4,Boronubaen Timur,total,total,,812,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06,3,Biboki Utara,sex,laki_laki,,6220,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.06,3,Biboki Utara,sex,perempuan,,6158,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.06,3,Biboki Utara,total,total,,12378,jiwa,2025,registration,total_population,3.1,28,,
+53.03.06,3,Biboki Utara,age_group,0-4,laki_laki,328,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.06,3,Biboki Utara,age_group,0-4,perempuan,326,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.06,3,Biboki Utara,age_group,0-4,,654,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.06,3,Biboki Utara,age_group,5-9,laki_laki,690,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.06,3,Biboki Utara,age_group,5-9,perempuan,633,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.06,3,Biboki Utara,age_group,5-9,,1323,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.06,3,Biboki Utara,age_group,10-14,laki_laki,686,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.06,3,Biboki Utara,age_group,10-14,perempuan,643,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.06,3,Biboki Utara,age_group,10-14,,1329,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.06,3,Biboki Utara,age_group,15-19,laki_laki,699,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.06,3,Biboki Utara,age_group,15-19,perempuan,634,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.06,3,Biboki Utara,age_group,15-19,,1333,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.06,3,Biboki Utara,age_group,20-24,laki_laki,634,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.06,3,Biboki Utara,age_group,20-24,perempuan,593,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.06,3,Biboki Utara,age_group,20-24,,1227,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.06,3,Biboki Utara,age_group,25-29,laki_laki,521,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.06,3,Biboki Utara,age_group,25-29,perempuan,520,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.06,3,Biboki Utara,age_group,25-29,,1041,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.06,3,Biboki Utara,age_group,30-34,laki_laki,447,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.06,3,Biboki Utara,age_group,30-34,perempuan,462,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.06,3,Biboki Utara,age_group,30-34,,909,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.06,3,Biboki Utara,age_group,35-39,laki_laki,335,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.06,3,Biboki Utara,age_group,35-39,perempuan,382,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.06,3,Biboki Utara,age_group,35-39,,717,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.06,3,Biboki Utara,age_group,40-44,laki_laki,356,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.06,3,Biboki Utara,age_group,40-44,perempuan,414,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.06,3,Biboki Utara,age_group,40-44,,770,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.06,3,Biboki Utara,age_group,45-49,laki_laki,296,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.06,3,Biboki Utara,age_group,45-49,perempuan,337,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.06,3,Biboki Utara,age_group,45-49,,633,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.06,3,Biboki Utara,age_group,50-54,laki_laki,288,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.06,3,Biboki Utara,age_group,50-54,perempuan,269,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.06,3,Biboki Utara,age_group,50-54,,557,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.06,3,Biboki Utara,age_group,55-59,laki_laki,250,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.06,3,Biboki Utara,age_group,55-59,perempuan,273,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.06,3,Biboki Utara,age_group,55-59,,523,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.06,3,Biboki Utara,age_group,60-64,laki_laki,212,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.06,3,Biboki Utara,age_group,60-64,perempuan,226,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.06,3,Biboki Utara,age_group,60-64,,438,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.06,3,Biboki Utara,age_group,65-69,laki_laki,209,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.06,3,Biboki Utara,age_group,65-69,perempuan,182,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.06,3,Biboki Utara,age_group,65-69,,391,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.06,3,Biboki Utara,age_group,70-74,laki_laki,99,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.06,3,Biboki Utara,age_group,70-74,perempuan,101,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.06,3,Biboki Utara,age_group,70-74,,200,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.06,3,Biboki Utara,age_group,75+,laki_laki,170,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.06,3,Biboki Utara,age_group,75+,perempuan,163,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.06,3,Biboki Utara,age_group,75+,,333,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.06,3,Biboki Utara,sex,laki_laki,,6220,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.06,3,Biboki Utara,sex,perempuan,,6158,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.06,3,Biboki Utara,total,total,,12378,jiwa,2025,registration,total_population,3.2,30,,

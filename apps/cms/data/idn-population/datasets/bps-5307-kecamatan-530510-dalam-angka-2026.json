@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5307-kecamatan-530510-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.05.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kabola Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Alor",
+  "publisherDomain": "5307",
+  "publisherWebsite": "https://alorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Alor (https://alorkab.bps.go.id), publikasi \"Kecamatan Kabola Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5307051",
+  "publicationNumber": "53070",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://alorkab.bps.go.id/id/publication/2026/09/28/e59dc1cf588a0c7bbeeca04f/kecamatan-kabola-dalam-angka-2026.html",
+  "sourceFileSha256": "f3f8783d5eb55410eb1a0261c2ab9a491cbf2fba3d1d52dc7b97bb5d1d914d78",
+  "sourceFileBytes": 3784429,
+  "sourcePages": [20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Alor.",
+  "csvPath": "datasets/bps-5307-kecamatan-530510-dalam-angka-2026.csv",
+  "csvSha256": "d6779aa3d79c5641657a39547f8506a12062a90ec7171dca28e4ee8af6e6f4f6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan kabola, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

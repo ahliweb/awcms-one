@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5313-kecamatan-531006-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.10.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cibal Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Manggarai",
+  "publisherDomain": "5313",
+  "publisherWebsite": "https://manggaraikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Manggarai (https://manggaraikab.bps.go.id), publikasi \"Kecamatan Cibal Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53130.26013",
+  "issn": "0852-4726",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraikab.bps.go.id/id/publication/2026/09/28/0130df42551ba818cf3e1ac2/kecamatan-cibal-dalam-angka-2026.html",
+  "sourceFileSha256": "3d1d1021b833e686f9ff1cb2baa02997f6b2b6f51a0dfdd5475e20810499ca06",
+  "sourceFileBytes": 5443216,
+  "sourcePages": [25, 26, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai",
+  "csvPath": "datasets/bps-5313-kecamatan-531006-dalam-angka-2026.csv",
+  "csvSha256": "adb4067778bdce86d312704dd36aafc697ab76a62e0938bcca041ca7f922d915",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan Di Kecamatan Cibal, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cibal, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: the rows of region 53.10.06 are not stored: age_group (laki_laki) vs sex value: parts sum 15096.0000 != 15098.0000 (diff 2.0000); the source itself is inconsistent"
+  ]
+}

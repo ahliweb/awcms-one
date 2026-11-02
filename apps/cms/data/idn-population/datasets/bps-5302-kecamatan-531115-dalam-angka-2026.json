@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-5302-kecamatan-531115-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.11.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Matawai La Pawu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Timur",
+  "publisherDomain": "5302",
+  "publisherWebsite": "https://sumbatimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Timur (https://sumbatimurkab.bps.go.id), publikasi \"Kecamatan Matawai La Pawu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5302",
+  "publicationNumber": "53020.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbatimurkab.bps.go.id/id/publication/2026/09/28/40b78a81cc6cfe1cba7b6c9b/kecamatan-matawai-la-pawu-dalam-angka-2026.html",
+  "sourceFileSha256": "8ef6251125ae300dc8e025a09ef1b78462bf31131531f1e437b87445a04d4fd5",
+  "sourceFileBytes": 1698388,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Timur",
+  "csvPath": "datasets/bps-5302-kecamatan-531115-dalam-angka-2026.csv",
+  "csvSha256": "794f1615ab249fde64ce0b6ecda52a2966c8810871223e894d659293a36980d5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Matawai La Pawu, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Prai Bokul\": unmatched ",
+    "table 3.1: row not stored: row \"Prai Bokul\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 3.1: the rows of region 53.11.15.2006 are not stored: sex split vs total: parts sum 1331.0000 != 1311.0000 (diff 20.0000); the source itself is inconsistent"
+  ]
+}

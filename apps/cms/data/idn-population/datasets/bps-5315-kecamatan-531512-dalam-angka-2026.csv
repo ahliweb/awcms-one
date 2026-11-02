@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.12.2009,4,Golo Wedong,sex,laki_laki,,571,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2009,4,Golo Wedong,sex,perempuan,,608,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2009,4,Golo Wedong,total,total,,1179,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2010,4,Ranggu,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2010,4,Ranggu,sex,perempuan,,730,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2010,4,Ranggu,total,total,,1433,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2003,4,Sompang Kolang,sex,laki_laki,,411,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2003,4,Sompang Kolang,sex,perempuan,,388,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2003,4,Sompang Kolang,total,total,,799,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2005,4,Kolang,sex,laki_laki,,583,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2005,4,Kolang,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2005,4,Kolang,total,total,,1190,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2008,4,Tengku,sex,laki_laki,,377,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2008,4,Tengku,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2008,4,Tengku,total,total,,746,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2001,4,Golo Lewe,sex,laki_laki,,1045,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2001,4,Golo Lewe,sex,perempuan,,965,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2001,4,Golo Lewe,total,total,,2010,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2002,4,Tueng,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2002,4,Tueng,sex,perempuan,,745,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2002,4,Tueng,total,total,,1476,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2004,4,Wajur,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2004,4,Wajur,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2004,4,Wajur,total,total,,793,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2007,4,Compang Kules,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2007,4,Compang Kules,sex,perempuan,,617,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2007,4,Compang Kules,total,total,,1239,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12.2006,4,Golo Riwu,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12.2006,4,Golo Riwu,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12.2006,4,Golo Riwu,total,total,,1354,jiwa,2025,registration,total_population,3.1,23,,
+53.15.12,3,Kecamatan Kuwus Barat,sex,laki_laki,,6150,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.12,3,Kecamatan Kuwus Barat,sex,perempuan,,6069,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.12,3,Kecamatan Kuwus Barat,total,total,,12219,jiwa,2025,registration,total_population,3.1,23,,

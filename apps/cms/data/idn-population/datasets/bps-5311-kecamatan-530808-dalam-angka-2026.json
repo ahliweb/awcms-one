@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5311-kecamatan-530808-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.08.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wolowaru Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ende",
+  "publisherDomain": "5311",
+  "publisherWebsite": "https://endekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ende (https://endekab.bps.go.id), publikasi \"Kecamatan Wolowaru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5311050",
+  "publicationNumber": "53110.26011",
+  "issn": "2686-3898",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://endekab.bps.go.id/id/publication/2026/09/28/1862261d78804c3fffe78208/kecamatan-wolowaru-dalam-angka-2026.html",
+  "sourceFileSha256": "b0b0635a45d75cfa811c6ad1ac8d655ab8127acb9174eca49b38f3985d0ab3c6",
+  "sourceFileBytes": 8505123,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ende.",
+  "csvPath": "datasets/bps-5311-kecamatan-530808-dalam-angka-2026.csv",
+  "csvSha256": "ca70a47f185601f8e53c7dbda5c0ed4326e71474929fc4981d9498d4d39210dd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Wolowaru, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wolowaru, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

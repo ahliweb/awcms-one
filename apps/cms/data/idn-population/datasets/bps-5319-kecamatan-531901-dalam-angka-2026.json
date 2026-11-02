@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5319-kecamatan-531901-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.19.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Borong Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Manggarai Timur",
+  "publisherDomain": "5319",
+  "publisherWebsite": "https://manggaraitimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Manggarai Timur (https://manggaraitimurkab.bps.go.id), publikasi \"Kecamatan Borong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53190.26005",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraitimurkab.bps.go.id/id/publication/2026/09/28/5e3d0289dbbec7dd4a4b9345/kecamatan-borong-dalam-angka-2026.html",
+  "sourceFileSha256": "3876f005232df8df8f3c040787bf2d1dd29f3923cc676bdde8aac9a635ce2ef0",
+  "sourceFileBytes": 8063571,
+  "sourcePages": [16, 17, 18],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Timur.",
+  "csvPath": "datasets/bps-5319-kecamatan-531901-dalam-angka-2026.csv",
+  "csvSha256": "0d67e3be40e0c40c2a613bf6f198755dfa94f09bbc6098122e5180b12a1e7d9d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Borong, 2025",
+      "printedPages": [16, 17],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

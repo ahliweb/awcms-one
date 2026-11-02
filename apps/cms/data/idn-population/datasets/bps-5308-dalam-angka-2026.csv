@@ -1,0 +1,107 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.13.01,3,Nagawutung,religion,islam,,1527,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.01,3,Nagawutung,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13.01,3,Nagawutung,religion,katolik,,10221,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.01,3,Nagawutung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.01,3,Nagawutung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.01,3,Nagawutung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.08,3,Wulandoni,religion,islam,,1599,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.08,3,Wulandoni,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.13.08,3,Wulandoni,religion,katolik,,7082,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.08,3,Wulandoni,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.08,3,Wulandoni,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.08,3,Wulandoni,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.02,3,Atadei,religion,islam,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Islam
+53.13.02,3,Atadei,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13.02,3,Atadei,religion,katolik,,10322,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.02,3,Atadei,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.02,3,Atadei,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.02,3,Atadei,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.03,3,Ile Ape,religion,islam,,3604,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.03,3,Ile Ape,religion,kristen,,42,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13.03,3,Ile Ape,religion,katolik,,9005,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.03,3,Ile Ape,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.03,3,Ile Ape,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.03,3,Ile Ape,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.09,3,Ile Ape Timur,religion,islam,,407,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.09,3,Ile Ape Timur,religion,kristen,,17,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13.09,3,Ile Ape Timur,religion,katolik,,5035,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.09,3,Ile Ape Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.09,3,Ile Ape Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.09,3,Ile Ape Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.04,3,Lebatukan,religion,islam,,542,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.04,3,Lebatukan,religion,kristen,,74,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13.04,3,Lebatukan,religion,katolik,,8877,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.04,3,Lebatukan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.04,3,Lebatukan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.04,3,Lebatukan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.05,3,Nubatukan,religion,islam,,7030,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.05,3,Nubatukan,religion,kristen,,2529,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13.05,3,Nubatukan,religion,katolik,,26956,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.05,3,Nubatukan,religion,hindu,,52,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+53.13.05,3,Nubatukan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.05,3,Nubatukan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.06,3,Omesuri,religion,islam,,11687,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.06,3,Omesuri,religion,kristen,,62,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13.06,3,Omesuri,religion,katolik,,5342,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.06,3,Omesuri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.06,3,Omesuri,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.06,3,Omesuri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13.07,3,Buyasuri,religion,islam,,14125,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13.07,3,Buyasuri,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+53.13.07,3,Buyasuri,religion,katolik,,12202,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13.07,3,Buyasuri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+53.13.07,3,Buyasuri,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13.07,3,Buyasuri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13,2,Lembata,religion,islam,,40521,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+53.13,2,Lembata,religion,kristen,,2740,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+53.13,2,Lembata,religion,katolik,,95042,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+53.13,2,Lembata,religion,hindu,,52,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+53.13,2,Lembata,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+53.13,2,Lembata,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/padi_padian,,129192,rupiah,2024,survey_estimate,per_capita,10.1,222,,Padi-padian
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/padi_padian,,119926,rupiah,2025,survey_estimate,per_capita,10.1,222,,Padi-padian
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/umbi_umbian,,3511,rupiah,2024,survey_estimate,per_capita,10.1,222,,Umbi-umbian
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/umbi_umbian,,2439,rupiah,2025,survey_estimate,per_capita,10.1,222,,Umbi-umbian
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,56332,rupiah,2024,survey_estimate,per_capita,10.1,222,,Ikan/udang/cumi/kerang
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,53264,rupiah,2025,survey_estimate,per_capita,10.1,222,,Ikan/udang/cumi/kerang
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/daging,,10574,rupiah,2024,survey_estimate,per_capita,10.1,222,,Daging
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/daging,,10668,rupiah,2025,survey_estimate,per_capita,10.1,222,,Daging
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/telur_dan_susu,,23072,rupiah,2024,survey_estimate,per_capita,10.1,222,,Telur dan susu
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/telur_dan_susu,,23904,rupiah,2025,survey_estimate,per_capita,10.1,222,,Telur dan susu
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/sayur_sayuran,,40350,rupiah,2024,survey_estimate,per_capita,10.1,222,,Sayur-sayuran
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/sayur_sayuran,,49343,rupiah,2025,survey_estimate,per_capita,10.1,222,,Sayur-sayuran
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/kacang_kacangan,,4539,rupiah,2024,survey_estimate,per_capita,10.1,222,,Kacang-kacangan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/kacang_kacangan,,5926,rupiah,2025,survey_estimate,per_capita,10.1,222,,Kacang-kacangan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/buah_buahan,,22423,rupiah,2024,survey_estimate,per_capita,10.1,222,,Buah-buahan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/buah_buahan,,28614,rupiah,2025,survey_estimate,per_capita,10.1,222,,Buah-buahan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14862,rupiah,2024,survey_estimate,per_capita,10.1,222,,Minyak dan kelapa
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15170,rupiah,2025,survey_estimate,per_capita,10.1,222,,Minyak dan kelapa
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/bahan_minuman,,20456,rupiah,2024,survey_estimate,per_capita,10.1,222,,Bahan minuman
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/bahan_minuman,,21949,rupiah,2025,survey_estimate,per_capita,10.1,222,,Bahan minuman
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/bumbu_bumbuan,,7530,rupiah,2024,survey_estimate,per_capita,10.1,222,,Bumbu-bumbuan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/bumbu_bumbuan,,7496,rupiah,2025,survey_estimate,per_capita,10.1,222,,Bumbu-bumbuan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/konsumsi_lainnya,,5824,rupiah,2024,survey_estimate,per_capita,10.1,222,,Konsumsi lainnya
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/konsumsi_lainnya,,6258,rupiah,2025,survey_estimate,per_capita,10.1,222,,Konsumsi lainnya
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,91880,rupiah,2024,survey_estimate,per_capita,10.1,222,,Makanan dan minuman jadi
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,126643,rupiah,2025,survey_estimate,per_capita,10.1,222,,Makanan dan minuman jadi
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/rokok,,63342,rupiah,2024,survey_estimate,per_capita,10.1,222,,Rokok
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/rokok,,44041,rupiah,2025,survey_estimate,per_capita,10.1,222,,Rokok
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/jumlah_makanan,,493887,rupiah,2024,survey_estimate,per_capita,10.1,222,,Jumlah makanan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/jumlah_makanan,,515641,rupiah,2025,survey_estimate,per_capita,10.1,222,,Jumlah makanan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,232133,rupiah,2024,survey_estimate,per_capita,10.1,222,,Perumahan dan fasilitas rumah tangga
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,232989,rupiah,2025,survey_estimate,per_capita,10.1,222,,Perumahan dan fasilitas rumah tangga
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,73792,rupiah,2024,survey_estimate,per_capita,10.1,222,,Aneka barang dan jasa
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,85783,rupiah,2025,survey_estimate,per_capita,10.1,222,,Aneka barang dan jasa
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15777,rupiah,2024,survey_estimate,per_capita,10.1,222,,"Pakaian, alas kaki, dan tutup kepala"
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,17339,rupiah,2025,survey_estimate,per_capita,10.1,222,,"Pakaian, alas kaki, dan tutup kepala"
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/barang_tahan_lama,,32692,rupiah,2024,survey_estimate,per_capita,10.1,222,,Barang tahan lama
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/barang_tahan_lama,,21788,rupiah,2025,survey_estimate,per_capita,10.1,222,,Barang tahan lama
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41274,rupiah,2024,survey_estimate,per_capita,10.1,222,,"Pajak, pungutan, dan asuransi"
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48704,rupiah,2025,survey_estimate,per_capita,10.1,222,,"Pajak, pungutan, dan asuransi"
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7194,rupiah,2024,survey_estimate,per_capita,10.1,222,,Keperluan pesta dan upacara/kenduri
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5974,rupiah,2025,survey_estimate,per_capita,10.1,222,,Keperluan pesta dan upacara/kenduri
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,402862,rupiah,2024,survey_estimate,per_capita,10.1,222,,Jumlah bukan makanan
+53.13,2,Kabupaten Lembata,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,412577,rupiah,2025,survey_estimate,per_capita,10.1,222,,Jumlah bukan makanan
+53.13,2,Kabupaten Lembata,expenditure,total,,896749,rupiah,2024,survey_estimate,per_capita,10.1,222,,
+53.13,2,Kabupaten Lembata,expenditure,total,,928218,rupiah,2025,survey_estimate,per_capita,10.1,222,,

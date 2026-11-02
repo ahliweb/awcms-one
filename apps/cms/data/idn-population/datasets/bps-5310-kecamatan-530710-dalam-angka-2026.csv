@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.10.2005,4,Seusina,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2005,4,Seusina,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2005,4,Seusina,total,total,,1160,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2007,4,Kopong,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2007,4,Kopong,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2007,4,Kopong,total,total,,1461,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2008,4,Namangkewa,sex,laki_laki,,1177,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2008,4,Namangkewa,sex,perempuan,,1380,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2008,4,Namangkewa,total,total,,2557,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2009,4,Ian Tena,sex,laki_laki,,431,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2009,4,Ian Tena,sex,perempuan,,530,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2009,4,Ian Tena,total,total,,961,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2016,4,Umagera,sex,laki_laki,,529,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2016,4,Umagera,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2016,4,Umagera,total,total,,1147,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2020,4,Geliting,sex,laki_laki,,1191,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2020,4,Geliting,sex,perempuan,,1240,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2020,4,Geliting,total,total,,2431,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2021,4,Waiara,sex,laki_laki,,1287,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2021,4,Waiara,sex,perempuan,,1464,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2021,4,Waiara,total,total,,2751,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2024,4,Wairkoja,sex,laki_laki,,1101,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2024,4,Wairkoja,sex,perempuan,,1161,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2024,4,Wairkoja,total,total,,2262,jiwa,2025,registration,total_population,3.1,27,,
+53.07.10.2026,4,Watukobu,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.10.2026,4,Watukobu,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.10.2026,4,Watukobu,total,total,,1111,jiwa,2025,registration,total_population,3.1,27,,

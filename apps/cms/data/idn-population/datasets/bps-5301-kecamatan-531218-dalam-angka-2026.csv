@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.12.18.2002,4,Gaura,sex,laki_laki,,1555,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.18.2002,4,Gaura,sex,perempuan,,1576,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.18.2002,4,Gaura,total,total,,3131,jiwa,2025,registration,total_population,3.1,20,,
+53.12.18.2003,4,Patiala Dete,sex,laki_laki,,1090,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.18.2003,4,Patiala Dete,sex,perempuan,,1073,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.18.2003,4,Patiala Dete,total,total,,2163,jiwa,2025,registration,total_population,3.1,20,,
+53.12.18.2004,4,Harona Kalla,sex,laki_laki,,1169,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.18.2004,4,Harona Kalla,sex,perempuan,,1165,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.18.2004,4,Harona Kalla,total,total,,2334,jiwa,2025,registration,total_population,3.1,20,,
+53.12.18,3,Laboya Barat,sex,laki_laki,,5640,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.18,3,Laboya Barat,sex,perempuan,,5691,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.18,3,Laboya Barat,total,total,,11331,jiwa,2025,registration,total_population,3.1,20,,

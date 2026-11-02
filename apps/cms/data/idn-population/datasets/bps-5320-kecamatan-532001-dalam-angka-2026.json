@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5320-kecamatan-532001-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.20.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sabu Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sabu Raijua",
+  "publisherDomain": "5320",
+  "publisherWebsite": "https://saburaijuakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sabu Raijua (https://saburaijuakab.bps.go.id), publikasi \"Kecamatan Sabu Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5320040",
+  "publicationNumber": "53200.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://saburaijuakab.bps.go.id/id/publication/2026/09/28/49ab46fc450117ad55a0746e/kecamatan-sabu-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "d46279ccf51b27a7376dbc94306f6b448ed69a49631575e4a924f6e41d4e6750",
+  "sourceFileBytes": 9090587,
+  "sourcePages": [16, 17, 18],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sabu Raijua.",
+  "csvPath": "datasets/bps-5320-kecamatan-532001-dalam-angka-2026.csv",
+  "csvSha256": "19a6876f28bc900cadd2a7bde2bb55be154352c2e94ed86b944bc2addb0f7464",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sabu Barat, 2025",
+      "printedPages": [16, 17],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sabu Barat, 2025",
+      "printedPages": [18],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Nadawawi\": unmatched ",
+    "table 3.1: row not stored: row \"Jadu\": unmatched ",
+    "table 3.1: row not stored: row \"Nadawawi\": unmatched ",
+    "table 3.1: row not stored: row \"Jadu\": unmatched "
+  ]
+}

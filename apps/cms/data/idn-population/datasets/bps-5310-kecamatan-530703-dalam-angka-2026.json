@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530703-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lela Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://sikkakab.bps.go.id), publikasi \"Kecamatan Lela Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5310020",
+  "publicationNumber": "53100.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/a55eae383f39d19c0c6f66fd/kecamatan-lela-dalam-angka-2026.html",
+  "sourceFileSha256": "d208da3e1cc4054d292d89e2b7ac2db01cb5c8bba07f2b01030ab54a15f0c1a9",
+  "sourceFileBytes": 10846067,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530703-dalam-angka-2026.csv",
+  "csvSha256": "c8a584b6adeec6bf3a8ef3befeb889f982a730aa77583ce42bb20810d1e35da0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lela, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lela, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Korowuwun\": unmatched ",
+    "table 3.1: row not stored: row \"Korowuwun\": unmatched ",
+    "table 3.2: the rows of region 53.07.03 are not stored: age_group vs total: parts sum 12198.0000 != 15957.0000 (diff 3759.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.02.2001,4,Bhera,sex,laki_laki,,923,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2001,4,Bhera,sex,perempuan,,961,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2001,4,Bhera,total,total,,1884,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2002,4,Dobo,sex,laki_laki,,957,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2002,4,Dobo,sex,perempuan,,1010,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2002,4,Dobo,total,total,,1967,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2003,4,Gera,sex,laki_laki,,717,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2003,4,Gera,sex,perempuan,,734,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2003,4,Gera,total,total,,1451,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2004,4,Liakutu,sex,laki_laki,,534,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2004,4,Liakutu,sex,perempuan,,548,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2004,4,Liakutu,total,total,,1082,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2005,4,Parabubu,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2005,4,Parabubu,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2005,4,Parabubu,total,total,,838,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2006,4,Wolodhesa,sex,laki_laki,,688,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2006,4,Wolodhesa,sex,perempuan,,703,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2006,4,Wolodhesa,total,total,,1391,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2007,4,Korobhera,sex,laki_laki,,686,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2007,4,Korobhera,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2007,4,Korobhera,total,total,,1433,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2008,4,Napu Gera,sex,laki_laki,,413,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2008,4,Napu Gera,sex,perempuan,,427,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2008,4,Napu Gera,total,total,,840,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2009,4,Kowi,sex,laki_laki,,480,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2009,4,Kowi,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2009,4,Kowi,total,total,,953,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2010,4,Dobo Nua Pu u,sex,laki_laki,,549,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2010,4,Dobo Nua Pu u,sex,perempuan,,576,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2010,4,Dobo Nua Pu u,total,total,,1125,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2011,4,Ratekalo,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2011,4,Ratekalo,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2011,4,Ratekalo,total,total,,693,jiwa,2025,registration,total_population,3.1,28,,
+53.07.02.2012,4,Ndaimbere,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.02.2012,4,Ndaimbere,sex,perempuan,,457,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.02.2012,4,Ndaimbere,total,total,,943,jiwa,2025,registration,total_population,3.1,28,,

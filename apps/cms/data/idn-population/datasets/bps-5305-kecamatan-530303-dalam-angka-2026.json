@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5305-kecamatan-530303-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.03.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Biboki Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Utara Regency",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Utara Regency (https://timortengahutarakab.bps.go.id), publikasi \"Kecamatan Biboki Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305050",
+  "publicationNumber": "53050.26029",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/09/28/1720745766c4457aaa2d5462/kecamatan-biboki-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "e32d08aa2c5539943ba71ec1002508f4069beec06b9ab8041fb58989c146cac8",
+  "sourceFileBytes": 8769202,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Timor Tengah Utara",
+  "csvPath": "datasets/bps-5305-kecamatan-530303-dalam-angka-2026.csv",
+  "csvSha256": "eab3f17602f4f51f2dde0021f113344a4f11df9ec9bd08fc8e7a0afe8c7a28ef",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Biboki Selatan, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Biboki Selatan, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 53.03.03 sex/laki_laki/ 2025: 4873 (table 3.1) vs 6011 (table 3.2)",
+    "cross-table disagreement, both stored as published: 53.03.03 sex/perempuan/ 2025: 4888 (table 3.1) vs 5885 (table 3.2)",
+    "cross-table disagreement, both stored as published: 53.03.03 total/total/ 2025: 9761 (table 3.1) vs 11896 (table 3.2)"
+  ]
+}

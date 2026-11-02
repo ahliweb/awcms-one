@@ -1,0 +1,179 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.08.10,3,Sebangki,total,total,,20642,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.01,3,Ngabang,total,total,,86072,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.11,3,Jelimpo,total,total,,30234,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.07,3,Sengah Temila,total,total,,67704,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.04,3,Mandor,total,total,,35290,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.03,3,Menjalin,total,total,,23058,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.02,3,Mempawah Hulu,total,total,,43139,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.13,3,Sompak,total,total,,16825,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.06,3,Menyuke,total,total,,31874,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.12,3,Banyuke Hulu,total,total,,14267,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.08,3,Meranti,total,total,,11126,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.09,3,Kuala Behe,total,total,,17963,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.05,3,Air Besar,total,total,,26278,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08,2,Kabupaten Landak,total,total,,424472,jiwa,2025,projection,total_population,3.1.1,78,,
+61.08.10,3,Sebangki,sex,laki_laki,,10637,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.10,3,Sebangki,sex,perempuan,,10005,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.10,3,Sebangki,total,total,,20642,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.01,3,Ngabang,sex,laki_laki,,44446,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.01,3,Ngabang,sex,perempuan,,41626,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.01,3,Ngabang,total,total,,86072,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.11,3,Jelimpo,sex,laki_laki,,15781,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.11,3,Jelimpo,sex,perempuan,,14453,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.11,3,Jelimpo,total,total,,30234,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.07,3,Sengah Temila,sex,laki_laki,,35405,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.07,3,Sengah Temila,sex,perempuan,,32299,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.07,3,Sengah Temila,total,total,,67704,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.04,3,Mandor,sex,laki_laki,,18047,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.04,3,Mandor,sex,perempuan,,17243,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.04,3,Mandor,total,total,,35290,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.03,3,Menjalin,sex,laki_laki,,11868,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.03,3,Menjalin,sex,perempuan,,11190,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.03,3,Menjalin,total,total,,23058,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.02,3,Mempawah Hulu,sex,laki_laki,,22844,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.02,3,Mempawah Hulu,sex,perempuan,,20295,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.02,3,Mempawah Hulu,total,total,,43139,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.13,3,Sompak,sex,laki_laki,,8865,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.13,3,Sompak,sex,perempuan,,7960,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.13,3,Sompak,total,total,,16825,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.06,3,Menyuke,sex,laki_laki,,16822,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.06,3,Menyuke,sex,perempuan,,15052,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.06,3,Menyuke,total,total,,31874,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.12,3,Banyuke Hulu,sex,laki_laki,,7551,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.12,3,Banyuke Hulu,sex,perempuan,,6716,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.12,3,Banyuke Hulu,total,total,,14267,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.08,3,Meranti,sex,laki_laki,,5901,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.08,3,Meranti,sex,perempuan,,5225,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.08,3,Meranti,total,total,,11126,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.09,3,Kuala Behe,sex,laki_laki,,9483,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.09,3,Kuala Behe,sex,perempuan,,8480,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.09,3,Kuala Behe,total,total,,17963,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.05,3,Air Besar,sex,laki_laki,,13962,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08.05,3,Air Besar,sex,perempuan,,12316,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08.05,3,Air Besar,total,total,,26278,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08,2,Kabupaten Landak,sex,laki_laki,,221612,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+61.08,2,Kabupaten Landak,sex,perempuan,,202860,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+61.08,2,Kabupaten Landak,total,total,,424472,jiwa,2025,projection,total_population,3.1.2,81,,
+61.08.10,3,Sebangki,religion,islam,,7215,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.10,3,Sebangki,religion,kristen,,1873,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.10,3,Sebangki,religion,katolik,,7035,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.10,3,Sebangki,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.10,3,Sebangki,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.10,3,Sebangki,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.01,3,Ngabang,religion,islam,,19102,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.01,3,Ngabang,religion,kristen,,26387,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.01,3,Ngabang,religion,katolik,,32044,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.01,3,Ngabang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.01,3,Ngabang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.01,3,Ngabang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.11,3,Jelimpo,religion,islam,,2872,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.11,3,Jelimpo,religion,kristen,,7173,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.11,3,Jelimpo,religion,katolik,,16144,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.11,3,Jelimpo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.11,3,Jelimpo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.11,3,Jelimpo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.07,3,Sengah Temila,religion,islam,,4251,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.07,3,Sengah Temila,religion,kristen,,17312,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.07,3,Sengah Temila,religion,katolik,,41682,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.07,3,Sengah Temila,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.07,3,Sengah Temila,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.07,3,Sengah Temila,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.04,3,Mandor,religion,islam,,8000,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.04,3,Mandor,religion,kristen,,12617,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.04,3,Mandor,religion,katolik,,18614,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.04,3,Mandor,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.04,3,Mandor,religion,buddha,,87,jiwa,2025,registration,total_population,4.3.1,183,,Budha
+61.08.04,3,Mandor,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.03,3,Menjalin,religion,islam,,1560,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.03,3,Menjalin,religion,kristen,,6314,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.03,3,Menjalin,religion,katolik,,15198,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.03,3,Menjalin,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.03,3,Menjalin,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.03,3,Menjalin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.02,3,Mempawah Hulu,religion,islam,,6873,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.02,3,Mempawah Hulu,religion,kristen,,12846,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.02,3,Mempawah Hulu,religion,katolik,,26043,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.02,3,Mempawah Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.02,3,Mempawah Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.02,3,Mempawah Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.13,3,Sompak,religion,kristen,,4239,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.13,3,Sompak,religion,katolik,,12673,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.13,3,Sompak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.13,3,Sompak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.13,3,Sompak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.06,3,Menyuke,religion,islam,,2425,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.06,3,Menyuke,religion,kristen,,14684,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.06,3,Menyuke,religion,katolik,,18371,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.06,3,Menyuke,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.06,3,Menyuke,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.06,3,Menyuke,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.12,3,Banyuke Hulu,religion,kristen,,3086,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.12,3,Banyuke Hulu,religion,katolik,,9498,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.12,3,Banyuke Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.12,3,Banyuke Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.12,3,Banyuke Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.08,3,Meranti,religion,islam,,739,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.08,3,Meranti,religion,kristen,,7704,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.08,3,Meranti,religion,katolik,,4822,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.08,3,Meranti,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.08,3,Meranti,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.08,3,Meranti,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.09,3,Kuala Behe,religion,islam,,2590,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.09,3,Kuala Behe,religion,kristen,,6163,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.09,3,Kuala Behe,religion,katolik,,7547,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.09,3,Kuala Behe,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.09,3,Kuala Behe,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.09,3,Kuala Behe,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08.05,3,Air Besar,religion,islam,,6745,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08.05,3,Air Besar,religion,kristen,,8864,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08.05,3,Air Besar,religion,katolik,,11576,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08.05,3,Air Besar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08.05,3,Air Besar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Budha
+61.08.05,3,Air Besar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08,2,Kabupaten Landak,religion,islam,,62372,jiwa,2025,registration,total_population,4.3.1,183,,Islam
+61.08,2,Kabupaten Landak,religion,kristen,,129262,jiwa,2025,registration,total_population,4.3.1,183,,Protestan
+61.08,2,Kabupaten Landak,religion,katolik,,221247,jiwa,2025,registration,total_population,4.3.1,183,,Katolik
+61.08,2,Kabupaten Landak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Hindu
+61.08,2,Kabupaten Landak,religion,buddha,,87,jiwa,2025,registration,total_population,4.3.1,183,,Budha
+61.08,2,Kabupaten Landak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,183,nil,Lainnya
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/padi_padian,,118558,rupiah,2024,survey_estimate,per_capita,10.1,389,,Padi-padian
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/padi_padian,,107217,rupiah,2025,survey_estimate,per_capita,10.1,389,,Padi-padian
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/umbi_umbian,,3642,rupiah,2024,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/umbi_umbian,,3594,rupiah,2025,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,84971,rupiah,2024,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,78238,rupiah,2025,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/daging,,48267,rupiah,2024,survey_estimate,per_capita,10.1,389,,Daging
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/daging,,47346,rupiah,2025,survey_estimate,per_capita,10.1,389,,Daging
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/telur_dan_susu,,33864,rupiah,2025,survey_estimate,per_capita,10.1,389,,Telur dan susu
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/sayur_sayuran,,66739,rupiah,2024,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/sayur_sayuran,,60001,rupiah,2025,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/kacang_kacangan,,10154,rupiah,2024,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/kacang_kacangan,,11068,rupiah,2025,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/buah_buahan,,23134,rupiah,2025,survey_estimate,per_capita,10.1,389,,Buah-buahan
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17204,rupiah,2024,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20630,rupiah,2025,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/bahan_minuman,,28041,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bahan minuman
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/bahan_minuman,,31623,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bahan minuman
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/bumbu_bumbuan,,17316,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/bumbu_bumbuan,,17003,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/konsumsi_lainnya,,12155,rupiah,2024,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/konsumsi_lainnya,,13501,rupiah,2025,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,148921,rupiah,2024,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,130067,rupiah,2025,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/rokok,,97071,rupiah,2024,survey_estimate,per_capita,10.1,389,,Rokok
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/rokok,,95889,rupiah,2025,survey_estimate,per_capita,10.1,389,,Rokok
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/jumlah_makanan,,673177,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah makanan
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,284341,rupiah,2025,survey_estimate,per_capita,10.1,389,,Perumahan dan fasilitas rumah tangga
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,122066,rupiah,2024,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,103026,rupiah,2025,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18483,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19214,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/barang_tahan_lama,,54877,rupiah,2025,survey_estimate,per_capita,10.1,389,,Barang tahan lama
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40292,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43700,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6148,rupiah,2025,survey_estimate,per_capita,10.1,389,,Keperluan pesta dan upacara/kenduri
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,574121,rupiah,2024,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+61.08,2,Kabupaten Landak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,511305,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+61.08,2,Kabupaten Landak,expenditure,total,,1297831,rupiah,2024,survey_estimate,per_capita,10.1,389,,
+61.08,2,Kabupaten Landak,expenditure,total,,1184482,rupiah,2025,survey_estimate,per_capita,10.1,389,,

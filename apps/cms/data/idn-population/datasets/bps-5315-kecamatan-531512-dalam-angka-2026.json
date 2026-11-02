@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5315-kecamatan-531512-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.15.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kuwus Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5315",
+  "publisherWebsite": "https://manggaraibaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://manggaraibaratkab.bps.go.id), publikasi \"Kecamatan Kuwus Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5315041",
+  "publicationNumber": "53150.26015",
+  "issn": "2623-0984",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraibaratkab.bps.go.id/id/publication/2026/09/28/ab4e69da68684636907abdb1/kecamatan-kuwus-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "08cf4ed99d53187c8815e469288bfae0545abeb000d5ff89d682092edae4ffe6",
+  "sourceFileBytes": 4264181,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Barat.",
+  "csvPath": "datasets/bps-5315-kecamatan-531512-dalam-angka-2026.csv",
+  "csvSha256": "edb2ec1c53920ee8c9273bf57be3d1c0b45d2e798fa258889f4c6ec7d63774d5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kuwus Barat, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

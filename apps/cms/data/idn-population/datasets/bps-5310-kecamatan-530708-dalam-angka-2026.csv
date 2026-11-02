@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.08.2001,4,Darat Gunung,sex,laki_laki,,1050,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2001,4,Darat Gunung,sex,perempuan,,1098,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2001,4,Darat Gunung,total,total,,2148,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2002,4,Ojang,sex,laki_laki,,522,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2002,4,Ojang,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2002,4,Ojang,total,total,,1048,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2003,4,Hikong,sex,laki_laki,,754,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2003,4,Hikong,sex,perempuan,,728,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2003,4,Hikong,total,total,,1482,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2006,4,Nebe,sex,laki_laki,,494,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2006,4,Nebe,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2006,4,Nebe,total,total,,1026,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2007,4,Wailamung,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2007,4,Wailamung,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2007,4,Wailamung,total,total,,758,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2008,4,Lewomada,sex,laki_laki,,504,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2008,4,Lewomada,sex,perempuan,,522,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2008,4,Lewomada,total,total,,1026,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2010,4,Nangahale,sex,laki_laki,,1880,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2010,4,Nangahale,sex,perempuan,,1917,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2010,4,Nangahale,total,total,,3797,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2011,4,Darat Pantai,sex,laki_laki,,851,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2011,4,Darat Pantai,sex,perempuan,,897,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2011,4,Darat Pantai,total,total,,1748,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2013,4,Talibura,sex,laki_laki,,877,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2013,4,Talibura,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2013,4,Talibura,total,total,,1787,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2014,4,Kringa,sex,laki_laki,,735,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2014,4,Kringa,sex,perempuan,,774,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2014,4,Kringa,total,total,,1509,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2015,4,Bang Koor,sex,laki_laki,,750,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2015,4,Bang Koor,sex,perempuan,,792,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2015,4,Bang Koor,total,total,,1542,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2017,4,Timu Tawa,sex,laki_laki,,449,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2017,4,Timu Tawa,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2017,4,Timu Tawa,total,total,,904,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2019,4,Udek Du'en,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2019,4,Udek Du'en,sex,perempuan,,513,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2019,4,Udek Du'en,total,total,,1028,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2020,4,Watu Omok,sex,laki_laki,,538,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2020,4,Watu Omok,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2020,4,Watu Omok,total,total,,1089,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2021,4,Waipaar,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2021,4,Waipaar,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2021,4,Waipaar,total,total,,705,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2022,4,Baokremot,sex,laki_laki,,304,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2022,4,Baokremot,sex,perempuan,,287,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2022,4,Baokremot,total,total,,591,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2023,4,Henga,sex,laki_laki,,403,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2023,4,Henga,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2023,4,Henga,total,total,,822,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2024,4,Likonggete,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2024,4,Likonggete,sex,perempuan,,496,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2024,4,Likonggete,total,total,,995,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2025,4,Watubaing,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2025,4,Watubaing,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2025,4,Watubaing,total,total,,869,jiwa,2025,registration,total_population,3.1,30,,
+53.07.08.2026,4,Mamai,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.07.08.2026,4,Mamai,sex,perempuan,,454,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+53.07.08.2026,4,Mamai,total,total,,896,jiwa,2025,registration,total_population,3.1,30,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.16.2001,4,Tude,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2001,4,Tude,sex,perempuan,,694,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2001,4,Tude,total,total,,1373,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2010,4,Delaki,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2010,4,Delaki,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2010,4,Delaki,total,total,,942,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2002,4,Mauta,sex,laki_laki,,1164,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2002,4,Mauta,sex,perempuan,,1219,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2002,4,Mauta,total,total,,2383,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2008,4,Eka Jaya,sex,laki_laki,,365,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2008,4,Eka Jaya,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2008,4,Eka Jaya,total,total,,729,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2009,4,Aramaba,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2009,4,Aramaba,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2009,4,Aramaba,total,total,,1417,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2007,4,Toang,sex,laki_laki,,228,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2007,4,Toang,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2007,4,Toang,total,total,,468,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2005,4,Tamakh,sex,laki_laki,,698,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2005,4,Tamakh,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2005,4,Tamakh,total,total,,1430,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2003,4,Muriabang,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2003,4,Muriabang,sex,perempuan,,665,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2003,4,Muriabang,total,total,,1321,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16.2006,4,Bagang,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16.2006,4,Bagang,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16.2006,4,Bagang,total,total,,806,jiwa,2025,registration,total_population,3.1,13,,
+53.05.16,3,Pantar Tengah,sex,laki_laki,,5731,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.16,3,Pantar Tengah,sex,perempuan,,5879,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.16,3,Pantar Tengah,total,total,,11610,jiwa,2025,registration,total_population,3.1,13,,

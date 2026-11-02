@@ -1,0 +1,67 @@
+{
+  "datasetCode": "bps-5303-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "53.01",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Kupang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kupang",
+  "publisherDomain": "5303",
+  "publisherWebsite": "https://kupangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kupang (https://kupangkab.bps.go.id), publikasi \"Kabupaten Kupang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5303",
+  "publicationNumber": "53030.2601",
+  "issn": "2302-2442",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://kupangkab.bps.go.id/id/publication/2026/02/27/21ae2837e90e8b2688615622/kabupaten-kupang-dalam-angka-2026.html",
+  "sourceFileSha256": "9dfa301f8f911bce96ff17e4177200ee021de537c51e8f82e749161473c4f81a",
+  "sourceFileBytes": 19335086,
+  "sourcePages": [68, 72, 168, 375],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kupang.",
+  "csvPath": "datasets/bps-5303-dalam-angka-2026.csv",
+  "csvSha256": "35f65daf88714989bc46bfbf1ea8b07a6689f8cb30727b3a0b0d175bef50c8ff",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Kupang, 2025",
+      "printedPages": [68],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Kupang (jiwa), 2025",
+      "printedPages": [72],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Kupang, 2025",
+      "printedPages": [168],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Kupang(rupiah), 2024 dan 2025",
+      "printedPages": [375],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2: row not stored: row \"Kabupaten Kupang Kupang Regency\": unmatched ",
+    "table 4.3.1: row not stored: row \"Kabupaten Kupang Kupang Regency\": unmatched "
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530214-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batu Putih Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Batu Putih Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304011",
+  "publicationNumber": "53040.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/5b1204b99af6024228d55c75/kecamatan-batu-putih-dalam-angka-2026.html",
+  "sourceFileSha256": "b4a5895be978437b7c7cf74c0b6c8f891e149c0f762864b35f03b33820a1c5db",
+  "sourceFileBytes": 6352831,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi ht buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530214-dalam-angka-2026.csv",
+  "csvSha256": "f80c899f5e4487275522aa70b11b8e164d3fbfef7f4fe62af8fadbca8ea1015f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan BATU PUTIH, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan BATU PUTIH, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"01. Oebobo 22.59%\": unmatched ",
+    "table 3.1: row not stored: row \"02. Tupan 10.70%\": unmatched ",
+    "table 3.1: row not stored: row \"03. Boentuka 14.98%\": unmatched ",
+    "table 3.1: row not stored: row \"04. Oehela 7.62%\": unmatched ",
+    "table 3.1: row not stored: row \"05. Tuakole 6.93%\": unmatched ",
+    "table 3.1: row not stored: row \"06. Hane 19.50%\": unmatched ",
+    "table 3.1: row not stored: row \"07. Benlutu 17.68%\": unmatched ",
+    "table 3.1: row not stored: row \"Batu Putih 100%\": unmatched ",
+    "table 3.1: 18 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched ",
+    "table 3.2: 6 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

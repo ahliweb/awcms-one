@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.03.2019,4,Mokantarak,sex,laki_laki,,775,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.2019,4,Mokantarak,sex,perempuan,,812,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.2019,4,Mokantarak,total,total,,1587,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.2020,4,Lamawalang,sex,laki_laki,,543,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.2020,4,Lamawalang,sex,perempuan,,549,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.2020,4,Lamawalang,total,total,,1092,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1001,4,Waibalun,sex,laki_laki,,1500,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1001,4,Waibalun,sex,perempuan,,1550,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1001,4,Waibalun,total,total,,3050,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1002,4,Lewolere,sex,laki_laki,,1178,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1002,4,Lewolere,sex,perempuan,,1157,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1002,4,Lewolere,total,total,,2335,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1003,4,Pantai Besar,sex,laki_laki,,668,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1003,4,Pantai Besar,sex,perempuan,,726,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1003,4,Pantai Besar,total,total,,1394,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1004,4,Larantuka,sex,laki_laki,,648,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1004,4,Larantuka,sex,perempuan,,644,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1004,4,Larantuka,total,total,,1292,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1005,4,Balela,sex,laki_laki,,571,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1005,4,Balela,sex,perempuan,,594,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1005,4,Balela,total,total,,1165,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1007,4,Lohayong,sex,laki_laki,,372,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1007,4,Lohayong,sex,perempuan,,331,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1007,4,Lohayong,total,total,,703,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1008,4,Lokea,sex,laki_laki,,799,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1008,4,Lokea,sex,perempuan,,741,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1008,4,Lokea,total,total,,1540,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1009,4,Postoh,sex,laki_laki,,997,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1009,4,Postoh,sex,perempuan,,892,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1009,4,Postoh,total,total,,1889,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1010,4,Amagarapati,sex,laki_laki,,1321,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1010,4,Amagarapati,sex,perempuan,,1278,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1010,4,Amagarapati,total,total,,2599,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1011,4,Ekasapta,sex,laki_laki,,1915,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1011,4,Ekasapta,sex,perempuan,,1949,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1011,4,Ekasapta,total,total,,3864,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1014,4,Pukentobi Wangin Bao,sex,laki_laki,,1529,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1014,4,Pukentobi Wangin Bao,sex,perempuan,,1576,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1014,4,Pukentobi Wangin Bao,total,total,,3105,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1012,4,Sarotari,sex,laki_laki,,1513,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1012,4,Sarotari,sex,perempuan,,1529,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1012,4,Sarotari,total,total,,3042,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1013,4,Weri,sex,laki_laki,,1623,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1013,4,Weri,sex,perempuan,,1703,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1013,4,Weri,total,total,,3326,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1022,4,Pohon Bao,sex,laki_laki,,624,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1022,4,Pohon Bao,sex,perempuan,,633,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1022,4,Pohon Bao,total,total,,1257,jiwa,2026,registration,total_population,1.3,18,,
+53.06.03.1021,4,Waihali,sex,laki_laki,,1594,jiwa,2026,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.03.1021,4,Waihali,sex,perempuan,,1671,jiwa,2026,registration,total_population,1.3,18,,Perempuan/Female
+53.06.03.1021,4,Waihali,total,total,,3265,jiwa,2026,registration,total_population,1.3,18,,

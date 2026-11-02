@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5305-kecamatan-530320-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.03.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Insana Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Utara Regency",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Utara Regency (https://timortengahutarakab.bps.go.id), publikasi \"Kecamatan Insana Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305042",
+  "publicationNumber": "53050.26023",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/09/28/42b2c751d11726784b03fb92/kecamatan-insana-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "60e4fe91e123d8640828ca364a86550864105a470b05cb8a06ed946bc37fd3c7",
+  "sourceFileBytes": 8330130,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Timor Tengah Utara",
+  "csvPath": "datasets/bps-5305-kecamatan-530320-dalam-angka-2026.csv",
+  "csvSha256": "43018904faf7d2525c9fa16e35714098ceb4e532b52b9040e155c3ee9f77936d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Insana Barat, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Insana Barat, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Banae\": unmatched ",
+    "table 3.1: row not stored: row \"Admen\": unmatched ",
+    "table 3.1: row not stored: row \"Banae\": unmatched ",
+    "table 3.1: row not stored: row \"Admen\": unmatched "
+  ]
+}

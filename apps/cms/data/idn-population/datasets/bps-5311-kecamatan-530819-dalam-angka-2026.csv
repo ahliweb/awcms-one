@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.19.1001,4,Potulando,sex,laki_laki,,1658,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.19.1001,4,Potulando,sex,perempuan,,1690,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.19.1001,4,Potulando,total,total,,3348,jiwa,2025,registration,total_population,3.1,24,,
+53.08.19.1002,4,Onekore,sex,laki_laki,,3320,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.19.1002,4,Onekore,sex,perempuan,,3585,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.19.1002,4,Onekore,total,total,,6905,jiwa,2025,registration,total_population,3.1,24,,
+53.08.19.1003,4,Kelimutu,sex,laki_laki,,2851,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.19.1003,4,Kelimutu,sex,perempuan,,2955,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.19.1003,4,Kelimutu,total,total,,5806,jiwa,2025,registration,total_population,3.1,24,,
+53.08.19.1004,4,Paupire,sex,laki_laki,,3792,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.19.1004,4,Paupire,sex,perempuan,,3937,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.19.1004,4,Paupire,total,total,,7729,jiwa,2025,registration,total_population,3.1,24,,
+53.08.19,3,Kecamatan Ende Tengah,sex,laki_laki,,11621,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.19,3,Kecamatan Ende Tengah,sex,perempuan,,12167,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.19,3,Kecamatan Ende Tengah,total,total,,23788,jiwa,2025,registration,total_population,3.1,24,,
+53.08.19,3,Ende Tengah,age_group,0-4,laki_laki,492,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.19,3,Ende Tengah,age_group,0-4,perempuan,499,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.19,3,Ende Tengah,age_group,0-4,,991,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.19,3,Ende Tengah,age_group,5-9,laki_laki,966,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.19,3,Ende Tengah,age_group,5-9,perempuan,882,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.19,3,Ende Tengah,age_group,5-9,,1848,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.19,3,Ende Tengah,age_group,10-14,laki_laki,1017,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.19,3,Ende Tengah,age_group,10-14,perempuan,1043,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.19,3,Ende Tengah,age_group,10-14,,2060,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.19,3,Ende Tengah,age_group,15-19,laki_laki,1186,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.19,3,Ende Tengah,age_group,15-19,perempuan,1074,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.19,3,Ende Tengah,age_group,15-19,,2260,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.19,3,Ende Tengah,age_group,20-24,laki_laki,1049,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.19,3,Ende Tengah,age_group,20-24,perempuan,1001,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.19,3,Ende Tengah,age_group,20-24,,2050,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.19,3,Ende Tengah,age_group,25-29,laki_laki,957,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.19,3,Ende Tengah,age_group,25-29,perempuan,950,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.19,3,Ende Tengah,age_group,25-29,,1907,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.19,3,Ende Tengah,age_group,30-34,laki_laki,898,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.19,3,Ende Tengah,age_group,30-34,perempuan,944,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.19,3,Ende Tengah,age_group,30-34,,1842,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.19,3,Ende Tengah,age_group,35-39,laki_laki,860,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.19,3,Ende Tengah,age_group,35-39,perempuan,922,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.19,3,Ende Tengah,age_group,35-39,,1782,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.19,3,Ende Tengah,age_group,40-44,laki_laki,916,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.19,3,Ende Tengah,age_group,40-44,perempuan,927,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.19,3,Ende Tengah,age_group,40-44,,1843,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.19,3,Ende Tengah,age_group,45-49,laki_laki,787,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.19,3,Ende Tengah,age_group,45-49,perempuan,869,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.19,3,Ende Tengah,age_group,45-49,,1656,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.19,3,Ende Tengah,age_group,50-54,laki_laki,684,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.19,3,Ende Tengah,age_group,50-54,perempuan,757,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.19,3,Ende Tengah,age_group,50-54,,1441,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.19,3,Ende Tengah,age_group,55-59,laki_laki,549,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.19,3,Ende Tengah,age_group,55-59,perempuan,673,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.19,3,Ende Tengah,age_group,55-59,,1222,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.19,3,Ende Tengah,age_group,60-64,laki_laki,478,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.19,3,Ende Tengah,age_group,60-64,perempuan,587,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.19,3,Ende Tengah,age_group,60-64,,1065,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.19,3,Ende Tengah,age_group,65-69,laki_laki,338,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.19,3,Ende Tengah,age_group,65-69,perempuan,449,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.19,3,Ende Tengah,age_group,65-69,,787,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.19,3,Ende Tengah,age_group,70-74,laki_laki,216,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.19,3,Ende Tengah,age_group,70-74,perempuan,297,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.19,3,Ende Tengah,age_group,70-74,,513,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.19,3,Ende Tengah,age_group,75+,laki_laki,228,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.19,3,Ende Tengah,age_group,75+,perempuan,293,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.19,3,Ende Tengah,age_group,75+,,521,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.19,3,Kecamatan Ende Tengah,sex,laki_laki,,11621,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.08.19,3,Kecamatan Ende Tengah,sex,perempuan,,12167,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.08.19,3,Kecamatan Ende Tengah,total,total,,23788,jiwa,2025,registration,total_population,3.2,26,,

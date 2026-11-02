@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.12.10.2005,4,Dede Kadu,sex,laki_laki,,1883,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2005,4,Dede Kadu,sex,perempuan,,1842,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2005,4,Dede Kadu,total,total,,3725,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.1007,4,Wee Karou,sex,laki_laki,,2655,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.1007,4,Wee Karou,sex,perempuan,,2592,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.1007,4,Wee Karou,total,total,,5247,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.1008,4,Soba Wawi,sex,laki_laki,,1045,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.1008,4,Soba Wawi,sex,perempuan,,2292,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.1008,4,Soba Wawi,total,total,,3337,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2006,4,Ubu Pede,sex,laki_laki,,1200,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2006,4,Ubu Pede,sex,perempuan,,1000,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2006,4,Ubu Pede,total,total,,2200,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2001,4,Bera Dolu,sex,laki_laki,,1360,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2001,4,Bera Dolu,sex,perempuan,,2060,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2001,4,Bera Dolu,total,total,,3420,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2002,4,Doka Kaka,sex,laki_laki,,1446,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2002,4,Doka Kaka,sex,perempuan,,999,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2002,4,Doka Kaka,total,total,,2445,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2003,4,Tana Rara,sex,laki_laki,,675,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2003,4,Tana Rara,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2003,4,Tana Rara,total,total,,1334,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2004,4,Bali Ledo,sex,laki_laki,,548,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2004,4,Bali Ledo,sex,perempuan,,539,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2004,4,Bali Ledo,total,total,,1087,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.1011,4,Loda Pare,sex,laki_laki,,1776,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.1011,4,Loda Pare,sex,perempuan,,1037,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.1011,4,Loda Pare,total,total,,2813,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.1012,4,Wee Dabo,sex,laki_laki,,1142,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.1012,4,Wee Dabo,sex,perempuan,,1258,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.1012,4,Wee Dabo,total,total,,2400,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.1013,4,Dira Tana,sex,laki_laki,,2017,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.1013,4,Dira Tana,sex,perempuan,,1872,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.1013,4,Dira Tana,total,total,,3889,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2010,4,Ubu Raya,sex,laki_laki,,1010,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2010,4,Ubu Raya,sex,perempuan,,818,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2010,4,Ubu Raya,total,total,,1828,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2009,4,Tema Tana,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2009,4,Tema Tana,sex,perempuan,,451,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2009,4,Tema Tana,total,total,,937,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10.2014,4,Manola,sex,laki_laki,,402,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10.2014,4,Manola,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10.2014,4,Manola,total,total,,791,jiwa,2025,registration,total_population,3.1,20,,
+53.12.10,3,Loli,sex,laki_laki,,17645,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.10,3,Loli,sex,perempuan,,17808,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.10,3,Loli,total,total,,35453,jiwa,2025,registration,total_population,3.1,20,,

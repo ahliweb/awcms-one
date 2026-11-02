@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.12.12.2004,4,Patiala Bawa,sex,laki_laki,,1445,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.12.2004,4,Patiala Bawa,sex,perempuan,,1521,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12.2004,4,Patiala Bawa,total,total,,2966,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12.2008,4,Kabu Karudi,sex,perempuan,,1273,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12.2008,4,Kabu Karudi,total,total,,2583,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12.2011,4,Laboya Dete,sex,laki_laki,,1216,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.12.2011,4,Laboya Dete,total,total,,2296,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12.2010,4,Sodana,sex,laki_laki,,566,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.12.2010,4,Sodana,sex,perempuan,,612,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12.2010,4,Sodana,total,total,,1178,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12.2009,4,Rajaka,sex,laki_laki,,1276,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.12.2009,4,Rajaka,sex,perempuan,,1223,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12.2009,4,Rajaka,total,total,,2499,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12.2012,4,Ringu Rara,sex,perempuan,,1187,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12.2012,4,Ringu Rara,total,total,,2387,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12.2014,4,Bodo Hula,sex,laki_laki,,615,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.12.2014,4,Bodo Hula,sex,perempuan,,560,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12.2014,4,Bodo Hula,total,total,,1175,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12.2015,4,Pala Moko,sex,laki_laki,,360,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.12.2015,4,Pala Moko,sex,perempuan,,375,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12.2015,4,Pala Moko,total,total,,735,jiwa,2024,registration,total_population,3.1,20,,
+53.12.12,3,Lamboya,sex,laki_laki,,11568,jiwa,2024,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.12,3,Lamboya,sex,perempuan,,11294,jiwa,2024,registration,total_population,3.1,20,,Perempuan/Female
+53.12.12,3,Lamboya,total,total,,22862,jiwa,2024,registration,total_population,3.1,20,,

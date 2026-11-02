@@ -1,0 +1,136 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.71.01,3,Alak,total,total,,89014,jiwa,2025,projection,total_population,3.1.1,49,,
+53.71.02,3,Maulafa,total,total,,112939,jiwa,2025,projection,total_population,3.1.1,49,,
+53.71.04,3,Oebobo,total,total,,105936,jiwa,2025,projection,total_population,3.1.1,49,,
+53.71.05,3,Kota Raja,total,total,,60178,jiwa,2025,projection,total_population,3.1.1,49,,
+53.71.03,3,Kelapa Lima,total,total,,78529,jiwa,2025,projection,total_population,3.1.1,49,,
+53.71.06,3,Kota Lama,total,total,,36138,jiwa,2025,projection,total_population,3.1.1,49,,
+53.71,2,Kota Kupang,age_group,0-4,laki_laki,25843,jiwa,2025,projection,total_population,3.1.2,52,,0–4
+53.71,2,Kota Kupang,age_group,0-4,perempuan,25021,jiwa,2025,projection,total_population,3.1.2,52,,0–4
+53.71,2,Kota Kupang,age_group,0-4,,50864,jiwa,2025,projection,total_population,3.1.2,52,,0–4
+53.71,2,Kota Kupang,age_group,5-9,laki_laki,21745,jiwa,2025,projection,total_population,3.1.2,52,,5–9
+53.71,2,Kota Kupang,age_group,5-9,perempuan,20846,jiwa,2025,projection,total_population,3.1.2,52,,5–9
+53.71,2,Kota Kupang,age_group,5-9,,42591,jiwa,2025,projection,total_population,3.1.2,52,,5–9
+53.71,2,Kota Kupang,age_group,10-14,laki_laki,17725,jiwa,2025,projection,total_population,3.1.2,52,,10–14
+53.71,2,Kota Kupang,age_group,10-14,perempuan,17188,jiwa,2025,projection,total_population,3.1.2,52,,10–14
+53.71,2,Kota Kupang,age_group,10-14,,34913,jiwa,2025,projection,total_population,3.1.2,52,,10–14
+53.71,2,Kota Kupang,age_group,15-19,laki_laki,15600,jiwa,2025,projection,total_population,3.1.2,52,,15–19
+53.71,2,Kota Kupang,age_group,15-19,perempuan,14789,jiwa,2025,projection,total_population,3.1.2,52,,15–19
+53.71,2,Kota Kupang,age_group,15-19,,30389,jiwa,2025,projection,total_population,3.1.2,52,,15–19
+53.71,2,Kota Kupang,age_group,20-24,laki_laki,17874,jiwa,2025,projection,total_population,3.1.2,52,,20–24
+53.71,2,Kota Kupang,age_group,20-24,perempuan,18429,jiwa,2025,projection,total_population,3.1.2,52,,20–24
+53.71,2,Kota Kupang,age_group,20-24,,36303,jiwa,2025,projection,total_population,3.1.2,52,,20–24
+53.71,2,Kota Kupang,age_group,25-29,laki_laki,20705,jiwa,2025,projection,total_population,3.1.2,52,,25–29
+53.71,2,Kota Kupang,age_group,25-29,perempuan,21278,jiwa,2025,projection,total_population,3.1.2,52,,25–29
+53.71,2,Kota Kupang,age_group,25-29,,41983,jiwa,2025,projection,total_population,3.1.2,52,,25–29
+53.71,2,Kota Kupang,age_group,30-34,laki_laki,24691,jiwa,2025,projection,total_population,3.1.2,52,,30–34
+53.71,2,Kota Kupang,age_group,30-34,perempuan,24262,jiwa,2025,projection,total_population,3.1.2,52,,30–34
+53.71,2,Kota Kupang,age_group,30-34,,48953,jiwa,2025,projection,total_population,3.1.2,52,,30–34
+53.71,2,Kota Kupang,age_group,35-39,laki_laki,23376,jiwa,2025,projection,total_population,3.1.2,52,,35–39
+53.71,2,Kota Kupang,age_group,35-39,perempuan,22403,jiwa,2025,projection,total_population,3.1.2,52,,35–39
+53.71,2,Kota Kupang,age_group,35-39,,45779,jiwa,2025,projection,total_population,3.1.2,52,,35–39
+53.71,2,Kota Kupang,age_group,40-44,laki_laki,20067,jiwa,2025,projection,total_population,3.1.2,52,,40–44
+53.71,2,Kota Kupang,age_group,40-44,perempuan,19393,jiwa,2025,projection,total_population,3.1.2,52,,40–44
+53.71,2,Kota Kupang,age_group,40-44,,39460,jiwa,2025,projection,total_population,3.1.2,52,,40–44
+53.71,2,Kota Kupang,age_group,45-49,laki_laki,15982,jiwa,2025,projection,total_population,3.1.2,52,,45–49
+53.71,2,Kota Kupang,age_group,45-49,perempuan,15681,jiwa,2025,projection,total_population,3.1.2,52,,45–49
+53.71,2,Kota Kupang,age_group,45-49,,31663,jiwa,2025,projection,total_population,3.1.2,52,,45–49
+53.71,2,Kota Kupang,age_group,50-54,laki_laki,11960,jiwa,2025,projection,total_population,3.1.2,52,,50–54
+53.71,2,Kota Kupang,age_group,50-54,perempuan,12349,jiwa,2025,projection,total_population,3.1.2,52,,50–54
+53.71,2,Kota Kupang,age_group,50-54,,24309,jiwa,2025,projection,total_population,3.1.2,52,,50–54
+53.71,2,Kota Kupang,age_group,55-59,laki_laki,9523,jiwa,2025,projection,total_population,3.1.2,52,,55–59
+53.71,2,Kota Kupang,age_group,55-59,perempuan,9648,jiwa,2025,projection,total_population,3.1.2,52,,55–59
+53.71,2,Kota Kupang,age_group,55-59,,19171,jiwa,2025,projection,total_population,3.1.2,52,,55–59
+53.71,2,Kota Kupang,age_group,60-64,laki_laki,7339,jiwa,2025,projection,total_population,3.1.2,52,,60–64
+53.71,2,Kota Kupang,age_group,60-64,perempuan,7157,jiwa,2025,projection,total_population,3.1.2,52,,60–64
+53.71,2,Kota Kupang,age_group,60-64,,14496,jiwa,2025,projection,total_population,3.1.2,52,,60–64
+53.71,2,Kota Kupang,age_group,65-69,laki_laki,5203,jiwa,2025,projection,total_population,3.1.2,52,,65–69
+53.71,2,Kota Kupang,age_group,65-69,perempuan,4870,jiwa,2025,projection,total_population,3.1.2,52,,65–69
+53.71,2,Kota Kupang,age_group,65-69,,10073,jiwa,2025,projection,total_population,3.1.2,52,,65–69
+53.71,2,Kota Kupang,age_group,70-74,laki_laki,2910,jiwa,2025,projection,total_population,3.1.2,52,,70–74
+53.71,2,Kota Kupang,age_group,70-74,perempuan,3257,jiwa,2025,projection,total_population,3.1.2,52,,70–74
+53.71,2,Kota Kupang,age_group,70-74,,6167,jiwa,2025,projection,total_population,3.1.2,52,,70–74
+53.71,2,Kota Kupang,age_group,75+,laki_laki,2360,jiwa,2025,projection,total_population,3.1.2,52,,75+
+53.71,2,Kota Kupang,age_group,75+,perempuan,3260,jiwa,2025,projection,total_population,3.1.2,52,,75+
+53.71,2,Kota Kupang,age_group,75+,,5620,jiwa,2025,projection,total_population,3.1.2,52,,75+
+53.71.01,3,Alak,religion,islam,,17188,jiwa,2025,registration,total_population,4.3.1,141,,Islam
+53.71.01,3,Alak,religion,kristen,,62645,jiwa,2025,registration,total_population,4.3.1,141,,Protestan
+53.71.01,3,Alak,religion,katolik,,6000,jiwa,2025,registration,total_population,4.3.1,141,,Katolik
+53.71.01,3,Alak,religion,hindu,,293,jiwa,2025,registration,total_population,4.3.1,141,,Hindu
+53.71.01,3,Alak,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,141,,Budha
+53.71.01,3,Alak,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,141,nil,Konghucu
+53.71.02,3,Maulafa,religion,islam,,7505,jiwa,2025,registration,total_population,4.3.1,141,,Islam
+53.71.02,3,Maulafa,religion,kristen,,79467,jiwa,2025,registration,total_population,4.3.1,141,,Protestan
+53.71.02,3,Maulafa,religion,katolik,,41540,jiwa,2025,registration,total_population,4.3.1,141,,Katolik
+53.71.02,3,Maulafa,religion,hindu,,1183,jiwa,2025,registration,total_population,4.3.1,141,,Hindu
+53.71.02,3,Maulafa,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,141,,Budha
+53.71.02,3,Maulafa,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,141,nil,Konghucu
+53.71.04,3,Oebobo,religion,islam,,11240,jiwa,2025,registration,total_population,4.3.1,141,,Islam
+53.71.04,3,Oebobo,religion,kristen,,71704,jiwa,2025,registration,total_population,4.3.1,141,,Protestan
+53.71.04,3,Oebobo,religion,katolik,,18040,jiwa,2025,registration,total_population,4.3.1,141,,Katolik
+53.71.04,3,Oebobo,religion,buddha,,54,jiwa,2025,registration,total_population,4.3.1,141,,Budha
+53.71.04,3,Oebobo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,141,nil,Konghucu
+53.71.05,3,Kota Raja,religion,islam,,6546,jiwa,2025,registration,total_population,4.3.1,141,,Islam
+53.71.05,3,Kota Raja,religion,kristen,,49009,jiwa,2025,registration,total_population,4.3.1,141,,Protestan
+53.71.05,3,Kota Raja,religion,katolik,,8953,jiwa,2025,registration,total_population,4.3.1,141,,Katolik
+53.71.05,3,Kota Raja,religion,hindu,,5664,jiwa,2025,registration,total_population,4.3.1,141,,Hindu
+53.71.05,3,Kota Raja,religion,buddha,,19,jiwa,2025,registration,total_population,4.3.1,141,,Budha
+53.71.05,3,Kota Raja,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,141,nil,Konghucu
+53.71.03,3,Kelapa Lima,religion,islam,,9712,jiwa,2025,registration,total_population,4.3.1,141,,Islam
+53.71.03,3,Kelapa Lima,religion,kristen,,50583,jiwa,2025,registration,total_population,4.3.1,141,,Protestan
+53.71.03,3,Kelapa Lima,religion,katolik,,17811,jiwa,2025,registration,total_population,4.3.1,141,,Katolik
+53.71.03,3,Kelapa Lima,religion,hindu,,2545,jiwa,2025,registration,total_population,4.3.1,141,,Hindu
+53.71.03,3,Kelapa Lima,religion,buddha,,23,jiwa,2025,registration,total_population,4.3.1,141,,Budha
+53.71.03,3,Kelapa Lima,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,141,nil,Konghucu
+53.71.06,3,Kota Lama,religion,islam,,9018,jiwa,2025,registration,total_population,4.3.1,141,,Islam
+53.71.06,3,Kota Lama,religion,kristen,,44580,jiwa,2025,registration,total_population,4.3.1,141,,Protestan
+53.71.06,3,Kota Lama,religion,katolik,,91634,jiwa,2025,registration,total_population,4.3.1,141,,Katolik
+53.71.06,3,Kota Lama,religion,hindu,,199,jiwa,2025,registration,total_population,4.3.1,141,,Hindu
+53.71.06,3,Kota Lama,religion,buddha,,25,jiwa,2025,registration,total_population,4.3.1,141,,Budha
+53.71.06,3,Kota Lama,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,141,nil,Konghucu
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/padi_padian,,113583,rupiah,2024,survey_estimate,per_capita,10.1,324,,Padi-padian
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/padi_padian,,104613,rupiah,2025,survey_estimate,per_capita,10.1,324,,Padi-padian
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/umbi_umbian,,4902,rupiah,2024,survey_estimate,per_capita,10.1,324,,Umbi-umbian
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/umbi_umbian,,5810,rupiah,2025,survey_estimate,per_capita,10.1,324,,Umbi-umbian
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,54382,rupiah,2024,survey_estimate,per_capita,10.1,324,,Ikan/udang/cumi/kerang
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,46692,rupiah,2025,survey_estimate,per_capita,10.1,324,,Ikan/udang/cumi/kerang
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/daging,,49022,rupiah,2024,survey_estimate,per_capita,10.1,324,,Daging
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/daging,,64348,rupiah,2025,survey_estimate,per_capita,10.1,324,,Daging
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/telur_dan_susu,,37740,rupiah,2024,survey_estimate,per_capita,10.1,324,,Telur dan susu
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/telur_dan_susu,,40285,rupiah,2025,survey_estimate,per_capita,10.1,324,,Telur dan susu
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/sayur_sayuran,,67218,rupiah,2024,survey_estimate,per_capita,10.1,324,,Sayur-sayuran
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/sayur_sayuran,,71247,rupiah,2025,survey_estimate,per_capita,10.1,324,,Sayur-sayuran
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/kacang_kacangan,,15704,rupiah,2024,survey_estimate,per_capita,10.1,324,,Kacang-kacangan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/kacang_kacangan,,16971,rupiah,2025,survey_estimate,per_capita,10.1,324,,Kacang-kacangan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/buah_buahan,,27339,rupiah,2024,survey_estimate,per_capita,10.1,324,,Buah-buahan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/buah_buahan,,26460,rupiah,2025,survey_estimate,per_capita,10.1,324,,Buah-buahan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13567,rupiah,2024,survey_estimate,per_capita,10.1,324,,Minyak dan kelapa
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14914,rupiah,2025,survey_estimate,per_capita,10.1,324,,Minyak dan kelapa
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/bahan_minuman,,15812,rupiah,2024,survey_estimate,per_capita,10.1,324,,Bahan minuman
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/bahan_minuman,,15059,rupiah,2025,survey_estimate,per_capita,10.1,324,,Bahan minuman
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/bumbu_bumbuan,,10798,rupiah,2024,survey_estimate,per_capita,10.1,324,,Bumbu-bumbuan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/bumbu_bumbuan,,10357,rupiah,2025,survey_estimate,per_capita,10.1,324,,Bumbu-bumbuan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/konsumsi_lainnya,,9770,rupiah,2024,survey_estimate,per_capita,10.1,324,,Konsumsi lainnya
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/konsumsi_lainnya,,9790,rupiah,2025,survey_estimate,per_capita,10.1,324,,Konsumsi lainnya
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,173053,rupiah,2024,survey_estimate,per_capita,10.1,324,,Makanan dan minuman jadi
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,158575,rupiah,2025,survey_estimate,per_capita,10.1,324,,Makanan dan minuman jadi
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/rokok,,45013,rupiah,2024,survey_estimate,per_capita,10.1,324,,Rokok
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/rokok,,38780,rupiah,2025,survey_estimate,per_capita,10.1,324,,Rokok
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/jumlah_makanan,,637904,rupiah,2024,survey_estimate,per_capita,10.1,324,,Jumlah makanan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/jumlah_makanan,,623902,rupiah,2025,survey_estimate,per_capita,10.1,324,,Jumlah makanan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,466124,rupiah,2024,survey_estimate,per_capita,10.1,324,,Perumahan dan fasilitas rumah tangga
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,487636,rupiah,2025,survey_estimate,per_capita,10.1,324,,Perumahan dan fasilitas rumah tangga
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,185591,rupiah,2024,survey_estimate,per_capita,10.1,324,,Aneka barang dan jasa
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,217122,rupiah,2025,survey_estimate,per_capita,10.1,324,,Aneka barang dan jasa
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25615,rupiah,2024,survey_estimate,per_capita,10.1,324,,"Pakaian, alas kaki, dan tutup kepala"
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,27007,rupiah,2025,survey_estimate,per_capita,10.1,324,,"Pakaian, alas kaki, dan tutup kepala"
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/barang_tahan_lama,,24319,rupiah,2024,survey_estimate,per_capita,10.1,324,,Barang tahan lama
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/barang_tahan_lama,,45885,rupiah,2025,survey_estimate,per_capita,10.1,324,,Barang tahan lama
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,65249,rupiah,2024,survey_estimate,per_capita,10.1,324,,"Pajak, pungutan, dan asuransi"
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,81335,rupiah,2025,survey_estimate,per_capita,10.1,324,,"Pajak, pungutan, dan asuransi"
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,25997,rupiah,2024,survey_estimate,per_capita,10.1,324,,Keperluan pesta dan upacara/kenduri
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13738,rupiah,2025,survey_estimate,per_capita,10.1,324,,Keperluan pesta dan upacara/kenduri
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,792895,rupiah,2024,survey_estimate,per_capita,10.1,324,,Jumlah bukan makanan
+53.71,2,Kota Kupang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,872723,rupiah,2025,survey_estimate,per_capita,10.1,324,,Jumlah bukan makanan
+53.71,2,Kota Kupang,expenditure,total,,1430799,rupiah,2024,survey_estimate,per_capita,10.1,324,,
+53.71,2,Kota Kupang,expenditure,total,,1496625,rupiah,2025,survey_estimate,per_capita,10.1,324,,

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5320-kecamatan-532003-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.20.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sabu Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sabu Raijua",
+  "publisherDomain": "5320",
+  "publisherWebsite": "https://saburaijuakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sabu Raijua (https://saburaijuakab.bps.go.id), publikasi \"Kecamatan Sabu Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5320060",
+  "publicationNumber": "53200.26007",
+  "issn": "2797-4200",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://saburaijuakab.bps.go.id/id/publication/2026/09/28/e9182300013e014669d989d3/kecamatan-sabu-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "3fb2dbca65ed51c902d99dea79afb0c44f68d5144cb2c39832bb0fb1f7b84b4d",
+  "sourceFileBytes": 8225135,
+  "sourcePages": [16, 17, 18],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sabu Raijua.",
+  "csvPath": "datasets/bps-5320-kecamatan-532003-dalam-angka-2026.csv",
+  "csvSha256": "4b3354ddc3bc1a035dfc1c050a8bed47234a606d77da78d18c2ab9ff42db9beb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sabu Timur, 2025",
+      "printedPages": [16, 17],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

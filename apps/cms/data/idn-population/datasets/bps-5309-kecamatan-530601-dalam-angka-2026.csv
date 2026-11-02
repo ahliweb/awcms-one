@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.01.2001,4,Ojan Detun,sex,laki_laki,,327,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2001,4,Ojan Detun,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2001,4,Ojan Detun,total,total,,680,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2002,4,Hewa,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2002,4,Hewa,sex,perempuan,,766,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2002,4,Hewa,total,total,,1543,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2013,4,Pantai Oa,sex,laki_laki,,758,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2013,4,Pantai Oa,sex,perempuan,,766,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2013,4,Pantai Oa,total,total,,1524,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2003,4,Waiula,sex,laki_laki,,851,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2003,4,Waiula,sex,perempuan,,834,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2003,4,Waiula,total,total,,1685,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2014,4,Boru Kedang,sex,laki_laki,,749,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2014,4,Boru Kedang,sex,perempuan,,826,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2014,4,Boru Kedang,total,total,,1575,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2008,4,Boru,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2008,4,Boru,sex,perempuan,,289,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2008,4,Boru,total,total,,547,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2012,4,Hokeng Jaya,sex,laki_laki,,810,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2012,4,Hokeng Jaya,sex,perempuan,,753,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2012,4,Hokeng Jaya,total,total,,1563,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2009,4,Pululera,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2009,4,Pululera,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2009,4,Pululera,total,total,,655,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2011,4,Nileknoheng,sex,laki_laki,,649,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2011,4,Nileknoheng,sex,perempuan,,661,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2011,4,Nileknoheng,total,total,,1310,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01.2021,4,Klatanlo,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01.2021,4,Klatanlo,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01.2021,4,Klatanlo,total,total,,1193,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01,3,Kecamatan Wulanggitang,sex,laki_laki,,7742,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+53.06.01,3,Kecamatan Wulanggitang,sex,perempuan,,7823,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+53.06.01,3,Kecamatan Wulanggitang,total,total,,15565,jiwa,2025,registration,total_population,3.1,19,,
+53.06.01,3,Wulanggitang,age_group,0-4,laki_laki,408,jiwa,2025,registration,total_population,3.2,21,,00-04
+53.06.01,3,Wulanggitang,age_group,0-4,perempuan,357,jiwa,2025,registration,total_population,3.2,21,,00-04
+53.06.01,3,Wulanggitang,age_group,0-4,,765,jiwa,2025,registration,total_population,3.2,21,,00-04
+53.06.01,3,Wulanggitang,age_group,5-9,laki_laki,682,jiwa,2025,registration,total_population,3.2,21,,05-09
+53.06.01,3,Wulanggitang,age_group,5-9,perempuan,597,jiwa,2025,registration,total_population,3.2,21,,05-09
+53.06.01,3,Wulanggitang,age_group,5-9,,1279,jiwa,2025,registration,total_population,3.2,21,,05-09
+53.06.01,3,Wulanggitang,age_group,10-14,laki_laki,715,jiwa,2025,registration,total_population,3.2,21,,10-14
+53.06.01,3,Wulanggitang,age_group,10-14,perempuan,668,jiwa,2025,registration,total_population,3.2,21,,10-14
+53.06.01,3,Wulanggitang,age_group,10-14,,1383,jiwa,2025,registration,total_population,3.2,21,,10-14
+53.06.01,3,Wulanggitang,age_group,15-19,laki_laki,733,jiwa,2025,registration,total_population,3.2,21,,15-19
+53.06.01,3,Wulanggitang,age_group,15-19,perempuan,691,jiwa,2025,registration,total_population,3.2,21,,15-19
+53.06.01,3,Wulanggitang,age_group,15-19,,1424,jiwa,2025,registration,total_population,3.2,21,,15-19
+53.06.01,3,Wulanggitang,age_group,20-24,laki_laki,726,jiwa,2025,registration,total_population,3.2,21,,20-24
+53.06.01,3,Wulanggitang,age_group,20-24,perempuan,707,jiwa,2025,registration,total_population,3.2,21,,20-24
+53.06.01,3,Wulanggitang,age_group,20-24,,1433,jiwa,2025,registration,total_population,3.2,21,,20-24
+53.06.01,3,Wulanggitang,age_group,25-29,laki_laki,702,jiwa,2025,registration,total_population,3.2,21,,25-29
+53.06.01,3,Wulanggitang,age_group,25-29,perempuan,637,jiwa,2025,registration,total_population,3.2,21,,25-29
+53.06.01,3,Wulanggitang,age_group,25-29,,1339,jiwa,2025,registration,total_population,3.2,21,,25-29
+53.06.01,3,Wulanggitang,age_group,30-34,laki_laki,590,jiwa,2025,registration,total_population,3.2,21,,30-34
+53.06.01,3,Wulanggitang,age_group,30-34,perempuan,582,jiwa,2025,registration,total_population,3.2,21,,30-34
+53.06.01,3,Wulanggitang,age_group,30-34,,1172,jiwa,2025,registration,total_population,3.2,21,,30-34
+53.06.01,3,Wulanggitang,age_group,35-39,laki_laki,528,jiwa,2025,registration,total_population,3.2,21,,35-39
+53.06.01,3,Wulanggitang,age_group,35-39,perempuan,537,jiwa,2025,registration,total_population,3.2,21,,35-39
+53.06.01,3,Wulanggitang,age_group,35-39,,1065,jiwa,2025,registration,total_population,3.2,21,,35-39
+53.06.01,3,Wulanggitang,age_group,40-44,laki_laki,535,jiwa,2025,registration,total_population,3.2,21,,40-44
+53.06.01,3,Wulanggitang,age_group,40-44,perempuan,512,jiwa,2025,registration,total_population,3.2,21,,40-44
+53.06.01,3,Wulanggitang,age_group,40-44,,1047,jiwa,2025,registration,total_population,3.2,21,,40-44
+53.06.01,3,Wulanggitang,age_group,45-49,laki_laki,485,jiwa,2025,registration,total_population,3.2,21,,45-49
+53.06.01,3,Wulanggitang,age_group,45-49,perempuan,504,jiwa,2025,registration,total_population,3.2,21,,45-49
+53.06.01,3,Wulanggitang,age_group,45-49,,989,jiwa,2025,registration,total_population,3.2,21,,45-49
+53.06.01,3,Wulanggitang,age_group,50-54,laki_laki,385,jiwa,2025,registration,total_population,3.2,21,,50-54
+53.06.01,3,Wulanggitang,age_group,50-54,perempuan,455,jiwa,2025,registration,total_population,3.2,21,,50-54
+53.06.01,3,Wulanggitang,age_group,50-54,,840,jiwa,2025,registration,total_population,3.2,21,,50-54
+53.06.01,3,Wulanggitang,age_group,55-59,laki_laki,341,jiwa,2025,registration,total_population,3.2,21,,55-59
+53.06.01,3,Wulanggitang,age_group,55-59,perempuan,360,jiwa,2025,registration,total_population,3.2,21,,55-59
+53.06.01,3,Wulanggitang,age_group,55-59,,701,jiwa,2025,registration,total_population,3.2,21,,55-59
+53.06.01,3,Wulanggitang,age_group,60-64,laki_laki,283,jiwa,2025,registration,total_population,3.2,21,,60-64
+53.06.01,3,Wulanggitang,age_group,60-64,perempuan,348,jiwa,2025,registration,total_population,3.2,21,,60-64
+53.06.01,3,Wulanggitang,age_group,60-64,,631,jiwa,2025,registration,total_population,3.2,21,,60-64
+53.06.01,3,Wulanggitang,age_group,65-69,laki_laki,250,jiwa,2025,registration,total_population,3.2,21,,65-69
+53.06.01,3,Wulanggitang,age_group,65-69,perempuan,357,jiwa,2025,registration,total_population,3.2,21,,65-69
+53.06.01,3,Wulanggitang,age_group,65-69,,607,jiwa,2025,registration,total_population,3.2,21,,65-69
+53.06.01,3,Wulanggitang,age_group,70-74,laki_laki,168,jiwa,2025,registration,total_population,3.2,21,,70-74
+53.06.01,3,Wulanggitang,age_group,70-74,perempuan,234,jiwa,2025,registration,total_population,3.2,21,,70-74
+53.06.01,3,Wulanggitang,age_group,70-74,,402,jiwa,2025,registration,total_population,3.2,21,,70-74
+53.06.01,3,Wulanggitang,age_group,75+,laki_laki,211,jiwa,2025,registration,total_population,3.2,21,,75+
+53.06.01,3,Wulanggitang,age_group,75+,perempuan,277,jiwa,2025,registration,total_population,3.2,21,,75+
+53.06.01,3,Wulanggitang,age_group,75+,,488,jiwa,2025,registration,total_population,3.2,21,,75+
+53.06.01,3,Kecamatan Wulanggitang,sex,laki_laki,,7742,jiwa,2025,registration,total_population,3.2,21,,Laki-Laki
+53.06.01,3,Kecamatan Wulanggitang,sex,perempuan,,7823,jiwa,2025,registration,total_population,3.2,21,,Perempuan
+53.06.01,3,Kecamatan Wulanggitang,total,total,,15565,jiwa,2025,registration,total_population,3.2,21,,

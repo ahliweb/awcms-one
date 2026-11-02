@@ -1,0 +1,202 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.05.14,3,Serawai,total,total,,23023,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.15,3,Ambalau,total,total,,13354,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.09,3,Kayan Hulu,total,total,,23038,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.03,3,Sepauk,total,total,,56498,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.02,3,Tempunak,total,total,,31670,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.20,3,Sungai Tebelian,total,total,,37446,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.01,3,Sintang,total,total,,87188,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.07,3,Dedai,total,total,,31216,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.08,3,Kayan Hilir,total,total,,29008,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.19,3,Kelam Permai,total,total,,20039,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.21,3,Binjai Hulu,total,total,,15248,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.04,3,Ketungau Hilir,total,total,,25830,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.05,3,Ketungau Tengah,total,total,,31741,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05.06,3,Ketungau Hulu,total,total,,23912,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05,2,Kabupaten Sintang,total,total,,449211,jiwa,2025,projection,total_population,3.1.1,62,,
+61.05,2,Kabupaten Sintang,age_group,0-4,laki_laki,20470,jiwa,2025,projection,total_population,3.1.2,65,,0–4
+61.05,2,Kabupaten Sintang,age_group,0-4,perempuan,19633,jiwa,2025,projection,total_population,3.1.2,65,,0–4
+61.05,2,Kabupaten Sintang,age_group,0-4,,40103,jiwa,2025,projection,total_population,3.1.2,65,,0–4
+61.05,2,Kabupaten Sintang,age_group,5-9,laki_laki,18997,jiwa,2025,projection,total_population,3.1.2,65,,5–9
+61.05,2,Kabupaten Sintang,age_group,5-9,perempuan,18460,jiwa,2025,projection,total_population,3.1.2,65,,5–9
+61.05,2,Kabupaten Sintang,age_group,5-9,,37457,jiwa,2025,projection,total_population,3.1.2,65,,5–9
+61.05,2,Kabupaten Sintang,age_group,10-14,laki_laki,19054,jiwa,2025,projection,total_population,3.1.2,65,,10–14
+61.05,2,Kabupaten Sintang,age_group,10-14,perempuan,18484,jiwa,2025,projection,total_population,3.1.2,65,,10–14
+61.05,2,Kabupaten Sintang,age_group,10-14,,37538,jiwa,2025,projection,total_population,3.1.2,65,,10–14
+61.05,2,Kabupaten Sintang,age_group,15-19,laki_laki,19626,jiwa,2025,projection,total_population,3.1.2,65,,15–19
+61.05,2,Kabupaten Sintang,age_group,15-19,perempuan,18398,jiwa,2025,projection,total_population,3.1.2,65,,15–19
+61.05,2,Kabupaten Sintang,age_group,15-19,,38024,jiwa,2025,projection,total_population,3.1.2,65,,15–19
+61.05,2,Kabupaten Sintang,age_group,20-24,laki_laki,18765,jiwa,2025,projection,total_population,3.1.2,65,,20–24
+61.05,2,Kabupaten Sintang,age_group,20-24,perempuan,17197,jiwa,2025,projection,total_population,3.1.2,65,,20–24
+61.05,2,Kabupaten Sintang,age_group,20-24,,35962,jiwa,2025,projection,total_population,3.1.2,65,,20–24
+61.05,2,Kabupaten Sintang,age_group,25-29,laki_laki,18850,jiwa,2025,projection,total_population,3.1.2,65,,25–29
+61.05,2,Kabupaten Sintang,age_group,25-29,perempuan,17408,jiwa,2025,projection,total_population,3.1.2,65,,25–29
+61.05,2,Kabupaten Sintang,age_group,25-29,,36258,jiwa,2025,projection,total_population,3.1.2,65,,25–29
+61.05,2,Kabupaten Sintang,age_group,30-34,laki_laki,18956,jiwa,2025,projection,total_population,3.1.2,65,,30–34
+61.05,2,Kabupaten Sintang,age_group,30-34,perempuan,17980,jiwa,2025,projection,total_population,3.1.2,65,,30–34
+61.05,2,Kabupaten Sintang,age_group,30-34,,36936,jiwa,2025,projection,total_population,3.1.2,65,,30–34
+61.05,2,Kabupaten Sintang,age_group,35-39,laki_laki,18792,jiwa,2025,projection,total_population,3.1.2,65,,35–39
+61.05,2,Kabupaten Sintang,age_group,35-39,perempuan,17643,jiwa,2025,projection,total_population,3.1.2,65,,35–39
+61.05,2,Kabupaten Sintang,age_group,35-39,,36435,jiwa,2025,projection,total_population,3.1.2,65,,35–39
+61.05,2,Kabupaten Sintang,age_group,40-44,laki_laki,16999,jiwa,2025,projection,total_population,3.1.2,65,,40–44
+61.05,2,Kabupaten Sintang,age_group,40-44,perempuan,15952,jiwa,2025,projection,total_population,3.1.2,65,,40–44
+61.05,2,Kabupaten Sintang,age_group,40-44,,32951,jiwa,2025,projection,total_population,3.1.2,65,,40–44
+61.05,2,Kabupaten Sintang,age_group,45-49,laki_laki,15780,jiwa,2025,projection,total_population,3.1.2,65,,45–49
+61.05,2,Kabupaten Sintang,age_group,45-49,perempuan,14876,jiwa,2025,projection,total_population,3.1.2,65,,45–49
+61.05,2,Kabupaten Sintang,age_group,45-49,,30656,jiwa,2025,projection,total_population,3.1.2,65,,45–49
+61.05,2,Kabupaten Sintang,age_group,50-54,laki_laki,13194,jiwa,2025,projection,total_population,3.1.2,65,,50–54
+61.05,2,Kabupaten Sintang,age_group,50-54,perempuan,12029,jiwa,2025,projection,total_population,3.1.2,65,,50–54
+61.05,2,Kabupaten Sintang,age_group,50-54,,25223,jiwa,2025,projection,total_population,3.1.2,65,,50–54
+61.05,2,Kabupaten Sintang,age_group,55-59,laki_laki,10582,jiwa,2025,projection,total_population,3.1.2,65,,55–59
+61.05,2,Kabupaten Sintang,age_group,55-59,perempuan,9662,jiwa,2025,projection,total_population,3.1.2,65,,55–59
+61.05,2,Kabupaten Sintang,age_group,55-59,,20244,jiwa,2025,projection,total_population,3.1.2,65,,55–59
+61.05,2,Kabupaten Sintang,age_group,60-64,laki_laki,8175,jiwa,2025,projection,total_population,3.1.2,65,,60–64
+61.05,2,Kabupaten Sintang,age_group,60-64,perempuan,7425,jiwa,2025,projection,total_population,3.1.2,65,,60–64
+61.05,2,Kabupaten Sintang,age_group,60-64,,15600,jiwa,2025,projection,total_population,3.1.2,65,,60–64
+61.05,2,Kabupaten Sintang,age_group,65-69,laki_laki,5830,jiwa,2025,projection,total_population,3.1.2,65,,65–69
+61.05,2,Kabupaten Sintang,age_group,65-69,perempuan,5502,jiwa,2025,projection,total_population,3.1.2,65,,65–69
+61.05,2,Kabupaten Sintang,age_group,65-69,,11332,jiwa,2025,projection,total_population,3.1.2,65,,65–69
+61.05,2,Kabupaten Sintang,age_group,70-74,laki_laki,3890,jiwa,2025,projection,total_population,3.1.2,65,,70–74
+61.05,2,Kabupaten Sintang,age_group,70-74,perempuan,3791,jiwa,2025,projection,total_population,3.1.2,65,,70–74
+61.05,2,Kabupaten Sintang,age_group,70-74,,7681,jiwa,2025,projection,total_population,3.1.2,65,,70–74
+61.05,2,Kabupaten Sintang,age_group,75+,laki_laki,3451,jiwa,2025,projection,total_population,3.1.2,65,,75+
+61.05,2,Kabupaten Sintang,age_group,75+,perempuan,3360,jiwa,2025,projection,total_population,3.1.2,65,,75+
+61.05,2,Kabupaten Sintang,age_group,75+,,6811,jiwa,2025,projection,total_population,3.1.2,65,,75+
+61.05,2,Kabupaten Sintang,sex,laki_laki,,231411,jiwa,2025,projection,total_population,3.1.2,65,,Laki-Laki
+61.05,2,Kabupaten Sintang,sex,perempuan,,217800,jiwa,2025,projection,total_population,3.1.2,65,,Perempuan
+61.05,2,Kabupaten Sintang,total,total,,449211,jiwa,2025,projection,total_population,3.1.2,65,,
+61.05.14,3,Serawai,religion,islam,,6359,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.14,3,Serawai,religion,kristen,,3180,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.14,3,Serawai,religion,katolik,,3180,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.14,3,Serawai,religion,hindu,,11811,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.14,3,Serawai,religion,buddha,,2,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.14,3,Serawai,religion,lainnya,,150,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.15,3,Ambalau,religion,islam,,625,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.15,3,Ambalau,religion,kristen,,3322,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.15,3,Ambalau,religion,katolik,,3322,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.15,3,Ambalau,religion,hindu,,9420,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.15,3,Ambalau,religion,buddha,,7,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.15,3,Ambalau,religion,lainnya,,9,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.09,3,Kayan Hulu,religion,islam,,2608,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.09,3,Kayan Hulu,religion,kristen,,13586,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.09,3,Kayan Hulu,religion,katolik,,13586,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.09,3,Kayan Hulu,religion,hindu,,5792,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.09,3,Kayan Hulu,religion,buddha,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Budha
+61.05.09,3,Kayan Hulu,religion,lainnya,,1,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.03,3,Sepauk,religion,islam,,20818,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.03,3,Sepauk,religion,kristen,,8316,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.03,3,Sepauk,religion,katolik,,8316,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.03,3,Sepauk,religion,hindu,,24485,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.03,3,Sepauk,religion,buddha,,3,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.03,3,Sepauk,religion,lainnya,,214,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.02,3,Tempunak,religion,islam,,12787,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.02,3,Tempunak,religion,kristen,,4806,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.02,3,Tempunak,religion,katolik,,12590,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.02,3,Tempunak,religion,hindu,,56,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.02,3,Tempunak,religion,buddha,,10,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.02,3,Tempunak,religion,lainnya,,7,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.20,3,Sungai Tebelian,religion,islam,,25231,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.20,3,Sungai Tebelian,religion,kristen,,2868,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.20,3,Sungai Tebelian,religion,katolik,,7200,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.20,3,Sungai Tebelian,religion,hindu,,7,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.20,3,Sungai Tebelian,religion,buddha,,274,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.20,3,Sungai Tebelian,religion,lainnya,,33,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.01,3,Sintang,religion,islam,,54966,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.01,3,Sintang,religion,kristen,,9598,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.01,3,Sintang,religion,katolik,,12450,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.01,3,Sintang,religion,hindu,,26,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.01,3,Sintang,religion,buddha,,1506,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.01,3,Sintang,religion,lainnya,,369,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.07,3,Dedai,religion,islam,,16909,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.07,3,Dedai,religion,kristen,,1116,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.07,3,Dedai,religion,katolik,,12001,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.07,3,Dedai,religion,hindu,,18,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.07,3,Dedai,religion,buddha,,20,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.07,3,Dedai,religion,lainnya,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Lainnya
+61.05.08,3,Kayan Hilir,religion,islam,,3408,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.08,3,Kayan Hilir,religion,kristen,,8896,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.08,3,Kayan Hilir,religion,katolik,,15386,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.08,3,Kayan Hilir,religion,hindu,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Hindu
+61.05.08,3,Kayan Hilir,religion,buddha,,30,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.08,3,Kayan Hilir,religion,lainnya,,1,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.19,3,Kelam Permai,religion,islam,,5680,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.19,3,Kelam Permai,religion,kristen,,3399,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.19,3,Kelam Permai,religion,katolik,,9553,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.19,3,Kelam Permai,religion,hindu,,1,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.19,3,Kelam Permai,religion,buddha,,45,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.19,3,Kelam Permai,religion,lainnya,,15,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.21,3,Binjai Hulu,religion,islam,,8757,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.21,3,Binjai Hulu,religion,kristen,,3295,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.21,3,Binjai Hulu,religion,katolik,,2112,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.21,3,Binjai Hulu,religion,hindu,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Hindu
+61.05.21,3,Binjai Hulu,religion,buddha,,7,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.21,3,Binjai Hulu,religion,lainnya,,1,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05.04,3,Ketungau Hilir,religion,islam,,2903,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.04,3,Ketungau Hilir,religion,kristen,,9978,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.04,3,Ketungau Hilir,religion,katolik,,10851,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.04,3,Ketungau Hilir,religion,hindu,,1,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05.04,3,Ketungau Hilir,religion,buddha,,9,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.04,3,Ketungau Hilir,religion,lainnya,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Lainnya
+61.05.05,3,Ketungau Tengah,religion,islam,,1658,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.05,3,Ketungau Tengah,religion,kristen,,16611,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.05,3,Ketungau Tengah,religion,katolik,,12457,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.05,3,Ketungau Tengah,religion,hindu,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Hindu
+61.05.05,3,Ketungau Tengah,religion,buddha,,3,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.05,3,Ketungau Tengah,religion,lainnya,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Lainnya
+61.05.06,3,Ketungau Hulu,religion,islam,,2327,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05.06,3,Ketungau Hulu,religion,kristen,,12303,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05.06,3,Ketungau Hulu,religion,katolik,,8157,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05.06,3,Ketungau Hulu,religion,hindu,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Hindu
+61.05.06,3,Ketungau Hulu,religion,buddha,,3,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05.06,3,Ketungau Hulu,religion,lainnya,,0,jiwa,2023,registration,total_population,4.3.1,145,nil,Lainnya
+61.05,2,Kabupaten Sintang,religion,islam,,165036,jiwa,2023,registration,total_population,4.3.1,145,,Islam
+61.05,2,Kabupaten Sintang,religion,kristen,,101274,jiwa,2023,registration,total_population,4.3.1,145,,Protestan
+61.05,2,Kabupaten Sintang,religion,katolik,,131161,jiwa,2023,registration,total_population,4.3.1,145,,Katolik
+61.05,2,Kabupaten Sintang,religion,hindu,,51617,jiwa,2023,registration,total_population,4.3.1,145,,Hindu
+61.05,2,Kabupaten Sintang,religion,buddha,,1919,jiwa,2023,registration,total_population,4.3.1,145,,Budha
+61.05,2,Kabupaten Sintang,religion,lainnya,,800,jiwa,2023,registration,total_population,4.3.1,145,,Lainnya
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/padi_padian,,114879,rupiah,2024,survey_estimate,per_capita,10.1,335,,Padi-padian
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/padi_padian,,113320,rupiah,2025,survey_estimate,per_capita,10.1,335,,Padi-padian
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/umbi_umbian,,6180,rupiah,2024,survey_estimate,per_capita,10.1,335,,Umbi-umbian
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/umbi_umbian,,8589,rupiah,2025,survey_estimate,per_capita,10.1,335,,Umbi-umbian
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,80406,rupiah,2024,survey_estimate,per_capita,10.1,335,,Ikan/udang/cumi/kerang
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,109525,rupiah,2025,survey_estimate,per_capita,10.1,335,,Ikan/udang/cumi/kerang
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/daging,,65752,rupiah,2024,survey_estimate,per_capita,10.1,335,,Daging
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/daging,,73471,rupiah,2025,survey_estimate,per_capita,10.1,335,,Daging
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/telur_dan_susu,,33422,rupiah,2024,survey_estimate,per_capita,10.1,335,,Telur dan susu
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/telur_dan_susu,,39492,rupiah,2025,survey_estimate,per_capita,10.1,335,,Telur dan susu
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/sayur_sayuran,,74609,rupiah,2024,survey_estimate,per_capita,10.1,335,,Sayur-sayuran
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/sayur_sayuran,,84902,rupiah,2025,survey_estimate,per_capita,10.1,335,,Sayur-sayuran
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/kacang_kacangan,,9903,rupiah,2024,survey_estimate,per_capita,10.1,335,,Kacang-kacangan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/kacang_kacangan,,10549,rupiah,2025,survey_estimate,per_capita,10.1,335,,Kacang-kacangan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/buah_buahan,,30904,rupiah,2024,survey_estimate,per_capita,10.1,335,,Buah-buahan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/buah_buahan,,37459,rupiah,2025,survey_estimate,per_capita,10.1,335,,Buah-buahan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17814,rupiah,2024,survey_estimate,per_capita,10.1,335,,Minyak dan kelapa
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19382,rupiah,2025,survey_estimate,per_capita,10.1,335,,Minyak dan kelapa
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/bahan_minuman,,31107,rupiah,2025,survey_estimate,per_capita,10.1,335,,Bahan minuman
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/bumbu_bumbuan,,19471,rupiah,2024,survey_estimate,per_capita,10.1,335,,Bumbu-bumbuan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/bumbu_bumbuan,,21144,rupiah,2025,survey_estimate,per_capita,10.1,335,,Bumbu-bumbuan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/konsumsi_lainnya,,15306,rupiah,2024,survey_estimate,per_capita,10.1,335,,Konsumsi lainnya
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/konsumsi_lainnya,,16597,rupiah,2025,survey_estimate,per_capita,10.1,335,,Konsumsi lainnya
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,180714,rupiah,2024,survey_estimate,per_capita,10.1,335,,Makanan dan minuman jadi
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,167398,rupiah,2025,survey_estimate,per_capita,10.1,335,,Makanan dan minuman jadi
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/rokok,,100166,rupiah,2024,survey_estimate,per_capita,10.1,335,,Rokok
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/rokok,,118265,rupiah,2025,survey_estimate,per_capita,10.1,335,,Rokok
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/jumlah_makanan,,775596,rupiah,2024,survey_estimate,per_capita,10.1,335,,Jumlah makanan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/jumlah_makanan,,851199,rupiah,2025,survey_estimate,per_capita,10.1,335,,Jumlah makanan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,418576,rupiah,2024,survey_estimate,per_capita,10.1,335,,Perumahan dan fasilitas rumah tangga
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,405990,rupiah,2025,survey_estimate,per_capita,10.1,335,,Perumahan dan fasilitas rumah tangga
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,140748,rupiah,2024,survey_estimate,per_capita,10.1,335,,Aneka barang dan jasa
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,143383,rupiah,2025,survey_estimate,per_capita,10.1,335,,Aneka barang dan jasa
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36155,rupiah,2024,survey_estimate,per_capita,10.1,335,,"Pakaian, alas kaki, dan tutup kepala"
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30757,rupiah,2025,survey_estimate,per_capita,10.1,335,,"Pakaian, alas kaki, dan tutup kepala"
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/barang_tahan_lama,,28731,rupiah,2024,survey_estimate,per_capita,10.1,335,,Barang tahan lama
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/barang_tahan_lama,,31719,rupiah,2025,survey_estimate,per_capita,10.1,335,,Barang tahan lama
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,50474,rupiah,2024,survey_estimate,per_capita,10.1,335,,"Pajak, pungutan, dan asuransi"
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46324,rupiah,2025,survey_estimate,per_capita,10.1,335,,"Pajak, pungutan, dan asuransi"
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,11144,rupiah,2024,survey_estimate,per_capita,10.1,335,,Keperluan pesta dan upacara/kenduri
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9998,rupiah,2025,survey_estimate,per_capita,10.1,335,,Keperluan pesta dan upacara/kenduri
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,685828,rupiah,2024,survey_estimate,per_capita,10.1,335,,Jumlah bukan makanan
+61.05,2,Kabupaten Sintang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,668171,rupiah,2025,survey_estimate,per_capita,10.1,335,,Jumlah bukan makanan
+61.05,2,Kabupaten Sintang,expenditure,total,,1461424,rupiah,2024,survey_estimate,per_capita,10.1,335,,
+61.05,2,Kabupaten Sintang,expenditure,total,,1519370,rupiah,2025,survey_estimate,per_capita,10.1,335,,

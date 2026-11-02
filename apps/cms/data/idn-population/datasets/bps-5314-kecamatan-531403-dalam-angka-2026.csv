@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.14.03.2002,4,Kuli,sex,laki_laki,,734,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2002,4,Kuli,sex,perempuan,,720,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2002,4,Kuli,total,total,,1454,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2013,4,Suelain,sex,laki_laki,,425,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2013,4,Suelain,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2013,4,Suelain,total,total,,846,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2003,4,Bebalain,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2003,4,Bebalain,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2003,4,Bebalain,total,total,,949,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2004,4,Kolobolon,sex,laki_laki,,636,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2004,4,Kolobolon,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2004,4,Kolobolon,total,total,,1267,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2012,4,Oematamboli,sex,laki_laki,,772,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2012,4,Oematamboli,sex,perempuan,,745,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2012,4,Oematamboli,total,total,,1517,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2005,4,Helebeik,sex,laki_laki,,1135,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2005,4,Helebeik,sex,perempuan,,1124,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2005,4,Helebeik,total,total,,2259,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2010,4,Oelunggu,sex,laki_laki,,802,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2010,4,Oelunggu,sex,perempuan,,827,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2010,4,Oelunggu,total,total,,1629,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.1009,4,Mokdale,sex,laki_laki,,2674,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.1009,4,Mokdale,sex,perempuan,,2620,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.1009,4,Mokdale,total,total,,5294,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2006,4,Sanggaoen,sex,laki_laki,,1276,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2006,4,Sanggaoen,sex,perempuan,,1265,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2006,4,Sanggaoen,total,total,,2541,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2007,4,Holoama,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2007,4,Holoama,sex,perempuan,,885,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2007,4,Holoama,total,total,,1803,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2008,4,Tuanatuk,sex,laki_laki,,501,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2008,4,Tuanatuk,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2008,4,Tuanatuk,total,total,,1021,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2014,4,Baadale,sex,laki_laki,,673,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2014,4,Baadale,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2014,4,Baadale,total,total,,1328,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.1001,4,Namodale,sex,laki_laki,,1518,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.1001,4,Namodale,sex,perempuan,,1443,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.1001,4,Namodale,total,total,,2961,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.1011,4,Metina,sex,laki_laki,,1536,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.1011,4,Metina,sex,perempuan,,1526,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.1011,4,Metina,total,total,,3062,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2015,4,Lekunik,sex,laki_laki,,624,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2015,4,Lekunik,sex,perempuan,,608,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2015,4,Lekunik,total,total,,1232,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2016,4,Loleoen,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2016,4,Loleoen,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2016,4,Loleoen,total,total,,924,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2017,4,Kuli Aisele,sex,laki_laki,,539,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2017,4,Kuli Aisele,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2017,4,Kuli Aisele,total,total,,1134,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03.2018,4,Oeleka,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03.2018,4,Oeleka,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03.2018,4,Oeleka,total,total,,1085,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.03,3,Kecamatan Lobalain,sex,laki_laki,,16247,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki
+53.14.03,3,Kecamatan Lobalain,sex,perempuan,,16059,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan
+53.14.03,3,Kecamatan Lobalain,total,total,,32306,jiwa,2025,registration,total_population,3.1.1,21,,

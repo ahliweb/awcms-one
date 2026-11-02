@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.16.2005,4,Nilulat,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.16.2005,4,Nilulat,sex,perempuan,,297,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.16.2005,4,Nilulat,total,total,,589,jiwa,2025,registration,total_population,3.1,28,,
+53.03.16.2006,4,Tubu,sex,laki_laki,,285,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.16.2006,4,Tubu,sex,perempuan,,287,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.16.2006,4,Tubu,total,total,,572,jiwa,2025,registration,total_population,3.1,28,,
+53.03.16.2004,4,Haumeni Ana,sex,laki_laki,,581,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.16.2004,4,Haumeni Ana,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.16.2004,4,Haumeni Ana,total,total,,1161,jiwa,2025,registration,total_population,3.1,28,,
+53.03.16.2002,4,Sunkaen,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.16.2002,4,Sunkaen,sex,perempuan,,263,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.16.2002,4,Sunkaen,total,total,,535,jiwa,2025,registration,total_population,3.1,28,,
+53.03.16.2003,4,Nainaban,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.16.2003,4,Nainaban,sex,perempuan,,450,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.16.2003,4,Nainaban,total,total,,860,jiwa,2025,registration,total_population,3.1,28,,
+53.03.16.2001,4,Inbate,sex,laki_laki,,617,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.16.2001,4,Inbate,sex,perempuan,,653,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.16.2001,4,Inbate,total,total,,1270,jiwa,2025,registration,total_population,3.1,28,,
+53.03.16,3,Bikomi Nilulat,sex,laki_laki,,2457,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.16,3,Bikomi Nilulat,sex,perempuan,,2530,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.16,3,Bikomi Nilulat,total,total,,4987,jiwa,2025,registration,total_population,3.1,28,,
+53.03.16,3,Bikomi Nilulat,age_group,0-4,laki_laki,103,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.16,3,Bikomi Nilulat,age_group,0-4,perempuan,101,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.16,3,Bikomi Nilulat,age_group,0-4,,204,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.16,3,Bikomi Nilulat,age_group,5-9,laki_laki,244,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.16,3,Bikomi Nilulat,age_group,5-9,perempuan,219,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.16,3,Bikomi Nilulat,age_group,5-9,,463,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.16,3,Bikomi Nilulat,age_group,10-14,laki_laki,259,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.16,3,Bikomi Nilulat,age_group,10-14,perempuan,213,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.16,3,Bikomi Nilulat,age_group,10-14,,472,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.16,3,Bikomi Nilulat,age_group,15-19,laki_laki,226,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.16,3,Bikomi Nilulat,age_group,15-19,perempuan,232,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.16,3,Bikomi Nilulat,age_group,15-19,,458,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.16,3,Bikomi Nilulat,age_group,20-24,laki_laki,262,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.16,3,Bikomi Nilulat,age_group,20-24,perempuan,287,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.16,3,Bikomi Nilulat,age_group,20-24,,549,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.16,3,Bikomi Nilulat,age_group,25-29,laki_laki,231,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.16,3,Bikomi Nilulat,age_group,25-29,perempuan,208,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.16,3,Bikomi Nilulat,age_group,25-29,,439,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.16,3,Bikomi Nilulat,age_group,30-34,laki_laki,141,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.16,3,Bikomi Nilulat,age_group,30-34,perempuan,171,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.16,3,Bikomi Nilulat,age_group,30-34,,312,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.16,3,Bikomi Nilulat,age_group,35-39,laki_laki,154,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.16,3,Bikomi Nilulat,age_group,35-39,perempuan,166,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.16,3,Bikomi Nilulat,age_group,35-39,,320,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.16,3,Bikomi Nilulat,age_group,40-44,laki_laki,129,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.16,3,Bikomi Nilulat,age_group,40-44,perempuan,172,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.16,3,Bikomi Nilulat,age_group,40-44,,301,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.16,3,Bikomi Nilulat,age_group,45-49,laki_laki,114,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.16,3,Bikomi Nilulat,age_group,45-49,perempuan,133,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.16,3,Bikomi Nilulat,age_group,45-49,,247,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.16,3,Bikomi Nilulat,age_group,50-54,laki_laki,111,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.16,3,Bikomi Nilulat,age_group,50-54,perempuan,134,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.16,3,Bikomi Nilulat,age_group,50-54,,245,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.16,3,Bikomi Nilulat,age_group,55-59,laki_laki,145,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.16,3,Bikomi Nilulat,age_group,55-59,perempuan,129,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.16,3,Bikomi Nilulat,age_group,55-59,,274,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.16,3,Bikomi Nilulat,age_group,60-64,laki_laki,87,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.16,3,Bikomi Nilulat,age_group,60-64,perempuan,103,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.16,3,Bikomi Nilulat,age_group,60-64,,190,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.16,3,Bikomi Nilulat,age_group,65-69,laki_laki,93,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.16,3,Bikomi Nilulat,age_group,65-69,perempuan,109,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.16,3,Bikomi Nilulat,age_group,65-69,,202,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.16,3,Bikomi Nilulat,age_group,70-74,laki_laki,68,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.16,3,Bikomi Nilulat,age_group,70-74,perempuan,59,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.16,3,Bikomi Nilulat,age_group,70-74,,127,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.16,3,Bikomi Nilulat,age_group,75+,laki_laki,90,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.16,3,Bikomi Nilulat,age_group,75+,perempuan,94,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.16,3,Bikomi Nilulat,age_group,75+,,184,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.16,3,Bikomi Nilulat,sex,laki_laki,,2457,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.16,3,Bikomi Nilulat,sex,perempuan,,2530,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.16,3,Bikomi Nilulat,total,total,,4987,jiwa,2025,registration,total_population,3.2,30,,

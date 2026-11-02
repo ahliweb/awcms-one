@@ -1,0 +1,121 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.07.2014,4,Mbotulaka,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2014,4,Mbotulaka,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2014,4,Mbotulaka,total,total,,372,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2004,4,Mautenda Barat,sex,laki_laki,,378,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2004,4,Mautenda Barat,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2004,4,Mautenda Barat,total,total,,779,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2013,4,Ratewati,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2013,4,Ratewati,sex,perempuan,,216,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2013,4,Ratewati,total,total,,432,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2010,4,Mukusaki,sex,laki_laki,,717,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2010,4,Mukusaki,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2010,4,Mukusaki,total,total,,1469,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2012,4,Aemuri,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2012,4,Aemuri,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2012,4,Aemuri,total,total,,705,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2011,4,Ekoae,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2011,4,Ekoae,sex,perempuan,,614,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2011,4,Ekoae,total,total,,1248,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2005,4,Wewaria,sex,laki_laki,,806,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2005,4,Wewaria,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2005,4,Wewaria,total,total,,1573,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2003,4,Mautenda,sex,laki_laki,,1879,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2003,4,Mautenda,sex,perempuan,,1911,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2003,4,Mautenda,total,total,,3790,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2008,4,Fataatu,sex,laki_laki,,832,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2008,4,Fataatu,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2008,4,Fataatu,total,total,,1645,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2009,4,Fataatu Timur,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2009,4,Fataatu Timur,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2009,4,Fataatu Timur,total,total,,1080,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2002,4,Nuangenda,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2002,4,Nuangenda,sex,perempuan,,338,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2002,4,Nuangenda,total,total,,698,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2001,4,Welamosa,sex,laki_laki,,584,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2001,4,Welamosa,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2001,4,Welamosa,total,total,,1188,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2006,4,Tanali,sex,laki_laki,,326,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2006,4,Tanali,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2006,4,Tanali,total,total,,658,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2007,4,Detubela,sex,laki_laki,,284,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2007,4,Detubela,sex,perempuan,,258,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2007,4,Detubela,total,total,,542,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2015,4,Numba,sex,laki_laki,,269,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.08.07.2015,4,Numba,sex,perempuan,,263,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.08.07.2015,4,Numba,total,total,,532,jiwa,2025,registration,total_population,3.1,28,,
+53.08.07.2017,4,Kelitembu,sex,laki_laki,,380,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07.2017,4,Kelitembu,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07.2017,4,Kelitembu,total,total,,758,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07.2018,4,Aelipo,sex,laki_laki,,150,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07.2018,4,Aelipo,sex,perempuan,,161,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07.2018,4,Aelipo,total,total,,311,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07.2019,4,Ratewati Selatan,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07.2019,4,Ratewati Selatan,sex,perempuan,,200,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07.2019,4,Ratewati Selatan,total,total,,418,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07.2020,4,Waka,sex,laki_laki,,217,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07.2020,4,Waka,sex,perempuan,,231,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07.2020,4,Waka,total,total,,448,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07.2021,4,Wolooja,sex,laki_laki,,183,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07.2021,4,Wolooja,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07.2021,4,Wolooja,total,total,,373,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07.2022,4,Ekolea,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07.2022,4,Ekolea,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07.2022,4,Ekolea,total,total,,456,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07.2023,4,Aendoko,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07.2023,4,Aendoko,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07.2023,4,Aendoko,total,total,,492,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07,3,Kecamatan Wewaria,sex,laki_laki,,9943,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.08.07,3,Kecamatan Wewaria,sex,perempuan,,10024,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.08.07,3,Kecamatan Wewaria,total,total,,19967,jiwa,2025,registration,total_population,3.1,29,,
+53.08.07,3,Wewaria,age_group,0-4,laki_laki,341,jiwa,2025,registration,total_population,3.2,32,,0-4
+53.08.07,3,Wewaria,age_group,0-4,perempuan,299,jiwa,2025,registration,total_population,3.2,32,,0-4
+53.08.07,3,Wewaria,age_group,0-4,,640,jiwa,2025,registration,total_population,3.2,32,,0-4
+53.08.07,3,Wewaria,age_group,5-9,laki_laki,879,jiwa,2025,registration,total_population,3.2,32,,5-9
+53.08.07,3,Wewaria,age_group,5-9,perempuan,861,jiwa,2025,registration,total_population,3.2,32,,5-9
+53.08.07,3,Wewaria,age_group,5-9,,1740,jiwa,2025,registration,total_population,3.2,32,,5-9
+53.08.07,3,Wewaria,age_group,10-14,laki_laki,1061,jiwa,2025,registration,total_population,3.2,32,,10-14
+53.08.07,3,Wewaria,age_group,10-14,perempuan,989,jiwa,2025,registration,total_population,3.2,32,,10-14
+53.08.07,3,Wewaria,age_group,10-14,,2050,jiwa,2025,registration,total_population,3.2,32,,10-14
+53.08.07,3,Wewaria,age_group,15-19,laki_laki,1118,jiwa,2025,registration,total_population,3.2,32,,15-19
+53.08.07,3,Wewaria,age_group,15-19,perempuan,958,jiwa,2025,registration,total_population,3.2,32,,15-19
+53.08.07,3,Wewaria,age_group,15-19,,2076,jiwa,2025,registration,total_population,3.2,32,,15-19
+53.08.07,3,Wewaria,age_group,20-24,laki_laki,1017,jiwa,2025,registration,total_population,3.2,32,,20-24
+53.08.07,3,Wewaria,age_group,20-24,perempuan,1021,jiwa,2025,registration,total_population,3.2,32,,20-24
+53.08.07,3,Wewaria,age_group,20-24,,2038,jiwa,2025,registration,total_population,3.2,32,,20-24
+53.08.07,3,Wewaria,age_group,25-29,laki_laki,889,jiwa,2025,registration,total_population,3.2,32,,25-29
+53.08.07,3,Wewaria,age_group,25-29,perempuan,888,jiwa,2025,registration,total_population,3.2,32,,25-29
+53.08.07,3,Wewaria,age_group,25-29,,1777,jiwa,2025,registration,total_population,3.2,32,,25-29
+53.08.07,3,Wewaria,age_group,30-34,laki_laki,752,jiwa,2025,registration,total_population,3.2,32,,30-34
+53.08.07,3,Wewaria,age_group,30-34,perempuan,686,jiwa,2025,registration,total_population,3.2,32,,30-34
+53.08.07,3,Wewaria,age_group,30-34,,1438,jiwa,2025,registration,total_population,3.2,32,,30-34
+53.08.07,3,Wewaria,age_group,35-39,laki_laki,721,jiwa,2025,registration,total_population,3.2,32,,35-39
+53.08.07,3,Wewaria,age_group,35-39,perempuan,688,jiwa,2025,registration,total_population,3.2,32,,35-39
+53.08.07,3,Wewaria,age_group,35-39,,1409,jiwa,2025,registration,total_population,3.2,32,,35-39
+53.08.07,3,Wewaria,age_group,40-44,laki_laki,626,jiwa,2025,registration,total_population,3.2,32,,40-44
+53.08.07,3,Wewaria,age_group,40-44,perempuan,709,jiwa,2025,registration,total_population,3.2,32,,40-44
+53.08.07,3,Wewaria,age_group,40-44,,1335,jiwa,2025,registration,total_population,3.2,32,,40-44
+53.08.07,3,Wewaria,age_group,45-49,laki_laki,593,jiwa,2025,registration,total_population,3.2,32,,45-49
+53.08.07,3,Wewaria,age_group,45-49,perempuan,674,jiwa,2025,registration,total_population,3.2,32,,45-49
+53.08.07,3,Wewaria,age_group,45-49,,1267,jiwa,2025,registration,total_population,3.2,32,,45-49
+53.08.07,3,Wewaria,age_group,50-54,laki_laki,493,jiwa,2025,registration,total_population,3.2,32,,50-54
+53.08.07,3,Wewaria,age_group,50-54,perempuan,617,jiwa,2025,registration,total_population,3.2,32,,50-54
+53.08.07,3,Wewaria,age_group,50-54,,1110,jiwa,2025,registration,total_population,3.2,32,,50-54
+53.08.07,3,Wewaria,age_group,55-59,laki_laki,401,jiwa,2025,registration,total_population,3.2,32,,55-59
+53.08.07,3,Wewaria,age_group,55-59,perempuan,476,jiwa,2025,registration,total_population,3.2,32,,55-59
+53.08.07,3,Wewaria,age_group,55-59,,877,jiwa,2025,registration,total_population,3.2,32,,55-59
+53.08.07,3,Wewaria,age_group,60-64,laki_laki,349,jiwa,2025,registration,total_population,3.2,32,,60-64
+53.08.07,3,Wewaria,age_group,60-64,perempuan,452,jiwa,2025,registration,total_population,3.2,32,,60-64
+53.08.07,3,Wewaria,age_group,60-64,,801,jiwa,2025,registration,total_population,3.2,32,,60-64
+53.08.07,3,Wewaria,age_group,65-69,laki_laki,291,jiwa,2025,registration,total_population,3.2,32,,65-69
+53.08.07,3,Wewaria,age_group,65-69,perempuan,293,jiwa,2025,registration,total_population,3.2,32,,65-69
+53.08.07,3,Wewaria,age_group,65-69,,584,jiwa,2025,registration,total_population,3.2,32,,65-69
+53.08.07,3,Wewaria,age_group,70-74,laki_laki,177,jiwa,2025,registration,total_population,3.2,32,,70-74
+53.08.07,3,Wewaria,age_group,70-74,perempuan,199,jiwa,2025,registration,total_population,3.2,32,,70-74
+53.08.07,3,Wewaria,age_group,70-74,,376,jiwa,2025,registration,total_population,3.2,32,,70-74
+53.08.07,3,Wewaria,age_group,75+,laki_laki,235,jiwa,2025,registration,total_population,3.2,32,,75 ke atas
+53.08.07,3,Wewaria,age_group,75+,perempuan,214,jiwa,2025,registration,total_population,3.2,32,,75 ke atas
+53.08.07,3,Wewaria,age_group,75+,,449,jiwa,2025,registration,total_population,3.2,32,,75 ke atas
+53.08.07,3,Kecamatan Wewaria,sex,laki_laki,,9943,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+53.08.07,3,Kecamatan Wewaria,sex,perempuan,,10024,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+53.08.07,3,Kecamatan Wewaria,total,total,,19967,jiwa,2025,registration,total_population,3.2,32,,

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530701-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Paga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://sikkakab.bps.go.id), publikasi \"Kecamatan Paga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5310010",
+  "publicationNumber": "53100.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/ffdce2700071d926b5a7a5cf/kecamatan-paga-dalam-angka-2026.html",
+  "sourceFileSha256": "6baeff7221c002c21294e064a852f4cedebd37637ee38968a164d81d5c1ff989",
+  "sourceFileBytes": 11532273,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530701-dalam-angka-2026.csv",
+  "csvSha256": "857de4a56c2f6792e642a88182343ee1d21fe60e0edf6449d0cb75c6c7182360",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Paga, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Paga, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Masebewa\": unmatched ",
+    "table 3.1: row not stored: row \"Masebewa\": unmatched ",
+    "table 3.2: the rows of region 53.07.01 are not stored: sex split vs total: parts sum 37604.0000 != 17753.0000 (diff 19851.0000); the source itself is inconsistent"
+  ]
+}

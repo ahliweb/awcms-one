@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-5315-kecamatan-531508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.15.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ndoso Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5315",
+  "publisherWebsite": "https://manggaraibaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://manggaraibaratkab.bps.go.id), publikasi \"Kecamatan Ndoso Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5315041",
+  "publicationNumber": "53150.26014",
+  "issn": "2623-0984",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraibaratkab.bps.go.id/id/publication/2026/09/28/4fef4fa6ed058c620778ecda/kecamatan-ndoso-dalam-angka-2026.html",
+  "sourceFileSha256": "d4c55c8d3b1b6b5e70c41ea1a43017f8cf496029fd1e16fcfe5b56e2c432a66f",
+  "sourceFileBytes": 4408652,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Barat.",
+  "csvPath": "datasets/bps-5315-kecamatan-531508-dalam-angka-2026.csv",
+  "csvSha256": "45f9f7f7d932fde1d2d2c3269aa9a45e1864ef020e03e3b3067e79949c983528",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ndoso, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pateng Lesu\": unmatched ",
+    "table 3.1: row not stored: row \"Pateng Lesu\": unmatched "
+  ]
+}
