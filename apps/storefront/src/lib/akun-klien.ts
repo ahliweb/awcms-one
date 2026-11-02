@@ -30,6 +30,7 @@ import {
   type ReservasiSaya
 } from "./booking-kontrak";
 import { parsePoinAkun, type PoinAkun } from "./poin-kontrak";
+import { kunciHeader } from "./kunci-idempotensi";
 import { kirimPermintaan, TokoApiError } from "./toko-permintaan";
 import type { Order } from "./toko-klien";
 
@@ -85,9 +86,24 @@ export type VerifikasiKodeResponse = { token: string; expiresAt: string; account
  * call `simpanSesi` itself: the page decides when a fresh session is stored
  * (after showing/consuming the response), matching `checkout.ts`'s own
  * "the client never has a side effect its caller didn't ask for" posture.
+ *
+ * `idempotencyKey` (issue #513) is OPTIONAL: one key per entered code attempt,
+ * created by the page (`src/lib/kunci-idempotensi.ts`), reused on a retry of
+ * the same attempt. Sent as the `Idempotency-Key` header only when given; a
+ * server that ignores it behaves as before, and one that honours it replays the
+ * same attempt (a registration replay answers success with a fresh session) and
+ * answers `409 IDEMPOTENCY_CONFLICT` for the same key with another body.
  */
-export function verifikasiKode(input: VerifikasiKodeInput): Promise<VerifikasiKodeResponse> {
-  return kirimPermintaan<VerifikasiKodeResponse>("/account/otp/verify", "POST", input);
+export function verifikasiKode(
+  input: VerifikasiKodeInput,
+  idempotencyKey?: string
+): Promise<VerifikasiKodeResponse> {
+  return kirimPermintaan<VerifikasiKodeResponse>(
+    "/account/otp/verify",
+    "POST",
+    input,
+    idempotencyKey === undefined ? undefined : kunciHeader(idempotencyKey)
+  );
 }
 
 /**
@@ -206,9 +222,12 @@ export function ambilAlamat(): Promise<{ items: Alamat[] }> {
 }
 
 /** `POST …/account/addresses` — `400 VALIDATION_ERROR` per field, the same envelope every other form on this app switches on by `.fieldErrors`. */
-export function tambahAlamat(input: AlamatInput): Promise<{ address: Alamat }> {
+export function tambahAlamat(input: AlamatInput, idempotencyKey?: string): Promise<{ address: Alamat }> {
   return denganPembersihanSesi(() =>
-    kirimPermintaan<{ address: Alamat }>("/account/addresses", "POST", input, authHeader())
+    kirimPermintaan<{ address: Alamat }>("/account/addresses", "POST", input, {
+      ...authHeader(),
+      ...kunciHeader(idempotencyKey)
+    })
   );
 }
 
@@ -422,14 +441,15 @@ export type BuatPercakapanInput = { subject: string; body: string };
 
 /** `POST …/account/conversations` — `201 {conversation, message}`, the new thread and its own first (customer) message. `400 VALIDATION_ERROR` for an empty subject/body or a body over 4000 characters. */
 export function buatPercakapan(
-  input: BuatPercakapanInput
+  input: BuatPercakapanInput,
+  idempotencyKey?: string
 ): Promise<{ conversation: Percakapan; message: PesanPercakapan }> {
   return denganPembersihanSesi(() =>
     kirimPermintaan<{ conversation: Percakapan; message: PesanPercakapan }>(
       "/account/conversations",
       "POST",
       input,
-      authHeader()
+      { ...authHeader(), ...kunciHeader(idempotencyKey) }
     )
   );
 }
@@ -447,13 +467,17 @@ export function ambilPercakapanById(id: string): Promise<{ conversation: Percaka
 }
 
 /** `POST …/account/conversations/{id}/messages` — `201 {message}`. `409 CONVERSATION_CLOSED` once a thread is closed (the reply form is hidden then too, but a stale tab can still reach this); `400 VALIDATION_ERROR` over 4000 characters; `429 RATE_LIMITED` on abuse, the same field `toko-permintaan.ts`'s own `TokoApiError.retryAfterSeconds` already decodes. */
-export function kirimPesanPercakapan(id: string, body: string): Promise<{ message: PesanPercakapan }> {
+export function kirimPesanPercakapan(
+  id: string,
+  body: string,
+  idempotencyKey?: string
+): Promise<{ message: PesanPercakapan }> {
   return denganPembersihanSesi(() =>
     kirimPermintaan<{ message: PesanPercakapan }>(
       `/account/conversations/${encodeURIComponent(id)}/messages`,
       "POST",
       { body },
-      authHeader()
+      { ...authHeader(), ...kunciHeader(idempotencyKey) }
     )
   );
 }
