@@ -30,6 +30,7 @@ import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync,
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 
+import { gitRunOrThrow } from "../packages/gerbang/lib/git.mjs";
 import { buildPlan, describePlan, isEmptyPlan } from "../tools/template-init/plan.mjs";
 import { rewriteBunLock } from "../tools/template-init/rewriters.mjs";
 import { main } from "../tools/template-init/run.mjs";
@@ -109,10 +110,12 @@ const HAS_BUN = canSpawn("bun");
  * has already been committed.
  */
 function listTrackedFiles() {
-  return execSync("git ls-files --cached --others --exclude-standard", {
-    cwd: REPO_ROOT,
-    encoding: "utf8"
-  })
+  // `gitRunOrThrow` (`Bun.spawnSync`), not `execSync`: node's `execSync`
+  // caps captured stdout at 1 MiB (`maxBuffer`) and dies with `ENOBUFS`
+  // past it. The path list crossed that line when the BPS population
+  // datasets (#497) landed: `main` sat at ~1.03 MB and one more province
+  // pushed every full-run test here into `ENOBUFS`.
+  return gitRunOrThrow(REPO_ROOT, "ls-files", "--cached", "--others", "--exclude-standard")
     .split("\n")
     .filter(Boolean)
     // NOTE: this test file is NOT excluded from the copy any more. It used to
