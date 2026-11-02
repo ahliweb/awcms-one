@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:d91d3a43fcbc014b69a4bd46227b102796714965524874d00a990b59acd2be56 -->
+<!-- i18n-source-hash: sha256:b1a7999b0b221e38959897447fcca7a606906c7e0dc73dd9ab195c8d52e6a1b0 -->
 
 # `commerce`
 
@@ -904,6 +904,53 @@ memilih `phone_normalized` alih-alih `email_normalized` di `issueOtp`/
 `consumeOtp` milik `customer-account-store.ts`), dan menyelesaikan akun
 lewat `findAccountByPhone`, bukan `findAccountByEmail` — "login lewat
 telepon" berarti akun yang baris PELANGGANnya membawa telepon itu.
+
+**Pendaftaran dan login aman terhadap kirim ganda (Issue #513, ADR-0016).**
+Kebenaran sisi server tidak pernah bergantung pada penjaga single-flight
+storefront.
+
+- `consumeOtp` adalah satu `UPDATE ... WHERE ... AND consumed_at IS NULL
+RETURNING`: CTE `target` dibaca dari snapshot pernyataan dan tidak dijalankan
+  ulang setelah menunggu kunci baris, sehingga tanpa predikat itu verifikasi
+  yang mulai sebelum yang pertama commit juga "cocok" dengan baris yang sudah
+  dikonsumsi (dua sesi dari satu kode - direproduksi oleh
+  `apps/cms/tests/integration/commerce-customer-register-idempotency.integration.test.ts`).
+  Kini yang kedua dari dua verifikasi serentak adalah `401 OTP_INVALID`.
+- Pendaftaran diserialkan per e-mail dan per telepon dengan
+  `pg_advisory_xact_lock` (`acquireCustomerAuthLock`, selalu e-mail lalu
+  telepon, sehingga tanpa siklus). Pihak yang kalah menemukan akun pemenang
+  yang sudah commit: e-mail yang sama adalah login (tidak pernah
+  `PHONE_ALREADY_REGISTERED`), telepon milik akun e-mail lain adalah `409` yang
+  sebenarnya. `createAccountForCustomer` juga menjalankan INSERT dalam
+  savepoint dan melempar `CustomerAccountUniqueViolationError` bertipe saat
+  kalah balapan unik, yang diselesaikan `verifyCustomerOtp` dengan cara yang
+  sama (tidak pernah `500`).
+- `POST .../account/otp/verify` menerima `Idempotency-Key` OPSIONAL
+  (`[A-Za-z0-9_-]{16,128}`, selain itu `400 IDEMPOTENCY_KEY_INVALID`). Catatan
+  berada di `awcms_idempotency_keys` bersama (scope
+  `commerce.customer_otp_verify`, aktor anonim): `(tenant, HMAC kunci, HMAC
+ringkasan tujuan+pengenal+kode, {outcome:"session_issued", accountId})` -
+  tidak pernah kunci mentah, kode, token sesi, e-mail, atau telepon. Kunci sama
+  - permintaan sama dalam 10 menit (`OTP_VERIFY_IDEMPOTENCY_TTL_SECONDS`, tidak
+    pernah lebih lama dari umur kode itu sendiri) dijawab `200` dengan
+    `data.replayed: true` dan sesi BARU untuk akun yang sama (akun terblokir
+    tetap `403`); permintaan lain dengan kunci itu adalah `409
+IDEMPOTENCY_CONFLICT`; catatan di luar jendela diabaikan. Hanya keberhasilan
+    yang dicatat. Permintaan dengan satu kunci diserialkan oleh advisory lock,
+    sehingga dua yang serentak menghasilkan satu akun, satu event
+    `commerce.customer.account_registered`, dan sesi kedua yang berbeda; ulangan
+    menulis satu event `commerce.customer.otp_verify_replayed`. Memerlukan
+    `IDEMPOTENCY_HMAC_SECRET` di produksi seperti rute berkunci lainnya (tanpanya
+    permintaan berkunci gagal tertutup); dengan kunci cadangan per proses,
+    ulangan di instans lain hanyalah verifikasi biasa.
+- `POST .../account/otp/request`: permintaan kedua untuk pendaftaran yang SAMA
+  (pengenal, tujuan, dan untuk `register` nama+telepon) kurang dari
+  `OTP_RESEND_WINDOW_SECONDS` (60, hitung mundur kirim-ulang storefront sendiri)
+  setelah sebelumnya adalah sukses tanpa efek - bentuk respons sama, kode aktif
+  tetap berlaku, tidak ada e-mail atau pesan WhatsApp kedua, tidak ada baris
+  audit. Pemeriksaan berjalan di bawah advisory lock, sehingga dua permintaan
+  serentak mengirim satu pesan. Batas laju tidak berubah dan menghitung setiap
+  permintaan. Tidak ada kunci yang dibaca.
 
 **Diagnostik pemilik**: `GET /api/v1/commerce/whatsapp/messages`
 (`commerce.whatsapp.read`, berpaginasi keyset, telepon tersamar saja) plus
