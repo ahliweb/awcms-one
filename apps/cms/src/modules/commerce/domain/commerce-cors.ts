@@ -70,6 +70,20 @@ export function commerceCorsHeaders(
  * wider allow-list here costs nothing: an actual route still answers
  * `405`/404 on a method it does not implement.
  */
+/**
+ * Issue #513 — the preflight `Access-Control-Allow-Headers` list for a route
+ * that accepts an `Idempotency-Key`. The header is non-simple, so a browser
+ * preflights every cross-origin call that carries it and blocks the call unless
+ * the answer lists it. Every route that takes the key passes
+ * `commerceIdempotentPreflightHeaders([...its own headers])` instead of typing
+ * the string, so the list cannot drift from the route.
+ */
+export function commerceIdempotentPreflightHeaders(
+  base: readonly string[] = ["content-type"]
+): readonly string[] {
+  return base.includes("idempotency-key") ? base : [...base, "idempotency-key"];
+}
+
 export function commercePreflightHeaders(
   decision: CommerceOriginDecision,
   allowedHeaders: readonly string[] = ["content-type"]
