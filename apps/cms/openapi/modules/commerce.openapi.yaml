@@ -6374,9 +6374,6 @@ paths:
                         format: date-time
                       account:
                         $ref: "#/components/schemas/CustomerAccount"
-                  meta:
-                    type: object
-                    properties:
                       replayed:
                         type: boolean
                         enum:
