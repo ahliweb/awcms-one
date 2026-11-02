@@ -888,6 +888,41 @@ purpose+identifier+code, {outcome:"session_issued", accountId})` - never the
   runs under an advisory lock, so two simultaneous requests send one message.
   Rate limits are unchanged and count every request. No key is read.
 
+**The other mutating storefront endpoints (Issue #513, work unit C)** share one
+optional `Idempotency-Key` contract (the shape unit B fixed). Code:
+`domain/storefront-idempotency.ts` (scopes, key shape, window),
+`application/storefront-idempotency.ts` (the keyed run: advisory lock per key
+hash, find, digest compare, save), `application/storefront-idempotent-mutations.ts`
+(one function per route, the same code the routes and the integration tests
+call) and `application/storefront-idempotency-http.ts` (the `400`/`409`
+answers). No migration: rows live in the shared `awcms_idempotency_keys`, one
+`request_scope` per route (`commerce.storefront.*`), the key stored only as an
+HMAC of `(scope, signed-in account id or "-", key)`, the request as an HMAC
+digest of `(scope, account id, order code / conversation id / normalised phone
+/ the content)`.
+
+| Route                                      | Class                                                                                                                   | Record                 |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `POST account/addresses`                   | repeat creates a second address -> keyed                                                                                | the route's `201` body |
+| `POST account/conversations`               | repeat opens a second thread -> keyed                                                                                   | the `201` body         |
+| `POST account/conversations/{id}/messages` | repeat posts twice -> keyed                                                                                             | the `201` body         |
+| `POST orders/{code}/payment-confirmations` | repeat records a second row -> keyed                                                                                    | marker only            |
+| `POST orders/{code}/cancel`                | naturally idempotent (an already-`cancelled` order is `200`, the order row is locked) + optional key                    | marker only            |
+| `POST reviews`                             | unique index stops the duplicate, the retry was a misleading `409 REVIEW_NOT_ALLOWED` -> optional key replays the `201` | `{id}`                 |
+
+Same key + same request within `STOREFRONT_IDEMPOTENCY_TTL_SECONDS` (1 hour)
+replays with `data.replayed: true`; another request under the key is `409
+IDEMPOTENCY_CONFLICT` (never the stored answer, so a key cannot be replayed
+against another order, conversation or phone); a malformed header is `400
+IDEMPOTENCY_KEY_INVALID`. Only successes are recorded. A replay of a
+conversation or message does not spend the per-account post limit, and writes
+one `commerce.storefront.idempotency_replayed` audit event (the scope only,
+never the key). `createAccountAddress` also takes an advisory lock per customer
+(limit and the first-address default hold under concurrency); cancelling an
+order locks its row (`FOR UPDATE`). All six routes list `idempotency-key` in
+their preflight through `commerceIdempotentPreflightHeaders`. Needs
+`IDEMPOTENCY_HMAC_SECRET` in production like every other keyed route.
+
 **Owner diagnostics**: `GET /api/v1/commerce/whatsapp/messages`
 (`commerce.whatsapp.read`, keyset-paginated, masked phone only) plus a
 minimal `/admin/commerce-whatsapp` screen (status filter, no create/update/

@@ -36,6 +36,10 @@ describe("createAccountAddress — limit_reached (Issue #91)", () => {
     const fakeTx = ((strings: TemplateStringsArray) => {
       const text = strings.join("");
       calls.push(text);
+      // Issue #513: creates are serialised per customer by an advisory lock.
+      if (text.includes("pg_advisory_xact_lock")) {
+        return Promise.resolve([]);
+      }
       if (text.includes("count(*)::int AS n")) {
         return Promise.resolve([{ n: ACCOUNT_ADDRESS_LIMIT }]);
       }
