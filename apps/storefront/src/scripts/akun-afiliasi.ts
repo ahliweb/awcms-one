@@ -24,6 +24,7 @@
  *     the CMS's own numbers), and a keyset-paginated commissions list
  *     ("Muat lebih banyak").
  */
+import { penjagaUntuk } from "../lib/kirim-tunggal";
 import { ambilAfiliasi, ambilKomisiAfiliasi, gabungAfiliasi, type AfiliasiKomisiHalaman } from "../lib/akun-klien";
 import { bacaSesi } from "../lib/akun-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
@@ -228,32 +229,36 @@ if (root) {
     void loadMoreKomisi();
   }
 
+  // Issue #513: joining is naturally idempotent (the server answers the existing
+  // affiliate for an account that already joined), so the click is guarded but
+  // carries no key.
+  const gabungGuard = penjagaUntuk(gabungButton);
+
   gabungButton?.addEventListener("click", async () => {
     hideSubmitError();
-    gabungButton.disabled = true;
-    try {
-      const { affiliate } = await gabungAfiliasi();
-      renderEnrolled(affiliate);
-      if (statusEl) {
-        statusEl.hidden = false;
-        statusEl.textContent = "Berhasil bergabung dengan program afiliasi.";
-      }
-    } catch (error) {
-      if (error instanceof TokoApiError && error.code === "AFFILIATE_PROGRAM_DISABLED") {
-        if (submitErrorEl && submitErrorMessageEl) {
-          submitErrorEl.hidden = false;
-          submitErrorMessageEl.textContent = "Program afiliasi sedang tidak aktif di toko ini.";
+    await gabungGuard.jalankan(async () => {
+      try {
+        const { affiliate } = await gabungAfiliasi();
+        renderEnrolled(affiliate);
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = "Berhasil bergabung dengan program afiliasi.";
         }
-        return;
+      } catch (error) {
+        if (error instanceof TokoApiError && error.code === "AFFILIATE_PROGRAM_DISABLED") {
+          if (submitErrorEl && submitErrorMessageEl) {
+            submitErrorEl.hidden = false;
+            submitErrorMessageEl.textContent = "Program afiliasi sedang tidak aktif di toko ini.";
+          }
+          return;
+        }
+        if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+          showGuestView();
+          return;
+        }
+        showSubmitError(error, "bergabung dengan program afiliasi");
       }
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        showGuestView();
-        return;
-      }
-      showSubmitError(error, "bergabung dengan program afiliasi");
-    } finally {
-      gabungButton.disabled = false;
-    }
+    });
   });
 
   // --- guest/account toggle ---------------------------------------------------

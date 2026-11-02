@@ -19,6 +19,7 @@
  *  - after an action focus moves to the `aria-live` status region so a
  *    keyboard or screen-reader user hears the outcome.
  */
+import { penjagaUntuk } from "../lib/kirim-tunggal";
 import { ambilStatusPush, ubahPreferensiPush } from "../lib/akun-klien";
 import { bacaSesi } from "../lib/akun-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
@@ -70,7 +71,6 @@ if (root) {
   const muatUlangIzinButton = root.querySelector<HTMLButtonElement>("[data-notif-muat-ulang-izin]");
   const panels = Array.from(root.querySelectorAll<HTMLElement>("[data-panel]"));
   const form = root.querySelector<HTMLFormElement>("[data-notif-form]");
-  const aktifkanButton = root.querySelector<HTMLButtonElement>("[data-notif-aktifkan]");
   const tujuanEl = root.querySelector<HTMLElement>("[data-notif-tujuan]");
   const tujuanGalatEl = root.querySelector<HTMLElement>("[data-notif-tujuan-galat]");
   const teksEl = root.querySelector<HTMLElement>("[data-notif-teks]");
@@ -222,7 +222,7 @@ if (root) {
       hapus.className = "btn btn--quiet btn--sm akun-btn-danger";
       hapus.textContent = ini ? "Hapus perangkat ini" : "Hapus";
       hapus.setAttribute("aria-label", `Hapus ${device.userAgentSummary ?? "perangkat tidak dikenal"}${ini ? " (perangkat ini)" : ""} dari daftar notifikasi`);
-      hapus.addEventListener("click", () => void hapusPerangkat(device, ini, hapus));
+      hapus.addEventListener("click", () => void hapusPerangkat(device, ini));
       aksi.append(hapus);
 
       kartu.append(kepala, rincian, aksi);
@@ -452,6 +452,17 @@ if (root) {
   // Actions
   // -------------------------------------------------------------------------
 
+  // Issue #513: one guard per action area. Enrolment is create-or-refresh of this
+  // browser's own subscription (the server upserts by endpoint) and every other
+  // call here (a PUT of preferences, a DELETE of a device) is naturally
+  // idempotent, so these are guarded but carry no key. The enrolment call keeps
+  // starting synchronously inside the submit handler (the permission prompt
+  // needs the user gesture): `jalankan` calls the task synchronously.
+  const aktifkanGuard = penjagaUntuk(form);
+  const prefsGuard = penjagaUntuk(prefsEl, { selektor: "input[type=checkbox]" });
+  const nonaktifkanGuard = penjagaUntuk(nonaktifkanButton);
+  const perangkatGuard = penjagaUntuk(perangkatEl);
+
   function tujuanTercentang(): PushPurpose[] {
     if (!tujuanEl) return [];
     return Array.from(tujuanEl.querySelectorAll<HTMLInputElement>("input[type=checkbox]"))
@@ -482,100 +493,103 @@ if (root) {
 
   async function jalankanAktifkan(purposes: PushPurpose[], akunId: string): Promise<void> {
     if (!status) return;
-    if (aktifkanButton) aktifkanButton.disabled = true;
-    umumkan("Mengaktifkan notifikasi…", false);
+    const capability = status.capability;
 
-    // The promise is created here, in the submit handler's own call stack.
-    const hasil = await aktifkanPerangkat(dapatkanDeps(), { capability: status.capability, purposes, akunId });
+    await aktifkanGuard.jalankan(async () => {
+      umumkan("Mengaktifkan notifikasi…", false);
 
-    if (aktifkanButton) aktifkanButton.disabled = false;
+      // The promise is created here, in the submit handler's own call stack.
+      const hasil = await aktifkanPerangkat(dapatkanDeps(), { capability, purposes, akunId });
 
-    if (!hasil.ok) {
-      if (statusEl) statusEl.hidden = true;
-      tampilkanGalat(hasil.galat);
-      // The permission may have changed (denied): re-render from facts.
-      if (hasil.galat.kode === "PERMISSION_DENIED") await muat();
-      return;
-    }
+      if (!hasil.ok) {
+        if (statusEl) statusEl.hidden = true;
+        tampilkanGalat(hasil.galat);
+        // The permission may have changed (denied): re-render from facts.
+        if (hasil.galat.kode === "PERMISSION_DENIED") await muat();
+        return;
+      }
 
-    await muat();
-    umumkan("Notifikasi diaktifkan di perangkat ini.");
+      await muat();
+      umumkan("Notifikasi diaktifkan di perangkat ini.");
+    });
   }
 
   async function ubahTujuan(input: HTMLInputElement, teks: TeksPersetujuan): Promise<void> {
     if (!status) return;
     const purpose = input.value as PushPurpose;
     const diinginkan = input.checked;
-    input.disabled = true;
     sembunyikanGalat();
 
-    try {
-      // Turning ON records the version of the text the shopper can read on this
-      // very page; turning OFF needs none.
-      const jawaban = await ubahPreferensiPush({ [purpose]: diinginkan }, diinginkan ? teks.version : undefined);
-      const diurai = (jawaban as { preferences?: unknown } | null)?.preferences;
-      if (Array.isArray(diurai) && status) status = { ...status, preferences: parsePreferences(diurai) };
-      umumkan(
-        diinginkan
-          ? `${teks.tujuan[purpose].label} diaktifkan.`
-          : `${teks.tujuan[purpose].label} dimatikan.`
-      );
-    } catch (error) {
-      // Never leave the box showing a state the server did not confirm.
-      input.checked = !diinginkan;
-      const galat = petakanGalat(error);
-      if (galat.kode === "UNAUTHENTICATED") {
-        await muat();
-        return;
+    const jalan = await prefsGuard.jalankan(async () => {
+      try {
+        // Turning ON records the version of the text the shopper can read on this
+        // very page; turning OFF needs none.
+        const jawaban = await ubahPreferensiPush({ [purpose]: diinginkan }, diinginkan ? teks.version : undefined);
+        const diurai = (jawaban as { preferences?: unknown } | null)?.preferences;
+        if (Array.isArray(diurai) && status) status = { ...status, preferences: parsePreferences(diurai) };
+        umumkan(
+          diinginkan
+            ? `${teks.tujuan[purpose].label} diaktifkan.`
+            : `${teks.tujuan[purpose].label} dimatikan.`
+        );
+      } catch (error) {
+        // Never leave the box showing a state the server did not confirm.
+        input.checked = !diinginkan;
+        const galat = petakanGalat(error);
+        if (galat.kode === "UNAUTHENTICATED") {
+          await muat();
+          return;
+        }
+        tampilkanGalat(galat);
       }
-      tampilkanGalat(galat);
-    } finally {
-      input.disabled = false;
-      perbaruiPrefsKosong();
-    }
+    });
+    // A change made while another save is pending is refused by the guard (the
+    // boxes are disabled then, so this is a defensive revert, never a second request).
+    if (!jalan.dijalankan) input.checked = !diinginkan;
+    perbaruiPrefsKosong();
   }
 
   nonaktifkanButton?.addEventListener("click", async () => {
-    nonaktifkanButton.disabled = true;
     sembunyikanGalat();
-    const tersimpan = buatPortPenanda().baca()?.deviceId ?? status?.devices.find((d) => d.current)?.id ?? null;
-    const hasil = await matikanPerangkatIni(dapatkanDeps(), tersimpan);
-    nonaktifkanButton.disabled = false;
-    await muat();
-    umumkan(
-      hasil.terkonfirmasi
-        ? "Notifikasi dimatikan di perangkat ini."
-        : "Notifikasi sudah dimatikan di perangkat ini, tetapi server belum bisa dihubungi, jadi perangkat masih tercantum di daftar. Coba hapus lagi dari daftar perangkat nanti."
-    );
-  });
-
-  async function hapusPerangkat(device: PushDevice, ini: boolean, tombol: HTMLButtonElement): Promise<void> {
-    tombol.disabled = true;
-    sembunyikanGalat();
-
-    if (ini) {
-      const hasil = await matikanPerangkatIni(dapatkanDeps(), device.id);
+    await nonaktifkanGuard.jalankan(async () => {
+      const tersimpan = buatPortPenanda().baca()?.deviceId ?? status?.devices.find((d) => d.current)?.id ?? null;
+      const hasil = await matikanPerangkatIni(dapatkanDeps(), tersimpan);
       await muat();
       umumkan(
         hasil.terkonfirmasi
-          ? "Perangkat ini dihapus dan notifikasi dimatikan."
-          : "Notifikasi sudah dimatikan di perangkat ini, tetapi server belum bisa dihubungi. Coba hapus lagi nanti."
+          ? "Notifikasi dimatikan di perangkat ini."
+          : "Notifikasi sudah dimatikan di perangkat ini, tetapi server belum bisa dihubungi, jadi perangkat masih tercantum di daftar. Coba hapus lagi dari daftar perangkat nanti."
       );
-      return;
-    }
+    });
+  });
 
-    const { galat } = await cabutPerangkatLain(dapatkanDeps(), device.id);
-    if (galat) {
-      tombol.disabled = false;
-      if (galat.kode === "UNAUTHENTICATED") {
+  async function hapusPerangkat(device: PushDevice, ini: boolean): Promise<void> {
+    sembunyikanGalat();
+
+    await perangkatGuard.jalankan(async () => {
+      if (ini) {
+        const hasil = await matikanPerangkatIni(dapatkanDeps(), device.id);
         await muat();
+        umumkan(
+          hasil.terkonfirmasi
+            ? "Perangkat ini dihapus dan notifikasi dimatikan."
+            : "Notifikasi sudah dimatikan di perangkat ini, tetapi server belum bisa dihubungi. Coba hapus lagi nanti."
+        );
         return;
       }
-      tampilkanGalat(galat);
-      return;
-    }
-    await muat();
-    umumkan("Perangkat dihapus dari daftar notifikasi.");
+
+      const { galat } = await cabutPerangkatLain(dapatkanDeps(), device.id);
+      if (galat) {
+        if (galat.kode === "UNAUTHENTICATED") {
+          await muat();
+          return;
+        }
+        tampilkanGalat(galat);
+        return;
+      }
+      await muat();
+      umumkan("Perangkat dihapus dari daftar notifikasi.");
+    });
   }
 
   cobaLagiButton?.addEventListener("click", () => void muat());

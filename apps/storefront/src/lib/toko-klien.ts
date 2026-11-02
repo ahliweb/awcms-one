@@ -48,6 +48,7 @@
  * are unchanged by that split — see `toko-permintaan.ts`'s own docblock.
  */
 import type { KetersediaanMenginap, KuotaBooking, TawaranBooking } from "./booking-kontrak";
+import { kunciHeader } from "./kunci-idempotensi";
 import { kirimPermintaan } from "./toko-permintaan";
 export { TokoApiError } from "./toko-permintaan";
 export type { ValidationErrorDetail } from "./toko-permintaan";
@@ -381,9 +382,15 @@ export function getOrder(orderCode: string, phone: string): Promise<Order> {
 /** `POST …/orders/{orderCode}/payment-confirmations` — reports a manual transfer/QRIS payment. `409 ORDER_NOT_PAYABLE` when the order left `pending_payment` before this reached the CMS. */
 export function submitPaymentConfirmation(
   orderCode: string,
-  input: PaymentConfirmationRequest
+  input: PaymentConfirmationRequest,
+  idempotencyKey?: string
 ): Promise<Order> {
-  return kirimPermintaan<Order>(`/orders/${encodeURIComponent(orderCode)}/payment-confirmations`, "POST", input);
+  return kirimPermintaan<Order>(
+    `/orders/${encodeURIComponent(orderCode)}/payment-confirmations`,
+    "POST",
+    input,
+    idempotencyKey === undefined ? undefined : kunciHeader(idempotencyKey)
+  );
 }
 
 /** `POST …/orders/{orderCode}/payment-proof/upload-sessions` — step 1 of the proof-of-payment upload. `503 MEDIA_UNAVAILABLE` when R2 is not configured on this deployment (also reflected in the public store settings' `payment.proofUpload`). */
@@ -453,8 +460,17 @@ export function createGatewaySession(
 }
 
 /** `POST …/orders/{orderCode}/cancel` — `409 ORDER_NOT_CANCELLABLE` once the order has left a cancellable state. */
-export function cancelOrder(orderCode: string, input: { phone: string; reason: string | null }): Promise<Order> {
-  return kirimPermintaan<Order>(`/orders/${encodeURIComponent(orderCode)}/cancel`, "POST", input);
+export function cancelOrder(
+  orderCode: string,
+  input: { phone: string; reason: string | null },
+  idempotencyKey?: string
+): Promise<Order> {
+  return kirimPermintaan<Order>(
+    `/orders/${encodeURIComponent(orderCode)}/cancel`,
+    "POST",
+    input,
+    idempotencyKey === undefined ? undefined : kunciHeader(idempotencyKey)
+  );
 }
 
 /**

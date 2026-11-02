@@ -15,6 +15,7 @@
  */
 import { ambilPesananAkun, ambilProfil, ambilWishlistAkun, ubahProfil } from "../lib/akun-klien";
 import { bacaSesi } from "../lib/akun-sesi";
+import { penjagaUntuk } from "../lib/kirim-tunggal";
 import { keluarDenganPush, keluarLokalDenganPush } from "../lib/push-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
 import { TokoApiError } from "../lib/toko-permintaan";
@@ -169,6 +170,14 @@ if (root) {
     }
   }
 
+  // Issue #513: every write on this page is naturally idempotent (a PATCH of the
+  // caller's own profile, a logout), so each is guarded and none carries a key.
+  const namaGuard = penjagaUntuk(ubahNamaForm);
+  const consentGuard = penjagaUntuk(consentCheckbox, { selektor: "input" });
+  const keluarGuard = penjagaUntuk(keluarButton, {
+    kontrol: () => [keluarButton, keluarUlangButton, keluarLokalButton]
+  });
+
   ubahNamaForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     hideSubmitError();
@@ -181,25 +190,27 @@ if (root) {
       return;
     }
 
-    try {
-      const { account } = await ubahProfil({ name });
-      renderProfile(account);
-      if (statusEl) {
-        statusEl.hidden = false;
-        statusEl.textContent = "Nama berhasil diperbarui.";
+    await namaGuard.jalankan(async () => {
+      try {
+        const { account } = await ubahProfil({ name });
+        renderProfile(account);
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = "Nama berhasil diperbarui.";
+        }
+      } catch (error) {
+        if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR" && errorEl) {
+          const fieldError = error.fieldErrors.find((f) => f.field === "name");
+          errorEl.textContent = fieldError?.message ?? error.message;
+          return;
+        }
+        if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+          showGuestView();
+          return;
+        }
+        showSubmitError(error, "mengubah nama akun");
       }
-    } catch (error) {
-      if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR" && errorEl) {
-        const fieldError = error.fieldErrors.find((f) => f.field === "name");
-        errorEl.textContent = fieldError?.message ?? error.message;
-        return;
-      }
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        showGuestView();
-        return;
-      }
-      showSubmitError(error, "mengubah nama akun");
-    }
+    });
   });
 
   consentCheckbox?.addEventListener("change", async () => {
@@ -207,28 +218,30 @@ if (root) {
     hideSubmitError();
     if (consentStatusEl) consentStatusEl.textContent = "";
 
-    try {
-      const { account } = await ubahProfil({ marketingConsent: desired });
-      consentCheckbox.checked = account.marketingConsent;
-      if (consentStatusEl) {
-        consentStatusEl.textContent = account.marketingConsent
-          ? "Anda akan menerima promo lewat e-mail/WhatsApp."
-          : "Anda tidak akan menerima promo lewat e-mail/WhatsApp.";
+    await consentGuard.jalankan(async () => {
+      try {
+        const { account } = await ubahProfil({ marketingConsent: desired });
+        consentCheckbox.checked = account.marketingConsent;
+        if (consentStatusEl) {
+          consentStatusEl.textContent = account.marketingConsent
+            ? "Anda akan menerima promo lewat e-mail/WhatsApp."
+            : "Anda tidak akan menerima promo lewat e-mail/WhatsApp.";
+        }
+      } catch (error) {
+        // Revert the checkbox to what the server actually holds - never leave
+        // it showing a state the save did not confirm.
+        consentCheckbox.checked = !desired;
+        if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+          showGuestView();
+          return;
+        }
+        if (consentStatusEl) {
+          consentStatusEl.textContent =
+            error instanceof TokoApiError ? error.message : "Gagal menyimpan preferensi. Coba lagi.";
+        }
+        showWaFallback("mengubah preferensi promo");
       }
-    } catch (error) {
-      // Revert the checkbox to what the server actually holds — never leave
-      // it showing a state the save did not confirm.
-      consentCheckbox.checked = !desired;
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        showGuestView();
-        return;
-      }
-      if (consentStatusEl) {
-        consentStatusEl.textContent =
-          error instanceof TokoApiError ? error.message : "Gagal menyimpan preferensi. Coba lagi.";
-      }
-      showWaFallback("mengubah preferensi promo");
-    }
+    });
   });
 
   /**
@@ -242,14 +255,10 @@ if (root) {
   async function jalankanKeluar(): Promise<void> {
     hideSubmitError();
     if (keluarGagalEl) keluarGagalEl.hidden = true;
-    if (keluarButton) keluarButton.disabled = true;
 
-    let hasil: Awaited<ReturnType<typeof keluarDenganPush>>;
-    try {
-      hasil = await keluarDenganPush();
-    } finally {
-      if (keluarButton) keluarButton.disabled = false;
-    }
+    const jalan = await keluarGuard.jalankan(() => keluarDenganPush());
+    if (!jalan.dijalankan) return;
+    const hasil = jalan.hasil;
 
     if (hasil.hasil === "belum_terkonfirmasi") {
       if (keluarGagalPesanEl) {
@@ -269,8 +278,8 @@ if (root) {
   keluarUlangButton?.addEventListener("click", () => void jalankanKeluar());
   keluarLokalButton?.addEventListener("click", async () => {
     if (keluarGagalEl) keluarGagalEl.hidden = true;
-    await keluarLokalDenganPush();
-    showGuestView();
+    const jalan = await keluarGuard.jalankan(() => keluarLokalDenganPush());
+    if (jalan.dijalankan) showGuestView();
   });
 
   // Issue #431: the "Notifikasi" card exists only in a build with

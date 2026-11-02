@@ -25,6 +25,7 @@ import {
   ambilPercakapanById,
   ambilProfil,
   buatPercakapan,
+  tambahAlamat,
   keluar,
   kirimPesanPercakapan,
   mintaKode,
@@ -514,5 +515,82 @@ describe("akun-klien: reservation detail and cancellation (issue #387)", () => {
     expect(lastRequest).toBeNull();
     await expect(batalkanReservasi("BJM-1", "1.00", "k")).rejects.toMatchObject({ code: "UNAUTHENTICATED" });
     expect(lastRequest).toBeNull();
+  });
+});
+
+describe("akun-klien: the optional Idempotency-Key (issue #513)", () => {
+  const KUNCI = "8c1f0f3e-5d0b-4a52-9a41-0f3b6c1d2e77";
+  const ALAMAT = {
+    label: "Rumah",
+    recipientName: "Budi",
+    phone: "0812",
+    provinceCode: "63",
+    provinceName: "Kalimantan Selatan",
+    cityCode: "63.71",
+    cityName: "Banjarmasin",
+    districtCode: "63.71.01",
+    districtName: "Banjarmasin Selatan",
+    postalCode: "70231",
+    street: "Jl. A. Yani",
+    notes: null
+  };
+
+  test("verifikasiKode sends the key as the Idempotency-Key header, still with no Authorization", async () => {
+    mockFetch(200, { success: true, data: { token: "cs_stub_1", expiresAt: SESI_VALID.expiresAt, account: AKUN } });
+    await verifikasiKode({ email: "budi@example.test", code: "123456", purpose: "register" }, KUNCI);
+
+    const headers = lastRequest?.init.headers as Record<string, string>;
+    expect(headers["Idempotency-Key"]).toBe(KUNCI);
+    expect(headers.Authorization).toBeUndefined();
+    expect(headers["Content-Type"]).toBe("application/json");
+    // The key travels in the header only: never in the body, never in the URL.
+    expect(String(lastRequest?.init.body)).not.toContain(KUNCI);
+    expect(lastRequest?.url).not.toContain(KUNCI);
+  });
+
+  test("without a key no Idempotency-Key header is sent (a caller that never opts in is unchanged)", async () => {
+    mockFetch(200, { success: true, data: { token: "cs_stub_1", expiresAt: SESI_VALID.expiresAt, account: AKUN } });
+    await verifikasiKode({ email: "budi@example.test", code: "123456", purpose: "register" });
+    expect(Object.keys(lastRequest?.init.headers as Record<string, string>)).toEqual(["Content-Type"]);
+  });
+
+  test("a malformed key is refused before any request is made", () => {
+    mockFetch(200, { success: true, data: {} });
+    expect(() => verifikasiKode({ email: "a@b.test", code: "1", purpose: "login" }, "pendek")).toThrow(TypeError);
+    expect(lastRequest).toBeNull();
+  });
+
+  test("the bearer calls merge the key with Authorization", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(201, { success: true, data: { address: { id: "a1", isDefault: false, ...ALAMAT } } });
+    await tambahAlamat(ALAMAT, KUNCI);
+    let headers = lastRequest?.init.headers as Record<string, string>;
+    expect(headers.Authorization).toBe("Bearer cs_stub_1");
+    expect(headers["Idempotency-Key"]).toBe(KUNCI);
+
+    mockFetch(201, { success: true, data: { conversation: {}, message: {} } });
+    await buatPercakapan({ subject: "Halo", body: "Isi" }, KUNCI);
+    headers = lastRequest?.init.headers as Record<string, string>;
+    expect(headers["Idempotency-Key"]).toBe(KUNCI);
+
+    mockFetch(201, { success: true, data: { message: {} } });
+    await kirimPesanPercakapan("c1", "Isi", KUNCI);
+    headers = lastRequest?.init.headers as Record<string, string>;
+    expect(headers["Idempotency-Key"]).toBe(KUNCI);
+    expect(headers.Authorization).toBe("Bearer cs_stub_1");
+  });
+
+  test("the bearer calls without a key send only Authorization and Content-Type", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(201, { success: true, data: { address: { id: "a1", isDefault: false, ...ALAMAT } } });
+    await tambahAlamat(ALAMAT);
+    expect(Object.keys(lastRequest?.init.headers as Record<string, string>).sort()).toEqual(["Authorization", "Content-Type"]);
+  });
+
+  test("a 409 IDEMPOTENCY_CONFLICT surfaces as a TokoApiError with its code", async () => {
+    mockFetch(409, { success: false, error: { code: "IDEMPOTENCY_CONFLICT", message: "used with another body" } });
+    await expect(
+      verifikasiKode({ email: "a@b.test", code: "123456", purpose: "register" }, KUNCI)
+    ).rejects.toMatchObject({ code: "IDEMPOTENCY_CONFLICT", status: 409 });
   });
 });
