@@ -86,6 +86,11 @@ export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
       "Issue #117 (ADR-0017 D7). One row per (tenant, day, category): a quantity, a gross sum and the category's own name. A category is a catalogue label, not a person; the same reasoning as `awcms_commerce_sales_daily` covers the figures."
   },
   {
+    table: "awcms_channel_account_health",
+    reason:
+      "ADR-0148 / Issue #1140. One row per ACCOUNT holding the latest health report: a state, a fixed reason code, a token expiry and quota figures. It records how an external account is doing, not anything about a person, and there is no actor stamp on the row at all."
+  },
+  {
     table: "awcms_site_profile",
     reason:
       "ADR-0102. One row per TENANT holding the PUBLISHER's own published identity — masthead tagline, footer copyright, editorial address, and the contact channels the newsroom prints on its own contact page. It records nothing the tenant holds ABOUT a third party, which is what a subject-access request asks for; a reader exercising their rights against this site is not asking for the site's own address. The honest edge case, stated rather than skipped: a small newsroom may type a person's address into `contact_email` or `whatsapp_number`. That value is still the publisher's own, published deliberately by the person who typed it, and erasing it is editing the field on `/admin/site-profile` — not a subject-rights workflow, which would have no way to distinguish it from the masthead it sits beside. It is also why the audit row for a change records WHICH FIELDS are set and never their values: the values do not need a second copy in a store more people read."

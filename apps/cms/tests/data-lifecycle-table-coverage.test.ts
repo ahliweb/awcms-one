@@ -549,7 +549,21 @@ describe("the real repository", () => {
       // publications at most), never by traffic, whose generic age-only purge
       // would delete the dataset currently being served. A candidate to propose
       // upstream together with the tables themselves; keep ours on conflict.
-      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(21);
+      //
+      // **27 upstream, 29 in this embed (the two above plus these eight), since `channel_accounts` (Issue #1140, ADR-0148).** The eight raised
+      // are the control-plane tables of one module, and the argument is stated per
+      // entry: every one is bounded by AUTHORSHIP (an administrator registers an
+      // account, grants a capability, assigns a person), by a UNIQUE key (one
+      // capability per account and name, one assignment per person, one health row
+      // per account) or by the bounded sweep on the OAuth write path, and none
+      // accumulates with traffic. A `dataLifecycle` descriptor was weighed and
+      // rejected for each: the generic engine would AGE-DELETE accounts and
+      // capability evidence that are still in use, and a delegated descriptor for
+      // the one growth-capable table (`awcms_channel_oauth_states`) would need an
+      // `awcms_worker` read grant on a control-plane table nothing else lets the
+      // worker touch. The recorded follow-up, when a connector adds a worker, is
+      // a delegated descriptor for that table with its count function.
+      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(29);
     });
 
     test("every entry names a table that really exists in sql/", () => {
