@@ -795,6 +795,27 @@ export async function toPublicOrderRecord(
 const STOREFRONT_CHANNEL = "storefront";
 
 /**
+ * The current public record of the order named by `(orderCode, phone)` - the
+ * same credential check `createPaymentConfirmation` and `cancelOrderByCustomer`
+ * apply (no channel filter, unlike the tracking lookup below). Issue #513: a
+ * replayed keyed request answers with the order as it is NOW, so nothing of the
+ * order is copied into the idempotency table.
+ */
+export async function fetchOrderRecordForCredential(
+  tx: Bun.SQL,
+  tenantId: string,
+  mediaPort: MediaLibraryPort,
+  orderCode: string,
+  phone: string
+): Promise<PublicOrderRecord | null> {
+  const detail = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
+    orderCode
+  });
+  if (!detail || detail.customer.phone !== phone) return null;
+  return toPublicOrderRecord(tx, tenantId, detail);
+}
+
+/**
  * The tracking lookup — `orderCode` + `phone` is the credential, and the
  * check happens INSIDE this query (not merely in the route's `prepare`):
  * unknown code, wrong phone, a POS counter sale, and another tenant's order
@@ -2037,10 +2058,30 @@ export async function cancelOrderByCustomer(
   reason: string | null,
   correlationId?: string
 ): Promise<PublicOrderRecord | null> {
+  // Issue #513: serialise cancels of one order. Without the row lock two
+  // concurrent cancels both read `pending_payment`, both ran the transition
+  // (two `cancelled` events, two audit rows, a second restock). The lock is
+  // held to the end of the transaction, so the second one reads the committed
+  // `cancelled` below.
+  await tx`
+    SELECT id FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId} AND order_code = ${orderCode} AND deleted_at IS NULL
+    FOR UPDATE
+  `;
+
   const detail = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
     orderCode
   });
   if (!detail || detail.customer.phone !== phone) return null;
+
+  // Naturally idempotent: cancelling an order that is already cancelled (a
+  // retry after a lost response, a double tap, a cancel by the store a moment
+  // earlier) answers with the order as it is. No second transition, event or
+  // audit row; the customer's retry is not turned into a confusing 409. Every
+  // OTHER state the customer may not cancel from keeps its refusal.
+  if (detail.status === "cancelled") {
+    return toPublicOrderRecord(tx, tenantId, detail);
+  }
 
   if (!isOrderCancellableByCustomer(detail.status)) {
     throw new OrderNotCancellableError();

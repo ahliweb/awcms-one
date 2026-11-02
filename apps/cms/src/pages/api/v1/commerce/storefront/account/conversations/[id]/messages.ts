@@ -14,13 +14,18 @@ import {
   fail,
   jsonResponse
 } from "../../../../../../../../modules/_shared/api-response";
-import {
-  postCustomerMessage,
-  type ConversationMessageRecord
-} from "../../../../../../../../modules/commerce/application/conversation-directory";
 import { requireCustomerSession } from "../../../../../../../../modules/commerce/application/customer-session-auth";
 import { fetchCommerceFeatures } from "../../../../../../../../modules/commerce/application/commerce-feature-gate";
 import { validateConversationMessageInput } from "../../../../../../../../modules/commerce/domain/conversation-validation";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../../../modules/commerce/domain/commerce-cors";
+import {
+  postCustomerMessageIdempotent,
+  type PostMessageIdempotentOutcome
+} from "../../../../../../../../modules/commerce/application/storefront-idempotent-mutations";
+import {
+  readStorefrontIdempotencyKey,
+  storefrontIdempotencyConflictResponse
+} from "../../../../../../../../modules/commerce/application/storefront-idempotency-http";
 import { commercePreflightResponse } from "../../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -34,6 +39,12 @@ import { withPublicCommerceTenant } from "../../../../../../../../modules/commer
  * is one account spamming the store's inbox, not one IP spamming many
  * accounts (the IP-keyed limiter below still applies on top, same as every
  * other route in this file).
+ *
+ * Takes an OPTIONAL `Idempotency-Key` (Issue #513, unit C): a repeat posts the
+ * message twice, so the same key + same conversation + same text replays the
+ * original `201` (`data.replayed: true`, no second message, no spent post
+ * limit); the same key for another conversation or text is `409
+ * IDEMPOTENCY_CONFLICT`.
  */
 const RATE_LIMIT_MAX = parsePositiveIntSetting(
   process.env.COMMERCE_STOREFRONT_RATE_LIMIT_MAX,
@@ -51,16 +62,16 @@ const CONVERSATION_POST_RATE_LIMIT_MAX = parsePositiveIntSetting(
   "COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX"
 );
 const CONVERSATION_POST_RATE_LIMIT_WINDOW_SEC = 60 * 60;
-const PREFLIGHT_ALLOWED_HEADERS = ["content-type", "authorization"] as const;
+const PREFLIGHT_ALLOWED_HEADERS = commerceIdempotentPreflightHeaders([
+  "content-type",
+  "authorization"
+]);
 
 type Outcome =
   | { kind: "unauthenticated" }
   | { kind: "blocked" }
   | { kind: "validation_error"; errors: { field: string; message: string }[] }
-  | { kind: "rate_limited"; retryAfterSec: number }
-  | { kind: "not_found" }
-  | { kind: "closed" }
-  | { kind: "posted"; message: ConversationMessageRecord };
+  | PostMessageIdempotentOutcome;
 
 export const POST: APIRoute = async ({
   request,
@@ -86,6 +97,9 @@ export const POST: APIRoute = async ({
       }
     );
   }
+
+  const idempotency = readStorefrontIdempotencyKey(request);
+  if ("response" in idempotency) return idempotency.response;
 
   const conversationId = params.id;
   const bodyRead = await readJsonBody(request);
@@ -114,29 +128,30 @@ export const POST: APIRoute = async ({
       }
 
       const accountId = authOutcome.account.id;
-      const postLimit = await checkSharedRateLimit(
-        `commerce:conversations:post:account:${accountId}`,
-        {
-          maxAttempts: CONVERSATION_POST_RATE_LIMIT_MAX,
-          windowMs: CONVERSATION_POST_RATE_LIMIT_WINDOW_SEC * 1000
-        }
-      );
-      if (!postLimit.allowed) {
-        return { kind: "rate_limited", retryAfterSec: postLimit.retryAfterSec };
-      }
-
-      const outcome = await postCustomerMessage(
+      return postCustomerMessageIdempotent(
         tx,
         tenant.tenantId,
         accountId,
         conversationId,
         validation.value.body,
-        locals.correlationId
+        {
+          key: idempotency.key,
+          correlationId: locals.correlationId,
+          // Asked only for a NEW message: a replay does not spend the limit.
+          admit: async () => {
+            const postLimit = await checkSharedRateLimit(
+              `commerce:conversations:post:account:${accountId}`,
+              {
+                maxAttempts: CONVERSATION_POST_RATE_LIMIT_MAX,
+                windowMs: CONVERSATION_POST_RATE_LIMIT_WINDOW_SEC * 1000
+              }
+            );
+            return postLimit.allowed
+              ? null
+              : { retryAfterSec: postLimit.retryAfterSec };
+          }
+        }
       );
-
-      if (outcome.kind === "not_found") return { kind: "not_found" };
-      if (outcome.kind === "closed") return { kind: "closed" };
-      return { kind: "posted", message: outcome.message };
     }
   );
 
@@ -203,8 +218,18 @@ function respond(
       }
     );
   }
+  if (result.kind === "idempotency_conflict") {
+    return storefrontIdempotencyConflictResponse(corsHeaders);
+  }
   return jsonResponse(
-    { success: true, data: { message: result.message }, meta: {} },
+    {
+      success: true,
+      data: {
+        message: result.message,
+        ...(result.replayed ? { replayed: true } : {})
+      },
+      meta: {}
+    },
     { status: 201, headers: corsHeaders }
   );
 }

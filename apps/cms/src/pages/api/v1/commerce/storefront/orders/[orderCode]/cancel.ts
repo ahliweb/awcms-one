@@ -11,10 +11,13 @@ import {
   readJsonBody
 } from "../../../../../../../lib/security/request-body-limit";
 import { fail, ok } from "../../../../../../../modules/_shared/api-response";
+import { OrderNotCancellableError } from "../../../../../../../modules/commerce/application/order-directory";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../../modules/commerce/domain/commerce-cors";
+import { cancelOrderIdempotent } from "../../../../../../../modules/commerce/application/storefront-idempotent-mutations";
 import {
-  cancelOrderByCustomer,
-  OrderNotCancellableError
-} from "../../../../../../../modules/commerce/application/order-directory";
+  readStorefrontIdempotencyKey,
+  storefrontIdempotencyConflictResponse
+} from "../../../../../../../modules/commerce/application/storefront-idempotency-http";
 import { mediaLibraryPortAdapter } from "../../../../../../../modules/media-library/application/media-library-port-adapter";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
@@ -23,7 +26,21 @@ import { validateCancelOrderInput } from "../../../../../../../modules/commerce/
 import { BookingOrderUseAdapterError } from "../../../../../../../modules/commerce/application/booking-order-guards";
 import { inventoryErrorResponse } from "../../../../../../../modules/commerce/application/commerce-inventory-http";
 
-/** `POST /api/v1/commerce/storefront/orders/{orderCode}/cancel` (Issue #29) — anonymous, only while `pending_payment` (`domain/order-status.ts`). */
+/**
+ * `POST /api/v1/commerce/storefront/orders/{orderCode}/cancel` (Issue #29) —
+ * anonymous, only while `pending_payment` (`domain/order-status.ts`).
+ *
+ * Idempotency (Issue #513, unit C). The operation is NATURALLY idempotent: an
+ * order that is already `cancelled` answers `200` with the order as it is (no
+ * second transition, event or audit row), with or without a key; the order row
+ * is locked while it is cancelled, so two concurrent cancels run one
+ * transition. Every other state the customer may not cancel from keeps `409
+ * ORDER_NOT_CANCELLABLE`. An OPTIONAL `Idempotency-Key` adds the contract the
+ * other routes share: the same key + same `(orderCode, phone, reason)` replays
+ * (`data.replayed: true`, the order as it is now); the same key for another
+ * order, phone or reason is `409 IDEMPOTENCY_CONFLICT` and never answers the
+ * stored outcome. The record is a marker only.
+ */
 const RATE_LIMIT_MAX = parsePositiveIntSetting(
   process.env.COMMERCE_STOREFRONT_RATE_LIMIT_MAX,
   60,
@@ -35,7 +52,12 @@ const RATE_LIMIT_WINDOW_SEC = parsePositiveIntSetting(
   "COMMERCE_STOREFRONT_RATE_LIMIT_WINDOW_SEC"
 );
 
-export const POST: APIRoute = async ({ params, request, clientAddress }) => {
+export const POST: APIRoute = async ({
+  params,
+  request,
+  clientAddress,
+  locals
+}) => {
   const clientIp = resolveClientIp(request, clientAddress);
   const rateLimit = await checkSharedRateLimit(
     `commerce:orders:cancel:${clientIp}`,
@@ -57,6 +79,9 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
       }
     );
   }
+
+  const idempotency = readStorefrontIdempotencyKey(request);
+  if ("response" in idempotency) return idempotency.response;
 
   const orderCode = params.orderCode;
   if (!orderCode) {
@@ -96,21 +121,37 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
       sql,
       request,
       async (tx, tenant) =>
-        cancelOrderByCustomer(
+        cancelOrderIdempotent(
           tx,
           tenant.tenantId,
           mediaLibraryPortAdapter,
           orderCode,
           phoneResult.value,
-          validation.value.reason
+          validation.value.reason,
+          { key: idempotency.key, correlationId: locals.correlationId }
         )
     );
 
-    if (!result) {
-      return fail(404, "NOT_FOUND", "Not found.", {}, undefined, corsHeaders);
+    if (!result || result.kind === "not_found") {
+      return fail(
+        404,
+        "NOT_FOUND",
+        "Not found.",
+        {},
+        undefined,
+        corsHeaders ?? { vary: "Origin" }
+      );
     }
 
-    return ok(result, {}, corsHeaders);
+    if (result.kind === "idempotency_conflict") {
+      return storefrontIdempotencyConflictResponse(corsHeaders);
+    }
+
+    return ok(
+      result.replayed ? { ...result.order, replayed: true } : result.order,
+      {},
+      corsHeaders
+    );
   } catch (error) {
     if (error instanceof BookingOrderUseAdapterError) {
       return fail(
@@ -141,5 +182,6 @@ export const OPTIONS: APIRoute = async ({ request, clientAddress }) =>
     request,
     clientAddress,
     "commerce:orders:cancel",
-    { maxAttempts: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_SEC * 1000 }
+    { maxAttempts: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_SEC * 1000 },
+    commerceIdempotentPreflightHeaders(["content-type"])
   );
