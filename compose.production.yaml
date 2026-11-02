@@ -182,7 +182,7 @@ services:
   # SAME generated-from-the-module-registry schedule as every other
   # deployment shape; nothing here hand-copies a cron list.
   jobs:
-    build:
+    build: &jobs-build
       context: apps/cms
       dockerfile: Dockerfile.production
       target: jobs
@@ -194,6 +194,30 @@ services:
       # The WORKER role — awcms_worker, distinct from both awcms_app (cms)
       # and the owner/setup role (migrate) above.
       DATABASE_URL: ${WORKER_DATABASE_URL:?WORKER_DATABASE_URL (the awcms_worker runtime DSN) is required}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # The SAME jobs image as `jobs`, but with the APP role — for the few job
+  # targets whose code opens the `awcms_app` connection (today
+  # `hr-commission:intents:post`, ADR-0147, plus operator backfills). It is
+  # NEVER chosen by hand: `ops/run-job-compose.sh` picks `jobs` or `jobs-app`
+  # per target from upstream's generated classification (the "targets that
+  # need DATABASE_URL" block of `apps/cms/ops/run-job.sh`), the compose
+  # equivalent of that script withholding DATABASE_URL from worker-client
+  # jobs. Least privilege both ways: `jobs` never holds the app DSN and this
+  # service is used only for a target upstream classified as app-client.
+  # `WORKER_DATABASE_URL` still arrives from `apps/cms/.env`, exactly as it
+  # does under upstream's runner, so a job that uses both clients works.
+  jobs-app:
+    build: *jobs-build
+    image: ${AWCMS_ONE_CMS_JOBS_IMAGE:-awcms-one/cms-jobs:latest}
+    profiles: ["jobs-app"]
+    env_file:
+      - apps/cms/.env
+    environment:
+      # The APP role — awcms_app, the same DSN `cms` runs with.
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL (the awcms_app runtime DSN) is required}
     depends_on:
       postgres:
         condition: service_healthy
