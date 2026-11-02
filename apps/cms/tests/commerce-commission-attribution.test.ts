@@ -8,10 +8,10 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-import type { CommissionAccrualOutcome } from "../src/modules/_shared/ports/commission-accrual-port";
+import type { CommissionIntakeOutcome } from "../src/modules/_shared/ports/commission-intake-port";
 import {
   commerceModule,
-  DORMANT_COMMISSION_CONSUMERS
+  COMMISSION_INTAKE_CONSUMERS
 } from "../src/modules/commerce/module";
 import {
   COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
@@ -19,16 +19,21 @@ import {
 } from "../src/modules/commerce/domain/commerce-permissions";
 import {
   allocateLineBases,
-  classifyAccrualOutcome,
+  classifyIntakeOutcome,
   COMMISSION_DEFAULT_SOURCE_TYPE,
+  CommissionIntakeUnavailableError,
   commissionOccurredOn,
+  commissionReadinessState,
   commissionSourceIdentity,
   decideAttributableLogin,
   decideBeneficiary,
   decideSettingsChange,
   emptyTally,
-  isOrderWideRefusal,
+  emptyVoidTally,
+  intakeUnavailableReason,
   tallyOutcome,
+  tallyVoidOutcome,
+  voidNeedsAttention,
   validateCommissionSettingsInput,
   validateCreateStaffLinkInput
 } from "../src/modules/commerce/domain/commission-attribution";
@@ -223,90 +228,113 @@ describe("commissionOccurredOn - the sale's civil date in the TENANT's time", ()
   });
 });
 
-describe("classifying what the ledger answered", () => {
-  const accrual = {
-    id: UUID_A,
-    employmentId: UUID_B,
-    ruleKey: "k",
-    ruleVersion: 1,
-    status: "pending",
-    amount: "1.00",
-    currencyCode: "IDR"
-  } as const;
-  const outcomes: Record<string, CommissionAccrualOutcome> = {
-    accrued: { outcome: "accrued", accrual },
-    replayed: { outcome: "replayed", accrual },
-    conflict: { outcome: "source_conflict", accrualId: UUID_A },
-    invalid: { outcome: "input_invalid", message: "x" },
-    no_effective_rule: { outcome: "no_effective_rule" },
-    rule_ambiguous: { outcome: "rule_ambiguous" },
-    source_type_mismatch: {
-      outcome: "source_type_mismatch",
-      expectedSourceType: "x"
-    },
-    currency_mismatch: {
-      outcome: "currency_mismatch",
-      expectedCurrencyCode: "USD"
-    },
-    employment_not_found: { outcome: "employment_not_found" },
-    employment_not_eligible: { outcome: "employment_not_eligible" }
+describe("classifying what the intake answered (ADR-0046 D12)", () => {
+  const outcomes: Record<string, CommissionIntakeOutcome> = {
+    queued: { outcome: "queued" },
+    duplicate: { outcome: "duplicate" },
+    actor_required: { outcome: "actor_required" },
+    disabled: { outcome: "disabled" },
+    full: { outcome: "full" },
+    invalid: { outcome: "input_invalid", message: "x" }
   };
 
-  test("every port outcome has a class; refusals are returned outcomes, never exceptions", () => {
-    expect(classifyAccrualOutcome(outcomes.accrued!)).toBe("accrued");
-    expect(classifyAccrualOutcome(outcomes.replayed!)).toBe("replayed");
-    expect(classifyAccrualOutcome(outcomes.conflict!)).toBe("conflict");
-    expect(classifyAccrualOutcome(outcomes.invalid!)).toBe("invalid");
-    for (const key of [
-      "no_effective_rule",
-      "rule_ambiguous",
-      "source_type_mismatch",
-      "currency_mismatch",
-      "employment_not_found",
-      "employment_not_eligible"
-    ]) {
-      expect(classifyAccrualOutcome(outcomes[key]!)).toBe("refused");
+  test("queued and duplicate complete the delivery; disabled and full are UNAVAILABLE (the delivery fails, retries, dead-letters); invalid and actor_required are recorded and never retried", () => {
+    expect(classifyIntakeOutcome(outcomes.queued!)).toBe("accepted");
+    expect(classifyIntakeOutcome(outcomes.duplicate!)).toBe("accepted");
+    expect(classifyIntakeOutcome(outcomes.disabled!)).toBe("unavailable");
+    expect(classifyIntakeOutcome(outcomes.full!)).toBe("unavailable");
+    expect(classifyIntakeOutcome(outcomes.invalid!)).toBe("invalid");
+    expect(classifyIntakeOutcome(outcomes.actor_required!)).toBe(
+      "actor_required"
+    );
+  });
+
+  test("only disabled and full name an unavailable reason", () => {
+    expect(intakeUnavailableReason(outcomes.disabled!)).toBe("disabled");
+    expect(intakeUnavailableReason(outcomes.full!)).toBe("full");
+    for (const key of ["queued", "duplicate", "actor_required", "invalid"]) {
+      expect(intakeUnavailableReason(outcomes[key]!)).toBeNull();
     }
   });
 
-  test("order-wide refusals stop the loop; a per-line conflict or invalid request does not", () => {
-    for (const key of [
-      "no_effective_rule",
-      "rule_ambiguous",
-      "source_type_mismatch",
-      "currency_mismatch",
-      "employment_not_found",
-      "employment_not_eligible"
-    ]) {
-      expect(isOrderWideRefusal(outcomes[key]!)).toBe(true);
-    }
-    for (const key of ["accrued", "replayed", "conflict", "invalid"]) {
-      expect(isOrderWideRefusal(outcomes[key]!)).toBe(false);
-    }
+  test("the unavailable error carries a code and no amount, person or id", () => {
+    const disabled = new CommissionIntakeUnavailableError("disabled");
+    const full = new CommissionIntakeUnavailableError("full");
+    expect(disabled.message).toContain("COMMISSION_INTAKE_DISABLED");
+    expect(full.message).toContain("COMMISSION_INTAKE_FULL");
+    expect(disabled.reason).toBe("disabled");
+    expect(full.reason).toBe("full");
+    expect(disabled).toBeInstanceOf(Error);
   });
 
-  test("the tally counts by class and by refusal code, and carries no amount", () => {
+  test("the accrual tally counts queued, duplicate and invalid, and carries no amount; a refusal is not a thing the consumer can see", () => {
     const tally = emptyTally();
-    for (const key of [
-      "accrued",
-      "accrued",
-      "replayed",
-      "conflict",
-      "invalid",
-      "no_effective_rule",
-      "no_effective_rule",
-      "employment_not_eligible"
-    ]) {
+    for (const key of ["queued", "queued", "duplicate", "invalid"]) {
       tallyOutcome(tally, outcomes[key]!);
     }
+    expect(tally).toEqual({ queued: 2, duplicate: 1, invalid: 1 });
+  });
+
+  test("the void tally counts queued, duplicate, actor_required and invalid; a person is needed for the last three and for a partial line", () => {
+    const tally = emptyVoidTally();
+    expect(voidNeedsAttention(tally)).toBe(false);
+    for (const key of ["queued", "queued", "duplicate"]) {
+      tallyVoidOutcome(tally, outcomes[key]!);
+    }
     expect(tally).toEqual({
-      accrued: 2,
-      replayed: 1,
-      conflicts: 1,
-      invalid: 1,
-      refused: { no_effective_rule: 2, employment_not_eligible: 1 }
+      queued: 2,
+      duplicate: 1,
+      partial: 0,
+      actorRequired: 0,
+      invalid: 0
     });
-    expect(JSON.stringify(tally)).not.toContain("1.00");
+    expect(voidNeedsAttention(tally)).toBe(false);
+
+    const noActor = emptyVoidTally();
+    tallyVoidOutcome(noActor, outcomes.actor_required!);
+    expect(noActor.actorRequired).toBe(1);
+    expect(voidNeedsAttention(noActor)).toBe(true);
+
+    const invalid = emptyVoidTally();
+    tallyVoidOutcome(invalid, outcomes.invalid!);
+    expect(voidNeedsAttention(invalid)).toBe(true);
+
+    const partial = emptyVoidTally();
+    partial.partial = 1;
+    expect(voidNeedsAttention(partial)).toBe(true);
+  });
+});
+
+describe("commissionReadinessState - what the settings can say without reading the ledger", () => {
+  test("off, module off, awaiting the first submission, submitting", () => {
+    expect(
+      commissionReadinessState({
+        enabled: false,
+        hrCommissionModuleEnabled: true,
+        lastSubmittedAt: "2026-11-02T00:00:00.000Z"
+      })
+    ).toBe("off");
+    expect(
+      commissionReadinessState({
+        enabled: true,
+        hrCommissionModuleEnabled: false,
+        lastSubmittedAt: null
+      })
+    ).toBe("hr_commission_module_disabled");
+    expect(
+      commissionReadinessState({
+        enabled: true,
+        hrCommissionModuleEnabled: true,
+        lastSubmittedAt: null
+      })
+    ).toBe("awaiting_first_submission");
+    expect(
+      commissionReadinessState({
+        enabled: true,
+        hrCommissionModuleEnabled: true,
+        lastSubmittedAt: "2026-11-02T00:00:00.000Z"
+      })
+    ).toBe("submitting");
   });
 });
 
@@ -418,14 +446,14 @@ describe("request validation", () => {
 });
 
 describe("the module descriptor", () => {
-  test("is DORMANT (ADR-0046 D10): no commission consumer is registered and the settings route refuses enabling", () => {
+  test("is LIVE (ADR-0046 D12): the three commission consumers are registered and the settings route no longer refuses enabling", () => {
     const registered = (commerceModule.domainEventConsumers ?? []).map(
       (entry) => entry.name
     );
-    for (const entry of DORMANT_COMMISSION_CONSUMERS) {
-      expect(registered).not.toContain(entry.name);
+    for (const entry of COMMISSION_INTAKE_CONSUMERS) {
+      expect(registered).toContain(entry.name);
     }
-    expect(DORMANT_COMMISSION_CONSUMERS.map((entry) => entry.name)).toEqual([
+    expect(COMMISSION_INTAKE_CONSUMERS.map((entry) => entry.name)).toEqual([
       "commerce.order_paid_commission_attributor",
       "commerce.order_cancelled_commission_reverser",
       "commerce.refund_settled_commission_reverser"
@@ -437,11 +465,12 @@ describe("the module descriptor", () => {
       ),
       "utf8"
     );
-    expect(route).toContain("COMMISSION_ADAPTER_DORMANT");
+    expect(route).not.toContain("COMMISSION_ADAPTER_DORMANT");
+    expect(route).toContain("fetchCommissionReadiness");
   });
 
   test("declares the attributor as a descriptor consumer of the order-paid event with the DEFAULT runtime_effect_once idempotency", () => {
-    const consumer = DORMANT_COMMISSION_CONSUMERS.find(
+    const consumer = COMMISSION_INTAKE_CONSUMERS.find(
       (entry) => entry.name === "commerce.order_paid_commission_attributor"
     );
     expect(consumer).toBeDefined();
@@ -457,7 +486,7 @@ describe("the module descriptor", () => {
     expect(commerceModule.dependencies).not.toContain("hr_workforce");
     expect(commerceModule.capabilities?.consumes).toEqual([
       {
-        capability: "commission_accrual",
+        capability: "commission_intake",
         providedBy: "hr_commission",
         optional: true
       },
@@ -492,11 +521,12 @@ describe("the module descriptor", () => {
     );
   });
 
-  test("both tables answer the retention question on the record, with no purge", () => {
+  test("every commission table answers the retention question on the record, with no purge", () => {
     expect(COMMISSION_DATA_LIFECYCLE.map((entry) => entry.tableName)).toEqual([
       "awcms_commerce_commission_settings",
       "awcms_commerce_commission_staff_links",
-      "awcms_commerce_commission_attributed_sources"
+      "awcms_commerce_commission_attributed_sources",
+      "awcms_commerce_commission_submissions"
     ]);
     for (const entry of COMMISSION_DATA_LIFECYCLE) {
       expect(entry.executionMode).toBe("delegated");
@@ -589,5 +619,47 @@ describe("migration 1052 - the attributed-source marker", () => {
     expect(sql).toContain(`GRANT SELECT, INSERT ON ${table} TO awcms_worker`);
     expect(sql).not.toMatch(/GRANT[^;]*(UPDATE|DELETE)[^;]*awcms_worker/);
     expect(sql).toContain("BEFORE UPDATE OR DELETE");
+  });
+});
+
+describe("migration 1063 - the submission record", () => {
+  const sql = readFileSync(
+    path.join(
+      import.meta.dir,
+      "..",
+      "sql",
+      "1063_awcms_commerce_commission_submissions.sql"
+    ),
+    "utf8"
+  );
+  const table = "awcms_commerce_commission_submissions";
+
+  test("tenant-isolated with FORCE RLS, unique per line and employment, immutable for everyone", () => {
+    expect(sql).toContain(`ALTER TABLE ${table} FORCE ROW LEVEL SECURITY`);
+    expect(sql).toContain(`${table}_tenant_isolation`);
+    expect(sql).toContain(
+      "UNIQUE (tenant_id, source_type, order_item_id, employment_id)"
+    );
+    expect(sql).toContain("BEFORE UPDATE OR DELETE");
+    expect(sql).toContain(
+      `REVOKE UPDATE, DELETE, TRUNCATE ON ${table} FROM awcms_app`
+    );
+  });
+
+  test("the worker holds SELECT and INSERT on it and nothing on any payroll table; the employment id is opaque and no amount is stored", () => {
+    const statements = sql
+      .split("\n")
+      .filter((line) => !/^\s*--/.test(line))
+      .join("\n");
+    expect(statements).toContain(
+      `GRANT SELECT, INSERT ON ${table} TO awcms_worker`
+    );
+    expect(statements).not.toMatch(
+      /GRANT[^;]*(UPDATE|DELETE)[^;]*awcms_worker/
+    );
+    expect(statements).not.toMatch(/awcms_hr_/);
+    expect(statements).not.toMatch(
+      /\b(amount|rate|base_amount|commission)\s+numeric/i
+    );
   });
 });

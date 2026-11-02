@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0040-aw-business-platform-capability-ownership-and-boundaries.md)
 
-<!-- i18n-source-hash: sha256:96dbe59e3caac06b4f97f21b15bae7906f4fc8b2f74ea389ad21f28da54ce980 -->
+<!-- i18n-source-hash: sha256:95fd82371c4cda8d2e532e163537df37e572af7193819f7f9666ec426e2c58c5 -->
 
 # ADR-0040 — AW Business Platform: kepemilikan kapabilitas dan batasnya
 
@@ -133,6 +133,8 @@ Butir Wave B yang hanya bergantung pada `commerce` (definisi segmen, kelayakan l
 ## Catatan keputusan
 
 - **8 Oktober 2026, keputusan pemilik O0 ([#335](https://github.com/ahliweb/awcms-one/issues/335)):** ADR-0040 diterima apa adanya. D1, D2, dan D4 bertahan tanpa amandemen: Booking, keluarga `hr_payroll`, dan kapabilitas pengiriman generik adalah upstream-lebih-dulu di `ahliweb/awcms` (isu [#915](https://github.com/ahliweb/awcms/issues/915) sampai [#918](https://github.com/ahliweb/awcms/issues/918)). Penerimaan ini hanya menetapkan penempatan. Ia tidak menjawab keputusan pemilik O1 sampai O12, dan kondisi gerbang D7 lainnya (2 sampai 5) belum terpenuhi.
+
+- **2 November 2026, catatan implementasi (isu [#391](https://github.com/ahliweb/awcms-one/issues/391)):** adaptor komisi `commerce` yang disebut di D4 ("Workforce / Commission") sudah hidup. Ia melapor ke `hr_commission` upstream lewat antrean intake ADR-0147 upstream (`CommissionIntakePort`), karena worker yang menjalankan konsumer event tidak boleh menyentuh tabel payroll; adaptor, tautan staf, dan catatan submission tetap di `commerce`, dan buku besar tetap di upstream. Lihat [ADR-0046](0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md) D13. Penempatan (D1, D2, D4) tidak berubah.
 
 ## Opsi yang dipertimbangkan
 

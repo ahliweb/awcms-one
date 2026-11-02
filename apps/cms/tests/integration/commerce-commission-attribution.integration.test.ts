@@ -1,9 +1,11 @@
 /**
- * DORMANT (ADR-0046 D10): the adapter ships without a registered consumer and
- * without any worker grant on a payroll-family table (sql/1053), because
- * upstream's payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold
- * them. The tests below drive the consumer's code directly as the app role
- * (`DORMANT_COMMISSION_CONSUMERS`); the last block pins the dormant state.
+ * LIVE through the hr_commission intake queue (ADR-0046 D12, upstream ADR-0147).
+ * The consumer runs as the REAL `awcms_worker` role (`deliver`), which holds
+ * INSERT on the queue and nothing on any payroll table; `post` then runs
+ * `hr-commission:intents:post`'s own per-tenant pass as the app role, which is
+ * where the accrual is made. `deliver` does both, so the delivery tests assert
+ * the accrual after a tick; the submit-time facts (the queue row, commerce's own
+ * submission record, the unavailable-intake paths) are asserted directly.
  *
  * Employee-commission sale attribution (Issue #391, ADR-0046) against a REAL
  * migrated PostgreSQL through `tests/integration/harness.ts`. Gated on
@@ -51,7 +53,13 @@ import {
   saveCommissionSettings
 } from "../../src/modules/commerce/application/commission-attribution-directory";
 import { attributeCommissionForPaidOrder } from "../../src/modules/commerce/application/commission-attribution";
-import { DORMANT_COMMISSION_CONSUMERS } from "../../src/modules/commerce/module";
+import { COMMISSION_INTAKE_CONSUMERS } from "../../src/modules/commerce/module";
+import {
+  listIntakeExceptions,
+  setIntakeEnabled
+} from "../../src/modules/hr-commission/application/hr-commission-intake-store";
+import { runIntakePosterForTenant } from "../../src/modules/hr-commission/application/hr-commission-intake-poster";
+import { CommissionIntakeUnavailableError } from "../../src/modules/commerce/domain/commission-attribution";
 import { listDomainEventConsumers } from "../../src/modules/domain-event-runtime/infrastructure/consumer-registry";
 import type { DomainEventForHandler } from "../../src/modules/domain-event-runtime/domain/consumer-types";
 import {
@@ -59,13 +67,14 @@ import {
   getAdminSql,
   getOwnerSql,
   getRuntimeSql,
+  getWorkerRoleSql,
   integrationEnabled,
   resetDatabase,
   setupIntegrationDatabase,
   teardownIntegrationDatabase
 } from "./harness";
 
-const attributorConsumer = DORMANT_COMMISSION_CONSUMERS.find(
+const attributorConsumer = COMMISSION_INTAKE_CONSUMERS.find(
   (consumer) => consumer.name === "commerce.order_paid_commission_attributor"
 )!;
 
@@ -307,6 +316,18 @@ async function linkExistingSince(
   `;
 }
 
+/** Switches the tenant's commission intake on with a system actor (upstream's own switch; a tenant does this BEFORE enabling the adapter). */
+async function enableIntake(tenantId: string, on = true): Promise<string> {
+  const actor = await seedTenantUser(tenantId);
+  const outcome = await inTenant(tenantId, (tx) =>
+    setIntakeEnabled(tx, tenantId, on, actor, actor)
+  );
+  if (outcome.outcome !== "ok") {
+    throw new Error(`fixture: intake not switched (${outcome.outcome})`);
+  }
+  return actor;
+}
+
 let eventCounter = 0;
 function paidEvent(orderId: string, eventId?: string): DomainEventForHandler {
   eventCounter += 1;
@@ -333,10 +354,19 @@ function paidEvent(orderId: string, eventId?: string): DomainEventForHandler {
   };
 }
 
+/** The poster's own per-tenant pass, as the app role: the only thing that makes an accrual. */
+const post = (tenantId: string) =>
+  runIntakePosterForTenant(getRuntimeSql(), tenantId);
+
+/**
+ * One delivery as the REAL worker role (the role `domain-events:dispatch` runs
+ * as), then one poster tick as the app role. `tick: false` keeps the intake row
+ * un-posted so the submit-time facts can be asserted.
+ */
 async function deliver(
   tenantId: string,
   event: DomainEventForHandler,
-  sql: Bun.SQL = getRuntimeSql()
+  options: { sql?: Bun.SQL; tick?: boolean } = {}
 ): Promise<void> {
   await inTenant(
     tenantId,
@@ -345,8 +375,9 @@ async function deliver(
         tenantId,
         correlationId: "corr-391"
       }),
-    sql
+    options.sql ?? getWorkerRoleSql()
   );
+  if (options.tick !== false) await post(tenantId);
 }
 
 type AccrualRow = {
@@ -375,6 +406,13 @@ async function accrualsOf(tenantId: string): Promise<AccrualRow[]> {
   `) as AccrualRow[];
 }
 
+async function count(table: string, tenantId: string): Promise<number> {
+  const rows = (await getAdminSql().unsafe(
+    `SELECT count(*)::int AS n FROM ${table} WHERE tenant_id = '${tenantId}'`
+  )) as { n: number }[];
+  return rows[0]!.n;
+}
+
 async function auditActions(tenantId: string): Promise<string[]> {
   const rows = (await getAdminSql()`
     SELECT action FROM awcms_audit_events
@@ -395,6 +433,8 @@ suite("commerce commission attribution integration (Issue #391)", () => {
 
   let cashier = "";
   let employment = "";
+  /** The tenant's intake system actor: the identity the poster stamps on every posted accrual. */
+  let intakeActor = "";
 
   beforeEach(async () => {
     await resetDatabase();
@@ -403,6 +443,7 @@ suite("commerce commission attribution integration (Issue #391)", () => {
     cashier = await seedTenantUser(TENANT_A);
     employment = await seedEmployment(TENANT_A);
     await publishedRule(TENANT_A);
+    intakeActor = await enableIntake(TENANT_A);
   });
 
   // -------------------------------------------------------------------------
@@ -451,14 +492,15 @@ suite("commerce commission attribution integration (Issue #391)", () => {
         expect(row.source_ref).toBe(orderId);
         expect(row.currency_code).toBe("IDR");
         expect(row.status).toBe("pending");
-        expect(row.created_by).toBeNull();
+        // The consumer names nobody; the poster stamps the intake system actor.
+        expect(row.created_by).toBe(intakeActor);
         expect(row.correlation_id).toBe("corr-391");
       }
       const byLine = new Map(rows.map((row) => [row.source_line, row]));
       expect(Number(byLine.get(lineIds[0]!)!.amount)).toBe(10000);
       expect(Number(byLine.get(lineIds[1]!)!.amount)).toBe(5000);
       expect(await auditActions(TENANT_A)).toContain(
-        "commerce.commission.attributed"
+        "commerce.commission.submitted"
       );
     });
 
@@ -574,7 +616,7 @@ suite("commerce commission attribution integration (Issue #391)", () => {
       // A replay audits nothing new: one `attributed` row, from the first delivery.
       expect(
         (await auditActions(TENANT_A)).filter(
-          (action) => action === "commerce.commission.attributed"
+          (action) => action === "commerce.commission.submitted"
         )
       ).toHaveLength(1);
     });
@@ -588,9 +630,13 @@ suite("commerce commission attribution integration (Issue #391)", () => {
       });
 
       await Promise.all(
-        Array.from({ length: 6 }, () => deliver(TENANT_A, paidEvent(orderId)))
+        Array.from({ length: 6 }, () =>
+          deliver(TENANT_A, paidEvent(orderId), { tick: false })
+        )
       );
+      expect(await count("awcms_hr_commission_intents", TENANT_A)).toBe(3);
 
+      await post(TENANT_A);
       expect(await accrualsOf(TENANT_A)).toHaveLength(3);
     });
   });
@@ -667,8 +713,61 @@ suite("commerce commission attribution integration (Issue #391)", () => {
   });
 
   // -------------------------------------------------------------------------
-  describe("a ledger refusal is an audited outcome, never an exception", () => {
-    test("no published rule in force on the sale date: nothing accrued, one refused audit row, the delivery completes", async () => {
+  describe("submit time: queued is not accrued (ADR-0046 D12)", () => {
+    test("the delivery writes one queue row and one submission record per line and NO accrual; the poster's tick then makes exactly one accrual", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      const { orderId, lineIds } = await seedOrder(TENANT_A, {
+        cashier,
+        lines: ["100000.00", "50000.00"]
+      });
+
+      await deliver(TENANT_A, paidEvent(orderId), { tick: false });
+
+      expect(await accrualsOf(TENANT_A)).toEqual([]);
+      const queue = (await getAdminSql()`
+        SELECT kind, status, source_ref, source_line FROM awcms_hr_commission_intents
+        WHERE tenant_id = ${TENANT_A} ORDER BY source_line
+      `) as {
+        kind: string;
+        status: string;
+        source_ref: string;
+        source_line: string;
+      }[];
+      expect(queue.map((row) => [row.kind, row.status])).toEqual([
+        ["accrue", "pending"],
+        ["accrue", "pending"]
+      ]);
+      expect(queue.every((row) => row.source_ref === orderId)).toBe(true);
+      const submissions = (await getAdminSql()`
+        SELECT order_item_id, employment_id, source_type, rule_key
+        FROM awcms_commerce_commission_submissions WHERE tenant_id = ${TENANT_A}
+      `) as {
+        order_item_id: string;
+        employment_id: string;
+        source_type: string;
+        rule_key: string;
+      }[];
+      expect(submissions.map((row) => row.order_item_id).sort()).toEqual(
+        [...lineIds].sort()
+      );
+      expect(
+        submissions.every(
+          (row) =>
+            row.employment_id === employment &&
+            row.source_type === SOURCE_TYPE &&
+            row.rule_key === RULE_KEY
+        )
+      ).toBe(true);
+      expect(await auditActions(TENANT_A)).toContain(
+        "commerce.commission.submitted"
+      );
+
+      await post(TENANT_A);
+      expect(await accrualsOf(TENANT_A)).toHaveLength(2);
+    });
+
+    test("a refusal the poster decides is invisible to commerce: the delivery completed, the submission stays, and only the intake exceptions list shows it", async () => {
       await link(TENANT_A, cashier, employment);
       await inTenant(TENANT_A, (tx) =>
         saveCommissionSettings(tx, TENANT_A, ADMIN_A, {
@@ -685,70 +784,67 @@ suite("commerce commission attribution integration (Issue #391)", () => {
       await deliver(TENANT_A, paidEvent(orderId));
 
       expect(await accrualsOf(TENANT_A)).toEqual([]);
-      const refused = (await getAdminSql()`
-        SELECT attributes FROM awcms_audit_events
-        WHERE tenant_id = ${TENANT_A} AND action = 'commerce.commission.attribution_refused'
-      `) as { attributes: { reason: string; lines: number } }[];
-      // An order-wide refusal stops at the first line.
-      expect(refused).toHaveLength(1);
-      expect(refused[0]!.attributes.reason).toBe("no_effective_rule");
-      expect(refused[0]!.attributes.lines).toBe(1);
-      expect(JSON.stringify(refused[0]!.attributes)).not.toContain("1000");
+      const exceptions = await inTenant(TENANT_A, (tx) =>
+        listIntakeExceptions(tx, TENANT_A)
+      );
+      expect(exceptions.exceptions.map((entry) => entry.outcomeCode)).toEqual([
+        "no_effective_rule",
+        "no_effective_rule"
+      ]);
+      // Commerce neither knows nor audits the refusal (it never reads the queue).
+      expect(await auditActions(TENANT_A)).not.toContain(
+        "commerce.commission.attribution_refused"
+      );
+      expect(
+        await count("awcms_commerce_commission_submissions", TENANT_A)
+      ).toBe(2);
     });
 
-    test("the rule declares another source type: refused as a mismatch", async () => {
+    test("a rule that declares another source type, and an ended employment, are refused at posting and listed, never raised to the consumer", async () => {
       await link(TENANT_A, cashier, employment);
       await getAdminSql()`TRUNCATE awcms_hr_commission_rules CASCADE`;
       await publishedRule(TENANT_A, { sourceType: "booking_service" });
       await enable(TENANT_A);
-      const { orderId } = await seedOrder(TENANT_A, { cashier });
-      await deliver(TENANT_A, paidEvent(orderId));
-      expect(await accrualsOf(TENANT_A)).toEqual([]);
-      const refused = (await getAdminSql()`
-        SELECT attributes->>'reason' AS reason FROM awcms_audit_events
-        WHERE tenant_id = ${TENANT_A} AND action = 'commerce.commission.attribution_refused'
-      `) as { reason: string }[];
-      expect(refused.map((row) => row.reason)).toEqual([
-        "source_type_mismatch"
-      ]);
-    });
+      const mismatch = await seedOrder(TENANT_A, { cashier });
+      await deliver(TENANT_A, paidEvent(mismatch.orderId));
 
-    test("an employment that had ended before the sale is refused as not eligible", async () => {
       const ended = await seedEmployment(TENANT_A, {
         hiredOn: "2026-01-01",
         terminatedOn: "2026-02-01"
       });
       const other = await seedTenantUser(TENANT_A);
       await link(TENANT_A, other, ended);
-      await enable(TENANT_A);
-      const { orderId } = await seedOrder(TENANT_A, { cashier: other });
-      await deliver(TENANT_A, paidEvent(orderId));
+      const late = await seedOrder(TENANT_A, { cashier: other });
+      await deliver(TENANT_A, paidEvent(late.orderId));
+
       expect(await accrualsOf(TENANT_A)).toEqual([]);
-      const refused = (await getAdminSql()`
-        SELECT attributes->>'reason' AS reason FROM awcms_audit_events
-        WHERE tenant_id = ${TENANT_A} AND action = 'commerce.commission.attribution_refused'
-      `) as { reason: string }[];
-      expect(refused.map((row) => row.reason)).toEqual([
-        "employment_not_eligible"
-      ]);
+      const codes = (
+        await inTenant(TENANT_A, (tx) => listIntakeExceptions(tx, TENANT_A))
+      ).exceptions.map((entry) => entry.outcomeCode);
+      expect(codes).toHaveLength(2);
+      expect(codes.every((code) => code !== "")).toBe(true);
     });
 
-    test("a linked employment id that exists nowhere is refused as not found", async () => {
+    test("an employment id that exists nowhere is rejected by the intake as invalid: nothing is queued or recorded, the delivery completes, one rejected audit row", async () => {
       await link(TENANT_A, cashier, "99999999-9999-4999-8999-999999999999");
       await enable(TENANT_A);
       const { orderId } = await seedOrder(TENANT_A, { cashier });
+
       await deliver(TENANT_A, paidEvent(orderId));
-      expect(await accrualsOf(TENANT_A)).toEqual([]);
-      const refused = (await getAdminSql()`
-        SELECT attributes->>'reason' AS reason FROM awcms_audit_events
-        WHERE tenant_id = ${TENANT_A} AND action = 'commerce.commission.attribution_refused'
-      `) as { reason: string }[];
-      expect(refused.map((row) => row.reason)).toEqual([
-        "employment_not_found"
-      ]);
+
+      expect(await count("awcms_hr_commission_intents", TENANT_A)).toBe(0);
+      expect(
+        await count("awcms_commerce_commission_submissions", TENANT_A)
+      ).toBe(0);
+      expect(
+        await count("awcms_commerce_commission_attributed_sources", TENANT_A)
+      ).toBe(0);
+      const actions = await auditActions(TENANT_A);
+      expect(actions).toContain("commerce.commission.attribution_rejected");
+      expect(actions).not.toContain("commerce.commission.submitted");
     });
 
-    test("a changed order discount after the first delivery is a source conflict: audited, the original accrual stands", async () => {
+    test("a changed order discount after the first delivery is a different request for the same identity: queued, then refused at posting as a source conflict, the original accrual stands", async () => {
       await link(TENANT_A, cashier, employment);
       await enable(TENANT_A);
       const { orderId } = await seedOrder(TENANT_A, { cashier });
@@ -762,9 +858,128 @@ suite("commerce commission attribution integration (Issue #391)", () => {
       await deliver(TENANT_A, paidEvent(orderId));
 
       expect(await accrualsOf(TENANT_A)).toEqual(before);
-      expect(await auditActions(TENANT_A)).toContain(
-        "commerce.commission.attribution_rejected"
+      const exceptions = await inTenant(TENANT_A, (tx) =>
+        listIntakeExceptions(tx, TENANT_A)
       );
+      expect(exceptions.exceptions.map((entry) => entry.outcomeCode)).toEqual([
+        "source_conflict"
+      ]);
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  describe("an unavailable intake fails the delivery instead of dropping the sale", () => {
+    test("with the intake switched OFF the delivery throws, writes nothing (whole transaction rolled back), and a replay after switching it on accrues exactly once", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      await enableIntake(TENANT_A, false);
+      const { orderId } = await seedOrder(TENANT_A, {
+        cashier,
+        lines: ["100000.00", "50000.00"]
+      });
+
+      let caught: unknown;
+      try {
+        await deliver(TENANT_A, paidEvent(orderId));
+      } catch (error) {
+        caught = error;
+      }
+      expect(caught).toBeInstanceOf(CommissionIntakeUnavailableError);
+      expect((caught as CommissionIntakeUnavailableError).reason).toBe(
+        "disabled"
+      );
+      expect(String((caught as Error).message)).toContain(
+        "COMMISSION_INTAKE_DISABLED"
+      );
+      for (const table of [
+        "awcms_hr_commission_intents",
+        "awcms_commerce_commission_submissions",
+        "awcms_commerce_commission_attributed_sources"
+      ]) {
+        expect(await count(table, TENANT_A)).toBe(0);
+      }
+
+      await enableIntake(TENANT_A, true);
+      await deliver(TENANT_A, paidEvent(orderId)); // the operator's dead-letter replay
+      expect(await accrualsOf(TENANT_A)).toHaveLength(2);
+    });
+
+    test("a full queue (the per-tenant cap) throws the same way, and the lines already submitted in that delivery roll back with it", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      const { orderId } = await seedOrder(TENANT_A, {
+        cashier,
+        lines: ["100000.00", "50000.00"]
+      });
+      // One unavailable answer on the SECOND line: the first line's insert and
+      // submission record are in the same transaction and must not survive.
+      let calls = 0;
+      const { createCommissionIntakePort } =
+        await import("../../src/modules/hr-commission/application/hr-commission-intake-port-adapter");
+      const real = createCommissionIntakePort();
+      const port = {
+        submitAccrual: async (
+          ...args: Parameters<typeof real.submitAccrual>
+        ) => {
+          calls += 1;
+          return calls === 2
+            ? ({ outcome: "full" } as const)
+            : real.submitAccrual(...args);
+        },
+        submitVoid: real.submitVoid
+      };
+
+      let caught: unknown;
+      try {
+        await inTenant(
+          TENANT_A,
+          (tx) =>
+            attributeCommissionForPaidOrder(tx, TENANT_A, orderId, "corr-391", {
+              port
+            }),
+          getWorkerRoleSql()
+        );
+      } catch (error) {
+        caught = error;
+      }
+      expect((caught as CommissionIntakeUnavailableError).reason).toBe("full");
+      expect(await count("awcms_hr_commission_intents", TENANT_A)).toBe(0);
+      expect(
+        await count("awcms_commerce_commission_submissions", TENANT_A)
+      ).toBe(0);
+    });
+
+    test("the real cap: a tenant at 10,000 live rows gets `full` from the real port and the delivery throws", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      const { orderId } = await seedOrder(TENANT_A, { cashier });
+      // Fills the live queue to the cap in one statement, bypassing the insert
+      // guard as a superuser fixture (upstream's own technique, Issue #1211).
+      const admin = getAdminSql();
+      await admin`ALTER TABLE awcms_hr_commission_intents DISABLE TRIGGER awcms_hr_commission_intents_guard_insert`;
+      try {
+        await admin`
+          INSERT INTO awcms_hr_commission_intents
+            (tenant_id, kind, source_type, source_ref, source_line, employment_id,
+             rule_key, base_amount, currency_code, occurred_at, occurred_on, request_digest)
+          SELECT ${TENANT_A}, 'accrue', 'filler', 'FILL-' || g, '1', ${employment},
+                 'r', 1, 'IDR', now(), current_date, encode(sha256(('fill-' || g)::bytea), 'hex')
+          FROM generate_series(1, 10000) AS g
+        `;
+      } finally {
+        await admin`ALTER TABLE awcms_hr_commission_intents ENABLE TRIGGER awcms_hr_commission_intents_guard_insert`;
+      }
+      let caught: unknown;
+      try {
+        await deliver(TENANT_A, paidEvent(orderId), { tick: false });
+      } catch (error) {
+        caught = error;
+      }
+      expect(caught).toBeInstanceOf(CommissionIntakeUnavailableError);
+      expect((caught as CommissionIntakeUnavailableError).reason).toBe("full");
+      expect(
+        await count("awcms_commerce_commission_submissions", TENANT_A)
+      ).toBe(0);
     });
   });
 
@@ -1094,17 +1309,17 @@ suite("commerce commission attribution integration (Issue #391)", () => {
   });
 
   // -------------------------------------------------------------------------
-  describe("dormant: the worker role holds nothing on the payroll tables (sql/1053)", () => {
-    test("the consumers are not registered with the dispatcher", () => {
+  describe("live: the worker submits through the queue and holds nothing on the payroll tables", () => {
+    test("the three commission consumers are registered with the dispatcher", () => {
       const registered = listDomainEventConsumers().map(
         (consumer) => consumer.name
       );
-      for (const consumer of DORMANT_COMMISSION_CONSUMERS) {
-        expect(registered).not.toContain(consumer.name);
+      for (const consumer of COMMISSION_INTAKE_CONSUMERS) {
+        expect(registered).toContain(consumer.name);
       }
     });
 
-    test("awcms_worker holds no table or column privilege on any awcms_hr_commission_* table, and no UPDATE (id) on awcms_hr_employments", async () => {
+    test("awcms_worker holds no table or column privilege on the accrual ledger, its transitions or the rules, and no UPDATE (id) on awcms_hr_employments", async () => {
       const rows = (await getAdminSql()`
         SELECT c.relname AS table_name,
                has_table_privilege('awcms_worker', c.oid, 'SELECT, INSERT, UPDATE, DELETE') AS any_table,
@@ -1123,25 +1338,112 @@ suite("commerce commission attribution integration (Issue #391)", () => {
           false
         ]);
       }
-    });
-
-    test("the worker's only UPDATE on awcms_hr_employments is upstream's updated_at", async () => {
-      const rows = (await getAdminSql()`
+      const updatable = (await getAdminSql()`
         SELECT a.attname AS column_name
         FROM pg_attribute a
         WHERE a.attrelid = 'awcms_hr_employments'::regclass
           AND a.attnum > 0 AND NOT a.attisdropped
           AND has_column_privilege('awcms_worker', a.attrelid, a.attnum, 'UPDATE')
       `) as { column_name: string }[];
-      expect(rows.map((row) => row.column_name)).toEqual(["updated_at"]);
+      expect(updatable.map((row) => row.column_name)).toEqual(["updated_at"]);
     });
 
-    test("the worker keeps only its commerce-owned reads", async () => {
-      const rows = (await getAdminSql()`
-        SELECT has_table_privilege('awcms_worker', 'awcms_commerce_commission_settings', 'SELECT') AS settings,
-               has_table_privilege('awcms_worker', 'awcms_commerce_commission_staff_links', 'SELECT') AS links
-      `) as { settings: boolean; links: boolean }[];
-      expect(rows[0]).toEqual({ settings: true, links: true });
+    test("on the intake the worker holds INSERT on the queue and a column-level SELECT of the switch, nothing else", async () => {
+      const [queue] = (await getAdminSql()`
+        SELECT has_table_privilege('awcms_worker', 'awcms_hr_commission_intents', 'INSERT') AS can_insert,
+               has_table_privilege('awcms_worker', 'awcms_hr_commission_intents', 'SELECT') AS can_select,
+               has_table_privilege('awcms_worker', 'awcms_hr_commission_intents', 'UPDATE') AS can_update,
+               has_table_privilege('awcms_worker', 'awcms_hr_commission_intents', 'DELETE') AS can_delete,
+               has_table_privilege('awcms_worker', 'awcms_hr_commission_intake_settings', 'SELECT') AS table_select
+      `) as Record<string, boolean>[];
+      expect(queue).toEqual({
+        can_insert: true,
+        can_select: false,
+        can_update: false,
+        can_delete: false,
+        table_select: false
+      });
+      const columns = (await getAdminSql()`
+        SELECT a.attname AS column_name
+        FROM pg_attribute a
+        WHERE a.attrelid = 'awcms_hr_commission_intake_settings'::regclass
+          AND a.attnum > 0 AND NOT a.attisdropped
+          AND has_column_privilege('awcms_worker', a.attrelid, a.attnum, 'SELECT')
+        ORDER BY a.attname
+      `) as { column_name: string }[];
+      expect(columns.map((row) => row.column_name)).toEqual([
+        "commission_intake_enabled",
+        "tenant_id"
+      ]);
+    });
+
+    test("as the real worker the database refuses a read of an accrual and a read of the queue; commerce's own tables are readable and insert-only", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      const { orderId } = await seedOrder(TENANT_A, { cashier });
+      await deliver(TENANT_A, paidEvent(orderId));
+
+      for (const statement of [
+        "SELECT count(*) FROM awcms_hr_commission_accruals",
+        "SELECT count(*) FROM awcms_hr_commission_intents"
+      ]) {
+        let denied = false;
+        try {
+          await inTenant(
+            TENANT_A,
+            (tx) => tx.unsafe(statement),
+            getWorkerRoleSql()
+          );
+        } catch {
+          denied = true;
+        }
+        expect([statement, denied]).toEqual([statement, true]);
+      }
+      const seen = await inTenant(
+        TENANT_A,
+        (tx) =>
+          tx`SELECT count(*)::int AS n FROM awcms_commerce_commission_submissions`,
+        getWorkerRoleSql()
+      );
+      expect((seen as { n: number }[])[0]!.n).toBe(1);
+      await assertRejected(
+        inTenant(
+          TENANT_A,
+          (tx) => tx`DELETE FROM awcms_commerce_commission_submissions`,
+          getWorkerRoleSql()
+        ),
+        "a DELETE of a submission by the worker"
+      );
+    });
+
+    test("the submission record is tenant-isolated (FORCE RLS) and immutable for every role", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      const { orderId } = await seedOrder(TENANT_A, { cashier });
+      await deliver(TENANT_A, paidEvent(orderId));
+
+      const [rls] = (await getAdminSql()`
+        SELECT relrowsecurity, relforcerowsecurity FROM pg_class
+        WHERE relname = 'awcms_commerce_commission_submissions'
+      `) as { relrowsecurity: boolean; relforcerowsecurity: boolean }[];
+      expect(rls).toEqual({ relrowsecurity: true, relforcerowsecurity: true });
+      const asB = await inTenant(
+        TENANT_B,
+        (tx) => tx`SELECT id FROM awcms_commerce_commission_submissions`
+      );
+      expect(asB).toHaveLength(0);
+      await assertRejected(
+        inTenant(
+          TENANT_A,
+          (tx) =>
+            tx`UPDATE awcms_commerce_commission_submissions SET rule_key = 'x'`
+        ),
+        "an UPDATE of a submission"
+      );
+      await assertRejected(
+        getOwnerSql()`DELETE FROM awcms_commerce_commission_submissions`,
+        "a DELETE of a submission by the owner"
+      );
     });
   });
 });

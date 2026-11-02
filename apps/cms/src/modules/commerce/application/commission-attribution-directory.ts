@@ -11,11 +11,14 @@
  * idempotent by state: a settings `PUT` is an upsert, a second link for a login
  * that has a live one is `409`, and retiring a retired link is `409`.
  */
+import { resolveModuleEnabled } from "../../identity-access/application/auth-context";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   COMMISSION_DEFAULT_SOURCE_TYPE,
+  commissionReadinessState,
   decideSettingsChange,
   isLineFullyReturned,
+  type CommissionReadinessState,
   type CommissionSettingsInput,
   type CreateStaffLinkInput
 } from "../domain/commission-attribution";
@@ -76,6 +79,41 @@ export async function fetchCommissionSettings(
     ruleKey: row.rule_key,
     sourceType: row.source_type,
     updatedAt: toIso(row.updated_at)
+  };
+}
+
+export type CommissionReadiness = {
+  state: CommissionReadinessState;
+  hrCommissionModuleEnabled: boolean;
+  lastSubmittedAt: string | null;
+};
+
+/**
+ * What the settings answer says about the path to the ledger (ADR-0046 D12).
+ * Commerce may not read a commission or payroll table, so this is the module
+ * registry's answer plus commerce's own submission record - it cannot tell
+ * whether the intake switch is on, and says so (the docs and the OpenAPI name
+ * `hr_commission`'s own settings route) instead of guessing.
+ */
+export async function fetchCommissionReadiness(
+  tx: Bun.SQL,
+  tenantId: string,
+  settings: CommissionSettings
+): Promise<CommissionReadiness> {
+  const hrCommissionModuleEnabled = await resolveModuleEnabled(
+    tx,
+    tenantId,
+    "hr_commission"
+  );
+  const lastSubmittedAt = await fetchLastSubmissionAt(tx, tenantId);
+  return {
+    state: commissionReadinessState({
+      enabled: settings.enabled,
+      hrCommissionModuleEnabled,
+      lastSubmittedAt
+    }),
+    hrCommissionModuleEnabled,
+    lastSubmittedAt
   };
 }
 
@@ -359,51 +397,101 @@ export async function findEmploymentLinkedAt(
   return row ? { linkId: row.id, employmentId: row.employment_id } : null;
 }
 
+// ---------------------------------------------------------------------------
+// Submissions (Issue #391, ADR-0046 D12): what was reported to the intake queue
+// ---------------------------------------------------------------------------
+
+export type CommissionSubmission = {
+  orderItemId: string;
+  employmentId: string;
+  sourceType: string;
+  ruleKey: string;
+};
+
 /**
- * Every employment a login's counter sales were EVER credited to (live or
- * retired, newest first). A reversal needs these, not only the live link: the
- * link may have been retired or re-pointed between the sale and its refund, and
- * the accrual belongs to the employment that was linked when the sale was paid.
- * Voiding a source for an employment that never earned it is a harmless
- * `not_found`.
+ * Records that the order line was submitted to the commission intake for the
+ * employment, in the CALLER's transaction (the same one that wrote the intake
+ * record, so both commit or neither does). Idempotent: a replayed delivery
+ * writes nothing. Commerce's OWN state - it never reads the queue or the ledger.
  */
-export async function listEmploymentsEverLinkedToLogin(
+export async function recordSubmission(
   tx: Bun.SQL,
   tenantId: string,
-  tenantUserId: string
-): Promise<string[]> {
-  const rows = (await tx`
-    SELECT DISTINCT employment_id, created_at
-    FROM awcms_commerce_commission_staff_links
-    WHERE tenant_id = ${tenantId} AND tenant_user_id = ${tenantUserId}
-    ORDER BY created_at DESC, employment_id
-  `) as { employment_id: string }[];
-  return rows.map((row) => row.employment_id);
+  submission: CommissionSubmission & { orderId: string }
+): Promise<void> {
+  await tx`
+    INSERT INTO awcms_commerce_commission_submissions
+      (tenant_id, order_id, order_item_id, employment_id, source_type, rule_key)
+    VALUES (${tenantId}, ${submission.orderId}, ${submission.orderItemId},
+            ${submission.employmentId}, ${submission.sourceType}, ${submission.ruleKey})
+    ON CONFLICT (tenant_id, source_type, order_item_id, employment_id) DO NOTHING
+  `;
 }
 
 /**
- * What a REVERSAL needs from the settings: the source type the accruals were
- * reported under and the person who authorised the adapter (the last tenant
- * user to save the settings), whom the ledger stamps as the voider because a
- * status edge needs a person and an event consumer has none (ADR-0046 D9).
- * `null` when the adapter was never configured: nothing can have been accrued.
+ * Every submission recorded for an order, oldest first. A reversal voids exactly
+ * these (never a guess from the staff links, which would queue voids for
+ * accruals that never existed and fill the intake exceptions list).
  */
-export async function fetchCommissionReversalContext(
+export async function listSubmissionsForOrder(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<CommissionSubmission[]> {
+  const rows = (await tx`
+    SELECT order_item_id, employment_id, source_type, rule_key
+    FROM awcms_commerce_commission_submissions
+    WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
+    ORDER BY created_at, order_item_id, employment_id
+  `) as {
+    order_item_id: string;
+    employment_id: string;
+    source_type: string;
+    rule_key: string;
+  }[];
+  return rows.map((row) => ({
+    orderItemId: row.order_item_id,
+    employmentId: row.employment_id,
+    sourceType: row.source_type,
+    ruleKey: row.rule_key
+  }));
+}
+
+/** When commerce last submitted a line for the tenant; `null` if it never has. */
+export async function fetchLastSubmissionAt(
   tx: Bun.SQL,
   tenantId: string
-): Promise<{ sourceType: string; actorTenantUserId: string | null } | null> {
+): Promise<string | null> {
   const rows = (await tx`
-    SELECT source_type, updated_by_tenant_user_id
-    FROM awcms_commerce_commission_settings
+    SELECT created_at
+    FROM awcms_commerce_commission_submissions
     WHERE tenant_id = ${tenantId}
-  `) as { source_type: string; updated_by_tenant_user_id: string | null }[];
+    ORDER BY created_at DESC
+    LIMIT 1
+  `) as { created_at: Date | string }[];
   const row = rows[0];
-  return row
-    ? {
-        sourceType: row.source_type,
-        actorTenantUserId: row.updated_by_tenant_user_id
-      }
-    : null;
+  return row ? toIso(row.created_at) : null;
+}
+
+/**
+ * The person who caused a domain event (`awcms_domain_events.actor_tenant_user_id`,
+ * stamped by the producer in the same transaction as the fact). The event
+ * envelope does not reach a consumer's handler, so a reverser reads its OWN
+ * delivered event's actor here (the worker holds SELECT on the table, sql/022).
+ * `null` when the producer had no person (a system action): the intake then
+ * answers `actor_required` and a human decides.
+ */
+export async function fetchEventActor(
+  tx: Bun.SQL,
+  tenantId: string,
+  eventId: string
+): Promise<string | null> {
+  const rows = (await tx`
+    SELECT actor_tenant_user_id
+    FROM awcms_domain_events
+    WHERE tenant_id = ${tenantId} AND id = ${eventId}
+  `) as { actor_tenant_user_id: string | null }[];
+  return rows[0]?.actor_tenant_user_id ?? null;
 }
 
 export type CreateStaffLinkOutcome =

@@ -2198,17 +2198,24 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_hr_workforce_settings: ["SELECT"],
   // Upstream's own grant (sql/280); sql/1031 duplicated it and sql/1053 leaves it.
   awcms_hr_employments: ["SELECT"],
-  // Issue #391 (sql/1031, ADR-0046; revoked in part by sql/1053): the commission
-  // adapter ships DORMANT. Upstream's payroll boundary (ahliweb/awcms#1015) lets
-  // only `awcms_app` hold privileges on `awcms_hr_*`, so sql/1053 REVOKEd every
-  // payroll-table grant sql/1031 and sql/1051 gave the worker and the consumers
-  // are not registered. Only commerce-owned reads and the tenant reads remain.
+  // Issue #391 (sql/1031, ADR-0046; revoked in part by sql/1053): upstream's
+  // payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges
+  // on `awcms_hr_*`, so sql/1053 REVOKEd every payroll-table grant sql/1031 and
+  // sql/1051 gave the worker. The commission consumers are live again through
+  // the intake queue (ADR-0046 D12, ADR-0147): the worker holds INSERT on
+  // `awcms_hr_commission_intents` (below) and nothing else on any payroll table.
+  // Only commerce-owned reads/writes and the tenant reads are granted here.
   awcms_commerce_commission_settings: ["SELECT"],
   awcms_commerce_commission_staff_links: ["SELECT"],
   // Issue #413 review (sql/1052): the consumer records, in the transaction of
   // its first accrual, that a (source_type, rule_key) pair has been used; the
   // settings update refuses to change the pair afterwards. Insert-only.
   awcms_commerce_commission_attributed_sources: ["SELECT", "INSERT"],
+  // Issue #391 (sql/1063, ADR-0046 D12): commerce's own record of the order
+  // lines it submitted to the commission intake. The attributor inserts one row
+  // per line, the two reversers read them to void exactly those lines. Insert-
+  // only (a guard trigger refuses UPDATE and DELETE for every role).
+  awcms_commerce_commission_submissions: ["SELECT", "INSERT"],
   awcms_tenant_settings: ["SELECT"],
   awcms_tenant_modules: ["SELECT"],
   // Issue #1189 / ADR-0147 (sql/316). The event consumer of a derived

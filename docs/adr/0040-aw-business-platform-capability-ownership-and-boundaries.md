@@ -132,6 +132,8 @@ Wave B items that depend only on `commerce` (segment definitions, loyalty eligib
 
 - **8 October 2026, owner decision O0 ([#335](https://github.com/ahliweb/awcms-one/issues/335)):** ADR-0040 is accepted as written. D1, D2 and D4 stand unamended: Booking, the `hr_payroll` family and a generic delivery capability are upstream-first in `ahliweb/awcms` (issues [#915](https://github.com/ahliweb/awcms/issues/915) to [#918](https://github.com/ahliweb/awcms/issues/918)). This acceptance settles placement only. It does not answer owner decisions O1 to O12, and the other D7 gate conditions (2 to 5) remain unmet.
 
+- **2 November 2026, implementation note (issue [#391](https://github.com/ahliweb/awcms-one/issues/391)):** the `commerce` commission adapter named in D4 ("Workforce / Commission") is live. It reports to upstream's `hr_commission` through the intake queue of upstream ADR-0147 (`CommissionIntakePort`), because the worker that runs event consumers may not touch payroll tables; the adapter, the staff link and the submission record stay in `commerce`, and the ledger stays upstream. See [ADR-0046](0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md) D13. Placement (D1, D2, D4) is unchanged.
+
 ## Options considered
 
 - **Build Booking and Workforce directly in `apps/cms/src/modules` here: rejected.** It creates a permanent local divergence on a subtree whose merge base is protected, and a generic domain would then be re-derived upstream or left to drift. ADR-0037 and the `880` band are the cost of doing this once already.
