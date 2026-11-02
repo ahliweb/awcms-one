@@ -1167,9 +1167,13 @@ describe("static contracts", () => {
 
     const owners = new Set<string>();
 
+    // awcms-one: `commerce`'s own legacy-mode message and attempt tables
+    // (`awcms_commerce_whatsapp_*`, ADR-0047) are a per-tenant mode of that
+    // module, not a second upstream queue, so the scan skips the `commerce_`
+    // prefix. Keep ours on conflict; a candidate to propose upstream.
     for (const file of readdirSync("sql")) {
       for (const match of read(`sql/${file}`).matchAll(
-        /CREATE TABLE IF NOT EXISTS (awcms_\w*whatsapp\w*)/g
+        /CREATE TABLE IF NOT EXISTS (awcms_(?!commerce_)\w*whatsapp\w*)/g
       )) {
         owners.add(match[1]!);
       }
