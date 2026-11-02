@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:7838bc4202436db1a8c6969ed7793fc3fd00400bb517718056513b59a5e25e2e -->
+<!-- i18n-source-hash: sha256:feb85de26c91fd31225d8fde27d4e0524142acd7e8beea9cf2996364fc820ae6 -->
 
 # Alur kerja pengembangan
 
@@ -9,6 +9,8 @@ Branching, konvensi changeset buatan-sendiri, pemotongan rilis, dan branch prote
 ## Branching dan PR
 
 Satu branch per issue, dipotong dari `main`; PR kembali ke `main`, berjudul merujuk issue yang ditutupnya. [`CONTRIBUTING.md`](../CONTRIBUTING.md) menamai alur kontribusi lengkap dan Definition of Done di [`AGENTS.md`](../AGENTS.md#definition-of-done) — dokumen ini tidak mengulang keduanya, hanya bagian yang spesifik untuk bagaimana perubahan benar-benar mendarat.
+
+Pekerjaan produk ditempatkan pada alur pengembangan produk portofolio v2.0.0 sebelum dimulai (UX/UI divalidasi di langkah 4; langkah 11 sebagai frontend, backend, integrasi per slice) - lihat "Alur pengembangan produk v2.0.0" di [`AGENTS.md`](../AGENTS.md#alur-pengembangan-produk-v200).
 
 ## Branch protection pada `main`
 
