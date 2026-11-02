@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 35    |
-| Migrations                          | 370   |
-| `awcms_*` tables                    | 335   |
-| Tables with `FORCE` RLS             | 315   |
+| Migrations                          | 373   |
+| `awcms_*` tables                    | 336   |
+| Tables with `FORCE` RLS             | 316   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 946   |
-| Route files                         | 866   |
+| Test files                          | 957   |
+| Route files                         | 868   |
 | ADR                                 | 314   |
 
 ### Modules
@@ -296,140 +296,143 @@
 | 234 | `sql/319_awcms_channel_accounts_permissions.sql`                            |
 | 235 | `sql/320_awcms_channel_accounts_integrity_guards.sql`                       |
 | 236 | `sql/321_awcms_hr_commission_intake_cap_and_fairness.sql`                   |
-| 237 | `sql/880_awcms_news_media_objects_visibility.sql`                           |
-| 238 | `sql/881_awcms_media_library_media_download_permission.sql`                 |
-| 239 | `sql/882_awcms_idn_population_stats.sql`                                    |
-| 240 | `sql/901_awcms_commerce_schema.sql`                                         |
-| 241 | `sql/902_awcms_commerce_permissions.sql`                                    |
-| 242 | `sql/903_awcms_commerce_worker_lifecycle_purge_grants.sql`                  |
-| 243 | `sql/904_awcms_commerce_product_columns.sql`                                |
-| 244 | `sql/905_awcms_commerce_product_images_variants.sql`                        |
-| 245 | `sql/906_awcms_commerce_restore_permissions.sql`                            |
-| 246 | `sql/907_awcms_commerce_list_filter_indexes.sql`                            |
-| 247 | `sql/908_awcms_commerce_relations_worker_lifecycle_purge_grants.sql`        |
-| 248 | `sql/909_awcms_commerce_marketing_schema.sql`                               |
-| 249 | `sql/910_awcms_commerce_store_settings.sql`                                 |
-| 250 | `sql/911_awcms_commerce_marketing_permissions.sql`                          |
-| 251 | `sql/912_awcms_commerce_marketing_worker_lifecycle_purge_grants.sql`        |
-| 252 | `sql/913_awcms_commerce_customers_orders_schema.sql`                        |
-| 253 | `sql/914_awcms_commerce_customers_orders_permissions.sql`                   |
-| 254 | `sql/915_awcms_commerce_customers_orders_worker_lifecycle_purge_grants.sql` |
-| 255 | `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql`              |
-| 256 | `sql/917_awcms_commerce_customer_accounts_schema.sql`                       |
-| 257 | `sql/918_awcms_commerce_customer_auth_worker_lifecycle_purge_grants.sql`    |
-| 258 | `sql/919_awcms_commerce_customer_otp_email_template.sql`                    |
-| 259 | `sql/920_awcms_commerce_customer_addresses_default_index.sql`               |
-| 260 | `sql/921_awcms_commerce_affiliates_schema.sql`                              |
-| 261 | `sql/922_awcms_commerce_affiliates_permissions.sql`                         |
-| 262 | `sql/923_awcms_commerce_affiliates_worker_lifecycle_purge_grants.sql`       |
-| 263 | `sql/924_awcms_commerce_shipping_rates_schema.sql`                          |
-| 264 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
-| 265 | `sql/926_awcms_commerce_payment_gateway_schema.sql`                         |
-| 266 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
-| 267 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
-| 268 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
-| 269 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
-| 270 | `sql/931_awcms_commerce_pos_schema.sql`                                     |
-| 271 | `sql/932_awcms_commerce_pos_permissions.sql`                                |
-| 272 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
-| 273 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
-| 274 | `sql/935_awcms_commerce_product_type_extension.sql`                         |
-| 275 | `sql/936_awcms_commerce_entitlements_schema.sql`                            |
-| 276 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
-| 277 | `sql/938_awcms_commerce_entitlements_permissions.sql`                       |
-| 278 | `sql/939_awcms_commerce_protected_media_links_schema.sql`                   |
-| 279 | `sql/940_awcms_commerce_payment_allocations_schema.sql`                     |
-| 280 | `sql/941_awcms_commerce_payment_allocations_permissions.sql`                |
-| 281 | `sql/942_awcms_commerce_payment_allocations_worker_grants.sql`              |
-| 282 | `sql/943_awcms_commerce_payment_allocations_backfill.sql`                   |
-| 283 | `sql/945_awcms_commerce_returns_report_schema.sql`                          |
-| 284 | `sql/946_awcms_commerce_returns_report_permissions.sql`                     |
-| 285 | `sql/947_awcms_commerce_inventory_adapter.sql`                              |
-| 286 | `sql/948_awcms_commerce_tax_adapter.sql`                                    |
-| 287 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
-| 288 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
-| 289 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
-| 290 | `sql/953_awcms_commerce_bundles_schema.sql`                                 |
-| 291 | `sql/954_awcms_commerce_bundles_order_snapshot.sql`                         |
-| 292 | `sql/955_awcms_commerce_bundles_worker_grants.sql`                          |
-| 293 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
-| 294 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
-| 295 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
-| 296 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
-| 297 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
-| 298 | `sql/965_awcms_commerce_document_deliveries_schema.sql`                     |
-| 299 | `sql/966_awcms_commerce_document_deliveries_permissions.sql`                |
-| 300 | `sql/967_awcms_commerce_document_deliveries_worker_grants.sql`              |
-| 301 | `sql/970_awcms_commerce_register_schema.sql`                                |
-| 302 | `sql/971_awcms_commerce_register_stamping.sql`                              |
-| 303 | `sql/972_awcms_commerce_register_permissions.sql`                           |
-| 304 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
-| 305 | `sql/974_awcms_commerce_register_reversal_stamp.sql`                        |
-| 306 | `sql/975_awcms_commerce_barcodes_schema.sql`                                |
-| 307 | `sql/976_awcms_commerce_barcodes_permissions.sql`                           |
-| 308 | `sql/980_awcms_commerce_documents_schema.sql`                               |
-| 309 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
-| 310 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
-| 311 | `sql/985_awcms_commerce_stored_value_schema.sql`                            |
-| 312 | `sql/986_awcms_commerce_stored_value_payment_integration.sql`               |
-| 313 | `sql/987_awcms_commerce_stored_value_permissions.sql`                       |
-| 314 | `sql/988_awcms_commerce_stored_value_worker_grants.sql`                     |
-| 315 | `sql/990_awcms_commerce_expenses_schema.sql`                                |
-| 316 | `sql/991_awcms_commerce_expenses_register_link.sql`                         |
-| 317 | `sql/992_awcms_commerce_expenses_permissions.sql`                           |
-| 318 | `sql/993_awcms_commerce_expenses_worker_grants.sql`                         |
-| 319 | `sql/994_awcms_commerce_returns_schema.sql`                                 |
-| 320 | `sql/995_awcms_commerce_returns_integration.sql`                            |
-| 321 | `sql/996_awcms_commerce_returns_permissions.sql`                            |
-| 322 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
-| 323 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
-| 324 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
-| 325 | `sql/1000_awcms_commerce_returns_tax_refund.sql`                            |
-| 326 | `sql/1001_awcms_commerce_segments_schema.sql`                               |
-| 327 | `sql/1002_awcms_commerce_segments_evaluation_indexes.sql`                   |
-| 328 | `sql/1003_awcms_commerce_segments_permissions.sql`                          |
-| 329 | `sql/1004_awcms_commerce_segments_worker_grants.sql`                        |
-| 330 | `sql/1005_awcms_commerce_loyalty_segment_eligibility.sql`                   |
-| 331 | `sql/1007_awcms_commerce_campaign_segment_audience.sql`                     |
-| 332 | `sql/1010_awcms_commerce_loyalty_redemption_schema.sql`                     |
-| 333 | `sql/1011_awcms_commerce_loyalty_redemption_ledger.sql`                     |
-| 334 | `sql/1012_awcms_commerce_loyalty_redemption_worker_grants.sql`              |
-| 335 | `sql/1013_awcms_commerce_campaign_dispatch_worker_grants.sql`               |
-| 336 | `sql/1020_awcms_commerce_retention_projection_schema.sql`                   |
-| 337 | `sql/1021_awcms_commerce_retention_projection_permissions.sql`              |
-| 338 | `sql/1025_awcms_commerce_gateway_deposit_sessions.sql`                      |
-| 339 | `sql/1027_awcms_commerce_whatsapp_mode.sql`                                 |
-| 340 | `sql/1028_awcms_commerce_whatsapp_mode_permissions.sql`                     |
-| 341 | `sql/1030_awcms_commerce_commission_attribution_schema.sql`                 |
-| 342 | `sql/1031_awcms_commerce_commission_attribution_permissions_grants.sql`     |
-| 343 | `sql/1032_awcms_commerce_trigger_function_search_path.sql`                  |
-| 344 | `sql/1033_awcms_commerce_campaign_worker_email_category.sql`                |
-| 345 | `sql/1034_awcms_commerce_lifecycle_surrogate_id.sql`                        |
-| 346 | `sql/1035_awcms_commerce_booking_links_schema.sql`                          |
-| 347 | `sql/1036_awcms_commerce_product_deposit_policies.sql`                      |
-| 348 | `sql/1037_awcms_commerce_cancellation_policies.sql`                         |
-| 349 | `sql/1038_awcms_commerce_booking_refund_decisions.sql`                      |
-| 350 | `sql/1039_awcms_commerce_booking_adapter_permissions.sql`                   |
-| 351 | `sql/1040_awcms_commerce_booking_adapter_settings_and_worker_grants.sql`    |
-| 352 | `sql/1041_awcms_commerce_booking_reservation_permissions.sql`               |
-| 353 | `sql/1043_awcms_commerce_booking_cancellation_schema.sql`                   |
-| 354 | `sql/1044_awcms_commerce_booking_cancellation_permissions.sql`              |
-| 355 | `sql/1045_awcms_commerce_booking_reschedule.sql`                            |
-| 356 | `sql/1046_awcms_commerce_booking_pos.sql`                                   |
-| 357 | `sql/1047_awcms_commerce_booking_revenue_projection.sql`                    |
-| 358 | `sql/1050_awcms_commerce_booking_offering_link_resources.sql`               |
-| 359 | `sql/1051_awcms_commerce_commission_reversal_worker_grants.sql`             |
-| 360 | `sql/1052_awcms_commerce_commission_attributed_sources.sql`                 |
-| 361 | `sql/1053_awcms_commerce_commission_revoke_payroll_worker_grants.sql`       |
-| 362 | `sql/1054_awcms_commerce_booking_pos_guard_marker.sql`                      |
-| 363 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
-| 364 | `sql/1056_awcms_commerce_customer_push_devices_schema.sql`                  |
-| 365 | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`                   |
-| 366 | `sql/1058_awcms_commerce_customer_push_worker_grants.sql`                   |
-| 367 | `sql/1059_awcms_commerce_customer_push_permissions.sql`                     |
-| 368 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
-| 369 | `sql/1061_awcms_commerce_customer_push_fanout_worker_grants.sql`            |
-| 370 | `sql/1062_awcms_commerce_booking_revenue_export_permission.sql`             |
+| 237 | `sql/322_awcms_whatsapp_sender_routing.sql`                                 |
+| 238 | `sql/323_awcms_whatsapp_sender_routing_permissions.sql`                     |
+| 239 | `sql/324_awcms_whatsapp_sender_routing_hardening.sql`                       |
+| 240 | `sql/880_awcms_news_media_objects_visibility.sql`                           |
+| 241 | `sql/881_awcms_media_library_media_download_permission.sql`                 |
+| 242 | `sql/882_awcms_idn_population_stats.sql`                                    |
+| 243 | `sql/901_awcms_commerce_schema.sql`                                         |
+| 244 | `sql/902_awcms_commerce_permissions.sql`                                    |
+| 245 | `sql/903_awcms_commerce_worker_lifecycle_purge_grants.sql`                  |
+| 246 | `sql/904_awcms_commerce_product_columns.sql`                                |
+| 247 | `sql/905_awcms_commerce_product_images_variants.sql`                        |
+| 248 | `sql/906_awcms_commerce_restore_permissions.sql`                            |
+| 249 | `sql/907_awcms_commerce_list_filter_indexes.sql`                            |
+| 250 | `sql/908_awcms_commerce_relations_worker_lifecycle_purge_grants.sql`        |
+| 251 | `sql/909_awcms_commerce_marketing_schema.sql`                               |
+| 252 | `sql/910_awcms_commerce_store_settings.sql`                                 |
+| 253 | `sql/911_awcms_commerce_marketing_permissions.sql`                          |
+| 254 | `sql/912_awcms_commerce_marketing_worker_lifecycle_purge_grants.sql`        |
+| 255 | `sql/913_awcms_commerce_customers_orders_schema.sql`                        |
+| 256 | `sql/914_awcms_commerce_customers_orders_permissions.sql`                   |
+| 257 | `sql/915_awcms_commerce_customers_orders_worker_lifecycle_purge_grants.sql` |
+| 258 | `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql`              |
+| 259 | `sql/917_awcms_commerce_customer_accounts_schema.sql`                       |
+| 260 | `sql/918_awcms_commerce_customer_auth_worker_lifecycle_purge_grants.sql`    |
+| 261 | `sql/919_awcms_commerce_customer_otp_email_template.sql`                    |
+| 262 | `sql/920_awcms_commerce_customer_addresses_default_index.sql`               |
+| 263 | `sql/921_awcms_commerce_affiliates_schema.sql`                              |
+| 264 | `sql/922_awcms_commerce_affiliates_permissions.sql`                         |
+| 265 | `sql/923_awcms_commerce_affiliates_worker_lifecycle_purge_grants.sql`       |
+| 266 | `sql/924_awcms_commerce_shipping_rates_schema.sql`                          |
+| 267 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
+| 268 | `sql/926_awcms_commerce_payment_gateway_schema.sql`                         |
+| 269 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
+| 270 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
+| 271 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
+| 272 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
+| 273 | `sql/931_awcms_commerce_pos_schema.sql`                                     |
+| 274 | `sql/932_awcms_commerce_pos_permissions.sql`                                |
+| 275 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
+| 276 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
+| 277 | `sql/935_awcms_commerce_product_type_extension.sql`                         |
+| 278 | `sql/936_awcms_commerce_entitlements_schema.sql`                            |
+| 279 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
+| 280 | `sql/938_awcms_commerce_entitlements_permissions.sql`                       |
+| 281 | `sql/939_awcms_commerce_protected_media_links_schema.sql`                   |
+| 282 | `sql/940_awcms_commerce_payment_allocations_schema.sql`                     |
+| 283 | `sql/941_awcms_commerce_payment_allocations_permissions.sql`                |
+| 284 | `sql/942_awcms_commerce_payment_allocations_worker_grants.sql`              |
+| 285 | `sql/943_awcms_commerce_payment_allocations_backfill.sql`                   |
+| 286 | `sql/945_awcms_commerce_returns_report_schema.sql`                          |
+| 287 | `sql/946_awcms_commerce_returns_report_permissions.sql`                     |
+| 288 | `sql/947_awcms_commerce_inventory_adapter.sql`                              |
+| 289 | `sql/948_awcms_commerce_tax_adapter.sql`                                    |
+| 290 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
+| 291 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
+| 292 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
+| 293 | `sql/953_awcms_commerce_bundles_schema.sql`                                 |
+| 294 | `sql/954_awcms_commerce_bundles_order_snapshot.sql`                         |
+| 295 | `sql/955_awcms_commerce_bundles_worker_grants.sql`                          |
+| 296 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
+| 297 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
+| 298 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
+| 299 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
+| 300 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
+| 301 | `sql/965_awcms_commerce_document_deliveries_schema.sql`                     |
+| 302 | `sql/966_awcms_commerce_document_deliveries_permissions.sql`                |
+| 303 | `sql/967_awcms_commerce_document_deliveries_worker_grants.sql`              |
+| 304 | `sql/970_awcms_commerce_register_schema.sql`                                |
+| 305 | `sql/971_awcms_commerce_register_stamping.sql`                              |
+| 306 | `sql/972_awcms_commerce_register_permissions.sql`                           |
+| 307 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
+| 308 | `sql/974_awcms_commerce_register_reversal_stamp.sql`                        |
+| 309 | `sql/975_awcms_commerce_barcodes_schema.sql`                                |
+| 310 | `sql/976_awcms_commerce_barcodes_permissions.sql`                           |
+| 311 | `sql/980_awcms_commerce_documents_schema.sql`                               |
+| 312 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
+| 313 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
+| 314 | `sql/985_awcms_commerce_stored_value_schema.sql`                            |
+| 315 | `sql/986_awcms_commerce_stored_value_payment_integration.sql`               |
+| 316 | `sql/987_awcms_commerce_stored_value_permissions.sql`                       |
+| 317 | `sql/988_awcms_commerce_stored_value_worker_grants.sql`                     |
+| 318 | `sql/990_awcms_commerce_expenses_schema.sql`                                |
+| 319 | `sql/991_awcms_commerce_expenses_register_link.sql`                         |
+| 320 | `sql/992_awcms_commerce_expenses_permissions.sql`                           |
+| 321 | `sql/993_awcms_commerce_expenses_worker_grants.sql`                         |
+| 322 | `sql/994_awcms_commerce_returns_schema.sql`                                 |
+| 323 | `sql/995_awcms_commerce_returns_integration.sql`                            |
+| 324 | `sql/996_awcms_commerce_returns_permissions.sql`                            |
+| 325 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
+| 326 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
+| 327 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
+| 328 | `sql/1000_awcms_commerce_returns_tax_refund.sql`                            |
+| 329 | `sql/1001_awcms_commerce_segments_schema.sql`                               |
+| 330 | `sql/1002_awcms_commerce_segments_evaluation_indexes.sql`                   |
+| 331 | `sql/1003_awcms_commerce_segments_permissions.sql`                          |
+| 332 | `sql/1004_awcms_commerce_segments_worker_grants.sql`                        |
+| 333 | `sql/1005_awcms_commerce_loyalty_segment_eligibility.sql`                   |
+| 334 | `sql/1007_awcms_commerce_campaign_segment_audience.sql`                     |
+| 335 | `sql/1010_awcms_commerce_loyalty_redemption_schema.sql`                     |
+| 336 | `sql/1011_awcms_commerce_loyalty_redemption_ledger.sql`                     |
+| 337 | `sql/1012_awcms_commerce_loyalty_redemption_worker_grants.sql`              |
+| 338 | `sql/1013_awcms_commerce_campaign_dispatch_worker_grants.sql`               |
+| 339 | `sql/1020_awcms_commerce_retention_projection_schema.sql`                   |
+| 340 | `sql/1021_awcms_commerce_retention_projection_permissions.sql`              |
+| 341 | `sql/1025_awcms_commerce_gateway_deposit_sessions.sql`                      |
+| 342 | `sql/1027_awcms_commerce_whatsapp_mode.sql`                                 |
+| 343 | `sql/1028_awcms_commerce_whatsapp_mode_permissions.sql`                     |
+| 344 | `sql/1030_awcms_commerce_commission_attribution_schema.sql`                 |
+| 345 | `sql/1031_awcms_commerce_commission_attribution_permissions_grants.sql`     |
+| 346 | `sql/1032_awcms_commerce_trigger_function_search_path.sql`                  |
+| 347 | `sql/1033_awcms_commerce_campaign_worker_email_category.sql`                |
+| 348 | `sql/1034_awcms_commerce_lifecycle_surrogate_id.sql`                        |
+| 349 | `sql/1035_awcms_commerce_booking_links_schema.sql`                          |
+| 350 | `sql/1036_awcms_commerce_product_deposit_policies.sql`                      |
+| 351 | `sql/1037_awcms_commerce_cancellation_policies.sql`                         |
+| 352 | `sql/1038_awcms_commerce_booking_refund_decisions.sql`                      |
+| 353 | `sql/1039_awcms_commerce_booking_adapter_permissions.sql`                   |
+| 354 | `sql/1040_awcms_commerce_booking_adapter_settings_and_worker_grants.sql`    |
+| 355 | `sql/1041_awcms_commerce_booking_reservation_permissions.sql`               |
+| 356 | `sql/1043_awcms_commerce_booking_cancellation_schema.sql`                   |
+| 357 | `sql/1044_awcms_commerce_booking_cancellation_permissions.sql`              |
+| 358 | `sql/1045_awcms_commerce_booking_reschedule.sql`                            |
+| 359 | `sql/1046_awcms_commerce_booking_pos.sql`                                   |
+| 360 | `sql/1047_awcms_commerce_booking_revenue_projection.sql`                    |
+| 361 | `sql/1050_awcms_commerce_booking_offering_link_resources.sql`               |
+| 362 | `sql/1051_awcms_commerce_commission_reversal_worker_grants.sql`             |
+| 363 | `sql/1052_awcms_commerce_commission_attributed_sources.sql`                 |
+| 364 | `sql/1053_awcms_commerce_commission_revoke_payroll_worker_grants.sql`       |
+| 365 | `sql/1054_awcms_commerce_booking_pos_guard_marker.sql`                      |
+| 366 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
+| 367 | `sql/1056_awcms_commerce_customer_push_devices_schema.sql`                  |
+| 368 | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`                   |
+| 369 | `sql/1058_awcms_commerce_customer_push_worker_grants.sql`                   |
+| 370 | `sql/1059_awcms_commerce_customer_push_permissions.sql`                     |
+| 371 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
+| 372 | `sql/1061_awcms_commerce_customer_push_fanout_worker_grants.sql`            |
+| 373 | `sql/1062_awcms_commerce_booking_revenue_export_permission.sql`             |
 
 ### Tables & Row-Level Security
 
@@ -762,6 +765,7 @@
 | `awcms_whatsapp_consents`                        | `sql/178_awcms_whatsapp_delivery_schema.sql`                  | yes | yes   |
 | `awcms_whatsapp_delivery_attempts`               | `sql/178_awcms_whatsapp_delivery_schema.sql`                  | yes | yes   |
 | `awcms_whatsapp_messages`                        | `sql/178_awcms_whatsapp_delivery_schema.sql`                  | yes | yes   |
+| `awcms_whatsapp_sender_policies`                 | `sql/322_awcms_whatsapp_sender_routing.sql`                   | yes | yes   |
 | `awcms_whatsapp_suppressions`                    | `sql/178_awcms_whatsapp_delivery_schema.sql`                  | yes | yes   |
 | `awcms_workflow_decisions`                       | `sql/013_awcms_workflow_approval_schema.sql`                  | yes | yes   |
 | `awcms_workflow_definitions`                     | `sql/013_awcms_workflow_approval_schema.sql`                  | yes | yes   |
@@ -775,16 +779,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 678        |
-| `e2e`         | 28         |
-| `integration` | 239        |
+| `(root)`      | 685        |
+| `e2e`         | 31         |
+| `integration` | 240        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 722   |
+| `/api/v1/**`    | 724   |
 | `/admin/**`     | 113   |
 | publik / anonim | 31    |
 

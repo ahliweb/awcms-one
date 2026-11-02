@@ -1297,6 +1297,39 @@ export const READER_BUDGET_BYTES = 24_000;
  * with only the lockfile and `package.json` changed). Nothing in `src/` moved:
  * the difference is the compiler's output for the same components, so there is no
  * per-screen duplication to recover and no island to trim.
+ *
+ * **Raised for Issue #1221** (browser-side image compression on `/admin/media`):
+ * +9,795 B, measured (346,353 -> 356,148 on `main` + this change; `main` sat
+ * exactly at its budget, so the whole delta is this feature). Almost all of it is
+ * the one script of the one screen that can use it: `media.astro`'s chunk grew to
+ * 15,257 B, carrying the pure planner, the orchestrator, the `createImageBitmap` +
+ * canvas adapter and `uploadMediaFile` (about 1,900 B of that is the English
+ * fallbacks for the compressor's eleven messages), plus a few hundred bytes of
+ * stylesheet for the status lines. It is NOT per-screen duplication to recover
+ * the way #552 was: the code exists once, in `src/lib/ui/media-image-compression*.ts`,
+ * nothing else imports it, and the alternative the issue rejected (server-side
+ * image processing) would have moved the cost to a native dependency and a decoder
+ * of untrusted bytes. It loads only on `/admin/media`; a reader downloads none of
+ * it (`READER_BUDGET_BYTES` is untouched) and neither does any other admin screen.
+ *
+ * **Raised for the Issue #1224 review fixes**: +92 B (356,148 -> 356,240), of
+ * which 79 B measured locally on top of #1221 and 13 B of margin because CI's
+ * build of the same tree measured 9 B above the local one. The shared single-flight
+ * guard in `admin-form-client.ts` gained a one-shot navigation hold, a 10 s
+ * recovery timer for a navigation that never replaces the page, and a release
+ * that no longer overwrites a `disabled` the page changed mid-flight. All of it
+ * lives in the ONE shared module (no per-screen copy), so there is nothing to
+ * recover elsewhere.
+ *
+ * **Raised again for the #1221 review follow-up**: +2,160 B (356,240 -> 358,400),
+ * of which 2,141 B measured locally (356,240 -> 358,381 on `main` b2c0731f) and
+ * 19 B of margin for the local/CI build difference seen on #1224. The review
+ * found that an over-cap animated WebP or APNG was silently flattened to one
+ * frame and that the 100 MP guard ran only after the full bitmap had been
+ * decoded; the fixes are `media-image-header.ts` (magic-byte sniffing, animation
+ * flags, pixel dimensions read from the header before any decode) and one more
+ * translated refusal message. Same single screen (`/admin/media`), same single
+ * copy of the code.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -1867,7 +1900,7 @@ export const READER_BUDGET_BYTES = 24_000;
  * and `commerce` itself added none. A measurement of the merged build rounded up
  * to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 513_800;
+export const APP_BUDGET_BYTES = 525_900;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

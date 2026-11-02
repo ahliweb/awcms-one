@@ -563,7 +563,15 @@ describe("the real repository", () => {
       // `awcms_worker` read grant on a control-plane table nothing else lets the
       // worker touch. The recorded follow-up, when a connector adds a worker, is
       // a delegated descriptor for that table with its count function.
-      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(29);
+      //
+      // **28 upstream, 30 in this embed (29 plus this one), since the WhatsApp sender policy (Issue #1141, ADR-0148 section 4).**
+      // `awcms_whatsapp_sender_policies` holds at most ONE row per business scope
+      // per tenant (two partial unique indexes) plus one tenant-wide row, and a
+      // change UPDATES it in place and bumps `config_version`: the ceiling is the
+      // number of brands an administrator configures, written by no request path
+      // and no job. A generic age purge would silently reset a brand's default
+      // sender to the deployment sender.
+      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(30);
     });
 
     test("every entry names a table that really exists in sql/", () => {

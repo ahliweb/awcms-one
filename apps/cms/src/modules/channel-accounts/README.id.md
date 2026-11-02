@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:08f5ad9953ab6f4dd0a9e037367931a1198881027a4559fe55418dc799bae668 -->
+<!-- i18n-source-hash: sha256:db7448cd0694f7add54910241abd43a2423255260551ee633a0aa087d1c334aa -->
 
 # `channel_accounts`
 
@@ -42,7 +42,7 @@ Status: `experimental` dan **mati secara default** (`CHANNEL_ACCOUNTS_ENABLED`),
 | `GET connections`, `POST connections/{id}/revoke`                 | `accounts.read` / `accounts.revoke`        | Revoke membersihkan dan menghapus semua kredensial dan mencabut akun terikat. Final (trigger)                           |
 | `POST connections/oauth/start`, `GET .../callback`                | `accounts.create`                          | Lihat di bawah                                                                                                          |
 
-`AccessAction` adalah kosakata tertutup yang dipakai bersama semua modul, sehingga nama kerja paket dipetakan ke sana: connect ke `create`, disconnect ke `revoke`, `capabilities.grant` ke `capabilities.configure`, `assignments.manage` ke `assignments.assign`. Izin `senders.use` dan `whatsapp_delivery.*` dari paket **tidak** di-seed di sini: belum ada yang menegakkannya sampai #1141.
+`AccessAction` adalah kosakata tertutup yang dipakai bersama semua modul, sehingga nama kerja paket dipetakan ke sana: connect ke `create`, disconnect ke `revoke`, `capabilities.grant` ke `capabilities.configure`, `assignments.manage` ke `assignments.assign`. Izin `channel_accounts.senders.use` dari paket **masih tidak di-seed**: port tidak melakukan pemeriksaan akses (konsumen mengotorisasi aksi bisnisnya sendiri, ADR-0011), sehingga tidak ada yang dapat menegakkannya. Izin pengirim `whatsapp_delivery` (`senders.read`, `sender_policy.configure`) di-seed oleh `sql/323` bersama rutenya (#1141).
 
 Setiap mutasi kecuali start dan callback OAuth mewajibkan `Idempotency-Key` (hash permintaan HMAC berkunci; respons disimpan dalam bentuk tersamar). Setiap rute menolak machine credential (`403 INTERACTIVE_SESSION_REQUIRED`) dan menjawab `503 CHANNEL_ACCOUNTS_DISABLED` kecuali deployment mengaktifkan modul.
 
@@ -66,11 +66,39 @@ Refresh dijaga **lease** (`acquireRefreshLease`, compare-and-set pada baris kone
 
 ## Retensi dan jawaban subjek data
 
-Tiap tabel menjawab kedua pertanyaan pada perubahan yang sama. Deskriptor `subjectData` ada di `module.ts` (tabel hanya-stempel adalah `severed_with_subject_row`; assignment dapat diekspor dan dihapus permanen saat penghapusan; tabel kesehatan adalah `NO_SUBJECT_DATA` beralasan). Retensi adalah entri `BOUNDED_BY_DESIGN` beralasan per tabel: tiap tabel dibatasi oleh penulisan manual, unique key, atau sweep terbatas `sweepExpiredOAuthStates` yang berjalan di jalur tulis start OAuth (menghapus state kedaluwarsa tanpa rujukan beserta ciphertext verifier-nya dan menggagalkan hand-off yang ditinggalkan). Deskriptor lifecycle terdelegasi ditolak karena memerlukan grant baca `awcms_worker` pada tabel control plane. Tidak ada role worker yang memegang hak apa pun atas tabel ini.
+Tiap tabel menjawab kedua pertanyaan pada perubahan yang sama. Deskriptor `subjectData` ada di `module.ts` (tabel hanya-stempel adalah `severed_with_subject_row`; assignment dapat diekspor dan dihapus permanen saat penghapusan; tabel kesehatan adalah `NO_SUBJECT_DATA` beralasan). Retensi adalah entri `BOUNDED_BY_DESIGN` beralasan per tabel: tiap tabel dibatasi oleh penulisan manual, unique key, atau sweep terbatas `sweepExpiredOAuthStates` yang berjalan di jalur tulis start OAuth (menghapus state kedaluwarsa tanpa rujukan beserta ciphertext verifier-nya dan menggagalkan hand-off yang ditinggalkan). Deskriptor lifecycle terdelegasi ditolak karena memerlukan grant baca `awcms_worker` pada tabel control plane. Sejak #1141 satu-satunya worker yang mendekripsi kredensial pengirim (`whatsapp:dispatch`) memegang `SELECT` **hanya-kolom dan hanya-baca** pada tepat kolom yang dibutuhkan resolusi pengirim (`sql/322`): tanpa nama tampilan, stempel aktor, kolom refresh-token, OAuth-state, kode otorisasi, atau webhook, dan tanpa penulisan apa pun; tidak ada role worker lain yang memegang hak atas tabel ini.
 
 ## Batasan yang diketahui
 
 - Belum ada adapter penyedia, pertukaran token, panggilan refresh, pemeriksaan kesehatan, atau penerima webhook; `recordAccountHealth` dan `activateConnectionGrant` adalah titik masuk yang dipanggil issue-issue itu.
 - Belum ada domain event (`channel.account.*`) yang diterbitkan: belum ada konsumen, dan garis besar kontrak menyerahkannya kepada issue yang membutuhkannya.
-- Belum ada `ChannelAccountPort` yang diekspor; `resolveCapability` adalah fungsi yang akan dibungkusnya (konsumen pertama: #1141).
-- Key ring harus berisi kunci yang berbeda dari ring modul lain (`config:validate` memeriksa ring Telegram dan push).
+- **`ChannelAccountPort` dan `ChannelSenderCredentialPort` diekspor sejak #1141** (`_shared/ports/channel-account-port.ts`, kapabilitas `channel_account` 1.0.0; konsumen pertama `whatsapp_delivery`). `application/channel-account-port-adapter.ts` menjawab "dapatkah akun ini mengirim sekarang?" lewat `evaluateCapability` yang sama dan hanya mengembalikan metadata (ia tidak pernah mengimpor secret store); `application/channel-sender-credential-adapter.ts` adalah satu-satunya tempat kredensial pengirim didekripsi, disusun hanya oleh composition root dispatcher. Keduanya gagal-tertutup dan terikat tenant (akun tenant lain dan id tak dikenal adalah satu jawaban, `ACCOUNT_NOT_FOUND`).
+- Key ring harus berisi kunci yang berbeda dari ring modul lain (`config:validate` memeriksa ring Telegram, push, dan hash penerima WhatsApp).
+
+## Aturan scope pengikatan (#1215)
+
+Sebuah akun meminjamkan token connection-nya kepada siapa pun yang dapat bertindak atas akun itu, sehingga **business scope akun harus tercakup dalam scope connection-nya, tanpa pengecualian administrator**:
+
+| connection \ akun | tenant-wide | scope A | scope B |
+| ----------------- | ----------- | ------- | ------- |
+| tenant-wide       | boleh       | boleh   | boleh   |
+| scope A           | ditolak     | boleh   | ditolak |
+
+"Tercakup" berarti **kesamaan persis `(type, id)`** untuk connection ber-scope; hierarki business-scope (ADR-0060) tidak dipakai (pembacaan paling ketat, gagal tertutup; lihat pertanyaan terbuka). Penolakan dijawab seperti connection yang tidak ada (`422 CONNECTION_NOT_FOUND`). Pemeriksaan ini berjalan sebelum setiap pemeriksaan wewenang, jadi administrator tenant juga terikat. Wewenang datang setelah cakupan: connection yang belum punya akun hanya dapat diikat oleh pembuatnya atau pemegang break-glass (wewenang yang sama dengan mencabutnya); yang sudah punya akun membutuhkan wewenang `owner` atas semuanya, yang hanya dilewati administrator tenant. Baris audit `account.create` membawa `connectionId` internal (UUID).
+
+`canSeeAllAccounts` (bypass administrator) mensyaratkan `assignments.assign` lewat **grant tenant-wide** (`scope_type = 'tenant'`) selain izin chokepoint: ADR-0080 membiarkan kunci grant ber-scope tetap tingkat tenant di chokepoint, sehingga tanpa ini grant yang dikurung ke satu office bertindak sebagai administrator semua office. Penulis grant hari ini hanya menulis `tenant`; ini adalah **syarat mengikat untuk PR yang menambah penulis grant ber-scope** (`holdsTenantWidePermissionKey`, dipaku oleh `tests/integration/channel-accounts-api.integration.test.ts`, LOW-1).
+
+Break-glass connection menanyakan pertanyaan tingkat tenant lebih dulu (satu keputusan termemo per permintaan); hanya pemanggil yang bukan administrator membayar keputusan per scope, dan hanya untuk scope berbeda yang ditanyakan, bukan per connection.
+
+`APP_URL` wajib saat modul aktif dan satu-satunya sumber origin callback OAuth: `resolveChannelOAuthRedirectUri` mengembalikan `null` (start menjawab `PROVIDER_ADAPTER_UNAVAILABLE`, callback `STATE_INVALID`) alih-alih jatuh ke host bawaan, dan `config:validate` menolak boot deployment-nya (#1215 L7).
+
+## Sisa pekerjaan dan pertanyaan terbuka (#1215, keputusan pemilik)
+
+Tidak dikerjakan di sini; masing-masing butuh keputusan desain pemilik dan, sebagian besar, migrasi:
+
+- **M-c**, model assignment fail-open: menghapus assignee terakhir membuka akun ke seluruh tenant (usul: kolom `access_mode` eksplisit dan menolak menghapus owner terakhir). Erasure juga belum punya baris audit modul.
+- **Squatting id eksternal** (M4 review pertama): baris `pending` sudah memegang klaim global `(provider, external_id)`. Butuh klaim terverifikasi atau kedaluwarsa klaim, yaitu job ber-scope platform.
+- **N2** (sweep state OAuth hanya saat start berikutnya), **N3** (daftar `LIMIT 200` tanpa cursor), dan L5/L6 sebagaimana di issue (inkonsistensi kecil, oracle lintas-tenant yang terdokumentasi).
+- **`awcms_channel_accounts.business_scope_*` tidak punya trigger immutability** (connection dan state OAuth yang sudah dikonsumsi punya, `sql/320`). Tidak ada jalur API yang mengubahnya, tetapi aturan cakupan di atas hanya sekuat kolom itu; menjaganya butuh migrasi.
+- **Cakupan hierarkis**: bolehkah scope anak (office di bawah region) mengikat connection milik scope induk? Dipilih kesamaan persis; melonggarkannya adalah keputusan pemilik.
+- `sql/318` membawa komentar usang (N10) yang tidak boleh diedit pada migrasi terapan; pernyataan yang akurat ada di README ini dan ADR-0148.
