@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:2bd1394212bf0cfbb739bc7e220c9f54008f545f11bd8adfae9df479d46812fa -->
+<!-- i18n-source-hash: sha256:8926b31f3292284bbe16b24746332ad44b60f2fe7ffc5218f97f8f97658bb38f -->
 
 # Kamus data
 
@@ -494,7 +494,7 @@ Rancangan platform ini sendiri - tidak ada yang dipindahkan dari toko lama.
 
 ## Kosakata atribusi komisi (isu #391, [ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md))
 
-> **Dorman (ADR-0046 D10, `sql/1053`).** Batas payroll upstream (ahliweb/awcms#1015) hanya mengizinkan `awcms_app` memegang hak pada tabel `awcms_hr_*`, sehingga hak yang diberikan adaptor ini kepada `awcms_worker` dicabut dan ketiga konsumer komisi tidak terdaftar di `domain-events:dispatch`. Kode, tabel, izin, dan rute tetap ada; `PUT /api/v1/commerce/commission/settings` dengan `enabled: true` dijawab `409 COMMISSION_ADAPTER_DORMANT`. Adaptor aktif kembali setelah upstream menyediakan jalur worker yang sah ke `CommissionAccrualPort`; teks di bawah menggambarkan adaptor sebagaimana dibangun.
+> **Hidup lewat antrean intake `hr_commission` (ADR-0046 D13).** Commerce men-submit ke `CommissionIntakePort` upstream dan mencatat apa yang di-submit pada tabelnya sendiri (`sql/1063`); buku besar dan antrean tetap milik `hr_commission` dan commerce tidak membaca keduanya.
 
 Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke buku besar `hr_commission` milik upstream. Commerce menyimpan **pengenal dan sebuah sakelar, tidak pernah jumlah, tarif atau status akrual**; semua itu ada di `hr_commission`. Jangan dikacaukan dengan komisi afiliasi (`awcms_commerce_affiliates`, penerima manfaat eksternal).
 
@@ -505,13 +505,16 @@ Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke buku besar 
 | `source_type` | sama | Bawaan `commerce_order_line`. Harus sama dengan `sourceType` yang dideklarasikan aturan, atau buku besar menolak dengan `source_type_mismatch` |
 | tautan staf | `awcms_commerce_commission_staff_links` | Menggabungkan login (`tenant_user_id`) dengan employment `hr_workforce` (`employment_id`, **buram**: tanpa foreign key, tanpa pembacaan). Paling banyak satu tautan HIDUP per login dan per employment; dipensiunkan (`retired_at`), tidak pernah dihapus |
 | sumber teratribusi | `awcms_commerce_commission_attributed_sources` | Pasangan `(source_type, rule_key)` yang di bawahnya akrual telah dilaporkan (`sql/1052`, ADR-0046 D9). Begitu ada baris, pengaturan tidak bisa mengubah salah satunya (`409 COMMISSION_SOURCE_LOCKED`, diaudit sebagai `commerce.commission.settings_refused`) |
+| submission komisi | `awcms_commerce_commission_submissions` | Satu baris hanya-tambah per `(source_type, baris pesanan, employment)` yang di-submit konsumer ke antrean intake (`sql/1063`, ADR-0046 D13.1): id, `source_type`, `rule_key`, `created_at`; **tanpa jumlah, tanpa orang**. Pembalik me-void persis baris ini; `queued` bukan `accrued`, sehingga penolakan saat posting tidak terlihat di sini dan hanya terdaftar di pengecualian intake |
 | cap kasir | `awcms_commerce_orders.pos_cashier_tenant_user_id` | Login yang mencatat penjualan kasir, dicap dari sesi terautentikasi (`sql/931`). Satu-satunya sumber "siapa yang menjual": tidak pernah kolom request |
-| identitas sumber | kunci unik buku besar | `(tipe sumber, id pesanan, id baris pesanan)` ditambah employment: satu akrual per baris berapa pun event pesanan-dibayar diputar ulang |
+| identitas sumber | kunci unik intake (lalu buku besar) | `(tipe sumber, id pesanan, id baris pesanan)` ditambah employment dan digest permintaan: satu baris intake (`duplicate` saat putar ulang) dan karenanya satu akrual per baris berapa pun event pesanan-dibayar diputar ulang |
 | jumlah dasar | dilaporkan per baris | Total baris dikurangi bagian proporsional `discount` + `loyalty_discount` (sen bilangan bulat, alokasi sisa-terbesar modul retur). Tidak pernah ongkos kirim, asuransi atau pajak |
 | `occurredOn` | dilaporkan per baris | `paid_at` pesanan sebagai tanggal sipil di zona waktu tenant sendiri (`awcms_tenant_settings.timezone`) |
 | `commerce.order_paid_commission_attributor` | nama konsumer domain-event | Permanen: ia menjadi kunci baris pengiriman dan buku efek. Idempotensi bawaan `runtime_effect_once` |
 | `commerce.commission_settings.{read,manage}`, `commerce.commission_staff_links.{read,manage}` | `awcms_permissions` (`sql/1031`) | Empat izin pada dua activity code; `manage` berisiko tinggi |
-| `commerce.commission.{settings_updated,staff_link_created,staff_link_retired,attributed,attribution_refused,attribution_rejected}` | aksi audit | Tidak ada yang memuat jumlah, dasar, tarif, referensi sumber atau (untuk baris konsumer) id employment |
+| `commerce.commission.{settings_updated,settings_refused,staff_link_created,staff_link_retired,submitted,attribution_rejected,reversal_submitted,reversal_needs_attention}` | aksi audit | Tidak ada yang memuat jumlah, dasar, tarif, referensi sumber atau (untuk baris konsumer) id employment. `attributed`, `attribution_refused` dan `reversed` (sebelum ADR-0046 D13) tidak lagi ditulis: penolakan kini terjadi di poster dan didaftar oleh `hr_commission` |
+| `readiness.state` | `GET`/`PUT /api/v1/commerce/commission/settings` | `off`, `hr_commission_module_disabled`, `awaiting_first_submission`, `submitting`: diturunkan hanya dari registri modul dan catatan submission |
+| `COMMISSION_INTAKE_DISABLED`, `COMMISSION_INTAKE_FULL` | kode galat pada pengiriman yang gagal | Pengiriman konsumer gagal (coba ulang, lalu dead letter yang dapat diputar ulang) selama intake komisi tenant mati atau penuh; tidak ada yang ditulis |
 | `COMMISSION_LOGIN_ALREADY_LINKED`, `COMMISSION_EMPLOYMENT_ALREADY_LINKED`, `COMMISSION_LINK_ALREADY_RETIRED` | kode error `409` | Penolakan stabil rute tautan staf |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting

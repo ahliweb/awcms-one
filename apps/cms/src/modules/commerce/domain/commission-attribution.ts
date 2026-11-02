@@ -41,10 +41,7 @@ import {
   resolveSalesReportDay,
   SALES_REPORT_TIME_ZONE
 } from "./sales-report-deltas";
-import type {
-  CommissionAccrualOutcome,
-  CommissionVoidOutcome
-} from "../../_shared/ports/commission-accrual-port";
+import type { CommissionIntakeOutcome } from "../../_shared/ports/commission-intake-port";
 
 export type CommissionValidationError = { field: string; message: string };
 type ValidationResult<T> =
@@ -90,8 +87,8 @@ export const COMMISSION_SKIP_REASONS = [
   "no_cashier_stamp",
   "no_staff_link",
   "no_commissionable_lines",
-  // Reversal-only reasons (ADR-0046 D9).
-  "no_reversal_actor",
+  // Reversal-only reasons (ADR-0046 D9, D12).
+  "no_submissions",
   "return_not_settled",
   "return_not_found"
 ] as const;
@@ -394,78 +391,124 @@ export function commissionOccurredOn(paidAt: Date, timeZone: string): string {
 }
 
 // ---------------------------------------------------------------------------
-// What the ledger answered
+// What the intake answered (ADR-0046 D12, upstream ADR-0147)
 // ---------------------------------------------------------------------------
+//
+// The intake is a queue: `queued` means "recorded", never "accrued". Every
+// BUSINESS refusal (no rule in force, ineligible employment, closed period, a
+// source conflict, nothing to void) happens later, in the poster, and is shown
+// only in the tenant's intake exceptions list - the consumer never sees it, so
+// nothing here tallies one.
 
-export type OutcomeClass =
-  "accrued" | "replayed" | "refused" | "conflict" | "invalid";
+export type IntakeOutcomeClass =
+  /** Recorded (or already recorded): the delivery is done. */
+  | "accepted"
+  /** Nothing was written and a retry can succeed once a person or the queue moves: the delivery must fail so the runtime retries and then dead-letters it (replayable). */
+  | "unavailable"
+  /** A deterministic refusal of THIS request: record it for a person, never retry. */
+  | "invalid"
+  /** A void with nobody to stamp: record it for a person, never retry. */
+  | "actor_required";
 
-/** Refusals that say the SAME thing for every line of the order (so the consumer stops at the first). */
-const ORDER_WIDE_REFUSALS: readonly CommissionAccrualOutcome["outcome"][] = [
-  "no_effective_rule",
-  "rule_ambiguous",
-  "source_type_mismatch",
-  "currency_mismatch",
-  "employment_not_found",
-  "employment_not_eligible"
-];
-
-export function classifyAccrualOutcome(
-  outcome: CommissionAccrualOutcome
-): OutcomeClass {
+export function classifyIntakeOutcome(
+  outcome: CommissionIntakeOutcome
+): IntakeOutcomeClass {
   switch (outcome.outcome) {
-    case "accrued":
-      return "accrued";
-    case "replayed":
-      return "replayed";
-    case "source_conflict":
-      return "conflict";
+    case "queued":
+    case "duplicate":
+      return "accepted";
+    case "disabled":
+    case "full":
+      return "unavailable";
     case "input_invalid":
       return "invalid";
-    default:
-      return "refused";
+    case "actor_required":
+      return "actor_required";
   }
 }
 
-export function isOrderWideRefusal(outcome: CommissionAccrualOutcome): boolean {
-  return ORDER_WIDE_REFUSALS.includes(outcome.outcome);
+/** The unavailable reason (`disabled` or `full`) of an outcome, or `null` when the delivery may complete. */
+export function intakeUnavailableReason(
+  outcome: CommissionIntakeOutcome
+): "disabled" | "full" | null {
+  return outcome.outcome === "disabled" || outcome.outcome === "full"
+    ? outcome.outcome
+    : null;
+}
+
+/**
+ * Thrown by the consumers when the intake cannot take a request now. A thrown
+ * delivery rolls back its whole transaction (the submissions already made in it
+ * included), is retried with the runtime's back-off and, if it still fails,
+ * dead-lettered where an operator replays it once the intake is switched on or
+ * has drained. The message carries a code, never an amount, a person or an id.
+ */
+export class CommissionIntakeUnavailableError extends Error {
+  readonly reason: "disabled" | "full";
+  constructor(reason: "disabled" | "full") {
+    super(
+      reason === "disabled"
+        ? "COMMISSION_INTAKE_DISABLED: hr_commission commission intake is switched off for this tenant; the sale is kept in the dead-letter list and can be replayed after it is switched on."
+        : "COMMISSION_INTAKE_FULL: the hr_commission intake queue of this tenant is full; the delivery is retried until the poster has drained it."
+    );
+    this.name = "CommissionIntakeUnavailableError";
+    this.reason = reason;
+  }
 }
 
 export type OutcomeTally = {
-  accrued: number;
-  replayed: number;
-  /** Refusal code -> count (the port's own outcome names; no amount, no reference). */
-  refused: Record<string, number>;
-  conflicts: number;
+  /** Lines newly recorded in the intake queue. */
+  queued: number;
+  /** Lines the intake already held (a replay): nothing was written. */
+  duplicate: number;
+  /** Lines the intake refused as malformed (deterministic). */
   invalid: number;
 };
 
 export function emptyTally(): OutcomeTally {
-  return { accrued: 0, replayed: 0, refused: {}, conflicts: 0, invalid: 0 };
+  return { queued: 0, duplicate: 0, invalid: 0 };
 }
 
+/** Tallies one ACCEPTED or INVALID answer; the caller handles `unavailable` before it gets here. */
 export function tallyOutcome(
   tally: OutcomeTally,
-  outcome: CommissionAccrualOutcome
+  outcome: CommissionIntakeOutcome
 ): void {
-  switch (classifyAccrualOutcome(outcome)) {
-    case "accrued":
-      tally.accrued += 1;
-      break;
-    case "replayed":
-      tally.replayed += 1;
-      break;
-    case "conflict":
-      tally.conflicts += 1;
-      break;
-    case "invalid":
-      tally.invalid += 1;
-      break;
-    case "refused":
-      tally.refused[outcome.outcome] =
-        (tally.refused[outcome.outcome] ?? 0) + 1;
-      break;
-  }
+  if (outcome.outcome === "queued") tally.queued += 1;
+  else if (outcome.outcome === "duplicate") tally.duplicate += 1;
+  else if (outcome.outcome === "input_invalid") tally.invalid += 1;
+}
+
+// ---------------------------------------------------------------------------
+// Readiness (ADR-0046 D12): what the settings screen can say without reading the ledger
+// ---------------------------------------------------------------------------
+
+export const COMMISSION_READINESS_STATES = [
+  "off",
+  "hr_commission_module_disabled",
+  "awaiting_first_submission",
+  "submitting"
+] as const;
+export type CommissionReadinessState =
+  (typeof COMMISSION_READINESS_STATES)[number];
+
+/**
+ * The adapter's visible state from the only three facts commerce may hold: its
+ * own switch, whether the `hr_commission` module is on for the tenant (the
+ * module registry, not a commission table) and whether it has ever submitted a
+ * line (its own `awcms_commerce_commission_submissions`). It deliberately cannot
+ * see the intake's own switch or the poster: those are `hr_commission`'s.
+ */
+export function commissionReadinessState(facts: {
+  enabled: boolean;
+  hrCommissionModuleEnabled: boolean;
+  lastSubmittedAt: string | null;
+}): CommissionReadinessState {
+  if (!facts.enabled) return "off";
+  if (!facts.hrCommissionModuleEnabled) return "hr_commission_module_disabled";
+  return facts.lastSubmittedAt === null
+    ? "awaiting_first_submission"
+    : "submitting";
 }
 
 // ---------------------------------------------------------------------------
@@ -492,46 +535,31 @@ export function isLineFullyReturned(
 }
 
 export type VoidTally = {
-  voided: number;
-  alreadyVoided: number;
-  /** Nothing was accrued for that line and employment: the normal case for a line below the threshold, a rule-less tenant or a sale that was refused. */
-  notFound: number;
+  /** Voids newly recorded in the intake queue. */
+  queued: number;
+  /** Voids the intake already held (a replay). */
+  duplicate: number;
   /** Lines of a partly returned order line left untouched (a human decides). */
   partial: number;
-  /** `payable` / `paid` accruals: a clawback for a human. NEVER retried. */
-  periodClosed: Record<"payable" | "paid", number>;
+  /** Voids the intake could not take because no person caused the cancel or refund: a human voids the accrual. NEVER retried. */
   actorRequired: number;
   invalid: number;
 };
 
 export function emptyVoidTally(): VoidTally {
-  return {
-    voided: 0,
-    alreadyVoided: 0,
-    notFound: 0,
-    partial: 0,
-    periodClosed: { payable: 0, paid: 0 },
-    actorRequired: 0,
-    invalid: 0
-  };
+  return { queued: 0, duplicate: 0, partial: 0, actorRequired: 0, invalid: 0 };
 }
 
 export function tallyVoidOutcome(
   tally: VoidTally,
-  outcome: CommissionVoidOutcome
+  outcome: CommissionIntakeOutcome
 ): void {
   switch (outcome.outcome) {
-    case "voided":
-      tally.voided += 1;
+    case "queued":
+      tally.queued += 1;
       break;
-    case "already_voided":
-      tally.alreadyVoided += 1;
-      break;
-    case "not_found":
-      tally.notFound += 1;
-      break;
-    case "period_closed":
-      tally.periodClosed[outcome.status] += 1;
+    case "duplicate":
+      tally.duplicate += 1;
       break;
     case "actor_required":
       tally.actorRequired += 1;
@@ -542,12 +570,7 @@ export function tallyVoidOutcome(
   }
 }
 
-/** True when a human has to look: money the ledger would not reverse, or a reversal that could not be attributed. */
+/** True when a human has to look: a reversal that could not be attributed to a person, a malformed one, or a partly returned line. A closed-period or missing accrual shows later in the intake exceptions list. */
 export function voidNeedsAttention(tally: VoidTally): boolean {
-  return (
-    tally.periodClosed.payable + tally.periodClosed.paid > 0 ||
-    tally.actorRequired > 0 ||
-    tally.invalid > 0 ||
-    tally.partial > 0
-  );
+  return tally.actorRequired > 0 || tally.invalid > 0 || tally.partial > 0;
 }
