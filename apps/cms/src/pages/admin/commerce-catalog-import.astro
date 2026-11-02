@@ -306,6 +306,7 @@ const canApply =
 
 <script>
   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { onAction } from "../../lib/ui/admin-form-client";
   import {
     fillTemplate,
     newIdempotencyKey,
@@ -362,7 +363,7 @@ const canApply =
       setApplyEnabled(false);
     });
 
-    validateButton.addEventListener("click", async () => {
+    onAction("#catalog-import-validate", async () => {
       const file = fileInput.files?.[0];
       if (!file) {
         say("statusNofile");

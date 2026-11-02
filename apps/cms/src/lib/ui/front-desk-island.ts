@@ -38,7 +38,7 @@ import {
   type PosShortcutMap
 } from "../../modules/commerce/domain/pos-shortcuts";
 import { ScanBurstDetector } from "../../modules/commerce/domain/pos-scan";
-import { sendJsonRequest } from "./admin-form-client";
+import { onAction, onSubmit, sendJsonRequest } from "./admin-form-client";
 import {
   actionStates,
   buildBalanceBody,
@@ -156,7 +156,6 @@ export function initFrontDesk(root: HTMLElement): void {
     statusLabels = {};
   }
 
-  const lookupForm = byId<HTMLFormElement>("fd-lookup-form");
   const codeInput = byId<HTMLInputElement>("fd-code");
   const contactInput = byId<HTMLInputElement>("fd-contact");
   const findButton = byId<HTMLButtonElement>("fd-find");
@@ -480,10 +479,7 @@ export function initFrontDesk(root: HTMLElement): void {
   }
 
   // ---- lookup ------------------------------------------------------------
-  lookupForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    void doLookup();
-  });
+  onSubmit("fd-lookup-form", () => doLookup());
 
   async function doLookup(): Promise<void> {
     if (busy) return;
@@ -634,8 +630,8 @@ export function initFrontDesk(root: HTMLElement): void {
     }
   }
 
-  checkInButton.addEventListener("click", () => void writeStay("check-in"));
-  checkOutButton.addEventListener("click", () => void writeStay("check-out"));
+  onAction("#fd-check-in", () => writeStay("check-in"));
+  onAction("#fd-check-out", () => writeStay("check-out"));
 
   /** Shows a refusal of a write; a refusal that means the reservation changed also re-reads the card. */
   async function refuse(code: string | null, details: unknown): Promise<void> {
@@ -657,10 +653,7 @@ export function initFrontDesk(root: HTMLElement): void {
     addRow("cash", true)
   );
 
-  balanceForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    void collect();
-  });
+  onSubmit("fd-balance-form", () => collect());
 
   /** Puts a tender refusal on the line it is about: `aria-invalid`, tied to the message, and focus. */
   function showTenderProblem(

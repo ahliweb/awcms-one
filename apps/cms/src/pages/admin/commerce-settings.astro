@@ -799,12 +799,10 @@ const COURIER_OPTIONS = [
   // work with no JavaScript regardless of whether this ran.
   initCommerceSettingsSaveBars();
 
-  const form = el("store-settings-form");
   const errorBox = messageBox("store-settings-error");
   const successBox = messageBox("store-settings-success");
 
-  form?.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  onSubmit("store-settings-form", async () => {
     errorBox.clear();
     successBox.clear();
 
@@ -996,12 +994,10 @@ const COURIER_OPTIONS = [
   // only `{features: {pos: false}}` would REPLACE the whole `features` key
   // and silently turn every OTHER flag off for this tenant. See
   // `module-settings.ts`'s own header for that contract.
-  const featuresForm = el("commerce-features-form");
   const featuresError = messageBox("commerce-features-error");
   const featuresSuccess = messageBox("commerce-features-success");
 
-  featuresForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  onSubmit("commerce-features-form", async () => {
     featuresError.clear();
     featuresSuccess.clear();
 

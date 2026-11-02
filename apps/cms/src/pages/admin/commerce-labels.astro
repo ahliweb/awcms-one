@@ -496,7 +496,7 @@ function pageHref(next: number): string {
 </AdminLayout>
 
 <script>
-  import { sendJsonRequest } from "../../lib/ui/admin-form-client";
+  import { onAction, sendJsonRequest } from "../../lib/ui/admin-form-client";
 
   const root = document.getElementById("labels-root");
   const status = document.getElementById("labels-status");
@@ -506,13 +506,7 @@ function pageHref(next: number): string {
     if (status) status.textContent = text;
   }
 
-  document.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-    const button = target.closest<HTMLButtonElement>(
-      'button[data-action="save-barcode"]'
-    );
-    if (!button || button.disabled) return;
+  onAction('button[data-action="save-barcode"]', async (button) => {
     const input = button
       .closest(".labels-assign")
       ?.querySelector<HTMLInputElement>(".labels-code-input");

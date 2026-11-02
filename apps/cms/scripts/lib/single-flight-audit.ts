@@ -70,6 +70,18 @@ export const ALLOWED_DIRECT_BINDINGS: readonly {
     count: 1,
     reason:
       "Enter inside a `contenteditable` block of the preview overlay: a standalone bundle with no `<form>`. A `saving` flag now ignores a second Enter while the PATCH is in flight (found by this audit); the PATCH also converges on retry."
+  },
+  {
+    file: "src/lib/ui/front-desk-island.ts",
+    count: 2,
+    reason:
+      "Two keydown listeners (Enter in the code field; a scanner burst) that only call `doLookup`, which returns at once while the island's own `busy` flag is set; `busyOn` sets it synchronously before the first await. The island's forms and buttons are bound through `onSubmit`/`onAction`."
+  },
+  {
+    file: "src/pages/admin/commerce-catalog-import.astro",
+    count: 1,
+    reason:
+      "The Apply button: the handler leaves it disabled once the reviewed file is spent, and the shared release would re-enable it, so it keeps its own guard (a confirmation dialog that is modal, then `setApplyEnabled(false)`, and one `Idempotency-Key` plus `expectedSha256` per review, so a repeat replays). Validate goes through `onAction`."
   }
 ];
 
