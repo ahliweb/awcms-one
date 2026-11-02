@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:9e8f83d6ec2f52324cd4cf7c97263d394807310e3bb8d82784f34ccbf6ba679f -->
+<!-- i18n-source-hash: sha256:fe74f2e35b7598dc73b9215b700ebd16df988413cdd394d217285a90c4441f9e -->
 
 # Status
 
@@ -24,7 +24,7 @@ Atribut kustom **bertipe** yang didefinisikan tenant pada produk dan varian (tek
 
 ## Akun pelanggan dan afiliasi (ADR-0016)
 
-Tingkat kepercayaan ketiga, terverifikasi-OTP, di atas pelanggan checkout-tamu: login/registrasi OTP e-mail (dan WhatsApp, lihat integrasi di bawah), sesi bearer opaque berawalan `cs_` (di-hash `sha256:` saat disimpan, `Authorization: Bearer`, disimpan di `localStorage` milik browser sendiri — tidak pernah cookie, lihat aturan bearer-session milik [`AGENTS.md`](../AGENTS.md)), dashboard akun (alamat, riwayat pesanan, ulasan, wishlist yang tersinkron, kotak pesan pelanggan), dan program afiliasi (penangkapan `?ref=`, atribusi checkout, `/akun/afiliasi`, layar moderasi owner). **Belum ada:** ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon — dua item yang ditunda [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6.
+Tingkat kepercayaan ketiga, terverifikasi-OTP, di atas pelanggan checkout-tamu: login/registrasi OTP e-mail (dan WhatsApp, lihat integrasi di bawah), sesi bearer opaque berawalan `cs_` (di-hash `sha256:` saat disimpan, `Authorization: Bearer`, disimpan di `localStorage` milik browser sendiri — tidak pernah cookie, lihat aturan bearer-session milik [`AGENTS.md`](../AGENTS.md)), dashboard akun (alamat, riwayat pesanan, ulasan, wishlist yang tersinkron, kotak pesan pelanggan), dan program afiliasi (penangkapan `?ref=`, atribusi checkout, `/akun/afiliasi`, layar moderasi owner). Pendaftaran dan login aman terhadap kirim ganda di sisi server (issue [#513](https://github.com/ahliweb/awcms-one/issues/513), unit B: OTP sekali pakai yang atomik, pembuatan akun yang aman balapan, `Idempotency-Key` opsional pada `otp/verify` yang mengulang dengan sesi baru, jendela kirim-ulang 60 dtk pada `otp/request`); penjaga storefront (unit A) dan endpoint bermutasi lainnya (unit C) adalah unit terpisah. **Belum ada:** ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon — dua item yang ditunda [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6.
 
 ## Buku besar poin loyalitas (ADR-0026)
 

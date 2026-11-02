@@ -38,15 +38,31 @@ import type {
   CustomerOtpChannelRequest
 } from "../domain/customer-otp-channel";
 import {
+  OTP_VERIFY_IDEMPOTENCY_KEY_PATTERN,
+  deriveOtpVerifyIdentity,
+  otpVerifyDigestsEqual
+} from "../domain/customer-otp-idempotency";
+import {
+  acquireCustomerAuthLock,
   consumeOtp,
-  createAccountForCustomer,
+  tryCreateAccountForCustomer,
+  CustomerAccountUniqueViolationError,
   findAccountByEmail,
+  findAccountById,
   findAccountByPhone,
+  findRecentOtpWithinResendWindow,
   issueOtp,
   issueSession,
   type CustomerAccountRecord,
   type OtpIdentifierColumn
 } from "./customer-account-store";
+import {
+  computeOtpVerifyDigest,
+  findOtpVerifyRecord,
+  hashOtpVerifyIdempotencyKey,
+  lockOtpVerifyKey,
+  saveOtpVerifyRecord
+} from "./customer-otp-verify-idempotency";
 import { isWhatsappOtpChannelAvailableForTenant } from "./whatsapp-otp-channel-adapter";
 
 const AUDIT_MODULE_KEY = "commerce";
@@ -284,6 +300,32 @@ export async function requestCustomerOtp(
   const identifierValue =
     via === "whatsapp" ? phoneNormalizedForVia! : emailNormalized;
 
+  // Issue #513 — resend window. A second request for the SAME registration
+  // while the previous code is less than a minute old (a double tap, a retry,
+  // two tabs) is a no-op success: the live code stays valid, no second message
+  // goes out and nothing is superseded. The lookup takes an advisory lock that
+  // lives until this transaction ends, so two simultaneous requests are decided
+  // one after the other, not both as "first". The response is identical either
+  // way (anti-enumeration), with the live code's own remaining lifetime.
+  const recent = await findRecentOtpWithinResendWindow(
+    tx,
+    tenantId,
+    identifierValue,
+    purpose,
+    registration,
+    now,
+    identifierColumn
+  );
+  if (recent) {
+    return {
+      kind: "sent",
+      expiresInSeconds: Math.max(
+        1,
+        Math.ceil((recent.expiresAt.getTime() - now.getTime()) / 1000)
+      )
+    };
+  }
+
   const issued = await issueOtp(
     tx,
     tenantId,
@@ -343,11 +385,15 @@ export type VerifyCustomerOtpOutcome =
   | { kind: "account_not_found" }
   | { kind: "phone_already_registered" }
   | { kind: "blocked" }
+  /** Issue #513 — the `Idempotency-Key` was already used (inside the replay window) by a different request. */
+  | { kind: "idempotency_conflict" }
   | {
       kind: "success";
       token: string;
       expiresAt: string;
       account: CustomerAccountView;
+      /** Issue #513 — `true` when this answer replays an earlier success for the same `Idempotency-Key` (a FRESH session for the same account; no token is ever read back). */
+      replayed?: boolean;
     };
 
 export type SessionMeta = {
@@ -355,7 +401,160 @@ export type SessionMeta = {
   userAgentSummary: string | null;
 };
 
+export type VerifyCustomerOtpOptions = {
+  /** Issue #513 — the validated `Idempotency-Key` (`parseOtpVerifyIdempotencyKey`); `null`/absent = no idempotency. */
+  idempotencyKey?: string | null;
+};
+
+/**
+ * Verify + login/register, optionally idempotent by an `Idempotency-Key`
+ * (Issue #513; storage design in `customer-otp-verify-idempotency.ts`).
+ *
+ * Without a key it is exactly {@link verifyCustomerOtpOnce}: the code is
+ * single-use (an atomic consume), so a second verify of the same code is
+ * `otp_invalid`. With a key, requests carrying it are serialised by an advisory
+ * lock, and:
+ *
+ * - no record: run the verify; on SUCCESS record `(key hash, request digest,
+ *   account id)`;
+ * - a record inside the replay window with the SAME digest: skip the (already
+ *   consumed) code and issue a FRESH session for the recorded account — a
+ *   blocked account stays blocked;
+ * - a record with a DIFFERENT digest: `idempotency_conflict`;
+ * - a record outside the window: ignored (an ordinary verify, nothing written).
+ *
+ * Failures are never recorded, so a mistyped code can be retried under the same
+ * key.
+ */
 export async function verifyCustomerOtp(
+  tx: Bun.TransactionSQL,
+  tenantId: string,
+  input: VerifyCustomerOtpInput,
+  sessionMeta: SessionMeta,
+  correlationId?: string,
+  now: Date = new Date(),
+  options: VerifyCustomerOtpOptions = {}
+): Promise<VerifyCustomerOtpOutcome> {
+  const key = options.idempotencyKey ?? null;
+  if (key === null) {
+    return verifyCustomerOtpOnce(
+      tx,
+      tenantId,
+      input,
+      sessionMeta,
+      correlationId,
+      now
+    );
+  }
+
+  if (!OTP_VERIFY_IDEMPOTENCY_KEY_PATTERN.test(key)) {
+    throw new TypeError("idempotencyKey must be a validated key.");
+  }
+
+  const identity = deriveOtpVerifyIdentity(input);
+  if (!identity) {
+    // A request the verifier answers with `validation_error`: no code is
+    // consumed, so there is nothing to record or replay.
+    return verifyCustomerOtpOnce(
+      tx,
+      tenantId,
+      input,
+      sessionMeta,
+      correlationId,
+      now
+    );
+  }
+
+  const keyHash = hashOtpVerifyIdempotencyKey(key);
+  const requestHash = computeOtpVerifyDigest(identity);
+  await lockOtpVerifyKey(tx, tenantId, keyHash);
+  const record = await findOtpVerifyRecord(tx, tenantId, keyHash);
+
+  if (record.state === "fresh") {
+    if (!otpVerifyDigestsEqual(record.requestHash, requestHash)) {
+      return { kind: "idempotency_conflict" };
+    }
+
+    const account = record.accountId
+      ? await findAccountById(tx, tenantId, record.accountId)
+      : null;
+    if (account) {
+      const identifierMasked =
+        identity.identifierColumn === "phone_normalized"
+          ? maskPhone(identity.identifierValue)
+          : maskIdentifierValue(identity.identifierValue, "email");
+
+      if (account.status === "blocked") {
+        await recordAuditEvent(tx, {
+          tenantId,
+          moduleKey: AUDIT_MODULE_KEY,
+          action: "commerce.customer.login_failed",
+          resourceType: AUDIT_RESOURCE_TYPE_OTP,
+          message: `Customer OTP verification failed for ${identity.purpose}.`,
+          attributes: {
+            identifierMasked,
+            purpose: identity.purpose,
+            reason: "blocked"
+          },
+          correlationId
+        });
+        return { kind: "blocked" };
+      }
+
+      // One low-noise event per replay; never the key, the code or a token.
+      await recordAuditEvent(tx, {
+        tenantId,
+        moduleKey: AUDIT_MODULE_KEY,
+        action: "commerce.customer.otp_verify_replayed",
+        resourceType: "customer_account",
+        resourceId: account.id,
+        message: "Customer OTP verify replayed for an idempotency key.",
+        attributes: { identifierMasked, purpose: identity.purpose },
+        correlationId
+      });
+
+      const session = await issueSession(
+        tx,
+        tenantId,
+        account.id,
+        sessionMeta,
+        now
+      );
+      return {
+        kind: "success",
+        token: session.token,
+        expiresAt: session.expiresAt,
+        account: (await fetchCustomerAccountView(tx, tenantId, account.id))!,
+        replayed: true
+      };
+    }
+    // The recorded account no longer exists: fall through to an ordinary
+    // verify (the code is consumed, so it answers `otp_invalid`).
+  }
+
+  const outcome = await verifyCustomerOtpOnce(
+    tx,
+    tenantId,
+    input,
+    sessionMeta,
+    correlationId,
+    now
+  );
+
+  if (outcome.kind === "success" && record.state === "none") {
+    await saveOtpVerifyRecord(
+      tx,
+      tenantId,
+      keyHash,
+      requestHash,
+      outcome.account.id
+    );
+  }
+
+  return outcome;
+}
+
+async function verifyCustomerOtpOnce(
   tx: Bun.TransactionSQL,
   tenantId: string,
   input: VerifyCustomerOtpInput,
@@ -561,18 +760,37 @@ export async function verifyCustomerOtp(
   // above never issues one without it).
   const registration = consumed.otp.registration!;
 
-  // The verified e-mail already owns an account: the shopper proved control
-  // of that mailbox, so this is a login under a different button, not a
-  // second account (the (tenant, email) unique index would refuse one
-  // anyway). Without this branch a returning shopper who picks "Daftar"
-  // instead of "Masuk" would hit the index and get a 500.
-  const accountByEmail = await findAccountByEmail(
+  const phoneResult = normalizePhoneNumber(registration.phone);
+  const normalizedPhone = phoneResult.valid
+    ? phoneResult.value
+    : registration.phone;
+
+  // Issue #513 — serialise registrations for this e-mail and this phone, always
+  // in the same order (e-mail, then phone) so two registrations can never wait
+  // on each other. The checks below are then decided one after the other: the
+  // loser of a race finds the winner's committed account and resolves to a
+  // login or to PHONE_ALREADY_REGISTERED instead of colliding on a unique index.
+  await acquireCustomerAuthLock(
     tx,
     tenantId,
+    "register-email",
     emailNormalized
   );
-  if (accountByEmail) {
-    if (accountByEmail.status === "blocked") {
+  await acquireCustomerAuthLock(
+    tx,
+    tenantId,
+    "register-phone",
+    normalizedPhone
+  );
+
+  // The verified e-mail already owns an account: the shopper proved control of
+  // that mailbox, so this is a login under a different button, not a second
+  // account (the (tenant, email) unique index would refuse one anyway). Never
+  // PHONE_ALREADY_REGISTERED, whatever phone the form carried.
+  async function loginAsExistingAccount(
+    existing: CustomerAccountRecord
+  ): Promise<VerifyCustomerOtpOutcome> {
+    if (existing.status === "blocked") {
       await auditFailure("blocked");
       return { kind: "blocked" };
     }
@@ -591,7 +809,7 @@ export async function verifyCustomerOtp(
     const existingSession = await issueSession(
       tx,
       tenantId,
-      accountByEmail.id,
+      existing.id,
       sessionMeta,
       now
     );
@@ -600,18 +818,16 @@ export async function verifyCustomerOtp(
       kind: "success",
       token: existingSession.token,
       expiresAt: existingSession.expiresAt,
-      account: (await fetchCustomerAccountView(
-        tx,
-        tenantId,
-        accountByEmail.id
-      ))!
+      account: (await fetchCustomerAccountView(tx, tenantId, existing.id))!
     };
   }
 
-  const phoneResult = normalizePhoneNumber(registration.phone);
-  const normalizedPhone = phoneResult.valid
-    ? phoneResult.value
-    : registration.phone;
+  const accountByEmail = await findAccountByEmail(
+    tx,
+    tenantId,
+    emailNormalized
+  );
+  if (accountByEmail) return loginAsExistingAccount(accountByEmail);
 
   const existingAccount = await findAccountByPhone(
     tx,
@@ -624,7 +840,7 @@ export async function verifyCustomerOtp(
     return { kind: "phone_already_registered" };
   }
 
-  const account = await createAccountForCustomer(
+  const created = await tryCreateAccountForCustomer(
     tx,
     tenantId,
     {
@@ -634,6 +850,24 @@ export async function verifyCustomerOtp(
     },
     correlationId
   );
+  if (!created.ok) {
+    // Defence in depth behind the locks above (another writer of this table
+    // that does not take them): the unique index refused the INSERT, so the
+    // account exists now. Resolve to it - the same person's e-mail is a login,
+    // a phone that belongs to someone else's account is the real conflict.
+    const winnerByEmail = await findAccountByEmail(
+      tx,
+      tenantId,
+      emailNormalized
+    );
+    if (winnerByEmail) return loginAsExistingAccount(winnerByEmail);
+    if (await findAccountByPhone(tx, tenantId, normalizedPhone)) {
+      await auditFailure("phone_already_registered");
+      return { kind: "phone_already_registered" };
+    }
+    throw new CustomerAccountUniqueViolationError(created.constraint);
+  }
+  const account = created.account;
 
   await recordAuditEvent(tx, {
     tenantId,

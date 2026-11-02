@@ -16104,6 +16104,8 @@ Each history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` 
 
 Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpose: "register"`, `name`/`phone` are stored on the OTP row (`customer_otps.registration`) and applied only when the code is verified — a request alone creates nothing. Always answers `202 {sent:true, ...}` regardless of whether the address has an account, whether the phone is already registered, or whether the tenant's `email` outbox is reachable, so this endpoint is never an account-existence oracle.
 
+**Resend window (Issue #513).** A second request for the SAME registration (same identifier, purpose, and for `register` the same name and phone) less than 60 seconds after the previous one is a no-op success: the live code stays valid, no second e-mail or WhatsApp message is sent, and the answer has the same shape. A different registration payload, or a request after the window, issues a new code that supersedes the old one. Rate limits count every request either way. The endpoint takes no `Idempotency-Key`: the window is its guard.
+
 **Request body** (required): [`OtpRequest`](#schema-otprequest)
 
 **Responses**
@@ -16122,18 +16124,22 @@ Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpos
 
 Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL, 5 attempts, single use — any of wrong/expired/consumed/ attempts-exhausted answers the SAME `401 OTP_INVALID` so a guess cannot distinguish why it failed. On success, mints an opaque `cs_` bearer token (only its `sha256:` digest is stored, D3) and — for `purpose: "register"` — applies the registration data captured at request time, binding to an existing guest `awcms_commerce_customers` row by phone when one exists (history_from rule, D4).
 
+**Double-submit safety (Issue #513).** The code is consumed atomically, so two concurrent verifies of one code never both succeed (the second is `401 OTP_INVALID`). A `register` whose e-mail already has an account is a login (never `PHONE_ALREADY_REGISTERED`); only a phone that belongs to a DIFFERENT e-mail's account is `409 PHONE_ALREADY_REGISTERED`.
+
+**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Within 10 minutes the same key with the same request (purpose, e-mail or phone, code) answers `200` again with `data.replayed: true` and a FRESH session for the same account — no token is stored or read back; the key is stored only as a keyed hash. The same key with a different request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded, so a mistyped code can be retried under the same key.
+
 **Request body** (required): [`OtpVerify`](#schema-otpverify)
 
 **Responses**
 
-| Status | Description                                                                                                                                                                  | Schema                                 |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Verified — a new bearer session.                                                                                                                                             | object                                 |
-| 400    | Validation error.                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
-| 401    | OTP_INVALID — wrong, expired, consumed, or attempts exhausted (one code for all four, D2's anti-guess rule).                                                                 | [`ApiError`](#standard-error-envelope) |
-| 404    | ACCOUNT_NOT_FOUND — `purpose: "login"` for an e-mail with no account. Acceptable per ADR-0016 D2 — the mailbox owner already received the code, so this is not a new oracle. | [`ApiError`](#standard-error-envelope) |
-| 409    | PHONE_ALREADY_REGISTERED — `purpose: "register"` and the phone is bound to another account.                                                                                  | [`ApiError`](#standard-error-envelope) |
-| 429    | Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Verified — a new bearer session. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.                                                                                                                                                                         | object                                 |
+| 400    | VALIDATION_ERROR (the body) or IDEMPOTENCY_KEY_INVALID (the `Idempotency-Key` header is present but not 16 to 128 characters of `A-Z a-z 0-9 _ -`).                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | OTP_INVALID — wrong, expired, consumed, or attempts exhausted (one code for all four, D2's anti-guess rule).                                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | ACCOUNT_NOT_FOUND — `purpose: "login"` for an e-mail with no account. Acceptable per ADR-0016 D2 — the mailbox owner already received the code, so this is not a new oracle.                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | PHONE_ALREADY_REGISTERED — `purpose: "register"` and the phone is bound to a DIFFERENT e-mail's account (a registration whose e-mail already has an account is a login, never this); or IDEMPOTENCY_CONFLICT — the `Idempotency-Key` was already used (inside the 10-minute window) with a different request. | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/reviews` — Issue #91 (implemented, contract #86). The account's own submitted reviews, any moderation status, with the product name and order code inlined.
 

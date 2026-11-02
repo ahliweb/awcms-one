@@ -845,6 +845,49 @@ alternative to `email` (mutually exclusive; `identifierColumn` picks
 rather than `findAccountByEmail` — "login by phone" means the account whose
 CUSTOMER row carries that phone.
 
+**Registration and login are safe against double submit (Issue #513, ADR-0016).**
+Server correctness never depends on the storefront's own single-flight guard.
+
+- `consumeOtp` is one `UPDATE ... WHERE ... AND consumed_at IS NULL RETURNING`:
+  the `target` CTE is read from the statement's snapshot and is not re-run
+  after a row-lock wait, so without that predicate a verify that started
+  before the first one committed also "matched" the already-consumed row (two
+  sessions from one code - reproduced by
+  `apps/cms/tests/integration/commerce-customer-register-idempotency.integration.test.ts`).
+  Now the second of two concurrent verifies is `401 OTP_INVALID`.
+- Registrations are serialised per e-mail and per phone with
+  `pg_advisory_xact_lock` (`acquireCustomerAuthLock`, always e-mail then phone,
+  so no cycle). The loser finds the winner's committed account: the same
+  e-mail is a login (never `PHONE_ALREADY_REGISTERED`), a phone that belongs
+  to another e-mail's account is the real `409`. `createAccountForCustomer`
+  also runs its INSERT in a savepoint and throws the typed
+  `CustomerAccountUniqueViolationError` on a lost unique race, which
+  `verifyCustomerOtp` resolves the same way (never a `500`).
+- `POST .../account/otp/verify` takes an OPTIONAL `Idempotency-Key`
+  (`[A-Za-z0-9_-]{16,128}`, else `400 IDEMPOTENCY_KEY_INVALID`). Records live
+  in the shared `awcms_idempotency_keys` (scope `commerce.customer_otp_verify`,
+  anonymous actor): `(tenant, HMAC of the key, HMAC digest of
+purpose+identifier+code, {outcome:"session_issued", accountId})` - never the
+  raw key, the code, a session token, an e-mail or a phone. Same key + same
+  request within 10 minutes (`OTP_VERIFY_IDEMPOTENCY_TTL_SECONDS`, never longer
+  than the code's own life) answers `200` with `data.replayed: true` and a
+  FRESH session for the same account (a blocked account stays `403`); another
+  request under the key is `409 IDEMPOTENCY_CONFLICT`; a record past the
+  window is ignored. Only successes are recorded. Requests carrying one key
+  are serialised by an advisory lock, so two concurrent ones yield one
+  account, one `commerce.customer.account_registered` event and a second,
+  distinct session; a replay writes one `commerce.customer.otp_verify_replayed`
+  event. Needs `IDEMPOTENCY_HMAC_SECRET` in production like every other keyed
+  route (without it a keyed request fails closed); with the per-process
+  fallback key a replay on another instance is simply an ordinary verify.
+- `POST .../account/otp/request`: a second request for the SAME registration
+  (identifier, purpose, and for `register` name+phone) less than
+  `OTP_RESEND_WINDOW_SECONDS` (60, the storefront's own resend countdown) after
+  the previous one is a no-op success - same response shape, the live code
+  stays valid, no second e-mail or WhatsApp message, no audit row. The check
+  runs under an advisory lock, so two simultaneous requests send one message.
+  Rate limits are unchanged and count every request. No key is read.
+
 **Owner diagnostics**: `GET /api/v1/commerce/whatsapp/messages`
 (`commerce.whatsapp.read`, keyset-paginated, masked phone only) plus a
 minimal `/admin/commerce-whatsapp` screen (status filter, no create/update/
