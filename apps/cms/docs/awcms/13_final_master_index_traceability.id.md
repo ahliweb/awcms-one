@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](13_final_master_index_traceability.md)
 
-<!-- i18n-source-hash: sha256:e0953ca3a9137addac41c1aa7981c25004a4518b140a8a8d5504061f2b6e8d0c -->
+<!-- i18n-source-hash: sha256:272070cad114387dbd4a86025760698fc071e2c2090eb10d26eea4c00b78f2e3 -->
 
 # Bagian 13 — Final Master Index dan Traceability Matrix
 

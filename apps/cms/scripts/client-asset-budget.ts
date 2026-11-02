@@ -1853,8 +1853,21 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue entries added no client byte. The budget is the measurement rounded
  * up to the next 100 B. `AGENTS.md`'s divergence line carries the figure and needs
  * the new one at integration.
+ *
+ * **Raised to 513,800 B by the awcms-one subtree sync of upstream `ab313273`
+ * (ahliweb/awcms main, 23 commits after `aa047da`)**, MEASURED 513,770 B on the
+ * merged build (510,675 B on the tree before the sync, the #388 figure above):
+ * +3,095 B. Upstream's own constant moved +2,811 B (343,542 -> 346,353 B: +2,802 B
+ * for the admin data-page primitives of ahliweb/awcms#1196 / ADR-0149, one shared
+ * `admin.css` block plus the Users screen's markup, and +9 B for `astro` 7.4.4),
+ * and the remaining +284 B is the shared `AdminLayout` CSS bundle and the compiled
+ * catalogue, which are not additive across lineages (the same effect the
+ * #260 and #427 syncs recorded). `channel-accounts` ships no admin screen yet and
+ * `hr_commission`'s intake queue is API-only, so neither added a browser byte
+ * and `commerce` itself added none. A measurement of the merged build rounded up
+ * to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 510_700;
+export const APP_BUDGET_BYTES = 513_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

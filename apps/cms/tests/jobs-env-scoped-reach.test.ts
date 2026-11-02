@@ -734,9 +734,23 @@ describe("IDEMPOTENCY_HMAC_SECRET stays global by a recorded decision (Issue #11
       ).toBe(false);
     }
 
+    // awcms-one (ahliweb/awcms#1187 sync): `commerce`'s own request hashing is
+    // reachable from every scheduled job through the module registry that about
+    // 70 scripts import, exactly as `COMMERCE_MIDTRANS_SERVER_KEY` is (see
+    // `GLOBAL_SECRETS`). The decision recorded here therefore holds for them too:
+    // the key stays global, and a file-level trace cannot scope it. A new
+    // commerce caller of `computeRequestHash` joins this list on purpose.
     expect([...reachable].sort()).toEqual([
       "src/modules/booking/application/booking-port-adapter.ts",
-      "src/modules/booking/application/booking-route-support.ts"
+      "src/modules/booking/application/booking-route-support.ts",
+      "src/modules/commerce/application/booking-cancellation-policies.ts",
+      "src/modules/commerce/application/booking-cancellation.ts",
+      "src/modules/commerce/application/booking-no-show.ts",
+      "src/modules/commerce/application/loyalty-ledger.ts",
+      "src/modules/commerce/application/order-directory.ts",
+      "src/modules/commerce/application/return-directory.ts",
+      "src/modules/commerce/application/stored-value-directory.ts",
+      "src/modules/commerce/application/tax-adapter-directory.ts"
     ]);
   });
 
