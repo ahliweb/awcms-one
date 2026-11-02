@@ -14,10 +14,13 @@ import {
   fail,
   jsonResponse
 } from "../../../../../../../modules/_shared/api-response";
+import { OrderNotPayableError } from "../../../../../../../modules/commerce/application/order-directory";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../../modules/commerce/domain/commerce-cors";
+import { createPaymentConfirmationIdempotent } from "../../../../../../../modules/commerce/application/storefront-idempotent-mutations";
 import {
-  createPaymentConfirmation,
-  OrderNotPayableError
-} from "../../../../../../../modules/commerce/application/order-directory";
+  readStorefrontIdempotencyKey,
+  storefrontIdempotencyConflictResponse
+} from "../../../../../../../modules/commerce/application/storefront-idempotency-http";
 import { mediaLibraryPortAdapter } from "../../../../../../../modules/media-library/application/media-library-port-adapter";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
@@ -32,6 +35,14 @@ import { validatePaymentConfirmationInput } from "../../../../../../../modules/c
  * is validated as an optional string here purely for forward-compatibility
  * with a future increment that wires the upload path up, and is currently
  * never resolvable to a real object.
+ *
+ * Takes an OPTIONAL `Idempotency-Key` (Issue #513, unit C): every submit
+ * inserts a confirmation row, so a repeat used to record the same payment
+ * twice. The same key + same `(orderCode, phone, confirmation)` replays the
+ * original `201` with the order as it is now (`data.replayed: true`, no second
+ * row); the same key for another order, phone or confirmation is `409
+ * IDEMPOTENCY_CONFLICT` and never answers the stored outcome. The record is a
+ * marker only (no order data is copied into the idempotency table).
  */
 const RATE_LIMIT_MAX = parsePositiveIntSetting(
   process.env.COMMERCE_STOREFRONT_RATE_LIMIT_MAX,
@@ -44,7 +55,12 @@ const RATE_LIMIT_WINDOW_SEC = parsePositiveIntSetting(
   "COMMERCE_STOREFRONT_RATE_LIMIT_WINDOW_SEC"
 );
 
-export const POST: APIRoute = async ({ params, request, clientAddress }) => {
+export const POST: APIRoute = async ({
+  params,
+  request,
+  clientAddress,
+  locals
+}) => {
   const clientIp = resolveClientIp(request, clientAddress);
   const rateLimit = await checkSharedRateLimit(
     `commerce:orders:payment-confirm:${clientIp}`,
@@ -63,6 +79,9 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
       }
     );
   }
+
+  const idempotency = readStorefrontIdempotencyKey(request);
+  if ("response" in idempotency) return idempotency.response;
 
   const orderCode = params.orderCode;
   if (!orderCode) {
@@ -102,22 +121,40 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
       sql,
       request,
       async (tx, tenant) =>
-        createPaymentConfirmation(
+        createPaymentConfirmationIdempotent(
           tx,
           tenant.tenantId,
           mediaLibraryPortAdapter,
           orderCode,
           phoneResult.value,
-          validation.value
+          validation.value,
+          { key: idempotency.key, correlationId: locals.correlationId }
         )
     );
 
-    if (!result) {
-      return fail(404, "NOT_FOUND", "Not found.", {}, undefined, corsHeaders);
+    if (!result || result.kind === "not_found") {
+      return fail(
+        404,
+        "NOT_FOUND",
+        "Not found.",
+        {},
+        undefined,
+        corsHeaders ?? { vary: "Origin" }
+      );
+    }
+
+    if (result.kind === "idempotency_conflict") {
+      return storefrontIdempotencyConflictResponse(corsHeaders);
     }
 
     return jsonResponse(
-      { success: true, data: result, meta: {} },
+      {
+        success: true,
+        data: result.replayed
+          ? { ...result.order!, replayed: true }
+          : result.order,
+        meta: {}
+      },
       { status: 201, headers: corsHeaders }
     );
   } catch (error) {
@@ -136,5 +173,6 @@ export const OPTIONS: APIRoute = async ({ request, clientAddress }) =>
     request,
     clientAddress,
     "commerce:orders:payment-confirm",
-    { maxAttempts: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_SEC * 1000 }
+    { maxAttempts: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_SEC * 1000 },
+    commerceIdempotentPreflightHeaders(["content-type"])
   );

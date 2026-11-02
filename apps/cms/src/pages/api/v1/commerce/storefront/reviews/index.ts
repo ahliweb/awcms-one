@@ -14,7 +14,12 @@ import {
   fail,
   jsonResponse
 } from "../../../../../../modules/_shared/api-response";
-import { createReview } from "../../../../../../modules/commerce/application/review-directory";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../modules/commerce/domain/commerce-cors";
+import { createReviewIdempotent } from "../../../../../../modules/commerce/application/storefront-idempotent-mutations";
+import {
+  readStorefrontIdempotencyKey,
+  storefrontIdempotencyConflictResponse
+} from "../../../../../../modules/commerce/application/storefront-idempotency-http";
 import { commercePreflightResponse } from "../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../modules/commerce/application/public-commerce-tenant";
 import { requireCustomerSession } from "../../../../../../modules/commerce/application/customer-session-auth";
@@ -26,6 +31,16 @@ import { validateCreateReviewInput } from "../../../../../../modules/commerce/do
  * Requires a `completed` order containing the product, one per
  * `(customer, product, order)`; lands `pending` for moderation
  * (`application/review-directory.ts`).
+ *
+ * Idempotency (Issue #513, unit C). The database's unique index per
+ * `(customer, product, order)` already stops a duplicate row, but a retry after
+ * a lost response answered `409 REVIEW_NOT_ALLOWED` ("not eligible") for a
+ * review the shopper had just written. An OPTIONAL `Idempotency-Key` fixes the
+ * answer: the same key + same `(orderCode, phone, productId, rating, body)`
+ * (and the same signed-in account, if any) replays the original `201` with the
+ * same review id (`data.replayed: true`); the same key for another order,
+ * product or text is `409 IDEMPOTENCY_CONFLICT`. Without a key the unique
+ * index and its `409` are unchanged. The record is `{ id }`.
  */
 const RATE_LIMIT_MAX = parsePositiveIntSetting(
   process.env.COMMERCE_STOREFRONT_RATE_LIMIT_MAX,
@@ -44,7 +59,7 @@ const REASON_TO_CODE = {
   already_reviewed: "REVIEW_NOT_ALLOWED"
 } as const;
 
-export const POST: APIRoute = async ({ request, clientAddress }) => {
+export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   const clientIp = resolveClientIp(request, clientAddress);
   const rateLimit = await checkSharedRateLimit(
     `commerce:reviews:create:${clientIp}`,
@@ -66,6 +81,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       }
     );
   }
+
+  const idempotency = readStorefrontIdempotencyKey(request);
+  if ("response" in idempotency) return idempotency.response;
 
   const bodyRead = await readJsonBody(request);
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
@@ -119,16 +137,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         accountCustomerId = authOutcome.account.customerId;
       }
 
-      return createReview(
+      return createReviewIdempotent(
         tx,
         tenant.tenantId,
-        validation.value.orderCode,
-        phoneResult.value,
-        validation.value.productId,
-        validation.value.rating,
-        validation.value.body,
-        undefined,
-        accountCustomerId
+        {
+          orderCode: validation.value.orderCode,
+          phone: phoneResult.value,
+          productId: validation.value.productId,
+          rating: validation.value.rating,
+          body: validation.value.body
+        },
+        accountCustomerId,
+        { key: idempotency.key, correlationId: locals.correlationId }
       );
     }
   );
@@ -142,6 +162,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       undefined,
       corsHeaders
     );
+  }
+
+  if (result && result.kind === "idempotency_conflict") {
+    return storefrontIdempotencyConflictResponse(corsHeaders);
   }
 
   if (!result || result.kind === "not_found") {
@@ -167,7 +191,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   return jsonResponse(
-    { success: true, data: { id: result.id, status: "pending" }, meta: {} },
+    {
+      success: true,
+      data: {
+        id: result.id,
+        status: "pending",
+        ...(result.replayed ? { replayed: true } : {})
+      },
+      meta: {}
+    },
     { status: 201, headers: corsHeaders }
   );
 };
@@ -180,6 +212,6 @@ export const OPTIONS: APIRoute = async ({ request, clientAddress }) =>
     "commerce:reviews:create",
     { maxAttempts: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_SEC * 1000 },
     // Issue #91 — `authorization` joins `content-type` since this route now
-    // accepts an OPTIONAL bearer.
-    ["content-type", "authorization"]
+    // accepts an OPTIONAL bearer; Issue #513 adds `idempotency-key`.
+    commerceIdempotentPreflightHeaders(["content-type", "authorization"])
   );

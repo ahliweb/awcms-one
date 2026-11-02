@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:7f9c4ef8cbcd489bde93a53a5a98e5887dafe94d2dce2cdacec140b4e8bf1a2d -->
+<!-- i18n-source-hash: sha256:a916419edaa0e3af97f5b3ecefecde49f81585ae154a0dad80680372d6338a01 -->
 
 # `commerce`
 
@@ -951,6 +951,43 @@ IDEMPOTENCY_CONFLICT`; catatan di luar jendela diabaikan. Hanya keberhasilan
   audit. Pemeriksaan berjalan di bawah advisory lock, sehingga dua permintaan
   serentak mengirim satu pesan. Batas laju tidak berubah dan menghitung setiap
   permintaan. Tidak ada kunci yang dibaca.
+
+**Endpoint storefront bermutasi lainnya (Issue #513, unit kerja C)** memakai satu
+kontrak `Idempotency-Key` opsional (bentuk yang ditetapkan unit B). Kode:
+`domain/storefront-idempotency.ts` (cakupan, bentuk kunci, jendela),
+`application/storefront-idempotency.ts` (eksekusi berkunci: advisory lock per
+hash kunci, cari, bandingkan digest, simpan),
+`application/storefront-idempotent-mutations.ts` (satu fungsi per rute, kode yang
+sama yang dipanggil rute dan uji integrasi) dan
+`application/storefront-idempotency-http.ts` (jawaban `400`/`409`). Tanpa
+migrasi: baris berada di `awcms_idempotency_keys` bersama, satu `request_scope`
+per rute (`commerce.storefront.*`), kunci disimpan hanya sebagai HMAC dari
+`(cakupan, id akun yang masuk atau "-", kunci)`, permintaan sebagai digest HMAC
+dari `(cakupan, id akun, kode order / id percakapan / telepon ternormalisasi /
+isinya)`.
+
+| Rute                                       | Kelas                                                                                                                               | Catatan          |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `POST account/addresses`                   | ulangan membuat alamat kedua -> berkunci                                                                                            | badan `201` rute |
+| `POST account/conversations`               | ulangan membuka utas kedua -> berkunci                                                                                              | badan `201`      |
+| `POST account/conversations/{id}/messages` | ulangan mengirim dua kali -> berkunci                                                                                               | badan `201`      |
+| `POST orders/{code}/payment-confirmations` | ulangan mencatat baris kedua -> berkunci                                                                                            | hanya penanda    |
+| `POST orders/{code}/cancel`                | idempoten alami (order yang sudah `cancelled` dijawab `200`, baris order dikunci) + kunci opsional                                  | hanya penanda    |
+| `POST reviews`                             | indeks unik mencegah duplikat, percobaan ulang dulu `409 REVIEW_NOT_ALLOWED` yang menyesatkan -> kunci opsional memutar ulang `201` | `{id}`           |
+
+Kunci sama + permintaan sama dalam `STOREFRONT_IDEMPOTENCY_TTL_SECONDS` (1 jam)
+diputar ulang dengan `data.replayed: true`; permintaan lain dengan kunci itu
+adalah `409 IDEMPOTENCY_CONFLICT` (tidak pernah jawaban tersimpan, sehingga kunci
+tidak bisa diputar ulang terhadap order, percakapan, atau telepon lain); header
+salah bentuk adalah `400 IDEMPOTENCY_KEY_INVALID`. Hanya keberhasilan yang
+dicatat. Pemutaran ulang percakapan atau pesan tidak memakai batas kirim per
+akun, dan menulis satu event audit `commerce.storefront.idempotency_replayed`
+(hanya cakupan, tidak pernah kunci). `createAccountAddress` juga mengambil
+advisory lock per pelanggan (batas dan alamat utama pertama tetap benar saat
+konkuren); pembatalan order mengunci barisnya (`FOR UPDATE`). Keenam rute
+mencantumkan `idempotency-key` pada preflight lewat
+`commerceIdempotentPreflightHeaders`. Memerlukan `IDEMPOTENCY_HMAC_SECRET` di
+produksi seperti rute berkunci lainnya.
 
 **Diagnostik pemilik**: `GET /api/v1/commerce/whatsapp/messages`
 (`commerce.whatsapp.read`, berpaginasi keyset, telepon tersamar saja) plus

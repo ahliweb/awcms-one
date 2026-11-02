@@ -14706,6 +14706,10 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 - **operationId**: `cancelCommerceStorefrontOrder`
 - **Security**: none (public endpoint)
 
+Naturally idempotent: cancelling an order that is already `cancelled` answers `200` with the order as it is (no second transition, event or audit row), with or without a key; two concurrent cancels run one transition. Every other state the customer may not cancel from keeps `409 ORDER_NOT_CANCELLABLE`.
+
+**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and reason within 1 hour replays with `data.replayed: true` (the order as it is now); the same key for another order, phone or reason is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome.
+
 **Parameters**
 
 | Name        | In   | Required | Type   | Description |
@@ -14716,17 +14720,19 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description                                                                                                                | Schema                                 |
-| ------ | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Order cancelled.                                                                                                           | object                                 |
-| 404    | Resource not found.                                                                                                        | [`ApiError`](#standard-error-envelope) |
-| 409    | ORDER_NOT_CANCELLABLE, or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                        | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | Order cancelled, or already cancelled (the same answer). `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.                                                      | object                                 |
+| 404    | Resource not found.                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 409    | ORDER_NOT_CANCELLABLE, IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request), or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-confirmations` — Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
 
 - **operationId**: `createCommerceStorefrontPaymentConfirmation`
 - **Security**: none (public endpoint)
 
+**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and confirmation within 1 hour replays the original `201` with the order as it is now and `data.replayed: true` (no second confirmation row); the same key for another order, phone or confirmation is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome. Only successes are recorded; nothing of the order is copied into the idempotency store. Without a key every submit records a confirmation.
+
 **Parameters**
 
 | Name        | In   | Required | Type   | Description |
@@ -14737,12 +14743,12 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description                                           | Schema                                 |
-| ------ | ----------------------------------------------------- | -------------------------------------- |
-| 201    | Confirmation recorded.                                | object                                 |
-| 400    | Validation error.                                     | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                   | [`ApiError`](#standard-error-envelope) |
-| 409    | ORDER_NOT_PAYABLE — the order is not pending_payment. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                      | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | Confirmation recorded. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.                      | object                                 |
+| 400    | Validation error.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | ORDER_NOT_PAYABLE (the order is not pending_payment), or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request). | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions` — Issue #106 (ADR-0017 D3; implemented by #110). Create a hosted payment-gateway session (Midtrans Snap) for a `pending_payment` order whose `paymentMethod` is `gateway`. Anonymous, identified by `phone` — or an optional `customerBearer`, matching the rest of this anonymous surface (Issue #91's own optional-bearer pattern).
 
@@ -14816,17 +14822,19 @@ Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exa
 
 Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too. Present and valid → ownership is checked against the signed-in account's OWN customer row instead of the orderCode+phone credential (`phone` is still validated for shape and still the per-phone rate limit's key); present and invalid/expired → `401 UNAUTHENTICATED`; absent entirely → the anonymous path is unchanged.
 
+Issue #513 (unit C): the unique index per (customer, product, order) stops a duplicate review, but a retry used to answer `409 REVIEW_NOT_ALLOWED` for a review the shopper had just written. **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone, product, rating and text (and the same signed-in account, if any) within 1 hour replays the original `201` with the same review `id` and `data.replayed: true`; the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Without a key the unique index and its `409 REVIEW_NOT_ALLOWED` are unchanged.
+
 **Request body** (required): object
 
 **Responses**
 
-| Status | Description                                                                               | Schema                                 |
-| ------ | ----------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Review submitted, pending moderation.                                                     | object                                 |
-| 400    | Validation error.                                                                         | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91). | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                       | [`ApiError`](#standard-error-envelope) |
-| 409    | REVIEW_NOT_ALLOWED.                                                                       | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | Review submitted, pending moderation. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`. | object                                 |
+| 400    | Validation error.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91).                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | REVIEW_NOT_ALLOWED, or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request).                             | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/testimonials` — List testimonials (Issue 26). Keyset-paginated, newest first. Gated on testimonials.read.
 
@@ -15765,16 +15773,18 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 - **operationId**: `createCommerceStorefrontAccountAddress`
 - **Security**: customerBearer
 
+**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same address within 1 hour replays the original `201` with `data.replayed: true` (no second address); the same key with another address is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat creates a second address (each create is serialised per customer, so the limit and the first-address default hold under concurrency).
+
 **Request body** (required): object
 
 **Responses**
 
-| Status | Description                                         | Schema                                 |
-| ------ | --------------------------------------------------- | -------------------------------------- |
-| 201    | Created.                                            | object                                 |
-| 400    | Validation error.                                   | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.                                    | [`ApiError`](#standard-error-envelope) |
-| 409    | ADDRESS_LIMIT_REACHED — already 10 saved addresses. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                    | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Created. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.                                  | object                                 |
+| 400    | Validation error.                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | ADDRESS_LIMIT_REACHED (already 10 saved addresses), or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different address). | [`ApiError`](#standard-error-envelope) |
 
 ### `PATCH /api/v1/commerce/storefront/account/addresses/{id}` — Issue #91 (implemented, contract #86). Update a saved address. Never touches isDefault (see the /default sub-route).
 
@@ -15902,16 +15912,19 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 - **operationId**: `createCommerceStorefrontAccountConversation`
 - **Security**: customerBearer
 
+**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same subject and body within 1 hour replays the original `201` with `data.replayed: true` (no second thread or message, and the replay does not spend the per-account post limit); the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat opens a second thread.
+
 **Request body** (required): object
 
 **Responses**
 
-| Status | Description                                                                                                                                       | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Conversation opened, with its first (customer) message.                                                                                           | object                                 |
-| 400    | Validation error.                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
-| 429    | RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                  | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | Conversation opened, with its first (customer) message. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`. | object                                 |
+| 400    | Validation error.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT — the `Idempotency-Key` was already used with a different request.                                                                      | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account.            | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/conversations/{id}` — Issue #111 (contract #106 D8). One conversation the account owns, with its messages, oldest first. Marks the thread read for the customer.
 
@@ -15937,6 +15950,8 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 - **operationId**: `createCommerceStorefrontAccountConversationMessage`
 - **Security**: customerBearer
 
+**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same conversation and text within 1 hour replays the original `201` with `data.replayed: true` (no second message, and the replay does not spend the per-account post limit); the same key for another conversation or text is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat posts the message twice.
+
 **Parameters**
 
 | Name | In   | Required | Type          | Description |
@@ -15949,11 +15964,11 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 | Status | Description                                                                                                                                       | Schema                                 |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Message added.                                                                                                                                    | object                                 |
+| 201    | Message added. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.                               | object                                 |
 | 400    | Validation error.                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
 | 401    | UNAUTHENTICATED.                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
 | 404    | Unknown conversation, or one belonging to another account.                                                                                        | [`ApiError`](#standard-error-envelope) |
-| 409    | CONVERSATION_CLOSED.                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | CONVERSATION_CLOSED, or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request).                                   | [`ApiError`](#standard-error-envelope) |
 | 429    | RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/entitlements` — Issue #267 (IRMbyDUS). "My entitlements" — keyset-paginated, bearer session. ownerCustomerId always comes from the verified session, never from request input.

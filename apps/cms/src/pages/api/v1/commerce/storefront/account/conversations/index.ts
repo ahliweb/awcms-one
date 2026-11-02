@@ -16,13 +16,19 @@ import {
   ok
 } from "../../../../../../../modules/_shared/api-response";
 import { decodeKeysetCursor } from "../../../../../../../modules/_shared/keyset-pagination";
-import {
-  listConversationsForAccount,
-  openConversation
-} from "../../../../../../../modules/commerce/application/conversation-directory";
+import { listConversationsForAccount } from "../../../../../../../modules/commerce/application/conversation-directory";
 import { requireCustomerSession } from "../../../../../../../modules/commerce/application/customer-session-auth";
 import { fetchCommerceFeatures } from "../../../../../../../modules/commerce/application/commerce-feature-gate";
 import { validateOpenConversationInput } from "../../../../../../../modules/commerce/domain/conversation-validation";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../../modules/commerce/domain/commerce-cors";
+import {
+  openConversationIdempotent,
+  type OpenConversationIdempotentOutcome
+} from "../../../../../../../modules/commerce/application/storefront-idempotent-mutations";
+import {
+  readStorefrontIdempotencyKey,
+  storefrontIdempotencyConflictResponse
+} from "../../../../../../../modules/commerce/application/storefront-idempotency-http";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -32,6 +38,12 @@ import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/
  * `ambilPercakapan` (`akun-klien.ts`): keyset-paginated, newest-activity
  * first. `POST` per `buatPercakapan`: opens a thread with its own first
  * (customer) message, `201 {conversation, message}`.
+ *
+ * `POST` takes an OPTIONAL `Idempotency-Key` (Issue #513, unit C): a repeat
+ * opens a second thread, so the same key + same subject/body replays the
+ * original `201` (`data.replayed: true`, no second thread, no second message,
+ * and it does not spend the per-account post limit); another request under the
+ * same key is `409 IDEMPOTENCY_CONFLICT`.
  */
 const RATE_LIMIT_MAX = parsePositiveIntSetting(
   process.env.COMMERCE_STOREFRONT_RATE_LIMIT_MAX,
@@ -50,7 +62,10 @@ const CONVERSATION_POST_RATE_LIMIT_MAX = parsePositiveIntSetting(
   "COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX"
 );
 const CONVERSATION_POST_RATE_LIMIT_WINDOW_SEC = 60 * 60;
-const PREFLIGHT_ALLOWED_HEADERS = ["content-type", "authorization"] as const;
+const PREFLIGHT_ALLOWED_HEADERS = commerceIdempotentPreflightHeaders([
+  "content-type",
+  "authorization"
+]);
 
 type ListOutcome =
   | { kind: "feature_disabled" }
@@ -67,8 +82,7 @@ type CreateOutcome =
   | { kind: "unauthenticated" }
   | { kind: "blocked" }
   | { kind: "validation_error"; errors: { field: string; message: string }[] }
-  | { kind: "rate_limited"; retryAfterSec: number }
-  | { kind: "created"; result: Awaited<ReturnType<typeof openConversation>> };
+  | OpenConversationIdempotentOutcome;
 
 /** Issue #118 — a disabled `inbox` feature answers the SAME neutral 404 shape an unresolvable tenant does; `withPublicCommerceTenant` already collapses those two together (its own header), so a disabled feature must too, never a 409 that would tell an anonymous caller the route exists. */
 const NEUTRAL_NOT_FOUND = (corsHeaders: Record<string, string>) =>
@@ -150,6 +164,9 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   );
   if (limited) return limited;
 
+  const idempotency = readStorefrontIdempotencyKey(request);
+  if ("response" in idempotency) return idempotency.response;
+
   const bodyRead = await readJsonBody(request);
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
@@ -176,25 +193,29 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
       }
 
       const accountId = authOutcome.account.id;
-      const postLimit = await checkSharedRateLimit(
-        `commerce:conversations:post:account:${accountId}`,
-        {
-          maxAttempts: CONVERSATION_POST_RATE_LIMIT_MAX,
-          windowMs: CONVERSATION_POST_RATE_LIMIT_WINDOW_SEC * 1000
-        }
-      );
-      if (!postLimit.allowed) {
-        return { kind: "rate_limited", retryAfterSec: postLimit.retryAfterSec };
-      }
-
-      const result = await openConversation(
+      return openConversationIdempotent(
         tx,
         tenant.tenantId,
         accountId,
         validation.value,
-        locals.correlationId
+        {
+          key: idempotency.key,
+          correlationId: locals.correlationId,
+          // Asked only for a NEW conversation: a replay does not spend the limit.
+          admit: async () => {
+            const postLimit = await checkSharedRateLimit(
+              `commerce:conversations:post:account:${accountId}`,
+              {
+                maxAttempts: CONVERSATION_POST_RATE_LIMIT_MAX,
+                windowMs: CONVERSATION_POST_RATE_LIMIT_WINDOW_SEC * 1000
+              }
+            );
+            return postLimit.allowed
+              ? null
+              : { retryAfterSec: postLimit.retryAfterSec };
+          }
+        }
       );
-      return { kind: "created", result };
     }
   );
 
@@ -295,12 +316,16 @@ function respondCreate(
       }
     );
   }
+  if (result.kind === "idempotency_conflict") {
+    return storefrontIdempotencyConflictResponse(corsHeaders);
+  }
   return jsonResponse(
     {
       success: true,
       data: {
         conversation: result.result.conversation,
-        message: result.result.message
+        message: result.result.message,
+        ...(result.replayed ? { replayed: true } : {})
       },
       meta: {}
     },

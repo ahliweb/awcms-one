@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:c3db6ea471d35d817adf09d4f58c510db472e28860d5e27232b6d0396df758e0 -->
+<!-- i18n-source-hash: sha256:d5e78605459cde569a643518ac5e417d8d12df805cf112ac80c4795fe41b97f7 -->
 
 # Status
 
@@ -24,7 +24,7 @@ Atribut kustom **bertipe** yang didefinisikan tenant pada produk dan varian (tek
 
 ## Akun pelanggan dan afiliasi (ADR-0016)
 
-Tingkat kepercayaan ketiga, terverifikasi-OTP, di atas pelanggan checkout-tamu: login/registrasi OTP e-mail (dan WhatsApp, lihat integrasi di bawah), sesi bearer opaque berawalan `cs_` (di-hash `sha256:` saat disimpan, `Authorization: Bearer`, disimpan di `localStorage` milik browser sendiri — tidak pernah cookie, lihat aturan bearer-session milik [`AGENTS.md`](../AGENTS.md)), dashboard akun (alamat, riwayat pesanan, ulasan, wishlist yang tersinkron, kotak pesan pelanggan), dan program afiliasi (penangkapan `?ref=`, atribusi checkout, `/akun/afiliasi`, layar moderasi owner). Pendaftaran dan login aman terhadap kirim ganda di sisi server (issue [#513](https://github.com/ahliweb/awcms-one/issues/513), unit B: OTP sekali pakai yang atomik, pembuatan akun yang aman balapan, `Idempotency-Key` opsional pada `otp/verify` yang mengulang dengan sesi baru, jendela kirim-ulang 60 dtk pada `otp/request`); penjaga storefront (unit A) dan endpoint bermutasi lainnya (unit C) adalah unit terpisah. **Belum ada:** ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon — dua item yang ditunda [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6.
+Tingkat kepercayaan ketiga, terverifikasi-OTP, di atas pelanggan checkout-tamu: login/registrasi OTP e-mail (dan WhatsApp, lihat integrasi di bawah), sesi bearer opaque berawalan `cs_` (di-hash `sha256:` saat disimpan, `Authorization: Bearer`, disimpan di `localStorage` milik browser sendiri — tidak pernah cookie, lihat aturan bearer-session milik [`AGENTS.md`](../AGENTS.md)), dashboard akun (alamat, riwayat pesanan, ulasan, wishlist yang tersinkron, kotak pesan pelanggan), dan program afiliasi (penangkapan `?ref=`, atribusi checkout, `/akun/afiliasi`, layar moderasi owner). Pendaftaran dan login aman terhadap kirim ganda di sisi server (issue [#513](https://github.com/ahliweb/awcms-one/issues/513), unit B: OTP sekali pakai yang atomik, pembuatan akun yang aman balapan, `Idempotency-Key` opsional pada `otp/verify` yang mengulang dengan sesi baru, jendela kirim-ulang 60 dtk pada `otp/request`); endpoint bermutasi lainnya (unit C: alamat, percakapan, pesan, konfirmasi pembayaran, pembatalan, ulasan) menerima `Idempotency-Key` opsional yang sama dan order yang sudah dibatalkan dijawab `200`; penjaga storefront (unit A) adalah unit terpisah. **Belum ada:** ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon — dua item yang ditunda [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6.
 
 ## Buku besar poin loyalitas (ADR-0026)
 
