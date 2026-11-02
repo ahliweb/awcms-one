@@ -493,7 +493,7 @@ This platform's own design - nothing here is ported from the legacy store.
 
 ## Commission attribution vocabulary (issue #391, [ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md))
 
-> **Dormant (ADR-0046 D10, `sql/1053`).** Upstream's payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges on `awcms_hr_*` tables, so the grants this adapter gave `awcms_worker` were revoked and the three commission consumers are not registered with `domain-events:dispatch`. The code, tables, permissions and routes stay; `PUT /api/v1/commerce/commission/settings` with `enabled: true` answers `409 COMMISSION_ADAPTER_DORMANT`. It becomes active when upstream provides a sanctioned worker path to `CommissionAccrualPort`; the text below describes the adapter as built.
+> **Live through the `hr_commission` intake queue (ADR-0046 D13).** Commerce submits to upstream's `CommissionIntakePort` and records what it submitted in its own table (`sql/1063`); the ledger and the queue stay `hr_commission`'s and commerce reads neither.
 
 The commerce side of reporting a paid counter sale to upstream's `hr_commission` ledger. Commerce holds **identifiers and a switch, never an amount, a rate or an accrual state**; those live in `hr_commission`. Not to be confused with affiliate commission (`awcms_commerce_affiliates`, an external beneficiary).
 
@@ -504,13 +504,16 @@ The commerce side of reporting a paid counter sale to upstream's `hr_commission`
 | `source_type` | same | Default `commerce_order_line`. Must equal the `sourceType` the rule declares, or the ledger refuses with `source_type_mismatch` |
 | staff link | `awcms_commerce_commission_staff_links` | Joins a login (`tenant_user_id`) to an `hr_workforce` employment (`employment_id`, **opaque**: no foreign key, no read). At most one LIVE link per login and per employment; retired (`retired_at`), never deleted |
 | attributed source | `awcms_commerce_commission_attributed_sources` | A `(source_type, rule_key)` pair under which accruals have been reported (`sql/1052`, ADR-0046 D9). Once a row exists the settings cannot change either field (`409 COMMISSION_SOURCE_LOCKED`, audited as `commerce.commission.settings_refused`) |
+| commission submission | `awcms_commerce_commission_submissions` | One insert-only row per `(source_type, order line, employment)` that the consumer submitted to the intake queue (`sql/1063`, ADR-0046 D13.1): ids, `source_type`, `rule_key`, `created_at`; **no amount, no person**. The reversers void exactly these rows; `queued` is not `accrued`, so a refusal at posting is invisible here and listed only in the intake exceptions |
 | cashier stamp | `awcms_commerce_orders.pos_cashier_tenant_user_id` | The login that rang up a counter sale, stamped from the authenticated session (`sql/931`). The only source of "who sold": never a request field |
-| source identity | the ledger's unique key | `(source type, order id, order-line id)` plus the employment: one accrual per line however often the order-paid event is replayed |
+| source identity | the intake's unique key (and then the ledger's) | `(source type, order id, order-line id)` plus the employment and the request digest: one intake row (`duplicate` on a replay) and so one accrual per line however often the order-paid event is replayed |
 | base amount | reported per line | The line total less its pro-rata share of `discount` + `loyalty_discount` (integer cents, the returns module's largest-remainder allocation). Never shipping, insurance or tax |
 | `occurredOn` | reported per line | The order's `paid_at` as a civil date in the tenant's own time zone (`awcms_tenant_settings.timezone`) |
 | `commerce.order_paid_commission_attributor` | domain-event consumer name | Permanent: it keys delivery rows and the effect ledger. Default `runtime_effect_once` idempotency |
 | `commerce.commission_settings.{read,manage}`, `commerce.commission_staff_links.{read,manage}` | `awcms_permissions` (`sql/1031`) | Four permissions on two activity codes; `manage` is high-risk |
-| `commerce.commission.{settings_updated,staff_link_created,staff_link_retired,attributed,attribution_refused,attribution_rejected}` | audit actions | None carries an amount, base, rate, source reference or (for the consumer's rows) employment id |
+| `commerce.commission.{settings_updated,settings_refused,staff_link_created,staff_link_retired,submitted,attribution_rejected,reversal_submitted,reversal_needs_attention}` | audit actions | None carries an amount, base, rate, source reference or (for the consumer's rows) employment id. `attributed`, `attribution_refused` and `reversed` (before ADR-0046 D13) are no longer written: a refusal now happens in the poster and is listed by `hr_commission` |
+| `readiness.state` | `GET`/`PUT /api/v1/commerce/commission/settings` | `off`, `hr_commission_module_disabled`, `awaiting_first_submission`, `submitting`: derived from the module registry and the submission record only |
+| `COMMISSION_INTAKE_DISABLED`, `COMMISSION_INTAKE_FULL` | error code in a failed delivery | The consumer's delivery fails (retry, then a replayable dead letter) while the tenant's commission intake is off or full; nothing is written |
 | `COMMISSION_LOGIN_ALREADY_LINKED`, `COMMISSION_EMPLOYMENT_ALREADY_LINKED`, `COMMISSION_LINK_ALREADY_RETIRED` | `409` error codes | The stable refusals of the staff-link routes |
 
 ## Deferred columns and tables — not ported

@@ -11,17 +11,20 @@
  *     `hr-workforce/` (their `application/` and `domain/` code).
  *
  * with exactly ONE exception: `application/commission-attribution-port.ts`
- * imports `hr_commission`'s concrete `CommissionAccrualPort` adapter
- * (`createCommissionAccrualPort`), because the port's own contract says the
- * adapter is wired at the consumer's composition root and that file is
- * commerce's. Every other file depends on the TYPE in `_shared/ports/` and on
+ * imports `hr_commission`'s concrete `CommissionIntakePort` adapter
+ * (`createCommissionIntakePort`, ADR-0147), because the port's own contract says
+ * the adapter is wired at the consumer's composition root and that file is
+ * commerce's. Commerce does NOT use the synchronous `CommissionAccrualPort`
+ * adapter any more (`createCommissionAccrualPort`, which posts with the caller's
+ * privileges and which the worker running the consumers may not hold); the
+ * payroll sensitive-read registry therefore names no commerce importer for it. Every other file depends on the TYPE in `_shared/ports/` and on
  * nothing else. If another file ever needs a commission fact, the answer is a
  * wider port, not a wider import.
  *
  * The migrations get the same treatment: no commerce-band migration may declare a
  * foreign key into an `awcms_hr_*` table (the employment id is opaque), and the
  * only statements that mention one are the worker grants the port's posting core
- * needs (`sql/1031`, and the four-column void grant of `sql/1051`).
+ * needs (`sql/1031`, the four-column void grant of `sql/1051`, and the revoke `sql/1053`).
  */
 import { describe, expect, test } from "bun:test";
 import { readdirSync, readFileSync } from "node:fs";
@@ -57,7 +60,7 @@ const COMMERCE_SOURCES = [
 const ALLOWED_PORT_SEAM =
   "src/modules/commerce/application/commission-attribution-port.ts";
 const ALLOWED_PORT_IMPORT =
-  "../../hr-commission/application/hr-commission-accrual-port-adapter";
+  "../../hr-commission/application/hr-commission-intake-port-adapter";
 
 /** `hr-commission/` or `hr-workforce/` in any import-ish position (static, dynamic, require, re-export). */
 const HR_DIRECTORY_REFERENCE =
@@ -124,11 +127,37 @@ describe("commerce source files never reach into the hr_* ledgers", () => {
       ),
       "utf8"
     );
-    expect(consumer).toContain("_shared/ports/commission-accrual-port");
+    expect(consumer).toContain("_shared/ports/commission-intake-port");
     expect(consumer).toContain("./commission-attribution-port");
+    const reverser = readFileSync(
+      path.join(
+        root,
+        "src/modules/commerce/application/commission-reversal.ts"
+      ),
+      "utf8"
+    );
+    expect(reverser).toContain("_shared/ports/commission-intake-port");
+    expect(reverser).toContain("./commission-attribution-port");
+  });
+
+  test("commerce does not use the synchronous CommissionAccrualPort adapter (the worker may not hold its privileges)", () => {
+    const offenders: string[] = [];
+    for (const file of COMMERCE_SOURCES) {
+      const text = readFileSync(path.join(root, file), "utf8");
+      if (
+        /createCommissionAccrualPort|hr-commission-accrual-port-adapter/.test(
+          text
+        )
+      ) {
+        offenders.push(file);
+      }
+    }
+    expect(offenders).toEqual([]);
   });
 
   test("the consumer never voids, reverses or rewrites an accrual: no void/reverse call, no UPDATE or DELETE of anything", () => {
+    // `submitVoid` (the reverser's intake call) is not in this file's list: only
+    // the attributor and the seam are scanned for a void.
     for (const file of [
       "src/modules/commerce/application/commission-attribution.ts",
       "src/modules/commerce/application/commission-attribution-port.ts"

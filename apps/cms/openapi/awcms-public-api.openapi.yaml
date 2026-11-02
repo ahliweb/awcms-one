@@ -13186,10 +13186,10 @@ paths:
       tags:
         - Commerce
       summary: "Issue #391 (ADR-0046). Whether employee-commission sale attribution is on for the tenant, which `hr_commission` rule key it applies and the source type that rule declares. Gated on `commerce.commission_settings.read`."
-      description: "OFF by default: a tenant that never saved settings answers `enabled: false` with no rule key and `updatedAt: null`."
+      description: "OFF by default: a tenant that never saved settings answers `enabled: false` with no rule key and `updatedAt: null`. `readiness` says what commerce can observe about the path to the ledger without reading a commission table (Issue #391, ADR-0046 D12)."
       responses:
         "200":
-          description: The settings, or the defaults.
+          description: The settings, or the defaults, and the readiness.
           content:
             application/json:
               schema:
@@ -13204,6 +13204,8 @@ paths:
                     properties:
                       settings:
                         $ref: "#/components/schemas/CommerceCommissionSettings"
+                      readiness:
+                        $ref: "#/components/schemas/CommerceCommissionReadiness"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -13213,7 +13215,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #391 (ADR-0046). Switch commission attribution on or off and name the `hr_commission` rule it applies. Gated on `commerce.commission_settings.manage` (a high-risk action); audited with the old and new values. An upsert, so a replay is harmless."
-      description: "DORMANT: `enabled: true` is refused with `409 COMMISSION_ADAPTER_DORMANT` until upstream provides a sanctioned worker path to the accrual ledger. Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the ledger refuse that sale (audited as `commerce.commission.attribution_refused`)."
+      description: "Live since Issue #391 (ADR-0046 D12): the paid-order consumer submits each counter-sale line to `hr_commission`'s intake queue (upstream ADR-0147), a job posts it as an accrual, and cancel/refund submit a void. Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the poster refuse that line, which shows only in `GET /api/v1/hr-commission/intake/exceptions`. Saving with `enabled: true` is never refused for the intake's state: `readiness` in the response says whether `hr_commission` is on and when a line was last submitted. While the tenant's commission intake is switched off the consumer fails each paid sale's delivery (retry, then a replayable dead letter) rather than dropping it, so switch the intake on (with an intake actor) BEFORE enabling this."
       requestBody:
         required: true
         content:
@@ -13238,7 +13240,7 @@ paths:
                   description: Must equal the `sourceType` the rule declares.
       responses:
         "200":
-          description: The saved settings.
+          description: The saved settings and the readiness.
           content:
             application/json:
               schema:
@@ -13253,6 +13255,8 @@ paths:
                     properties:
                       settings:
                         $ref: "#/components/schemas/CommerceCommissionSettings"
+                      readiness:
+                        $ref: "#/components/schemas/CommerceCommissionReadiness"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -13260,7 +13264,7 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: "`COMMISSION_ADAPTER_DORMANT` (Issue #391, ADR-0046 D10) - a request with `enabled: true` is refused: the commission adapter ships dormant because the worker may not hold payroll-table privileges (upstream payroll boundary, ahliweb/awcms#1015), so no accrual would be reported. Switching it off, or saving without enabling, is accepted. Otherwise `COMMISSION_SOURCE_LOCKED` - the commission ledger already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted."
+          description: "`COMMISSION_SOURCE_LOCKED` - the commission intake already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted."
           content:
             application/json:
               schema:
@@ -52624,6 +52628,28 @@ components:
         productCount:
           type: integer
           description: Computed — the tenant's LIVE products currently in this category (Issue 23).
+    CommerceCommissionReadiness:
+      type: object
+      description: "Issue #391 (ADR-0046 D12). What commerce can observe about the path from a paid counter sale to the commission ledger, WITHOUT reading a commission or payroll table: the tenant's own switch, whether the `hr_commission` module is on, and when this adapter last submitted a line to the intake queue. It cannot see the intake's own switch or the poster; those are `hr_commission`'s (`GET /api/v1/hr-commission/intake/settings` and `/intake/exceptions`)."
+      required:
+        - state
+        - hrCommissionModuleEnabled
+        - lastSubmittedAt
+      properties:
+        state:
+          type: string
+          enum:
+            - off
+            - hr_commission_module_disabled
+            - awaiting_first_submission
+            - submitting
+          description: "`off` - the adapter is not switched on. `hr_commission_module_disabled` - on, but the `hr_commission` module is off for the tenant, so nothing is submitted. `awaiting_first_submission` - on and the module is on, but no line has been submitted yet: no counter sale has been paid since, or the commission intake is switched off (the delivery then fails and is dead-lettered, replayable). `submitting` - at least one line was submitted."
+        hrCommissionModuleEnabled:
+          type: boolean
+        lastSubmittedAt:
+          type: string
+          format: date-time
+          nullable: true
     CommerceCommissionSettings:
       type: object
       description: "Issue #391 (ADR-0046). Employee-commission sale attribution settings; the defaults (off, no rule) for a tenant that never saved."

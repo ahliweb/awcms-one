@@ -2,6 +2,7 @@ import { fail, ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
 import { readValidatedBody } from "../../../../../modules/commerce/application/register-http";
 import {
+  fetchCommissionReadiness,
   fetchCommissionSettings,
   saveCommissionSettings
 } from "../../../../../modules/commerce/application/commission-attribution-directory";
@@ -14,9 +15,19 @@ import {
  * `GET|PUT /api/v1/commerce/commission/settings` (Issue #391, ADR-0046) - whether
  * employee-commission sale attribution is on for the tenant, which
  * `hr_commission` rule key it applies and the source type that rule declares.
- * DORMANT (ADR-0046 D10): `PUT` with `enabled: true` answers
- * `409 COMMISSION_ADAPTER_DORMANT`; no consumer is registered. Previously: OFF until a tenant `PUT`s `enabled: true` with a rule key; `GET` answers the
- * defaults (`enabled: false`, no rule) for a tenant that has never saved.
+ * OFF until a tenant `PUT`s `enabled: true` with a rule key; `GET` answers the
+ * defaults (`enabled: false`, no rule) for a tenant that has never saved. Live
+ * since the commission intake landed upstream (ADR-0046 D12, ADR-0147): the
+ * paid-order consumer submits each counter-sale line to `hr_commission`'s intake
+ * queue and a job posts it.
+ *
+ * Both answers carry `readiness` (`state`, whether `hr_commission` is on and the
+ * last time this adapter submitted a line). Enabling while the tenant's commission intake is off
+ * is SAFE - each paid sale's delivery fails, is retried and then dead-lettered
+ * (replayable), never dropped - and VISIBLE: `state` stays
+ * `awaiting_first_submission` (or `hr_commission_module_disabled`) until a line is
+ * submitted. Commerce cannot read the intake's own switch (it may not read a
+ * commission table): the operator checklist says to switch the intake on first.
  *
  * Reading needs `commerce.commission_settings.read`; changing needs
  * `commerce.commission_settings.manage` (a high-risk action: it decides whether
@@ -48,8 +59,13 @@ const COMMISSION_SETTINGS_MANAGE_GUARD = {
 export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: COMMISSION_SETTINGS_READ_GUARD,
-  handler: async ({ tx, tenantId }) =>
-    ok({ settings: await fetchCommissionSettings(tx, tenantId) })
+  handler: async ({ tx, tenantId }) => {
+    const settings = await fetchCommissionSettings(tx, tenantId);
+    return ok({
+      settings,
+      readiness: await fetchCommissionReadiness(tx, tenantId, settings)
+    });
+  }
 });
 
 export const PUT = defineTenantRoute<CommissionSettingsInput>({
@@ -58,16 +74,6 @@ export const PUT = defineTenantRoute<CommissionSettingsInput>({
     readValidatedBody(request, validateCommissionSettingsInput),
   authorize: COMMISSION_SETTINGS_MANAGE_GUARD,
   handler: async ({ tx, tenantId, auth, prepared, locals }) => {
-    // Issue #391 (ADR-0046 D10): the adapter ships dormant (sql/1053 revokes the
-    // worker's payroll-table grants; the consumers are not registered), so
-    // switching it on would promise accruals that never happen.
-    if (prepared.enabled) {
-      return fail(
-        409,
-        "COMMISSION_ADAPTER_DORMANT",
-        "Commission attribution is dormant: it cannot be switched on until upstream provides a sanctioned worker path to the commission ledger."
-      );
-    }
     const outcome = await saveCommissionSettings(
       tx,
       tenantId,
@@ -82,6 +88,9 @@ export const PUT = defineTenantRoute<CommissionSettingsInput>({
         `Commission accruals already exist, so ${outcome.fields.join(" and ")} cannot be changed; it forms the accrual source identity.`
       );
     }
-    return ok({ settings: outcome.settings });
+    return ok({
+      settings: outcome.settings,
+      readiness: await fetchCommissionReadiness(tx, tenantId, outcome.settings)
+    });
   }
 });

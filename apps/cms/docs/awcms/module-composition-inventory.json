@@ -126,7 +126,7 @@
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [
         {
-          "capability": "commission_accrual",
+          "capability": "commission_intake",
           "providedBy": "hr_commission",
           "optional": true
         },

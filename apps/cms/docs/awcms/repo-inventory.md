@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 35    |
-| Migrations                          | 373   |
-| `awcms_*` tables                    | 336   |
-| Tables with `FORCE` RLS             | 316   |
+| Migrations                          | 374   |
+| `awcms_*` tables                    | 337   |
+| Tables with `FORCE` RLS             | 317   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 957   |
+| Test files                          | 958   |
 | Route files                         | 868   |
 | ADR                                 | 314   |
 
@@ -433,6 +433,7 @@
 | 371 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
 | 372 | `sql/1061_awcms_commerce_customer_push_fanout_worker_grants.sql`            |
 | 373 | `sql/1062_awcms_commerce_booking_revenue_export_permission.sql`             |
+| 374 | `sql/1063_awcms_commerce_commission_submissions.sql`                        |
 
 ### Tables & Row-Level Security
 
@@ -512,6 +513,7 @@
 | `awcms_commerce_commission_attributed_sources`   | `sql/1052_awcms_commerce_commission_attributed_sources.sql`   | yes | yes   |
 | `awcms_commerce_commission_settings`             | `sql/1030_awcms_commerce_commission_attribution_schema.sql`   | yes | yes   |
 | `awcms_commerce_commission_staff_links`          | `sql/1030_awcms_commerce_commission_attribution_schema.sql`   | yes | yes   |
+| `awcms_commerce_commission_submissions`          | `sql/1063_awcms_commerce_commission_submissions.sql`          | yes | yes   |
 | `awcms_commerce_conversations`                   | `sql/927_awcms_commerce_conversations_schema.sql`             | yes | yes   |
 | `awcms_commerce_courier_destinations`            | `sql/924_awcms_commerce_shipping_rates_schema.sql`            | yes | yes   |
 | `awcms_commerce_customer_accounts`               | `sql/917_awcms_commerce_customer_accounts_schema.sql`         | yes | yes   |
@@ -781,7 +783,7 @@
 | ------------- | ---------- |
 | `(root)`      | 685        |
 | `e2e`         | 31         |
-| `integration` | 240        |
+| `integration` | 241        |
 | `unit`        | 1          |
 
 ### Routes
