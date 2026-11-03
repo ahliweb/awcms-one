@@ -37,7 +37,8 @@
  *   exists before its text changes.
  * - Focus is not lost: browsers drop focus from a control that becomes
  *   disabled, so the control that had focus gets it back when the form
- *   becomes usable again.
+ *   becomes usable again - unless the task moved focus on purpose (an error
+ *   banner), which is left alone.
  * - A successful task that says `kunciBila` ("a navigation follows") leaves
  *   everything DISABLED and `aria-busy="true"` until the page unloads - there
  *   is no window between the success and the redirect in which a second tap
@@ -148,6 +149,13 @@ export type OpsiPenjagaDom = {
   tetapNonaktif?: (kontrol: PortKontrol) => boolean;
   /** Default `"Memproses..."`. */
   pesan?: string;
+  /**
+   * Whether focus is currently lost (nothing, or only the page body, has it).
+   * The release hands focus back to the control only then: a task that moved
+   * focus on purpose (an error banner it just focused) must keep it. Absent ->
+   * focus is always handed back.
+   */
+  fokusHilang?: () => boolean;
 };
 
 export const PESAN_MEMPROSES = "Memproses...";
@@ -169,7 +177,7 @@ export function buatPenjagaDom(opsi: OpsiPenjagaDom): PenjagaTunggal {
     sebelumnya = new Map();
     const asal = fokusSemula;
     fokusSemula = null;
-    if (asal && daftar.includes(asal) && !asal.disabled) asal.focus?.();
+    if (asal && daftar.includes(asal) && !asal.disabled && (opsi.fokusHilang?.() ?? true)) asal.focus?.();
   }
 
   const inti = buatPenjagaTunggal({
@@ -236,6 +244,8 @@ export function penjagaUntuk(wadah: HTMLElement | null, opsi: OpsiPenjagaUntuk =
     status: typeof document === "undefined" ? null : document.querySelector<HTMLElement>("[data-proses-status]"),
     halaman: typeof window === "undefined" ? undefined : window,
     elemenAktif: () => (typeof document === "undefined" ? null : document.activeElement),
+    fokusHilang: () =>
+      typeof document === "undefined" || document.activeElement === null || document.activeElement === document.body,
     tetapNonaktif: opsi.tetapNonaktif,
     pesan: opsi.pesan
   });

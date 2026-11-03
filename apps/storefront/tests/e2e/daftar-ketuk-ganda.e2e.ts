@@ -72,26 +72,34 @@ test("a double tap and the Enter key send one verify request and show no error",
 });
 
 test("the form stays disabled after a successful verify until the redirect", async ({ page }) => {
-  // Abort the navigation to the account page: the page stays, in the state it is in the instant a redirect is under way.
-  await page.route("**/akun", (route) => (route.request().isNavigationRequest() ? route.abort() : route.fallback()));
+  // Answer the navigation to the account page with an empty 204: the browser stays on this page (an abort would swap in
+  // the browser's error page), in the state it is in the instant a redirect is under way.
+  await page.route("**/akun", (route) =>
+    route.request().isNavigationRequest() ? route.fulfill({ status: 204 }) : route.fallback()
+  );
 
   await sampaiLangkahKode(page);
   const kirim = page.locator('[data-step="code"] button[type="submit"]');
   await kirim.click();
 
-  await expect(page.locator("[data-daftar-form]")).toHaveAttribute("aria-busy", "true");
-  await expect(kirim).toBeDisabled();
+  // Read through the page, not through locators: with a navigation pending, Playwright's locator actions wait for it to
+  // finish, and this one is deliberately never allowed to.
+  const keadaan = () =>
+    page.evaluate(() => ({
+      sibuk: document.querySelector("[data-daftar-form]")?.getAttribute("aria-busy"),
+      nonaktif: document.querySelector<HTMLButtonElement>('[data-step="code"] button[type="submit"]')?.disabled,
+      status: document.querySelector("[data-proses-status]")?.textContent
+    }));
+  await expect.poll(keadaan).toEqual({ sibuk: "true", nonaktif: true, status: "Memproses..." });
   // Even after the response has long settled, nothing re-enabled it.
   await page.waitForTimeout(500);
-  await expect(kirim).toBeDisabled();
+  expect(await keadaan()).toEqual({ sibuk: "true", nonaktif: true, status: "Memproses..." });
 
   // The back button restoring the page from the bfcache fires pageshow with persisted: the form must be usable again.
   await page.evaluate(() => {
     window.dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true }));
   });
-  await expect(kirim).toBeEnabled();
-  await expect(page.locator("[data-daftar-form]")).not.toHaveAttribute("aria-busy", "true");
-  await expect(page.locator("[data-proses-status]")).toHaveText("");
+  await expect.poll(keadaan).toEqual({ sibuk: null, nonaktif: false, status: "" });
 });
 
 test("the resend button is guarded too and keeps its countdown", async ({ page }) => {

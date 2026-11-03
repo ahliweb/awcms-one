@@ -221,7 +221,13 @@ if (root) {
       hapus.type = "button";
       hapus.className = "btn btn--quiet btn--sm akun-btn-danger";
       hapus.textContent = ini ? "Hapus perangkat ini" : "Hapus";
-      hapus.setAttribute("aria-label", `Hapus ${device.userAgentSummary ?? "perangkat tidak dikenal"}${ini ? " (perangkat ini)" : ""} dari daftar notifikasi`);
+      // WCAG 2.5.3 (Label in Name): the accessible name must START with the visible text, so for this device
+      // the visible "Hapus perangkat ini" leads and the device summary follows.
+      const ringkasan = device.userAgentSummary ?? "perangkat tidak dikenal";
+      hapus.setAttribute(
+        "aria-label",
+        ini ? `Hapus perangkat ini (${ringkasan}) dari daftar notifikasi` : `Hapus ${ringkasan} dari daftar notifikasi`
+      );
       hapus.addEventListener("click", () => void hapusPerangkat(device, ini));
       aksi.append(hapus);
 
@@ -503,9 +509,10 @@ if (root) {
 
       if (!hasil.ok) {
         if (statusEl) statusEl.hidden = true;
-        tampilkanGalat(hasil.galat);
-        // The permission may have changed (denied): re-render from facts.
+        // The permission may have changed (denied): re-render from facts FIRST - a
+        // render clears the error banner, so showing it before would erase it at once.
         if (hasil.galat.kode === "PERMISSION_DENIED") await muat();
+        tampilkanGalat(hasil.galat);
         return;
       }
 
