@@ -1815,8 +1815,30 @@ export const READER_BUDGET_BYTES = 24_000;
  * did add up exactly. Each lineage's constant alone (487,700 B and 489,900 B)
  * is below that, so the gate went red on the merge until this raise. A
  * measurement of the merged build rounded up to the next 100 B.
+ *
+ * **Raised to 510,700 B by issue #388 (the cashier / front-desk tab of
+ * `/admin/commerce-pos`)**, MEASURED 510,675 B on the build that carries it
+ * (489,973 B on the `main` it was branched from, 50254cc59, the figure above; the
+ * previous constant, 490,000 B, left 27 B of headroom): +20,702 B, a comparison of
+ * the two builds file by file, not a sum. This is the first screen of the booking
+ * adapter that is a real client island rather than a form: the lookup, the
+ * reservation card, the tender entry with its change preview and the three
+ * writes with their idempotency keys and focus handling. Where it went:
+ * `front-desk-island.js` 17,298 B, the DOM layer and the pure rules of
+ * `front-desk-client` (lookup body, action states with their visible reasons, the
+ * bigint-cent tender plan mirroring `planTenders`, request bodies, per-attempt
+ * keys), loaded by a dynamic `import()` only when the Front desk tab rendered its
+ * root, so the New sale and History tabs download none of it - which is why it is
+ * a chunk and not part of `commerce-pos`'s own script; and 3,404 B of stylesheet
+ * and page-script share (the tab's scoped styles, the one `import()` call). Nothing was copied: the scan burst detector, the shortcut resolver and
+ * `admin-form-client` are the modules the sale screen already ships, imported
+ * from the chunk it shares, and the sentences are server-rendered `data-*`
+ * attributes on the page (the compiled catalogues are server-side), so the 69 new
+ * catalogue entries added no client byte. The budget is the measurement rounded
+ * up to the next 100 B. `AGENTS.md`'s divergence line carries the figure and needs
+ * the new one at integration.
  */
-export const APP_BUDGET_BYTES = 490_000;
+export const APP_BUDGET_BYTES = 510_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

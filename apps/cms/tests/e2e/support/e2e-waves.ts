@@ -121,6 +121,12 @@ export const WRITE_WAVE: readonly string[] = [
   // data and the `booking` commerce feature switched on (and off again): it
   // writes booking and commerce rows and changes a tenant-wide feature flag.
   "admin-commerce-booking.e2e.ts",
+  // Issue #388 - the cashier / front-desk tab of `/admin/commerce-pos`: it turns
+  // the `pos`, `booking` and `register` commerce features on (and restores them),
+  // seeds a bookable room, books and part-pays a stay, opens a register session,
+  // then collects the balance, checks the guest in and out through the real POS
+  // booking routes. Writes booking, order, payment, register and audit rows.
+  "admin-commerce-front-desk.e2e.ts",
   // Nothing here mutates — every request it sends is refused by construction —
   // but it sends non-GET requests, and classifying by what a spec ATTEMPTS
   // rather than by what it happens to achieve is the rule that stays true when

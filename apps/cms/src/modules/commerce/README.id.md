@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8ab2fc87fb74d388d894e492e5c16f7132699c33d9102a42025e80aafbd35a93 -->
+<!-- i18n-source-hash: sha256:57978c68edbb1f699527d103dff3bedefbf1b6f9bc1d5cab4389c30d4cf5ce64 -->
 
 # `commerce`
 
@@ -1730,7 +1730,7 @@ Spesifikasi: [alur UX pemesanan](../../../../../docs/booking-ux-flows.md) bagian
 - **Layar**: `src/pages/admin/commerce-booking-links.astro` (tautan penawaran: daftar, buat, lepas; rute `commerce/booking/offering-links`), `src/pages/admin/commerce-booking-deposits.astro` (kebijakan uang muka produk jasa; `PUT commerce/products/{id}/deposit-policy`), dan kolom akun layanan pemesanan pada `commerce-settings.astro` (`bookingServiceTenantUserId` lewat `PUT commerce/store-settings`, tampil hanya saat `booking` aktif).
 - **Navigasi**: kedua entri ada di `domain/booking-adapter-navigation.ts`, dibatasi izin baca dan `requiredFeature: { moduleKey: "commerce", feature: "booking" }`.
 - **Kode**: `lib/ui/commerce-booking-client.ts` (isi uang muka, pencarian teks penolakan), `listServiceProductDepositPoliciesPage` di `application/booking-deposit-policies.ts`. Layar mengirim kebijakan, bukan jumlah; lepas tautan memakai dialog konfirmasi bersama dan `Idempotency-Key`.
-- **Tidak ada di sini** (dibangun oleh #381, di bawah): layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana. Masih belum ada: layar kasir / meja depan (#388).
+- **Tidak ada di sini** (dibangun oleh #381, di bawah): layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana. Layar kasir / meja depan dibangun kemudian oleh #388 (tab Meja resepsionis pada `/admin/commerce-pos`, di bawah).
 
 **Putaran penutup (issue ini; tanpa migrasi, rute, izin, atau event).** Kelima permukaan [bagian 11](../../../../../docs/booking-ux-flows.md) sudah dibangun (11.1 dan 11.2 di sini, 11.3 pada layar pengaturan, 11.4 dan 11.5 oleh #381 di bawah, 11.6 oleh #382); #385 menutup temuan pemeriksaan di peramban sungguhan dengan data nyata, ditambah dua tindak lanjut #448:
 
@@ -1786,7 +1786,7 @@ Di balik fitur `booking`. Hanya migrasi `sql/1045`. Spesifikasi: [alur UX bookin
 
 ## Adapter booking-commerce, kasir POS - TERIMPLEMENTASI (Issue #383, epik #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
 
-Di balik fitur `booking` dan `pos` (dan `register` untuk tiga penulisan). Hanya migrasi `sql/1046` (tanpa tabel). Spesifikasi: [alur UX booking](../../../../../docs/booking-ux-flows.id.md) bagian 5; rute di [`api.md`](../../../../../docs/api.id.md). Hanya server dan API POS; layar meja depan adalah Issue #388.
+Di balik fitur `booking` dan `pos` (dan `register` untuk tiga penulisan). Hanya migrasi `sql/1046` (tanpa tabel). Spesifikasi: [alur UX booking](../../../../../docs/booking-ux-flows.id.md) bagian 5; rute di [`api.md`](../../../../../docs/api.id.md). Di sini hanya server dan API POS; layar meja depan adalah Issue #388, di bawah.
 
 - **Pencarian** (`application/booking-pos.ts` `lookupBookingForPos`; satu pernyataannya adalah `findReservationLinkForPosLookup` di `application/booking-reservation-reads.ts`): kode reservasi persis DAN telepon atau e-mail pelanggan, `POST commerce/pos/booking/lookup`, divalidasi `domain/booking-pos.ts` (`validatePosLookupRequest`: tanpa kunci lain). Kode tak dikenal, pelanggan yang salah, dan kode tenant lain adalah satu `null` dan satu `404` netral (`posLookupMissResponse`). Laju per pelaku (30/menit) dan anggaran luput (10 per 15 menit, tebakan benar mengembalikan unitnya) memakai `checkSharedRateLimit`; setiap pencarian diaudit (`commerce.booking_pos.lookup`: hasil, kode seperti diketik, JENIS pengenal dan digest berkunci, tidak pernah pengenalnya). Kartu menyamarkan kontak dan memuat saldo dari buku besar, baris pesanan yang dihargai produk, kebijakan, dan petunjuk `actions` (`posCardActions`). Setiap respons kasir melewati `noStore`.
 - **Check-in dan check-out** (`changeStay`, `checkInAtPos`, `checkOutAtPos`): gerbang register (`gateSaleToRegisterSession`: sesi TERBUKA yang kasir saat ini-nya adalah pelaku, dikunci `FOR SHARE`), `Idempotency-Key` terikat pelaku (`commerce.booking_pos.check_in|check_out`, dengan kunci advisory), kunci baris PESANAN (agar sisa pembayaran dan check-in terurut), lalu `BookingPort.checkIn|checkOut` dengan kunci yang diturunkan dari tautan. D19: dengan `checkin_requires_settlement` (bawaan `true`) sisa terutang adalah penolakan `BALANCE_NOT_SETTLED`, tidak ada yang ditulis; `false` mengizinkannya dan baris audit mencatat `balanceWaived`. `CHECK_IN_TOO_EARLY` adalah `409`.
@@ -1795,7 +1795,15 @@ Di balik fitur `booking` dan `pos` (dan `register` untuk tiga penulisan). Hanya 
 - **Izin** (`domain/booking-adapter-permissions.ts`, di-seed `sql/1046`): `commerce.booking_check_ins.create`, `commerce.booking_check_outs.create`, `commerce.booking_balance_payments.create`; pencarian memakai `commerce.booking_reservation_links.read`. Terpisah dengan sengaja (C-35); tidak ada yang berupa `commerce.pos.create` atau `commerce.payments.create`.
 - **Pengerasan dari audit keamanan PR #443**: guard buku besar `sql/1046` hanya menerima stempel sisa pembayaran booking dari kasir milik sesi `open` yang disebut (pengguna tenant); digest `source_key` leg sisa pembayaran mencakup Idempotency-Key, pelaku, dan sesi register (dua kasir tidak pernah berbagi leg); pencarian yang dibatasi diaudit sekali per jendela; penulisan di kasir yang ditolak sebagai `NOT_SESSION_CASHIER` diaudit pada `warning` (`commerce.booking_pos.not_session_cashier`) dan barisnya ter-commit; anggaran pencarian yang meleset bersifat per proses atau jendela tetap Redis dan gagal terbuka bila Redis tidak terjangkau (penghitung berbasis basis data adalah tindak lanjut).
 - **Tes**: `tests/commerce-booking-pos-domain.test.ts`, `tests/commerce-booking-pos-hardening.test.ts`, `tests/integration/commerce-booking-pos.integration.test.ts` (C-34, C-35, C-36, kedua varian D19, perbaikan audit).
-- **Tidak ada di sini**: layar kasir / meja depan (#388), daftar kedatangan hari itu (C-34 melarang mengenumerasi tamu di kasir), penjualan layanan walk-in tanpa reservasi, penukaran poin dan deposit jaminan yang dapat dikembalikan di kasir, kontak tak tersamar.
+- **Tidak ada di sini**: daftar kedatangan hari itu (C-34 melarang mengenumerasi tamu di kasir), penjualan layanan walk-in tanpa reservasi, penukaran poin dan deposit jaminan yang dapat dikembalikan di kasir, kontak tak tersamar.
+
+### Layar meja depan (Issue #388)
+
+Tab **Meja resepsionis** pada `/admin/commerce-pos` (`?tab=front-desk`) menjalankan keempat rute di atas: `CommerceFrontDesk.astro` (markup dan setiap kalimat, sebagai atribut `data-*`), `lib/ui/front-desk-client.ts` (aturan murni: badan pencarian, state aksi kartu dan alasan terlihat untuk setiap kontrol yang tidak tersedia, pratinjau rencana tender dalam sen bilangan bulat, badan permintaan, kunci idempotensi per percobaan) dan `lib/ui/front-desk-island.ts` (lapisan DOM, `import()` dinamis yang dimuat hanya pada tab itu). Halaman POS menambahkan `commerce.booking_reservation_links.read` ke entri any-of-nya dan menanyakan ketiga kunci kasir dengan `can(...)` pada tab itu saja (hanya UX; setiap rute memutuskan sendiri), dan ketiga kunci keluar dari `NOT_YET_SCREENED`. Tidak ada kode server, rute, atau migrasi yang berubah.
+
+- **Kebijakan check-in dibaca, tidak pernah di-override (risiko sisa R3).** `policy.checkInRequiresSettlement` dan `actions.checkInBlockedReason` milik kartu yang menentukan; check-in yang terblokir `aria-disabled` dengan alasannya sebagai teks terlihat. Pengaturannya diubah di layar pengaturan commerce (step-up saat dimatikan). Bawaan (blokir) masih menunggu konfirmasi pemilik.
+- **Hanya memori.** Tidak ada penyimpanan peramban yang ditulis; kolom kontak dikosongkan begitu kartu tampil.
+- **Pengujian**: `tests/front-desk-client.test.ts`, `tests/commerce-front-desk-contract.test.ts`, dan `tests/e2e/admin-commerce-front-desk.e2e.ts` (gelombang WRITE, berjalan di host tepercaya).
 
 ## Pendapatan booking, pipeline penahanan, dan jangkar booking untuk retensi - TERIMPLEMENTASI (Issue #389, epik #280 butir 10 dan 18, separuh commerce - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
 
