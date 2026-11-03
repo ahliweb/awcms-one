@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5309-kecamatan-530605-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.06.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanjung Bunga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tanjung Bunga",
+  "publisherDomain": "5309",
+  "publisherWebsite": "https://florestimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tanjung Bunga (https://florestimurkab.bps.go.id), publikasi \"Kecamatan Tanjung Bunga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53090.26014",
+  "issn": "2598-148X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://florestimurkab.bps.go.id/id/publication/2026/09/28/37500683700472a2279e3a4c/kecamatan-tanjung-bunga-dalam-angka-2026.html",
+  "sourceFileSha256": "70b688fd7209da42d57b6152959fcb0cd6b1bc8885c9a10370118e3b43218b0a",
+  "sourceFileBytes": 3988921,
+  "sourcePages": [18, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tanjung Bunga",
+  "csvPath": "datasets/bps-5309-kecamatan-530605-dalam-angka-2026.csv",
+  "csvSha256": "cdf068966023ad3a295ec608c2d2a6dd5fb7d3fe89837a8fdd103c138bcf2502",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tanjung Bunga, 2025",
+      "printedPages": [18],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tanjung Bunga, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

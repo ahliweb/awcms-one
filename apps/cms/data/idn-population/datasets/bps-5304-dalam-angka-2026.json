@@ -1,0 +1,54 @@
+{
+  "datasetCode": "bps-5304-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "53.02",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Timor Tengah Selatan Dalam Angka 2026",
+  "publisherName": "BPS Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kabupaten Timor Tengah Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53040.26004",
+  "issn": "2302-4461",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/02/27/545cac450f5e5aff00d12771/kabupaten-timor-tengah-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "f156e20c9901f4d2ee8bd70baecb81caceb14c8e990f3ba297829ba648761d5c",
+  "sourceFileBytes": 3101286,
+  "sourcePages": [48, 51],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Timor Tengah Selatan.",
+  "csvPath": "datasets/bps-5304-dalam-angka-2026.csv",
+  "csvSha256": "766b42d796a4f72bcf7b50e831d7ac0abc2339be0530d0239b12c2cafa848802",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Timor Tengah Selatan, 2025",
+      "printedPages": [48],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Timor Tengah Selatan (jiwa), 2025",
+      "printedPages": [51],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.1.1: row not stored: row \"Amantun Selatan\": unmatched ",
+    "table 3.1.1: row not stored: row \"Amantun Utara\": unmatched ",
+    "table 3.1.2: the total row is labelled with the placeholder \"Nama Provinsi\" and is read as the covered region"
+  ]
+}

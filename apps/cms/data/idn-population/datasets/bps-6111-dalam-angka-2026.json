@@ -1,0 +1,67 @@
+{
+  "datasetCode": "bps-6111-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "61.11",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Kayong Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kayong Utara",
+  "publisherDomain": "6111",
+  "publisherWebsite": "https://kayongutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kayong Utara (https://kayongutarakab.bps.go.id), publikasi \"Kabupaten Kayong Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6111",
+  "publicationNumber": "61110.26003",
+  "issn": "2622-3163",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://kayongutarakab.bps.go.id/id/publication/2026/02/27/7aef72c58675e40cb7c217ee/kabupaten-kayong-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "c2ad79d8ae9485e40dfbbc36133225a100b39d2f32265aacd0e493051020a7e5",
+  "sourceFileBytes": 9005777,
+  "sourcePages": [56, 59, 130, 309],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kayong Utara.",
+  "csvPath": "datasets/bps-6111-dalam-angka-2026.csv",
+  "csvSha256": "79131a082a94c68be93b763fa8108c2d561ec3c321291388488dfddd67534b21",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Kayong Utara, 2025",
+      "printedPages": [56],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Kayong Utara (jiwa), 2025",
+      "printedPages": [59],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Kayong Utara, 2025",
+      "printedPages": [130],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Kayong Utara (rupiah), 2024 dan 2025",
+      "printedPages": [309],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2: the total row is labelled with the placeholder \"Nama Provinsi\" and is read as the covered region",
+    "table 3.1.2: the rows of region 61.11 are not stored: age_group (perempuan) vs sex value: parts sum 190200.0000 != 62160.0000 (diff 128040.0000); the source itself is inconsistent"
+  ]
+}

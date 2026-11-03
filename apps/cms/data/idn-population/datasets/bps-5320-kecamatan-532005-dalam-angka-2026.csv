@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.20.05.2001,4,Lobohede,sex,laki_laki,,1221,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2001,4,Lobohede,sex,perempuan,,1225,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2001,4,Lobohede,total,total,,2446,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2006,4,Ledeae,sex,laki_laki,,727,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2006,4,Ledeae,sex,perempuan,,706,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2006,4,Ledeae,total,total,,1433,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2007,4,Wadumaddi,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2007,4,Wadumaddi,sex,perempuan,,650,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2007,4,Wadumaddi,total,total,,1324,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2004,4,Pedarro,sex,laki_laki,,1599,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2004,4,Pedarro,sex,perempuan,,1596,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2004,4,Pedarro,total,total,,3195,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2005,4,Tanajawa,sex,laki_laki,,905,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2005,4,Tanajawa,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2005,4,Tanajawa,total,total,,1783,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2002,4,Molie,sex,laki_laki,,1158,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2002,4,Molie,sex,perempuan,,1167,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2002,4,Molie,total,total,,2325,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2003,4,Daieko,sex,laki_laki,,1278,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2003,4,Daieko,sex,perempuan,,1247,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2003,4,Daieko,total,total,,2525,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2008,4,Lederaga,sex,laki_laki,,1022,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2008,4,Lederaga,sex,perempuan,,971,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2008,4,Lederaga,total,total,,1993,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2010,4,Ramedue,sex,laki_laki,,805,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2010,4,Ramedue,sex,perempuan,,730,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2010,4,Ramedue,total,total,,1535,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05.2009,4,Gurimonearu,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05.2009,4,Gurimonearu,sex,perempuan,,708,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05.2009,4,Gurimonearu,total,total,,1485,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05,3,Hawu Mehara,sex,laki_laki,,10166,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.05,3,Hawu Mehara,sex,perempuan,,9878,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.05,3,Hawu Mehara,total,total,,20044,jiwa,2025,registration,total_population,3.1,16,,
+53.20.05,3,Hawu Mehara,age_group,0-4,laki_laki,728,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.05,3,Hawu Mehara,age_group,0-4,perempuan,730,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.05,3,Hawu Mehara,age_group,0-4,,1458,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.05,3,Hawu Mehara,age_group,5-9,laki_laki,1012,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.05,3,Hawu Mehara,age_group,5-9,perempuan,971,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.05,3,Hawu Mehara,age_group,5-9,,1983,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.05,3,Hawu Mehara,age_group,10-14,laki_laki,1192,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.05,3,Hawu Mehara,age_group,10-14,perempuan,1114,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.05,3,Hawu Mehara,age_group,10-14,,2306,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.05,3,Hawu Mehara,age_group,15-19,laki_laki,1242,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.05,3,Hawu Mehara,age_group,15-19,perempuan,1139,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.05,3,Hawu Mehara,age_group,15-19,,2381,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.05,3,Hawu Mehara,age_group,20-24,laki_laki,1042,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.05,3,Hawu Mehara,age_group,20-24,perempuan,1032,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.05,3,Hawu Mehara,age_group,20-24,,2074,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.05,3,Hawu Mehara,age_group,25-29,laki_laki,949,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.05,3,Hawu Mehara,age_group,25-29,perempuan,887,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.05,3,Hawu Mehara,age_group,25-29,,1836,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.05,3,Hawu Mehara,age_group,30-34,laki_laki,702,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.05,3,Hawu Mehara,age_group,30-34,perempuan,650,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.05,3,Hawu Mehara,age_group,30-34,,1352,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.05,3,Hawu Mehara,age_group,35-39,laki_laki,618,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.05,3,Hawu Mehara,age_group,35-39,perempuan,587,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.05,3,Hawu Mehara,age_group,35-39,,1205,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.05,3,Hawu Mehara,age_group,40-44,laki_laki,540,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.05,3,Hawu Mehara,age_group,40-44,perempuan,538,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.05,3,Hawu Mehara,age_group,40-44,,1078,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.05,3,Hawu Mehara,age_group,45-49,laki_laki,499,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.05,3,Hawu Mehara,age_group,45-49,perempuan,485,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.05,3,Hawu Mehara,age_group,45-49,,984,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.05,3,Hawu Mehara,age_group,50-54,laki_laki,456,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.05,3,Hawu Mehara,age_group,50-54,perempuan,411,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.05,3,Hawu Mehara,age_group,50-54,,867,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.05,3,Hawu Mehara,age_group,55-59,laki_laki,374,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.05,3,Hawu Mehara,age_group,55-59,perempuan,342,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.05,3,Hawu Mehara,age_group,55-59,,716,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.05,3,Hawu Mehara,age_group,60-64,laki_laki,275,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.05,3,Hawu Mehara,age_group,60-64,perempuan,240,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.05,3,Hawu Mehara,age_group,60-64,,515,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.05,3,Hawu Mehara,age_group,65-69,laki_laki,179,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.05,3,Hawu Mehara,age_group,65-69,perempuan,232,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.05,3,Hawu Mehara,age_group,65-69,,411,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.05,3,Hawu Mehara,age_group,70-74,laki_laki,168,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.05,3,Hawu Mehara,age_group,70-74,perempuan,189,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.05,3,Hawu Mehara,age_group,70-74,,357,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.05,3,Hawu Mehara,age_group,75+,laki_laki,190,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.05,3,Hawu Mehara,age_group,75+,perempuan,331,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.05,3,Hawu Mehara,age_group,75+,,521,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.05,3,Hawu Mehara,sex,laki_laki,,10166,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki
+53.20.05,3,Hawu Mehara,sex,perempuan,,9878,jiwa,2025,registration,total_population,3.2,18,,Perempuan
+53.20.05,3,Hawu Mehara,total,total,,20044,jiwa,2025,registration,total_population,3.2,18,,

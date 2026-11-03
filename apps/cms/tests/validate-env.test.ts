@@ -170,4 +170,90 @@ describe("validateEnv", () => {
       }).length
     ).toBe(0);
   });
+
+  test("COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS: unset is clean, ignored entries are reported", () => {
+    expect(validateEnv(base)).toEqual([]);
+    expect(
+      validateEnv({
+        ...base,
+        COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS:
+          "push.vendor.example, *.push.vendor.example"
+      })
+    ).toEqual([]);
+    const problems = validateEnv({
+      ...base,
+      COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS: "10.0.0.5, localhost, ::1"
+    });
+    expect(
+      problems.some(
+        (p) =>
+          p.startsWith("COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS") &&
+          p.includes("10.0.0.5")
+      )
+    ).toBe(true);
+  });
+
+  describe("channel_accounts (#1215 L7, N7)", () => {
+    const ring = (seed: number) =>
+      `k1:${Buffer.from(
+        Array.from({ length: 32 }, (_, i) => (i * seed + 5) % 251)
+      ).toString("base64")}`;
+    const enabled = {
+      ...base,
+      CHANNEL_ACCOUNTS_ENABLED: "true",
+      CHANNEL_SECRETS_ENCRYPTION_KEYS: ring(7)
+    };
+
+    test("enabled with a declared APP_URL and a valid ring is clean", () => {
+      expect(validateEnv(enabled)).toEqual([]);
+    });
+
+    test("enabled without a usable APP_URL is refused, with the value never echoed", () => {
+      for (const appUrl of [
+        "https://user:hunter2@cms.example.test",
+        "ftp://cms.example.test",
+        "not a url"
+      ]) {
+        const problems = validateEnv({ ...enabled, APP_URL: appUrl });
+
+        expect(
+          problems.some((p) => p.includes("CHANNEL_ACCOUNTS_ENABLED=true"))
+        ).toBe(true);
+        expect(problems.join("\n")).not.toContain("hunter2");
+      }
+    });
+
+    test("a disabled module does not care about APP_URL beyond the global rule", () => {
+      expect(
+        validateEnv({ ...base, CHANNEL_ACCOUNTS_ENABLED: "false" })
+      ).toEqual([]);
+    });
+
+    test("the ring may not share a key with the WhatsApp recipient hash ring", () => {
+      const problems = validateEnv({
+        ...enabled,
+        WHATSAPP_RECIPIENT_HASH_KEYS: ring(7)
+      });
+
+      expect(
+        problems.some((p) => p.includes("WHATSAPP_RECIPIENT_HASH_KEYS"))
+      ).toBe(true);
+      expect(
+        validateEnv({ ...enabled, WHATSAPP_RECIPIENT_HASH_KEYS: ring(11) })
+      ).toEqual([]);
+    });
+
+    test("a malformed sibling entry does not hide a shared key beside it", () => {
+      // The sibling ring is not strictly valid (a placeholder entry) but still
+      // carries OUR key: the comparison is per entry, not all-or-nothing.
+      const problems = validateEnv({
+        ...enabled,
+        WHATSAPP_RECIPIENT_HASH_KEYS: `${ring(7)},k2:changeme`
+      });
+
+      expect(
+        problems.some((p) => p.includes("WHATSAPP_RECIPIENT_HASH_KEYS"))
+      ).toBe(true);
+    });
+  });
 });

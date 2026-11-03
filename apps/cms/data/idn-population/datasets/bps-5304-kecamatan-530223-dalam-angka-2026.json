@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530223-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kokbaun Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Kokbaun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304000",
+  "publicationNumber": "53040.26021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/284164949266e0c896109fc3/kecamatan-kokbaun-dalam-angka-2026.html",
+  "sourceFileSha256": "34fbaa56b3479d3985b8aa9df9f69cab0834738434a324c3fc93edb3b2247d78",
+  "sourceFileBytes": 5324488,
+  "sourcePages": [30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530223-dalam-angka-2026.csv",
+  "csvSha256": "caa22139e2b54c27aea70a42cfdf53e64bb1490ebd5c6001d106c39fdc96607a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kokbaun, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kokbaun, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Benahe\": unmatched ",
+    "table 3.1: row not stored: row \"Lotas 10.46\": unmatched ",
+    "table 3.1: row not stored: row \"Sabnala 32.91\": unmatched ",
+    "table 3.1: row not stored: row \"Koloto 11.53\": unmatched ",
+    "table 3.1: row not stored: row \"Niti 24.63\": unmatched ",
+    "table 3.1: row not stored: row \"Obaki 10.54\": unmatched ",
+    "table 3.1: row not stored: row \"Benahe 9.93\": unmatched ",
+    "table 3.1: 4 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 3 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

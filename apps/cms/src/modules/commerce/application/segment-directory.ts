@@ -27,6 +27,7 @@ import type { CreateSegmentInput, UpdateSegmentInput } from "../domain/segment";
 import {
   validateSegmentRules,
   type SegmentNode,
+  type SegmentRuleSchemaVersion,
   type SegmentRuleStats
 } from "../domain/segment-rules";
 
@@ -38,6 +39,8 @@ const MAX_VERSIONS_IN_DETAIL = 100;
 
 export type SegmentVersionRecord = {
   version: number;
+  /** The rule schema the version was written under (ADR-0052); a version is read under the same one. */
+  ruleSchemaVersion: number;
   rules: Record<string, unknown>;
   nodeCount: number;
   depth: number;
@@ -72,6 +75,7 @@ type SegmentRow = {
 
 type VersionRow = {
   version: number;
+  rule_schema_version: number;
   rules: Record<string, unknown> | string;
   node_count: number;
   depth: number;
@@ -96,6 +100,7 @@ function toRecord(row: SegmentRow): SegmentRecord {
 function toVersion(row: VersionRow): SegmentVersionRecord {
   return {
     version: Number(row.version),
+    ruleSchemaVersion: Number(row.rule_schema_version),
     rules:
       typeof row.rules === "string"
         ? (JSON.parse(row.rules) as Record<string, unknown>)
@@ -156,7 +161,7 @@ async function fetchVersions(
   limit: number
 ): Promise<SegmentVersionRecord[]> {
   const rows = (await tx`
-    SELECT version, rules, node_count, depth, created_at
+    SELECT version, rule_schema_version, rules, node_count, depth, created_at
     FROM awcms_commerce_segment_versions
     WHERE tenant_id = ${tenantId} AND segment_id = ${segmentId}
     ORDER BY version DESC
@@ -190,6 +195,8 @@ export async function fetchSegment(
 export type ResolvedSegmentRules = {
   segmentId: string;
   version: number;
+  /** The rule schema the version was written under and has been validated against. */
+  ruleSchemaVersion: number;
   node: SegmentNode;
   stats: SegmentRuleStats;
 };
@@ -208,7 +215,8 @@ export async function resolveSegmentRules(
   version: number | null
 ): Promise<ResolvedSegmentRules | null> {
   const rows = (await tx`
-    SELECT v.version, v.rules, v.node_count, v.depth, v.created_at
+    SELECT v.version, v.rule_schema_version, v.rules, v.node_count, v.depth,
+      v.created_at
     FROM awcms_commerce_segments s
     JOIN awcms_commerce_segment_versions v
       ON v.tenant_id = s.tenant_id AND v.segment_id = s.id
@@ -217,7 +225,12 @@ export async function resolveSegmentRules(
   `) as VersionRow[];
   if (!rows[0]) return null;
   const stored = toVersion(rows[0]);
-  const checked = validateSegmentRules(stored.rules);
+  // Read under the schema the version was WRITTEN under (C-29): a version of
+  // schema 1 never gains a field of schema 2, and fails closed if it holds one.
+  const checked = validateSegmentRules(
+    stored.rules,
+    stored.ruleSchemaVersion as SegmentRuleSchemaVersion
+  );
   if (!checked.valid) {
     throw new Error(
       `Stored segment ${segmentId} version ${stored.version} no longer validates.`
@@ -226,6 +239,7 @@ export async function resolveSegmentRules(
   return {
     segmentId,
     version: stored.version,
+    ruleSchemaVersion: stored.ruleSchemaVersion,
     node: checked.node,
     stats: checked.stats
   };
@@ -255,10 +269,11 @@ export async function createSegment(
       `) as SegmentRow[];
       await sp`
         INSERT INTO awcms_commerce_segment_versions (
-          tenant_id, segment_id, version, rules, node_count, depth,
-          created_by_tenant_user_id
+          tenant_id, segment_id, version, rule_schema_version, rules,
+          node_count, depth, created_by_tenant_user_id
         ) VALUES (
-          ${tenantId}, ${rows[0]!.id}, 1, ${input.canonicalRules}::jsonb,
+          ${tenantId}, ${rows[0]!.id}, 1, ${input.ruleSchemaVersion},
+          ${input.canonicalRules}::jsonb,
           ${input.stats.nodeCount}, ${input.stats.depth}, ${actorTenantUserId}
         )
       `;
@@ -279,6 +294,7 @@ export async function createSegment(
     message: "Segment defined (version 1).",
     attributes: {
       version: 1,
+      ruleSchemaVersion: input.ruleSchemaVersion,
       nodeCount: input.stats.nodeCount,
       depth: input.stats.depth
     },
@@ -329,10 +345,11 @@ export async function updateSegment(
       if (input.rules && nextVersion !== null) {
         await sp`
           INSERT INTO awcms_commerce_segment_versions (
-            tenant_id, segment_id, version, rules, node_count, depth,
-            created_by_tenant_user_id
+            tenant_id, segment_id, version, rule_schema_version, rules,
+            node_count, depth, created_by_tenant_user_id
           ) VALUES (
             ${tenantId}, ${segmentId}, ${nextVersion},
+            ${input.rules.ruleSchemaVersion},
             ${input.rules.canonicalRules}::jsonb,
             ${input.rules.stats.nodeCount}, ${input.rules.stats.depth},
             ${actorTenantUserId}
@@ -374,6 +391,7 @@ export async function updateSegment(
       renamed: input.name !== undefined,
       ...(input.rules
         ? {
+            ruleSchemaVersion: input.rules.ruleSchemaVersion,
             nodeCount: input.rules.stats.nodeCount,
             depth: input.rules.stats.depth
           }

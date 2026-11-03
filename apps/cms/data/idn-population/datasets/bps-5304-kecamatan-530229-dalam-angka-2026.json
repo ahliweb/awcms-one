@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530229-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Fatukopa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Fatukopa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304082",
+  "publicationNumber": "53040.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/8cdd9c23c5513b50644316e0/kecamatan-fatukopa-dalam-angka-2026.html",
+  "sourceFileSha256": "e723ecd79838617b9c1d8850ef81ee5957ef4e7764484f129784da851447271f",
+  "sourceFileBytes": 3824151,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530229-dalam-angka-2026.csv",
+  "csvSha256": "8b4f481c6edaff7ba554cb19ca5839622b4bc106789560cb4450760db04c9b0b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Fatukopa, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Fatukopa, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.09.2005,4,Wee Londa,sex,laki_laki,,2016,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.2005,4,Wee Londa,sex,perempuan,,1923,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.2005,4,Wee Londa,total,total,,3939,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09.2002,4,Kalena Wano,sex,laki_laki,,1078,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.2002,4,Kalena Wano,sex,perempuan,,1060,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.2002,4,Kalena Wano,total,total,,2138,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09.2001,4,Radamata,sex,laki_laki,,3357,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.2001,4,Radamata,sex,perempuan,,3310,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.2001,4,Radamata,total,total,,6667,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09.2006,4,Wee Pangali,sex,laki_laki,,1796,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.2006,4,Wee Pangali,sex,perempuan,,1703,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.2006,4,Wee Pangali,total,total,,3499,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09.2010,4,Kalembu Kaha,sex,laki_laki,,1878,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.2010,4,Kalembu Kaha,sex,perempuan,,1811,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.2010,4,Kalembu Kaha,total,total,,3689,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09.2008,4,Watu Kawula,sex,laki_laki,,2635,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.2008,4,Watu Kawula,sex,perempuan,,2555,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.2008,4,Watu Kawula,total,total,,5190,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09.2007,4,Kadi Pada,sex,laki_laki,,2174,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.2007,4,Kadi Pada,sex,perempuan,,2131,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.2007,4,Kadi Pada,total,total,,4305,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09.1003,4,Langga Lero,sex,laki_laki,,2326,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09.1003,4,Langga Lero,sex,perempuan,,2235,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09.1003,4,Langga Lero,total,total,,4561,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09,3,Kota Tambolaka,sex,laki_laki,,20831,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.09,3,Kota Tambolaka,sex,perempuan,,20173,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.09,3,Kota Tambolaka,total,total,,41004,jiwa,2025,projection,total_population,3.1,24,,
+53.18.09,3,Kota Tambolaka,sex,laki_laki,,20831,jiwa,2025,projection,total_population,3.2,26,,Laki-Laki
+53.18.09,3,Kota Tambolaka,sex,perempuan,,20173,jiwa,2025,projection,total_population,3.2,26,,Perempuan
+53.18.09,3,Kota Tambolaka,total,total,,41004,jiwa,2025,projection,total_population,3.2,26,,

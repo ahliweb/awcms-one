@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530230-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.30",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mollo Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Mollo Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304000",
+  "publicationNumber": "53040.2026",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/4a2dc546567225029c294085/kecamatan-mollo-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "a46e7a6c98dfbac0d51a529afda587a98164784ad9b51b3516c5d958b7ebb2ef",
+  "sourceFileBytes": 6461406,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530230-dalam-angka-2026.csv",
+  "csvSha256": "891fd7bf3a4645cad55d155776db9238c30ea3d6519bc9eb0314d11e9d3d4983",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mollo Tengah, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mollo Tengah, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bianus\": unmatched ",
+    "table 3.1: row not stored: row \"Nekemanifeto\": unmatched ",
+    "table 3.1: row not stored: row \"Bianus\": unmatched ",
+    "table 3.1: row not stored: row \"Nekemanufeto\": unmatched ",
+    "table 3.2: the rows of region 53.02.30 are not stored: age_group (perempuan) vs sex value: parts sum 4194.0000 != 4234.0000 (diff 40.0000); the source itself is inconsistent"
+  ]
+}

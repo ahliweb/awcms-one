@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kie Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Kie Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304090",
+  "publicationNumber": "53040.26020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/f9c9d861560e66b40ee6d8ca/kecamatan-kie-dalam-angka-2026.html",
+  "sourceFileSha256": "c732ecfdccc979dece2c98cea0a220e5497bfe894f3817380f6dd8eb2ac9060a",
+  "sourceFileBytes": 5296881,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530210-dalam-angka-2026.csv",
+  "csvSha256": "b9bea138ea9131a29ff0baa58112b0a47e420f2be8d0456089edf450698f7d21",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan KIE, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan KIE, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Fallas\": unmatched ",
+    "table 3.1: row not stored: row \"Pili\": unmatched ",
+    "table 3.1: row not stored: row \"Fallas\": unmatched ",
+    "table 3.1: row not stored: row \"Pili\": unmatched "
+  ]
+}

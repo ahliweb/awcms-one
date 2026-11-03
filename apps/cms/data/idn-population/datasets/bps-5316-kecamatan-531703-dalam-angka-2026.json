@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5316-kecamatan-531703-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.17.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mamboro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat",
+  "publisherDomain": "5316",
+  "publisherWebsite": "https://sumbatengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat (https://sumbatengahkab.bps.go.id), publikasi \"Kecamatan Mamboro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5316040",
+  "publicationNumber": "53160.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbatengahkab.bps.go.id/id/publication/2026/09/28/47249f48892e7c94fd5e42bd/kecamatan-mamboro-dalam-angka-2026.html",
+  "sourceFileSha256": "2c9f0baaf5828e89104293f917828bf1430e55f8c0cfec1706b3d89d9b1d49b6",
+  "sourceFileBytes": 2079029,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat.",
+  "csvPath": "datasets/bps-5316-kecamatan-531703-dalam-angka-2026.csv",
+  "csvSha256": "e2815133efa56fe0d1e3d7ffff672de086e2edd42fc466f3f60d5277ea2c54be",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mamboro, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

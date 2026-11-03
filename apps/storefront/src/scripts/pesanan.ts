@@ -20,6 +20,8 @@ import { PESANAN_PHONE_KEY } from "../lib/pesanan-sesi";
 import { createPesananRenderer } from "../lib/pesanan-render";
 import { isValidGatewayRedirectUrl } from "../lib/gateway-redirect";
 import { wirePesananPolling, type PesananPoller } from "../lib/pesanan-poll";
+import { penjagaUntuk } from "../lib/kirim-tunggal";
+import { buatPengelolaKunci, galatKonflikKunci, PESAN_KONFLIK_KUNCI } from "../lib/kunci-idempotensi";
 
 const root = document.querySelector<HTMLElement>("[data-pesanan-root]");
 if (root) {
@@ -120,26 +122,41 @@ if (root) {
     });
   }
 
-  gatewayPayButton?.addEventListener("click", async () => {
+  // Issue #513: one single-flight guard per action. The gateway session is
+  // idempotent per order server-side, so it needs the guard but no key; a
+  // successful session navigates away, so the button stays locked until then.
+  const gatewayGuard = penjagaUntuk(gatewayPayButton);
+  const cancelGuard = penjagaUntuk(cancelButton);
+  const confirmGuard = penjagaUntuk(confirmForm);
+  const cancelKeys = buatPengelolaKunci();
+  const confirmKeys = buatPengelolaKunci();
+  /** The default `transferredAt` is frozen per attempt: a retry must send the SAME body for its key to replay. */
+  let confirmDefaultTimestamp: string | null = null;
+
+  gatewayPayButton?.addEventListener("click", () => {
     const phone = readStoredPhone();
     if (!orderCode || !phone) return;
 
-    gatewayPayButton.disabled = true;
-    if (gatewayStatusEl) gatewayStatusEl.textContent = "Membuka halaman pembayaran…";
-
-    try {
-      const session = await createGatewaySession(orderCode, phone);
-      if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
-        throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
-      }
-      window.location.assign(session.redirectUrl);
-    } catch (error) {
-      gatewayPayButton.disabled = false;
-      if (gatewayStatusEl) {
-        gatewayStatusEl.textContent =
-          error instanceof TokoApiError ? error.message : "Gagal membuka halaman pembayaran. Coba lagi.";
-      }
-    }
+    void gatewayGuard.jalankan(
+      async () => {
+        if (gatewayStatusEl) gatewayStatusEl.textContent = "Membuka halaman pembayaran…";
+        try {
+          const session = await createGatewaySession(orderCode, phone);
+          if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
+            throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
+          }
+          window.location.assign(session.redirectUrl);
+          return true;
+        } catch (error) {
+          if (gatewayStatusEl) {
+            gatewayStatusEl.textContent =
+              error instanceof TokoApiError ? error.message : "Gagal membuka halaman pembayaran. Coba lagi.";
+          }
+          return false;
+        }
+      },
+      { kunciBila: (navigasi) => navigasi }
+    );
   });
 
   async function loadOrder(phone: string): Promise<void> {
@@ -185,12 +202,17 @@ if (root) {
     if (!orderCode || !phone) return;
     if (!window.confirm("Yakin ingin membatalkan pesanan ini?")) return;
 
-    try {
-      const order = await cancelOrder(orderCode, { phone, reason: null });
-      renderOrder(order);
-    } catch {
-      // The order/error banner state is left as-is; a shopper can retry.
-    }
+    await cancelGuard.jalankan(async () => {
+      const body = { phone, reason: null };
+      try {
+        const order = await cancelOrder(orderCode, body, cancelKeys.untuk(JSON.stringify(body)));
+        cancelKeys.sesudahBerhasil();
+        renderOrder(order);
+      } catch (error) {
+        cancelKeys.sesudahGalat(error);
+        // The order/error banner state is left as-is; a shopper can retry.
+      }
+    });
   });
 
   confirmForm?.addEventListener("submit", async (event) => {
@@ -204,12 +226,13 @@ if (root) {
     const bankName = String(data.get("bankName") ?? "").trim() || null;
     const accountName = String(data.get("accountName") ?? "").trim() || null;
     const transferredAtRaw = String(data.get("transferredAt") ?? "");
-    const transferredAt = transferredAtRaw ? new Date(transferredAtRaw).toISOString() : new Date().toISOString();
+    confirmDefaultTimestamp ??= new Date().toISOString();
+    const transferredAt = transferredAtRaw ? new Date(transferredAtRaw).toISOString() : confirmDefaultTimestamp;
 
     if (confirmErrorEl) confirmErrorEl.textContent = "";
 
-    try {
-      const order = await submitPaymentConfirmation(orderCode, {
+    await confirmGuard.jalankan(async () => {
+      const body = {
         phone,
         method,
         amount,
@@ -217,14 +240,24 @@ if (root) {
         accountName,
         transferredAt,
         proofMediaObjectId: null
-      });
-      renderOrder(order);
-      confirmForm.reset();
-    } catch (error) {
-      if (confirmErrorEl) {
-        confirmErrorEl.textContent =
-          error instanceof TokoApiError ? error.message : "Gagal mengirim konfirmasi pembayaran.";
+      };
+      try {
+        const order = await submitPaymentConfirmation(orderCode, body, confirmKeys.untuk(JSON.stringify(body)));
+        confirmKeys.sesudahBerhasil();
+        confirmDefaultTimestamp = null;
+        renderOrder(order);
+        confirmForm.reset();
+      } catch (error) {
+        confirmKeys.sesudahGalat(error);
+        if (error instanceof TokoApiError && error.status > 0 && error.status < 500) confirmDefaultTimestamp = null;
+        if (confirmErrorEl) {
+          confirmErrorEl.textContent = galatKonflikKunci(error)
+            ? PESAN_KONFLIK_KUNCI
+            : error instanceof TokoApiError
+              ? error.message
+              : "Gagal mengirim konfirmasi pembayaran.";
+        }
       }
-    }
+    });
   });
 }

@@ -75,6 +75,16 @@ export function parseFrontMatter(text: string): FrontMatter {
   };
 }
 
+/** Refuse a district PDF when its readable cover names a different district. */
+export function districtCoverMismatch(text: string, expectedName: string): string | null {
+  const normalize = (name: string) => name.normalize("NFKD").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const titles = [...text.replace(/\s+/g, " ").matchAll(/\bKECAMATAN\s+([a-z -]{2,55}?)\s+DALAM\s+ANGKA\b/gi)]
+    .map((match) => match[1]!.trim().replace(/^ht\s+tp\s+/i, ""))
+    .filter((name) => !/^(?:x+|y+)$/.test(normalize(name)));
+  if (titles.length === 0 || normalize(titles[0]!) === normalize(expectedName)) return null;
+  return `PDF cover names Kecamatan ${titles[0]}, but the selected district is ${expectedName}`;
+}
+
 export async function frontMatterText(pdf: string, lastPage = 10): Promise<string> {
   const proc = Bun.spawn(["pdftotext", "-f", "1", "-l", String(lastPage), pdf, "-"], { stdout: "pipe", stderr: "pipe" });
   const [out, code] = await Promise.all([new Response(proc.stdout).text(), proc.exited]);

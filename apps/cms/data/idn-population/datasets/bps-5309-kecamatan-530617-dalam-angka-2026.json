@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5309-kecamatan-530617-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.06.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Adonara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Flores Timur",
+  "publisherDomain": "5309",
+  "publisherWebsite": "https://florestimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Flores Timur (https://florestimurkab.bps.go.id), publikasi \"Kecamatan Adonara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53090.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://florestimurkab.bps.go.id/id/publication/2026/09/28/7a23168dd56be123a3834748/kecamatan-adonara-dalam-angka-2026.html",
+  "sourceFileSha256": "f2728a6fb50c1bf6f2a660f10719329f4ab94187b3c9a38a3e8a774dc49402a4",
+  "sourceFileBytes": 3982518,
+  "sourcePages": [18, 19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Flores Timur",
+  "csvPath": "datasets/bps-5309-kecamatan-530617-dalam-angka-2026.csv",
+  "csvSha256": "f2adba26e507e11b129425467e4cceb591990a3a066d63e65a8caf317c8a7533",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Adonara, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Adonara, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

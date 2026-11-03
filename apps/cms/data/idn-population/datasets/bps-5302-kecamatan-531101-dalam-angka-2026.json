@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5302-kecamatan-531101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.11.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Waingapu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Timur",
+  "publisherDomain": "5302",
+  "publisherWebsite": "https://sumbatimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Timur (https://sumbatimurkab.bps.go.id), publikasi \"Kecamatan Kota Waingapu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5302070",
+  "publicationNumber": "53020.26020",
+  "issn": "2598-3318",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbatimurkab.bps.go.id/id/publication/2026/09/28/1811ee8b723a1991625bce5f/kecamatan-kota-waingapu-dalam-angka-2026.html",
+  "sourceFileSha256": "331eaa2d58cff93ccc88a788de099ad1a646e93184502d708a17c9266879f829",
+  "sourceFileBytes": 1713588,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Timur",
+  "csvPath": "datasets/bps-5302-kecamatan-531101-dalam-angka-2026.csv",
+  "csvSha256": "f4c8b658aa684fd40558e034b28057336bd1a4671cf9cd6424f828cd37698d77",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kota Waingapu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kota Waingapu, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pambotanjara\": unmatched "
+  ]
+}

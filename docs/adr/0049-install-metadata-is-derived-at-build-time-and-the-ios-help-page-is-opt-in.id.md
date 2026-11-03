@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md)
 
-<!-- i18n-source-hash: sha256:addd34edcabdacfac6fd41425c5ef21021dcf548f99c7e07563cea234b2a6170 -->
+<!-- i18n-source-hash: sha256:4affb7edff635f4690611f9492f45507ce200d07a94489bebf6c01ede226bfbe -->
 
 # ADR-0049 — Metadata instalasi diturunkan saat build, dan halaman bantuan instalasi iOS bersifat opt-in
 
@@ -17,7 +17,7 @@
 
 **D1 — Manifest diperluas, tidak pernah digandakan.** Satu manifest, dibangun fungsi murni `buildManifest()` di `apps/storefront/src/lib/pwa-manifest.ts`, disajikan `manifest.webmanifest.ts` yang sudah ada. Ia mendapat `id`, `lang`, `categories`, dan ikon PNG; `name` dan `short_name` tetap berasal dari `getSiteIdentity()` (CMS, `SITE_NAME`, atau `DEFAULT_IDENTITY` yang ditulis ulang `template:init`), sehingga tidak ada yang khusus BjekMart ditambahkan ke template generik.
 
-**D2 — `id` adalah `"/"`, `scope` dan `start_url` adalah `"/"`.** Id diresolusi terhadap origin, jadi dua situs, profil, atau tenant adalah aplikasi terpasang yang berbeda karena origin-nya berbeda; membuatnya tidak bergantung pada `start_url` dan profil berarti perubahan keduanya kelak tidak membuat instalasi yang ada yatim. Semuanya tetap di origin storefront. Aplikasi ini tidak mendaftarkan service worker; CMS memegang PWA `/admin` dan `/push-sw.js` sendiri di origin-nya, dan service worker tidak pernah didaftarkan lintas origin.
+**D2 — `id` adalah `"/"`, `scope` dan `start_url` adalah `"/"`.** Id diresolusi terhadap origin, jadi dua situs, profil, atau tenant adalah aplikasi terpasang yang berbeda karena origin-nya berbeda; membuatnya tidak bergantung pada `start_url` dan profil berarti perubahan keduanya kelak tidak membuat instalasi yang ada yatim. Semuanya tetap di origin storefront. Aplikasi ini **secara bawaan** tidak mendaftarkan service worker; CMS memegang PWA `/admin` dan `/push-sw.js` sendiri di origin-nya, dan service worker tidak pernah didaftarkan lintas origin. *(Diubah oleh issue #431: build dengan flag opt-in `PUBLIC_CUSTOMER_PUSH` menambahkan tepat satu worker khusus push miliknya sendiri di `/sw-notifikasi.js`, sebagaimana diputuskan [ADR-0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.id.md); tanpa flag, kalimat ini tetap benar secara harfiah.)*
 
 **D3 — Ikon PNG dibuat saat build dari huruf pertama nama situs dan warna primer tema.** `apps/storefront/src/lib/pwa-ikon.ts` adalah encoder PNG tanpa dependensi; `/icons/icon-192.png`, `/icons/icon-512.png`, `/icons/icon-maskable-512.png` dan `/apple-touch-icon.png` adalah endpoint yang diprarender. Opsi yang dipertimbangkan:
 

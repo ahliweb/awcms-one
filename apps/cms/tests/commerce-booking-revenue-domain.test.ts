@@ -18,12 +18,18 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+  NO_DECIDED_REFUNDS,
   addBookingRevenueDaySums,
   averageDailyRate,
+  bookingControlTotalsIdentityHolds,
   bookingDayRestatementThreshold,
+  bookingOrderCompanionCents,
+  bookingOrderDaySums,
   bookingOrderNetCents,
   bookingRevenueIdentityHolds,
+  accumulateBookingRevenueControlTotals,
   deriveBookingOrderRow,
+  emptyBookingRevenueControlTotals,
   emptyBookingRevenueDaySums,
   formatRatePercent,
   fromSignedCents,
@@ -65,6 +71,7 @@ function facts(over: Partial<BookingOrderFacts> = {}): BookingOrderFacts {
     total: "3000000.00",
     paidInCents: 0n,
     paidBackCents: 0n,
+    refunds: NO_DECIDED_REFUNDS,
     stays: 1,
     noShows: 0,
     noShowRetainedCents: 0n,
@@ -81,22 +88,8 @@ function derived(over: Partial<BookingOrderFacts> = {}): BookingOrderRow {
 
 const sumsOf = (...rows: BookingOrderRow[]): BookingRevenueDaySums => {
   const sums = emptyBookingRevenueDaySums();
-  for (const row of rows) {
-    addBookingRevenueDaySums(sums, {
-      orders: 1,
-      stays: row.stays,
-      noShows: row.noShows,
-      noShowRetainedCents: row.noShowRetainedCents,
-      grossCents: row.grossCents,
-      discountCents: row.discountCents,
-      shippingCents: row.shippingCents,
-      insuranceCents: row.insuranceCents,
-      taxCents: row.taxCents,
-      paidBackCents: row.paidBackCents,
-      uncollectedCents: row.uncollectedCents,
-      outstandingCents: row.outstandingCents
-    });
-  }
+  for (const row of rows)
+    addBookingRevenueDaySums(sums, bookingOrderDaySums(row));
   return sums;
 };
 
@@ -135,10 +128,11 @@ describe("proof 8: the deposit worked example of metrics section 3.7 (three nigh
     expect(row.paidBackCents).toBe(rp(450_000));
     expect(row.uncollectedCents).toBe(rp(2_100_000));
     expect(bookingOrderNetCents(row)).toBe(rp(450_000));
-    // The two parts always add up to the Refunds step.
+    // The parts always add up to the Refunds step.
     const figures = shapeBookingRevenueFigures(sumsOf(row));
     expect(figures.refunds).toBe("2550000.00");
     expect(figures.refundsPaidBack).toBe("450000.00");
+    expect(figures.refundsPayable).toBe("0.00");
     expect(figures.refundsUncollected).toBe("2100000.00");
     expect(figures.net).toBe("450000.00");
   });
@@ -714,5 +708,333 @@ describe("proof 5: the section 6.3 cohorts with bookings (B) and orders (O), inc
     expect(repeat(inside)).toBe(true);
     expect(repeat(outside)).toBe(false);
     expect(cohortMonthOf(first)).toBe("2026-04-01");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Issue #478: refunds on a decision basis (metrics 3.9 D1) and tax-aware
+// allocation (3.9 D3). The three rows of the 3.7 worked example keep their net;
+// the taxed cases are asserted to the cent.
+// ---------------------------------------------------------------------------
+
+/** A cancellation record: a lump with no exact split (the booking cancellation return). */
+const lump = (amount: number) => ({
+  exact: { goods: 0n, shipping: 0n, insurance: 0n, tax: 0n },
+  lumpCents: rp(amount)
+});
+
+describe("D1: a refund counts when it is decided, settlement never moves net", () => {
+  const early = (paidBack: number) =>
+    derived({
+      paidInCents: rp(900_000),
+      paidBackCents: rp(paidBack),
+      cancellations: 1,
+      refunds: lump(450_000)
+    });
+
+  test("early cancel, half the deposit refunded: decided but not paid out = payable 450,000, paid back 0, net 450,000", () => {
+    const row = early(0);
+    expect(row.refundPayableCents).toBe(rp(450_000));
+    expect(row.paidBackCents).toBe(0n);
+    const figures = shapeBookingRevenueFigures(sumsOf(row));
+    expect(figures.refundsPaidBack).toBe("0.00");
+    expect(figures.refundsPayable).toBe("450000.00");
+    expect(figures.refundsUncollected).toBe("2100000.00");
+    expect(figures.refunds).toBe("2550000.00");
+    expect(figures.net).toBe("450000.00");
+    expect(figures.refundPayableBalance).toBe("450000.00");
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("after the leg settles: paid back 450,000, payable 0, net 450,000 - net did not move", () => {
+    const decided = shapeBookingRevenueFigures(sumsOf(early(0)));
+    const settled = shapeBookingRevenueFigures(sumsOf(early(450_000)));
+    expect(settled.refundsPaidBack).toBe("450000.00");
+    expect(settled.refundsPayable).toBe("0.00");
+    expect(settled.refundPayableBalance).toBe("0.00");
+    expect(settled.net).toBe("450000.00");
+    expect(settled.net).toBe(decided.net);
+    expect(settled.refunds).toBe(decided.refunds);
+  });
+
+  test("a partly settled leg moves cents between the two parts only", () => {
+    const part = early(200_000);
+    expect(part.goodsPaidBackCents).toBe(rp(200_000));
+    expect(part.goodsPayableCents).toBe(rp(250_000));
+    expect(part.refundPayableCents).toBe(rp(250_000));
+    expect(bookingOrderNetCents(part)).toBe(rp(450_000));
+    expect(bookingRevenueIdentityHolds(part)).toBe(true);
+  });
+
+  test("the metrics 3.7 rows without tax keep today's net: 3,000,000 / 900,000 / 450,000", () => {
+    expect(bookingOrderNetCents(derived({ paidInCents: rp(3_000_000) }))).toBe(
+      rp(3_000_000)
+    );
+    expect(
+      bookingOrderNetCents(
+        derived({
+          paidInCents: rp(900_000),
+          noShows: 1,
+          noShowRetainedCents: rp(900_000)
+        })
+      )
+    ).toBe(rp(900_000));
+    expect(bookingOrderNetCents(early(0))).toBe(rp(450_000));
+  });
+
+  test("a failed leg stays payable: the same facts as 'decided, not paid out'", () => {
+    // A failed leg is not a succeeded reversal, so the ledger fact is still 0 paid back.
+    const failed = early(0);
+    expect(failed.refundPayableCents).toBe(rp(450_000));
+    expect(failed.goodsPayableCents).toBe(rp(450_000));
+  });
+
+  test("a reversal with no return record still counts (the cash basis it always had)", () => {
+    const row = derived({
+      paidInCents: rp(3_000_000),
+      paidBackCents: rp(100_000)
+    });
+    expect(row.refundPayableCents).toBe(0n);
+    expect(row.goodsPaidBackCents).toBe(rp(100_000));
+    expect(bookingOrderNetCents(row)).toBe(rp(2_900_000));
+  });
+
+  test("a refund decided beyond what was paid in is capped at the money that came in", () => {
+    const row = derived({
+      paidInCents: rp(900_000),
+      cancellations: 1,
+      refunds: lump(1_500_000)
+    });
+    expect(row.refundPayableCents).toBe(rp(900_000));
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("a refund after a cancellation is never subtracted twice: the uncollected balance is the unpaid part, the refund the paid part", () => {
+    const row = derived({
+      paidInCents: rp(900_000),
+      status: "cancelled",
+      cancellations: 1,
+      refunds: lump(900_000),
+      paidBackCents: rp(900_000)
+    });
+    expect(row.uncollectedCents).toBe(rp(2_100_000));
+    expect(row.goodsPaidBackCents).toBe(rp(900_000));
+    expect(bookingOrderNetCents(row)).toBe(0n);
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("settling a leg is not a restatement of the day, a newly decided refund is", () => {
+    const decided = early(0);
+    const settled = early(450_000);
+    const after = new Date(
+      bookingDayRestatementThreshold("2026-10-01").getTime() + 1000
+    );
+    expect(restatedBookingDays(decided, settled, after)).toEqual([]);
+    const before = derived({ paidInCents: rp(900_000), cancellations: 1 });
+    expect(restatedBookingDays(before, decided, after)).toEqual(["2026-10-01"]);
+  });
+});
+
+describe("D3: a refund of a taxed order nets the tax companion, never the goods revenue alone", () => {
+  // 1,000,000 of goods plus 100,000 tax, paid in full.
+  const taxed = (over: Partial<BookingOrderFacts>) =>
+    derived({
+      subtotal: "1000000.00",
+      tax: "100000.00",
+      total: "1100000.00",
+      paidInCents: rp(1_100_000),
+      ...over
+    });
+
+  test("a full refund gives net 0 and tax 0, never a negative net", () => {
+    const row = taxed({
+      paidBackCents: rp(1_100_000),
+      cancellations: 1,
+      refunds: lump(1_100_000)
+    });
+    expect(bookingOrderNetCents(row)).toBe(0n);
+    expect(bookingOrderCompanionCents(row).taxCents).toBe(0n);
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+    const figures = shapeBookingRevenueFigures(sumsOf(row));
+    expect(figures.net).toBe("0.00");
+    expect(figures.tax).toBe("0.00");
+    expect(figures.refunds).toBe("1000000.00");
+  });
+
+  test("a refund of 550,000 gives net 500,000 and tax 50,000", () => {
+    const row = taxed({
+      paidBackCents: rp(550_000),
+      cancellations: 1,
+      refunds: lump(550_000)
+    });
+    expect(bookingOrderNetCents(row)).toBe(rp(500_000));
+    expect(bookingOrderCompanionCents(row).taxCents).toBe(rp(50_000));
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("the same refund decided and not yet paid gives the same net and tax (settlement never moves net)", () => {
+    const row = taxed({ cancellations: 1, refunds: lump(550_000) });
+    expect(row.refundPayableCents).toBe(rp(550_000));
+    expect(bookingOrderNetCents(row)).toBe(rp(500_000));
+    expect(bookingOrderCompanionCents(row).taxCents).toBe(rp(50_000));
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("the taxed no-show of 3.9: 3,000,000 + 330,000 tax, 30% deposit 999,000: net 900,000, tax 99,000", () => {
+    const row = derived({
+      subtotal: "3000000.00",
+      tax: "330000.00",
+      total: "3330000.00",
+      paidInCents: rp(999_000),
+      noShows: 1,
+      noShowRetainedCents: rp(999_000)
+    });
+    expect(row.uncollectedCents).toBe(rp(2_331_000));
+    expect(row.goodsUncollectedCents).toBe(rp(2_100_000));
+    expect(row.taxRefundedCents).toBe(rp(231_000));
+    expect(bookingOrderNetCents(row)).toBe(rp(900_000));
+    expect(bookingOrderCompanionCents(row).taxCents).toBe(rp(99_000));
+    // settled 999,000 = net 900,000 + tax 99,000.
+    expect(row.paidInCents - row.paidBackCents).toBe(rp(999_000));
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("an exact split on a goods return wins over pro rata", () => {
+    // The return refunded 400,000 of goods and 20,000 of tax (a 5% share, not the order's 10%).
+    const row = taxed({
+      paidBackCents: rp(420_000),
+      refunds: {
+        exact: {
+          goods: rp(400_000),
+          shipping: 0n,
+          insurance: 0n,
+          tax: rp(20_000)
+        },
+        lumpCents: 0n
+      }
+    });
+    expect(row.goodsPaidBackCents).toBe(rp(400_000));
+    expect(row.taxRefundedCents).toBe(rp(20_000));
+    expect(bookingOrderNetCents(row)).toBe(rp(600_000));
+    expect(bookingOrderCompanionCents(row).taxCents).toBe(rp(80_000));
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("a goods return then a cancellation: the lump takes what is left, so a full refund still ends at net 0 and tax 0", () => {
+    const row = taxed({
+      paidBackCents: rp(1_100_000),
+      cancellations: 1,
+      refunds: {
+        exact: {
+          goods: rp(400_000),
+          shipping: 0n,
+          insurance: 0n,
+          tax: rp(20_000)
+        },
+        lumpCents: rp(680_000)
+      }
+    });
+    expect(bookingOrderNetCents(row)).toBe(0n);
+    expect(bookingOrderCompanionCents(row).taxCents).toBe(0n);
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+
+  test("shipping and insurance take their own pro rata share", () => {
+    const row = derived({
+      subtotal: "1000000.00",
+      shippingCost: "50000.00",
+      insuranceFee: "10000.00",
+      tax: "100000.00",
+      total: "1160000.00",
+      paidInCents: rp(1_160_000),
+      paidBackCents: rp(580_000),
+      cancellations: 1,
+      refunds: lump(580_000)
+    });
+    expect(row.goodsPaidBackCents).toBe(rp(500_000));
+    expect(row.shippingRefundedCents).toBe(rp(25_000));
+    expect(row.insuranceRefundedCents).toBe(rp(5_000));
+    expect(row.taxRefundedCents).toBe(rp(50_000));
+    expect(bookingOrderNetCents(row)).toBe(rp(500_000));
+    expect(bookingRevenueIdentityHolds(row)).toBe(true);
+  });
+});
+
+describe("the identity holds per order and in the control totals, for every combination (D1, D3)", () => {
+  test("refund decided / paid / uncollected x tax x shipping x insurance x discount", () => {
+    let checked = 0;
+    const totals = emptyBookingRevenueControlTotals();
+    for (const paidIn of [
+      0, 1, 900_000, 1_850_000, 3_000_000, 3_300_000, 3_665_000
+    ]) {
+      for (const [decided, paidBack] of [
+        [0, 0],
+        [450_000, 0],
+        [450_000, 450_000],
+        [450_000, 200_000],
+        [3_665_000, 3_665_000],
+        [1, 1]
+      ] as [number, number][]) {
+        if (paidBack > paidIn) continue;
+        for (const closing of ["open", "cancel", "no_show", "order"] as const) {
+          for (const [tax, shipping, insurance, discount] of [
+            [0, 0, 0, 0],
+            [330_000, 0, 0, 0],
+            [0, 25_000, 10_000, 250_000],
+            [297_000, 0, 5_000, 300_000],
+            [333_333, 33_333, 3_333, 7]
+          ] as [number, number, number, number][]) {
+            const subtotal = 3_000_000;
+            const total = subtotal - discount + tax + shipping + insurance;
+            const row = derived({
+              subtotal: `${subtotal}.00`,
+              tax: `${tax}.00`,
+              shippingCost: `${shipping}.00`,
+              insuranceFee: `${insurance}.00`,
+              total: `${total}.00`,
+              paidInCents: rp(paidIn),
+              paidBackCents: rp(paidBack),
+              refunds: lump(decided),
+              cancellations: closing === "cancel" ? 1 : 0,
+              noShows: closing === "no_show" ? 1 : 0,
+              status: closing === "order" ? "cancelled" : "paid"
+            });
+            expect(bookingRevenueIdentityHolds(row)).toBe(true);
+            // Net never goes negative, a companion never goes negative.
+            expect(bookingOrderNetCents(row) >= 0n).toBe(true);
+            const companions = bookingOrderCompanionCents(row);
+            expect(companions.shippingCents >= 0n).toBe(true);
+            expect(companions.insuranceCents >= 0n).toBe(true);
+            expect(companions.taxCents >= 0n).toBe(true);
+            // Payable is what was decided less what was paid back.
+            expect(row.refundPayableCents >= 0n).toBe(true);
+            accumulateBookingRevenueControlTotals(totals, row);
+            checked += 1;
+          }
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(400);
+    expect(bookingControlTotalsIdentityHolds(totals)).toBe(true);
+  });
+
+  test("a rebuild is a recompute: deriving the same facts twice gives the same row, and the totals add up the same way", () => {
+    const input = facts({
+      subtotal: "3000000.00",
+      tax: "330000.00",
+      total: "3330000.00",
+      paidInCents: rp(999_000),
+      paidBackCents: rp(100_000),
+      cancellations: 1,
+      refunds: lump(300_000)
+    });
+    const a = deriveBookingOrderRow(input)!;
+    const b = deriveBookingOrderRow({ ...input })!;
+    expect(a).toEqual(b);
+    const first = emptyBookingRevenueControlTotals();
+    const second = emptyBookingRevenueControlTotals();
+    accumulateBookingRevenueControlTotals(first, a);
+    accumulateBookingRevenueControlTotals(second, b);
+    expect(first).toEqual(second);
   });
 });

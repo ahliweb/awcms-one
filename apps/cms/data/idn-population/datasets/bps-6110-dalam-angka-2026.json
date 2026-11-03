@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-6110-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "61.10",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Melawi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Melawi",
+  "publisherDomain": "6110",
+  "publisherWebsite": "https://melawikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Melawi (https://melawikab.bps.go.id), publikasi \"Kabupaten Melawi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6110",
+  "publicationNumber": "61100.26002",
+  "issn": "2622-3139",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://melawikab.bps.go.id/id/publication/2026/02/27/fbb186bb6c9271d97862858c/kabupaten-melawi-dalam-angka-2026.html",
+  "sourceFileSha256": "a6be3d7653f6ea3d0e5c279693bcb856a2d46495bd89e86802c8205d0ebf4407",
+  "sourceFileBytes": 43367537,
+  "sourcePages": [119, 264],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Melawi.",
+  "csvPath": "datasets/bps-6110-dalam-angka-2026.csv",
+  "csvSha256": "21d140ce335428c1f7c18e0cef63883fe06551b154cb72c8301a4e1514f53a04",
+  "tablesUsed": [
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Melawi, 2025",
+      "printedPages": [119],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Melawi (rupiah), 2024 dan 2025",
+      "printedPages": [264],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (basis of 2025 not determinable)",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (basis of 2025 not determinable)"
+  ]
+}

@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.10.2001,4,Golo Tolang,sex,laki_laki,,1237,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2001,4,Golo Tolang,sex,perempuan,,1231,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2001,4,Golo Tolang,total,total,,2468,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2003,4,Paan Leleng,sex,laki_laki,,1038,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2003,4,Paan Leleng,sex,perempuan,,1018,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2003,4,Paan Leleng,total,total,,2056,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2002,4,Mokel,sex,laki_laki,,1262,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2002,4,Mokel,sex,perempuan,,1248,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2002,4,Mokel,total,total,,2510,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2005,4,Golo Meni,sex,laki_laki,,1536,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2005,4,Golo Meni,sex,perempuan,,1574,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2005,4,Golo Meni,total,total,,3110,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2004,4,Rana Mbeling,sex,laki_laki,,1041,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2004,4,Rana Mbeling,sex,perempuan,,1016,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2004,4,Rana Mbeling,total,total,,2057,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2006,4,Golo Nderu,sex,laki_laki,,946,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2006,4,Golo Nderu,sex,perempuan,,933,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2006,4,Golo Nderu,total,total,,1879,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2011,4,Gunung Baru,sex,laki_laki,,898,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2011,4,Gunung Baru,sex,perempuan,,864,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2011,4,Gunung Baru,total,total,,1762,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2007,4,Golo Ndele,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2007,4,Golo Ndele,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2007,4,Golo Ndele,total,total,,1494,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2009,4,Mokel Morid,sex,laki_laki,,692,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2009,4,Mokel Morid,sex,perempuan,,696,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2009,4,Mokel Morid,total,total,,1388,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2008,4,Rana Mbata,sex,laki_laki,,1226,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2008,4,Rana Mbata,sex,perempuan,,1191,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2008,4,Rana Mbata,total,total,,2417,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10.2010,4,Watu Pari,sex,laki_laki,,687,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10.2010,4,Watu Pari,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10.2010,4,Watu Pari,total,total,,1319,jiwa,2025,registration,total_population,3.1,16,,
+53.19.10,3,Kota Komba Utara,sex,laki_laki,,11310,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.10,3,Kota Komba Utara,sex,perempuan,,11150,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.10,3,Kota Komba Utara,total,total,,22460,jiwa,2025,registration,total_population,3.1,16,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.04.2005,4,Pulu Panjang,sex,laki_laki,,749,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2005,4,Pulu Panjang,sex,perempuan,,678,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2005,4,Pulu Panjang,total,total,,1427,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04.2001,4,Makamenggit,sex,laki_laki,,871,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2001,4,Makamenggit,sex,perempuan,,873,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2001,4,Makamenggit,total,total,,1744,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04.2010,4,Prai Karang,sex,laki_laki,,669,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2010,4,Prai Karang,sex,perempuan,,670,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2010,4,Prai Karang,total,total,,1339,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04.2003,4,Prai Paha,sex,laki_laki,,949,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2003,4,Prai Paha,sex,perempuan,,986,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2003,4,Prai Paha,total,total,,1935,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04.2004,4,Prai Hambuli,sex,laki_laki,,1033,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2004,4,Prai Hambuli,sex,perempuan,,1043,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2004,4,Prai Hambuli,total,total,,2076,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04.2002,4,Tandula Jangga,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2002,4,Tandula Jangga,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2002,4,Tandula Jangga,total,total,,660,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04.2011,4,Tana Tuku,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2011,4,Tana Tuku,sex,perempuan,,674,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2011,4,Tana Tuku,total,total,,1346,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04.2012,4,Ngadu Langgi,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04.2012,4,Ngadu Langgi,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04.2012,4,Ngadu Langgi,total,total,,836,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04,3,Nggaha Ori Angu,sex,laki_laki,,5730,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.04,3,Nggaha Ori Angu,sex,perempuan,,5633,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.04,3,Nggaha Ori Angu,total,total,,11363,jiwa,2025,registration,total_population,3.1,28,,
+53.11.04,3,Nggaha Ori Angu,sex,laki_laki,,5730,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.11.04,3,Nggaha Ori Angu,sex,perempuan,,5633,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.11.04,3,Nggaha Ori Angu,total,total,,11363,jiwa,2025,registration,total_population,3.2,30,,

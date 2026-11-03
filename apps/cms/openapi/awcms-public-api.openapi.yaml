@@ -83,6 +83,8 @@ tags:
     description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handlers land in C2–C4, issues #87–#93). Customer accounts are OTP-verified, password-free `commerce` rows (D1), authenticated by a 6-digit e-mail OTP (D2) and a `customerBearer` opaque session token (D3) — a security surface deliberately separate from the staff `bearerAuth`/session schemes, so a customer credential can never reach a staff-only endpoint and vice versa. Registration binds to an existing guest checkout customer by phone when the e-mail also matches (D4). Covers OTP request/verify, the account profile, saved addresses, wishlist, the account's own order history and reviews, and the account's own affiliate enrolment/commissions."
   - name: Commerce Affiliates
     description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handler lands in C4). The staff side of the affiliate program designed fresh by D5 (no legacy column carried over): review/approve/pay/void a referred order's commission, and edit an affiliate's status or commission rate. Gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`."
+  - name: Commerce Customer Push
+    description: "Issue #430 (ADR-0048). Customer Web Push device enrolment for storefront shoppers: the shopper's own browser push subscription (register, list, revoke one or all), the consent per purpose, and an aggregate-only staff diagnostics read. Bearer only (`customerBearer`, a `cs_` session token; never a cookie or a staff credential), behind the per-tenant `customerPush` feature (default OFF = a neutral 404). The endpoint is personal data and a bearer-grade capability: stored only as an AES-256-GCM envelope under the auth-secret key ring with a customer-specific AAD purpose, returned only masked, destroyed on revoke/logout/block. A host outside the browser push-service allowlist is refused; a shared storefront/CMS origin is unsupported in v1. Notifications carry generic text and a fixed storefront path only; `sent` means the push service accepted the request, never delivered or read. Staff diagnostics are gated on `commerce.customer_push.read`."
   - name: Commerce WhatsApp
     description: 'Issue #108 (contract #106/ADR-0017 D5). Read-only owner diagnostics over the WhatsApp outbox (`awcms_commerce_whatsapp_messages`) — a message''s masked phone, template key, delivery status and attempt count, never the raw phone/rendered body/OTP code. Gated on `commerce.whatsapp.read`. WhatsApp itself is the third `CustomerOtpChannel` (Fonnte/Meta Cloud API adapters, `log` for dev/CI) and a second login identifier: `POST .../account/otp/request` accepts `via: "whatsapp"` (login only, phone required) and `.../otp/verify` accepts `phone` as an alternative to `email`.'
   - name: OMES Control Center
@@ -101,6 +103,8 @@ tags:
     description: "Versioned commission rules (hr_commission module, Issue #950, ADR-0132, phase 2 of the hr_* family). A rule is jurisdiction-neutral, tenant-authored configuration: a percent of a base amount or a fixed amount per unit, in one currency, rounded under one explicit mode and scale, with an optional floor and ceiling; it references no person or employment. A rule changes only by a new version; a draft is editable, a published version is immutable (also by database trigger) and may only become retired, and no two published windows of one rule overlap. Rates and amounts are decimal strings. publish and retire are high-risk, separately grantable, idempotency-keyed and audited; a back-dated publish needs a reason. Issue #951 adds the accrual LEDGER: one commission per (source, employment), exactly once (a redelivery returns the original), its amount computed from the published rule in force on the event's own date and never asserted by a client, an advancing status (pending, approved, payable, paid, or voided) with an append-only transition log, a beneficiary who cannot approve their own accrual, and high-risk idempotency-keyed approve, release, void and pay audited without any amount. Employee commission only. Reversal and payroll are later phases."
   - name: Telegram Delivery
     description: "Operator and self-service surface of the optional Telegram delivery adapter (telegram_delivery module, ADR-0140, Issue #965), which carries OPERATIONAL AND STAFF ALERTS ONLY to staff who bound their own private chat. There is NO enqueue or send endpoint: queueing is a capability-port call (TelegramDeliveryPort) made in the consuming module's own transaction, and the provider is called only by the dispatcher job, outside any transaction (ADR-0006). A chat is bound by an audited, revocable handshake: a staff member requests a one-time code for themselves, opens it in a PRIVATE Telegram chat (the unauthenticated bot webhook, secret-verified before any work), and must then confirm the displayed Telegram name from their own authenticated session. The Telegram chat id is stored only as ciphertext plus a keyed hash and is never returned by any endpoint: chats are masked in every response and message bodies and variables are never returned. One queue per deployment, never a fallback for another channel (ADR-0139). Credentials are per deployment from the environment, never per tenant. Ships inert behind TELEGRAM_ENABLED and a per-tenant switch."
+  - name: Channel Accounts
+    description: "Account and credential CONTROL PLANE of the omnichannel foundation (channel_accounts module, Issue #1140, ADR-0148 capability C1): a tenant's connected external accounts (WhatsApp WABA phone numbers and StarSender devices, Pages, profiles, channels, bots, Mailketing ESP logins), the provider connections (OAuth 2.0 grants with single-use state and PKCE, API tokens, bot tokens, device keys) behind them, FAIL-CLOSED per-account capability evaluated against the provider matrix v1, write-only envelope-encrypted credentials, health and per-account assignments. There is NO send or publish endpoint and NO provider call: dispatch belongs to later issues. No operation ever returns a credential, an OAuth token, an authorisation code, a PKCE verifier, an OAuth state or the reference to any of them. A live external account belongs to ONE tenant. Ships inert behind CHANNEL_ACCOUNTS_ENABLED."
 paths:
   /api/v1/abac/policies:
     get:
@@ -9329,6 +9333,1064 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts:
+    get:
+      operationId: listChannelAccounts
+      tags:
+        - Channel Accounts
+      summary: The tenant's connected accounts, newest first (keyset).
+      description: An account with assignees is listed only to its assignees and to holders of `channel_accounts.assignments.assign`. Never contains a credential or its reference, only `hasCredential`. Requires `channel_accounts.accounts.read`.
+      parameters:
+        - name: provider
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/ChannelAccountStatus"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A page of accounts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ChannelAccount"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createChannelAccount
+      tags:
+        - Channel Accounts
+      summary: Register an external account.
+      description: "`(provider, accountKind, authMode)` must be a combination the provider matrix admits. A live external account belongs to ONE tenant: a duplicate is `409 ACCOUNT_ALREADY_REGISTERED` whether this tenant or another holds it (one answer, so the conflict is not an oracle). The account starts `pending` and becomes `connected` only when a connector verifies it. No credential is accepted here. A `businessScope` is a request, not a fact: the caller must hold that scope (`403 ACCESS_DENIED` otherwise), and a caller confined to business scopes may not omit it (an account without one is tenant-wide). Binding to a `connectionId` lends the account that connection's token, so it needs authority over the CONNECTION (its business scope; a tenant-wide connection: its creator or an unconfined caller) and `owner` authority over accounts already bound to it, which holding the connection's scope does NOT replace (only the tenant administrator, the holder of `assignments.assign`, skips that check); otherwise `422 CONNECTION_NOT_FOUND`. A connection with no account yet is bound only by its creator or by whoever holds break-glass over it (the same authority as revoking it). The account's `businessScope` must also be CONTAINED in the connection's scope, with no administrator exception: a tenant-wide connection admits any account scope, a scoped connection admits only an account of exactly that scope (a tenant-wide account never), else the same `422 CONNECTION_NOT_FOUND`. A connection of another provider answers the same `CONNECTION_NOT_FOUND` as an unknown one, and a connection id sent for an auth mode that takes none is refused by shape BEFORE the connection is looked up, so no answer depends on whether the id exists. `Idempotency-Key` required. Requires `channel_accounts.accounts.create`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateChannelAccountRequest"
+      responses:
+        "201":
+          description: The registered account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ChannelAccount"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`ACCOUNT_ALREADY_REGISTERED` (this tenant or another holds the external account) or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "The combination is not admitted: `PROVIDER_UNKNOWN`, `PROVIDER_NOT_REGISTRABLE`, `ACCOUNT_KIND_INVALID`, `AUTH_MODE_INVALID`, `CONNECTION_REQUIRED`, `CONNECTION_NOT_FOUND` (also, for an `oauth2` account, for a connection of another provider, one outside the caller's authority or whose scope does not contain the account's scope), `CONNECTION_MISMATCH` (only for a connection id on an account that does not use one, answered before the connection is looked up), `CONNECTION_NOT_ACTIVE` (the connection's grant is not `active`), `PARENT_REQUIRED`, `PARENT_INVALID` or `SCOPE_UNRESOLVED` (the named business scope does not exist in this tenant)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getChannelAccount
+      tags:
+        - Channel Accounts
+      summary: One account.
+      description: An unknown id, another tenant's id and an account the caller is not assigned to all answer the same 404. Requires `channel_accounts.accounts.read`.
+      responses:
+        "200":
+          description: The account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ChannelAccount"
+                  meta:
+                    type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateChannelAccount
+      tags:
+        - Channel Accounts
+      summary: Rename an account, or disable / re-enable it.
+      description: "`status` may be `disabled` or `pending` only: a re-enabled account stays `pending` until a connector verifies it again. `connected` and `degraded` cannot be set by a person. Disabling is audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.accounts.create`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                displayName:
+                  type: string
+                  minLength: 1
+                  maxLength: 200
+                status:
+                  type: string
+                  enum:
+                    - disabled
+                    - pending
+      responses:
+        "200":
+          description: The updated account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ChannelAccount"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`ACCOUNT_STATE_INVALID` or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteChannelAccount
+      tags:
+        - Channel Accounts
+      summary: Soft-delete an account.
+      description: "Refused while the account is `connected` or `degraded` (disconnect it first) and while it has child accounts. Erases the account's stored credential and releases its external id for re-registration. Terminal: the database refuses to un-delete. High-risk, audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.accounts.revoke`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      responses:
+        "200":
+          description: Deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      deleted:
+                        type: boolean
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`ACCOUNT_STATE_INVALID`, `HAS_CHILD_ACCOUNTS` or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}/assignments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: listChannelAccountAssignments
+      tags:
+        - Channel Accounts
+      summary: Who may operate this account.
+      description: Requires `channel_accounts.accounts.read`.
+      responses:
+        "200":
+          description: The assignments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ChannelAccountAssignment"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: setChannelAccountAssignment
+      tags:
+        - Channel Accounts
+      summary: Make a person of this tenant an owner, operator or viewer of the account.
+      description: An upsert per person. From the first assignment on, the account is visible and operable only to its assignees and holders of `channel_accounts.assignments.assign`. Additive to the permission checks, never a substitute. Audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.assignments.assign`.
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tenantUserId
+                - kind
+              additionalProperties: false
+              properties:
+                tenantUserId:
+                  type: string
+                  format: uuid
+                kind:
+                  $ref: "#/components/schemas/ChannelAssignmentKind"
+      responses:
+        "200":
+          description: The assignment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ChannelAccountAssignment"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`USER_NOT_FOUND` (the person is not in this tenant)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}/assignments/{assignmentId}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assignmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    delete:
+      operationId: removeChannelAccountAssignment
+      tags:
+        - Channel Accounts
+      summary: Remove one assignee.
+      description: Removing the LAST assignee returns the account to tenant-wide visibility, which is intended and is why this is audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.assignments.assign`.
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      responses:
+        "200":
+          description: Removed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      assignmentId:
+                        type: string
+                        format: uuid
+                      removed:
+                        type: boolean
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}/capabilities:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: listChannelAccountCapabilities
+      tags:
+        - Channel Accounts
+      summary: All nine capabilities with the matrix cell and the effective verdict.
+      description: "Each capability carries the provider matrix cell, the stored record (`absent` when none: absent means denied) and the EFFECTIVE verdict right now with its denial code. An unsupported or unevidenced action is reported as denied; nothing degrades one action into another. Requires `channel_accounts.accounts.read`."
+      responses:
+        "200":
+          description: The capabilities.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      matrixVersion:
+                        type: integer
+                      capabilities:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ChannelAccountCapability"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}/capabilities/{capability}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: capability
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/ChannelCapabilityName"
+    put:
+      operationId: setChannelAccountCapability
+      tags:
+        - Channel Accounts
+      summary: Record or withdraw one capability with its evidence.
+      description: "Refused (`422`) at write time when the provider matrix can never allow the cell (`CAPABILITY_NOT_GRANTABLE`, `PROVIDER_UNVERIFIED`, `PROVIDER_BARRED`), and a `restricted` cell needs a `contract_reference` or `written_authorization` evidence kind (`PROVIDER_RESTRICTED`). Granting does NOT make the capability usable by itself: every use is re-evaluated against the matrix, the evidence, the account status and its connection's grant. High-risk, audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.capabilities.configure`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - state
+              additionalProperties: false
+              properties:
+                state:
+                  type: string
+                  enum:
+                    - granted
+                    - pending_approval
+                    - denied
+                evidenceKind:
+                  $ref: "#/components/schemas/ChannelEvidenceKind"
+                evidenceRef:
+                  type: string
+                  minLength: 1
+                  maxLength: 200
+                  description: An opaque reference to the approval, scope list or contract. Required when `state` is `granted`. Never a secret.
+      responses:
+        "200":
+          description: The recorded capability.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ChannelAccountCapability"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`CAPABILITY_NOT_GRANTABLE`, `PROVIDER_BARRED`, `PROVIDER_UNVERIFIED`, `PROVIDER_RESTRICTED` or `ACCOUNT_STATE_INVALID`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}/credential:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    put:
+      operationId: writeChannelAccountCredential
+      tags:
+        - Channel Accounts
+      summary: Write or replace the account's credential (WRITE-ONLY).
+      description: |-
+        Stores an API token, device key or bot token as envelope-encrypted ciphertext (AES-256-GCM, the shared field-encryption helper, associated data binding purpose, tenant and secret). There is no GET and no "show token": the response is `{ replaced, cipherVersion }`, never the value and never the reference, and neither the audit row, the stored idempotency response nor any log carries the value. An OAuth account has no credential of its own (`409 CREDENTIAL_NOT_APPLICABLE`); a `revoked` or `disabled` account is not re-armed by writing one (`409 ACCOUNT_STATE_INVALID`).
+
+        HIGH-RISK: the permission is separately grantable and declares `requiresMfaEnrolment` (a holder with no MFA factor is refused `403 MFA_ENROLMENT_REQUIRED`); a person WITH a factor must also present a fresh step-up (conditional, ADR-0141 section 4); `Idempotency-Key` is required; the audit row is `warning`. `503 SECRET_STORE_UNAVAILABLE` when CHANNEL_SECRETS_ENCRYPTION_KEYS is not a valid key ring (fail closed: there is no plaintext fallback). Requires `channel_accounts.credentials.manage`.
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - secret
+              additionalProperties: false
+              properties:
+                secret:
+                  type: string
+                  minLength: 8
+                  maxLength: 4096
+                  writeOnly: true
+                  description: The credential. No whitespace. Never echoed, in a response or in an error message.
+      responses:
+        "200":
+          description: Stored.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replaced:
+                        type: boolean
+                      cipherVersion:
+                        type: integer
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`CREDENTIAL_NOT_APPLICABLE`, `ACCOUNT_STATE_INVALID` or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED` or `SECRET_STORE_UNAVAILABLE`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}/disconnect:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    post:
+      operationId: disconnectChannelAccount
+      tags:
+        - Channel Accounts
+      summary: Disconnect an account and erase its credential.
+      description: "The account becomes `revoked`, its OWN stored credential is hard-deleted and its webhook subscriptions are revoked. Effective on the next use: every capability check reads the status. Does not call the provider and does not touch a shared connection (revoke the connection for that). High-risk, audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.accounts.revoke`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      responses:
+        "200":
+          description: Disconnected.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      account:
+                        $ref: "#/components/schemas/ChannelAccount"
+                      credentialErased:
+                        type: boolean
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`ACCOUNT_STATE_INVALID` (already disconnected) or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/accounts/{id}/health:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getChannelAccountHealth
+      tags:
+        - Channel Accounts
+      summary: The account's status and latest recorded health.
+      description: "Read-only on purpose: health is REPORTED by a provider connector's check or a dispatch failure, never asserted by a person, so a caller cannot mark a broken account healthy. `health` is `null` until a connector has reported once. Requires `channel_accounts.accounts.read`."
+      responses:
+        "200":
+          description: Status and health.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      accountId:
+                        type: string
+                        format: uuid
+                      status:
+                        $ref: "#/components/schemas/ChannelAccountStatus"
+                      statusReason:
+                        type: string
+                        nullable: true
+                      health:
+                        $ref: "#/components/schemas/ChannelAccountHealth"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/connections:
+    get:
+      operationId: listChannelConnections
+      tags:
+        - Channel Accounts
+      summary: The tenant's provider connections.
+      description: State, granted scopes, expiry, whether a credential is stored and whether an authorisation code awaits its token exchange. Never a token, an authorisation code, a PKCE verifier or a secret reference. A connection is listed to the holder of its business scope (or, for a tenant-wide connection, the tenant administrator), to the person who started it, and to anyone who may see at least one account bound to it (assignment and business scope). Requires `channel_accounts.accounts.read`.
+      parameters:
+        - name: provider
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The connections.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ChannelConnection"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/connections/{id}/revoke:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    post:
+      operationId: revokeChannelConnection
+      tags:
+        - Channel Accounts
+      summary: Revoke a provider connection.
+      description: "The grant becomes `revoked` (terminal; the database refuses to undo it), every credential it held (access, refresh, an unexchanged authorisation code, the PKCE verifier) is cleared and its ciphertext deleted, and every account bound to it becomes `revoked`. Does not call the provider's revoke endpoint (the connector's job): the local half must not depend on the provider being reachable. High-risk, audited at `warning`. Break-glass: whoever holds the connection's business scope, or the tenant administrator (the holder of `assignments.assign`, decided by the access chokepoint; holding a business scope of one's own does not take that away), can always revoke it, so no account can veto a revocation. Anyone else needs `owner` authority over EVERY account bound to it (a connection with no account belongs to whoever started it); otherwise the answer is the same `404` as an unknown connection. `Idempotency-Key` required. Requires `channel_accounts.accounts.revoke`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      responses:
+        "200":
+          description: Revoked.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      connectionId:
+                        type: string
+                        format: uuid
+                      grantState:
+                        type: string
+                        enum:
+                          - revoked
+                      accountsRevoked:
+                        type: integer
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`GRANT_STATE_INVALID` (already revoked) or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/connections/oauth/callback:
+    get:
+      operationId: completeChannelOAuthCallback
+      tags:
+        - Channel Accounts
+      summary: The provider's redirect target.
+      description: |-
+        A top-level browser navigation that carries the signed-in session; it is authorised like any call (`channel_accounts.accounts.create`) and is NOT a public endpoint. The `state` must exist, be unexpired and unconsumed, belong to THIS tenant and to THIS signed-in person, and have been issued against this deployment's own redirect URI. Every failure, replay and cross-tenant or cross-person attempt answers the same `400 STATE_INVALID`. The state is consumed by a compare-and-swap, so two racing callbacks have one winner.
+
+        It does NOT exchange the code: that is provider I/O and must not run inside this transaction. It leaves a durable hand-off (a `pending` connection holding the authorisation code as ciphertext) for the connector's job. Neither the code nor the state is echoed in the response, the audit row or any log. A provider-side denial answers `403 AUTHORIZATION_DENIED`.
+      parameters:
+        - name: state
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: error
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The hand-off was recorded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      connectionId:
+                        type: string
+                        format: uuid
+                      grantState:
+                        type: string
+                        enum:
+                          - pending
+                      awaitingExchange:
+                        type: boolean
+                  meta:
+                    type: object
+        "400":
+          description: "`STATE_INVALID`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED` or `SECRET_STORE_UNAVAILABLE`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/connections/oauth/start:
+    post:
+      operationId: startChannelOAuth
+      tags:
+        - Channel Accounts
+      summary: Begin an OAuth 2.0 authorisation for a provider.
+      description: |-
+        Creates a single-use `state` (256 random bits, stored only as a SHA-256, bound to this tenant and this person, valid 10 minutes) and, where the provider offers PKCE, an S256 challenge whose verifier is held server-side as ciphertext. The redirect URI is this deployment's own fixed callback and is NOT an input. Returns the provider's authorisation URL.
+
+        `422 PROVIDER_ADAPTER_UNAVAILABLE` for a provider whose connector is not installed: this module does not guess a provider's authorisation endpoint. The same code when the deployment has no declared `APP_URL` (the callback origin comes from it alone, never a built-in default; Issue #1215 L7). `429 TOO_MANY_PENDING` caps unconsumed states per person. Not idempotency-keyed: each call deliberately mints a fresh state. Requires `channel_accounts.accounts.create`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - provider
+                - scopes
+              additionalProperties: false
+              properties:
+                provider:
+                  type: string
+                scopes:
+                  type: array
+                  maxItems: 64
+                  items:
+                    type: string
+                businessScope:
+                  $ref: "#/components/schemas/ChannelBusinessScope"
+      responses:
+        "200":
+          description: The authorisation URL to send the browser to.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      authorizationUrl:
+                        type: string
+                        format: uri
+                      expiresAt:
+                        type: string
+                        format: date-time
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "422":
+          description: "`PROVIDER_UNKNOWN`, `PROVIDER_NOT_REGISTRABLE`, `AUTH_MODE_INVALID`, `PROVIDER_ADAPTER_UNAVAILABLE` or `SCOPE_UNRESOLVED`. A `businessScope` the caller does not hold (or an omitted one, for a scope-confined caller) is `403 ACCESS_DENIED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`TOO_MANY_PENDING`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED` or `SECRET_STORE_UNAVAILABLE`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/channel-accounts/providers:
+    get:
+      operationId: listChannelProviders
+      tags:
+        - Channel Accounts
+      summary: The provider capability matrix v1, as the code enforces it.
+      description: "Registrable providers with their account kinds and authentication modes, and the verdict of each capability cell (`candidate`, `restricted`, `not_offered`, `unverified`, `not_applicable`, `barred`). A `candidate` cell is NOT a promise: an account still needs a granted capability with evidence. Requires `channel_accounts.accounts.read`."
+      responses:
+        "200":
+          description: The matrix.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ChannelProviderMatrix"
+                  meta:
+                    type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "503":
+          description: "`CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/comments:
     get:
       operationId: listPublicComments
@@ -12124,10 +13186,10 @@ paths:
       tags:
         - Commerce
       summary: "Issue #391 (ADR-0046). Whether employee-commission sale attribution is on for the tenant, which `hr_commission` rule key it applies and the source type that rule declares. Gated on `commerce.commission_settings.read`."
-      description: "OFF by default: a tenant that never saved settings answers `enabled: false` with no rule key and `updatedAt: null`."
+      description: "OFF by default: a tenant that never saved settings answers `enabled: false` with no rule key and `updatedAt: null`. `readiness` says what commerce can observe about the path to the ledger without reading a commission table (Issue #391, ADR-0046 D12)."
       responses:
         "200":
-          description: The settings, or the defaults.
+          description: The settings, or the defaults, and the readiness.
           content:
             application/json:
               schema:
@@ -12142,6 +13204,8 @@ paths:
                     properties:
                       settings:
                         $ref: "#/components/schemas/CommerceCommissionSettings"
+                      readiness:
+                        $ref: "#/components/schemas/CommerceCommissionReadiness"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -12151,7 +13215,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #391 (ADR-0046). Switch commission attribution on or off and name the `hr_commission` rule it applies. Gated on `commerce.commission_settings.manage` (a high-risk action); audited with the old and new values. An upsert, so a replay is harmless."
-      description: "DORMANT: `enabled: true` is refused with `409 COMMISSION_ADAPTER_DORMANT` until upstream provides a sanctioned worker path to the accrual ledger. Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the ledger refuse that sale (audited as `commerce.commission.attribution_refused`)."
+      description: "Live since Issue #391 (ADR-0046 D12): the paid-order consumer submits each counter-sale line to `hr_commission`'s intake queue (upstream ADR-0147), a job posts it as an accrual, and cancel/refund submit a void. Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the poster refuse that line, which shows only in `GET /api/v1/hr-commission/intake/exceptions`. Saving with `enabled: true` is never refused for the intake's state: `readiness` in the response says whether `hr_commission` is on and when a line was last submitted. While the tenant's commission intake is switched off the consumer fails each paid sale's delivery (retry, then a replayable dead letter) rather than dropping it, so switch the intake on (with an intake actor) BEFORE enabling this."
       requestBody:
         required: true
         content:
@@ -12176,7 +13240,7 @@ paths:
                   description: Must equal the `sourceType` the rule declares.
       responses:
         "200":
-          description: The saved settings.
+          description: The saved settings and the readiness.
           content:
             application/json:
               schema:
@@ -12191,6 +13255,8 @@ paths:
                     properties:
                       settings:
                         $ref: "#/components/schemas/CommerceCommissionSettings"
+                      readiness:
+                        $ref: "#/components/schemas/CommerceCommissionReadiness"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -12198,7 +13264,7 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: "`COMMISSION_ADAPTER_DORMANT` (Issue #391, ADR-0046 D10) - a request with `enabled: true` is refused: the commission adapter ships dormant because the worker may not hold payroll-table privileges (upstream payroll boundary, ahliweb/awcms#1015), so no accrual would be reported. Switching it off, or saving without enabling, is accepted. Otherwise `COMMISSION_SOURCE_LOCKED` - the commission ledger already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted."
+          description: "`COMMISSION_SOURCE_LOCKED` - the commission intake already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted."
           content:
             application/json:
               schema:
@@ -12530,6 +13596,39 @@ paths:
           $ref: "#/components/responses/NotFound"
         "409":
           description: IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/customer-push/diagnostics:
+    get:
+      operationId: getCommerceCustomerPushDiagnostics
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 Q10). AGGREGATE customer Web Push counts for staff: devices by status, messages by status and purpose, preferences by purpose. Gated on `commerce.customer_push.read`."
+      description: 'Counts only. The answer never carries an endpoint (masked or not), a device id, an account or customer id, a token or a message text. `sent` means the push service accepted the request, never that anything was displayed or read: no figure is called "delivered". Feature off is `409 FEATURE_DISABLED` (the owner-route convention).'
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: The aggregate diagnostics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomerPushDiagnostics"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED - the `customerPush` feature is off for this tenant.
           content:
             application/json:
               schema:
@@ -19749,7 +20848,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #360 (ADR-0042). Define a segment: a name and a rule tree in the closed vocabulary. Creates version 1. Gated on `commerce.segments.create` and the tenant's `segments` feature."
-      description: "The rule tree is validated against the closed vocabulary (PRD 6.1, owner answer Q7): an unknown field, operator or key, a value of the wrong type, a depth above 4, more than 25 nodes, more than 10 children in a group, more than 3 distinct windows or more than 8 KiB of JSON is a 400 whose `details` name the offending path (`rules.and[1].field`). A key outside `name`, `description`, `rules` - a `tenantId`, for instance - is refused by name, never honoured. The stored rules are the canonical form."
+      description: "The rule tree is validated against the closed vocabulary (PRD 6.1, owner answer Q7): an unknown field, operator or key, a value of the wrong type, a depth above 4, more than 25 nodes, more than 10 children in a group, more than 3 distinct windows or more than 8 KiB of JSON is a 400 whose `details` name the offending path (`rules.and[1].field`). A key outside `name`, `description`, `rules` - a `tenantId`, for instance - is refused by name, never honoured. The stored rules are the canonical form. A rule that reads a booking-derived field (rule schema 2, Issue #390, ADR-0052) additionally needs the tenant's `booking` feature (`409 FEATURE_DISABLED`) and `commerce.booking_reservation_links.read` (`403`); the version is stored under rule schema 2."
       requestBody:
         required: true
         content:
@@ -19825,7 +20924,7 @@ paths:
       operationId: updateCommerceSegment
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`."
+      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`. Issue #390 (ADR-0052): `rules` that read a booking-derived field additionally need the `booking` feature (`409 FEATURE_DISABLED`) and `commerce.booking_reservation_links.read` (`403`); a rename needs neither. The new version is stored under rule schema 2."
       parameters:
         - name: id
           in: path
@@ -19910,7 +21009,7 @@ paths:
       operationId: exportCommerceSegmentMembersCsv
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`."
+      summary: "Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`. Issue #390: a version whose rules read a booking-derived field also needs `commerce.booking_reservation_links.read` (403)."
       description: "Every cell is spreadsheet-formula-neutralised; phone and e-mail are the masked forms a list shows. Bounded: at most 10,000 rows with `X-Export-Truncated: true` when more existed - never a silent cut. `Cache-Control: no-store`. The export is audited at `warning` severity with the actor, the version and the row count."
       parameters:
         - name: id
@@ -19975,7 +21074,7 @@ paths:
       operationId: listCommerceSegmentMembers
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second)."
+      summary: "Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second). Issue #390: a version whose rules read a booking-derived field also needs `commerce.booking_reservation_links.read` (403)."
       description: Walk-in, blocked and erased customers are never members. Fields are the customer's name, masked phone, masked e-mail and price level. Every page is audited (actor, version, count - never who). Bounded like a preview (422 `SEGMENT_TOO_EXPENSIVE`, 429 `SEGMENT_EVALUATION_BUSY`). Each page is evaluated at the server's current instant.
       parameters:
         - name: id
@@ -20050,7 +21149,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #360 (ADR-0042, PRD S2). How many customers a rule matches. Body: `{ rules }` (unsaved) OR `{ segmentId, version? }` (saved). Gated on `commerce.segment_previews.read` and the tenant's `segments` feature."
-      description: 'Read-only and bounded (control C-26): at most 2 concurrent evaluations per tenant and 1 per actor (429 `SEGMENT_EVALUATION_BUSY`), a 5 s statement timeout (422 `SEGMENT_TOO_EXPENSIVE`), and 30 previews per actor per minute (429 `RATE_LIMITED`). The answer carries the SERVER''s `asOf` instant; the request has no such field and one is refused by name. A count below 5 is withheld: `count` is `{ suppressed: true, count: null, label: "fewer_than_5" }` (control C-27). `sample` (at most 10 masked customers, never pageable) is present only for a caller who also holds `commerce.segment_members.read` and `commerce.customers.read`; otherwise it is null and no customer permission is needed. The walk-in placeholder, blocked and erased customers are never counted.'
+      description: 'Read-only and bounded (control C-26): at most 2 concurrent evaluations per tenant and 1 per actor (429 `SEGMENT_EVALUATION_BUSY`), a 5 s statement timeout (422 `SEGMENT_TOO_EXPENSIVE`), and 30 previews per actor per minute (429 `RATE_LIMITED`). The answer carries the SERVER''s `asOf` instant; the request has no such field and one is refused by name. A count below 5 is withheld: `count` is `{ suppressed: true, count: null, label: "fewer_than_5" }` (control C-27). `sample` (at most 10 masked customers, never pageable) is present only for a caller who also holds `commerce.segment_members.read` and `commerce.customers.read`; otherwise it is null and no customer permission is needed. The walk-in placeholder, blocked and erased customers are never counted. A rule that reads a booking-derived field (rule schema 2, Issue #390, ADR-0052) additionally needs `commerce.booking_reservation_links.read` (`403`), and - for an unsaved `rules` body, which is a definition - the tenant''s `booking` feature (`409 FEATURE_DISABLED`).'
       requestBody:
         required: true
         content:
@@ -21164,6 +22263,7 @@ paths:
       tags:
         - Commerce Accounts
       summary: "Issue #91 (implemented, contract #86). Add a saved address. Refused past 10 per account; the FIRST address ever saved becomes the default automatically."
+      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same address within 1 hour replays the original `201` with `data.replayed: true` (no second address); the same key with another address is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat creates a second address (each create is serialised per customer, so the limit and the first-address default hold under concurrency)."
       security:
         - customerBearer: []
       requestBody:
@@ -21175,7 +22275,7 @@ paths:
               description: Same shape as `CommerceCreateOrderRequest.address`, plus a required `label` and a required (not optional) `postalCode`.
       responses:
         "201":
-          description: Created.
+          description: Created. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
           content:
             application/json:
               schema:
@@ -21199,7 +22299,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "409":
-          description: ADDRESS_LIMIT_REACHED — already 10 saved addresses.
+          description: ADDRESS_LIMIT_REACHED (already 10 saved addresses), or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different address).
           content:
             application/json:
               schema:
@@ -21478,6 +22578,7 @@ paths:
       tags:
         - Commerce Accounts
       summary: "Issue #111 (contract #106 D8). Start a new conversation with the store, with its opening message. Subject 1-150 chars, message body 1-4000 chars."
+      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same subject and body within 1 hour replays the original `201` with `data.replayed: true` (no second thread or message, and the replay does not spend the per-account post limit); the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat opens a second thread."
       security:
         - customerBearer: []
       requestBody:
@@ -21500,7 +22601,7 @@ paths:
                   maxLength: 4000
       responses:
         "201":
-          description: Conversation opened, with its first (customer) message.
+          description: Conversation opened, with its first (customer) message. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
           content:
             application/json:
               schema:
@@ -21521,6 +22622,12 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT — the `Idempotency-Key` was already used with a different request.
           content:
             application/json:
               schema:
@@ -21585,6 +22692,7 @@ paths:
       tags:
         - Commerce Accounts
       summary: "Issue #111 (contract #106 D8). Post a message on the account's own conversation. 409 CONVERSATION_CLOSED once the thread is closed — a customer never reopens their own thread (only a store reply does)."
+      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same conversation and text within 1 hour replays the original `201` with `data.replayed: true` (no second message, and the replay does not spend the per-account post limit); the same key for another conversation or text is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat posts the message twice."
       security:
         - customerBearer: []
       parameters:
@@ -21609,7 +22717,7 @@ paths:
                   maxLength: 4000
       responses:
         "201":
-          description: Message added.
+          description: Message added. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
           content:
             application/json:
               schema:
@@ -21639,7 +22747,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "409":
-          description: CONVERSATION_CLOSED.
+          description: CONVERSATION_CLOSED, or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request).
           content:
             application/json:
               schema:
@@ -22041,7 +23149,10 @@ paths:
       tags:
         - Commerce Accounts
       summary: "Issue #89 (implemented, contract #86). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016)."
-      description: 'Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpose: "register"`, `name`/`phone` are stored on the OTP row (`customer_otps.registration`) and applied only when the code is verified — a request alone creates nothing. Always answers `202 {sent:true, ...}` regardless of whether the address has an account, whether the phone is already registered, or whether the tenant''s `email` outbox is reachable, so this endpoint is never an account-existence oracle.'
+      description: |-
+        Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpose: "register"`, `name`/`phone` are stored on the OTP row (`customer_otps.registration`) and applied only when the code is verified — a request alone creates nothing. Always answers `202 {sent:true, ...}` regardless of whether the address has an account, whether the phone is already registered, or whether the tenant's `email` outbox is reachable, so this endpoint is never an account-existence oracle.
+
+        **Resend window (Issue #513).** A second request for the SAME registration (same identifier, purpose, and for `register` the same name and phone) less than 60 seconds after the previous one is a no-op success: the live code stays valid, no second e-mail or WhatsApp message is sent, and the answer has the same shape. A different registration payload, or a request after the window, issues a new code that supersedes the old one. Rate limits count every request either way. The endpoint takes no `Idempotency-Key`: the window is its guard.
       security: []
       requestBody:
         required: true
@@ -22092,7 +23203,12 @@ paths:
       tags:
         - Commerce Accounts
       summary: "Issue #89 (implemented, contract #86). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3)."
-      description: 'Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL, 5 attempts, single use — any of wrong/expired/consumed/ attempts-exhausted answers the SAME `401 OTP_INVALID` so a guess cannot distinguish why it failed. On success, mints an opaque `cs_` bearer token (only its `sha256:` digest is stored, D3) and — for `purpose: "register"` — applies the registration data captured at request time, binding to an existing guest `awcms_commerce_customers` row by phone when one exists (history_from rule, D4).'
+      description: |-
+        Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL, 5 attempts, single use — any of wrong/expired/consumed/ attempts-exhausted answers the SAME `401 OTP_INVALID` so a guess cannot distinguish why it failed. On success, mints an opaque `cs_` bearer token (only its `sha256:` digest is stored, D3) and — for `purpose: "register"` — applies the registration data captured at request time, binding to an existing guest `awcms_commerce_customers` row by phone when one exists (history_from rule, D4).
+
+        **Double-submit safety (Issue #513).** The code is consumed atomically, so two concurrent verifies of one code never both succeed (the second is `401 OTP_INVALID`). A `register` whose e-mail already has an account is a login (never `PHONE_ALREADY_REGISTERED`); only a phone that belongs to a DIFFERENT e-mail's account is `409 PHONE_ALREADY_REGISTERED`.
+
+        **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Within 10 minutes the same key with the same request (purpose, e-mail or phone, code) answers `200` again with `data.replayed: true` and a FRESH session for the same account — no token is stored or read back; the key is stored only as a keyed hash. The same key with a different request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded, so a mistyped code can be retried under the same key.
       security: []
       requestBody:
         required: true
@@ -22102,7 +23218,7 @@ paths:
               $ref: "#/components/schemas/OtpVerify"
       responses:
         "200":
-          description: Verified — a new bearer session.
+          description: Verified — a new bearer session. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
           content:
             application/json:
               schema:
@@ -22122,8 +23238,16 @@ paths:
                         format: date-time
                       account:
                         $ref: "#/components/schemas/CustomerAccount"
+                      replayed:
+                        type: boolean
+                        enum:
+                          - true
         "400":
-          $ref: "#/components/responses/BadRequest"
+          description: VALIDATION_ERROR (the body) or IDEMPOTENCY_KEY_INVALID (the `Idempotency-Key` header is present but not 16 to 128 characters of `A-Z a-z 0-9 _ -`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
         "401":
           description: OTP_INVALID — wrong, expired, consumed, or attempts exhausted (one code for all four, D2's anti-guess rule).
           content:
@@ -22137,13 +23261,307 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "409":
-          description: 'PHONE_ALREADY_REGISTERED — `purpose: "register"` and the phone is bound to another account.'
+          description: 'PHONE_ALREADY_REGISTERED — `purpose: "register"` and the phone is bound to a DIFFERENT e-mail''s account (a registration whose e-mail already has an account is a login, never this); or IDEMPOTENCY_CONFLICT — the `Idempotency-Key` was already used (inside the 10-minute window) with a different request.'
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
           description: Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/preferences:
+    get:
+      operationId: getCommerceStorefrontAccountPushPreferences
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 2.3, 6.1). The account's consent per push purpose."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: "One entry per transactional purpose, in a fixed order; a purpose never set is `enabled: false` with no evidence."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      preferences:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    put:
+      operationId: updateCommerceStorefrontAccountPushPreferences
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 2.3, 6.1). Set consent per purpose. Only the named purposes change; every change is audited."
+      description: Turning a purpose ON needs the current consent wording version (`capability.consentTextVersion`) and is recorded with it; turning one OFF never needs it (a withdrawal is always possible) and keeps its row as evidence. `marketing` is reserved and refused. Transactional consent never implies marketing consent. Body cap 8 KiB.
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCustomerPushPreferencesRequest"
+      responses:
+        "200":
+          description: The updated preferences.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      preferences:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "413":
+          description: PAYLOAD_TOO_LARGE (over 8 KiB).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: VALIDATION_ERROR (a missing or stale `textVersion`, an unknown purpose, `marketing`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/subscriptions:
+    get:
+      operationId: getCommerceStorefrontAccountPushState
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 6.1). Customer Web Push state: what the server knows (capability), the account's consent preferences and its active devices."
+      description: "Bearer only (`customerBearer`): no cookie, no staff credential. Behind the per-tenant `customerPush` feature (default OFF = the neutral `404`, the same body as an unresolvable tenant). `capability.enabled: false` is a first-class `200` (no VAPID key pair or key ring, or a storefront served from the CMS origin) and carries a `reason`; everything the BROWSER knows (Push API, installed iOS app, permission state) is detected by the storefront. Devices are listed masked (`endpointMasked`); the raw endpoint, the keys and the ciphertexts are never returned. Every answer carries `Cache-Control: private, no-store` and `Vary: Origin`; the CORS grant echoes only a tenant-resolved origin and never allows credentials."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The push state of the authenticated account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomerPushState"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: registerCommerceStorefrontAccountPushDevice
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 5.2, 6.1). Register or re-register this browser's push subscription. Idempotent by endpoint; one transaction; consent recorded with the wording version."
+      description: "The body is the browser's `PushSubscription.toJSON()` plus `consent`; any other key (`transport`, `accountId`, `tenantId`, `title`, `body`, `navigate`, ...) is a `400`. The principal is the bearer's account and session, never the body. The endpoint's host must be a known browser push service (Google FCM, Mozilla, Apple, Microsoft; an operator environment setting can extend the list, a tenant or a request cannot) or the answer is `422 ENDPOINT_NOT_ALLOWED` and nothing is written. The `Origin` must be the tenant's own storefront origin (not the CMS origin): a deployment that serves the storefront and the CMS from one origin is unsupported in v1 (`422 ORIGIN_NOT_ALLOWED`, capability reason `origin_not_supported`). At most 5 active devices per account (`409 DEVICE_LIMIT`). `201` when the caller newly owns the device (new, revived, or transferred from another account on a shared browser - atomic, audited, the previous owner's queued notifications are cancelled; the caller learns nothing about the previous owner), `200` for a no-op re-registration. Body cap 8 KiB. Rate limits: 30 per hour per IP, 10 per hour per account."
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCustomerPushSubscribeRequest"
+      responses:
+        "200":
+          description: A no-op re-registration by the account that already owns the device.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommerceCustomerPushSubscribeResult"
+        "201":
+          description: Registered, revived or transferred to the caller.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommerceCustomerPushSubscribeResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: PUSH_UNAVAILABLE (push is not configured on this deployment) or DEVICE_LIMIT (5 active devices already).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "413":
+          description: PAYLOAD_TOO_LARGE (over 8 KiB).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE (`Content-Type` must be application/json).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: VALIDATION_ERROR, ENDPOINT_NOT_ALLOWED (host outside the push-service allowlist) or ORIGIN_NOT_ALLOWED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: revokeAllCommerceStorefrontAccountPushDevices
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 5.3). Revoke every push device of the authenticated account. Idempotent: nothing to revoke is still `204`."
+      description: Destroys each device's stored credentials at once and cancels its queued notifications. A blocked account may still call it.
+      security:
+        - customerBearer: []
+      responses:
+        "204":
+          description: Revoked (or there was nothing to revoke).
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/subscriptions/{id}:
+    delete:
+      operationId: revokeCommerceStorefrontAccountPushDevice
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 5.3). Revoke ONE of the authenticated account's push devices."
+      description: Ownership is enforced inside the query, so an absent id, someone else's id, a malformed id and an already-revoked id are the same `404`. A blocked account may still revoke.
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Revoked; the device's credentials are destroyed.
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
               schema:
@@ -22933,6 +24351,10 @@ paths:
       tags:
         - Commerce
       summary: Anonymous customer-initiated cancel (Issue 29), only while pending_payment.
+      description: |-
+        Naturally idempotent: cancelling an order that is already `cancelled` answers `200` with the order as it is (no second transition, event or audit row), with or without a key; two concurrent cancels run one transition. Every other state the customer may not cancel from keeps `409 ORDER_NOT_CANCELLABLE`.
+
+        **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and reason within 1 hour replays with `data.replayed: true` (the order as it is now); the same key for another order, phone or reason is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome.
       security: []
       parameters:
         - name: orderCode
@@ -22956,7 +24378,7 @@ paths:
                   nullable: true
       responses:
         "200":
-          description: Order cancelled.
+          description: Order cancelled, or already cancelled (the same answer). `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
           content:
             application/json:
               schema:
@@ -22971,7 +24393,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: ORDER_NOT_CANCELLABLE, or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed.
+          description: ORDER_NOT_CANCELLABLE, IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request), or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed.
           content:
             application/json:
               schema:
@@ -22982,6 +24404,7 @@ paths:
       tags:
         - Commerce
       summary: Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
+      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and confirmation within 1 hour replays the original `201` with the order as it is now and `data.replayed: true` (no second confirmation row); the same key for another order, phone or confirmation is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome. Only successes are recorded; nothing of the order is copied into the idempotency store. Without a key every submit records a confirmation."
       security: []
       parameters:
         - name: orderCode
@@ -23025,7 +24448,7 @@ paths:
                   nullable: true
       responses:
         "201":
-          description: Confirmation recorded.
+          description: Confirmation recorded. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
           content:
             application/json:
               schema:
@@ -23042,7 +24465,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: ORDER_NOT_PAYABLE — the order is not pending_payment.
+          description: ORDER_NOT_PAYABLE (the order is not pending_payment), or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request).
           content:
             application/json:
               schema:
@@ -23271,7 +24694,11 @@ paths:
       tags:
         - Commerce
       summary: "Anonymous review submission (Issue 29), with an optional customer bearer (Issue #91). Requires a completed order containing the product; lands pending for moderation."
-      description: "Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too. Present and valid → ownership is checked against the signed-in account's OWN customer row instead of the orderCode+phone credential (`phone` is still validated for shape and still the per-phone rate limit's key); present and invalid/expired → `401 UNAUTHENTICATED`; absent entirely → the anonymous path is unchanged."
+      description: |-
+        Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too. Present and valid → ownership is checked against the signed-in account's OWN customer row instead of the orderCode+phone credential (`phone` is still validated for shape and still the per-phone rate limit's key); present and invalid/expired → `401 UNAUTHENTICATED`; absent entirely → the anonymous path is unchanged.
+
+
+        Issue #513 (unit C): the unique index per (customer, product, order) stops a duplicate review, but a retry used to answer `409 REVIEW_NOT_ALLOWED` for a review the shopper had just written. **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone, product, rating and text (and the same signed-in account, if any) within 1 hour replays the original `201` with the same review `id` and `data.replayed: true`; the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Without a key the unique index and its `409 REVIEW_NOT_ALLOWED` are unchanged.
       security: []
       requestBody:
         required: true
@@ -23300,7 +24727,7 @@ paths:
                   type: string
       responses:
         "201":
-          description: Review submitted, pending moderation.
+          description: Review submitted, pending moderation. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
           content:
             application/json:
               schema:
@@ -23331,7 +24758,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: REVIEW_NOT_ALLOWED.
+          description: REVIEW_NOT_ALLOWED, or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request).
           content:
             application/json:
               schema:
@@ -26562,6 +27989,114 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "409":
           description: IDEMPOTENCY_CONFLICT or ACCRUAL_INVALID_STATE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-commission/intake/exceptions:
+    get:
+      operationId: hrCommissionIntakeExceptionsList
+      tags:
+        - HR Commission
+      summary: List the commission intake requests that need a human
+      description: "Gated by `hr_commission.intake.read` (Issue #1189, ADR-0147 section 5), which opens no accrual. The intake requests the ledger REFUSED (`source_conflict`, `no_effective_rule`, `period_closed`, `not_found`, ...) or that FAILED after the poster's bounded retries, newest settlement first, keyset paginated (`cursor`). Each row carries an outcome CODE and MASKED ids only: no amount, no rule, no actor, no unmasked source reference. `summary` is the poster's diagnostics: whether intake is on, the queue's counts per status and how many seconds the oldest still-live request has waited (a poster outage shows as a growing age). Read-only. Never cached. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: A page of exceptions with the queue summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrCommissionIntakeExceptionPage"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/hr-commission/intake/settings:
+    get:
+      operationId: hrCommissionIntakeSettingGet
+      tags:
+        - HR Commission
+      summary: Read the commission intake switch
+      description: "Gated by `hr_commission.intake.read` (Issue #1189, ADR-0147 section 4). The tenant's `commissionIntakeEnabled` switch; `false` when it was never set (default-deny). With it off the `commission_intake` port answers `disabled`, nothing is written and the poster job claims nothing. Read-only; holds no pay data."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The switch.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrCommissionIntakeSetting"
+                  meta:
+                    type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    put:
+      operationId: hrCommissionIntakeSettingPut
+      tags:
+        - HR Commission
+      summary: Switch commission intake on or off
+      description: "Gated by `hr_commission.intake.configure` (high-risk, separately grantable; never implied by `accruals.accrue` or `rules.publish`). Turning it ON lets a registered system consumer (one running as the worker role, with no signed-in person) queue commission requests that the `hr-commission:intents:post` job then posts through the one posting core; turning it OFF stops new intake and the poster claiming (rows already queued wait). Switching ON needs the intake system actor (`intakeActorTenantUserId`, an active tenant user; 400 `INTAKE_ACTOR_REQUIRED` / `INTAKE_ACTOR_INVALID`): the poster stamps THAT identity on every posted accrual and audit row, never the consumer's own claim. The body is strict: `commissionIntakeEnabled` (boolean) and the optional `intakeActorTenantUserId`, nothing else. Requires an Idempotency-Key; replaying it returns the stored response and does not switch again. Audited at `warning` with the before and after switch (never an amount). The `hr_commission` module must be enabled for the tenant (Module Management gate)."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrCommissionIntakeSettingInput"
+      responses:
+        "200":
+          description: The switch after the change.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrCommissionIntakeSetting"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: IDEMPOTENCY_CONFLICT.
           content:
             application/json:
               schema:
@@ -31258,7 +32793,7 @@ paths:
       tags:
         - News Media
       summary: Create a direct-to-R2 presigned upload session for a news image
-      description: Gated by media_library.media.create. Returns a `pending_upload` metadata row plus a short-lived presigned PUT URL scoped to exactly one server-generated object key. Raw R2 credentials are never exposed to the browser.
+      description: Gated by media_library.media.create. Returns a `pending_upload` metadata row plus a short-lived presigned PUT URL scoped to exactly one server-generated object key. Raw R2 credentials are never exposed to the browser. The per-image size cap defaults to 2 MiB (NEWS_MEDIA_R2_MAX_UPLOAD_BYTES overrides it); the admin media screen compresses an oversize JPEG/PNG/WebP in the browser before calling this endpoint and never re-encodes a GIF, but the server enforces the cap regardless of what the client did.
       operationId: newsMediaUploadSessionsCreate
       parameters:
         - $ref: "#/components/parameters/CorrelationId"
@@ -37107,7 +38642,7 @@ paths:
       operationId: getReportsCommerceBookingRevenue
       tags:
         - Commerce
-      summary: 'Issue #389 (ADR-0045 amendment note; metrics spec sections 3, 3.7 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection. Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order''s first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment; Refunds are the money paid back plus, for a closed order (a cancellation or a no-show), the unpaid balance that will never be collected ("no money moved"), both on the ORIGINAL paid day; net is gross - discounts - refunds. Shipping, insurance and tax are companion columns beside the waterfall, and the unpaid balance of orders still open is shown as `balanceOutstanding`. Also the stay and no-show counts and the no-show rate (no-shows / stays, joined through the order). Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant''s `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes'' own permission; the projection''s freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.'
+      summary: 'Issues #389 and #478 (ADR-0045 and its "Owner decisions on the booking revenue slice"; metrics spec sections 3, 3.7, 3.9 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection (descriptor version 2). Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order''s first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment. A refund counts when it is DECIDED (the order''s return records), not when the money moves, so the Refunds step has three parts that add up: `refundsPaidBack` (succeeded reversal legs), `refundsPayable` (decided, not yet paid out) and `refundsUncollected` (the unpaid balance of a closed order, "no money moved"), all on the ORIGINAL paid day. Each refund and each uncollected amount is allocated across goods, shipping, insurance and tax (pro rata in integer cents with the largest-remainder method; an exact split on a return record wins): only the goods share is in the Refunds step, the other three lower their own companion columns, so a full refund of a taxed order gives net 0 and tax 0. Settling a refund leg moves cents from payable to paid back and never moves net. Net is gross - discounts - refunds. `shipping`, `insurance` and `tax` are companion columns after their refunded share, `balanceOutstanding` is the unpaid balance of orders still open and `refundPayableBalance` the money still to be paid out on decided refunds. The waterfall is an operational sales measure, not a financial-statement figure. The cash reading of refunds is the separate `booking-revenue-cash` view. Also the stay and no-show counts and the no-show rate. Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant''s `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes'' own permission; the projection''s freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.'
       parameters:
         - name: from
           in: query
@@ -37137,6 +38672,90 @@ paths:
                       - true
                   data:
                     $ref: "#/components/schemas/CommerceBookingRevenueReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/booking-revenue-cash:
+    get:
+      operationId: getReportsCommerceBookingRevenueCash
+      tags:
+        - Commerce
+      summary: 'Issue #478 (metrics 3.6 and 3.9 D4). The CASH view of the booking slice''s refunds: the succeeded reversal legs of the payment ledger of the booking-sourced orders, grouped by the `Asia/Jakarta` day each leg SETTLED. This is where the cash reading of a refund lives now that the waterfall counts a refund when it is decided; the payload says `basis: "cash"` and the two views are never mixed in one chart. A leg that is planned, processing or failed moved no money and is the waterfall''s `refundPayableBalance`, not a row here. A live read of the append-only ledger (no second store, no restatement). Aggregates only. While the tenant''s `booking` feature is OFF the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`.'
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first settlement day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last settlement day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: One row per settlement day that has a booking refund leg, ascending, and the range totals.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingCashRefunds"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/booking-revenue.csv:
+    get:
+      operationId: exportReportsCommerceBookingRevenueCsv
+      tags:
+        - Commerce
+      summary: "Issue #478 (metrics 3.9 D4). The booking revenue waterfall of `booking-revenue` as a CSV (`text/csv`), one row per `Asia/Jakarta` paid day with the same columns as the screen: `basis` (always `paid_day`), `day`, `orders`, `gross`, `discounts`, `refunds` with its three parts `refunds_paid_back`, `refunds_payable` and `refunds_uncollected`, `net`, the `shipping`, `insurance` and `tax` companions after their refunded share, `balance_outstanding`, `refund_payable_balance`, `stays`, `no_shows`, `no_show_retained`, `no_show_rate_percent`, `restated` and `restated_at`. Aggregates only (no order, customer, name or contact); every cell is spreadsheet-formula-neutralised. Gated on `commerce.report_booking_revenue.export` (a dedicated high-risk export key, not implied by `reporting.dashboard.read`). The export is audited as `booking_revenue_report.export` (the range and the row count, never a cell) and sent `Cache-Control: no-store`. While the tenant's `booking` feature is OFF the file is the header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first paid day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last paid day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -44136,6 +45755,93 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/whatsapp/sender-policy:
+    put:
+      operationId: setWhatsappSenderPolicy
+      tags:
+        - WhatsApp Delivery
+      summary: Set the default sender of a business scope (prospective).
+      description: "Sets which of the tenant's own accounts sends WhatsApp messages when the caller names none, for one business scope or tenant-wide (`businessScope: null`). `defaultSenderAccountId: null` is an explicit decision to use the deployment sender for that scope (it overrides a tenant-wide default). PROSPECTIVE: it applies to messages enqueued after the change; a message already queued keeps the sender and the `configVersion` it was given. Both keys are required. The sender must be an account of THIS tenant that may send a business-initiated message now and that has an adapter on this deployment; anything else, including another tenant's account, is the same `422 SENDER_UNAVAILABLE` (no existence oracle). A change to the same default is a no-op that bumps nothing (`changed: false`). High-risk: audited at `warning`. `Idempotency-Key` required. The body is validated after authorization. Requires `whatsapp_delivery.sender_policy.configure`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WhatsappSenderPolicyRequest"
+      responses:
+        "200":
+          description: The policy as now configured.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/WhatsappSenderPolicy"
+                      - type: object
+                        properties:
+                          changed:
+                            type: boolean
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`IDEMPOTENCY_CONFLICT`: the key was already used with a different request."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "413":
+          description: Request body too large.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`SENDER_UNAVAILABLE` (the account is not usable as a WhatsApp sender for this tenant) or `CHANNEL_ACCOUNTS_UNAVAILABLE`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/whatsapp/senders:
+    get:
+      operationId: listWhatsappSenders
+      tags:
+        - WhatsApp Delivery
+      summary: The tenant's WhatsApp senders with per-sender diagnostics, and the default-sender policy.
+      description: "One entry per sender that has any queue row in the last 35 days, plus the deployment sender (`senderAccountId: null`), from ONE transaction. Per sender: whether it may send a business-initiated message right now (a coarse reason code when it may not), the queue (waiting, in flight, failed in the last day, oldest waiting, last failure code) and the quota (what it really sent in the trailing hour and day against the per-sender caps, and whether it is `throttled`). A throttled or unavailable sender's rows WAIT or fail terminally; they are never rerouted to another sender, number or provider. Bounded to 200 senders. Nothing here is a credential, a secret reference, a phone number or a device id: a sender is its account id. Requires `whatsapp_delivery.senders.read`."
+      responses:
+        "200":
+          description: Sender diagnostics and the default-sender policies.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/WhatsappSenderDiagnostics"
+                  meta:
+                    type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/whatsapp/suppressions:
     get:
       operationId: listWhatsappSuppressions
@@ -48663,6 +50369,305 @@ components:
         updatedAt:
           type: string
           format: date-time
+    ChannelAccount:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        businessScope:
+          allOf:
+            - $ref: "#/components/schemas/ChannelBusinessScope"
+          nullable: true
+        provider:
+          type: string
+        accountKind:
+          type: string
+        externalId:
+          type: string
+          description: The provider-stable identity. Immutable.
+        displayName:
+          type: string
+        authMode:
+          $ref: "#/components/schemas/ChannelAuthMode"
+        connectionId:
+          type: string
+          format: uuid
+          nullable: true
+        parentAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          $ref: "#/components/schemas/ChannelAccountStatus"
+        statusReason:
+          type: string
+          nullable: true
+        hasCredential:
+          type: boolean
+          description: Whether a credential is stored. The credential and its reference are never returned.
+        connectedAt:
+          type: string
+          format: date-time
+          nullable: true
+        revokedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        version:
+          type: integer
+    ChannelAccountAssignment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        tenantUserId:
+          type: string
+          format: uuid
+        kind:
+          $ref: "#/components/schemas/ChannelAssignmentKind"
+        createdAt:
+          type: string
+          format: date-time
+    ChannelAccountCapability:
+      type: object
+      properties:
+        capability:
+          $ref: "#/components/schemas/ChannelCapabilityName"
+        matrixCell:
+          type: string
+          enum:
+            - candidate
+            - restricted
+            - not_offered
+            - unverified
+            - not_applicable
+            - barred
+        state:
+          type: string
+          enum:
+            - granted
+            - pending_approval
+            - denied
+            - not_offered
+            - absent
+        evidenceKind:
+          allOf:
+            - $ref: "#/components/schemas/ChannelEvidenceKind"
+          nullable: true
+        evidenceRef:
+          type: string
+          nullable: true
+        matrixVersion:
+          type: integer
+          nullable: true
+        verifiedAt:
+          type: string
+          format: date-time
+          nullable: true
+        effective:
+          type: object
+          description: The decision for a use right now.
+          required:
+            - allowed
+          properties:
+            allowed:
+              type: boolean
+            code:
+              type: string
+              description: Present when `allowed` is false.
+    ChannelAccountHealth:
+      type: object
+      nullable: true
+      properties:
+        accountId:
+          type: string
+          format: uuid
+        state:
+          type: string
+          enum:
+            - ok
+            - degraded
+            - failing
+            - unknown
+        reasonCode:
+          type: string
+          nullable: true
+          description: A fixed code, never provider text.
+        checkedAt:
+          type: string
+          format: date-time
+        tokenExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        quotaRemaining:
+          type: number
+          nullable: true
+        quotaLimit:
+          type: number
+          nullable: true
+    ChannelAccountStatus:
+      type: string
+      enum:
+        - pending
+        - connected
+        - degraded
+        - revoked
+        - disabled
+        - deleted
+    ChannelAssignmentKind:
+      type: string
+      enum:
+        - owner
+        - operator
+        - viewer
+    ChannelAuthMode:
+      type: string
+      enum:
+        - oauth2
+        - api_token
+        - bot_token
+        - device_key
+    ChannelBusinessScope:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          description: Lower snake case; the generic business-scope pair (no new ABAC attribute).
+        id:
+          type: string
+          format: uuid
+    ChannelCapabilityName:
+      type: string
+      enum:
+        - publish
+        - reply
+        - dm
+        - inbound
+        - comments
+        - analytics
+        - leads
+        - ads
+        - broadcast
+    ChannelConnection:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        provider:
+          type: string
+        authMode:
+          $ref: "#/components/schemas/ChannelAuthMode"
+        grantState:
+          type: string
+          enum:
+            - pending
+            - active
+            - expired
+            - revoked
+            - failed
+        label:
+          type: string
+          nullable: true
+        grantedScopes:
+          type: array
+          items:
+            type: string
+        issuedAt:
+          type: string
+          format: date-time
+          nullable: true
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        refreshExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        revokedAt:
+          type: string
+          format: date-time
+          nullable: true
+        hasAccessCredential:
+          type: boolean
+        awaitingExchange:
+          type: boolean
+        connectedBy:
+          type: string
+          format: uuid
+          nullable: true
+        businessScope:
+          description: The authority boundary of the grant, carried from the authorisation that started it; null is tenant-wide.
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/ChannelBusinessScope"
+        createdAt:
+          type: string
+          format: date-time
+    ChannelEvidenceKind:
+      type: string
+      enum:
+        - scope_list_hash
+        - app_review_reference
+        - contract_reference
+        - written_authorization
+    ChannelProviderMatrix:
+      type: object
+      properties:
+        matrixVersion:
+          type: integer
+        capabilities:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChannelCapabilityName"
+        providers:
+          type: array
+          items:
+            type: object
+            properties:
+              provider:
+                type: string
+              label:
+                type: string
+              registrable:
+                type: boolean
+              authModes:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ChannelAuthMode"
+              accountKinds:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    kind:
+                      type: string
+                    container:
+                      type: boolean
+                    parentKind:
+                      type: string
+                      nullable: true
+              capabilityCells:
+                type: object
+                additionalProperties:
+                  type: string
     CollectVisitBeaconRequest:
       type: object
       required:
@@ -49130,6 +51135,72 @@ components:
           description: "Paid and not yet refunded or promised along any payment: the ceiling of any refund."
         computedRefund:
           type: string
+    CommerceBookingCashRefunds:
+      type: object
+      description: "Issue #478. The cash view of the booking slice's refunds, by the day the reversal legs settled."
+      required:
+        - enabled
+        - basis
+        - timeZone
+        - asOf
+        - from
+        - to
+        - currency
+        - days
+        - totals
+      properties:
+        enabled:
+          type: boolean
+          description: "`false` while the `booking` feature is off: everything below is then empty."
+        basis:
+          type: string
+          enum:
+            - cash
+          description: This view is cash - the day money moved. It is never mixed with the paid-day waterfall in one chart.
+        timeZone:
+          type: string
+          description: The day calendar (`Asia/Jakarta`).
+        asOf:
+          type: string
+          format: date-time
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        currency:
+          type: string
+          description: One currency per tenant in v1.
+        days:
+          type: array
+          items:
+            type: object
+            required:
+              - day
+              - legs
+              - refundsPaidOut
+            properties:
+              day:
+                type: string
+                format: date
+                description: The Asia/Jakarta day the reversal legs settled.
+              legs:
+                type: integer
+                description: Settled reversal legs of that day.
+              refundsPaidOut:
+                type: string
+                description: "`numeric(14,2)` string. Money that went back to customers that day."
+        totals:
+          type: object
+          required:
+            - legs
+            - refundsPaidOut
+          properties:
+            legs:
+              type: integer
+            refundsPaidOut:
+              type: string
     CommerceBookingCustomerCancel:
       type: object
       additionalProperties: false
@@ -49977,7 +52048,7 @@ components:
               nullable: true
     CommerceBookingRevenueFigures:
       type: object
-      description: "Issue #389 (metrics spec sections 3, 3.7, 8.2). The booking-sourced revenue waterfall, its companion columns and the no-show figures of a paid day or of a whole range. Money is a `numeric(14,2)` string (ADR-0003)."
+      description: "Issues #389 and #478 (metrics spec sections 3, 3.7, 3.9, 8.2). The booking-sourced revenue waterfall, its companion columns and the no-show figures of a paid day or of a whole range. Money is a `numeric(14,2)` string (ADR-0003). The control identity is `net + shipping + insurance + tax = settled - refundPayableBalance + balanceOutstanding - surplus`."
       required:
         - orders
         - stays
@@ -49985,12 +52056,14 @@ components:
         - discounts
         - refunds
         - refundsPaidBack
+        - refundsPayable
         - refundsUncollected
         - net
         - shipping
         - insurance
         - tax
         - balanceOutstanding
+        - refundPayableBalance
         - noShows
         - noShowRetained
         - noShowRatePercent
@@ -50011,25 +52084,34 @@ components:
           description: Reductions the order recorded before payment (voucher, points), as a positive number.
         refunds:
           type: string
-          description: "`refundsPaidBack + refundsUncollected`, positive."
+          description: "The Refunds step: `refundsPaidBack + refundsPayable + refundsUncollected`, positive. Each part is the GOODS share (subtotal less discount) of the money; the shipping, insurance and tax shares lower their own companion columns."
         refundsPaidBack:
           type: string
-          description: '"Of which paid back": the succeeded reversal legs of the payment ledger.'
+          description: '"Of which paid back": the goods share of the succeeded reversal legs of the payment ledger.'
+        refundsPayable:
+          type: string
+          description: '"Of which refund payable": the goods share of the refunds decided (a return record exists) and not yet paid out - planned, processing or failed legs. Settling a leg moves cents from here to `refundsPaidBack` and never moves `net`.'
         refundsUncollected:
           type: string
-          description: '"Of which uncollected balance (no money moved)": the unpaid part of an order a cancellation or a no-show closed.'
+          description: '"Of which uncollected balance (no money moved)": the goods share of the unpaid part of an order a cancellation or a no-show closed.'
         net:
           type: string
-          description: "`gross - discounts - refunds` (negative only when a refund returned tax or shipping the companion columns still show)."
+          description: "`gross - discounts - refunds`. Never negative: a refund of a taxed order lowers the tax companion as well, so a full refund gives net 0 and tax 0."
         shipping:
           type: string
+          description: The shipping companion after the share that refunds and the uncollected balance took out of it.
         insurance:
           type: string
+          description: The insurance companion after its refunded share.
         tax:
           type: string
+          description: The tax companion after its refunded share. Tax collected is not revenue.
         balanceOutstanding:
           type: string
           description: The unpaid balance of orders still open, shown beside the waterfall so deposit-day gross is never read as cash received.
+        refundPayableBalance:
+          type: string
+          description: "Money, all components (goods, shipping, insurance, tax), decided to be refunded and not yet paid out: how much cash is still to leave. A companion column like `balanceOutstanding`."
         noShows:
           type: integer
         noShowRetained:
@@ -50049,9 +52131,10 @@ components:
           description: "`refunds / gross`; `null` when gross is zero."
     CommerceBookingRevenueReport:
       type: object
-      description: "Issue #389. The booking-sourced revenue report."
+      description: "Issues #389 and #478. The booking-sourced revenue report."
       required:
         - enabled
+        - basis
         - timeZone
         - restatementWindowDays
         - asOf
@@ -50064,6 +52147,11 @@ components:
         enabled:
           type: boolean
           description: "`false` while the `booking` feature is off: everything below is then empty."
+        basis:
+          type: string
+          enum:
+            - paid_day
+          description: "What a day means: the day of the order's first paid transition (attribution), never the day money moved - see `booking-revenue-cash` for that."
         timeZone:
           type: string
           description: The day calendar (`Asia/Jakarta`).
@@ -50574,6 +52662,28 @@ components:
         productCount:
           type: integer
           description: Computed — the tenant's LIVE products currently in this category (Issue 23).
+    CommerceCommissionReadiness:
+      type: object
+      description: "Issue #391 (ADR-0046 D12). What commerce can observe about the path from a paid counter sale to the commission ledger, WITHOUT reading a commission or payroll table: the tenant's own switch, whether the `hr_commission` module is on, and when this adapter last submitted a line to the intake queue. It cannot see the intake's own switch or the poster; those are `hr_commission`'s (`GET /api/v1/hr-commission/intake/settings` and `/intake/exceptions`)."
+      required:
+        - state
+        - hrCommissionModuleEnabled
+        - lastSubmittedAt
+      properties:
+        state:
+          type: string
+          enum:
+            - off
+            - hr_commission_module_disabled
+            - awaiting_first_submission
+            - submitting
+          description: "`off` - the adapter is not switched on. `hr_commission_module_disabled` - on, but the `hr_commission` module is off for the tenant, so nothing is submitted. `awaiting_first_submission` - on and the module is on, but no line has been submitted yet: no counter sale has been paid since, or the commission intake is switched off (the delivery then fails and is dead-lettered, replayable). `submitting` - at least one line was submitted."
+        hrCommissionModuleEnabled:
+          type: boolean
+        lastSubmittedAt:
+          type: string
+          format: date-time
+          nullable: true
     CommerceCommissionSettings:
       type: object
       description: "Issue #391 (ADR-0046). Employee-commission sale attribution settings; the defaults (off, no rule) for a tenant that never saved."
@@ -50792,6 +52902,300 @@ components:
         createdAt:
           type: string
           format: date-time
+    CommerceCustomerPushCapability:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). What the SERVER knows about customer Web Push for this deployment and this request. `enabled: false` is a normal answer, not an error."
+      required:
+        - enabled
+        - reason
+        - applicationServerKey
+        - transports
+        - purposes
+        - consentTextVersion
+        - maxDevices
+      properties:
+        enabled:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+          enum:
+            - push_not_configured
+            - origin_not_supported
+            - null
+          description: "`push_not_configured`: no VAPID key pair, key ring or `web_push` provider. `origin_not_supported`: the storefront is served from the CMS origin (unsupported in v1) or the request origin is not a valid storefront origin."
+        applicationServerKey:
+          type: string
+          nullable: true
+          description: The VAPID public key for `PushManager.subscribe()` (not a secret). `null` unless `enabled`.
+        transports:
+          type: array
+          items:
+            type: string
+            enum:
+              - web_push
+        purposes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+        consentTextVersion:
+          type: string
+          description: The version of the consent wording the page must show and echo back as `textVersion`.
+        maxDevices:
+          type: integer
+          description: Active devices allowed per account.
+    CommerceCustomerPushDevice:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). One active push device of the authenticated account. The raw endpoint, the keys and the ciphertexts are never returned."
+      required:
+        - id
+        - endpointMasked
+        - userAgentSummary
+        - status
+        - lastSuccessAt
+        - registeredAt
+        - current
+      properties:
+        id:
+          type: string
+          format: uuid
+        endpointMasked:
+          type: string
+          description: The push service's origin plus the last characters of the endpoint, e.g. `https://fcm.googleapis.com/...a1b2c3`.
+        userAgentSummary:
+          type: string
+          nullable: true
+          description: A coarse browser description such as `Chrome on Android (mobile)`; never the raw User-Agent.
+        status:
+          type: string
+          enum:
+            - active
+        lastSuccessAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the push service last ACCEPTED a message for this device. Not a display or read time.
+        registeredAt:
+          type: string
+          format: date-time
+        current:
+          type: boolean
+          description: True when the device was enrolled by the caller's current session.
+    CommerceCustomerPushDiagnostics:
+      type: object
+      description: "Issue #430 (ADR-0048 Q10). Aggregate counts only; no device, account or customer identifier, no endpoint, no message text."
+      required:
+        - generatedAt
+        - devices
+        - accountsWithActiveDevice
+        - messages
+        - preferences
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+        devices:
+          type: object
+          description: Devices by status.
+          properties:
+            active:
+              type: integer
+            revoked:
+              type: integer
+            gone:
+              type: integer
+            disabled:
+              type: integer
+        accountsWithActiveDevice:
+          type: integer
+        messages:
+          type: object
+          properties:
+            byStatus:
+              type: object
+              description: Retained messages by status. `sent` means the push service accepted the request, nothing more.
+              properties:
+                queued:
+                  type: integer
+                sending:
+                  type: integer
+                sent:
+                  type: integer
+                retry_wait:
+                  type: integer
+                failed:
+                  type: integer
+                cancelled:
+                  type: integer
+                expired:
+                  type: integer
+            byPurposeAndStatus:
+              type: array
+              items:
+                type: object
+                properties:
+                  purpose:
+                    type: string
+                  status:
+                    type: string
+                  count:
+                    type: integer
+            byReason:
+              type: array
+              description: "Issue #432. Why messages did not go out, from the fixed `last_error` vocabulary (never provider text), by status. `retry_wait` with `rate_limited` is a send deferred by the account's hourly or daily cap; with `provider_unavailable` it is a backoff."
+              items:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  reason:
+                    type: string
+                  count:
+                    type: integer
+        preferences:
+          type: array
+          items:
+            type: object
+            properties:
+              purpose:
+                type: string
+              enabled:
+                type: integer
+              withdrawn:
+                type: integer
+    CommerceCustomerPushPreference:
+      type: object
+      description: "Issue #430 (ADR-0048 section 2.3). Consent for one purpose, with its evidence. A withdrawal keeps its row."
+      required:
+        - purpose
+        - enabled
+        - consentTextVersion
+        - grantedAt
+        - revokedAt
+      properties:
+        purpose:
+          $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+        enabled:
+          type: boolean
+        consentTextVersion:
+          type: string
+          nullable: true
+        grantedAt:
+          type: string
+          format: date-time
+          nullable: true
+        revokedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceCustomerPushPreferencesRequest:
+      type: object
+      additionalProperties: false
+      description: "Issue #430. Only the purposes named change. `textVersion` is required when any purpose is set to true."
+      required:
+        - purposes
+      properties:
+        purposes:
+          type: object
+          minProperties: 1
+          additionalProperties: false
+          properties:
+            order_updates:
+              type: boolean
+            payment_updates:
+              type: boolean
+            support_replies:
+              type: boolean
+        textVersion:
+          type: string
+          maxLength: 32
+    CommerceCustomerPushPurpose:
+      type: string
+      enum:
+        - order_updates
+        - payment_updates
+        - support_replies
+      description: "Issue #430. A transactional notification purpose. `marketing` is reserved and never accepted or sent in v1."
+    CommerceCustomerPushState:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). The response of `GET .../account/push/subscriptions`."
+      required:
+        - capability
+        - preferences
+        - devices
+      properties:
+        capability:
+          $ref: "#/components/schemas/CommerceCustomerPushCapability"
+        preferences:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        devices:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushDevice"
+    CommerceCustomerPushSubscribeRequest:
+      type: object
+      additionalProperties: false
+      description: "Issue #430 (ADR-0048 sections 6.1, 6.7). The browser's `PushSubscription.toJSON()` plus `consent`. Any other key is a 400."
+      required:
+        - endpoint
+        - keys
+        - consent
+      properties:
+        endpoint:
+          type: string
+          maxLength: 2048
+          description: An `https` URL on a known browser push service. A host outside the allowlist is `422 ENDPOINT_NOT_ALLOWED`.
+        keys:
+          type: object
+          additionalProperties: false
+          required:
+            - p256dh
+            - auth
+          properties:
+            p256dh:
+              type: string
+              description: base64url of the 65-byte uncompressed P-256 public key.
+            auth:
+              type: string
+              description: base64url of the 16-byte auth secret. Stored only as an AES-256-GCM envelope.
+        expirationTime:
+          type: number
+          nullable: true
+          description: Accepted for shape compatibility and ignored.
+        consent:
+          type: object
+          additionalProperties: false
+          required:
+            - purposes
+            - textVersion
+          properties:
+            purposes:
+              type: array
+              minItems: 1
+              items:
+                $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+            textVersion:
+              type: string
+              maxLength: 32
+              description: Must equal `capability.consentTextVersion`.
+    CommerceCustomerPushSubscribeResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          enum:
+            - true
+        data:
+          type: object
+          properties:
+            device:
+              $ref: "#/components/schemas/CommerceCustomerPushDevice"
+            preferences:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommerceCustomerPushPreference"
     CommerceDocument:
       type: object
       description: "Issue #286 (ADR-0029). The header of an immutable numbered receipt/invoice document. The money is a frozen copy of the source order's, verified equal at insert; the order stays the monetary authority."
@@ -54220,7 +56624,7 @@ components:
           minimum: 1
     CommerceSegmentRules:
       type: object
-      description: 'A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7 - no booking-derived field). A node has exactly one of `and` / `or` (arrays of 1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op, value?, windowDays? }`. Fields and their operators: `level` (eq, in; 1..4), `has_account` / `has_email` (eq; boolean), `customer_since` (before, after; a date value), `order_count` (eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt, lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date` / `first_order_date` (before, after with a date value, or never with no value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). A date value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }` resolved against the server''s as-of. Bounds: depth 4, 25 nodes, 3 distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order with `paid_at` set, not cancelled or expired, paid at or before the as-of; spend is the sum of order totals.'
+      description: 'A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7). Rule schema 1 is the nine commerce fields; rule schema 2 (Issue #390, ADR-0052) adds five booking-derived ones. A node has exactly one of `and` / `or` (arrays of 1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op, value?, windowDays? }`. Fields and their operators: `level` (eq, in; 1..4), `has_account` / `has_email` (eq; boolean), `customer_since` (before, after; a date value), `order_count` (eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt, lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date` / `first_order_date` (before, after with a date value, or never with no value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). Schema 2 adds `booking_count` (paid, standing bookings; window on the order''s `paid_at`), `stay_count` (checked-in or completed stays; window on the arrival), `no_show_count` and `cancellation_count` (cancellations the CUSTOMER made; window on the decision''s `created_at`) - all four eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays` - and `last_stay_date` (before, after with a date value, or never with no value; no window). A booking field needs the tenant''s `booking` feature and `commerce.booking_reservation_links.read` to DEFINE (create, a new version, an unsaved preview) and the permission alone to read, export or aim a campaign / loyalty program at a saved one. A date value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }` resolved against the server''s as-of. Bounds: depth 4, 25 nodes, 3 distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order with `paid_at` set, not cancelled or expired, paid at or before the as-of; spend is the sum of order totals.'
       additionalProperties: true
     CommerceSegmentUpdate:
       type: object
@@ -54247,6 +56651,7 @@ components:
       type: object
       required:
         - version
+        - ruleSchemaVersion
         - rules
         - nodeCount
         - depth
@@ -54254,6 +56659,10 @@ components:
       properties:
         version:
           type: integer
+        ruleSchemaVersion:
+          type: integer
+          minimum: 1
+          description: "Issue #390 (ADR-0052, C-29). The rule schema the version was written under (1 = the nine commerce fields, 2 = adds the booking-derived fields) and is always read under: a schema-1 version never gains a schema-2 field. Versions saved before schema 2 existed are 1; new versions are 2."
         rules:
           $ref: "#/components/schemas/CommerceSegmentRules"
         nodeCount:
@@ -56193,6 +58602,40 @@ components:
           type: array
           items:
             type: object
+    CreateChannelAccountRequest:
+      type: object
+      required:
+        - provider
+        - accountKind
+        - authMode
+        - externalId
+        - displayName
+      additionalProperties: false
+      properties:
+        provider:
+          type: string
+        accountKind:
+          type: string
+        authMode:
+          $ref: "#/components/schemas/ChannelAuthMode"
+        externalId:
+          type: string
+          minLength: 1
+          maxLength: 256
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 200
+        businessScope:
+          $ref: "#/components/schemas/ChannelBusinessScope"
+        connectionId:
+          type: string
+          format: uuid
+          description: Required for `oauth2` accounts, refused for the other modes.
+        parentAccountId:
+          type: string
+          format: uuid
+          description: Required for a child kind (a phone number's WABA, a sender's ESP account).
     CreateInvitationInput:
       type: object
       required:
@@ -56231,7 +58674,7 @@ components:
         byteSize:
           type: integer
           minimum: 1
-          description: Claimed size in bytes — shape-only check against NEWS_MEDIA_R2_MAX_UPLOAD_BYTES; the real size is re-checked from R2 itself at finalize time.
+          description: Claimed size in bytes of the file that will actually be uploaded (for the admin uploader, the browser-compressed file when compression ran, never the original). Shape-only check against NEWS_MEDIA_R2_MAX_UPLOAD_BYTES, whose default is 2 MiB (2097152); a larger claim is refused with 400 VALIDATION_ERROR. The real size is re-checked from R2 itself at finalize time, so a client that skips compression is simply refused over the cap.
         originalFilename:
           type: string
           nullable: true
@@ -57478,6 +59921,109 @@ components:
         reasonCode:
           type: string
           pattern: ^[a-z][a-z0-9_.-]{0,39}$
+    HrCommissionIntakeException:
+      type: object
+      description: A refused or failed intake request. Codes and masked ids only; never an amount.
+      properties:
+        id:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - accrue
+            - void
+        status:
+          type: string
+          enum:
+            - refused
+            - failed
+        outcomeCode:
+          type: string
+          description: "How it ended: a ledger outcome (`source_conflict`, `no_effective_rule`, `rule_ambiguous`, `source_type_mismatch`, `currency_mismatch`, `employment_not_found`, `employment_not_eligible`, `input_invalid`, `period_closed`, `not_found`, `actor_required`, `no_intake_origin` for a void whose accrual this intake never created) or, for `failed`, `error` / `attempts_exhausted`."
+        sourceType:
+          type: string
+        sourceRefMasked:
+          type: string
+        employmentIdMasked:
+          type: string
+        attempts:
+          type: integer
+        submittedAt:
+          type: string
+          format: date-time
+        settledAt:
+          type: string
+          format: date-time
+    HrCommissionIntakeExceptionPage:
+      type: object
+      properties:
+        exceptions:
+          type: array
+          items:
+            $ref: "#/components/schemas/HrCommissionIntakeException"
+        nextCursor:
+          type: string
+          nullable: true
+        summary:
+          $ref: "#/components/schemas/HrCommissionIntakeSummary"
+    HrCommissionIntakeSetting:
+      type: object
+      properties:
+        commissionIntakeEnabled:
+          type: boolean
+        intakeActorTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The system actor the poster stamps on every accrual and audit row it posts. The worker's own claim about who acted is never trusted.
+        intakeActorStatus:
+          type: string
+          enum:
+            - unset
+            - active
+            - actor_inactive
+          description: "`actor_inactive` means intake is configured but the actor is no longer an active tenant user: the poster claims nothing until it is fixed."
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    HrCommissionIntakeSettingInput:
+      type: object
+      additionalProperties: false
+      required:
+        - commissionIntakeEnabled
+      properties:
+        commissionIntakeEnabled:
+          type: boolean
+        intakeActorTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+          description: An ACTIVE user of this tenant. Required to switch intake ON (here or already stored); omitted keeps the stored value; null clears it (only while switching OFF).
+    HrCommissionIntakeSummary:
+      type: object
+      properties:
+        commissionIntakeEnabled:
+          type: boolean
+        counts:
+          type: object
+          description: Rows per status. Counts only.
+          properties:
+            pending:
+              type: integer
+            posting:
+              type: integer
+            posted:
+              type: integer
+            refused:
+              type: integer
+            failed:
+              type: integer
+        oldestLiveAgeSeconds:
+          type: integer
+          nullable: true
+          description: Seconds the oldest pending or posting request has waited; null when none.
     HrCommissionOwnAccrual:
       type: object
       description: "What an employee sees of their OWN accrual: the earning and how it was computed. No approver, payer, payment reference, rule row id or employment id. Money is a decimal string."
@@ -64271,6 +66817,21 @@ components:
           type: string
           nullable: true
           description: base64url VAPID public key, passed straight to PushManager.subscribe(). Public by definition — it is the value the browser hands the push service to identify this application server. Rotating it does NOT re-key existing subscriptions; it makes every one of them permanently undeliverable until the user subscribes again.
+    WhatsappBusinessScope:
+      type: object
+      nullable: true
+      description: A brand or unit (the generic business-scope pair). Null is tenant-wide.
+      required:
+        - type
+        - id
+      properties:
+        type:
+          type: string
+          pattern: ^[a-z][a-z0-9_]*$
+          maxLength: 64
+        id:
+          type: string
+          format: uuid
     WhatsappConsent:
       type: object
       properties:
@@ -64418,6 +66979,19 @@ components:
         providerName:
           type: string
           nullable: true
+        senderAccountId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The tenant-owned sender account snapshotted at enqueue (immutable), or null for the deployment sender. An id, never a number or a credential.
+        senderSelection:
+          type: string
+          enum:
+            - deployment
+            - explicit
+            - policy
+            - reply
+          description: How the sender was chosen. `reply` is thread affinity.
         notBefore:
           type: string
           format: date-time
@@ -64469,6 +67043,112 @@ components:
           type: integer
         grantedConsents:
           type: integer
+    WhatsappSenderDiagnostics:
+      type: object
+      properties:
+        senders:
+          type: array
+          items:
+            $ref: "#/components/schemas/WhatsappSenderStatus"
+        policies:
+          type: array
+          items:
+            $ref: "#/components/schemas/WhatsappSenderPolicy"
+    WhatsappSenderPolicy:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        businessScope:
+          $ref: "#/components/schemas/WhatsappBusinessScope"
+        defaultSenderAccountId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Null is an explicit decision to use the deployment sender.
+        configVersion:
+          type: integer
+          minimum: 1
+          description: Snapshotted on each message the policy selects (`sender_policy_version`).
+        effectiveFrom:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    WhatsappSenderPolicyRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - businessScope
+        - defaultSenderAccountId
+      properties:
+        businessScope:
+          $ref: "#/components/schemas/WhatsappBusinessScope"
+        defaultSenderAccountId:
+          type: string
+          format: uuid
+          nullable: true
+          description: An account of this tenant, or null for the deployment sender. Never a token, a phone number id, a device id or a provider name.
+    WhatsappSenderStatus:
+      type: object
+      properties:
+        senderAccountId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Null is the deployment sender.
+        availability:
+          nullable: true
+          description: Null for the deployment sender, which has no account record.
+          oneOf:
+            - type: object
+              properties:
+                usable:
+                  type: boolean
+                  enum:
+                    - true
+            - type: object
+              properties:
+                usable:
+                  type: boolean
+                  enum:
+                    - false
+                reason:
+                  type: string
+                  description: A coarse reason code (for example `ACCOUNT_REVOKED`, `CAPABILITY_DENIED`).
+        queue:
+          type: object
+          properties:
+            waiting:
+              type: integer
+            sending:
+              type: integer
+            failed:
+              type: integer
+              description: Failed in the last day.
+            oldestPendingAt:
+              type: string
+              format: date-time
+              nullable: true
+            lastFailureCode:
+              type: string
+              nullable: true
+        quota:
+          type: object
+          properties:
+            sentLastHour:
+              type: integer
+            sentLastDay:
+              type: integer
+            hourlyLimit:
+              type: integer
+            dailyLimit:
+              type: integer
+            throttled:
+              type: boolean
+              description: A cap is reached; the dispatcher stops claiming this sender's rows until the window moves. Always false for the deployment sender.
     WhatsappSuppression:
       type: object
       properties:

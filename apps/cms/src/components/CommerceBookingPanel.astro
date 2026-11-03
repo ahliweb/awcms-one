@@ -841,9 +841,11 @@ const reschedulePrefix = "booking-reschedule";
 
 <script>
   import {
+    holdForNavigation,
     messageBox,
     mutateAndReload,
     onAction,
+    onSubmit,
     sendJson
   } from "../lib/ui/admin-form-client";
   import {
@@ -923,9 +925,6 @@ const reschedulePrefix = "booking-reschedule";
   // -- the override dialog ------------------------------------------------------------
   const dialog = document.getElementById("booking-override-dialog");
   if (dialog instanceof HTMLDialogElement) {
-    const form = document.getElementById(
-      "booking-override-form"
-    ) as HTMLFormElement;
     const amount = document.getElementById(
       "booking-override-amount"
     ) as HTMLInputElement;
@@ -1002,8 +1001,7 @@ const reschedulePrefix = "booking-reschedule";
       keep?.focus();
     });
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    onSubmit("booking-override-form", async () => {
       if (!refresh(true)) return;
       const result = checkOverrideForm({
         amountText: amount.value,
@@ -1045,6 +1043,7 @@ const reschedulePrefix = "booking-reschedule";
         /* storage unavailable: the reload still shows the recorded refund */
       }
       dialog.close();
+      holdForNavigation();
       window.location.reload();
     });
   }
@@ -1084,9 +1083,6 @@ const reschedulePrefix = "booking-reschedule";
     const data = (key: string): string =>
       (moveDialog.dataset as Record<string, string | undefined>)[key] ?? "";
     const slot = data("mode") === "slot";
-    const form = document.getElementById(
-      "booking-reschedule-form"
-    ) as HTMLFormElement;
     const checkIn = document.getElementById(
       "booking-reschedule-checkin"
     ) as HTMLInputElement | null;
@@ -1229,8 +1225,7 @@ const reschedulePrefix = "booking-reschedule";
       }
     });
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    onSubmit("booking-reschedule-form", async () => {
       const check = readForm();
       if (!check.ok) {
         refresh(true);
@@ -1255,6 +1250,7 @@ const reschedulePrefix = "booking-reschedule";
         return;
       }
       moveDialog.close();
+      holdForNavigation();
       window.location.reload();
     });
   }

@@ -18,6 +18,7 @@
  */
 import { ambilReservasiSaya } from "../lib/akun-klien";
 import { labelTombolBayar, mulaiPembayaranGateway } from "../lib/booking-aksi";
+import { penjagaUntuk } from "../lib/kirim-tunggal";
 import { bacaSesi, hapusSesi } from "../lib/akun-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
 import {
@@ -146,7 +147,7 @@ if (root) {
       pay.type = "button";
       pay.className = "btn btn--primary btn--sm";
       pay.textContent = labelTombolBayar(purpose);
-      pay.addEventListener("click", () => void payNow(item, purpose, pay));
+      pay.addEventListener("click", () => void payNow(item, purpose));
       actions.appendChild(pay);
     }
     const detail = document.createElement("a");
@@ -262,18 +263,29 @@ if (root) {
     }
   }
 
-  async function payNow(item: ReservasiSaya, purpose: "full" | "deposit" | "balance", button: HTMLButtonElement): Promise<void> {
+  // Issue #513: the gateway session is idempotent per order server-side (no key).
+  // One guard for every row's pay button: a second tap on any of them while a
+  // session is being opened is ignored; a redirect keeps them locked until the
+  // page unloads. `listEl` already carries `aria-busy` for its own loading, so the
+  // guard is given no busy region here (the controls and the status text carry it).
+  const bayarGuard = penjagaUntuk(null, { kontrol: () => Array.from(listEl.querySelectorAll("button")) });
+
+  async function payNow(item: ReservasiSaya, purpose: "full" | "deposit" | "balance"): Promise<void> {
     const note = listEl.querySelector<HTMLElement>(`[data-order-code="${CSS.escape(item.orderCode)}"] [data-row-status]`);
-    button.disabled = true;
-    if (note) note.textContent = "Membuka halaman pembayaran...";
-    const result = await mulaiPembayaranGateway(item.orderCode, purpose);
-    if (result.kind === "dialihkan") return;
-    button.disabled = false;
-    if (result.kind === "belum-masuk") {
-      render();
-      return;
-    }
-    if (note) note.textContent = result.message;
+    await bayarGuard.jalankan(
+      async () => {
+        if (note) note.textContent = "Membuka halaman pembayaran...";
+        const result = await mulaiPembayaranGateway(item.orderCode, purpose);
+        if (result.kind === "dialihkan") return true;
+        if (result.kind === "belum-masuk") {
+          render();
+          return false;
+        }
+        if (note) note.textContent = result.message;
+        return false;
+      },
+      { kunciBila: (dialihkan) => dialihkan }
+    );
   }
 
   async function load(): Promise<void> {

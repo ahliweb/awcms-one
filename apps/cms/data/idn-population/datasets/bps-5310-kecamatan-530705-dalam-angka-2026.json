@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530705-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Alok Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sikka",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sikka (https://sikkakab.bps.go.id), publikasi \"Kecamatan Alok Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53100.26023",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/3ce9404469e236194cc81194/kecamatan-alok-dalam-angka-2026.html",
+  "sourceFileSha256": "0db1e29424a4737abc1d41808c7460b2f03dc0d8473a4d8aba5ab70667db32dd",
+  "sourceFileBytes": 5514569,
+  "sourcePages": [26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530705-dalam-angka-2026.csv",
+  "csvSha256": "92f79c371550f7cd325d69b9fee60a0873eb82391b053ce10ded412d968bfb45",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Alok, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Alok, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 53.07.05 are not stored: sex split vs total: parts sum 86752.0000 != 30916.0000 (diff 55836.0000); the source itself is inconsistent"
+  ]
+}

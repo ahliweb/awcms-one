@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.10.2001,4,Naob,sex,laki_laki,,823,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.10.2001,4,Naob,sex,perempuan,,812,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.10.2001,4,Naob,total,total,,1635,jiwa,2025,registration,total_population,3.1,28,,
+53.03.10.2002,4,Haekto,sex,laki_laki,,637,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.10.2002,4,Haekto,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.10.2002,4,Haekto,total,total,,1284,jiwa,2025,registration,total_population,3.1,28,,
+53.03.10.2003,4,Manikin,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.10.2003,4,Manikin,sex,perempuan,,542,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.10.2003,4,Manikin,total,total,,1057,jiwa,2025,registration,total_population,3.1,28,,
+53.03.10.2004,4,Kuaken,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.10.2004,4,Kuaken,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.10.2004,4,Kuaken,total,total,,722,jiwa,2025,registration,total_population,3.1,28,,
+53.03.10,3,Noemuti Timur,sex,laki_laki,,2343,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.10,3,Noemuti Timur,sex,perempuan,,2355,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.10,3,Noemuti Timur,total,total,,4698,jiwa,2025,registration,total_population,3.1,28,,
+53.03.10,3,Noemuti Timur,age_group,0-4,laki_laki,143,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.10,3,Noemuti Timur,age_group,0-4,perempuan,107,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.10,3,Noemuti Timur,age_group,0-4,,250,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.10,3,Noemuti Timur,age_group,5-9,laki_laki,251,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.10,3,Noemuti Timur,age_group,5-9,perempuan,256,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.10,3,Noemuti Timur,age_group,5-9,,507,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.10,3,Noemuti Timur,age_group,10-14,laki_laki,253,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.10,3,Noemuti Timur,age_group,10-14,perempuan,248,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.10,3,Noemuti Timur,age_group,10-14,,501,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.10,3,Noemuti Timur,age_group,15-19,laki_laki,221,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.10,3,Noemuti Timur,age_group,15-19,perempuan,213,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.10,3,Noemuti Timur,age_group,15-19,,434,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.10,3,Noemuti Timur,age_group,20-24,laki_laki,237,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.10,3,Noemuti Timur,age_group,20-24,perempuan,238,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.10,3,Noemuti Timur,age_group,20-24,,475,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.10,3,Noemuti Timur,age_group,25-29,laki_laki,172,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.10,3,Noemuti Timur,age_group,25-29,perempuan,166,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.10,3,Noemuti Timur,age_group,25-29,,338,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.10,3,Noemuti Timur,age_group,30-34,laki_laki,148,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.10,3,Noemuti Timur,age_group,30-34,perempuan,149,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.10,3,Noemuti Timur,age_group,30-34,,297,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.10,3,Noemuti Timur,age_group,35-39,laki_laki,151,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.10,3,Noemuti Timur,age_group,35-39,perempuan,170,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.10,3,Noemuti Timur,age_group,35-39,,321,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.10,3,Noemuti Timur,age_group,40-44,laki_laki,137,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.10,3,Noemuti Timur,age_group,40-44,perempuan,159,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.10,3,Noemuti Timur,age_group,40-44,,296,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.10,3,Noemuti Timur,age_group,45-49,laki_laki,136,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.10,3,Noemuti Timur,age_group,45-49,perempuan,119,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.10,3,Noemuti Timur,age_group,45-49,,255,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.10,3,Noemuti Timur,age_group,50-54,laki_laki,112,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.10,3,Noemuti Timur,age_group,50-54,perempuan,121,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.10,3,Noemuti Timur,age_group,50-54,,233,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.10,3,Noemuti Timur,age_group,55-59,laki_laki,83,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.10,3,Noemuti Timur,age_group,55-59,perempuan,103,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.10,3,Noemuti Timur,age_group,55-59,,186,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.10,3,Noemuti Timur,age_group,60-64,laki_laki,104,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.10,3,Noemuti Timur,age_group,60-64,perempuan,103,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.10,3,Noemuti Timur,age_group,60-64,,207,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.10,3,Noemuti Timur,age_group,65-69,laki_laki,79,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.10,3,Noemuti Timur,age_group,65-69,perempuan,84,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.10,3,Noemuti Timur,age_group,65-69,,163,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.10,3,Noemuti Timur,age_group,70-74,laki_laki,45,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.10,3,Noemuti Timur,age_group,70-74,perempuan,47,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.10,3,Noemuti Timur,age_group,70-74,,92,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.10,3,Noemuti Timur,age_group,75+,laki_laki,71,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.10,3,Noemuti Timur,age_group,75+,perempuan,72,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.10,3,Noemuti Timur,age_group,75+,,143,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.10,3,Noemuti Timur,sex,laki_laki,,2343,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.10,3,Noemuti Timur,sex,perempuan,,2355,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.10,3,Noemuti Timur,total,total,,4698,jiwa,2025,registration,total_population,3.2,30,,

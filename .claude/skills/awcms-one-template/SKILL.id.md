@@ -73,6 +73,7 @@ bun run dev
 2. **`SITE_PROFILE`** di `apps/storefront/.env.example` cocok dengan profil yang dipilih — `bun run build` tanpa override seharusnya mengirim persis halaman profil itu.
 3. **Tidak ada artefak khusus-BjekMart yang tertinggal** — `tools/seed-borneojek-mart.ts` dan `tools/seed-data/contoh/**` seharusnya sudah hilang; kasus tes contoh-referensi `tests/seed-profil.test.mjs` melewati dirinya sendiri begitu itu terjadi.
 4. **`cd apps/storefront && SITE_PROFILE=<pilihan> bun run check`** lulus, dan `bun run build` yang sungguhan hanya menghasilkan rute milik profil yang dipilih.
+5. **Daftar periksa pasca-init yang dicetak** (`docs/template.md`, "Daftar periksa pasca-init") — `template:init` menutup dengan mencetaknya. Daftar itu menyebut apa yang TIDAK ditulis ulangnya: judul/isi README, `AGENTS.md`, `CONTRIBUTING*`, `GOVERNANCE*`, `docs/template.md` dan `compose.production.yaml` masih menyebut awcms-one/BjekMart. Jangan cari-dan-ganti nama project, volume, atau image Compose produksi: namanya bisa menunjuk sumber daya yang sudah persisten.
 
 ## Kesalahan umum
 

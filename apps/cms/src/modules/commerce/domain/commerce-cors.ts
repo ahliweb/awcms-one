@@ -26,11 +26,26 @@ export type CommerceOriginDecision =
 /** Same value newsletter/search settled on — long enough a shopper's whole checkout flow pays for one preflight, short enough a removed domain takes effect promptly. */
 export const COMMERCE_PREFLIGHT_MAX_AGE_SECONDS = 600;
 
+/**
+ * `Retry-After` is not a CORS-safelisted response header, so without this
+ * a cross-origin storefront sees the `429` but `headers.get("retry-after")`
+ * returns `null` and it can only say "try again later" (found by Issue
+ * #431's notification settings page). Every route in this family that
+ * rate-limits already sets it; exposing it on every granted answer keeps
+ * the policy family-wide, like the method list below.
+ */
+export const COMMERCE_EXPOSED_RESPONSE_HEADERS = ["retry-after"] as const;
+
 export function commerceCorsHeaders(
   decision: CommerceOriginDecision
 ): Record<string, string> {
   if (decision.kind === "granted") {
-    return { "access-control-allow-origin": decision.origin, vary: "Origin" };
+    return {
+      "access-control-allow-origin": decision.origin,
+      "access-control-expose-headers":
+        COMMERCE_EXPOSED_RESPONSE_HEADERS.join(", "),
+      vary: "Origin"
+    };
   }
   return { vary: "Origin" };
 }
@@ -55,6 +70,20 @@ export function commerceCorsHeaders(
  * wider allow-list here costs nothing: an actual route still answers
  * `405`/404 on a method it does not implement.
  */
+/**
+ * Issue #513 — the preflight `Access-Control-Allow-Headers` list for a route
+ * that accepts an `Idempotency-Key`. The header is non-simple, so a browser
+ * preflights every cross-origin call that carries it and blocks the call unless
+ * the answer lists it. Every route that takes the key passes
+ * `commerceIdempotentPreflightHeaders([...its own headers])` instead of typing
+ * the string, so the list cannot drift from the route.
+ */
+export function commerceIdempotentPreflightHeaders(
+  base: readonly string[] = ["content-type"]
+): readonly string[] {
+  return base.includes("idempotency-key") ? base : [...base, "idempotency-key"];
+}
+
 export function commercePreflightHeaders(
   decision: CommerceOriginDecision,
   allowedHeaders: readonly string[] = ["content-type"]

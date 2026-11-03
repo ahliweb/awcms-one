@@ -5,6 +5,7 @@
  * success hand off to `/pesanan`. See `checkout.astro`'s own docblock for
  * the step/field-error wiring this script assumes.
  */
+import { penjagaUntuk } from "../lib/kirim-tunggal";
 import { loadCart, clearCart } from "../lib/keranjang-klien";
 import type { Cart } from "../lib/keranjang-kontrak";
 import {
@@ -74,7 +75,12 @@ if (root) {
     let selectedPaymentMethod: CreateOrderRequest["payment"]["method"] | null = null;
     let insuranceSelected = false;
     let latestQuote: CartQuote | null = null;
-    let submitting = false;
+    // Issue #513: the shared single-flight guard. The order key stays the cart id
+    // (`idempotencyKey: currentCart.id`, below): it is stable for the cart, so a
+    // retry after a dropped connection replays the same order; this module only
+    // adds the in-flight lock. A placed order navigates away, so a success keeps
+    // the form locked until the page unloads.
+    const guard = penjagaUntuk(formEl);
 
     const pinpointFields = formEl.querySelector<HTMLElement>("[data-pinpoint-fields]");
     if (pinpointFields) pinpointFields.hidden = !pinpointEnabled;
@@ -582,7 +588,7 @@ if (root) {
 
     formEl.addEventListener("submit", async (event) => {
       event.preventDefault();
-      if (submitting) return;
+      if (guard.keadaan() !== "idle") return;
 
       if (!selectedShipping) {
         const error = formEl.querySelector<HTMLElement>('[data-error-for="shipping"]');
@@ -662,55 +668,55 @@ if (root) {
         ...(typedPoints !== null ? { loyaltyRedemption: { points: typedPoints } } : {})
       };
 
-      submitting = true;
-      const submitButton = formEl.querySelector<HTMLButtonElement>("[data-submit-order]");
-      if (submitButton) submitButton.disabled = true;
-
-      try {
-        // Re-read at submit time: `bacaSesi()` drops an expired session, so a
-        // shopper whose 30-day token lapsed mid-checkout places a guest order
-        // instead of sending a stale Bearer the CMS would reject.
-        const bearerToken = bacaSesi()?.token;
-        const order = await createOrder(request, bearerToken);
-        clearCart();
-        try {
-          window.sessionStorage.setItem(PESANAN_PHONE_KEY, request.customer.phone);
-        } catch {
-          // A blocked sessionStorage means `/pesanan` will ask for the
-          // phone again — not ideal, but not a lost order either.
-        }
-
-        const trackingUrl = `/pesanan?kode=${encodeURIComponent(order.orderCode)}`;
-
-        // Issue #112 (contract: #106 D3) — the order itself is placed
-        // exactly as before regardless of payment method; a `gateway` order
-        // additionally needs its OWN session, created right after, whose
-        // `redirectUrl` this whole tab navigates to. Any failure here — the
-        // session call itself, or an invalid `redirectUrl` — still falls
-        // through to `/pesanan`, which offers "Bayar sekarang" to retry: the
-        // order was already placed successfully, so this is never treated
-        // as a checkout failure.
-        if (request.payment.method === "gateway") {
+      await guard.jalankan(
+        async () => {
           try {
-            const session = await createGatewaySession(order.orderCode, request.customer.phone, bearerToken);
-            if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
-              throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
+            // Re-read at submit time: `bacaSesi()` drops an expired session, so a
+            // shopper whose 30-day token lapsed mid-checkout places a guest order
+            // instead of sending a stale Bearer the CMS would reject.
+            const bearerToken = bacaSesi()?.token;
+            const order = await createOrder(request, bearerToken);
+            clearCart();
+            try {
+              window.sessionStorage.setItem(PESANAN_PHONE_KEY, request.customer.phone);
+            } catch {
+              // A blocked sessionStorage means `/pesanan` will ask for the
+              // phone again - not ideal, but not a lost order either.
             }
-            window.location.assign(session.redirectUrl);
-            return;
-          } catch {
-            window.location.href = trackingUrl;
-            return;
-          }
-        }
 
-        window.location.href = trackingUrl;
-      } catch (error) {
-        showSubmitError(error);
-      } finally {
-        submitting = false;
-        if (submitButton) submitButton.disabled = false;
-      }
+            const trackingUrl = `/pesanan?kode=${encodeURIComponent(order.orderCode)}`;
+
+            // Issue #112 (contract: #106 D3) - the order itself is placed
+            // exactly as before regardless of payment method; a `gateway` order
+            // additionally needs its OWN session, created right after, whose
+            // `redirectUrl` this whole tab navigates to. Any failure here - the
+            // session call itself, or an invalid `redirectUrl` - still falls
+            // through to `/pesanan`, which offers "Bayar sekarang" to retry: the
+            // order was already placed successfully, so this is never treated
+            // as a checkout failure.
+            if (request.payment.method === "gateway") {
+              try {
+                const session = await createGatewaySession(order.orderCode, request.customer.phone, bearerToken);
+                if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
+                  throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
+                }
+                window.location.assign(session.redirectUrl);
+                return true;
+              } catch {
+                window.location.href = trackingUrl;
+                return true;
+              }
+            }
+
+            window.location.href = trackingUrl;
+            return true;
+          } catch (error) {
+            showSubmitError(error);
+            return false;
+          }
+        },
+        { kunciBila: (ditempatkan) => ditempatkan }
+      );
     });
 
     // Kick off the first quote right away so line issues surface before the

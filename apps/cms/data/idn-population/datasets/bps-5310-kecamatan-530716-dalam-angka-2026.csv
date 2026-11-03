@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.16.2001,4,Koting A,sex,laki_laki,,736,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.16.2001,4,Koting A,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.16.2001,4,Koting A,total,total,,1520,jiwa,2025,registration,total_population,3.1,28,,
+53.07.16.2002,4,Koting B,sex,laki_laki,,494,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.16.2002,4,Koting B,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.16.2002,4,Koting B,total,total,,1079,jiwa,2025,registration,total_population,3.1,28,,
+53.07.16.2003,4,KotingC,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.16.2003,4,KotingC,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.16.2003,4,KotingC,total,total,,999,jiwa,2025,registration,total_population,3.1,28,,
+53.07.16.2004,4,Koting D,sex,laki_laki,,409,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.16.2004,4,Koting D,sex,perempuan,,478,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.16.2004,4,Koting D,total,total,,887,jiwa,2025,registration,total_population,3.1,28,,
+53.07.16.2005,4,Paubekor,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.16.2005,4,Paubekor,sex,perempuan,,381,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.16.2005,4,Paubekor,total,total,,719,jiwa,2025,registration,total_population,3.1,28,,
+53.07.16.2006,4,Ribang,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.16.2006,4,Ribang,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.16.2006,4,Ribang,total,total,,939,jiwa,2025,registration,total_population,3.1,28,,
+53.07.16.2007,4,Watu Repa,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.07.16.2007,4,Watu Repa,sex,perempuan,,327,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.07.16.2007,4,Watu Repa,total,total,,619,jiwa,2025,registration,total_population,3.1,28,,

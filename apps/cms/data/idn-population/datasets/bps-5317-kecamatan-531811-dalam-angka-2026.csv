@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.11,3,Kodi Balaghar,sex,laki_laki,,11745,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+53.18.11,3,Kodi Balaghar,sex,perempuan,,11037,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+53.18.11,3,Kodi Balaghar,total,total,,22782,jiwa,2025,registration,total_population,3.2,28,,

@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-5306-kecamatan-530417-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.04.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lasiolat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belu",
+  "publisherDomain": "5306",
+  "publisherWebsite": "https://belukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belu (https://belukab.bps.go.id), publikasi \"Kecamatan Lasiolat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5306072",
+  "publicationNumber": "53060.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://belukab.bps.go.id/id/publication/2026/09/28/df2a138bf7beb16df295c3df/kecamatan-lasiolat-dalam-angka-2026.html",
+  "sourceFileSha256": "247d4b56eb8fcca1335d02df36bd666ad96bb98679b7c4f35694cb496ea782a5",
+  "sourceFileBytes": 3099766,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Belu",
+  "csvPath": "datasets/bps-5306-kecamatan-530417-dalam-angka-2026.csv",
+  "csvSha256": "f1a0747d5b4ac4eb3a30964580c89103394145a1a43c7c1650bb9a1fb271a9e7",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lasiolat, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.3: row not stored: row \"Raiulun\": unmatched ",
+    "table 3.3: the rows of region 53.04.17.2005 are not stored: sex split vs total: parts sum 1146.0000 != 1145.0000 (diff 1.0000); the source itself is inconsistent",
+    "table 3.3: the rows of region 53.04.17 are not stored: sex split vs total: parts sum 7974.0000 != 7973.0000 (diff 1.0000); the source itself is inconsistent"
+  ]
+}

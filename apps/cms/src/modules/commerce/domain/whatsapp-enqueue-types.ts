@@ -27,7 +27,15 @@ export type EnqueueWhatsappMessageInput = {
   idempotencyKey?: string;
 };
 
-/** Why an `upstream`-mode message was not queued. The upstream port's own reasons, plus its two suppressions. */
+/**
+ * Why an `upstream`-mode message was not queued. The upstream port's own reasons, plus its two suppressions.
+ *
+ * The three sender-aware reasons (`SENDER_UNAVAILABLE`, `SENDER_AFFINITY_CONFLICT`,
+ * `REPLY_TARGET_UNKNOWN`, port 1.1.0, upstream awcms#1230) are in the union so the
+ * adapter's `satisfies` check stays total. Commerce never passes `senderAccountId`,
+ * `inReplyToMessageId` or `businessScope`, so it does not receive them today; if one
+ * ever arrives it is a sending-side refusal (`TEMPLATE_UNAVAILABLE`), never a recipient one.
+ */
 export type WhatsappNotQueuedReason =
   | "CONSENT_REQUIRED"
   | "TEMPLATE_UNKNOWN"
@@ -37,6 +45,9 @@ export type WhatsappNotQueuedReason =
   | "RECIPIENT_UNRESOLVED"
   | "EXPIRY_REQUIRED"
   | "MISCONFIGURED"
+  | "SENDER_UNAVAILABLE"
+  | "SENDER_AFFINITY_CONFLICT"
+  | "REPLY_TARGET_UNKNOWN"
   | "SUPPRESSED_HARD_FAILURE"
   | "SUPPRESSED_OPT_OUT";
 

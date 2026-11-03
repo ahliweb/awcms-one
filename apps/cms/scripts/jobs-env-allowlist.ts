@@ -88,6 +88,8 @@ import {
   TOOLING_ONLY,
   collectEnvReads
 } from "./env-contract-coverage-check.ts";
+import { resolveTargetEntry, traceImports } from "./lib/job-import-graph.ts";
+import { stripComments } from "./lib/source-text.ts";
 
 const ROOT = process.cwd();
 const OUTPUT = "ops/awcms-jobs.env-global";
@@ -236,6 +238,126 @@ export function spliceRunnerRefusal(
   return `${source.slice(0, start)}${block}${source.slice(endMarker + RUNNER_END.length)}`;
 }
 
+/** The markers around the generated `DATABASE_URL` decision in `ops/run-job.sh`. */
+export const RUNNER_DB_BEGIN =
+  "# BEGIN GENERATED: targets that need DATABASE_URL (bun run jobs:env-allowlist:generate)";
+export const RUNNER_DB_END = "# END GENERATED: targets that need DATABASE_URL";
+
+/** The one file that decides which connection string a client kind uses. */
+export const DATABASE_CLIENT_FILE = "src/lib/database/client.ts";
+
+/**
+ * Which `bun run` targets can touch the `awcms_app` connection string (Issue
+ * #1132, row `DATABASE_URL`).
+ *
+ * `DATABASE_URL` is the `awcms_app` credential. Every job that opens the worker
+ * client (`getWorkerDatabaseClient`) prefers `WORKER_DATABASE_URL` and falls
+ * back to `DATABASE_URL` only when the first is blank (`client.ts`), so on a
+ * host that has configured the worker role the credential is dead weight in the
+ * container: a compromised job would hold a second, broader database login it
+ * never uses. Whether a target needs it is a property of its import closure, so
+ * it is derived rather than listed by hand:
+ *
+ * - it calls `getDatabaseClient(` (the app client) or `getSetupDatabaseClient(`
+ *   (which also falls back to `DATABASE_URL`), outside the resolver itself;
+ * - or a file in its closure spells the name `"DATABASE_URL"` / `env.DATABASE_URL`
+ *   (a script that opens its own connection, such as the migration runner);
+ * - or its closure holds something the tracer cannot follow (a computed
+ *   `import()`, `Bun.spawn`, `child_process`, an unresolved import). Unknown
+ *   keeps the credential: the failure to avoid is a job that cannot connect.
+ *
+ * The result is the set of targets that KEEP `DATABASE_URL` even when
+ * `WORKER_DATABASE_URL` is set. Operator-only targets are left out; the runner
+ * refuses them before this point.
+ */
+export function needsAppConnectionString(
+  target: string,
+  packageScripts: Record<string, string>,
+  root = process.cwd()
+): boolean {
+  const entry = resolveTargetEntry(target, packageScripts);
+  if (entry === null) return false;
+  const trace = traceImports(entry, root);
+  if (
+    trace.dynamic.length > 0 ||
+    trace.escapes.length > 0 ||
+    trace.unresolved.length > 0
+  ) {
+    return true;
+  }
+  const call = /\b(getDatabaseClient|getSetupDatabaseClient)\s*\(/;
+  const spelled = /\b(?:process\.)?env\.DATABASE_URL\b|["'`]DATABASE_URL["'`]/;
+  return trace.files.some((file) => {
+    if (file === DATABASE_CLIENT_FILE) return false;
+    if (!/\.(ts|tsx|mts|cts|js|jsx|mjs|cjs)$/.test(file)) return false;
+    const source = stripComments(readFileSync(path.join(root, file), "utf8"));
+    return call.test(source) || spelled.test(source);
+  });
+}
+
+/** Every target that keeps `DATABASE_URL` regardless of `WORKER_DATABASE_URL`, sorted. */
+export function appConnectionTargets(
+  packageScripts: Record<string, string>,
+  root = process.cwd()
+): string[] {
+  const operatorOnly = new Set(
+    OPERATOR_ONLY_TARGETS.map((entry) => entry.target)
+  );
+  return sortedCodePoints(
+    Object.keys(packageScripts).filter(
+      (target) =>
+        !operatorOnly.has(target) &&
+        needsAppConnectionString(target, packageScripts, root)
+    )
+  );
+}
+
+/**
+ * The shell that sets `WITHHOLD_DATABASE_URL` for the job being run. `1` (the
+ * default for every target not listed) means: drop `DATABASE_URL` from the
+ * container's environment when the app container has a non-blank
+ * `WORKER_DATABASE_URL`. The names go into a shell `case` pattern, so they are
+ * held to plain package-script names.
+ */
+export function renderRunnerDatabaseUrl(targets: readonly string[]): string {
+  const names = sortedCodePoints(targets);
+  const bad = names.filter(
+    (name) => !/^[A-Za-z0-9][A-Za-z0-9:_-]*$/.test(name)
+  );
+  if (bad.length > 0 || names.length === 0) {
+    throw new Error(
+      `the DATABASE_URL target list must be a non-empty list of plain package-script names; got ${JSON.stringify(bad.length > 0 ? bad : names)}`
+    );
+  }
+  return [
+    RUNNER_DB_BEGIN,
+    "# Source: appConnectionTargets() in scripts/jobs-env-allowlist.ts, derived from each",
+    "# target's import closure. Do not edit between the markers; regenerate.",
+    'case "$JOB" in',
+    `  ${names.join(" | ")})`,
+    "    WITHHOLD_DATABASE_URL=0",
+    "    ;;",
+    "  *)",
+    "    WITHHOLD_DATABASE_URL=1",
+    "    ;;",
+    "esac",
+    RUNNER_DB_END
+  ].join("\n");
+}
+
+/** `source` with the text between `begin` and `end` (inclusive) replaced by `block`; null when a marker is missing. */
+export function spliceBetween(
+  source: string,
+  begin: string,
+  end: string,
+  block: string
+): string | null {
+  const start = source.indexOf(begin);
+  const endMarker = source.indexOf(end, start);
+  if (start === -1 || endMarker === -1) return null;
+  return `${source.slice(0, start)}${block}${source.slice(endMarker + end.length)}`;
+}
+
 /**
  * Secrets handed only to the jobs that read them (Issue #1120). Everything not
  * named here and not excluded below stays in the global list.
@@ -266,7 +388,12 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
     jobs: [
       {
         target: "push:dispatch",
-        reason: "the only job that sends Web Push (signs each VAPID JWT)"
+        reason: "signs each staff Web Push VAPID JWT"
+      },
+      {
+        target: "commerce:customer-push:dispatch",
+        reason:
+          "signs each customer Web Push VAPID JWT (the same application server key, a second dispatcher; #432)"
       }
     ]
   },
@@ -280,12 +407,22 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
         reason: "decrypts the auth secret to encrypt each payload"
       },
       {
+        target: "commerce:customer-push:dispatch",
+        reason:
+          "decrypts the customer device endpoint and auth secret to address and encrypt each payload (#432)"
+      },
+      {
         target: "push:auth-secret:backfill",
         reason: "operator run: encrypts legacy plaintext auth secrets (#1089)"
       },
       {
         target: "push:auth-secret:rekey",
         reason: "operator run: re-encrypts under the new first key (#1098)"
+      },
+      {
+        target: "commerce:customer-push:rekey",
+        reason:
+          "operator run: re-encrypts the customer push endpoint and auth secret under the new first key (#430)"
       }
     ]
   },
@@ -297,6 +434,23 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
       {
         target: "push:dispatch",
         reason: "mints the FCM access token for native-device deliveries"
+      }
+    ]
+  },
+  {
+    name: "CHANNEL_SECRETS_ENCRYPTION_KEYS",
+    reason:
+      "the ring that encrypts every tenant's provider credentials at rest (ADR-0148 section 5); whoever holds it can read every stored token, device key and bot token",
+    jobs: [
+      {
+        target: "channel-accounts:secrets:rekey",
+        reason:
+          "operator run: re-encrypts channel secrets under the new first key (#1140)"
+      },
+      {
+        target: "whatsapp:dispatch",
+        reason:
+          "decrypts a tenant-owned WhatsApp sender's credential in memory, per lane, for the claimed row's tenant (#1141, the residual risk ADR-0148 section 5 accepts). The job that only ENQUEUES (booking:reminders:dispatch) never reaches the secret store"
       }
     ]
   },
@@ -603,6 +757,18 @@ export const OPERATOR_ONLY_TARGETS: readonly {
       "the operator-run production preflight; it spawns the whole-environment validator (config:validate), so it needs the web-only and setup variables a job container never receives"
   },
   {
+    target: "jobs:env-allowlist:check",
+    kind: "tooling",
+    reason:
+      "CI gate that regenerates the job env files; since Issue #1132 it traces every target's import closure, so it reaches the tracer and the whole checkout, and it only makes sense in the repository checkout"
+  },
+  {
+    target: "jobs:env-allowlist:generate",
+    kind: "tooling",
+    reason:
+      "the generator of the job env files and of the runner's generated blocks; it writes into the checkout and traces every target, so it never runs in a job container"
+  },
+  {
     target: "subject-data:coverage:check",
     kind: "tooling",
     reason:
@@ -901,19 +1067,19 @@ export const GLOBAL_SECRETS: readonly {
     name: "DATABASE_URL",
     kind: "secret",
     reason:
-      "carries the database password; every job opens the database (57 package scripts reach the client), and a job without it cannot run at all"
+      "the awcms_app connection string. It stays in the global list because it is the FALLBACK of the worker client (a blank WORKER_DATABASE_URL uses it) and the only login of the app-client scripts, but ops/run-job.sh withholds it at run time from every job that cannot reach the app client whenever the app container has a non-blank WORKER_DATABASE_URL (Issue #1132; appConnectionTargets() derives which jobs keep it). Exactly one scheduled job keeps it: hr-commission:intents:post (ADR-0147, Issue #1189), which posts commission accruals and so must run as the only role the payroll boundary allows"
   },
   {
     name: "WORKER_DATABASE_URL",
     kind: "secret",
     reason:
-      "the least-privilege awcms_worker connection string (Issue #1119); preferred over DATABASE_URL by every job's database client"
+      "the least-privilege awcms_worker connection string (Issue #1119); preferred over DATABASE_URL by every job's database client, so every job that opens the database needs it. hr-commission:intents:post carries it too although it opens only the app client: the runner has no per-job exclusion for a GLOBAL name, and its import closure reaches the resolver in src/lib/database/client.ts that reads it. It is documented, not scoped out; the variable is the least-privilege worker login, so carrying it adds no authority to that job (Issue #1189 L5)"
   },
   {
     name: "IDEMPOTENCY_HMAC_SECRET",
     kind: "secret",
     reason:
-      "reached by 83 package scripts through the shared idempotency module, so a file-level trace cannot say which jobs call it; scoping it by guess would fail silently. Narrowing needs call-level analysis (follow-up)"
+      "kept global by decision (Issue #1132). Only HTTP route support and booking's BookingPort adapter compute a request hash; no scheduled job's own code does. The adapter is the sanctioned entry for a consumer's job (a domain-event consumer that books) and the module registry imports it, so a file-level trace cannot tell the jobs that call it from the jobs that merely load it, and scoping by guess would break a consumer. A missing key is loud, not silent (production throws IdempotencyConfigurationError). Residual risk accepted: with the key and awcms_worker's SELECT on awcms_idempotency_keys, a compromised job could test guesses of low-entropy request bodies offline. Revisit by resolving the adapter lazily; then scope the key to domain-events:dispatch"
   },
   ...[
     "AUTH_INVITATION_TOKEN_TTL_HOURS",
@@ -1150,7 +1316,7 @@ async function main(): Promise<void> {
   }
 
   const runnerSource = readIfPresent(path.join(ROOT, RUNNER));
-  const runnerRendered =
+  const refusalRendered =
     runnerSource === null
       ? null
       : spliceRunnerRefusal(
@@ -1159,10 +1325,30 @@ async function main(): Promise<void> {
             OPERATOR_ONLY_TARGETS.map((entry) => entry.target)
           )
         );
-  if (runnerRendered === null) {
+  if (refusalRendered === null) {
     console.error(
       `jobs:env-allowlist FAILED — ${RUNNER} is missing or lacks the generated block between\n  ${RUNNER_BEGIN}\n  ${RUNNER_END}\n` +
         "  Without it the runner would run operator-only commands in a job container."
+    );
+    process.exit(1);
+  }
+
+  const packageScripts = (
+    JSON.parse(readFileSync(path.join(ROOT, "package.json"), "utf8")) as {
+      scripts: Record<string, string>;
+    }
+  ).scripts;
+  const appTargets = appConnectionTargets(packageScripts, ROOT);
+  const runnerRendered = spliceBetween(
+    refusalRendered,
+    RUNNER_DB_BEGIN,
+    RUNNER_DB_END,
+    renderRunnerDatabaseUrl(appTargets)
+  );
+  if (runnerRendered === null) {
+    console.error(
+      `jobs:env-allowlist FAILED — ${RUNNER} lacks the generated block between\n  ${RUNNER_DB_BEGIN}\n  ${RUNNER_DB_END}\n` +
+        "  Without it the runner cannot tell which jobs still need DATABASE_URL."
     );
     process.exit(1);
   }
@@ -1197,14 +1383,14 @@ async function main(): Promise<void> {
 
     console.log(
       `jobs:env-allowlist:check OK — ${OUTPUT} names ${names.length} variable(s) and ${SCOPED_OUTPUT} ` +
-        `holds ${pairs.length} job-scoped grant(s); ${RUNNER} refuses ${OPERATOR_ONLY_TARGETS.length} operator-only target(s); all match a fresh regeneration.`
+        `holds ${pairs.length} job-scoped grant(s); ${RUNNER} refuses ${OPERATOR_ONLY_TARGETS.length} operator-only target(s) and names ${appTargets.length} target(s) that keep DATABASE_URL; all match a fresh regeneration.`
     );
   } else {
     for (const output of outputs) {
       writeFileSync(path.join(ROOT, output.file), output.rendered);
     }
     console.log(
-      `jobs:env-allowlist — wrote ${OUTPUT} (${names.length} variable(s)), ${SCOPED_OUTPUT} (${pairs.length} grant(s)) and the operator-only refusal in ${RUNNER} (${OPERATOR_ONLY_TARGETS.length} target(s)).`
+      `jobs:env-allowlist — wrote ${OUTPUT} (${names.length} variable(s)), ${SCOPED_OUTPUT} (${pairs.length} grant(s)) and the operator-only refusal and DATABASE_URL target list in ${RUNNER} (${OPERATOR_ONLY_TARGETS.length} + ${appTargets.length} target(s)).`
     );
   }
 }

@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.15.2004,4,Wolomuku,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2004,4,Wolomuku,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2004,4,Wolomuku,total,total,,776,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2008,4,Detumbewa,sex,laki_laki,,269,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2008,4,Detumbewa,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2008,4,Detumbewa,total,total,,529,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2001,4,Nggesa,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2001,4,Nggesa,sex,perempuan,,307,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2001,4,Nggesa,total,total,,610,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2002,4,Detukeli,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2002,4,Detukeli,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2002,4,Detukeli,total,total,,770,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2003,4,Kebesani,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2003,4,Kebesani,sex,perempuan,,253,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2003,4,Kebesani,total,total,,480,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2009,4,Kanganara,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2009,4,Kanganara,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2009,4,Kanganara,total,total,,637,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2006,4,Nida,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2006,4,Nida,sex,perempuan,,239,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2006,4,Nida,total,total,,487,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2005,4,Watunggere,sex,laki_laki,,318,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2005,4,Watunggere,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2005,4,Watunggere,total,total,,641,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2007,4,Maurole Selatan,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2007,4,Maurole Selatan,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2007,4,Maurole Selatan,total,total,,646,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2011,4,Unggu,sex,laki_laki,,298,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2011,4,Unggu,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2011,4,Unggu,total,total,,575,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2012,4,Nggesa Biri,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2012,4,Nggesa Biri,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2012,4,Nggesa Biri,total,total,,466,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2013,4,Watunggere Marilonga,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2013,4,Watunggere Marilonga,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2013,4,Watunggere Marilonga,total,total,,378,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15.2014,4,Jeo Dua,sex,laki_laki,,231,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15.2014,4,Jeo Dua,sex,perempuan,,239,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15.2014,4,Jeo Dua,total,total,,470,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15,3,Kecamatan Detukeli,sex,laki_laki,,3721,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.15,3,Kecamatan Detukeli,sex,perempuan,,3744,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.15,3,Kecamatan Detukeli,total,total,,7465,jiwa,2025,registration,total_population,3.1,24,,
+53.08.15,3,Detukeli,age_group,0-4,laki_laki,96,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.15,3,Detukeli,age_group,0-4,perempuan,91,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.15,3,Detukeli,age_group,0-4,,187,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.15,3,Detukeli,age_group,5-9,laki_laki,350,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.15,3,Detukeli,age_group,5-9,perempuan,323,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.15,3,Detukeli,age_group,5-9,,673,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.15,3,Detukeli,age_group,10-14,laki_laki,386,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.15,3,Detukeli,age_group,10-14,perempuan,338,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.15,3,Detukeli,age_group,10-14,,724,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.15,3,Detukeli,age_group,15-19,laki_laki,441,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.15,3,Detukeli,age_group,15-19,perempuan,390,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.15,3,Detukeli,age_group,15-19,,831,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.15,3,Detukeli,age_group,20-24,laki_laki,414,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.15,3,Detukeli,age_group,20-24,perempuan,392,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.15,3,Detukeli,age_group,20-24,,806,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.15,3,Detukeli,age_group,25-29,laki_laki,397,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.15,3,Detukeli,age_group,25-29,perempuan,366,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.15,3,Detukeli,age_group,25-29,,763,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.15,3,Detukeli,age_group,30-34,laki_laki,287,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.15,3,Detukeli,age_group,30-34,perempuan,314,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.15,3,Detukeli,age_group,30-34,,601,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.15,3,Detukeli,age_group,35-39,laki_laki,252,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.15,3,Detukeli,age_group,35-39,perempuan,258,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.15,3,Detukeli,age_group,35-39,,510,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.15,3,Detukeli,age_group,40-44,laki_laki,201,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.15,3,Detukeli,age_group,40-44,perempuan,243,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.15,3,Detukeli,age_group,40-44,,444,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.15,3,Detukeli,age_group,45-49,laki_laki,182,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.15,3,Detukeli,age_group,45-49,perempuan,183,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.15,3,Detukeli,age_group,45-49,,365,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.15,3,Detukeli,age_group,50-54,laki_laki,162,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.15,3,Detukeli,age_group,50-54,perempuan,218,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.15,3,Detukeli,age_group,50-54,,380,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.15,3,Detukeli,age_group,55-59,laki_laki,163,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.15,3,Detukeli,age_group,55-59,perempuan,190,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.15,3,Detukeli,age_group,55-59,,353,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.15,3,Detukeli,age_group,60-64,laki_laki,132,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.15,3,Detukeli,age_group,60-64,perempuan,152,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.15,3,Detukeli,age_group,60-64,,284,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.15,3,Detukeli,age_group,65-69,laki_laki,102,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.15,3,Detukeli,age_group,65-69,perempuan,127,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.15,3,Detukeli,age_group,65-69,,229,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.15,3,Detukeli,age_group,70-74,laki_laki,68,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.15,3,Detukeli,age_group,70-74,perempuan,65,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.15,3,Detukeli,age_group,70-74,,133,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.15,3,Detukeli,age_group,75+,laki_laki,88,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.15,3,Detukeli,age_group,75+,perempuan,94,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.15,3,Detukeli,age_group,75+,,182,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.15,3,Kecamatan Detukeli,sex,laki_laki,,3721,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.08.15,3,Kecamatan Detukeli,sex,perempuan,,3744,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.08.15,3,Kecamatan Detukeli,total,total,,7465,jiwa,2025,registration,total_population,3.2,26,,

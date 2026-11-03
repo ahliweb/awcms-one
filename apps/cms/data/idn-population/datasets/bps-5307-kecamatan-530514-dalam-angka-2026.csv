@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.14.2011,4,Lalafang,sex,laki_laki,,274,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2011,4,Lalafang,sex,perempuan,,298,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2011,4,Lalafang,total,total,,572,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2001,4,Nule,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2001,4,Nule,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2001,4,Nule,total,total,,1144,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2002,4,Kaleb,sex,laki_laki,,834,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2002,4,Kaleb,sex,perempuan,,902,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2002,4,Kaleb,total,total,,1736,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2009,4,Bunga Bali,sex,laki_laki,,536,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2009,4,Bunga Bali,sex,perempuan,,550,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2009,4,Bunga Bali,total,total,,1086,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2004,4,Kaera,sex,laki_laki,,563,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2004,4,Kaera,sex,perempuan,,559,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2004,4,Kaera,total,total,,1122,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2008,4,Lekom,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2008,4,Lekom,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2008,4,Lekom,total,total,,597,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2005,4,Mawar,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2005,4,Mawar,sex,perempuan,,625,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2005,4,Mawar,total,total,,1198,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2007,4,Ombay,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2007,4,Ombay,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2007,4,Ombay,total,total,,1144,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2006,4,Merdeka,sex,laki_laki,,785,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2006,4,Merdeka,sex,perempuan,,739,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2006,4,Merdeka,total,total,,1524,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14.2003,4,Batu,sex,laki_laki,,959,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14.2003,4,Batu,sex,perempuan,,932,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14.2003,4,Batu,total,total,,1891,jiwa,2025,registration,total_population,3.1,13,,
+53.05.14,3,Pantar Timur,sex,laki_laki,,6378,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.14,3,Pantar Timur,sex,perempuan,,6549,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.14,3,Pantar Timur,total,total,,12927,jiwa,2025,registration,total_population,3.1,13,,

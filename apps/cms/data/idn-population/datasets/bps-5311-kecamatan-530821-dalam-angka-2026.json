@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5311-kecamatan-530821-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.08.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lepembusu Kelisoke Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ende",
+  "publisherDomain": "5311",
+  "publisherWebsite": "https://endekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ende (https://endekab.bps.go.id), publikasi \"Kecamatan Lepembusu Kelisoke Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5311063",
+  "publicationNumber": "53110.26020",
+  "issn": "2686-3073",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://endekab.bps.go.id/id/publication/2026/09/28/992f55bac9db703b8d8b32fa/kecamatan-lepembusu-kelisoke-dalam-angka-2026.html",
+  "sourceFileSha256": "c539806d4546a941ba649a9b37e802444095e0821b934b08066c59db4f7c7787",
+  "sourceFileBytes": 8300010,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ende.",
+  "csvPath": "datasets/bps-5311-kecamatan-530821-dalam-angka-2026.csv",
+  "csvSha256": "0bcaf5ec328c3b700bf5cfcce8a61ff5a13bd2e07cb9f65febdbaa8758629796",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lepembusu Kelisoke, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lepembusu Kelisoke, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

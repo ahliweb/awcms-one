@@ -5,7 +5,7 @@
 - **Status:** Accepted
 - **Date:** 3 October 2026
 - **Decision maker:** ahliweb
-- **Related:** [ADR-0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md); issue [#297](https://github.com/ahliweb/awcms-one/issues/297)
+- **Related:** [ADR-0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md); issue [#297](https://github.com/ahliweb/awcms-one/issues/297); issue [#476](https://github.com/ahliweb/awcms-one/issues/476) (the [OMES-Web case study](../template.md#case-study-omes-web-a-derived-product) applies this ADR to a live derived product)
 
 ## Context
 

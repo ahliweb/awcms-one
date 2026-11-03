@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.02.2003,4,Alor Kecil,sex,laki_laki,,861,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2003,4,Alor Kecil,sex,perempuan,,909,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2003,4,Alor Kecil,total,total,,1770,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2024,4,Lefokisu,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2024,4,Lefokisu,sex,perempuan,,544,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2024,4,Lefokisu,total,total,,1072,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2005,4,Ampera,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2005,4,Ampera,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2005,4,Ampera,total,total,,654,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2026,4,Lewalu,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2026,4,Lewalu,sex,perempuan,,348,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2026,4,Lewalu,total,total,,630,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2025,4,Bampalola,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2025,4,Bampalola,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2025,4,Bampalola,total,total,,887,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2027,4,Dulolong Barat,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2027,4,Dulolong Barat,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2027,4,Dulolong Barat,total,total,,871,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2006,4,Dulolong,sex,laki_laki,,1013,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2006,4,Dulolong,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2006,4,Dulolong,total,total,,2033,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2020,4,Hulnani,sex,laki_laki,,301,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2020,4,Hulnani,sex,perempuan,,292,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2020,4,Hulnani,total,total,,593,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2004,4,Alor Besar,sex,laki_laki,,979,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2004,4,Alor Besar,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2004,4,Alor Besar,total,total,,2002,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2013,4,Ternate Selatan,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2013,4,Ternate Selatan,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2013,4,Ternate Selatan,total,total,,982,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2012,4,Ternate,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2012,4,Ternate,sex,perempuan,,689,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2012,4,Ternate,total,total,,1363,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2019,4,Pulau Buaya,sex,laki_laki,,844,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2019,4,Pulau Buaya,sex,perempuan,,875,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2019,4,Pulau Buaya,total,total,,1719,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2022,4,O’amate,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2022,4,O’amate,sex,perempuan,,495,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2022,4,O’amate,total,total,,968,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2007,4,Aimoli,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2007,4,Aimoli,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2007,4,Aimoli,total,total,,1237,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2023,4,Alaang,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2023,4,Alaang,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2023,4,Alaang,total,total,,1275,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2008,4,Alila,sex,laki_laki,,453,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2008,4,Alila,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2008,4,Alila,total,total,,896,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2009,4,Otvai,sex,laki_laki,,662,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2009,4,Otvai,sex,perempuan,,701,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2009,4,Otvai,total,total,,1363,jiwa,2025,registration,total_population,3.1,21,,
+53.05.02.2014,4,Alila Selatan,sex,laki_laki,,762,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+53.05.02.2014,4,Alila Selatan,sex,perempuan,,808,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+53.05.02.2014,4,Alila Selatan,total,total,,1570,jiwa,2025,registration,total_population,3.1,21,,

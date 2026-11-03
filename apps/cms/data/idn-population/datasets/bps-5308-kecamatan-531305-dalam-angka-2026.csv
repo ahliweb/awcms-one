@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.13.05.2009,4,Belobatang,sex,laki_laki,,203,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2009,4,Belobatang,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2009,4,Belobatang,total,total,,411,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2011,4,Udak Melomata,sex,laki_laki,,140,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2011,4,Udak Melomata,sex,perempuan,,151,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2011,4,Udak Melomata,total,total,,291,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2006,4,Baolangu,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2006,4,Baolangu,sex,perempuan,,427,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2006,4,Baolangu,total,total,,850,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2007,4,Nuba Mado,sex,laki_laki,,219,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2007,4,Nuba Mado,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2007,4,Nuba Mado,total,total,,448,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2008,4,Watokobu,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2008,4,Watokobu,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2008,4,Watokobu,total,total,,897,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2010,4,Waijarang,sex,laki_laki,,427,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2010,4,Waijarang,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2010,4,Waijarang,total,total,,838,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.1017,4,Lewoleba Barat,sex,laki_laki,,1944,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.1017,4,Lewoleba Barat,sex,perempuan,,2074,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.1017,4,Lewoleba Barat,total,total,,4018,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.1004,4,Lewoleba Utara,sex,laki_laki,,1755,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.1004,4,Lewoleba Utara,sex,perempuan,,1791,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.1004,4,Lewoleba Utara,total,total,,3546,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.1001,4,Lewoleba,sex,laki_laki,,2072,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.1001,4,Lewoleba,sex,perempuan,,2098,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.1001,4,Lewoleba,total,total,,4170,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.1003,4,Lewoleba Tengah,sex,laki_laki,,1745,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.1003,4,Lewoleba Tengah,sex,perempuan,,1726,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.1003,4,Lewoleba Tengah,total,total,,3471,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.1002,4,Lewoleba Timur,sex,laki_laki,,2498,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.1002,4,Lewoleba Timur,sex,perempuan,,2499,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.1002,4,Lewoleba Timur,total,total,,4997,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2014,4,Liteulumado,sex,laki_laki,,139,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2014,4,Liteulumado,sex,perempuan,,151,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2014,4,Liteulumado,total,total,,290,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2013,4,Pada,sex,laki_laki,,803,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2013,4,Pada,sex,perempuan,,800,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2013,4,Pada,total,total,,1603,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2018,4,Bakalerek,sex,laki_laki,,191,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2018,4,Bakalerek,sex,perempuan,,193,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2018,4,Bakalerek,total,total,,384,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.1016,4,Lewoleba Selatan,sex,laki_laki,,1438,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.1016,4,Lewoleba Selatan,sex,perempuan,,1450,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.1016,4,Lewoleba Selatan,total,total,,2888,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.1015,4,Selandoro,sex,laki_laki,,3131,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.1015,4,Selandoro,sex,perempuan,,3155,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.1015,4,Selandoro,total,total,,6286,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05.2019,4,Bour,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05.2019,4,Bour,sex,perempuan,,243,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05.2019,4,Bour,total,total,,448,jiwa,2025,registration,total_population,3.1,20,,
+53.13.05,3,Nubatukan,sex,laki_laki,,17961,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.05,3,Nubatukan,sex,perempuan,,18249,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.05,3,Nubatukan,total,total,,36210,jiwa,2025,registration,total_population,3.1,20,,

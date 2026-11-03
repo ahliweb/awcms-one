@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-5305-kecamatan-530308-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.03.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Insana Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Utara Regency",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Utara Regency (https://timortengahutarakab.bps.go.id), publikasi \"Kecamatan Insana Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305040",
+  "publicationNumber": "53050.26021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/09/28/41c176498626e98a4edb93a4/kecamatan-insana-dalam-angka-2026.html",
+  "sourceFileSha256": "a8aec7f4a2c2b74c3b0f2a999ad7d70527c305edcc900f5e045a29ee6dac5746",
+  "sourceFileBytes": 14256015,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Timor Tengah Utara",
+  "csvPath": "datasets/bps-5305-kecamatan-530308-dalam-angka-2026.csv",
+  "csvSha256": "864f64a9ded3abf99ed6d1455558ec359e7c0eed17f5ebb8924fea0d89bd2899",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Insana, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Insana, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Susulaku A\": unmatched ",
+    "table 3.1: row not stored: row \"Oinbit\": unmatched ",
+    "table 3.1: row not stored: row \"Nummafo\": unmatched ",
+    "table 3.1: row not stored: row \"Susulaku A\": unmatched ",
+    "table 3.1: row not stored: row \"Oinbit\": unmatched ",
+    "table 3.1: row not stored: row \"Nummafo\": unmatched "
+  ]
+}

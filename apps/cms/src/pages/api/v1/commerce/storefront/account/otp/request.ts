@@ -18,6 +18,7 @@ import { fail, ok } from "../../../../../../../modules/_shared/api-response";
 import { requestCustomerOtp } from "../../../../../../../modules/commerce/application/customer-auth";
 import { resolveCustomerOtpChannel } from "../../../../../../../modules/commerce/application/customer-otp-channel-adapters";
 import { resolveWhatsappCustomerOtpChannel } from "../../../../../../../modules/commerce/application/whatsapp-otp-channel-adapter";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../../modules/commerce/domain/commerce-cors";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -52,7 +53,12 @@ const RATE_LIMIT_MAX_PER_EMAIL = parsePositiveIntSetting(
   "COMMERCE_ACCOUNT_OTP_RATE_LIMIT_MAX_PER_EMAIL"
 );
 
-const PREFLIGHT_ALLOWED_HEADERS = ["content-type"] as const;
+// The storefront sends an `Idempotency-Key` on its mutating calls; this route
+// ignores it (the resend window is its guard) but must not make the browser's
+// preflight refuse it.
+const PREFLIGHT_ALLOWED_HEADERS = commerceIdempotentPreflightHeaders([
+  "content-type"
+]);
 
 export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   const clientIp = resolveClientIp(request, clientAddress);

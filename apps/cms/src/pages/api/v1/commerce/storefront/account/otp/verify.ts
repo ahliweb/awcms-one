@@ -13,6 +13,8 @@ import {
 } from "../../../../../../../lib/security/request-body-limit";
 import { fail, ok } from "../../../../../../../modules/_shared/api-response";
 import { verifyCustomerOtp } from "../../../../../../../modules/commerce/application/customer-auth";
+import { parseOtpVerifyIdempotencyKey } from "../../../../../../../modules/commerce/domain/customer-otp-idempotency";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../../modules/commerce/domain/commerce-cors";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -42,7 +44,9 @@ const RATE_LIMIT_MAX_PER_IP = parsePositiveIntSetting(
   "COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_MAX_PER_IP"
 );
 
-const PREFLIGHT_ALLOWED_HEADERS = ["content-type"] as const;
+const PREFLIGHT_ALLOWED_HEADERS = commerceIdempotentPreflightHeaders([
+  "content-type"
+]);
 
 /** A coarse, non-reversible client fingerprint for `client_ip_hash` — same idea `awcms_sessions` already uses, own copy so this module has no dependency on the staff session hasher. */
 function hashClientIp(ip: string): string {
@@ -74,6 +78,24 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
     );
   }
 
+  // Issue #513 — OPTIONAL `Idempotency-Key`: `[A-Za-z0-9_-]{16,128}`, anything
+  // else is a 400 (never silently ignored, or a client with a malformed key
+  // would believe it was protected). Same key + same request replays with a
+  // fresh session; same key + another request is `409 IDEMPOTENCY_CONFLICT`.
+  const idempotencyHeader = parseOtpVerifyIdempotencyKey(
+    request.headers.get("idempotency-key")
+  );
+  if (idempotencyHeader.kind === "invalid") {
+    return fail(
+      400,
+      "IDEMPOTENCY_KEY_INVALID",
+      "Idempotency-Key must be 16 to 128 characters of A-Z, a-z, 0-9, '_' or '-'.",
+      {},
+      undefined,
+      { vary: "Origin" }
+    );
+  }
+
   const bodyRead = await readJsonBody(request);
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
@@ -100,7 +122,12 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
             request.headers.get("user-agent")
           )
         },
-        locals.correlationId
+        locals.correlationId,
+        undefined,
+        {
+          idempotencyKey:
+            idempotencyHeader.kind === "valid" ? idempotencyHeader.key : null
+        }
       )
   );
 
@@ -155,6 +182,17 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
     );
   }
 
+  if (result.kind === "idempotency_conflict") {
+    return fail(
+      409,
+      "IDEMPOTENCY_CONFLICT",
+      "Idempotency-Key was already used with a different request.",
+      {},
+      undefined,
+      corsHeaders
+    );
+  }
+
   if (result.kind === "blocked") {
     return fail(
       403,
@@ -170,7 +208,9 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
     {
       token: result.token,
       expiresAt: result.expiresAt,
-      account: result.account
+      account: result.account,
+      // Same place the booking routes put it (`{ reservation, replayed }`).
+      ...(result.replayed ? { replayed: true } : {})
     },
     {},
     corsHeaders

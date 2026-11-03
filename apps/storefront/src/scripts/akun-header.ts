@@ -16,6 +16,7 @@
 import { bacaSesi } from "../lib/akun-sesi";
 import { ROUTES } from "../config/routes";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
+import { jagaPenandaPush } from "../lib/push-jaga";
 
 const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-akun-tautan]"));
 const entries = links
@@ -44,8 +45,18 @@ if (entries.length > 0) {
   }
 
   perbarui();
-  window.addEventListener(AKUN_EVENT_NAME, perbarui);
+  // Issue #431: a browser that enabled notifications and then lost its session
+  // (expiry, a 401, a sign-out in another tab) stops receiving for it. A single
+  // `localStorage` read when nothing was ever enabled.
+  void jagaPenandaPush();
+  window.addEventListener(AKUN_EVENT_NAME, () => {
+    perbarui();
+    void jagaPenandaPush();
+  });
   window.addEventListener("storage", (event) => {
-    if (event.key === null || event.key === "awcms-one:akun:v1") perbarui();
+    if (event.key === null || event.key === "awcms-one:akun:v1") {
+      perbarui();
+      void jagaPenandaPush();
+    }
   });
 }

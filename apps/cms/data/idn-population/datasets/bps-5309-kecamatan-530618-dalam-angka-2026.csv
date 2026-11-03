@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.18.2002,4,Kokotobo,sex,laki_laki,,602,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2002,4,Kokotobo,sex,perempuan,,586,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2002,4,Kokotobo,total,total,,1188,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2008,4,Baya,sex,laki_laki,,453,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2008,4,Baya,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2008,4,Baya,total,total,,934,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2007,4,Lewobele,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2007,4,Lewobele,sex,perempuan,,502,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2007,4,Lewobele,total,total,,1027,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2001,4,Horowura,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2001,4,Horowura,sex,perempuan,,561,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2001,4,Horowura,total,total,,1113,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2003,4,Lite,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2003,4,Lite,sex,perempuan,,759,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2003,4,Lite,total,total,,1506,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2004,4,Kenotan,sex,laki_laki,,1067,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2004,4,Kenotan,sex,perempuan,,1098,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2004,4,Kenotan,total,total,,2165,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2005,4,Nubalema,sex,laki_laki,,381,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2005,4,Nubalema,sex,perempuan,,407,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2005,4,Nubalema,total,total,,788,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2009,4,Bidara,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2009,4,Bidara,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2009,4,Bidara,total,total,,749,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2006,4,Wewit,sex,laki_laki,,647,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2006,4,Wewit,sex,perempuan,,674,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2006,4,Wewit,total,total,,1321,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2012,4,Lewopao,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2012,4,Lewopao,sex,perempuan,,327,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2012,4,Lewopao,total,total,,640,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2011,4,Hoko Horowura,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2011,4,Hoko Horowura,sex,perempuan,,356,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2011,4,Hoko Horowura,total,total,,687,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2010,4,Oe Sayang,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2010,4,Oe Sayang,sex,perempuan,,486,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2010,4,Oe Sayang,total,total,,972,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18.2013,4,Nubalema Dua,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18.2013,4,Nubalema Dua,sex,perempuan,,515,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18.2013,4,Nubalema Dua,total,total,,1011,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18,3,Kecamatan Adonara Tengah,sex,laki_laki,,6948,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+53.06.18,3,Kecamatan Adonara Tengah,sex,perempuan,,7153,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+53.06.18,3,Kecamatan Adonara Tengah,total,total,,14101,jiwa,2025,registration,total_population,3.1,18,,
+53.06.18,3,Adonara Tengah,age_group,0-40,laki_laki,490,jiwa,2025,registration,total_population,3.2,20,,00-40
+53.06.18,3,Adonara Tengah,age_group,0-40,perempuan,437,jiwa,2025,registration,total_population,3.2,20,,00-40
+53.06.18,3,Adonara Tengah,age_group,0-40,,927,jiwa,2025,registration,total_population,3.2,20,,00-40
+53.06.18,3,Adonara Tengah,age_group,5-9,laki_laki,738,jiwa,2025,registration,total_population,3.2,20,,05-09
+53.06.18,3,Adonara Tengah,age_group,5-9,perempuan,736,jiwa,2025,registration,total_population,3.2,20,,05-09
+53.06.18,3,Adonara Tengah,age_group,5-9,,1474,jiwa,2025,registration,total_population,3.2,20,,05-09
+53.06.18,3,Adonara Tengah,age_group,10-14,laki_laki,847,jiwa,2025,registration,total_population,3.2,20,,10-14
+53.06.18,3,Adonara Tengah,age_group,10-14,perempuan,730,jiwa,2025,registration,total_population,3.2,20,,10-14
+53.06.18,3,Adonara Tengah,age_group,10-14,,1577,jiwa,2025,registration,total_population,3.2,20,,10-14
+53.06.18,3,Adonara Tengah,age_group,15-19,laki_laki,832,jiwa,2025,registration,total_population,3.2,20,,15-19
+53.06.18,3,Adonara Tengah,age_group,15-19,perempuan,794,jiwa,2025,registration,total_population,3.2,20,,15-19
+53.06.18,3,Adonara Tengah,age_group,15-19,,1626,jiwa,2025,registration,total_population,3.2,20,,15-19
+53.06.18,3,Adonara Tengah,age_group,20-24,laki_laki,780,jiwa,2025,registration,total_population,3.2,20,,20-24
+53.06.18,3,Adonara Tengah,age_group,20-24,perempuan,729,jiwa,2025,registration,total_population,3.2,20,,20-24
+53.06.18,3,Adonara Tengah,age_group,20-24,,1509,jiwa,2025,registration,total_population,3.2,20,,20-24
+53.06.18,3,Adonara Tengah,age_group,25-29,laki_laki,762,jiwa,2025,registration,total_population,3.2,20,,25-29
+53.06.18,3,Adonara Tengah,age_group,25-29,perempuan,656,jiwa,2025,registration,total_population,3.2,20,,25-29
+53.06.18,3,Adonara Tengah,age_group,25-29,,1418,jiwa,2025,registration,total_population,3.2,20,,25-29
+53.06.18,3,Adonara Tengah,age_group,30-34,laki_laki,563,jiwa,2025,registration,total_population,3.2,20,,30-34
+53.06.18,3,Adonara Tengah,age_group,30-34,perempuan,565,jiwa,2025,registration,total_population,3.2,20,,30-34
+53.06.18,3,Adonara Tengah,age_group,30-34,,1128,jiwa,2025,registration,total_population,3.2,20,,30-34
+53.06.18,3,Adonara Tengah,age_group,35-39,laki_laki,541,jiwa,2025,registration,total_population,3.2,20,,35-39
+53.06.18,3,Adonara Tengah,age_group,35-39,perempuan,548,jiwa,2025,registration,total_population,3.2,20,,35-39
+53.06.18,3,Adonara Tengah,age_group,35-39,,1089,jiwa,2025,registration,total_population,3.2,20,,35-39
+53.06.18,3,Adonara Tengah,age_group,40-44,laki_laki,475,jiwa,2025,registration,total_population,3.2,20,,40-44
+53.06.18,3,Adonara Tengah,age_group,40-44,perempuan,494,jiwa,2025,registration,total_population,3.2,20,,40-44
+53.06.18,3,Adonara Tengah,age_group,40-44,,969,jiwa,2025,registration,total_population,3.2,20,,40-44
+53.06.18,3,Adonara Tengah,age_group,45-49,laki_laki,407,jiwa,2025,registration,total_population,3.2,20,,45-49
+53.06.18,3,Adonara Tengah,age_group,45-49,perempuan,427,jiwa,2025,registration,total_population,3.2,20,,45-49
+53.06.18,3,Adonara Tengah,age_group,45-49,,834,jiwa,2025,registration,total_population,3.2,20,,45-49
+53.06.18,3,Adonara Tengah,age_group,50-54,laki_laki,342,jiwa,2025,registration,total_population,3.2,20,,50-54
+53.06.18,3,Adonara Tengah,age_group,50-54,perempuan,414,jiwa,2025,registration,total_population,3.2,20,,50-54
+53.06.18,3,Adonara Tengah,age_group,50-54,,756,jiwa,2025,registration,total_population,3.2,20,,50-54
+53.06.18,3,Adonara Tengah,age_group,55-59,laki_laki,312,jiwa,2025,registration,total_population,3.2,20,,55-59
+53.06.18,3,Adonara Tengah,age_group,55-59,perempuan,353,jiwa,2025,registration,total_population,3.2,20,,55-59
+53.06.18,3,Adonara Tengah,age_group,55-59,,665,jiwa,2025,registration,total_population,3.2,20,,55-59
+53.06.18,3,Adonara Tengah,age_group,60-64,laki_laki,262,jiwa,2025,registration,total_population,3.2,20,,60-64
+53.06.18,3,Adonara Tengah,age_group,60-64,perempuan,297,jiwa,2025,registration,total_population,3.2,20,,60-64
+53.06.18,3,Adonara Tengah,age_group,60-64,,559,jiwa,2025,registration,total_population,3.2,20,,60-64
+53.06.18,3,Adonara Tengah,age_group,65-69,laki_laki,212,jiwa,2025,registration,total_population,3.2,20,,65-69
+53.06.18,3,Adonara Tengah,age_group,65-69,perempuan,244,jiwa,2025,registration,total_population,3.2,20,,65-69
+53.06.18,3,Adonara Tengah,age_group,65-69,,456,jiwa,2025,registration,total_population,3.2,20,,65-69
+53.06.18,3,Adonara Tengah,age_group,70-74,laki_laki,146,jiwa,2025,registration,total_population,3.2,20,,70-74
+53.06.18,3,Adonara Tengah,age_group,70-74,perempuan,163,jiwa,2025,registration,total_population,3.2,20,,70-74
+53.06.18,3,Adonara Tengah,age_group,70-74,,309,jiwa,2025,registration,total_population,3.2,20,,70-74
+53.06.18,3,Adonara Tengah,age_group,75+,laki_laki,176,jiwa,2025,registration,total_population,3.2,20,,>75
+53.06.18,3,Adonara Tengah,age_group,75+,perempuan,232,jiwa,2025,registration,total_population,3.2,20,,>75
+53.06.18,3,Adonara Tengah,age_group,75+,,408,jiwa,2025,registration,total_population,3.2,20,,>75
+53.06.18,3,Adonara Tengah,sex,laki_laki,,7885,jiwa,2025,registration,total_population,3.2,20,,Laki-Laki
+53.06.18,3,Adonara Tengah,sex,perempuan,,7819,jiwa,2025,registration,total_population,3.2,20,,Perempuan
+53.06.18,3,Adonara Tengah,total,total,,15704,jiwa,2025,registration,total_population,3.2,20,,

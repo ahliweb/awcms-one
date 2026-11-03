@@ -11,7 +11,7 @@ import { join } from "node:path";
 
 import { ageBandKey, indonesianPart, parseCell, snakeCase } from "../tools/bps-population/extract/cells.ts";
 import { dedupe, runChecks, toScaled } from "../tools/bps-population/extract/checks.ts";
-import { parseFrontMatter, coverageOfDomain, attributionSentence } from "../tools/bps-population/extract/meta.ts";
+import { parseFrontMatter, coverageOfDomain, attributionSentence, districtCoverMismatch } from "../tools/bps-population/extract/meta.ts";
 import { csvField, rowsToCsv, CSV_HEADER } from "../tools/bps-population/extract/output.ts";
 import {
   buildIndex,
@@ -32,6 +32,16 @@ const fixture = (name) => readFileSync(FIX + name, "utf8");
 const pageOf = (name, no = 1) => parseBboxPages(fixture(name), no)[0];
 const index = buildIndex(parseWilayahSql(readFileSync(WILAYAH, "utf8")));
 const ctxOf = (name, coverage) => ({ infos: [analysePage(pageOf(name))], index, coverage });
+
+test("district PDF cover must name the selected district", () => {
+  const cover = "KECAMATAN MALAKA TENGAH DALAM ANGKA 2026";
+  assert.equal(districtCoverMismatch(cover, "Malaka Tengah"), null);
+  assert.match(districtCoverMismatch(cover, "Malaka Barat"), /Malaka Tengah.*Malaka Barat/i);
+  assert.equal(districtCoverMismatch("KECAMATAN SASITA MEAN DALAM ANGKA", "Sasitamean"), null);
+  assert.equal(districtCoverMismatch("KECAMATAN ht tp KELAPA LIMA DALAM ANGKA", "Kelapa Lima"), null);
+  assert.equal(districtCoverMismatch("KECAMATAN XXXXX DALAM ANGKA", "Atadei"), null);
+  assert.match(districtCoverMismatch(`${cover} KECAMATAN MALAKA BARAT DALAM ANGKA`, "Malaka Barat"), /MALAKA TENGAH/);
+});
 
 describe("number parsing", () => {
   test("Indonesian formats are read digit for digit", () => {

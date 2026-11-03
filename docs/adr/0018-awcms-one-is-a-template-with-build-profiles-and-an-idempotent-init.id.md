@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)
 
-<!-- i18n-source-hash: sha256:23e0d8a495e328095f24b5ce8061659a525415aa50bdc365fc07b031bdd79493 -->
+<!-- i18n-source-hash: sha256:72c0a33459b0b1f072494bac1e3f8a4087b32d3f3621cafd3bd5c31963bb934d -->
 
 # ADR-0018 — awcms-one adalah sebuah template, dengan profil build dan `template:init` yang idempoten
 
@@ -9,7 +9,7 @@
 - **Status:** Diterima
 - **Tanggal:** 20 September 2026
 - **Pengambil keputusan:** ahliweb
-- **Terkait:** [ADR-0001](0001-git-subtree-with-full-history-for-apps-cms.md) (embed subtree yang tidak boleh disentuh `template:init`), [ADR-0002](0002-static-output-with-build-time-fetch-for-the-storefront.md) (output statis, fetch saat build — mekanisme tempat profil build mengait), [ADR-0005](0005-product-urls-match-the-live-sites-shape.md) (bentuk URL yang tidak boleh diganggu sebuah profil), [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) (seam runtime anonim yang menjadi tumpuan halaman commerce setiap profil); issue [#135](https://github.com/ahliweb/awcms-one/issues/135) (epic), [#136](https://github.com/ahliweb/awcms-one/issues/136) (ADR ini), [#137](https://github.com/ahliweb/awcms-one/issues/137) (profil storefront + matriks CI), [#138](https://github.com/ahliweb/awcms-one/issues/138) (`template:init`), [#139](https://github.com/ahliweb/awcms-one/issues/139) (seed per profil), [#140](https://github.com/ahliweb/awcms-one/issues/140) (sapuan dokumentasi + rilis)
+- **Terkait:** [ADR-0001](0001-git-subtree-with-full-history-for-apps-cms.md) (embed subtree yang tidak boleh disentuh `template:init`), [ADR-0002](0002-static-output-with-build-time-fetch-for-the-storefront.md) (output statis, fetch saat build — mekanisme tempat profil build mengait), [ADR-0005](0005-product-urls-match-the-live-sites-shape.md) (bentuk URL yang tidak boleh diganggu sebuah profil), [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) (seam runtime anonim yang menjadi tumpuan halaman commerce setiap profil); issue [#135](https://github.com/ahliweb/awcms-one/issues/135) (epic), [#136](https://github.com/ahliweb/awcms-one/issues/136) (ADR ini), [#137](https://github.com/ahliweb/awcms-one/issues/137) (profil storefront + matriks CI), [#138](https://github.com/ahliweb/awcms-one/issues/138) (`template:init`), [#139](https://github.com/ahliweb/awcms-one/issues/139) (seed per profil), [#140](https://github.com/ahliweb/awcms-one/issues/140) (sapuan dokumentasi + rilis); issue [#476](https://github.com/ahliweb/awcms-one/issues/476) ([daftar periksa pasca-init](../template.id.md#daftar-periksa-pasca-init) mendata apa yang dibiarkan manual oleh daftar tulis-ulang D4)
 
 ## Konteks
 

@@ -4102,7 +4102,43 @@ msgstr ""
 msgid "Image file"
 msgstr ""
 
-msgid "Accepted: {types}. Maximum {max} kB."
+msgid "Accepted: {types}. Maximum {max} per image. A JPEG, PNG or WebP over the limit is compressed in your browser before it is sent, which removes camera and location metadata. A GIF is never changed, so a GIF over the limit is refused."
+msgstr ""
+
+msgid "Compressing the image in your browser ({original})…"
+msgstr ""
+
+msgid "Compressed from {original} to {final} before upload. Camera and location metadata (EXIF) is not kept."
+msgstr ""
+
+msgid "This GIF is {original}, over the {cap} limit. GIF files are never re-compressed because that would remove the animation. Choose a smaller GIF, or use a JPEG, PNG or WebP image."
+msgstr ""
+
+msgid "This animated image is {original}, over the {cap} limit. Animated images are never re-compressed because that would remove the animation. Choose a smaller file, or use a still JPEG, PNG or WebP image."
+msgstr ""
+
+msgid "This file is {original}, over the {cap} limit, and its type cannot be compressed in the browser. Nothing was uploaded."
+msgstr ""
+
+msgid "Even at the smallest size tried, the image is still {smallest}, over the {cap} limit. Choose a smaller image. Nothing was uploaded."
+msgstr ""
+
+msgid "This image is {original}, over the {cap} limit, and this browser cannot compress images. Use a current version of Chrome, Edge, Firefox or Safari, or choose a smaller image. Nothing was uploaded."
+msgstr ""
+
+msgid "This image could not be read, so it could not be compressed to fit the {cap} limit. Nothing was uploaded."
+msgstr ""
+
+msgid "This image has too many pixels to compress in the browser. Resize it first, or choose a smaller image. Nothing was uploaded."
+msgstr ""
+
+msgid "This browser cannot write the image formats needed to compress this file to fit the {cap} limit. Nothing was uploaded."
+msgstr ""
+
+msgid "This image has transparency and this browser cannot write WebP, so it cannot be compressed without losing the transparency. Choose a smaller image. Nothing was uploaded."
+msgstr ""
+
+msgid "This file could not be checked against the {cap} limit. Nothing was uploaded."
 msgstr ""
 
 msgid "Upload"
@@ -11653,6 +11689,21 @@ msgstr ""
 msgid "Loyalty points balance"
 msgstr ""
 
+msgid "Number of confirmed bookings"
+msgstr ""
+
+msgid "Number of stays"
+msgstr ""
+
+msgid "Last stay (arrival)"
+msgstr ""
+
+msgid "Number of no-shows"
+msgstr ""
+
+msgid "Number of cancellations by the customer"
+msgstr ""
+
 msgid "is"
 msgstr ""
 
@@ -11764,7 +11815,7 @@ msgstr ""
 msgid "Condition value"
 msgstr ""
 
-msgid "Window in days (orders and spend only)"
+msgid "Window in days (counts and spend only)"
 msgstr ""
 
 msgid "days"
@@ -12209,6 +12260,9 @@ msgid "Modules register their templates in code. Every template is an operationa
 msgstr ""
 
 msgid "Telegram Delivery"
+msgstr ""
+
+msgid "Channel Accounts"
 msgstr ""
 
 msgid "Tenant suspended"
@@ -14031,7 +14085,7 @@ msgstr ""
 msgid "Oldest hold"
 msgstr ""
 
-msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund, a cancellation or a no-show lands on that same day. The balance still owed on open orders is shown beside the waterfall, not subtracted. Held space is not revenue."
+msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund counts when it is decided, not when the money moves, and lands on that same day with any cancellation or no-show. Tax, shipping and insurance are lowered by their share of a refund and are not revenue. The balance still owed on open orders and the refund still to be paid out are shown beside the waterfall, not subtracted. This is an operational sales measure, not a financial-statement figure: the books of record are your accounting system. Held space is not revenue."
 msgstr ""
 
 msgid "Value on hold"
@@ -14040,5 +14094,321 @@ msgstr ""
 msgid "{count} of {stays} ({percent}%)"
 msgstr ""
 
-msgid "{paidBack} paid back, {uncollected} uncollected (no money moved)"
+msgid "{paidBack} paid back, {payable} payable, {uncollected} uncollected (no money moved)"
 msgstr ""
+
+# booking revenue #478 (refunds on a decision basis, cash view)
+
+msgid "Companions"
+msgstr ""
+
+msgid "Refund payable"
+msgstr ""
+
+msgid "Tax {amount}"
+msgstr ""
+
+msgid "Shipping {amount}"
+msgstr ""
+
+msgid "Insurance {amount}"
+msgstr ""
+
+msgid "Refunds paid out (cash view)"
+msgstr ""
+
+msgid "Refunds paid out (cash view): money that went back to customers, by the day it was paid out. This is a cash view and is separate from the table above, which counts a refund on the day the order was paid."
+msgstr ""
+
+msgid "Day paid out"
+msgstr ""
+
+msgid "Refund payments"
+msgstr ""
+
+msgid "Paid out"
+msgstr ""
+
+msgid "No booking refunds were paid out in this period"
+msgstr ""
+
+msgid "Front desk"
+msgstr ""
+
+msgid "Go to the reservation code"
+msgstr ""
+
+msgid "Go to the customer contact"
+msgstr ""
+
+msgid "Collect the balance"
+msgstr ""
+
+msgid "Look up another reservation"
+msgstr ""
+
+msgid "Working…"
+msgstr ""
+
+msgid "Looking up the reservation…"
+msgstr ""
+
+msgid "Reservation {code} found."
+msgstr ""
+
+msgid "Enter the reservation code."
+msgstr ""
+
+msgid "That is not a reservation code. Use the full code: letters, digits and dashes."
+msgstr ""
+
+msgid "Enter the customer's phone number or e-mail address."
+msgstr ""
+
+msgid "That is not a valid phone number or e-mail address."
+msgstr ""
+
+msgid "Reservation not found."
+msgstr ""
+
+msgid "Too many lookups. Wait a moment, then try again."
+msgstr ""
+
+msgid "Could not look up the reservation. Please try again."
+msgstr ""
+
+msgid "The server could not be reached. Check the connection and try again."
+msgstr ""
+
+msgid "Could not complete that. Please try again."
+msgstr ""
+
+msgid "Open a register session before taking payments or checking guests in."
+msgstr ""
+
+msgid "This register's session is being closed and accepts no more."
+msgstr ""
+
+msgid "Collect the remaining balance first."
+msgstr ""
+
+msgid "Nothing is owed on this reservation."
+msgstr ""
+
+msgid "The non-cash payments are more than the balance. Only a cash payment may exceed it, as change."
+msgstr ""
+
+msgid "The reservation status changed. The card has been refreshed."
+msgstr ""
+
+msgid "It is too early to check this guest in."
+msgstr ""
+
+msgid "That request was already sent with different details. Check the card and try again."
+msgstr ""
+
+msgid "Add at least one payment line with an amount."
+msgstr ""
+
+msgid "Only one cash line is allowed."
+msgstr ""
+
+msgid "Check-in complete. Reservation {code} is now checked in."
+msgstr ""
+
+msgid "Check-out complete. Reservation {code} is now completed."
+msgstr ""
+
+msgid "Balance of {amount} received."
+msgstr ""
+
+msgid "The order is paid in full."
+msgstr ""
+
+msgid "{amount} is still owed."
+msgstr ""
+
+msgid "Change to hand back: {amount}."
+msgstr ""
+
+msgid "Recorded against your account on register {register}."
+msgstr ""
+
+msgid "Cleared. Enter another reservation code."
+msgstr ""
+
+msgid "1 night"
+msgstr ""
+
+msgid "{count} nights"
+msgstr ""
+
+msgid "This store requires the balance to be paid before check-in."
+msgstr ""
+
+msgid "This store allows check-in while a balance is owed; the balance stays due."
+msgstr ""
+
+msgid "You do not have permission to do this."
+msgstr ""
+
+msgid "Open a register session first."
+msgstr ""
+
+msgid "Only a confirmed reservation can be checked in."
+msgstr ""
+
+msgid "Only a checked-in guest can be checked out."
+msgstr ""
+
+msgid "This reservation can no longer take a payment."
+msgstr ""
+
+msgid "Find a reservation by its code together with the customer's phone or e-mail, take the balance, then check the guest in or out. Nothing you look up is kept in this browser."
+msgstr ""
+
+msgid "Taking payments and checking guests in need register sessions, and the register feature is off for this store. You can look a reservation up, but not change it."
+msgstr ""
+
+msgid "Find a reservation"
+msgstr ""
+
+msgid "Reservation code"
+msgstr ""
+
+msgid "Type the code, or scan it, and press Enter."
+msgstr ""
+
+msgid "Customer phone or e-mail"
+msgstr ""
+
+msgid "Both are needed. There is no search by name, date or part of a code, so the till cannot be used to list guests."
+msgstr ""
+
+msgid "Find reservation"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "There is no list of arrivals. A guest who has no reservation is an ordinary walk-in sale."
+msgstr ""
+
+msgid "Ring up a walk-in sale"
+msgstr ""
+
+msgid "Guest"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Stay"
+msgstr ""
+
+msgid "Paid so far"
+msgstr ""
+
+msgid "Check in guest"
+msgstr ""
+
+msgid "Check out guest"
+msgstr ""
+
+msgid "Collect balance"
+msgstr ""
+
+msgid "Payment applied"
+msgstr ""
+
+msgid "Change to hand back"
+msgstr ""
+
+msgid "Still owed after this payment"
+msgstr ""
+
+msgid "Every check-in, check-out and payment is recorded with your name and the register session."
+msgstr ""
+
+msgid "Open the audit trail"
+msgstr ""
+
+msgid "These are the sale screen's shortcuts, used here for the same jobs. Change them on the New sale screen."
+msgstr ""
+
+msgid "The front desk needs the booking feature, point of sale and permission to look up a reservation."
+msgstr ""
+
+msgid "No results for “{query}”"
+msgstr ""
+
+msgid "No results match the active filters"
+msgstr ""
+
+msgid "Check the spelling, try fewer words, or clear the filters."
+msgstr ""
+
+msgid "Clear filters"
+msgstr ""
+
+msgid "sort ascending"
+msgstr ""
+
+msgid "sort descending"
+msgstr ""
+
+msgid "No rows to show"
+msgstr ""
+
+msgid "Showing {from}–{to}"
+msgstr ""
+
+msgid "Showing {from}–{to} of about {total}"
+msgstr ""
+
+msgid "Showing {from}–{to} of {total}"
+msgstr ""
+
+msgid "Rows per page"
+msgstr ""
+
+msgid "Show {size} rows per page"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Search: {value}"
+msgstr ""
+
+msgid "Status: {value}"
+msgstr ""
+
+msgid "Role: {value}"
+msgstr ""
+
+msgid "Search users"
+msgstr ""
+
+msgid "All roles"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Ascending"
+msgstr ""
+
+msgid "Descending"
+msgstr ""
+
+msgid "Active filters"
+msgstr ""
+
+msgid "Remove filter: {label}"
+msgstr ""
+
+msgid "{count} user matches your search and filters"
+msgid_plural "{count} users match your search and filters"
+msgstr[0] ""
+msgstr[1] ""

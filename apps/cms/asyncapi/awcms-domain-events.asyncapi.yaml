@@ -269,8 +269,13 @@ channels:
       nothing. Producer: `whatsapp-delivery/application/whatsapp-enqueue.ts`'s
       `enqueueWhatsappMessage`. Payload: `messageId`, `templateKey`, `purpose`
       (transactional | security | marketing), `recipientMasked`, `status`
-      (queued). Never a phone number, message body or template variable; the
-      caller's own record is joined through the envelope `correlationId`.
+      (queued), and, since Issue #1141 (ADR-0148 section 4), `senderAccountId`
+      (the tenant-owned sender account snapshotted on the row, a uuid; the key is
+      ABSENT for the deployment sender, so the payload of a message that names no
+      sender is byte for byte what it was). Never a phone number, message body,
+      template variable, token or device id; the caller's own record is joined
+      through the envelope `correlationId`. The addition is optional and the
+      event version stays 1.0: a consumer that ignores unknown keys is unaffected.
   awcms.whatsapp.message.sent:
     address: awcms.whatsapp.message.sent
     messages:
@@ -280,7 +285,8 @@ channels:
       The provider accepted the WhatsApp message (ADR-0133, Issue #963). Producer:
       `whatsapp-delivery/application/whatsapp-dispatch.ts`, in the finalise
       transaction after the provider call returned. Same payload shape as
-      `message.queued` with `status` sent.
+      `message.queued` with `status` sent (including `senderAccountId` for a
+      tenant-owned sender). "Accepted" by the provider is never "delivered".
   awcms.whatsapp.message.failed:
     address: awcms.whatsapp.message.failed
     messages:
@@ -291,7 +297,11 @@ channels:
       retryable provider rejection, exhausted retries, or a template that is no
       longer registered. Producer: `whatsapp-delivery/application/whatsapp-
       dispatch.ts`. Same payload shape as `message.queued` with `status` failed
-      and a coarse `failureCode`.
+      and a coarse `failureCode` (including `senderAccountId` for a tenant-owned
+      sender). Since Issue #1141 `failureCode` may be `sender_unavailable`: the
+      row's sender was revoked, disabled, disconnected, unapproved or has no
+      adapter, and the message was NOT sent through any other sender, number or
+      provider.
   awcms.whatsapp.message.expired:
     address: awcms.whatsapp.message.expired
     messages:
@@ -1113,6 +1123,19 @@ channels:
       `amount` and `settledVia` (`ledger` | `provider` | `offline` |
       `store_credit`) - never a provider reference, name or phone. A failed
       attempt is an audit event, not a domain event.
+  awcms.commerce.conversation.store_replied:
+    address: awcms.commerce.conversation.store_replied
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff reply was stored in a customer conversation (Issue #432, ADR-0048
+      Q4). Producer: `commerce/application/conversation-directory.ts`'s
+      `postStoreReply`, in the same transaction as the stored message.
+      Aggregate: the conversation (`commerce.conversation`). Payload:
+      `conversationId` only - never the subject, the body or the customer.
+      Consumed by the customer Web Push enqueuer
+      (`commerce.customer_push_enqueuer`, purpose `support_replies`).
   awcms.commerce.quotation.accepted:
     address: awcms.commerce.quotation.accepted
     messages:
@@ -1789,6 +1812,12 @@ operations:
       $ref: "#/channels/awcms.commerce.refund.settled"
     messages:
       - $ref: "#/channels/awcms.commerce.refund.settled/messages/DomainEvent"
+  publishCommerceConversationStoreReplied:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.conversation.store_replied"
+    messages:
+      - $ref: "#/channels/awcms.commerce.conversation.store_replied/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

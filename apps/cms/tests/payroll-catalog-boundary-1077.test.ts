@@ -264,7 +264,7 @@ describe("M1 - a payroll table renamed out of the family", () => {
     const files = [
       {
         name: "1.sql",
-        sql: "CREATE TABLE awcms_hr_commission_rules (id uuid); CREATE TABLE awcms_hr_commission_accruals (id uuid);"
+        sql: "CREATE TABLE awcms_hr_commission_rules (id uuid); CREATE TABLE awcms_hr_commission_accruals (id uuid); CREATE TABLE awcms_hr_commission_intents (id uuid); CREATE TABLE awcms_hr_commission_intake_settings (tenant_id uuid);"
       }
     ];
 
@@ -272,7 +272,10 @@ describe("M1 - a payroll table renamed out of the family", () => {
       findPayrollOwnershipGaps(
         [
           { table: "awcms_hr_commission_accruals", source: "a" },
-          { table: "awcms_hr_commission_rules", source: "b" }
+          { table: "awcms_hr_commission_rules", source: "b" },
+          // ADR-0147 / Issue #1189: owned by hr_commission, deliberately not pay data.
+          { table: "awcms_hr_commission_intents", source: "c" },
+          { table: "awcms_hr_commission_intake_settings", source: "d" }
         ],
         files
       )
@@ -292,7 +295,11 @@ describe("M1 - a payroll table renamed out of the family", () => {
       findPayrollOwnershipGaps([], [], { awcms_gone: "reason" }).join()
     ).toContain("stale");
     expect(Object.keys(PAYROLL_OWNED_NON_PAYROLL_TABLES)).toEqual([
-      "awcms_hr_commission_rules"
+      "awcms_hr_commission_rules",
+      // ADR-0147 / Issue #1189: the intake queue and its switch are owned by
+      // hr_commission but are not pay data; PAYROLL_CATALOG_EXEMPTIONS is still empty.
+      "awcms_hr_commission_intents",
+      "awcms_hr_commission_intake_settings"
     ]);
   });
 });
@@ -1080,16 +1087,12 @@ DROP FUNCTION awcms_cp();`).join()
     expect(performance.now() - started).toBeLessThan(2000);
   });
 
-  test("the port adapter is a guarded import whose only allowed importer is commerce's composition seam", () => {
+  test("the port adapter is a guarded import with no allowed importer", () => {
     const entry = PAYROLL_READ_FUNCTION_IMPORTS.find((candidate) =>
       candidate.functions.includes("createCommissionAccrualPort")
     );
 
-    // LOCAL REGISTRY ROW (awcms-one #391): upstream pinned `[]`; commerce's
-    // single composition seam is the first importer the entry's comment asks for.
-    expect(entry?.allowedImporters).toEqual([
-      "src/modules/commerce/application/commission-attribution-port.ts"
-    ]);
+    expect(entry?.allowedImporters).toEqual([]);
 
     const source =
       'import { createCommissionAccrualPort } from "../../../../modules/hr-commission/application/hr-commission-accrual-port-adapter";\nexport const x = createCommissionAccrualPort;';

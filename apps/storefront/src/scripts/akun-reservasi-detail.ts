@@ -30,6 +30,8 @@
  */
 import { ambilDetailReservasi, ambilKuotaPembatalan, ambilPesananAkunByKode, batalkanReservasi } from "../lib/akun-klien";
 import { labelTombolBayar, mulaiPembayaranGateway } from "../lib/booking-aksi";
+import { buatPenjagaTunggal, penjagaUntuk } from "../lib/kirim-tunggal";
+import { buatPengelolaKunci } from "../lib/kunci-idempotensi";
 import {
   alasanTidakBisaBatal,
   bandingkanUang,
@@ -123,8 +125,11 @@ export function buatDetailReservasi(
   // ---- dialog state -------------------------------------------------------
   let opener: HTMLElement | null = null;
   let shownQuote: KuotaPembatalan | null = null;
-  let busy = false;
-  let attempt: { print: string; key: string } | null = null;
+  // Issue #513: the shared single-flight guard and key manager (this file used
+  // its own `busy` flag and key bookkeeping before). The dialog owns its own
+  // control states (`setDialogBusy`), so only the pure core is used here.
+  const penjaga = buatPenjagaTunggal();
+  const kunci = buatPengelolaKunci();
   /** A cancel whose answer never arrived: the server may or may not have cancelled. Its retry REPLAYS the same request (same figure, same key) instead of asking for a new quote, which would refuse a reservation that is in fact already cancelled. */
   let inDoubt: { code: string; refund: string } | null = null;
 
@@ -287,7 +292,7 @@ export function buatDetailReservasi(
       button.type = "button";
       button.className = "btn btn--primary";
       button.textContent = labelTombolBayar(purpose);
-      button.addEventListener("click", () => void bayar(purpose, button));
+      button.addEventListener("click", () => void bayar(purpose));
       actionsEl.appendChild(button);
     }
     const reason = alasanTidakBisaBatal(status);
@@ -313,19 +318,27 @@ export function buatDetailReservasi(
     updateHold();
   }
 
-  async function bayar(purpose: "full" | "deposit" | "balance", button: HTMLButtonElement): Promise<void> {
+  // Issue #513: the gateway session is idempotent per order server-side (no key).
+  const bayarGuard = penjagaUntuk(actionsEl, { selektor: "button" });
+
+  async function bayar(purpose: "full" | "deposit" | "balance"): Promise<void> {
     if (!current) return;
-    button.disabled = true;
-    actionStatusEl.textContent = "Membuka halaman pembayaran...";
-    const result = await mulaiPembayaranGateway(current.orderCode, purpose);
-    if (result.kind === "dialihkan") return;
-    button.disabled = false;
-    if (result.kind === "belum-masuk") {
-      actionStatusEl.textContent = "";
-      hooks.onBelumMasuk();
-      return;
-    }
-    actionStatusEl.textContent = result.message;
+    const orderCode = current.orderCode;
+    await bayarGuard.jalankan(
+      async () => {
+        actionStatusEl.textContent = "Membuka halaman pembayaran...";
+        const result = await mulaiPembayaranGateway(orderCode, purpose);
+        if (result.kind === "dialihkan") return true;
+        if (result.kind === "belum-masuk") {
+          actionStatusEl.textContent = "";
+          hooks.onBelumMasuk();
+          return false;
+        }
+        actionStatusEl.textContent = result.message;
+        return false;
+      },
+      { kunciBila: (dialihkan) => dialihkan }
+    );
   }
 
   // ---- the hold countdown and the polite re-read -------------------------
@@ -391,7 +404,6 @@ export function buatDetailReservasi(
   }
 
   function setDialogBusy(value: boolean): void {
-    busy = value;
     keepButton.disabled = value;
     confirmButton.disabled = value || shownQuote === null || rincianPembatalan(shownQuote, formatPrice).tanpaKebijakan;
   }
@@ -492,9 +504,8 @@ export function buatDetailReservasi(
   async function bukaDialog(trigger: HTMLElement): Promise<void> {
     if (kode === null) return;
     opener = trigger;
-    attempt = null;
+    kunci.sesudahBerhasil();
     inDoubt = null;
-    busy = false;
     keepButton.disabled = false;
     keepButton.textContent = KEEP_LABEL;
     if (typeof dialog.showModal === "function") dialog.showModal();
@@ -510,9 +521,7 @@ export function buatDetailReservasi(
 
   /** Same figure, same key; a different figure (or request) takes a fresh one. */
   function kunciUntuk(code: string, refund: string): string {
-    const print = `${code}|${refund}`;
-    if (attempt === null || attempt.print !== print) attempt = { print, key: crypto.randomUUID() };
-    return attempt.key;
+    return kunci.untuk(`${code}|${refund}`);
   }
 
   function sama(a: KuotaPembatalan, b: KuotaPembatalan): boolean {
@@ -521,8 +530,13 @@ export function buatDetailReservasi(
     return refund === 0 && paid === 0 && a.policySource === b.policySource;
   }
 
+  /** A second tap while a confirmation is in flight is ignored (not queued). */
   async function konfirmasi(): Promise<void> {
-    if (busy || kode === null || shownQuote === null) return;
+    await penjaga.jalankan(konfirmasiDalam);
+  }
+
+  async function konfirmasiDalam(): Promise<void> {
+    if (kode === null || shownQuote === null) return;
     const code = kode;
     const shown = shownQuote;
     setDialogBusy(true);
@@ -556,13 +570,14 @@ export function buatDetailReservasi(
     cancelStatus.textContent = "Membatalkan reservasi...";
     try {
       const result = await batalkanReservasi(code, fresh.computedRefund, kunciUntuk(code, fresh.computedRefund));
-      attempt = null;
+      kunci.sesudahBerhasil();
       inDoubt = null;
       setDialogBusy(false);
       tutupDialog(false);
       await sesudahBatal(result.finalRefund);
     } catch (error) {
       const info = errorInfo(error, "batal");
+      kunci.sesudahGalat(error);
       setDialogBusy(false);
       cancelStatus.textContent = "";
       const unknownOutcome = !(error instanceof TokoApiError) || error.code === "NETWORK_ERROR" || error.code === "INVALID_RESPONSE";
@@ -607,7 +622,7 @@ export function buatDetailReservasi(
   });
   // Escape closes without cancelling anything - except while a request is in flight, when the outcome must stay visible.
   dialog.addEventListener("cancel", (event) => {
-    if (busy) event.preventDefault();
+    if (penjaga.keadaan() === "pending") event.preventDefault();
   });
   dialog.addEventListener("close", () => {
     shownQuote = null;
@@ -617,9 +632,9 @@ export function buatDetailReservasi(
   function resetDialog(): void {
     if (dialog.open) dialog.close();
     shownQuote = null;
-    attempt = null;
+    kunci.sesudahBerhasil();
     inDoubt = null;
-    busy = false;
+    penjaga.lepas();
     opener = null;
   }
 

@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.05.1008,4,Maubeli,sex,laki_laki,,4056,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1008,4,Maubeli,sex,perempuan,,3995,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1008,4,Maubeli,total,total,,8051,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1009,4,Sasi,sex,laki_laki,,2511,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1009,4,Sasi,sex,perempuan,,2423,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1009,4,Sasi,total,total,,4934,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1007,4,Tubuhue,sex,laki_laki,,2982,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1007,4,Tubuhue,sex,perempuan,,2993,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1007,4,Tubuhue,total,total,,5975,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1006,4,Kefamenanu Selatan,sex,laki_laki,,4966,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1006,4,Kefamenanu Selatan,sex,perempuan,,4803,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1006,4,Kefamenanu Selatan,total,total,,9769,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1005,4,Benpasi,sex,laki_laki,,2967,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1005,4,Benpasi,sex,perempuan,,3003,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1005,4,Benpasi,total,total,,5970,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1004,4,Bansone,sex,laki_laki,,1985,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1004,4,Bansone,sex,perempuan,,1924,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1004,4,Bansone,total,total,,3909,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1003,4,Kefamenanu Tengah,sex,laki_laki,,3099,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1003,4,Kefamenanu Tengah,sex,perempuan,,3147,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1003,4,Kefamenanu Tengah,total,total,,6246,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1002,4,Aplasi,sex,laki_laki,,1379,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1002,4,Aplasi,sex,perempuan,,1376,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1002,4,Aplasi,total,total,,2755,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05.1001,4,Kefamenanu Utara,sex,laki_laki,,1428,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05.1001,4,Kefamenanu Utara,sex,perempuan,,1413,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05.1001,4,Kefamenanu Utara,total,total,,2841,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05,3,Kota Kefamenanu,sex,laki_laki,,25373,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.05,3,Kota Kefamenanu,sex,perempuan,,25077,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.05,3,Kota Kefamenanu,total,total,,50450,jiwa,2025,registration,total_population,3.1,28,,
+53.03.05,3,Kota Kefamenanu,age_group,0-4,laki_laki,1502,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.05,3,Kota Kefamenanu,age_group,0-4,perempuan,1401,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.05,3,Kota Kefamenanu,age_group,0-4,,2903,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.05,3,Kota Kefamenanu,age_group,5-9,laki_laki,2589,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.05,3,Kota Kefamenanu,age_group,5-9,perempuan,2353,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.05,3,Kota Kefamenanu,age_group,5-9,,4942,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.05,3,Kota Kefamenanu,age_group,10-14,laki_laki,2676,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.05,3,Kota Kefamenanu,age_group,10-14,perempuan,2509,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.05,3,Kota Kefamenanu,age_group,10-14,,5185,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.05,3,Kota Kefamenanu,age_group,15-19,laki_laki,2553,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.05,3,Kota Kefamenanu,age_group,15-19,perempuan,2431,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.05,3,Kota Kefamenanu,age_group,15-19,,4984,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.05,3,Kota Kefamenanu,age_group,20-24,laki_laki,2522,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.05,3,Kota Kefamenanu,age_group,20-24,perempuan,2402,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.05,3,Kota Kefamenanu,age_group,20-24,,4924,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.05,3,Kota Kefamenanu,age_group,25-29,laki_laki,2226,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.05,3,Kota Kefamenanu,age_group,25-29,perempuan,2145,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.05,3,Kota Kefamenanu,age_group,25-29,,4371,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.05,3,Kota Kefamenanu,age_group,30-34,laki_laki,1907,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.05,3,Kota Kefamenanu,age_group,30-34,perempuan,1917,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.05,3,Kota Kefamenanu,age_group,30-34,,3824,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.05,3,Kota Kefamenanu,age_group,35-39,laki_laki,1750,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.05,3,Kota Kefamenanu,age_group,35-39,perempuan,1834,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.05,3,Kota Kefamenanu,age_group,35-39,,3584,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.05,3,Kota Kefamenanu,age_group,40-44,laki_laki,1638,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.05,3,Kota Kefamenanu,age_group,40-44,perempuan,1764,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.05,3,Kota Kefamenanu,age_group,40-44,,3402,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.05,3,Kota Kefamenanu,age_group,45-49,laki_laki,1500,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.05,3,Kota Kefamenanu,age_group,45-49,perempuan,1691,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.05,3,Kota Kefamenanu,age_group,45-49,,3191,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.05,3,Kota Kefamenanu,age_group,50-54,laki_laki,1183,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.05,3,Kota Kefamenanu,age_group,50-54,perempuan,1317,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.05,3,Kota Kefamenanu,age_group,50-54,,2500,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.05,3,Kota Kefamenanu,age_group,55-59,laki_laki,1038,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.05,3,Kota Kefamenanu,age_group,55-59,perempuan,1106,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.05,3,Kota Kefamenanu,age_group,55-59,,2144,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.05,3,Kota Kefamenanu,age_group,60-64,laki_laki,905,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.05,3,Kota Kefamenanu,age_group,60-64,perempuan,853,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.05,3,Kota Kefamenanu,age_group,60-64,,1758,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.05,3,Kota Kefamenanu,age_group,65-69,laki_laki,669,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.05,3,Kota Kefamenanu,age_group,65-69,perempuan,607,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.05,3,Kota Kefamenanu,age_group,65-69,,1276,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.05,3,Kota Kefamenanu,age_group,70-74,laki_laki,350,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.05,3,Kota Kefamenanu,age_group,70-74,perempuan,297,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.05,3,Kota Kefamenanu,age_group,70-74,,647,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.05,3,Kota Kefamenanu,age_group,75+,laki_laki,365,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.05,3,Kota Kefamenanu,age_group,75+,perempuan,450,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.05,3,Kota Kefamenanu,age_group,75+,,815,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.05,3,Kota Kefamenanu,sex,laki_laki,,25373,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.05,3,Kota Kefamenanu,sex,perempuan,,25077,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.05,3,Kota Kefamenanu,total,total,,50450,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.06.2012,4,Umbu Ngedo,sex,laki_laki,,790,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2012,4,Umbu Ngedo,sex,perempuan,,776,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2012,4,Umbu Ngedo,total,total,,1566,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2003,4,Walla Ndimu,sex,laki_laki,,768,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2003,4,Walla Ndimu,sex,perempuan,,795,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2003,4,Walla Ndimu,total,total,,1563,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2011,4,Mata Kapore,sex,laki_laki,,1014,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2011,4,Mata Kapore,sex,perempuan,,950,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2011,4,Mata Kapore,total,total,,1964,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2006,4,Wai Kadada,sex,laki_laki,,730,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2006,4,Wai Kadada,sex,perempuan,,672,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2006,4,Wai Kadada,total,total,,1402,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2002,4,Lete Loko,sex,laki_laki,,1049,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2002,4,Lete Loko,sex,perempuan,,995,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2002,4,Lete Loko,total,total,,2044,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2001,4,Dinjo,sex,laki_laki,,846,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2001,4,Dinjo,sex,perempuan,,829,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2001,4,Dinjo,total,total,,1675,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2010,4,Rada Loko,sex,laki_laki,,799,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2010,4,Rada Loko,sex,perempuan,,714,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2010,4,Rada Loko,total,total,,1513,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2017,4,Waipaddi,sex,laki_laki,,883,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2017,4,Waipaddi,sex,perempuan,,796,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2017,4,Waipaddi,total,total,,1679,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2023,4,Delu Depa,sex,laki_laki,,533,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2023,4,Delu Depa,sex,perempuan,,494,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2023,4,Delu Depa,total,total,,1027,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2021,4,Waikaninyo,sex,laki_laki,,558,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2021,4,Waikaninyo,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2021,4,Waikaninyo,total,total,,1083,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2026,4,Maliti Bondo Ate,sex,laki_laki,,699,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2026,4,Maliti Bondo Ate,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2026,4,Maliti Bondo Ate,total,total,,1367,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2027,4,Ana Lewe,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2027,4,Ana Lewe,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2027,4,Ana Lewe,total,total,,765,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06.2025,4,Bondo Balla,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06.2025,4,Bondo Balla,sex,perempuan,,395,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06.2025,4,Bondo Balla,total,total,,833,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06,3,Kodi Bangedo,sex,laki_laki,,11122,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.18.06,3,Kodi Bangedo,sex,perempuan,,10512,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.18.06,3,Kodi Bangedo,total,total,,21634,jiwa,2025,registration,total_population,3.1,23,,
+53.18.06,3,Kodi Bangedo,sex,laki_laki,,11122,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+53.18.06,3,Kodi Bangedo,sex,perempuan,,10512,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+53.18.06,3,Kodi Bangedo,total,total,,21634,jiwa,2025,registration,total_population,3.2,25,,

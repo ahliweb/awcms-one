@@ -15,20 +15,33 @@ import {
   jsonResponse,
   ok
 } from "../../../../../../../modules/_shared/api-response";
-import {
-  createAccountAddress,
-  listAccountAddresses
-} from "../../../../../../../modules/commerce/application/customer-account-resources";
+import { listAccountAddresses } from "../../../../../../../modules/commerce/application/customer-account-resources";
 import { requireCustomerSession } from "../../../../../../../modules/commerce/application/customer-session-auth";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 import { validateAccountAddressInput } from "../../../../../../../modules/commerce/domain/address-validation";
+import { commerceIdempotentPreflightHeaders } from "../../../../../../../modules/commerce/domain/commerce-cors";
+import {
+  createAccountAddressIdempotent,
+  type CreateAddressIdempotentOutcome
+} from "../../../../../../../modules/commerce/application/storefront-idempotent-mutations";
+import {
+  readStorefrontIdempotencyKey,
+  storefrontIdempotencyConflictResponse
+} from "../../../../../../../modules/commerce/application/storefront-idempotency-http";
 
 /**
  * `GET`/`POST /api/v1/commerce/storefront/account/addresses` (Issue #91,
  * contract #86/ADR-0016) — bearer. Max 10 live addresses per account (`409
  * ADDRESS_LIMIT_REACHED`); the FIRST address ever saved becomes the default
  * automatically (`application/customer-account-resources.ts`'s own rule).
+ *
+ * `POST` takes an OPTIONAL `Idempotency-Key` (Issue #513, unit C): a repeat
+ * creates a second address, so the same key + same address replays the
+ * original `201` (`data.replayed: true`), another address under the same key is
+ * `409 IDEMPOTENCY_CONFLICT`. The record is the route's own `201` body, the
+ * owner's address, no token; it is looked up by an HMAC that includes the
+ * account id.
  */
 const RATE_LIMIT_MAX = parsePositiveIntSetting(
   process.env.COMMERCE_STOREFRONT_RATE_LIMIT_MAX,
@@ -40,21 +53,17 @@ const RATE_LIMIT_WINDOW_SEC = parsePositiveIntSetting(
   60,
   "COMMERCE_STOREFRONT_RATE_LIMIT_WINDOW_SEC"
 );
-const PREFLIGHT_ALLOWED_HEADERS = ["content-type", "authorization"] as const;
+const PREFLIGHT_ALLOWED_HEADERS = commerceIdempotentPreflightHeaders([
+  "content-type",
+  "authorization"
+]);
 
 type AddressListOutcome =
   | { kind: "unauthenticated" }
   | { kind: "blocked" }
   | { kind: "validation_error"; errors: { field: string; message: string }[] }
-  | { kind: "limit_reached" }
   | { kind: "list"; items: Awaited<ReturnType<typeof listAccountAddresses>> }
-  | {
-      kind: "created";
-      address: Extract<
-        Awaited<ReturnType<typeof createAccountAddress>>,
-        { kind: "created" }
-      >["address"];
-    };
+  | CreateAddressIdempotentOutcome;
 
 async function rateLimited(
   request: Request,
@@ -119,6 +128,9 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   );
   if (limited) return limited;
 
+  const idempotency = readStorefrontIdempotencyKey(request);
+  if ("response" in idempotency) return idempotency.response;
+
   const bodyRead = await readJsonBody(request);
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
@@ -142,16 +154,13 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
         return { kind: "validation_error", errors: validation.errors };
       }
 
-      const outcome = await createAccountAddress(
+      return createAccountAddressIdempotent(
         tx,
         tenant.tenantId,
-        authOutcome.account.customerId,
+        authOutcome.account,
         validation.value,
-        locals.correlationId
+        { key: idempotency.key, correlationId: locals.correlationId }
       );
-
-      if (outcome.kind === "limit_reached") return { kind: "limit_reached" };
-      return { kind: "created", address: outcome.address };
     }
   );
 
@@ -202,9 +211,19 @@ function respond(
       corsHeaders
     );
   }
+  if (result.kind === "idempotency_conflict") {
+    return storefrontIdempotencyConflictResponse(corsHeaders);
+  }
   if (result.kind === "created") {
     return jsonResponse(
-      { success: true, data: { address: result.address }, meta: {} },
+      {
+        success: true,
+        data: {
+          address: result.address,
+          ...(result.replayed ? { replayed: true } : {})
+        },
+        meta: {}
+      },
       { status: 201, headers: corsHeaders }
     );
   }

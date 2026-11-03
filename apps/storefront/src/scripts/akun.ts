@@ -13,8 +13,10 @@
  * save fails — the checkbox is never left showing a state the server does
  * not actually hold.
  */
-import { ambilPesananAkun, ambilProfil, ambilWishlistAkun, keluar, ubahProfil } from "../lib/akun-klien";
-import { bacaSesi, hapusSesi } from "../lib/akun-sesi";
+import { ambilPesananAkun, ambilProfil, ambilWishlistAkun, ubahProfil } from "../lib/akun-klien";
+import { bacaSesi } from "../lib/akun-sesi";
+import { penjagaUntuk } from "../lib/kirim-tunggal";
+import { keluarDenganPush, keluarLokalDenganPush } from "../lib/push-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallback";
@@ -47,6 +49,10 @@ if (root) {
   const ubahNamaForm = root.querySelector<HTMLFormElement>("[data-ubah-nama-form]");
   const ubahNamaInput = ubahNamaForm?.querySelector<HTMLInputElement>('[name="name"]');
   const keluarButton = root.querySelector<HTMLButtonElement>("[data-keluar]");
+  const keluarGagalEl = root.querySelector<HTMLElement>("[data-keluar-gagal]");
+  const keluarGagalPesanEl = root.querySelector<HTMLElement>("[data-keluar-gagal-pesan]");
+  const keluarUlangButton = root.querySelector<HTMLButtonElement>("[data-keluar-ulang]");
+  const keluarLokalButton = root.querySelector<HTMLButtonElement>("[data-keluar-lokal]");
   const consentCheckbox = root.querySelector<HTMLInputElement>("[data-consent-checkbox]");
   const consentStatusEl = root.querySelector<HTMLElement>("[data-consent-status]");
   const avatarInitialsEl = root.querySelector<HTMLElement>("[data-avatar-initials]");
@@ -164,6 +170,14 @@ if (root) {
     }
   }
 
+  // Issue #513: every write on this page is naturally idempotent (a PATCH of the
+  // caller's own profile, a logout), so each is guarded and none carries a key.
+  const namaGuard = penjagaUntuk(ubahNamaForm);
+  const consentGuard = penjagaUntuk(consentCheckbox, { selektor: "input" });
+  const keluarGuard = penjagaUntuk(keluarButton, {
+    kontrol: () => [keluarButton, keluarUlangButton, keluarLokalButton]
+  });
+
   ubahNamaForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     hideSubmitError();
@@ -176,25 +190,27 @@ if (root) {
       return;
     }
 
-    try {
-      const { account } = await ubahProfil({ name });
-      renderProfile(account);
-      if (statusEl) {
-        statusEl.hidden = false;
-        statusEl.textContent = "Nama berhasil diperbarui.";
+    await namaGuard.jalankan(async () => {
+      try {
+        const { account } = await ubahProfil({ name });
+        renderProfile(account);
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = "Nama berhasil diperbarui.";
+        }
+      } catch (error) {
+        if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR" && errorEl) {
+          const fieldError = error.fieldErrors.find((f) => f.field === "name");
+          errorEl.textContent = fieldError?.message ?? error.message;
+          return;
+        }
+        if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+          showGuestView();
+          return;
+        }
+        showSubmitError(error, "mengubah nama akun");
       }
-    } catch (error) {
-      if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR" && errorEl) {
-        const fieldError = error.fieldErrors.find((f) => f.field === "name");
-        errorEl.textContent = fieldError?.message ?? error.message;
-        return;
-      }
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        showGuestView();
-        return;
-      }
-      showSubmitError(error, "mengubah nama akun");
-    }
+    });
   });
 
   consentCheckbox?.addEventListener("change", async () => {
@@ -202,43 +218,73 @@ if (root) {
     hideSubmitError();
     if (consentStatusEl) consentStatusEl.textContent = "";
 
-    try {
-      const { account } = await ubahProfil({ marketingConsent: desired });
-      consentCheckbox.checked = account.marketingConsent;
-      if (consentStatusEl) {
-        consentStatusEl.textContent = account.marketingConsent
-          ? "Anda akan menerima promo lewat e-mail/WhatsApp."
-          : "Anda tidak akan menerima promo lewat e-mail/WhatsApp.";
+    await consentGuard.jalankan(async () => {
+      try {
+        const { account } = await ubahProfil({ marketingConsent: desired });
+        consentCheckbox.checked = account.marketingConsent;
+        if (consentStatusEl) {
+          consentStatusEl.textContent = account.marketingConsent
+            ? "Anda akan menerima promo lewat e-mail/WhatsApp."
+            : "Anda tidak akan menerima promo lewat e-mail/WhatsApp.";
+        }
+      } catch (error) {
+        // Revert the checkbox to what the server actually holds - never leave
+        // it showing a state the save did not confirm.
+        consentCheckbox.checked = !desired;
+        if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+          showGuestView();
+          return;
+        }
+        if (consentStatusEl) {
+          consentStatusEl.textContent =
+            error instanceof TokoApiError ? error.message : "Gagal menyimpan preferensi. Coba lagi.";
+        }
+        showWaFallback("mengubah preferensi promo");
       }
-    } catch (error) {
-      // Revert the checkbox to what the server actually holds — never leave
-      // it showing a state the save did not confirm.
-      consentCheckbox.checked = !desired;
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        showGuestView();
-        return;
-      }
-      if (consentStatusEl) {
-        consentStatusEl.textContent =
-          error instanceof TokoApiError ? error.message : "Gagal menyimpan preferensi. Coba lagi.";
-      }
-      showWaFallback("mengubah preferensi promo");
-    }
+    });
   });
 
-  keluarButton?.addEventListener("click", async () => {
+  /**
+   * "Keluar". A browser that never enabled notifications keeps issue #88's rule
+   * (the local session is cleared whatever the network did). A browser that did
+   * enable them follows ADR-0048 section 7: the server's logout is awaited
+   * BEFORE the session is cleared and this device's subscription is dropped, and
+   * an unconfirmed logout is shown with an explicit retry and an explicit
+   * "sign out here anyway" instead of clearing silently.
+   */
+  async function jalankanKeluar(): Promise<void> {
     hideSubmitError();
-    try {
-      await keluar();
-    } catch {
-      // #88's own rule: the local session is cleared regardless of outcome
-      // (a network failure must not strand a shopper "signed in" locally
-      // while the server has no way to know they meant to sign out).
-    } finally {
-      hapusSesi();
-      showGuestView();
+    if (keluarGagalEl) keluarGagalEl.hidden = true;
+
+    const jalan = await keluarGuard.jalankan(() => keluarDenganPush());
+    if (!jalan.dijalankan) return;
+    const hasil = jalan.hasil;
+
+    if (hasil.hasil === "belum_terkonfirmasi") {
+      if (keluarGagalPesanEl) {
+        keluarGagalPesanEl.textContent =
+          "Keluar belum bisa dikonfirmasi oleh server, jadi Anda masih tercatat masuk. " + hasil.galat.pesan;
+      }
+      if (keluarGagalEl) {
+        keluarGagalEl.hidden = false;
+        keluarGagalEl.focus();
+      }
+      return;
     }
+    showGuestView();
+  }
+
+  keluarButton?.addEventListener("click", () => void jalankanKeluar());
+  keluarUlangButton?.addEventListener("click", () => void jalankanKeluar());
+  keluarLokalButton?.addEventListener("click", async () => {
+    if (keluarGagalEl) keluarGagalEl.hidden = true;
+    const jalan = await keluarGuard.jalankan(() => keluarLokalDenganPush());
+    if (jalan.dijalankan) showGuestView();
   });
+
+  // Issue #431: the "Notifikasi" card exists only in a build with
+  // `PUBLIC_CUSTOMER_PUSH` on; its script is a separate chunk loaded only then.
+  if (root.querySelector("[data-notif-kartu]")) void import("./akun-notifikasi-kartu");
 
   render();
   window.addEventListener(AKUN_EVENT_NAME, render);

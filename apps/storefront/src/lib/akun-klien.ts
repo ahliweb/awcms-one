@@ -30,6 +30,7 @@ import {
   type ReservasiSaya
 } from "./booking-kontrak";
 import { parsePoinAkun, type PoinAkun } from "./poin-kontrak";
+import { kunciHeader } from "./kunci-idempotensi";
 import { kirimPermintaan, TokoApiError } from "./toko-permintaan";
 import type { Order } from "./toko-klien";
 
@@ -85,9 +86,24 @@ export type VerifikasiKodeResponse = { token: string; expiresAt: string; account
  * call `simpanSesi` itself: the page decides when a fresh session is stored
  * (after showing/consuming the response), matching `checkout.ts`'s own
  * "the client never has a side effect its caller didn't ask for" posture.
+ *
+ * `idempotencyKey` (issue #513) is OPTIONAL: one key per entered code attempt,
+ * created by the page (`src/lib/kunci-idempotensi.ts`), reused on a retry of
+ * the same attempt. Sent as the `Idempotency-Key` header only when given; a
+ * server that ignores it behaves as before, and one that honours it replays the
+ * same attempt (a registration replay answers success with a fresh session) and
+ * answers `409 IDEMPOTENCY_CONFLICT` for the same key with another body.
  */
-export function verifikasiKode(input: VerifikasiKodeInput): Promise<VerifikasiKodeResponse> {
-  return kirimPermintaan<VerifikasiKodeResponse>("/account/otp/verify", "POST", input);
+export function verifikasiKode(
+  input: VerifikasiKodeInput,
+  idempotencyKey?: string
+): Promise<VerifikasiKodeResponse> {
+  return kirimPermintaan<VerifikasiKodeResponse>(
+    "/account/otp/verify",
+    "POST",
+    input,
+    idempotencyKey === undefined ? undefined : kunciHeader(idempotencyKey)
+  );
 }
 
 /**
@@ -206,9 +222,12 @@ export function ambilAlamat(): Promise<{ items: Alamat[] }> {
 }
 
 /** `POST …/account/addresses` — `400 VALIDATION_ERROR` per field, the same envelope every other form on this app switches on by `.fieldErrors`. */
-export function tambahAlamat(input: AlamatInput): Promise<{ address: Alamat }> {
+export function tambahAlamat(input: AlamatInput, idempotencyKey?: string): Promise<{ address: Alamat }> {
   return denganPembersihanSesi(() =>
-    kirimPermintaan<{ address: Alamat }>("/account/addresses", "POST", input, authHeader())
+    kirimPermintaan<{ address: Alamat }>("/account/addresses", "POST", input, {
+      ...authHeader(),
+      ...kunciHeader(idempotencyKey)
+    })
   );
 }
 
@@ -422,14 +441,15 @@ export type BuatPercakapanInput = { subject: string; body: string };
 
 /** `POST …/account/conversations` — `201 {conversation, message}`, the new thread and its own first (customer) message. `400 VALIDATION_ERROR` for an empty subject/body or a body over 4000 characters. */
 export function buatPercakapan(
-  input: BuatPercakapanInput
+  input: BuatPercakapanInput,
+  idempotencyKey?: string
 ): Promise<{ conversation: Percakapan; message: PesanPercakapan }> {
   return denganPembersihanSesi(() =>
     kirimPermintaan<{ conversation: Percakapan; message: PesanPercakapan }>(
       "/account/conversations",
       "POST",
       input,
-      authHeader()
+      { ...authHeader(), ...kunciHeader(idempotencyKey) }
     )
   );
 }
@@ -447,13 +467,17 @@ export function ambilPercakapanById(id: string): Promise<{ conversation: Percaka
 }
 
 /** `POST …/account/conversations/{id}/messages` — `201 {message}`. `409 CONVERSATION_CLOSED` once a thread is closed (the reply form is hidden then too, but a stale tab can still reach this); `400 VALIDATION_ERROR` over 4000 characters; `429 RATE_LIMITED` on abuse, the same field `toko-permintaan.ts`'s own `TokoApiError.retryAfterSeconds` already decodes. */
-export function kirimPesanPercakapan(id: string, body: string): Promise<{ message: PesanPercakapan }> {
+export function kirimPesanPercakapan(
+  id: string,
+  body: string,
+  idempotencyKey?: string
+): Promise<{ message: PesanPercakapan }> {
   return denganPembersihanSesi(() =>
     kirimPermintaan<{ message: PesanPercakapan }>(
       `/account/conversations/${encodeURIComponent(id)}/messages`,
       "POST",
       { body },
-      authHeader()
+      { ...authHeader(), ...kunciHeader(idempotencyKey) }
     )
   );
 }
@@ -566,4 +590,70 @@ export async function batalkanReservasi(
   const result = parseHasilPembatalan(raw);
   if (!result) throw new TokoApiError("The cancellation answer could not be read.", 200, "INVALID_RESPONSE");
   return result;
+}
+
+// ---------------------------------------------------------------------------
+// Issue #431 (ADR-0048 section 6.1) - the customer's OWN Web Push devices and
+// consent. Bearer-only, wrapped in the same `denganPembersihanSesi`, so a `401`
+// clears the stored session like every other call here. The neutral `404` (the
+// `customerPush` flag off, an unresolvable tenant) is an ordinary
+// `TokoApiError` with `status` 404: the page hides the control on it, and a
+// 404 on a DELETE is read by the caller as "already gone".
+//
+// What these functions never do: hold the browser's push subscription (that is
+// `push-alur.ts`), put the bearer anywhere but the `Authorization` header, or
+// return the raw endpoint/keys of a device (the server only ever answers a
+// masked endpoint).
+// ---------------------------------------------------------------------------
+
+const PUSH_BASE = "/account/push";
+
+/** `GET …/account/push/subscriptions` - capability, preferences and this account's active devices, as the raw body (`parseStatus` in `push-pelanggan.ts` validates it). */
+export function ambilStatusPush(): Promise<unknown> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(`${PUSH_BASE}/subscriptions`, "GET", undefined, authHeader())
+  );
+}
+
+/** The body of `POST …/subscriptions`: `PushSubscription.toJSON()`'s `endpoint` and `keys`, plus the consent the shopper gave. The server's strict schema answers `400` to any other key. */
+export type DaftarPushInput = {
+  endpoint: string;
+  keys: { p256dh: string; auth: string };
+  consent: { purposes: string[]; textVersion: string };
+};
+
+/** `POST …/account/push/subscriptions` - `201` (new, revived, transferred) or `200` (no-op); both carry `{device, preferences}`. */
+export function daftarkanPerangkatPush(input: DaftarPushInput): Promise<unknown> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(`${PUSH_BASE}/subscriptions`, "POST", input, authHeader())
+  );
+}
+
+/** `DELETE …/account/push/subscriptions/{id}` - `204`. `404` for a device that is not this account's or is already gone. */
+export function cabutPerangkatPush(id: string): Promise<void> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<void>(`${PUSH_BASE}/subscriptions/${encodeURIComponent(id)}`, "DELETE", undefined, authHeader())
+  );
+}
+
+/** `DELETE …/account/push/subscriptions` - every device of this account, `204`, idempotent. */
+export function cabutSemuaPerangkatPush(): Promise<void> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<void>(`${PUSH_BASE}/subscriptions`, "DELETE", undefined, authHeader())
+  );
+}
+
+/** `PUT …/account/push/preferences` - turning a purpose ON needs the consent text version the shopper saw; turning one OFF needs none. `marketing` is refused by the server and is not offered. */
+export function ubahPreferensiPush(
+  purposes: Record<string, boolean>,
+  textVersion?: string
+): Promise<unknown> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(
+      `${PUSH_BASE}/preferences`,
+      "PUT",
+      textVersion === undefined ? { purposes } : { purposes, textVersion },
+      authHeader()
+    )
+  );
 }

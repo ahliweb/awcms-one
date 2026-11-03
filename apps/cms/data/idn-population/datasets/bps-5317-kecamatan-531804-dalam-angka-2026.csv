@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.04.2005,4,Wee Kombaka,sex,laki_laki,,2110,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2005,4,Wee Kombaka,sex,perempuan,,2101,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2005,4,Wee Kombaka,total,total,,4211,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2011,4,Menne Ate,sex,laki_laki,,1316,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2011,4,Menne Ate,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2011,4,Menne Ate,total,total,,2579,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2003,4,Wali Ate,sex,laki_laki,,1969,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2003,4,Wali Ate,sex,perempuan,,1846,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2003,4,Wali Ate,total,total,,3815,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2002,4,Kalembu Weri,sex,laki_laki,,1316,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2002,4,Kalembu Weri,sex,perempuan,,1340,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2002,4,Kalembu Weri,total,total,,2656,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2004,4,Kabali Dana,sex,laki_laki,,1690,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2004,4,Kabali Dana,sex,perempuan,,1574,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2004,4,Kabali Dana,total,total,,3264,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2001,4,Waimangura,sex,laki_laki,,2224,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2001,4,Waimangura,sex,perempuan,,2176,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2001,4,Waimangura,total,total,,4400,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2012,4,Reda Pada,sex,laki_laki,,993,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2012,4,Reda Pada,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2012,4,Reda Pada,total,total,,1956,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2006,4,Marokota,sex,laki_laki,,1912,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2006,4,Marokota,sex,perempuan,,1879,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2006,4,Marokota,total,total,,3791,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2016,4,Kalembu Kanaika,sex,laki_laki,,579,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2016,4,Kalembu Kanaika,sex,perempuan,,510,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2016,4,Kalembu Kanaika,total,total,,1089,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2018,4,Wee Kura,sex,laki_laki,,675,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2018,4,Wee Kura,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2018,4,Wee Kura,total,total,,1282,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2017,4,Laga Lete,sex,laki_laki,,962,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2017,4,Laga Lete,sex,perempuan,,978,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2017,4,Laga Lete,total,total,,1940,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2020,4,Tawo Rara,sex,laki_laki,,1198,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2020,4,Tawo Rara,sex,perempuan,,1186,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2020,4,Tawo Rara,total,total,,2384,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2019,4,Lua Koba,sex,laki_laki,,1819,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2019,4,Lua Koba,sex,perempuan,,1713,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2019,4,Lua Koba,total,total,,3532,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2015,4,Kalaki Kambe,sex,laki_laki,,1304,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2015,4,Kalaki Kambe,sex,perempuan,,1150,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2015,4,Kalaki Kambe,total,total,,2454,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2021,4,Sangu Ate,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2021,4,Sangu Ate,sex,perempuan,,990,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2021,4,Sangu Ate,total,total,,1938,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2023,4,Pero,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2023,4,Pero,sex,perempuan,,882,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2023,4,Pero,total,total,,1774,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04.2022,4,Lolo Ole,sex,laki_laki,,796,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.04.2022,4,Lolo Ole,sex,perempuan,,809,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.04.2022,4,Lolo Ole,total,total,,1605,jiwa,2025,registration,total_population,3.1,24,,
+53.18.04,3,Wewewa Barat,sex,laki_laki,,26511,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.18.04,3,Wewewa Barat,sex,perempuan,,25518,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.18.04,3,Wewewa Barat,total,total,,52029,jiwa,2025,registration,total_population,3.2,26,,

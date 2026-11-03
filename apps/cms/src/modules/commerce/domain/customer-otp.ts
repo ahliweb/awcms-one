@@ -36,6 +36,16 @@ import { createHash, randomInt, timingSafeEqual } from "node:crypto";
 /** 10 minutes — ADR-0016 D2. */
 export const OTP_TTL_SECONDS = 600;
 
+/**
+ * Issue #513 — a second `otp/request` for the SAME (tenant, identifier,
+ * purpose, registration) inside this window is a no-op success: the live code
+ * is still valid, no second message is sent and nothing is superseded. It
+ * equals the storefront's own resend countdown (`RESEND_SECONDS = 60` in
+ * `daftar.ts`/`masuk.ts`), so a person who really waited is never refused; it
+ * is NOT a rate limit (those are unchanged and keep counting every request).
+ */
+export const OTP_RESEND_WINDOW_SECONDS = 60;
+
 /** 5 tries, then the code is dead even if the correct value is submitted next — ADR-0016 D2. */
 export const OTP_MAX_ATTEMPTS = 5;
 

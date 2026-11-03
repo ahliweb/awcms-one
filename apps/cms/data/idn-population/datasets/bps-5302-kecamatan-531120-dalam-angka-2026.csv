@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.20.2005,4,Ndapayami,sex,laki_laki,,449,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.20.2005,4,Ndapayami,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.11.20.2005,4,Ndapayami,total,total,,866,jiwa,2025,registration,total_population,3.1,,,
+53.11.20.2002,4,Kuta,sex,laki_laki,,832,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.20.2002,4,Kuta,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.11.20.2002,4,Kuta,total,total,,1615,jiwa,2025,registration,total_population,3.1,,,
+53.11.20.2003,4,Hamba Praing,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.20.2003,4,Hamba Praing,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.11.20.2003,4,Hamba Praing,total,total,,1202,jiwa,2025,registration,total_population,3.1,,,
+53.11.20.2004,4,Mondu,sex,laki_laki,,813,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.20.2004,4,Mondu,sex,perempuan,,776,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.11.20.2004,4,Mondu,total,total,,1589,jiwa,2025,registration,total_population,3.1,,,
+53.11.20.1001,4,Temu,sex,laki_laki,,3874,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.20.1001,4,Temu,sex,perempuan,,3694,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.11.20.1001,4,Temu,total,total,,7568,jiwa,2025,registration,total_population,3.1,,,
+53.11.20,3,Kanatang,sex,laki_laki,,6576,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.20,3,Kanatang,sex,perempuan,,6264,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.11.20,3,Kanatang,total,total,,12840,jiwa,2025,registration,total_population,3.1,,,
+53.11.20,3,Kanatang,sex,laki_laki,,6576,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.11.20,3,Kanatang,sex,perempuan,,6264,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.11.20,3,Kanatang,total,total,,12840,jiwa,2025,registration,total_population,3.2,30,,

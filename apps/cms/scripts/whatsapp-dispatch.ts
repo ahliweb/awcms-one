@@ -14,6 +14,16 @@
  *
  * A pass that throws for one tenant is recorded as a `whatsapp.dispatch.failed`
  * event for THAT tenant and does not stop the other tenants.
+ *
+ * ## Composition root of the sender ports (Issue #1141)
+ *
+ * This script is the ONLY place the credential port is composed: it is what
+ * hands `dispatchWhatsappQueue` the means to decrypt a tenant-owned sender's
+ * credential (`CHANNEL_SECRETS_ENCRYPTION_KEYS`, granted to this job alone in
+ * `scripts/jobs-env-allowlist.ts`). Without it every tenant-owned sender lane is
+ * held (fail closed) and the deployment sender is unaffected. The key ring is
+ * read in memory inside the dispatch call, for the claimed row's tenant, and a
+ * decrypt counter per tenant is printed in the summary line.
  */
 import { getWorkerDatabaseClient } from "../src/lib/database/client";
 // awcms-one divergence (Issue #392, ADR-0133 section 6): this process imports no
@@ -23,6 +33,9 @@ import { getWorkerDatabaseClient } from "../src/lib/database/client";
 import "../src/modules/commerce/domain/whatsapp-upstream-templates";
 import { logScriptFailure } from "../src/lib/logging/error-log";
 import { registerBookingWhatsappTemplates } from "../src/modules/booking/infrastructure/booking-whatsapp-templates";
+import { channelAccountPortAdapter } from "../src/modules/channel-accounts/application/channel-account-port-adapter";
+import { channelSenderCredentialAdapter } from "../src/modules/channel-accounts/application/channel-sender-credential-adapter";
+import { snapshotSecretDecryptCounts } from "../src/modules/channel-accounts/application/secret-store";
 import {
   dispatchWhatsappQueue,
   recordWhatsappDispatchFailure
@@ -52,13 +65,16 @@ async function main() {
     let totalExpired = 0;
     let totalCancelled = 0;
     let totalSuppressed = 0;
+    let totalHeld = 0;
     let failedTenants = 0;
 
     for (const tenant of tenants) {
       try {
         for (let pass = 0; pass < MAX_PASSES_PER_TENANT; pass += 1) {
           const result = await dispatchWhatsappQueue(sql, tenant.id, {
-            correlationId
+            correlationId,
+            senders: channelAccountPortAdapter,
+            credentials: channelSenderCredentialAdapter
           });
 
           totalClaimed += result.claimed;
@@ -68,6 +84,7 @@ async function main() {
           totalExpired += result.expired;
           totalCancelled += result.cancelled;
           totalSuppressed += result.recipientsSuppressed;
+          totalHeld += result.held;
 
           if (result.claimed === 0) {
             break;
@@ -93,6 +110,10 @@ async function main() {
         `tenants=${tenants.length} claimed=${totalClaimed} sent=${totalSent} ` +
         `retried=${totalRetried} failed=${totalFailed} expired=${totalExpired} ` +
         `cancelled=${totalCancelled} recipientsSuppressed=${totalSuppressed} ` +
+        `held=${totalHeld} ` +
+        // A count per tenant and purpose, never a value: a compromised worker
+        // enumerating credentials shows up as a rate nobody scheduled.
+        `senderCredentialDecrypts=${snapshotSecretDecryptCounts().reduce((sum, row) => sum + row.count, 0)} ` +
         `failedTenants=${failedTenants}`
     );
   } catch (error) {

@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.71.04.1008,4,Oetete,sex,laki_laki,,3319,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.04.1008,4,Oetete,sex,perempuan,,3394,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.04.1008,4,Oetete,total,total,,6713,jiwa,2025,registration,total_population,3.1,26,,
+53.71.04.1001,4,Oebobo,sex,laki_laki,,5892,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.04.1001,4,Oebobo,sex,perempuan,,5941,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.04.1001,4,Oebobo,total,total,,11833,jiwa,2025,registration,total_population,3.1,26,,
+53.71.04.1011,4,Fatululi,sex,laki_laki,,7737,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.04.1011,4,Fatululi,sex,perempuan,,7734,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.04.1011,4,Fatululi,total,total,,15471,jiwa,2025,registration,total_population,3.1,26,,
+53.71.04.1009,4,Oebufu,sex,laki_laki,,8155,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.04.1009,4,Oebufu,sex,perempuan,,8182,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.04.1009,4,Oebufu,total,total,,16337,jiwa,2025,registration,total_population,3.1,26,,
+53.71.04.1014,4,Tuak Daun Merah,sex,laki_laki,,4896,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.04.1014,4,Tuak Daun Merah,sex,perempuan,,4786,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.04.1014,4,Tuak Daun Merah,total,total,,9682,jiwa,2025,registration,total_population,3.1,26,,
+53.71.04.1013,4,Kayu Putih,sex,laki_laki,,4815,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.04.1013,4,Kayu Putih,sex,perempuan,,4943,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.04.1013,4,Kayu Putih,total,total,,9758,jiwa,2025,registration,total_population,3.1,26,,
+53.71.04.1010,4,Liliba,sex,laki_laki,,8516,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.04.1010,4,Liliba,sex,perempuan,,8612,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.04.1010,4,Liliba,total,total,,17128,jiwa,2025,registration,total_population,3.1,26,,

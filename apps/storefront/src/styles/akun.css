@@ -646,3 +646,49 @@ input[type="text"].akun-affiliate-link-input {
   background: var(--status-danger-bg);
   color: var(--status-danger-fg);
 }
+
+/* Issue #431 - `/akun/notifikasi` (customer Web Push settings). Reuses the
+   account cards and `.akun-consent-label` (44px rows); only what those lack. */
+.akun-fieldset {
+  border: 0;
+  margin: 0 0 1rem;
+  padding: 0;
+  min-width: 0;
+}
+
+.akun-fieldset legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.akun-notif-opsi {
+  align-items: flex-start;
+  padding: 0.35rem 0;
+}
+
+.akun-notif-opsi input[type="checkbox"] {
+  flex: none;
+  margin-top: 0.2rem;
+}
+
+.akun-teks-persetujuan {
+  margin: 1rem 0;
+}
+
+.akun-teks-persetujuan summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.akun-perangkat-kepala {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.akun-perangkat .akun-countdown {
+  overflow-wrap: anywhere;
+}

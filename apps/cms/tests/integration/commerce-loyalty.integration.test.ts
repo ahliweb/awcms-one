@@ -93,8 +93,21 @@ const TENANT_B = "bbbbbbbb-0289-4000-8000-000000000002";
 const ACTOR = "cccccccc-0289-4000-8000-000000000003";
 
 const DAY = 86_400_000;
-const PAID_AT = new Date("2026-10-01T10:00:00.000Z");
-const PROGRAM_START = new Date("2026-09-01T00:00:00.000Z");
+// The ledger stamps `created_at` with the database clock, and a debit cannot
+// spend a lot that had already expired at that instant (loyalty-lots.ts). The
+// dates are therefore anchored to the real clock (a 30-day expiry stays in the
+// future whenever the suite runs), never to a calendar date that the wall
+// clock will eventually pass: fixed 2026-10-01 dates made the expiry/reversal
+// tests fail from 2026-10-31 on.
+const TODAY_UTC = new Date(
+  Date.UTC(
+    new Date().getUTCFullYear(),
+    new Date().getUTCMonth(),
+    new Date().getUTCDate()
+  )
+);
+const PROGRAM_START = new Date(TODAY_UTC.getTime() - 40 * DAY);
+const PAID_AT = new Date(PROGRAM_START.getTime() + 30 * DAY + 10 * 3_600_000);
 
 function inTenant<T>(
   tenantId: string,
@@ -486,7 +499,7 @@ suite("commerce loyalty ledger integration (Issue #289)", () => {
       ).toEqual({ kind: "skipped", reason: "zero_points" });
 
       const beforeProgram = await seedOrder(TENANT_A, customerId, {
-        paidAt: new Date("2026-08-01T00:00:00.000Z")
+        paidAt: new Date(PROGRAM_START.getTime() - 31 * DAY)
       });
       expect(
         await inTenant(TENANT_A, (tx) =>
@@ -501,16 +514,16 @@ suite("commerce loyalty ledger integration (Issue #289)", () => {
       const v1 = await activeProgram(TENANT_A, { earnPointsPerUnit: 1 });
       const customerId = await seedCustomer(TENANT_A, "+6281200000007");
       const orderUnderV1 = await seedOrder(TENANT_A, customerId, {
-        paidAt: new Date("2026-09-10T00:00:00.000Z")
+        paidAt: new Date(PROGRAM_START.getTime() + 9 * DAY)
       });
 
       const v2 = await activeProgram(
         TENANT_A,
         { earnPointsPerUnit: 5 },
-        new Date("2026-09-20T00:00:00.000Z")
+        new Date(PROGRAM_START.getTime() + 19 * DAY)
       );
       const orderUnderV2 = await seedOrder(TENANT_A, customerId, {
-        paidAt: new Date("2026-09-25T00:00:00.000Z")
+        paidAt: new Date(PROGRAM_START.getTime() + 24 * DAY)
       });
 
       // The v1 order's event is processed AFTER v2 went live.

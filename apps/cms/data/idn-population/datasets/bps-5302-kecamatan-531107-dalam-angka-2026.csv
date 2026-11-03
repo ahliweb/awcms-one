@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.07.2003,4,Kambatatana,sex,laki_laki,,1279,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07.2003,4,Kambatatana,sex,perempuan,,1185,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07.2003,4,Kambatatana,total,total,,2464,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07.2009,4,Mau Bokul,sex,laki_laki,,1190,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07.2009,4,Mau Bokul,sex,perempuan,,1159,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07.2009,4,Mau Bokul,total,total,,2349,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07.2008,4,Kadumbul,sex,laki_laki,,1220,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07.2008,4,Kadumbul,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07.2008,4,Kadumbul,total,total,,2394,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07.2007,4,Palakahembi,sex,laki_laki,,2440,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07.2007,4,Palakahembi,sex,perempuan,,2395,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07.2007,4,Palakahembi,total,total,,4835,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07.2012,4,Lai Ndeha,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07.2012,4,Lai Ndeha,sex,perempuan,,522,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07.2012,4,Lai Ndeha,total,total,,1095,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07.1002,4,Watumbaka,sex,laki_laki,,1099,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07.1002,4,Watumbaka,sex,perempuan,,1075,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07.1002,4,Watumbaka,total,total,,2174,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07.1001,4,Kawangu,sex,laki_laki,,2704,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07.1001,4,Kawangu,sex,perempuan,,2515,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07.1001,4,Kawangu,total,total,,5219,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07,3,Pandawai,sex,laki_laki,,10505,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.07,3,Pandawai,sex,perempuan,,10025,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.07,3,Pandawai,total,total,,20530,jiwa,2025,registration,total_population,3.1,28,,
+53.11.07,3,Pandawai,sex,laki_laki,,10505,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.11.07,3,Pandawai,sex,perempuan,,10025,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.11.07,3,Pandawai,total,total,,20530,jiwa,2025,registration,total_population,3.2,30,,

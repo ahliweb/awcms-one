@@ -1,60 +1,59 @@
 /**
- * The commission reverser (Issue #391 second half, ADR-0046 D9): the side effect
- * of the `commerce.order_cancelled_commission_reverser` and
+ * The commission reverser (Issue #391 second half, ADR-0046 D9 and D12): the
+ * side effect of the `commerce.order_cancelled_commission_reverser` and
  * `commerce.refund_settled_commission_reverser` consumers. When a counter sale
- * is cancelled, or refunded in full for a line, it reverses the accrual that
- * `commission-attribution.ts` reported - through `CommissionAccrualPort.void`,
- * keyed by the SAME source identity `(settings.sourceType, order id, order-line
- * id)` - and does nothing else.
+ * is cancelled, or refunded in full for a line, it SUBMITS a void to
+ * `hr_commission`'s intake queue (`CommissionIntakePort.submitVoid`) for exactly
+ * the lines commerce submitted an accrual for, keyed by the SAME source identity
+ * `(source type, order id, order-line id)` - and does nothing else.
  *
  * ## What this function guarantees
  *
- *   * **Same facts, same identity.** The beneficiary is re-derived from the
- *     database exactly as the accrue derived it (the order's cashier stamp, then
- *     the staff link) - except that every employment the login was EVER linked
- *     to is tried, live or retired, because the link may have changed between the
- *     sale and its refund. A void for an employment that never earned the line is
- *     `not_found`, which is a no-op. The event payload is never read.
- *   * **A void with nothing to void is normal.** A sale that was never reported
- *     (storefront order, tenant that had the adapter off, a line below the
- *     threshold, a refused accrual) answers `not_found`: counted, not audited,
- *     not an error. A replay answers `already_voided`: nothing is written.
- *   * **A refusal is an outcome, never an exception, and is never retried.**
- *     `period_closed` (the accrual is `payable` or `paid`: payroll may hold it),
- *     `actor_required` and `input_invalid` are returned by the port, tallied and
- *     recorded in ONE warning audit row (`reversal_needs_attention`) that a human
- *     works from; a delivery that threw would be retried eight times and then
- *     dead-lettered for something no retry can change. Only a genuine failure
- *     (the database) throws.
- *   * **Partial returns do nothing.** The port voids a whole accrual and a voided
- *     accrual is never resurrected, so a line is reversed by a refund only when
- *     every unit of it has been returned (`isLineFullyReturned`, summed over all
- *     completed returns of the order). A partly returned line is counted as
+ *   * **Only what was submitted.** The lines, employments and source type come
+ *     from commerce's OWN record of its submissions
+ *     (`awcms_commerce_commission_submissions`), never from a guess over the
+ *     staff links. A sale that was never reported (storefront order, a tenant
+ *     that had the adapter off, a line below the threshold, a never-paid order)
+ *     has no submission and is skipped (`no_submissions`) without queueing
+ *     anything - a blind void would be refused LATER and fill the tenant's
+ *     intake exceptions list with `not_found` noise.
+ *   * **A void is eventually consistent.** `queued` means recorded, not voided.
+ *     The poster voids the accrual on its next tick; one still `pending` or
+ *     `approved` is voidable, a `payable` or `paid` one is refused `period_closed`
+ *     and a void arriving before its accrual waits up to 24 hours. Every such
+ *     refusal appears ONLY in the intake exceptions list for a person; this
+ *     function never sees it and never reads a commission table.
+ *   * **The actor is the person who cancelled or refunded.** A void stamps a
+ *     PERSON on the status edge. The event envelope does not reach a handler, so
+ *     the reverser reads its own delivered event's `actor_tenant_user_id` (the
+ *     producer stamps it in the fact's transaction). A system-driven reversal has
+ *     none: the intake answers `actor_required`, which is counted and recorded in
+ *     ONE warning audit row (`reversal_needs_attention`) that a person works from
+ *     (void the accrual in `hr_commission`). It is deterministic, so it is never
+ *     retried; it is also never silent.
+ *   * **Fail safe on an unavailable intake.** `disabled` and `full` write nothing
+ *     and THROW (retry with back-off, then dead-letter, replayable), exactly as the
+ *     attributor does; `input_invalid` is audited and the delivery completes.
+ *   * **Partial returns do nothing.** The ledger voids a whole accrual and a
+ *     voided accrual is never resurrected, so a line is reversed by a refund only
+ *     when every unit of it has been returned (`isLineFullyReturned`, summed over
+ *     all completed returns of the order). A partly returned line is counted as
  *     `partial`, left alone, and surfaced in the same warning row.
- *   * **The actor.** `void` stamps a PERSON on the status edge; an event consumer
- *     has none, and the event envelope does not reach a handler. The voider is
- *     the tenant user who last saved the commission settings - the person who
- *     authorised commission to be paid (ADR-0046 D6) - and the commerce audit row
- *     says it was automatic. If there is none, the port answers `actor_required`.
  *   * **It does not depend on the switch.** A tenant that turned the adapter OFF
- *     after accruing still gets the accruals of cancelled and refunded sales
- *     reversed; the only precondition is that `hr_commission` is on and that the
- *     adapter was configured once.
- *
- * It never reads a commission table, a rate or an accrual: it sees only the
- * port's answers.
+ *     after submitting still gets the cancelled and refunded sales reversed; the
+ *     precondition is that `hr_commission` is on (otherwise the skip is audited
+ *     for a person, because a submitted accrual may still stand).
  */
-import type {
-  CommissionAccrualPort,
-  CommissionVoidOutcome
-} from "../../_shared/ports/commission-accrual-port";
+import type { CommissionIntakePort } from "../../_shared/ports/commission-intake-port";
 import { resolveModuleEnabled } from "../../identity-access/application/auth-context";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   COMMISSION_VOID_REASON_LINE_RETURNED,
   COMMISSION_VOID_REASON_ORDER_CANCELLED,
+  CommissionIntakeUnavailableError,
   commissionSourceIdentity,
   emptyVoidTally,
+  intakeUnavailableReason,
   isLineFullyReturned,
   tallyVoidOutcome,
   voidNeedsAttention,
@@ -62,11 +61,12 @@ import {
   type VoidTally
 } from "../domain/commission-attribution";
 import {
-  fetchCommissionReversalContext,
-  listEmploymentsEverLinkedToLogin,
-  lockCommissionOrder
+  fetchEventActor,
+  listSubmissionsForOrder,
+  lockCommissionOrder,
+  type CommissionSubmission
 } from "./commission-attribution-directory";
-import { commerceCommissionAccrualPort } from "./commission-attribution-port";
+import { commerceCommissionIntakePort } from "./commission-attribution-port";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "commerce_order";
@@ -78,9 +78,18 @@ export type CommissionReversalResult =
   | { kind: "skipped"; reason: CommissionSkipReason }
   | { kind: "reversed"; tally: VoidTally };
 
-type ReversalOptions = { port?: CommissionAccrualPort };
+/**
+ * `port`: the intake (tests inject one). `eventId`: the delivered event whose
+ * actor is the voider. `actorTenantUserId`: an explicit voider (`null` = a system
+ * action), which wins over `eventId`.
+ */
+type ReversalOptions = {
+  port?: CommissionIntakePort;
+  eventId?: string;
+  actorTenantUserId?: string | null;
+};
 
-/** A cancelled order: every line of it is reversed. */
+/** A cancelled order: every submitted line of it is reversed. */
 export async function reverseCommissionForCancelledOrder(
   tx: Bun.SQL,
   tenantId: string,
@@ -94,14 +103,7 @@ export async function reverseCommissionForCancelledOrder(
     orderId,
     "order_cancelled",
     COMMISSION_VOID_REASON_ORDER_CANCELLED,
-    async () => {
-      const lines = (await tx`
-        SELECT id FROM awcms_commerce_order_items
-        WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
-        ORDER BY created_at, id
-      `) as { id: string }[];
-      return { lineIds: lines.map((line) => line.id), partial: 0 };
-    },
+    async () => ({ fullLineIds: null, partialLineIds: [] }),
     correlationId,
     options
   );
@@ -161,8 +163,10 @@ export async function reverseCommissionForSettledRefund(
         isLineFullyReturned(Number(line.ordered), Number(line.returned))
       );
       return {
-        lineIds: full.map((line) => line.id),
-        partial: lines.length - full.length
+        fullLineIds: new Set(full.map((line) => line.id)),
+        partialLineIds: lines
+          .filter((line) => !full.includes(line))
+          .map((line) => line.id)
       };
     },
     correlationId,
@@ -176,76 +180,109 @@ async function reverse(
   orderId: string,
   cause: CommissionReversalCause,
   reasonCode: string,
-  pickLines: () => Promise<{ lineIds: string[]; partial: number }>,
+  pickLines: () => Promise<{
+    /** `null` = every submitted line (a cancellation). */
+    fullLineIds: Set<string> | null;
+    partialLineIds: string[];
+  }>,
   correlationId: string | undefined,
   options: ReversalOptions
 ): Promise<CommissionReversalResult> {
   // Serialises this reversal against the attributor of the SAME order (issue
-  // #449, ADR-0046 D11): a delayed attributor either finishes first, so the void
-  // below finds its accrual, or runs after and sees the completed return.
+  // #449, ADR-0046 D11): a delayed attributor either finishes first, so the
+  // submission below is found, or runs after and sees the completed return.
   await lockCommissionOrder(tx, tenantId, orderId);
 
-  const context = await fetchCommissionReversalContext(tx, tenantId);
-  // Never configured: nothing was ever reported.
-  if (!context) return { kind: "skipped", reason: "disabled" };
+  const submissions = await listSubmissionsForOrder(tx, tenantId, orderId);
+  // Nothing was ever submitted for this order: nothing can stand in the ledger.
+  if (submissions.length === 0) {
+    return { kind: "skipped", reason: "no_submissions" };
+  }
 
   if (!(await resolveModuleEnabled(tx, tenantId, HR_COMMISSION_MODULE_KEY))) {
+    // A submitted accrual may still stand and the module that could void it is
+    // off: say so for a person instead of dropping the reversal silently.
+    await auditHrCommissionDisabled(
+      tx,
+      tenantId,
+      orderId,
+      cause,
+      correlationId
+    );
     return { kind: "skipped", reason: "hr_commission_disabled" };
   }
 
-  const orders = (await tx`
-    SELECT pos_cashier_tenant_user_id
-    FROM awcms_commerce_orders
-    WHERE tenant_id = ${tenantId} AND id = ${orderId}
-  `) as { pos_cashier_tenant_user_id: string | null }[];
-  const order = orders[0];
-  if (!order) return { kind: "skipped", reason: "order_not_found" };
-  if (order.pos_cashier_tenant_user_id === null) {
-    return { kind: "skipped", reason: "no_cashier_stamp" };
-  }
-
-  const employments = await listEmploymentsEverLinkedToLogin(
-    tx,
-    tenantId,
-    order.pos_cashier_tenant_user_id
-  );
-  if (employments.length === 0) {
-    return { kind: "skipped", reason: "no_staff_link" };
-  }
-
-  const { lineIds, partial } = await pickLines();
+  const { fullLineIds, partialLineIds } = await pickLines();
   const tally = emptyVoidTally();
-  tally.partial = partial;
-  const port = options.port ?? commerceCommissionAccrualPort();
+  const submittedLines = new Set(submissions.map((row) => row.orderItemId));
+  tally.partial = partialLineIds.filter((id) => submittedLines.has(id)).length;
+  const toVoid: CommissionSubmission[] = submissions.filter(
+    (row) => fullLineIds === null || fullLineIds.has(row.orderItemId)
+  );
+  if (toVoid.length === 0) {
+    await auditReversal(tx, tenantId, orderId, cause, tally, correlationId);
+    return { kind: "reversed", tally };
+  }
 
-  for (const lineId of lineIds) {
-    for (const employmentId of employments) {
-      const outcome: CommissionVoidOutcome = await port.void(
-        tx,
-        tenantId,
-        context.actorTenantUserId,
-        {
-          employmentId,
-          source: commissionSourceIdentity(context.sourceType, orderId, lineId),
-          reason: reasonCode,
-          correlationId
-        }
-      );
-      tallyVoidOutcome(tally, outcome);
+  const actor =
+    options.actorTenantUserId !== undefined
+      ? options.actorTenantUserId
+      : options.eventId !== undefined
+        ? await fetchEventActor(tx, tenantId, options.eventId)
+        : null;
+  const port = options.port ?? commerceCommissionIntakePort();
+
+  for (const submission of toVoid) {
+    const outcome = await port.submitVoid(tx, tenantId, actor, {
+      employmentId: submission.employmentId,
+      source: commissionSourceIdentity(
+        submission.sourceType,
+        orderId,
+        submission.orderItemId
+      ),
+      reason: reasonCode,
+      correlationId
+    });
+    const unavailable = intakeUnavailableReason(outcome);
+    if (unavailable !== null) {
+      throw new CommissionIntakeUnavailableError(unavailable);
     }
+    tallyVoidOutcome(tally, outcome);
   }
 
   await auditReversal(tx, tenantId, orderId, cause, tally, correlationId);
   return { kind: "reversed", tally };
 }
 
+async function auditHrCommissionDisabled(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string,
+  cause: CommissionReversalCause,
+  correlationId?: string
+): Promise<void> {
+  await recordAuditEvent(tx, {
+    tenantId,
+    moduleKey: AUDIT_MODULE_KEY,
+    resourceType: AUDIT_RESOURCE_TYPE,
+    resourceId: orderId,
+    correlationId,
+    action: "commerce.commission.reversal_needs_attention",
+    severity: "warning",
+    message:
+      "A cancelled or refunded counter sale could not be reversed because the hr_commission module is off for the tenant; a person must decide.",
+    attributes: { cause, hrCommissionDisabled: true }
+  });
+}
+
 /**
  * Two audit rows at most, with the order as the resource and counts only (no
  * amount, rate, source reference, accrual or employment id - ADR-0046 D6):
- * `commerce.commission.reversed` (info) when anything was newly voided, and
- * `commerce.commission.reversal_needs_attention` (warning) when a human has to
- * act - the closed-period accruals a refund could not reverse, a partly returned
- * line, a reversal with no person to stamp. A pure replay writes nothing.
+ * `commerce.commission.reversal_submitted` (info) when anything was newly
+ * queued, and `commerce.commission.reversal_needs_attention` (warning) when a
+ * human has to act - a partly returned line, a reversal with no person to stamp,
+ * a malformed one. A pure replay writes nothing. A closed period or a missing
+ * accrual is decided later by the poster and listed by `hr_commission`.
  */
 async function auditReversal(
   tx: Bun.SQL,
@@ -263,14 +300,14 @@ async function auditReversal(
     correlationId
   };
 
-  if (tally.voided > 0) {
+  if (tally.queued > 0) {
     await recordAuditEvent(tx, {
       ...base,
-      action: "commerce.commission.reversed",
+      action: "commerce.commission.reversal_submitted",
       severity: "info",
       message:
-        "The commission accrued on a counter sale was voided because the sale was cancelled or refunded.",
-      attributes: { cause, linesVoided: tally.voided }
+        "A void of the commission on a counter sale was submitted to the commission intake queue because the sale was cancelled or refunded.",
+      attributes: { cause, linesQueued: tally.queued }
     });
   }
 
@@ -280,11 +317,9 @@ async function auditReversal(
       action: "commerce.commission.reversal_needs_attention",
       severity: "warning",
       message:
-        "A cancelled or refunded counter sale left commission that the ledger did not reverse; a person must decide.",
+        "A cancelled or refunded counter sale left commission that could not be submitted for reversal; a person must decide.",
       attributes: {
         cause,
-        periodClosedPayable: tally.periodClosed.payable,
-        periodClosedPaid: tally.periodClosed.paid,
         partiallyReturnedLines: tally.partial,
         actorRequired: tally.actorRequired,
         invalid: tally.invalid

@@ -161,6 +161,9 @@ export const COMMERCE_RETURN_RECORDED_EVENT_TYPE =
   "awcms.commerce.return.recorded";
 export const COMMERCE_REFUND_SETTLED_EVENT_TYPE =
   "awcms.commerce.refund.settled";
+/** Issue #432 (ADR-0048 Q4) - the store replied in a customer's inbox (conversation aggregate). */
+export const COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE =
+  "awcms.commerce.conversation.store_replied";
 
 /** Issue #288 (ADR-0030) — closed-loop stored-value ledger. */
 export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
@@ -529,6 +532,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "One refund leg of a return reached succeeded (Issue #287): the payment-ledger reversal is booked and the proportional compensations (loyalty points, affiliate commission, store credit) are applied. Producer: commerce/application/refund-settlement.ts, in the same transaction. Aggregate is the return; the payload carries ids, tender, destination, amount and how it settled (ledger / provider / offline / store_credit) - never a provider reference, name or phone."
+    },
+    {
+      eventType: COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A staff reply was stored in a customer conversation (Issue #432, ADR-0048 Q4). Producer: commerce/application/conversation-directory.ts's postStoreReply, in the same transaction as the stored message. Aggregate is the conversation; the payload carries conversationId only - never the subject, the body or the customer. Consumed by the customer Web Push enqueuer (purpose support_replies)."
     },
     {
       eventType: INVENTORY_MOVEMENT_POSTED_EVENT_TYPE,

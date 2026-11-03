@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5318-kecamatan-531605-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.16.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wolowae Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nagekeo",
+  "publisherDomain": "5318",
+  "publisherWebsite": "https://nagekeokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nagekeo (https://nagekeokab.bps.go.id), publikasi \"Kecamatan Wolowae Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5318070",
+  "publicationNumber": "53180.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nagekeokab.bps.go.id/id/publication/2026/09/28/fa84d4443753bf2e89cfbd7c/kecamatan-wolowae-dalam-angka-2026.html",
+  "sourceFileSha256": "950a2d98c32167703e7e0afe09e9d52e9a4bf57042cc56bc586903ee54a2a898",
+  "sourceFileBytes": 4378017,
+  "sourcePages": [26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nagekeo.",
+  "csvPath": "datasets/bps-5318-kecamatan-531605-dalam-angka-2026.csv",
+  "csvSha256": "46ae3358032a9c75362ffe94b2fe9e53bf22f82c6b4cb5eaa2090a0ed6942592",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Wolowae, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wolowae, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 53.16.05.2004 are not stored: sex split vs total: parts sum 793.0000 != 1346.0000 (diff 553.0000); the source itself is inconsistent"
+  ]
+}

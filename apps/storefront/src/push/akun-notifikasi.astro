@@ -1,0 +1,244 @@
+---
+/**
+ * `/akun/notifikasi` - the customer's Web Push settings (issue #431, ADR-0048
+ * section 7). Injected as a route by `integrations/profil.mjs` ONLY when
+ * `PUBLIC_CUSTOMER_PUSH` is on and the profile carries customer accounts; with
+ * the flag off, or in a `berita`/`landing` build, this file is never routed.
+ * It lives under `src/push/` (not `src/profil/toko/pages/`) for the same reason
+ * `src/install/` does: Astro/the profile integration must not pick it up on its
+ * own, and it is not in `ROUTES` (a flag-gated page must not enter the sitemap,
+ * the navigation or the profile matrices).
+ *
+ * Static markup for EVERY state the page can be in; `src/scripts/akun-notifikasi.ts`
+ * decides which one shows (the server's answer and the browser's capabilities
+ * only exist at run time) and fills the consent text of the version the server
+ * publishes. Nothing here asks for a permission or subscribes: that happens
+ * only from the click on "Aktifkan Notifikasi", after the consent text has
+ * been shown. `noindex`, never in the sitemap.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../lib/awcms/profil";
+import { ROUTES } from "../config/routes";
+import { INSTALL_HELP_PATH, isInstallHelpEnabled } from "../lib/pasang-aplikasi";
+import { PUSH_SETTINGS_PATH } from "../lib/push-konfig";
+import "../styles/toko.css";
+import "../styles/akun.css";
+
+const identity = await getSiteIdentity();
+const bantuanPasang = isInstallHelpEnabled() ? INSTALL_HELP_PATH : "";
+---
+
+<BaseLayout
+  title="Notifikasi"
+  description={`Atur notifikasi pesanan dan pembayaran dari ${identity.name}.`}
+  canonicalPath={PUSH_SETTINGS_PATH}
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Pengaturan notifikasi memerlukan JavaScript aktif di peramban Anda. Pembaruan pesanan tetap bisa dilihat di
+        <a href={ROUTES.accountOrders}>halaman pesanan</a> dan <a href={ROUTES.accountMessages}>kotak pesan</a>.
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-notif-root
+    data-store-name={identity.name}
+    data-login-href={ROUTES.login}
+    data-akun-href={ROUTES.account}
+    data-bantuan-pasang={bantuanPasang}
+  >
+    <div class="page-heading">
+      <h1>Notifikasi</h1>
+      <p><a href={ROUTES.account}>&larr; Kembali ke akun</a></p>
+    </div>
+
+    <div
+      data-notif-status
+      class="toko-banner toko-banner--info"
+      role="status"
+      aria-live="polite"
+      tabindex="-1"
+      hidden
+    >
+    </div>
+
+    <div data-notif-galat class="toko-banner toko-banner--danger" role="alert" tabindex="-1" hidden>
+      <p data-notif-galat-pesan></p>
+      <div class="akun-actions">
+        <button type="button" class="btn btn--primary btn--sm" data-notif-coba-lagi hidden>Coba lagi</button>
+        <button type="button" class="btn btn--secondary btn--sm" data-notif-muat-ulang hidden>
+          Muat ulang halaman
+        </button>
+        <a class="btn btn--primary btn--sm" href={ROUTES.login} data-notif-masuk-ulang hidden>Masuk lagi</a>
+      </div>
+    </div>
+
+    <section data-panel="memuat" class="akun-card" aria-busy="true">
+      <p>Memuat pengaturan notifikasi&hellip;</p>
+    </section>
+
+    <section data-panel="tamu" class="akun-card" hidden>
+      <h2>Masuk dulu</h2>
+      <p>Anda belum masuk. Masuk ke akun untuk mengatur notifikasi.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.login} class="btn btn--primary btn--sm">Masuk</a>
+        <a href={ROUTES.register} class="btn btn--secondary btn--sm">Daftar akun baru</a>
+      </div>
+    </section>
+
+    <section data-panel="disembunyikan" class="akun-card" hidden>
+      <h2>Notifikasi belum tersedia</h2>
+      <p>Toko ini belum menyediakan notifikasi. Pembaruan tetap ada di halaman pesanan dan kotak pesan Anda.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.accountOrders} class="btn btn--secondary btn--sm">Pesanan saya</a>
+        <a href={ROUTES.accountMessages} class="btn btn--secondary btn--sm">Kotak pesan</a>
+      </div>
+    </section>
+
+    <section data-panel="diblokir" class="akun-card" hidden>
+      <h2>Akun diblokir</h2>
+      <p>Akun Anda sedang diblokir, sehingga notifikasi tidak bisa diatur. Hubungi toko untuk bantuan.</p>
+    </section>
+
+    <section data-panel="belum_verifikasi" class="akun-card" hidden>
+      <h2>E-mail belum diverifikasi</h2>
+      <p>Verifikasi alamat e-mail Anda terlebih dahulu sebelum mengaktifkan notifikasi.</p>
+    </section>
+
+    <section data-panel="server_nonaktif" class="akun-card" hidden>
+      <h2>Notifikasi sedang tidak tersedia</h2>
+      <p data-alasan="push_not_configured" hidden>
+        Toko ini belum menyiapkan layanan notifikasi. Anda tetap bisa melihat pembaruan di halaman pesanan dan kotak pesan.
+      </p>
+      <p data-alasan="origin_not_supported" hidden>
+        Notifikasi tidak tersedia untuk alamat situs yang sedang Anda buka. Pembaruan tetap ada di halaman pesanan dan kotak pesan.
+      </p>
+      <p data-alasan="kunci_rusak" hidden>
+        Layanan notifikasi toko ini belum siap. Coba lagi nanti; pembaruan tetap ada di halaman pesanan dan kotak pesan.
+      </p>
+      <div class="akun-actions">
+        <a href={ROUTES.accountOrders} class="btn btn--secondary btn--sm">Pesanan saya</a>
+        <a href={ROUTES.accountMessages} class="btn btn--secondary btn--sm">Kotak pesan</a>
+      </div>
+    </section>
+
+    <section data-panel="tidak_didukung" class="akun-card" hidden>
+      <h2>Browser ini belum mendukung notifikasi</h2>
+      <p>
+        Notifikasi tidak bisa diaktifkan di browser ini. Ini umum terjadi pada browser yang terbuka di dalam aplikasi lain
+        (misalnya dari tautan di aplikasi pesan) atau browser yang sudah lama. Buka {identity.name} langsung di Chrome,
+        Edge, Firefox, atau Safari versi terbaru.
+      </p>
+      <p>Pembaruan pesanan dan pembayaran tetap ada di akun Anda.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.accountOrders} class="btn btn--secondary btn--sm">Pesanan saya</a>
+        <a href={ROUTES.accountMessages} class="btn btn--secondary btn--sm">Kotak pesan</a>
+      </div>
+    </section>
+
+    <section data-panel="ios_pasang" class="akun-card" aria-labelledby="notif-ios-judul" hidden>
+      <h2 id="notif-ios-judul">Pasang di Layar Utama dulu</h2>
+      <p>
+        Di iPhone dan iPad, notifikasi hanya bisa diterima oleh situs yang sudah ditambahkan ke Layar Utama
+        (iOS atau iPadOS 16.4 atau lebih baru). Tab Safari tidak bisa menerimanya.
+      </p>
+      <ol>
+        <li>Buka <strong>{identity.name}</strong> di Safari.</li>
+        <li>Ketuk tombol <strong>Bagikan</strong> (kotak dengan panah ke atas).</li>
+        <li>Pilih <strong>Tambahkan ke Layar Utama</strong>, pastikan <strong>Buka sebagai Aplikasi Web</strong> aktif, lalu ketuk <strong>Tambah</strong>.</li>
+        <li>Buka {identity.name} dari ikonnya di Layar Utama, lalu kembali ke halaman ini untuk mengaktifkan notifikasi.</li>
+      </ol>
+      <p data-bantuan-pasang-tautan hidden>
+        <a href={bantuanPasang || "#"}>Lihat panduan lengkap dengan langkah-langkahnya</a>
+      </p>
+    </section>
+
+    <section data-panel="ios_lama" class="akun-card" hidden>
+      <h2>Versi iOS perlu diperbarui</h2>
+      <p>
+        Notifikasi dari situs web memerlukan iOS atau iPadOS 16.4 atau lebih baru. Perbarui sistem Anda lewat
+        Pengaturan &rarr; Umum &rarr; Pembaruan Perangkat Lunak, lalu coba lagi.
+      </p>
+    </section>
+
+    <section data-panel="izin_ditolak" class="akun-card" hidden>
+      <h2>Izin notifikasi diblokir</h2>
+      <p>
+        Browser ini memblokir notifikasi untuk situs ini. Halaman ini tidak bisa mengubah izin tersebut; Anda perlu
+        mengizinkannya sendiri:
+      </p>
+      <ul>
+        <li><strong>iPhone/iPad:</strong> Pengaturan &rarr; Notifikasi &rarr; pilih aplikasi {identity.name} &rarr; Izinkan Notifikasi.</li>
+        <li><strong>Android (Chrome):</strong> ketuk ikon di samping alamat situs &rarr; Izin &rarr; Notifikasi &rarr; Izinkan.</li>
+        <li><strong>Komputer:</strong> klik ikon gembok di bilah alamat &rarr; Notifikasi &rarr; Izinkan.</li>
+      </ul>
+      <p>Setelah mengubahnya, muat ulang halaman ini.</p>
+      <div class="akun-actions">
+        <button type="button" class="btn btn--secondary btn--sm" data-notif-muat-ulang-izin>Muat ulang halaman</button>
+      </div>
+    </section>
+
+    <section data-panel="aktifkan" class="akun-card" aria-labelledby="notif-aktifkan-judul" hidden>
+      <h2 id="notif-aktifkan-judul">Aktifkan notifikasi di perangkat ini</h2>
+      <div data-notif-teks></div>
+      <p class="akun-countdown">Versi teks persetujuan: <span data-notif-versi class="is-mono"></span></p>
+
+      <form data-notif-form novalidate>
+        <fieldset class="akun-fieldset">
+          <legend class="field-label">Pilih jenis notifikasi yang ingin Anda terima</legend>
+          <div data-notif-tujuan></div>
+          <p class="toko-field-error" data-notif-tujuan-galat role="alert"></p>
+        </fieldset>
+        <p class="akun-countdown">
+          Browser akan meminta izin notifikasi setelah Anda mengetuk tombol di bawah.
+          Perangkat bersama? Aktifkan hanya di perangkat pribadi. Saat Anda keluar dari akun,
+          notifikasi di perangkat ini otomatis dimatikan.
+        </p>
+        <div class="akun-actions">
+          <button type="submit" class="btn btn--primary" data-notif-aktifkan>Aktifkan Notifikasi</button>
+        </div>
+      </form>
+    </section>
+
+    <section data-panel="aktif" class="akun-card" aria-labelledby="notif-aktif-judul" hidden>
+      <h2 id="notif-aktif-judul">Notifikasi aktif di perangkat ini</h2>
+      <fieldset class="akun-fieldset">
+        <legend class="field-label">Jenis notifikasi</legend>
+        <div data-notif-prefs></div>
+      </fieldset>
+      <p class="akun-countdown" data-notif-prefs-kosong hidden>
+        Tidak ada jenis yang dipilih, jadi tidak ada notifikasi yang dikirim ke perangkat ini.
+      </p>
+      <details class="akun-teks-persetujuan">
+        <summary>Teks persetujuan (versi <span data-notif-versi-aktif class="is-mono"></span>)</summary>
+        <div data-notif-teks-aktif></div>
+      </details>
+      <div class="akun-actions">
+        <button type="button" class="btn btn--secondary btn--sm" data-notif-nonaktifkan>
+          Nonaktifkan di perangkat ini
+        </button>
+      </div>
+      <p class="akun-countdown">
+        Izin notifikasi di browser tidak dicabut dari halaman ini; untuk mencabutnya, buka pengaturan browser atau perangkat Anda.
+      </p>
+    </section>
+
+    <section data-panel="perangkat" class="akun-card" aria-labelledby="notif-perangkat-judul" hidden>
+      <h2 id="notif-perangkat-judul" tabindex="-1">Perangkat Anda</h2>
+      <p class="akun-countdown">
+        Perangkat yang saat ini terdaftar menerima notifikasi untuk akun Anda (maksimum <span data-notif-maks>5</span>).
+      </p>
+      <ul class="akun-nav-grid" data-notif-perangkat></ul>
+      <p data-notif-perangkat-kosong hidden>Belum ada perangkat yang terdaftar.</p>
+    </section>
+  </div>
+
+  <script>
+    import "../scripts/akun-notifikasi";
+  </script>
+</BaseLayout>

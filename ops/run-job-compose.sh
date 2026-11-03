@@ -23,11 +23,30 @@
 #   run-job-compose.sh <bun-run-target> [extra args...]
 #   run-job-compose.sh commerce:whatsapp:dispatch --dry-run
 #
+# Which database role a job runs as (issue #391 unblock):
+#   The `jobs` compose service holds the WORKER DSN as DATABASE_URL; the
+#   `jobs-app` service holds the APP DSN. Upstream's own runner decides this
+#   per target (a worker-client job has DATABASE_URL withheld; a job whose
+#   import closure reaches the app client keeps it) and publishes that
+#   decision as a GENERATED block in `apps/cms/ops/run-job.sh`
+#   ("targets that need DATABASE_URL", from appConnectionTargets()). This
+#   wrapper reads THAT block at run time — no hand-copied list — and routes
+#   the target to `jobs-app` only when it is listed; everything else stays on
+#   `jobs`. It fails closed: a missing/garbled block, or a target upstream
+#   marks operator-only, refuses to run rather than guessing a role.
+#   `tests/compose-produksi.test.mjs` holds the file's shape and every
+#   generated-crontab target's routing to this contract.
+#
 # Env:
 #   COMPOSE_FILE            — defaults to compose.production.yaml, relative
 #                             to this script's own directory's parent.
 #   COMPOSE_PROJECT_NAME    — passed through if set; otherwise compose's own
 #                             default (the directory name) applies.
+#   AWCMS_UPSTREAM_RUN_JOB  — path of upstream's run-job.sh to read the
+#                             classification from (default
+#                             apps/cms/ops/run-job.sh; tests only).
+#   AWCMS_RUN_JOB_PRINT_SERVICE=1 — print the chosen compose service name
+#                             and exit without calling docker (tests/ops).
 set -euo pipefail
 
 JOB="${1:?usage: run-job-compose.sh <bun-run-target> [args...]   e.g. run-job-compose.sh commerce:whatsapp:dispatch --dry-run}"
@@ -35,5 +54,65 @@ shift
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 COMPOSE_FILE="${COMPOSE_FILE:-$REPO_ROOT/compose.production.yaml}"
+UPSTREAM="${AWCMS_UPSTREAM_RUN_JOB:-$REPO_ROOT/apps/cms/ops/run-job.sh}"
 
-exec docker compose -f "$COMPOSE_FILE" --profile jobs run --rm jobs bun run "$JOB" "$@"
+log() { echo "$(date -Is) run-job-compose.sh: $*" >&2; }
+
+# Same rule as upstream: a package script NAME, never a path or an option.
+case "$JOB" in
+  -* | *[!A-Za-z0-9:_-]*)
+    log "job target must be a package script name (letters, digits, ':', '-', '_'); refusing"
+    exit 1
+    ;;
+esac
+
+# The patterns of the first `case` arm between upstream's generated markers.
+# Prints one target per line; exit 1 when the markers or the arm are absent.
+generated_targets() {
+  local begin="$1" end="$2"
+  awk -v b="BEGIN GENERATED: $begin" -v e="END GENERATED: $end" '
+    index($0, b) { inside = 1; next }
+    index($0, e) { inside = 0; next }
+    inside && /^[[:space:]]+[A-Za-z0-9:_| -]+\)[[:space:]]*$/ && !done {
+      line = $0
+      sub(/^[[:space:]]+/, "", line); sub(/\)[[:space:]]*$/, "", line)
+      n = split(line, parts, /[[:space:]]*\|[[:space:]]*/)
+      for (i = 1; i <= n; i++) if (parts[i] != "") print parts[i]
+      done = 1
+    }
+    END { exit (done ? 0 : 1) }
+  ' "$UPSTREAM"
+}
+
+if [ ! -r "$UPSTREAM" ]; then
+  log "upstream classification $UPSTREAM is not readable — refusing to run $JOB"
+  exit 1
+fi
+
+if ! OPERATOR_ONLY=$(generated_targets "operator-only targets" "operator-only targets"); then
+  log "no operator-only block in $UPSTREAM — refusing to run $JOB (regenerate: bun run jobs:env-allowlist:generate in apps/cms)"
+  exit 1
+fi
+if ! APP_TARGETS=$(generated_targets "targets that need DATABASE_URL" "targets that need DATABASE_URL"); then
+  log "no 'targets that need DATABASE_URL' block in $UPSTREAM — refusing to run $JOB rather than guess a database role"
+  exit 1
+fi
+
+if printf '%s\n' "$OPERATOR_ONLY" | grep -Fxq -- "$JOB"; then
+  log "$JOB is an operator-only command and does not run in a job container; refusing"
+  exit 1
+fi
+
+if printf '%s\n' "$APP_TARGETS" | grep -Fxq -- "$JOB"; then
+  SERVICE="jobs-app"   # awcms_app: this target opens the app connection
+else
+  SERVICE="jobs"       # awcms_worker: upstream never gives it the app credential
+fi
+
+if [ "${AWCMS_RUN_JOB_PRINT_SERVICE:-}" = "1" ]; then
+  echo "$SERVICE"
+  exit 0
+fi
+
+log "$JOB -> compose service $SERVICE"
+exec docker compose -f "$COMPOSE_FILE" --profile "$SERVICE" run --rm "$SERVICE" bun run "$JOB" "$@"

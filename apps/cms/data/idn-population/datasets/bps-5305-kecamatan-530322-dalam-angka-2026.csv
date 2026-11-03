@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.22.2001,4,T’eba,sex,laki_laki,,700,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.22.2001,4,T’eba,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.22.2001,4,T’eba,total,total,,1392,jiwa,2025,registration,total_population,3.1,28,,
+53.03.22.2002,4,Oerinbesi,sex,laki_laki,,701,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.22.2002,4,Oerinbesi,sex,perempuan,,678,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.22.2002,4,Oerinbesi,total,total,,1379,jiwa,2025,registration,total_population,3.1,28,,
+53.03.22.2003,4,Oekopa,sex,laki_laki,,984,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.22.2003,4,Oekopa,sex,perempuan,,957,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.22.2003,4,Oekopa,total,total,,1941,jiwa,2025,registration,total_population,3.1,28,,
+53.03.22.2004,4,T’eba Timur,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.22.2004,4,T’eba Timur,sex,perempuan,,803,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.22.2004,4,T’eba Timur,total,total,,1658,jiwa,2025,registration,total_population,3.1,28,,
+53.03.22,3,Biboki Tanpah,sex,laki_laki,,3240,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.22,3,Biboki Tanpah,sex,perempuan,,3130,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.22,3,Biboki Tanpah,total,total,,6370,jiwa,2025,registration,total_population,3.1,28,,
+53.03.22,3,Biboki Tan Pah,age_group,0-4,laki_laki,177,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.22,3,Biboki Tan Pah,age_group,0-4,perempuan,143,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.22,3,Biboki Tan Pah,age_group,0-4,,320,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.22,3,Biboki Tan Pah,age_group,5-9,laki_laki,337,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.22,3,Biboki Tan Pah,age_group,5-9,perempuan,324,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.22,3,Biboki Tan Pah,age_group,5-9,,661,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.22,3,Biboki Tan Pah,age_group,10-14,laki_laki,370,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.22,3,Biboki Tan Pah,age_group,10-14,perempuan,317,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.22,3,Biboki Tan Pah,age_group,10-14,,687,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.22,3,Biboki Tan Pah,age_group,15-19,laki_laki,351,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.22,3,Biboki Tan Pah,age_group,15-19,perempuan,327,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.22,3,Biboki Tan Pah,age_group,15-19,,678,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.22,3,Biboki Tan Pah,age_group,20-24,laki_laki,358,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.22,3,Biboki Tan Pah,age_group,20-24,perempuan,329,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.22,3,Biboki Tan Pah,age_group,20-24,,687,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.22,3,Biboki Tan Pah,age_group,25-29,laki_laki,290,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.22,3,Biboki Tan Pah,age_group,25-29,perempuan,247,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.22,3,Biboki Tan Pah,age_group,25-29,,537,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.22,3,Biboki Tan Pah,age_group,30-34,laki_laki,209,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.22,3,Biboki Tan Pah,age_group,30-34,perempuan,233,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.22,3,Biboki Tan Pah,age_group,30-34,,442,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.22,3,Biboki Tan Pah,age_group,35-39,laki_laki,199,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.22,3,Biboki Tan Pah,age_group,35-39,perempuan,196,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.22,3,Biboki Tan Pah,age_group,35-39,,395,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.22,3,Biboki Tan Pah,age_group,40-44,laki_laki,212,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.22,3,Biboki Tan Pah,age_group,40-44,perempuan,217,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.22,3,Biboki Tan Pah,age_group,40-44,,429,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.22,3,Biboki Tan Pah,age_group,45-49,laki_laki,137,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.22,3,Biboki Tan Pah,age_group,45-49,perempuan,159,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.22,3,Biboki Tan Pah,age_group,45-49,,296,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.22,3,Biboki Tan Pah,age_group,50-54,laki_laki,122,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.22,3,Biboki Tan Pah,age_group,50-54,perempuan,147,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.22,3,Biboki Tan Pah,age_group,50-54,,269,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.22,3,Biboki Tan Pah,age_group,55-59,laki_laki,126,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.22,3,Biboki Tan Pah,age_group,55-59,perempuan,141,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.22,3,Biboki Tan Pah,age_group,55-59,,267,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.22,3,Biboki Tan Pah,age_group,60-64,laki_laki,121,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.22,3,Biboki Tan Pah,age_group,60-64,perempuan,132,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.22,3,Biboki Tan Pah,age_group,60-64,,253,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.22,3,Biboki Tan Pah,age_group,65-69,laki_laki,93,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.22,3,Biboki Tan Pah,age_group,65-69,perempuan,84,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.22,3,Biboki Tan Pah,age_group,65-69,,177,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.22,3,Biboki Tan Pah,age_group,70-74,laki_laki,55,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.22,3,Biboki Tan Pah,age_group,70-74,perempuan,50,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.22,3,Biboki Tan Pah,age_group,70-74,,105,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.22,3,Biboki Tan Pah,age_group,75+,laki_laki,83,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.22,3,Biboki Tan Pah,age_group,75+,perempuan,84,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.22,3,Biboki Tan Pah,age_group,75+,,167,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.22,3,Biboki Tanpah,sex,laki_laki,,3240,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.22,3,Biboki Tanpah,sex,perempuan,,3130,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.22,3,Biboki Tanpah,total,total,,6370,jiwa,2025,registration,total_population,3.2,30,,

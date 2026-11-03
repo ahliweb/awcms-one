@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.05.2001,4,Komodo,sex,laki_laki,,1042,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2001,4,Komodo,sex,perempuan,,1012,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2001,4,Komodo,total,total,,2054,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2018,4,Papa Garang,sex,laki_laki,,877,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2018,4,Papa Garang,sex,perempuan,,824,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2018,4,Papa Garang,total,total,,1701,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2003,4,Pasir Panjang,sex,laki_laki,,945,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2003,4,Pasir Panjang,sex,perempuan,,906,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2003,4,Pasir Panjang,total,total,,1851,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2004,4,Golo Mori,sex,laki_laki,,1208,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2004,4,Golo Mori,sex,perempuan,,1178,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2004,4,Golo Mori,total,total,,2386,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2005,4,Warloka,sex,laki_laki,,1070,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2005,4,Warloka,sex,perempuan,,1033,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2005,4,Warloka,total,total,,2103,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2022,4,Tiwu Nampar,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2022,4,Tiwu Nampar,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2022,4,Tiwu Nampar,total,total,,1234,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2015,4,Golo Pongkor,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2015,4,Golo Pongkor,sex,perempuan,,570,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2015,4,Golo Pongkor,total,total,,1127,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2008,4,Macang Tanggar,sex,laki_laki,,1963,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2008,4,Macang Tanggar,sex,perempuan,,1858,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2008,4,Macang Tanggar,total,total,,3821,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2002,4,Pasir Putih,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2002,4,Pasir Putih,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2002,4,Pasir Putih,total,total,,2267,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2020,4,Goron Talo,sex,laki_laki,,4043,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2020,4,Goron Talo,sex,perempuan,,4052,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2020,4,Goron Talo,total,total,,8095,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2007,4,Golo Bilas,sex,laki_laki,,3301,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2007,4,Golo Bilas,sex,perempuan,,3244,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2007,4,Golo Bilas,total,total,,6545,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2016,4,Nggorang,sex,laki_laki,,1349,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2016,4,Nggorang,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2016,4,Nggorang,total,total,,2612,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2009,4,Watu Nggelek,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2009,4,Watu Nggelek,sex,perempuan,,533,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2009,4,Watu Nggelek,total,total,,1058,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.1024,4,Wae Kelambu,sex,laki_laki,,4603,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.1024,4,Wae Kelambu,sex,perempuan,,4600,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.1024,4,Wae Kelambu,total,total,,9203,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2019,4,Batu Cermin,sex,laki_laki,,4006,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2019,4,Batu Cermin,sex,perempuan,,3936,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2019,4,Batu Cermin,total,total,,7942,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.1025,4,Labuan Bajo,sex,laki_laki,,3779,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.1025,4,Labuan Bajo,sex,perempuan,,3607,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.1025,4,Labuan Bajo,total,total,,7386,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2028,4,Pantar,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2028,4,Pantar,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2028,4,Pantar,total,total,,941,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05.2027,4,Compang Longgo,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05.2027,4,Compang Longgo,sex,perempuan,,763,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05.2027,4,Compang Longgo,total,total,,1492,jiwa,2025,registration,total_population,3.1,23,,
+53.15.05,3,Kecamatan Komodo,sex,laki_laki,,32519,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.05,3,Kecamatan Komodo,sex,perempuan,,31972,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.05,3,Kecamatan Komodo,total,total,,64491,jiwa,2025,registration,total_population,3.1,23,,

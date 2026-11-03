@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:eae0e2f86b50c9622e1eac0c891f876c644dac7a27cbf6fbd77b39348705906a -->
+<!-- i18n-source-hash: sha256:498b52c9b691f6a9b97de5fcf2498feb8a9451fa2589722299ba5ae899e48236 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-170 target menjalankan berkas di `scripts/`; 64 di antaranya
+177 target menjalankan berkas di `scripts/`; 65 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -68,6 +68,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `build:preview-overlay`                   | `build-preview-overlay.ts`                     | —    |
 | `build:preview-overlay:check`             | `build-preview-overlay.ts`                     | ✅   |
 | `changesets:policy:check`                 | `changeset-policy-check.ts`                    | —    |
+| `channel-accounts:secrets:rekey`          | `channel-accounts-secrets-rekey.ts`            | —    |
 | `check:astro-frontmatter:check`           | `astro-frontmatter-typecheck.ts`               | ✅   |
 | `check:astro-scripts:check`               | `astro-script-typecheck.ts`                    | ✅   |
 | `check:docs`                              | `check-docs.mjs`                               | ✅   |
@@ -78,6 +79,9 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:booking:reconcile`              | `commerce-booking-reconcile.ts`                | —    |
 | `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
+| `commerce:customer-push:dispatch`         | `commerce-customer-push-dispatch.ts`           | —    |
+| `commerce:customer-push:maintenance`      | `commerce-customer-push-maintenance.ts`        | —    |
+| `commerce:customer-push:rekey`            | `commerce-customer-push-rekey.ts`              | —    |
 | `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
 | `commerce:inventory:cutover`              | `commerce-inventory-cutover.ts`                | —    |
@@ -126,6 +130,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `family:conformance:check`                | `family-conformance-check.ts`                  | ✅   |
 | `form-drafts:purge`                       | `form-draft-purge.ts`                          | —    |
 | `graph:artifacts:check`                   | `graph-artifacts-check.ts`                     | —    |
+| `hr-commission:intents:post`              | `hr-commission-intents-post.ts`                | —    |
 | `i18n:catalog:check`                      | `i18n-catalog-check.ts`                        | ✅   |
 | `i18n:compile`                            | `i18n-compile.ts`                              | —    |
 | `i18n:screens:check`                      | `i18n-screen-coverage-check.ts`                | ✅   |
@@ -162,6 +167,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `modules:routes:check`                    | `validate-module-routes.ts`                    | ✅   |
 | `modules:table-writes:check`              | `table-write-ownership-check.ts`               | ✅   |
 | `news-media:reconcile`                    | `news-media-r2-reconcile.ts`                   | —    |
+| `omes:contract:preflight`                 | `omes-contract-preflight.ts`                   | ✅   |
 | `omes:repository-progress:poll`           | `omes-repository-progress-poll.ts`             | —    |
 | `openapi:bundle`                          | `openapi-bundle.ts`                            | —    |
 | `payroll:catalog-boundary:check`          | `payroll-catalog-boundary-check.ts`            | —    |
@@ -199,6 +205,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `telegram:templates:check`                | `telegram-templates-check.ts`                  | ✅   |
 | `telegram:webhook:register`               | `telegram-webhook-register.ts`                 | —    |
 | `tenant-domain:dns:sync`                  | `tenant-domain-dns-sync.ts`                    | —    |
+| `ui:single-flight:audit`                  | `ui-single-flight-audit.ts`                    | —    |
 | `version:check`                           | `version-check.ts`                             | ✅   |
 | `whatsapp:dispatch`                       | `whatsapp-dispatch.ts`                         | —    |
 | `whatsapp:queue:purge`                    | `whatsapp-queue-purge.ts`                      | —    |

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5305-kecamatan-530305-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.03.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Kefamenanu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Utara Regency",
+  "publisherDomain": "5305",
+  "publisherWebsite": "https://timortengahutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Utara Regency (https://timortengahutarakab.bps.go.id), publikasi \"Kecamatan Kota Kefamenanu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5305030",
+  "publicationNumber": "53050.26020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahutarakab.bps.go.id/id/publication/2026/09/28/1d04b159d2f8dab416659853/kecamatan-kota-kefamenanu-dalam-angka-2026.html",
+  "sourceFileSha256": "cd603de3fcd83d581d55e1284df27d0fbc70be91b316ee7186e766aa8fa324e1",
+  "sourceFileBytes": 14976221,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Timor Tengah Utara",
+  "csvPath": "datasets/bps-5305-kecamatan-530305-dalam-angka-2026.csv",
+  "csvSha256": "b6f4c48531721684a0b374a5f2273bf9d248fba89df92c3bf04b4c0bd2a95501",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kota Kefamenanu, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kota Kefamenanu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

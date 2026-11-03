@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.17.03.2006,4,Wee Luri,sex,laki_laki,,665,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2006,4,Wee Luri,sex,perempuan,,628,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2006,4,Wee Luri,total,total,,1293,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2004,4,Wendewa Barat,sex,laki_laki,,630,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2004,4,Wendewa Barat,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2004,4,Wendewa Barat,total,total,,1220,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2007,4,Ole Ate,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2007,4,Ole Ate,sex,perempuan,,805,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2007,4,Ole Ate,total,total,,1660,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2005,4,Cendana,sex,laki_laki,,976,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2005,4,Cendana,sex,perempuan,,899,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2005,4,Cendana,total,total,,1875,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2002,4,Wendewa Selatan,sex,laki_laki,,1035,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2002,4,Wendewa Selatan,sex,perempuan,,972,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2002,4,Wendewa Selatan,total,total,,2007,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2003,4,Wendewa Utara,sex,laki_laki,,1385,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2003,4,Wendewa Utara,sex,perempuan,,1396,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2003,4,Wendewa Utara,total,total,,2781,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2008,4,Manu Wolu,sex,laki_laki,,1157,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2008,4,Manu Wolu,sex,perempuan,,1105,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2008,4,Manu Wolu,total,total,,2262,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2001,4,Wendewa Timur,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2001,4,Wendewa Timur,sex,perempuan,,828,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2001,4,Wendewa Timur,total,total,,1683,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2009,4,Watu Asa,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2009,4,Watu Asa,sex,perempuan,,485,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2009,4,Watu Asa,total,total,,1009,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2010,4,Bondo Sulla,sex,laki_laki,,680,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2010,4,Bondo Sulla,sex,perempuan,,641,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2010,4,Bondo Sulla,total,total,,1321,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2011,4,Susu Wendewa,sex,laki_laki,,813,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2011,4,Susu Wendewa,sex,perempuan,,794,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2011,4,Susu Wendewa,total,total,,1607,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2012,4,Ole Dewa,sex,laki_laki,,646,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2012,4,Ole Dewa,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2012,4,Ole Dewa,total,total,,1286,jiwa,2025,registration,total_population,3.1,,,
+53.17.03.2013,4,Cendana Barat,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03.2013,4,Cendana Barat,sex,perempuan,,533,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03.2013,4,Cendana Barat,total,total,,1106,jiwa,2025,registration,total_population,3.1,,,
+53.17.03,3,Mamboro,sex,laki_laki,,10794,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.03,3,Mamboro,sex,perempuan,,10316,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.03,3,Mamboro,total,total,,21110,jiwa,2025,registration,total_population,3.1,,,

@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-5318-kecamatan-531607-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.16.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Aesesa Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nagekeo",
+  "publisherDomain": "5318",
+  "publisherWebsite": "https://nagekeokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nagekeo (https://nagekeokab.bps.go.id), publikasi \"Kecamatan Aesesa Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5318050",
+  "publicationNumber": "53180.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nagekeokab.bps.go.id/id/publication/2026/09/28/10ba2988a491d37bb1747950/kecamatan-aesesa-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "764138f1e624da24ccdb3a4d75b0dfc7fa0fe703e5675542c6d4a7d0d046dad1",
+  "sourceFileBytes": 3589588,
+  "sourcePages": [20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nagekeo",
+  "csvPath": "datasets/bps-5318-kecamatan-531607-dalam-angka-2026.csv",
+  "csvSha256": "ceb357f083c8ba3b43028eb0ad0cce957ab96b4884dbcc2098152ba325a33d16",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Aesesa Selatan, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Rendutenoe\": unmatched ",
+    "table 3.1: row not stored: row \"Rendututubadha\": unmatched "
+  ]
+}

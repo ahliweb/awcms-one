@@ -15,6 +15,14 @@
 import { readFile } from "node:fs/promises";
 
 import { describeIdempotencySecretProblem } from "../src/lib/security/idempotency-hmac";
+import {
+  CUSTOMER_PUSH_EXTRA_HOSTS_ENV,
+  parseExtraPushHosts
+} from "../src/modules/commerce/domain/customer-push-endpoint";
+import {
+  isDeclaredAppUrl,
+  resolveChannelSecretsRing
+} from "../src/modules/channel-accounts/domain/channel-accounts-config";
 import { parseFcmCredentialsBase64 } from "../src/modules/push-delivery/domain/fcm-credentials";
 import { resolvePushAuthSecretRing } from "../src/modules/push-delivery/domain/push-auth-secret";
 import {
@@ -331,6 +339,13 @@ const RULES: readonly Rule[] = [
   { name: "PUSH_VAPID_PUBLIC_KEY", required: false, type: "string" },
   { name: "PUSH_VAPID_PRIVATE_KEY", required: false, type: "string" },
   { name: "PUSH_VAPID_SUBJECT", required: false, type: "string" },
+  // commerce customer Web Push (Issue #430, ADR-0048 Q6): the OPERATOR-only
+  // extension of the built-in push-service host allowlist. Checked below.
+  {
+    name: "COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS",
+    required: false,
+    type: "string"
+  },
 
   // whatsapp_delivery (ADR-0133, Issue #963). Off by default; off means enqueue
   // answers `refused: DISABLED` and the dispatcher claims nothing. Credentials
@@ -358,6 +373,19 @@ const RULES: readonly Rule[] = [
     min: 1
   },
   { name: "WHATSAPP_DEFAULT_COUNTRY_CODE", required: false, type: "string" },
+  // Per-SENDER caps for tenant-owned senders (Issue #1141), counted at dispatch.
+  {
+    name: "WHATSAPP_SENDER_RATE_PER_HOUR",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "WHATSAPP_SENDER_RATE_PER_DAY",
+    required: false,
+    type: "int",
+    min: 1
+  },
   {
     name: "WHATSAPP_RATE_SECURITY_PER_RECIPIENT_PER_HOUR",
     required: false,
@@ -376,6 +404,17 @@ const RULES: readonly Rule[] = [
   { name: "WHATSAPP_META_ACCESS_TOKEN", required: false, type: "string" },
   { name: "WHATSAPP_META_PHONE_NUMBER_ID", required: false, type: "string" },
   { name: "WHATSAPP_META_API_VERSION", required: false, type: "string" },
+
+  // channel_accounts (ADR-0148, Issue #1140). Off by default; off means every
+  // route answers 503 after authorization. The ring encrypts every tenant's
+  // provider credentials and is a secret, never echoed.
+  { name: "CHANNEL_ACCOUNTS_ENABLED", required: false, type: "bool" },
+  {
+    name: "CHANNEL_SECRETS_ENCRYPTION_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
 
   // telegram_delivery (ADR-0140, Issue #965). Off by default; off means enqueue
   // answers `refused: DISABLED`, the webhook answers 404 and the dispatcher claims
@@ -876,6 +915,23 @@ export function validateEnv(env: EnvBag): string[] {
     }
   }
 
+  // commerce customer Web Push (Issue #430, ADR-0048 Q6): an entry the parser
+  // would IGNORE (an IP literal, a single label, localhost, a malformed name)
+  // is reported rather than silently dropped, so an operator who meant to allow
+  // a push service learns that the entry has no effect. The same parser the
+  // routes use, so the validator cannot disagree with the thing it validates.
+  const extraPushHosts = env[CUSTOMER_PUSH_EXTRA_HOSTS_ENV]?.trim() ?? "";
+
+  if (extraPushHosts !== "") {
+    const { invalid } = parseExtraPushHosts(extraPushHosts);
+
+    if (invalid.length > 0) {
+      problems.push(
+        `${CUSTOMER_PUSH_EXTRA_HOSTS_ENV} berisi entri yang diabaikan (hanya nama host persis atau pola *.sufiks.contoh; bukan IP, bukan satu label, bukan localhost; maksimal 32 entri): ${invalid.join(", ")}.`
+      );
+    }
+  }
+
   // whatsapp_delivery (ADR-0133): enabling WhatsApp REQUIRES naming an adapter
   // and, for a real one, its credential. Without them the resolver degrades to a
   // provider that fails every send non-retryably, so every queued message would
@@ -916,6 +972,67 @@ export function validateEnv(env: EnvBag): string[] {
       problems.push(
         "WHATSAPP_META_ACCESS_TOKEN dan WHATSAPP_META_PHONE_NUMBER_ID wajib diisi saat WHATSAPP_PROVIDER=meta."
       );
+    }
+  }
+
+  // channel_accounts (ADR-0148 section 5): enabling the module REQUIRES a valid
+  // secrets key ring, parsed by the same helper the runtime uses. There is no
+  // plaintext fallback, so without it no credential could ever be stored. The
+  // ring must not share a key with another module's encryption ring: one
+  // compromised ring would then open two datasets. No value is ever echoed.
+  if (env.CHANNEL_ACCOUNTS_ENABLED === "true") {
+    const channelRing = resolveChannelSecretsRing(env as NodeJS.ProcessEnv);
+
+    // The OAuth callback is this deployment's declared origin plus a fixed path
+    // (#1215 L7). `APP_URL` is required everywhere, but the generic reader falls
+    // back to a built-in default origin when it is blank; here a blank or
+    // malformed origin would make the module hand a provider a redirect URI at a
+    // host the operator never declared. Same predicate as the runtime.
+    if (!isDeclaredAppUrl(env.APP_URL)) {
+      problems.push(
+        "APP_URL wajib diisi dengan URL http(s) absolut tanpa kredensial saat CHANNEL_ACCOUNTS_ENABLED=true (redirect URI OAuth akun kanal adalah origin deployment ini; tanpa itu alur otorisasi ditolak)."
+      );
+    }
+
+    if (!channelRing.ok) {
+      problems.push(
+        `${channelRing.reason} Wajib valid saat CHANNEL_ACCOUNTS_ENABLED=true (tanpa kunci, kredensial akun kanal tidak dapat disimpan; tidak ada fallback plaintext).`
+      );
+    } else {
+      for (const other of [
+        "TELEGRAM_CHAT_ENCRYPTION_KEYS",
+        "TELEGRAM_CHAT_HASH_KEYS",
+        "PUSH_AUTH_SECRET_ENCRYPTION_KEYS",
+        // #1215 N7: the check used to name three rings and skip the WhatsApp
+        // recipient hash ring, which is also a 32-byte `keyId:base64` ring.
+        "WHATSAPP_RECIPIENT_HASH_KEYS"
+      ]) {
+        // Lenient on purpose, ENTRY BY ENTRY: a sibling ring that does not meet
+        // the strict shape is somebody else's problem, but a key it DOES carry
+        // must still not equal ours. Parsing the ring as a whole would skip every
+        // entry the moment one of them is malformed (#1215 audit LOW-3).
+        const sharesKey = (env[other] ?? "").split(",").some((entry) => {
+          const separator = entry.indexOf(":");
+
+          if (separator < 1) return false;
+
+          const decoded = Buffer.from(
+            entry.slice(separator + 1).trim(),
+            "base64"
+          );
+
+          return (
+            decoded.length > 0 &&
+            channelRing.keys.some((key) => key.key.equals(decoded))
+          );
+        });
+
+        if (sharesKey) {
+          problems.push(
+            `CHANNEL_SECRETS_ENCRYPTION_KEYS dan ${other} tidak boleh berbagi kunci yang sama; tiap modul memakai cincin kunci terpisah.`
+          );
+        }
+      }
     }
   }
 

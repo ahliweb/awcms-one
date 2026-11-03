@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.05.2010,4,Elok,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2010,4,Elok,sex,perempuan,,374,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2010,4,Elok,total,total,,740,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.2008,4,Maritaing,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2008,4,Maritaing,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2008,4,Maritaing,total,total,,1231,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.2012,4,Mausamang,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2012,4,Mausamang,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2012,4,Mausamang,total,total,,677,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.2011,4,Tanglapui Timur,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2011,4,Tanglapui Timur,sex,perempuan,,241,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2011,4,Tanglapui Timur,total,total,,488,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.2004,4,Tanglapui,sex,laki_laki,,666,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2004,4,Tanglapui,sex,perempuan,,648,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2004,4,Tanglapui,total,total,,1314,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.2013,4,Belemana,sex,laki_laki,,231,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2013,4,Belemana,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2013,4,Belemana,total,total,,449,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.2007,4,Padang Panjang,sex,laki_laki,,504,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2007,4,Padang Panjang,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2007,4,Padang Panjang,total,total,,1039,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.2014,4,Maukuru,sex,laki_laki,,325,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.2014,4,Maukuru,sex,perempuan,,334,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.2014,4,Maukuru,total,total,,659,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05.1001,4,Kolana Utara,sex,laki_laki,,716,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05.1001,4,Kolana Utara,sex,perempuan,,789,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05.1001,4,Kolana Utara,total,total,,1505,jiwa,2025,registration,total_population,3.1,13,,
+53.05.05,3,Alor Timur,sex,laki_laki,,4756,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.05,3,Alor Timur,sex,perempuan,,4749,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.05,3,Alor Timur,total,total,,9505,jiwa,2025,registration,total_population,3.1,13,,

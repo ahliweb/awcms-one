@@ -921,6 +921,7 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
   import {
     lockElement,
     messageBox,
+    onSubmit,
     sendJsonForData
   } from "../../../lib/ui/admin-form-client";
 
@@ -944,9 +945,6 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
     return map[code ?? ""] ?? m("msgGeneric");
   }
 
-  const paymentForm = document.getElementById(
-    "order-payment-form"
-  ) as HTMLFormElement | null;
   const paymentError = messageBox("order-payment-error");
   /** Issue #288 - a gift card / store credit tender names its account by code. */
   const isStoredValue = (type: string): boolean =>
@@ -958,10 +956,8 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
   tenderSelect?.addEventListener("change", () => {
     if (codeLabel) codeLabel.hidden = !isStoredValue(tenderSelect.value);
   });
-  paymentForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  onSubmit("order-payment-form", async ({ data }) => {
     paymentError.clear();
-    const data = new FormData(paymentForm);
     const amount = String(data.get("amount") ?? "").trim();
     if (!MONEY.test(amount)) {
       paymentError.show(m("msgGeneric"));
@@ -1003,14 +999,9 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
     }
   });
 
-  const reversalForm = document.getElementById(
-    "order-reversal-form"
-  ) as HTMLFormElement | null;
   const reversalError = messageBox("order-reversal-error");
-  reversalForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  onSubmit("order-reversal-form", async ({ data }) => {
     reversalError.clear();
-    const data = new FormData(reversalForm);
     const amount = String(data.get("amount") ?? "").trim();
     const note = String(data.get("note") ?? "").trim();
     if ((amount !== "" && !MONEY.test(amount)) || note === "") {

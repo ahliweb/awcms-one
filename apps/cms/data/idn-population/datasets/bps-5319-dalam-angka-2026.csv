@@ -1,0 +1,111 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.01,3,Borong,total,total,,50255,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.07,3,Rana Mese,total,total,,32471,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.06,3,Kota Komba,total,total,,34709,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.10,3,Kota Komba Utara,total,total,,23099,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.05,3,Elar,total,total,,16798,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.09,3,Elar Selatan,total,total,,19593,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.04,3,Sambi Rampas,total,total,,15232,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.12,3,Congkar,total,total,,14338,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.02,3,Lamba Leda Selatan,total,total,,35588,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.08,3,Lamba Leda Timur,total,total,,29546,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.03,3,Lamba Leda,total,total,,16964,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19.11,3,Lamba Leda Utara,total,total,,18245,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19,2,Manggarai Timur,total,total,,306838,jiwa,2025,projection,total_population,3.1.1,53,,
+53.19,2,Kabupaten Manggarai Timur,age_group,0-4,laki_laki,14419,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+53.19,2,Kabupaten Manggarai Timur,age_group,0-4,perempuan,13967,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+53.19,2,Kabupaten Manggarai Timur,age_group,0-4,,28386,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+53.19,2,Kabupaten Manggarai Timur,age_group,5-9,laki_laki,15870,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+53.19,2,Kabupaten Manggarai Timur,age_group,5-9,perempuan,15336,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+53.19,2,Kabupaten Manggarai Timur,age_group,5-9,,31206,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+53.19,2,Kabupaten Manggarai Timur,age_group,10-14,laki_laki,14274,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+53.19,2,Kabupaten Manggarai Timur,age_group,10-14,perempuan,13591,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+53.19,2,Kabupaten Manggarai Timur,age_group,10-14,,27865,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+53.19,2,Kabupaten Manggarai Timur,age_group,15-19,laki_laki,13619,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+53.19,2,Kabupaten Manggarai Timur,age_group,15-19,perempuan,12893,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+53.19,2,Kabupaten Manggarai Timur,age_group,15-19,,26512,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+53.19,2,Kabupaten Manggarai Timur,age_group,20-24,laki_laki,13428,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+53.19,2,Kabupaten Manggarai Timur,age_group,20-24,perempuan,12399,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+53.19,2,Kabupaten Manggarai Timur,age_group,20-24,,25827,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+53.19,2,Kabupaten Manggarai Timur,age_group,25-29,laki_laki,13024,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+53.19,2,Kabupaten Manggarai Timur,age_group,25-29,perempuan,12073,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+53.19,2,Kabupaten Manggarai Timur,age_group,25-29,,25097,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+53.19,2,Kabupaten Manggarai Timur,age_group,30-34,laki_laki,10151,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+53.19,2,Kabupaten Manggarai Timur,age_group,30-34,perempuan,10415,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+53.19,2,Kabupaten Manggarai Timur,age_group,30-34,,20566,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+53.19,2,Kabupaten Manggarai Timur,age_group,35-39,laki_laki,9148,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+53.19,2,Kabupaten Manggarai Timur,age_group,35-39,perempuan,9890,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+53.19,2,Kabupaten Manggarai Timur,age_group,35-39,,19038,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+53.19,2,Kabupaten Manggarai Timur,age_group,40-44,laki_laki,8867,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+53.19,2,Kabupaten Manggarai Timur,age_group,40-44,perempuan,9513,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+53.19,2,Kabupaten Manggarai Timur,age_group,40-44,,18380,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+53.19,2,Kabupaten Manggarai Timur,age_group,45-49,laki_laki,8264,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+53.19,2,Kabupaten Manggarai Timur,age_group,45-49,perempuan,8833,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+53.19,2,Kabupaten Manggarai Timur,age_group,45-49,,17097,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+53.19,2,Kabupaten Manggarai Timur,age_group,50-54,laki_laki,7448,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+53.19,2,Kabupaten Manggarai Timur,age_group,50-54,perempuan,7653,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+53.19,2,Kabupaten Manggarai Timur,age_group,50-54,,15101,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+53.19,2,Kabupaten Manggarai Timur,age_group,55-59,laki_laki,6436,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+53.19,2,Kabupaten Manggarai Timur,age_group,55-59,perempuan,6383,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+53.19,2,Kabupaten Manggarai Timur,age_group,55-59,,12819,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+53.19,2,Kabupaten Manggarai Timur,age_group,60-64,laki_laki,4844,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+53.19,2,Kabupaten Manggarai Timur,age_group,60-64,perempuan,4529,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+53.19,2,Kabupaten Manggarai Timur,age_group,60-64,,9373,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+53.19,2,Kabupaten Manggarai Timur,age_group,65-69,laki_laki,3219,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+53.19,2,Kabupaten Manggarai Timur,age_group,65-69,perempuan,2871,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+53.19,2,Kabupaten Manggarai Timur,age_group,65-69,,6090,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+53.19,2,Kabupaten Manggarai Timur,age_group,70-74,laki_laki,2101,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+53.19,2,Kabupaten Manggarai Timur,age_group,70-74,perempuan,1688,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+53.19,2,Kabupaten Manggarai Timur,age_group,70-74,,3789,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+53.19,2,Kabupaten Manggarai Timur,age_group,75+,laki_laki,9946,jiwa,2025,projection,total_population,3.1.2,56,,75+
+53.19,2,Kabupaten Manggarai Timur,age_group,75+,perempuan,9746,jiwa,2025,projection,total_population,3.1.2,56,,75+
+53.19,2,Kabupaten Manggarai Timur,age_group,75+,,19692,jiwa,2025,projection,total_population,3.1.2,56,,75+
+53.19,2,Manggarai Timur,sex,laki_laki,,155058,jiwa,2025,projection,total_population,3.1.2,56,,Laki-Laki
+53.19,2,Manggarai Timur,sex,perempuan,,151780,jiwa,2025,projection,total_population,3.1.2,56,,Perempuan
+53.19,2,Manggarai Timur,total,total,,306838,jiwa,2025,projection,total_population,3.1.2,56,,
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/padi_padian,,176597,rupiah,2025,survey_estimate,per_capita,10.1,254,,Padi-padian
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/padi_padian,,169438,rupiah,2024,survey_estimate,per_capita,10.1,254,,Padi-padian
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/umbi_umbian,,7350,rupiah,2025,survey_estimate,per_capita,10.1,254,,Umbi-umbian
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/umbi_umbian,,5582,rupiah,2024,survey_estimate,per_capita,10.1,254,,Umbi-umbian
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,37235,rupiah,2025,survey_estimate,per_capita,10.1,254,,Ikan/udang/cumi/kerang
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,37602,rupiah,2024,survey_estimate,per_capita,10.1,254,,Ikan/udang/cumi/kerang
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/daging,,23651,rupiah,2025,survey_estimate,per_capita,10.1,254,,Daging
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/daging,,24871,rupiah,2024,survey_estimate,per_capita,10.1,254,,Daging
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/telur_dan_susu,,18213,rupiah,2025,survey_estimate,per_capita,10.1,254,,Telur dan susu
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/telur_dan_susu,,13287,rupiah,2024,survey_estimate,per_capita,10.1,254,,Telur dan susu
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/sayur_sayuran,,44970,rupiah,2025,survey_estimate,per_capita,10.1,254,,Sayur-sayuran
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/sayur_sayuran,,37992,rupiah,2024,survey_estimate,per_capita,10.1,254,,Sayur-sayuran
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/kacang_kacangan,,7325,rupiah,2025,survey_estimate,per_capita,10.1,254,,Kacang-kacangan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/kacang_kacangan,,5991,rupiah,2024,survey_estimate,per_capita,10.1,254,,Kacang-kacangan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/buah_buahan,,14839,rupiah,2025,survey_estimate,per_capita,10.1,254,,Buah-buahan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/buah_buahan,,17249,rupiah,2024,survey_estimate,per_capita,10.1,254,,Buah-buahan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12591,rupiah,2025,survey_estimate,per_capita,10.1,254,,Minyak dan kelapa
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,11796,rupiah,2024,survey_estimate,per_capita,10.1,254,,Minyak dan kelapa
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/bahan_minuman,,25439,rupiah,2025,survey_estimate,per_capita,10.1,254,,Bahan minuman
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/bahan_minuman,,21512,rupiah,2024,survey_estimate,per_capita,10.1,254,,Bahan minuman
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,9384,rupiah,2025,survey_estimate,per_capita,10.1,254,,Bumbu-bumbuan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,7074,rupiah,2024,survey_estimate,per_capita,10.1,254,,Bumbu-bumbuan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,8377,rupiah,2025,survey_estimate,per_capita,10.1,254,,Konsumsi lainnya
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,6192,rupiah,2024,survey_estimate,per_capita,10.1,254,,Konsumsi lainnya
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,80698,rupiah,2025,survey_estimate,per_capita,10.1,254,,Makanan dan minuman jadi
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,72056,rupiah,2024,survey_estimate,per_capita,10.1,254,,Makanan dan minuman jadi
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/rokok,,75406,rupiah,2025,survey_estimate,per_capita,10.1,254,,Rokok
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/rokok,,77544,rupiah,2024,survey_estimate,per_capita,10.1,254,,Rokok
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/jumlah_makanan,,542077,rupiah,2025,survey_estimate,per_capita,10.1,254,,Jumlah makanan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/jumlah_makanan,,508187,rupiah,2024,survey_estimate,per_capita,10.1,254,,Jumlah makanan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,181682,rupiah,2025,survey_estimate,per_capita,10.1,254,,Perumahan dan fasilitas rumah tangga
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,194587,rupiah,2024,survey_estimate,per_capita,10.1,254,,Perumahan dan fasilitas rumah tangga
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,56425,rupiah,2025,survey_estimate,per_capita,10.1,254,,Aneka barang dan jasa
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,51935,rupiah,2024,survey_estimate,per_capita,10.1,254,,Aneka barang dan jasa
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15551,rupiah,2025,survey_estimate,per_capita,10.1,254,,"Pakaian, alas kaki, dan tutup kepala"
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,12438,rupiah,2024,survey_estimate,per_capita,10.1,254,,"Pakaian, alas kaki, dan tutup kepala"
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,20503,rupiah,2025,survey_estimate,per_capita,10.1,254,,Barang tahan lama
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,19366,rupiah,2024,survey_estimate,per_capita,10.1,254,,Barang tahan lama
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,28522,rupiah,2025,survey_estimate,per_capita,10.1,254,,"Pajak, pungutan, dan asuransi"
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,28500,rupiah,2024,survey_estimate,per_capita,10.1,254,,"Pajak, pungutan, dan asuransi"
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7853,rupiah,2025,survey_estimate,per_capita,10.1,254,,Keperluan pesta dan upacara/kenduri
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7278,rupiah,2024,survey_estimate,per_capita,10.1,254,,Keperluan pesta dan upacara/kenduri
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,310535,rupiah,2025,survey_estimate,per_capita,10.1,254,,Jumlah bukan makanan
+53.19,2,Kabupaten Manggarai Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,314104,rupiah,2024,survey_estimate,per_capita,10.1,254,,Jumlah bukan makanan
+53.19,2,Kabupaten Manggarai Timur,expenditure,total,,852612,rupiah,2025,survey_estimate,per_capita,10.1,254,,
+53.19,2,Kabupaten Manggarai Timur,expenditure,total,,822291,rupiah,2024,survey_estimate,per_capita,10.1,254,,

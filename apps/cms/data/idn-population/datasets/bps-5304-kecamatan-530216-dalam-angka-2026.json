@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530216-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Toianas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Toianas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304000",
+  "publicationNumber": "53040.26031",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/db55e219fc573b052236f7ec/kecamatan-toianas-dalam-angka-2026.html",
+  "sourceFileSha256": "108fdced596040955996015e40dc58ed5bf07975525bd938368dddea59faf9c8",
+  "sourceFileBytes": 1488916,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530216-dalam-angka-2026.csv",
+  "csvSha256": "f6d44e2bb80c65ebc1633abf34fd920a2ad93dd4925196500e2d52ebd60d03d1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Toianas, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Toianas, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sambet\": unmatched ",
+    "table 3.1: row not stored: row \"Toianas 17,04%\": unmatched ",
+    "table 3.1: row not stored: row \"Skinu 15,50%\": unmatched ",
+    "table 3.1: row not stored: row \"Oeleu 8,83%\": unmatched ",
+    "table 3.1: row not stored: row \"Sambet 15,24%\": unmatched ",
+    "table 3.1: row not stored: row \"Bokong 8,37%\": unmatched ",
+    "table 3.1: row not stored: row \"Tuataum 14,25%\": unmatched ",
+    "table 3.1: row not stored: row \"Lobus 8,07%\": unmatched ",
+    "table 3.1: row not stored: row \"Noeolin 5,05%\": unmatched ",
+    "table 3.1: row not stored: row \"Milli 7,66%\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Toianas 100,00%\": unmatched "
+  ]
+}

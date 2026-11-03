@@ -1281,6 +1281,55 @@ export const READER_BUDGET_BYTES = 24_000;
  * fetched by the OS on install, not on every page load); the remaining 670 B is
  * the capability/standalone detection added to the push console's one script.
  * No stylesheet grew.
+ *
+ * **Raised for Issue #1196** (the admin data-page primitives, ADR-0149): +2,802 B,
+ * measured (343,542 -> 346,344 on its own base). All of it is the one shared
+ * stylesheet block (`.data-toolbar`, `.data-chip`, `.data-sort`, `.data-pager`
+ * in `admin.css`, which every admin screen already loads) plus the Users
+ * screen's own markup; the primitives are server-rendered `.astro` components
+ * and ship NO script, so no JS grew. This is the opposite of the #552 shape:
+ * the four controls were being hand-built per screen (the audit trail, the
+ * procurement and inventory filters), and the point of the primitives is that
+ * the next screen to adopt them adds markup, not another copy of these rules.
+ *
+ * **Raised for the `astro` 7.4.2 -> 7.4.4 update** (Issue #1173): +9 B,
+ * measured (346,344 -> 346,353 on the same source, built once on `main` and once
+ * with only the lockfile and `package.json` changed). Nothing in `src/` moved:
+ * the difference is the compiler's output for the same components, so there is no
+ * per-screen duplication to recover and no island to trim.
+ *
+ * **Raised for Issue #1221** (browser-side image compression on `/admin/media`):
+ * +9,795 B, measured (346,353 -> 356,148 on `main` + this change; `main` sat
+ * exactly at its budget, so the whole delta is this feature). Almost all of it is
+ * the one script of the one screen that can use it: `media.astro`'s chunk grew to
+ * 15,257 B, carrying the pure planner, the orchestrator, the `createImageBitmap` +
+ * canvas adapter and `uploadMediaFile` (about 1,900 B of that is the English
+ * fallbacks for the compressor's eleven messages), plus a few hundred bytes of
+ * stylesheet for the status lines. It is NOT per-screen duplication to recover
+ * the way #552 was: the code exists once, in `src/lib/ui/media-image-compression*.ts`,
+ * nothing else imports it, and the alternative the issue rejected (server-side
+ * image processing) would have moved the cost to a native dependency and a decoder
+ * of untrusted bytes. It loads only on `/admin/media`; a reader downloads none of
+ * it (`READER_BUDGET_BYTES` is untouched) and neither does any other admin screen.
+ *
+ * **Raised for the Issue #1224 review fixes**: +92 B (356,148 -> 356,240), of
+ * which 79 B measured locally on top of #1221 and 13 B of margin because CI's
+ * build of the same tree measured 9 B above the local one. The shared single-flight
+ * guard in `admin-form-client.ts` gained a one-shot navigation hold, a 10 s
+ * recovery timer for a navigation that never replaces the page, and a release
+ * that no longer overwrites a `disabled` the page changed mid-flight. All of it
+ * lives in the ONE shared module (no per-screen copy), so there is nothing to
+ * recover elsewhere.
+ *
+ * **Raised again for the #1221 review follow-up**: +2,160 B (356,240 -> 358,400),
+ * of which 2,141 B measured locally (356,240 -> 358,381 on `main` b2c0731f) and
+ * 19 B of margin for the local/CI build difference seen on #1224. The review
+ * found that an over-cap animated WebP or APNG was silently flattened to one
+ * frame and that the 100 MP guard ran only after the full bitmap had been
+ * decoded; the fixes are `media-image-header.ts` (magic-byte sniffing, animation
+ * flags, pixel dimensions read from the header before any decode) and one more
+ * translated refusal message. Same single screen (`/admin/media`), same single
+ * copy of the code.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -1815,8 +1864,51 @@ export const READER_BUDGET_BYTES = 24_000;
  * did add up exactly. Each lineage's constant alone (487,700 B and 489,900 B)
  * is below that, so the gate went red on the merge until this raise. A
  * measurement of the merged build rounded up to the next 100 B.
+ *
+ * **Raised to 510,700 B by issue #388 (the cashier / front-desk tab of
+ * `/admin/commerce-pos`)**, MEASURED 510,675 B on the build that carries it
+ * (489,973 B on the `main` it was branched from, 50254cc59, the figure above; the
+ * previous constant, 490,000 B, left 27 B of headroom): +20,702 B, a comparison of
+ * the two builds file by file, not a sum. This is the first screen of the booking
+ * adapter that is a real client island rather than a form: the lookup, the
+ * reservation card, the tender entry with its change preview and the three
+ * writes with their idempotency keys and focus handling. Where it went:
+ * `front-desk-island.js` 17,298 B, the DOM layer and the pure rules of
+ * `front-desk-client` (lookup body, action states with their visible reasons, the
+ * bigint-cent tender plan mirroring `planTenders`, request bodies, per-attempt
+ * keys), loaded by a dynamic `import()` only when the Front desk tab rendered its
+ * root, so the New sale and History tabs download none of it - which is why it is
+ * a chunk and not part of `commerce-pos`'s own script; and 3,404 B of stylesheet
+ * and page-script share (the tab's scoped styles, the one `import()` call). Nothing was copied: the scan burst detector, the shortcut resolver and
+ * `admin-form-client` are the modules the sale screen already ships, imported
+ * from the chunk it shares, and the sentences are server-rendered `data-*`
+ * attributes on the page (the compiled catalogues are server-side), so the 69 new
+ * catalogue entries added no client byte. The budget is the measurement rounded
+ * up to the next 100 B. `AGENTS.md`'s divergence line carries the figure and needs
+ * the new one at integration.
+ *
+ * **Raised to 513,800 B by the awcms-one subtree sync of upstream `ab313273`
+ * (ahliweb/awcms main, 23 commits after `aa047da`)**, MEASURED 513,770 B on the
+ * merged build (510,675 B on the tree before the sync, the #388 figure above):
+ * +3,095 B. Upstream's own constant moved +2,811 B (343,542 -> 346,353 B: +2,802 B
+ * for the admin data-page primitives of ahliweb/awcms#1196 / ADR-0149, one shared
+ * `admin.css` block plus the Users screen's markup, and +9 B for `astro` 7.4.4),
+ * and the remaining +284 B is the shared `AdminLayout` CSS bundle and the compiled
+ * catalogue, which are not additive across lineages (the same effect the
+ * #260 and #427 syncs recorded). `channel-accounts` ships no admin screen yet and
+ * `hr_commission`'s intake queue is API-only, so neither added a browser byte
+ * and `commerce` itself added none. A measurement of the merged build rounded up
+ * to the next 100 B.
+ *
+ * **The `45a139fa` sync (AWCMS v10.11.0) then raises it to 525,100 B**, MEASURED
+ * 525,002 B on the merged build (513,770 B at the `ab313273` sync). Upstream's own
+ * move over the same range was 346,353 -> 358,400 B (+12,047 B: browser-side image
+ * compression on `/admin/media`, #1221, and the shared single-flight guard,
+ * #1224), and the commerce lineage rides on top of it unchanged except for the
+ * nine admin scripts that now bind through the guard instead of their own
+ * listeners. A measurement of the merged build rounded up to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 490_000;
+export const APP_BUDGET_BYTES = 525_100;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

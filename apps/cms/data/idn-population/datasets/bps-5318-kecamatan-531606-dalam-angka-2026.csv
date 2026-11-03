@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.16.06.2006,4,Mbaenuamuri,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2006,4,Mbaenuamuri,sex,perempuan,,774,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2006,4,Mbaenuamuri,total,total,,1437,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2001,4,Witurombaua,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2001,4,Witurombaua,sex,perempuan,,653,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2001,4,Witurombaua,total,total,,1231,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2007,4,Udiworowatu,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2007,4,Udiworowatu,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2007,4,Udiworowatu,total,total,,900,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2009,4,Pautola,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2009,4,Pautola,sex,perempuan,,567,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2009,4,Pautola,total,total,,1126,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2010,4,Ladolima,sex,laki_laki,,455,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2010,4,Ladolima,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2010,4,Ladolima,total,total,,980,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2008,4,Kotodirumali,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2008,4,Kotodirumali,sex,perempuan,,656,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2008,4,Kotodirumali,total,total,,1272,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2011,4,Keli,sex,laki_laki,,444,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2011,4,Keli,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2011,4,Keli,total,total,,912,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2002,4,Lewangera,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2002,4,Lewangera,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2002,4,Lewangera,total,total,,1157,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2003,4,Wajo,sex,laki_laki,,646,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2003,4,Wajo,sex,perempuan,,651,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2003,4,Wajo,total,total,,1297,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06.2012,4,Ngera,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.16.06.2012,4,Ngera,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.16.06.2012,4,Ngera,total,total,,805,jiwa,2025,registration,total_population,3.1,27,,
+53.16.06,3,Keo Tengah,age_group,0-4,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,0-4
+53.16.06,3,Keo Tengah,age_group,0-4,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,0-4
+53.16.06,3,Keo Tengah,age_group,0-4,,652,jiwa,2025,registration,total_population,3.2,30,,0-4
+53.16.06,3,Keo Tengah,age_group,5-9,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,5-9
+53.16.06,3,Keo Tengah,age_group,5-9,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,5-9
+53.16.06,3,Keo Tengah,age_group,5-9,,1193,jiwa,2025,registration,total_population,3.2,30,,5-9
+53.16.06,3,Keo Tengah,age_group,10-14,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,10-14
+53.16.06,3,Keo Tengah,age_group,10-14,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,10-14
+53.16.06,3,Keo Tengah,age_group,10-14,,1398,jiwa,2025,registration,total_population,3.2,30,,10-14
+53.16.06,3,Keo Tengah,age_group,15-19,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,15-19
+53.16.06,3,Keo Tengah,age_group,15-19,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,15-19
+53.16.06,3,Keo Tengah,age_group,15-19,,1539,jiwa,2025,registration,total_population,3.2,30,,15-19
+53.16.06,3,Keo Tengah,age_group,20-24,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,20-24
+53.16.06,3,Keo Tengah,age_group,20-24,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,20-24
+53.16.06,3,Keo Tengah,age_group,20-24,,1556,jiwa,2025,registration,total_population,3.2,30,,20-24
+53.16.06,3,Keo Tengah,age_group,25-29,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,25-29
+53.16.06,3,Keo Tengah,age_group,25-29,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,25-29
+53.16.06,3,Keo Tengah,age_group,25-29,,1355,jiwa,2025,registration,total_population,3.2,30,,25-29
+53.16.06,3,Keo Tengah,age_group,30-34,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,30-34
+53.16.06,3,Keo Tengah,age_group,30-34,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,30-34
+53.16.06,3,Keo Tengah,age_group,30-34,,1024,jiwa,2025,registration,total_population,3.2,30,,30-34
+53.16.06,3,Keo Tengah,age_group,35-39,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,35-39
+53.16.06,3,Keo Tengah,age_group,35-39,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,35-39
+53.16.06,3,Keo Tengah,age_group,35-39,,852,jiwa,2025,registration,total_population,3.2,30,,35-39
+53.16.06,3,Keo Tengah,age_group,40-44,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,40-44
+53.16.06,3,Keo Tengah,age_group,40-44,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,40-44
+53.16.06,3,Keo Tengah,age_group,40-44,,1029,jiwa,2025,registration,total_population,3.2,30,,40-44
+53.16.06,3,Keo Tengah,age_group,45-49,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,45-49
+53.16.06,3,Keo Tengah,age_group,45-49,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,45-49
+53.16.06,3,Keo Tengah,age_group,45-49,,1000,jiwa,2025,registration,total_population,3.2,30,,45-49
+53.16.06,3,Keo Tengah,age_group,50-54,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,50-54
+53.16.06,3,Keo Tengah,age_group,50-54,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,50-54
+53.16.06,3,Keo Tengah,age_group,50-54,,1015,jiwa,2025,registration,total_population,3.2,30,,50-54
+53.16.06,3,Keo Tengah,age_group,55-59,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,55-59
+53.16.06,3,Keo Tengah,age_group,55-59,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,55-59
+53.16.06,3,Keo Tengah,age_group,55-59,,775,jiwa,2025,registration,total_population,3.2,30,,55-59
+53.16.06,3,Keo Tengah,age_group,60-64,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,60-64
+53.16.06,3,Keo Tengah,age_group,60-64,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,60-64
+53.16.06,3,Keo Tengah,age_group,60-64,,726,jiwa,2025,registration,total_population,3.2,30,,60-64
+53.16.06,3,Keo Tengah,age_group,65-69,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,65-69
+53.16.06,3,Keo Tengah,age_group,65-69,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,65-69
+53.16.06,3,Keo Tengah,age_group,65-69,,658,jiwa,2025,registration,total_population,3.2,30,,65-69
+53.16.06,3,Keo Tengah,age_group,70-74,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,70-74
+53.16.06,3,Keo Tengah,age_group,70-74,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,70-74
+53.16.06,3,Keo Tengah,age_group,70-74,,397,jiwa,2025,registration,total_population,3.2,30,,70-74
+53.16.06,3,Keo Tengah,age_group,75+,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,75+
+53.16.06,3,Keo Tengah,age_group,75+,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,75+
+53.16.06,3,Keo Tengah,age_group,75+,,657,jiwa,2025,registration,total_population,3.2,30,,75+

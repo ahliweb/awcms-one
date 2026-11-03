@@ -1,0 +1,9 @@
+[
+  {
+    "packageName": "typescript",
+    "heldVersion": "6.0.3",
+    "reason": "TypeScript 7 is a major rewrite and `@astrojs/check` (the `astro check` that `apps/storefront`'s build runs first) declares `peerDependencies.typescript` as `^5.0.0 || ^6.0.0`, so 7.x is outside every dependent's supported range (verified against @astrojs/check 0.9.12 on 25 October 2026). Take it only when @astrojs/check widens the range and `bun run check` passes under every build profile.",
+    "owner": "ahliweb",
+    "reviewDate": "2027-01-25"
+  }
+]

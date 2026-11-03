@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.01.08.2006,4,Oelnasi,sex,perempuan,,1495,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.2006,4,Oelnasi,total,total,,3024,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08.2009,4,Oelpuah,sex,perempuan,,860,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.2009,4,Oelpuah,total,total,,1772,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08.2010,4,Oebelo,sex,perempuan,,3046,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.2010,4,Oebelo,total,total,,6024,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08.2008,4,Noelbaki,sex,perempuan,,5699,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.2008,4,Noelbaki,total,total,,11552,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08.1007,4,Tarus,sex,perempuan,,2613,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.1007,4,Tarus,total,total,,5294,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08.2011,4,Penfui Timur,sex,perempuan,,4595,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.2011,4,Penfui Timur,total,total,,9113,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08.2012,4,Tanah Merah,sex,perempuan,,2354,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.2012,4,Tanah Merah,total,total,,4708,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08.2013,4,Mata Air,sex,perempuan,,3052,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08.2013,4,Mata Air,total,total,,6182,jiwa,2025,registration,total_population,3.1,26,,
+53.01.08,3,Kupang Tengah,sex,perempuan,,23714,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.08,3,Kupang Tengah,total,total,,47669,jiwa,2025,registration,total_population,3.1,26,,
