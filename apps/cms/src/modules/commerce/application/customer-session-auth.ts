@@ -58,7 +58,7 @@ export async function requireCustomerSession(
   }
 
   const tokenHash = hashCustomerSessionToken(token);
-  const session = await findSessionByTokenHash(tx, tokenHash, now);
+  const session = await findSessionByTokenHash(tx, tokenHash, now, tenantId);
 
   if (!session) {
     return { ok: false, reason: "unauthenticated" };

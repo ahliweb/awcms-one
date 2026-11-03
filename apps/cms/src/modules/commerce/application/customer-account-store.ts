@@ -559,7 +559,16 @@ type SessionJoinRow = {
 export async function findSessionByTokenHash(
   tx: Bun.SQL,
   tokenHash: string,
-  now: Date = new Date()
+  now: Date = new Date(),
+  /**
+   * Issue #430 (ADR-0048 T3): when given, the session must belong to THIS
+   * tenant in the query itself, on top of FORCE RLS. RLS is what isolates
+   * tenants in production (the runtime role is not a superuser), but a lookup
+   * by a globally unique token hash that names no tenant would, on a
+   * misconfigured BYPASSRLS connection, authenticate tenant A's token on tenant
+   * B's origin. `requireCustomerSession` always passes it.
+   */
+  tenantId?: string
 ): Promise<CustomerSessionRecord | null> {
   const rows = (await tx`
     SELECT
@@ -574,6 +583,7 @@ export async function findSessionByTokenHash(
     WHERE s.token_hash = ${tokenHash}
       AND s.revoked_at IS NULL
       AND s.expires_at > ${now}
+      AND (${tenantId ?? null}::uuid IS NULL OR s.tenant_id = ${tenantId ?? null}::uuid)
   `) as SessionJoinRow[];
 
   const row = rows[0];

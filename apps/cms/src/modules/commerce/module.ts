@@ -1,3 +1,8 @@
+import {
+  CUSTOMER_PUSH_DATA_LIFECYCLE,
+  CUSTOMER_PUSH_SUBJECT_DATA
+} from "./domain/customer-push-lifecycle";
+import { CUSTOMER_PUSH_PERMISSIONS } from "./domain/customer-push-permissions";
 import { defineModule } from "../_shared/module-contract";
 import type { ModuleDomainEventConsumer } from "../_shared/domain-event-consumer-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
@@ -1170,6 +1175,35 @@ export const commerceModule = defineModule({
       recommendedSchedule: "Every 5-15 minutes via cron/systemd timer.",
       environmentNotes:
         "No external provider call — pure database DELETE, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:customer-push:maintenance",
+      schedule: {
+        mode: "cron",
+        expression: "*/15 * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Customer Web Push housekeeping across all tenants (Issue #430, ADR-0048): revokes the devices of ended customer sessions and of blocked accounts (destroying their stored credentials), then purges tombstoned devices, terminal messages and attempts older than the 30-day retention window. Runs even when the customerPush feature is off, because rows from an earlier period still need removing. Idempotent and bounded.",
+      recommendedSchedule: "Every 15 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call and no encryption key - pure database work, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:customer-push:rekey",
+      schedule: {
+        mode: "manual",
+        because:
+          "A key-rotation action (Issue #430, ADR-0048 Q2): run by an operator after adding a new first key to PUSH_AUTH_SECRET_ENCRYPTION_KEYS, until no active device carries a ciphertext under the old key id, and only then is the old key removed. A timer would re-scan an unchanged table forever."
+      },
+      purpose:
+        "Re-encrypt every active customer push device's endpoint and auth-secret ciphertext whose key id is not the ring's active (first) key onto it, in bounded keyset batches. Idempotent and resumable; refuses to run (exit 1) without the key ring; exits 3 when rows cannot be decrypted under the ring. Upstream's push:auth-secret:backfill --rekey covers only upstream's own table.",
+      recommendedSchedule:
+        "on demand, during a key rotation, together with push:auth-secret:backfill --rekey",
+      environmentNotes:
+        "Pure PostgreSQL operation as `awcms_worker` (UPDATE of the two ciphertext columns, allowed only while a device stays active, sql/1058) - no network egress. Needs PUSH_AUTH_SECRET_ENCRYPTION_KEYS. Safe in offline/LAN deployments.",
       safeInOfflineLan: true
     },
     {
@@ -3339,6 +3373,9 @@ export const commerceModule = defineModule({
     // Issue #378 (ADR-0045) - the six booking-adapter tables; see
     // `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_DATA_LIFECYCLE,
+    // Issue #430 (ADR-0048) - the four customer-push tables; see
+    // `domain/customer-push-lifecycle.ts`.
+    ...CUSTOMER_PUSH_DATA_LIFECYCLE,
     // Issue #389 (sql/1047) - the booking revenue projection's two tables; see
     // `domain/booking-report-lifecycle.ts`.
     ...BOOKING_REPORT_DATA_LIFECYCLE,
@@ -4309,6 +4346,10 @@ export const commerceModule = defineModule({
     ...SEGMENT_SUBJECT_DATA,
     // Issue #378 (ADR-0045) - see `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_SUBJECT_DATA,
+    // Issue #430 (ADR-0048) - see `domain/customer-push-lifecycle.ts`: honestly
+    // unreachable by the engine's subject vocabulary; erasure/export are
+    // `application/customer-push-erasure.ts`.
+    ...CUSTOMER_PUSH_SUBJECT_DATA,
     // Issue #389 (sql/1047) - see `domain/booking-report-lifecycle.ts`.
     ...BOOKING_REPORT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
@@ -5227,7 +5268,10 @@ export const commerceModule = defineModule({
     },
     // Issue #378 (ADR-0045) - the booking adapter's keys; see
     // `domain/booking-adapter-permissions.ts`.
-    ...BOOKING_ADAPTER_PERMISSIONS
+    ...BOOKING_ADAPTER_PERMISSIONS,
+    // Issue #430 (ADR-0048 Q10) - `commerce.customer_push.read`; see
+    // `domain/customer-push-permissions.ts`.
+    ...CUSTOMER_PUSH_PERMISSIONS
   ]
 });
 

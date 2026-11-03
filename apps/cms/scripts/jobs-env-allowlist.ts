@@ -286,6 +286,11 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
       {
         target: "push:auth-secret:rekey",
         reason: "operator run: re-encrypts under the new first key (#1098)"
+      },
+      {
+        target: "commerce:customer-push:rekey",
+        reason:
+          "operator run: re-encrypts the customer push endpoint and auth secret under the new first key (#430)"
       }
     ]
   },

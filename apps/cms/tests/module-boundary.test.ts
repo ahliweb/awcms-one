@@ -229,6 +229,27 @@ const DOCUMENTED_EXCEPTIONS: {
       "that has a login, and procurement makes the same call from the same " +
       "module-graph position. The route files reach the authorization " +
       "chokepoint through the route-foundation allowance."
+  },
+  {
+    from: "commerce",
+    to: "push_delivery",
+    reason:
+      "Issue #430 / ADR-0048 (option C). The customer-push files import only " +
+      "`push_delivery`'s PURE domain helpers: the endpoint hash/mask/normalise " +
+      "functions, `validateSubscriptionInput`, the VAPID parser, the " +
+      "auth-secret key ring and the `PushTarget` type, so the two modules " +
+      "agree on one endpoint hash and one ciphertext format. Nothing in " +
+      "`push_delivery` is called with a database handle and none of its tables " +
+      "is touched. It cannot be a `dependencies` edge: that would make " +
+      "`commerce` un-enablable for any tenant that does not run `push_delivery` " +
+      "and `push_delivery` un-disablable for every commerce tenant " +
+      "(`tenant-module-lifecycle.ts`'s `MODULE_DEPENDENCY_DISABLED`), although " +
+      "customer push is OFF by default and gated by the per-tenant " +
+      "`customerPush` commerce feature and the deployment's VAPID/key-ring " +
+      "settings, not by module enablement. It is not a capability either: " +
+      "`push_delivery` declares no `provides` for this, and `capabilities." +
+      "consumes` is for a port-backed swappable adapter. Revisit if " +
+      "`push_delivery` ever publishes these helpers through `_shared/ports/`."
   }
 ];
 

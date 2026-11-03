@@ -125,9 +125,9 @@
           "optional": true
         }
       ],
-      "permissionCount": 164,
+      "permissionCount": 165,
       "navigationCount": 30,
-      "jobCount": 10,
+      "jobCount": 12,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null

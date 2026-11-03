@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:24bffb2d3b1265867a4dd93ce0735080d9f70952bbc2189686176e4a7a53a8d3 -->
+<!-- i18n-source-hash: sha256:bc263c27c02eaee3564f0a302345b498ed92c6ea4e4656d1865bb12fe5492dc4 -->
 
 # Status
 
@@ -195,6 +195,10 @@ Media (fotografi produk, hero artikel, kreatif iklan) diresolusi lewat `GET /api
 
 Diputuskan sebagai arah (issue #445): LynxJS/ReactLynx adalah kandidat utama untuk aplikasi persona terpisah; admin dan semua profil publik tetap Astro dan storefront tetap SSG statis. **Tidak ada apa pun dari Lynx di repo ini**: tanpa kode, workspace atau dependensi, dan aplikasi persona hidup di repositori terpisah yang membuka issue sendiri. PoC menjadi gerbang pilihan tiap konsumen. upstream `awcms` ADR-0146 (#1133, Proposed) mencapai arah yang sama dan tiba bersama sinkronisasi #452: konsisten, tanpa revisi.
 
+## Web Push pelanggan: perangkat, persetujuan, dan rute ([ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md), issue #430)
+
+Dibangun di balik fitur `customerPush` per tenant (bawaan mati, `404` netral): empat tabel milik commerce (`sql/1056`–`1059`: perangkat, preferensi, outbox tipis beserta percobaannya, ditambah izin `commerce.customer_push.read`), rute milik pembeli di `/api/v1/commerce/storefront/account/push/` (daftar, lihat, cabut satu atau semua, preferensi), diagnostik staf yang hanya agregat, peristiwa audit, sambungan logout dan pemblokiran pelanggan, job `commerce:customer-push:maintenance` dan `commerce:customer-push:rekey`, serta pengaturan allowlist host untuk operator. Endpoint dan rahasia auth disimpan hanya sebagai amplop AES-256-GCM di bawah cincin kunci rahasia-auth yang sudah ada dengan AAD khusus pelanggan, dan hanya host layanan push peramban yang dikenal yang diterima. Belum dibangun: UI storefront dan service worker (#431), konsumen peristiwa domain, dispatcher, dan kelayakan saat kirim (#432). Lihat [`cms.id.md`](cms.id.md), [`api.id.md`](api.id.md), [`kamus-data.id.md`](kamus-data.id.md), [`skema-basis-data.id.md`](skema-basis-data.id.md), [`deployment.id.md`](deployment.id.md), dan [`SECURITY.id.md`](../SECURITY.id.md).
+
 ## Mekanisme template
 
 `bun run template:init` (`tools/template-init.ts`) adalah CLI idempoten yang dijalankan repositori turunan sekali untuk menulis ulang permukaan brand-nya — nama, domain, warna, kontak, profil pilihan — tidak pernah menyentuh `apps/cms/**`. Keempat leg `local-ci/template-*` milik `bun run ci:template` (`tools/ci/runners/template.ts`, sebelumnya `.github/workflows/template-init-smoke.yml`) mematriks-kannya atas tiga profil (`toko`, `berita`, `landing`, `root`); keempatnya adalah status check wajib. Seed per profil hidup di `tools/seed-data/profil/{toko,berita,landing}/**`; konten referensi BjekMart sendiri (dipertahankan sebagai contoh kerja template) adalah `tools/seed-data/contoh/borneojek-mart/**`. Walkthrough lengkap: [`docs/template.md`](template.id.md) dan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md).
@@ -213,7 +217,7 @@ Diputuskan sebagai arah (issue #445): LynxJS/ReactLynx adalah kandidat utama unt
 
 ## Belum ada — daftar singkat
 
-- Web Push pelanggan: sudah dirancang, belum dibangun. [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) berstatus **Diusulkan**, dan isu implementasi #430, #431, dan #432 menunggu pemilik menerimanya (perangkat pelanggan, persetujuan, outbox tipis di atas provider upstream, target klik di origin storefront; belum ada tabel, rute, consumer, atau UI).
+- Web Push pelanggan: **perangkat, persetujuan, tabel outbox, rute pelanggan, diagnostik staf, dan job pemeliharaan sudah dibangun (issue #430)**; UI storefront dan service worker (#431) serta konsumen dan loop pengiriman (#432) belum, sehingga belum ada notifikasi yang terkirim. [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) berstatus **Diterima**; flag `customerPush` mati secara default dan aktivasi produksi tetap dihalangi (tinjauan penasihat hukum atas teks persetujuan, VAPID dan cincin kunci, matriks uji operator, UAT perangkat; ADR-0048 D8).
 - Ubah e-mail/telepon pada akun pelanggan yang sudah ada, dan verifikasi telepon ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
 - Tingkat (tier) loyalitas, kelayakan kampanye/segmen, dan halaman saldo storefront — daftar Tertunda [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md); penjaga akun-sendiri kasir dan refund pesanan yang seluruhnya dibayar poin — "Belum ada di sini" [ADR-0043](adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md).
 - Atribut katalog: varian pada impor/ekspor CSV, pengurutan berdasarkan nilai atribut, UI faset etalase di atas filter `attr=`, dan penggantian nama opsi enum — masing-masing dicatat pada "Ditunda" di [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).

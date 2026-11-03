@@ -6427,6 +6427,336 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/subscriptions:
+    get:
+      operationId: getCommerceStorefrontAccountPushState
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 6.1). Customer Web Push state: what the server knows (capability), the account's consent preferences and its active devices."
+      description: >-
+        Bearer only (`customerBearer`): no cookie, no staff credential. Behind the
+        per-tenant `customerPush` feature (default OFF = the neutral `404`, the same
+        body as an unresolvable tenant). `capability.enabled: false` is a first-class
+        `200` (no VAPID key pair or key ring, or a storefront served from the CMS
+        origin) and carries a `reason`; everything the BROWSER knows (Push API,
+        installed iOS app, permission state) is detected by the storefront. Devices
+        are listed masked (`endpointMasked`); the raw endpoint, the keys and the
+        ciphertexts are never returned. Every answer carries `Cache-Control: private,
+        no-store` and `Vary: Origin`; the CORS grant echoes only a tenant-resolved
+        origin and never allows credentials.
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The push state of the authenticated account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomerPushState"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: registerCommerceStorefrontAccountPushDevice
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 5.2, 6.1). Register or re-register this browser's push subscription. Idempotent by endpoint; one transaction; consent recorded with the wording version."
+      description: >-
+        The body is the browser's `PushSubscription.toJSON()` plus `consent`; any
+        other key (`transport`, `accountId`, `tenantId`, `title`, `body`,
+        `navigate`, ...) is a `400`. The principal is the bearer's account and
+        session, never the body. The endpoint's host must be a known browser push
+        service (Google FCM, Mozilla, Apple, Microsoft; an operator environment
+        setting can extend the list, a tenant or a request cannot) or the answer is
+        `422 ENDPOINT_NOT_ALLOWED` and nothing is written. The `Origin` must be the
+        tenant's own storefront origin (not the CMS origin): a deployment that
+        serves the storefront and the CMS from one origin is unsupported in v1
+        (`422 ORIGIN_NOT_ALLOWED`, capability reason `origin_not_supported`).
+        At most 5 active devices per account (`409 DEVICE_LIMIT`). `201` when the
+        caller newly owns the device (new, revived, or transferred from another
+        account on a shared browser - atomic, audited, the previous owner's queued
+        notifications are cancelled; the caller learns nothing about the previous
+        owner), `200` for a no-op re-registration. Body cap 8 KiB. Rate limits: 30
+        per hour per IP, 10 per hour per account.
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCustomerPushSubscribeRequest"
+      responses:
+        "200":
+          description: A no-op re-registration by the account that already owns the device.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommerceCustomerPushSubscribeResult"
+        "201":
+          description: Registered, revived or transferred to the caller.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommerceCustomerPushSubscribeResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: PUSH_UNAVAILABLE (push is not configured on this deployment) or DEVICE_LIMIT (5 active devices already).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "413":
+          description: PAYLOAD_TOO_LARGE (over 8 KiB).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE (`Content-Type` must be application/json).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: VALIDATION_ERROR, ENDPOINT_NOT_ALLOWED (host outside the push-service allowlist) or ORIGIN_NOT_ALLOWED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: revokeAllCommerceStorefrontAccountPushDevices
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 5.3). Revoke every push device of the authenticated account. Idempotent: nothing to revoke is still `204`."
+      description: >-
+        Destroys each device's stored credentials at once and cancels its queued
+        notifications. A blocked account may still call it.
+      security:
+        - customerBearer: []
+      responses:
+        "204":
+          description: Revoked (or there was nothing to revoke).
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/subscriptions/{id}:
+    delete:
+      operationId: revokeCommerceStorefrontAccountPushDevice
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 section 5.3). Revoke ONE of the authenticated account's push devices."
+      description: >-
+        Ownership is enforced inside the query, so an absent id, someone else's id,
+        a malformed id and an already-revoked id are the same `404`. A blocked
+        account may still revoke.
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Revoked; the device's credentials are destroyed.
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/push/preferences:
+    get:
+      operationId: getCommerceStorefrontAccountPushPreferences
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 2.3, 6.1). The account's consent per push purpose."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: "One entry per transactional purpose, in a fixed order; a purpose never set is `enabled: false` with no evidence."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      preferences:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    put:
+      operationId: updateCommerceStorefrontAccountPushPreferences
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 sections 2.3, 6.1). Set consent per purpose. Only the named purposes change; every change is audited."
+      description: >-
+        Turning a purpose ON needs the current consent wording version
+        (`capability.consentTextVersion`) and is recorded with it; turning one OFF
+        never needs it (a withdrawal is always possible) and keeps its row as
+        evidence. `marketing` is reserved and refused. Transactional consent never
+        implies marketing consent. Body cap 8 KiB.
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCustomerPushPreferencesRequest"
+      responses:
+        "200":
+          description: The updated preferences.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      preferences:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "413":
+          description: PAYLOAD_TOO_LARGE (over 8 KiB).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: VALIDATION_ERROR (a missing or stale `textVersion`, an unknown purpose, `marketing`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/account/addresses:
     get:
       operationId: listCommerceStorefrontAccountAddresses
@@ -7461,6 +7791,44 @@ paths:
                     description: Matches `apps/storefront/src/lib/akun-klien.ts`'s `ambilKomisiAfiliasi` contract — `{items, nextCursor}`.
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/customer-push/diagnostics:
+    get:
+      operationId: getCommerceCustomerPushDiagnostics
+      tags:
+        - Commerce Customer Push
+      summary: "Issue #430 (ADR-0048 Q10). AGGREGATE customer Web Push counts for staff: devices by status, messages by status and purpose, preferences by purpose. Gated on `commerce.customer_push.read`."
+      description: >-
+        Counts only. The answer never carries an endpoint (masked or not), a device
+        id, an account or customer id, a token or a message text. `sent` means the
+        push service accepted the request, never that anything was displayed or
+        read: no figure is called "delivered". Feature off is `409
+        FEATURE_DISABLED` (the owner-route convention).
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: The aggregate diagnostics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomerPushDiagnostics"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED - the `customerPush` feature is off for this tenant.
           content:
             application/json:
               schema:
@@ -21319,6 +21687,288 @@ components:
         addedAt:
           type: string
           format: date-time
+    CommerceCustomerPushCapability:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). What the SERVER knows about customer Web Push for this deployment and this request. `enabled: false` is a normal answer, not an error."
+      required:
+        - enabled
+        - reason
+        - applicationServerKey
+        - transports
+        - purposes
+        - consentTextVersion
+        - maxDevices
+      properties:
+        enabled:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+          enum:
+            - push_not_configured
+            - origin_not_supported
+            - null
+          description: "`push_not_configured`: no VAPID key pair, key ring or `web_push` provider. `origin_not_supported`: the storefront is served from the CMS origin (unsupported in v1) or the request origin is not a valid storefront origin."
+        applicationServerKey:
+          type: string
+          nullable: true
+          description: The VAPID public key for `PushManager.subscribe()` (not a secret). `null` unless `enabled`.
+        transports:
+          type: array
+          items:
+            type: string
+            enum:
+              - web_push
+        purposes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+        consentTextVersion:
+          type: string
+          description: The version of the consent wording the page must show and echo back as `textVersion`.
+        maxDevices:
+          type: integer
+          description: Active devices allowed per account.
+    CommerceCustomerPushPurpose:
+      type: string
+      enum:
+        - order_updates
+        - payment_updates
+        - support_replies
+      description: "Issue #430. A transactional notification purpose. `marketing` is reserved and never accepted or sent in v1."
+    CommerceCustomerPushDevice:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). One active push device of the authenticated account. The raw endpoint, the keys and the ciphertexts are never returned."
+      required:
+        - id
+        - endpointMasked
+        - userAgentSummary
+        - status
+        - lastSuccessAt
+        - registeredAt
+        - current
+      properties:
+        id:
+          type: string
+          format: uuid
+        endpointMasked:
+          type: string
+          description: The push service's origin plus the last characters of the endpoint, e.g. `https://fcm.googleapis.com/...a1b2c3`.
+        userAgentSummary:
+          type: string
+          nullable: true
+          description: A coarse browser description such as `Chrome on Android (mobile)`; never the raw User-Agent.
+        status:
+          type: string
+          enum:
+            - active
+        lastSuccessAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the push service last ACCEPTED a message for this device. Not a display or read time.
+        registeredAt:
+          type: string
+          format: date-time
+        current:
+          type: boolean
+          description: True when the device was enrolled by the caller's current session.
+    CommerceCustomerPushPreference:
+      type: object
+      description: "Issue #430 (ADR-0048 section 2.3). Consent for one purpose, with its evidence. A withdrawal keeps its row."
+      required:
+        - purpose
+        - enabled
+        - consentTextVersion
+        - grantedAt
+        - revokedAt
+      properties:
+        purpose:
+          $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+        enabled:
+          type: boolean
+        consentTextVersion:
+          type: string
+          nullable: true
+        grantedAt:
+          type: string
+          format: date-time
+          nullable: true
+        revokedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceCustomerPushState:
+      type: object
+      description: "Issue #430 (ADR-0048 section 6.1). The response of `GET .../account/push/subscriptions`."
+      required:
+        - capability
+        - preferences
+        - devices
+      properties:
+        capability:
+          $ref: "#/components/schemas/CommerceCustomerPushCapability"
+        preferences:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushPreference"
+        devices:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCustomerPushDevice"
+    CommerceCustomerPushSubscribeRequest:
+      type: object
+      additionalProperties: false
+      description: "Issue #430 (ADR-0048 sections 6.1, 6.7). The browser's `PushSubscription.toJSON()` plus `consent`. Any other key is a 400."
+      required:
+        - endpoint
+        - keys
+        - consent
+      properties:
+        endpoint:
+          type: string
+          maxLength: 2048
+          description: An `https` URL on a known browser push service. A host outside the allowlist is `422 ENDPOINT_NOT_ALLOWED`.
+        keys:
+          type: object
+          additionalProperties: false
+          required:
+            - p256dh
+            - auth
+          properties:
+            p256dh:
+              type: string
+              description: base64url of the 65-byte uncompressed P-256 public key.
+            auth:
+              type: string
+              description: base64url of the 16-byte auth secret. Stored only as an AES-256-GCM envelope.
+        expirationTime:
+          type: number
+          nullable: true
+          description: Accepted for shape compatibility and ignored.
+        consent:
+          type: object
+          additionalProperties: false
+          required:
+            - purposes
+            - textVersion
+          properties:
+            purposes:
+              type: array
+              minItems: 1
+              items:
+                $ref: "#/components/schemas/CommerceCustomerPushPurpose"
+            textVersion:
+              type: string
+              maxLength: 32
+              description: Must equal `capability.consentTextVersion`.
+    CommerceCustomerPushSubscribeResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          enum:
+            - true
+        data:
+          type: object
+          properties:
+            device:
+              $ref: "#/components/schemas/CommerceCustomerPushDevice"
+            preferences:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommerceCustomerPushPreference"
+    CommerceCustomerPushPreferencesRequest:
+      type: object
+      additionalProperties: false
+      description: "Issue #430. Only the purposes named change. `textVersion` is required when any purpose is set to true."
+      required:
+        - purposes
+      properties:
+        purposes:
+          type: object
+          minProperties: 1
+          additionalProperties: false
+          properties:
+            order_updates:
+              type: boolean
+            payment_updates:
+              type: boolean
+            support_replies:
+              type: boolean
+        textVersion:
+          type: string
+          maxLength: 32
+    CommerceCustomerPushDiagnostics:
+      type: object
+      description: "Issue #430 (ADR-0048 Q10). Aggregate counts only; no device, account or customer identifier, no endpoint, no message text."
+      required:
+        - generatedAt
+        - devices
+        - accountsWithActiveDevice
+        - messages
+        - preferences
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+        devices:
+          type: object
+          description: Devices by status.
+          properties:
+            active:
+              type: integer
+            revoked:
+              type: integer
+            gone:
+              type: integer
+            disabled:
+              type: integer
+        accountsWithActiveDevice:
+          type: integer
+        messages:
+          type: object
+          properties:
+            byStatus:
+              type: object
+              description: "Retained messages by status. `sent` means the push service accepted the request, nothing more."
+              properties:
+                queued:
+                  type: integer
+                sending:
+                  type: integer
+                sent:
+                  type: integer
+                retry_wait:
+                  type: integer
+                failed:
+                  type: integer
+                cancelled:
+                  type: integer
+                expired:
+                  type: integer
+            byPurposeAndStatus:
+              type: array
+              items:
+                type: object
+                properties:
+                  purpose:
+                    type: string
+                  status:
+                    type: string
+                  count:
+                    type: integer
+        preferences:
+          type: array
+          items:
+            type: object
+            properties:
+              purpose:
+                type: string
+              enabled:
+                type: integer
+              withdrawn:
+                type: integer
     CommerceAccountAddress:
       type: object
       description: "Issue #91 (implemented, contract #86). One row of `awcms_commerce_customer_addresses`, reached through the account (bearer) rather than a one-off order snapshot — `label`/`postalCode` are always present (never null), unlike the order-creation `address` shape."

@@ -52,7 +52,8 @@ export type CommerceFeatureKey =
   | "segments"
   | "loyaltySegments"
   | "campaignSegmentAudience"
-  | "booking";
+  | "booking"
+  | "customerPush";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -149,7 +150,16 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // sold through the ordinary cart), so a tenant chooses it. With it OFF no
   // adapter route answers and `allow_dp` stays editable by hand exactly as
   // before. Needs the Booking module enabled for the tenant.
-  booking: false
+  booking: false,
+  // Issue #430 (ADR-0048) - OFF. Customer Web Push puts a shopper's browser
+  // push endpoint (personal data under UU PDP and a bearer-grade capability) in
+  // the database and, with #432, sends notifications to it. A tenant chooses it,
+  // and production activation is additionally gated per deployment (ADR-0048 D8:
+  // counsel's review of the consent wording, VAPID + key ring, the operator test
+  // matrix, device UAT). With it OFF every customer push route answers the
+  // neutral 404, the consumers skip and the dispatcher claims nothing. Needs
+  // PUSH_ENABLED=true, a VAPID key pair and the auth-secret key ring too.
+  customerPush: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -171,7 +181,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "segments",
   "loyaltySegments",
   "campaignSegmentAudience",
-  "booking"
+  "booking",
+  "customerPush"
 ];
 
 function isBoolean(value: unknown): value is boolean {
