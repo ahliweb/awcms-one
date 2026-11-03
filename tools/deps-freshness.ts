@@ -203,7 +203,7 @@ async function collectOverrides(options: Options): Promise<Section<OverrideRow[]
     const rows: OverrideRow[] = [];
 
     for (const [name, range] of Object.entries(overrides)) {
-      const body = (await fetchJson(`https://registry.npmjs.org/${name.replace("/", "%2F")}/latest`, options)) as {
+      const body = (await fetchJson(`https://registry.npmjs.org/${name.replaceAll("/", "%2F")}/latest`, options)) as {
         version?: unknown;
       };
       if (typeof body.version !== "string") throw new Error(`npm answer for ${name} has no \`version\``);

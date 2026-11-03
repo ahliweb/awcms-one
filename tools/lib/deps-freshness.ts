@@ -869,7 +869,7 @@ function unknownLine(reason: string): string {
 }
 
 function cell(value: string): string {
-  return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
+  return value.replace(/\\/g, "\\\\").replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
 }
 
 export function renderMarkdown(manifest: FreshnessManifest): string {
