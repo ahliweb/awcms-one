@@ -197,6 +197,13 @@ export function buildPlan({ root, flags, today, originSha }) {
   // up (or never existed to clean), so re-scanning the whole tree for it
   // every run would be wasted work with nothing left to find.
   const rewriteOverlay = new Map(rewrites.filter((r) => r.path.endsWith(".md")).map((r) => [r.path, r.after]));
+  // The one-time CHANGELOG reset is a rewrite of a markdown file too, and it
+  // has to be layered the same way: without it the citation cleanup below
+  // reads the PRE-reset CHANGELOG from disk (the inherited history cites the
+  // removed seed/import paths in backticks) and `applyPlan` then writes that
+  // edited copy over the reset, leaving a derived repository the template's
+  // whole release history under a `package.json` at 0.1.0 (issue #476).
+  if (changelog) rewriteOverlay.set("CHANGELOG.md", changelog.after);
   const docCitationEdits = planDocCitationCleanup(
     root,
     removals.filter((r) => r.existed).map((r) => r.path),
