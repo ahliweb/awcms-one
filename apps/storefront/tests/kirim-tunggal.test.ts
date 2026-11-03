@@ -300,6 +300,26 @@ describe("buatPenjagaDom (adapter, fake ports)", () => {
     expect(lain.fokusDipanggil).toBe(0);
   });
 
+  test("focus the task moved on purpose (an error banner) is not taken back", async () => {
+    const tombol = kontrol();
+    let fokusHilang = false;
+    const penjaga = buatPenjagaDom({
+      form: null,
+      kontrol: () => [tombol],
+      elemenAktif: () => tombol,
+      fokusHilang: () => fokusHilang
+    });
+    await penjaga.jalankan(async () => {
+      fokusHilang = false; // the task focused something else (e.g. the error banner)
+    });
+    expect(tombol.fokusDipanggil).toBe(0);
+
+    await penjaga.jalankan(async () => {
+      fokusHilang = true; // the disabled control dropped focus to nowhere: it is handed back
+    });
+    expect(tombol.fokusDipanggil).toBe(1);
+  });
+
   test("no focus call when focus was elsewhere, and none after a locked success", async () => {
     const tombol = kontrol();
     const penjaga = buatPenjagaDom({ form: null, kontrol: () => [tombol], elemenAktif: () => ({}) });

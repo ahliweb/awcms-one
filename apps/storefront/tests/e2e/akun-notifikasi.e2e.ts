@@ -305,8 +305,12 @@ test.describe("the worker file as the storefront server serves it", () => {
     expect(csp).toMatch(/script-src 'self'(;|$)/); // no third-party script origin
 
     const body = await response.text();
-    expect(body).not.toMatch(/addEventListener\(\s*["']fetch["']/);
-    expect(body).not.toMatch(/Bearer|localStorage|cs_/);
+    // The file is served verbatim, and its header comment explains (by name) what the worker must NOT touch: assert on the
+    // code, not on the prose that forbids it.
+    const code = body.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+    expect(code).toMatch(/addEventListener\(\s*["']push["']/); // the stripping left the real code in place
+    expect(code).not.toMatch(/addEventListener\(\s*["']fetch["']/);
+    expect(code).not.toMatch(/Bearer|localStorage|cs_/);
   });
 });
 
