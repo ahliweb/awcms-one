@@ -200,7 +200,12 @@ suite("commerce WhatsApp outbox + OTP integration (Issue #108)", () => {
           name: "Siti",
           phone: "081234567892"
         },
-        capturingChannel
+        capturingChannel,
+        undefined,
+        // Issue #513's resend window: a second request for the same
+        // registration inside 60 s is a no-op that sends nothing, so ask for
+        // the fresh code just past the window.
+        new Date(Date.now() + 61_000)
       )
     );
     expect(requested2.kind).toBe("sent");
