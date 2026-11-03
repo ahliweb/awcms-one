@@ -189,13 +189,20 @@ test.describe("search and availability (/booking)", () => {
   });
 
   test("signed out, 'Lanjut' goes through /masuk and, after a real OTP sign-in, returns to the same stay", async ({ page }) => {
+    // This test types the OTP through the UI, seconds apart from the request. The stub keeps ONE code
+    // row per e-mail and `akun-notifikasi.e2e.ts` (another worker, same stub) logs `budi@example.test`
+    // in all the time, consuming that row mid-flow; so the UI flow gets an account nobody else uses.
+    const suffix = `${Date.now()}${Math.floor(Math.random() * 1000)}`;
+    const email = `masuk-${suffix}@example.test`;
+    await register(email, "Wati Masuk", `0812${suffix.slice(-8)}`);
+
     await page.goto(`/booking?o=${OFFERING}&in=${day(10)}&out=${day(12)}&n=2`);
     await expect(page.locator("[data-continue]")).toBeEnabled();
     await page.locator("[data-continue]").click();
     await expect(page).toHaveURL(/\/masuk\?kembali=/);
     expect(decodeURIComponent(new URL(page.url()).searchParams.get("kembali") ?? "")).toContain(`/booking/pesan?o=${OFFERING}`);
 
-    await page.locator("#masuk-email").fill("budi@example.test");
+    await page.locator("#masuk-email").fill(email);
     await page.locator("[data-kirim-kode]").click();
     await page.locator("#masuk-code").fill("123456");
     await page.locator("[data-verifikasi]").click();
