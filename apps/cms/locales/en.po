@@ -11653,6 +11653,21 @@ msgstr ""
 msgid "Loyalty points balance"
 msgstr ""
 
+msgid "Number of confirmed bookings"
+msgstr ""
+
+msgid "Number of stays"
+msgstr ""
+
+msgid "Last stay (arrival)"
+msgstr ""
+
+msgid "Number of no-shows"
+msgstr ""
+
+msgid "Number of cancellations by the customer"
+msgstr ""
+
 msgid "is"
 msgstr ""
 
@@ -11764,7 +11779,7 @@ msgstr ""
 msgid "Condition value"
 msgstr ""
 
-msgid "Window in days (orders and spend only)"
+msgid "Window in days (counts and spend only)"
 msgstr ""
 
 msgid "days"

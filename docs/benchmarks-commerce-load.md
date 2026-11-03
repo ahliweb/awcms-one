@@ -86,6 +86,20 @@ Per-rule p95: `level_in_1_2` 28 ms (50,000 members), `order_count_gte_2` 244 ms 
 
 **M7 verified: p95 410 ms against the 3,000 ms target, with about 7x margin.** The burst above the limit completes in 3.98 s wall time with the surplus refused rather than queued.
 
+### 4b. Segment preview with booking-derived rules (issue #390, [ADR-0052](adr/0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+
+The same scenario (`bun run bench:commerce-load --only segment`) now seeds a tenant that also sells stays and evaluates **ten** rule shapes: the five above plus five that read booking-derived facts (a broad stay count; a window with a no-show exclusion; order, stay, recency and cancellation facts together; an OR across both booking scans; every family at once with three windows). The tenant: 100,000 customers, 340,000 paid orders (250,000 ordinary and 90,000 booking orders), 90,000 booking links in the status mix of a working property, 29,999 cancellation and no-show decisions (seeding took 37 s). Run on the same 4-CPU machine on 25 October 2026, PostgreSQL 18.4, Bun 1.4.4, **load average 4.2 before the run** (other jobs shared the machine, so these are conservative figures), standard profile, 12 rounds (120 samples) after 10 warm-up evaluations.
+
+| Measure                                      | p50    | p95         | p99     | max     |
+| -------------------------------------------- | ------ | ----------- | ------- | ------- |
+| Sequential preview (120 samples, ten shapes) | 496 ms | **1941 ms** | 2021 ms | 2070 ms |
+| 2 concurrent actors (12 served)              | 462 ms | 952 ms      | 952 ms  | 952 ms  |
+| 6-actor burst (12 served, 24 busy)           | 622 ms | 937 ms      | 937 ms  | 937 ms  |
+
+Per-rule p95: the five commerce shapes 36 / 281 / 528 / 438 / 585 ms (as before, within load noise); `booking_stay_count_gte_1` 612 ms (28,858 members), `booking_window_not_no_show` 888 ms (21,144), `booking_orders_stay_recency_no_cancel` 1,062 ms (7,858), `booking_or_across_scans` 1,015 ms (35,571), `booking_every_family_three_windows` 2,070 ms (571).
+
+**M7 holds with the booking rules: p95 1,941 ms against the 3,000 ms target (about 1.5x margin on a loaded machine).** The slowest shape reads every family at once; the booking scan alone costs about 270-300 ms at this size (about 25 ms if the same facts were read back from a pre-computed table, the option ADR-0052 D4 rejects). A rule that reads no booking fact runs no booking scan: the commerce shapes did not slow down. The same five-and-five comparison inside the integration test `commerce-segment-booking-rules.integration.test.ts` gave p95 1.7-1.8 s on three runs. The single-customer path (loyalty earn) took 187 ms for 200 checks on this data. On a machine whose load average was above 7 one preview was cancelled at the 5 s statement timeout, which is the bound working under contention.
+
 ## Invariant results
 
 | Invariant                                                         | Result |
@@ -97,7 +111,7 @@ Per-rule p95: `level_in_1_2` 28 ms (50,000 members), `order_count_gte_2` 244 ms 
 | No auto-cancel of an order holding money                          | held   |
 | No loyalty double spend; balance never negative; ledger = balance | held   |
 | Loyalty reconcile: drift 0, ledger breaks 0                       | held   |
-| M7 p95 at most 3,000 ms                                           | held   |
+| M7 p95 at most 3,000 ms (also with the booking-derived rules)     | held   |
 
 No violation was found, so no production code was touched.
 

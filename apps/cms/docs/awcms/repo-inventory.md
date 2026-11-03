@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 356   |
+| Migrations                          | 357   |
 | `awcms_*` tables                    | 321   |
 | Tables with `FORCE` RLS             | 301   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 923   |
+| Test files                          | 925   |
 | Route files                         | 844   |
 | ADR                                 | 294   |
 
@@ -415,6 +415,7 @@
 | 354 | `sql/1052_awcms_commerce_commission_attributed_sources.sql`                 |
 | 355 | `sql/1053_awcms_commerce_commission_revoke_payroll_worker_grants.sql`       |
 | 356 | `sql/1054_awcms_commerce_booking_pos_guard_marker.sql`                      |
+| 357 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
 
 ### Tables & Row-Level Security
 
@@ -748,7 +749,7 @@
 | ------------- | ---------- |
 | `(root)`      | 665        |
 | `e2e`         | 27         |
-| `integration` | 230        |
+| `integration` | 232        |
 | `unit`        | 1          |
 
 ### Routes
