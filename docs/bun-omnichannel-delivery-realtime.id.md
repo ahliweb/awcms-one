@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](bun-omnichannel-delivery-realtime.md)
 
-<!-- i18n-source-hash: sha256:453e36220b7fa33d0de2afba90f713444f239f8d2176abf27c9cfdddd7efdd30 -->
+<!-- i18n-source-hash: sha256:676440048ce1aa2f8c81e57b02ea0e8d5f2e9883eb0b2b68479b86d01d8cfaad -->
 
 # Standar CRM AWCMS-One untuk dispatcher dan real-time Bun-only (usulan)
 
@@ -8,7 +8,7 @@
 
 ## Otoritas runtime dan kondisi kode
 
-AWCMS-One adalah Bun monorepo dengan pin **`bun@1.4.3`** di `package.json`. `apps/cms` memuat upstream AWCMS sebagai **git subtree dengan seluruh sejarah**, pemrosesan kanal generik dimiliki upstream, dan `commerce` mengelola audience segmen, pemilihan kampanye serta adapter bisnis. Storefront Astro tetap memiliki profil SSG `toko`, `berita`, `landing`. **Semua layanan milik AWCMS-One** untuk broadcast email/WhatsApp/Telegram/Web Push pelanggan, publikasi media sosial, penjadwalan/outbox, SSE/WS dan gateway real-time **wajib menggunakan Bun sesuai versi repo**. Tidak boleh ada server Node.js, Socket.IO berbasis Node, runtime npm/yarn/pnpm atau dispatcher kampanye Python tersendiri. Import `node:*` yang kompatibel Bun serta adapter `@astrojs/node` yang dijalankan melalui Bun tetap boleh.
+AWCMS-One adalah Bun monorepo dengan pin **`bun@1.4.4`** di `package.json`. `apps/cms` memuat upstream AWCMS sebagai **git subtree dengan seluruh sejarah**, pemrosesan kanal generik dimiliki upstream, dan `commerce` mengelola audience segmen, pemilihan kampanye serta adapter bisnis. Storefront Astro tetap memiliki profil SSG `toko`, `berita`, `landing`. **Semua layanan milik AWCMS-One** untuk broadcast email/WhatsApp/Telegram/Web Push pelanggan, publikasi media sosial, penjadwalan/outbox, SSE/WS dan gateway real-time **wajib menggunakan Bun sesuai versi repo**. Tidak boleh ada server Node.js, Socket.IO berbasis Node, runtime npm/yarn/pnpm atau dispatcher kampanye Python tersendiri. Import `node:*` yang kompatibel Bun serta adapter `@astrojs/node` yang dijalankan melalui Bun tetap boleh.
 
 **Di luar cakupan:** OMES menjalankan worker host Python dengan HTTPS polling keluar bertanda tangan; Hermes menjalankan runtime agen sendiri; provider eksternal mengelola server mereka sendiri. Kebijakan ini tidak menulis ulang engine tersebut dan tidak menjadikannya server CRM.
 
