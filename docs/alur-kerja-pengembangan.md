@@ -57,7 +57,7 @@ Pushing that tag no longer publishes anything by itself (issue #181 introduced a
 
 **`local-ci/check-toko`, `local-ci/check-berita`, `local-ci/check-landing`** (`tools/ci/runners/check.ts`) — a 3-way matrix over `SITE_PROFILE`, one leg per build profile ([ADR-0018 D7](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)). Every leg runs `bun run check:lockfile`, `bun install --frozen-lockfile`, `SITE_PROFILE=<leg> bun run check` (a storefront type-check covering `src/profil/**` regardless of which group is active), and `cd apps/storefront && SITE_PROFILE=<leg> bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts` — that leg's own build against the stub CMS, proving the excluded page groups are genuinely absent from `dist/` and the sitemaps. The root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, and `bun audit --audit-level=low` are profile-independent, so they run **once, on the `toko` leg only**, with no `SITE_PROFILE` set. Nothing in this leg builds a container image or deploys anything.
 
-**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) runs against a real, ephemeral `postgres:18.4` container it starts itself:
+**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) runs against a real, ephemeral `postgres:18.6` container it starts itself:
 
 1. `bun install --frozen-lockfile` at the root.
 2. `cd apps/cms && DATABASE_URL="" bun run check` — the full ~53-step chain (lint, docs/i18n, every registry/consistency gate, typecheck, `bun test` with every DB-gated suite skipping cleanly, `bun run build`).

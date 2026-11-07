@@ -2,7 +2,7 @@
 #
 # This file provisions ONLY what apps/cms's own SQL migrations do NOT:
 #
-#   - the postgres:18.4 server itself, with a named volume and a healthcheck
+#   - the postgres:18.6 server itself, with a named volume and a healthcheck
 #     `bun run db:up --wait` (via `docker compose up -d --wait`) can block on;
 #   - the LOGIN half of the three roles the migrations create NOLOGIN and
 #     passwordless on purpose (sql/019 `awcms_app`, sql/022
@@ -21,7 +21,7 @@ name: awcms-one
 
 services:
   postgres:
-    image: postgres:18.4
+    image: postgres:18.6
     container_name: awcms-one-postgres
     restart: unless-stopped
     environment:

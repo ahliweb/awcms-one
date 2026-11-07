@@ -59,7 +59,7 @@ export const LEGS: readonly LegDefinition[] = [
   {
     context: "local-ci/check-cms",
     group: "check",
-    description: "apps/cms's own ~53-step check chain, then tests/integration/ against an ephemeral postgres:18.4"
+    description: "apps/cms's own ~53-step check chain, then tests/integration/ against an ephemeral postgres:18.6"
   },
   {
     context: "local-ci/template-toko",
