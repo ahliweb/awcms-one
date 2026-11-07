@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:feb85de26c91fd31225d8fde27d4e0524142acd7e8beea9cf2996364fc820ae6 -->
+<!-- i18n-source-hash: sha256:f2cc8811e186abe79d70f78605a2d9404c5cc93353321f3363b9ec02d284f79b -->
 
 # Alur kerja pengembangan
 
@@ -59,7 +59,7 @@ Mendorong (push) tag itu tidak lagi mempublikasikan apa pun dengan sendirinya (i
 
 **`local-ci/check-toko`, `local-ci/check-berita`, `local-ci/check-landing`** (`tools/ci/runners/check.ts`) — matriks 3-arah atas `SITE_PROFILE`, satu leg per profil build ([ADR-0018 D7](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md)). Setiap leg menjalankan `bun run check:lockfile`, `bun install --frozen-lockfile`, `SITE_PROFILE=<leg> bun run check` (type-check storefront yang mencakup `src/profil/**` tanpa memandang group mana yang aktif), dan `cd apps/storefront && SITE_PROFILE=<leg> bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts` — build milik leg itu sendiri terhadap stub CMS, membuktikan group halaman yang dikecualikan sungguh-sungguh absen dari `dist/` dan sitemap. `bun test` root, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, dan `bun audit --audit-level=low` tidak bergantung pada profil, jadi ia berjalan **sekali saja, di leg `toko`**, tanpa `SITE_PROFILE` diatur. Tidak ada apa pun di leg ini yang membangun image container atau men-deploy apa pun.
 
-**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) berjalan terhadap container `postgres:18.4` nyata dan sekali-pakai yang dimulainya sendiri:
+**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) berjalan terhadap container `postgres:18.6` nyata dan sekali-pakai yang dimulainya sendiri:
 
 1. `bun install --frozen-lockfile` di root.
 2. `cd apps/cms && DATABASE_URL="" bun run check` — rantai penuh ~53 langkah (lint, docs/i18n, setiap gate registry/konsistensi, typecheck, `bun test` dengan setiap suite ber-gate-DB skip bersih, `bun run build`).
