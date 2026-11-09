@@ -251,3 +251,16 @@ Two rules follow, and a reviewer may refuse a PR for either:
 English at the bare path is the authoritative source; Indonesian at `<name>.id.md` is the mirror, recording the hash of the English it was translated from. This document's mirror is [`AGENTS.id.md`](AGENTS.id.md).
 
 This repository's own code — `packages/gerbang/`, `tools/`, `tests/`, and their identifiers, comments, and gate/test messages — is written in **English** throughout. This is a deliberate choice for this repo's own new code, made because there is no existing convention here to match and English is the safer default for tooling that local CI and any future contributor's editor all read directly. `apps/cms` carries `ahliweb/awcms`'s own, separate convention as embedded code; this repository does not govern or change it.
+
+<!-- BEGIN:pengetahuan-ringkas -->
+<!-- pengetahuan-ringkas:v1 -->
+## Knowledge Graph (graphify)
+
+Repo ini punya knowledge graph di `graphify-out/`. Prosedur lengkap: skill `.claude/skills/pengetahuan-ringkas/SKILL.md`.
+
+1. **Untuk pertanyaan arsitektur atau hubungan antarberkas, baca graf lebih dulu.** Buka `graphify-out/GRAPH_REPORT.md`, lalu `graphify query "<pertanyaan>"`, sebelum membuka banyak berkas satu per satu. Hemat token.
+2. **Graf adalah peta, bukan sumber kebenaran.** Verifikasi setiap klaim ke `source_file` yang dikutip; edge `INFERRED`/`AMBIGUOUS` bukan fakta.
+3. **Bila `graphify-out/STATUS.md` ada, graf baru berisi kode saja.** Jalankan `/graphify . --update` sebelum mengandalkannya untuk pertanyaan dokumen, hapus `STATUS.md`, lalu commit hasilnya.
+4. **Perbarui graf setelah menambah, menghapus, atau mengubah substansial berkas**, dalam commit yang sama (`graphify update .` untuk kode, `/graphify . --update` untuk dokumen).
+5. **Jangan edit `graphify-out/` dengan tangan** dan jangan memasang `graphify hook install`.
+<!-- END:pengetahuan-ringkas -->

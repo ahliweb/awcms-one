@@ -79,3 +79,16 @@ tools/out/
 
 # Local design-source drops (e.g. the AWCMS-One redesign zip) are inputs, never tracked (issue #182).
 /redesign/
+
+# BEGIN:pengetahuan-ringkas
+# graphify: hanya graph.json, GRAPH_REPORT.md, STATUS.md, dan label yang dilacak.
+graphify-out/cache/
+graphify-out/manifest.json
+graphify-out/cost.json
+graphify-out/graph.html
+graphify-out/GRAPH_TREE.html
+graphify-out/obsidian/
+graphify-out/.graphify_*
+!graphify-out/.graphify_labels.json
+!graphify-out/.graphify_labels.json.sig
+# END:pengetahuan-ringkas
