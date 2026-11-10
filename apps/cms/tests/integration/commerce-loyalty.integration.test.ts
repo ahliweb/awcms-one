@@ -93,7 +93,24 @@ const TENANT_B = "bbbbbbbb-0289-4000-8000-000000000002";
 const ACTOR = "cccccccc-0289-4000-8000-000000000003";
 
 const DAY = 86_400_000;
-const PAID_AT = new Date("2026-10-01T10:00:00.000Z");
+/**
+ * The logical "paid" instant most tests use, anchored to the REAL clock
+ * (three days ago) rather than a calendar date.
+ *
+ * Ledger rows get `created_at = now()` from the database, and the lot replay
+ * (`loyalty-lots.ts`, `consumeFifo`) skips a lot that had already expired at a
+ * debit's `created_at`. A fixed date would therefore make these tests pass
+ * until the real clock passed `PAID_AT + expiryDays` (30 days) and then fail
+ * with no code change: the debits would be stamped after the lots lapsed. With
+ * the anchor, `PAID_AT < now < PAID_AT + 30 days` for as long as the suite
+ * runs; the explicit `asOf` arguments (`PAID_AT + N * DAY`) are parameters of
+ * the expiry functions and may lie in the future.
+ */
+const PAID_AT = new Date(
+  Math.floor((Date.now() - 3 * 86_400_000) / 1000) * 1000
+);
+// Fixed on purpose: the program-window tests pin their own calendar dates
+// (August/September 2026) relative to this one, and need no real-clock lot.
 const PROGRAM_START = new Date("2026-09-01T00:00:00.000Z");
 
 function inTenant<T>(
