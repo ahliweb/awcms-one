@@ -1,3 +1,7 @@
+🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](carikbot-conversation-reference.md)
+
+<!-- i18n-source-hash: sha256:af9f796bb55849764f285eeab202aae35329a78e74bed13bf9721816a70d0aca -->
+
 # Referensi Konsep CarikBot — Percakapan, Layanan, dan Batas Arsitektur
 
 **Versi dokumen:** v1.0.0 · **Terakhir diperbarui:** 2026-11-10 · **Status:** riset F0, usulan, bukan fitur terimplementasi atau rilis.
