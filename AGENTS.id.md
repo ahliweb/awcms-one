@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:cb998bd4f7b0abf5815a16f848b730fcadcc4ed1f62d61294cab771ed9e416cf -->
+<!-- i18n-source-hash: sha256:e1506e434343d274da33a7974f8f5e4055e402e1f03d6d951b82a2bfd7fb0001 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -231,7 +231,7 @@ Mendorong (push) tag itu (`git push origin vX.Y.Z`) **tidak lagi** mempublikasik
 
 ## Alur pengembangan produk v2.0.0
 
-Pekerjaan produk di repositori ini mengikuti alur pengembangan produk 18 langkah portofolio **v2.0.0** ([`alur-pengembangan-produk.md`](https://github.com/ahliweb/personal-coding/blob/main/docs/alur-pengembangan-produk.md)), yang diadopsi upstream di [ahliweb/awcms ADR-0156](https://github.com/ahliweb/awcms/blob/main/docs/adr/0156-adopt-development-flow-v2-validated-ux-before-data-model-frontend-backend-integration-per-slice.id.md). Tempatkan pekerjaan pada langkahnya sebelum memulai. Perubahan dari v1: UX/UI divalidasi di **langkah 4**, sebelum ERD; langkah 4-7 lama kini menjadi 5-8, dan langkah 8 adalah kontrak API beserta mock yang dibangkitkan darinya; langkah 11 berjalan per slice; gerbang 9 (Definition of Ready) dan 15 (Go/No-Go) tidak berubah.
+Pekerjaan produk di repositori ini mengikuti alur pengembangan produk 18 langkah portofolio **v2.0.0** (standar lintas-portofolio internal pemilik), yang diadopsi upstream di [ahliweb/awcms ADR-0156](https://github.com/ahliweb/awcms/blob/main/docs/adr/0156-adopt-development-flow-v2-validated-ux-before-data-model-frontend-backend-integration-per-slice.id.md). Tempatkan pekerjaan pada langkahnya sebelum memulai. Perubahan dari v1: UX/UI divalidasi di **langkah 4**, sebelum ERD; langkah 4-7 lama kini menjadi 5-8, dan langkah 8 adalah kontrak API beserta mock yang dibangkitkan darinya; langkah 11 berjalan per slice; gerbang 9 (Definition of Ready) dan 15 (Go/No-Go) tidak berubah.
 
 Untuk repositori ini, yang `apps/cms`-nya adalah backend milik repo ini ([ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)), realisasi langkah 11 per slice adalah:
 
