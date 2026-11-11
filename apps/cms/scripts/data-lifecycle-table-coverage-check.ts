@@ -146,12 +146,12 @@ export const BOUNDED_BY_DESIGN: readonly {
   {
     table: "awcms_idn_population_datasets",
     reason:
-      "awcms-one ADR-0051 / Issue #497. Global reference data written ONLY by the operator job `idn-population:import`, one row per reviewed BPS publication file added to the repository: its ceiling is the number of publications the project has chosen to vendor (hundreds at most across all of Indonesia), and no request path or timer can add one. RETAINED INDEFINITELY, never purged: a dataset is superseded, not deleted, so the provenance of every figure ever served stays answerable, and no role holds DELETE (`sql/882`). An age-based purge would be actively WRONG rather than merely unnecessary: `executionMode: 'generic'` deletes purely by age with no status predicate, so it would delete the dataset CURRENTLY BEING SERVED for any publication that has not been re-issued in years (the healthy case). Holds no personal data."
+      "awcms-one ADR-0051 / ADR-0053 (Issue #497). Global reference data written ONLY by the operator job `idn-population:import`, one row per distinct pair of vendored Kepmendagri population/area files (the dataset code is derived from both sha256): its ceiling is the number of times the project re-vendors the decree's files, a handful per decade, and no request path or timer can add one. RETAINED INDEFINITELY, never purged: a dataset is superseded, not deleted, so the provenance of every figure ever served stays answerable, and no role holds DELETE (`sql/882`). An age-based purge would be actively WRONG rather than merely unnecessary: `executionMode: 'generic'` deletes purely by age with no status predicate, so it would delete the dataset CURRENTLY BEING SERVED for any publication that has not been re-issued in years (the healthy case). Holds no personal data."
   },
   {
     table: "awcms_idn_population_stats",
     reason:
-      "awcms-one ADR-0051 / Issue #497. The figures of the datasets above, written only in the same import transaction: growth is the row count of reviewed publications (a few thousand rows each, once), never traffic. RETAINED WITH ITS DATASET and never purged by age, for the reason given for `awcms_idn_population_datasets`: a generic age-based purge would delete the figures currently served. Aggregate public statistics, no personal data; small-cell suppression (`population-privacy.ts`) governs how they may be read."
+      "awcms-one ADR-0051 / ADR-0053 (Issue #497). The figures of the datasets above, written only in the same import transaction: four per province and regency/city (2,208 for the vendored decree), once per dataset, never traffic. RETAINED WITH ITS DATASET and never purged by age, for the reason given for `awcms_idn_population_datasets`: a generic age-based purge would delete the figures currently served. Aggregate public figures for whole regencies and provinces, no personal data."
   },
   {
     table: "awcms_hr_commission_rules",

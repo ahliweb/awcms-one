@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:d4e4542e1cd6eb1a786bb24a88b1712fbcd82a4e1d756a01a7ba0429b256933a -->
+<!-- i18n-source-hash: sha256:fb544bf8b12fc82543a5c9a94134958080061d54f7dbc08ce77998444c9e75dd -->
 
 # `idn_admin_regions` — wilayah administrasi Indonesia
 
@@ -190,8 +190,10 @@ kesalahan yang perlu dilacak.
   ada yang berlangganan perubahan wilayah.
 - **Tidak ada deskriptor `dataLifecycle`.** Data referensi berversi digantikan
   (superseded), bukan diusangkan karena umur.
-- **Tidak ada pulau / populasi / kode area.** Ketiga dump itu di-vendor dari
-  commit hulu yang sama, tetapi belum ada yang membacanya.
+- **Tidak ada kode pulau.** Dump itu di-vendor dari commit hulu yang sama,
+  tetapi belum ada yang membacanya. Dump penduduk dan luas DIBACA di embed
+  awcms-one, oleh `idn-population:import` lokalnya (awcms-one ADR-0053, `sql/882`
+  dan `sql/883`); modul hulu tidak membawa kode itu.
 - **Istilah lokal untuk kecamatan bernilai `null`.** Hulu mengirim nama
   kecamatan polos; mengisikan "Kecamatan" akan salah bagi provinsi yang
   tingkatannya "Distrik". Sebuah null yang bisa dilihat operator lebih baik
