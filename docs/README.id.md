@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a7c27ce1b076aa2b37f8d006c8764c6803207431f501a956b879ec100abcdf7c -->
+<!-- i18n-source-hash: sha256:8dae3cda3e14295220aeb0a9949f44cec7cd4612acb944f170466f193b11f288 -->
 
 # Dokumentasi
 
@@ -27,6 +27,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`rilis.md`](rilis.id.md)                                                             | Runbook rilis end-to-end: changeset ke tag, `release:images`, `release:publish`, bukti, verifikasi konsumen                                                                                                                 |
 | [`template.md`](template.id.md)                                                       | Menggunakan awcms-one sebagai template: `template:init`, matriks profil build, seed per profil, BjekMart sebagai contoh referensi                                                                                           |
 | [`aw-business-platform-dor.md`](aw-business-platform-dor.id.md)                       | Pelacak Definition of Ready untuk epik #280 (AW Business Platform): sepuluh artefak DoR, keputusan pemilik, isu Wave A                                                                                                      |
+| [`aw-business-platform-dod.md`](aw-business-platform-dod.id.md)                       | Penelusuran Definition of Done epik #280: vonis dan tautan bukti untuk tiap dari 20 butirnya, dan yang tersisa                                                                                                              |
 | [`aw-business-platform-prd.md`](aw-business-platform-prd.id.md)                       | Blueprint platform dan PRD untuk bagian milik awcms-one dari epik #280: persona, alur kerja, non-tujuan, cerita pengguna, hasil, MoSCoW                                                                                     |
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md)               | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama                                                                                                |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md)     | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280                                                                                                                 |
