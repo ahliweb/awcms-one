@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a916419edaa0e3af97f5b3ecefecde49f81585ae154a0dad80680372d6338a01 -->
+<!-- i18n-source-hash: sha256:48d7ef693417409a9700778aaefbd3020e3d61b6ad8f354b6b8923969be208f9 -->
 
 # `commerce`
 
@@ -1901,7 +1901,7 @@ Di balik fitur `booking` dan `pos` (dan `register` untuk tiga penulisan). Hanya 
 
 Tab **Meja resepsionis** pada `/admin/commerce-pos` (`?tab=front-desk`) menjalankan keempat rute di atas: `CommerceFrontDesk.astro` (markup dan setiap kalimat, sebagai atribut `data-*`), `lib/ui/front-desk-client.ts` (aturan murni: badan pencarian, state aksi kartu dan alasan terlihat untuk setiap kontrol yang tidak tersedia, pratinjau rencana tender dalam sen bilangan bulat, badan permintaan, kunci idempotensi per percobaan) dan `lib/ui/front-desk-island.ts` (lapisan DOM, `import()` dinamis yang dimuat hanya pada tab itu). Halaman POS menambahkan `commerce.booking_reservation_links.read` ke entri any-of-nya dan menanyakan ketiga kunci kasir dengan `can(...)` pada tab itu saja (hanya UX; setiap rute memutuskan sendiri), dan ketiga kunci keluar dari `NOT_YET_SCREENED`. Tidak ada kode server, rute, atau migrasi yang berubah.
 
-- **Kebijakan check-in dibaca, tidak pernah di-override (risiko sisa R3).** `policy.checkInRequiresSettlement` dan `actions.checkInBlockedReason` milik kartu yang menentukan; check-in yang terblokir `aria-disabled` dengan alasannya sebagai teks terlihat. Pengaturannya diubah di layar pengaturan commerce (step-up saat dimatikan). Bawaan (blokir) masih menunggu konfirmasi pemilik.
+- **Kebijakan check-in dibaca, tidak pernah di-override (risiko sisa R3).** `policy.checkInRequiresSettlement` dan `actions.checkInBlockedReason` milik kartu yang menentukan; check-in yang terblokir `aria-disabled` dengan alasannya sebagai teks terlihat. Pengaturannya diubah di layar pengaturan commerce (step-up saat dimatikan). Pemilik mengonfirmasi bawaan (blokir) pada 11 November 2026 (risiko sisa R3 #443 ditutup); tenant boleh mengubah pengaturannya.
 - **Hanya memori.** Tidak ada penyimpanan peramban yang ditulis; kolom kontak dikosongkan begitu kartu tampil.
 - **Pengujian**: `tests/front-desk-client.test.ts`, `tests/commerce-front-desk-contract.test.ts`, dan `tests/e2e/admin-commerce-front-desk.e2e.ts` (gelombang WRITE, berjalan di host tepercaya).
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:532d82ae1c7a0f70d0abc14ef1b4966f6f61192879d03656e92ed0827674ee1c -->
+<!-- i18n-source-hash: sha256:bbfe4426516f8eafa5ccd0f9b49fdc830968f291734a3583c65755e155418239 -->
 
 # Architecture Decision Records
 
@@ -74,6 +74,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0050](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md)                                              | LynxJS/ReactLynx untuk aplikasi persona terpisah; Astro tetap untuk admin dan setiap profil publik (hanya arah, belum diimplementasikan)                                                                                                                             | Accepted as direction; not implemented                                                                                        |
 | [0051](0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.md)                               | Statistik penduduk BPS adalah data referensi global berversi, disimpan persis seperti yang diterbitkan (nilai + unit + dasar + level, tidak pernah dikonversi; impor dan aktivasi lewat CLI operator; penahanan sel kecil; MIT hanya mencakup perkakas, bukan angka) | Accepted                                                                                                                      |
 | [0052](0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md)                    | Aturan segmen turunan booking adalah skema aturan 2 (lima field), dibaca langsung lewat tautan booking dan tidak pernah disimpan; versi skema disimpan per versi segmen, sehingga aturan lama dievaluasi tanpa berubah                                               | Diterima                                                                                                                      |
+| [0054](0054-the-adr-0133-whatsapp-legacy-path-backstop-moves-to-v0-22-0.md)                                                             | Batas akhir jalur legacy WhatsApp ADR-0133 pindah ke v0.22.0 (rilis minor kedua setelah v0.20.0, dengan lima kondisi akhir yang sama; tanpa perubahan kode atau tabel; ADR baru, bukan pergeseran diam-diam, bila terlewat lagi)                                     | Diterima                                                                                                                      |
 
 ## Mengapa penomoran dimulai dari 0001
 
