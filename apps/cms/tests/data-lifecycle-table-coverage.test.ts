@@ -543,11 +543,12 @@ describe("the real repository", () => {
       // delete the counter of an actor reading right now and re-open the audit
       // flood the table exists to prevent.
       // 21 since awcms-one ADR-0051 (Issue #497) — a local raise for
-      // `awcms_idn_population_datasets` and `awcms_idn_population_stats`. The
+      // `awcms_idn_population_datasets` and `awcms_idn_population_stats`, kept
+      // when ADR-0053 moved their source from BPS to the Kepmendagri decree. The
       // argument is entry 11's shape, not a new class: global reference rows
-      // written only by an operator job from reviewed repo files (a few hundred
-      // publications at most), never by traffic, whose generic age-only purge
-      // would delete the dataset currently being served. A candidate to propose
+      // written only by an operator job from vendored repo files (one dataset
+      // per re-vendoring of the decree), never by traffic, whose generic
+      // age-only purge would delete the dataset currently being served. A candidate to propose
       // upstream together with the tables themselves; keep ours on conflict.
       //
       // **27 upstream, 29 in this embed (the two above plus these eight), since `channel_accounts` (Issue #1140, ADR-0148).** The eight raised

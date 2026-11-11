@@ -311,12 +311,12 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
   "scripts/idn-population-import.ts": {
     workClass: "maintenance",
     rationale:
-      "One-shot reference-data import (idn-population:import, awcms-one ADR-0051) — a BPS publication's figures written in a single transaction, run by hand after a reviewed dataset is added, never on a timer. Tolerant of delay and never latency-sensitive; same class and reasoning as idn-regions-import."
+      "One-shot reference-data import (idn-population:import, awcms-one ADR-0053) — the Kepmendagri decree's population and area figures (2,208 rows) written in a single transaction, run by hand after the region dataset is activated or the vendored files change, never on a timer. Tolerant of delay and never latency-sensitive; same class and reasoning as idn-regions-import."
   },
   "scripts/idn-population-activate.ts": {
     workClass: "maintenance",
     rationale:
-      "Operator-run population dataset activation (idn-population:activate, awcms-one ADR-0051) — a short status flip plus a superseding update, run by hand and never on a timer. Same class and reasoning as idn-regions-activate."
+      "Operator-run population dataset activation (idn-population:activate, awcms-one ADR-0051/ADR-0053) — a short status flip plus a superseding update, run by hand and never on a timer. Same class and reasoning as idn-regions-activate."
   },
   "scripts/idn-regions-activate.ts": {
     workClass: "maintenance",

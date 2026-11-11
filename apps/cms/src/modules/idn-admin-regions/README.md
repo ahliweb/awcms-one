@@ -181,8 +181,10 @@ debug.
   to region changes.
 - **No `dataLifecycle` descriptor.** Versioned reference data is superseded, not
   aged out.
-- **No island / population / area code.** Those three dumps are vendored from the
-  same upstream commit, but nothing reads them yet.
+- **No island code.** That dump is vendored from the same upstream commit, but
+  nothing reads it yet. The population and area dumps ARE read in the awcms-one
+  embed, by its local `idn-population:import` (awcms-one ADR-0053, `sql/882` and
+  `sql/883`); upstream's module does not carry that code.
 - **Local term for districts is `null`.** Upstream ships bare district names;
   filling in "Kecamatan" would be wrong for the provinces whose tier is
   "Distrik". A null an operator can see beats a plausible value they cannot check.
