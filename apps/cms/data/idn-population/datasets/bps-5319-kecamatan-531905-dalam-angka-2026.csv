@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.05.2003,4,Golo Munde,sex,laki_laki,,493,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2003,4,Golo Munde,sex,perempuan,,437,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2003,4,Golo Munde,total,total,,930,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2017,4,Rana Gapang,sex,laki_laki,,801,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2017,4,Rana Gapang,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2017,4,Rana Gapang,total,total,,1584,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2015,4,Haju Ngendong,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2015,4,Haju Ngendong,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2015,4,Haju Ngendong,total,total,,998,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2001,4,Lengko Namut,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2001,4,Lengko Namut,sex,perempuan,,609,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2001,4,Lengko Namut,total,total,,1225,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2009,4,Sisir,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2009,4,Sisir,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2009,4,Sisir,total,total,,818,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2002,4,Rana Kulan,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2002,4,Rana Kulan,sex,perempuan,,347,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2002,4,Rana Kulan,total,total,,693,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2018,4,Biting,sex,laki_laki,,583,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2018,4,Biting,sex,perempuan,,549,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2018,4,Biting,total,total,,1132,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2004,4,Golo Lebo,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2004,4,Golo Lebo,sex,perempuan,,757,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2004,4,Golo Lebo,total,total,,1565,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2016,4,Legurlai,sex,laki_laki,,467,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2016,4,Legurlai,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2016,4,Legurlai,total,total,,890,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2005,4,Golo Lijun,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2005,4,Golo Lijun,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2005,4,Golo Lijun,total,total,,1826,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2029,4,Wae Lokom,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2029,4,Wae Lokom,sex,perempuan,,380,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2029,4,Wae Lokom,total,total,,787,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2026,4,Compang Teo,sex,laki_laki,,459,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2026,4,Compang Teo,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2026,4,Compang Teo,total,total,,875,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2025,4,Compang Soba,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2025,4,Compang Soba,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2025,4,Compang Soba,total,total,,979,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.2028,4,Kaju Wangi,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.2028,4,Kaju Wangi,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.2028,4,Kaju Wangi,total,total,,960,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05.1020,4,Tiwu Kondo,sex,laki_laki,,648,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05.1020,4,Tiwu Kondo,sex,perempuan,,611,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05.1020,4,Tiwu Kondo,total,total,,1259,jiwa,2025,registration,total_population,3.1,20,,
+53.19.05,3,Elar,sex,laki_laki,,8502,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.19.05,3,Elar,sex,perempuan,,8019,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.19.05,3,Elar,total,total,,16521,jiwa,2025,registration,total_population,3.1,20,,

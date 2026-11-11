@@ -1,25 +1,31 @@
 /**
- * Commission REVERSAL (Issue #391 second half, ADR-0046 D9) against a REAL
- * migrated PostgreSQL through `tests/integration/harness.ts`. Gated on
+ * Commission REVERSAL (Issue #391 second half, ADR-0046 D9 and D12) against a
+ * REAL migrated PostgreSQL through `tests/integration/harness.ts`. Gated on
  * `DATABASE_URL`; skips cleanly without one.
  *
  * Covers what only a database can prove about the two reversing consumers
  * (`commerce.order_cancelled_commission_reverser`,
- * `commerce.refund_settled_commission_reverser`), which void the accrual the
- * accrue half posted through `CommissionAccrualPort.void`:
+ * `commerce.refund_settled_commission_reverser`), which now SUBMIT a void to
+ * `hr_commission`'s intake queue (`CommissionIntakePort.submitVoid`) for exactly
+ * the lines commerce recorded a submission for; the poster, as the app role,
+ * then voids the accrual. Every case runs the consumer as the REAL `awcms_worker`
+ * role (`deliverWith`) followed by one poster tick:
  *
- *   - pay -> accrue -> refund -> void, and cancel -> void, driven directly as the
- *     app role. DORMANT (ADR-0046 D10): `sql/1053` revoked the worker's
- *     payroll-table grants, so the consumers are not registered and the real
- *     dispatcher, as `awcms_worker`, reverses nothing (last block);
+ *   - pay -> accrue -> refund -> void, and cancel -> void, end to end, and once
+ *     through the real dispatcher (last block);
  *   - replay: the same event twice, and a different event for the same fact, are
  *     one void, one transition, one `voided` domain event, one audit row;
- *   - a void with nothing to void (never accrued) is a quiet no-op;
- *   - `period_closed` (payable / paid) is NOT voided, is audited once for a
- *     human, and never throws (so it is never retried);
+ *   - a sale never submitted has no submission record: nothing is queued (a
+ *     blind void would be refused later and fill the exceptions list);
+ *   - `period_closed` (payable / paid) is refused by the POSTER and appears only
+ *     in the intake exceptions list; commerce neither sees nor audits it;
+ *   - a system-driven reversal (no person) cannot be submitted: audited for a
+ *     human, never retried, never silent;
+ *   - an unavailable intake (disabled / full) fails the delivery for a retry and
+ *     a replayable dead letter instead of dropping the reversal;
  *   - a partly returned line keeps its accrual until the last unit is returned;
  *   - tenant isolation, a retired link, the adapter switched off, `hr_commission`
- *     switched off, a missing actor, and what the worker still cannot do.
+ *     switched off.
  *
  * The `hr_workforce` / `hr_commission` fixtures are written straight into those
  * tables - tests only; the module under test never touches them.
@@ -33,7 +39,13 @@ import {
   test
 } from "bun:test";
 
-import { DORMANT_COMMISSION_CONSUMERS } from "../../src/modules/commerce/module";
+import { COMMISSION_INTAKE_CONSUMERS } from "../../src/modules/commerce/module";
+import { CommissionIntakeUnavailableError } from "../../src/modules/commerce/domain/commission-attribution";
+import {
+  listIntakeExceptions,
+  setIntakeEnabled
+} from "../../src/modules/hr-commission/application/hr-commission-intake-store";
+import { runIntakePosterForTenant } from "../../src/modules/hr-commission/application/hr-commission-intake-poster";
 import { withTenantOrThrow } from "../../src/lib/database/tenant-context";
 import {
   createStaffLink,
@@ -62,7 +74,7 @@ import {
   workerRoleActivated
 } from "./harness";
 
-const consumers = DORMANT_COMMISSION_CONSUMERS;
+const consumers = COMMISSION_INTAKE_CONSUMERS;
 const attributorConsumer = consumers.find(
   (consumer) => consumer.name === "commerce.order_paid_commission_attributor"
 )!;
@@ -303,10 +315,15 @@ function paidEvent(orderId: string, eventId?: string): DomainEventForHandler {
   };
 }
 
+/** The poster's own per-tenant pass, as the app role: the only thing that makes or voids an accrual. */
+const post = (tenantId: string) =>
+  runIntakePosterForTenant(getRuntimeSql(), tenantId);
+
+/** The accrue half: one delivery as the REAL worker role, then one poster tick. */
 async function deliver(
   tenantId: string,
   event: DomainEventForHandler,
-  sql: Bun.SQL = getRuntimeSql()
+  options: { sql?: Bun.SQL; tick?: boolean } = {}
 ): Promise<void> {
   await inTenant(
     tenantId,
@@ -315,8 +332,42 @@ async function deliver(
         tenantId,
         correlationId: "corr-391"
       }),
-    sql
+    options.sql ?? getWorkerRoleSql()
   );
+  if (options.tick !== false) await post(tenantId);
+}
+
+/**
+ * A domain-event row the reversers can read their voider from: the runtime
+ * stamps `actor_tenant_user_id` when the producer publishes. Written with the
+ * event's own id so `consumer.handle(tx, event)` finds it.
+ */
+async function recordEvent(
+  tenantId: string,
+  event: DomainEventForHandler,
+  actor: string | null
+): Promise<void> {
+  await getAdminSql()`
+    INSERT INTO awcms_domain_events
+      (id, tenant_id, event_type, event_version, aggregate_type, aggregate_id,
+       order_key, producer_module, actor_tenant_user_id, payload)
+    VALUES (${event.id}, ${tenantId}, ${event.eventType}, ${event.eventVersion},
+            ${event.aggregateType}, ${event.aggregateId}, ${event.orderKey},
+            ${event.producerModule}, ${actor}, ${event.payload})
+    ON CONFLICT (id) DO NOTHING
+  `;
+}
+
+/** Switches the tenant's commission intake on with a system actor (a tenant does this BEFORE enabling the adapter). */
+async function enableIntake(tenantId: string, on = true): Promise<string> {
+  const actor = await seedTenantUser(tenantId);
+  const outcome = await inTenant(tenantId, (tx) =>
+    setIntakeEnabled(tx, tenantId, on, actor, actor)
+  );
+  if (outcome.outcome !== "ok") {
+    throw new Error(`fixture: intake not switched (${outcome.outcome})`);
+  }
+  return actor;
 }
 
 async function auditActions(tenantId: string): Promise<string[]> {
@@ -330,7 +381,7 @@ async function auditActions(tenantId: string): Promise<string[]> {
 
 const CANCELLED = "awcms.commerce.order.cancelled";
 
-/** The person who last saved each tenant's commission settings (the voider the ledger stamps). */
+/** A person of each tenant who "cancels" and "refunds" in these tests: the event's actor (the poster still stamps the intake system actor). */
 const settingsAdmins = new Map<string, string>();
 
 function reversalEvent(
@@ -364,18 +415,31 @@ const cancelledEvent = (orderId: string) =>
 const refundEvent = (returnId: string) =>
   reversalEvent("awcms.commerce.refund.settled", "commerce.return", returnId);
 
+/**
+ * One reverser delivery as the REAL worker role, then one poster tick. `actor`
+ * is the person who caused the event (default: the tenant's settings admin);
+ * `null` is a system action. `tick: false` keeps the void queued.
+ */
 async function deliverWith(
   consumer: typeof cancelReverser,
   tenantId: string,
   event: DomainEventForHandler,
-  sql: Bun.SQL = getRuntimeSql()
+  options: { actor?: string | null; tick?: boolean } = {}
 ): Promise<void> {
+  await recordEvent(
+    tenantId,
+    event,
+    options.actor === undefined
+      ? (settingsAdmins.get(tenantId) ?? null)
+      : options.actor
+  );
   await inTenant(
     tenantId,
     (tx) =>
       consumer.handle(tx, event, { tenantId, correlationId: "corr-391v" }),
-    sql
+    getWorkerRoleSql()
   );
+  if (options.tick !== false) await post(tenantId);
 }
 
 /** A return with its lines written straight into the tables (the consumer reads only these). */
@@ -458,6 +522,15 @@ async function count(
   return rows[0]!.n;
 }
 
+/** How many intake rows of a kind the tenant (A) holds, whatever their state. */
+async function queued(kind: "accrue" | "void"): Promise<number> {
+  const rows = (await getAdminSql()`
+    SELECT count(*)::int AS n FROM awcms_hr_commission_intents
+    WHERE tenant_id = ${TENANT_A} AND kind = ${kind}
+  `) as { n: number }[];
+  return rows[0]!.n;
+}
+
 async function setHrCommission(tenantId: string, enabled: boolean) {
   await getAdminSql()`
     INSERT INTO awcms_modules (module_key, module_name)
@@ -484,6 +557,8 @@ suite(
     let cashier = "";
     let employment = "";
     let admin = "";
+    /** The tenant's intake system actor: the identity the poster stamps on every posted accrual and void. */
+    let intakeActor = "";
 
     beforeEach(async () => {
       await resetDatabase();
@@ -495,6 +570,7 @@ suite(
       settingsAdmins.set(TENANT_A, admin);
       employment = await seedEmployment(TENANT_A);
       await publishedRule(TENANT_A);
+      intakeActor = await enableIntake(TENANT_A);
     });
 
     /** A paid counter sale accrued through the real accrue consumer: the starting point of every case. */
@@ -516,16 +592,16 @@ suite(
         expect(refundReverser.eventTypes).toEqual([
           "awcms.commerce.refund.settled"
         ]);
-        const declared = DORMANT_COMMISSION_CONSUMERS.filter(
+        const declared = COMMISSION_INTAKE_CONSUMERS.filter(
           (consumer) =>
             consumer.name === cancelReverser.name ||
             consumer.name === refundReverser.name
         );
         expect(declared).toHaveLength(2);
-        // ... and, being dormant (sql/1053), none is registered with the dispatcher.
+        // ... and all three are registered with the dispatcher (ADR-0046 D12).
         const registered = listDomainEventConsumers().map((c) => c.name);
-        for (const consumer of DORMANT_COMMISSION_CONSUMERS) {
-          expect(registered).not.toContain(consumer.name);
+        for (const consumer of COMMISSION_INTAKE_CONSUMERS) {
+          expect(registered).toContain(consumer.name);
         }
         for (const consumer of declared) {
           expect(consumer.idempotency ?? "runtime_effect_once").toBe(
@@ -537,25 +613,36 @@ suite(
 
     // -------------------------------------------------------------------------
     describe("cancel -> void", () => {
-      test("every line of a cancelled sale is voided by the same source identity, stamped with the configuring person and a reason code", async () => {
+      test("every line of a cancelled sale is voided by the same source identity, stamped with the tenant's intake system actor and a reason code", async () => {
         const { orderId } = await accruedSale({
           lines: ["100000.00", "50000.00"]
         });
 
-        await deliverWith(cancelReverser, TENANT_A, cancelledEvent(orderId));
+        await deliverWith(cancelReverser, TENANT_A, cancelledEvent(orderId), {
+          tick: false
+        });
+        // Queued is not voided: the accruals stand until the poster's tick.
+        expect(
+          (await accrualStates(TENANT_A)).every(
+            (row) => row.status === "pending"
+          )
+        ).toBe(true);
+        await post(TENANT_A);
 
         const rows = await accrualStates(TENANT_A);
         expect(rows).toHaveLength(2);
         for (const row of rows) {
           expect(row.status).toBe("voided");
-          expect(row.voided_by).toBe(admin);
+          // The worker's claimed actor is never trusted: the poster stamps the
+          // tenant's configured intake system actor (ADR-0147).
+          expect(row.voided_by).toBe(intakeActor);
           expect(row.void_reason_code).toBe("order_cancelled");
           expect(row.has_voided_at).toBe(true);
         }
         expect(await count("transitions", TENANT_A)).toBe(2);
         expect(await count("voided_events", TENANT_A)).toBe(2);
         expect(await auditActions(TENANT_A)).toContain(
-          "commerce.commission.reversed"
+          "commerce.commission.reversal_submitted"
         );
         // The ledger still reconciles to its own transition log.
         const attention = (await auditActions(TENANT_A)).filter(
@@ -576,7 +663,7 @@ suite(
         expect(await count("voided_events", TENANT_A)).toBe(1);
         expect(
           (await auditActions(TENANT_A)).filter(
-            (action) => action === "commerce.commission.reversed"
+            (action) => action === "commerce.commission.reversal_submitted"
           )
         ).toHaveLength(1);
       });
@@ -592,7 +679,7 @@ suite(
         expect(rows[0]!.status).toBe("voided");
       });
 
-      test("a void before any accrual is a quiet no-op: not_found, nothing written, nothing audited, no error", async () => {
+      test("a sale commerce never submitted has no submission record: nothing is queued, nothing audited, no error", async () => {
         await link(TENANT_A, cashier, employment);
         await enable(TENANT_A);
         // A sale the accrue half never reported (it was never delivered).
@@ -601,21 +688,19 @@ suite(
         await deliverWith(cancelReverser, TENANT_A, cancelledEvent(orderId));
 
         expect(await accrualStates(TENANT_A)).toEqual([]);
-        expect(await auditActions(TENANT_A)).toEqual([
-          // the two settings/link audit rows from the fixtures only
-          ...(await auditActions(TENANT_A)).filter(
-            (action) =>
-              action === "commerce.commission.settings_updated" ||
-              action === "commerce.commission.staff_link_created"
-          )
-        ]);
+        expect(await queued("void")).toBe(0);
         expect(
           (await auditActions(TENANT_A)).some(
             (action) =>
-              action.endsWith(".reversed") ||
+              action.endsWith(".reversal_submitted") ||
               action.endsWith(".reversal_needs_attention")
           )
         ).toBe(false);
+        expect(
+          await inTenant(TENANT_A, (tx) =>
+            reverseCommissionForCancelledOrder(tx, TENANT_A, orderId)
+          )
+        ).toEqual({ kind: "skipped", reason: "no_submissions" });
       });
 
       test("a storefront order, an unstamped sale and a tenant that never configured the adapter are skipped", async () => {
@@ -623,7 +708,10 @@ suite(
         const skippedNever = await inTenant(TENANT_A, (tx) =>
           reverseCommissionForCancelledOrder(tx, TENANT_A, unconfigured.orderId)
         );
-        expect(skippedNever).toEqual({ kind: "skipped", reason: "disabled" });
+        expect(skippedNever).toEqual({
+          kind: "skipped",
+          reason: "no_submissions"
+        });
 
         await link(TENANT_A, cashier, employment);
         await enable(TENANT_A);
@@ -632,7 +720,8 @@ suite(
           await inTenant(TENANT_A, (tx) =>
             reverseCommissionForCancelledOrder(tx, TENANT_A, unstamped.orderId)
           )
-        ).toEqual({ kind: "skipped", reason: "no_cashier_stamp" });
+        ).toEqual({ kind: "skipped", reason: "no_submissions" });
+        expect(await queued("void")).toBe(0);
       });
 
       test("a link retired (or re-pointed) after the sale does not strand the accrual", async () => {
@@ -672,6 +761,10 @@ suite(
           kind: "skipped",
           reason: "hr_commission_disabled"
         });
+        // ... but it is not silent: a submitted accrual may still stand.
+        expect(await auditActions(TENANT_A)).toContain(
+          "commerce.commission.reversal_needs_attention"
+        );
         const states = await accrualStates(TENANT_A);
         expect(states.filter((row) => row.status === "pending")).toHaveLength(
           1
@@ -706,7 +799,7 @@ suite(
         const rows = await accrualStates(TENANT_A);
         expect(rows[0]!.status).toBe("voided");
         expect(rows[0]!.void_reason_code).toBe("line_returned");
-        expect(rows[0]!.voided_by).toBe(admin);
+        expect(rows[0]!.voided_by).toBe(intakeActor);
 
         // Replays: the second refund leg's event, and a repeat of the first.
         await deliverWith(refundReverser, TENANT_A, refundEvent(open));
@@ -745,7 +838,7 @@ suite(
         );
         expect(partial).toMatchObject({
           kind: "reversed",
-          tally: { partial: 1, voided: 0 }
+          tally: { partial: 1, queued: 0 }
         });
         expect(
           (await accrualStates(TENANT_A)).every(
@@ -864,7 +957,7 @@ suite(
       }
 
       for (const state of ["payable", "paid"] as const) {
-        test(`a ${state} accrual is left untouched, one warning audit row records it, and the delivery completes`, async () => {
+        test(`a ${state} accrual is left untouched, refused by the POSTER as period_closed and listed in the intake exceptions; the delivery completes and commerce raises no row`, async () => {
           const { orderId } = await accruedSale({
             lines: ["100000.00", "20000.00"]
           });
@@ -883,44 +976,102 @@ suite(
             "voided"
           );
 
-          const attention = (await getAdminSql()`
-          SELECT attributes, severity FROM awcms_audit_events
-          WHERE tenant_id = ${TENANT_A}
-            AND action = 'commerce.commission.reversal_needs_attention'
-        `) as { attributes: Record<string, unknown>; severity: string }[];
-          expect(attention).toHaveLength(1);
-          expect(attention[0]!.severity).toBe("warning");
-          expect(attention[0]!.attributes).toMatchObject({
-            cause: "order_cancelled",
-            periodClosedPayable: state === "payable" ? 1 : 0,
-            periodClosedPaid: state === "paid" ? 1 : 0
-          });
-          // No money, source reference, accrual or employment id in the row.
-          const text = JSON.stringify(attention[0]!.attributes);
-          expect(text).not.toContain(first!.id);
-          expect(text).not.toContain(employment);
-          expect(text).not.toContain(orderId);
+          const exceptions = await inTenant(TENANT_A, (tx) =>
+            listIntakeExceptions(tx, TENANT_A)
+          );
+          expect(
+            exceptions.exceptions.map((entry) => entry.outcomeCode)
+          ).toEqual(["period_closed"]);
+          // Commerce never sees the refusal, so it raises no attention row for it.
+          expect(await auditActions(TENANT_A)).not.toContain(
+            "commerce.commission.reversal_needs_attention"
+          );
           expect(await count("voided_events", TENANT_A)).toBe(1);
         });
       }
 
-      test("a refusal for a missing person (actor_required) is also an audited outcome, not an exception", async () => {
+      test("a system-driven reversal (no person) cannot be submitted: nothing is queued, one warning audit row for a human, the delivery completes and is never retried", async () => {
         const { orderId } = await accruedSale();
-        await getAdminSql()`
-        UPDATE awcms_commerce_commission_settings
-        SET updated_by_tenant_user_id = NULL WHERE tenant_id = ${TENANT_A}
-      `;
 
-        await deliverWith(cancelReverser, TENANT_A, cancelledEvent(orderId));
+        await deliverWith(cancelReverser, TENANT_A, cancelledEvent(orderId), {
+          actor: null
+        });
 
         expect((await accrualStates(TENANT_A))[0]!.status).toBe("pending");
+        expect(await queued("void")).toBe(0);
         const attention = (await getAdminSql()`
-        SELECT attributes FROM awcms_audit_events
+        SELECT attributes, severity FROM awcms_audit_events
         WHERE tenant_id = ${TENANT_A}
           AND action = 'commerce.commission.reversal_needs_attention'
-      `) as { attributes: Record<string, unknown> }[];
+      `) as { attributes: Record<string, unknown>; severity: string }[];
         expect(attention).toHaveLength(1);
+        expect(attention[0]!.severity).toBe("warning");
         expect(attention[0]!.attributes).toMatchObject({ actorRequired: 1 });
+        // No money, source reference, accrual or employment id in the row.
+        const text = JSON.stringify(attention[0]!.attributes);
+        expect(text).not.toContain(orderId);
+        expect(text).not.toContain(employment);
+      });
+    });
+
+    // -------------------------------------------------------------------------
+    describe("an unavailable intake fails the reversal instead of dropping it", () => {
+      test("with the intake switched OFF the cancel delivery throws and queues nothing; after switching it on a replay voids exactly once", async () => {
+        const { orderId } = await accruedSale();
+        await enableIntake(TENANT_A, false);
+
+        let caught: unknown;
+        try {
+          await deliverWith(cancelReverser, TENANT_A, cancelledEvent(orderId));
+        } catch (error) {
+          caught = error;
+        }
+        expect(caught).toBeInstanceOf(CommissionIntakeUnavailableError);
+        expect((caught as CommissionIntakeUnavailableError).reason).toBe(
+          "disabled"
+        );
+        expect(await queued("void")).toBe(0);
+        expect((await accrualStates(TENANT_A))[0]!.status).toBe("pending");
+
+        await enableIntake(TENANT_A, true);
+        const replay = cancelledEvent(orderId);
+        await deliverWith(cancelReverser, TENANT_A, replay); // the dead-letter replay
+        await deliverWith(cancelReverser, TENANT_A, replay);
+        expect((await accrualStates(TENANT_A))[0]!.status).toBe("voided");
+        expect(await count("voided_events", TENANT_A)).toBe(1);
+      });
+
+      test("a full queue fails the refund delivery the same way", async () => {
+        const { orderId, lineIds } = await accruedSale({ quantities: [1] });
+        const ret = await seedReturn(TENANT_A, orderId, [
+          { itemId: lineIds[0]!, quantity: 1 }
+        ]);
+        const fakeFull = {
+          submitAccrual: async () => ({ outcome: "full" }) as const,
+          submitVoid: async () => ({ outcome: "full" }) as const
+        };
+
+        let caught: unknown;
+        try {
+          await inTenant(
+            TENANT_A,
+            (tx) =>
+              reverseCommissionForSettledRefund(
+                tx,
+                TENANT_A,
+                ret,
+                "corr-391v",
+                { port: fakeFull, actorTenantUserId: admin }
+              ),
+            getWorkerRoleSql()
+          );
+        } catch (error) {
+          caught = error;
+        }
+        expect((caught as CommissionIntakeUnavailableError).reason).toBe(
+          "full"
+        );
+        expect((await accrualStates(TENANT_A))[0]!.status).toBe("pending");
       });
     });
 
@@ -933,6 +1084,7 @@ suite(
         settingsAdmins.set(TENANT_B, adminB);
         const employmentB = await seedEmployment(TENANT_B);
         await publishedRule(TENANT_B);
+        await enableIntake(TENANT_B);
         await link(TENANT_B, cashierB, employmentB);
         await enable(TENANT_B);
         const b = await seedOrder(TENANT_B, { cashier: cashierB });
@@ -947,7 +1099,7 @@ suite(
         const crossed = await inTenant(TENANT_B, (tx) =>
           reverseCommissionForCancelledOrder(tx, TENANT_B, a.orderId)
         );
-        expect(crossed).toEqual({ kind: "skipped", reason: "order_not_found" });
+        expect(crossed).toEqual({ kind: "skipped", reason: "no_submissions" });
         expect((await accrualStates(TENANT_B))[0]!.status).toBe("pending");
         // Nor can B's return reversal be driven by A's return id.
         const ret = await seedReturn(TENANT_A, a.orderId, [
@@ -1036,10 +1188,10 @@ suite(
         const audit = await getAdminSql()`
           SELECT attributes FROM awcms_audit_events
           WHERE tenant_id = ${TENANT_A}
-            AND action = 'commerce.commission.attributed'
+            AND action = 'commerce.commission.submitted'
         `;
         expect(audit[0]!.attributes).toMatchObject({
-          linesAccrued: 1,
+          linesQueued: 1,
           linesSkippedReturned: 1,
           linesPartiallyReturned: 0
         });
@@ -1074,10 +1226,10 @@ suite(
         // ... and the audit row tells a person that part of it is already back.
         const audit = await getAdminSql()`
           SELECT attributes FROM awcms_audit_events
-          WHERE tenant_id = ${TENANT_A} AND action = 'commerce.commission.attributed'
+          WHERE tenant_id = ${TENANT_A} AND action = 'commerce.commission.submitted'
         `;
         expect(audit[0]!.attributes).toMatchObject({
-          linesAccrued: 1,
+          linesQueued: 1,
           linesPartiallyReturned: 1
         });
       });
@@ -1161,8 +1313,8 @@ suite(
     });
 
     // -------------------------------------------------------------------------
-    describe("dormant: the real dispatcher, as the real worker role, does nothing (sql/1053)", () => {
-      test("a paid then cancelled counter sale dispatched as awcms_worker accrues and voids nothing", async () => {
+    describe("the real dispatcher, as the real worker role, drives the whole flow", () => {
+      test("a paid then cancelled counter sale dispatched as awcms_worker queues an accrual and a void; the poster accrues and voids once", async () => {
         if (!workerRoleActivated) return;
         await link(TENANT_A, cashier, employment);
         await enable(TENANT_A);
@@ -1170,6 +1322,7 @@ suite(
           cashier,
           lines: ["100000.00", "50000.00"]
         });
+        // Two facts, two dispatcher ticks: the sale is paid, later it is cancelled.
         for (const eventType of [PAID, CANCELLED]) {
           await inTenant(TENANT_A, (tx) =>
             appendDomainEvent(tx, TENANT_A, {
@@ -1178,12 +1331,44 @@ suite(
               aggregateType: "commerce.order",
               aggregateId: orderId,
               producerModule: "commerce",
+              // The cancelling person: stamped by the producer, read by the reverser.
+              actorTenantUserId: admin,
               payload: { orderId }
             })
           );
+          await dispatchDomainEventsForTenant(getWorkerRoleSql(), TENANT_A);
+          if (eventType === PAID) {
+            // The queue is not posted yet: nothing accrued, two accruals waiting.
+            expect(await accrualStates(TENANT_A)).toHaveLength(0);
+            expect(await queued("accrue")).toBe(2);
+            await post(TENANT_A); // the poster's next tick, before the cancel
+            expect(await accrualStates(TENANT_A)).toHaveLength(2);
+          }
         }
-        await dispatchDomainEventsForTenant(getWorkerRoleSql(), TENANT_A);
-        expect(await accrualStates(TENANT_A)).toHaveLength(0);
+
+        const deliveries = (await getAdminSql()`
+          SELECT consumer_name, status FROM awcms_domain_event_deliveries
+          WHERE tenant_id = ${TENANT_A} AND consumer_name LIKE 'commerce.%commission%'
+          ORDER BY consumer_name
+        `) as { consumer_name: string; status: string }[];
+        expect(
+          deliveries.map((row) => [row.consumer_name, row.status])
+        ).toEqual([
+          ["commerce.order_cancelled_commission_reverser", "delivered"],
+          ["commerce.order_paid_commission_attributor", "delivered"]
+        ]);
+        expect(
+          (await accrualStates(TENANT_A)).every(
+            (row) => row.status === "pending"
+          )
+        ).toBe(true);
+        expect(await queued("void")).toBe(2);
+
+        await post(TENANT_A);
+        const rows = await accrualStates(TENANT_A);
+        expect(rows).toHaveLength(2);
+        expect(rows.every((row) => row.status === "voided")).toBe(true);
+        expect(await count("voided_events", TENANT_A)).toBe(2);
       });
     });
   }

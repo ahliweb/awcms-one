@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.01.2003,4,Karuni,sex,laki_laki,,1263,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2003,4,Karuni,sex,perempuan,,1223,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2003,4,Karuni,total,total,,2486,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2004,4,Totok,sex,laki_laki,,1192,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2004,4,Totok,sex,perempuan,,1153,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2004,4,Totok,total,total,,2345,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2002,4,Lete Konda,sex,laki_laki,,1095,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2002,4,Lete Konda,sex,perempuan,,1060,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2002,4,Lete Konda,total,total,,2155,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2001,4,Bondo Boghila,sex,laki_laki,,737,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2001,4,Bondo Boghila,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2001,4,Bondo Boghila,total,total,,1439,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2015,4,Wee Kambala,sex,laki_laki,,633,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2015,4,Wee Kambala,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2015,4,Wee Kambala,total,total,,1229,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2014,4,Payola Umbu,sex,laki_laki,,1327,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2014,4,Payola Umbu,sex,perempuan,,1284,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2014,4,Payola Umbu,total,total,,2611,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2013,4,Pogo Tena,sex,laki_laki,,1266,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2013,4,Pogo Tena,sex,perempuan,,1218,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2013,4,Pogo Tena,total,total,,2484,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2016,4,Loko Kalada,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2016,4,Loko Kalada,sex,perempuan,,537,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2016,4,Loko Kalada,total,total,,1126,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01.2017,4,Lete Konda Selatan,sex,laki_laki,,667,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01.2017,4,Lete Konda Selatan,sex,perempuan,,619,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01.2017,4,Lete Konda Selatan,total,total,,1286,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01,3,Loura,sex,laki_laki,,11077,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.01,3,Loura,sex,perempuan,,10595,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.01,3,Loura,total,total,,21672,jiwa,2025,registration,total_population,3.1,24,,
+53.18.01,3,Loura,sex,laki_laki,,11077,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.18.01,3,Loura,sex,perempuan,,10595,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.18.01,3,Loura,total,total,,21672,jiwa,2025,registration,total_population,3.2,26,,

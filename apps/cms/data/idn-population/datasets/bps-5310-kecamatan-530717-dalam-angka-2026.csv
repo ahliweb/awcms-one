@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.17.2001,4,Bu Selatan,sex,laki_laki,,426,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2001,4,Bu Selatan,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2001,4,Bu Selatan,total,total,,843,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2002,4,Bu Utara,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2002,4,Bu Utara,sex,perempuan,,434,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2002,4,Bu Utara,total,total,,840,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2003,4,Bu Watuweti,sex,laki_laki,,456,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2003,4,Bu Watuweti,sex,perempuan,,475,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2003,4,Bu Watuweti,total,total,,931,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2004,4,Loke,sex,laki_laki,,513,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2004,4,Loke,sex,perempuan,,500,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2004,4,Loke,total,total,,1013,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2005,4,Renggarasi,sex,laki_laki,,860,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2005,4,Renggarasi,sex,perempuan,,863,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2005,4,Renggarasi,total,total,,1723,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2006,4,Detubinga,sex,laki_laki,,631,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2006,4,Detubinga,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2006,4,Detubinga,total,total,,1258,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2007,4,Tuwa,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2007,4,Tuwa,sex,perempuan,,566,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2007,4,Tuwa,total,total,,1074,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2008,4,Poma,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2008,4,Poma,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2008,4,Poma,total,total,,1501,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2009,4,Bu Barat,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2009,4,Bu Barat,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2009,4,Bu Barat,total,total,,435,jiwa,2025,registration,total_population,3.1,27,,
+53.07.17.2010,4,Bu Nuapu'u,sex,laki_laki,,199,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.17.2010,4,Bu Nuapu'u,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.17.2010,4,Bu Nuapu'u,total,total,,401,jiwa,2025,registration,total_population,3.1,27,,

@@ -1,11 +1,14 @@
 ---
 /**
- * The booking revenue and hold pipeline panel (Issue #389, ADR-0045 amendment
- * note; metrics spec sections 3, 3.7 and 8.2) on `/admin/commerce-reports`:
+ * The booking revenue and hold pipeline panel (Issue #389 and #478, ADR-0045;
+ * metrics spec sections 3, 3.7, 3.9 and 8.2) on `/admin/commerce-reports`:
  * the booking-sourced revenue waterfall per paid day (gross, discounts, refunds
- * split into "paid back" and "uncollected balance (no money moved)", net), the
- * balance still outstanding on open orders and the no-show figures, plus the
- * live hold pipeline. Rendered from the `commerce.booking_revenue` projection
+ * counted when DECIDED and split into "paid back", "payable" and "uncollected
+ * balance (no money moved)", net), the tax / shipping / insurance companions
+ * after their refunded share, the balance still outstanding on open orders, the
+ * refund still payable and the no-show figures, plus the live hold pipeline and
+ * the separate CASH view of refunds by the day they were paid out (never mixed
+ * into the waterfall). Rendered from the `commerce.booking_revenue` projection
  * and the live pipeline query through `application/booking-revenue-report.ts`
  * and `application/booking-pipeline.ts`; the page passes `null` when the caller
  * lacks `reporting.dashboard.read`, and a tenant whose `booking` feature is OFF
@@ -23,18 +26,23 @@
  * Lives under `src/components/` like `CommerceRetentionReport.astro`
  * (`access-chokepoint-check.ts` reads every `.astro` under `pages/admin/` as a
  * screen that must call `loadAdminScreen`). It does no loading of its own and
- * holds no script: the export is the freshness panel's generic projection
- * export, which re-checks its own permission.
+ * holds no script: the CSV link is a plain GET navigation to the waterfall
+ * export route (`booking-revenue.csv`), shown only to a viewer holding its own
+ * `commerce.report_booking_revenue.export` (the route re-checks it; the screen
+ * itself is `reporting.dashboard.read`); the freshness panel's generic projection export stays too.
  */
 import { getTranslatorFor } from "../lib/i18n";
 import type { Locale } from "../lib/i18n/locales";
 import { formatCurrency, formatNumber } from "../lib/i18n/format";
+import type { BookingCashRefundReport } from "../modules/commerce/application/booking-cash-view";
 import type { BookingPipelineReport } from "../modules/commerce/application/booking-pipeline";
 import type { BookingRevenueReport } from "../modules/commerce/application/booking-revenue-report";
 
 export type BookingRevenueView = {
   report: BookingRevenueReport;
   pipeline: BookingPipelineReport;
+  cash: BookingCashRefundReport;
+  canExport: boolean;
 };
 
 const { view, locale } = Astro.props as {
@@ -50,6 +58,12 @@ const report = view?.report ?? null;
 const pipeline = view?.pipeline ?? null;
 const rows = report?.enabled ? report.days : [];
 const totals = report?.enabled ? report.totals : null;
+const cash = view?.cash ?? null;
+const cashRows = cash?.enabled ? cash.days : [];
+const csvHref = report
+  ? `/api/v1/reports/commerce/booking-revenue.csv?from=${report.from}&to=${report.to}`
+  : "";
+const hasValue = (value: string) => Number(value) !== 0;
 
 function formatAge(seconds: number | null): string {
   if (seconds === null) return "—";
@@ -113,7 +127,7 @@ function formatAge(seconds: number | null): string {
       >
         <caption>
           {t(
-            "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund, a cancellation or a no-show lands on that same day. The balance still owed on open orders is shown beside the waterfall, not subtracted. Held space is not revenue."
+            "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund counts when it is decided, not when the money moves, and lands on that same day with any cancellation or no-show. Tax, shipping and insurance are lowered by their share of a refund and are not revenue. The balance still owed on open orders and the refund still to be paid out are shown beside the waterfall, not subtracted. This is an operational sales measure, not a financial-statement figure: the books of record are your accounting system. Held space is not revenue."
           )}
         </caption>
         <thead>
@@ -124,7 +138,9 @@ function formatAge(seconds: number | null): string {
             <th scope="col">{t("Discounts")}</th>
             <th scope="col">{t("Refunds")}</th>
             <th scope="col">{t("Net")}</th>
+            <th scope="col">{t("Companions")}</th>
             <th scope="col">{t("Balance outstanding")}</th>
+            <th scope="col">{t("Refund payable")}</th>
             <th scope="col">{t("No-shows")}</th>
             <th scope="col">{t("Status")}</th>
           </tr>
@@ -132,7 +148,7 @@ function formatAge(seconds: number | null): string {
         <tbody>
           {rows.length === 0 ? (
             <tr>
-              <td class="data-table-empty" colspan="9">
+              <td class="data-table-empty" colspan="11">
                 <div class="empty-state">
                   <span class="empty-state-icon" aria-hidden="true">
                     ◇
@@ -154,12 +170,13 @@ function formatAge(seconds: number | null): string {
                 <td data-label={t("Discounts")}>{money(day.discounts)}</td>
                 <td data-label={t("Refunds")}>
                   {money(day.refunds)}
-                  {Number(day.refundsUncollected) > 0 && (
+                  {Number(day.refunds) > 0 && (
                     <small class="muted">
                       {t(
-                        "{paidBack} paid back, {uncollected} uncollected (no money moved)",
+                        "{paidBack} paid back, {payable} payable, {uncollected} uncollected (no money moved)",
                         {
                           paidBack: money(day.refundsPaidBack),
+                          payable: money(day.refundsPayable),
                           uncollected: money(day.refundsUncollected)
                         }
                       )}
@@ -167,8 +184,40 @@ function formatAge(seconds: number | null): string {
                   )}
                 </td>
                 <td data-label={t("Net")}>{money(day.net)}</td>
+                <td data-label={t("Companions")}>
+                  {hasValue(day.tax) ||
+                  hasValue(day.shipping) ||
+                  hasValue(day.insurance) ? (
+                    <>
+                      {hasValue(day.tax) && (
+                        <small class="muted">
+                          {t("Tax {amount}", { amount: money(day.tax) })}
+                        </small>
+                      )}
+                      {hasValue(day.shipping) && (
+                        <small class="muted">
+                          {t("Shipping {amount}", {
+                            amount: money(day.shipping)
+                          })}
+                        </small>
+                      )}
+                      {hasValue(day.insurance) && (
+                        <small class="muted">
+                          {t("Insurance {amount}", {
+                            amount: money(day.insurance)
+                          })}
+                        </small>
+                      )}
+                    </>
+                  ) : (
+                    "—"
+                  )}
+                </td>
                 <td data-label={t("Balance outstanding")}>
                   {money(day.balanceOutstanding)}
+                </td>
+                <td data-label={t("Refund payable")}>
+                  {money(day.refundPayableBalance)}
                 </td>
                 <td data-label={t("No-shows")}>
                   {day.noShowRatePercent === null
@@ -199,9 +248,80 @@ function formatAge(seconds: number | null): string {
               <td>{money(totals.discounts)}</td>
               <td>{money(totals.refunds)}</td>
               <td>{money(totals.net)}</td>
+              <td>
+                {hasValue(totals.tax) ||
+                hasValue(totals.shipping) ||
+                hasValue(totals.insurance)
+                  ? t("Tax {amount}", { amount: money(totals.tax) })
+                  : "—"}
+              </td>
               <td>{money(totals.balanceOutstanding)}</td>
+              <td>{money(totals.refundPayableBalance)}</td>
               <td>{count(totals.noShows)}</td>
               <td />
+            </tr>
+          </tfoot>
+        )}
+      </table>
+    </div>
+    {view?.canExport && (
+      <p>
+        <a class="module-toggle" id="ops-booking-revenue-csv" href={csvHref}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Refunds paid out (cash view)")}
+    >
+      <table class="data-table data-table--stack" id="ops-booking-cash-table">
+        <caption>
+          {t(
+            "Refunds paid out (cash view): money that went back to customers, by the day it was paid out. This is a cash view and is separate from the table above, which counts a refund on the day the order was paid."
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Day paid out")}</th>
+            <th scope="col">{t("Refund payments")}</th>
+            <th scope="col">{t("Paid out")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cashRows.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="3">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No booking refunds were paid out in this period")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            cashRows.map((day) => (
+              <tr data-ops-booking-cash-day={day.day}>
+                <th scope="row" data-label={t("Day paid out")}>
+                  {day.day}
+                </th>
+                <td data-label={t("Refund payments")}>{count(day.legs)}</td>
+                <td data-label={t("Paid out")}>{money(day.refundsPaidOut)}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+        {cash?.enabled && cashRows.length > 0 && (
+          <tfoot>
+            <tr>
+              <th scope="row">{t("Total")}</th>
+              <td>{count(cash.totals.legs)}</td>
+              <td>{money(cash.totals.refundsPaidOut)}</td>
             </tr>
           </tfoot>
         )}

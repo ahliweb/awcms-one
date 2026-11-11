@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530222-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mollo Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Mollo Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304071",
+  "publicationNumber": "53040.26035",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/d463f4fb801a94781158b876/kecamatan-mollo-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "d1208644a3c88651b5f15eb60a798e9cda4659b5dafbc79f72be78f78e298c63",
+  "sourceFileBytes": 4443811,
+  "sourcePages": [29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan Itisprohibitedtoreproduceand/orduplicatepartorallofthisbookforcommercial iv ISSN : - TIM PENYUSUN/COMPILERS Kecamatan Mollo Barat Dalam Angka 2026 Mollo Barat Districtin Figures 2026 Volume 01, 2026 ps .g o .id Pengarah/Director Martinus Tulit Beni at an ka b .b Penanggung Jawab/Persons in Charge Andrian Nardo Napitupulu te ng ah se l Penyunting/Editors Dessy Rofica Wulandari ht tp s: // tim or Pengolah Data dan Penulis Naskah/Data ProcessorandWriters Dessy Rofica Wulandari Penata Letak/Layouters Hans Tikynaro Manurung Penerjemah/Translators Dessy Rofica Wulandari v vi ah ng te tim or tp s: // ht .id .g o ps .b an ka b at se l KONTRIBUTOR DATA/DATA CONTRIBUTORS 1. Kementerian Agama/MinistryofReligiousAffair 2. Kementerian Pendidikan Dasar dan 3. Badan Pusat Statistik/BPS-StatisticsIndonesia .id Menengah/MinistryofPrimaryandSecondaryEducation .g o 4. Dinas Kependudukan dan Pencatatan Sipil Kabupaten Timor ht tp s: // tim or te ng ah se l at an ka b .b ps Tengah Selatan vii viii ah ng te tim or tp s: // ht .id .g o ps .b an ka b at se l KATA PENGANTAR Publikasi Kecamatan Mollo Barat Dalam Angka 2026 adalah buku publikasi tahunan yang diterbitkan oleh Badan Pusat Statistik Kabupaten Timor Tengah Selatan. Publikasi ini memuat himpunan .id data dari berbagai bidang dan sektor, serta gambaran singkat .g o tentang hal-hal yang penting dari bidang-bidang yang ada di ps Kecamatan MolloSelatan. Data yang disajikan ini telah disusun oleh .b Badan Pusat Statistik Kabupaten Timor Tengah Selatan baik berupa an ka b data primer yang dikumpulkan langsung, maupun data sekunder yang diperoleh dari kantor desa/kelurahan se l at Publikasi ini dapat terbit berkat kerjasama dan bantuan dari ah berbagai pihak, baik dari instansi pemerintah maupun swasta. ht tp s: // tim or te ng Untuk itu, kepada semua pihak yang telah ikut membantu terwujudnya publikasi ini, kami sampaikan penghargaan dan ucapan terima kasih yang sebesar besarnya. Meskipun publikasi ini telah dipersiapkan sebaik baiknya, disadari masih ada kekurangan dan kesalahan yang mungkin terjadi. Untuk perbaikan di masa mendatang, tanggapan dan saran dari pengguna publikasi ini sangat diharapkan. ix Soe, September 2026 Kepala BPSKabupaten Timor Tengah Selatan ht tp s: // tim or te ng ah se l at an ka b .b ps .g o .id Martinus Tulit Beni x",
+  "csvPath": "datasets/bps-5304-kecamatan-530222-dalam-angka-2026.csv",
+  "csvSha256": "4f3278ca296c1c6e70c977b179d017ae6fd5c6471a9e6c9f5696c180044ee07a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mollo Barat, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mollo Barat, 2025 Populationby Age Groupsand Sex in Mollo BaratDistrict, 2025 Jenis Kelamin/Sex Kelompok Umur Age Groups Laki-Laki Perempuan Jumlah Male Female Total",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"05. Oeuban\": unmatched ",
+    "table 3.2: row not stored: row \"60--64\": unmatched ",
+    "table 3.2: the rows of region 53.02.22 are not stored: age_group (perempuan) vs sex value: parts sum 4089.0000 != 4266.0000 (diff 177.0000); the source itself is inconsistent"
+  ]
+}

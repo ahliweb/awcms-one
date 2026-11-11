@@ -35,6 +35,7 @@ import { maskPhone } from "../domain/phone-normalisation";
 import { findOrCreateCustomerByPhone } from "./customer-directory";
 import {
   OTP_MAX_ATTEMPTS,
+  OTP_RESEND_WINDOW_SECONDS,
   OTP_TTL_SECONDS,
   generateOtpCode,
   hashOtpCode
@@ -141,6 +142,46 @@ export async function findAccountById(
   return rows[0] ? toAccountRecord(rows[0]) : null;
 }
 
+/**
+ * Thrown by `createAccountForCustomer` when the INSERT lost a unique-constraint
+ * race (the account's `(tenant, e-mail)` or its `customer_id`): somebody else's
+ * account for this e-mail or phone committed first. The failed INSERT ran in a
+ * savepoint, so the caller's transaction is still usable and can re-resolve to
+ * the existing account (`findAccountByEmail`, then `findAccountByPhone`) instead
+ * of answering `500`.
+ */
+export class CustomerAccountUniqueViolationError extends Error {
+  readonly constraint: string | null;
+
+  constructor(constraint: string | null) {
+    super("A customer account for this e-mail or phone already exists.");
+    this.name = "CustomerAccountUniqueViolationError";
+    this.constraint = constraint;
+  }
+}
+
+/**
+ * Transaction-scoped advisory lock on a free-form key (`pg_advisory_xact_lock`,
+ * released at COMMIT/ROLLBACK — the same primitive `reporting`'s projection lock
+ * uses). The key is hashed to 64 bits with `hashtextextended`; a hash collision
+ * only ever makes two unrelated requests wait for each other, never skip a
+ * guard. Used to serialise the check-then-act sequences of the customer auth
+ * flow (resend window, registration, keyed verify) so a double submit is decided
+ * by a rule, not by a unique-violation race.
+ */
+export async function acquireCustomerAuthLock(
+  tx: Bun.SQL,
+  tenantId: string,
+  scope: string,
+  value: string
+): Promise<void> {
+  await tx`
+    SELECT pg_advisory_xact_lock(
+      hashtextextended(${`commerce.customer_auth:${scope}:${tenantId}:${value}`}, 0)
+    )
+  `;
+}
+
 export type CreateAccountForCustomerInput = {
   name: string;
   phone: string;
@@ -156,12 +197,16 @@ export type CreateAccountForCustomerInput = {
  * has been verified (the caller — Issue #89's route — is responsible for
  * that ordering); this function does not itself check any OTP.
  */
-export async function createAccountForCustomer(
+export type TryCreateAccountOutcome =
+  | { ok: true; account: CustomerAccountRecord }
+  | { ok: false; reason: "unique_violation"; constraint: string | null };
+
+export async function tryCreateAccountForCustomer(
   tx: Bun.TransactionSQL,
   tenantId: string,
   input: CreateAccountForCustomerInput,
   correlationId?: string
-): Promise<CustomerAccountRecord> {
+): Promise<TryCreateAccountOutcome> {
   const now = input.now ?? new Date();
 
   // Read the guest row's own state BEFORE `findOrCreateCustomerByPhone`
@@ -192,18 +237,42 @@ export async function createAccountForCustomer(
       })
     : now;
 
-  const rows = (await tx`
-    INSERT INTO awcms_commerce_customer_accounts (
-      tenant_id, customer_id, email_normalized, status,
-      email_verified_at, history_from
-    )
-    VALUES (
-      ${tenantId}, ${customer.id}, ${input.emailNormalized}, 'active',
-      ${now}, ${historyFrom}
-    )
-    RETURNING id, customer_id, email_normalized, status, email_verified_at,
-              history_from, last_login_at, created_at
-  `) as AccountRow[];
+  let rows: AccountRow[];
+  try {
+    // A savepoint, so a lost unique race (a concurrent registration for the
+    // same e-mail or phone) leaves the caller's transaction usable.
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
+      INSERT INTO awcms_commerce_customer_accounts (
+        tenant_id, customer_id, email_normalized, status,
+        email_verified_at, history_from
+      )
+      VALUES (
+        ${tenantId}, ${customer.id}, ${input.emailNormalized}, 'active',
+        ${now}, ${historyFrom}
+      )
+      RETURNING id, customer_id, email_normalized, status, email_verified_at,
+                history_from, last_login_at, created_at
+    `
+    )) as AccountRow[];
+  } catch (error) {
+    if (
+      error instanceof Bun.SQL.PostgresError &&
+      String(error.errno) === "23505"
+    ) {
+      // The INSERT ran inside the savepoint above, so the failed statement is
+      // already rolled back and the caller's transaction is still valid: this
+      // is a plain result, not a swallowed failure (transaction-swallow-check).
+      return {
+        ok: false,
+        reason: "unique_violation",
+        constraint:
+          typeof error.constraint === "string" ? error.constraint : null
+      };
+    }
+    throw error;
+  }
 
   const record = toAccountRecord(rows[0]!);
 
@@ -221,7 +290,31 @@ export async function createAccountForCustomer(
     correlationId
   });
 
-  return record;
+  return { ok: true, account: record };
+}
+
+/**
+ * Throwing form of {@link tryCreateAccountForCustomer}: a lost unique race is
+ * thrown as {@link CustomerAccountUniqueViolationError} (the transaction is
+ * still usable, see that class). The registration flow itself uses the
+ * result-returning variant so it needs no `catch` inside the open transaction.
+ */
+export async function createAccountForCustomer(
+  tx: Bun.TransactionSQL,
+  tenantId: string,
+  input: CreateAccountForCustomerInput,
+  correlationId?: string
+): Promise<CustomerAccountRecord> {
+  const outcome = await tryCreateAccountForCustomer(
+    tx,
+    tenantId,
+    input,
+    correlationId
+  );
+  if (!outcome.ok) {
+    throw new CustomerAccountUniqueViolationError(outcome.constraint);
+  }
+  return outcome.account;
 }
 
 export type IssuedOtp = {
@@ -314,6 +407,101 @@ export async function issueOtp(
   return { code, expiresAt: expiresAt.toISOString() };
 }
 
+export type RecentOtp = { expiresAt: Date };
+
+/**
+ * The stored `registration` is a JSON STRING inside the jsonb column (it was
+ * bound as text by `issueOtp`), which the driver hands back either as that
+ * string or already parsed depending on the statement shape (see
+ * `parseRegistrationColumn`). Unwrap up to two levels so the comparison below
+ * sees the `{name, phone}` object whichever way it arrives.
+ */
+function coerceStoredRegistration(
+  value: unknown
+): { name: string; phone: string } | null {
+  let current = value;
+  for (let depth = 0; depth < 2 && typeof current === "string"; depth += 1) {
+    current = JSON.parse(current);
+  }
+  if (
+    current !== null &&
+    typeof current === "object" &&
+    typeof (current as { name?: unknown }).name === "string" &&
+    typeof (current as { phone?: unknown }).phone === "string"
+  ) {
+    return current as { name: string; phone: string };
+  }
+  return null;
+}
+
+/**
+ * Issue #513 — the resend window. Serialises concurrent requests for one
+ * (tenant, identifier, purpose) with an advisory lock (so two simultaneous taps
+ * cannot both see "nothing recent" and both send), then returns the LIVE code's
+ * expiry when one was issued less than `OTP_RESEND_WINDOW_SECONDS` ago for the
+ * SAME registration payload (a corrected phone number or name is a different
+ * registration and gets a new code). `null` means "issue a new one". The caller
+ * keeps the lock until its transaction ends, so the decision and the insert of
+ * the new code are one atomic step against every other request for that key.
+ */
+export async function findRecentOtpWithinResendWindow(
+  tx: Bun.SQL,
+  tenantId: string,
+  identifierValue: string,
+  purpose: "login" | "register",
+  registration: { name: string; phone: string } | null,
+  now: Date,
+  identifierColumn: OtpIdentifierColumn = "email_normalized"
+): Promise<RecentOtp | null> {
+  await acquireCustomerAuthLock(
+    tx,
+    tenantId,
+    "otp-request",
+    `${identifierColumn}:${purpose}:${identifierValue}`
+  );
+
+  const cutoff = new Date(now.getTime() - OTP_RESEND_WINDOW_SECONDS * 1000);
+  const rows = (
+    identifierColumn === "phone_normalized"
+      ? await tx`
+    SELECT expires_at, registration
+    FROM awcms_commerce_customer_otps
+    WHERE tenant_id = ${tenantId}
+      AND phone_normalized = ${identifierValue}
+      AND purpose = ${purpose}
+      AND consumed_at IS NULL
+      AND expires_at > ${now}
+      AND created_at > ${cutoff}
+    ORDER BY created_at DESC
+    LIMIT 1
+  `
+      : await tx`
+    SELECT expires_at, registration
+    FROM awcms_commerce_customer_otps
+    WHERE tenant_id = ${tenantId}
+      AND email_normalized = ${identifierValue}
+      AND purpose = ${purpose}
+      AND consumed_at IS NULL
+      AND expires_at > ${now}
+      AND created_at > ${cutoff}
+    ORDER BY created_at DESC
+    LIMIT 1
+  `
+  ) as { expires_at: Date; registration: unknown }[];
+
+  const row = rows[0];
+  if (!row) return null;
+
+  const stored = coerceStoredRegistration(row.registration);
+  const same =
+    stored === null || registration === null
+      ? stored === registration
+      : stored.name === registration.name &&
+        stored.phone === registration.phone;
+
+  return same ? { expiresAt: row.expires_at } : null;
+}
+
 export type ConsumeOtpResult =
   | {
       ok: true;
@@ -336,6 +524,15 @@ export type ConsumeOtpResult =
  * (tenant, email, purpose) — `issueOtp` already invalidated every older row,
  * so there is at most one live candidate at a time in the normal case; the
  * `ORDER BY ... LIMIT 1` subquery is defensive, not load-bearing.
+ *
+ * `AND o.consumed_at IS NULL` on the UPDATE itself is what makes the code
+ * single-use under concurrency (Issue #513). The `target` CTE picks its row from
+ * the statement's snapshot and is NOT re-run when the UPDATE has to wait for a
+ * row lock; without the predicate a second verify that started before the first
+ * committed would, after the wait, re-evaluate only `o.id = target.id`, find the
+ * (now consumed) row still "matching" and succeed too — two sessions from one
+ * code. With it, the post-wait re-check sees `consumed_at` set and the second
+ * statement returns no row (`missing`).
  *
  * The single UPDATE always increments `attempts` (even on an ultimately
  * wrong code) and always sets `consumed_at` when it lands on the correct
@@ -397,7 +594,7 @@ export async function consumeOtp(
         ELSE NULL
       END
     FROM target
-    WHERE o.id = target.id
+    WHERE o.id = target.id AND o.consumed_at IS NULL
     RETURNING
       o.id,
       o.purpose,
@@ -427,7 +624,7 @@ export async function consumeOtp(
         ELSE NULL
       END
     FROM target
-    WHERE o.id = target.id
+    WHERE o.id = target.id AND o.consumed_at IS NULL
     RETURNING
       o.id,
       o.purpose,
@@ -559,7 +756,16 @@ type SessionJoinRow = {
 export async function findSessionByTokenHash(
   tx: Bun.SQL,
   tokenHash: string,
-  now: Date = new Date()
+  now: Date = new Date(),
+  /**
+   * Issue #430 (ADR-0048 T3): when given, the session must belong to THIS
+   * tenant in the query itself, on top of FORCE RLS. RLS is what isolates
+   * tenants in production (the runtime role is not a superuser), but a lookup
+   * by a globally unique token hash that names no tenant would, on a
+   * misconfigured BYPASSRLS connection, authenticate tenant A's token on tenant
+   * B's origin. `requireCustomerSession` always passes it.
+   */
+  tenantId?: string
 ): Promise<CustomerSessionRecord | null> {
   const rows = (await tx`
     SELECT
@@ -574,6 +780,7 @@ export async function findSessionByTokenHash(
     WHERE s.token_hash = ${tokenHash}
       AND s.revoked_at IS NULL
       AND s.expires_at > ${now}
+      AND (${tenantId ?? null}::uuid IS NULL OR s.tenant_id = ${tenantId ?? null}::uuid)
   `) as SessionJoinRow[];
 
   const row = rows[0];

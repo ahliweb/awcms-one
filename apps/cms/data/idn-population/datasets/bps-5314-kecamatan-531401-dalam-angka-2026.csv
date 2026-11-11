@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.14.01.2005,4,Oeseli,sex,laki_laki,,1072,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2005,4,Oeseli,sex,perempuan,,982,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2005,4,Oeseli,total,total,,2054,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2006,4,Oebou,sex,laki_laki,,763,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2006,4,Oebou,sex,perempuan,,819,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2006,4,Oebou,total,total,,1582,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2007,4,Lalukoen,sex,laki_laki,,970,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2007,4,Lalukoen,sex,perempuan,,955,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2007,4,Lalukoen,total,total,,1925,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2009,4,Oetefu,sex,laki_laki,,921,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2009,4,Oetefu,sex,perempuan,,858,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2009,4,Oetefu,total,total,,1779,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2008,4,Oehandi,sex,laki_laki,,843,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2008,4,Oehandi,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2008,4,Oehandi,total,total,,1693,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2011,4,Meoain,sex,laki_laki,,516,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2011,4,Meoain,sex,perempuan,,558,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2011,4,Meoain,total,total,,1074,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2012,4,Oebafok,sex,laki_laki,,945,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2012,4,Oebafok,sex,perempuan,,1017,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2012,4,Oebafok,total,total,,1962,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2010,4,Batutua,sex,laki_laki,,544,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2010,4,Batutua,sex,perempuan,,575,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2010,4,Batutua,total,total,,1119,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2016,4,Dolasi,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2016,4,Dolasi,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2016,4,Dolasi,total,total,,1276,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2015,4,Lekik,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2015,4,Lekik,sex,perempuan,,514,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2015,4,Lekik,total,total,,1020,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2013,4,Oebatu,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2013,4,Oebatu,sex,perempuan,,874,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2013,4,Oebatu,total,total,,1769,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2014,4,Mbokak,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2014,4,Mbokak,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2014,4,Mbokak,total,total,,1302,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2017,4,Oelasin,sex,laki_laki,,997,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2017,4,Oelasin,sex,perempuan,,990,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2017,4,Oelasin,total,total,,1987,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2018,4,Landu,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2018,4,Landu,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2018,4,Landu,total,total,,812,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2019,4,Lentera,sex,laki_laki,,897,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2019,4,Lentera,sex,perempuan,,901,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2019,4,Lentera,total,total,,1798,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2020,4,Sanggandolu,sex,laki_laki,,418,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2020,4,Sanggandolu,sex,perempuan,,427,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2020,4,Sanggandolu,total,total,,845,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2021,4,Sakubatun,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2021,4,Sakubatun,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2021,4,Sakubatun,total,total,,890,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2022,4,Fuafuni,sex,laki_laki,,597,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2022,4,Fuafuni,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2022,4,Fuafuni,total,total,,1159,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01.2023,4,Dalek Esa,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01.2023,4,Dalek Esa,sex,perempuan,,524,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01.2023,4,Dalek Esa,total,total,,1039,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.01,3,Kecamatan Rote Barat Daya,sex,laki_laki,,13527,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.01,3,Kecamatan Rote Barat Daya,sex,perempuan,,13558,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.01,3,Kecamatan Rote Barat Daya,total,total,,27085,jiwa,2025,registration,total_population,3.1.1,21,,

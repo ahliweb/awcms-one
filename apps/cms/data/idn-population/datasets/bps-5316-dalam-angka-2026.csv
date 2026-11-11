@@ -1,0 +1,59 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.17.01,3,Katikutana,total,total,,15524,jiwa,2025,projection,total_population,3.1.1,47,,
+53.17.05,3,Katikutana Selatan,total,total,,16777,jiwa,2025,projection,total_population,3.1.1,47,,
+53.17.02,3,Umbu Ratu Nggay Barat,total,total,,20192,jiwa,2025,projection,total_population,3.1.1,47,,
+53.17.04,3,Umbu Ratu Nggay,total,total,,12261,jiwa,2025,projection,total_population,3.1.1,47,,
+53.17.06,3,Umbu Ratu Nggay Tengah,total,total,,8588,jiwa,2025,projection,total_population,3.1.1,47,,
+53.17.03,3,Mamboro,total,total,,20845,jiwa,2025,projection,total_population,3.1.1,47,,
+53.17,2,Sumba Tengah,total,total,,94187,jiwa,2025,projection,total_population,3.1.1,47,,
+53.17,2,Kabupaten Sumba Tengah,age_group,0-4,laki_laki,5322,jiwa,2025,projection,total_population,3.1.2,50,,0–4
+53.17,2,Kabupaten Sumba Tengah,age_group,0-4,perempuan,5147,jiwa,2025,projection,total_population,3.1.2,50,,0–4
+53.17,2,Kabupaten Sumba Tengah,age_group,0-4,,10469,jiwa,2025,projection,total_population,3.1.2,50,,0–4
+53.17,2,Kabupaten Sumba Tengah,age_group,5-9,laki_laki,5901,jiwa,2025,projection,total_population,3.1.2,50,,5–9
+53.17,2,Kabupaten Sumba Tengah,age_group,5-9,perempuan,5683,jiwa,2025,projection,total_population,3.1.2,50,,5–9
+53.17,2,Kabupaten Sumba Tengah,age_group,5-9,,11584,jiwa,2025,projection,total_population,3.1.2,50,,5–9
+53.17,2,Kabupaten Sumba Tengah,age_group,10-14,laki_laki,4791,jiwa,2025,projection,total_population,3.1.2,50,,10–14
+53.17,2,Kabupaten Sumba Tengah,age_group,10-14,perempuan,4517,jiwa,2025,projection,total_population,3.1.2,50,,10–14
+53.17,2,Kabupaten Sumba Tengah,age_group,10-14,,9308,jiwa,2025,projection,total_population,3.1.2,50,,10–14
+53.17,2,Kabupaten Sumba Tengah,age_group,15-19,laki_laki,4511,jiwa,2025,projection,total_population,3.1.2,50,,15–19
+53.17,2,Kabupaten Sumba Tengah,age_group,15-19,perempuan,4177,jiwa,2025,projection,total_population,3.1.2,50,,15–19
+53.17,2,Kabupaten Sumba Tengah,age_group,15-19,,8688,jiwa,2025,projection,total_population,3.1.2,50,,15–19
+53.17,2,Kabupaten Sumba Tengah,age_group,20-24,laki_laki,4050,jiwa,2025,projection,total_population,3.1.2,50,,20–24
+53.17,2,Kabupaten Sumba Tengah,age_group,20-24,perempuan,3710,jiwa,2025,projection,total_population,3.1.2,50,,20–24
+53.17,2,Kabupaten Sumba Tengah,age_group,20-24,,7760,jiwa,2025,projection,total_population,3.1.2,50,,20–24
+53.17,2,Kabupaten Sumba Tengah,age_group,25-29,laki_laki,4065,jiwa,2025,projection,total_population,3.1.2,50,,25–29
+53.17,2,Kabupaten Sumba Tengah,age_group,25-29,perempuan,3759,jiwa,2025,projection,total_population,3.1.2,50,,25–29
+53.17,2,Kabupaten Sumba Tengah,age_group,25-29,,7824,jiwa,2025,projection,total_population,3.1.2,50,,25–29
+53.17,2,Kabupaten Sumba Tengah,age_group,30-34,laki_laki,3484,jiwa,2025,projection,total_population,3.1.2,50,,30–34
+53.17,2,Kabupaten Sumba Tengah,age_group,30-34,perempuan,3544,jiwa,2025,projection,total_population,3.1.2,50,,30–34
+53.17,2,Kabupaten Sumba Tengah,age_group,30-34,,7028,jiwa,2025,projection,total_population,3.1.2,50,,30–34
+53.17,2,Kabupaten Sumba Tengah,age_group,35-39,laki_laki,3319,jiwa,2025,projection,total_population,3.1.2,50,,35–39
+53.17,2,Kabupaten Sumba Tengah,age_group,35-39,perempuan,3042,jiwa,2025,projection,total_population,3.1.2,50,,35–39
+53.17,2,Kabupaten Sumba Tengah,age_group,35-39,,6361,jiwa,2025,projection,total_population,3.1.2,50,,35–39
+53.17,2,Kabupaten Sumba Tengah,age_group,40-44,laki_laki,2793,jiwa,2025,projection,total_population,3.1.2,50,,40–44
+53.17,2,Kabupaten Sumba Tengah,age_group,40-44,perempuan,2601,jiwa,2025,projection,total_population,3.1.2,50,,40–44
+53.17,2,Kabupaten Sumba Tengah,age_group,40-44,,5394,jiwa,2025,projection,total_population,3.1.2,50,,40–44
+53.17,2,Kabupaten Sumba Tengah,age_group,45-49,laki_laki,2424,jiwa,2025,projection,total_population,3.1.2,50,,45–49
+53.17,2,Kabupaten Sumba Tengah,age_group,45-49,perempuan,2373,jiwa,2025,projection,total_population,3.1.2,50,,45–49
+53.17,2,Kabupaten Sumba Tengah,age_group,45-49,,4797,jiwa,2025,projection,total_population,3.1.2,50,,45–49
+53.17,2,Kabupaten Sumba Tengah,age_group,50-54,laki_laki,2145,jiwa,2025,projection,total_population,3.1.2,50,,50–54
+53.17,2,Kabupaten Sumba Tengah,age_group,50-54,perempuan,1935,jiwa,2025,projection,total_population,3.1.2,50,,50–54
+53.17,2,Kabupaten Sumba Tengah,age_group,50-54,,4080,jiwa,2025,projection,total_population,3.1.2,50,,50–54
+53.17,2,Kabupaten Sumba Tengah,age_group,55-59,laki_laki,1617,jiwa,2025,projection,total_population,3.1.2,50,,55–59
+53.17,2,Kabupaten Sumba Tengah,age_group,55-59,perempuan,1580,jiwa,2025,projection,total_population,3.1.2,50,,55–59
+53.17,2,Kabupaten Sumba Tengah,age_group,55-59,,3197,jiwa,2025,projection,total_population,3.1.2,50,,55–59
+53.17,2,Kabupaten Sumba Tengah,age_group,60-64,laki_laki,1285,jiwa,2025,projection,total_population,3.1.2,50,,60–64
+53.17,2,Kabupaten Sumba Tengah,age_group,60-64,perempuan,1248,jiwa,2025,projection,total_population,3.1.2,50,,60–64
+53.17,2,Kabupaten Sumba Tengah,age_group,60-64,,2533,jiwa,2025,projection,total_population,3.1.2,50,,60–64
+53.17,2,Kabupaten Sumba Tengah,age_group,65-69,laki_laki,989,jiwa,2025,projection,total_population,3.1.2,50,,65–69
+53.17,2,Kabupaten Sumba Tengah,age_group,65-69,perempuan,974,jiwa,2025,projection,total_population,3.1.2,50,,65–69
+53.17,2,Kabupaten Sumba Tengah,age_group,65-69,,1963,jiwa,2025,projection,total_population,3.1.2,50,,65–69
+53.17,2,Kabupaten Sumba Tengah,age_group,70-74,laki_laki,723,jiwa,2025,projection,total_population,3.1.2,50,,70–74
+53.17,2,Kabupaten Sumba Tengah,age_group,70-74,perempuan,723,jiwa,2025,projection,total_population,3.1.2,50,,70–74
+53.17,2,Kabupaten Sumba Tengah,age_group,70-74,,1446,jiwa,2025,projection,total_population,3.1.2,50,,70–74
+53.17,2,Kabupaten Sumba Tengah,age_group,75+,laki_laki,855,jiwa,2025,projection,total_population,3.1.2,50,,75+
+53.17,2,Kabupaten Sumba Tengah,age_group,75+,perempuan,900,jiwa,2025,projection,total_population,3.1.2,50,,75+
+53.17,2,Kabupaten Sumba Tengah,age_group,75+,,1755,jiwa,2025,projection,total_population,3.1.2,50,,75+
+53.17,2,Sumba Tengah,sex,laki_laki,,48274,jiwa,2025,projection,total_population,3.1.2,50,,Laki-Laki
+53.17,2,Sumba Tengah,sex,perempuan,,45913,jiwa,2025,projection,total_population,3.1.2,50,,Perempuan
+53.17,2,Sumba Tengah,total,total,,94187,jiwa,2025,projection,total_population,3.1.2,50,,

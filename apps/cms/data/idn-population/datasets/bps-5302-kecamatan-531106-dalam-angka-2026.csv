@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.06.2005,4,Wahang,sex,laki_laki,,994,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.06.2005,4,Wahang,sex,perempuan,,887,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+53.11.06.2005,4,Wahang,total,total,,1881,jiwa,2026,registration,total_population,3.1,,,
+53.11.06.2004,4,Tawui,sex,laki_laki,,964,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.06.2004,4,Tawui,sex,perempuan,,871,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+53.11.06.2004,4,Tawui,total,total,,1835,jiwa,2026,registration,total_population,3.1,,,
+53.11.06.2003,4,Lai Lunggi,sex,laki_laki,,754,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.06.2003,4,Lai Lunggi,sex,perempuan,,703,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+53.11.06.2003,4,Lai Lunggi,total,total,,1457,jiwa,2026,registration,total_population,3.1,,,
+53.11.06.2001,4,Ramuk,sex,laki_laki,,498,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.06.2001,4,Ramuk,sex,perempuan,,469,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+53.11.06.2001,4,Ramuk,total,total,,967,jiwa,2026,registration,total_population,3.1,,,
+53.11.06.2006,4,Mahaniwa,sex,laki_laki,,477,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.06.2006,4,Mahaniwa,sex,perempuan,,484,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+53.11.06.2006,4,Mahaniwa,total,total,,961,jiwa,2026,registration,total_population,3.1,,,
+53.11.06,3,Pinu Pahar,sex,laki_laki,,4283,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+53.11.06,3,Pinu Pahar,sex,perempuan,,3974,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+53.11.06,3,Pinu Pahar,total,total,,8257,jiwa,2026,registration,total_population,3.1,,,
+53.11.06,3,Pinu Pahar,age_group,0-14,laki_laki,37852,jiwa,2026,registration,total_population,3.2,31,,0-14
+53.11.06,3,Pinu Pahar,age_group,0-14,perempuan,35561,jiwa,2026,registration,total_population,3.2,31,,0-14
+53.11.06,3,Pinu Pahar,age_group,0-14,,73413,jiwa,2026,registration,total_population,3.2,31,,0-14
+53.11.06,3,Pinu Pahar,age_group,15-64,laki_laki,97436,jiwa,2026,registration,total_population,3.2,31,,15-64
+53.11.06,3,Pinu Pahar,age_group,15-64,perempuan,93841,jiwa,2026,registration,total_population,3.2,31,,15-64
+53.11.06,3,Pinu Pahar,age_group,15-64,,191277,jiwa,2026,registration,total_population,3.2,31,,15-64
+53.11.06,3,Pinu Pahar,age_group,65+,laki_laki,10387,jiwa,2026,registration,total_population,3.2,31,,65+
+53.11.06,3,Pinu Pahar,age_group,65+,perempuan,10009,jiwa,2026,registration,total_population,3.2,31,,65+
+53.11.06,3,Pinu Pahar,age_group,65+,,20396,jiwa,2026,registration,total_population,3.2,31,,65+

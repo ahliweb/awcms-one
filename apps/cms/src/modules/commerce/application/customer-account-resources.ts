@@ -22,6 +22,7 @@ import type {
 } from "../../_shared/ports/media-library-port";
 import type { AccountAddressInput } from "../domain/address-validation";
 import { computeFinalPrice, normalizeMoney } from "../domain/price-calculation";
+import { acquireCustomerAuthLock } from "./customer-account-store";
 import { listLiveProductImagesByProductIds } from "./product-image-directory";
 
 const AUDIT_MODULE_KEY = "commerce";
@@ -132,6 +133,14 @@ export async function createAccountAddress(
   input: AccountAddressInput,
   correlationId?: string
 ): Promise<CreateAccountAddressOutcome> {
+  // Issue #513: one address create per customer at a time. The count below
+  // decides both the limit and "the first address becomes the default", and
+  // `..._default_key` is a unique index on the default flag, so two concurrent
+  // creates for a customer with no address used to race into a raw unique
+  // violation (a 500) or past the limit. The lock is held to the end of the
+  // transaction.
+  await acquireCustomerAuthLock(tx, tenantId, "account-address", customerId);
+
   const countRows = (await tx`
     SELECT count(*)::int AS n
     FROM awcms_commerce_customer_addresses

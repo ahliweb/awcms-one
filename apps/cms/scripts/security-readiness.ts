@@ -862,6 +862,10 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // only by the accrual's own triggers: INSERT and SELECT only.
   awcms_hr_commission_accruals: ["SELECT", "INSERT", "UPDATE"],
   awcms_hr_commission_transitions: ["SELECT", "INSERT"],
+  // ADR-0147 / `sql/316`. NOT retired. The tenant's intake switch is upserted,
+  // never deleted. (The intake QUEUE keeps all four verbs: the poster purges
+  // settled rows as `awcms_app`, and a trigger refuses to delete work.)
+  awcms_hr_commission_intake_settings: ["SELECT", "INSERT", "UPDATE"],
   // ADR-0132 / `sql/198`. The events are APPEND-ONLY: awcms_app holds no UPDATE
   // or DELETE (privilege), and a trigger refuses both as the second layer.
   awcms_hr_attendance_events: ["SELECT", "INSERT"],
@@ -1535,6 +1539,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_whatsapp_delivery_attempts: ["DELETE", "INSERT", "SELECT"],
   awcms_whatsapp_consents: ["SELECT"],
   awcms_whatsapp_suppressions: ["INSERT", "SELECT"],
+  // Issue #1141 (sql/322) - read-only. A worker that ENQUEUES through the port
+  // (`booking:reminders:dispatch`) reads the default sender of the message's
+  // scope; a worker that could write it could change which number and provider
+  // speak for a tenant.
+  awcms_whatsapp_sender_policies: ["SELECT"],
   // ADR-0140 (sql/216) — `telegram:dispatch` claims/updates queue rows, writes
   // attempts, and ends (revokes/suspends) a binding whose principal is gone or
   // whose chat Telegram reports unreachable, nulling its ciphertext; it reads the
@@ -1854,6 +1863,20 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // documents for awcms_email_delivery_attempts.
   awcms_commerce_whatsapp_delivery_attempts: ["SELECT", "INSERT", "DELETE"],
   awcms_commerce_customer_sessions: ["SELECT", "DELETE"],
+  // Issue #430 (ADR-0048, sql/1058) — customer Web Push. The devices table is
+  // table-level SELECT + DELETE (the tombstone purge) with a COLUMN-ONLY UPDATE
+  // (see WORKER_COLUMN_GRANTS): the worker can never INSERT a device or rewrite
+  // the columns that decide where a delivery goes. Preferences: SELECT only (the
+  // send-time consent check). Messages: UPDATE (claim, finalize, cancel) and
+  // DELETE (retention); the consumers that INSERT run in the event runtime and
+  // are mapped by #432. Attempts: the SELECT the ON CONFLICT arbiter read needs.
+  // Messages: SELECT and DELETE only at table level since sql/1061 (Issue #432):
+  // INSERT (the enqueue consumer, which runs as the worker) and UPDATE (the
+  // dispatcher's status machine) are COLUMN-ONLY, see WORKER_COLUMN_GRANTS.
+  awcms_commerce_push_devices: ["SELECT", "DELETE"],
+  awcms_commerce_push_preferences: ["SELECT"],
+  awcms_commerce_push_messages: ["SELECT", "DELETE"],
+  awcms_commerce_push_delivery_attempts: ["SELECT", "INSERT", "DELETE"],
   // `awcms_commerce_customer_accounts` carries a `dataLifecycle` descriptor
   // with `executionMode: 'generic'` (module.ts) purely so the table answers
   // `data-lifecycle:table-coverage:check` — `deleted_at` stays NULL forever
@@ -2180,19 +2203,38 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_hr_workforce_settings: ["SELECT"],
   // Upstream's own grant (sql/280); sql/1031 duplicated it and sql/1053 leaves it.
   awcms_hr_employments: ["SELECT"],
-  // Issue #391 (sql/1031, ADR-0046; revoked in part by sql/1053): the commission
-  // adapter ships DORMANT. Upstream's payroll boundary (ahliweb/awcms#1015) lets
-  // only `awcms_app` hold privileges on `awcms_hr_*`, so sql/1053 REVOKEd every
-  // payroll-table grant sql/1031 and sql/1051 gave the worker and the consumers
-  // are not registered. Only commerce-owned reads and the tenant reads remain.
+  // Issue #391 (sql/1031, ADR-0046; revoked in part by sql/1053): upstream's
+  // payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges
+  // on `awcms_hr_*`, so sql/1053 REVOKEd every payroll-table grant sql/1031 and
+  // sql/1051 gave the worker. The commission consumers are live again through
+  // the intake queue (ADR-0046 D12, ADR-0147): the worker holds INSERT on
+  // `awcms_hr_commission_intents` (below) and nothing else on any payroll table.
+  // Only commerce-owned reads/writes and the tenant reads are granted here.
   awcms_commerce_commission_settings: ["SELECT"],
   awcms_commerce_commission_staff_links: ["SELECT"],
   // Issue #413 review (sql/1052): the consumer records, in the transaction of
   // its first accrual, that a (source_type, rule_key) pair has been used; the
   // settings update refuses to change the pair afterwards. Insert-only.
   awcms_commerce_commission_attributed_sources: ["SELECT", "INSERT"],
+  // Issue #391 (sql/1063, ADR-0046 D12): commerce's own record of the order
+  // lines it submitted to the commission intake. The attributor inserts one row
+  // per line, the two reversers read them to void exactly those lines. Insert-
+  // only (a guard trigger refuses UPDATE and DELETE for every role).
+  awcms_commerce_commission_submissions: ["SELECT", "INSERT"],
   awcms_tenant_settings: ["SELECT"],
-  awcms_tenant_modules: ["SELECT"]
+  awcms_tenant_modules: ["SELECT"],
+  // Issue #1189 / ADR-0147 (sql/316). The event consumer of a derived
+  // repository runs in `domain-events:dispatch` as `awcms_worker` and SUBMITS a
+  // commission request to the intake queue: INSERT and NOTHING else on it (no
+  // SELECT, UPDATE or DELETE, so it cannot read back what it submitted or how it
+  // was settled), and no privilege on any payroll-family relation. The queue is
+  // drained by `hr-commission:intents:post` as `awcms_app`. The insert carries a
+  // bare `ON CONFLICT DO NOTHING` (no arbiter), which is why INSERT alone is
+  // enough here, unlike the `ON CONFLICT ON CONSTRAINT` rows sql/127 repaired.
+  awcms_hr_commission_intents: ["INSERT"]
+  // `awcms_hr_commission_intake_settings` is deliberately absent: the worker
+  // holds only a COLUMN-level SELECT on (tenant_id, commission_intake_enabled)
+  // (see WORKER_COLUMN_GRANTS), which the port and the intake insert trigger read.
 };
 
 /**
@@ -2266,6 +2308,12 @@ export const WORKER_COLUMN_GRANTS: Record<
     UPDATE: ["status", "decided_by", "decided_at", "updated_at"]
   },
   awcms_hr_employments: { UPDATE: ["updated_at"] },
+  // sql/316 (Issue #1189, ADR-0147): the commission intake switch. The port and
+  // the intake insert trigger read exactly these two columns; the intake system
+  // actor and the stamps are not readable by the worker.
+  awcms_hr_commission_intake_settings: {
+    SELECT: ["tenant_id", "commission_intake_enabled"]
+  },
   // sql/314 (Issue #1089): the dispatcher settles a delivery / disables a dead
   // device, and the auth-secret backfill moves the secret from plaintext to
   // ciphertext. The endpoint, its hash and the p256dh key are not writable.
@@ -2277,6 +2325,59 @@ export const WORKER_COLUMN_GRANTS: Record<
       "updated_at",
       "auth_secret",
       "auth_secret_ciphertext"
+    ]
+  },
+  // sql/1058 (Issue #430, ADR-0048 section 3.5): the maintenance job and the
+  // dispatcher (#432) settle a customer push device's status and the re-key job
+  // moves its credentials. NOT writable: account_id, session_id,
+  // storefront_origin, endpoint_hash, endpoint_masked - a worker able to rewrite
+  // those could redirect a delivery to another account or origin. The guard
+  // trigger additionally bounds what may be written into the credential columns.
+  awcms_commerce_push_devices: {
+    UPDATE: [
+      "status",
+      "status_reason",
+      "revoked_at",
+      "last_success_at",
+      "failure_count",
+      "updated_at",
+      "endpoint_ciphertext",
+      "p256dh_key",
+      "auth_secret_ciphertext"
+    ]
+  },
+  // sql/1061 (Issue #432, ADR-0048 section 3.5): the fan-out consumer INSERTs the
+  // thirteen columns an enqueue supplies (every other column keeps its default, so
+  // a worker cannot insert a row that is already `sent`), and the dispatcher
+  // UPDATEs only the status machine and the provider result. NOT writable after
+  // the insert: account_id, device_id, purpose, title, body, target_path, tag,
+  // dedupe_key, source_event_id, event_type, priority, expires_at - a worker able
+  // to rewrite those could redirect a message to another account, device or text.
+  awcms_commerce_push_messages: {
+    INSERT: [
+      "tenant_id",
+      "account_id",
+      "device_id",
+      "source_event_id",
+      "event_type",
+      "purpose",
+      "priority",
+      "tag",
+      "dedupe_key",
+      "title",
+      "body",
+      "target_path",
+      "expires_at"
+    ],
+    UPDATE: [
+      "status",
+      "retry_count",
+      "next_attempt_at",
+      "last_error",
+      "provider_name",
+      "provider_message_id",
+      "sent_at",
+      "updated_at"
     ]
   },
   // sql/284 (Issue #943): the booking reminder dispatcher settles an intent. The
@@ -2386,6 +2487,53 @@ export const WORKER_COLUMN_GRANTS: Record<
       "invalidated_at",
       "created_at"
     ]
+  },
+  // sql/322 (Issue #1141, ADR-0148 section 4): `whatsapp:dispatch` resolves a
+  // tenant-owned sender through the `channel_accounts` capability ports, READ
+  // ONLY and in the claimed row's tenant. Exactly the columns that resolution
+  // reads; no display name, no actor stamp, no refresh-token, OAuth-state,
+  // authorisation-code or webhook reference, and no write of any kind.
+  awcms_channel_accounts: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "business_scope_type",
+      "business_scope_id",
+      "provider",
+      "account_kind",
+      "external_id",
+      "auth_mode",
+      "connection_id",
+      "parent_account_id",
+      "secret_id",
+      "status",
+      "deleted_at"
+    ]
+  },
+  awcms_channel_account_capabilities: {
+    SELECT: [
+      "tenant_id",
+      "account_id",
+      "capability",
+      "state",
+      "evidence_kind",
+      "evidence_ref",
+      "matrix_version"
+    ]
+  },
+  awcms_channel_provider_connections: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "provider",
+      "auth_mode",
+      "grant_state",
+      "access_secret_id",
+      "expires_at"
+    ]
+  },
+  awcms_channel_secrets: {
+    SELECT: ["id", "tenant_id", "purpose", "ciphertext"]
   },
   awcms_telegram_bindings: {
     // sql/216 + sql/288: the dispatcher and purge only END a binding.
@@ -2810,7 +2958,15 @@ export const CREDENTIAL_COLUMNS: readonly string[] = [
   // Keyed hashes of identifying values (NIK, NPWP, ...): an offline guessing
   // oracle for a low-entropy identifier, so treated as credential material.
   "awcms_profile_identifiers.value_hash",
-  "awcms_procurement_supplier_identifiers.value_hash"
+  "awcms_procurement_supplier_identifiers.value_hash",
+  // Channel accounts control plane (sql/318, ADR-0148): per-account webhook
+  // callback token hashes and in-flight OAuth state hashes. The envelope-
+  // encrypted provider secret (`awcms_channel_secrets.ciphertext`) is a
+  // documented worker exception since sql/322 (Issue #1141): see
+  // WORKER_CREDENTIAL_COLUMN_EXCEPTIONS. It stays a credential for every OTHER
+  // role (the setup role checks exceptions as ordinary credential columns).
+  "awcms_channel_webhook_subscriptions.callback_token_hash",
+  "awcms_channel_oauth_states.state_hash"
 ];
 
 /**
@@ -2826,10 +2982,16 @@ export const WORKER_CREDENTIAL_COLUMN_EXCEPTIONS: Readonly<
     "LEGACY plaintext copy of the Web Push auth secret, read by push:dispatch ONLY for a row that has no ciphertext yet (sql/093). Transitional (Issue #1089): the backfill NULLs it, `security:readiness` reports how many plaintext rows remain, and the follow-up migration drops the column and this exception",
   "awcms_push_subscriptions.auth_secret_ciphertext":
     "push:dispatch decrypts the Web Push auth secret in-process to encrypt the payload; it is ciphertext under a key ring the worker already holds, AAD-bound to tenant and endpoint hash (sql/314)",
+  "awcms_commerce_push_devices.endpoint_ciphertext":
+    "the customer push dispatcher (#432) decrypts the endpoint in-process to hand it to the provider, and commerce:customer-push:rekey re-encrypts it; it is ciphertext under the auth-secret key ring the worker already holds, AAD-bound (purpose, tenant, endpoint hash) to a customer-specific purpose (sql/1056, ADR-0048)",
+  "awcms_commerce_push_devices.auth_secret_ciphertext":
+    "the customer push dispatcher (#432) decrypts the Web Push auth secret in-process to encrypt the payload, and commerce:customer-push:rekey re-encrypts it; it is ciphertext under the auth-secret key ring the worker already holds, AAD-bound to a customer-specific purpose (sql/1056, ADR-0048)",
   "awcms_omes_repository_progress_config.secret_ref":
     "omes:repository-progress:poll resolves this REFERENCE (the name of a secret held outside the database) (sql/166)",
   "awcms_telegram_bindings.chat_ciphertext":
-    "telegram:dispatch decrypts the chat id in-process to send; it is ciphertext under a key ring the worker already holds (sql/216)"
+    "telegram:dispatch decrypts the chat id in-process to send; it is ciphertext under a key ring the worker already holds (sql/216)",
+  "awcms_channel_secrets.ciphertext":
+    "whatsapp:dispatch decrypts a TENANT-OWNED sender's credential in-process, in memory, for the claimed row's tenant, to call the provider (Issue #1141, sql/322). ADR-0148 section 5 ACCEPTS this residual risk. What bounds it: the grant is column-only and read-only (id, tenant_id, purpose, ciphertext); since sql/324 a RESTRICTIVE policy limits the rows the worker can see to provider_access_token, api_token and device_key (never a refresh token, bot token, webhook secret, PKCE verifier or authorisation code); the key ring (CHANNEL_SECRETS_ENCRYPTION_KEYS) is outside the database and its backups and granted to this job alone; decrypts are counted per tenant. What does NOT bound it: AES-GCM associated data (purpose, tenant, row) stops a ciphertext being re-labelled or moved, but the grant exposes those inputs, so a compromised worker that sets the tenant can still read and decrypt every tenant's access tokens, API tokens and device keys"
 };
 
 /**
@@ -2849,6 +3011,12 @@ export const CREDENTIAL_LOOKING_COLUMN_PATTERN =
 export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
   "awcms_auth_providers.client_secret_env_var":
     "the NAME of an environment variable, not its value (sql/025)",
+  "awcms_channel_oauth_states.redirect_uri_hash":
+    "hash of the OAuth callback redirect URI the authorisation request was started with; not a secret (sql/318)",
+  "awcms_channel_provider_connections.redirect_uri_hash":
+    "hash of the OAuth callback redirect URI the grant was issued against; not a secret (sql/318)",
+  "awcms_channel_provider_connections.scope_list_hash":
+    "hash of the granted OAuth scopes list recorded as capability evidence; not a secret (sql/318)",
   "awcms_comments_abuse_events.fingerprint_hash":
     "keyed hash of a request fingerprint for abuse counting; not a login secret",
   "awcms_comments_abuse_events.ip_hash":
@@ -2871,6 +3039,8 @@ export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
     "integrity hash of the template variables; not a login secret",
   "awcms_email_suppression_list.recipient_hash":
     "keyed hash of a suppressed address; not a login secret",
+  "awcms_commerce_push_devices.endpoint_hash":
+    "sha256 of the customer push endpoint URL used as the unique lookup key and as the AAD row id of the credential ciphertexts; the endpoint itself is only ever stored as a ciphertext (a credential column) and a mask",
   "awcms_idempotency_keys.request_hash":
     "keyed hash of the request body that binds a replay to its first request (ADR-0145); not a login secret",
   "awcms_idn_admin_regions.source_row_hash":
@@ -3112,6 +3282,9 @@ export const DEFINER_OWNER_ROLES: readonly string[] = [
   // sql/306 (Issue #970): owns the operator-run erasure of one employment's
   // location-evidence verdicts; DELETE and a two-column SELECT on that table.
   "awcms_hr_geo_evidence_eraser",
+  // sql/316 (Issue #1189): the count-only owner for the commission intake
+  // queue's retention backlog; column SELECT on (tenant_id, updated_at) only.
+  "awcms_hr_commission_lifecycle_counter",
   "awcms_hr_workforce_lifecycle_counter",
   "awcms_inventory_lifecycle_counter",
   "awcms_partner_view",

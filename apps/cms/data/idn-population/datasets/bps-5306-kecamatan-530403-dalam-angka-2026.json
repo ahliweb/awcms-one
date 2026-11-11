@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5306-kecamatan-530403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.04.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Raihat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Belu",
+  "publisherDomain": "5306",
+  "publisherWebsite": "https://belukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Belu (https://belukab.bps.go.id), publikasi \"Kecamatan Raihat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53060.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://belukab.bps.go.id/id/publication/2026/09/28/00b38b4fa469be52450ad48c/kecamatan-raihat-dalam-angka-2026.html",
+  "sourceFileSha256": "5467afd9bd14d33fab4bda12f34402c682a53895abaed96b62cc051db6a7c78b",
+  "sourceFileBytes": 3942617,
+  "sourcePages": [24, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Belu",
+  "csvPath": "datasets/bps-5306-kecamatan-530403-dalam-angka-2026.csv",
+  "csvSha256": "6dde74f3552ebe69ac89b1bfadb0985e8398d450f00b4aaeadce9ea54d5f92af",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Raihat, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Raihat, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 53.04.03 sex/perempuan/ 2025: 7984 (table 3.1) vs 7985 (table 3.2)",
+    "cross-table disagreement, both stored as published: 53.04.03 total/total/ 2025: 15985 (table 3.1) vs 15986 (table 3.2)"
+  ]
+}

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:cb57a87528de8e278ca5c9ff7c7038dcefee64883108180ed590d8c87020b3ee -->
+<!-- i18n-source-hash: sha256:0af32d6ee0c0840fbfe7e3a8aacee2b85c2785e5c11ad1c7e6dbccc25f728b2d -->
 
 # Arsitektur
 
@@ -111,6 +111,8 @@ Foto produk, gambar slider/testimoni, dan — sejak increment 2 — origin CMS i
 Ini mekanisme yang sama untuk kedua directive — entri `PUBLIC_AWCMS_ORIGIN` milik `connect-src` (issue #30) memakai ulang derivasi `img-src` yang dibangun issue #27, alih-alih menambah permukaan konfigurasi kedua.
 
 Increment 3 memperluas penurunan yang sama alih-alih menggantinya ([ADR-0011](adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md)): `img-src` kini juga membawa origin setiap URL media yang benar-benar **ter-resolve** build lewat `GET /api/v1/media/objects` — sehingga baris yang masih menunjuk host media sebelumnya tetap tampil alih-alih diblokir — ditambah `https://i.ytimg.com`, dan `frame-src https://www.youtube-nocookie.com`, tetapi hanya ketika build itu memang memuat pos video. Origin milik GA4 sendiri (`script-src`/`connect-src`/`img-src`) muncul hanya ketika `PUBLIC_GA_ID` diisi; build bawaan sama sekali tidak punya origin pihak ketiga di kebijakannya ([ADR-0012](adr/0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md)).
+
+Web Push pelanggan (issue #431, [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.id.md)) **tidak butuh directive baru**: satu service worker (`/sw-notifikasi.js`, hanya pada build dengan `PUBLIC_CUSTOMER_PUSH=1`) adalah skrip first-party, sehingga `worker-src` jatuh lewat `child-src` ke `script-src 'self'`; halaman pengaturan memanggil origin CMS yang sudah disebut `connect-src`; dan worker tidak membuat permintaan sendiri. `apps/storefront/tests/push-build-smoke.test.ts` memastikan artefak CSP identik dengan dan tanpa fitur ini.
 
 ## Arah impor: satu jalur, `storefront → kontrak → cms`
 
@@ -231,7 +233,7 @@ Commerce menyimpan stok sebagai satu bilangan bulat pada baris yang dijual. Tena
 
 ## Apa yang masih belum ada di sini
 
-Yang ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) dan tidak diambil increment 5: ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon. Yang dicatat [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) sebagai follow-up eksplisit di belakang port yang sudah dibangunnya: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama, dan pelacakan kurir (tarif sudah selesai; melacak paket yang sudah dikirim belum). Upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.4` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)); layar admin backup basis data (secara eksplisit dikeluarkan dari cakupan issue #33 sebagai urusan operasi — lihat [`docs/deployment.md`](deployment.id.md)); notifikasi push pelanggan (kampanye saat ini hanya menjangkau e-mail dan WhatsApp — subscription push masih per-staf hari ini, bukan per-pelanggan).
+Yang ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) dan tidak diambil increment 5: ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon. Yang dicatat [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) sebagai follow-up eksplisit di belakang port yang sudah dibangunnya: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama, dan pelacakan kurir (tarif sudah selesai; melacak paket yang sudah dikirim belum). Upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.6` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)); layar admin backup basis data (secara eksplisit dikeluarkan dari cakupan issue #33 sebagai urusan operasi — lihat [`docs/deployment.md`](deployment.id.md)); notifikasi push pelanggan (kampanye saat ini hanya menjangkau e-mail dan WhatsApp — subscription push masih per-staf hari ini, bukan per-pelanggan).
 
 ## Bacaan lanjutan
 

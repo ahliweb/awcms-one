@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.22.2002,4,Patama Wai,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.22.2002,4,Patama Wai,sex,perempuan,,424,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.22.2002,4,Patama Wai,total,total,,888,jiwa,2025,registration,total_population,3.1,30,,
+53.11.22.2004,4,Prai Kalala,sex,laki_laki,,305,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.22.2004,4,Prai Kalala,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.22.2004,4,Prai Kalala,total,total,,606,jiwa,2025,registration,total_population,3.1,30,,
+53.11.22.2003,4,Wai Rara,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.22.2003,4,Wai Rara,sex,perempuan,,284,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.22.2003,4,Wai Rara,total,total,,614,jiwa,2025,registration,total_population,3.1,30,,
+53.11.22.2005,4,Lulundilu,sex,laki_laki,,702,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.22.2005,4,Lulundilu,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.22.2005,4,Lulundilu,total,total,,1296,jiwa,2025,registration,total_population,3.1,30,,
+53.11.22.2006,4,Haray,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.22.2006,4,Haray,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.22.2006,4,Haray,total,total,,647,jiwa,2025,registration,total_population,3.1,30,,
+53.11.22,3,MAHU,sex,laki_laki,,2831,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.22,3,MAHU,sex,perempuan,,2539,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.22,3,MAHU,total,total,,5370,jiwa,2025,registration,total_population,3.1,30,,
+53.11.22,3,MAHU,sex,laki_laki,,2831,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+53.11.22,3,MAHU,sex,perempuan,,2539,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+53.11.22,3,MAHU,total,total,,5370,jiwa,2025,registration,total_population,3.2,32,,

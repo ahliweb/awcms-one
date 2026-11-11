@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530702-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mego Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sikka",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sikka (https://sikkakab.bps.go.id), publikasi \"Kecamatan Mego Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53100.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/851868c1ff5d7793f190328f/kecamatan-mego-dalam-angka-2026.html",
+  "sourceFileSha256": "588bd4622d86e6842346d27fb5e0997828e36cb5b20eea2d6607e14e1b01ecc7",
+  "sourceFileBytes": 5208808,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530702-dalam-angka-2026.csv",
+  "csvSha256": "41989981e2fe10b06570737c7f9f340f31cadb9a5fac6273806a92f41e116497",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mego, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mego, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 53.07.02 are not stored: age_group vs total: parts sum 14600.0000 != 23917.0000 (diff 9317.0000); the source itself is inconsistent"
+  ]
+}

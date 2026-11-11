@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.08.2001,4,Pido,sex,laki_laki,,504,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2001,4,Pido,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2001,4,Pido,total,total,,1047,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08.2006,4,Lippang,sex,laki_laki,,374,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2006,4,Lippang,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2006,4,Lippang,total,total,,776,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08.2007,4,Kenarimbala,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2007,4,Kenarimbala,sex,perempuan,,578,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2007,4,Kenarimbala,total,total,,1192,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08.2005,4,Nailang,sex,laki_laki,,828,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2005,4,Nailang,sex,perempuan,,852,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2005,4,Nailang,total,total,,1680,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08.2002,4,Waisika,sex,laki_laki,,1433,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2002,4,Waisika,sex,perempuan,,1467,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2002,4,Waisika,total,total,,2900,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08.2003,4,Kamot,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2003,4,Kamot,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2003,4,Kamot,total,total,,1142,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08.2008,4,Air Mancur,sex,laki_laki,,432,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2008,4,Air Mancur,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2008,4,Air Mancur,total,total,,861,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08.2004,4,Taramana,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08.2004,4,Taramana,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08.2004,4,Taramana,total,total,,989,jiwa,2025,registration,total_population,3.1,13,,
+53.05.08,3,Alor Timur Laut,sex,laki_laki,,5292,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.08,3,Alor Timur Laut,sex,perempuan,,5295,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.08,3,Alor Timur Laut,total,total,,10587,jiwa,2025,registration,total_population,3.1,13,,

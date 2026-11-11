@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.71.01.1011,4,Naioni,sex,laki_laki,,1845,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1011,4,Naioni,sex,perempuan,,1838,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1011,4,Naioni,total,total,,3683,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1010,4,Manulai II,sex,laki_laki,,4746,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1010,4,Manulai II,sex,perempuan,,4632,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1010,4,Manulai II,total,total,,9378,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1009,4,Batuplat,sex,laki_laki,,3551,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1009,4,Batuplat,sex,perempuan,,3509,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1009,4,Batuplat,total,total,,7060,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1008,4,Alak,sex,laki_laki,,4602,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1008,4,Alak,sex,perempuan,,4615,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1008,4,Alak,total,total,,9217,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1006,4,Manutapen,sex,laki_laki,,4549,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1006,4,Manutapen,sex,perempuan,,4315,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1006,4,Manutapen,total,total,,8864,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1007,4,Mantasi,sex,laki_laki,,501,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1007,4,Mantasi,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1007,4,Mantasi,total,total,,1008,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1005,4,Fatufeto,sex,laki_laki,,2374,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1005,4,Fatufeto,sex,perempuan,,2314,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1005,4,Fatufeto,total,total,,4688,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1004,4,Nunhila,sex,laki_laki,,1470,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1004,4,Nunhila,sex,perempuan,,1422,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1004,4,Nunhila,total,total,,2892,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1003,4,Nunbaun Delha,sex,laki_laki,,2278,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1003,4,Nunbaun Delha,sex,perempuan,,2244,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1003,4,Nunbaun Delha,total,total,,4522,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1002,4,Nunbaun Sabu,sex,laki_laki,,2166,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1002,4,Nunbaun Sabu,sex,perempuan,,2112,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1002,4,Nunbaun Sabu,total,total,,4278,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1001,4,Namosain,sex,laki_laki,,6312,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1001,4,Namosain,sex,perempuan,,6083,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1001,4,Namosain,total,total,,12395,jiwa,2025,registration,total_population,3.1,26,,
+53.71.01.1012,4,Penkase Oeleta,sex,laki_laki,,5572,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.01.1012,4,Penkase Oeleta,sex,perempuan,,5464,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.01.1012,4,Penkase Oeleta,total,total,,11036,jiwa,2025,registration,total_population,3.1,26,,

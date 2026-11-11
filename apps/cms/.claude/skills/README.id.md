@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:67bce9d778c5a62810cf36b0edfec4477e60e750ae847654d05e4e90f7c66d47 -->
+<!-- i18n-source-hash: sha256:f072c24b60e4fb3bdd8bd0c7958c732f1893b349b931855019b1f68344c04203 -->
 
 # AWCMS Project Skills
 
@@ -43,7 +43,7 @@ Skill Claude Code tingkat-proyek untuk AWCMS. Setiap skill meng-encode standar d
 > Keluarga hari ini dua repo, `awcms` + [`awcms-astro`](https://github.com/ahliweb/awcms-astro)
 > (halaman publik + permukaan admin USER, ADR-0070). **KOREKSI:** versi sebelumnya menyatakan
 > implementasi ini "baru fondasi Sprint 1–2" dengan empat modul — itu **sudah
-> lama tidak benar**. Repo ini punya **34 modul terdaftar** dan `sql/001–sql/224` plus milik modul `commerce` sendiri yang dicadangkan di `sql/901` sampai `sql/999`;
+> lama tidak benar**. Repo ini punya **35 modul terdaftar** dan `sql/001–sql/224` plus milik modul `commerce` sendiri yang dicadangkan di `sql/901` sampai `sql/999`;
 > lihat [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) untuk daftar nyata.
 > Skill yang badannya masih menandai dirinya "BACAAN SAJA" tetap begitu — itu
 > per-skill, bukan pernyataan tentang repo secara keseluruhan.
@@ -250,11 +250,12 @@ flowchart TD
 
 Selain skill, tersedia **subagent** untuk delegasi kerja penuh:
 
-| Agent                    | Peran                                               | Tools     |
-| ------------------------ | --------------------------------------------------- | --------- |
-| `awcms-coder`            | Implementasi issue end-to-end (Prompt Induk doc 12) | Semua     |
-| `awcms-reviewer`         | Review PR/diff terhadap DoD (read-only)             | Read-only |
-| `awcms-security-auditor` | Audit keamanan modul, verdict go-live (read-only)   | Read-only |
+| Agent                    | Peran                                               | Tools     | Model / effort    |
+| ------------------------ | --------------------------------------------------- | --------- | ----------------- |
+| `awcms-coder`            | Implementasi issue end-to-end (Prompt Induk doc 12) | Semua     | Sonnet / `medium` |
+| `awcms-reviewer`         | Review PR/diff terhadap DoD (read-only)             | Read-only | Sonnet / `high`   |
+| `awcms-security-auditor` | Audit keamanan modul, verdict go-live (read-only)   | Read-only | Opus / `high`     |
+| `pelaksana-sederhana`    | Sub-tugas sederhana, mekanis, risiko rendah         | Semua     | Haiku / `low`     |
 
 Pola pakai: `awcms-coder` mengerjakan issue → `awcms-reviewer` mereview → modul sensitif diaudit `awcms-security-auditor`.
 

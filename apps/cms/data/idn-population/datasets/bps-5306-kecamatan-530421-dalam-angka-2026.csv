@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.04.21.1004,4,Beirafu,sex,laki_laki,,2565,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+53.04.21.1004,4,Beirafu,sex,perempuan,,2521,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Female
+53.04.21.1004,4,Beirafu,total,total,,5086,jiwa,2025,registration,total_population,1.3,1,,
+53.04.21.1002,4,Tulamalae,sex,laki_laki,,2709,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+53.04.21.1002,4,Tulamalae,sex,perempuan,,2733,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Female
+53.04.21.1002,4,Tulamalae,total,total,,5442,jiwa,2025,registration,total_population,1.3,1,,
+53.04.21.1003,4,Umanen,sex,laki_laki,,4500,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+53.04.21.1003,4,Umanen,sex,perempuan,,4562,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Female
+53.04.21.1003,4,Umanen,total,total,,9062,jiwa,2025,registration,total_population,1.3,1,,
+53.04.21,3,Atambua Barat,sex,laki_laki,,13567,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+53.04.21,3,Atambua Barat,sex,perempuan,,13341,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Female
+53.04.21,3,Atambua Barat,total,total,,26908,jiwa,2025,registration,total_population,1.3,1,,

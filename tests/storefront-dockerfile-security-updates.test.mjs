@@ -88,3 +88,23 @@ describe("apps/storefront/Dockerfile's build stage passes PUBLIC_INSTALL_HELP th
     expect(buildStage).toMatch(/PUBLIC_INSTALL_HELP="\$\{PUBLIC_INSTALL_HELP\}" \\/);
   });
 });
+
+/**
+ * `PUBLIC_CUSTOMER_PUSH` (issue #431, ADR-0048) is the same kind of build-time
+ * flag: it decides whether the push-only service worker and the notification
+ * settings page exist in the image. The build stage must declare and export it,
+ * or a container build silently ships without customer push whatever the caller
+ * passed.
+ */
+describe("apps/storefront/Dockerfile's build stage passes PUBLIC_CUSTOMER_PUSH through", () => {
+  const buildStageMatch = dockerfile.match(/FROM deps AS build[\s\S]*?(?=FROM oven\/bun:)/);
+  const buildStage = buildStageMatch ? buildStageMatch[0] : "";
+
+  test("declares `ARG PUBLIC_CUSTOMER_PUSH`", () => {
+    expect(buildStage).toMatch(/^ARG PUBLIC_CUSTOMER_PUSH$/m);
+  });
+
+  test("exports PUBLIC_CUSTOMER_PUSH in the build RUN's environment", () => {
+    expect(buildStage).toMatch(/PUBLIC_CUSTOMER_PUSH="\$\{PUBLIC_CUSTOMER_PUSH\}" \\/);
+  });
+});

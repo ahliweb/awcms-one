@@ -63,7 +63,20 @@ paths = [
 
   # Prose whose wording (not a credential) trips the entropy heuristic.
   '''apps/cms/docs/awcms/release-process\.md''',
-  '''apps/cms/docs/awcms/release-process\.id\.md'''
+  '''apps/cms/docs/awcms/release-process\.id\.md''',
+
+  # Upstream's FCM push adapter (arrived with the AWCMS subtree sync, #424):
+  # the two source files only HANDLE a service-account key's PEM header and
+  # footer (naming `-----BEGIN PRIVATE KEY-----` in a comment and in a
+  # `.replace(...)` that strips it) and carry no key material; the test builds
+  # throwaway fixtures around the same header text to exercise the parser and
+  # asserts the key is never logged. Editing upstream files to annotate them
+  # would be a subtree divergence, and a content regex on the header would
+  # excuse a real committed key anywhere, so these three exact paths are
+  # excluded instead.
+  '''apps/cms/src/modules/push-delivery/domain/fcm-credentials\.ts''',
+  '''apps/cms/src/modules/push-delivery/infrastructure/google-access-token\.ts''',
+  '''apps/cms/tests/push-fcm-adapter\.test\.ts'''
 ]
 
 # Not a path exclusion: this one benign line (`row.p256dhKey`/`row.p256dh_key`,
@@ -73,6 +86,18 @@ paths = [
 # would be too broad for a real, non-generated application source file
 # (apps/cms/src/modules/push-delivery/application/subscription-directory.ts);
 # a content regex excuses only this exact benign shape.
+#
+# Two more benign literals, excused by their exact text for the same reason:
+#   - `AKIAIOSFODNN7EXAMPLE` is the AWS documentation's own example access key
+#     id, public by design and valid for nothing; upstream code, docs and tests
+#     use it as the canonical "looks like an AWS key" value (changelog line,
+#     security-readiness redaction samples, the domain-event envelope test).
+#   - `attempt-0123456789abcdef(-A|-B)` are this repo's own Idempotency-Key test
+#     literals (16-128 character keys of `[A-Za-z0-9_-]`, issue #513): a made-up
+#     client token that identifies a retry, not a credential, whose `key = "..."`
+#     shape trips the generic-api-key rule in the idempotency tests.
 regexes = [
-  '''row\.p256dh_key'''
+  '''row\.p256dh_key''',
+  '''AKIAIOSFODNN7EXAMPLE''',
+  '''attempt-0123456789abcdef(-[AB])?'''
 ]

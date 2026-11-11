@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5307-kecamatan-530503-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.05.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Alor Barat Daya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Alor",
+  "publisherDomain": "5307",
+  "publisherWebsite": "https://alorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Alor (https://alorkab.bps.go.id), publikasi \"Kecamatan Alor Barat Daya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5307020",
+  "publicationNumber": "53070",
+  "issn": "2598-1617",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://alorkab.bps.go.id/id/publication/2026/09/28/cf65e43f7b5e1f8919064f54/kecamatan-alor-barat-daya-dalam-angka-2026.html",
+  "sourceFileSha256": "0e92bdb3a7379e338dbf0796bfcbb122a08f89808a610efebed761a83a1bdd58",
+  "sourceFileBytes": 3734483,
+  "sourcePages": [13, 14],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Alor.",
+  "csvPath": "datasets/bps-5307-kecamatan-530503-dalam-angka-2026.csv",
+  "csvSha256": "0003d7480594e1080714f47292e6efb6ffa3c4644cc48ad0cf1a8f794584e9c8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Alor Barat Daya, 2025",
+      "printedPages": [13, 14],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

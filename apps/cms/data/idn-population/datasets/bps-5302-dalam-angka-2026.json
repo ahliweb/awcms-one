@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-5302-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "53.11",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Sumba Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Timur",
+  "publisherDomain": "5302",
+  "publisherWebsite": "https://sumbatimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Timur (https://sumbatimurkab.bps.go.id), publikasi \"Kabupaten Sumba Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5302",
+  "publicationNumber": "53020.26003",
+  "issn": "2338-9222",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://sumbatimurkab.bps.go.id/id/publication/2026/02/27/18aea1f51083e973222c86a1/kabupaten-sumba-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "79ecf56974ebe4d7dc15ce358820b97f85d63e467a34092243288305b175b7f9",
+  "sourceFileBytes": 3688611,
+  "sourcePages": [50, 54, 265],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Timur.",
+  "csvPath": "datasets/bps-5302-dalam-angka-2026.csv",
+  "csvSha256": "49e146f8c6851ef445e5692b21b33713cdfd707d2c97dceaaaee72181b51d3d8",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Sumba Timur, 2025",
+      "printedPages": [50],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Sumba Timur (jiwa), 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Sumba Timur (rupiah), 2024 dan 2025",
+      "printedPages": [265],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.1.1: row not stored: row \"Wula Waijelu\": unmatched "
+  ]
+}

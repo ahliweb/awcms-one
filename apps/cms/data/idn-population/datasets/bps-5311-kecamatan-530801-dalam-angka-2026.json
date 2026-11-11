@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5311-kecamatan-530801-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.08.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Nangapanda Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ende",
+  "publisherDomain": "5311",
+  "publisherWebsite": "https://endekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ende (https://endekab.bps.go.id), publikasi \"Kecamatan Nangapanda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5311010",
+  "publicationNumber": "53110.26021",
+  "issn": "0852-4564",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://endekab.bps.go.id/id/publication/2026/09/28/4fff40360cf9f5d01f3c1969/kecamatan-nangapanda-dalam-angka-2026.html",
+  "sourceFileSha256": "5806deb81310c7709c80c4a2de2fb1156a5c7d8fb1b518523fdb06a354ec5972",
+  "sourceFileBytes": 7620700,
+  "sourcePages": [28, 29, 30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ende.",
+  "csvPath": "datasets/bps-5311-kecamatan-530801-dalam-angka-2026.csv",
+  "csvSha256": "16c9ad30eee543db88d0d579ef8475b6ea40a73e15767c7bd54d8271d1c323be",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Nangapanda, 2025",
+      "printedPages": [28, 29, 30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Nangapanda, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"25. Timbazia\": unmatched ",
+    "table 3.1: row not stored: row \"25. Timbazia\": unmatched "
+  ]
+}

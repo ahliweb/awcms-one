@@ -18,6 +18,8 @@
  * so a `401 UNAUTHENTICATED` from any of these calls clears the local
  * session the same way every other `/akun*` page's own calls already do.
  */
+import { penjagaUntuk } from "../lib/kirim-tunggal";
+import { buatPengelolaKunci, galatKonflikKunci, PESAN_KONFLIK_KUNCI } from "../lib/kunci-idempotensi";
 import {
   ambilPercakapan,
   ambilPercakapanById,
@@ -72,6 +74,9 @@ if (root) {
   const subjectInput = pesanBaruForm?.querySelector<HTMLInputElement>('[name="subject"]') ?? null;
   const bodyInput = pesanBaruForm?.querySelector<HTMLTextAreaElement>('[name="body"]') ?? null;
 
+  const pesanBaruGuard = penjagaUntuk(pesanBaruForm);
+  const pesanBaruKeys = buatPengelolaKunci();
+
   pesanBaruForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     hideSubmitError();
@@ -93,19 +98,30 @@ if (root) {
     }
     if (hasError) return;
 
-    try {
-      const { conversation } = await buatPercakapan({ subject, body });
-      window.location.href = ROUTES.accountMessage(conversation.id);
-    } catch (error) {
-      if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR") {
-        for (const fieldError of error.fieldErrors) {
-          const target = pesanBaruForm.querySelector<HTMLElement>(`[data-error-for="${fieldError.field}"]`);
-          if (target) target.textContent = fieldError.message;
+    // A successful create navigates to the new thread, so the form stays locked until then.
+    await pesanBaruGuard.jalankan(
+      async () => {
+        const input = { subject, body };
+        try {
+          const { conversation } = await buatPercakapan(input, pesanBaruKeys.untuk(JSON.stringify(input)));
+          pesanBaruKeys.sesudahBerhasil();
+          window.location.href = ROUTES.accountMessage(conversation.id);
+          return true;
+        } catch (error) {
+          pesanBaruKeys.sesudahGalat(error);
+          if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR") {
+            for (const fieldError of error.fieldErrors) {
+              const target = pesanBaruForm.querySelector<HTMLElement>(`[data-error-for="${fieldError.field}"]`);
+              if (target) target.textContent = fieldError.message;
+            }
+            return false;
+          }
+          showSubmitError(galatKonflikKunci(error) ? new Error(PESAN_KONFLIK_KUNCI) : error, "mengirim pesan baru ke toko");
+          return false;
         }
-        return;
-      }
-      showSubmitError(error, "mengirim pesan baru ke toko");
-    }
+      },
+      { kunciBila: (navigasi) => navigasi }
+    );
   });
 
   // --- list view ---------------------------------------------------------------
@@ -228,6 +244,9 @@ if (root) {
     }
   }
 
+  const balasGuard = penjagaUntuk(replyForm);
+  const balasKeys = buatPengelolaKunci();
+
   replyForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!conversationId) return;
@@ -241,22 +260,27 @@ if (root) {
       return;
     }
 
-    try {
-      await kirimPesanPercakapan(conversationId, body);
-      if (replyBodyInput) replyBodyInput.value = "";
-      await loadDetail(conversationId);
-    } catch (error) {
-      if (error instanceof TokoApiError && error.code === "CONVERSATION_CLOSED") {
-        await loadDetail(conversationId);
-        return;
+    const threadId = conversationId;
+    await balasGuard.jalankan(async () => {
+      try {
+        await kirimPesanPercakapan(threadId, body, balasKeys.untuk(`${threadId}|${body}`));
+        balasKeys.sesudahBerhasil();
+        if (replyBodyInput) replyBodyInput.value = "";
+        await loadDetail(threadId);
+      } catch (error) {
+        balasKeys.sesudahGalat(error);
+        if (error instanceof TokoApiError && error.code === "CONVERSATION_CLOSED") {
+          await loadDetail(threadId);
+          return;
+        }
+        if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR") {
+          const fieldError = error.fieldErrors.find((f) => f.field === "body");
+          if (errorEl) errorEl.textContent = fieldError?.message ?? error.message;
+          return;
+        }
+        showSubmitError(galatKonflikKunci(error) ? new Error(PESAN_KONFLIK_KUNCI) : error, "membalas percakapan");
       }
-      if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR") {
-        const fieldError = error.fieldErrors.find((f) => f.field === "body");
-        if (errorEl) errorEl.textContent = fieldError?.message ?? error.message;
-        return;
-      }
-      showSubmitError(error, "membalas percakapan");
-    }
+    });
   });
 
   // --- guest/account toggle, and which view to show ---------------------------

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.04.2002,4,Nanga Mbaling,sex,laki_laki,,1421,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.2002,4,Nanga Mbaling,sex,perempuan,,1385,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.2002,4,Nanga Mbaling,total,total,,2806,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.2001,4,Nanga Mbaur,sex,laki_laki,,1017,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.2001,4,Nanga Mbaur,sex,perempuan,,1033,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.2001,4,Nanga Mbaur,total,total,,2050,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.2013,4,Kembang Mekar,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.2013,4,Kembang Mekar,sex,perempuan,,336,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.2013,4,Kembang Mekar,total,total,,684,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.2014,4,Wela Lada,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.2014,4,Wela Lada,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.2014,4,Wela Lada,total,total,,1443,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.2012,4,Nampar Sepang,sex,laki_laki,,740,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.2012,4,Nampar Sepang,sex,perempuan,,682,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.2012,4,Nampar Sepang,total,total,,1422,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.1011,4,Nanga Baras,sex,laki_laki,,673,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.1011,4,Nanga Baras,sex,perempuan,,637,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.1011,4,Nanga Baras,total,total,,1310,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.1009,4,Pota,sex,laki_laki,,1972,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.1009,4,Pota,sex,perempuan,,1959,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.1009,4,Pota,total,total,,3931,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.1020,4,Golo Wangkung Utara,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.1020,4,Golo Wangkung Utara,sex,perempuan,,300,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.1020,4,Golo Wangkung Utara,total,total,,653,jiwa,2025,registration,total_population,3.1,,,
+53.19.04.1018,4,Ulung Baras,sex,laki_laki,,838,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04.1018,4,Ulung Baras,sex,perempuan,,791,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04.1018,4,Ulung Baras,total,total,,1629,jiwa,2025,registration,total_population,3.1,,,
+53.19.04,3,Sambi Rampas,sex,laki_laki,,8412,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.19.04,3,Sambi Rampas,sex,perempuan,,8112,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.19.04,3,Sambi Rampas,total,total,,16524,jiwa,2025,registration,total_population,3.1,,,

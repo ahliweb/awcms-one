@@ -21,6 +21,7 @@
  * order deliberately dated before `historyFrom` specifically to prove the
  * SERVER does the filtering, not this client.
  */
+import { penjagaUntuk } from "../lib/kirim-tunggal";
 import { ambilPesananAkunByKode, ambilPesananAkun, type AkunPesananHalaman } from "../lib/akun-klien";
 import { bacaSesi, hapusSesi } from "../lib/akun-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
@@ -219,7 +220,11 @@ if (root) {
     });
   }
 
-  detailGatewayPayButton?.addEventListener("click", async () => {
+  // Issue #513: the gateway session is idempotent per order server-side (no key);
+  // a success navigates to the hosted page, so the button stays locked until then.
+  const gatewayGuard = penjagaUntuk(detailGatewayPayButton);
+
+  detailGatewayPayButton?.addEventListener("click", () => {
     if (!orderCode) return;
     const sesi = bacaSesi();
     if (!sesi) {
@@ -227,27 +232,31 @@ if (root) {
       return;
     }
 
-    detailGatewayPayButton.disabled = true;
-    if (detailGatewayStatusEl) detailGatewayStatusEl.textContent = "Membuka halaman pembayaran…";
-
-    try {
-      const session = await createGatewaySession(orderCode, null, sesi.token);
-      if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
-        throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
-      }
-      window.location.assign(session.redirectUrl);
-    } catch (error) {
-      detailGatewayPayButton.disabled = false;
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        hapusSesi();
-        render();
-        return;
-      }
-      if (detailGatewayStatusEl) {
-        detailGatewayStatusEl.textContent =
-          error instanceof TokoApiError ? error.message : "Gagal membuka halaman pembayaran. Coba lagi.";
-      }
-    }
+    void gatewayGuard.jalankan(
+      async () => {
+        if (detailGatewayStatusEl) detailGatewayStatusEl.textContent = "Membuka halaman pembayaran…";
+        try {
+          const session = await createGatewaySession(orderCode, null, sesi.token);
+          if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
+            throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
+          }
+          window.location.assign(session.redirectUrl);
+          return true;
+        } catch (error) {
+          if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+            hapusSesi();
+            render();
+            return false;
+          }
+          if (detailGatewayStatusEl) {
+            detailGatewayStatusEl.textContent =
+              error instanceof TokoApiError ? error.message : "Gagal membuka halaman pembayaran. Coba lagi.";
+          }
+          return false;
+        }
+      },
+      { kunciBila: (navigasi) => navigasi }
+    );
   });
 
   async function loadDetail(kode: string): Promise<void> {

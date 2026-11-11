@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-5301-kecamatan-531218-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.12.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Laboya Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat",
+  "publisherDomain": "5301",
+  "publisherWebsite": "https://sumbabaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat (https://sumbabaratkab.bps.go.id), publikasi \"Kecamatan Laboya Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5301023",
+  "publicationNumber": "53010.25009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratkab.bps.go.id/id/publication/2026/09/28/3d5f703ef4da70486b3ed6df/kecamatan-laboya-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "195e045427855faf24180cb9c0117586be14bd3526ad69c4bf818b9988973a86",
+  "sourceFileBytes": 13118735,
+  "sourcePages": [20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat.",
+  "csvPath": "datasets/bps-5301-kecamatan-531218-dalam-angka-2026.csv",
+  "csvSha256": "491e0e801874d5223fc9ead0ea4e446eb118522e92942235caae5929af249eb9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Laboya Barat, 2025",
+      "printedPages": [20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"01. Wetana\": unmatched ",
+    "table 3.1: row not stored: row \"01. Wetana\": unmatched "
+  ]
+}

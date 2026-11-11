@@ -240,7 +240,12 @@ export function formatBulkFailureSummary(
 /* real browser (or the static-contract test's markup assertions).       */
 /* -------------------------------------------------------------------- */
 
-import { lockElement, messageBox, sendJsonRequest } from "./admin-form-client";
+import {
+  lockElement,
+  messageBox,
+  onAction,
+  sendJsonRequest
+} from "./admin-form-client";
 import { confirmCommerceAction } from "./commerce-confirm-dialog-client";
 
 type BulkStatusAction = "publish" | "draft";
@@ -447,7 +452,7 @@ export function initCommerceProductsBulk(): void {
     const failureHeaderTemplate =
       button.dataset.failureHeaderTemplate ?? "{failedCount}/{totalCount}";
 
-    button.addEventListener("click", async () => {
+    onAction(`#${button.id}`, async () => {
       const items = selectedItems();
       if (items.length === 0) return;
 
@@ -473,7 +478,7 @@ export function initCommerceProductsBulk(): void {
       other: deleteButton.dataset.confirmMessageTemplateOther ?? "{n}"
     };
 
-    deleteButton.addEventListener("click", async () => {
+    onAction(`#${deleteButton.id}`, async () => {
       const items = selectedItems();
       if (items.length === 0) return;
 

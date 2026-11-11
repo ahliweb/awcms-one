@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.17.05.2006,4,Waimanu,sex,laki_laki,,812,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2006,4,Waimanu,sex,perempuan,,837,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2006,4,Waimanu,total,total,,1649,jiwa,2025,registration,total_population,3.1,,,
+53.17.05.2007,4,Manurara,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2007,4,Manurara,sex,perempuan,,716,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2007,4,Manurara,total,total,,1445,jiwa,2025,registration,total_population,3.1,,,
+53.17.05.2005,4,Dameka,sex,laki_laki,,964,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2005,4,Dameka,sex,perempuan,,909,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2005,4,Dameka,total,total,,1873,jiwa,2025,registration,total_population,3.1,,,
+53.17.05.2004,4,Wailawa,sex,laki_laki,,1144,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2004,4,Wailawa,sex,perempuan,,1072,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2004,4,Wailawa,total,total,,2216,jiwa,2025,registration,total_population,3.1,,,
+53.17.05.2003,4,Malinjak,sex,laki_laki,,1157,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2003,4,Malinjak,sex,perempuan,,1101,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2003,4,Malinjak,total,total,,2258,jiwa,2025,registration,total_population,3.1,,,
+53.17.05.2002,4,Tana modu,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2002,4,Tana modu,sex,perempuan,,1095,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2002,4,Tana modu,total,total,,2188,jiwa,2025,registration,total_population,3.1,,,
+53.17.05.2001,4,Konda Maloba,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2001,4,Konda Maloba,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2001,4,Konda Maloba,total,total,,906,jiwa,2025,registration,total_population,3.1,,,
+53.17.05.2009,4,Oka Wacu,sex,laki_laki,,460,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05.2009,4,Oka Wacu,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05.2009,4,Oka Wacu,total,total,,881,jiwa,2025,registration,total_population,3.1,,,
+53.17.05,3,Katikutana Selatan,sex,laki_laki,,8053,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.05,3,Katikutana Selatan,sex,perempuan,,7840,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.05,3,Katikutana Selatan,total,total,,15893,jiwa,2025,registration,total_population,3.1,,,

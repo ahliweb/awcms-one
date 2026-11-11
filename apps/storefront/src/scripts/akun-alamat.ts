@@ -20,6 +20,8 @@ import {
   type AlamatInput
 } from "../lib/akun-klien";
 import { bacaSesi } from "../lib/akun-sesi";
+import { penjagaUntuk } from "../lib/kirim-tunggal";
+import { buatPengelolaKunci, galatKonflikKunci, PESAN_KONFLIK_KUNCI } from "../lib/kunci-idempotensi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallback";
@@ -216,33 +218,44 @@ if (root) {
     }
   }
 
+  // Issue #513: one guard for the row actions (set default, delete), one for the
+  // form. "Set default" (PATCH-like, same end state) and DELETE are naturally
+  // idempotent, so they are guarded but carry no key.
+  const barisGuard = penjagaUntuk(listEl);
+  const formGuard = penjagaUntuk(form);
+  const tambahKeys = buatPengelolaKunci();
+
   async function setDefault(id: string): Promise<void> {
     hideSubmitError();
-    try {
-      await jadikanAlamatUtama(id);
-      await loadList();
-      if (statusEl) {
-        statusEl.hidden = false;
-        statusEl.textContent = "Alamat utama diperbarui.";
+    await barisGuard.jalankan(async () => {
+      try {
+        await jadikanAlamatUtama(id);
+        await loadList();
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = "Alamat utama diperbarui.";
+        }
+      } catch (error) {
+        showSubmitError(error, "mengubah alamat utama");
       }
-    } catch (error) {
-      showSubmitError(error, "mengubah alamat utama");
-    }
+    });
   }
 
   async function deleteAlamat(id: string): Promise<void> {
     if (!window.confirm("Hapus alamat ini?")) return;
     hideSubmitError();
-    try {
-      await hapusAlamat(id);
-      await loadList();
-      if (statusEl) {
-        statusEl.hidden = false;
-        statusEl.textContent = "Alamat dihapus.";
+    await barisGuard.jalankan(async () => {
+      try {
+        await hapusAlamat(id);
+        await loadList();
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = "Alamat dihapus.";
+        }
+      } catch (error) {
+        showSubmitError(error, "menghapus alamat");
       }
-    } catch (error) {
-      showSubmitError(error, "menghapus alamat");
-    }
+    });
   }
 
   async function showAccountView(): Promise<void> {
@@ -274,31 +287,41 @@ if (root) {
 
     const wantsDefault = form.querySelector<HTMLInputElement>('[name="isDefault"]')?.checked ?? false;
 
-    try {
-      const saved = editingId ? await ubahAlamat(editingId, input) : await tambahAlamat(input);
-      if (wantsDefault && !saved.address.isDefault) {
-        await jadikanAlamatUtama(saved.address.id);
-      }
-      closeForm();
-      await loadList();
-      if (statusEl) {
-        statusEl.hidden = false;
-        statusEl.textContent = editingId ? "Alamat diperbarui." : "Alamat ditambahkan.";
-      }
-    } catch (error) {
-      if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR") {
-        for (const fieldError of error.fieldErrors) {
-          const target = form.querySelector<HTMLElement>(`[data-error-for="${fieldError.field}"]`);
-          if (target) target.textContent = fieldError.message;
+    await formGuard.jalankan(async () => {
+      try {
+        // Only a CREATE carries a key (the edit is a PATCH of one row: same end state when repeated).
+        const saved = editingId
+          ? await ubahAlamat(editingId, input)
+          : await tambahAlamat(input, tambahKeys.untuk(JSON.stringify(input)));
+        if (!editingId) tambahKeys.sesudahBerhasil();
+        if (wantsDefault && !saved.address.isDefault) {
+          await jadikanAlamatUtama(saved.address.id);
         }
-        return;
+        closeForm();
+        await loadList();
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = editingId ? "Alamat diperbarui." : "Alamat ditambahkan.";
+        }
+      } catch (error) {
+        if (!editingId) tambahKeys.sesudahGalat(error);
+        if (error instanceof TokoApiError && error.code === "VALIDATION_ERROR") {
+          for (const fieldError of error.fieldErrors) {
+            const target = form.querySelector<HTMLElement>(`[data-error-for="${fieldError.field}"]`);
+            if (target) target.textContent = fieldError.message;
+          }
+          return;
+        }
+        if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+          showGuestView();
+          return;
+        }
+        showSubmitError(
+          galatKonflikKunci(error) ? new Error(PESAN_KONFLIK_KUNCI) : error,
+          editingId ? "mengubah alamat" : "menambah alamat baru"
+        );
       }
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        showGuestView();
-        return;
-      }
-      showSubmitError(error, editingId ? "mengubah alamat" : "menambah alamat baru");
-    }
+    });
   });
 
   addButton?.addEventListener("click", openFormForCreate);

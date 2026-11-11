@@ -13,7 +13,12 @@
  * cent, and the panel reloads to show what it recorded. The wizard's review
  * step restates the user's choices - it does not predict a refund.
  */
-import { lockElement, messageBox, sendJsonForData } from "./admin-form-client";
+import {
+  lockElement,
+  messageBox,
+  onAction,
+  sendJsonForData
+} from "./admin-form-client";
 import { confirmFromTrigger } from "./commerce-confirm-dialog-client";
 
 export type WizardLine = {
@@ -265,7 +270,7 @@ export function initReturnsPanel(): void {
       .querySelector<HTMLButtonElement>("[data-returns-cancel]")
       ?.addEventListener("click", () => dialog.close());
 
-    submit?.addEventListener("click", async () => {
+    onAction("[data-returns-submit]", async (submit) => {
       if (!validateStep(1) || !(confirmBox?.checked ?? false)) return;
       wizardError.clear();
       const unlock = lockElement(submit, msg("busyLabel"));
@@ -316,11 +321,7 @@ export function initReturnsPanel(): void {
   }
 
   // --- send an open refund leg to the payment provider ----------------------
-  panel.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-    const button = target.closest<HTMLButtonElement>("[data-refund-execute]");
-    if (!button) return;
+  onAction("[data-refund-execute]", async (button) => {
     error.clear();
     if (!(await confirmFromTrigger(button))) return;
     const unlock = lockElement(button, msg("busyLabel"));

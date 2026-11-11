@@ -1,0 +1,60 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.16.04,3,Mauponggo,total,total,,26010,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16.06,3,Keo Tengah,total,total,,16210,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16.02,3,Nangaroro,total,total,,23396,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16.03,3,Boawae,total,total,,43179,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16.07,3,Aesesa Selatan,total,total,,7732,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16.01,3,Aesesa,total,total,,47762,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16.05,3,Wolowae,total,total,,6380,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16,2,Nagekeo,total,total,,170669,jiwa,2025,projection,total_population,3.1.1,57,,
+53.16,2,Kabupaten Nagekeo,age_group,0-4,laki_laki,7765,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+53.16,2,Kabupaten Nagekeo,age_group,0-4,perempuan,7508,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+53.16,2,Kabupaten Nagekeo,age_group,0-4,,15273,jiwa,2025,projection,total_population,3.1.2,60,,0–4
+53.16,2,Kabupaten Nagekeo,age_group,5-9,laki_laki,7605,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+53.16,2,Kabupaten Nagekeo,age_group,5-9,perempuan,7237,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+53.16,2,Kabupaten Nagekeo,age_group,5-9,,14842,jiwa,2025,projection,total_population,3.1.2,60,,5–9
+53.16,2,Kabupaten Nagekeo,age_group,10-14,laki_laki,7726,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+53.16,2,Kabupaten Nagekeo,age_group,10-14,perempuan,7318,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+53.16,2,Kabupaten Nagekeo,age_group,10-14,,15044,jiwa,2025,projection,total_population,3.1.2,60,,10–14
+53.16,2,Kabupaten Nagekeo,age_group,15-19,laki_laki,6866,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+53.16,2,Kabupaten Nagekeo,age_group,15-19,perempuan,6643,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+53.16,2,Kabupaten Nagekeo,age_group,15-19,,13509,jiwa,2025,projection,total_population,3.1.2,60,,15–19
+53.16,2,Kabupaten Nagekeo,age_group,20-24,laki_laki,7178,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+53.16,2,Kabupaten Nagekeo,age_group,20-24,perempuan,6691,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+53.16,2,Kabupaten Nagekeo,age_group,20-24,,13869,jiwa,2025,projection,total_population,3.1.2,60,,20–24
+53.16,2,Kabupaten Nagekeo,age_group,25-29,laki_laki,7365,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+53.16,2,Kabupaten Nagekeo,age_group,25-29,perempuan,6996,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+53.16,2,Kabupaten Nagekeo,age_group,25-29,,14361,jiwa,2025,projection,total_population,3.1.2,60,,25–29
+53.16,2,Kabupaten Nagekeo,age_group,30-34,laki_laki,6876,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+53.16,2,Kabupaten Nagekeo,age_group,30-34,perempuan,6651,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+53.16,2,Kabupaten Nagekeo,age_group,30-34,,13527,jiwa,2025,projection,total_population,3.1.2,60,,30–34
+53.16,2,Kabupaten Nagekeo,age_group,35-39,laki_laki,5598,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+53.16,2,Kabupaten Nagekeo,age_group,35-39,perempuan,5866,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+53.16,2,Kabupaten Nagekeo,age_group,35-39,,11464,jiwa,2025,projection,total_population,3.1.2,60,,35–39
+53.16,2,Kabupaten Nagekeo,age_group,40-44,laki_laki,5486,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+53.16,2,Kabupaten Nagekeo,age_group,40-44,perempuan,5963,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+53.16,2,Kabupaten Nagekeo,age_group,40-44,,11449,jiwa,2025,projection,total_population,3.1.2,60,,40–44
+53.16,2,Kabupaten Nagekeo,age_group,45-49,laki_laki,5124,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+53.16,2,Kabupaten Nagekeo,age_group,45-49,perempuan,5599,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+53.16,2,Kabupaten Nagekeo,age_group,45-49,,10723,jiwa,2025,projection,total_population,3.1.2,60,,45–49
+53.16,2,Kabupaten Nagekeo,age_group,50-54,laki_laki,4283,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+53.16,2,Kabupaten Nagekeo,age_group,50-54,perempuan,4987,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+53.16,2,Kabupaten Nagekeo,age_group,50-54,,9270,jiwa,2025,projection,total_population,3.1.2,60,,50–54
+53.16,2,Kabupaten Nagekeo,age_group,55-59,laki_laki,3548,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+53.16,2,Kabupaten Nagekeo,age_group,55-59,perempuan,4262,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+53.16,2,Kabupaten Nagekeo,age_group,55-59,,7810,jiwa,2025,projection,total_population,3.1.2,60,,55–59
+53.16,2,Kabupaten Nagekeo,age_group,60-64,laki_laki,2695,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+53.16,2,Kabupaten Nagekeo,age_group,60-64,perempuan,3410,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+53.16,2,Kabupaten Nagekeo,age_group,60-64,,6105,jiwa,2025,projection,total_population,3.1.2,60,,60–64
+53.16,2,Kabupaten Nagekeo,age_group,65-69,laki_laki,2339,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+53.16,2,Kabupaten Nagekeo,age_group,65-69,perempuan,2745,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+53.16,2,Kabupaten Nagekeo,age_group,65-69,,5084,jiwa,2025,projection,total_population,3.1.2,60,,65–69
+53.16,2,Kabupaten Nagekeo,age_group,70-74,laki_laki,1753,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+53.16,2,Kabupaten Nagekeo,age_group,70-74,perempuan,2101,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+53.16,2,Kabupaten Nagekeo,age_group,70-74,,3854,jiwa,2025,projection,total_population,3.1.2,60,,70–74
+53.16,2,Kabupaten Nagekeo,age_group,75+,laki_laki,2127,jiwa,2025,projection,total_population,3.1.2,60,,75+
+53.16,2,Kabupaten Nagekeo,age_group,75+,perempuan,2358,jiwa,2025,projection,total_population,3.1.2,60,,75+
+53.16,2,Kabupaten Nagekeo,age_group,75+,,4485,jiwa,2025,projection,total_population,3.1.2,60,,75+
+53.16,2,Kabupaten Nagekeo,sex,laki_laki,,84334,jiwa,2025,projection,total_population,3.1.2,60,,Laki-Laki
+53.16,2,Kabupaten Nagekeo,sex,perempuan,,86335,jiwa,2025,projection,total_population,3.1.2,60,,Perempuan
+53.16,2,Kabupaten Nagekeo,total,total,,170669,jiwa,2025,projection,total_population,3.1.2,60,,

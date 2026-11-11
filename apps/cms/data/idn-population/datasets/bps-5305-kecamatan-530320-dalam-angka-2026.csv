@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.20.2001,4,Subun,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2001,4,Subun,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2001,4,Subun,total,total,,840,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2003,4,Lapeom,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2003,4,Lapeom,sex,perempuan,,460,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2003,4,Lapeom,total,total,,905,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2002,4,Usapinonot,sex,laki_laki,,422,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2002,4,Usapinonot,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2002,4,Usapinonot,total,total,,841,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2006,4,Unini,sex,laki_laki,,743,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2006,4,Unini,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2006,4,Unini,total,total,,1466,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2004,4,Letneo,sex,laki_laki,,664,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2004,4,Letneo,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2004,4,Letneo,total,total,,1332,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2008,4,Letneo Selatan,sex,laki_laki,,402,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2008,4,Letneo Selatan,sex,perempuan,,379,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2008,4,Letneo Selatan,total,total,,781,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2010,4,Nifunenas,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2010,4,Nifunenas,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2010,4,Nifunenas,total,total,,692,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2012,4,Subun Tualele,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2012,4,Subun Tualele,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2012,4,Subun Tualele,total,total,,787,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2011,4,Subun Bestobe,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2011,4,Subun Bestobe,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2011,4,Subun Bestobe,total,total,,642,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20.2009,4,Oabikase,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20.2009,4,Oabikase,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20.2009,4,Oabikase,total,total,,406,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20,3,Insana Barat,sex,laki_laki,,5904,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.20,3,Insana Barat,sex,perempuan,,5883,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.20,3,Insana Barat,total,total,,11787,jiwa,2025,registration,total_population,3.1,28,,
+53.03.20,3,Insana Barat,age_group,0-4,laki_laki,313,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.20,3,Insana Barat,age_group,0-4,perempuan,277,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.20,3,Insana Barat,age_group,0-4,,590,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.20,3,Insana Barat,age_group,5-9,laki_laki,620,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.20,3,Insana Barat,age_group,5-9,perempuan,516,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.20,3,Insana Barat,age_group,5-9,,1136,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.20,3,Insana Barat,age_group,10-14,laki_laki,600,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.20,3,Insana Barat,age_group,10-14,perempuan,547,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.20,3,Insana Barat,age_group,10-14,,1147,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.20,3,Insana Barat,age_group,15-19,laki_laki,556,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.20,3,Insana Barat,age_group,15-19,perempuan,557,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.20,3,Insana Barat,age_group,15-19,,1113,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.20,3,Insana Barat,age_group,20-24,laki_laki,641,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.20,3,Insana Barat,age_group,20-24,perempuan,660,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.20,3,Insana Barat,age_group,20-24,,1301,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.20,3,Insana Barat,age_group,25-29,laki_laki,518,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.20,3,Insana Barat,age_group,25-29,perempuan,504,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.20,3,Insana Barat,age_group,25-29,,1022,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.20,3,Insana Barat,age_group,30-34,laki_laki,390,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.20,3,Insana Barat,age_group,30-34,perempuan,396,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.20,3,Insana Barat,age_group,30-34,,786,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.20,3,Insana Barat,age_group,35-39,laki_laki,385,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.20,3,Insana Barat,age_group,35-39,perempuan,382,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.20,3,Insana Barat,age_group,35-39,,767,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.20,3,Insana Barat,age_group,40-44,laki_laki,328,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.20,3,Insana Barat,age_group,40-44,perempuan,384,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.20,3,Insana Barat,age_group,40-44,,712,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.20,3,Insana Barat,age_group,45-49,laki_laki,322,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.20,3,Insana Barat,age_group,45-49,perempuan,337,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.20,3,Insana Barat,age_group,45-49,,659,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.20,3,Insana Barat,age_group,50-54,laki_laki,244,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.20,3,Insana Barat,age_group,50-54,perempuan,284,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.20,3,Insana Barat,age_group,50-54,,528,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.20,3,Insana Barat,age_group,55-59,laki_laki,271,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.20,3,Insana Barat,age_group,55-59,perempuan,287,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.20,3,Insana Barat,age_group,55-59,,558,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.20,3,Insana Barat,age_group,60-64,laki_laki,236,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.20,3,Insana Barat,age_group,60-64,perempuan,236,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.20,3,Insana Barat,age_group,60-64,,472,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.20,3,Insana Barat,age_group,65-69,laki_laki,181,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.20,3,Insana Barat,age_group,65-69,perempuan,234,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.20,3,Insana Barat,age_group,65-69,,415,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.20,3,Insana Barat,age_group,70-74,laki_laki,130,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.20,3,Insana Barat,age_group,70-74,perempuan,101,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.20,3,Insana Barat,age_group,70-74,,231,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.20,3,Insana Barat,age_group,75+,laki_laki,169,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.20,3,Insana Barat,age_group,75+,perempuan,181,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.20,3,Insana Barat,age_group,75+,,350,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.20,3,Insana Barat,sex,laki_laki,,5904,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.20,3,Insana Barat,sex,perempuan,,5883,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.20,3,Insana Barat,total,total,,11787,jiwa,2025,registration,total_population,3.2,30,,

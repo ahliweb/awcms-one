@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.17.01.2023,4,Anakalang,sex,laki_laki,,2032,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01.2023,4,Anakalang,sex,perempuan,,2048,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01.2023,4,Anakalang,total,total,,4080,jiwa,2025,registration,total_population,3.1,,,
+53.17.01.2001,4,Makata Keri,sex,laki_laki,,1071,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01.2001,4,Makata Keri,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01.2001,4,Makata Keri,total,total,,2091,jiwa,2025,registration,total_population,3.1,,,
+53.17.01.2019,4,Umbu Riri,sex,laki_laki,,965,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01.2019,4,Umbu Riri,sex,perempuan,,920,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01.2019,4,Umbu Riri,total,total,,1885,jiwa,2025,registration,total_population,3.1,,,
+53.17.01.2004,4,Mata Woga,sex,laki_laki,,816,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01.2004,4,Mata Woga,sex,perempuan,,833,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01.2004,4,Mata Woga,total,total,,1649,jiwa,2025,registration,total_population,3.1,,,
+53.17.01.2003,4,Kabela Wuntu,sex,laki_laki,,778,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01.2003,4,Kabela Wuntu,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01.2003,4,Kabela Wuntu,total,total,,1525,jiwa,2025,registration,total_population,3.1,,,
+53.17.01.2024,4,Dewa Jara,sex,laki_laki,,832,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01.2024,4,Dewa Jara,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01.2024,4,Dewa Jara,total,total,,1620,jiwa,2025,registration,total_population,3.1,,,
+53.17.01.2025,4,Mata Redi,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01.2025,4,Mata Redi,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01.2025,4,Mata Redi,total,total,,1075,jiwa,2025,registration,total_population,3.1,,,
+53.17.01,3,Katikutana,sex,laki_laki,,7044,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.17.01,3,Katikutana,sex,perempuan,,6881,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.17.01,3,Katikutana,total,total,,13925,jiwa,2025,registration,total_population,3.1,,,

@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-5317-kecamatan-531811-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.18.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kodi Balaghar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat Daya",
+  "publisherDomain": "5317",
+  "publisherWebsite": "https://sumbabaratdayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat Daya (https://sumbabaratdayakab.bps.go.id), publikasi \"Kecamatan Kodi Balaghar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5317011",
+  "publicationNumber": "53170.26006",
+  "issn": "3032-0038",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratdayakab.bps.go.id/id/publication/2026/09/28/6a6cf6a92b22504a457c6b54/kecamatan-kodi-balaghar-dalam-angka-2026.html",
+  "sourceFileSha256": "958f0711d6de02a04c23e060777186f1917154d7c83f8cdf8d20fd9cdc2be3d5",
+  "sourceFileBytes": 10640891,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat Daya.",
+  "csvPath": "datasets/bps-5317-kecamatan-531811-dalam-angka-2026.csv",
+  "csvSha256": "e92d888826529ff026c5c88360f2befa48e9159bc988024854db9cd914f368e5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kodi Balaghar, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kodi Balaghar, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Karang Indah\": unmatched ",
+    "table 3.1: row not stored: row \"Rada Malando\": unmatched ",
+    "table 3.1: row not stored: row \"Waimaringi\": unmatched ",
+    "table 3.1: row not stored: row \"Tana Mete\": unmatched ",
+    "table 3.1: row not stored: row \"Waimakaha\": unmatched ",
+    "table 3.1: row not stored: row \"Manu Toghi\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Indah\": unmatched ",
+    "table 3.1: row not stored: row \"Rada Malando\": unmatched ",
+    "table 3.1: row not stored: row \"Waimaringi\": unmatched ",
+    "table 3.1: row not stored: row \"Tana Mete\": unmatched ",
+    "table 3.1: row not stored: row \"Waimakaha\": unmatched ",
+    "table 3.1: row not stored: row \"Manu Toghi\": unmatched ",
+    "table 3.1 is not included: its published figures do not add up (sex/laki_laki/- 2025: parts sum 7285.0000 != 11745.0000 (diff 4460.0000)); the source itself is inconsistent"
+  ]
+}

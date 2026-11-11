@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.03.2010,4,Halerman,sex,laki_laki,,750,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2010,4,Halerman,sex,perempuan,,690,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2010,4,Halerman,total,total,,1440,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2013,4,Kafelulang,sex,laki_laki,,601,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2013,4,Kafelulang,sex,perempuan,,572,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2013,4,Kafelulang,total,total,,1173,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2008,4,Pintu Mas,sex,laki_laki,,1183,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2008,4,Pintu Mas,sex,perempuan,,1187,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2008,4,Pintu Mas,total,total,,2370,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2002,4,Probur,sex,laki_laki,,1385,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2002,4,Probur,sex,perempuan,,1282,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2002,4,Probur,total,total,,2667,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2019,4,Probur Utara,sex,laki_laki,,770,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2019,4,Probur Utara,sex,perempuan,,773,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2019,4,Probur Utara,total,total,,1543,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2016,4,Wolwal Barat,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2016,4,Wolwal Barat,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2016,4,Wolwal Barat,total,total,,564,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2018,4,Wolwal Selatan,sex,laki_laki,,257,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2018,4,Wolwal Selatan,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2018,4,Wolwal Selatan,total,total,,526,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2017,4,Wolwal Tengah,sex,laki_laki,,561,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2017,4,Wolwal Tengah,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2017,4,Wolwal Tengah,total,total,,1153,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2009,4,Wolwal,sex,laki_laki,,601,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2009,4,Wolwal,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2009,4,Wolwal,total,total,,1192,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2014,4,Moramam,sex,laki_laki,,909,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2014,4,Moramam,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2014,4,Moramam,total,total,,1839,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2007,4,Morba,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2007,4,Morba,sex,perempuan,,675,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2007,4,Morba,total,total,,1287,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.2015,4,Pailelang,sex,laki_laki,,724,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.2015,4,Pailelang,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.2015,4,Pailelang,total,total,,1508,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03.1001,4,Moru,sex,laki_laki,,1397,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03.1001,4,Moru,sex,perempuan,,1546,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03.1001,4,Moru,total,total,,2943,jiwa,2025,registration,total_population,3.1,13,,
+53.05.03,3,Alor Barat Daya,sex,laki_laki,,10032,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.03,3,Alor Barat Daya,sex,perempuan,,10173,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.03,3,Alor Barat Daya,total,total,,20205,jiwa,2025,registration,total_population,3.1,13,,

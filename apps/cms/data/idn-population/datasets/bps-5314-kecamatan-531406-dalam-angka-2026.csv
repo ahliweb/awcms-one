@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.14.06.2006,4,Lakamola,sex,laki_laki,,680,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2006,4,Lakamola,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2006,4,Lakamola,total,total,,1312,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2001,4,Mukekuku,sex,laki_laki,,650,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2001,4,Mukekuku,sex,perempuan,,666,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2001,4,Mukekuku,total,total,,1316,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2002,4,Faifua,sex,laki_laki,,556,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2002,4,Faifua,sex,perempuan,,568,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2002,4,Faifua,total,total,,1124,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2003,4,Hundihopo,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2003,4,Hundihopo,sex,perempuan,,567,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2003,4,Hundihopo,total,total,,1119,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.1004,4,Londalusi,sex,laki_laki,,714,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.1004,4,Londalusi,sex,perempuan,,672,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.1004,4,Londalusi,total,total,,1386,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2005,4,Serubeba,sex,laki_laki,,1078,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2005,4,Serubeba,sex,perempuan,,1088,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2005,4,Serubeba,total,total,,2166,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2007,4,Matasio,sex,laki_laki,,547,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2007,4,Matasio,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2007,4,Matasio,total,total,,1037,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2015,4,Batefalu,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2015,4,Batefalu,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2015,4,Batefalu,total,total,,1516,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2016,4,Papela,sex,laki_laki,,1248,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2016,4,Papela,sex,perempuan,,1171,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2016,4,Papela,total,total,,2419,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06.2017,4,Matanae,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06.2017,4,Matanae,sex,perempuan,,514,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06.2017,4,Matanae,total,total,,1024,jiwa,2025,registration,total_population,3.1.1,21,,
+53.14.06,3,Kecamatan Rote Timur,sex,laki_laki,,7915,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+53.14.06,3,Kecamatan Rote Timur,sex,perempuan,,7800,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+53.14.06,3,Kecamatan Rote Timur,total,total,,15715,jiwa,2025,registration,total_population,3.1.1,21,,

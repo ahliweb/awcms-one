@@ -1,0 +1,149 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+61.03,2,Kabupaten Sanggau,age_group,0-4,laki_laki,22559,jiwa,2024,projection,total_population,3.1.2,110,,0–4
+61.03,2,Kabupaten Sanggau,age_group,0-4,laki_laki,22772,jiwa,2025,projection,total_population,3.1.2,110,,0–4
+61.03,2,Kabupaten Sanggau,age_group,0-4,perempuan,21549,jiwa,2024,projection,total_population,3.1.2,110,,0–4
+61.03,2,Kabupaten Sanggau,age_group,0-4,perempuan,21848,jiwa,2025,projection,total_population,3.1.2,110,,0–4
+61.03,2,Kabupaten Sanggau,age_group,0-4,,44108,jiwa,2024,projection,total_population,3.1.2,110,,0–4
+61.03,2,Kabupaten Sanggau,age_group,0-4,,44620,jiwa,2025,projection,total_population,3.1.2,110,,0–4
+61.03,2,Kabupaten Sanggau,age_group,5-9,laki_laki,20345,jiwa,2024,projection,total_population,3.1.2,110,,5–9
+61.03,2,Kabupaten Sanggau,age_group,5-9,laki_laki,20501,jiwa,2025,projection,total_population,3.1.2,110,,5–9
+61.03,2,Kabupaten Sanggau,age_group,5-9,perempuan,19602,jiwa,2024,projection,total_population,3.1.2,110,,5–9
+61.03,2,Kabupaten Sanggau,age_group,5-9,perempuan,19680,jiwa,2025,projection,total_population,3.1.2,110,,5–9
+61.03,2,Kabupaten Sanggau,age_group,5-9,,39947,jiwa,2024,projection,total_population,3.1.2,110,,5–9
+61.03,2,Kabupaten Sanggau,age_group,5-9,,40181,jiwa,2025,projection,total_population,3.1.2,110,,5–9
+61.03,2,Kabupaten Sanggau,age_group,10-14,laki_laki,20482,jiwa,2024,projection,total_population,3.1.2,110,,10–14
+61.03,2,Kabupaten Sanggau,age_group,10-14,laki_laki,20466,jiwa,2025,projection,total_population,3.1.2,110,,10–14
+61.03,2,Kabupaten Sanggau,age_group,10-14,perempuan,19386,jiwa,2024,projection,total_population,3.1.2,110,,10–14
+61.03,2,Kabupaten Sanggau,age_group,10-14,perempuan,19405,jiwa,2025,projection,total_population,3.1.2,110,,10–14
+61.03,2,Kabupaten Sanggau,age_group,10-14,,39868,jiwa,2024,projection,total_population,3.1.2,110,,10–14
+61.03,2,Kabupaten Sanggau,age_group,10-14,,39871,jiwa,2025,projection,total_population,3.1.2,110,,10–14
+61.03,2,Kabupaten Sanggau,age_group,15-19,laki_laki,20720,jiwa,2024,projection,total_population,3.1.2,110,,15–19
+61.03,2,Kabupaten Sanggau,age_group,15-19,laki_laki,20580,jiwa,2025,projection,total_population,3.1.2,110,,15–19
+61.03,2,Kabupaten Sanggau,age_group,15-19,perempuan,19467,jiwa,2024,projection,total_population,3.1.2,110,,15–19
+61.03,2,Kabupaten Sanggau,age_group,15-19,perempuan,19390,jiwa,2025,projection,total_population,3.1.2,110,,15–19
+61.03,2,Kabupaten Sanggau,age_group,15-19,,40187,jiwa,2024,projection,total_population,3.1.2,110,,15–19
+61.03,2,Kabupaten Sanggau,age_group,15-19,,39970,jiwa,2025,projection,total_population,3.1.2,110,,15–19
+61.03,2,Kabupaten Sanggau,age_group,20-24,laki_laki,21837,jiwa,2024,projection,total_population,3.1.2,110,,20–24
+61.03,2,Kabupaten Sanggau,age_group,20-24,laki_laki,21566,jiwa,2025,projection,total_population,3.1.2,110,,20–24
+61.03,2,Kabupaten Sanggau,age_group,20-24,perempuan,20255,jiwa,2024,projection,total_population,3.1.2,110,,20–24
+61.03,2,Kabupaten Sanggau,age_group,20-24,perempuan,19982,jiwa,2025,projection,total_population,3.1.2,110,,20–24
+61.03,2,Kabupaten Sanggau,age_group,20-24,,42092,jiwa,2024,projection,total_population,3.1.2,110,,20–24
+61.03,2,Kabupaten Sanggau,age_group,20-24,,41548,jiwa,2025,projection,total_population,3.1.2,110,,20–24
+61.03,2,Kabupaten Sanggau,age_group,25-29,laki_laki,22332,jiwa,2024,projection,total_population,3.1.2,110,,25–29
+61.03,2,Kabupaten Sanggau,age_group,25-29,laki_laki,22477,jiwa,2025,projection,total_population,3.1.2,110,,25–29
+61.03,2,Kabupaten Sanggau,age_group,25-29,perempuan,20864,jiwa,2024,projection,total_population,3.1.2,110,,25–29
+61.03,2,Kabupaten Sanggau,age_group,25-29,perempuan,21018,jiwa,2025,projection,total_population,3.1.2,110,,25–29
+61.03,2,Kabupaten Sanggau,age_group,25-29,,43196,jiwa,2024,projection,total_population,3.1.2,110,,25–29
+61.03,2,Kabupaten Sanggau,age_group,25-29,,43495,jiwa,2025,projection,total_population,3.1.2,110,,25–29
+61.03,2,Kabupaten Sanggau,age_group,30-34,laki_laki,21164,jiwa,2024,projection,total_population,3.1.2,110,,30–34
+61.03,2,Kabupaten Sanggau,age_group,30-34,laki_laki,21216,jiwa,2025,projection,total_population,3.1.2,110,,30–34
+61.03,2,Kabupaten Sanggau,age_group,30-34,perempuan,19416,jiwa,2024,projection,total_population,3.1.2,110,,30–34
+61.03,2,Kabupaten Sanggau,age_group,30-34,perempuan,19460,jiwa,2025,projection,total_population,3.1.2,110,,30–34
+61.03,2,Kabupaten Sanggau,age_group,30-34,,40580,jiwa,2024,projection,total_population,3.1.2,110,,30–34
+61.03,2,Kabupaten Sanggau,age_group,30-34,,40676,jiwa,2025,projection,total_population,3.1.2,110,,30–34
+61.03,2,Kabupaten Sanggau,age_group,35-39,laki_laki,21150,jiwa,2024,projection,total_population,3.1.2,110,,35–39
+61.03,2,Kabupaten Sanggau,age_group,35-39,laki_laki,21310,jiwa,2025,projection,total_population,3.1.2,110,,35–39
+61.03,2,Kabupaten Sanggau,age_group,35-39,perempuan,19603,jiwa,2024,projection,total_population,3.1.2,110,,35–39
+61.03,2,Kabupaten Sanggau,age_group,35-39,perempuan,19694,jiwa,2025,projection,total_population,3.1.2,110,,35–39
+61.03,2,Kabupaten Sanggau,age_group,35-39,,40753,jiwa,2024,projection,total_population,3.1.2,110,,35–39
+61.03,2,Kabupaten Sanggau,age_group,35-39,,41004,jiwa,2025,projection,total_population,3.1.2,110,,35–39
+61.03,2,Kabupaten Sanggau,age_group,40-44,laki_laki,19939,jiwa,2024,projection,total_population,3.1.2,110,,40–44
+61.03,2,Kabupaten Sanggau,age_group,40-44,laki_laki,20042,jiwa,2025,projection,total_population,3.1.2,110,,40–44
+61.03,2,Kabupaten Sanggau,age_group,40-44,perempuan,18224,jiwa,2024,projection,total_population,3.1.2,110,,40–44
+61.03,2,Kabupaten Sanggau,age_group,40-44,perempuan,18408,jiwa,2025,projection,total_population,3.1.2,110,,40–44
+61.03,2,Kabupaten Sanggau,age_group,40-44,,38163,jiwa,2024,projection,total_population,3.1.2,110,,40–44
+61.03,2,Kabupaten Sanggau,age_group,40-44,,38450,jiwa,2025,projection,total_population,3.1.2,110,,40–44
+61.03,2,Kabupaten Sanggau,age_group,45-49,laki_laki,19052,jiwa,2024,projection,total_population,3.1.2,110,,45–49
+61.03,2,Kabupaten Sanggau,age_group,45-49,laki_laki,19381,jiwa,2025,projection,total_population,3.1.2,110,,45–49
+61.03,2,Kabupaten Sanggau,age_group,45-49,perempuan,17066,jiwa,2024,projection,total_population,3.1.2,110,,45–49
+61.03,2,Kabupaten Sanggau,age_group,45-49,perempuan,17375,jiwa,2025,projection,total_population,3.1.2,110,,45–49
+61.03,2,Kabupaten Sanggau,age_group,45-49,,36118,jiwa,2024,projection,total_population,3.1.2,110,,45–49
+61.03,2,Kabupaten Sanggau,age_group,45-49,,36756,jiwa,2025,projection,total_population,3.1.2,110,,45–49
+61.03,2,Kabupaten Sanggau,age_group,50-54,laki_laki,16072,jiwa,2024,projection,total_population,3.1.2,110,,50–54
+61.03,2,Kabupaten Sanggau,age_group,50-54,laki_laki,16633,jiwa,2025,projection,total_population,3.1.2,110,,50–54
+61.03,2,Kabupaten Sanggau,age_group,50-54,perempuan,14523,jiwa,2024,projection,total_population,3.1.2,110,,50–54
+61.03,2,Kabupaten Sanggau,age_group,50-54,perempuan,15041,jiwa,2025,projection,total_population,3.1.2,110,,50–54
+61.03,2,Kabupaten Sanggau,age_group,50-54,,30595,jiwa,2024,projection,total_population,3.1.2,110,,50–54
+61.03,2,Kabupaten Sanggau,age_group,50-54,,31674,jiwa,2025,projection,total_population,3.1.2,110,,50–54
+61.03,2,Kabupaten Sanggau,age_group,55-59,laki_laki,12970,jiwa,2024,projection,total_population,3.1.2,110,,55–59
+61.03,2,Kabupaten Sanggau,age_group,55-59,laki_laki,13347,jiwa,2025,projection,total_population,3.1.2,110,,55–59
+61.03,2,Kabupaten Sanggau,age_group,55-59,perempuan,11857,jiwa,2024,projection,total_population,3.1.2,110,,55–59
+61.03,2,Kabupaten Sanggau,age_group,55-59,perempuan,12217,jiwa,2025,projection,total_population,3.1.2,110,,55–59
+61.03,2,Kabupaten Sanggau,age_group,55-59,,24827,jiwa,2024,projection,total_population,3.1.2,110,,55–59
+61.03,2,Kabupaten Sanggau,age_group,55-59,,25564,jiwa,2025,projection,total_population,3.1.2,110,,55–59
+61.03,2,Kabupaten Sanggau,age_group,60-64,laki_laki,10598,jiwa,2024,projection,total_population,3.1.2,110,,60–64
+61.03,2,Kabupaten Sanggau,age_group,60-64,laki_laki,10977,jiwa,2025,projection,total_population,3.1.2,110,,60–64
+61.03,2,Kabupaten Sanggau,age_group,60-64,perempuan,9823,jiwa,2024,projection,total_population,3.1.2,110,,60–64
+61.03,2,Kabupaten Sanggau,age_group,60-64,perempuan,10206,jiwa,2025,projection,total_population,3.1.2,110,,60–64
+61.03,2,Kabupaten Sanggau,age_group,60-64,,20421,jiwa,2024,projection,total_population,3.1.2,110,,60–64
+61.03,2,Kabupaten Sanggau,age_group,60-64,,21183,jiwa,2025,projection,total_population,3.1.2,110,,60–64
+61.03,2,Kabupaten Sanggau,age_group,65-69,laki_laki,7425,jiwa,2024,projection,total_population,3.1.2,110,,65–69
+61.03,2,Kabupaten Sanggau,age_group,65-69,laki_laki,7789,jiwa,2025,projection,total_population,3.1.2,110,,65–69
+61.03,2,Kabupaten Sanggau,age_group,65-69,perempuan,6959,jiwa,2024,projection,total_population,3.1.2,110,,65–69
+61.03,2,Kabupaten Sanggau,age_group,65-69,perempuan,7392,jiwa,2025,projection,total_population,3.1.2,110,,65–69
+61.03,2,Kabupaten Sanggau,age_group,65-69,,14384,jiwa,2024,projection,total_population,3.1.2,110,,65–69
+61.03,2,Kabupaten Sanggau,age_group,65-69,,15181,jiwa,2025,projection,total_population,3.1.2,110,,65–69
+61.03,2,Kabupaten Sanggau,age_group,70-74,laki_laki,4542,jiwa,2024,projection,total_population,3.1.2,110,,70–74
+61.03,2,Kabupaten Sanggau,age_group,70-74,laki_laki,4950,jiwa,2025,projection,total_population,3.1.2,110,,70–74
+61.03,2,Kabupaten Sanggau,age_group,70-74,perempuan,4213,jiwa,2024,projection,total_population,3.1.2,110,,70–74
+61.03,2,Kabupaten Sanggau,age_group,70-74,perempuan,4624,jiwa,2025,projection,total_population,3.1.2,110,,70–74
+61.03,2,Kabupaten Sanggau,age_group,70-74,,8755,jiwa,2024,projection,total_population,3.1.2,110,,70–74
+61.03,2,Kabupaten Sanggau,age_group,70-74,,9574,jiwa,2025,projection,total_population,3.1.2,110,,70–74
+61.03,2,Kabupaten Sanggau,age_group,75+,laki_laki,2987,jiwa,2024,projection,total_population,3.1.2,110,,75+
+61.03,2,Kabupaten Sanggau,age_group,75+,laki_laki,3255,jiwa,2025,projection,total_population,3.1.2,110,,75+
+61.03,2,Kabupaten Sanggau,age_group,75+,perempuan,3431,jiwa,2024,projection,total_population,3.1.2,110,,75+
+61.03,2,Kabupaten Sanggau,age_group,75+,perempuan,3708,jiwa,2025,projection,total_population,3.1.2,110,,75+
+61.03,2,Kabupaten Sanggau,age_group,75+,,6418,jiwa,2024,projection,total_population,3.1.2,110,,75+
+61.03,2,Kabupaten Sanggau,age_group,75+,,6963,jiwa,2025,projection,total_population,3.1.2,110,,75+
+61.03,2,Kabupaten Sanggau,sex,laki_laki,,264174,jiwa,2024,projection,total_population,3.1.2,110,,Laki-Laki
+61.03,2,Kabupaten Sanggau,sex,laki_laki,,267262,jiwa,2025,projection,total_population,3.1.2,110,,Laki-Laki
+61.03,2,Kabupaten Sanggau,sex,perempuan,,246238,jiwa,2024,projection,total_population,3.1.2,110,,Perempuan
+61.03,2,Kabupaten Sanggau,sex,perempuan,,249448,jiwa,2025,projection,total_population,3.1.2,110,,Perempuan
+61.03,2,Kabupaten Sanggau,total,total,,510412,jiwa,2024,projection,total_population,3.1.2,110,,
+61.03,2,Kabupaten Sanggau,total,total,,516710,jiwa,2025,projection,total_population,3.1.2,110,,
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/padi_padian,,99143,rupiah,2024,survey_estimate,per_capita,10.1,491,,Padi-padian
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/padi_padian,,95341,rupiah,2025,survey_estimate,per_capita,10.1,491,,Padi-padian
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/umbi_umbian,,4294,rupiah,2024,survey_estimate,per_capita,10.1,491,,Umbi-umbian
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/umbi_umbian,,4520,rupiah,2025,survey_estimate,per_capita,10.1,491,,Umbi-umbian
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,77281,rupiah,2024,survey_estimate,per_capita,10.1,491,,Ikan/udang/cumi/kerang
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,80193,rupiah,2025,survey_estimate,per_capita,10.1,491,,Ikan/udang/cumi/kerang
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/daging,,50963,rupiah,2024,survey_estimate,per_capita,10.1,491,,Daging
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/daging,,51676,rupiah,2025,survey_estimate,per_capita,10.1,491,,Daging
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/telur_dan_susu,,37824,rupiah,2024,survey_estimate,per_capita,10.1,491,,Telur dan susu
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/telur_dan_susu,,40638,rupiah,2025,survey_estimate,per_capita,10.1,491,,Telur dan susu
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/sayur_sayuran,,58536,rupiah,2024,survey_estimate,per_capita,10.1,491,,Sayur-sayuran
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/sayur_sayuran,,68728,rupiah,2025,survey_estimate,per_capita,10.1,491,,Sayur-sayuran
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/kacang_kacangan,,9447,rupiah,2024,survey_estimate,per_capita,10.1,491,,Kacang-kacangan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/kacang_kacangan,,9751,rupiah,2025,survey_estimate,per_capita,10.1,491,,Kacang-kacangan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/buah_buahan,,24861,rupiah,2024,survey_estimate,per_capita,10.1,491,,Buah-buahan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/buah_buahan,,29889,rupiah,2025,survey_estimate,per_capita,10.1,491,,Buah-buahan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14745,rupiah,2024,survey_estimate,per_capita,10.1,491,,Minyak dan kelapa
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15963,rupiah,2025,survey_estimate,per_capita,10.1,491,,Minyak dan kelapa
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/bahan_minuman,,23671,rupiah,2024,survey_estimate,per_capita,10.1,491,,Bahan minuman
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/bahan_minuman,,25927,rupiah,2025,survey_estimate,per_capita,10.1,491,,Bahan minuman
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/bumbu_bumbuan,,15883,rupiah,2024,survey_estimate,per_capita,10.1,491,,Bumbu-bumbuan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/bumbu_bumbuan,,15371,rupiah,2025,survey_estimate,per_capita,10.1,491,,Bumbu-bumbuan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/konsumsi_lainnya,,15443,rupiah,2024,survey_estimate,per_capita,10.1,491,,Konsumsi lainnya
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/konsumsi_lainnya,,14640,rupiah,2025,survey_estimate,per_capita,10.1,491,,Konsumsi lainnya
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,156643,rupiah,2024,survey_estimate,per_capita,10.1,491,,Makanan dan minuman jadi
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,131588,rupiah,2025,survey_estimate,per_capita,10.1,491,,Makanan dan minuman jadi
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/rokok,,100723,rupiah,2024,survey_estimate,per_capita,10.1,491,,Rokok
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/rokok,,103341,rupiah,2025,survey_estimate,per_capita,10.1,491,,Rokok
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/jumlah_makanan,,689457,rupiah,2024,survey_estimate,per_capita,10.1,491,,Jumlah makanan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/jumlah_makanan,,687566,rupiah,2025,survey_estimate,per_capita,10.1,491,,Jumlah makanan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,376079,rupiah,2024,survey_estimate,per_capita,10.1,491,,Perumahan dan fasilitas rumah tangga
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,372216,rupiah,2025,survey_estimate,per_capita,10.1,491,,Perumahan dan fasilitas rumah tangga
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,104520,rupiah,2024,survey_estimate,per_capita,10.1,491,,Aneka komoditas dan jasa
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,109812,rupiah,2025,survey_estimate,per_capita,10.1,491,,Aneka komoditas dan jasa
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18335,rupiah,2024,survey_estimate,per_capita,10.1,491,,"Pakaian, alas kaki, dan tutup kepala"
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20471,rupiah,2025,survey_estimate,per_capita,10.1,491,,"Pakaian, alas kaki, dan tutup kepala"
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/barang_tahan_lama,,37340,rupiah,2024,survey_estimate,per_capita,10.1,491,,Barang tahan lama
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/barang_tahan_lama,,35428,rupiah,2025,survey_estimate,per_capita,10.1,491,,Barang tahan lama
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39755,rupiah,2024,survey_estimate,per_capita,10.1,491,,"Pajak, pungutan, dan asuransi"
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44130,rupiah,2025,survey_estimate,per_capita,10.1,491,,"Pajak, pungutan, dan asuransi"
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9169,rupiah,2024,survey_estimate,per_capita,10.1,491,,Keperluan pesta dan upacara/kenduri
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6229,rupiah,2025,survey_estimate,per_capita,10.1,491,,Keperluan pesta dan upacara/kenduri
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,585198,rupiah,2024,survey_estimate,per_capita,10.1,491,,Jumlah bukan makanan
+61.03,2,Kabupaten Sanggau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,588286,rupiah,2025,survey_estimate,per_capita,10.1,491,,Jumlah bukan makanan
+61.03,2,Kabupaten Sanggau,expenditure,total,,1274655,rupiah,2024,survey_estimate,per_capita,10.1,491,,
+61.03,2,Kabupaten Sanggau,expenditure,total,,1275852,rupiah,2025,survey_estimate,per_capita,10.1,491,,

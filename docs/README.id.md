@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4f1ef8e34ba4647aa6af88b718f6c982a5edbd95208158bf75897d00c311d3b8 -->
+<!-- i18n-source-hash: sha256:a7c27ce1b076aa2b37f8d006c8764c6803207431f501a956b879ec100abcdf7c -->
 
 # Dokumentasi
 
@@ -54,3 +54,7 @@ Bahasa Inggris di jalur telanjang adalah sumber yang otoritatif; Bahasa Indonesi
 ## Standar runtime Bun-only untuk CRM dan real-time
 
 [**Pengiriman Omnichannel & Real-time Bun-only**](bun-omnichannel-delivery-realtime.id.md) mengatur antrean Bun email/WhatsApp/Web Push yang sudah ada serta StarSender/Meta, Telegram, Mailketing, status Hermes dan SSE/WebSocket Bun yang masih direncanakan. Gateway real-time generik **belum diimplementasikan**. Issue [#467](https://github.com/ahliweb/awcms-one/issues/467), upstream [#1167](https://github.com/ahliweb/awcms/issues/1167), [#1168](https://github.com/ahliweb/awcms/issues/1168).
+
+## Referensi arsitektur percakapan CarikBot (riset saja)
+
+[Kajian konsep CarikBot](carikbot-conversation-reference.id.md) dan [English source](carikbot-conversation-reference.md) menjelaskan desain flow/menu/form, batas fitur yang sudah ada dengan usulan, keamanan, pengujian, dan kepemilikan. Belum ada engine chatbot atau API produksi baru yang diimplementasikan.

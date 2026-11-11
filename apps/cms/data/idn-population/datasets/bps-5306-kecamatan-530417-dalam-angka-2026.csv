@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.04.17.2001,4,Lasiolat,sex,laki_laki,,476,jiwa,2025,registration,total_population,3.3,27,,Laki-Laki/Male
+53.04.17.2001,4,Lasiolat,sex,perempuan,,462,jiwa,2025,registration,total_population,3.3,27,,Perempuan/Female
+53.04.17.2001,4,Lasiolat,total,total,,938,jiwa,2025,registration,total_population,3.3,27,,
+53.04.17.2002,4,Maneikun,sex,laki_laki,,530,jiwa,2025,registration,total_population,3.3,27,,Laki-Laki/Male
+53.04.17.2002,4,Maneikun,sex,perempuan,,534,jiwa,2025,registration,total_population,3.3,27,,Perempuan/Female
+53.04.17.2002,4,Maneikun,total,total,,1064,jiwa,2025,registration,total_population,3.3,27,,
+53.04.17.2006,4,Fatulotu,sex,laki_laki,,1076,jiwa,2025,registration,total_population,3.3,27,,Laki-Laki/Male
+53.04.17.2006,4,Fatulotu,sex,perempuan,,1024,jiwa,2025,registration,total_population,3.3,27,,Perempuan/Female
+53.04.17.2006,4,Fatulotu,total,total,,2100,jiwa,2025,registration,total_population,3.3,27,,
+53.04.17.2003,4,Lakanmau,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.3,27,,Laki-Laki/Male
+53.04.17.2003,4,Lakanmau,sex,perempuan,,487,jiwa,2025,registration,total_population,3.3,27,,Perempuan/Female
+53.04.17.2003,4,Lakanmau,total,total,,1046,jiwa,2025,registration,total_population,3.3,27,,
+53.04.17.2007,4,Baudaok,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.3,27,,Laki-Laki/Male
+53.04.17.2007,4,Baudaok,sex,perempuan,,346,jiwa,2025,registration,total_population,3.3,27,,Perempuan/Female
+53.04.17.2007,4,Baudaok,total,total,,694,jiwa,2025,registration,total_population,3.3,27,,

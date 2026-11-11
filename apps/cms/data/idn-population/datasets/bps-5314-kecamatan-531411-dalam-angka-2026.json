@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5314-kecamatan-531411-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.14.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Loaholu Dalam Angka 2026",
+  "publisherName": "BPS Rote Ndao",
+  "publisherDomain": "5314",
+  "publisherWebsite": "https://rotendaokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Rote Ndao (https://rotendaokab.bps.go.id), publikasi \"Kecamatan Loaholu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53140.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rotendaokab.bps.go.id/id/publication/2026/09/28/93e2842379e7c7bc1c527027/kecamatan-loaholu-dalam-angka-2026.html",
+  "sourceFileSha256": "8e74fc8e4ec6cdab75dc75a26e593a9fae423809c197469054a381b96481d768",
+  "sourceFileBytes": 10795636,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Rote Ndao.",
+  "csvPath": "datasets/bps-5314-kecamatan-531411-dalam-angka-2026.csv",
+  "csvSha256": "d2abaf3b12507dcc96d56485abe6bebdbba6015243ba90fbcc234300f99d9c73",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Loaholu, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

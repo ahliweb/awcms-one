@@ -2,6 +2,226 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.20.0] — 2026-11-11
+
+### Booking-derived CRM segment rules (rule schema 2)
+
+Issue #390 (epic #280 item 7, second half), [ADR-0052](docs/adr/0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md). The segment rule vocabulary gains five conditions about a customer's bookings, as a new **rule schema version**, so that a store that sells stays can ask "who stayed and has not been back for a year", "who booked in the last 90 days", "who no-showed twice" without a second copy of anyone's booking history.
+
+- New fields: `booking_count`, `stay_count`, `last_stay_date`, `no_show_count`, `cancellation_count` (a cancellation by staff is never counted against a customer). Same bounds, windows, small-group suppression and masking as every other field.
+- Old rules keep evaluating unchanged: `sql/1060` adds `awcms_commerce_segment_versions.rule_schema_version` (default 1 = every existing version) and a stored version is always read under the schema it was written under; new versions are written under schema 2. The API shows `ruleSchemaVersion` on each version.
+- Read live, never stored: the facts are aggregated at evaluation time from the booking links, their orders and the cancel / no-show decisions, joined to Booking's reservation status and arrival date (one new `SELECT`-only reader of a Booking table, two columns, pinned by a test). No new table, no new index, no event.
+- Access: defining a rule that uses them needs the `booking` feature and `commerce.booking_reservation_links.read`; counting, listing, exporting, aiming a campaign or restricting a loyalty program at a saved one needs the permission.
+- The segment screen offers the five conditions only to a viewer who may use them; its page script is 38 bytes smaller, so the client asset budget is unchanged.
+- The M7 benchmark (`bun run bench:commerce-load --only segment`) now seeds booking links and decisions and measures ten rule shapes: preview p95 1.94 s on 100,000 customers, 340,000 orders and 90,000 booking links (target 3 s).
+
+### OMES-Web case study, post-init checklist, and a CHANGELOG reset that sticks (issue #476)
+
+`docs/template.md` (and its Indonesian mirror) gains a case study of the first derived product, OMES-Web, with anti-duplication rules and compatibility and upgrade guidance, and `template:init` now ends by printing a post-init checklist. Reading the product's repository to write the case study also exposed a defect in the tool, fixed here.
+
+- **Case study.** What OMES-Web owns, what it consumes, and the evidence it produced (stale identity prose, a hardcoded host version, an aged changeset backlog, a missing merge-commit-only setting, a 155-commit sync backlog). Everything is read from `ahliweb/omes-web`; open items are marked open. Nothing in the template names the product.
+- **Anti-duplication rules** for what a derived product must not copy, fork or restate, and **compatibility guidance** for subtree sync (ancestry, main-only remote without tags, merge commit only), repository settings, changesets and the CHANGELOG after a fork, and adopting later template releases.
+- **Post-init checklist.** `template:init` prints seven governance areas and says which parts it rewrites and which stay manual (the README title and body, `AGENTS.md`, `CONTRIBUTING*`, `compose.production.yaml` and others still name awcms-one). It is generated from `tools/template-init/checklist.mjs`, and `tests/template-init.test.mjs` checks every automatic claim against the real plan and that no manual file is rewritten.
+- **Fix: the CHANGELOG reset was silently undone.** The doc-citation cleanup read `CHANGELOG.md` from disk instead of the reset text and wrote it back over the reset, so a derived repository kept every template release under a `package.json` at `0.1.0`. The reset text is now the starting point, and the test asserts a single `## [` heading is left. `tests/rilis-catatan.test.mjs` no longer requires the template's own `v0.1.0` history in a derived repository.
+- **Leakage test widened.** The values `template:init` owns in `.env.example` and `apps/storefront/.env.example`, and the reset `CHANGELOG.md`, are now scanned for BjekMart strings for all three profiles.
+- A repository initialised before this fix may still carry the template's history in `CHANGELOG.md`; the case study describes the relabel OMES-Web used.
+
+### Booking revenue: refunds on a decision basis, tax-aware allocation, cash view and CSV
+
+Implements the owner decisions for #450 (metrics section 3.9, ADR-0045) in the `commerce.booking_revenue` projection. Migration `sql/1055`, additive, no down migration. The descriptor goes from version 1 to 2 (the issue said "v2 to v3"; the booking descriptor was at version 1), so a tenant that already sold bookings runs one rebuild of `commerce.booking_revenue`.
+
+- **A refund counts when it is decided.** The Refunds step is built from the order's return records: three parts that add up (paid back, payable, uncollected balance) and a new companion column, the refund still payable. Settling a refund leg moves cents from payable to paid back and never moves net. All parts still land on the original paid day.
+- **Tax-aware allocation.** Each refund and each uncollected amount is allocated across goods, shipping, insurance and tax in integer cents with the largest-remainder function the returns module uses (an exact split on a return record wins). Only the goods share is in the Refunds step; the others lower their own companion columns, so a full refund of a taxed order gives net 0 and tax 0, never a negative net.
+- **Control identity.** `net + shipping + insurance + tax (each after its refunded share) = settled - refund payable + outstanding - surplus`, per order and in the reconciliation's control totals (new keys: refund payable, net, companions, surplus).
+- **New routes**: `GET /api/v1/reports/commerce/booking-revenue-cash` (the cash view of refunds by the day they were paid out, labelled `basis: "cash"`) on `reporting.dashboard.read`, and `GET /api/v1/reports/commerce/booking-revenue.csv` (the waterfall as a formula-neutralised CSV, audited as `booking_revenue_report.export`) on its own export permission `commerce.report_booking_revenue.export` (migration `sql/1062`, the convention of the operational and retention CSVs; not implied by `reporting.dashboard.read`, and the screen shows the link only to a holder; assign the key to the roles that export reports). The report JSON gains `refundsPayable`, `refundPayableBalance` and `basis`; the companions are now after their refunded share. The `/admin/commerce-reports` panel shows the three parts, the companions, the refund payable, a CSV link and the cash table, and says the figure is an operational sales measure, not a financial-statement figure.
+- **Rollout.** The migration seeds the goods shares of existing rows from their money columns so a tenant that has not rebuilt reads as before; `POST /api/v1/reports/projections/commerce.booking_revenue/rebuild` re-derives every row (equal to the live table byte for byte, repeatable). Run the rebuild right after the migration: before it, a late live event on an older taxed-and-refunded order can set a spurious `restated` flag, which the rebuild clears.
+- Not here (decided in #450): ADR and RevPAN as stored figures, channel and segment slices.
+
+### Bun 1.4.4 is the documented root pin (#470)
+
+Bun moved to 1.4.4 in PR #457, but the omnichannel and CRM requirement docs
+still stated the root pin as 1.4.3. RUN-BUN-01 is a normative requirement, so
+a reader following it would have pinned the old runtime. The affected sentences
+now state 1.4.4 (EN and ID). The dated 24 October baselines keep their
+historical value, with the post-#457 state added beside them.
+
+- `docs/bun-omnichannel-delivery-realtime.md` and its `.id.md` mirror: the root pin.
+- `docs/omnichannel-crm-ui-ux.md` and its `.id.md` mirror: the version baseline.
+- `docs/crm-omnichannel-requirements.md` and its `.id.md` mirror: RUN-BUN-01.
+
+### Customer Web Push: event-driven fan-out with send-time safety
+
+[Issue #432](https://github.com/ahliweb/awcms-one/issues/432), the sending half of [ADR-0048](docs/adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md), stacked on #430 (PR #493). A customer who explicitly turned a purpose on now receives a generic browser notification for the transactional commerce events, and the checkout, payment and webhook paths never wait on a push service: a domain-event consumer writes outbox rows (database only) and a separate scheduled job sends. **Still nothing is on by default:** the per-tenant `customerPush` feature stays off, `PUSH_ENABLED` must be set, and production activation stays gated (counsel's review of the consent wording, VAPID and key ring, the operator test matrix, device UAT; ADR-0048 D8). The acceptance test against the real browser push services needs a real VAPID pair and a browser on the trusted host and is not part of this change.
+
+- New consumer `commerce.customer_push_enqueuer`: `order.paid` and `order.expired` and `refund.settled` become `payment_updates`; `order.status_changed` (only `processing`, `shipped`, `completed`), `order.cancelled` and `return.recorded` become `order_updates`; the new `conversation.store_replied` becomes `support_replies`. One outbox row per active device, only for an account with the purpose enabled under the current consent wording, a live enrolling session and a still-valid storefront origin. The event-to-purpose map is closed; marketing has no path. Generic catalogue text (English and Indonesian) and fixed storefront paths only: no order code, amount or name is in a payload or URL.
+- New domain event `awcms.commerce.conversation.store_replied` (ADR-0048 Q4), appended by `postStoreReply` in the same transaction as the stored reply, payload `conversationId` only. Registered in `events.publishes`, the event-type registry and the AsyncAPI file.
+- New job `commerce:customer-push:dispatch` (every minute, single-flight; job-scoped `PUSH_VAPID_PRIVATE_KEY` and `PUSH_AUTH_SECRET_ENCRYPTION_KEYS`): claims with a lease, re-checks eligibility at send time (revoked device, withdrawn or stale consent, blocked account, ended session, changed owner, removed domain, expiry, off-catalogue text all cancel with no provider call), applies the 12 per hour and 40 per day per-account cap (a notification is one event however many devices it reaches; over the cap a send is deferred), sends through the upstream Web Push provider with a `TTL` and an `Urgency` header, treats `404`/`410` as a gone device (credentials destroyed, other messages cancelled, audited), backs off exponentially on other errors, and records every attempt. `sent` means the push service accepted the request, never "delivered".
+- `sql/1061`: the worker gets a column-only `INSERT` on the outbox and its table-level `UPDATE` is narrowed to the status machine and the provider result, so it can no longer redirect or rewrite an existing message. Security-readiness matrix and column grants updated; the per-account cap lock is now an advisory lock.
+- `commerce:customer-push:maintenance` also expires waiting messages past their lifetime (also while the feature is off). Diagnostics gain `messages.byReason` (fixed `last_error` codes, never provider text); OpenAPI regenerated.
+- Docs (English and Indonesian): ADR-0048 implementation record, `cms`, `api`, `kamus-data`, `skema-basis-data`, `deployment` (worker schedule, secrets, monitoring, kill switches), `status`, `SECURITY`, the commerce module README, the omnichannel delivery page.
+
+### Customer Web Push: tenant-isolated device subscription APIs
+
+[Issue #430](https://github.com/ahliweb/awcms-one/issues/430), the first implementation step of [ADR-0048](docs/adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md). A shopper's browser can now be enrolled, listed and revoked for push notifications, and consent is recorded per purpose. **Nothing is sent yet and nothing is on:** the per-tenant `customerPush` commerce feature defaults to off (every route then answers the neutral `404`), the storefront UI and service worker are #431, the consumers and the dispatch loop are #432, and production activation stays gated (counsel's review of the consent wording, VAPID and key ring, the operator test matrix, device UAT; ADR-0048 D8).
+
+The "why" of the shape: a customer is not a tenant user, so upstream's staff push tables cannot carry a customer recipient without a shadow user, and the browser endpoint is personal data (UU PDP) and a bearer-grade capability. `commerce` therefore owns four additive tables (`sql/1056`–`1059`, FORCE RLS, composite tenant keys, least-privilege worker grants) and writes no upstream table.
+
+- New routes under `/api/v1/commerce/storefront/account/push/` (`subscriptions` GET/POST/DELETE, `subscriptions/{id}` DELETE, `preferences` GET/PUT), bearer only; and `GET /api/v1/commerce/customer-push/diagnostics` behind the new permission `commerce.customer_push.read` (aggregate counts only). OpenAPI regenerated.
+- The endpoint and the auth secret are stored only as AES-256-GCM envelopes under the existing `PUSH_AUTH_SECRET_ENCRYPTION_KEYS` ring with customer-specific AAD purposes, shown only masked, and destroyed on revoke, logout, block and session end. Only a known browser push service host is accepted (Google, Mozilla, Apple, Microsoft); the new operator setting `COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS` can extend that list, a tenant or request cannot. Five devices per account; 12 notifications per hour and 40 per day per account in the outbox repository.
+- Registration is idempotent; registering another account's endpoint is an atomic, audited transfer. Logout and the admin customer block revoke devices in their own transaction. Audit events: `commerce.customer_push.{device_registered,device_transferred,device_revoked,preferences_changed,data_erased}`, ids only.
+- The customer bearer lookup now names the tenant in the query (`findSessionByTokenHash`), on top of FORCE RLS.
+- New jobs `commerce:customer-push:maintenance` (every 15 minutes: ended-session and blocked-account sweep, 30-day purge) and `commerce:customer-push:rekey` (manual). New `customerPush` flag in `/admin/commerce-settings`.
+- Customer push data is registered for subject erasure and export (`eraseCustomerPushData`, `exportCustomerPushData`); the data-subject engine cannot reach a customer account, so the descriptors say so.
+- Docs (English and Indonesian): ADR-0048 implementation record, `cms`, `api`, `kamus-data`, `skema-basis-data`, `deployment`, `status`, `SECURITY`, the commerce module README.
+
+### `bun run deps:freshness`: a read-only, root-owned dependency freshness report
+
+Issue #471. `apps/cms` already has upstream's `deps:freshness` (ahliweb/awcms #1181) but it only sees `apps/cms`; nothing watched the rest of this workspace, the Bun pin, or the images this repository builds and tests with. `bun run deps:freshness` (`tools/deps-freshness.ts`, pure logic in `tools/lib/deps-freshness.ts`) reports, in upstream's output shape:
+
+- direct dependencies of the root `package.json`, `apps/storefront` and `packages/*` (`bun outdated`; never `apps/cms`), each with a disposition — `candidate`, `held` or `needs-decision`;
+- the root `overrides` against the version `bun.lock` resolved;
+- advisories (`bun audit --json`, the same blocking rule as the audit gates);
+- the Bun pin against the latest Bun release (GitHub first, npm as fallback) and against the storefront Dockerfile's `ARG BUN_VERSION`;
+- every container image in the storefront and backup Dockerfiles, the compose files and the local-ci tool images (`postgres:18.4`, the digest-pinned gitleaks, whose tag is recovered from the registry), and floating tags;
+- a held-back register, `tools/deps-held-back.json` (owner, reason, review date), seeded with TypeScript 7 (outside `@astrojs/check`'s peer range).
+
+It is advisory: read-only, registry lookups are `GET`s with a timeout, an unreachable registry makes that section `UNKNOWN` (never a pass, never a failure), and the exit code is 0 unless `--strict` is passed. It is deliberately not part of `check` or of any `local-ci/*` leg, so there is no 13th required context and branch protection is unchanged. The register is validated offline by the root `bun test`, and an entry past its `reviewDate` fails it.
+
+- `docs/alur-kerja-pengembangan(.id).md` "Dependency updates" gains the report, the register and the staged upgrade gates (upstream first, one atomic PR, all three build profiles, pinned images and rollback).
+- `tests/deps-freshness.test.mjs` pins the parsers and the policy with fixtures under `tests/fixtures/deps-freshness/`; no test touches the network.
+
+### Front desk: check-in, check-out and balance collection at the till
+
+Issue #388 (epic #280, item 16; UX surface D). The POS booking API of #383 had no screen. `/admin/commerce-pos` now has a **Front desk** tab (`?tab=front-desk`) that finds a reservation by its code together with the customer's phone or e-mail, shows the reservation card with the server's total, paid so far and balance due, collects the balance with split tenders and a change preview, and checks the guest in and out. No server code, route, permission or migration changed.
+
+- **The check-in policy is followed, not decided.** The tab reads the lookup card's own `policy` and `actions.checkInBlockedReason` (the tenant setting `checkinRequiresSettlement` of #383, default block): with a balance owed and the default, **Check in guest** is `aria-disabled` with the reason beside it; there is no override control. The default stays pending the owner's confirmation (PR #443, residual R3).
+- **Why a separate tab and not new POS screens:** it is the same register session, tender planner and ledger as the sale screen, so a balance taken here lands in the shift's cash-up; a second screen family would have meant a second place to keep those rules.
+- **Keyboard and assistive technology.** Keyboard-only from the first field (a scanner's Enter moves from the code to the contact), the sale screen's shortcut map reused, focus moved on purpose after every outcome, refused values `aria-invalid` and tied to their message, unavailable controls `aria-disabled` with a visible reason, no browser dialogs, labels that contain their visible text. Layout verified at 360px and 1280px in both themes by a Playwright spec that runs on the trusted host's e2e legs.
+- **No browser persistence of a lookup.** The card and the typed contact live in memory only; the contact field is emptied once the card shows. There is no arrivals list and no search, as the lookup control requires.
+- **Cost.** The tab's script is a separate chunk loaded only on that tab. `APP_BUDGET_BYTES` rises; the measurement is in the constant's docblock. `AGENTS.md`'s divergence line needs the new figure at integration.
+- Strings are in `locales/en.po` and `locales/id.po` (69 new); the three till permission keys left the admin screen coverage ledger's `NOT_YET_SCREENED` list.
+
+### Root deployment manifests are gated to Bun-only (#469)
+
+The root compose files, Dockerfiles, `ops/` and `tools/deploy/` scripts were
+checked by nothing but convention. A `node`, `npm` or `npx` launch, or a Bun
+image that drifted from the `packageManager` pin, would have passed every gate
+and reached production. `tests/bun-only-deployment-manifests.test.mjs` now
+discovers each of those manifests and fails on a Node-ecosystem launcher, on an
+`oven/bun` pin that differs from `packageManager` (read at run time, never
+hard-coded), and on a Dockerfile whose final stage is not that pinned image.
+
+- Explicit exemptions (the bash-only backup runner, the PostgreSQL service) each
+  carry their reason and fail the gate if they go stale.
+- `apps/cms` stays with its upstream gate, `apps/cms/tests/bun-only-launch-manifests.test.ts`.
+
+### Commerce storefront CORS exposes `Retry-After`
+
+A cross-origin storefront could see a `429` from `/api/v1/commerce/storefront/*` but not read how long to wait: `Retry-After` is not a CORS-safelisted response header, so `headers.get("retry-after")` returned `null` and the shopper only saw "try again later". Found by the notification settings page of Issue #431.
+
+- Every granted commerce CORS answer now carries `Access-Control-Expose-Headers: retry-after` (same-origin and refused answers are unchanged: still only `Vary: Origin`).
+- Still no `*` and no `Access-Control-Allow-Credentials` in this family; a new unit test pins all three.
+
+### Storefront: opt-in notification settings, a push-only service worker and safe sign-out
+
+[Issue #431](https://github.com/ahliweb/awcms-one/issues/431), the storefront half of [ADR-0048](docs/adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md), stacked on the subscription APIs of #430. A signed-in shopper can now turn on order, payment and support notifications for their own browser, see and remove their devices, and sign out without leaving a subscription behind. **Nothing is on by default and nothing is sent yet:** the feature needs the new build flag `PUBLIC_CUSTOMER_PUSH` (off, `toko` profile only) *and* the tenant's `customerPush` feature in the CMS (off: the neutral `404`, the control is hidden); sending is #432; production activation stays gated by counsel's review of the consent wording and physical-device UAT (ADR-0048 D8).
+
+The "why" of the shape: a service worker is the one artefact the storefront deliberately kept out of every shopper's browser, so shipping one is an explicit per-deployment build decision, and the worker is held to push-and-click only. Customer push needs a worker on the storefront origin because the CMS origin's worker cannot serve it and a worker is never registered cross-origin.
+
+- New page `/akun/notifikasi` (Indonesian, `noindex`, not in the sitemap or navigation) and a card on `/akun` that stays hidden until the CMS reports the capability. States: signed out, feature off (hidden), blocked or unverified account, server not configured / origin not supported, unsupported browser or web view, iPhone Safari tab (Add to Home Screen guide for iOS 16.4+), permission denied (how to re-enable), opt-in, active. Consent is explicit and per purpose, nothing ticked by default, with the consent text and its version (`draft-2026-10`, a draft) shown; the page refuses to enrol against a version it has no text for. The browser permission prompt only ever starts from the "Aktifkan Notifikasi" click.
+- One service worker, `/sw-notifikasi.js` (scope `/`, `max-age=0`): shows the generic title and body of the payload, opens only `/akun`, `/akun/pesanan` or `/akun/pesan` on its own origin; no `fetch` handler, no cache, no network, no token, no icon from the payload. No CSP change.
+- Sign-out and login over a stored session now revoke on the server before the stored session is cleared or replaced when the browser is enrolled; an unconfirmed sign-out is shown with a retry and an explicit "Keluar di perangkat ini saja" instead of clearing silently. A browser that never enabled notifications behaves exactly as before.
+- Every error code of the push routes has an Indonesian message and a next action (device limit moves focus to the device list; `Retry-After` is shown when the browser can read it).
+- `tests/storefront-tanpa-service-worker.test.mjs` is amended on purpose: from "no service worker in the storefront" to "exactly this push-only one, nothing else". New unit, build-smoke (all three profiles, flag off and on) and Playwright tests; the e2e replaces the browser's push stack with a mock and runs on the trusted host. `compose.production.yaml` now passes `PUBLIC_INSTALL_HELP` (which it was missing) and `PUBLIC_CUSTOMER_PUSH` as build arguments; the storefront Dockerfile declares the latter.
+- Docs (English and Indonesian): `ui-ux`, `template`, `deployment` (flag and activation checklist), `pengujian` (evidence and the UAT gate), `arsitektur`, `status`, ADR-0048's implementation record, ADR-0049 D2, the storefront skill.
+- A notification click focuses and navigates only a window already under `/akun`; any other open tab of the store (checkout, a product page) is left alone and the target opens in a new window.
+
+### Reject BPS district PDFs whose cover names another district
+
+Some BPS publication pages for Nusa Tenggara Timur yielded PDFs for a different kecamatan. The extractor previously trusted the page title and could produce internally consistent figures under the wrong region code. It now compares a readable PDF cover title with the selected district and refuses a mismatch before writing a dataset. The misattributed NTT dataset pairs were removed from the pending batch.
+
+### The commerce commission adapter is live through `hr_commission`'s intake queue (#391)
+
+The adapter that reports a paid counter (POS) sale to `hr_commission` and reverses it on cancel or refund shipped dormant (#451, `sql/1053`) because the worker that runs event consumers may not touch payroll tables. Upstream's intake queue (ADR-0147) is the sanctioned path, so the three consumers are registered again and now **submit** to `CommissionIntakePort`; the job `hr-commission:intents:post`, running as `awcms_app`, posts. No grant on any `awcms_hr_*` table is re-issued, and the one local entry in the payroll sensitive-read registry is removed.
+
+- **Behaviour.** `queued` is recorded, not accrued; a business refusal (no rule, closed period, source conflict) appears only in `GET /api/v1/hr-commission/intake/exceptions`. Commerce keeps its own insert-only record of what it submitted, `awcms_commerce_commission_submissions` (`sql/1063`, ids and codes only, no amount, no person), and voids exactly those lines. Audit actions are now `commerce.commission.submitted`, `.attribution_rejected`, `.reversal_submitted` and `.reversal_needs_attention`; `.attributed`, `.attribution_refused` and `.reversed` are no longer written.
+- **Unavailable intake.** Intake switched off or full fails the delivery (rolled back, retried with the runtime back-off, then a replayable dead letter) instead of dropping the sale; a malformed request is audited and not retried; a cancel or refund with no person cannot be submitted and is audited for a human.
+- **API.** `PUT /api/v1/commerce/commission/settings` no longer answers `409 COMMISSION_ADAPTER_DORMANT`; `GET` and `PUT` return `readiness` (`state`, `hrCommissionModuleEnabled`, `lastSubmittedAt`).
+- **Operator.** Switch `hr_commission` on, then its commission intake with a system actor (`PUT /api/v1/hr-commission/intake/settings`), publish a rule and link the cashiers, and only then enable the commerce setting. `commerce` now consumes the `commission_intake` capability instead of `commission_accrual`. Under `compose.production.yaml` the poster job must connect as `awcms_app`, not the worker (see `docs/deployment.md`).
+
+### Compose production path: scheduled jobs run under the database role their code needs
+
+`compose.production.yaml`'s `jobs` service gives every job the `awcms_worker` DSN as `DATABASE_URL`, so the upstream job `hr-commission:intents:post` (ADR-0147, every minute) would have connected as the worker and failed each run: it calls `awcms_hr_commission_intake_non_idle_tenants()`, which only `awcms_app` may execute. The host-cron path through upstream's `ops/run-job.sh` was never affected.
+
+- New `jobs-app` service (profile `jobs-app`, same image and `env_file` as `jobs`, `DATABASE_URL` = the app DSN `cms` already uses; no new variable). `ops/run-job-compose.sh` now routes each target from the block `targets that need DATABASE_URL` that upstream generates into `apps/cms/ops/run-job.sh`: a listed target runs in `jobs-app`, every other in `jobs`, so a worker-client job never receives the app DSN and the reverse. It fails closed (missing or garbled block, upstream's operator-only targets, a non-script-name target) and has an `AWCMS_RUN_JOB_PRINT_SERVICE=1` dry run.
+- `tests/compose-produksi.test.mjs` asserts each service's role wiring, routes every generated-crontab target through the real wrapper, and pins the set of scheduled app-role targets (today only `hr-commission:intents:post`) so a future upstream sync that schedules another app-client job fails until the wiring is reviewed.
+- Operator: no configuration change; the crontab still points `AWCMS_RUN_JOB` at `ops/run-job-compose.sh`. Keep the checkout and the pulled jobs image on the same release. `docs/deployment.md` (and the Indonesian mirror) list which jobs run under which role. Refs #391 (hr-commission intake still needs enabling per tenant with an intake actor before the commerce adapter is switched on).
+
+### Registration and login are safe against double submit (server side)
+
+A customer who taps "Daftar" twice, or whose phone retries a slow request, no longer risks a `500`, a false "phone already registered", two sessions from one code or two e-mails (Issue #513, work unit B; the storefront guard is unit A).
+
+- **The OTP is single-use under concurrency.** The consume is one `UPDATE ... WHERE ... AND consumed_at IS NULL RETURNING`; before, a verify that started before the first one committed also matched the already-consumed row, so two concurrent verifies of one code both succeeded and issued two sessions. The second is now `401 OTP_INVALID`.
+- **Race-safe registration.** Registrations are serialised per e-mail and per phone (advisory locks), and `createAccountForCustomer` throws a typed `CustomerAccountUniqueViolationError` (savepoint) that `verifyCustomerOtp` resolves to the existing account. Concurrent registrations for one phone used to end in a raw unique-violation `500`; now the loser is `409 PHONE_ALREADY_REGISTERED`. A registration whose e-mail already has an account is a login, never `PHONE_ALREADY_REGISTERED`.
+- **Optional `Idempotency-Key` on `POST .../account/otp/verify`** (`[A-Za-z0-9_-]{16,128}`, otherwise `400 IDEMPOTENCY_KEY_INVALID`). The same key and request within 10 minutes answers `200` with `data.replayed: true` and a FRESH session for the same account; a different request under the key is `409 IDEMPOTENCY_CONFLICT`. Stored in the shared `awcms_idempotency_keys` as `(tenant, HMAC of the key, HMAC request digest, {outcome, accountId})`: never the raw key, the code or a session token. No migration.
+- **Resend window on `POST .../account/otp/request`.** A repeat for the same registration inside 60 seconds is a no-op success (same response shape, no second e-mail or WhatsApp message, no new audit row). Rate limits are unchanged.
+- OpenAPI, the commerce README (EN + ID), `docs/api.md` (EN + ID, with the classification of every mutating storefront endpoint) and `docs/cms.md` (EN + ID) describe the real behaviour.
+
+### Storefront: one in-flight guard and an idempotency key for every mutating form
+
+[Issue #513](https://github.com/ahliweb/awcms-one/issues/513), work unit A (the storefront client; the server half is units B and C). A shopper who tapped **Daftar** twice, pressed Enter during a slow request or whose browser retried on a weak network sent the request twice; the first created the account and the second answered "Nomor telepon ini sudah terdaftar pada akun lain." for an account the same person had just made. Every storefront form that sends a POST, PUT, PATCH or DELETE now goes through one shared single-flight guard (`apps/storefront/src/lib/kirim-tunggal.ts`): a second tap or Enter while a request is pending is ignored (not queued, no error), the controls are disabled, the form carries `aria-busy="true"` and a visually hidden polite status in the layout says "Memproses..." (no layout shift, focus kept); a success that redirects keeps the form disabled until the redirect, and a back-button restore from the bfcache releases it.
+
+The "why" of the shape: a client guard stops the accidental double tap but never a retry, a reload or a second tab, so where a repeat would do the thing twice the page also sends an opaque `Idempotency-Key` (`crypto.randomUUID()`, `[A-Za-z0-9_-]{16,128}`, in memory only) that is stable across retries of the same attempt and rotated after a definitive answer (`apps/storefront/src/lib/kunci-idempotensi.ts`). The key is optional on the wire and carried by the OTP verify (register and sign-in), address create, starting and replying to a conversation, the anonymous payment confirmation and the anonymous order cancel; naturally idempotent operations are guarded but get none. `409 IDEMPOTENCY_CONFLICT` shows a clear message. Checkout, booking and the reservation cancel keep the keys they already had and adopt the shared guard.
+
+- A new source-contract test fails the root suite when a script reaches a mutating call without importing the guard.
+- **Release order:** the cross-origin `Idempotency-Key` header needs `idempotency-key` in the CMS routes' CORS preflight allow-list (issue #513 units B and C) before this client is deployed against them, or a browser blocks those requests.
+- The new Playwright specs (`daftar-ketuk-ganda`, `checkout-ulang-jaringan`) were written without a browser and run on the trusted host.
+
+### The other mutating storefront endpoints are safe against double submit (server side)
+
+A shopper who double-taps "Simpan alamat", "Kirim", "Konfirmasi pembayaran", "Batalkan pesanan" or "Kirim ulasan", or whose phone retries a slow request, no longer ends up with a duplicate record or a confusing error (Issue #513, work unit C; unit B did registration, unit A the storefront guard).
+
+- **Optional `Idempotency-Key` on six routes:** `POST account/addresses`, `account/conversations`, `account/conversations/{id}/messages`, `orders/{code}/payment-confirmations`, `orders/{code}/cancel` and `reviews`. Same shape as `otp/verify` (`[A-Za-z0-9_-]{16,128}`, else `400 IDEMPOTENCY_KEY_INVALID`). The same key and request within one hour answers the original success again with `data.replayed: true`; the same key with a different request (another order, conversation, phone or text) is `409 IDEMPOTENCY_CONFLICT`, never the stored answer. Scoped per tenant, per route and, for the bearer routes, per account; concurrent same-key requests create one record. A replay does not spend the per-account message limit and writes one `commerce.storefront.idempotency_replayed` audit event (never the key). Stored in the shared `awcms_idempotency_keys` (no migration): the key only as an HMAC, the request as an HMAC digest, a marker or the owner's own `201` body, never a token.
+- **Cancelling an already-cancelled order is a success.** It answered `409 ORDER_NOT_CANCELLABLE` to a retrying customer, and two concurrent cancels both ran the transition (two `cancelled` events, two audit rows, a second restock). The order row is now locked while it is cancelled and a repeat answers `200` with the order; any other refusal is unchanged.
+- **Concurrent first address no longer ends in a `500`.** Two simultaneous address creates for a customer with no address raced into the default-address unique index; creates are now serialised per customer, so the 10-address limit also holds under concurrency.
+- **`POST reviews`:** the unique index already prevented a duplicate row; a keyed retry now replays the `201` with the same review id instead of `409 REVIEW_NOT_ALLOWED`. Without a key nothing changes.
+- **CORS:** every one of the six routes lists `idempotency-key` in its preflight (never `*`, no allow-credentials header); a browser blocks the header otherwise.
+- OpenAPI, `docs/api.md` (EN + ID, with the classification of each route) and the commerce README (EN + ID) describe the real behaviour.
+
+### apps/cms synced from ahliweb/awcms main at 45a139fa (hr_commission intake queue, channel accounts, single flight, media compression)
+
+Brings the commission intake queue of ahliweb/awcms ADR-0147 (the `commission_intake` port, `awcms_hr_commission_intents` with an `INSERT`-only grant for the worker, and the `hr-commission:intents:post` job that an `awcms_app` login runs; `sql/316`, `317`, `321`), the tenant-scoped `channel_accounts` registry of ADR-0148 (`sql/318`-`320`, inert behind `CHANNEL_ACCOUNTS_ENABLED`), the shared admin data-page primitives (ADR-0149), `astro` 7.4.4, `@astrojs/node` 11.1.9 and `prettier-plugin-astro` 1.1.2, and ADRs 0147-0156, as one merge commit on top of the #505 integration branch. The commission intake queue is the sanctioned worker path that the dormant `commerce` commission adapter (#391) was waiting for; this change only syncs and does not move the adapter onto it.
+
+- `apps/cms` now registers 35 modules (upstream's 34 plus `commerce`); every counting document says so. Migrations `316`-`321` are upstream's and collide with neither this repo's `880`-`899` band nor the `commerce` band; a database built from scratch applies 370 files.
+- Four shared registries took both lineages (`security-readiness.ts`, `subject-data-coverage-check.ts`, `validate-env.ts`, `data-lifecycle-table-coverage.test.ts`), the jobs-reach test lists `commerce`'s request-hashing callers beside booking's, and the generated files (OpenAPI bundle, API reference, work-class registry, composition, repo and scripts inventories, jobs env files, catalogues) were regenerated, not merged by hand. `APP_BUDGET_BYTES` is 513,800 B, measured 513,770 B on the merged build.
+- Operator: `hr-commission:intents:post` is now in the generated crontab (every minute; it claims nothing until a tenant turns `commission_intake_enabled` on) and must run as `awcms_app`. `compose.production.yaml`'s `jobs` service injects the worker DSN as `DATABASE_URL` for every job, so under `ops/run-job-compose.sh` this one job would connect as the worker and fail each run; a job-to-role routing for the compose path belongs with the #391 adapter (see `docs/deployment.md`). `channel-accounts:secrets:rekey` has no timer.
+- Root `bun.lock` follows the new `apps/cms` dependency ranges; `bun audit --audit-level=low` is clean.
+
+Advanced in place to upstream `45a139fa` (AWCMS v10.11.0) on the integration branch `integration/wave2`, nine further commits and one more merge commit:
+
+- Upstream: the 2 MiB default image upload cap with browser-side compression and its review fixes (#1221, #1223, #1228), single flight by default for every admin and public form (#1224, #1225, #1227), sender-aware routing on the one WhatsApp queue (#1141, #1230; `sql/322`-`324`; `WhatsappDeliveryPort` 1.1.0), the channel-accounts scope-containment fixes (#1219), ahliweb/awcms ADR-0149 to ADR-0155 accepted, and the `v10.11.0` release. Migrations `322`-`324` collide with neither the `880`-`899` band nor the `commerce` band (`1063` is the highest local number in use).
+- Operator: `NEWS_MEDIA_R2_MAX_UPLOAD_BYTES` now defaults to 2,097,152 (2 MiB, was 10 MiB); a deployment that sets it is unaffected. Oversize JPEG/PNG/WebP are compressed in the browser before upload, a GIF over the cap is refused, and the server enforces the cap whatever the browser did.
+- Local adoption of the single-flight contract: nine `commerce` admin bindings (the booking override and reschedule dialogs, order payment and reversal, POS checkout, hold and resume, store settings and feature toggles, barcode save, catalog import Validate, the returns wizard and refund buttons, the products bulk actions, the front-desk controls) now bind through `onSubmit`/`onAction` of `admin-form-client.ts`; two reviewed exceptions sit on the local allow-list of `apps/cms/scripts/lib/single-flight-audit.ts` (listed in `AGENTS.md`). `commerce`'s `WhatsappNotQueuedReason` gained the three sender-aware refusals so the adapter typechecks. `APP_BUDGET_BYTES` is 525,100 B, measured 525,002 B on the merged build.
+- Derived files (catalogues, preview overlay bundle, jobs env files, OpenAPI bundle, API reference, inventories, composition and work-class registries, single-flight audit tables) were regenerated, not merged by hand.
+
+### Neutralise references to the owner's internal standard
+
+Source citations in `AGENTS.md`, `AGENTS.id.md`, the embedded deploy skill and the skills-check script and test now name the owner's internal cross-portfolio standard in plain text instead of a repository path. The same edit is made upstream in `ahliweb/awcms`, so the next `apps/cms` sync stays conflict-free on these lines. No behaviour change.
+
+### Upgrade third-party versions (PostgreSQL 18.6, @astrojs/check 0.9.12)
+
+Moves the PostgreSQL pin from `postgres:18.4` to `postgres:18.6` (same major) in `compose.yaml`, `compose.production.yaml`, `docker/backup/Dockerfile`, the `local-ci/check-cms` runner and the docs that name it. Raises `@astrojs/check` to `^0.9.12` in `apps/storefront`. Bun is already `1.4.4`.
+
+- `astro`, `@astrojs/node` and `@playwright/test` are **held**: their versions in `bun.lock` are shared with `apps/cms`, which is upstream-owned, so raising them here would change what `apps/cms` resolves. They move with the next subtree sync.
+- `typescript` 7 is a major jump and is deliberately not taken (candidate only).
+- `apps/cms` is untouched; its resolved dependency closure is identical before and after.
+
+### Document CarikBot-inspired conversation flow as template research
+
+Records a channel-neutral menu/button/form architecture, its comparison with existing upstream CRM, Hermes and provider adapters, security gates and proposed consumer tests. Updates docs index and Indonesian translation. No runtime or API changes.
+
+Document FastPlaz concept-only developer-experience review for the existing `template:init` architecture. Reuse upstream AWCMS and existing issue #476; no runtime or API change. Issue #521.
+
 ## [0.19.0] — 2026-11-11
 
 ### Versioned population statistics per region from BPS "Dalam Angka" (issue #497)

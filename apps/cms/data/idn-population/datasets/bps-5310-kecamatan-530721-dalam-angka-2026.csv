@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.21.2001,4,Hale,sex,laki_laki,,1261,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.21.2001,4,Hale,sex,perempuan,,1278,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.21.2001,4,Hale,total,total,,2539,jiwa,2025,registration,total_population,3.1,26,,
+53.07.21.2002,4,Hebing,sex,laki_laki,,916,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.21.2002,4,Hebing,sex,perempuan,,970,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.21.2002,4,Hebing,total,total,,1886,jiwa,2025,registration,total_population,3.1,26,,
+53.07.21.2003,4,Natakoli,sex,laki_laki,,760,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.21.2003,4,Natakoli,sex,perempuan,,761,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.21.2003,4,Natakoli,total,total,,1521,jiwa,2025,registration,total_population,3.1,26,,
+53.07.21.2004,4,Egon Gahar,sex,laki_laki,,822,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+53.07.21.2004,4,Egon Gahar,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+53.07.21.2004,4,Egon Gahar,total,total,,1586,jiwa,2025,registration,total_population,3.1,26,,

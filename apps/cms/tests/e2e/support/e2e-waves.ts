@@ -91,6 +91,9 @@ export const READ_WAVE: readonly string[] = [
   "admin-screens-render.e2e.ts",
   "cwv-lab.e2e.ts",
   "login.e2e.ts",
+  // Issue #1224 — a double click and an Enter on `/login`. The login request is
+  // fulfilled by the spec itself (a delayed 401), so no session is minted.
+  "login-double-submit.e2e.ts",
   "not-found.e2e.ts",
   // Anonymous GETs against the public blog. Read-wave in the strictest sense:
   // it never logs in and never touches tenant state, and it needs no content
@@ -121,6 +124,12 @@ export const WRITE_WAVE: readonly string[] = [
   // data and the `booking` commerce feature switched on (and off again): it
   // writes booking and commerce rows and changes a tenant-wide feature flag.
   "admin-commerce-booking.e2e.ts",
+  // Issue #388 - the cashier / front-desk tab of `/admin/commerce-pos`: it turns
+  // the `pos`, `booking` and `register` commerce features on (and restores them),
+  // seeds a bookable room, books and part-pays a stay, opens a register session,
+  // then collects the balance, checks the guest in and out through the real POS
+  // booking routes. Writes booking, order, payment, register and audit rows.
+  "admin-commerce-front-desk.e2e.ts",
   // Nothing here mutates — every request it sends is refused by construction —
   // but it sends non-GET requests, and classifying by what a spec ATTEMPTS
   // rather than by what it happens to achieve is the rule that stays true when
@@ -137,7 +146,14 @@ export const WRITE_WAVE: readonly string[] = [
   // writes only procurement/inventory rows, but it mutates through the app.
   "admin-procurement-write.e2e.ts",
   "admin-modules-toggle.e2e.ts",
+  // Issue #1221 — drives the media uploader with an oversize JPEG and GIF. The
+  // upload endpoints are mocked with `page.route` and never reach the app, but
+  // it ATTEMPTS non-GET requests to them, which is what classifies it.
+  "media-upload-compression.e2e.ts",
   "admin-offices-create.e2e.ts",
+  // Issue #1224 — double click + Enter on the create form: exactly one POST and
+  // one new row. Creates an office through the app.
+  "admin-offices-double-submit.e2e.ts",
   "admin-offices-edit.e2e.ts",
   "admin-profiles-create.e2e.ts",
   "admin-roles.e2e.ts",

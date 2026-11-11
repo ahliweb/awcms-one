@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-5308-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "53.13",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Lembata Dalam Angka 2026",
+  "publisherName": "BPS Lembata",
+  "publisherDomain": "5308",
+  "publisherWebsite": "https://lembatakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Lembata (https://lembatakab.bps.go.id), publikasi \"Kabupaten Lembata Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.08",
+  "publicationNumber": "53080.26006",
+  "issn": "2541-5026",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://lembatakab.bps.go.id/id/publication/2026/02/27/017fabd097e7935ad74fe908/kabupaten-lembata-dalam-angka-2026.html",
+  "sourceFileSha256": "1a1daba5b4515ea8a871ea28e06424b532990b3e53aa146137b1b68d761672b4",
+  "sourceFileBytes": 26890680,
+  "sourcePages": [108, 222],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Lembata.",
+  "csvPath": "datasets/bps-5308-dalam-angka-2026.csv",
+  "csvSha256": "4bbe5f20a82c766d7670ef3769398786dac4a58ce62f1767154483d829b4e739",
+  "tablesUsed": [
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Lembata, 2025",
+      "printedPages": [108],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Lembata (rupiah), 2024 dan 2025",
+      "printedPages": [222],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (basis of 2025 not determinable)",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (basis of 2025 not determinable)"
+  ]
+}

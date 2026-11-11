@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.30.2001,4,Oelbubuk,sex,laki_laki,,1084,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.02.30.2001,4,Oelbubuk,sex,perempuan,,1071,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.02.30.2001,4,Oelbubuk,total,total,,2155,jiwa,2025,registration,total_population,3.1,,,
+53.02.30.2005,4,Kualeu,sex,laki_laki,,849,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.02.30.2005,4,Kualeu,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.02.30.2005,4,Kualeu,total,total,,1700,jiwa,2025,registration,total_population,3.1,,,
+53.02.30.2004,4,Oelekam,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.02.30.2004,4,Oelekam,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.02.30.2004,4,Oelekam,total,total,,1406,jiwa,2025,registration,total_population,3.1,,,
+53.02.30.2006,4,Pika,sex,laki_laki,,688,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.02.30.2006,4,Pika,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.02.30.2006,4,Pika,total,total,,1390,jiwa,2025,registration,total_population,3.1,,,
+53.02.30,3,Mollo Tengah,sex,laki_laki,,4309,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.02.30,3,Mollo Tengah,sex,perempuan,,4234,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.02.30,3,Mollo Tengah,total,total,,8543,jiwa,2025,registration,total_population,3.1,,,

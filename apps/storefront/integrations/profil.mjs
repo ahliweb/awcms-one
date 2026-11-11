@@ -67,6 +67,7 @@ import { fileURLToPath } from "node:url";
 
 import { SITE_PROFILE, ACTIVE_GROUPS } from "../src/config/profil";
 import { INSTALL_HELP_PATH, isInstallHelpEnabled } from "../src/lib/pasang-aplikasi";
+import { PUSH_SETTINGS_PATH, PUSH_WORKER_PATH, isCustomerPushEnabled } from "../src/lib/push-konfig";
 
 /** Where a group's page files live, relative to the project root. */
 export const PROFIL_ROOT = "src/profil";
@@ -177,6 +178,23 @@ export default function profil() {
         // build-time flag is on; off, no route exists at all.
         if (isInstallHelpEnabled()) {
           injectRoute({ pattern: INSTALL_HELP_PATH, entrypoint: "./src/install/pasang-aplikasi.astro" });
+        }
+
+        // Issue #431: the customer Web Push settings page and the push-only
+        // service worker. Both live under `src/push/` (outside `src/pages/`) so
+        // they are routed ONLY when `PUBLIC_CUSTOMER_PUSH` is on AND the profile
+        // carries customer accounts (the `toko` group). Off, or in a `berita`/
+        // `landing` build, neither route nor worker file exists at all.
+        if (isCustomerPushEnabled()) {
+          if (ACTIVE_GROUPS.includes("toko")) {
+            injectRoute({ pattern: PUSH_SETTINGS_PATH, entrypoint: "./src/push/akun-notifikasi.astro" });
+            injectRoute({ pattern: PUSH_WORKER_PATH, entrypoint: "./src/push/sw-notifikasi.js.ts" });
+          } else {
+            logger.warn(
+              `PUBLIC_CUSTOMER_PUSH is on but SITE_PROFILE=${SITE_PROFILE} has no customer accounts; ` +
+                "the push settings page and service worker are not built."
+            );
+          }
         }
 
         const beranda = join(root, berandaVariantPath(SITE_PROFILE));

@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.20.01.2005,4,Teriwu,sex,laki_laki,,657,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2005,4,Teriwu,sex,perempuan,,603,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2005,4,Teriwu,total,total,,1260,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2006,4,Raenalulu,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2006,4,Raenalulu,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2006,4,Raenalulu,total,total,,1858,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2009,4,Depe,sex,laki_laki,,937,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2009,4,Depe,sex,perempuan,,817,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2009,4,Depe,total,total,,1754,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2018,4,Titinalede,sex,laki_laki,,422,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2018,4,Titinalede,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2018,4,Titinalede,total,total,,845,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2010,4,Raemude,sex,laki_laki,,1213,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2010,4,Raemude,sex,perempuan,,1053,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2010,4,Raemude,total,total,,2266,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2012,4,Raenyale,sex,laki_laki,,1188,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2012,4,Raenyale,sex,perempuan,,1166,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2012,4,Raenyale,total,total,,2354,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2011,4,Raekore,sex,laki_laki,,1034,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2011,4,Raekore,sex,perempuan,,888,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2011,4,Raekore,total,total,,1922,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2014,4,Delo,sex,laki_laki,,724,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2014,4,Delo,sex,perempuan,,703,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2014,4,Delo,total,total,,1427,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2002,4,Menia,sex,laki_laki,,2073,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2002,4,Menia,sex,perempuan,,2091,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2002,4,Menia,total,total,,4164,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2003,4,Raeloro,sex,laki_laki,,1068,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2003,4,Raeloro,sex,perempuan,,1112,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2003,4,Raeloro,total,total,,2180,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2015,4,Roboaba,sex,laki_laki,,772,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2015,4,Roboaba,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2015,4,Roboaba,total,total,,1474,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.1001,4,Mebba,sex,laki_laki,,1602,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.1001,4,Mebba,sex,perempuan,,1577,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.1001,4,Mebba,total,total,,3179,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2013,4,Raemadia,sex,laki_laki,,1388,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2013,4,Raemadia,sex,perempuan,,1347,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2013,4,Raemadia,total,total,,2735,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2008,4,Ledeana,sex,laki_laki,,1086,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2008,4,Ledeana,sex,perempuan,,1065,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2008,4,Ledeana,total,total,,2151,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2017,4,Ledekepaka,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2017,4,Ledekepaka,sex,perempuan,,575,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2017,4,Ledekepaka,total,total,,1129,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01.2007,4,Raedewa,sex,laki_laki,,1146,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01.2007,4,Raedewa,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01.2007,4,Raedewa,total,total,,2275,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01,3,Sabu Barat,sex,laki_laki,,18459,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.01,3,Sabu Barat,sex,perempuan,,17658,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.01,3,Sabu Barat,total,total,,36117,jiwa,2025,registration,total_population,3.1,16,,
+53.20.01,3,Sabu Barat,age_group,0-4,laki_laki,1455,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.01,3,Sabu Barat,age_group,0-4,perempuan,1391,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.01,3,Sabu Barat,age_group,0-4,,2846,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.01,3,Sabu Barat,age_group,5-9,laki_laki,1961,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.01,3,Sabu Barat,age_group,5-9,perempuan,1852,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.01,3,Sabu Barat,age_group,5-9,,3813,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.01,3,Sabu Barat,age_group,10-14,laki_laki,2019,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.01,3,Sabu Barat,age_group,10-14,perempuan,1853,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.01,3,Sabu Barat,age_group,10-14,,3872,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.01,3,Sabu Barat,age_group,15-19,laki_laki,1955,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.01,3,Sabu Barat,age_group,15-19,perempuan,1816,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.01,3,Sabu Barat,age_group,15-19,,3771,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.01,3,Sabu Barat,age_group,20-24,laki_laki,1704,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.01,3,Sabu Barat,age_group,20-24,perempuan,1649,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.01,3,Sabu Barat,age_group,20-24,,3353,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.01,3,Sabu Barat,age_group,25-29,laki_laki,1472,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.01,3,Sabu Barat,age_group,25-29,perempuan,1500,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.01,3,Sabu Barat,age_group,25-29,,2972,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.01,3,Sabu Barat,age_group,30-34,laki_laki,1317,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.01,3,Sabu Barat,age_group,30-34,perempuan,1328,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.01,3,Sabu Barat,age_group,30-34,,2645,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.01,3,Sabu Barat,age_group,35-39,laki_laki,1332,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.01,3,Sabu Barat,age_group,35-39,perempuan,1242,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.01,3,Sabu Barat,age_group,35-39,,2574,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.01,3,Sabu Barat,age_group,40-44,laki_laki,1093,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.01,3,Sabu Barat,age_group,40-44,perempuan,999,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.01,3,Sabu Barat,age_group,40-44,,2092,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.01,3,Sabu Barat,age_group,45-49,laki_laki,918,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.01,3,Sabu Barat,age_group,45-49,perempuan,864,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.01,3,Sabu Barat,age_group,45-49,,1782,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.01,3,Sabu Barat,age_group,50-54,laki_laki,781,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.01,3,Sabu Barat,age_group,50-54,perempuan,762,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.01,3,Sabu Barat,age_group,50-54,,1543,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.01,3,Sabu Barat,age_group,55-59,laki_laki,695,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.01,3,Sabu Barat,age_group,55-59,perempuan,561,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.01,3,Sabu Barat,age_group,55-59,,1256,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.01,3,Sabu Barat,age_group,60-64,laki_laki,564,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.01,3,Sabu Barat,age_group,60-64,perempuan,487,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.01,3,Sabu Barat,age_group,60-64,,1051,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.01,3,Sabu Barat,age_group,65-69,laki_laki,450,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.01,3,Sabu Barat,age_group,65-69,perempuan,441,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.01,3,Sabu Barat,age_group,65-69,,891,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.01,3,Sabu Barat,age_group,70-74,laki_laki,320,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.01,3,Sabu Barat,age_group,70-74,perempuan,374,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.01,3,Sabu Barat,age_group,70-74,,694,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.01,3,Sabu Barat,age_group,75+,laki_laki,423,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.01,3,Sabu Barat,age_group,75+,perempuan,539,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.01,3,Sabu Barat,age_group,75+,,962,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.01,3,Sabu Barat,sex,laki_laki,,18459,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki
+53.20.01,3,Sabu Barat,sex,perempuan,,17658,jiwa,2025,registration,total_population,3.2,18,,Perempuan
+53.20.01,3,Sabu Barat,total,total,,36117,jiwa,2025,registration,total_population,3.2,18,,

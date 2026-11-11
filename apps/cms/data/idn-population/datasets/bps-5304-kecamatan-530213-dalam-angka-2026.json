@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530213-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Polen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Polen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304071",
+  "publicationNumber": "53040.2026",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/ce5e0c465b4555db722f899f/kecamatan-polen-dalam-angka-2026.html",
+  "sourceFileSha256": "7b622bf1c43eaba282b105e9ed55c3f36f0d2803ae1dea044891369f2f9794dc",
+  "sourceFileBytes": 5026948,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530213-dalam-angka-2026.csv",
+  "csvSha256": "8bc93975358f9ea7695a14dae963e368e6c5a701c6e738832e200017e595c4f7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Polen, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Laob 7,74%\": unmatched ",
+    "table 3.1: row not stored: row \"Konbaki 14,48%\": unmatched ",
+    "table 3.1: row not stored: row \"Puna 11,67%\": unmatched ",
+    "table 3.1: row not stored: row \"Loli 10,68%\": unmatched ",
+    "table 3.1: row not stored: row \"Mnesatbubuk 9,00%\": unmatched ",
+    "table 3.1: row not stored: row \"Bijeli 12,08%\": unmatched ",
+    "table 3.1: row not stored: row \"Usapimnasi 5,22%\": unmatched ",
+    "table 3.1: row not stored: row \"Fatumnutu 13,05%\": unmatched ",
+    "table 3.1: row not stored: row \"Oelnunuh 5,62%\": unmatched ",
+    "table 3.1: row not stored: row \"Balu 5,04%\": unmatched ",
+    "table 3.1: row not stored: row \"Sainoni 5,43%\": unmatched ",
+    "table 3.1: row not stored: row \"Polen 100%\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

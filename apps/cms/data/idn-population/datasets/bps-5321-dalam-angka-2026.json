@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-5321-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "53.21",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Malaka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malaka",
+  "publisherDomain": "5321",
+  "publisherWebsite": "https://malakakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malaka (https://malakakab.bps.go.id), publikasi \"Kabupaten Malaka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5321",
+  "publicationNumber": "53210.26001",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://malakakab.bps.go.id/id/publication/2026/02/27/13fb96cddfe4e6998b281d26/kabupaten-malaka-dalam-angka-2026.html",
+  "sourceFileSha256": "0b445859b105dfb0a1637ce50d19009a21de56593afa71084beb7b2418d1ce75",
+  "sourceFileBytes": 26275047,
+  "sourcePages": [48, 51, 108, 214],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malaka.",
+  "csvPath": "datasets/bps-5321-dalam-angka-2026.csv",
+  "csvSha256": "f914154c251adc8b0c87e9656c48b83c44310e9915a1b2cfeedb0a21cf879e1f",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Malaka, 2025",
+      "printedPages": [48],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Malaka (jiwa), 2025",
+      "printedPages": [51],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Malaka (rupiah), 2024 dan 2025",
+      "printedPages": [214],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"lo Kufeu\": unmatched ",
+    "table 4.3.1: row not stored: row \"lo Kufeu\": unmatched ",
+    "table 4.3.1: row not stored: row \"Kabupaten Malaka\": unmatched ",
+    "table 4.3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "cross-table disagreement, both stored as published: 53.21 total/total/ 2025: 196008 (table 3.1.1) vs 198496 (table 3.1.2)"
+  ]
+}

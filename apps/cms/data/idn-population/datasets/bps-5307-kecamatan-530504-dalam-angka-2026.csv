@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.04.2004,4,Padang Alang,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2004,4,Padang Alang,sex,perempuan,,624,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2004,4,Padang Alang,total,total,,1234,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2009,4,Maikang,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2009,4,Maikang,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2009,4,Maikang,total,total,,424,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2003,4,Sidabui,sex,laki_laki,,381,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2003,4,Sidabui,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2003,4,Sidabui,total,total,,743,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2008,4,Kiraman,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2008,4,Kiraman,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2008,4,Kiraman,total,total,,680,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2005,4,Kuneman,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2005,4,Kuneman,sex,perempuan,,436,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2005,4,Kuneman,total,total,,859,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2012,4,Lella,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2012,4,Lella,sex,perempuan,,247,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2012,4,Lella,total,total,,474,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2013,4,Manmas,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2013,4,Manmas,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2013,4,Manmas,total,total,,411,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2006,4,Silaipui,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2006,4,Silaipui,sex,perempuan,,366,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2006,4,Silaipui,total,total,,719,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.1001,4,Kelaisi Timur,sex,laki_laki,,531,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.1001,4,Kelaisi Timur,sex,perempuan,,586,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.1001,4,Kelaisi Timur,total,total,,1117,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2014,4,Subo,sex,laki_laki,,431,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2014,4,Subo,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2014,4,Subo,total,total,,852,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2007,4,Kelaisi Tengah,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2007,4,Kelaisi Tengah,sex,perempuan,,439,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2007,4,Kelaisi Tengah,total,total,,856,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2002,4,Kelaisi Barat,sex,laki_laki,,421,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2002,4,Kelaisi Barat,sex,perempuan,,434,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2002,4,Kelaisi Barat,total,total,,855,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04.2010,4,Malaipea,sex,laki_laki,,439,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04.2010,4,Malaipea,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04.2010,4,Malaipea,total,total,,885,jiwa,2025,registration,total_population,3.1,13,,
+53.05.04,3,Alor Selatan,sex,laki_laki,,5299,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.04,3,Alor Selatan,sex,perempuan,,5422,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.04,3,Alor Selatan,total,total,,10721,jiwa,2025,registration,total_population,3.1,13,,

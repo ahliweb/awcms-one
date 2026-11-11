@@ -1,11 +1,11 @@
 /**
- * `dataLifecycle` and `subjectData` descriptors for the two commission-attribution
- * tables (Issue #391, ADR-0046), declared once here and spread into `module.ts`'s
+ * `dataLifecycle` and `subjectData` descriptors for the commission-attribution
+ * tables (Issue #391, ADR-0046; the submission record added by ADR-0046 D12), declared once here and spread into `module.ts`'s
  * two arrays - the same shape and reasoning as `expense-lifecycle.ts`. Pure data.
  *
  * ## Retention
  *
- * Neither table is purged by age. They are `delegated` with no purge mechanism,
+ * None of these tables is purged by age. They are `delegated` with no purge mechanism,
  * which answers the retention question on the record instead of by silence (the
  * pattern `hr_workforce` uses for the tables it keeps for the life of the
  * tenant): a generic age-based purge would delete the settings row and the LIVE
@@ -98,6 +98,14 @@ export const COMMISSION_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     why: "At most one row per (tenant, source type, rule key) (unique key, sql/1052): bounded by how often a tenant has ever changed those two settings, which an administrator does by hand.",
     deletionWhy:
       "No purge runs and no UPDATE or DELETE is possible (a guard trigger refuses both for every role): a row is the evidence that a source identity was used, and deleting it would let the settings change the identity of accruals that already exist (Issue #413, ADR-0046)."
+  }),
+  retained({
+    key: "commerce.commission_submissions",
+    tableName: "awcms_commerce_commission_submissions",
+    cursorColumn: "created_at",
+    why: "One narrow row (about 150 bytes: five ids, two codes, a timestamp) per commissionable order line of a tenant that switched the adapter on (unique key, sql/1063), so it grows with that tenant's counter sales, not with traffic from outside. A bounded-age purge needs an owner decision on the void window and is a recorded follow-up (Issue #391).",
+    deletionWhy:
+      "No purge runs and no UPDATE or DELETE is possible (a guard trigger refuses both for every role): a row is the evidence of which lines were submitted to the commission intake, and the reversers void exactly these. Deleting one would leave a cancelled or refunded sale's commission standing with nothing that says to void it (Issue #391, ADR-0046 D12)."
   })
 ];
 
@@ -138,5 +146,16 @@ export const COMMISSION_SUBJECT_DATA: SubjectDataDescriptor[] = [
     erasure: "retain_under_obligation",
     rationale:
       "Issue #413 (ADR-0046) - one row per (source type, rule key) pair a tenant has reported commission accruals under: two codes and a timestamp, no login, employment, order, amount or actor. It cannot be traced to any person, and it must outlive every erasure because it is what stops the commission settings from changing the identity of accruals that already exist."
+  },
+  {
+    key: "commerce.commission_submissions",
+    tableName: "awcms_commerce_commission_submissions",
+    ownerModuleKey: "commerce",
+    unreachableBySubject: true,
+    subjectColumns: [],
+    exportable: false,
+    erasure: "retain_under_obligation",
+    rationale:
+      "Issue #391 (ADR-0046 D12) - which order line was submitted to the commission intake for which employment and source identity: ids, two codes and a timestamp, no name, contact, login, amount, rate or actor. The employment id is OPAQUE here (no foreign key, no read of hr_workforce) and means something only with the hr_workforce record it points at, which that module owns and exports; the order and line ids belong to commerce's own order records, which carry the subject. It must outlive every erasure because the reversers void exactly these lines."
   }
 ];

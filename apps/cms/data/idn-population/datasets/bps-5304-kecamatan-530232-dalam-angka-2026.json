@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530232-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.32",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Nunbena Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Nunbena Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304013",
+  "publicationNumber": "53040.26028",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/9116ffcd8e9e5bdbf32e2db6/kecamatan-nunbena-dalam-angka-2026.html",
+  "sourceFileSha256": "4227d9d46b2d10524b1bc308cdd081e831687b0b0203066a3701934cbb5cca6c",
+  "sourceFileBytes": 3075960,
+  "sourcePages": [31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530232-dalam-angka-2026.csv",
+  "csvSha256": "d6323f2335f3d2584f2673a3a6dfba4f68bdfd201338133d9311930bbcdd7f56",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Nunbena, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Taneotop\": unmatched ",
+    "table 3.3: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mollo Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Mollo Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304071",
+  "publicationNumber": "53040.26033",
+  "issn": "2598-1668",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/933a2ce798130037d7885320/kecamatan-mollo-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "d42827212686f02dc5b8274132c95c3a60d6a06895f77c318ef2ab633d380fa4",
+  "sourceFileBytes": 4865224,
+  "sourcePages": [29, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan Itisprohibitedtoreproduceand/orduplicatepartorallofthisbookforcommercial purposewithoutpermissionfromBPS-Statistics Timor Tengah Selatan Regency iv ISSN : - TIM PENYUSUN/COMPILERS Kecamatan Mollo Selatan Dalam Angka 2026 Mollo Selatan Districtin Figures 2026 Volume 01, 2026 .b ps .g o .id Pengarah/Director Martinus Tulit Beni se l at an ka b Penanggung Jawab/Persons in Charge Andrian Nardo Napitupulu tim or te ng ah Penyunting/Editors Dessy Rofica Wulandari ht tp s: // Pengolah Data dan Penulis Naskah/Data ProcessorandWriters Anita Yuyun Nubatonis Penata Letak/Layouters Hans Tikynaro Manurung Penerjemah/Translators Anita Yuyun Nubatonis v vi ah ng te tim or tp s: // ht .id .g o ps .b an ka b at se l KONTRIBUTOR DATA/DATA CONTRIBUTORS 1. Kementerian Agama/MinistryofReligiousAffair 2. Kementerian Pendidikan Dasar dan 3. Badan Pusat Statistik/BPS-StatisticsIndonesia .id Menengah/MinistryofPrimaryandSecondaryEducation .g o 4. Dinas Kependudukan dan Pencatatan Sipil Kabupaten Timor ht tp s: // tim or te ng ah se l at an ka b .b ps Tengah Selatan vii viii ah ng te tim or tp s: // ht .id .g o ps .b an ka b at se l KATA PENGANTAR Publikasi Kecamatan Mollo Selatan Dalam Angka 2026 adalah buku publikasi tahunan yang diterbitkan oleh Badan Pusat Statistik Kabupaten Timor Tengah Selatan. Publikasi ini memuat .id himpunan data dari berbagai bidang dan sektor, serta gambaran .g o singkat tentang hal-hal yang penting dari bidang-bidang yang ps ada di Kecamatan MolloSelatan. Data yang disajikan ini telah .b disusun oleh Badan Pusat Statistik Kabupaten Timor Tengah maupun data sekunder yang diperoleh dari kantor se l at desa/kelurahan an ka b Selatan baik berupa data primer yang dikumpulkan langsung, ah Publikasi ini dapat terbit berkat kerjasama dan bantuan dari ng berbagai pihak, baik dari instansi pemerintah maupun swasta. ht tp s: // tim or te Untuk itu, kepada semua pihak yang telah ikut membantu terwujudnya publikasi ini, kami sampaikan penghargaan dan ucapan terima kasih yang sebesar besarnya. Meskipun publikasi ini telah dipersiapkan sebaik baiknya, disadari masih ada kekurangan dan kesalahan yang mungkin terjadi. Untuk perbaikan di masa mendatang, tanggapan dan saran dari pengguna publikasi ini sangat diharapkan. ix Soe, September 2026 Kepala BPSKabupaten Timor Tengah Selatan ht tp s: // tim or te ng ah se l at an ka b .b ps .g o .id Martinus Tulit Beni x",
+  "csvPath": "datasets/bps-5304-kecamatan-530202-dalam-angka-2026.csv",
+  "csvSha256": "bf08011987735b034845cc69a3cf1ca36f821e86dd49aaec6816a8c8cf9d432e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mollo Selatan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mollo Selatan, 2025 Populationby Age Groupsand Sex in Mollo SelatanDistrict, 2025 Jenis Kelamin/Sex Kelompok Umur Age Groups Laki-Laki Perempuan Jumlah Male Female Total",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"07. Klani/Noinbila\": unmatched ",
+    "table 3.1: 7 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: row not stored: row \"60--64\": unmatched ",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

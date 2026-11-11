@@ -38,5 +38,15 @@
     "ruleId": "js/clear-text-logging",
     "path": "tools/seed-cms.ts",
     "reason": "won't fix (GitHub code-scanning alert #3): prints the generated owner password once, explicitly labelled SHOWN ONCE and not stored by the script, for the local dev operator who needs it; this is a local dev seed tool, not a production logging path."
+  },
+  {
+    "ruleId": "js/insufficient-password-hash",
+    "path": "apps/cms/src/modules/channel-accounts/application/connection-directory.ts",
+    "reason": "false positive (upstream awcms code-scanning alert 200, already dismissed there): publicValueDigest takes a tagged SHA-256 of PUBLIC, non-secret values (this deployment's own OAuth redirect URI and the granted scope names) as an equality fingerprint to compare a callback with the flow that started it; it is not a password or credential hash, and no slow KDF buys anything for a public value."
+  },
+  {
+    "ruleId": "js/incomplete-multi-character-sanitization",
+    "path": "apps/cms/tests/commerce-front-desk-contract.test.ts",
+    "reason": "used in tests: the contract test strips HTML comments from this repo's own .astro source before asserting what the markup contains; the input is a checked-in file read by the test itself, and the output is never rendered or served."
   }
 ]

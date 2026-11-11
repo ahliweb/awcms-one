@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-6104-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "61.02",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Mempawah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mempawah",
+  "publisherDomain": "6104",
+  "publisherWebsite": "https://mempawahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mempawah (https://mempawahkab.bps.go.id), publikasi \"Kabupaten Mempawah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6104",
+  "publicationNumber": "61040.26002",
+  "issn": "2829-081X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://mempawahkab.bps.go.id/id/publication/2026/02/27/6d6d97a224e2a30ed28c16fe/kabupaten-mempawah-dalam-angka-2026.html",
+  "sourceFileSha256": "c91014a1ff113fda2d847911bb897174e298e0b486d5b03871a358f2f7aba181",
+  "sourceFileBytes": 6263107,
+  "sourcePages": [65, 68, 151, 321],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mempawah.",
+  "csvPath": "datasets/bps-6104-dalam-angka-2026.csv",
+  "csvSha256": "f784cdcdd1739ec9a7477a03ebd52c2a2c401747a00ad18690d0ef67c667ffa0",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Mempawah, 2025",
+      "printedPages": [65],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Mempawah (jiwa) , 2025",
+      "printedPages": [68],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Mempawah, 2025",
+      "printedPages": [151],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Mempawah (rupiah), 2024 dan 2025",
+      "printedPages": [321],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

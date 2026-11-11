@@ -96,11 +96,17 @@ describe("fetchModuleJobs", () => {
         "bun run blog:publish:scheduled",
         "bun run booking:holds:expire",
         "bun run booking:reminders:dispatch",
+        "bun run channel-accounts:secrets:rekey",
         "bun run comments:retention",
         // Issue #114 (awcms-one epic #33): the campaign claim/page/finalize drain.
         "bun run commerce:campaigns:dispatch",
         // Issue #87 (awcms-one epic #32): OTP/session purge.
         "bun run commerce:customer-auth:purge",
+        // Issue #430: customer Web Push device maintenance (every 15 minutes)
+        // and the manual key-ring rekey; Issue #432: the dispatcher (every minute).
+        "bun run commerce:customer-push:dispatch",
+        "bun run commerce:customer-push:maintenance",
+        "bun run commerce:customer-push:rekey",
         // Issue #26 (awcms-one epic #21): the flash-sale status tick.
         "bun run commerce:flash-sales:tick",
         // Issue #289 (awcms-one epic #281): the loyalty expiry sweep and the
@@ -127,6 +133,7 @@ describe("fetchModuleJobs", () => {
         "bun run email:templates:seed-defaults",
         "bun run entitlements:backfill",
         "bun run form-drafts:purge",
+        "bun run hr-commission:intents:post",
         "bun run identity-access:business-scope:expiry",
         "bun run identity-access:delegated-access:expiry",
         "bun run identity-access:subscription-lifecycle",

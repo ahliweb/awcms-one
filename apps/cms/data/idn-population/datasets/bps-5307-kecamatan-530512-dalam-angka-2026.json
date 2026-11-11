@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-5307-kecamatan-530512-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.05.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mataru Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Alor",
+  "publisherDomain": "5307",
+  "publisherWebsite": "https://alorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Alor (https://alorkab.bps.go.id), publikasi \"Kecamatan Mataru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53070",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://alorkab.bps.go.id/id/publication/2026/09/28/c502b8686aeca366e5930f6b/kecamatan-mataru-dalam-angka-2026.html",
+  "sourceFileSha256": "597eeb572e11a2f177d04ae6f327caf5816f0c53d63706ad059a726d424751c7",
+  "sourceFileBytes": 3693470,
+  "sourcePages": [14],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Alor",
+  "csvPath": "datasets/bps-5307-kecamatan-530512-dalam-angka-2026.csv",
+  "csvSha256": "f69613397efa4b4680e5d1172a063fec762af8fea18ba8793548405427ce3b6c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mataru, 2025",
+      "printedPages": [14],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 53.05.12.2003 are not stored: sex split vs total: parts sum 1007.0000 != 1016.0000 (diff 9.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 53.05.12.2005 are not stored: sex split vs total: parts sum 849.0000 != 850.0000 (diff 1.0000); the source itself is inconsistent"
+  ]
+}

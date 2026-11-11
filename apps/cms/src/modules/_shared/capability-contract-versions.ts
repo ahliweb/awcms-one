@@ -102,6 +102,11 @@ export const CAPABILITY_CONTRACT_VERSIONS: Readonly<Record<string, string>> =
     // method on the port: MINOR) and declares the key for the first time, so
     // `1.1.0` is the first assigned number: `1.0.0` is the accrue-only shape.
     commission_accrual: "1.1.0",
+    // commission_intake is provided by `hr_commission` (Issue #1189, ADR-0147): the
+    // port an EVENT-DRIVEN consumer (one running as `awcms_worker`) submits a
+    // commission request through, because the worker may not touch the accrual
+    // ledger. `commission_accrual` is unchanged. First assigned number.
+    commission_intake: "1.0.0",
     // tenant_admin provides (ADR-0060) — the office hierarchy resolver behind
     // `business_scope_hierarchy`. The port itself is unchanged from the day it
     // landed (#180); what changed is that a BASE module finally provides an
@@ -116,5 +121,18 @@ export const CAPABILITY_CONTRACT_VERSIONS: Readonly<Record<string, string>> =
     // `checkOut`, `markNoShow`, `get`, `getOffering`, `listOfferings` and the
     // anonymous `availability` read, plus the refusals `CHECK_IN_TOO_EARLY` and
     // `NO_SHOW_TOO_EARLY`. No existing signature changed (a MINOR bump).
-    booking: "1.1.0"
+    booking: "1.1.0",
+    // whatsapp_delivery is provided by the base `whatsapp_delivery` module
+    // (ADR-0133), port `_shared/ports/whatsapp-delivery-port.ts`. `1.0.0` was the
+    // shape of Issue #963; `1.1.0` (Issue #1141, ADR-0148 section 4) ADDS the
+    // optional `senderAccountId`, `inReplyToMessageId` and `businessScope` inputs
+    // and the refusals `SENDER_UNAVAILABLE`, `SENDER_AFFINITY_CONFLICT` and
+    // `REPLY_TARGET_UNKNOWN`. No existing signature changed (a MINOR bump), so
+    // booking and the commerce adapter behind `awcms-one`'s mode router compile
+    // and behave unchanged. First entry for this key.
+    whatsapp_delivery: "1.1.0",
+    // channel_account is provided by the base `channel_accounts` module (Issue
+    // #1141, ADR-0148 capability C1) and consumed, optionally, by
+    // `whatsapp_delivery`. First assigned number, not a stability milestone.
+    channel_account: "1.0.0"
   });

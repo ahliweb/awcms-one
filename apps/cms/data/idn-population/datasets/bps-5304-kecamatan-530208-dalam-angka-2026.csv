@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.08.2001,4,Oinlasi,sex,laki_laki,,1071,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2001,4,Oinlasi,sex,perempuan,,1177,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2001,4,Oinlasi,total,total,,2248,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2003,4,Kokoi,sex,laki_laki,,730,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2003,4,Kokoi,sex,perempuan,,776,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2003,4,Kokoi,total,total,,1506,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2011,4,Fatulunu,sex,laki_laki,,630,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2011,4,Fatulunu,sex,perempuan,,705,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2011,4,Fatulunu,total,total,,1335,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2002,4,Nunleu,sex,laki_laki,,1252,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2002,4,Nunleu,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2002,4,Nunleu,total,total,,2549,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2005,4,Kualeu,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2005,4,Kualeu,sex,perempuan,,1018,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2005,4,Kualeu,total,total,,1966,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2004,4,Fenun,sex,laki_laki,,988,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2004,4,Fenun,sex,perempuan,,1031,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2004,4,Fenun,total,total,,2019,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2008,4,Anin,sex,laki_laki,,681,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2008,4,Anin,sex,perempuan,,741,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2008,4,Anin,total,total,,1422,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2009,4,Toi,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2009,4,Toi,sex,perempuan,,587,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2009,4,Toi,total,total,,1203,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2007,4,Sunu,sex,laki_laki,,701,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2007,4,Sunu,sex,perempuan,,704,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2007,4,Sunu,total,total,,1405,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2006,4,Lanu,sex,laki_laki,,538,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2006,4,Lanu,sex,perempuan,,527,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2006,4,Lanu,total,total,,1065,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2010,4,Nifuleo,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2010,4,Nifuleo,sex,perempuan,,589,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2010,4,Nifuleo,total,total,,1151,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2012,4,Fae,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2012,4,Fae,sex,perempuan,,502,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2012,4,Fae,total,total,,973,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08.2013,4,Netutnana,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08.2013,4,Netutnana,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08.2013,4,Netutnana,total,total,,1132,jiwa,2025,registration,total_population,3.1,29,,
+53.02.08,3,Amanatun Selatan,sex,laki_laki,,9725,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+53.02.08,3,Amanatun Selatan,sex,perempuan,,10249,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+53.02.08,3,Amanatun Selatan,total,total,,19974,jiwa,2025,registration,total_population,3.1,29,,
