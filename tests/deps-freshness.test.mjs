@@ -505,10 +505,10 @@ describe("scope and wiring", () => {
     assert.deepEqual(refs.sort(), [
       "apps/storefront/Dockerfile oven/bun:" + pin,
       "apps/storefront/Dockerfile oven/bun:" + pin + "-slim",
-      "compose.production.yaml postgres:18.4",
-      "compose.yaml postgres:18.4",
-      "docker/backup/Dockerfile postgres:18.4",
-      "tools/ci/runners/check-cms.ts postgres:18.4",
+      "compose.production.yaml postgres:18.6",
+      "compose.yaml postgres:18.6",
+      "docker/backup/Dockerfile postgres:18.6",
+      "tools/ci/runners/check-cms.ts postgres:18.6",
       "tools/ci/runners/security.ts docker.io/zricethezav/gitleaks@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f"
     ].sort());
   });

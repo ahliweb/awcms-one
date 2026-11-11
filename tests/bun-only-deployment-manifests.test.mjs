@@ -347,7 +347,7 @@ export function dockerfileStageViolations(file, text, pin) {
 /** Dockerfiles whose final stage is deliberately NOT an `oven/bun` image. */
 const EXEMPT_DOCKERFILES = {
   "docker/backup/Dockerfile":
-    "bash-only backup runner (issue #213, ADR-0123): FROM postgres:18.4 plus age, rsync and openssh-client, running the upstream apps/cms/deploy/backup/*.sh scripts. No JavaScript process starts in this image, so no Bun runtime is launched. The Node-launcher and bun-pin token rules still apply to it."
+    "bash-only backup runner (issue #213, ADR-0123): FROM postgres:18.6 plus age, rsync and openssh-client, running the upstream apps/cms/deploy/backup/*.sh scripts. No JavaScript process starts in this image, so no Bun runtime is launched. The Node-launcher and bun-pin token rules still apply to it."
 };
 
 /**
@@ -356,9 +356,9 @@ const EXEMPT_DOCKERFILES = {
  */
 const EXEMPT_IMAGE_SERVICES = {
   "compose.yaml#postgres":
-    "PostgreSQL server (postgres:18.4): a database process, not a JavaScript launcher",
+    "PostgreSQL server (postgres:18.6): a database process, not a JavaScript launcher",
   "compose.production.yaml#postgres":
-    "PostgreSQL server (postgres:18.4): a database process, not a JavaScript launcher"
+    "PostgreSQL server (postgres:18.6): a database process, not a JavaScript launcher"
 };
 
 /**
