@@ -150,8 +150,16 @@ const SKIP = new Set([
  * either. Generated output belongs to that gate; the documents this one
  * reads are the ones a person wrote. `knowledge/curated/` and
  * `knowledge/README.md` stay in scope — they are authored.
+ *
+ * `redesign` holds design-source drops exported from an external design
+ * tool (the 2026-09 AWCMS-One admin/public mockups that issues #166-#171
+ * implemented). Issue #182 git-ignored them as local-only inputs; they are
+ * now tracked as reference material. Their markdown is that tool's own
+ * sync notes, written against its view of the repo (e.g. `docs/adr/0010`
+ * as a shorthand, not a path), and is kept byte-for-byte as exported
+ * rather than rewritten to satisfy this gate.
  */
-const SKIP_PATHS = new Set(["apps/cms", "knowledge/generated"]);
+const SKIP_PATHS = new Set(["apps/cms", "knowledge/generated", "redesign"]);
 
 function violation(gate, file, message) {
   reporter.violation(gate, file, message);
