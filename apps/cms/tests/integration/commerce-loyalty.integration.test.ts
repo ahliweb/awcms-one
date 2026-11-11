@@ -93,21 +93,25 @@ const TENANT_B = "bbbbbbbb-0289-4000-8000-000000000002";
 const ACTOR = "cccccccc-0289-4000-8000-000000000003";
 
 const DAY = 86_400_000;
-// The ledger stamps `created_at` with the database clock, and a debit cannot
-// spend a lot that had already expired at that instant (loyalty-lots.ts). The
-// dates are therefore anchored to the real clock (a 30-day expiry stays in the
-// future whenever the suite runs), never to a calendar date that the wall
-// clock will eventually pass: fixed 2026-10-01 dates made the expiry/reversal
-// tests fail from 2026-10-31 on.
-const TODAY_UTC = new Date(
-  Date.UTC(
-    new Date().getUTCFullYear(),
-    new Date().getUTCMonth(),
-    new Date().getUTCDate()
-  )
+/**
+ * The logical "paid" instant most tests use, anchored to the REAL clock
+ * (three days ago) rather than a calendar date.
+ *
+ * Ledger rows get `created_at = now()` from the database, and the lot replay
+ * (`loyalty-lots.ts`, `consumeFifo`) skips a lot that had already expired at a
+ * debit's `created_at`. A fixed date would therefore make these tests pass
+ * until the real clock passed `PAID_AT + expiryDays` (30 days) and then fail
+ * with no code change: the debits would be stamped after the lots lapsed. With
+ * the anchor, `PAID_AT < now < PAID_AT + 30 days` for as long as the suite
+ * runs; the explicit `asOf` arguments (`PAID_AT + N * DAY`) are parameters of
+ * the expiry functions and may lie in the future.
+ */
+const PAID_AT = new Date(
+  Math.floor((Date.now() - 3 * 86_400_000) / 1000) * 1000
 );
-const PROGRAM_START = new Date(TODAY_UTC.getTime() - 40 * DAY);
-const PAID_AT = new Date(PROGRAM_START.getTime() + 30 * DAY + 10 * 3_600_000);
+// Fixed on purpose: the program-window tests pin their own calendar dates
+// (August/September 2026) relative to this one, and need no real-clock lot.
+const PROGRAM_START = new Date("2026-09-01T00:00:00.000Z");
 
 function inTenant<T>(
   tenantId: string,
@@ -499,7 +503,7 @@ suite("commerce loyalty ledger integration (Issue #289)", () => {
       ).toEqual({ kind: "skipped", reason: "zero_points" });
 
       const beforeProgram = await seedOrder(TENANT_A, customerId, {
-        paidAt: new Date(PROGRAM_START.getTime() - 31 * DAY)
+        paidAt: new Date("2026-08-01T00:00:00.000Z")
       });
       expect(
         await inTenant(TENANT_A, (tx) =>
@@ -514,16 +518,16 @@ suite("commerce loyalty ledger integration (Issue #289)", () => {
       const v1 = await activeProgram(TENANT_A, { earnPointsPerUnit: 1 });
       const customerId = await seedCustomer(TENANT_A, "+6281200000007");
       const orderUnderV1 = await seedOrder(TENANT_A, customerId, {
-        paidAt: new Date(PROGRAM_START.getTime() + 9 * DAY)
+        paidAt: new Date("2026-09-10T00:00:00.000Z")
       });
 
       const v2 = await activeProgram(
         TENANT_A,
         { earnPointsPerUnit: 5 },
-        new Date(PROGRAM_START.getTime() + 19 * DAY)
+        new Date("2026-09-20T00:00:00.000Z")
       );
       const orderUnderV2 = await seedOrder(TENANT_A, customerId, {
-        paidAt: new Date(PROGRAM_START.getTime() + 24 * DAY)
+        paidAt: new Date("2026-09-25T00:00:00.000Z")
       });
 
       // The v1 order's event is processed AFTER v2 went live.

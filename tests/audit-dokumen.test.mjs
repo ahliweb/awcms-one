@@ -305,6 +305,19 @@ describe("ADR-NNNN citations", () => {
     expect(output).toContain("cites ADR-0042");
     expect(code).toBe(1);
   });
+
+  // A design-tool export's own sync notes name paths in that tool's
+  // shorthand (`docs/adr/0010`); the drop is kept as exported, so the
+  // `redesign/` tree is out of scope (SKIP_PATHS), like knowledge/generated.
+  test("a design drop's notes under redesign/ are not checked", async () => {
+    const root = tree({
+      "redesign/Mockup/github.md": "Sources: `docs/adr/0010`, `no/such/path.css`.\n"
+    });
+    const { code, output } = await run(root);
+
+    expect(output).not.toContain("redesign/");
+    expect(code).toBe(0);
+  });
 });
 
 describe("linked counts", () => {

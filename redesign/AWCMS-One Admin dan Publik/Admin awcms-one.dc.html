@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+<style>
+  body { margin: 0; background: #eceff4; font-family: 'Instrument Sans', system-ui, sans-serif; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { color: #1d4ed8; }
+  input, select, textarea, button { font-family: inherit; }
+  @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px 16px 48px;background:#eceff4">
+
+  <div style="width:100%;max-width:1480px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px">
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <span style="font:600 11px/1 'Instrument Sans';letter-spacing:.1em;text-transform:uppercase;color:#5b6672">awcms-one · redesign</span>
+      <span style="font:600 16px/1.2 'Instrument Sans';color:#141a21">Panel Admin — 12 layar</span>
+    </div>
+    <div style="flex:1"></div>
+    <div style="display:flex;gap:4px;padding:4px;background:#e0e5ec;border-radius:10px">
+      <button onClick="{{ setDesktop }}" style="height:32px;padding:0 14px;border:0;border-radius:7px;background:{{ deskBg }};color:{{ deskFg }};font:600 12px/1 'Instrument Sans';cursor:pointer">Desktop</button>
+      <button onClick="{{ setMobile }}" style="height:32px;padding:0 14px;border:0;border-radius:7px;background:{{ mobBg }};color:{{ mobFg }};font:600 12px/1 'Instrument Sans';cursor:pointer">Mobile</button>
+    </div>
+  </div>
+
+  <div style="{{ shellStyle }}">
+    <div style="display:flex;align-items:stretch;min-height:820px;background:#f5f7fa">
+
+      <aside style="{{ sidebarStyle }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:18px 18px 16px">
+          <div style="width:30px;height:30px;border-radius:8px;background:#2563eb;display:flex;align-items:center;justify-content:center;font:700 13px/1 'Instrument Sans';color:#fff">aw</div>
+          <div style="display:flex;flex-direction:column;gap:1px">
+            <span style="font:600 13px/1.2 'Instrument Sans';color:#f0f4f9">Toko Contoh</span>
+            <span style="font:500 10px/1.2 'IBM Plex Mono';letter-spacing:.04em;color:#7d8794">tenant · profil toko</span>
+          </div>
+        </div>
+
+        <nav style="flex:1;display:flex;flex-direction:column;gap:14px;padding:6px 10px 18px;overflow:auto">
+          <sc-for list="{{ navGroups }}" as="group" hint-placeholder-count="6">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="padding:6px 8px;font:600 10px/1 'Instrument Sans';letter-spacing:.11em;text-transform:uppercase;color:#6b7581">{{ group.label }}</span>
+              <sc-for list="{{ group.items }}" as="item" hint-placeholder-count="2">
+                <button onClick="{{ item.go }}" style="display:flex;align-items:center;gap:10px;width:100%;height:36px;padding:0 8px;border:0;border-radius:8px;text-align:left;cursor:pointer;font:500 13px/1 'Instrument Sans';background:{{ item.bg }};color:{{ item.fg }}">
+                  <span style="width:16px;text-align:center;font:500 12px/1 'IBM Plex Mono';opacity:.85">{{ item.glyph }}</span>
+                  <span style="flex:1">{{ item.label }}</span>
+                  <sc-if value="{{ item.count }}" hint-placeholder-val="{{ true }}">
+                    <span style="padding:2px 7px;border-radius:999px;background:#2b3444;font:600 10px/1.5 'IBM Plex Mono';color:#cbd5e1">{{ item.count }}</span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </sc-for>
+        </nav>
+
+        <div style="margin:0 10px 14px;padding:12px;border-radius:10px;background:#1a222e;border:1px solid #2a323c">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:6px">
+            <span style="width:7px;height:7px;border-radius:999px;background:#3fbf6b;animation:pulseDot 2s ease-in-out infinite"></span>
+            <span style="font:600 11px/1 'Instrument Sans';color:#cbd5e1">Outbox berjalan</span>
+          </div>
+          <span style="font:400 11px/1.5 'Instrument Sans';color:#8b95a1">3 job menunggu · WhatsApp, webhook gateway</span>
+        </div>
+      </aside>
+
+      <main style="flex:1;min-width:0;display:flex;flex-direction:column;background:#f5f7fa">
+
+        <header style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:14px 22px;background:#fff;border-bottom:1px solid #dde3ea">
+          <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ toggleNav }}" style="width:34px;height:34px;border:1px solid #dde3ea;border-radius:8px;background:#fff;color:#141a21;font:500 14px/1 'IBM Plex Mono';cursor:pointer">≡</button>
+          </sc-if>
+          <div style="display:flex;flex-direction:column;gap:1px;min-width:0">
+            <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.1em;text-transform:uppercase;color:#5b6672">{{ crumb }}</span>
+            <span style="font:600 17px/1.2 'Instrument Sans';letter-spacing:-.01em;color:#141a21">{{ title }}</span>
+          </div>
+          <div style="flex:1"></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <label style="display:flex;align-items:center;gap:7px;height:34px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;background:#f7f9fc">
+              <span style="font:500 12px/1 'IBM Plex Mono';color:#5b6672">⌘K</span>
+              <input placeholder="Cari produk, pesanan, pelanggan" style="width:200px;max-width:34vw;border:0;background:transparent;outline:none;font:400 13px/1 'Instrument Sans';color:#141a21" />
+            </label>
+            <button style="width:34px;height:34px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:500 13px/1 'IBM Plex Mono';color:#5b6672;cursor:pointer">?</button>
+            <div style="display:flex;align-items:center;gap:8px;padding:3px 10px 3px 3px;border:1px solid #dde3ea;border-radius:999px;background:#fff">
+              <span style="width:26px;height:26px;border-radius:999px;background:#e8effc;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Instrument Sans';color:#1d4ed8">AD</span>
+              <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Admin</span>
+            </div>
+          </div>
+        </header>
+
+        <div style="flex:1;padding:22px;display:flex;flex-direction:column;gap:18px">
+
+          <!-- DASHBOARD -->
+          <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:14px">
+                <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+                  <div style="padding:16px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">{{ s.label }}</span>
+                    <div style="margin:9px 0 6px;font:600 26px/1 'Instrument Sans';letter-spacing:-.02em;color:#141a21;font-variant-numeric:tabular-nums">{{ s.value }}</div>
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ s.soft }};color:{{ s.tone }}">{{ s.delta }}</span>
+                    <span style="margin-left:7px;font:400 11px/1 'Instrument Sans';color:#646f7a">vs 7 hari lalu</span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:14px">
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:16px">
+                    <span style="font:600 14px/1 'Instrument Sans';color:#141a21">Pendapatan 14 hari</span>
+                    <span style="font:500 11px/1 'IBM Plex Mono';color:#5b6672">sumber: proyeksi laporan</span>
+                  </div>
+                  <div style="display:flex;align-items:flex-end;gap:6px;height:150px">
+                    <sc-for list="{{ bars }}" as="b" hint-placeholder-count="14">
+                      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%">
+                        <div style="width:100%;border-radius:5px 5px 2px 2px;background:{{ b.fill }};height:{{ b.h }}"></div>
+                        <span style="font:400 9px/1 'IBM Plex Mono';color:#8a939d">{{ b.day }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                  <span style="font:600 14px/1 'Instrument Sans';color:#141a21">Perlu tindakan</span>
+                  <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+                    <sc-for list="{{ todos }}" as="t" hint-placeholder-count="4">
+                      <button onClick="{{ t.go }}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid #e8edf3;border-radius:10px;background:#f7f9fc;cursor:pointer;text-align:left">
+                        <span style="width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font:600 12px/1 'IBM Plex Mono';background:{{ t.soft }};color:{{ t.tone }}">{{ t.n }}</span>
+                        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+                          <span style="font:600 13px/1.3 'Instrument Sans';color:#141a21">{{ t.label }}</span>
+                          <span style="font:400 11px/1.3 'Instrument Sans';color:#5b6672">{{ t.hint }}</span>
+                        </span>
+                        <span style="font:500 13px/1 'IBM Plex Mono';color:#5b6672">→</span>
+                      </button>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 18px;border-bottom:1px solid #e8edf3">
+                  <span style="font:600 14px/1 'Instrument Sans';color:#141a21">Pesanan terbaru</span>
+                  <button onClick="{{ goOrders }}" style="height:32px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Semua pesanan</button>
+                </div>
+                <div style="overflow-x:auto">
+                  <table style="width:100%;min-width:640px;border-collapse:collapse">
+                    <thead>
+                      <tr>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Kode</th>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Pelanggan</th>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Kanal</th>
+                        <th style="text-align:right;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Total</th>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ recentOrders }}" as="o" hint-placeholder-count="5">
+                        <tr onClick="{{ o.open }}" style="cursor:pointer">
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5;font:500 12px/1 'IBM Plex Mono';color:#1d4ed8">{{ o.code }}</td>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5;font:500 13px/1 'Instrument Sans';color:#141a21">{{ o.customer }}</td>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5;font:400 12px/1 'Instrument Sans';color:#5b6672">{{ o.channel }}</td>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ o.total }}</td>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5">
+                            <span style="display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ o.soft }};color:{{ o.tone }}">{{ o.status }}</span>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- PRODUK -->
+          <sc-if value="{{ isProducts }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+                <input placeholder="Cari nama atau SKU" style="height:36px;min-width:200px;flex:1;max-width:320px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;outline:none;font:400 13px/1 'Instrument Sans';color:#141a21" />
+                <select style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:400 13px/1 'Instrument Sans';color:#141a21">
+                  <option>Semua kategori</option>
+                  <option>Elektronik</option>
+                  <option>Rumah tangga</option>
+                  <option>Layanan</option>
+                </select>
+                <div style="display:flex;gap:4px;padding:3px;background:#e8ecf2;border-radius:9px">
+                  <sc-for list="{{ productFilters }}" as="f" hint-placeholder-count="3">
+                    <button onClick="{{ f.pick }}" style="height:30px;padding:0 11px;border:0;border-radius:6px;cursor:pointer;font:600 12px/1 'Instrument Sans';background:{{ f.bg }};color:{{ f.fg }}">{{ f.label }}</button>
+                  </sc-for>
+                </div>
+                <div style="flex:1"></div>
+                <button onClick="{{ goEditor }}" style="height:36px;padding:0 15px;border:0;border-radius:8px;background:#2563eb;color:#fff;font:600 13px/1 'Instrument Sans';cursor:pointer">+ Produk baru</button>
+              </div>
+
+              <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:11px 14px;border:1px solid #bfd3f7;border-radius:10px;background:#e8effc">
+                  <span style="font:600 13px/1 'Instrument Sans';color:#1d4ed8">{{ selectedCount }} produk dipilih</span>
+                  <div style="flex:1"></div>
+                  <button style="height:32px;padding:0 12px;border:1px solid #bfd3f7;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#1d4ed8;cursor:pointer">Ubah kategori</button>
+                  <button style="height:32px;padding:0 12px;border:1px solid #bfd3f7;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#1d4ed8;cursor:pointer">Terbitkan</button>
+                  <button style="height:32px;padding:0 12px;border:1px solid #f4c9c9;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#c81e1e;cursor:pointer">Arsipkan</button>
+                  <button onClick="{{ clearSelection }}" style="height:32px;padding:0 10px;border:0;border-radius:8px;background:transparent;font:500 12px/1 'Instrument Sans';color:#5b6672;cursor:pointer">Batal</button>
+                </div>
+              </sc-if>
+
+              <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                <div style="overflow-x:auto">
+                  <table style="width:100%;min-width:860px;border-collapse:collapse">
+                    <thead>
+                      <tr>
+                        <th style="width:42px;padding:9px 0 9px 16px;background:#f7f9fc;border-bottom:1px solid #e8edf3"></th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Produk</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Kategori</th>
+                        <th style="text-align:right;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Harga final</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Stok</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Label</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Status</th>
+                        <th style="width:80px;padding:9px 16px 9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
+                        <tr style="background:{{ p.rowBg }}">
+                          <td style="padding:11px 0 11px 16px;border-bottom:1px solid #eef1f5">
+                            <input type="checkbox" checked="{{ p.checked }}" onChange="{{ p.toggle }}" style="width:16px;height:16px;accent-color:#2563eb;cursor:pointer" />
+                          </td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5">
+                            <div style="display:flex;align-items:center;gap:11px">
+                              <div style="width:38px;height:38px;flex:none;border-radius:8px;background:#eef1f5;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#98a2ad">foto</div>
+                              <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                                <button onClick="{{ goEditor }}" style="border:0;background:transparent;padding:0;text-align:left;font:600 13px/1.2 'Instrument Sans';color:#141a21;cursor:pointer">{{ p.name }}</button>
+                                <span style="font:400 11px/1 'IBM Plex Mono';color:#646f7a">{{ p.sku }} · {{ p.variants }}</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5;font:400 12px/1 'Instrument Sans';color:#5b6672">{{ p.category }}</td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ p.price }}</td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5">
+                            <span style="display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ p.stockSoft }};color:{{ p.stockTone }}">{{ p.stock }}</span>
+                          </td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5">
+                            <span style="display:inline-flex;align-items:center;gap:6px;font:500 12px/1 'Instrument Sans';color:#5b6672">
+                              <span style="width:10px;height:10px;border-radius:3px;background:{{ p.labelColor }}"></span>{{ p.label }}
+                            </span>
+                          </td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5;font:500 12px/1 'Instrument Sans';color:{{ p.statusTone }}">{{ p.status }}</td>
+                          <td style="padding:11px 16px 11px 14px;border-bottom:1px solid #eef1f5;text-align:right">
+                            <button onClick="{{ goEditor }}" style="height:28px;padding:0 10px;border:1px solid #dde3ea;border-radius:7px;background:#fff;font:600 11px/1 'Instrument Sans';color:#141a21;cursor:pointer">Ubah</button>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px;background:#f7f9fc;border-top:1px solid #e8edf3">
+                  <span style="font:400 12px/1 'Instrument Sans';color:#5b6672">8 dari 214 produk · paginasi keyset</span>
+                  <div style="flex:1"></div>
+                  <button style="height:30px;padding:0 11px;border:1px solid #dde3ea;border-radius:7px;background:#fff;font:600 12px/1 'Instrument Sans';color:#98a2ad;cursor:pointer">Sebelumnya</button>
+                  <button style="height:30px;padding:0 11px;border:1px solid #dde3ea;border-radius:7px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Berikutnya</button>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- EDITOR PRODUK -->
+          <sc-if value="{{ isEditor }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;align-items:start">
+              <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:14px">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Dasar</span>
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Nama produk</span>
+                    <input value="Kursi Kerja Ergonomis" style="height:38px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:400 13px/1 'Instrument Sans';color:#141a21" />
+                  </label>
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Slug</span>
+                    <div style="display:flex;align-items:center;height:38px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#f7f9fc">
+                      <span style="font:400 12px/1 'IBM Plex Mono';color:#98a2ad">/product/</span>
+                      <input value="kursi-kerja-ergonomis" style="flex:1;border:0;background:transparent;outline:none;font:400 12px/1 'IBM Plex Mono';color:#141a21" />
+                    </div>
+                  </label>
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Deskripsi</span>
+                    <textarea rows="4" style="padding:10px 12px;border:1px solid #dde3ea;border-radius:8px;outline:none;resize:vertical;font:400 13px/1.6 'Instrument Sans';color:#141a21">Sandaran jaring, penyangga lumbal dapat disetel, dudukan berbusa dingin.</textarea>
+                  </label>
+                </div>
+
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Galeri · media library</span>
+                    <button onClick="{{ goMedia }}" style="height:30px;padding:0 11px;border:1px solid #dde3ea;border-radius:7px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Pilih dari media</button>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px">
+                    <div style="aspect-ratio:1;border-radius:10px;background:#eef1f5;border:1px solid #e2e8f0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+                      <span style="font:500 9px/1 'IBM Plex Mono';color:#98a2ad">utama</span>
+                      <span style="font:400 9px/1 'IBM Plex Mono';color:#b3bbc4">1200×1200</span>
+                    </div>
+                    <div style="aspect-ratio:1;border-radius:10px;background:#eef1f5;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#98a2ad">foto 2</div>
+                    <div style="aspect-ratio:1;border-radius:10px;background:#eef1f5;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#98a2ad">foto 3</div>
+                    <button style="aspect-ratio:1;border:1px dashed #c3cbd5;border-radius:10px;background:#fbfcfe;color:#5b6672;font:600 12px/1 'Instrument Sans';cursor:pointer">+ Unggah</button>
+                  </div>
+                </div>
+
+                <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 18px;border-bottom:1px solid #e8edf3">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Varian</span>
+                    <button onClick="{{ addVariant }}" style="height:30px;padding:0 11px;border:0;border-radius:7px;background:#e8effc;font:600 12px/1 'Instrument Sans';color:#1d4ed8;cursor:pointer">+ Baris varian</button>
+                  </div>
+                  <div style="overflow-x:auto">
+                    <table style="width:100%;min-width:520px;border-collapse:collapse">
+                      <thead>
+                        <tr>
+                          <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Atribut</th>
+                          <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">SKU</th>
+                          <th style="text-align:right;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Harga</th>
+                          <th style="text-align:right;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Stok</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <sc-for list="{{ variants }}" as="v" hint-placeholder-count="3">
+                          <tr>
+                            <td style="padding:10px 18px;border-bottom:1px solid #eef1f5;font:500 13px/1 'Instrument Sans';color:#141a21">{{ v.attr }}</td>
+                            <td style="padding:10px 14px;border-bottom:1px solid #eef1f5;font:400 12px/1 'IBM Plex Mono';color:#5b6672">{{ v.sku }}</td>
+                            <td style="padding:10px 14px;border-bottom:1px solid #eef1f5;text-align:right;font:500 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ v.price }}</td>
+                            <td style="padding:10px 18px;border-bottom:1px solid #eef1f5;text-align:right;font:500 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ v.stock }}</td>
+                          </tr>
+                        </sc-for>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Harga bertingkat</span>
+                  <p style="margin:7px 0 14px;font:400 12px/1.5 'Instrument Sans';color:#5b6672">Harga final dihitung server saat quote. Panel ini hanya menyimpan angka dasar.</p>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(130px,100%),1fr));gap:10px">
+                    <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="4">
+                      <label style="display:flex;flex-direction:column;gap:6px">
+                        <span style="font:500 11px/1 'Instrument Sans';color:#5b6672">{{ t.label }}</span>
+                        <input value="{{ t.value }}" style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:500 13px/1 'IBM Plex Mono';color:#141a21" />
+                      </label>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:16px;min-width:0;max-width:380px">
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:12px">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Publikasi</span>
+                  <div style="display:flex;gap:4px;padding:3px;background:#e8ecf2;border-radius:9px">
+                    <sc-for list="{{ pubStates }}" as="s" hint-placeholder-count="3">
+                      <button onClick="{{ s.pick }}" style="flex:1;height:30px;border:0;border-radius:6px;cursor:pointer;font:600 12px/1 'Instrument Sans';background:{{ s.bg }};color:{{ s.fg }}">{{ s.label }}</button>
+                    </sc-for>
+                  </div>
+                  <div style="display:flex;gap:8px">
+                    <button style="flex:1;height:38px;border:0;border-radius:8px;background:#2563eb;color:#fff;font:600 13px/1 'Instrument Sans';cursor:pointer">Simpan</button>
+                    <button onClick="{{ goProducts }}" style="height:38px;padding:0 14px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 13px/1 'Instrument Sans';color:#141a21;cursor:pointer">Batal</button>
+                  </div>
+                </div>
+
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:13px">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Merchandising</span>
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Teks label</span>
+                    <input value="Terlaris" style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:400 13px/1 'Instrument Sans';color:#141a21" />
+                  </label>
+                  <div style="display:flex;flex-direction:column;gap:7px">
+                    <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Warna label</span>
+                    <div style="display:flex;gap:7px">
+                      <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="4">
+                        <button onClick="{{ s.pick }}" style="width:34px;height:34px;border-radius:9px;cursor:pointer;background:{{ s.hex }};border:2px solid {{ s.ring }}"></button>
+                      </sc-for>
+                    </div>
+                    <span style="font:400 11px/1.5 'Instrument Sans';color:#5b6672">Kontras teks dihitung otomatis · pratinjau: <span style="display:inline-flex;padding:2px 8px;border-radius:999px;font:700 11px/1.5 'Instrument Sans';background:{{ labelHex }};color:{{ labelFg }}">Terlaris</span></span>
+                  </div>
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Kategori</span>
+                    <select style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:400 13px/1 'Instrument Sans';color:#141a21">
+                      <option>Perabot kantor</option>
+                      <option>Elektronik</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:11px">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Opsi lanjutan</span>
+                  <sc-for list="{{ advOptions }}" as="o" hint-placeholder-count="4">
+                    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
+                      <input type="checkbox" checked="{{ o.on }}" onChange="{{ o.toggle }}" style="margin-top:2px;width:16px;height:16px;accent-color:#2563eb;cursor:pointer" />
+                      <span style="display:flex;flex-direction:column;gap:2px">
+                        <span style="font:500 13px/1.3 'Instrument Sans';color:#141a21">{{ o.label }}</span>
+                        <span style="font:400 11px/1.4 'Instrument Sans';color:#5b6672">{{ o.hint }}</span>
+                      </span>
+                    </label>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- PESANAN -->
+          <sc-if value="{{ isOrders }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px">
+                <sc-for list="{{ orderTabs }}" as="t" hint-placeholder-count="6">
+                  <button onClick="{{ t.pick }}" style="display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px;border:1px solid {{ t.border }};border-radius:999px;cursor:pointer;font:600 12px/1 'Instrument Sans';background:{{ t.bg }};color:{{ t.fg }}">
+                    {{ t.label }}<span style="font:500 11px/1 'IBM Plex Mono';opacity:.75">{{ t.count }}</span>
+                  </button>
+                </sc-for>
+              </div>
+
+              <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                <div style="overflow-x:auto">
+                  <table style="width:100%;min-width:820px;border-collapse:collapse">
+                    <thead>
+                      <tr>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Kode</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Pelanggan</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Dibuat</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Pembayaran</th>
+                        <th style="text-align:right;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Total</th>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ orders }}" as="o" hint-placeholder-count="9">
+                        <tr onClick="{{ o.open }}" style="cursor:pointer">
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5;font:500 12px/1 'IBM Plex Mono';color:#1d4ed8">{{ o.code }}</td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5">
+                            <div style="display:flex;flex-direction:column;gap:2px">
+                              <span style="font:500 13px/1.2 'Instrument Sans';color:#141a21">{{ o.customer }}</span>
+                              <span style="font:400 11px/1 'IBM Plex Mono';color:#646f7a">{{ o.phone }}</span>
+                            </div>
+                          </td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;font:400 12px/1 'Instrument Sans';color:#5b6672">{{ o.date }}</td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;font:400 12px/1 'Instrument Sans';color:#5b6672">{{ o.payment }}</td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ o.total }}</td>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5">
+                            <span style="display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ o.soft }};color:{{ o.tone }}">{{ o.status }}</span>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- DETAIL PESANAN -->
+          <sc-if value="{{ isOrderDetail }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+                <button onClick="{{ goOrders }}" style="height:34px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">← Pesanan</button>
+                <span style="font:500 14px/1 'IBM Plex Mono';color:#141a21">ORD-4821</span>
+                <span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:#fdf1de;color:#9a4507">Menunggu pembayaran</span>
+                <span style="font:400 12px/1 'Instrument Sans';color:#5b6672">kedaluwarsa 01:42:07</span>
+                <div style="flex:1"></div>
+                <button style="height:36px;padding:0 14px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Cetak</button>
+                <button style="height:36px;padding:0 14px;border:1px solid #f4c9c9;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#c81e1e;cursor:pointer">Batalkan</button>
+                <button style="height:36px;padding:0 15px;border:0;border-radius:8px;background:#12873d;color:#fff;font:600 12px/1 'Instrument Sans';cursor:pointer">Konfirmasi pembayaran</button>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;align-items:start">
+                <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+                  <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                    <div style="padding:15px 18px;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Baris pesanan</div>
+                    <sc-for list="{{ orderLines }}" as="l" hint-placeholder-count="3">
+                      <div style="display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid #eef1f5">
+                        <div style="width:42px;height:42px;flex:none;border-radius:8px;background:#eef1f5;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#98a2ad">foto</div>
+                        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                          <span style="font:600 13px/1.3 'Instrument Sans';color:#141a21">{{ l.name }}</span>
+                          <span style="font:400 11px/1 'IBM Plex Mono';color:#646f7a">{{ l.meta }}</span>
+                        </div>
+                        <span style="font:500 12px/1 'IBM Plex Mono';color:#5b6672">×{{ l.qty }}</span>
+                        <span style="min-width:96px;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ l.sum }}</span>
+                      </div>
+                    </sc-for>
+                    <div style="padding:14px 18px;display:flex;flex-direction:column;gap:8px;background:#f7f9fc">
+                      <sc-for list="{{ orderTotals }}" as="t" hint-placeholder-count="4">
+                        <div style="display:flex;justify-content:space-between;gap:12px">
+                          <span style="font:{{ t.font }} 'Instrument Sans';color:{{ t.tone }}">{{ t.label }}</span>
+                          <span style="font:{{ t.font }} 'Instrument Sans';color:{{ t.tone }};font-variant-numeric:tabular-nums">{{ t.value }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+
+                  <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Riwayat</span>
+                    <div style="margin-top:14px;display:flex;flex-direction:column">
+                      <sc-for list="{{ timeline }}" as="e" hint-placeholder-count="4">
+                        <div style="display:flex;gap:12px">
+                          <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+                            <span style="width:9px;height:9px;border-radius:999px;background:{{ e.dot }};margin-top:5px"></span>
+                            <span style="flex:1;width:2px;background:#e8edf3"></span>
+                          </div>
+                          <div style="flex:1;padding-bottom:16px;display:flex;flex-direction:column;gap:3px">
+                            <span style="font:600 13px/1.3 'Instrument Sans';color:#141a21">{{ e.label }}</span>
+                            <span style="font:400 11px/1.4 'IBM Plex Mono';color:#646f7a">{{ e.at }} · {{ e.actor }}</span>
+                          </div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:16px;min-width:0;max-width:380px">
+                  <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:10px">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Pelanggan</span>
+                    <span style="font:600 14px/1.3 'Instrument Sans';color:#141a21">Rina Halim</span>
+                    <span style="font:400 12px/1.5 'Instrument Sans';color:#5b6672">rina@contoh.id · 0812 xxxx 4410<br />Checkout tamu · telepon terverifikasi</span>
+                    <button onClick="{{ goInbox }}" style="align-self:flex-start;height:32px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Kirim pesan</button>
+                  </div>
+                  <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:10px">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Pembayaran</span>
+                    <span style="font:600 14px/1.3 'Instrument Sans';color:#141a21">Gateway · kartu / VA / e-wallet</span>
+                    <span style="font:400 12px/1.5 'Instrument Sans';color:#5b6672">Sesi dibuat, menunggu webhook. Polling tiap 5 detik sampai status berubah.</span>
+                    <div style="display:flex;align-items:center;gap:7px;padding:9px 11px;border-radius:9px;background:#fdf1de">
+                      <span style="width:7px;height:7px;border-radius:999px;background:#b45309;animation:pulseDot 1.6s ease-in-out infinite"></span>
+                      <span style="font:500 12px/1 'Instrument Sans';color:#9a4507">Menunggu konfirmasi pembayaran…</span>
+                    </div>
+                  </div>
+                  <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:10px">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Pengiriman</span>
+                    <span style="font:600 14px/1.3 'Instrument Sans';color:#141a21">Kurir REG · 2–3 hari</span>
+                    <span style="font:400 12px/1.5 'Instrument Sans';color:#5b6672">Jl. Contoh No. 12, Kel. Sukamaju, Kec. Pusat, Kota Contoh, 70111</span>
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Nomor resi</span>
+                      <input placeholder="Belum diisi" style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:400 12px/1 'IBM Plex Mono';color:#141a21" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- POS -->
+          <sc-if value="{{ isPos }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;align-items:start">
+              <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <input placeholder="Pindai barcode atau cari" style="flex:1;min-width:180px;height:38px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;outline:none;font:400 13px/1 'Instrument Sans';color:#141a21" />
+                  <button style="height:38px;padding:0 13px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Kategori</button>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(150px,100%),1fr));gap:10px">
+                  <sc-for list="{{ posProducts }}" as="p" hint-placeholder-count="9">
+                    <button onClick="{{ p.add }}" style="display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid #dde3ea;border-radius:11px;background:#fff;box-shadow:0 1px 1px rgba(15,23,42,.05);cursor:pointer;text-align:left">
+                      <span style="height:58px;border-radius:8px;background:#eef1f5;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#98a2ad">foto</span>
+                      <span style="font:600 13px/1.3 'Instrument Sans';color:#141a21">{{ p.name }}</span>
+                      <span style="font:600 13px/1 'Instrument Sans';color:#1d4ed8;font-variant-numeric:tabular-nums">{{ p.price }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+
+              <div style="min-width:0;max-width:400px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 4px 14px rgba(15,23,42,.09);overflow:hidden;display:flex;flex-direction:column">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 18px;border-bottom:1px solid #e8edf3">
+                  <span style="font:600 14px/1 'Instrument Sans';color:#141a21">Penjualan tunai</span>
+                  <span style="font:500 11px/1 'IBM Plex Mono';color:#5b6672">kanal: pos</span>
+                </div>
+                <sc-if value="{{ posEmpty }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:40px 20px;text-align:center;font:400 13px/1.6 'Instrument Sans';color:#5b6672">Keranjang kosong.<br />Klik produk untuk menambahkan.</div>
+                </sc-if>
+                <div style="display:flex;flex-direction:column;max-height:330px;overflow:auto">
+                  <sc-for list="{{ posCart }}" as="c" hint-placeholder-count="0">
+                    <div style="display:flex;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid #eef1f5">
+                      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+                        <span style="font:600 13px/1.3 'Instrument Sans';color:#141a21">{{ c.name }}</span>
+                        <span style="font:400 11px/1 'IBM Plex Mono';color:#646f7a">{{ c.price }}</span>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:2px">
+                        <button onClick="{{ c.dec }}" style="width:28px;height:28px;border:1px solid #dde3ea;border-radius:7px 0 0 7px;background:#fff;font:500 13px/1 'IBM Plex Mono';color:#141a21;cursor:pointer">−</button>
+                        <span style="min-width:30px;height:28px;display:flex;align-items:center;justify-content:center;border-top:1px solid #dde3ea;border-bottom:1px solid #dde3ea;font:600 12px/1 'IBM Plex Mono';color:#141a21">{{ c.qty }}</span>
+                        <button onClick="{{ c.inc }}" style="width:28px;height:28px;border:1px solid #dde3ea;border-radius:0 7px 7px 0;background:#fff;font:500 13px/1 'IBM Plex Mono';color:#141a21;cursor:pointer">+</button>
+                      </div>
+                      <span style="min-width:84px;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ c.sum }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="padding:16px 18px;background:#f7f9fc;border-top:1px solid #e8edf3;display:flex;flex-direction:column;gap:11px">
+                  <div style="display:flex;justify-content:space-between;gap:10px">
+                    <span style="font:500 13px/1 'Instrument Sans';color:#5b6672">Item</span>
+                    <span style="font:500 13px/1 'IBM Plex Mono';color:#141a21">{{ posCount }}</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
+                    <span style="font:600 14px/1 'Instrument Sans';color:#141a21">Total</span>
+                    <span style="font:600 22px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ posTotal }}</span>
+                  </div>
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Uang diterima</span>
+                    <input value="{{ posPaid }}" onChange="{{ setPaid }}" style="height:38px;padding:0 11px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:500 14px/1 'IBM Plex Mono';color:#141a21" />
+                  </label>
+                  <div style="display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:9px;background:{{ changeSoft }}">
+                    <span style="font:500 13px/1 'Instrument Sans';color:{{ changeTone }}">Kembalian</span>
+                    <span style="font:600 14px/1 'IBM Plex Mono';color:{{ changeTone }}">{{ posChange }}</span>
+                  </div>
+                  <div style="display:flex;gap:8px">
+                    <button onClick="{{ clearPos }}" style="height:42px;padding:0 14px;border:1px solid #dde3ea;border-radius:9px;background:#fff;font:600 13px/1 'Instrument Sans';color:#141a21;cursor:pointer">Kosongkan</button>
+                    <button style="flex:1;height:42px;border:0;border-radius:9px;background:#12873d;color:#fff;font:600 14px/1 'Instrument Sans';cursor:pointer">Selesaikan & cetak</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- LAPORAN -->
+          <sc-if value="{{ isReports }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+                <div style="display:flex;gap:4px;padding:3px;background:#e8ecf2;border-radius:9px">
+                  <sc-for list="{{ ranges }}" as="r" hint-placeholder-count="4">
+                    <button onClick="{{ r.pick }}" style="height:30px;padding:0 12px;border:0;border-radius:6px;cursor:pointer;font:600 12px/1 'Instrument Sans';background:{{ r.bg }};color:{{ r.fg }}">{{ r.label }}</button>
+                  </sc-for>
+                </div>
+                <div style="flex:1"></div>
+                <button style="height:34px;padding:0 13px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Ekspor CSV</button>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:14px">
+                <sc-for list="{{ reportStats }}" as="s" hint-placeholder-count="4">
+                  <div style="padding:16px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">{{ s.label }}</span>
+                    <div style="margin-top:9px;font:600 24px/1 'Instrument Sans';letter-spacing:-.02em;color:#141a21;font-variant-numeric:tabular-nums">{{ s.value }}</div>
+                    <span style="font:400 11px/1 'Instrument Sans';color:#646f7a">{{ s.note }}</span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                <span style="font:600 14px/1 'Instrument Sans';color:#141a21">Penjualan per hari</span>
+                <div style="margin-top:16px;display:flex;align-items:flex-end;gap:5px;height:170px">
+                  <sc-for list="{{ reportBars }}" as="b" hint-placeholder-count="30">
+                    <div style="flex:1;border-radius:4px 4px 2px 2px;background:{{ b.fill }};height:{{ b.h }}"></div>
+                  </sc-for>
+                </div>
+                <div style="margin-top:8px;display:flex;justify-content:space-between;font:400 10px/1 'IBM Plex Mono';color:#8a939d">
+                  <span>1 Sep</span><span>15 Sep</span><span>30 Sep</span>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                <div style="display:flex;gap:6px;padding:12px 18px;border-bottom:1px solid #e8edf3">
+                  <sc-for list="{{ reportTabs }}" as="t" hint-placeholder-count="2">
+                    <button onClick="{{ t.pick }}" style="height:30px;padding:0 12px;border:1px solid {{ t.border }};border-radius:999px;cursor:pointer;font:600 12px/1 'Instrument Sans';background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+                  </sc-for>
+                </div>
+                <div style="overflow-x:auto">
+                  <table style="width:100%;min-width:560px;border-collapse:collapse">
+                    <thead>
+                      <tr>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">{{ reportKeyHead }}</th>
+                        <th style="text-align:right;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Terjual</th>
+                        <th style="text-align:right;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Pendapatan</th>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Porsi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ reportRows }}" as="r" hint-placeholder-count="6">
+                        <tr>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5;font:500 13px/1 'Instrument Sans';color:#141a21">{{ r.key }}</td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;text-align:right;font:500 13px/1 'IBM Plex Mono';color:#141a21">{{ r.qty }}</td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ r.rev }}</td>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5">
+                            <div style="display:flex;align-items:center;gap:9px">
+                              <span style="flex:1;max-width:120px;height:6px;border-radius:999px;background:#eef1f5;overflow:hidden;display:block">
+                                <span style="display:block;height:6px;border-radius:999px;background:#2563eb;width:{{ r.share }}"></span>
+                              </span>
+                              <span style="font:500 11px/1 'IBM Plex Mono';color:#5b6672">{{ r.share }}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- MARKETING -->
+          <sc-if value="{{ isMarketing }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ mktTabs }}" as="t" hint-placeholder-count="5">
+                  <button onClick="{{ t.pick }}" style="height:34px;padding:0 14px;border:1px solid {{ t.border }};border-radius:999px;cursor:pointer;font:600 12px/1 'Instrument Sans';background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+                </sc-for>
+                <div style="flex:1"></div>
+                <button style="height:34px;padding:0 14px;border:0;border-radius:8px;background:#2563eb;color:#fff;font:600 12px/1 'Instrument Sans';cursor:pointer">+ {{ mktNewLabel }}</button>
+              </div>
+
+              <sc-if value="{{ isFlash }}" hint-placeholder-val="{{ true }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px">
+                  <sc-for list="{{ flashSales }}" as="f" hint-placeholder-count="3">
+                    <div style="padding:17px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:12px">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ f.soft }};color:{{ f.tone }}">{{ f.state }}</span>
+                        <div style="flex:1"></div>
+                        <span style="font:500 12px/1 'IBM Plex Mono';color:#5b6672">{{ f.clock }}</span>
+                      </div>
+                      <span style="font:600 15px/1.3 'Instrument Sans';color:#141a21">{{ f.name }}</span>
+                      <span style="font:400 12px/1.5 'Instrument Sans';color:#5b6672">{{ f.window }} · {{ f.items }} produk · diskon {{ f.disc }}</span>
+                      <span style="display:block;height:7px;border-radius:999px;background:#eef1f5;overflow:hidden">
+                        <span style="display:block;height:7px;border-radius:999px;background:{{ f.tone }};width:{{ f.sold }}"></span>
+                      </span>
+                      <span style="font:400 11px/1 'Instrument Sans';color:#646f7a">Kuota terpakai {{ f.sold }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ isVoucher }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden;overflow-x:auto">
+                  <table style="width:100%;min-width:640px;border-collapse:collapse">
+                    <thead>
+                      <tr>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Kode</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Tipe</th>
+                        <th style="text-align:right;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Nilai</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Berlaku</th>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Terpakai</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ vouchers }}" as="v" hint-placeholder-count="5">
+                        <tr>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5">
+                            <span style="display:inline-flex;align-items:center;gap:8px;padding:4px 9px;border:1px dashed #c3cbd5;border-radius:7px;font:500 12px/1 'IBM Plex Mono';color:#141a21">{{ v.code }}<span style="color:#1d4ed8;font-size:10px">salin</span></span>
+                          </td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;font:400 12px/1 'Instrument Sans';color:#5b6672">{{ v.type }}</td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21">{{ v.value }}</td>
+                          <td style="padding:12px 14px;border-bottom:1px solid #eef1f5;font:400 12px/1 'Instrument Sans';color:#5b6672">{{ v.window }}</td>
+                          <td style="padding:12px 18px;border-bottom:1px solid #eef1f5;font:500 12px/1 'IBM Plex Mono';color:#141a21">{{ v.used }}</td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ isSlider }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <sc-for list="{{ slides }}" as="s" hint-placeholder-count="3">
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:14px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                      <span style="width:26px;text-align:center;font:500 13px/1 'IBM Plex Mono';color:#98a2ad;cursor:grab">⣿</span>
+                      <div style="width:140px;height:66px;flex:none;border-radius:9px;background:#eef1f5;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#98a2ad">1440×560</div>
+                      <div style="flex:1;min-width:160px;display:flex;flex-direction:column;gap:4px">
+                        <span style="font:600 14px/1.3 'Instrument Sans';color:#141a21">{{ s.title }}</span>
+                        <span style="font:400 12px/1 'IBM Plex Mono';color:#646f7a">{{ s.link }}</span>
+                      </div>
+                      <span style="display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ s.soft }};color:{{ s.tone }}">{{ s.state }}</span>
+                      <button style="height:32px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Ubah</button>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ isPopup }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+                  <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:13px">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Aturan tampil</span>
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Tunda tampil (detik)</span>
+                      <input value="6" style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:500 13px/1 'IBM Plex Mono';color:#141a21" />
+                    </label>
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Frekuensi</span>
+                      <select style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:400 13px/1 'Instrument Sans';color:#141a21">
+                        <option>Sekali per sesi</option>
+                        <option>Sekali per hari</option>
+                      </select>
+                    </label>
+                    <span style="font:400 11px/1.5 'Instrument Sans';color:#5b6672">Slot iklan tanpa isi tidak dirender sama sekali — tidak ada bingkai kosong di situs publik.</span>
+                  </div>
+                  <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Pratinjau</span>
+                    <div style="margin-top:12px;padding:16px;border-radius:11px;background:#141a21;display:flex;flex-direction:column;gap:10px">
+                      <div style="height:120px;border-radius:8px;background:#242c37;display:flex;align-items:center;justify-content:center;font:500 10px/1 'IBM Plex Mono';color:#7d8794">kreatif 600×400</div>
+                      <span style="font:600 13px/1.3 'Instrument Sans';color:#f0f4f9">Popup promosi</span>
+                      <span style="font:400 11px/1.4 'Instrument Sans';color:#9aa7b2">Tampil di semua halaman berita dan katalog.</span>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ isTesti }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
+                  <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="4">
+                    <div style="padding:17px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:10px">
+                      <span style="font:500 13px/1 'IBM Plex Mono';color:#b45309">{{ t.stars }}</span>
+                      <span style="font:400 13px/1.6 'Instrument Sans';color:#141a21">{{ t.quote }}</span>
+                      <span style="font:500 12px/1 'Instrument Sans';color:#5b6672">{{ t.by }}</span>
+                      <div style="display:flex;gap:7px;margin-top:2px">
+                        <button style="height:30px;padding:0 11px;border:0;border-radius:7px;background:#e4f5ea;font:600 12px/1 'Instrument Sans';color:#0f7434;cursor:pointer">Tampilkan</button>
+                        <button style="height:30px;padding:0 11px;border:1px solid #dde3ea;border-radius:7px;background:#fff;font:600 12px/1 'Instrument Sans';color:#5b6672;cursor:pointer">Sembunyikan</button>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <!-- INBOX -->
+          <sc-if value="{{ isInbox }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;align-items:start">
+              <div style="min-width:0;max-width:380px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                <div style="display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid #e8edf3">
+                  <span style="font:600 13px/1 'Instrument Sans';color:#141a21">Thread</span>
+                  <span style="padding:2px 8px;border-radius:999px;background:#e8effc;font:600 11px/1.5 'Instrument Sans';color:#1d4ed8">3 belum dibaca</span>
+                </div>
+                <sc-for list="{{ threads }}" as="t" hint-placeholder-count="5">
+                  <button onClick="{{ t.pick }}" style="display:flex;gap:11px;width:100%;padding:13px 16px;border:0;border-bottom:1px solid #eef1f5;border-left:3px solid {{ t.mark }};text-align:left;cursor:pointer;background:{{ t.bg }}">
+                    <span style="width:32px;height:32px;flex:none;border-radius:999px;background:#eef1f5;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Instrument Sans';color:#5b6672">{{ t.initials }}</span>
+                    <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                      <span style="display:flex;align-items:center;gap:7px">
+                        <span style="flex:1;font:600 13px/1.2 'Instrument Sans';color:#141a21">{{ t.name }}</span>
+                        <sc-if value="{{ t.unread }}" hint-placeholder-val="{{ true }}">
+                          <span aria-label="pesan belum dibaca" style="padding:1px 7px;border-radius:999px;background:#2563eb;font:600 10px/1.6 'IBM Plex Mono';color:#fff">{{ t.unread }}</span>
+                        </sc-if>
+                      </span>
+                      <span style="font:400 12px/1.4 'Instrument Sans';color:#5b6672;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t.snippet }}</span>
+                      <span style="font:400 10px/1 'IBM Plex Mono';color:#98a2ad">{{ t.at }} · {{ t.state }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+
+              <div style="min-width:0;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;overflow:hidden">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #e8edf3">
+                  <div style="display:flex;flex-direction:column;gap:2px">
+                    <span style="font:600 14px/1.2 'Instrument Sans';color:#141a21">{{ threadName }}</span>
+                    <span style="font:400 11px/1 'IBM Plex Mono';color:#646f7a">{{ threadMeta }}</span>
+                  </div>
+                  <div style="flex:1"></div>
+                  <button style="height:32px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Tandai selesai</button>
+                </div>
+                <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:12px;background:#f7f9fc">
+                  <sc-for list="{{ messages }}" as="m" hint-placeholder-count="4">
+                    <div style="max-width:78%;align-self:{{ m.align }};padding:11px 13px;border-radius:12px;background:{{ m.bg }};border:1px solid {{ m.border }}">
+                      <span style="display:block;font:400 13px/1.6 'Instrument Sans';color:{{ m.fg }}">{{ m.text }}</span>
+                      <span style="display:block;margin-top:5px;font:400 10px/1 'IBM Plex Mono';color:{{ m.meta }}">{{ m.at }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <sc-if value="{{ threadOpen }}" hint-placeholder-val="{{ true }}">
+                  <div style="padding:14px 18px;border-top:1px solid #e8edf3;display:flex;gap:10px;align-items:flex-end">
+                    <textarea rows="2" placeholder="Tulis balasan" style="flex:1;padding:10px 12px;border:1px solid #dde3ea;border-radius:9px;outline:none;resize:vertical;font:400 13px/1.5 'Instrument Sans';color:#141a21"></textarea>
+                    <button style="height:40px;padding:0 16px;border:0;border-radius:9px;background:#2563eb;color:#fff;font:600 13px/1 'Instrument Sans';cursor:pointer">Kirim</button>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ threadClosed }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:16px 18px;border-top:1px solid #e8edf3;font:400 12px/1.5 'Instrument Sans';color:#5b6672;background:#f7f9fc">Thread ini sudah ditutup. Tidak ada form balasan — pelanggan perlu membuka thread baru.</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- AFILIASI -->
+          <sc-if value="{{ isAffiliate }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:14px">
+                <sc-for list="{{ affStats }}" as="s" hint-placeholder-count="4">
+                  <div style="padding:16px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                    <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">{{ s.label }}</span>
+                    <div style="margin-top:9px;font:600 24px/1 'Instrument Sans';letter-spacing:-.02em;color:#141a21;font-variant-numeric:tabular-nums">{{ s.value }}</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);overflow:hidden">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid #e8edf3">
+                  <span style="font:600 14px/1 'Instrument Sans';color:#141a21">Komisi menunggu persetujuan</span>
+                  <div style="flex:1"></div>
+                  <span style="font:400 12px/1 'Instrument Sans';color:#5b6672">{{ pendingCount }} baris</span>
+                </div>
+                <div style="overflow-x:auto">
+                  <table style="width:100%;min-width:720px;border-collapse:collapse">
+                    <thead>
+                      <tr>
+                        <th style="text-align:left;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Afiliasi</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Pesanan</th>
+                        <th style="text-align:right;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Komisi</th>
+                        <th style="text-align:left;padding:9px 14px;background:#f7f9fc;border-bottom:1px solid #e8edf3;font:600 10px/1 'Instrument Sans';letter-spacing:.08em;text-transform:uppercase;color:#5b6672">Status</th>
+                        <th style="width:190px;padding:9px 18px;background:#f7f9fc;border-bottom:1px solid #e8edf3"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ commissions }}" as="c" hint-placeholder-count="5">
+                        <tr>
+                          <td style="padding:11px 18px;border-bottom:1px solid #eef1f5">
+                            <div style="display:flex;flex-direction:column;gap:2px">
+                              <span style="font:500 13px/1.2 'Instrument Sans';color:#141a21">{{ c.name }}</span>
+                              <span style="font:400 11px/1 'IBM Plex Mono';color:#646f7a">ref={{ c.code }}</span>
+                            </div>
+                          </td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5;font:500 12px/1 'IBM Plex Mono';color:#1d4ed8">{{ c.order }}</td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5;text-align:right;font:600 13px/1 'Instrument Sans';color:#141a21;font-variant-numeric:tabular-nums">{{ c.amount }}</td>
+                          <td style="padding:11px 14px;border-bottom:1px solid #eef1f5">
+                            <span style="display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ c.soft }};color:{{ c.tone }}">{{ c.status }}</span>
+                          </td>
+                          <td style="padding:11px 18px;border-bottom:1px solid #eef1f5;text-align:right">
+                            <sc-if value="{{ c.actionable }}" hint-placeholder-val="{{ true }}">
+                              <span style="display:inline-flex;gap:7px">
+                                <button onClick="{{ c.approve }}" style="height:30px;padding:0 12px;border:0;border-radius:7px;background:#12873d;color:#fff;font:600 12px/1 'Instrument Sans';cursor:pointer">Setujui</button>
+                                <button onClick="{{ c.reject }}" style="height:30px;padding:0 12px;border:1px solid #f4c9c9;border-radius:7px;background:#fff;color:#c81e1e;font:600 12px/1 'Instrument Sans';cursor:pointer">Tolak</button>
+                              </span>
+                            </sc-if>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- PENGATURAN -->
+          <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;align-items:start">
+              <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Sakelar fitur per tenant</span>
+                  <p style="margin:7px 0 14px;font:400 12px/1.5 'Instrument Sans';color:#5b6672">Mematikan sakelar berarti situs publik berhenti merender permukaannya sama sekali, bukan menampilkan kontrol yang gagal.</p>
+                  <div style="display:flex;flex-direction:column;gap:2px">
+                    <sc-for list="{{ features }}" as="f" hint-placeholder-count="6">
+                      <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid #eef1f5">
+                        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                          <span style="font:600 13px/1.3 'Instrument Sans';color:#141a21">{{ f.label }}</span>
+                          <span style="font:400 11px/1.4 'IBM Plex Mono';color:#646f7a">{{ f.key }}</span>
+                        </div>
+                        <button onClick="{{ f.toggle }}" style="width:44px;height:26px;flex:none;border:0;border-radius:999px;cursor:pointer;padding:3px;display:flex;justify-content:{{ f.justify }};background:{{ f.track }}">
+                          <span style="width:20px;height:20px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.3)"></span>
+                        </button>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:13px">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Identitas toko</span>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:12px">
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Nama toko</span>
+                      <input value="Toko Contoh" style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:400 13px/1 'Instrument Sans';color:#141a21" />
+                    </label>
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Domain</span>
+                      <input value="toko.contoh.id" style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:400 12px/1 'IBM Plex Mono';color:#141a21" />
+                    </label>
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font:500 12px/1 'Instrument Sans';color:#141a21">WhatsApp</span>
+                      <input value="+62 800 0000 000" style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;outline:none;font:400 12px/1 'IBM Plex Mono';color:#141a21" />
+                    </label>
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font:500 12px/1 'Instrument Sans';color:#141a21">Zona waktu</span>
+                      <select style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:400 13px/1 'Instrument Sans';color:#141a21">
+                        <option>Asia/Jakarta (WIB)</option>
+                        <option>Asia/Makassar (WITA)</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div style="min-width:0;max-width:380px;display:flex;flex-direction:column;gap:16px">
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:11px">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Kredensial provider</span>
+                  <sc-for list="{{ providers }}" as="p" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid #e8edf3;border-radius:10px;background:#f7f9fc">
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+                        <span style="font:600 13px/1.2 'Instrument Sans';color:#141a21">{{ p.name }}</span>
+                        <span style="font:400 11px/1 'IBM Plex Mono';color:#646f7a">{{ p.env }}</span>
+                      </span>
+                      <span style="display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Instrument Sans';background:{{ p.soft }};color:{{ p.tone }}">{{ p.state }}</span>
+                    </div>
+                  </sc-for>
+                  <span style="font:400 11px/1.5 'Instrument Sans';color:#5b6672">Nilai kunci tidak pernah ditampilkan di panel — hanya status terbaca dari env.</span>
+                </div>
+                <div style="padding:18px;background:#fff;border:1px solid #dde3ea;border-radius:12px;box-shadow:0 1px 1px rgba(15,23,42,.05);display:flex;flex-direction:column;gap:11px">
+                  <span style="font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:#5b6672">Webhook</span>
+                  <div style="padding:11px 12px;border:1px solid #e8edf3;border-radius:10px;background:#f7f9fc;font:400 11px/1.6 'IBM Plex Mono';color:#141a21;word-break:break-all">/api/v1/commerce/webhook/•••••••••</div>
+                  <span style="font:400 11px/1.5 'Instrument Sans';color:#5b6672">Beralamat token. Rotasi membuat URL lama langsung tidak berlaku.</span>
+                  <button style="align-self:flex-start;height:32px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:600 12px/1 'Instrument Sans';color:#141a21;cursor:pointer">Rotasi token</button>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- MEDIA -->
+          <sc-if value="{{ isMedia }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+                <input placeholder="Cari berkas" style="height:36px;flex:1;min-width:180px;max-width:300px;padding:0 12px;border:1px solid #dde3ea;border-radius:8px;background:#fff;outline:none;font:400 13px/1 'Instrument Sans';color:#141a21" />
+                <select style="height:36px;padding:0 10px;border:1px solid #dde3ea;border-radius:8px;background:#fff;font:400 13px/1 'Instrument Sans';color:#141a21">
+                  <option>Semua tipe</option>
+                  <option>Gambar</option>
+                  <option>Dokumen</option>
+                </select>
+                <div style="flex:1"></div>
+                <span style="font:400 12px/1 'Instrument Sans';color:#5b6672">1.8 GB dari 10 GB</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:14px;padding:22px;border:1px dashed #c3cbd5;border-radius:12px;background:#fbfcfe;align-items:center">
+                <span style="font:600 13px/1 'Instrument Sans';color:#141a21">Tarik berkas ke sini untuk mengunggah</span>
+                <span style="font:400 11px/1 'Instrument Sans';color:#5b6672">JPG, PNG, WEBP, PDF · maksimum 8 MB per berkas</span>
+                <button style="height:34px;padding:0 14px;border:0;border-radius:8px;background:#2563eb;color:#fff;font:600 12px/1 'Instrument Sans';cursor:pointer">Pilih berkas</button>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,100%),1fr));gap:12px">
+                <sc-for list="{{ mediaItems }}" as="m" hint-placeholder-count="12">
+                  <button onClick="{{ m.pick }}" style="display:flex;flex-direction:column;gap:0;padding:0;border:2px solid {{ m.ring }};border-radius:11px;background:#fff;overflow:hidden;cursor:pointer;text-align:left;box-shadow:0 1px 1px rgba(15,23,42,.05)">
+                    <span style="height:108px;background:#eef1f5;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#98a2ad">{{ m.dim }}</span>
+                    <span style="padding:9px 11px;display:flex;flex-direction:column;gap:3px">
+                      <span style="font:500 12px/1.3 'Instrument Sans';color:#141a21;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.name }}</span>
+                      <span style="font:400 10px/1 'IBM Plex Mono';color:#646f7a">{{ m.size }} · {{ m.used }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <span style="font:400 11px/1.6 'Instrument Sans';color:#5b6672;text-align:center;max-width:720px">Token warna, radius, dan bayangan diambil dari <span style="font-family:'IBM Plex Mono'">apps/cms/src/styles/tokens.css</span>. Rail navigasi digelapkan agar hierarki panel terbaca sekali lihat; sisanya mengikuti token yang sudah ada.</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dashboard&quot;,&quot;products&quot;,&quot;editor&quot;,&quot;orders&quot;,&quot;orderDetail&quot;,&quot;pos&quot;,&quot;reports&quot;,&quot;marketing&quot;,&quot;inbox&quot;,&quot;affiliate&quot;,&quot;settings&quot;,&quot;media&quot;],&quot;default&quot;:&quot;dashboard&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tampilan awal&quot;}}">
+const RP = (n) => "Rp" + n.toLocaleString("id-ID");
+
+const NAV = [
+  { label: "Ringkasan", items: [
+    { id: "dashboard", label: "Dashboard", glyph: "◧" },
+    { id: "reports", label: "Laporan penjualan", glyph: "◫" },
+  ]},
+  { label: "Katalog", items: [
+    { id: "products", label: "Produk", glyph: "▤", count: "214" },
+    { id: "media", label: "Media", glyph: "▨" },
+  ]},
+  { label: "Penjualan", items: [
+    { id: "orders", label: "Pesanan", glyph: "▣", count: "37" },
+    { id: "pos", label: "POS", glyph: "▪" },
+  ]},
+  { label: "Pemasaran", items: [
+    { id: "marketing", label: "Marketing", glyph: "◈" },
+    { id: "affiliate", label: "Afiliasi", glyph: "◇" },
+  ]},
+  { label: "Pelanggan", items: [
+    { id: "inbox", label: "Inbox", glyph: "✉", count: "3" },
+  ]},
+  { label: "Sistem", items: [
+    { id: "settings", label: "Pengaturan", glyph: "⚙" },
+  ]},
+];
+
+const TITLES = {
+  dashboard: ["Ringkasan", "Dashboard"],
+  products: ["Katalog", "Produk"],
+  editor: ["Katalog · Produk", "Kursi Kerja Ergonomis"],
+  orders: ["Penjualan", "Pesanan"],
+  orderDetail: ["Penjualan · Pesanan", "Detail pesanan"],
+  pos: ["Penjualan", "POS — penjualan tunai"],
+  reports: ["Ringkasan", "Laporan penjualan"],
+  marketing: ["Pemasaran", "Marketing"],
+  inbox: ["Pelanggan", "Inbox"],
+  affiliate: ["Pemasaran", "Program afiliasi"],
+  settings: ["Sistem", "Pengaturan toko"],
+  media: ["Katalog", "Media library"],
+};
+
+const PRODUCTS = [
+  { name: "Kursi Kerja Ergonomis", sku: "SKU-1042", variants: "3 varian", category: "Perabot kantor", price: 1890000, stock: 24, label: "Terlaris", labelColor: "#dc2626", status: "Terbit" },
+  { name: "Meja Lipat Kayu Jati", sku: "SKU-1051", variants: "2 varian", category: "Perabot kantor", price: 2450000, stock: 6, label: "Baru", labelColor: "#2563eb", status: "Terbit" },
+  { name: "Lampu Meja LED", sku: "SKU-2210", variants: "4 varian", category: "Elektronik", price: 289000, stock: 142, label: "—", labelColor: "#dde3ea", status: "Terbit" },
+  { name: "Rak Dinding Modular", sku: "SKU-1180", variants: "1 varian", category: "Rumah tangga", price: 640000, stock: 0, label: "Stok masuk", labelColor: "#b45309", status: "Terbit" },
+  { name: "Paket Instalasi Rumah", sku: "SKU-9001", variants: "layanan", category: "Layanan", price: 1250000, stock: 99, label: "—", labelColor: "#dde3ea", status: "Draf" },
+  { name: "Kabel Daya 3 m", sku: "SKU-2255", variants: "2 varian", category: "Elektronik", price: 74000, stock: 388, label: "—", labelColor: "#dde3ea", status: "Terbit" },
+  { name: "Langganan Perawatan 12 Bulan", sku: "SKU-9014", variants: "langganan", category: "Layanan", price: 3600000, stock: 50, label: "Hemat", labelColor: "#12873d", status: "Terbit" },
+  { name: "Kursi Tamu Rangka Baja", sku: "SKU-1099", variants: "3 varian", category: "Perabot kantor", price: 890000, stock: 12, label: "—", labelColor: "#dde3ea", status: "Arsip" },
+];
+
+const ORDERS = [
+  { code: "ORD-4821", customer: "Rina Halim", phone: "0812•••4410", date: "21 Sep, 09:14", payment: "Gateway", total: 2164000, status: "Menunggu pembayaran", group: "pending" },
+  { code: "ORD-4820", customer: "Dedi Kurnia", phone: "0857•••1120", date: "21 Sep, 08:02", payment: "Transfer manual", total: 389000, status: "Menunggu pembayaran", group: "pending" },
+  { code: "ORD-4819", customer: "Sari Wulandari", phone: "0813•••7781", date: "20 Sep, 19:48", payment: "Gateway", total: 1890000, status: "Dibayar", group: "paid" },
+  { code: "ORD-4818", customer: "Toko Mitra Jaya", phone: "0811•••3390", date: "20 Sep, 16:21", payment: "Transfer manual", total: 7420000, status: "Diproses", group: "processing" },
+  { code: "ORD-4817", customer: "Agus Prasetyo", phone: "0896•••2205", date: "20 Sep, 13:05", payment: "Tunai (POS)", total: 148000, status: "Selesai", group: "done" },
+  { code: "ORD-4816", customer: "Melati Hasan", phone: "0821•••9902", date: "19 Sep, 21:33", payment: "Gateway", total: 640000, status: "Dikirim", group: "shipped" },
+  { code: "ORD-4815", customer: "Bayu Anggara", phone: "0838•••4417", date: "19 Sep, 17:12", payment: "Gateway", total: 289000, status: "Dibatalkan", group: "void" },
+  { code: "ORD-4814", customer: "Nur Aisyah", phone: "0812•••6654", date: "19 Sep, 11:40", payment: "Transfer manual", total: 3600000, status: "Selesai", group: "done" },
+  { code: "ORD-4813", customer: "Hendra Saputra", phone: "0877•••8123", date: "18 Sep, 20:02", payment: "Gateway", total: 1964000, status: "Selesai", group: "done" },
+];
+
+const STATUS_TONE = {
+  "Menunggu pembayaran": ["#fdf1de", "#9a4507"],
+  "Dibayar": ["#e4f5ea", "#0f7434"],
+  "Diproses": ["#e8effc", "#1d4ed8"],
+  "Dikirim": ["#e0f2f6", "#0b6076"],
+  "Selesai": ["#e4f5ea", "#0f7434"],
+  "Dibatalkan": ["#fdeaea", "#c81e1e"],
+};
+
+const POS_ITEMS = [
+  { name: "Lampu Meja LED", price: 289000 },
+  { name: "Kabel Daya 3 m", price: 74000 },
+  { name: "Rak Dinding Modular", price: 640000 },
+  { name: "Kursi Tamu Rangka Baja", price: 890000 },
+  { name: "Meja Lipat Kayu Jati", price: 2450000 },
+  { name: "Dudukan Monitor", price: 315000 },
+  { name: "Papan Tulis Kecil", price: 128000 },
+  { name: "Kotak Arsip", price: 56000 },
+  { name: "Tempat Pensil Kayu", price: 39000 },
+];
+
+const THREADS = [
+  { name: "Rina Halim", initials: "RH", snippet: "Apakah bisa kirim hari ini kalau bayar sekarang?", at: "09:22", state: "terbuka", unread: 2 },
+  { name: "Dedi Kurnia", initials: "DK", snippet: "Sudah transfer, mohon dicek ya.", at: "08:41", state: "terbuka", unread: 1 },
+  { name: "Toko Mitra Jaya", initials: "TM", snippet: "Minta penawaran untuk 20 unit.", at: "Kemarin", state: "terbuka", unread: 0 },
+  { name: "Melati Hasan", initials: "MH", snippet: "Paket sudah sampai, terima kasih.", at: "19 Sep", state: "selesai", unread: 0 },
+  { name: "Bayu Anggara", initials: "BA", snippet: "Pesanan saya batalkan saja.", at: "18 Sep", state: "selesai", unread: 0 },
+];
+
+const THREAD_MSGS = [
+  [
+    { from: "them", text: "Selamat pagi, apakah kursi ergonomis warna abu masih ada?", at: "09:10" },
+    { from: "us", text: "Pagi. Masih tersedia 24 unit, siap kirim hari ini.", at: "09:14" },
+    { from: "them", text: "Apakah bisa kirim hari ini kalau bayar sekarang?", at: "09:22" },
+  ],
+  [
+    { from: "them", text: "Sudah transfer, mohon dicek ya.", at: "08:41" },
+  ],
+  [
+    { from: "them", text: "Minta penawaran untuk 20 unit meja lipat.", at: "Kemarin" },
+    { from: "us", text: "Kami kirim harga tingkat 3 untuk 20 unit, berlaku 7 hari.", at: "Kemarin" },
+  ],
+  [
+    { from: "them", text: "Paket sudah sampai, terima kasih.", at: "19 Sep" },
+    { from: "us", text: "Terima kasih kembali.", at: "19 Sep" },
+  ],
+  [
+    { from: "them", text: "Pesanan saya batalkan saja.", at: "18 Sep" },
+    { from: "us", text: "Sudah kami batalkan. Dana akan dikembalikan 3 hari kerja.", at: "18 Sep" },
+  ],
+];
+
+const COMMISSIONS = [
+  { name: "Wahyu Ramadhan", code: "WHY21", order: "ORD-4819", amount: 94500, status: "Menunggu" },
+  { name: "Kiki Amalia", code: "KIKI7", order: "ORD-4818", amount: 371000, status: "Menunggu" },
+  { name: "Fajar Nugroho", code: "FJR03", order: "ORD-4816", amount: 32000, status: "Menunggu" },
+  { name: "Wahyu Ramadhan", code: "WHY21", order: "ORD-4814", amount: 180000, status: "Disetujui" },
+  { name: "Lina Marlina", code: "LINA9", order: "ORD-4813", amount: 98200, status: "Dibayar" },
+];
+
+class Component extends DCLogic {
+  state = {
+    screen: this.props.defaultScreen || "dashboard",
+    mode: "desktop",
+    navOpen: true,
+    selected: {},
+    productFilter: "Semua",
+    orderTab: "Semua",
+    mktTab: "Flash sale",
+    reportTab: "Per produk",
+    range: "30 hari",
+    thread: 0,
+    pub: "Terbit",
+    swatch: "#dc2626",
+    cart: [],
+    paid: 0,
+    features: { gateway: true, courier: true, waOtp: true, affiliate: true, pos: true, news: false },
+    adv: { insurance: true, sizeChart: false, serviceForm: false, digital: false },
+    commission: {},
+    media: 0,
+  };
+
+  go = (screen) => () => this.setState({ screen, navOpen: this.state.mode === "desktop" });
+
+  pill(active) {
+    return active
+      ? { bg: "#2563eb", fg: "#ffffff", border: "#2563eb" }
+      : { bg: "#ffffff", fg: "#5b6672", border: "#dde3ea" };
+  }
+  seg(active) {
+    return active ? { bg: "#ffffff", fg: "#141a21" } : { bg: "transparent", fg: "#5b6672" };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const mobile = s.mode === "mobile";
+    const [crumb, title] = TITLES[s.screen] || TITLES.dashboard;
+
+    const selectedKeys = Object.keys(s.selected).filter((k) => s.selected[k]);
+
+    const filteredOrders = s.orderTab === "Semua" ? ORDERS : ORDERS.filter((o) => o.status === s.orderTab);
+
+    const cartTotal = s.cart.reduce((a, c) => a + c.price * c.qty, 0);
+    const change = s.paid - cartTotal;
+
+    const reportProducts = [
+      { key: "Kursi Kerja Ergonomis", qty: 118, rev: 223020000, share: "31%" },
+      { key: "Meja Lipat Kayu Jati", qty: 64, rev: 156800000, share: "22%" },
+      { key: "Lampu Meja LED", qty: 402, rev: 116178000, share: "16%" },
+      { key: "Langganan Perawatan", qty: 21, rev: 75600000, share: "11%" },
+      { key: "Rak Dinding Modular", qty: 88, rev: 56320000, share: "8%" },
+      { key: "Lainnya", qty: 512, rev: 84110000, share: "12%" },
+    ];
+    const reportCategories = [
+      { key: "Perabot kantor", qty: 246, rev: 398000000, share: "49%" },
+      { key: "Elektronik", qty: 611, rev: 184300000, share: "26%" },
+      { key: "Layanan", qty: 42, rev: 96400000, share: "14%" },
+      { key: "Rumah tangga", qty: 133, rev: 78900000, share: "11%" },
+    ];
+
+    return {
+      isMobile: mobile,
+      deskBg: mobile ? "transparent" : "#ffffff",
+      deskFg: mobile ? "#5b6672" : "#141a21",
+      mobBg: mobile ? "#ffffff" : "transparent",
+      mobFg: mobile ? "#141a21" : "#5b6672",
+      setDesktop: () => this.setState({ mode: "desktop", navOpen: true }),
+      setMobile: () => this.setState({ mode: "mobile", navOpen: false }),
+      toggleNav: () => this.setState({ navOpen: !s.navOpen }),
+
+      shellStyle:
+        "width:100%;max-width:" + (mobile ? "390px" : "1480px") +
+        ";border:1px solid #d5dbe4;border-radius:16px;overflow:hidden;background:#f5f7fa;box-shadow:0 18px 48px rgba(15,23,42,.14)",
+      sidebarStyle:
+        "width:244px;flex:none;background:#101722;display:" + (s.navOpen ? "flex" : "none") +
+        ";flex-direction:column;" + (mobile ? "position:absolute;z-index:5;height:820px;" : "") + "border-right:1px solid #1f2733",
+
+      crumb, title,
+
+      navGroups: NAV.map((g) => ({
+        label: g.label,
+        items: g.items.map((it) => {
+          const active = s.screen === it.id || (it.id === "products" && s.screen === "editor") || (it.id === "orders" && s.screen === "orderDetail");
+          return { ...it, bg: active ? "#1e2836" : "transparent", fg: active ? "#f0f4f9" : "#9aa7b2", go: this.go(it.id) };
+        }),
+      })),
+
+      isDashboard: s.screen === "dashboard",
+      isProducts: s.screen === "products",
+      isEditor: s.screen === "editor",
+      isOrders: s.screen === "orders",
+      isOrderDetail: s.screen === "orderDetail",
+      isPos: s.screen === "pos",
+      isReports: s.screen === "reports",
+      isMarketing: s.screen === "marketing",
+      isInbox: s.screen === "inbox",
+      isAffiliate: s.screen === "affiliate",
+      isSettings: s.screen === "settings",
+      isMedia: s.screen === "media",
+
+      goOrders: this.go("orders"),
+      goProducts: this.go("products"),
+      goEditor: this.go("editor"),
+      goMedia: this.go("media"),
+      goInbox: this.go("inbox"),
+
+      stats: [
+        { label: "Pesanan hari ini", value: "42", delta: "+12%", soft: "#e4f5ea", tone: "#0f7434" },
+        { label: "Pendapatan hari ini", value: RP(18420000), delta: "+7%", soft: "#e4f5ea", tone: "#0f7434" },
+        { label: "Konversi", value: "2,8%", delta: "−0,3%", soft: "#fdf1de", tone: "#9a4507" },
+        { label: "Stok kritis", value: "7", delta: "perlu restock", soft: "#fdeaea", tone: "#c81e1e" },
+      ],
+      bars: [38, 52, 44, 61, 58, 72, 66, 54, 79, 71, 88, 64, 92, 84].map((v, i) => ({
+        day: ["8","9","10","11","12","13","14","15","16","17","18","19","20","21"][i],
+        h: v + "%",
+        fill: i === 13 ? "#2563eb" : "#bfd3f7",
+      })),
+      todos: [
+        { n: "5", label: "Pesanan menunggu konfirmasi", hint: "Transfer manual, lewat 12 jam", soft: "#fdf1de", tone: "#9a4507", go: this.go("orders") },
+        { n: "3", label: "Ulasan menunggu moderasi", hint: "Terbitkan atau tolak", soft: "#e8effc", tone: "#1d4ed8", go: this.go("marketing") },
+        { n: "3", label: "Pesan pelanggan belum dibaca", hint: "Inbox", soft: "#e8effc", tone: "#1d4ed8", go: this.go("inbox") },
+        { n: "3", label: "Komisi afiliasi menunggu", hint: "Setujui atau tolak", soft: "#e0f2f6", tone: "#0b6076", go: this.go("affiliate") },
+      ],
+      recentOrders: ORDERS.slice(0, 5).map((o) => ({
+        ...o, total: RP(o.total),
+        soft: STATUS_TONE[o.status][0], tone: STATUS_TONE[o.status][1],
+        channel: o.payment === "Tunai (POS)" ? "POS" : "Web",
+        open: this.go("orderDetail"),
+      })),
+
+      productFilters: ["Semua", "Terbit", "Draf"].map((f) => ({
+        label: f, ...this.seg(s.productFilter === f), pick: () => this.setState({ productFilter: f }),
+      })),
+      products: PRODUCTS.filter((p) => s.productFilter === "Semua" || p.status === s.productFilter).map((p) => ({
+        ...p,
+        price: RP(p.price),
+        stock: p.stock > 0 ? "Stok " + p.stock : "Habis",
+        stockSoft: p.stock > 12 ? "#e4f5ea" : p.stock > 0 ? "#fdf1de" : "#fdeaea",
+        stockTone: p.stock > 12 ? "#0f7434" : p.stock > 0 ? "#9a4507" : "#c81e1e",
+        statusTone: p.status === "Terbit" ? "#0f7434" : p.status === "Draf" ? "#9a4507" : "#646f7a",
+        checked: !!s.selected[p.sku],
+        rowBg: s.selected[p.sku] ? "#f5f9ff" : "#ffffff",
+        toggle: () => this.setState({ selected: { ...s.selected, [p.sku]: !s.selected[p.sku] } }),
+      })),
+      hasSelection: selectedKeys.length > 0,
+      selectedCount: selectedKeys.length,
+      clearSelection: () => this.setState({ selected: {} }),
+
+      variants: [
+        { attr: "Abu · Standar", sku: "SKU-1042-AS", price: RP(1890000), stock: 12 },
+        { attr: "Hitam · Standar", sku: "SKU-1042-HS", price: RP(1890000), stock: 8 },
+        { attr: "Hitam · Sandaran tinggi", sku: "SKU-1042-HT", price: RP(2190000), stock: 4 },
+      ],
+      tiers: [
+        { label: "Harga dasar", value: RP(1890000) },
+        { label: "Tingkat 2 (≥5)", value: RP(1790000) },
+        { label: "Tingkat 3 (≥20)", value: RP(1690000) },
+        { label: "Tingkat 4 (≥50)", value: RP(1590000) },
+      ],
+      pubStates: ["Terbit", "Draf", "Arsip"].map((p) => ({
+        label: p, ...this.seg(s.pub === p), pick: () => this.setState({ pub: p }),
+      })),
+      swatches: ["#dc2626", "#2563eb", "#12873d", "#b45309"].map((hex) => ({
+        hex, ring: s.swatch === hex ? "#141a21" : "transparent", pick: () => this.setState({ swatch: hex }),
+      })),
+      labelHex: s.swatch,
+      labelFg: s.swatch === "#b45309" ? "#ffffff" : "#ffffff",
+      advOptions: [
+        { key: "insurance", label: "Tawarkan asuransi pengiriman", hint: "withInsurance · biaya ditentukan server" },
+        { key: "sizeChart", label: "Lampirkan size chart", hint: "Tabel atau gambar, dipilih per produk" },
+        { key: "serviceForm", label: "Produk layanan — pakai form intake", hint: "Field isian ditentukan di CMS" },
+        { key: "digital", label: "Unduhan digital", hint: "Tautan unduh dikirim setelah pembayaran" },
+      ].map((o) => ({ ...o, on: s.adv[o.key], toggle: () => this.setState({ adv: { ...s.adv, [o.key]: !s.adv[o.key] } }) })),
+
+      orderTabs: ["Semua", "Menunggu pembayaran", "Dibayar", "Diproses", "Dikirim", "Selesai", "Dibatalkan"].map((t) => ({
+        label: t,
+        count: t === "Semua" ? ORDERS.length : ORDERS.filter((o) => o.status === t).length,
+        ...this.pill(s.orderTab === t),
+        pick: () => this.setState({ orderTab: t }),
+      })),
+      orders: filteredOrders.map((o) => ({
+        ...o, total: RP(o.total),
+        soft: STATUS_TONE[o.status][0], tone: STATUS_TONE[o.status][1],
+        open: this.go("orderDetail"),
+      })),
+
+      orderLines: [
+        { name: "Kursi Kerja Ergonomis", meta: "SKU-1042-AS · Abu · Standar", qty: 1, sum: RP(1890000) },
+        { name: "Lampu Meja LED", meta: "SKU-2210-W · Putih hangat", qty: 1, sum: RP(289000) },
+      ],
+      orderTotals: [
+        { label: "Subtotal", value: RP(2179000), font: "400 13px/1", tone: "#5b6672" },
+        { label: "Ongkir REG", value: RP(15000), font: "400 13px/1", tone: "#5b6672" },
+        { label: "Voucher HEMAT10", value: "−" + RP(30000), font: "400 13px/1", tone: "#0f7434" },
+        { label: "Total", value: RP(2164000), font: "600 15px/1", tone: "#141a21" },
+      ],
+      timeline: [
+        { label: "Sesi gateway dibuat", at: "21 Sep 09:16", actor: "sistem", dot: "#b45309" },
+        { label: "Pesanan dibuat", at: "21 Sep 09:14", actor: "pelanggan · web", dot: "#2563eb" },
+        { label: "Telepon terverifikasi (OTP WhatsApp)", at: "21 Sep 09:12", actor: "pelanggan", dot: "#12873d" },
+        { label: "Keranjang dikutip ulang", at: "21 Sep 09:11", actor: "sistem", dot: "#5b6672" },
+      ],
+
+      posProducts: POS_ITEMS.map((p) => ({
+        ...p, price: RP(p.price),
+        add: () => {
+          const found = s.cart.find((c) => c.name === p.name);
+          const cart = found
+            ? s.cart.map((c) => (c.name === p.name ? { ...c, qty: c.qty + 1 } : c))
+            : [...s.cart, { ...p, qty: 1 }];
+          this.setState({ cart });
+        },
+      })),
+      posCart: s.cart.map((c) => ({
+        name: c.name, qty: c.qty, price: RP(c.price), sum: RP(c.price * c.qty),
+        inc: () => this.setState({ cart: s.cart.map((x) => (x.name === c.name ? { ...x, qty: x.qty + 1 } : x)) }),
+        dec: () => this.setState({ cart: s.cart.flatMap((x) => (x.name === c.name ? (x.qty > 1 ? [{ ...x, qty: x.qty - 1 }] : []) : [x])) }),
+      })),
+      posEmpty: s.cart.length === 0,
+      posCount: s.cart.reduce((a, c) => a + c.qty, 0),
+      posTotal: RP(cartTotal),
+      posPaid: s.paid ? String(s.paid) : "",
+      setPaid: (e) => this.setState({ paid: Number(String(e.target.value).replace(/[^0-9]/g, "")) || 0 }),
+      posChange: change >= 0 ? RP(change) : "kurang " + RP(-change),
+      changeSoft: change >= 0 ? "#e4f5ea" : "#fdeaea",
+      changeTone: change >= 0 ? "#0f7434" : "#c81e1e",
+      clearPos: () => this.setState({ cart: [], paid: 0 }),
+
+      ranges: ["7 hari", "30 hari", "Kuartal", "Tahun"].map((r) => ({
+        label: r, ...this.seg(s.range === r), pick: () => this.setState({ range: r }),
+      })),
+      reportStats: [
+        { label: "Pendapatan", value: RP(712028000), note: "30 hari terakhir" },
+        { label: "Pesanan", value: "1.204", note: "rata-rata 40 / hari" },
+        { label: "Nilai pesanan rata-rata", value: RP(591000), note: "+4% vs periode lalu" },
+        { label: "Pembatalan", value: "3,1%", note: "38 pesanan" },
+      ],
+      reportBars: [42,55,61,48,73,80,66,58,71,84,62,90,77,69,95,81,74,88,60,52,68,79,86,93,70,64,76,89,97,83].map((v, i) => ({
+        h: v + "%", fill: i % 7 === 6 ? "#1d4ed8" : "#bfd3f7",
+      })),
+      reportTabs: ["Per produk", "Per kategori"].map((t) => ({
+        label: t, ...this.pill(s.reportTab === t), pick: () => this.setState({ reportTab: t }),
+      })),
+      reportKeyHead: s.reportTab === "Per produk" ? "Produk" : "Kategori",
+      reportRows: (s.reportTab === "Per produk" ? reportProducts : reportCategories).map((r) => ({
+        ...r, rev: RP(r.rev),
+      })),
+
+      mktTabs: ["Flash sale", "Voucher", "Slider", "Popup", "Testimoni"].map((t) => ({
+        label: t, ...this.pill(s.mktTab === t), pick: () => this.setState({ mktTab: t }),
+      })),
+      mktNewLabel: s.mktTab,
+      isFlash: s.mktTab === "Flash sale",
+      isVoucher: s.mktTab === "Voucher",
+      isSlider: s.mktTab === "Slider",
+      isPopup: s.mktTab === "Popup",
+      isTesti: s.mktTab === "Testimoni",
+      flashSales: [
+        { name: "Diskon Akhir Bulan", state: "Berjalan", clock: "berakhir 05:12:44", window: "21–22 Sep", items: 18, disc: "20%", sold: "68%", soft: "#e4f5ea", tone: "#0f7434" },
+        { name: "Serba Hemat Elektronik", state: "Terjadwal", clock: "mulai 24 Sep 10:00", window: "24–26 Sep", items: 9, disc: "15%", sold: "0%", soft: "#e8effc", tone: "#1d4ed8" },
+        { name: "Cuci Gudang Perabot", state: "Berakhir", clock: "selesai 14 Sep", window: "12–14 Sep", items: 24, disc: "35%", sold: "100%", soft: "#eef1f5", tone: "#646f7a" },
+      ],
+      vouchers: [
+        { code: "HEMAT10", type: "Potongan persen", value: "10%", window: "1–30 Sep", used: "412 / 1.000" },
+        { code: "GRATISKIRIM", type: "Ongkir", value: RP(20000), window: "1–30 Sep", used: "880 / 1.000" },
+        { code: "PELANGGANBARU", type: "Potongan tetap", value: RP(25000), window: "tanpa batas", used: "1.204 / ∞" },
+        { code: "BORONG50", type: "Potongan persen", value: "5%", window: "min. belanja " + RP(5000000), used: "18 / 200" },
+        { code: "AKHIRTAHUN", type: "Potongan tetap", value: RP(50000), window: "belum aktif", used: "0 / 500" },
+      ],
+      slides: [
+        { title: "Perlengkapan kerja, harga tingkat", link: "/katalog?kategori=perabot-kantor", state: "Aktif", soft: "#e4f5ea", tone: "#0f7434" },
+        { title: "Diskon akhir bulan", link: "/flash-sale", state: "Aktif", soft: "#e4f5ea", tone: "#0f7434" },
+        { title: "Layanan instalasi rumah", link: "/product/paket-instalasi-rumah", state: "Nonaktif", soft: "#eef1f5", tone: "#646f7a" },
+      ],
+      testimonials: [
+        { stars: "★★★★★", quote: "Pengiriman cepat dan barang sesuai deskripsi.", by: "Sari W. · pesanan ORD-4819" },
+        { stars: "★★★★☆", quote: "Kursinya nyaman, perakitan agak lama.", by: "Dedi K. · pesanan ORD-4790" },
+        { stars: "★★★★★", quote: "Harga grosir jelas, tidak perlu tanya-tanya.", by: "Toko Mitra Jaya · ORD-4818" },
+        { stars: "★★★☆☆", quote: "Warna sedikit berbeda dari foto.", by: "Nur A. · pesanan ORD-4814" },
+      ],
+
+      threads: THREADS.map((t, i) => ({
+        ...t,
+        bg: s.thread === i ? "#f5f9ff" : "#ffffff",
+        mark: s.thread === i ? "#2563eb" : "transparent",
+        unread: t.unread ? String(t.unread) : "",
+        pick: () => this.setState({ thread: i }),
+      })),
+      threadName: THREADS[s.thread].name,
+      threadMeta: THREADS[s.thread].state === "selesai" ? "thread ditutup" : "thread terbuka · akun pelanggan",
+      threadOpen: THREADS[s.thread].state !== "selesai",
+      threadClosed: THREADS[s.thread].state === "selesai",
+      messages: THREAD_MSGS[s.thread].map((m) => m.from === "us"
+        ? { ...m, align: "flex-end", bg: "#2563eb", border: "#2563eb", fg: "#ffffff", meta: "rgba(255,255,255,.7)" }
+        : { ...m, align: "flex-start", bg: "#ffffff", border: "#dde3ea", fg: "#141a21", meta: "#98a2ad" }),
+
+      affStats: [
+        { label: "Afiliasi aktif", value: "37" },
+        { label: "Klik referral 30 hari", value: "4.812" },
+        { label: "Pesanan teratribusi", value: "96" },
+        { label: "Komisi menunggu", value: RP(497500) },
+      ],
+      pendingCount: COMMISSIONS.filter((c) => (s.commission[c.order] || c.status) === "Menunggu").length,
+      commissions: COMMISSIONS.map((c) => {
+        const status = s.commission[c.order] || c.status;
+        const tone = { "Menunggu": ["#fdf1de", "#9a4507"], "Disetujui": ["#e4f5ea", "#0f7434"], "Dibayar": ["#e8effc", "#1d4ed8"], "Ditolak": ["#fdeaea", "#c81e1e"] }[status];
+        return {
+          ...c, status, amount: RP(c.amount), soft: tone[0], tone: tone[1],
+          actionable: status === "Menunggu",
+          approve: () => this.setState({ commission: { ...s.commission, [c.order]: "Disetujui" } }),
+          reject: () => this.setState({ commission: { ...s.commission, [c.order]: "Ditolak" } }),
+        };
+      }),
+
+      features: [
+        { key: "gateway", label: "Payment gateway", k: "payment.gatewayEnabled" },
+        { key: "courier", label: "Ongkir kurir", k: "shipping.courierEnabled" },
+        { key: "waOtp", label: "OTP WhatsApp", k: "auth.whatsappOtpEnabled" },
+        { key: "affiliate", label: "Program afiliasi", k: "affiliate.programEnabled" },
+        { key: "pos", label: "POS", k: "sales.posEnabled" },
+        { key: "news", label: "Permukaan berita", k: "profile.newsEnabled" },
+      ].map((f) => ({
+        label: f.label, key: f.k,
+        track: s.features[f.key] ? "#2563eb" : "#c3cbd5",
+        justify: s.features[f.key] ? "flex-end" : "flex-start",
+        toggle: () => this.setState({ features: { ...s.features, [f.key]: !s.features[f.key] } }),
+      })),
+      providers: [
+        { name: "Payment gateway", env: "GATEWAY_SERVER_KEY", state: "Terkonfigurasi", soft: "#e4f5ea", tone: "#0f7434" },
+        { name: "Kurir", env: "COURIER_API_KEY", state: "Terkonfigurasi", soft: "#e4f5ea", tone: "#0f7434" },
+        { name: "WhatsApp", env: "WA_TOKEN", state: "Belum diisi", soft: "#fdf1de", tone: "#9a4507" },
+      ],
+
+      mediaItems: [
+        { name: "kursi-ergonomis-01.webp", dim: "1200×1200", size: "184 KB", used: "3 produk" },
+        { name: "kursi-ergonomis-02.webp", dim: "1200×1200", size: "171 KB", used: "1 produk" },
+        { name: "meja-jati-01.webp", dim: "1600×1200", size: "246 KB", used: "2 produk" },
+        { name: "lampu-led-01.webp", dim: "1000×1000", size: "98 KB", used: "1 produk" },
+        { name: "slider-akhir-bulan.webp", dim: "1440×560", size: "312 KB", used: "slider" },
+        { name: "slider-layanan.webp", dim: "1440×560", size: "288 KB", used: "belum dipakai" },
+        { name: "rak-modular-01.webp", dim: "1200×900", size: "142 KB", used: "1 produk" },
+        { name: "kabel-daya.webp", dim: "800×800", size: "64 KB", used: "1 produk" },
+        { name: "popup-promo.webp", dim: "600×400", size: "77 KB", used: "popup" },
+        { name: "logo-toko.svg", dim: "vektor", size: "6 KB", used: "chrome situs" },
+        { name: "size-chart-kursi.png", dim: "900×1200", size: "126 KB", used: "1 produk" },
+        { name: "panduan-instalasi.pdf", dim: "PDF", size: "1,2 MB", used: "layanan" },
+      ].map((m, i) => ({
+        ...m, ring: s.media === i ? "#2563eb" : "#dde3ea", pick: () => this.setState({ media: i }),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

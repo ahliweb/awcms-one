@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+<style>
+  body { margin: 0; background: #e8ecf1; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #0284c7; text-decoration: none; }
+  a:hover { color: #0369a1; }
+  input, select, textarea, button { font-family: inherit; }
+  @keyframes tick { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px 16px 48px;background:#e8ecf1">
+
+  <div style="width:100%;max-width:1280px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px">
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <span style="font:600 11px/1 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:#64748b">awcms-one · redesign</span>
+      <span style="font:700 16px/1.2 'Plus Jakarta Sans';color:#0f172a">Situs Publik — profil toko, 11 halaman</span>
+    </div>
+    <div style="flex:1"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <sc-for list="{{ screenPicker }}" as="p" hint-placeholder-count="11">
+        <button onClick="{{ p.pick }}" style="height:30px;padding:0 11px;border:1px solid {{ p.border }};border-radius:999px;cursor:pointer;font:600 11px/1 'Plus Jakarta Sans';background:{{ p.bg }};color:{{ p.fg }}">{{ p.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:4px;padding:4px;background:#dce2e9;border-radius:10px">
+      <button onClick="{{ setDesktop }}" style="height:30px;padding:0 13px;border:0;border-radius:7px;background:{{ deskBg }};color:{{ deskFg }};font:600 12px/1 'Plus Jakarta Sans';cursor:pointer">Desktop</button>
+      <button onClick="{{ setMobile }}" style="height:30px;padding:0 13px;border:0;border-radius:7px;background:{{ mobBg }};color:{{ mobFg }};font:600 12px/1 'Plus Jakarta Sans';cursor:pointer">Mobile</button>
+    </div>
+  </div>
+
+  <div style="{{ shellStyle }}">
+
+    <!-- CHROME TOKO -->
+    <sc-if value="{{ shopChrome }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#0f172a">
+        <div style="max-width:1200px;margin:0 auto;padding:7px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px">
+          <span style="font:500 11px/1.5 'Plus Jakarta Sans';color:#cbd5e1">Gratis kirim untuk belanja di atas Rp300.000</span>
+          <div style="flex:1"></div>
+          <button onClick="{{ goTrack }}" style="border:0;background:transparent;padding:0;font:500 11px/1.5 'Plus Jakarta Sans';color:#cbd5e1;cursor:pointer">Lacak pesanan</button>
+          <button onClick="{{ goNews }}" style="border:0;background:transparent;padding:0;font:500 11px/1.5 'Plus Jakarta Sans';color:#cbd5e1;cursor:pointer">Berita</button>
+          <button onClick="{{ goAccount }}" style="border:0;background:transparent;padding:0;font:500 11px/1.5 'Plus Jakarta Sans';color:#7dd3fc;cursor:pointer">Akun saya</button>
+        </div>
+      </div>
+      <header style="background:#fff;border-bottom:1px solid #e2e8f0">
+        <div style="max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+          <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:9px;border:0;background:transparent;padding:0;cursor:pointer">
+            <span style="width:30px;height:30px;border-radius:9px;background:#10b981;display:flex;align-items:center;justify-content:center;font:800 13px/1 'Plus Jakarta Sans';color:#03140d">T</span>
+            <span style="font:800 17px/1 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a">Toko Contoh</span>
+          </button>
+          <div style="display:flex;flex:1;min-width:180px;max-width:440px;height:42px;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;background:#f8fafc">
+            <input placeholder="Cari produk" style="flex:1;min-width:0;padding:0 13px;border:0;background:transparent;outline:none;font:400 13px/1 'Plus Jakarta Sans';color:#0f172a" />
+            <button style="width:52px;border:0;background:#10b981;color:#03140d;font:700 13px/1 'Plus Jakarta Sans';cursor:pointer">Cari</button>
+          </div>
+          <div style="flex:1"></div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <button onClick="{{ goWishlist }}" style="display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 11px;border:0;background:transparent;font:600 13px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">♡ Wishlist <span style="padding:1px 7px;border-radius:999px;background:#f1f5f9;font:600 11px/1.6 'IBM Plex Mono';color:#334155">{{ wishCount }}</span></button>
+            <button onClick="{{ goCart }}" style="display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 11px;border:0;background:transparent;font:600 13px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Keranjang <span style="padding:1px 7px;border-radius:999px;background:#f59e0b;font:700 11px/1.6 'IBM Plex Mono';color:#1f1400">{{ cartCount }}</span></button>
+          </div>
+        </div>
+        <nav style="max-width:1200px;margin:0 auto;padding:0 20px 11px;display:flex;flex-wrap:wrap;gap:4px">
+          <sc-for list="{{ shopNav }}" as="n" hint-placeholder-count="6">
+            <button onClick="{{ n.pick }}" style="height:34px;padding:0 12px;border:0;border-radius:8px;cursor:pointer;font:600 12px/1 'Plus Jakarta Sans';background:{{ n.bg }};color:{{ n.fg }}">{{ n.label }}</button>
+          </sc-for>
+        </nav>
+      </header>
+    </sc-if>
+
+    <!-- CHROME BERITA -->
+    <sc-if value="{{ newsChrome }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#111827">
+        <div style="max-width:1200px;margin:0 auto;padding:8px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px">
+          <span style="font:500 11px/1.5 'IBM Plex Mono';color:#94a3b8">Senin, 21 September 2026 · WIB</span>
+          <div style="flex:1"></div>
+          <button onClick="{{ goHome }}" style="border:0;background:transparent;padding:0;font:500 11px/1.5 'Plus Jakarta Sans';color:#cbd5e1;cursor:pointer">Ke toko</button>
+          <button onClick="{{ goAccount }}" style="border:0;background:transparent;padding:0;font:500 11px/1.5 'Plus Jakarta Sans';color:#7dd3fc;cursor:pointer">Akun</button>
+        </div>
+      </div>
+      <header style="background:#fff;border-bottom:2px solid #0f172a">
+        <div style="max-width:1200px;margin:0 auto;padding:16px 20px 12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px">
+          <button onClick="{{ goNews }}" style="border:0;background:transparent;padding:0;cursor:pointer;font:600 26px/1 'Lora',serif;letter-spacing:-.01em;color:#0f172a">Kabar Contoh</button>
+          <span style="font:500 11px/1.5 'IBM Plex Mono';color:#64748b">kanal berita · profil toko + berita</span>
+        </div>
+        <nav style="max-width:1200px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:2px;border-top:1px solid #e2e8f0">
+          <sc-for list="{{ newsNav }}" as="n" hint-placeholder-count="8">
+            <button onClick="{{ n.pick }}" style="height:40px;padding:0 12px;border:0;border-bottom:2px solid {{ n.mark }};background:transparent;cursor:pointer;font:600 12px/1 'Plus Jakarta Sans';color:{{ n.fg }}">{{ n.label }}</button>
+          </sc-for>
+        </nav>
+        <div style="background:#f8fafc;border-top:1px solid #e2e8f0">
+          <div style="max-width:1200px;margin:0 auto;padding:8px 20px;display:flex;align-items:center;gap:11px">
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:5px;background:#dc2626;font:700 10px/1.5 'Plus Jakarta Sans';letter-spacing:.06em;color:#fff">TERKINI<span style="width:5px;height:5px;border-radius:999px;background:#fff;animation:tick 1.4s ease-in-out infinite"></span></span>
+            <span style="flex:1;min-width:0;font:500 12px/1.5 'Plus Jakarta Sans';color:#334155;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Pemerintah daerah rilis jadwal perbaikan jalan lintas · Harga komoditas pekan ini · Jadwal layanan publik menjelang libur</span>
+          </div>
+        </div>
+      </header>
+    </sc-if>
+
+    <main style="{{ mainStyle }}">
+
+      <!-- BERANDA TOKO -->
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:34px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+            <div style="grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:22px;padding:28px;border-radius:16px;background:#0f172a;overflow:hidden">
+              <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:13px">
+                <span style="display:inline-flex;align-self:flex-start;padding:4px 10px;border-radius:999px;background:#10b981;font:700 11px/1.5 'Plus Jakarta Sans';color:#03140d">Slider dikelola CMS</span>
+                <span style="font:800 30px/1.15 'Plus Jakarta Sans';letter-spacing:-.02em;color:#fff;text-wrap:pretty">Perlengkapan kerja dengan harga bertingkat</span>
+                <span style="font:400 14px/1.6 'Plus Jakarta Sans';color:#cbd5e1;max-width:46ch">Harga grosir otomatis mulai 5 unit. Setiap angka dihitung di server saat quote, bukan di browser.</span>
+                <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:4px">
+                  <button onClick="{{ goCatalog }}" style="height:44px;padding:0 20px;border:0;border-radius:10px;background:#10b981;color:#03140d;font:700 14px/1 'Plus Jakarta Sans';cursor:pointer">Lihat katalog</button>
+                  <button onClick="{{ goProduct }}" style="height:44px;padding:0 20px;border:1px solid #334155;border-radius:10px;background:transparent;color:#fff;font:600 14px/1 'Plus Jakarta Sans';cursor:pointer">Produk terlaris</button>
+                </div>
+              </div>
+              <div style="width:260px;height:170px;flex:none;border-radius:12px;background:#1e293b;border:1px solid #334155;display:flex;align-items:center;justify-content:center;font:500 10px/1 'IBM Plex Mono';color:#64748b">gambar slider 1440×560</div>
+            </div>
+            <sc-for list="{{ homeUsp }}" as="u" hint-placeholder-count="3">
+              <div style="padding:16px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:5px">
+                <span style="font:700 13px/1.3 'Plus Jakarta Sans';color:#0f172a">{{ u.title }}</span>
+                <span style="font:400 12px/1.5 'Plus Jakarta Sans';color:#64748b">{{ u.body }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:14px 16px;border-radius:12px;background:#fef3c7;border:1px solid #fcd34d">
+              <span style="font:800 14px/1 'Plus Jakarta Sans';color:#78350f">Diskon akhir bulan</span>
+              <span style="font:500 12px/1 'Plus Jakarta Sans';color:#92400e">18 produk terpilih</span>
+              <div style="flex:1"></div>
+              <span style="display:inline-flex;gap:5px;font:500 13px/1 'IBM Plex Mono';color:#78350f">
+                <span style="padding:5px 8px;border-radius:7px;background:#fff">05</span><span style="padding:5px 8px;border-radius:7px;background:#fff">12</span><span style="padding:5px 8px;border-radius:7px;background:#fff">44</span>
+              </span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:14px">
+              <sc-for list="{{ featured }}" as="p" hint-placeholder-count="4">
+                <div style="position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+                  <button onClick="{{ p.wish }}" style="position:absolute;top:10px;right:10px;z-index:1;width:34px;height:34px;border:1px solid {{ p.wishBorder }};border-radius:999px;background:#fff;color:{{ p.wishColor }};font:400 15px/1 'Plus Jakarta Sans';cursor:pointer">{{ p.heart }}</button>
+                  <button onClick="{{ goProduct }}" style="border:0;background:transparent;padding:0;cursor:pointer;text-align:left">
+                    <span style="display:flex;height:150px;background:#f1f5f9;align-items:center;justify-content:center;font:500 10px/1 'IBM Plex Mono';color:#94a3b8">foto produk</span>
+                    <span style="display:flex;flex-direction:column;gap:7px;padding:14px">
+                      <span style="display:flex;gap:6px;flex-wrap:wrap">
+                        <sc-if value="{{ p.label }}" hint-placeholder-val="{{ true }}">
+                          <span style="display:inline-flex;padding:2px 8px;border-radius:999px;font:700 10px/1.6 'Plus Jakarta Sans';background:{{ p.labelBg }};color:#fff">{{ p.label }}</span>
+                        </sc-if>
+                        <span style="display:inline-flex;padding:2px 8px;border-radius:999px;font:600 10px/1.6 'Plus Jakarta Sans';background:{{ p.stockBg }};color:{{ p.stockFg }}">{{ p.stock }}</span>
+                      </span>
+                      <span style="font:600 14px/1.35 'Plus Jakarta Sans';color:#0f172a">{{ p.name }}</span>
+                      <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+                        <span style="font:800 16px/1 'Plus Jakarta Sans';color:#0f172a">{{ p.price }}</span>
+                        <sc-if value="{{ p.was }}" hint-placeholder-val="{{ true }}">
+                          <span style="font:400 12px/1 'Plus Jakarta Sans';color:#94a3b8;text-decoration:line-through">{{ p.was }}</span>
+                        </sc-if>
+                        <sc-if value="{{ p.disc }}" hint-placeholder-val="{{ true }}">
+                          <span style="font:700 11px/1 'Plus Jakarta Sans';color:#b91c1c">{{ p.disc }}</span>
+                        </sc-if>
+                      </span>
+                      <span style="font:400 11px/1.4 'Plus Jakarta Sans';color:#64748b">{{ p.tier }}</span>
+                    </span>
+                  </button>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span style="font:700 16px/1 'Plus Jakarta Sans';color:#0f172a">Dari kanal berita</span>
+              <sc-for list="{{ homeNews }}" as="n" hint-placeholder-count="3">
+                <button onClick="{{ goArticle }}" style="display:flex;gap:12px;padding:0;border:0;background:transparent;cursor:pointer;text-align:left">
+                  <span style="width:84px;height:62px;flex:none;border-radius:9px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#94a3b8">foto</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:600 10px/1 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;color:#0284c7">{{ n.rubric }}</span>
+                    <span style="font:500 14px/1.4 'Lora',serif;color:#0f172a">{{ n.title }}</span>
+                    <span style="font:400 10px/1 'IBM Plex Mono';color:#94a3b8">{{ n.at }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span style="font:700 16px/1 'Plus Jakarta Sans';color:#0f172a">Kata pembeli</span>
+              <sc-for list="{{ homeTesti }}" as="t" hint-placeholder-count="2">
+                <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:7px">
+                  <span style="font:500 12px/1 'IBM Plex Mono';color:#b45309">{{ t.stars }}</span>
+                  <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#334155">{{ t.quote }}</span>
+                  <span style="font:600 11px/1 'Plus Jakarta Sans';color:#64748b">{{ t.by }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- KATALOG -->
+      <sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font:400 12px/1 'Plus Jakarta Sans';color:#64748b">Beranda / Katalog</span>
+            <span style="font:800 24px/1.2 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a">Semua produk</span>
+            <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#64748b">214 produk · harga final dari server</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:18px;align-items:start">
+            <aside style="min-width:0;max-width:260px;display:flex;flex-direction:column;gap:14px">
+              <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:9px">
+                <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a">Kategori</span>
+                <sc-for list="{{ catFilters }}" as="c" hint-placeholder-count="5">
+                  <button onClick="{{ c.pick }}" style="display:flex;align-items:center;gap:9px;padding:6px 0;border:0;background:transparent;cursor:pointer;text-align:left">
+                    <span style="width:15px;height:15px;border:1px solid {{ c.border }};border-radius:4px;background:{{ c.fill }};flex:none"></span>
+                    <span style="flex:1;font:500 13px/1.3 'Plus Jakarta Sans';color:#334155">{{ c.label }}</span>
+                    <span style="font:400 11px/1 'IBM Plex Mono';color:#94a3b8">{{ c.n }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:10px">
+                <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a">Rentang harga</span>
+                <div style="display:flex;gap:8px">
+                  <input placeholder="Min" style="flex:1;min-width:0;height:36px;padding:0 10px;border:1px solid #e2e8f0;border-radius:8px;outline:none;font:400 12px/1 'IBM Plex Mono';color:#0f172a" />
+                  <input placeholder="Maks" style="flex:1;min-width:0;height:36px;padding:0 10px;border:1px solid #e2e8f0;border-radius:8px;outline:none;font:400 12px/1 'IBM Plex Mono';color:#0f172a" />
+                </div>
+                <label style="display:flex;align-items:center;gap:9px;cursor:pointer">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#0284c7" />
+                  <span style="font:500 13px/1 'Plus Jakarta Sans';color:#334155">Hanya stok tersedia</span>
+                </label>
+              </div>
+            </aside>
+
+            <div style="min-width:0;display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+                <span style="font:400 12px/1 'Plus Jakarta Sans';color:#64748b">Menampilkan 8 dari 214</span>
+                <div style="flex:1"></div>
+                <select style="height:36px;padding:0 10px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;font:500 12px/1 'Plus Jakarta Sans';color:#0f172a">
+                  <option>Paling relevan</option>
+                  <option>Harga terendah</option>
+                  <option>Terbaru</option>
+                </select>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr));gap:14px">
+                <sc-for list="{{ catalog }}" as="p" hint-placeholder-count="8">
+                  <div style="position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+                    <button onClick="{{ p.wish }}" style="position:absolute;top:10px;right:10px;z-index:1;width:32px;height:32px;border:1px solid {{ p.wishBorder }};border-radius:999px;background:#fff;color:{{ p.wishColor }};font:400 14px/1 'Plus Jakarta Sans';cursor:pointer">{{ p.heart }}</button>
+                    <button onClick="{{ goProduct }}" style="border:0;background:transparent;padding:0;cursor:pointer;text-align:left">
+                      <span style="display:flex;height:138px;background:#f1f5f9;align-items:center;justify-content:center;font:500 10px/1 'IBM Plex Mono';color:#94a3b8">foto produk</span>
+                      <span style="display:flex;flex-direction:column;gap:6px;padding:13px">
+                        <span style="font:600 13px/1.35 'Plus Jakarta Sans';color:#0f172a">{{ p.name }}</span>
+                        <span style="font:800 15px/1 'Plus Jakarta Sans';color:#0f172a">{{ p.price }}</span>
+                        <span style="display:inline-flex;align-self:flex-start;padding:2px 8px;border-radius:999px;font:600 10px/1.6 'Plus Jakarta Sans';background:{{ p.stockBg }};color:{{ p.stockFg }}">{{ p.stock }}</span>
+                      </span>
+                    </button>
+                  </div>
+                </sc-for>
+              </div>
+              <button style="align-self:center;height:42px;padding:0 20px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font:700 13px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Muat lebih banyak</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- DETAIL PRODUK -->
+      <sc-if value="{{ isProduct }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:26px">
+          <span style="font:400 12px/1 'Plus Jakarta Sans';color:#64748b">Beranda / Perabot kantor / <span style="color:#0f172a;font-weight:600">Kursi Kerja Ergonomis</span></span>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:26px;align-items:start">
+            <div style="min-width:0;display:flex;flex-direction:column;gap:10px">
+              <div style="aspect-ratio:4/3;border-radius:14px;background:#f1f5f9;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font:500 11px/1 'IBM Plex Mono';color:#94a3b8">foto utama 1200×900</div>
+              <div style="display:flex;gap:9px">
+                <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="4">
+                  <button onClick="{{ g.pick }}" style="width:66px;height:66px;border:2px solid {{ g.ring }};border-radius:10px;background:#f1f5f9;cursor:pointer;font:500 9px/1 'IBM Plex Mono';color:#94a3b8">{{ g.n }}</button>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="min-width:0;display:flex;flex-direction:column;gap:15px">
+              <div style="display:flex;flex-wrap:wrap;gap:7px">
+                <span style="display:inline-flex;padding:3px 9px;border-radius:999px;font:700 11px/1.5 'Plus Jakarta Sans';background:#dc2626;color:#fff">Terlaris</span>
+                <span style="display:inline-flex;padding:3px 9px;border-radius:999px;font:600 11px/1.5 'Plus Jakarta Sans';background:#dcfce7;color:#166534">Stok tersedia</span>
+              </div>
+              <span style="font:800 26px/1.2 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a;text-wrap:pretty">Kursi Kerja Ergonomis</span>
+              <span style="font:400 12px/1 'IBM Plex Mono';color:#64748b">SKU-1042 · 4,7 dari 5 (128 ulasan)</span>
+              <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+                <span style="font:800 28px/1 'Plus Jakarta Sans';color:#0f172a">{{ pdpPrice }}</span>
+                <span style="font:400 14px/1 'Plus Jakarta Sans';color:#94a3b8;text-decoration:line-through">Rp2.190.000</span>
+                <span style="font:700 13px/1 'Plus Jakarta Sans';color:#b91c1c">−14%</span>
+              </div>
+              <div style="padding:13px 15px;border-radius:11px;background:#f0f9ff;border:1px solid #bae6fd;display:flex;flex-direction:column;gap:7px">
+                <span style="font:700 12px/1 'Plus Jakarta Sans';color:#075985">Harga bertingkat</span>
+                <sc-for list="{{ pdpTiers }}" as="t" hint-placeholder-count="3">
+                  <span style="display:flex;justify-content:space-between;gap:10px;font:500 12px/1.5 'Plus Jakarta Sans';color:#0c4a6e">{{ t.qty }}<span style="font-family:'IBM Plex Mono'">{{ t.price }}</span></span>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a">Warna</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ pdpColors }}" as="c" hint-placeholder-count="2">
+                    <button onClick="{{ c.pick }}" style="height:38px;padding:0 14px;border:1px solid {{ c.border }};border-radius:9px;background:{{ c.bg }};font:600 12px/1 'Plus Jakarta Sans';color:{{ c.fg }};cursor:pointer">{{ c.label }}</button>
+                  </sc-for>
+                </div>
+                <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a;margin-top:4px">Sandaran</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ pdpBacks }}" as="c" hint-placeholder-count="2">
+                    <button onClick="{{ c.pick }}" style="height:38px;padding:0 14px;border:1px solid {{ c.border }};border-radius:9px;background:{{ c.bg }};font:600 12px/1 'Plus Jakarta Sans';color:{{ c.fg }};cursor:pointer">{{ c.label }}</button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:4px">
+                <div style="display:flex;align-items:center">
+                  <button onClick="{{ pdpDec }}" style="width:42px;height:46px;border:1px solid #cbd5e1;border-radius:10px 0 0 10px;background:#fff;font:500 15px/1 'IBM Plex Mono';color:#0f172a;cursor:pointer">−</button>
+                  <span style="min-width:48px;height:46px;display:flex;align-items:center;justify-content:center;border-top:1px solid #cbd5e1;border-bottom:1px solid #cbd5e1;font:600 14px/1 'IBM Plex Mono';color:#0f172a">{{ pdpQty }}</span>
+                  <button onClick="{{ pdpInc }}" style="width:42px;height:46px;border:1px solid #cbd5e1;border-radius:0 10px 10px 0;background:#fff;font:500 15px/1 'IBM Plex Mono';color:#0f172a;cursor:pointer">+</button>
+                </div>
+                <button onClick="{{ addToCart }}" style="flex:1;min-width:160px;height:46px;border:0;border-radius:10px;background:#10b981;color:#03140d;font:800 14px/1 'Plus Jakarta Sans';cursor:pointer">Tambah ke keranjang</button>
+                <button onClick="{{ wishPdp }}" style="width:46px;height:46px;border:1px solid {{ pdpWishBorder }};border-radius:10px;background:#fff;color:{{ pdpWishColor }};font:400 16px/1 'Plus Jakarta Sans';cursor:pointer">{{ pdpHeart }}</button>
+              </div>
+              <sc-if value="{{ addedToast }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:11px 14px;border-radius:10px;background:#dcfce7;border:1px solid #86efac;font:600 12px/1.4 'Plus Jakarta Sans';color:#166534">Ditambahkan ke keranjang. Total baris akan dikutip ulang di halaman keranjang.</div>
+              </sc-if>
+              <div style="display:flex;flex-direction:column;gap:9px;padding-top:6px;border-top:1px solid #e2e8f0">
+                <sc-for list="{{ pdpNotes }}" as="n" hint-placeholder-count="3">
+                  <span style="display:flex;gap:9px;font:400 12px/1.6 'Plus Jakarta Sans';color:#334155"><span style="color:#10b981;font-weight:700">·</span>{{ n }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:18px">
+            <div style="display:flex;flex-direction:column;gap:11px">
+              <span style="font:700 16px/1 'Plus Jakarta Sans';color:#0f172a">Deskripsi</span>
+              <span style="font:400 14px/1.75 'Plus Jakarta Sans';color:#334155;text-wrap:pretty">Sandaran jaring dengan penyangga lumbal yang dapat disetel, dudukan berbusa dingin, dan roda senyap untuk lantai keras. Rangka baja dengan garansi dua tahun.</span>
+              <div style="margin-top:6px;padding:14px;border:1px solid #e2e8f0;border-radius:11px;background:#fff">
+                <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a">Size chart</span>
+                <div style="margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e2e8f0;border-radius:8px;overflow:hidden">
+                  <sc-for list="{{ sizeChart }}" as="c" hint-placeholder-count="9">
+                    <span style="padding:9px 11px;background:{{ c.bg }};font:{{ c.font }} 'Plus Jakarta Sans';color:{{ c.fg }}">{{ c.v }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:11px">
+              <span style="font:700 16px/1 'Plus Jakarta Sans';color:#0f172a">Ulasan pembeli</span>
+              <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+                <div style="padding:14px;border:1px solid #e2e8f0;border-radius:11px;background:#fff;display:flex;flex-direction:column;gap:6px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span style="font:500 12px/1 'IBM Plex Mono';color:#b45309">{{ r.stars }}</span>
+                    <span style="font:600 12px/1 'Plus Jakarta Sans';color:#0f172a">{{ r.by }}</span>
+                    <span style="font:400 10px/1 'IBM Plex Mono';color:#94a3b8">{{ r.at }}</span>
+                  </span>
+                  <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#334155">{{ r.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- KERANJANG -->
+      <sc-if value="{{ isCart }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <span style="font:800 24px/1.2 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a">Keranjang</span>
+          <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:56px 20px;border:1px dashed #cbd5e1;border-radius:14px;background:#fff;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center">
+              <span style="font:600 15px/1.4 'Plus Jakarta Sans';color:#0f172a">Keranjang masih kosong</span>
+              <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#64748b;max-width:36ch">Keranjang disimpan di peramban ini dan dikutip ulang ke server saat checkout.</span>
+              <button onClick="{{ goCatalog }}" style="height:44px;padding:0 20px;border:0;border-radius:10px;background:#10b981;color:#03140d;font:700 14px/1 'Plus Jakarta Sans';cursor:pointer">Mulai belanja</button>
+            </div>
+          </sc-if>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px;align-items:start">
+            <div style="min-width:0;display:flex;flex-direction:column;gap:11px">
+              <sc-for list="{{ cartLines }}" as="l" hint-placeholder-count="0">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:13px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+                  <span style="width:68px;height:68px;flex:none;border-radius:10px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#94a3b8">foto</span>
+                  <span style="flex:1;min-width:130px;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:600 14px/1.35 'Plus Jakarta Sans';color:#0f172a">{{ l.name }}</span>
+                    <span style="font:400 11px/1 'IBM Plex Mono';color:#64748b">{{ l.variant }}</span>
+                    <button onClick="{{ l.remove }}" style="align-self:flex-start;border:0;background:transparent;padding:0;font:600 11px/1 'Plus Jakarta Sans';color:#b91c1c;cursor:pointer">Hapus</button>
+                  </span>
+                  <span style="display:flex;align-items:center">
+                    <button onClick="{{ l.dec }}" style="width:34px;height:38px;border:1px solid #cbd5e1;border-radius:9px 0 0 9px;background:#fff;font:500 14px/1 'IBM Plex Mono';color:#0f172a;cursor:pointer">−</button>
+                    <span style="min-width:40px;height:38px;display:flex;align-items:center;justify-content:center;border-top:1px solid #cbd5e1;border-bottom:1px solid #cbd5e1;font:600 13px/1 'IBM Plex Mono';color:#0f172a">{{ l.qty }}</span>
+                    <button onClick="{{ l.inc }}" style="width:34px;height:38px;border:1px solid #cbd5e1;border-radius:0 9px 9px 0;background:#fff;font:500 14px/1 'IBM Plex Mono';color:#0f172a;cursor:pointer">+</button>
+                  </span>
+                  <span style="min-width:104px;text-align:right;font:800 15px/1 'Plus Jakarta Sans';color:#0f172a">{{ l.sum }}</span>
+                </div>
+              </sc-for>
+              <div style="display:flex;flex-wrap:wrap;gap:9px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+                <input placeholder="Kode voucher" style="flex:1;min-width:150px;height:40px;padding:0 12px;border:1px solid #e2e8f0;border-radius:9px;outline:none;font:500 12px/1 'IBM Plex Mono';color:#0f172a" />
+                <button style="height:40px;padding:0 16px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font:700 12px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Terapkan</button>
+              </div>
+            </div>
+            <div style="min-width:0;max-width:360px;padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;box-shadow:0 4px 10px -2px rgba(15,23,42,.08);display:flex;flex-direction:column;gap:11px">
+              <span style="font:700 14px/1 'Plus Jakarta Sans';color:#0f172a">Ringkasan</span>
+              <sc-for list="{{ cartTotals }}" as="t" hint-placeholder-count="3">
+                <span style="display:flex;justify-content:space-between;gap:10px;font:{{ t.font }} 'Plus Jakarta Sans';color:{{ t.tone }}">{{ t.label }}<span>{{ t.value }}</span></span>
+              </sc-for>
+              <span style="font:400 11px/1.5 'Plus Jakarta Sans';color:#64748b">Ongkir dihitung setelah kecamatan tujuan dipilih di checkout.</span>
+              <button onClick="{{ goCheckout }}" style="height:46px;border:0;border-radius:10px;background:#10b981;color:#03140d;font:800 14px/1 'Plus Jakarta Sans';cursor:pointer">Lanjut ke checkout</button>
+              <button onClick="{{ goCatalog }}" style="height:40px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font:600 13px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Tambah produk lain</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- CHECKOUT -->
+      <sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <span style="font:800 24px/1.2 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a">Checkout</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+              <button onClick="{{ s.pick }}" style="display:inline-flex;align-items:center;gap:9px;height:38px;padding:0 14px;border:1px solid {{ s.border }};border-radius:999px;background:{{ s.bg }};cursor:pointer">
+                <span style="width:20px;height:20px;border-radius:999px;display:flex;align-items:center;justify-content:center;font:700 11px/1 'IBM Plex Mono';background:{{ s.dotBg }};color:{{ s.dotFg }}">{{ s.n }}</span>
+                <span style="font:600 12px/1 'Plus Jakarta Sans';color:{{ s.fg }}">{{ s.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px;align-items:start">
+            <div style="min-width:0;display:flex;flex-direction:column;gap:14px">
+              <sc-if value="{{ stepAddress }}" hint-placeholder-val="{{ true }}">
+                <div style="padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:13px">
+                  <span style="font:700 13px/1 'Plus Jakarta Sans';color:#0f172a">Alamat pengiriman</span>
+                  <button style="align-self:flex-start;height:34px;padding:0 12px;border:1px solid #bae6fd;border-radius:8px;background:#f0f9ff;font:600 12px/1 'Plus Jakarta Sans';color:#075985;cursor:pointer">Pilih alamat tersimpan</button>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:11px">
+                    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Plus Jakarta Sans';color:#334155">Nama penerima</span><input value="Rina Halim" style="height:42px;padding:0 12px;border:1px solid #e2e8f0;border-radius:9px;outline:none;font:400 13px/1 'Plus Jakarta Sans';color:#0f172a" /></label>
+                    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Plus Jakarta Sans';color:#334155">Telepon</span><input value="0812 0000 4410" style="height:42px;padding:0 12px;border:1px solid #e2e8f0;border-radius:9px;outline:none;font:400 13px/1 'IBM Plex Mono';color:#0f172a" /></label>
+                    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Plus Jakarta Sans';color:#334155">Provinsi</span><select style="height:42px;padding:0 10px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;font:400 13px/1 'Plus Jakarta Sans';color:#0f172a"><option>Provinsi Contoh</option></select></label>
+                    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Plus Jakarta Sans';color:#334155">Kota / kabupaten</span><select style="height:42px;padding:0 10px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;font:400 13px/1 'Plus Jakarta Sans';color:#0f172a"><option>Kota Contoh</option></select></label>
+                    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Plus Jakarta Sans';color:#334155">Kecamatan</span><select onChange="{{ pickDistrict }}" style="height:42px;padding:0 10px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;font:400 13px/1 'Plus Jakarta Sans';color:#0f172a"><option>Pilih kecamatan</option><option>Kec. Pusat</option><option>Kec. Utara</option></select></label>
+                    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Plus Jakarta Sans';color:#334155">Kode pos</span><input value="70111" style="height:42px;padding:0 12px;border:1px solid #e2e8f0;border-radius:9px;outline:none;font:400 13px/1 'IBM Plex Mono';color:#0f172a" /></label>
+                  </div>
+                  <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Plus Jakarta Sans';color:#334155">Alamat lengkap</span><textarea rows="2" style="padding:11px 12px;border:1px solid #e2e8f0;border-radius:9px;outline:none;resize:vertical;font:400 13px/1.6 'Plus Jakarta Sans';color:#0f172a">Jl. Contoh No. 12, Kel. Sukamaju</textarea></label>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ stepShipping }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:12px">
+                  <span style="font:700 13px/1 'Plus Jakarta Sans';color:#0f172a">Pengiriman</span>
+                  <span style="font:500 12px/1 'Plus Jakarta Sans';color:{{ courierNoteTone }}">{{ courierNote }}</span>
+                  <sc-for list="{{ couriers }}" as="c" hint-placeholder-count="3">
+                    <button onClick="{{ c.pick }}" style="display:flex;align-items:center;gap:12px;padding:13px;border:1px solid {{ c.border }};border-radius:11px;background:{{ c.bg }};cursor:{{ c.cursor }};text-align:left">
+                      <span style="width:18px;height:18px;flex:none;border:2px solid {{ c.ring }};border-radius:999px;background:{{ c.dot }}"></span>
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                        <span style="font:600 13px/1.3 'Plus Jakarta Sans';color:{{ c.fg }}">{{ c.label }}</span>
+                        <span style="font:400 11px/1.4 'Plus Jakarta Sans';color:#64748b">{{ c.note }}</span>
+                      </span>
+                      <span style="font:700 13px/1 'Plus Jakarta Sans';color:{{ c.fg }}">{{ c.price }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ stepPayment }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:12px">
+                  <span style="font:700 13px/1 'Plus Jakarta Sans';color:#0f172a">Pembayaran</span>
+                  <sc-for list="{{ payments }}" as="p" hint-placeholder-count="3">
+                    <button onClick="{{ p.pick }}" style="display:flex;align-items:center;gap:12px;padding:13px;border:1px solid {{ p.border }};border-radius:11px;background:{{ p.bg }};cursor:pointer;text-align:left">
+                      <span style="width:18px;height:18px;flex:none;border:2px solid {{ p.ring }};border-radius:999px;background:{{ p.dot }}"></span>
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                        <span style="font:600 13px/1.3 'Plus Jakarta Sans';color:#0f172a">{{ p.label }}</span>
+                        <span style="font:400 11px/1.4 'Plus Jakarta Sans';color:#64748b">{{ p.note }}</span>
+                      </span>
+                    </button>
+                  </sc-for>
+                  <span style="font:400 11px/1.5 'Plus Jakarta Sans';color:#64748b">Metode yang tampil hanya yang didaftarkan server untuk toko ini.</span>
+                </div>
+              </sc-if>
+            </div>
+
+            <div style="min-width:0;max-width:360px;padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;box-shadow:0 4px 10px -2px rgba(15,23,42,.08);display:flex;flex-direction:column;gap:11px">
+              <span style="font:700 14px/1 'Plus Jakarta Sans';color:#0f172a">Pesanan Anda</span>
+              <sc-for list="{{ cartLines }}" as="l" hint-placeholder-count="2">
+                <span style="display:flex;justify-content:space-between;gap:10px;font:500 12px/1.5 'Plus Jakarta Sans';color:#334155"><span style="flex:1;min-width:0">{{ l.name }} ×{{ l.qty }}</span><span style="font-weight:700;color:#0f172a">{{ l.sum }}</span></span>
+              </sc-for>
+              <span style="height:1px;background:#e2e8f0"></span>
+              <sc-for list="{{ checkoutTotals }}" as="t" hint-placeholder-count="4">
+                <span style="display:flex;justify-content:space-between;gap:10px;font:{{ t.font }} 'Plus Jakarta Sans';color:{{ t.tone }}">{{ t.label }}<span>{{ t.value }}</span></span>
+              </sc-for>
+              <button onClick="{{ placeOrder }}" style="height:46px;border:0;border-radius:10px;background:#10b981;color:#03140d;font:800 14px/1 'Plus Jakarta Sans';cursor:pointer">{{ placeLabel }}</button>
+              <span style="font:400 11px/1.5 'Plus Jakarta Sans';color:#64748b">Klik ganda tidak membuat dua pesanan — id keranjang dipakai sebagai kunci idempotensi.</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- PELACAKAN PESANAN -->
+      <sc-if value="{{ isTrack }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px;max-width:840px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font:800 24px/1.2 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a">Lacak pesanan</span>
+            <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#64748b">Masukkan kode pesanan dan nomor telepon. Tanpa akun pun bisa.</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px;padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+            <input value="ORD-4821" style="flex:1;min-width:140px;height:42px;padding:0 12px;border:1px solid #e2e8f0;border-radius:9px;outline:none;font:500 13px/1 'IBM Plex Mono';color:#0f172a" />
+            <input value="0812 0000 4410" style="flex:1;min-width:140px;height:42px;padding:0 12px;border:1px solid #e2e8f0;border-radius:9px;outline:none;font:500 13px/1 'IBM Plex Mono';color:#0f172a" />
+            <button style="height:42px;padding:0 18px;border:0;border-radius:9px;background:#0284c7;color:#fff;font:700 13px/1 'Plus Jakarta Sans';cursor:pointer">Lacak</button>
+          </div>
+
+          <div style="padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+              <span style="font:700 16px/1 'IBM Plex Mono';color:#0f172a">ORD-4821</span>
+              <span style="display:inline-flex;padding:4px 10px;border-radius:999px;font:700 11px/1.5 'Plus Jakarta Sans';background:#fef3c7;color:#92400e">Menunggu pembayaran</span>
+              <div style="flex:1"></div>
+              <span style="font:500 12px/1 'IBM Plex Mono';color:#64748b">kedaluwarsa 01:42:07</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:13px 15px;border-radius:11px;background:#f0f9ff;border:1px solid #bae6fd">
+              <span style="width:8px;height:8px;border-radius:999px;background:#0284c7;animation:tick 1.6s ease-in-out infinite"></span>
+              <span style="flex:1;min-width:0;font:500 12px/1.5 'Plus Jakarta Sans';color:#075985">Menunggu konfirmasi pembayaran…</span>
+              <button style="height:38px;padding:0 16px;border:0;border-radius:9px;background:#0284c7;color:#fff;font:700 12px/1 'Plus Jakarta Sans';cursor:pointer">Bayar sekarang</button>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ trackSteps }}" as="t" hint-placeholder-count="5">
+                <div style="display:flex;gap:13px">
+                  <div style="display:flex;flex-direction:column;align-items:center">
+                    <span style="width:11px;height:11px;border-radius:999px;background:{{ t.dot }};margin-top:5px;flex:none"></span>
+                    <span style="flex:1;width:2px;background:#e2e8f0"></span>
+                  </div>
+                  <div style="flex:1;padding-bottom:16px;display:flex;flex-direction:column;gap:3px">
+                    <span style="font:600 13px/1.3 'Plus Jakarta Sans';color:{{ t.fg }}">{{ t.label }}</span>
+                    <span style="font:400 11px/1.4 'IBM Plex Mono';color:#94a3b8">{{ t.at }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:9px;padding-top:14px;border-top:1px solid #e2e8f0">
+              <sc-for list="{{ checkoutTotals }}" as="t" hint-placeholder-count="4">
+                <span style="display:flex;justify-content:space-between;gap:10px;font:{{ t.font }} 'Plus Jakarta Sans';color:{{ t.tone }}">{{ t.label }}<span>{{ t.value }}</span></span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- AKUN -->
+      <sc-if value="{{ isAccount }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+            <span style="width:44px;height:44px;border-radius:999px;background:#0f172a;display:flex;align-items:center;justify-content:center;font:700 15px/1 'Plus Jakarta Sans';color:#fff">RH</span>
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <span style="font:800 20px/1.2 'Plus Jakarta Sans';color:#0f172a">Rina Halim</span>
+              <span style="font:400 12px/1 'IBM Plex Mono';color:#64748b">rina@contoh.id · sesi bearer aktif</span>
+            </div>
+            <div style="flex:1"></div>
+            <button style="height:38px;padding:0 14px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font:600 12px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Keluar</button>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:18px;align-items:start">
+            <nav style="min-width:0;max-width:240px;display:flex;flex-direction:column;gap:2px;padding:10px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+              <sc-for list="{{ accountNav }}" as="a" hint-placeholder-count="6">
+                <button onClick="{{ a.pick }}" style="display:flex;align-items:center;gap:9px;height:38px;padding:0 11px;border:0;border-radius:8px;cursor:pointer;text-align:left;font:600 13px/1 'Plus Jakarta Sans';background:{{ a.bg }};color:{{ a.fg }}">
+                  <span style="flex:1">{{ a.label }}</span>
+                  <sc-if value="{{ a.badge }}" hint-placeholder-val="{{ true }}">
+                    <span aria-label="belum dibaca" style="padding:1px 7px;border-radius:999px;background:#0284c7;font:700 10px/1.6 'IBM Plex Mono';color:#fff">{{ a.badge }}</span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </nav>
+
+            <div style="min-width:0;display:flex;flex-direction:column;gap:14px">
+              <sc-if value="{{ accOverview }}" hint-placeholder-val="{{ true }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px">
+                  <sc-for list="{{ accStats }}" as="s" hint-placeholder-count="3">
+                    <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+                      <span style="font:600 10px/1 'Plus Jakarta Sans';letter-spacing:.09em;text-transform:uppercase;color:#64748b">{{ s.label }}</span>
+                      <div style="margin-top:8px;font:800 21px/1 'Plus Jakarta Sans';color:#0f172a">{{ s.value }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:12px">
+                  <span style="font:700 13px/1 'Plus Jakarta Sans';color:#0f172a">Preferensi promo</span>
+                  <label style="display:flex;align-items:flex-start;gap:11px;cursor:pointer">
+                    <input type="checkbox" checked="{{ promoOn }}" onChange="{{ togglePromo }}" style="margin-top:2px;width:16px;height:16px;accent-color:#0284c7;cursor:pointer" />
+                    <span style="display:flex;flex-direction:column;gap:3px">
+                      <span style="font:600 13px/1.3 'Plus Jakarta Sans';color:#0f172a">Terima kabar promo lewat e-mail dan WhatsApp</span>
+                      <span style="font:400 11px/1.5 'Plus Jakarta Sans';color:#64748b">Tersimpan langsung saat diubah — tanpa tombol Simpan.</span>
+                    </span>
+                  </label>
+                  <span style="font:500 11px/1 'Plus Jakarta Sans';color:{{ promoTone }}">{{ promoStatus }}</span>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ accOrders }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:11px">
+                  <sc-for list="{{ accOrderList }}" as="o" hint-placeholder-count="4">
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+                      <span style="display:flex;flex-direction:column;gap:4px;min-width:130px">
+                        <span style="font:600 13px/1 'IBM Plex Mono';color:#0f172a">{{ o.code }}</span>
+                        <span style="font:400 11px/1 'Plus Jakarta Sans';color:#64748b">{{ o.at }} · {{ o.items }}</span>
+                      </span>
+                      <div style="flex:1"></div>
+                      <span style="display:inline-flex;padding:3px 10px;border-radius:999px;font:700 11px/1.5 'Plus Jakarta Sans';background:{{ o.bg }};color:{{ o.fg }}">{{ o.status }}</span>
+                      <span style="font:800 15px/1 'Plus Jakarta Sans';color:#0f172a">{{ o.total }}</span>
+                      <button onClick="{{ goTrack }}" style="height:36px;padding:0 13px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font:600 12px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Detail</button>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ accAddress }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px">
+                  <sc-for list="{{ addresses }}" as="a" hint-placeholder-count="2">
+                    <div style="padding:16px;border:1px solid {{ a.border }};border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:7px">
+                      <span style="display:flex;align-items:center;gap:8px">
+                        <span style="font:700 13px/1 'Plus Jakarta Sans';color:#0f172a">{{ a.label }}</span>
+                        <sc-if value="{{ a.primary }}" hint-placeholder-val="{{ true }}">
+                          <span style="padding:2px 8px;border-radius:999px;background:#dcfce7;font:700 10px/1.6 'Plus Jakarta Sans';color:#166534">Utama</span>
+                        </sc-if>
+                      </span>
+                      <span style="font:400 12px/1.6 'Plus Jakarta Sans';color:#334155">{{ a.body }}</span>
+                      <div style="display:flex;gap:8px;margin-top:3px">
+                        <button style="height:32px;padding:0 11px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font:600 11px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Ubah</button>
+                        <button style="height:32px;padding:0 11px;border:0;border-radius:8px;background:transparent;font:600 11px/1 'Plus Jakarta Sans';color:#b91c1c;cursor:pointer">Hapus</button>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <button style="min-height:120px;border:1px dashed #cbd5e1;border-radius:12px;background:#fff;font:700 13px/1 'Plus Jakarta Sans';color:#0284c7;cursor:pointer">+ Tambah alamat</button>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ accMessages }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:11px">
+                  <sc-for list="{{ accThreads }}" as="t" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:12px;padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                        <span style="font:600 13px/1.3 'Plus Jakarta Sans';color:#0f172a">{{ t.subject }}</span>
+                        <span style="font:400 12px/1.4 'Plus Jakarta Sans';color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t.snippet }}</span>
+                        <span style="font:400 10px/1 'IBM Plex Mono';color:#94a3b8">{{ t.at }} · {{ t.state }}</span>
+                      </span>
+                      <sc-if value="{{ t.unread }}" hint-placeholder-val="{{ true }}">
+                        <span aria-label="pesan belum dibaca" style="padding:2px 8px;border-radius:999px;background:#0284c7;font:700 10px/1.6 'IBM Plex Mono';color:#fff">{{ t.unread }}</span>
+                      </sc-if>
+                      <span style="font:500 13px/1 'IBM Plex Mono';color:#94a3b8">→</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ accReviews }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:11px">
+                  <sc-for list="{{ accReviewList }}" as="r" hint-placeholder-count="3">
+                    <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:7px">
+                      <span style="display:flex;flex-wrap:wrap;align-items:center;gap:9px">
+                        <span style="font:600 13px/1 'Plus Jakarta Sans';color:#0f172a">{{ r.product }}</span>
+                        <span style="font:500 12px/1 'IBM Plex Mono';color:#b45309">{{ r.stars }}</span>
+                        <div style="flex:1"></div>
+                        <span style="display:inline-flex;padding:2px 9px;border-radius:999px;font:700 10px/1.6 'Plus Jakarta Sans';background:{{ r.bg }};color:{{ r.fg }}">{{ r.status }}</span>
+                      </span>
+                      <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#334155">{{ r.text }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- WISHLIST -->
+      <sc-if value="{{ isWishlist }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px">
+            <span style="font:800 24px/1.2 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a">Wishlist</span>
+            <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#64748b">{{ wishCount }} produk · tersinkron dengan akun</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:11px;background:#f0f9ff;border:1px solid #bae6fd">
+            <span style="font:500 12px/1.5 'Plus Jakarta Sans';color:#075985">Perubahan disimpan ke akun. Bila jaringan gagal, wishlist tetap tersimpan di peramban ini.</span>
+          </div>
+          <sc-if value="{{ wishEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:56px 20px;border:1px dashed #cbd5e1;border-radius:14px;background:#fff;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center">
+              <span style="font:600 15px/1.4 'Plus Jakarta Sans';color:#0f172a">Belum ada produk disimpan</span>
+              <button onClick="{{ goCatalog }}" style="height:44px;padding:0 20px;border:0;border-radius:10px;background:#10b981;color:#03140d;font:700 14px/1 'Plus Jakarta Sans';cursor:pointer">Jelajahi katalog</button>
+            </div>
+          </sc-if>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:14px">
+            <sc-for list="{{ wishItems }}" as="w" hint-placeholder-count="0">
+              <div style="display:flex;flex-direction:column;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+                <span style="display:flex;height:140px;background:#f1f5f9;align-items:center;justify-content:center;font:500 10px/1 'IBM Plex Mono';color:#94a3b8">foto produk</span>
+                <div style="padding:14px;display:flex;flex-direction:column;gap:9px">
+                  <span style="font:600 14px/1.35 'Plus Jakarta Sans';color:#0f172a">{{ w.name }}</span>
+                  <span style="font:800 15px/1 'Plus Jakarta Sans';color:#0f172a">{{ w.price }}</span>
+                  <div style="display:flex;gap:8px">
+                    <button onClick="{{ addToCart }}" style="flex:1;height:40px;border:0;border-radius:9px;background:#10b981;color:#03140d;font:700 12px/1 'Plus Jakarta Sans';cursor:pointer">Ke keranjang</button>
+                    <button onClick="{{ w.remove }}" style="width:40px;height:40px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;color:#b91c1c;font:400 15px/1 'Plus Jakarta Sans';cursor:pointer">♥</button>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- AFILIASI -->
+      <sc-if value="{{ isAffiliate }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px;max-width:900px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font:800 24px/1.2 'Plus Jakarta Sans';letter-spacing:-.02em;color:#0f172a">Program afiliasi</span>
+            <span style="font:400 13px/1.6 'Plus Jakarta Sans';color:#64748b">Bagikan tautan, dapat komisi dari pesanan yang selesai.</span>
+          </div>
+          <div style="padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:13px">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+              <span style="display:inline-flex;padding:4px 10px;border-radius:999px;font:700 11px/1.5 'Plus Jakarta Sans';background:#dcfce7;color:#166534">Aktif</span>
+              <span style="font:500 12px/1 'Plus Jakarta Sans';color:#64748b">komisi 5% · dibayar setiap tanggal 10</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:9px">
+              <span style="flex:1;min-width:200px;display:flex;align-items:center;height:44px;padding:0 13px;border:1px dashed #cbd5e1;border-radius:10px;background:#f8fafc;font:500 12px/1 'IBM Plex Mono';color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">https://toko.contoh.id/?ref=RINA21</span>
+              <button onClick="{{ copyRef }}" style="height:44px;padding:0 18px;border:0;border-radius:10px;background:#0284c7;color:#fff;font:700 13px/1 'Plus Jakarta Sans';cursor:pointer">{{ copyLabel }}</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px">
+            <sc-for list="{{ affStats }}" as="s" hint-placeholder-count="4">
+              <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+                <span style="font:600 10px/1 'Plus Jakarta Sans';letter-spacing:.09em;text-transform:uppercase;color:#64748b">{{ s.label }}</span>
+                <div style="margin-top:8px;font:800 20px/1 'Plus Jakarta Sans';color:#0f172a">{{ s.value }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border:1px solid #e2e8f0;border-radius:12px;background:#fff;overflow:hidden">
+            <div style="padding:14px 16px;border-bottom:1px solid #e2e8f0;font:700 13px/1 'Plus Jakarta Sans';color:#0f172a">Riwayat komisi</div>
+            <sc-for list="{{ affRows }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid #f1f5f9">
+                <span style="min-width:110px;font:500 12px/1 'IBM Plex Mono';color:#0f172a">{{ r.order }}</span>
+                <span style="flex:1;min-width:90px;font:400 12px/1 'Plus Jakarta Sans';color:#64748b">{{ r.at }}</span>
+                <span style="display:inline-flex;padding:2px 9px;border-radius:999px;font:700 10px/1.6 'Plus Jakarta Sans';background:{{ r.bg }};color:{{ r.fg }}">{{ r.status }}</span>
+                <span style="min-width:96px;text-align:right;font:800 13px/1 'Plus Jakarta Sans';color:#0f172a">{{ r.amount }}</span>
+              </div>
+            </sc-for>
+            <div style="padding:13px 16px;text-align:center">
+              <button style="height:36px;padding:0 15px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font:600 12px/1 'Plus Jakarta Sans';color:#0f172a;cursor:pointer">Muat lebih banyak</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- BERANDA BERITA -->
+      <sc-if value="{{ isNews }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px;align-items:start">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:24px">
+            <button onClick="{{ goArticle }}" style="display:flex;flex-direction:column;gap:12px;padding:0;border:0;background:transparent;cursor:pointer;text-align:left">
+              <span style="display:flex;height:280px;border-radius:12px;background:#e2e8f0;align-items:center;justify-content:center;font:500 11px/1 'IBM Plex Mono';color:#94a3b8">foto utama 1200×675</span>
+              <span style="display:flex;flex-direction:column;gap:9px">
+                <span style="display:flex;align-items:center;gap:9px">
+                  <span style="padding:3px 9px;border-radius:5px;background:#0f172a;font:700 10px/1.5 'Plus Jakarta Sans';letter-spacing:.06em;color:#fff">HEADLINE</span>
+                  <span style="font:600 11px/1 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:#0284c7">Ekonomi</span>
+                </span>
+                <span style="font:600 28px/1.25 'Lora',serif;letter-spacing:-.01em;color:#0f172a;text-wrap:pretty">Pasar daerah kembali ramai setelah perbaikan akses jalan selesai</span>
+                <span style="font:400 14px/1.7 'Plus Jakarta Sans';color:#334155;text-wrap:pretty">Pedagang mencatat kenaikan kunjungan pada pekan pertama, sementara dinas menyiapkan penataan lapak tahap kedua.</span>
+                <span style="font:400 11px/1 'IBM Plex Mono';color:#94a3b8">21 September 2026, 08:40 WIB · 4 menit baca</span>
+              </span>
+            </button>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:18px">
+              <sc-for list="{{ newsGrid }}" as="n" hint-placeholder-count="6">
+                <button onClick="{{ goArticle }}" style="display:flex;flex-direction:column;gap:9px;padding:0;border:0;background:transparent;cursor:pointer;text-align:left">
+                  <span style="display:flex;height:130px;border-radius:10px;background:#e2e8f0;align-items:center;justify-content:center;font:500 10px/1 'IBM Plex Mono';color:#94a3b8">foto</span>
+                  <span style="font:600 10px/1 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;color:#0284c7">{{ n.rubric }}</span>
+                  <span style="font:500 16px/1.4 'Lora',serif;color:#0f172a;text-wrap:pretty">{{ n.title }}</span>
+                  <span style="font:400 10px/1 'IBM Plex Mono';color:#94a3b8">{{ n.at }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <aside style="min-width:0;max-width:340px;display:flex;flex-direction:column;gap:18px">
+            <div style="border:1px solid #e2e8f0;border-radius:12px;background:#fff;overflow:hidden">
+              <div style="display:flex;border-bottom:1px solid #e2e8f0">
+                <sc-for list="{{ sideTabs }}" as="t" hint-placeholder-count="2">
+                  <button onClick="{{ t.pick }}" style="flex:1;height:42px;border:0;border-bottom:2px solid {{ t.mark }};background:transparent;cursor:pointer;font:700 12px/1 'Plus Jakarta Sans';color:{{ t.fg }}">{{ t.label }}</button>
+                </sc-for>
+              </div>
+              <sc-for list="{{ sideList }}" as="s" hint-placeholder-count="5">
+                <button onClick="{{ goArticle }}" style="display:flex;gap:11px;width:100%;padding:12px 14px;border:0;border-bottom:1px solid #f1f5f9;background:transparent;cursor:pointer;text-align:left">
+                  <span style="font:600 15px/1.2 'IBM Plex Mono';color:#cbd5e1;flex:none">{{ s.n }}</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:500 13px/1.45 'Lora',serif;color:#0f172a">{{ s.title }}</span>
+                    <span style="font:400 10px/1 'IBM Plex Mono';color:#94a3b8">{{ s.at }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+
+            <div style="padding:17px;border:1px solid #e2e8f0;border-radius:12px;background:#0f172a;display:flex;flex-direction:column;gap:11px">
+              <span style="font:700 14px/1.3 'Plus Jakarta Sans';color:#fff">Buletin pekanan</span>
+              <span style="font:400 12px/1.6 'Plus Jakarta Sans';color:#cbd5e1">Ringkasan berita daerah setiap Senin pagi.</span>
+              <input placeholder="Alamat e-mail" style="height:42px;padding:0 12px;border:1px solid #334155;border-radius:9px;background:#1e293b;outline:none;font:400 13px/1 'Plus Jakarta Sans';color:#fff" />
+              <button style="height:42px;border:0;border-radius:9px;background:#10b981;color:#03140d;font:700 13px/1 'Plus Jakarta Sans';cursor:pointer">Berlangganan</button>
+            </div>
+
+            <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:10px">
+              <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a">Tag</span>
+              <div style="display:flex;flex-wrap:wrap;gap:7px">
+                <sc-for list="{{ tags }}" as="t" hint-placeholder-count="8">
+                  <span style="padding:5px 10px;border:1px solid #e2e8f0;border-radius:999px;font:500 11px/1 'Plus Jakarta Sans';color:#334155">{{ t }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </sc-if>
+
+      <!-- DETAIL ARTIKEL -->
+      <sc-if value="{{ isArticle }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px;align-items:start">
+          <article style="min-width:0;display:flex;flex-direction:column;gap:16px;max-width:720px">
+            <span style="font:400 12px/1 'Plus Jakarta Sans';color:#64748b">Berita / Ekonomi</span>
+            <span style="font:600 32px/1.22 'Lora',serif;letter-spacing:-.015em;color:#0f172a;text-wrap:pretty">Pasar daerah kembali ramai setelah perbaikan akses jalan selesai</span>
+            <span style="font:400 15px/1.7 'Plus Jakarta Sans';color:#334155;text-wrap:pretty">Pedagang mencatat kenaikan kunjungan pada pekan pertama, sementara dinas menyiapkan penataan lapak tahap kedua.</span>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:11px;padding:13px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0">
+              <span style="width:34px;height:34px;border-radius:999px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Plus Jakarta Sans';color:#475569">RD</span>
+              <span style="display:flex;flex-direction:column;gap:2px">
+                <span style="font:600 12px/1 'Plus Jakarta Sans';color:#0f172a">Redaksi Kabar Contoh</span>
+                <span style="font:400 10px/1 'IBM Plex Mono';color:#94a3b8">21 Sep 2026, 08:40 WIB · diperbarui 09:15</span>
+              </span>
+              <div style="flex:1"></div>
+              <div style="display:flex;gap:7px">
+                <sc-for list="{{ shareBtns }}" as="b" hint-placeholder-count="4">
+                  <span style="width:34px;height:34px;border:1px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Plus Jakarta Sans';color:#475569">{{ b }}</span>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid #e2e8f0;border-radius:11px;background:#f8fafc">
+              <button onClick="{{ toggleRead }}" style="width:40px;height:40px;border:0;border-radius:999px;background:#0f172a;color:#fff;font:400 13px/1 'Plus Jakarta Sans';cursor:pointer">{{ readIcon }}</button>
+              <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                <span style="font:600 12px/1 'Plus Jakarta Sans';color:#0f172a">Dengarkan berita ini</span>
+                <span style="display:block;height:4px;border-radius:999px;background:#e2e8f0;overflow:hidden"><span style="display:block;height:4px;border-radius:999px;background:#0284c7;width:{{ readProgress }}"></span></span>
+              </span>
+              <span style="font:400 11px/1 'IBM Plex Mono';color:#64748b">{{ readState }}</span>
+            </div>
+
+            <span style="display:flex;height:300px;border-radius:12px;background:#e2e8f0;align-items:center;justify-content:center;font:500 11px/1 'IBM Plex Mono';color:#94a3b8">foto utama 1200×675</span>
+            <span style="font:400 11px/1.5 'Plus Jakarta Sans';color:#64748b">Keterangan foto muncul di sini, lengkap dengan kredit fotografer.</span>
+
+            <sc-for list="{{ articleBody }}" as="p" hint-placeholder-count="5">
+              <span style="font:400 16px/1.85 'Lora',serif;color:#1e293b;text-wrap:pretty">{{ p }}</span>
+            </sc-for>
+
+            <div style="padding:16px 18px;border-left:3px solid #10b981;background:#f8fafc;display:flex;flex-direction:column;gap:7px">
+              <span style="font:500 17px/1.6 'Lora',serif;font-style:italic;color:#0f172a">"Kunjungan naik sejak akses jalan dibuka kembali."</span>
+              <span style="font:600 11px/1 'Plus Jakarta Sans';color:#64748b">Ketua paguyuban pedagang</span>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:7px;padding-top:6px">
+              <sc-for list="{{ tags }}" as="t" hint-placeholder-count="5">
+                <span style="padding:5px 10px;border:1px solid #e2e8f0;border-radius:999px;font:500 11px/1 'Plus Jakarta Sans';color:#334155">{{ t }}</span>
+              </sc-for>
+            </div>
+          </article>
+
+          <aside style="min-width:0;max-width:340px;display:flex;flex-direction:column;gap:18px">
+            <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:12px">
+              <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a">Baca juga</span>
+              <sc-for list="{{ related }}" as="r" hint-placeholder-count="4">
+                <button onClick="{{ goArticle }}" style="display:flex;gap:11px;padding:0;border:0;background:transparent;cursor:pointer;text-align:left">
+                  <span style="width:64px;height:48px;flex:none;border-radius:8px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#94a3b8">foto</span>
+                  <span style="flex:1;min-width:0;font:500 13px/1.45 'Lora',serif;color:#0f172a">{{ r }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="padding:15px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:flex;flex-direction:column;gap:11px">
+              <span style="font:700 12px/1 'Plus Jakarta Sans';color:#0f172a">Produk terkait dari toko</span>
+              <sc-for list="{{ newsProducts }}" as="p" hint-placeholder-count="2">
+                <button onClick="{{ goProduct }}" style="display:flex;align-items:center;gap:11px;padding:0;border:0;background:transparent;cursor:pointer;text-align:left">
+                  <span style="width:54px;height:54px;flex:none;border-radius:9px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font:500 9px/1 'IBM Plex Mono';color:#94a3b8">foto</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:600 12px/1.35 'Plus Jakarta Sans';color:#0f172a">{{ p.name }}</span>
+                    <span style="font:800 13px/1 'Plus Jakarta Sans';color:#0f172a">{{ p.price }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+          </aside>
+        </div>
+      </sc-if>
+
+    </main>
+
+    <footer style="background:#0f172a;padding:26px 20px 20px">
+      <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:22px">
+        <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:700 12px/1 'Plus Jakarta Sans';color:#fff">{{ c.title }}</span>
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <span style="font:400 12px/1.6 'Plus Jakarta Sans';color:#94a3b8">{{ l }}</span>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <div style="max-width:1200px;margin:18px auto 0;padding-top:14px;border-top:1px solid #1e293b;display:flex;flex-wrap:wrap;gap:8px 16px">
+        <span style="font:400 11px/1.6 'Plus Jakarta Sans';color:#64748b">© 2026 Toko Contoh · Semua harga dalam Rupiah</span>
+        <div style="flex:1"></div>
+        <span style="font:400 11px/1.6 'IBM Plex Mono';color:#64748b">Bahasa Indonesia · html lang="id"</span>
+      </div>
+    </footer>
+  </div>
+
+  <span style="font:400 11px/1.6 'Plus Jakarta Sans';color:#64748b;text-align:center;max-width:760px">Palet mengikuti <span style="font-family:'IBM Plex Mono'">apps/storefront/src/styles/global.css</span> — biru langit untuk tautan, hijau merek untuk aksi utama, ambar untuk badge keranjang. Chrome berita dipisahkan dari chrome toko seperti di repo.</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;catalog&quot;,&quot;product&quot;,&quot;cart&quot;,&quot;checkout&quot;,&quot;track&quot;,&quot;account&quot;,&quot;wishlist&quot;,&quot;affiliate&quot;,&quot;news&quot;,&quot;article&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tampilan awal&quot;}}">
+const RP = (n) => "Rp" + n.toLocaleString("id-ID");
+
+const SCREENS = [
+  ["home", "Beranda toko"],
+  ["catalog", "Katalog"],
+  ["product", "Detail produk"],
+  ["cart", "Keranjang"],
+  ["checkout", "Checkout"],
+  ["track", "Lacak pesanan"],
+  ["account", "Akun"],
+  ["wishlist", "Wishlist"],
+  ["affiliate", "Afiliasi"],
+  ["news", "Beranda berita"],
+  ["article", "Detail artikel"],
+];
+
+const CATALOG = [
+  { name: "Kursi Kerja Ergonomis", price: 1890000, was: 2190000, disc: "−14%", stock: 24, label: "Terlaris", labelBg: "#dc2626" },
+  { name: "Meja Lipat Kayu Jati", price: 2450000, stock: 6, label: "Baru", labelBg: "#0284c7" },
+  { name: "Lampu Meja LED", price: 289000, stock: 142, label: "" },
+  { name: "Rak Dinding Modular", price: 640000, stock: 0, label: "Stok masuk", labelBg: "#b45309" },
+  { name: "Kabel Daya 3 m", price: 74000, stock: 388, label: "" },
+  { name: "Dudukan Monitor", price: 315000, stock: 41, label: "" },
+  { name: "Langganan Perawatan 12 Bulan", price: 3600000, stock: 50, label: "Hemat", labelBg: "#12873d" },
+  { name: "Kotak Arsip", price: 56000, stock: 210, label: "" },
+];
+
+const NEWS = [
+  { rubric: "Ekonomi", title: "Harga komoditas pekan ini bergerak tipis di pasar daerah", at: "21 Sep, 07:20" },
+  { rubric: "Daerah", title: "Jadwal perbaikan jalan lintas dirilis untuk tiga kecamatan", at: "20 Sep, 19:05" },
+  { rubric: "Layanan publik", title: "Kantor layanan buka setengah hari menjelang libur", at: "20 Sep, 16:40" },
+  { rubric: "Pendidikan", title: "Sekolah daerah tambah kelas keterampilan sore", at: "20 Sep, 11:12" },
+  { rubric: "Lingkungan", title: "Program pemilahan sampah masuk tahap kedua", at: "19 Sep, 20:02" },
+  { rubric: "Olahraga", title: "Turnamen antarkampung mulai akhir pekan ini", at: "19 Sep, 15:30" },
+];
+
+class Component extends DCLogic {
+  state = {
+    screen: this.props.defaultScreen || "home",
+    mode: "desktop",
+    wish: { "Meja Lipat Kayu Jati": true, "Lampu Meja LED": true },
+    cart: [
+      { name: "Kursi Kerja Ergonomis", variant: "Abu · Standar", price: 1890000, qty: 1 },
+      { name: "Lampu Meja LED", variant: "Putih hangat", price: 289000, qty: 1 },
+    ],
+    pdpQty: 1,
+    pdpColor: "Abu",
+    pdpBack: "Standar",
+    gallery: 0,
+    added: false,
+    step: "Alamat",
+    district: false,
+    courier: "REG",
+    payment: "gateway",
+    accTab: "Ringkasan",
+    promo: true,
+    newsTab: "Utama",
+    sideTab: "Terbaru",
+    reading: false,
+    copied: false,
+  };
+
+  go = (screen) => () => this.setState({ screen, added: false });
+
+  radio(active) {
+    return active
+      ? { border: "#0284c7", bg: "#f0f9ff", ring: "#0284c7", dot: "#0284c7", fg: "#0f172a" }
+      : { border: "#e2e8f0", bg: "#ffffff", ring: "#cbd5e1", dot: "transparent", fg: "#0f172a" };
+  }
+  chip(active) {
+    return active
+      ? { border: "#0f172a", bg: "#0f172a", fg: "#ffffff" }
+      : { border: "#e2e8f0", bg: "#ffffff", fg: "#334155" };
+  }
+
+  card(p) {
+    const on = !!this.state.wish[p.name];
+    return {
+      name: p.name,
+      price: RP(p.price),
+      was: p.was ? RP(p.was) : "",
+      disc: p.disc || "",
+      label: p.label || "",
+      labelBg: p.labelBg || "#64748b",
+      stock: p.stock > 0 ? "Stok tersedia" : "Stok habis",
+      stockBg: p.stock > 0 ? "#dcfce7" : "#fef2f2",
+      stockFg: p.stock > 0 ? "#166534" : "#991b1b",
+      tier: p.stock > 0 ? "Harga grosir mulai 5 unit" : "Beri tahu saya saat tersedia",
+      heart: on ? "♥" : "♡",
+      wishColor: on ? "#991b1b" : "#334155",
+      wishBorder: on ? "#991b1b" : "#e2e8f0",
+      wish: () => this.setState({ wish: { ...this.state.wish, [p.name]: !on } }),
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const mobile = s.mode === "mobile";
+    const news = s.screen === "news" || s.screen === "article";
+
+    const cartSub = s.cart.reduce((a, c) => a + c.price * c.qty, 0);
+    const ship = s.district ? (s.courier === "REG" ? 15000 : s.courier === "YES" ? 32000 : 9000) : 0;
+    const voucher = 30000;
+
+    const shopNavItems = [
+      ["Semua produk", "catalog"],
+      ["Perabot kantor", "catalog"],
+      ["Elektronik", "catalog"],
+      ["Layanan", "catalog"],
+      ["Flash sale", "catalog"],
+      ["Berita", "news"],
+    ];
+
+    return {
+      screenPicker: SCREENS.map(([id, label]) => ({
+        label, ...this.chip(s.screen === id), pick: this.go(id),
+      })),
+      setDesktop: () => this.setState({ mode: "desktop" }),
+      setMobile: () => this.setState({ mode: "mobile" }),
+      deskBg: mobile ? "transparent" : "#ffffff",
+      deskFg: mobile ? "#64748b" : "#0f172a",
+      mobBg: mobile ? "#ffffff" : "transparent",
+      mobFg: mobile ? "#0f172a" : "#64748b",
+
+      shellStyle:
+        "width:100%;max-width:" + (mobile ? "390px" : "1280px") +
+        ";border:1px solid #d5dbe4;border-radius:16px;overflow:hidden;background:#f8fafc;box-shadow:0 18px 48px rgba(15,23,42,.14);display:flex;flex-direction:column",
+      mainStyle:
+        "flex:1;width:100%;max-width:1200px;margin:0 auto;padding:" + (mobile ? "20px 16px 34px" : "28px 20px 44px") + ";box-sizing:border-box",
+
+      shopChrome: !news,
+      newsChrome: news,
+
+      goHome: this.go("home"),
+      goCatalog: this.go("catalog"),
+      goProduct: this.go("product"),
+      goCart: this.go("cart"),
+      goCheckout: this.go("checkout"),
+      goTrack: this.go("track"),
+      goAccount: this.go("account"),
+      goWishlist: this.go("wishlist"),
+      goNews: this.go("news"),
+      goArticle: this.go("article"),
+
+      isHome: s.screen === "home",
+      isCatalog: s.screen === "catalog",
+      isProduct: s.screen === "product",
+      isCart: s.screen === "cart",
+      isCheckout: s.screen === "checkout",
+      isTrack: s.screen === "track",
+      isAccount: s.screen === "account",
+      isWishlist: s.screen === "wishlist",
+      isAffiliate: s.screen === "affiliate",
+      isNews: s.screen === "news",
+      isArticle: s.screen === "article",
+
+      cartCount: s.cart.reduce((a, c) => a + c.qty, 0),
+      wishCount: Object.keys(s.wish).filter((k) => s.wish[k]).length,
+
+      shopNav: shopNavItems.map(([label, target], i) => ({
+        label,
+        bg: i === 0 && s.screen === "catalog" ? "#f1f5f9" : "transparent",
+        fg: target === "news" ? "#0284c7" : "#334155",
+        pick: this.go(target),
+      })),
+      newsNav: ["Utama", "Ekonomi", "Daerah", "Layanan publik", "Pendidikan", "Lingkungan", "Olahraga", "Opini"].map((l) => ({
+        label: l,
+        mark: s.newsTab === l ? "#dc2626" : "transparent",
+        fg: s.newsTab === l ? "#0f172a" : "#475569",
+        pick: () => this.setState({ newsTab: l, screen: "news" }),
+      })),
+
+      homeUsp: [
+        { title: "Harga bertingkat otomatis", body: "Diskon grosir muncul sendiri begitu jumlah mencukupi." },
+        { title: "Ongkir dihitung nyata", body: "Tarif per layanan kurir, dihitung untuk kecamatan tujuan." },
+        { title: "Lacak tanpa akun", body: "Kode pesanan dan nomor telepon sudah cukup." },
+      ],
+      featured: CATALOG.slice(0, 4).map((p) => this.card(p)),
+      catalog: CATALOG.map((p) => this.card(p)),
+      catFilters: [
+        { label: "Perabot kantor", n: 42, on: true },
+        { label: "Elektronik", n: 98, on: false },
+        { label: "Rumah tangga", n: 51, on: false },
+        { label: "Layanan", n: 12, on: false },
+        { label: "Langganan", n: 11, on: false },
+      ].map((c) => ({
+        ...c,
+        border: c.on ? "#0284c7" : "#cbd5e1",
+        fill: c.on ? "#0284c7" : "#ffffff",
+        pick: () => {},
+      })),
+      homeNews: NEWS.slice(0, 3),
+      homeTesti: [
+        { stars: "★★★★★", quote: "Pengiriman cepat dan barang sesuai deskripsi.", by: "Sari W. · pesanan ORD-4819" },
+        { stars: "★★★★☆", quote: "Harga grosir jelas, tidak perlu tanya-tanya.", by: "Toko Mitra Jaya · ORD-4818" },
+      ],
+
+      gallery: [1, 2, 3, 4].map((n, i) => ({
+        n: "foto " + n, ring: s.gallery === i ? "#0284c7" : "#e2e8f0", pick: () => this.setState({ gallery: i }),
+      })),
+      pdpPrice: RP(1890000),
+      pdpTiers: [
+        { qty: "1–4 unit", price: RP(1890000) },
+        { qty: "5–19 unit", price: RP(1790000) },
+        { qty: "20+ unit", price: RP(1690000) },
+      ],
+      pdpColors: ["Abu", "Hitam"].map((c) => ({
+        label: c, ...this.chip(s.pdpColor === c), pick: () => this.setState({ pdpColor: c }),
+      })),
+      pdpBacks: ["Standar", "Sandaran tinggi"].map((c) => ({
+        label: c, ...this.chip(s.pdpBack === c), pick: () => this.setState({ pdpBack: c }),
+      })),
+      pdpQty: s.pdpQty,
+      pdpInc: () => this.setState({ pdpQty: s.pdpQty + 1 }),
+      pdpDec: () => this.setState({ pdpQty: Math.max(1, s.pdpQty - 1) }),
+      pdpHeart: s.wish["Kursi Kerja Ergonomis"] ? "♥" : "♡",
+      pdpWishColor: s.wish["Kursi Kerja Ergonomis"] ? "#991b1b" : "#334155",
+      pdpWishBorder: s.wish["Kursi Kerja Ergonomis"] ? "#991b1b" : "#cbd5e1",
+      wishPdp: () => this.setState({ wish: { ...s.wish, "Kursi Kerja Ergonomis": !s.wish["Kursi Kerja Ergonomis"] } }),
+      addedToast: s.added,
+      addToCart: () => {
+        const name = "Kursi Kerja Ergonomis";
+        const found = s.cart.find((c) => c.name === name);
+        const cart = found
+          ? s.cart.map((c) => (c.name === name ? { ...c, qty: c.qty + s.pdpQty } : c))
+          : [...s.cart, { name, variant: s.pdpColor + " · " + s.pdpBack, price: 1890000, qty: s.pdpQty }];
+        this.setState({ cart, added: true });
+      },
+      pdpNotes: [
+        "Asuransi pengiriman tersedia saat checkout.",
+        "Garansi rangka 2 tahun, layanan perakitan opsional.",
+        "Harga final dihitung server — tidak ada aritmetika di peramban.",
+      ],
+      sizeChart: [
+        ["Ukuran", "h"], ["Tinggi dudukan", "h"], ["Lebar sandaran", "h"],
+        ["S", "b"], ["42–50 cm", "b"], ["46 cm", "b"],
+        ["M", "b"], ["45–54 cm", "b"], ["50 cm", "b"],
+      ].map(([v, kind]) => ({
+        v,
+        bg: kind === "h" ? "#f8fafc" : "#ffffff",
+        fg: kind === "h" ? "#0f172a" : "#334155",
+        font: kind === "h" ? "700 11px/1.4" : "400 12px/1.4",
+      })),
+      reviews: [
+        { stars: "★★★★★", by: "Sari W.", at: "18 Sep", text: "Nyaman dipakai delapan jam, penyangga lumbal terasa." },
+        { stars: "★★★★☆", by: "Dedi K.", at: "12 Sep", text: "Perakitan agak lama, tapi hasilnya kokoh." },
+        { stars: "★★★★★", by: "Nur A.", at: "5 Sep", text: "Sesuai deskripsi, pengiriman dua hari." },
+      ],
+
+      cartEmpty: s.cart.length === 0,
+      cartLines: s.cart.map((l) => ({
+        name: l.name, variant: l.variant, qty: l.qty, sum: RP(l.price * l.qty),
+        inc: () => this.setState({ cart: s.cart.map((x) => (x.name === l.name ? { ...x, qty: x.qty + 1 } : x)) }),
+        dec: () => this.setState({ cart: s.cart.flatMap((x) => (x.name === l.name ? (x.qty > 1 ? [{ ...x, qty: x.qty - 1 }] : []) : [x])) }),
+        remove: () => this.setState({ cart: s.cart.filter((x) => x.name !== l.name) }),
+      })),
+      cartTotals: [
+        { label: "Subtotal", value: RP(cartSub), font: "500 13px/1.6", tone: "#334155" },
+        { label: "Voucher HEMAT10", value: "−" + RP(voucher), font: "500 13px/1.6", tone: "#166534" },
+        { label: "Total sementara", value: RP(cartSub - voucher), font: "800 17px/1.4", tone: "#0f172a" },
+      ],
+
+      steps: ["Alamat", "Pengiriman", "Pembayaran"].map((l, i) => {
+        const active = s.step === l;
+        return {
+          label: l, n: String(i + 1),
+          border: active ? "#0f172a" : "#e2e8f0",
+          bg: active ? "#0f172a" : "#ffffff",
+          fg: active ? "#ffffff" : "#334155",
+          dotBg: active ? "#10b981" : "#f1f5f9",
+          dotFg: active ? "#03140d" : "#64748b",
+          pick: () => this.setState({ step: l }),
+        };
+      }),
+      stepAddress: s.step === "Alamat",
+      stepShipping: s.step === "Pengiriman",
+      stepPayment: s.step === "Pembayaran",
+      pickDistrict: (e) => this.setState({ district: String(e.target.value).indexOf("Kec.") === 0 }),
+      courierNote: s.district ? "Tarif dihitung untuk kecamatan tujuan." : "Pilih kecamatan di langkah alamat untuk menghitung ongkir.",
+      courierNoteTone: s.district ? "#166534" : "#92400e",
+      couriers: (s.district
+        ? [
+            { id: "EKO", label: "Kurir EKO (4–6 hari)", note: "Paling hemat", price: RP(9000) },
+            { id: "REG", label: "Kurir REG (2–3 hari)", note: "Paling sering dipilih", price: RP(15000) },
+            { id: "YES", label: "Kurir YES (1 hari)", note: "Tiba besok, pemesanan sebelum 14.00", price: RP(32000) },
+          ]
+        : [{ id: "none", label: "Opsi kurir belum tersedia", note: "Kecamatan tujuan belum dipilih", price: "—" }]
+      ).map((c) => ({
+        ...c,
+        ...this.radio(s.district && s.courier === c.id),
+        cursor: s.district ? "pointer" : "not-allowed",
+        pick: () => s.district && this.setState({ courier: c.id }),
+      })),
+      payments: [
+        { id: "gateway", label: "Bayar online (kartu, VA, e-wallet)", note: "Anda akan dialihkan ke halaman pembayaran" },
+        { id: "transfer", label: "Transfer manual", note: "Unggah bukti, dikonfirmasi admin" },
+        { id: "cod", label: "Bayar di tempat", note: "Tersedia untuk kota tertentu" },
+      ].map((p) => ({ ...p, ...this.radio(s.payment === p.id), pick: () => this.setState({ payment: p.id }) })),
+      checkoutTotals: [
+        { label: "Subtotal", value: RP(cartSub), font: "500 13px/1.6", tone: "#334155" },
+        { label: "Ongkir", value: s.district ? RP(ship) : "belum dihitung", font: "500 13px/1.6", tone: "#334155" },
+        { label: "Voucher HEMAT10", value: "−" + RP(voucher), font: "500 13px/1.6", tone: "#166534" },
+        { label: "Total", value: RP(cartSub + ship - voucher), font: "800 18px/1.4", tone: "#0f172a" },
+      ],
+      placeLabel: s.payment === "gateway" ? "Buat pesanan & bayar" : "Buat pesanan",
+      placeOrder: this.go("track"),
+
+      trackSteps: [
+        { label: "Pesanan dibuat", at: "21 Sep 09:14", dot: "#10b981", fg: "#0f172a" },
+        { label: "Menunggu pembayaran", at: "sekarang", dot: "#f59e0b", fg: "#0f172a" },
+        { label: "Diproses penjual", at: "—", dot: "#e2e8f0", fg: "#94a3b8" },
+        { label: "Dikirim", at: "—", dot: "#e2e8f0", fg: "#94a3b8" },
+        { label: "Selesai", at: "—", dot: "#e2e8f0", fg: "#94a3b8" },
+      ],
+
+      accountNav: ["Ringkasan", "Pesanan", "Alamat", "Pesan", "Ulasan", "Afiliasi"].map((l) => ({
+        label: l,
+        badge: l === "Pesan" ? "2" : "",
+        bg: s.accTab === l ? "#f1f5f9" : "transparent",
+        fg: s.accTab === l ? "#0f172a" : "#475569",
+        pick: () => (l === "Afiliasi" ? this.setState({ screen: "affiliate" }) : this.setState({ accTab: l })),
+      })),
+      accOverview: s.accTab === "Ringkasan",
+      accOrders: s.accTab === "Pesanan",
+      accAddress: s.accTab === "Alamat",
+      accMessages: s.accTab === "Pesan",
+      accReviews: s.accTab === "Ulasan",
+      accStats: [
+        { label: "Pesanan", value: "14" },
+        { label: "Sedang berjalan", value: "2" },
+        { label: "Wishlist", value: String(Object.keys(s.wish).filter((k) => s.wish[k]).length) },
+      ],
+      promoOn: s.promo,
+      togglePromo: () => this.setState({ promo: !s.promo }),
+      promoStatus: s.promo ? "Tersimpan · Anda menerima kabar promo" : "Tersimpan · Anda tidak menerima kabar promo",
+      promoTone: s.promo ? "#166534" : "#64748b",
+      accOrderList: [
+        { code: "ORD-4821", at: "21 Sep", items: "2 item", status: "Menunggu pembayaran", total: RP(2164000), bg: "#fef3c7", fg: "#92400e" },
+        { code: "ORD-4790", at: "8 Sep", items: "1 item", status: "Selesai", total: RP(289000), bg: "#dcfce7", fg: "#166534" },
+        { code: "ORD-4712", at: "24 Agu", items: "3 item", status: "Selesai", total: RP(1204000), bg: "#dcfce7", fg: "#166534" },
+        { code: "ORD-4655", at: "2 Agu", items: "1 item", status: "Dibatalkan", total: RP(74000), bg: "#fef2f2", fg: "#991b1b" },
+      ],
+      addresses: [
+        { label: "Rumah", primary: true, border: "#0284c7", body: "Rina Halim · 0812 0000 4410\nJl. Contoh No. 12, Kec. Pusat, Kota Contoh, 70111" },
+        { label: "Kantor", primary: false, border: "#e2e8f0", body: "Rina Halim · 0812 0000 4410\nJl. Usaha No. 4, Kec. Utara, Kota Contoh, 70122" },
+      ],
+      accThreads: [
+        { subject: "Pertanyaan pesanan ORD-4821", snippet: "Pesanan akan dikirim setelah pembayaran diterima.", at: "09:22", state: "terbuka", unread: "2" },
+        { subject: "Penawaran grosir", snippet: "Harga tingkat 3 berlaku 7 hari.", at: "Kemarin", state: "terbuka", unread: "" },
+        { subject: "Pengembalian dana ORD-4655", snippet: "Dana sudah dikembalikan ke rekening asal.", at: "5 Agu", state: "ditutup", unread: "" },
+      ],
+      accReviewList: [
+        { product: "Lampu Meja LED", stars: "★★★★★", status: "Terbit", bg: "#dcfce7", fg: "#166534", text: "Terang tapi tidak menyilaukan, kabelnya panjang." },
+        { product: "Kursi Kerja Ergonomis", stars: "★★★★☆", status: "Menunggu moderasi", bg: "#fef3c7", fg: "#92400e", text: "Nyaman, tapi perakitan butuh dua orang." },
+        { product: "Kotak Arsip", stars: "★★★☆☆", status: "Ditolak", bg: "#fef2f2", fg: "#991b1b", text: "Ulasan berisi tautan luar." },
+      ],
+
+      wishEmpty: Object.keys(s.wish).filter((k) => s.wish[k]).length === 0,
+      wishItems: CATALOG.filter((p) => s.wish[p.name]).map((p) => ({
+        name: p.name, price: RP(p.price),
+        remove: () => this.setState({ wish: { ...s.wish, [p.name]: false } }),
+      })),
+
+      copyRef: () => {
+        this.setState({ copied: true });
+        setTimeout(() => this.setState({ copied: false }), 1600);
+      },
+      copyLabel: s.copied ? "Tersalin" : "Salin tautan",
+      affStats: [
+        { label: "Klik 30 hari", value: "612" },
+        { label: "Pesanan", value: "18" },
+        { label: "Komisi menunggu", value: RP(184500) },
+        { label: "Komisi dibayar", value: RP(1240000) },
+      ],
+      affRows: [
+        { order: "ORD-4819", at: "20 Sep", status: "Menunggu", bg: "#fef3c7", fg: "#92400e", amount: RP(94500) },
+        { order: "ORD-4816", at: "19 Sep", status: "Disetujui", bg: "#dcfce7", fg: "#166534", amount: RP(32000) },
+        { order: "ORD-4790", at: "8 Sep", status: "Dibayar", bg: "#e0f2fe", fg: "#075985", amount: RP(14450) },
+        { order: "ORD-4655", at: "2 Agu", status: "Dibatalkan", bg: "#fef2f2", fg: "#991b1b", amount: RP(0) },
+      ],
+
+      newsGrid: NEWS,
+      sideTabs: ["Terbaru", "Terpopuler"].map((l) => ({
+        label: l,
+        mark: s.sideTab === l ? "#0f172a" : "transparent",
+        fg: s.sideTab === l ? "#0f172a" : "#64748b",
+        pick: () => this.setState({ sideTab: l }),
+      })),
+      sideList: (s.sideTab === "Terbaru" ? NEWS.slice(0, 5) : NEWS.slice().reverse().slice(0, 5)).map((n, i) => ({
+        n: String(i + 1).padStart(2, "0"), title: n.title, at: n.at,
+      })),
+      tags: ["pasar daerah", "infrastruktur", "layanan publik", "harga pangan", "pendidikan", "lingkungan", "olahraga", "opini"],
+
+      shareBtns: ["WA", "FB", "X", "⧉"],
+      toggleRead: () => this.setState({ reading: !s.reading }),
+      readIcon: s.reading ? "▮▮" : "▶",
+      readState: s.reading ? "membaca 01:12" : "siap · 4 menit",
+      readProgress: s.reading ? "38%" : "0%",
+      articleBody: [
+        "Aktivitas jual beli di pasar daerah kembali normal setelah pekerjaan perbaikan akses jalan selesai pada pekan lalu. Pedagang yang sebelumnya mengeluhkan penurunan kunjungan menyebut arus pembeli mulai pulih sejak jalur utama dibuka kembali.",
+        "Dinas terkait mencatat pekerjaan tahap pertama mencakup pengerasan dan drainase di sisi timur. Tahap kedua akan menata ulang lapak agar lorong tengah cukup lebar untuk dua arah.",
+        "Sejumlah pedagang meminta penataan dilakukan di luar jam pasar agar tidak memotong hari dagang. Usulan itu sedang dibahas bersama paguyuban.",
+        "Pemerintah daerah menyebut anggaran tahap kedua sudah dialokasikan, dengan pelaksanaan direncanakan setelah masa panen agar mobilitas komoditas tidak terganggu.",
+        "Pemantauan harga di pasar yang sama menunjukkan pergerakan tipis pada komoditas pokok sepanjang pekan ini.",
+      ],
+      related: [
+        "Harga komoditas pekan ini bergerak tipis di pasar daerah",
+        "Jadwal perbaikan jalan lintas dirilis untuk tiga kecamatan",
+        "Kantor layanan buka setengah hari menjelang libur",
+        "Program pemilahan sampah masuk tahap kedua",
+      ],
+      newsProducts: [
+        { name: "Kotak Arsip", price: RP(56000) },
+        { name: "Lampu Meja LED", price: RP(289000) },
+      ],
+
+      footerCols: [
+        { title: "Toko Contoh", links: ["Tentang kami", "Kontak", "Kebijakan privasi", "Syarat layanan"] },
+        { title: "Bantuan", links: ["Cara belanja", "Lacak pesanan", "Pengembalian", "Ongkir & kurir"] },
+        { title: "Kanal", links: ["Katalog", "Flash sale", "Berita", "Program afiliasi"] },
+        { title: "Kontak", links: ["WhatsApp 0800 0000 000", "halo@contoh.id", "Senin–Sabtu, 08.00–17.00 WIB"] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -78,6 +78,18 @@ apps/cms/
 *.id.md
 
 # ---------------------------------------------------------------------------
+# redesign/** — design-source drops, not this repo's code.
+# ---------------------------------------------------------------------------
+#
+# Static HTML mockups and a generated viewer runtime (`support.js`) exported
+# from an external design tool, tracked as reference material for the
+# 2026-09 redesign (issues #166-#171). Nothing here is built, imported, or
+# served: indexing it would add a minified third-party bundle's symbols to
+# the graph as if they were root-owned code, and every new drop would count
+# against `audit:graf`'s staleness bound.
+redesign/
+
+# ---------------------------------------------------------------------------
 # Deliberately NOT excluded — recorded so the question is not reopened blind.
 # ---------------------------------------------------------------------------
 #
