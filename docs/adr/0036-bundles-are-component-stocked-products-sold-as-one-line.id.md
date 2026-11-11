@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:4ec3cdce2f294a1ca44ff8a5d0b969dbe704568bd4663609c4c2d244c27fa6fe -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0036 — Bundle adalah produk yang tersusun dari komponen: dijual sebagai satu baris, stoknya bergerak lewat komponennya
 
 - **Status:** Diterima

@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:dc39bbb239b817ac6db1436f661f718d558eddcb3469a3102e78827266ad084e -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0035 — Laporan operasional POS adalah proyeksi commerce di atas buku besar yang sudah ada, pada mesin reporting yang sudah ada
 
 - **Status:** Diterima
