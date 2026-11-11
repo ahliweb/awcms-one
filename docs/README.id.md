@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8dae3cda3e14295220aeb0a9949f44cec7cd4612acb944f170466f193b11f288 -->
+<!-- i18n-source-hash: sha256:65a67def9a9c86d68ab238a2d2d173a9b890e6a6691a0b2427318e153d348408 -->
 
 # Dokumentasi
 
@@ -28,6 +28,8 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`template.md`](template.id.md)                                                       | Menggunakan awcms-one sebagai template: `template:init`, matriks profil build, seed per profil, BjekMart sebagai contoh referensi                                                                                           |
 | [`aw-business-platform-dor.md`](aw-business-platform-dor.id.md)                       | Pelacak Definition of Ready untuk epik #280 (AW Business Platform): sepuluh artefak DoR, keputusan pemilik, isu Wave A                                                                                                      |
 | [`aw-business-platform-dod.md`](aw-business-platform-dod.id.md)                       | Penelusuran Definition of Done epik #280: vonis dan tautan bukti untuk tiap dari 20 butirnya, dan yang tersisa                                                                                                              |
+| [`aw-business-platform-traceability.md`](aw-business-platform-traceability.id.md)     | Matriks keterlacakan epik #280: setiap story PRD ke ujinya, dan setiap kontrol threat model (C-01 sampai C-41) ke status as-built serta uji regresinya                                                                      |
+| [`aw-business-platform-standards-map.md`](aw-business-platform-standards-map.id.md)   | Peta bukti standar untuk komponen yang dibangun repositori ini bagi epik #280 (OWASP ASVS, ISO/IEC 27001, PCI DSS, UU PDP): target pemetaan dengan penunjuk bukti dan daftar celah, bukan klaim kepatuhan                   |
 | [`aw-business-platform-prd.md`](aw-business-platform-prd.id.md)                       | Blueprint platform dan PRD untuk bagian milik awcms-one dari epik #280: persona, alur kerja, non-tujuan, cerita pengguna, hasil, MoSCoW                                                                                     |
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md)               | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama                                                                                                |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md)     | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280                                                                                                                 |
