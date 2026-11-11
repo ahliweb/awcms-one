@@ -92,4 +92,5 @@ B is chosen, and the runbook now ends with the same instruction for both surface
 
 - Phase 2 is shippable with every tenant on `legacy`; nothing observable changes until a tenant's column is set.
 - The upstream `awcms` ADR-0133 backstop (the adapter is removed no later than the second minor release after the one that first ships `upstream` mode) starts with this change's release.
+  - **Amended by [ADR-0054](0054-the-adr-0133-whatsapp-legacy-path-backstop-moves-to-v0-22-0.md) (11 November 2026).** That backstop fell due at v0.19.0 (`upstream` mode first shipped in v0.17.0) and was missed: its end conditions concern tenants that derived products own, not this template. ADR-0054 moves the date to the second minor release after v0.20.0, v0.22.0, with the same five end conditions and no code or table change. Phase 4 (issue #394) stays open.
 - The two admin screens, `commerce:whatsapp:dispatch` and `commerce:whatsapp:purge` stay and keep draining legacy rows.

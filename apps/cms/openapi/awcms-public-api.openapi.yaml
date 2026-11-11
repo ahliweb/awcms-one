@@ -17751,7 +17751,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #383 (ADR-0045 D19; controls C-35, C-36). Check a confirmed guest in at the till. `id` is Booking's reservation id. Gated on `commerce.booking_check_ins.create` (separate from check-out and from taking payment), the tenant's `booking`, `pos` and `register` features and an `Idempotency-Key`; the register must have an open session whose current cashier is the caller."
-      description: "The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - the owner confirms the default): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only."
+      description: "The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - confirmed by the owner on 11 November 2026): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only."
       parameters:
         - name: id
           in: path
@@ -57485,7 +57485,7 @@ components:
           description: "Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only."
         checkinRequiresSettlement:
           type: boolean
-          description: "Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default is a recommendation the owner confirms."
+          description: "Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default (block) was confirmed by the owner on 11 November 2026."
     CommerceStoreSettingsPublic:
       type: object
       description: The subset a storefront may publish — the contract awcms-one's storefront builds against. Never carries an account number, account holder or QRIS payload.
