@@ -120,10 +120,20 @@ function isTestFixture(rel) {
   return rel === "tests/fixtures" || rel.endsWith("/tests/fixtures");
 }
 
+/**
+ * Git worktrees that agent tooling creates INSIDE the checkout
+ * (`.claude/worktrees/<name>/`, gitignored). Each is a full copy of the
+ * repository, so walking into one re-scans every manifest under a prefix
+ * where `apps/cms` no longer matches {@link UPSTREAM_BUILD_PREFIX}, and a
+ * local run turns red on upstream's own Dockerfile while CI's fresh checkout,
+ * which has no such directory, stays green.
+ */
+const NESTED_WORKTREES_DIR = ".claude/worktrees";
+
 function walk(rel = "", out = []) {
   for (const name of readdirSync(join(REPO_ROOT, rel))) {
     const child = rel === "" ? name : `${rel}/${name}`;
-    if (SKIP_DIRS.has(name) || child === "apps/cms" || isTestFixture(child)) continue;
+    if (SKIP_DIRS.has(name) || child === "apps/cms" || child === NESTED_WORKTREES_DIR || isTestFixture(child)) continue;
     if (statSync(join(REPO_ROOT, child)).isDirectory()) {
       walk(child, out);
     } else {
