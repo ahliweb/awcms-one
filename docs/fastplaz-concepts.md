@@ -1,3 +1,5 @@
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](fastplaz-concepts.id.md)
+
 # AWCMS-One template and initialization wizard — FastPlaz concepts, repository-specific architecture
 
 ## Document control
@@ -46,7 +48,6 @@ Evaluate applicability, not compliance by assertion: Indonesian UU 27/2022 (PDP)
 
 ## Acceptance evidence rubric
 For any follow-on: link spec/ADR and owning issue; record source commit, toolchain/runtime version, commands executed, actual error/result, denied access tests and evidence SHA. Mark unrun checks **NOT EXECUTED**. Approvals and publication/deployment status are distinct. No sensitive personal data or production secrets in prompts, logs or GitHub artifacts.
-
 
 ## Changelog
 - **v1.0.0 — 2026-11-10:** Documented evidence-backed, repo-specific adoption boundary, six practical cases and acceptance rubric.

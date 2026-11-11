@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](carikbot-conversation-reference.md)
 
-<!-- i18n-source-hash: sha256:af9f796bb55849764f285eeab202aae35329a78e74bed13bf9721816a70d0aca -->
+<!-- i18n-source-hash: sha256:c90c914294eaded8191641101dcd71c5e9d3a57f941fbbbac2723d04d9941837 -->
 
 # Referensi Konsep CarikBot — Percakapan, Layanan, dan Batas Arsitektur
 
@@ -99,7 +99,6 @@ UU 27/2022 Pelindungan Data Pribadi, PP 71/2019 PSTE; untuk pemerintahan pertimb
 
 ## Pelaksanaan dan pengambilan keputusan
 Alur pengembangan internal 18 tahap tetap berlaku. Kerjakan F0 riset dan PoC tertutup; sebelum implementasi produksi wajib riset pengguna/PRD, threat model dan DPIA, UX tervalidasi, skema/ABAC/RLS, domain algorithm, OpenAPI/AsyncAPI, lalu **persetujuan manusia Definition of Ready tahap 9**. Tahap 10 issue atomik, tahap 11–14 implementasi/PR/staging/UAT, **persetujuan rilis tahap 15**, dan 16–18 deploy/validasi/monitoring. Tidak mengklaim fitur telah tersedia tanpa bukti kode, tes dan deployment.
-
 
 ## Penerapan khusus: AWCMS-One
 
