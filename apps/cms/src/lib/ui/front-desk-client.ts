@@ -49,6 +49,12 @@ export function fromCents(cents: bigint): string {
  * A figure for the eye (`Rp 700.000,00`). Display only: the number is never
  * parsed back and never sent. A non-numeric input prints a dash rather than
  * `NaN`, which is a wrong statement about money.
+ *
+ * The two fraction digits are pinned, as on the register and expense screens.
+ * Left to the runtime's own currency data they vary: an engine whose CLDR
+ * gives the rupiah no minor unit prints `IDR 700,000` and would ROUND a
+ * balance of 1250.50 to `IDR 1,251` in front of the cashier, while commerce
+ * carries every amount to the cent.
  */
 export function formatMoney(
   value: string,
@@ -60,7 +66,9 @@ export function formatMoney(
   try {
     return new Intl.NumberFormat(intlTag, {
       style: "currency",
-      currency
+      currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     }).format(numeric);
   } catch {
     return value;
