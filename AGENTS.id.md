@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:f588550cc3543f3628d2645be1081642bc2fc8c6fee34ceb117d2c7eb021515e -->
+<!-- i18n-source-hash: sha256:8dc9696922412fa0ce0aa091ce40e57c91ff2e56038284157ae53558d72e80e0 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -287,3 +287,16 @@ Aturan:
 4. **Verifikasi tetap di orchestrator.** Diff, uji, dan angka dicek sendiri sebelum dipakai; laporan agent bukan bukti.
 5. **Agent tetap di scope-nya.** Tidak mengubah arsitektur, tidak mendelegasikan lagi, tidak menyentuh area di luar tugas.
 6. **Aturan repo ini tetap berlaku** untuk setiap agent — alur kerja, gerbang, guardrail keamanan, konvensi commit.
+
+<!-- BEGIN:pengetahuan-ringkas -->
+<!-- pengetahuan-ringkas:v1 -->
+## Knowledge Graph (graphify)
+
+Repo ini punya knowledge graph di `graphify-out/`. Prosedur lengkap: skill `.claude/skills/pengetahuan-ringkas/SKILL.md`.
+
+1. **Untuk pertanyaan arsitektur atau hubungan antarberkas, baca graf lebih dulu.** Buka `graphify-out/GRAPH_REPORT.md`, lalu `graphify query "<pertanyaan>"`, sebelum membuka banyak berkas satu per satu. Hemat token.
+2. **Graf adalah peta, bukan sumber kebenaran.** Verifikasi setiap klaim ke `source_file` yang dikutip; edge `INFERRED`/`AMBIGUOUS` bukan fakta.
+3. **Bila `graphify-out/STATUS.md` ada, graf baru berisi kode saja.** Jalankan `/graphify . --update` sebelum mengandalkannya untuk pertanyaan dokumen, hapus `STATUS.md`, lalu commit hasilnya.
+4. **Perbarui graf setelah menambah, menghapus, atau mengubah substansial berkas**, dalam commit yang sama (`graphify update .` untuk kode, `/graphify . --update` untuk dokumen).
+5. **Jangan edit `graphify-out/` dengan tangan** dan jangan memasang `graphify hook install`.
+<!-- END:pengetahuan-ringkas -->
