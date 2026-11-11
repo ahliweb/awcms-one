@@ -78,14 +78,14 @@ apps/storefront/test-results/
 tools/out/
 
 # BEGIN:pengetahuan-ringkas
-# graphify: hanya graph.json, GRAPH_REPORT.md, STATUS.md, dan label yang dilacak.
+# Adapted to this repo: `bun run audit:graf` requires exactly graph.json,
+# GRAPH_REPORT.md, manifest.json and cost.json tracked under graphify-out/
+# (see the graphify section at the top of this file), so the generic
+# baseline's ignores of manifest.json/cost.json and its re-include of the
+# labels sidecar are left out here — the sidecar stays local (`graphify-out/.*`).
 graphify-out/cache/
-graphify-out/manifest.json
-graphify-out/cost.json
 graphify-out/graph.html
 graphify-out/GRAPH_TREE.html
 graphify-out/obsidian/
 graphify-out/.graphify_*
-!graphify-out/.graphify_labels.json
-!graphify-out/.graphify_labels.json.sig
 # END:pengetahuan-ringkas

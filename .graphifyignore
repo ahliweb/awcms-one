@@ -88,6 +88,10 @@ apps/cms/
 # the graph as if they were root-owned code, and every new drop would count
 # against `audit:graf`'s staleness bound.
 redesign/
+# `design/` holds the same kind of design-tool export (the 2026-10 UI/UX
+# redesign: `.dc.html` mockups, spec JSON and the tool's `support.js`
+# runtime) and is excluded for the same reasons.
+design/
 
 # ---------------------------------------------------------------------------
 # Deliberately NOT excluded — recorded so the question is not reopened blind.
