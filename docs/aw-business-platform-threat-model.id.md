@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-threat-model.md)
 
-<!-- i18n-source-hash: sha256:c213585002b706744db7b28b3646a98109d7b89f469df358f6c6cb26e5f6a0fa -->
+<!-- i18n-source-hash: sha256:ea09d84400d556caa66872c370414f67044e7f7eee359a68a814a1fa2eaffe45 -->
 
 # AW Business Platform — model ancaman adapter, analisis privasi, dan applicability regulasi
 
@@ -361,7 +361,7 @@ Standar (ISO/IEC 27001, 27002, 27005, 27017, 27018, 27701, 27034, 22301, 20000-1
 
 ## 7. Pemetaan kontrol
 
-Format: kontrol, implementasi, tes, bukti, SOP, monitoring. **Status setiap baris adalah planned**: tidak ada adapter, endpoint booking, modul delivery, atau modul workforce di tree ini, sehingga tidak satu pun kontrol ini terimplementasi untuk alur-alur tersebut. Bila mekanisme order/pembayaran/OTP yang ada akan dipakai ulang, sel implementasi menyebutnya; itu precedent, bukan cakupan. Tes atau SOP yang disebut di sini belum ada dan merupakan deliverable Wave B sampai F.
+Format: kontrol, implementasi, tes, bukti, SOP, monitoring. **Diperbarui 11 November 2026 ([#397](https://github.com/ahliweb/awcms-one/issues/397)):** kolom "Implementation (planned)", "Test (planned)" dan "Status" di bawah mencatat desain sebagaimana ditinjau untuk Definition of Ready (10 Oktober 2026) dan dibiarkan apa adanya, karena itulah yang menjadi acuan pembangunan adapter. Status terbangun setiap kontrol (terimplementasi, terimplementasi di upstream, operator atau produk turunan, atau ditangguhkan) dan tes regresi yang menegaskannya ada di [matriks ketertelusuran](aw-business-platform-traceability.md), bagian B; bila keduanya berbeda, matriks yang berlaku. Bila mekanisme order/pembayaran/OTP yang ada dipakai ulang, sel implementasi menyebutnya; itu precedent, bukan cakupan.
 
 | ID   | Kontrol                                                             | Implementasi (direncanakan)                                                                                                                                                                                                                                                        | Tes (direncanakan)                                                                                                                             | Bukti                                                            | SOP                                               | Monitoring                                                   | Status                             |
 | ---- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------- |
