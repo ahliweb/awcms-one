@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0054-the-adr-0133-whatsapp-legacy-path-backstop-moves-to-v0-22-0.md)
 
-<!-- i18n-source-hash: sha256:d7083a1225f324155f136c06950157c4845d0cfaeb2b8afcfe13e6527c277775 -->
+<!-- i18n-source-hash: sha256:e4905ee0d7cfebaff0d25ed186b290a7439bad7a80736fda4b0e47fe1ac8f9dc -->
 
 # ADR-0054 — Batas akhir jalur legacy WhatsApp commerce pindah ke v0.22.0
 
@@ -43,10 +43,10 @@ Tidak ada yang dilonggarkan, diurutkan ulang, atau dikesampingkan oleh ADR ini. 
 
 - Kondisi 1: keluaran uji batas dengan daftar izin kosong, ditambah `git grep` yang menunjukkan tidak ada berkas commerce yang menyebut tabel, provider, dispatcher, atau penulis legacy di luar berkas yang dihapus.
 - Kondisi 2 dan 3: karena repositori ini tidak dapat menunjukkannya untuk tenant milik orang lain, buktinya adalah **pernyataan tertulis per produk turunan yang dikenal** (pemilik repositori produk, tanggal, dan catatan bukti dari `commerce:whatsapp:cutover --status` untuk setiap tenant: `mode: upstream`, `queues.legacy.nonTerminal: 0`, sisa jumlah baris tabel legacy dan eksekusi purge), ditambah `--status` deployment acuan sendiri. Produk turunan yang belum menyatakannya saat PR digabung tidak tercakup dalam penghapusan ini dan menanggung konsekuensi di D5. Jika tidak ada produk turunan yang dapat menyatakannya, PR menyebutkannya.
-- Kondisi 4: masa alias ditulis di changelog rilis yang memperkenalkan alias, dan penghapusannya sendiri dirilis pada rilis minor berikutnya, tidak pernah pada rilis yang sama.
+- Kondisi 4: rilis penghapusan menghapus job, layar, dan flag, serta menjadikan jalur API lama alias dari jalur upstream; masa alias (satu rilis minor) diumumkan di changelog rilis itu, dan alias dihapus pada rilis minor berikutnya, tidak pernah pada rilis yang sama.
 - Kondisi 5: migrasinya, catatan kelas restore (kedua tabel tidak dapat dipulihkan dengan migrasi turun; cadangan yang diambil sebelum deploy adalah jalur pemulihan), dan hasil `bun run db:migrate` pada basis data yang memuat baris legacy.
 
-Karena kondisi 4 membutuhkan satu rilis minor alias sebelum penghapusan, rilis alias itu sendiri harus dirilis **selambat-lambatnya pada v0.21.0**, agar penghapusan dapat dirilis di v0.22.0. Jika pengaliasan bergeser melewati v0.21.0, D6 berlaku.
+Batas akhir di D1 berlaku untuk rilis penghapusan itu: ia dirilis **selambat-lambatnya pada v0.22.0**, sebagaimana kata-kata ADR-0133 `awcms` ("adapter dan jalur legacy dihapus") menempatkannya. Alias yang diperkenalkannya, dan migrasi kondisi 5 yang menghapus dua tabel legacy, menyusul selambat-lambatnya pada rilis minor berikutnya (v0.23.0). Jika rilis penghapusan bergeser melewati v0.22.0, D6 berlaku.
 
 **D5 — Yang harus dilakukan produk turunan sebelum itu.** Produk turunan memiliki tenant-nya (ADR-0024), jadi pekerjaannya milik mereka dan dilakukan di repositori mereka sendiri, dengan issue mereka sendiri:
 
@@ -59,13 +59,13 @@ Produk turunan yang masih di `legacy` saat mengadopsi rilis yang menghapus jalur
 
 **D6 — Jika batas akhir baru juga terlewat, jawabannya adalah ADR lain, bukan pergeseran diam-diam.** Jika lima kondisi belum dibuktikan saat v0.22.0 dipotong, sebuah ADR dengan tanggal baru dan jangkar baru ditulis **dalam siklus rilis yang sama, sebelum tag v0.22.0**, dengan dua bagian yang sama seperti ADR ini: apa yang sudah dibuktikan dan apa yang belum, dan siapa pemilik bukti yang kurang. Penundaan ketiga juga mencatat, di ADR itu, apakah template sebaiknya tetap membawa jalur legacy sama sekali, atau membekukannya di balik cakrawala dukungan yang terdokumentasi dan berhenti mengirimkan `legacy` sebagai default untuk produk turunan baru. Entri changelog yang menyatakan penghapusan "akan terjadi nanti" tanpa ADR bukanlah keputusan.
 
-**D7 — Pemeriksaan agar tanggalnya tetap jujur.** Batas akhir adalah sebuah kalimat; kalimat kedaluwarsa tanpa suara. Saat v0.21.0 dirilis, catatan rilis menyebut ADR ini dan sisa harinya; PR penghapusan, saat dibuka, menautkan kembali ke sini. Daftar "belum ada di sini" di `docs/status.md` menyatakan tanggalnya dan mengutip ADR ini, yang merupakan satu tempat yang dilihat pembaca. ADR ini tidak menambah gerbang: uji struktural yang gagal karena nomor versi akan mengodekan tanggal itu untuk kedua kalinya dan akan salah pada hari rilis minor dilewati. Tinjau ulang jika tanggal bergeser untuk kedua kalinya.
+**D7 — Pemeriksaan agar tanggalnya tetap jujur.** Batas akhir adalah sebuah kalimat; kalimat kedaluwarsa tanpa suara. Saat v0.21.0 dirilis, catatan rilisnya menyebut ADR ini dan menyatakan bahwa tinggal satu rilis minor sebelum batas akhir; PR penghapusan, saat dibuka, menautkan kembali ke sini. Daftar "belum ada di sini" di `docs/status.md` menyatakan tanggalnya dan mengutip ADR ini, yang merupakan satu tempat yang dilihat pembaca. ADR ini tidak menambah gerbang: uji struktural yang gagal karena nomor versi akan mengodekan tanggal itu untuk kedua kalinya dan akan salah pada hari rilis minor dilewati. Tinjau ulang jika tanggal bergeser untuk kedua kalinya.
 
 ## Konsekuensi
 
 - Tidak ada yang teramati berubah hari ini: setiap tenant di `legacy` tetap berjalan, setiap tenant yang sudah di-flip tetap berjalan, dan router, cutover, serta dispatcher legacy tidak tersentuh.
 - Batas akhir ADR-0133 `awcms` dipenuhi secara prosedural oleh ADR baru dengan tanggal baru, sebagaimana disyaratkan ADR-0133, bukan oleh penghapusan. Tanggal sebelumnya (v0.19.0) dicatat sebagai terlewat, secara terbuka, dengan alasannya: buktinya milik tenant yang tidak dipegang template ini.
 - Produk turunan mendapat cakrawala yang dinyatakan (v0.22.0) dan prosedur yang tepat (D5) alih-alih "suatu hari nanti" yang tidak berujung; mereka dapat merencanakan flip setiap tenant terhadapnya.
-- Pekerjaan penghapusan (issue #394) tetap terbuka dan belum dimulai. Daftar prasyaratnya kini adalah daftar periksa D2/D4, dan rilis aliasnya punya tenggat (v0.21.0).
+- Pekerjaan penghapusan (issue #394) tetap terbuka dan belum dimulai. Daftar prasyaratnya kini adalah daftar periksa D2/D4, dan rilis penghapusannya punya tenggat (v0.22.0), dengan alias dan migrasi penghapus tabel hilang selambat-lambatnya pada v0.23.0.
 - Risiko yang diterima ADR ini adalah yang disebut ADR-0133: adapter kompatibilitas dibawa lebih lama dari rencana. Biayanya dua rilis minor lagi dengan outbox WhatsApp kedua di pohon kode; manfaatnya tidak ada tenant produk turunan yang rusak oleh penghapusan yang tak dapat ia antisipasi.
 - ADR-0047 mendapat catatan "Diubah oleh ADR-0054" di samping teks batas akhirnya; ADR-0133 upstream tidak disunting (itu milik upstream, dan ia sudah mengatur ADR ini).
