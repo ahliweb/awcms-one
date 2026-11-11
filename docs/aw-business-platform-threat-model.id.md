@@ -1,12 +1,12 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-threat-model.md)
 
-<!-- i18n-source-hash: sha256:ea09d84400d556caa66872c370414f67044e7f7eee359a68a814a1fa2eaffe45 -->
+<!-- i18n-source-hash: sha256:53909c3ca54e0e06e7bbd0a86ee180bb8375a97cea408ba9b458c9bc9f61ad40 -->
 
 # AW Business Platform — model ancaman adapter, analisis privasi, dan applicability regulasi
 
 Artefak DoR nomor 3 epik [#280](https://github.com/ahliweb/awcms-one/issues/280), item Wave A A8 ([#338](https://github.com/ahliweb/awcms-one/issues/338)), dilacak di [`aw-business-platform-dor.md`](aw-business-platform-dor.md). Penempatan mengikuti [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md). Ditulis 10 Oktober 2026.
 
-> **Bukan nasihat hukum, dan tanpa klaim kepatuhan.** Dokumen ini adalah masukan rekayasa. Bagian 6 dan 7 mendaftar regulasi dan standar yang harus dinilai oleh penasihat hukum Indonesia yang kompeten dan pemilik deployment untuk deployment dan model bisnis yang sebenarnya. Tidak ada kalimat di sini yang menyatakan bahwa suatu deployment patuh atau tersertifikasi terhadap hukum atau standar apa pun. **Tidak ada yang diuraikan dalam dokumen ini yang sudah diimplementasikan**: ini analisis tahap desain atas adapter yang belum ada, dan setiap status kontrol di bawah adalah "planned" (direncanakan). ADR-0040 D7 melarang modul, migrasi, path OpenAPI, atau DDL sebelum Definition of Ready tercapai; dokumen ini tidak menambahkan satu pun.
+> **Bukan nasihat hukum, dan tanpa klaim kepatuhan.** Dokumen ini adalah masukan rekayasa. Bagian 6 dan 7 mendaftar regulasi dan standar yang harus dinilai oleh penasihat hukum Indonesia yang kompeten dan pemilik deployment untuk deployment dan model bisnis yang sebenarnya. Tidak ada kalimat di sini yang menyatakan bahwa suatu deployment patuh atau tersertifikasi terhadap hukum atau standar apa pun. **Ini adalah analisis tahap desain yang ditulis untuk Definition of Ready (10 Oktober 2026)**: saat ditulis, belum satu pun adapter ini ada, ADR-0040 D7 melarang modul, migrasi, path OpenAPI, atau DDL sebelum Definition of Ready tercapai, dan tabel kontrol mencatat kontrol sebagaimana dirancang. Sebagian besar adapter itu kini sudah dibangun; status as-built setiap kontrol (C-01 sampai C-41) beserta uji regresinya ada di [matriks keterlacakan](aw-business-platform-traceability.id.md) (11 November 2026), yang menggantikan kata "planned" di bawah.
 
 **Terkait:** [PRD platform](aw-business-platform-prd.id.md), [Kontrak metrik](aw-business-platform-metrics.id.md); [pelacak DoR](aw-business-platform-dor.id.md) (tinjauan lintas-spesifikasi, A9).
 
