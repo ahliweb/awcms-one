@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:b44f3d6843ca925c280b081deb8f325a5a2e198f35c9366335051effe5e07a69 -->
+<!-- i18n-source-hash: sha256:0d602def5b7d85fe1b67f7fddaeda542e96b3bc296962c4559342a1e3a06497f -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -252,3 +252,26 @@ Dua aturan mengikuti, dan reviewer boleh menolak PR karena salah satunya:
 Bahasa Inggris di jalur telanjang adalah sumber otoritatif; Bahasa Indonesia di `<nama>.id.md` adalah cerminnya, mencatat hash dari bahasa Inggris yang diterjemahkannya. Cermin dokumen ini adalah [`AGENTS.id.md`](AGENTS.id.md).
 
 Kode repo ini sendiri — `packages/gerbang/`, `tools/`, `tests/`, beserta identifier, komentar, dan pesan gerbang/tesnya — ditulis dalam **Bahasa Inggris** sepenuhnya. Ini pilihan yang disengaja untuk kode baru repo ini sendiri, dibuat karena tidak ada konvensi yang sudah ada di sini untuk diikuti dan Bahasa Inggris adalah bawaan yang lebih aman untuk perkakas yang dibaca langsung oleh local CI dan editor kontributor mana pun di masa depan. `apps/cms` membawa konvensinya sendiri yang terpisah sebagai kode `ahliweb/awcms` yang disematkan; repo ini tidak mengatur atau mengubahnya.
+
+## Orchestrator & Agent (model AI)
+
+> Standar lintas-portofolio dari [`ahliweb/personal-coding`](https://github.com/ahliweb/personal-coding/blob/main/docs/tingkatan-model-ai-claude-openai.md) (docs/tingkatan-model-ai-claude-openai.md, snapshot 2026-10-28). Harga, effort, dan lini model dipelihara di sana — jangan disalin ke repo ini.
+
+Pekerjaan yang perlu dipecah ke beberapa agent memakai pola **orchestrator → agent**. Orchestrator memecah pekerjaan, membagi tugas, mengatur ketergantungan, lalu memeriksa dan menyatukan hasil; agent mengerjakan satu bagian yang sudah dibatasi.
+
+| Peran | Claude Code | Codex / OpenAI |
+| --- | --- | --- |
+| Orchestrator | Opus 5.5, effort `high` | GPT-6.1 Sol, `high` |
+| Agent kompleks — lintas komponen, keamanan, integrasi, risiko regresi | Sonnet 5.5, `medium` (subagent `pelaksana-kompleks`) | GPT-6.1 Sol atau Terra, `medium` |
+| Agent sederhana — mekanis, terdefinisi jelas, risiko rendah | Haiku 5.5, `low` (subagent `pelaksana-sederhana`) | GPT-6 Luna atau Terra, `low` |
+
+Pekerjaan kritis (arsitektur, keamanan, migrasi besar): orchestrator Fable 5.1 `high`–`xhigh`, agent kompleks Opus 5.5 `high`.
+
+Aturan:
+
+1. **Jangan memecah tugas kecil.** Coba satu model kuat (Opus 5.5 / GPT-6.1 Sol) dengan effort rendah lebih dulu.
+2. **Naikkan, jangan menebak.** Agent sederhana yang menemukan ambiguitas, risiko, atau sentuhan arsitektur berhenti dan mengembalikan tugas ke orchestrator, yang memindahkannya ke agent kompleks.
+3. **Agent paralel terisolasi.** Tidak boleh menyentuh file atau modul yang sama; tugas yang saling bergantung dijalankan berurutan.
+4. **Verifikasi tetap di orchestrator.** Diff, uji, dan angka dicek sendiri sebelum dipakai; laporan agent bukan bukti.
+5. **Agent tetap di scope-nya.** Tidak mengubah arsitektur, tidak mendelegasikan lagi, tidak menyentuh area di luar tugas.
+6. **Aturan repo ini tetap berlaku** untuk setiap agent — alur kerja, gerbang, guardrail keamanan, konvensi commit.
