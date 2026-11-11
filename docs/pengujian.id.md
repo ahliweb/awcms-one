@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:c1c445a846601bbe04f0a313066ef0e42e301caab8056810dcd180bd25291477 -->
+<!-- i18n-source-hash: sha256:c786575d32251e728c98190f52e2f743b330bb5dfbcb1c519c36c03d156464c1 -->
 
 # Pengujian
 
@@ -155,7 +155,7 @@ cd apps/cms && DATABASE_URL=postgres://awcms:<password>@localhost:<port>/awcms \
 
 ### Apa yang persis dijalankan `local-ci/check-cms` (`tools/ci/runners/check-cms.ts`)
 
-Container layanan `postgres:18.4` (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, health-checked dengan `pg_isready`), lalu: `cd apps/cms && DATABASE_URL="" bun run check`, lalu `bun run db:migrate:cms` terhadap layanan itu, lalu `cd apps/cms && bun test tests/integration/ --timeout 60000` — lebih dari 710 tes per PR afiliasi, termasuk `commerce-catalog.integration.test.ts` (filter list, by-slug, CRUD gambar/varian, restore, RLS lintas-tenant, plus hitungan tab-status untuk issue #247), `commerce-marketing.integration.test.ts` (penurunan flash-sale, job tick yang menembak persis sekali, voucher publik, indeks single-active popup, round-trip settings), dan keempat suite increment-4 di bawah. Langkah job-summary melaporkan jumlah skip ber-gate-DB sebelum dan sesudah basis data hidup tersambung, sehingga reviewer bisa melihat suite itu benar-benar berjalan.
+Container layanan `postgres:18.6` (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, health-checked dengan `pg_isready`), lalu: `cd apps/cms && DATABASE_URL="" bun run check`, lalu `bun run db:migrate:cms` terhadap layanan itu, lalu `cd apps/cms && bun test tests/integration/ --timeout 60000` — lebih dari 710 tes per PR afiliasi, termasuk `commerce-catalog.integration.test.ts` (filter list, by-slug, CRUD gambar/varian, restore, RLS lintas-tenant, plus hitungan tab-status untuk issue #247), `commerce-marketing.integration.test.ts` (penurunan flash-sale, job tick yang menembak persis sekali, voucher publik, indeks single-active popup, round-trip settings), dan keempat suite increment-4 di bawah. Langkah job-summary melaporkan jumlah skip ber-gate-DB sebelum dan sesudah basis data hidup tersambung, sehingga reviewer bisa melihat suite itu benar-benar berjalan.
 
 **Adaptor inventori commerce (isu #282, [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)) punya `apps/cms/tests/integration/commerce-inventory-adapter.integration.test.ts`** (40 tes, terhadap Postgres hasil migrasi sungguhan) ditambah dua berkas tanpa-DB, `commerce-inventory-domain.test.ts` (rujukan item, urutan posting, nilai cache, aturan sunting mode-ledger, kosakata penolakan) dan `commerce-inventory-permissions.test.ts` (kunci dideklarasikan, di-seed `sql/947`, ditegakkan tepat oleh route yang benar; `commerce` bergantung pada `inventory`; migrasi tidak menyebut tabel 994-999). Suite integrasi membuktikan: mode counter tidak berubah dan tidak memposting apa pun; dry-run cut-over tidak mengubah apa pun, `--commit` memposting satu opening per unit stok positif sama dengan penghitungnya dan membalik mode, eksekusi kedua ditolak dan opening yang ditolak menggulung balik semuanya; pada mode `ledger` pesanan menjual dari ledger dan menulis cache (baris varian, replay, POS, batal, perubahan status admin, restock retur); keranjang stok-habis adalah `cart_changed` tanpa sisa dan cache dikoreksi; **delapan pesanan paralel untuk unit terakhir menjual tepat satu**, dan keranjang berurutan-terbalik tidak pernah deadlock; job kedaluwarsa melakukan restock sebagai peran `awcms_worker` sungguhan dan membiarkan pesanan yang restock-nya ditolak ledger tetap tertunda tanpa menggagalkan batch; penerimaan oleh pihak lain mencapai cache lewat dispatcher, hanya untuk lokasi penjualan dan item `commerce.*`, dan pengiriman ulang idempoten; suntingan admin, pembuatan, dan dry-run CSV menolak perubahan stok hanya pada mode ledger; rekonsiliasi melihat drift paksa dan resync memperbaikinya; rollback kembali ke mode counter; tenant lain tidak dapat melihat mutasi maupun mengarahkan pengaturannya ke lokasi tenant ini (FK komposit, `CHECK`); worker memegang tepat hibah inventori yang dibutuhkan inti posting dan tetap tidak dapat menulis ulang mutasi; dan kunci mode membuat snapshot cut-over mencakup pesanan mode-counter yang sedang berjalan.
 
@@ -203,7 +203,7 @@ Cakupan unit untuk logika murninya (tabel leg, perbandingan pin Bun, pola redaks
 `bun run bench:commerce-load` (di `apps/cms`) bersifat opt-in: bukan `*.test.ts` dan tidak ada di `bun run check`, sehingga rantai gate normal maupun `tests/integration/` tidak menjalankannya. Ia butuh `DATABASE_URL` superuser yang sama seperti suite integrasi, menunjuk ke PostgreSQL sekali pakai (harness membuat dan menghapus database sementaranya sendiri):
 
 ```bash
-docker run -d --name pg-bench -p 55432:5432 -e POSTGRES_PASSWORD=postgres postgres:18.4
+docker run -d --name pg-bench -p 55432:5432 -e POSTGRES_PASSWORD=postgres postgres:18.6
 cd apps/cms
 export DATABASE_URL=postgres://postgres:postgres@127.0.0.1:55432/postgres
 bun run bench:commerce-load --profile smoke            # detik: invarian pada skala kecil

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:0778ab73132d3c7f0fe8272aaaaf042c20c24f3263777873e792340e470ae57e -->
+<!-- i18n-source-hash: sha256:db22c099fff58b1aa2d6002b3a2809996aa92f9c3639ba00e5f4d561f5c8f7fb -->
 
 # Alur kerja pengembangan
 
@@ -59,7 +59,7 @@ Mendorong (push) tag itu tidak lagi mempublikasikan apa pun dengan sendirinya (i
 
 **`local-ci/check-toko`, `local-ci/check-berita`, `local-ci/check-landing`** (`tools/ci/runners/check.ts`) — matriks 3-arah atas `SITE_PROFILE`, satu leg per profil build ([ADR-0018 D7](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md)). Setiap leg menjalankan `bun run check:lockfile`, `bun install --frozen-lockfile`, `SITE_PROFILE=<leg> bun run check` (type-check storefront yang mencakup `src/profil/**` tanpa memandang group mana yang aktif), dan `cd apps/storefront && SITE_PROFILE=<leg> bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts` — build milik leg itu sendiri terhadap stub CMS, membuktikan group halaman yang dikecualikan sungguh-sungguh absen dari `dist/` dan sitemap. `bun test` root, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, dan `bun audit --audit-level=low` tidak bergantung pada profil, jadi ia berjalan **sekali saja, di leg `toko`**, tanpa `SITE_PROFILE` diatur. Tidak ada apa pun di leg ini yang membangun image container atau men-deploy apa pun.
 
-**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) berjalan terhadap container `postgres:18.4` nyata dan sekali-pakai yang dimulainya sendiri:
+**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) berjalan terhadap container `postgres:18.6` nyata dan sekali-pakai yang dimulainya sendiri:
 
 1. `bun install --frozen-lockfile` di root.
 2. `cd apps/cms && DATABASE_URL="" bun run check` — rantai penuh ~53 langkah (lint, docs/i18n, setiap gate registry/konsistensi, typecheck, `bun test` dengan setiap suite ber-gate-DB skip bersih, `bun run build`).
@@ -102,7 +102,7 @@ Mendorong (push) tag itu tidak lagi mempublikasikan apa pun dengan sendirinya (i
 | `overrides` root | registry npm vs versi yang di-resolve `bun.lock` | keempat override keamanan/kompatibilitas di `package.json` root |
 | Advisory | `bun audit --json` | seluruh lockfile; pemblokir = high/critical tanpa entri di `tools/ci/dependency-audit-exceptions.json`, yakni aturan yang sama dengan gate audit |
 | Pin Bun | rilis Bun terbaru (GitHub `oven-sh/bun` lebih dulu, paket npm `bun` sebagai cadangan) vs `packageManager`; batas bawah `engines.bun`; `ARG BUN_VERSION` Dockerfile storefront | |
-| Image kontainer | tag Docker Hub | setiap `FROM` di `apps/storefront/Dockerfile` dan `docker/backup/Dockerfile`, nilai `image:` literal di `compose.yaml` / `compose.production.yaml`, dan image alat local-ci di `tools/ci` (`postgres:18.4`, gitleaks yang di-pin digest — tag-nya dipulihkan dari registry, karena digest tidak menyebut rilis mana) |
+| Image kontainer | tag Docker Hub | setiap `FROM` di `apps/storefront/Dockerfile` dan `docker/backup/Dockerfile`, nilai `image:` literal di `compose.yaml` / `compose.production.yaml`, dan image alat local-ci di `tools/ci` (`postgres:18.6`, gitleaks yang di-pin digest — tag-nya dipulihkan dari registry, karena digest tidak menyebut rilis mana) |
 | Register tertahan | `tools/deps-held-back.json` | setiap dependensi atau image yang sengaja tidak diambil |
 
 Setiap dependensi yang tertinggal mendapat **disposisi**: `candidate` (patch/minor yang bisa diambil PR atomik berikutnya), `held` (versi lebih baru ada dan register menjelaskan kenapa tidak, lengkap dengan pemilik dan tanggal tinjau) atau `needs-decision` (mayor yang belum punya PR peningkatan maupun penahanan tercatat). Tidak ada yang lain yang merupakan penilaian bebas.

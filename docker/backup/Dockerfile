@@ -5,7 +5,7 @@
 # adds NOTHING of its own to the backup/restore logic — it only supplies the
 # three things apps/cms/deploy/backup/README.md's own "Base images ship
 # neither `age` nor a database client by default" note says a runner image
-# needs, on top of the SAME `postgres:18.4` image the production `postgres`
+# needs, on top of the SAME `postgres:18.6` image the production `postgres`
 # service itself uses (`pg_dump`/`pg_restore` must be version-matched to the
 # server, per that README and every script's own header comment):
 #
@@ -23,7 +23,7 @@
 # as a real file so compose.production.yaml's `offsite-copy` service does not
 # have to fight docker compose's own `${...}` interpolation inside a `command:`
 # block (that interpolation runs before this container ever sees the string).
-FROM postgres:18.4
+FROM postgres:18.6
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends age rsync openssh-client \

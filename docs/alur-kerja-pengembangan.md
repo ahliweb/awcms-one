@@ -57,7 +57,7 @@ Pushing that tag no longer publishes anything by itself (issue #181 introduced a
 
 **`local-ci/check-toko`, `local-ci/check-berita`, `local-ci/check-landing`** (`tools/ci/runners/check.ts`) — a 3-way matrix over `SITE_PROFILE`, one leg per build profile ([ADR-0018 D7](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)). Every leg runs `bun run check:lockfile`, `bun install --frozen-lockfile`, `SITE_PROFILE=<leg> bun run check` (a storefront type-check covering `src/profil/**` regardless of which group is active), and `cd apps/storefront && SITE_PROFILE=<leg> bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts` — that leg's own build against the stub CMS, proving the excluded page groups are genuinely absent from `dist/` and the sitemaps. The root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, and `bun audit --audit-level=low` are profile-independent, so they run **once, on the `toko` leg only**, with no `SITE_PROFILE` set. Nothing in this leg builds a container image or deploys anything.
 
-**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) runs against a real, ephemeral `postgres:18.4` container it starts itself:
+**`local-ci/check-cms`** (`tools/ci/runners/check-cms.ts`) runs against a real, ephemeral `postgres:18.6` container it starts itself:
 
 1. `bun install --frozen-lockfile` at the root.
 2. `cd apps/cms && DATABASE_URL="" bun run check` — the full ~53-step chain (lint, docs/i18n, every registry/consistency gate, typecheck, `bun test` with every DB-gated suite skipping cleanly, `bun run build`).
@@ -100,7 +100,7 @@ Pushing that tag no longer publishes anything by itself (issue #181 introduced a
 | Root `overrides` | npm registry vs the version `bun.lock` resolved | the four security/compat overrides in the root `package.json` |
 | Advisories | `bun audit --json` | the whole lockfile; blocking = high/critical without an entry in `tools/ci/dependency-audit-exceptions.json`, i.e. the same rule the audit gates apply |
 | Bun pin | the latest Bun release (GitHub `oven-sh/bun` first, the npm `bun` package as the fallback) vs `packageManager`; `engines.bun` floor; the storefront Dockerfile's `ARG BUN_VERSION` | |
-| Container images | Docker Hub tags | every `FROM` in `apps/storefront/Dockerfile` and `docker/backup/Dockerfile`, the literal `image:` values of `compose.yaml` / `compose.production.yaml`, and the local-ci tool images in `tools/ci` (`postgres:18.4`, the digest-pinned gitleaks — whose tag is recovered from the registry, because a digest does not say which release it is) |
+| Container images | Docker Hub tags | every `FROM` in `apps/storefront/Dockerfile` and `docker/backup/Dockerfile`, the literal `image:` values of `compose.yaml` / `compose.production.yaml`, and the local-ci tool images in `tools/ci` (`postgres:18.6`, the digest-pinned gitleaks — whose tag is recovered from the registry, because a digest does not say which release it is) |
 | Held-back register | `tools/deps-held-back.json` | every dependency or image deliberately not taken |
 
 Each drifting dependency gets a **disposition**: `candidate` (a patch/minor the next atomic PR can take), `held` (a newer version exists and the register says why not, with an owner and a review date) or `needs-decision` (a major with neither an upgrade PR nor a recorded hold). Nothing else is a judgement call.

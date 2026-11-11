@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:35166ff0a9048f333ae6b0162b9896eb3a33f064bacd1f6ce72d12f408671c64 -->
+<!-- i18n-source-hash: sha256:9b8fe545790d8a40a21a33998f997d46fb2104847ad218a5972937ae35ac4112 -->
 
 # Deployment
 
@@ -206,13 +206,13 @@ API storefront anonim me-resolve tenant-nya dari header `Origin` browser pemangg
 
 ## Basis data lokal (issue #25)
 
-`compose.yaml` di root repositori menyediakan `postgres:18.4` sekali-pakai untuk pengembangan lokal dan CI — bukan produksi (lihat "Penyediaan PostgreSQL produksi belum dilakukan" di bawah). Ia hanya membuat apa yang TIDAK dibuat migrasi SQL `apps/cms` sendiri: server itu sendiri, dan separuh `LOGIN` dari tiga role yang dibuat migrasi sebagai `NOLOGIN` dan tanpa password dengan sengaja (`apps/cms/sql/019_awcms_db_role_separation.sql` membuat `awcms_app`, `apps/cms/sql/022_awcms_db_worker_setup_roles.sql` membuat `awcms_worker`/`awcms_setup` — password adalah rahasia dan tidak pernah boleh ada di migrasi yang di-commit; lihat header masing-masing berkas). Setiap tabel, indeks, kebijakan RLS, dan `GRANT` tetap tugas migrasi. `docker/postgres-init/01-create-least-privilege-roles.sh` melakukan satu hal yang sengaja tidak dilakukan migrasi, dan tidak lebih — headernya sendiri menjelaskan mengapa menduplikasi satu `GRANT` di sini akan melenceng begitu satu migrasi mempersempit atau melebarkannya.
+`compose.yaml` di root repositori menyediakan `postgres:18.6` sekali-pakai untuk pengembangan lokal dan CI — bukan produksi (lihat "Penyediaan PostgreSQL produksi belum dilakukan" di bawah). Ia hanya membuat apa yang TIDAK dibuat migrasi SQL `apps/cms` sendiri: server itu sendiri, dan separuh `LOGIN` dari tiga role yang dibuat migrasi sebagai `NOLOGIN` dan tanpa password dengan sengaja (`apps/cms/sql/019_awcms_db_role_separation.sql` membuat `awcms_app`, `apps/cms/sql/022_awcms_db_worker_setup_roles.sql` membuat `awcms_worker`/`awcms_setup` — password adalah rahasia dan tidak pernah boleh ada di migrasi yang di-commit; lihat header masing-masing berkas). Setiap tabel, indeks, kebijakan RLS, dan `GRANT` tetap tugas migrasi. `docker/postgres-init/01-create-least-privilege-roles.sh` melakukan satu hal yang sengaja tidak dilakukan migrasi, dan tidak lebih — headernya sendiri menjelaskan mengapa menduplikasi satu `GRANT` di sini akan melenceng begitu satu migrasi mempersempit atau melebarkannya.
 
 Urutan lengkap, berurutan, dengan nilai nyata (`cp .env.example .env` di root, `cp apps/cms/.env.example apps/cms/.env` dulu — lihat masing-masing berkas untuk apa yang perlu diedit):
 
 ```bash
 cp .env.example .env                    # root — POSTGRES_*, AWCMS_*_PASSWORD, SEED_*
-bun run db:up                           # postgres:18.4, project "awcms-one", host port 5433
+bun run db:up                           # postgres:18.6, project "awcms-one", host port 5433
 
 # apps/cms/.env's own DATABASE_URL defaults to the OWNER/superuser shape on
 # port 5432 — override it for THIS one command to point at the compose
@@ -485,7 +485,7 @@ Keluarannya SATU dokumen JSON di stdout (simpan bersama catatan perubahan) dan s
 
 ## Topologi produksi (issue #150, ADR-0019)
 
-`apps/cms` hanya-PostgreSQL, dan sampai bagian ini ditulis, infrastruktur produksi borneojek sendiri menjalankan MySQL tanpa PostgreSQL yang disediakan di mana pun di atasnya — celah pengiriman yang disebutkan langsung oleh [issue #150](https://github.com/ahliweb/awcms-one/issues/150). Berikut adalah jalur produksi nyata dan teruji yang sekarang dikirim repositori ini; [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) mencatat keputusan di baliknya. Container `postgres:18.4` milik `compose.yaml` sendiri tetap kenyamanan LOKAL/CI — `compose.production.yaml` (di bawah) adalah bentuk produksinya, dan keduanya tidak pernah dimaksudkan berbagi basis data.
+`apps/cms` hanya-PostgreSQL, dan sampai bagian ini ditulis, infrastruktur produksi borneojek sendiri menjalankan MySQL tanpa PostgreSQL yang disediakan di mana pun di atasnya — celah pengiriman yang disebutkan langsung oleh [issue #150](https://github.com/ahliweb/awcms-one/issues/150). Berikut adalah jalur produksi nyata dan teruji yang sekarang dikirim repositori ini; [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) mencatat keputusan di baliknya. Container `postgres:18.6` milik `compose.yaml` sendiri tetap kenyamanan LOKAL/CI — `compose.production.yaml` (di bawah) adalah bentuk produksinya, dan keduanya tidak pernah dimaksudkan berbagi basis data.
 
 ### Model basis data dua-peran
 
@@ -652,7 +652,7 @@ Setiap variabel environment yang dibaca skrip-skrip ini (`DEPLOY_STATE_DIR`, `DE
 
 ## Jaminan backup (issue #213)
 
-`apps/cms/deploy/backup/*.sh` (disinkronkan masuk oleh issue #210, tooling milik upstream sendiri — lihat [ADR-0123](https://github.com/ahliweb/awcms/blob/main/docs/adr/0123-backup-encryption-manifest-authentication.md) dan `README.md` milik direktori itu sendiri untuk apa yang dilakukan tiap skrip dan kenapa) dipakai di sini lewat topologi produksi REPOSITORI INI sendiri, bukan diimplementasikan ulang. `compose.production.yaml` menambah tiga servis ber-profile — `backup`, `restore-drill`, `offsite-copy` — masing-masing pembungkus tipis: kontainer dibangun dari `docker/backup/Dockerfile` (image `postgres:18.4` yang SAMA dengan yang dijalankan servis `postgres`, ditambah `age`/`rsync`/`openssh-client` — persis yang diminta catatan "Base images ship neither `age` nor a database client by default" milik `apps/cms/deploy/backup/README.md` sendiri) dengan `apps/cms/deploy/backup/` di-bind-mount read-only di `/scripts` dan skrip aslinya dipanggil tanpa modifikasi.
+`apps/cms/deploy/backup/*.sh` (disinkronkan masuk oleh issue #210, tooling milik upstream sendiri — lihat [ADR-0123](https://github.com/ahliweb/awcms/blob/main/docs/adr/0123-backup-encryption-manifest-authentication.md) dan `README.md` milik direktori itu sendiri untuk apa yang dilakukan tiap skrip dan kenapa) dipakai di sini lewat topologi produksi REPOSITORI INI sendiri, bukan diimplementasikan ulang. `compose.production.yaml` menambah tiga servis ber-profile — `backup`, `restore-drill`, `offsite-copy` — masing-masing pembungkus tipis: kontainer dibangun dari `docker/backup/Dockerfile` (image `postgres:18.6` yang SAMA dengan yang dijalankan servis `postgres`, ditambah `age`/`rsync`/`openssh-client` — persis yang diminta catatan "Base images ship neither `age` nor a database client by default" milik `apps/cms/deploy/backup/README.md` sendiri) dengan `apps/cms/deploy/backup/` di-bind-mount read-only di `/scripts` dan skrip aslinya dipanggil tanpa modifikasi.
 
 ### Identitas basis data (butir cakupan 1)
 
@@ -708,7 +708,7 @@ docker run --rm --network container:<kontainer postgres> \
   -e DATABASE_URL="<DSN owner/setup>" \
   -e RESTORE_AGE_IDENTITY_FILE=/secrets/restore-age-identity.key \
   -e BACKUP_HMAC_KEY_FILE=/secrets/backup-hmac.key \
-  postgres:18.4 \
+  postgres:18.6 \
   bash /scripts/restore-postgres.sh /backup/<artifact>.dump.age --target=<db> --yes
 ```
 
@@ -743,7 +743,7 @@ docker run --rm --network container:<the postgres container> \
   -e DATABASE_URL="<owner/setup DSN>" -e RESTORE_SCRATCH_DB=awcms_restore_drill \
   -e RESTORE_AGE_IDENTITY_FILE=/secrets/restore-age-identity.key \
   -e BACKUP_HMAC_KEY_FILE=/secrets/backup-hmac.key \
-  postgres:18.4 \
+  postgres:18.6 \
   bash /scripts/restore-postgres.sh /backup/<artifact>.dump.age --keep
 
 # 2. Jalankan separuh adaptor terhadap basis data itu sebagai peran owner (layanan `migrate` adalah image jobs dengan
@@ -767,7 +767,7 @@ Gunakan DSN owner atau `awcms_app`; **bukan** `awcms_worker` (layanan `jobs`), y
 
 **Membaca hasilnya.** Restore adalah citra pada satu titik waktu, jadi basis data yang konsisten ketika `pg_dump` mengambil snapshot-nya tetap konsisten setelah `pg_restore`: temuan `structure`, `reference`, atau `decision` apa pun adalah cacat backup atau restore, atau sesuatu yang sudah ada di sumber. Sebelum menyimpulkan restore merusak sesuatu, jalankan perintah yang sama terhadap basis data live dan bandingkan: temuan yang ada di keduanya mendahului backup. **Tidak ada yang diperbaiki otomatis**; operator memutuskan (flag perhatian C-09 adalah antrean kerja, ini auditnya). Setelah restore sungguhan (`--target=<db>`), jalankan terhadap basis data hasil restore **sebelum** mengarahkan lalu lintas ke sana.
 
-Contoh log drill, dari basis data sintetis dengan dua booking (PostgreSQL 16.15, bukan image produksi 18.4; bukti mekanismenya, bukan angka produksi). Baris pertama adalah backup yang diambil saat konsisten, baris kedua basis data yang sama setelah sebuah reservasi kehilangan referensinya ke pesanannya:
+Contoh log drill, dari basis data sintetis dengan dua booking (PostgreSQL 16.15, bukan image produksi 18.6; bukti mekanismenya, bukan angka produksi). Baris pertama adalah backup yang diambil saat konsisten, baris kedua basis data yang sama setelah sebuah reservasi kehilangan referensinya ke pesanannya:
 
 ```text
 {"startedAt":"2026-10-19T01:47:35.923Z","check":"commerce:booking:reconcile","status":"pass","outcome":"pass","detail":"booking adapter reconciliation found zero drift","durationMs":72,"tenantsChecked":1,"counts":{"offeringLinks":1,"reservationLinks":2,"activeReservationLinks":2,"openAttention":0,"refundDecisions":0,"decisionsAwaitingLegs":0},"drift":{},"acknowledgedLedger":0,"truncated":false}

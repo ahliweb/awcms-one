@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:30fbbe4c1ff95320e335aad0ac4cb711b1600d00c6545ba7cad3ed11e1412a89 -->
+<!-- i18n-source-hash: sha256:0af32d6ee0c0840fbfe7e3a8aacee2b85c2785e5c11ad1c7e6dbccc25f728b2d -->
 
 # Arsitektur
 
@@ -233,7 +233,7 @@ Commerce menyimpan stok sebagai satu bilangan bulat pada baris yang dijual. Tena
 
 ## Apa yang masih belum ada di sini
 
-Yang ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) dan tidak diambil increment 5: ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon. Yang dicatat [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) sebagai follow-up eksplisit di belakang port yang sudah dibangunnya: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama, dan pelacakan kurir (tarif sudah selesai; melacak paket yang sudah dikirim belum). Upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.4` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)); layar admin backup basis data (secara eksplisit dikeluarkan dari cakupan issue #33 sebagai urusan operasi — lihat [`docs/deployment.md`](deployment.id.md)); notifikasi push pelanggan (kampanye saat ini hanya menjangkau e-mail dan WhatsApp — subscription push masih per-staf hari ini, bukan per-pelanggan).
+Yang ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) dan tidak diambil increment 5: ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon. Yang dicatat [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) sebagai follow-up eksplisit di belakang port yang sudah dibangunnya: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama, dan pelacakan kurir (tarif sudah selesai; melacak paket yang sudah dikirim belum). Upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.6` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)); layar admin backup basis data (secara eksplisit dikeluarkan dari cakupan issue #33 sebagai urusan operasi — lihat [`docs/deployment.md`](deployment.id.md)); notifikasi push pelanggan (kampanye saat ini hanya menjangkau e-mail dan WhatsApp — subscription push masih per-staf hari ini, bukan per-pelanggan).
 
 ## Bacaan lanjutan
 

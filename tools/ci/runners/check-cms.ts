@@ -3,7 +3,7 @@
  * `.github/workflows/ci.yml`'s `check-cms` job: `apps/cms`'s own full
  * `bun run check` chain with `DATABASE_URL=""` (every DB-gated suite
  * skips), then a real migrate and `tests/integration/` against a real,
- * ephemeral `postgres:18.4` — and the same before/after skip-count
+ * ephemeral `postgres:18.6` — and the same before/after skip-count
  * assertion that job's own summary step makes, turned into a leg failure
  * instead of a job-summary note (a local run has no GitHub Step Summary to
  * write into).
@@ -67,7 +67,7 @@ export async function runCheckCmsLeg(context: string, ctx: LegContext): Promise<
         `POSTGRES_DB=${POSTGRES_DB}`,
         "-p",
         `127.0.0.1:${port}:5432`,
-        "postgres:18.4"
+        "postgres:18.6"
       ],
       { logFile: log("docker-run") }
     );
@@ -75,7 +75,7 @@ export async function runCheckCmsLeg(context: string, ctx: LegContext): Promise<
 
     const ready = await waitForPostgres(containerName);
     if (!ready) {
-      return fail("postgres:18.4 did not become ready within the health-check budget");
+      return fail("postgres:18.6 did not become ready within the health-check budget");
     }
 
     const install = await run(["bun", "install", "--frozen-lockfile"], {
