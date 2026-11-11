@@ -120,6 +120,12 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "mode": "code-only"
+    },
+    {
+      "date": "2026-11-11T12:30:28.115Z",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "mode": "code-only"
     }
   ],
   "total_input_tokens": 0,
