@@ -22,8 +22,8 @@
  * `actions.canCheckIn` / `actions.checkInBlockedReason`. This module only turns
  * those hints into the visible reason; there is no "override" control, because
  * the policy is switched on the commerce settings screen (which asks for a step
- * up when it is switched OFF) and by nothing else. The default is still pending
- * the owner's confirmation (PR #443, residual R3).
+ * up when it is switched OFF) and by nothing else. The owner confirmed the
+ * default (block) on 11 November 2026 (PR #443, residual R3).
  */
 
 // ---------------------------------------------------------------------------
