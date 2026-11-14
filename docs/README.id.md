@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:65a67def9a9c86d68ab238a2d2d173a9b890e6a6691a0b2427318e153d348408 -->
+<!-- i18n-source-hash: sha256:3568846d03c586446f2a6cde688428727cfadd2620d6010fde0f126e0888444d -->
 
 # Dokumentasi
 
@@ -41,6 +41,8 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 ## Standar kebutuhan CRM Omnichannel
 
 [**Standar kebutuhan CRM Omnichannel reusable**](crm-omnichannel-requirements.id.md) memuat **target** funnel lead hingga konversi, batas akun dan kemampuan provider, inbox terverifikasi, persetujuan kampanye, SLA/follow-up staf, AI Hermes/OMES, KPI, pengecualian provider, dan tes penerimaan. Kebutuhan tersebut dipromosikan dari spesifikasi sektor pendidikan tanpa mengunci template pada bisnis tertentu. **Ini standar usulan, bukan bukti seluruh modul CRM sudah ada**; kondisi aktual tetap mengacu ke [status.md](status.id.md). Dilacak melalui [#462](https://github.com/ahliweb/awcms-one/issues/462).
+
+[**Kontrak KPI CRM v1.0.0-draft**](crm-kpi-contract.id.md) mendefinisikan, sebelum kode apa pun, funnel lead (dari kategori tahap `crm_leads`), konversi (dari fakta commerce terverifikasi #463), atribusi kampanye sentuhan pertama dengan lookback, SLA respons pertama staf dalam menit kerja, penyebut, penekanan penyebut nol dan sel kecil, aturan tanpa PII, ekspor CSV aman-formula, kumpulan bentuk respons yang **diusulkan** (tidak ada di OpenAPI), dan **daftar periksa persetujuan pemilik** yang menjadi gerbang setiap proyeksi. **Ini kontrak yang menunggu persetujuan, bukan dasbor**; [status.md](status.id.md) tetap kebenaran implementasi. Dilacak melalui [#464](https://github.com/ahliweb/awcms-one/issues/464).
 
 ## Spesifikasi UI/UX CRM Omnichannel lengkap
 

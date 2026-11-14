@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:68c3528271edd1b1277843f66b08135b9057936c3a1ddbc14f376e3e6f83e904 -->
+<!-- i18n-source-hash: sha256:d5cc7f7364a7f1a75134aa5ea1cff60ada6082c56fc84b32632e22ae0c685d7f -->
 
 # Status
 
@@ -33,6 +33,10 @@ Sudah dibangun. `commerce` memiliki alur hak subjek berkunci id pelanggan, karen
 ## Tautan lead CRM: calon pelanggan menjadi pelanggan commerce hanya dari fakta commerce yang terverifikasi ([ADR-0056](adr/0056-crm-lead-link-confirms-a-prospect-as-a-commerce-customer-only-from-verified-commerce-facts.id.md), issue #463)
 
 Sudah dibangun, **ADR berstatus diusulkan, tes berbasis DB tidak dijalankan di tempat penulisannya**. `commerce` adalah otoritas pelanggan bagi `crm_leads` upstream dan hanya menjangkaunya lewat `CrmLeadPort` (kapabilitas opsional `crm_lead`; satu composition root, `apps/cms/src/lib/composition/crm-lead-port.ts`). Orang yang memegang **kedua** izin `commerce.crm_lead_links.create` dan `crm_leads.conversions.approve` mengonfirmasi lead sebagai pelanggan dengan `POST /api/v1/commerce/crm-lead-links`; server membaca buktinya sendiri (registrasi yang e-mailnya dibuktikan pembeli lewat OTP, atau pesanan terbayar milik pelanggan itu) dan menolak baris tamu, pesanan belum dibayar atau dibatalkan, serta pesanan pelanggan lain. Tidak ada pencocokan berdasarkan telepon, e-mail, atau handle, tidak ada konsumer yang mengonversi apa pun, dan pengulangan atau bukti yang sama untuk lead lain bersifat idempoten atau `409`. Satu tabel milik commerce (`sql/1068`, id lead dan konversi buram, RLS FORCE, tidak pernah dihapus), tiga izin (`sql/1069`), dua event berversi (`customer.registered`, `customer.converted`, hanya id, dengan sumber pertama lead untuk atribusi). Pesanan yang dibatalkan atau dikembalikan penuh menandai tautan `reversal_pending` lewat tiga konsumer (pesanan dibatalkan, refund terselesaikan, pembayaran dibalik manual) yang berjalan sebagai role worker (yang tidak punya hak atas tabel `crm_leads`); orang yang menerapkan pembalikannya. Lihat ADR untuk batas yang tersisa (D5) dan `docs/api.id.md`.
+
+## Kontrak KPI CRM: funnel lead, konversi, atribusi, dan SLA staf ([`crm-kpi-contract.md`](crm-kpi-contract.id.md), issue #464)
+
+Dispesifikasikan, **belum dibangun; menunggu persetujuan pemilik.** Kontrak KPI berversi (`1.0.0-draft`) mendefinisikan funnel lead dari kategori tahap `crm_leads`, konversi dari fakta commerce terverifikasi issue #463, atribusi kampanye sentuhan pertama dengan lookback bawaan 90 hari, SLA respons pertama staf dalam menit kerja dari stempel waktu yang dicatat inbox sendiri, penyebut, penekanan penyebut nol dan sel kecil (di bawah lima), tanpa PII di agregat, CSV aman-formula lewat `csvCellForWrite`, dan kumpulan bentuk respons usulan yang sengaja **tidak** ada di dokumen OpenAPI. **Belum ada:** setiap proyeksi, rute, ekspor, dan dasbor pemilik menunggu persetujuan pemilik (daftar periksa S1 sampai S15 di kontrak); KPI SLA dan tindak lanjut juga menunggu upstream menerbitkan event atau port baca untuk respons inbox dan hasil tindak lanjut, dan rincian alasan hilang menunggu katalog kode alasan tertutup di `crm_leads`.
 
 ## Buku besar poin loyalitas (ADR-0026)
 
