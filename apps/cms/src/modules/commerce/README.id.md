@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:630e8d28a9fe5defd6cb420b2e9ddd6717355a4d3084d961a629a1ea845696dd -->
+<!-- i18n-source-hash: sha256:832682b529c54c4203772467045181e06beed13721a5ae67d4f0be8297441e7e -->
 
 # `commerce`
 
@@ -1943,6 +1943,6 @@ Engine subject-data upstream tidak bisa mengikat pelanggan commerce (ADR-0016 D1
 - **Domain**: `domain/crm-lead-link.ts` (referensi buram, aturan bukti, mesin status, validator permintaan) dan `domain/crm-lead-link-lifecycle.ts` (deskriptor retensi dan subject-data).
 - **Aplikasi**: `application/crm-lead-link-directory.ts` (tautkan, daftar, balik, dan dua fungsi penanda) dan `application/crm-lead-link-http.ts` (otorisasi kedua dan pemetaan respons). Port disuntikkan oleh composition root `src/lib/composition/crm-lead-port.ts`, yang hanya diimpor dua rute (`tests/commerce-crm-lead-boundary.test.ts`).
 - **Rute**: `crm-lead-links` (`GET`, `POST`) dan `crm-lead-links/{id}/reverse`. Migrasi `sql/1068` (tabel: id lead buram, RLS FORCE, trigger penjaga, tanpa hapus, grant worker sempit) dan `sql/1069` (izin).
-- **Konsumer**: `commerce.order_cancelled_crm_lead_link_flagger` dan `commerce.refund_settled_crm_lead_link_flagger` menandai tautan `reversal_pending`; keduanya berjalan sebagai worker, yang tidak memegang apa pun atas tabel CRM, sehingga orang yang menerapkan pembalikannya.
+- **Konsumer**: `commerce.order_cancelled_crm_lead_link_flagger`, `commerce.refund_settled_crm_lead_link_flagger` dan `commerce.payment_reversed_crm_lead_link_flagger` menandai tautan `reversal_pending`; keduanya berjalan sebagai worker, yang tidak memegang apa pun atas tabel `crm_leads`, sehingga orang yang menerapkan pembalikannya.
 - **Event**: `awcms.commerce.customer.registered` (dari `tryCreateAccountForCustomer`) dan `awcms.commerce.customer.converted`.
 - **Belum ada**: rekonsiliator terjadwal untuk pembalikan tertunda, layar admin (ketiga kunci ada di `NOT_YET_SCREENED`), kondisi segmen atau kampanye atas tautan. Suite berbasis DB `commerce-crm-lead-link.integration.test.ts` tidak dijalankan di tempat penulisannya.

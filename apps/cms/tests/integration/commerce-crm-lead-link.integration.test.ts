@@ -65,10 +65,12 @@ import { withTenantOrThrow } from "../../src/lib/database/tenant-context";
 import { grantRolePolicy } from "../../src/modules/identity-access/application/access-policy-writer";
 import {
   flagCrmLeadLinksForCancelledOrder,
+  flagCrmLeadLinksForReversedPayment,
   flagCrmLeadLinksForSettledRefund
 } from "../../src/modules/commerce/application/crm-lead-link-directory";
 import { POST as authLogin } from "../../src/pages/api/v1/auth/login";
 import { POST as setupInitialize } from "../../src/pages/api/v1/setup/initialize";
+import { createTenantWithOwner } from "../../src/modules/tenant-admin/application/platform-bootstrap";
 import { PATCH as patchSettings } from "../../src/pages/api/v1/crm-leads/settings";
 import { POST as createPipeline } from "../../src/pages/api/v1/crm-leads/pipelines/index";
 import { POST as createLead } from "../../src/pages/api/v1/crm-leads/leads/index";
@@ -109,27 +111,17 @@ let B: Tenant;
 
 const nextKey = () => `idem-${(keyCounter += 1)}-${crypto.randomUUID()}`;
 
-async function bootstrap(
-  tenantName: string,
-  tenantCode: string,
-  login: string
-): Promise<Tenant> {
-  const setup = await invoke<{ data: { tenantId: string } }>(setupInitialize, {
-    method: "POST",
-    path: "/api/v1/setup/initialize",
-    headers: { "content-type": "application/json" },
-    body: {
-      tenantName,
-      tenantCode,
-      officeCode: "hq",
-      officeName: "HQ",
-      ownerLoginIdentifier: login,
-      ownerPassword: OWNER_PASSWORD,
-      ownerDisplayName: "Owner"
-    }
-  });
-  expect(setup.status).toBe(200);
-  const tenantId = setup.body.data.tenantId;
+const SETUP_BODY = (tenantName: string, tenantCode: string, login: string) => ({
+  tenantName,
+  tenantCode,
+  officeCode: "hq",
+  officeName: "HQ",
+  ownerLoginIdentifier: login,
+  ownerPassword: OWNER_PASSWORD,
+  ownerDisplayName: "Owner"
+});
+
+async function loginOwner(tenantId: string, login: string): Promise<Tenant> {
   const session = await invoke<{ data: { token: string } }>(authLogin, {
     method: "POST",
     path: "/api/v1/auth/login",
@@ -142,6 +134,40 @@ async function bootstrap(
   });
   expect(session.status).toBe(200);
   return { tenantId, token: session.body.data.token };
+}
+
+/** The first tenant goes through the setup wizard, which claims the setup state once. */
+async function bootstrap(
+  tenantName: string,
+  tenantCode: string,
+  login: string
+): Promise<Tenant> {
+  const setup = await invoke<{ data: { tenantId: string } }>(setupInitialize, {
+    method: "POST",
+    path: "/api/v1/setup/initialize",
+    headers: { "content-type": "application/json" },
+    body: SETUP_BODY(tenantName, tenantCode, login)
+  });
+  expect(setup.status).toBe(200);
+  return loginOwner(setup.body.data.tenantId, login);
+}
+
+/**
+ * Every further tenant is provisioned the way platform provisioning does it
+ * (`createTenantWithOwner`): `/setup/initialize` answers 403 once the setup
+ * state is claimed, so a second call through it is not a fixture.
+ */
+async function provisionTenant(
+  tenantName: string,
+  tenantCode: string,
+  login: string
+): Promise<Tenant> {
+  const created = await admin().begin((tx) =>
+    createTenantWithOwner(tx, SETUP_BODY(tenantName, tenantCode, login), {
+      grantPlatformScope: false
+    })
+  );
+  return loginOwner(created.tenantId, login);
 }
 
 async function seedUser(
@@ -370,7 +396,7 @@ suite("commerce CRM lead link (Issue #463)", () => {
     process.env.CRM_LEADS_HASH_KEYS = `h1:${HASH_KEY}`;
     await resetHandlerDatabase();
     A = await bootstrap("Tenant A", "tenant-a", "owner-a@example.com");
-    B = await bootstrap("Tenant B", "tenant-b", "owner-b@example.com");
+    B = await provisionTenant("Tenant B", "tenant-b", "owner-b@example.com");
     operator = await seedUser(A.tenantId, "operator", [
       "commerce.crm_lead_links.read",
       "commerce.crm_lead_links.create",
@@ -503,7 +529,10 @@ suite("commerce CRM lead link (Issue #463)", () => {
   test("a paid order converts, replays idempotently, and its evidence cannot convert another lead", async () => {
     if (!handlerReady) return;
     const pipeline = await enableCrm(A);
-    const lead = await newLead(A, pipeline, { kind: "api" });
+    const lead = await newLead(A, pipeline, {
+      kind: "api",
+      externalEventId: "evt-463-api-1"
+    });
     const second = await newLead(A, pipeline, { kind: "manual" });
     const customerId = await seedCustomer(A.tenantId, {
       verifiedAccount: false
@@ -662,6 +691,94 @@ suite("commerce CRM lead link (Issue #463)", () => {
     await expect(
       admin()`UPDATE awcms_commerce_crm_lead_links SET state = 'linked' WHERE id = ${linkId}`
     ).rejects.toThrow();
+  });
+
+  test("an erased shopper is refused as paid_order evidence, and a fully returned order is not paid evidence", async () => {
+    if (!handlerReady) return;
+    const pipeline = await enableCrm(A);
+    const lead = await newLead(A, pipeline);
+    const customerId = await seedCustomer(A.tenantId, {
+      verifiedAccount: false
+    });
+    const orderId = await seedOrder(A.tenantId, customerId, {
+      status: "paid",
+      paymentStatus: "paid"
+    });
+    await admin()`
+      UPDATE awcms_commerce_customers SET erased_at = now()
+      WHERE tenant_id = ${A.tenantId} AND id = ${customerId}
+    `;
+    const res = await link(
+      A,
+      {
+        leadId: lead.id,
+        customerId,
+        evidenceKind: "paid_order",
+        orderId,
+        expectedVersion: lead.version
+      },
+      operator.token
+    );
+    expect(res.status).toBe(409);
+    expect(res.body.error?.code).toBe("CRM_EVIDENCE_NOT_VERIFIED");
+    expect(res.body.error?.details.reason).toBe("customer_erased");
+    expect(
+      await admin()`SELECT 1 FROM awcms_commerce_crm_lead_links`
+    ).toHaveLength(0);
+  });
+
+  test("a payment reversed by hand to refunded flags the link; a still-paid order does not", async () => {
+    if (!handlerReady) return;
+    const pipeline = await enableCrm(A);
+    const lead = await newLead(A, pipeline);
+    const customerId = await seedCustomer(A.tenantId, {
+      verifiedAccount: true
+    });
+    const orderId = await seedOrder(A.tenantId, customerId, {
+      status: "paid",
+      paymentStatus: "paid"
+    });
+    const made = await link(
+      A,
+      {
+        leadId: lead.id,
+        customerId,
+        evidenceKind: "paid_order",
+        orderId,
+        expectedVersion: lead.version
+      },
+      operator.token
+    );
+    expect(made.status).toBe(201);
+
+    const flag = () =>
+      withTenantOrThrow(getHandlerDatabaseClient(), A.tenantId, (tx) =>
+        flagCrmLeadLinksForReversedPayment(
+          tx,
+          A.tenantId,
+          orderId,
+          crypto.randomUUID(),
+          "corr-reversal"
+        )
+      );
+    expect(await flag()).toEqual({
+      kind: "skipped",
+      reason: "still_paid_or_partial"
+    });
+
+    await admin()`
+      UPDATE awcms_commerce_orders SET payment_status = 'refunded'
+      WHERE tenant_id = ${A.tenantId} AND id = ${orderId}
+    `;
+    expect(await flag()).toEqual({ kind: "flagged", count: 1 });
+    const state = (await admin()`
+      SELECT state, reversal_cause FROM awcms_commerce_crm_lead_links
+      WHERE id = ${made.body.data.id}
+    `) as { state: string; reversal_cause: string }[];
+    expect(state[0]).toEqual({
+      state: "reversal_pending",
+      reversal_cause: "order_refunded"
+    });
   });
 
   test("a refund of an unknown or unsettled return flags nothing", async () => {

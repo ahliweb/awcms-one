@@ -4242,7 +4242,12 @@ paths:
         published. A replay with the same evidence answers `200` with the
         existing link and publishes nothing; the same evidence naming another
         lead or customer is `409 CRM_EVIDENCE_REUSED`. A lead or customer of
-        another tenant is the same `404` as a missing one.
+        another tenant is the same `404` as a missing one. An erased customer,
+        or an order whose every line was returned, is `409
+        CRM_EVIDENCE_NOT_VERIFIED`. This operation does NOT honour an
+        `Idempotency-Key` header (ADR-0145 does not apply): the evidence
+        reference is the idempotency key, so a replay is recognised from the
+        evidence alone.
       requestBody:
         required: true
         content:

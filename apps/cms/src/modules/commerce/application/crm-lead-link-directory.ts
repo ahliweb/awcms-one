@@ -169,6 +169,32 @@ async function findLinkByEvidence(
   return rows[0] ?? null;
 }
 
+/** Ordered vs returned quantity per line, across completed returns. */
+async function readReturnLines(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<{ ordered: number; returned: number }[]> {
+  const lines = (await tx`
+    SELECT oi.quantity::int AS ordered,
+           COALESCE(SUM(rl.quantity), 0)::int AS returned
+    FROM awcms_commerce_order_items oi
+    LEFT JOIN (
+      SELECT rl2.tenant_id, rl2.order_item_id, rl2.quantity
+      FROM awcms_commerce_return_lines rl2
+      JOIN awcms_commerce_returns r
+        ON r.tenant_id = rl2.tenant_id AND r.id = rl2.return_id
+           AND r.status = 'completed'
+    ) rl ON rl.tenant_id = oi.tenant_id AND rl.order_item_id = oi.id
+    WHERE oi.tenant_id = ${tenantId} AND oi.order_id = ${orderId}
+    GROUP BY oi.id, oi.quantity
+  `) as { ordered: number; returned: number }[];
+  return lines.map((line) => ({
+    ordered: Number(line.ordered),
+    returned: Number(line.returned)
+  }));
+}
+
 /**
  * Read the commerce fact the conversion rests on. A customer that does not exist
  * in the tenant, or an order that is not that customer's, is a refusal of its own
@@ -213,19 +239,28 @@ async function verifyEvidence(
       SELECT customer_id, status, payment_status, deleted_at
       FROM awcms_commerce_orders
       WHERE tenant_id = ${tenantId} AND id = ${input.orderId}
+      FOR SHARE
     `) as OrderRow[];
     const order = orders[0];
     if (!order) {
       return { ok: false, refusal: { kind: "order_not_found" } };
     }
+    // FOR SHARE above: a cancellation or refund of this order cannot commit
+    // between this read and our commit, so the flaggers always find the link.
+    const fullyReturned = orderEvidenceIsReverted({
+      status: "completed",
+      lines: await readReturnLines(tx, tenantId, input.orderId!)
+    }).reverted;
     verdict = verifyPaidOrderEvidence(
       {
         customerId: order.customer_id,
         status: order.status,
         paymentStatus: order.payment_status,
-        deleted: order.deleted_at !== null
+        deleted: order.deleted_at !== null,
+        fullyReturned
       },
-      customer.id
+      customer.id,
+      customer.erased_at !== null
     );
   }
 
@@ -512,7 +547,7 @@ export type FlagResult =
 /**
  * Mark every `linked` link that rests on `orderId` as `reversal_pending`. Runs as
  * `awcms_worker` (a domain-event consumer), which holds no privilege on any
- * `awcms_crm_*` table, so it cannot reverse a conversion; a person does, through
+ * `crm_leads` table, so it cannot reverse a conversion; a person does, through
  * `reverseCrmLeadLink`. Idempotent: only `linked` rows move.
  */
 export async function flagLinksForOrder(
@@ -628,27 +663,9 @@ export async function flagCrmLeadLinksForSettledRefund(
     return { kind: "skipped", reason: "no_live_link" };
   }
 
-  const lines = (await tx`
-    SELECT oi.quantity::int AS ordered,
-           COALESCE(SUM(rl.quantity), 0)::int AS returned
-    FROM awcms_commerce_order_items oi
-    LEFT JOIN (
-      SELECT rl2.tenant_id, rl2.order_item_id, rl2.quantity
-      FROM awcms_commerce_return_lines rl2
-      JOIN awcms_commerce_returns r
-        ON r.tenant_id = rl2.tenant_id AND r.id = rl2.return_id
-           AND r.status = 'completed'
-    ) rl ON rl.tenant_id = oi.tenant_id AND rl.order_item_id = oi.id
-    WHERE oi.tenant_id = ${tenantId} AND oi.order_id = ${ret.order_id}
-    GROUP BY oi.id, oi.quantity
-  `) as { ordered: number; returned: number }[];
-
   const verdict = orderEvidenceIsReverted({
     status: "completed",
-    lines: lines.map((line) => ({
-      ordered: Number(line.ordered),
-      returned: Number(line.returned)
-    }))
+    lines: await readReturnLines(tx, tenantId, ret.order_id)
   });
   if (!verdict.reverted || verdict.cause === null) {
     return { kind: "skipped", reason: "partial_return" };
@@ -660,6 +677,45 @@ export async function flagCrmLeadLinksForSettledRefund(
     tenantId,
     ret.order_id,
     verdict.cause,
+    actor,
+    correlationId
+  );
+}
+
+/**
+ * Consumer body of `payment.reversed`: a payment reversed by hand
+ * (`recordPaymentReversal`) can move the order to `payment_status = 'refunded'`
+ * with no return and no cancellation, so neither other flagger would see it.
+ * Flags only when the order's CURRENT payment status is `refunded` (everything
+ * went back); a partial reversal leaves a real, part-paid sale and the
+ * conversion stands (ADR-0056 D5).
+ */
+export async function flagCrmLeadLinksForReversedPayment(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string,
+  eventId: string,
+  correlationId?: string
+): Promise<FlagResult> {
+  if (!(await hasLiveLinkOnOrder(tx, tenantId, orderId))) {
+    return { kind: "skipped", reason: "no_live_link" };
+  }
+  const rows = (await tx`
+    SELECT payment_status
+    FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId} AND id = ${orderId}
+  `) as { payment_status: string }[];
+  const order = rows[0];
+  if (!order) return { kind: "skipped", reason: "order_not_found" };
+  if (order.payment_status !== "refunded") {
+    return { kind: "skipped", reason: "still_paid_or_partial" };
+  }
+  const actor = await eventActor(tx, tenantId, eventId);
+  return flagLinksForOrder(
+    tx,
+    tenantId,
+    orderId,
+    "order_refunded",
     actor,
     correlationId
   );

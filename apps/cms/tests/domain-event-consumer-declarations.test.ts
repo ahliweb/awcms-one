@@ -269,6 +269,7 @@ describe("buildDomainEventConsumerRegistry", () => {
       "commerce.order_paid_commission_attributor",
       "commerce.order_paid_entitlement_grantor",
       "commerce.order_paid_loyalty_earner",
+      "commerce.payment_reversed_crm_lead_link_flagger",
       "commerce.refund_settled_commission_reverser",
       "commerce.refund_settled_crm_lead_link_flagger",
       // Issue #1165 (ADR-0159): crm_leads events -> follow-up tasks and stops.

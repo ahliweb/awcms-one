@@ -2376,8 +2376,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_customer_subject_requests: ["SELECT"],
   // Issue #463 (sql/1068, ADR-0056 D5): the two CRM lead link flaggers read the
   // links resting on an order; their UPDATE is column-only (see
-  // WORKER_COLUMN_GRANTS). The worker holds no privilege on any `awcms_crm_*`
-  // table (upstream sql/342), so it can flag a link and never reverse a conversion.
+  // WORKER_COLUMN_GRANTS). The worker holds no privilege on the `crm_leads` tables
+  // (`awcms_crm_leads`, `awcms_crm_lead_conversions`; upstream sql/342), so it can flag a link and never reverse a conversion.
   awcms_commerce_crm_lead_links: ["SELECT"],
   awcms_tenant_settings: ["SELECT"],
   awcms_tenant_modules: ["SELECT"],

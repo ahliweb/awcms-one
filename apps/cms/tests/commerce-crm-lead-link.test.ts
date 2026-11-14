@@ -123,6 +123,17 @@ describe("verified evidence", () => {
     expect(reason({ deleted: true })).toBe("order_deleted");
   });
 
+  test("an erased customer is refused for a paid order too, and so is an order whose every line was returned", () => {
+    const erased = verifyPaidOrderEvidence(order, UUID_A, true);
+    expect(erased).toEqual({ verified: false, reason: "customer_erased" });
+    expect(verifyPaidOrderEvidence(order, UUID_A, false)).toEqual({
+      verified: true
+    });
+    expect(
+      verifyPaidOrderEvidence({ ...order, fullyReturned: true }, UUID_A)
+    ).toEqual({ verified: false, reason: "order_fully_returned" });
+  });
+
   test("a registration is a live account with a verified e-mail; a guest row, an unverified, blocked or erased one is not", () => {
     const account = {
       status: "active",
@@ -567,14 +578,16 @@ describe("the module descriptor", () => {
     }
   });
 
-  test("declares two flaggers with the default runtime_effect_once idempotency, on the order and refund events", () => {
+  test("declares three flaggers with the default runtime_effect_once idempotency, on the order, refund and payment-reversal events", () => {
     expect(CRM_LEAD_LINK_CONSUMERS.map((entry) => entry.name)).toEqual([
       "commerce.order_cancelled_crm_lead_link_flagger",
-      "commerce.refund_settled_crm_lead_link_flagger"
+      "commerce.refund_settled_crm_lead_link_flagger",
+      "commerce.payment_reversed_crm_lead_link_flagger"
     ]);
     expect(CRM_LEAD_LINK_CONSUMERS.map((entry) => entry.eventTypes)).toEqual([
       ["awcms.commerce.order.cancelled"],
-      ["awcms.commerce.refund.settled"]
+      ["awcms.commerce.refund.settled"],
+      ["awcms.commerce.payment.reversed"]
     ]);
     const registered = (commerceModule.domainEventConsumers ?? []).map(
       (entry) => entry.name

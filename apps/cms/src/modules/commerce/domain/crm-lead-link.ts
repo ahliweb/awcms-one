@@ -108,6 +108,8 @@ export type OrderEvidenceFacts = {
   status: string;
   paymentStatus: string;
   deleted: boolean;
+  /** Every line is fully returned across completed returns (see `orderEvidenceIsReverted`). */
+  fullyReturned?: boolean;
 };
 
 export type EvidenceVerdict =
@@ -115,8 +117,13 @@ export type EvidenceVerdict =
 
 export function verifyPaidOrderEvidence(
   order: OrderEvidenceFacts,
-  customerId: string
+  customerId: string,
+  customerErased = false
 ): EvidenceVerdict {
+  // An anonymised shopper (ADR-0055) is never confirmed through any evidence kind:
+  // linking a lead that still holds a prospect's contact to an erased customer
+  // would re-identify the shopper.
+  if (customerErased) return { verified: false, reason: "customer_erased" };
   if (order.deleted) return { verified: false, reason: "order_deleted" };
   if (order.customerId !== customerId) {
     // The caller names the customer; the order must be that customer's own.
@@ -127,6 +134,12 @@ export function verifyPaidOrderEvidence(
   }
   if (!PAID_ORDER_STATUSES.includes(order.status)) {
     return { verified: false, reason: "order_not_active" };
+  }
+  if (order.fullyReturned) {
+    // Paid on the ledger but every line went back (goods or exchange rather than
+    // a ledger reversal): its refund.settled fired before any link existed, so
+    // no flagger would ever correct a link made now.
+    return { verified: false, reason: "order_fully_returned" };
   }
   return { verified: true };
 }

@@ -245,6 +245,7 @@ import {
   COMMERCE_CUSTOMER_CONVERTED_EVENT_TYPE,
   COMMERCE_ORDER_CANCELLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
   COMMERCE_REFUND_SETTLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
+  COMMERCE_PAYMENT_REVERSED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
   COMMERCE_CUSTOMER_PUSH_ENQUEUER_CONSUMER_NAME,
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
@@ -727,6 +728,24 @@ export const CRM_LEAD_LINK_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { flagCrmLeadLinksForSettledRefund } =
         await import("./application/crm-lead-link-directory");
       await flagCrmLeadLinksForSettledRefund(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        event.id,
+        ctx.correlationId
+      );
+    }
+  },
+  {
+    name: COMMERCE_PAYMENT_REVERSED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
+    description:
+      "commerce module consumer - when a payment is reversed by hand and the order's payment status is now refunded (no return, no cancellation), marks every live CRM lead link that rests on that order as reversal_pending; a partial reversal flags nothing; only flags, never reverses (Issue #463, ADR-0056 D5).",
+    eventTypes: [COMMERCE_PAYMENT_REVERSED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { flagCrmLeadLinksForReversedPayment } =
+        await import("./application/crm-lead-link-directory");
+      await flagCrmLeadLinksForReversedPayment(
         tx,
         ctx.tenantId,
         event.aggregateId,

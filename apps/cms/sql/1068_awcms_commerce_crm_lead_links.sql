@@ -37,7 +37,7 @@
 --
 -- `linked` -> `reversal_pending` (the evidence order was cancelled or fully
 -- refunded: set by a domain-event consumer running as `awcms_worker`, which holds
--- NO privilege on any `awcms_crm_*` table by upstream design, so it can only FLAG
+-- NO privilege on the `crm_leads` tables (`awcms_crm_leads`, `awcms_crm_lead_conversions`) by upstream design, so it can only FLAG
 -- the link) -> `reversed` (a person with the CRM approval permission applied the
 -- reversal through the port). A person may also reverse a `linked` row directly.
 -- `reversed` is final. A row is never deleted by anyone (a guard trigger refuses
