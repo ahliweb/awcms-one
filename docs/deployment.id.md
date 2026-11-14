@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:a95e0ffe4d9c09895a130af3c5f75b51859eca15983167206a75c36d273bd736 -->
+<!-- i18n-source-hash: sha256:5d6b0b36576b4e99a7ec9f2799375d52364735d2b92a4501955d770b7efed6f5 -->
 
 # Deployment
 
@@ -489,12 +489,12 @@ Ini runbook penerimaan sisi commerce untuk produk yang tenant-nya memilih **Star
 
 **Apa itu StarSender, dengan kata-kata yang harus diulang operator.** StarSender adalah gateway WhatsApp **tidak resmi**. Ia tidak bersertifikat Meta, sebuah nomor dapat dibatasi atau diblokir, dan jawaban `success` hanya berarti StarSender menerima permintaan. AWCMS tidak pernah melaporkan pesan seperti itu sebagai terkirim atau terbaca. Jangan menyebutnya kepada tenant sebagai resmi, aman, atau bebas blokir. Meta Cloud API adalah kanal resmi dengan aturan lebih ketat: nomor Meta milik tenant hanya mengirim template yang disetujui pada WABA-nya sendiri, dan teks bebas hanya di dalam jendela layanan pelanggan 24 jam.
 
-**Batas commerce yang diketahui.** Empat template commerce (`commerce.customer_otp`, `commerce.order_paid`, `commerce.campaign`, `commerce.document`) belum membawa template penyedia Meta, sehingga tenant yang defaultnya **nomor Meta milik tenant** akan melihat setiap pesan commerce ditolak dengan `TEMPLATE_NOT_APPROVED` sampai itu ditambahkan (sementara gunakan perangkat StarSender atau pengirim deployment). Commerce **tidak** meneruskan `senderAccountId`: setiap pesan commerce memakai kebijakan pengirim default tenant. Memilih pengirim per kampanye adalah issue #458 dan **tertunda**: baris kampanye multi-pengirim di bawah belum dapat diuji.
+**Batas commerce yang diketahui.** Empat template commerce (`commerce.customer_otp`, `commerce.order_paid`, `commerce.campaign`, `commerce.document`) belum membawa template penyedia Meta, sehingga tenant yang defaultnya **nomor Meta milik tenant** mendapat pemisahan berikut dari `decideMetaSend` upstream: `commerce.campaign` (pemasaran) ditolak dengan `TEMPLATE_NOT_APPROVED`, sedangkan `commerce.customer_otp`, `commerce.order_paid` dan `commerce.document` ditolak dengan `OUTSIDE_SERVICE_WINDOW` kecuali pembeli menulis ke nomor itu dalam 24 jam terakhir, dan dalam kasus itu ketiganya **dikirim sebagai pesan sesi teks bebas** (jadi OTP dan pemberitahuan pesanan dapat keluar lewat nomor Meta). Operator yang tidak menginginkannya jangan menjadikan nomor Meta sebagai default tenant (gunakan perangkat StarSender atau pengirim deployment). Commerce **tidak** meneruskan `senderAccountId`: setiap pesan commerce memakai kebijakan pengirim default tenant. Memilih pengirim per kampanye adalah issue #458 dan **tertunda**: baris kampanye multi-pengirim di bawah belum dapat diuji.
 
 ### 1. Prasyarat (staging, bukan deployment referensi)
 
 1. Tenant staging dalam mode `upstream` (cutover di atas), dengan basis data staging. Jangan pernah mendaftarkan perangkat, token, atau data pelanggan asli sebuah produk di deployment referensi repositori ini ([ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)).
-2. `WHATSAPP_ENABLED=true`, `WHATSAPP_RECIPIENT_HASH_KEYS`, `CHANNEL_ACCOUNTS_ENABLED=true`, dan `CHANNEL_SECRETS_ENCRYPTION_KEYS` di environment **CMS dan** sidecar jobs (`whatsapp:dispatch`). Key ring hanya sampai ke dispatcher; lihat `apps/cms/.env.example`.
+2. `WHATSAPP_ENABLED=true`, `WHATSAPP_RECIPIENT_HASH_KEYS`, `CHANNEL_ACCOUNTS_ENABLED=true`, dan `CHANNEL_SECRETS_ENCRYPTION_KEYS` di environment **CMS dan** sidecar jobs (`whatsapp:dispatch`). Proses web CMS memerlukan key ring untuk menulis kredensial, dan upstream membatasi ring itu ke empat job (`channel-accounts:secrets:rekey`, `telegram-engagement:dispatch`, `social-publishing:dispatch`, `whatsapp:dispatch`); lihat `apps/cms/.env.example`.
 3. Khusus StarSender: `WHATSAPP_STARSENDER_ENABLED=true` di kedua environment yang sama. Mati adalah default dan keadaan aman.
 
 ### 2. Pengakuan risiko (StarSender)

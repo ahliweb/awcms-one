@@ -6,7 +6,7 @@
  * every derivation. StarSender is an unofficial gateway and is off unless an
  * operator turns it on AND a tenant acknowledges its risk. So:
  *
- *   1. In the template itself, no env example, compose file or script assigns
+ *   1. In the template itself, no env example, compose file, shell script, Dockerfile or ops host file assigns
  *      `WHATSAPP_PROVIDER=starsender` or `WHATSAPP_STARSENDER_ENABLED=true`, and
  *      no provider key is committed.
  *   2. After `template:init` for EACH of the three profiles (in a throwaway copy),
@@ -51,14 +51,14 @@ const describe = PKG_NAME === "awcms-one" ? bunDescribe : bunDescribe.skip;
 
 /** Assignments that would switch a derivation onto StarSender (commented-out `# NAME=...` lines are documentation, not configuration). */
 const FORBIDDEN_ASSIGNMENTS = [
-  /^\s*(?:-\s*)?(?:export\s+)?WHATSAPP_PROVIDER\s*[=:]\s*["']?starsender/im,
-  /^\s*(?:-\s*)?(?:export\s+)?WHATSAPP_STARSENDER_ENABLED\s*[=:]\s*["']?true/im,
-  /^\s*(?:-\s*)?(?:export\s+)?COMMERCE_WHATSAPP_PROVIDER\s*[=:]\s*["']?starsender/im,
+  /^\s*(?:-\s*)?(?:export\s+)?WHATSAPP_PROVIDER\s*[=:]\s*["']?(?:\$\{[A-Z0-9_]+:?-)?starsender/im,
+  /^\s*(?:-\s*)?(?:export\s+)?WHATSAPP_STARSENDER_ENABLED\s*[=:]\s*["']?(?:\$\{[A-Z0-9_]+:?-)?true/im,
+  /^\s*(?:-\s*)?(?:export\s+)?COMMERCE_WHATSAPP_PROVIDER\s*[=:]\s*["']?(?:\$\{[A-Z0-9_]+:?-)?starsender/im,
 ];
 
 /** A provider key or token with a value: `NAME=<non-empty>` for any WhatsApp provider secret. */
 const PROVIDER_KEY_ASSIGNMENT =
-  /^\s*(?:-\s*)?(?:export\s+)?((?:WHATSAPP|COMMERCE_WHATSAPP|COMMERCE_FONNTE|COMMERCE_META_WA|STARSENDER|FONNTE)[A-Z0-9_]*(?:TOKEN|API_KEY|DEVICE_KEY|SECRET)[A-Z0-9_]*)\s*[=:]\s*["']?([^\s"'#]+)/gim;
+  /^\s*(?:-\s*)?(?:export\s+)?((?:WHATSAPP|COMMERCE_WHATSAPP|COMMERCE_FONNTE|COMMERCE_META_WA|STARSENDER|FONNTE)[A-Z0-9_]*(?:TOKEN|API_KEY|DEVICE_KEY|SECRET)[A-Z0-9_]*)\s*[=:]\s*["']?(?:\$\{[A-Z0-9_]+:?-)?([^\s"'#}]+)/gim;
 
 const ENV_LIKE = /(^|\/)(\.env(\.[a-z]+)?|compose(\.[a-z]+)?\.ya?ml)$/;
 
@@ -75,9 +75,16 @@ function listFiles(root) {
     .filter((file) => existsSync(join(root, file)));
 }
 
+/** Shell scripts, Dockerfiles and ops host files assign environment too; tests and this file only mention the names. */
+const SCRIPT_LIKE =
+  /(^|\/)(Dockerfile[^/]*|[^/]+\.sh|ops\/[^/]+\.(?:env[^/]*|service|timer|cron[^/]*))$/;
+
 function configFiles(root) {
   return listFiles(root).filter(
-    (file) => ENV_LIKE.test(file) || file.endsWith(".env.example"),
+    (file) =>
+      ENV_LIKE.test(file) ||
+      file.endsWith(".env.example") ||
+      SCRIPT_LIKE.test(file),
   );
 }
 
@@ -93,7 +100,8 @@ function scanConfig(root, files) {
     }
 
     for (const match of text.matchAll(PROVIDER_KEY_ASSIGNMENT)) {
-      // `${VAR}` / `$VAR` interpolation and the literal `changeme`-style placeholders carry no key.
+      // Plain `${VAR}` / `$VAR` interpolation (no default) and `changeme`-style placeholders carry no key.
+      // A `${VAR:-default}` default IS a value and is checked like any other (the regex captured it).
       if (
         /^\$\{?[A-Z_]+/.test(match[2]) ||
         /^(changeme|change-me|replace-me|your-|<)/i.test(match[2])
@@ -264,6 +272,19 @@ describe("template:init leaves every profile provider-neutral", () => {
 
         expect(siteTs).toContain("contactPhone: null,");
         expect(siteTs.toLowerCase()).not.toContain("starsender");
+
+        // Broad scan: no rewritten config file or neutral seed file carries a phone number.
+        for (const file of [
+          ...configFiles(dir),
+          ...listFiles(dir).filter((f) =>
+            f.startsWith("tools/seed-data/profil/"),
+          ),
+        ]) {
+          expect(
+            scanForPii(readFileSync(join(dir, file), "utf8")).phones,
+            `${file} carries a phone number after init`,
+          ).toEqual([]);
+        }
       }, 120000);
     }
   }

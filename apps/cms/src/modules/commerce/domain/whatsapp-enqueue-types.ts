@@ -33,14 +33,16 @@ export type EnqueueWhatsappMessageInput = {
  * The three sender-aware reasons (`SENDER_UNAVAILABLE`, `SENDER_AFFINITY_CONFLICT`,
  * `REPLY_TARGET_UNKNOWN`, port 1.1.0, upstream awcms#1230) are in the union so the
  * adapter's `satisfies` check stays total. Commerce never passes `senderAccountId`,
- * `inReplyToMessageId` or `businessScope`, so it does not receive them today; if one
- * ever arrives it is a sending-side refusal (`TEMPLATE_UNAVAILABLE`), never a recipient one.
+ * `inReplyToMessageId` or `businessScope`, but `SENDER_UNAVAILABLE` still reaches it
+ * through the tenant's default-sender policy (an unusable default device is refused,
+ * never rerouted); `SENDER_AFFINITY_CONFLICT` and `REPLY_TARGET_UNKNOWN` need a caller-supplied
+ * input and do not arrive today. All are sending-side refusals (`TEMPLATE_UNAVAILABLE`), never recipient ones.
  *
  * The four reasons of the 14 November 2026 sync (port 1.3.0, upstream awcms#1231 M4 and
  * #1143) are in the union for the same reason: `CONSENT_SCOPE_REQUIRED`,
  * `BUSINESS_SCOPE_UNRESOLVED` (marketing only, which commerce does not send through this
  * adapter), `TEMPLATE_NOT_APPROVED` and `OUTSIDE_SERVICE_WINDOW` (a tenant-owned Meta
- * number, which commerce never selects). `CONSENT_SCOPE_REQUIRED` is a recipient-side
+ * number, which a tenant may set as its default; commerce itself never selects one). `CONSENT_SCOPE_REQUIRED` is a recipient-side
  * consent refusal; the other three are sending-side.
  */
 export type WhatsappNotQueuedReason =

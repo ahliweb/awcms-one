@@ -22,9 +22,11 @@
  *     never the number, the device key or the device's external id.
  *
  * Not covered here, on purpose: campaign sender selection (blocked on #458,
- * `docs/deployment.md` lists the pending rows) and Meta numbers (a tenant-owned
- * Meta number sends only provider-approved templates, which commerce's four
- * templates do not carry).
+ * `docs/deployment.md` lists the pending rows) and Meta numbers (commerce's four
+ * templates carry no `providerTemplate`, so a tenant-owned Meta number gets upstream's
+ * `decideMetaSend` split: marketing is `TEMPLATE_NOT_APPROVED`, the other three are
+ * `OUTSIDE_SERVICE_WINDOW` or sent as free-text session messages inside the 24-hour
+ * window; that is upstream's tested behaviour).
  *
  * Gated on `DATABASE_URL` (harness). FIXTURES ARE NOT LIVE TRAFFIC: the phone
  * number is reserved-format fake, every token is a fixture string, the provider is
@@ -460,9 +462,14 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
       mockDispatchOptions(sent, built)
     );
 
-    expect(sent.map((entry) => entry.senderAccountId).sort()).toEqual(
-      [s1.id, s2.id].sort()
-    );
+    expect(sent).toHaveLength(2);
+    // Each row went through ITS OWN sender (matched by recipient), not swapped.
+    expect(
+      sent.find((entry) => entry.request.to === PHONE)?.senderAccountId
+    ).toBe(s1.id);
+    expect(
+      sent.find((entry) => entry.request.to === PHONE_2)?.senderAccountId
+    ).toBe(s2.id);
   });
 
   test("a default sender that is not usable refuses the commerce message and reroutes to no other device or provider", async () => {
@@ -499,7 +506,41 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
 
     expect(control).toMatchObject({ outcome: "set" });
     expect((await commerceEnqueue(TENANT_A, PHONE_2)).enqueued).toBe(true);
+    expect(await queueCount(TENANT_A)).toBe(1);
+  });
+
+  test("a row queued with S1 whose device is later revoked is never rerouted to another device or the deployment provider at dispatch", async () => {
+    await requireWorkerRole();
+
+    const s1 = await seedDevice(TENANT_A, userA);
+    const s2 = await seedDevice(TENANT_A, userA);
+
+    await setDefault(TENANT_A, userA, s1.id);
+
+    const queued = await commerceEnqueue(TENANT_A);
+
+    expect(queued.enqueued).toBe(true);
+    expect((await messageRow(queued.id)).sender_account_id).toBe(s1.id);
+
+    // S1 is blocked after queueing; S2 is healthy and would be a tempting fallback.
+    await getAdminSql()`
+      UPDATE awcms_channel_accounts SET status = 'revoked' WHERE id = ${s1.id}
+    `;
+
+    const sent: Sent[] = [];
+    const built: BuildSenderProviderInput[] = [];
+
+    await dispatchWhatsappQueue(
+      getWorkerRoleSql(),
+      TENANT_A,
+      mockDispatchOptions(sent, built)
+    );
+
+    // Whatever upstream does with the row (hold or fail), it is never sent through S2 or the deployment provider.
+    expect(sent.some((entry) => entry.senderAccountId === s2.id)).toBe(false);
+    expect(sent.some((entry) => entry.senderAccountId === null)).toBe(false);
     expect(built.some((input) => input.sender.accountId === s2.id)).toBe(false);
+    expect((await messageRow(queued.id)).sender_account_id).toBe(s1.id);
   });
 
   test("fails closed when the StarSender adapter is switched off: a default pointing at a device refuses instead of falling back to the deployment provider", async () => {
@@ -629,6 +670,8 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
       `
     ]);
 
+    // Non-vacuous: the queued/sent events carry the masked recipient, so the negatives below mean something.
+    expect(evidence).toContain(row.recipient_masked);
     expect(evidence).not.toContain(PHONE);
     expect(evidence).not.toContain(PHONE.slice(1));
     expect(evidence).not.toContain(s1.token);
