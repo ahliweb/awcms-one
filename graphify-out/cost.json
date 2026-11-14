@@ -126,6 +126,12 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "mode": "code-only"
+    },
+    {
+      "date": "2026-11-14T15:29:23.719Z",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "mode": "code-only"
     }
   ],
   "total_input_tokens": 0,
