@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:d5cc7f7364a7f1a75134aa5ea1cff60ada6082c56fc84b32632e22ae0c685d7f -->
+<!-- i18n-source-hash: sha256:378a8cf46503c123fb7edfeb154e1b3ed4467d601dedca005674408861dad22e -->
 
 # Status
 
@@ -237,6 +237,7 @@ Dibangun, di balik dua saklar yang keduanya mati secara bawaan: flag build store
 
 ## Belum ada — daftar singkat
 
+- Proyeksi KPI CRM dan dasbor pemilik (funnel lead, konversi terverifikasi, atribusi sentuhan pertama, SLA respons pertama staf): hanya kontrak draf [`crm-kpi-contract.id.md`](crm-kpi-contract.id.md) yang ada (isu #464); tidak ada proyeksi, rute, ekspor, atau layar yang dibangun sampai pemilik menuntaskan daftar periksa persetujuannya (S1 sampai S15), dan bagian SLA juga menunggu upstream memberi inbox instan penerimaan yang dapat di-replay (Q1).
 - Web Push pelanggan: **perangkat, persetujuan, tabel outbox, rute pelanggan, diagnostik staf, dan job pemeliharaan sudah dibangun (issue #430)**; UI storefront dan service worker juga sudah dibangun (issue #431, di balik flag build `PUBLIC_CUSTOMER_PUSH`, dengan UAT perangkat dan tinjauan penasihat hukum masih tertunda), begitu pula konsumen dan job pengiriman (#432), yang belum dicoba terhadap layanan push sungguhan: tes penerimaan itu memerlukan pasangan VAPID asli dan peramban di host tepercaya, dan belum ada deployment yang menyalakan flag. [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) berstatus **Diterima**; flag `customerPush` mati secara default dan aktivasi produksi tetap dihalangi (tinjauan penasihat hukum atas teks persetujuan, VAPID dan cincin kunci, matriks uji operator, UAT perangkat; ADR-0048 D8).
 - Ubah e-mail/telepon pada akun pelanggan yang sudah ada, dan verifikasi telepon ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
 - Ekspor dan penghapusan pembeli sudah dibangun ([ADR-0055](adr/0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md), issue #529); yang masih terbuka adalah konfirmasi penasihat hukum atas dasar hukum retensi dan konfirmasi pemilik atas aturan penolakan, jenis subjek berbasis deskriptor di upstream yang akan membuat engine menjangkau pembeli (teks diusulkan di lampiran A ADR; tidak dibuka dari repositori ini), dan penghapusan baris WhatsApp yang hanya cocok lewat nilai telepon dan salinan e-mail di log keluar modul `email`.
