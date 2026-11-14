@@ -3,7 +3,8 @@
  * driven through the REAL route handlers (`crm_leads` and `commerce` both).
  * Gated on `DATABASE_URL`; skips cleanly without one.
  *
- * NOT EXECUTED where this file was written (no Docker or PostgreSQL there): it
+ * Written without a database, then executed against a scratch PostgreSQL 16
+ * (migrated with `db:migrate`): 12 of 12 pass. It
  * is type-checked and linted, and its assertions follow the migrated schema of
  * `sql/1068`, `sql/1069` and the `crm_leads` migrations `sql/342`-`344`. Run it
  * with `bun test tests/integration/commerce-crm-lead-link.integration.test.ts`
@@ -349,6 +350,57 @@ async function seedOrder(
     RETURNING id
   `) as { id: string }[];
   return rows[0]!.id;
+}
+
+type SeededLine = { itemId: string; productId: string };
+
+/** One 1-unit order line. Seeded as admin. */
+async function seedLine(
+  tenantId: string,
+  orderId: string
+): Promise<SeededLine> {
+  const product = (await admin()`
+    INSERT INTO awcms_commerce_products (tenant_id, sku, name, slug, price, stock)
+    VALUES (${tenantId}, ${`SKU-${crypto.randomUUID()}`}, 'Line', ${`line-${crypto.randomUUID()}`}, 100000, 5)
+    RETURNING id
+  `) as { id: string }[];
+  const item = (await admin()`
+    INSERT INTO awcms_commerce_order_items
+      (tenant_id, order_id, product_id, name, unit_price, quantity, line_total)
+    VALUES (${tenantId}, ${orderId}, ${product[0]!.id}, 'Line', 100000, 1, 100000)
+    RETURNING id
+  `) as { id: string }[];
+  return { itemId: item[0]!.id, productId: product[0]!.id };
+}
+
+/** A return of the whole of one line, of the given kind and status. */
+async function seedReturn(
+  tenantId: string,
+  orderId: string,
+  line: SeededLine,
+  kind: string,
+  status: string
+): Promise<string> {
+  const actor = (await admin()`
+    SELECT id FROM awcms_tenant_users WHERE tenant_id = ${tenantId} LIMIT 1
+  `) as { id: string }[];
+  const ret = (await admin()`
+    INSERT INTO awcms_commerce_returns
+      (tenant_id, order_id, kind, status, goods_gross, discount_share,
+       shipping_refund, refund_total, source_key, actor_tenant_user_id, completed_at)
+    VALUES (${tenantId}, ${orderId}, ${kind}, ${status}, 100000, 0, 0,
+            100000, ${`rk-${crypto.randomUUID()}`}, ${actor[0]!.id},
+            ${status === "completed" ? new Date() : null})
+    RETURNING id
+  `) as { id: string }[];
+  await admin()`
+    INSERT INTO awcms_commerce_return_lines
+      (tenant_id, return_id, order_id, order_item_id, product_id, quantity,
+       reason, disposition, stock_effect, goods_gross, discount_share, refund_amount)
+    VALUES (${tenantId}, ${ret[0]!.id}, ${orderId}, ${line.itemId}, ${line.productId}, 1,
+            'other', 'not_applicable', 0, 100000, 0, 100000)
+  `;
+  return ret[0]!.id;
 }
 
 function link(
@@ -725,6 +777,179 @@ suite("commerce CRM lead link (Issue #463)", () => {
     expect(
       await admin()`SELECT 1 FROM awcms_commerce_crm_lead_links`
     ).toHaveLength(0);
+  });
+
+  test("the crm_leads off switches bind the commerce routes: deployment flag, tenant switch, on link and reverse", async () => {
+    if (!handlerReady) return;
+    const pipeline = await enableCrm(A);
+    const lead = await newLead(A, pipeline);
+    const customerId = await seedCustomer(A.tenantId, {
+      verifiedAccount: true
+    });
+    const body = {
+      leadId: lead.id,
+      customerId,
+      evidenceKind: "customer_registration",
+      expectedVersion: lead.version
+    };
+    const reverseOf = (id: string) =>
+      call(reverseLink, A, {
+        method: "POST",
+        path: `/api/v1/commerce/crm-lead-links/${id}/reverse`,
+        params: { id },
+        token: operator.token
+      });
+
+    // Deployment flag off: 503 and nothing converted.
+    process.env.CRM_LEADS_ENABLED = "false";
+    const flagOff = await link(A, body, operator.token);
+    expect(flagOff.status).toBe(503);
+    expect(flagOff.body.error?.code).toBe("CRM_LEADS_DISABLED");
+    expect(
+      await admin()`SELECT 1 FROM awcms_commerce_crm_lead_links`
+    ).toHaveLength(0);
+    process.env.CRM_LEADS_ENABLED = "true";
+
+    // Tenant switch off: 409 and nothing converted.
+    const turnOff = (enabled: boolean) =>
+      call(patchSettings, A, {
+        method: "PATCH",
+        path: "/api/v1/crm-leads/settings",
+        body: { enabled }
+      });
+    expect((await turnOff(false)).status).toBe(200);
+    const tenantOff = await link(A, body, operator.token);
+    expect(tenantOff.status).toBe(409);
+    expect(tenantOff.body.error?.code).toBe("CRM_LEADS_TENANT_DISABLED");
+    expect(
+      await admin()`SELECT 1 FROM awcms_commerce_crm_lead_links`
+    ).toHaveLength(0);
+    expect((await turnOff(true)).status).toBe(200);
+
+    // Reverse: link while on, then both switches refuse the reversal.
+    const made = await link(A, body, operator.token);
+    expect(made.status).toBe(201);
+    const linkId = made.body.data.id;
+    process.env.CRM_LEADS_ENABLED = "false";
+    const reverseFlag = await reverseOf(linkId);
+    expect(reverseFlag.status).toBe(503);
+    expect(reverseFlag.body.error?.code).toBe("CRM_LEADS_DISABLED");
+    process.env.CRM_LEADS_ENABLED = "true";
+    expect((await turnOff(false)).status).toBe(200);
+    const reverseTenant = await reverseOf(linkId);
+    expect(reverseTenant.status).toBe(409);
+    expect(reverseTenant.body.error?.code).toBe("CRM_LEADS_TENANT_DISABLED");
+    const still = (await admin()`
+      SELECT state FROM awcms_commerce_crm_lead_links WHERE id = ${linkId}
+    `) as { state: string }[];
+    expect(still[0]!.state).toBe("linked");
+    expect(
+      await admin()`SELECT 1 FROM awcms_crm_lead_conversions WHERE reversed_at IS NOT NULL`
+    ).toHaveLength(0);
+  });
+
+  test("a fully returned order is not paid evidence; a settled full return flags a live link, an open or partial one does not", async () => {
+    if (!handlerReady) return;
+    const pipeline = await enableCrm(A);
+    const customerId = await seedCustomer(A.tenantId, {
+      verifiedAccount: false
+    });
+    const paid = { status: "paid", paymentStatus: "paid" };
+
+    // Fully returned (completed): refused as evidence, nothing linked.
+    const returned = await seedOrder(A.tenantId, customerId, paid);
+    await seedReturn(
+      A.tenantId,
+      returned,
+      await seedLine(A.tenantId, returned),
+      "return",
+      "completed"
+    );
+    const leadA = await newLead(A, pipeline);
+    const refused = await link(
+      A,
+      {
+        leadId: leadA.id,
+        customerId,
+        evidenceKind: "paid_order",
+        orderId: returned,
+        expectedVersion: leadA.version
+      },
+      operator.token
+    );
+    expect(refused.status).toBe(409);
+    expect(refused.body.error?.code).toBe("CRM_EVIDENCE_NOT_VERIFIED");
+    expect(refused.body.error?.details.reason).toBe("order_fully_returned");
+    expect(
+      await admin()`SELECT 1 FROM awcms_commerce_crm_lead_links`
+    ).toHaveLength(0);
+
+    // A whole two-line order is linked; then returns arrive.
+    const whole = await seedOrder(A.tenantId, customerId, paid);
+    const line1 = await seedLine(A.tenantId, whole);
+    const line2 = await seedLine(A.tenantId, whole);
+    const leadB = await newLead(A, pipeline);
+    const made = await link(
+      A,
+      {
+        leadId: leadB.id,
+        customerId,
+        evidenceKind: "paid_order",
+        orderId: whole,
+        expectedVersion: leadB.version
+      },
+      operator.token
+    );
+    expect(made.status).toBe(201);
+    const flag = (returnId: string) =>
+      withTenantOrThrow(getHandlerDatabaseClient(), A.tenantId, (tx) =>
+        flagCrmLeadLinksForSettledRefund(
+          tx,
+          A.tenantId,
+          returnId,
+          crypto.randomUUID(),
+          "corr-refund"
+        )
+      );
+    const stateOf = async () =>
+      (
+        (await admin()`
+          SELECT state, reversal_cause FROM awcms_commerce_crm_lead_links
+          WHERE id = ${made.body.data.id}
+        `) as { state: string; reversal_cause: string | null }[]
+      )[0]!;
+
+    // A completed return of line 1 alone leaves line 2 whole (partial).
+    const partial = await seedReturn(
+      A.tenantId,
+      whole,
+      line1,
+      "return",
+      "completed"
+    );
+    expect(await flag(partial)).toEqual({
+      kind: "skipped",
+      reason: "partial_return"
+    });
+    expect((await stateOf()).state).toBe("linked");
+
+    // Line 2's return is still open: not settled, nothing flagged.
+    const rest = await seedReturn(A.tenantId, whole, line2, "return", "open");
+    expect(await flag(rest)).toEqual({
+      kind: "skipped",
+      reason: "return_not_settled"
+    });
+    expect((await stateOf()).state).toBe("linked");
+
+    // It settles: every line is now returned, so the link is flagged.
+    await admin()`
+      UPDATE awcms_commerce_returns SET status = 'completed', completed_at = now()
+      WHERE id = ${rest}
+    `;
+    expect(await flag(rest)).toEqual({ kind: "flagged", count: 1 });
+    const flagged = await stateOf();
+    expect(flagged.state).toBe("reversal_pending");
+    expect(flagged.reversal_cause).toBe("order_refunded");
   });
 
   test("a payment reversed by hand to refunded flags the link; a still-paid order does not", async () => {

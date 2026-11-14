@@ -44,9 +44,9 @@ export const COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME =
   "commerce.order_paid_commission_attributor";
 
 /**
- * Issue #463 (ADR-0056): the two flaggers that mark a CRM lead link
- * `reversal_pending` when the order its conversion rests on is cancelled or
- * fully refunded. They run as `awcms_worker`, which holds no privilege on any
+ * Issue #463 (ADR-0056): the three flaggers (order cancelled, refund settled,
+ * payment reversed) that mark a CRM lead link `reversal_pending` when the order
+ * its conversion rests on is cancelled, fully refunded or fully reversed. They run as `awcms_worker`, which holds no privilege on any
  * `crm_leads` table, so they only FLAG; a person applies the reversal.
  */
 export const COMMERCE_ORDER_CANCELLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME =

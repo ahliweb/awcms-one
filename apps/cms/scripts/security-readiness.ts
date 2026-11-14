@@ -2374,7 +2374,7 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // The worker reads it only for the data-lifecycle engine's dry-run snapshot of
   // the table's `delegated` descriptor; every write is the app role's.
   awcms_commerce_customer_subject_requests: ["SELECT"],
-  // Issue #463 (sql/1068, ADR-0056 D5): the two CRM lead link flaggers read the
+  // Issue #463 (sql/1068, ADR-0056 D5): the three CRM lead link flaggers read the
   // links resting on an order; their UPDATE is column-only (see
   // WORKER_COLUMN_GRANTS). The worker holds no privilege on the `crm_leads` tables
   // (`awcms_crm_leads`, `awcms_crm_lead_conversions`; upstream sql/342), so it can flag a link and never reverse a conversion.
@@ -2566,7 +2566,7 @@ export const WORKER_COLUMN_GRANTS: Record<
       "auth_secret_ciphertext"
     ]
   },
-  // sql/1068 (Issue #463, ADR-0056 D5): the two CRM lead link flaggers mark a
+  // sql/1068 (Issue #463, ADR-0056 D5): the three CRM lead link flaggers mark a
   // `linked` link `reversal_pending` and say why and who raised it. NOT writable:
   // lead_id, customer_id, order_id, the evidence, the conversion id and the
   // `reversed_*` columns - a worker able to rewrite those could repoint a

@@ -355,7 +355,13 @@ export async function linkLeadToCustomer(
 
   if (outcome.outcome === "not_found") return { kind: "lead_not_found" };
   if (outcome.outcome === "evidence_reused") return { kind: "evidence_reused" };
-  if (outcome.outcome !== "converted" && outcome.outcome !== "replayed") {
+  // Commerce holds no link for this evidence (the probe above), so a port
+  // `replayed` means the same evidence was recorded in CRM by another path (its
+  // own HTTP route), and `crm_leads` answers `replayed` whatever happened since,
+  // including a conversion already reversed there. Linking to it could point a
+  // `linked` row at a reversed conversion: refuse, like any other reuse.
+  if (outcome.outcome === "replayed") return { kind: "evidence_reused" };
+  if (outcome.outcome !== "converted") {
     return { kind: "conversion_refused", outcome: outcome.outcome };
   }
 

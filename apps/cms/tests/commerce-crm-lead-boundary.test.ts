@@ -88,13 +88,16 @@ describe("commerce source files never reach into crm_leads", () => {
     expect(offenders).toEqual([]);
   });
 
-  test("the composition root imports exactly the concrete adapter and nothing else from crm-leads", () => {
+  test("the composition root imports exactly the concrete adapter and the off-switch helpers from crm-leads", () => {
     const text = readFileSync(path.join(root, COMPOSITION_ROOT), "utf8");
     const specifiers = [...text.matchAll(CRM_DIRECTORY_REFERENCE)].map(
       (match) => match[0].slice(1, -1)
     );
+    // The adapter, and `route-support` for the three off switches of
+    // `crm_leads` (ADR-0056 D6): the only two edges, both dynamic imports.
     expect(specifiers).toEqual([
-      "../../modules/crm-leads/application/crm-lead-port-adapter"
+      "../../modules/crm-leads/application/crm-lead-port-adapter",
+      "../../modules/crm-leads/application/route-support"
     ]);
   });
 

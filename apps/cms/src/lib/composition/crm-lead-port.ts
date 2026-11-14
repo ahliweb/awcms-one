@@ -26,3 +26,23 @@ export async function composedCrmLeadPort(): Promise<CrmLeadPort> {
   }
   return port;
 }
+
+/**
+ * The three off switches and the accountable-person rule of `crm_leads`'
+ * mutations (ADR-0153 section 1), for a commerce route that composes the port:
+ * the deployment flag (`503 CRM_LEADS_DISABLED`), a machine credential
+ * (`403 INTERACTIVE_SESSION_REQUIRED`) and the tenant's own switch
+ * (`409 CRM_LEADS_TENANT_DISABLED`), exactly as
+ * the conversion route of `crm_leads` answers them. `null` means
+ * every check passed. Lives here, beside the port, because a commerce module
+ * file may not import `crm_leads` code (Issue #463, ADR-0056 D2).
+ */
+export async function crmLeadsMutationRefusal(
+  tx: Bun.SQL,
+  tenantId: string,
+  auth: { context: { viaMachineCredential?: boolean; tenantUserId: string } }
+): Promise<Response | null> {
+  const { mutationRefusal, tenantDisabledResponse } =
+    await import("../../modules/crm-leads/application/route-support");
+  return mutationRefusal(auth) ?? (await tenantDisabledResponse(tx, tenantId));
+}

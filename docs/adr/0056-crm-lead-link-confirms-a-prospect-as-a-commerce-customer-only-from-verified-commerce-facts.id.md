@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0056-crm-lead-link-confirms-a-prospect-as-a-commerce-customer-only-from-verified-commerce-facts.md)
 
-<!-- i18n-source-hash: sha256:ebabe3419d58fb6efb65d54c7beffc786783153360733568cc3627109ddd7a0e -->
+<!-- i18n-source-hash: sha256:f38c57f34c4ffc281259813515f977ad60e5304ce6529425803d2acb264f41da -->
 
 # ADR-0056 — Tautan lead CRM mengonfirmasi calon pelanggan sebagai pelanggan commerce hanya dari fakta commerce yang terverifikasi
 
@@ -69,7 +69,7 @@ Pembalikan itu sendiri adalah `POST /api/v1/commerce/crm-lead-links/{id}/reverse
 
 ### D6 — Dua izin selalu diperlukan; tidak ada yang melebar
 
-`commerce.crm_lead_links.{read,create,approve}` (migrasi `1069`) hanya memakai kata kerja `AccessAction` yang sudah ada, sehingga union milik upstream tidak dilebarkan. `create` dan `approve` tidak pernah cukup sendiri: rute memanggil `authorizeInTransaction` untuk `crm_leads.conversions.approve` lewat chokepoint yang sama (ABAC, SoD, dan log keputusan berlaku; alamat klien diteruskan eksplisit, upstream `awcms` ADR-0092), dan penolakan adalah respons chokepoint itu sendiri. Tak satu pun menyiratkan kunci `crm_leads.*` dan tak satu kunci `crm_leads.*` pun menyiratkan keduanya. Peran yang ada tidak mendapatkannya secara retroaktif. Layarnya belum ada, sehingga ketiga kunci berada di daftar `NOT_YET_SCREENED` ledger layar admin, yang hanya boleh menyusut.
+`commerce.crm_lead_links.{read,create,approve}` (migrasi `1069`) hanya memakai kata kerja `AccessAction` yang sudah ada, sehingga union milik upstream tidak dilebarkan. `create` dan `approve` tidak pernah cukup sendiri: rute memanggil `authorizeInTransaction` untuk `crm_leads.conversions.approve` lewat chokepoint yang sama (ABAC, SoD, dan log keputusan berlaku; alamat klien diteruskan eksplisit, upstream `awcms` ADR-0092), dan penolakan adalah respons chokepoint itu sendiri. Tak satu pun menyiratkan kunci `crm_leads.*` dan tak satu kunci `crm_leads.*` pun menyiratkan keduanya. Peran yang ada tidak mendapatkannya secara retroaktif. Layarnya belum ada, sehingga ketiga kunci berada di daftar `NOT_YET_SCREENED` ledger layar admin, yang hanya boleh menyusut. Rute juga menghormati sakelar mati milik `crm_leads` dan aturan orang yang bertanggung jawab, persis seperti rute konversinya, lewat `crmLeadsMutationRefusal` di berkas composition (`src/lib/composition/crm-lead-port.ts`, satu-satunya tempat yang boleh menjangkau kode `crm_leads`): flag deployment `CRM_LEADS_ENABLED` (`503 CRM_LEADS_DISABLED`), kredensial mesin (`403 INTERACTIVE_SESSION_REQUIRED`) dan sakelar tenant sendiri (`409 CRM_LEADS_TENANT_DISABLED`), pada tautan maupun pembalikan, sebelum port dipanggil. Kunci commerce saja tidak pernah mengubah tahap lead di toko yang operatornya mematikan CRM.
 
 ### D7 — Penyimpanan: satu tabel milik commerce, buram di sisi CRM, RLS FORCE
 
@@ -101,6 +101,10 @@ Tidak ada master pelanggan baru. Tidak ada penggabungan kabur atau otomatis berd
 ## Batas yang diterima
 
 - **Penggabungan lead `crm_leads` setelah ditautkan.** Tautan menyimpan `lead_id` saat dibuat; bila CRM kemudian menggabungkan lead itu ke lead induk, `GET ...?leadId=<induk>` tidak menemukan tautan, dan tautan dijangkau lewat id yang tergabung (CRM menjawabnya dengan `mergedIntoLeadId`). Commerce tidak mengikuti penggabungan (tidak membaca tabel CRM di luar port).
+- **Tautan yang sudah ada saat pembelinya dihapus dipertahankan, dan tak ada yang menandainya.** Pemeriksaan bukti menolak pelanggan yang sudah terhapus (menautkan lead berkontak ke dia akan mengidentifikasi ulang pembeli), tetapi penghapusan setelah penautan meninggalkan lead CRM dengan nama dan kontak calon pelanggan serta `externalCustomerRef = commerce:customer:<id>`, yang terus mengaitkan pesanan pelanggan teranonim dengan calon pelanggan bernama. Ini **risiko yang diterima**, dicatat di sini dan tidak dimitigasi diam-diam: dasar hukum mempertahankan tautan melalui penghapusan menunggu penasihat hukum (ADR-0055 D2), dan pemegang `commerce.crm_lead_links.approve` dapat membaliknya (sebab `manual`) lalu menghapus lead CRM lewat penghapusan `crm_leads` sendiri.
+- **Pertukaran dihitung sebagai retur.** "Dikembalikan penuh" menjumlah setiap retur selesai apa pun jenisnya, sehingga pesanan yang semua barisnya kembali sebagai `exchange` ditolak sebagai bukti terbayar dan menandai tautan, meski penjualan tetap berdiri lewat pesanan penukar. Konservatif dengan sengaja (tidak pernah mengonfirmasi konversi atas barang yang kembali); pelanggan yang menukar semuanya ditautkan lewat registrasi atau pesanan lain.
+- **Balapan yang tidak ditutup kunci `FOR SHARE`.** Penyelesaian refund yang melengkapi retur penuh tidak mengambil baris pesanan. Bila event `refund.settled`-nya dikirim sebelum transaksi tautan serentak commit, penanda tidak menemukan tautan hidup dan tautan baru tetap `linked` pada pesanan yang dikembalikan penuh. Rekonsiliator terjadwal di bawah adalah obatnya; sampai ada, daftar tertunda dan seorang operator yang menanganinya.
+- **`replayed` dari port tanpa tautan commerce** (bukti yang sama dicatat di CRM lewat rutenya sendiri) ditolak sebagai `409 CRM_EVIDENCE_REUSED`, tidak pernah ditautkan, karena `crm_leads` menjawab `replayed` bahkan untuk konversi yang sudah dibalik.
 - **Pembalikan pembayaran sebagian** membiarkan tautan `linked`: penjualan terbayar sebagian, bukan dibatalkan, aturan yang sama dengan retur sebagian.
 - **Tanpa `Idempotency-Key` pada `POST /api/v1/commerce/crm-lead-links`.** Referensi bukti adalah kunci idempotensinya (D4): pengulangan bukti yang sama mengembalikan tautan yang tercatat apa pun header-nya, dan operasi OpenAPI menyatakannya.
 
@@ -110,5 +114,6 @@ Tidak ada master pelanggan baru. Tidak ada penggabungan kabur atau otomatis berd
 - **Layar admin** untuk tautan dan daftar tertunda (ketiga izin ada di `NOT_YET_SCREENED`).
 - **Kondisi segmen atau filter kampanye** atas tautan (D9).
 - **Pembalikan yang dipicu fakta registrasi** (pelanggan dihapus atau diblokir): tautan registrasi hanya dibalik oleh orang.
-- **Suite integrasi berbasis DB belum dijalankan** di tempat ini ditulis (tanpa PostgreSQL); `commerce-crm-lead-link.integration.test.ts` berjalan lewat CI lokal dan harus dijalankan sebelum ADR diterima.
+- **Suite integrasi berbasis DB** `commerce-crm-lead-link.integration.test.ts` lulus 12 dari 12 terhadap PostgreSQL 16 sementara yang dimigrasi dengan `db:migrate`; ia juga berjalan lewat CI lokal.
+- **Probe peran worker sebagai tes yang di-commit** (penanda payment-reversed menandai sebagai `awcms_worker`, worker tidak bisa mengatur `state = 'reversed'`) dijalankan manual saat review dan belum di-commit.
 - Redaksi dasar hukum untuk mempertahankan tautan melalui penghapusan menunggu penasihat hukum (ADR-0055 D2).

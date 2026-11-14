@@ -1,6 +1,9 @@
 import { fail, ok } from "../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-route";
-import { composedCrmLeadPort } from "../../../../../../lib/composition/crm-lead-port";
+import {
+  composedCrmLeadPort,
+  crmLeadsMutationRefusal
+} from "../../../../../../lib/composition/crm-lead-port";
 import { reverseCrmLeadLink } from "../../../../../../modules/commerce/application/crm-lead-link-directory";
 import {
   authorizeCrmConversion,
@@ -36,6 +39,11 @@ export const POST = defineTenantRoute({
 
     const second = await authorizeCrmConversion(tx, context);
     if (!second.allowed) return second.denied;
+
+    // The deployment flag, the machine-credential refusal and the tenant switch
+    // of `crm_leads`, as its own conversion route answers them.
+    const off = await crmLeadsMutationRefusal(tx, tenantId, auth);
+    if (off) return off;
 
     const outcome = await reverseCrmLeadLink(
       tx,

@@ -1,6 +1,9 @@
 import { created, fail, ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
-import { composedCrmLeadPort } from "../../../../../lib/composition/crm-lead-port";
+import {
+  composedCrmLeadPort,
+  crmLeadsMutationRefusal
+} from "../../../../../lib/composition/crm-lead-port";
 import { readValidatedBody } from "../../../../../modules/commerce/application/register-http";
 import {
   linkLeadToCustomer,
@@ -89,6 +92,11 @@ export const POST = defineTenantRoute<CreateCrmLeadLinkInput>({
     // CRM permission too, so a commerce key alone never confirms a conversion.
     const second = await authorizeCrmConversion(tx, context);
     if (!second.allowed) return second.denied;
+
+    // The deployment flag, the machine-credential refusal and the tenant switch
+    // of `crm_leads`, as its own conversion route answers them.
+    const off = await crmLeadsMutationRefusal(tx, tenantId, auth);
+    if (off) return off;
 
     const outcome = await linkLeadToCustomer(
       tx,
