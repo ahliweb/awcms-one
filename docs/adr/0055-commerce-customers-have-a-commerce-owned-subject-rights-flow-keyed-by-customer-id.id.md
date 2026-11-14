@@ -1,0 +1,83 @@
+🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md)
+
+<!-- i18n-source-hash: sha256:99beb66a3752d846359d6b066f32252616229a50d975a2a77e51df8b9134ced8 -->
+
+<!-- i18n-source-hash: sha256:placeholder -->
+
+# ADR-0055 — Pelanggan commerce punya alur hak subjek data milik commerce, berkunci id pelanggan
+
+- **Status:** Diterima
+- **Tanggal:** 14 November 2026
+- **Pengambil keputusan:** ahliweb
+- **Terkait:** issue [#529](https://github.com/ahliweb/awcms-one/issues/529) (ADR ini dan implementasinya); [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) (akun pelanggan, OTP, sesi bearer: D1 adalah alasan engine tidak bisa menjangkau pembeli; D3 adalah aturan tanpa cookie yang dijaga alur ini); [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) (perubahan engine generik milik upstream); [ADR-0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) (data push pelanggan, yang fungsi penghapusan dan ekspornya akhirnya dipanggil alur ini); [ADR-0046](0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md) (catatan submisi komisi, disimpan); bagian 5.6 model ancaman dan celah G1 peta standar di [`aw-business-platform-threat-model.md`](../aw-business-platform-threat-model.md) dan [`aw-business-platform-standards-map.md`](../aw-business-platform-standards-map.md); `awcms` upstream ADR-0142 (deskriptor subjek yang menjangkau lewat satu lompatan harus menjawab `retain_under_obligation`)
+
+## Konteks
+
+UU PDP 27/2022 memberi subjek data hak akses dan hak penghapusan. `commerce` belum punya jalur ujung ke ujung untuk hak pembeli (issue #529, ditemukan saat menulis peta bukti standar epik #280):
+
+- **Engine tidak bisa menjangkau pembeli.** Engine subject-data upstream (`data_lifecycle`) hanya mengikat tiga id subjek (tenant user, identitas, profil); `awcms_subject_requests` berkunci tenant user; `SubjectDataColumn.references` hanya menerima `tenant_user`, `identity`, `profile`, atau `principal`; deskriptor yang menjangkau lewat satu lompatan harus menjawab `retain_under_obligation`. Pelanggan commerce bukan salah satunya (ADR-0016 D1: akun pelanggan tidak membawa id tenant user, identitas, atau profil). Jadi setiap deskriptor commerce berkunci pelanggan memang `unreachableBySubject`, dan rencana untuk subjek mana pun mencantumkan semuanya sebagai "tidak terjawab". Issue menghitung 73; hitungan sebenarnya di branch adalah 68 deskriptor tak terjangkau berkunci pelanggan dari 96 (angka 73 berasal dari grep yang juga mengena baris README dan komentar). 28 yang terjangkau hanya terjangkau lewat cap aktor staf, tidak pernah lewat pelanggan.
+- **Penghapusan push tidak punya pemanggil.** `eraseCustomerPushData` dan `exportCustomerPushData` (ADR-0048) sudah ditulis dan diuji, docblock-nya menyebut alur penghapusan akun memanggilnya "saat dibangun", dan belum ada yang memanggil.
+- **Tidak ada rute, tidak ada halaman.** `customers/[id]` hanya punya `GET` dan `PATCH`; rute akun storefront tidak punya ekspor atau hapus; `/akun` tidak menawarkan keduanya.
+- **Jebakan hapus-keras.** `customers` dan `customer_accounts` membawa `deleted_at`, dan deskriptor siklus hidup `commerce.customers` menghapus keras berdasarkan `deleted_at` setelah 365 hari; `awcms_commerce_orders.customer_id` adalah foreign key polos ke pelanggan. Penghapusan yang mengisi `deleted_at` pada pelanggan yang punya pesanan akan membuat purge itu gagal di foreign key, dan membuat baris pembukuan yatim.
+
+## Keputusan
+
+**D1. Subjek.** `commerce` memiliki alur ekspor dan penghapusan **berkunci `awcms_commerce_customers.id`**. Subjek ditentukan dari sesi bearer di storefront (pelanggan milik akun itu sendiri) atau dari id rute untuk staf, selalu di dalam transaksi RLS tenant, sehingga pelanggan tenant lain tidak pernah ditemukan (404). `commerce` **tidak** memfork union `references` engine secara lokal. Mekanisme generiknya, jenis subjek yang dideklarasikan deskriptor, diusulkan ke upstream (lampiran A) dan tiba, bila diterima, lewat sinkronisasi subtree biasa. Sampai saat itu alur milik commerce yang menjawab pembeli, dan setiap deskriptor berkunci pelanggan tetap `unreachableBySubject` dengan rasional yang kini menyebut alur ini dan apa yang dilakukannya pada tabel itu (`withCommerceSubjectFlow`, dibangkitkan dari registri di bawah sehingga rasional tidak bisa menyimpang dari kode).
+
+Bukti tiap permintaan adalah tabelnya sendiri, `awcms_commerce_customer_subject_requests` (`sql/1065`): siapa yang meminta, lewat permukaan mana, apa yang diputuskan, kode penolakan, sebuah hitungan, dan ringkasan yang dipertahankan. Tabel ini tidak menyimpan bundel, nama, kontak, kode, atau token, dan baris yang sudah diputuskan tidak dapat diubah (trigger penjaga; tidak ada role yang boleh menghapusnya).
+
+**D2. Matriks hapus / anonimkan / pertahankan.** Satu registri, `domain/customer-subject-data.ts`, mengklasifikasikan setiap tabel `awcms_commerce_*`; `apps/cms/tests/commerce-customer-subject-data.test.ts` mem-parse `sql/` dan gagal bila tabel dengan kolom pelanggan, akun, pemilik-pelanggan, atau pesanan tidak ada di registri maupun di dua daftar "tidak terjawab", sehingga tabel yang ditambahkan kemudian tidak bisa diam-diam hilang dari ekspor pembeli.
+
+| Tindakan                                                                             | Tabel                                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Hapus keras**                                                                      | sesi, kode sekali pakai (dicocokkan dengan e-mail akun dan telepon pelanggan), wishlist, alamat tersimpan, penerima kampanye, baris proyeksi retensi, data push (lewat `eraseCustomerPushData`)                                       |
+| **Anonimkan** dengan sentinel unik per baris                                         | `customers` (nama, telepon, e-mail), `customer_accounts` (`email_normalized`), teks ulasan pembeli, subjek percakapan mereka, isi pesan mereka sendiri (balasan toko tetap)                                                           |
+| **Pertahankan** di bawah kewajiban pembukuan, menunjuk ke pelanggan yang dianonimkan | pesanan beserta item, peristiwa, pembayaran, alokasi, dokumen, retur dan pengembalian dana, buku besar poin dan nilai tersimpan, hak akses (entitlement), pembukuan afiliasi, penawaran, perintah kerja, tautan dan keputusan booking |
+| **Tidak terjawab**                                                                   | baris OTP dan WhatsApp yang hanya cocok lewat nilai kontak (WhatsApp tetap di bawah retensinya sendiri); setiap tabel katalog, pengaturan, dan agregat (masing-masing dengan alasan di registri)                                      |
+
+Identitas dianonimkan, bukan di-soft-delete. Kolom baru `erased_at` (`sql/1066`) menandai pelanggan dan akun yang dihapus, yang juga mendapat `status = 'blocked'`; **`deleted_at` sengaja tidak dipakai**, karena jebakan purge di atas. Setiap predikat kelayakan mengecualikan baris `erased_at` (segmen, push, edit), sentinel telepon dan e-mail diturunkan dari id baris sehingga indeks unik per tenant tetap terjaga dan pendaftaran baru dengan telepon yang sama dimungkinkan, dan sentinel e-mail berada di domain tingkat atas `.invalid` yang dicadangkan, sehingga tidak pernah bisa dikirimi.
+
+Keputusan di dalam matriks:
+
+- `orders.address` dan `orders.notes` **dipertahankan** bersama pesanan dan tidak dibersihkan. Snapshot dokumen menyimpan teks yang sama dan tidak pernah ditulis ulang setelah terbit (model ancaman 5.6), sehingga membersihkan satu salinan tidak koheren. Ditinjau ulang bila penasihat hukum menyarankan lain.
+- Snapshot dokumen tidak ditulis ulang; ekspor membawa metadata dan total dokumen, bukan isinya.
+- Penghapusan oleh pembeli mencabut semua sesi, termasuk yang membuat permintaan: permintaan berikutnya dengan bearer lama adalah `401` dan storefront menghapus sesi tersimpannya (ADR-0016 D3).
+
+**Aturan penolakan.** Penghapusan ditolak, dengan kode stabil, selama pembeli masih punya sesuatu yang berjalan: `ALREADY_ERASED`, `OPEN_ORDER` (menunggu pembayaran, dibayar, diproses, dikirim), `OPEN_BOOKING` (tautan reservasi aktif pada pesanan yang belum dibatalkan atau kedaluwarsa), `STORED_VALUE_BALANCE` (kartu atau kredit aktif dengan saldo di atas nol), `PENDING_REFUND` (retur terbuka, atau pengembalian dana pending, processing, atau failed), `UNPAID_AFFILIATE_PAYOUT` (komisi pending atau approved). Penolakan dijawab **sebelum** kode sekali pakai dikonsumsi dan diperiksa lagi di bawah kunci baris pelanggan di dalam penghapusan (checkout yang berpacu dengan penghapusan menunggu kunci itu, karena insert pesanan mengambil kunci key-share pada baris pelanggan). Ekspor tidak pernah ditolak karena hal ini.
+
+**D3. Permukaan.**
+
+- **Storefront** (pembeli): sesi bearer ditambah **kode sekali pakai baru** dengan tujuan sendiri (`subject_export`, `subject_erasure`; CHECK tabel masuk dilebarkan di `sql/1066`, dan `consumeOtp` menyaring berdasarkan tujuan, sehingga kode login tidak pernah mengotorisasi permintaan). Tiga rute di bawah `/api/v1/commerce/storefront/account/privacy/`: `otp` (mengirim kode ke alamat akun sendiri; dibatasi per IP dan per akun), `export`, `erasure` (wajib `Idempotency-Key`, disimpan pada baris permintaan: kunci yang berulang menjawab hasil tersimpan, kunci yang dipakai permintaan lain adalah `409`). Tanpa cookie, tanpa `Access-Control-Allow-Credentials` (ADR-0016 D3). Ketiga rute dideklarasikan di `CUSTOMER_BEARER_BODY_ENDPOINTS` agar middleware mengautentikasi token pelanggan sebelum body dibaca, dan di kontrak OpenAPI dengan `customerBearer`.
+- **Admin** (staf atas nama pembeli): empat izin pada satu kode aktivitas, `commerce.customer_subject_requests.{read,export,delete,approve}`. Kosakata `AccessAction` yang ada dipakai ulang (`delete` meminta penghapusan, bukan kata kerja `erase` baru), ketiga kata kerja tulis sudah berisiko tinggi. Ekspor butuh `export` dan `Idempotency-Key`. Penghapusan adalah **maker/checker**: `delete` ditambah step-up baru mencatat permintaan `pending_approval` setelah pemeriksaan prasyarat dan tidak menghapus apa pun; orang **lain** dengan `approve` ditambah step-up baru memutuskannya. Checker tidak pernah maker, ditegakkan tiga kali: di alur, di `UPDATE` pengklaim (klaim bersyarat pada `status = 'pending_approval'`), dan oleh CHECK tabel.
+- **Audit dan idempotensi.** Setiap pengungkapan diaudit pada tingkat `critical` dan setiap penghapusan pada `critical`, hanya dengan hitungan dan id. Ekspor pembeli tidak punya `Idempotency-Key` karena kodenya sekali pakai; ekspor admin mewajibkannya dan memperlakukan pengulangan sebagai `409 IDEMPOTENCY_REPLAYED` (bundel tidak disimpan untuk diputar ulang).
+
+**D4. Bentuk ekspor.** Bundel JSON berversi (`version: 1`) yang **dikembalikan sinkron dan tidak pernah disimpan**, sehingga tidak menimbulkan kewajiban retensi sendiri, dengan `Cache-Control: no-store`. Isinya satu larik per keluarga tabel (dibatasi 1000 baris per bagian, bagian yang terpotong disebut di `truncated`), data push lewat `exportCustomerPushData`, bagian `unanswered` yang menyebut apa yang tidak bisa dicocokkan ke pelanggan beserta alasannya, dan pemberitahuan retensi. Dibaca sebagai `to_jsonb(row) - redactedColumns`, sehingga kolom yang ditambahkan kemudian diungkapkan alih-alih diam-diam hilang, dan tes penjaga gagal bila kolom bernama mirip rahasia tidak disamarkan maupun ada di daftar izin yang ditinjau manual. **Disamarkan**: hash token dan kode, hash alamat klien, endpoint dan kunci push, isi payload dan tautan penyedia, kunci idempotensi, serta snapshot dan hash isi dokumen.
+
+## Yang tidak diselesaikan ADR ini
+
+- **Dasar hukum.** Kewajiban pembukuan (UU KUP 28/2007 pasal 28) dan pengecualian penghapusan UU PDP 27/2022 dicatat di registri sebagai dasar yang diusulkan. **Penasihat hukum harus mengonfirmasinya**; default retensi dan aturan penolakan di atas adalah hak pemilik untuk dikonfirmasi. Sampai saat itu semuanya usulan, dan kode menyatakannya demikian.
+- **Jenis subjek generik** adalah pekerjaan upstream (lampiran A). Kriteria "jumlah `unreachableBySubject` untuk `commerce` turun" baru bisa dipenuhi setelah perubahan itu tiba; sampai saat itu deskriptor mempertahankan penanda.
+- **Belum dibangun:** baris pesan WhatsApp yang cocok lewat nilai kontak tidak dihapus (kedaluwarsa lewat retensinya sendiri); baris pembeli yang dihapus di log WhatsApp yang diekspor tidak dicocokkan.
+
+## Konsekuensi
+
+- Pembeli dapat mengunduh datanya dan menghapus identitasnya dari `/akun/privasi`; staf dapat melakukan keduanya atas nama mereka, dengan orang kedua untuk penghapusan. `eraseCustomerPushData` dan `exportCustomerPushData` kini punya pemanggil.
+- Migrasi `1065`-`1067` (tabel permintaan dengan hak baca worker untuk dry-run siklus hidup; `erased_at` dan tujuan OTP; empat izin). Catatan band commerce di `AGENTS.md` mencatatnya.
+- Registri body bearer-pelanggan bertambah tiga endpoint; anggaran aset dan kontrak OpenAPI bertambah.
+- Suite integrasi berbasis DB dan e2e `/akun/privasi` di peramban sungguhan hanya berjalan lewat CI lokal (PostgreSQL termigrasi; Playwright). Keduanya ditulis di lingkungan tanpa keduanya dan tidak dijalankan di sana.
+
+## Lampiran A — usulan issue upstream (ahliweb/awcms), tidak dibuka dari sini
+
+Membuka issue di upstream adalah tindakan terpisah; ini teks yang diusulkan untuknya.
+
+> **Judul:** data_lifecycle: jenis subjek yang dideklarasikan deskriptor, agar modul dapat membuat subjek datanya sendiri terjangkau oleh ekspor dan penghapusan
+>
+> **Masalah.** `buildSubjectPlan` mengikat tepat tiga id (`tenantUserId`, `identityId`, `profileId`), `awcms_subject_requests` berkunci `subject_tenant_user_id`, dan `SubjectDataColumn.references` hanya menerima `tenant_user | identity | profile | principal`. Modul yang subjek datanya bukan tenant user, seperti pembeli aplikasi commerce turunan (akun dengan OTP e-mail dan sesi bearer, tanpa baris tenant-user), hanya bisa menandai setiap tabel `unreachableBySubject`. Engine lalu melaporkan semuanya "tidak terjawab" dan tidak ada yang mengekspor atau menghapusnya. awcms-one (ahliweb/awcms-one#529, ADR-0055) membangun alur milik modul karena hal ini; celahnya bersifat generik.
+>
+> **Usulan.** (1) `ModuleDescriptor.subjectKinds`: modul mendeklarasikan satu jenis (`key`, resolver dari permintaan ke id subjek milik modul di dalam transaksi tenant, label tampilan). (2) `SubjectDataColumn.references` juga menerima kunci `<module>.<kind>` yang dideklarasikan. (3) `awcms_subject_requests` berkunci `(kind, subject_id)` alih-alih hanya `subject_tenant_user_id` (migrasi dengan backfill baris yang ada sebagai jenis `tenant_user`). (4) `subject-data:registry:check` memvalidasi bahwa jenis yang dideklarasikan ada, dimiliki modul yang memakainya, dan deskriptor `unreachableBySubject` tetap tanpa kolom subjek. (5) Rencana melaporkan, per jenis, entri mana yang terjawab dan mana yang tidak.
+>
+> **Yang tetap milik modul.** Aturan penolakan (apa yang masih terbuka), matriks hapus / anonimkan / pertahankan beserta dasar hukumnya, permukaan (OTP dan step-up), dan format ekspor baris milik modul sendiri.
+>
+> **Kompatibilitas.** Aditif: deskriptor dan permintaan yang ada tidak berubah; modul yang tidak mendeklarasikan jenis berperilaku seperti sekarang.
+>
+> **Setelah diadopsi di awcms-one:** deskriptor yang tabelnya punya `customer_id` langsung menjadi langsung; tabel berkunci akun dan berkunci pesanan memakai `subjectVia` (satu lompatan, menjawab `retain_under_obligation`, ADR-0142); tabel dua lompatan dan tabel yang cocok lewat kontak (`customer_otps`, log WhatsApp) tetap tak terjangkau, masing-masing dengan alasannya; alur milik commerce menjadi adaptor di atas engine alih-alih jalur paralel.

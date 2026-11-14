@@ -15281,3 +15281,87 @@ msgstr ""
 
 msgid "You do not have permission to view the inbox settings."
 msgstr ""
+
+msgid "A JSON file with everything the store holds about this customer is produced and downloaded. It is not stored, and the disclosure is recorded in the audit log."
+msgstr ""
+
+msgid "A booking is still active"
+msgstr ""
+
+msgid "A return or refund is unsettled"
+msgstr ""
+
+msgid "A stored-value balance remains"
+msgstr ""
+
+msgid "Already erased"
+msgstr ""
+
+msgid "An affiliate payout is unpaid"
+msgstr ""
+
+msgid "An order is still open"
+msgstr ""
+
+msgid "Approve erasure"
+msgstr ""
+
+msgid "Approve this erasure?"
+msgstr ""
+
+msgid "Data-subject requests"
+msgstr ""
+
+msgid "Erasure was refused: an order, booking, stored-value balance, refund or affiliate payout is still open. Nothing was changed."
+msgstr ""
+
+msgid "Export data"
+msgstr ""
+
+msgid "Export this customer's data?"
+msgstr ""
+
+msgid "No data-subject requests yet"
+msgstr ""
+
+msgid "Nothing is erased and the request is closed."
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Raised by"
+msgstr ""
+
+msgid "Refused"
+msgstr ""
+
+msgid "Reject erasure"
+msgstr ""
+
+msgid "Reject this erasure?"
+msgstr ""
+
+msgid "Request erasure of this customer?"
+msgstr ""
+
+msgid "Shopper"
+msgstr ""
+
+msgid "Staff"
+msgstr ""
+
+msgid "That customer or request was not found."
+msgstr ""
+
+msgid "The customer is anonymised and personal rows are deleted now. This cannot be undone. Orders, payments, documents and ledgers are kept."
+msgstr ""
+
+msgid "The person who requested an erasure cannot approve it."
+msgstr ""
+
+msgid "This does not erase anything yet: it records a request that a second person must approve. Erasing anonymises the customer and deletes personal rows; orders, payments, documents and ledgers are kept for bookkeeping."
+msgstr ""
+
+msgid "This request was already decided. Reload the page."
+msgstr ""

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:414f6a10ad5516897e5f5caecb070fe1941e372689c3b12edf80e6e22687f16b -->
+<!-- i18n-source-hash: sha256:444f9ce5f23ce37d375924e8834c37b5edf30bf450f69acaab9e8374b52406e0 -->
 
 # API
 
@@ -340,6 +340,20 @@ Rute sisi staf pemilik untuk program afiliasi itu sendiri, digerbangi `commerce.
 | `POST`  | `commerce/affiliate-commissions/{id}/void`    | `pending\|approved -> void`; `Idempotency-Key` wajib; `409 COMMISSION_ALREADY_FINAL` |
 
 Sebuah komisi dibuat `pending` tepat saat status pesanan yang direferensikan mencapai `completed` (tidak pernah untuk referral diri sendiri, tidak pernah untuk afiliasi yang sejak itu ditangguhkan); `base = subtotal − discount − voucher_discount` (dibatasi minimum nol), `amount = round(base × rate / 100, 2)`, keduanya string `numeric` (ADR-0003). Boolean `affiliateProgramEnabled` pada `store-settings/public` adalah satu-satunya fakta afiliasi yang diekspos ke publik — tarifnya sendiri hanya untuk owner (`GET /api/v1/commerce/store-settings`).
+
+### Hak subjek data pembeli — ekspor dan penghapusan (#529)
+
+[ADR-0055](adr/0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md) mencatat empat keputusan (subjek, matriks hapus / anonimkan / pertahankan, permukaan, bentuk ekspor). Ketiga rute storefront adalah `customerBearer` (tanpa cookie), menerima body, dan karena itu dideklarasikan di `CUSTOMER_BEARER_BODY_ENDPOINTS`, sehingga token pelanggan diautentikasi sebelum body dibaca.
+
+| Metode | Path | Auth | Catatan |
+| --- | --- | --- | --- |
+| `POST` | `commerce/storefront/account/privacy/otp` | `customerBearer` | `{type: "export"\|"erasure"}` → `200 {sent, expiresInSeconds}`; mengirim kode baru ke alamat akun sendiri (dibatasi per IP dan per akun; pengulangan dalam jendela kirim ulang tidak berefek) |
+| `POST` | `commerce/storefront/account/privacy/export` | `customerBearer` | `{code}` → `200 {bundle}`, `Cache-Control: no-store`, bundel JSON berversi yang dikembalikan sekali dan tidak pernah disimpan; setiap kegagalan kode adalah satu `400 OTP_INVALID` |
+| `POST` | `commerce/storefront/account/privacy/erasure` | `customerBearer` | `{code}` dan `Idempotency-Key` wajib → `200 {erased, replayed, requestId, summary}` dan semua sesi dicabut (panggilan berikutnya `401`); `409 ERASURE_REFUSED` dengan `details.refusals` (`OPEN_ORDER`, `OPEN_BOOKING`, `STORED_VALUE_BALANCE`, `PENDING_REFUND`, `UNPAID_AFFILIATE_PAYOUT`, `ALREADY_ERASED`) tidak mengubah apa pun dan tidak mengonsumsi kode |
+| `POST` | `commerce/customers/{id}/subject-export` | `commerce.customer_subject_requests.export` | `Idempotency-Key` wajib → `200 {requestId, bundle}`; kunci yang diulang adalah `409 IDEMPOTENCY_REPLAYED` (bundel tidak disimpan) |
+| `POST` | `commerce/customers/{id}/subject-erasure` | `commerce.customer_subject_requests.delete` + step-up baru | `{reason?}`, `Idempotency-Key` wajib → `202 {request}` (`pending_approval`; tidak ada yang dihapus) atau `409 ERASURE_REFUSED` |
+| `GET` | `commerce/customer-subject-requests` | `commerce.customer_subject_requests.read` | `?status=&customerId=`, terbaru dulu, paling banyak 100; hitungan, kode, dan ringkasan yang dipertahankan, tidak pernah bundel |
+| `POST` | `commerce/customer-subject-requests/{id}/decide` | `commerce.customer_subject_requests.approve` + step-up baru | `{decision: "approve"\|"reject"}`, `Idempotency-Key` wajib; pemohon adalah `403 SEPARATION_OF_DUTIES`; menyetujui menjalankan penghapusan; `409 INVALID_STATE` setelah diputuskan |
 
 ### Provider eksternal — kurir, payment gateway, WhatsApp, kotak masuk, kampanye, toggle fitur/harga bertingkat, laporan penjualan, dan POS semuanya SUDAH SELESAI (increment 5 — #107–#118)
 

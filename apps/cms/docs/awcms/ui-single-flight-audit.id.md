@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-single-flight-audit.md)
 
-<!-- i18n-source-hash: sha256:0fb6002b74c06d2521f5ef943093543947352eb3be1f3b4b6bef43fc78f5f3aa -->
+<!-- i18n-source-hash: sha256:bc364cf8bc81aa4d80cd37984744e486e365fee170e78c196b65a25705b4aeb4 -->
 
 # Single flight secara bawaan: audit setiap form dan titik masuk mutasi
 
@@ -77,7 +77,7 @@ diklasifikasikan dilaporkan sebagai `none`, tidak pernah dibuang, dan fakta
 
 <!-- BEGIN GENERATED: single-flight-audit -->
 
-360 titik masuk di 111 berkas; 348 mengirim request yang mengubah data dan 12 tidak. Sebelum #1224 ke-348 itu dijaga `lockElement`/`mutateAndReload` pada 282, flag buatan sendiri pada 11, dan tidak ada sama sekali pada 55. Sesudahnya: 353 dari 360 dipasang lewat helper bersama (single flight secara bawaan); 7 sisanya adalah pengecualian terdaftar yang mempertahankan penjaganya sendiri yang sudah ditinjau.
+364 titik masuk di 111 berkas; 352 mengirim request yang mengubah data dan 12 tidak. Sebelum #1224 ke-352 itu dijaga `lockElement`/`mutateAndReload` pada 285, flag buatan sendiri pada 11, dan tidak ada sama sekali pada 56. Sesudahnya: 357 dari 364 dipasang lewat helper bersama (single flight secara bawaan); 7 sisanya adalah pengecualian terdaftar yang mempertahankan penjaganya sendiri yang sudah ditinjau.
 
 | Berkas                                             | Target                                         | Dipasang sebagai (kini) | Sebelum #1224                                                                                                                              | Sesudah #1224             | Idempotency-Key dikirim |
 | -------------------------------------------------- | ---------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- | ----------------------- |
@@ -204,6 +204,10 @@ diklasifikasikan dilaporkan sebagai `none`, tidak pernah dibuang, dan fakta
 | `src/pages/admin/commerce-categories.astro`        | `.category-delete-btn`                         | onAction                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | —                       |
 | `src/pages/admin/commerce-categories.astro`        | `.category-restore-btn`                        | onAction                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | —                       |
 | `src/pages/admin/commerce-customers.astro`         | `.customer-save-btn`                           | onAction                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | —                       |
+| `src/pages/admin/commerce-customers.astro`         | `.customer-export-btn`                         | onAction                | **tidak ada**                                                                                                                              | single-flight (helper)    | ya                      |
+| `src/pages/admin/commerce-customers.astro`         | `.customer-erase-btn`                          | onAction                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | ya                      |
+| `src/pages/admin/commerce-customers.astro`         | `.subject-approve-btn`                         | onAction                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | ya                      |
+| `src/pages/admin/commerce-customers.astro`         | `.subject-reject-btn`                          | onAction                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | ya                      |
 | `src/pages/admin/commerce-documents.astro`         | `quotation-form`                               | onSubmit                | **tidak ada**                                                                                                                              | single-flight (helper)    | ya                      |
 | `src/pages/admin/commerce-documents.astro`         | `.quotation-revise`                            | onAction                | tanpa request                                                                                                                              | single-flight (helper)    | —                       |
 | `src/pages/admin/commerce-documents.astro`         | `.quotation-action`                            | onAction                | **tidak ada**                                                                                                                              | single-flight (helper)    | ya                      |

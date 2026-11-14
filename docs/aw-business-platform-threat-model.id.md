@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-threat-model.md)
 
-<!-- i18n-source-hash: sha256:53909c3ca54e0e06e7bbd0a86ee180bb8375a97cea408ba9b458c9bc9f61ad40 -->
+<!-- i18n-source-hash: sha256:f97747198642620406fed9cd5e08189d4feb74e39e17b9cee3ac8e46ae0cbeea -->
 
 # AW Business Platform — model ancaman adapter, analisis privasi, dan applicability regulasi
 
@@ -340,6 +340,7 @@ Penjawaban per tenant adalah mekanisme upstream (setiap tabel menjawab pertanyaa
 - **Akses dan portabilitas:** tabel dan antrean adapter didaftarkan untuk ekspor subject-data, dengan nilai tersamarkan bila berlaku; ekspor menggabungkan lewat referensi pelanggan commerce (O12) dan, untuk karyawan, referensi profil.
 - **Koreksi:** dengan menambahkan catatan terkoreksi bila riwayat penting (ledger, absensi); di tempat hanya untuk data kontak biasa di otoritas pelanggan.
 - **Penghapusan dan anonimisasi:** dibatasi oleh kewajiban retensi untuk catatan keuangan dan ketenagakerjaan; menghapus profil atau pelanggan menganonimkan identitas, sementara baris ledger tetap ada dan menunjuk ke subjek teranonimkan; isi notifikasi dan catatan dipurge atau dinullkan; snapshot slip gaji atau dokumen tidak ditulis ulang.
+- **Diimplementasikan untuk pembeli (issue #529, ADR-0055):** pelanggan commerce bukan subjek yang bisa diikat engine upstream (butuh tenant user, identitas, atau profil), sehingga `commerce` memiliki alurnya, berkunci id pelanggan: ekspor adalah bundel JSON berversi yang dikembalikan dan tidak disimpan; penghapusan menghapus baris pribadi, menganonimkan identitas dengan sentinel unik per baris dan menandainya `erased_at`, mempertahankan pesanan, dokumen, dan buku besar (menunjuk ke pelanggan yang dianonimkan, snapshot tidak ditulis ulang), dan ditolak selama ada pesanan, pemesanan, saldo nilai tersimpan, pengembalian dana, atau pembayaran afiliasi yang terbuka. Pembeli membuktikan kendali dengan sesi bearer ditambah kode sekali pakai baru dengan tujuan sendiri; staf butuh izin, step-up, dan penyetuju kedua untuk penghapusan. Dasar hukum retensi adalah usulan sampai penasihat hukum mengonfirmasinya.
 - **Keberatan dan penarikan:** penarikan consent pemasaran berlaku saat dispatch (F4); suppression bertahan setelah pesannya dihapus.
 - **Peran penanganan permintaan:** tenant (pengendali) memutuskan; operator (prosesor) mengeksekusi dan membuktikan; operator menjawab langsung hanya untuk dataset pengendalinya sendiri (bagian 5.2).
 - **Kesiapan pelanggaran:** audit dan log keputusan menjawab siapa membaca atau mengubah apa; kewajiban dan tenggat pemberitahuan bergantung pada peran dan harus dikonfirmasi penasihat hukum.

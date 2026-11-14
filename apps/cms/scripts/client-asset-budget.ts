@@ -1971,8 +1971,17 @@ export const READER_BUDGET_BYTES = 24_000;
  * previous sync (+54 B: the shared `AdminLayout` CSS bundle is not additive
  * across lineages). `commerce` added no browser byte. 124 B of margin for the
  * local/CI build difference.
+ *
+ * **Issue #529 (shopper data-subject rights) then raises it to 539,100 B**,
+ * MEASURED 539,032 B on the build (537,376 B at the `f0182930` sync, so +1,656 B):
+ * the customers screen gained the Privacy column's export and erasure-request
+ * actions, the data-subject requests panel with its approve and reject actions,
+ * the step-up and confirm dialogs it shares with the other commerce screens, and
+ * `lib/ui/commerce-subject-client.ts` (the export download). The new
+ * admin strings it needed are compiled into the shared catalogue. 68 B
+ * of margin for the local/CI build difference.
  */
-export const APP_BUDGET_BYTES = 537_500;
+export const APP_BUDGET_BYTES = 539_100;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

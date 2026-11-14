@@ -1,6 +1,8 @@
 ---
 /** Commerce customer list + level/status edit screen (Issue #29). A customer row is created only by a guest order (`findOrCreateCustomerByPhone`) — there is no create form here, matching `commerce-permissions.ts`'s "no `customers.create` permission" decision. */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import CommerceStepUpDialog from "../../components/CommerceStepUpDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -10,6 +12,8 @@ import {
   createCommerceLabels
 } from "../../lib/ui/commerce-admin-labels";
 import { listCustomers } from "../../modules/commerce/application/customer-directory";
+import { listSubjectRequests } from "../../modules/commerce/application/customer-subject-requests";
+import { isErasedSentinel } from "../../modules/commerce/domain/customer-subject-policy";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
@@ -31,7 +35,42 @@ const screen = await loadAdminScreen({
       action: "update"
     });
 
-    return { customers: page.items, canUpdate };
+    // Issue #529 (ADR-0055 D3): the shopper data-subject actions are their own
+    // permissions, each checked here only to decide what the page SHOWS - the
+    // routes enforce every one of them again.
+    const canReadRequests = await can({
+      moduleKey: "commerce",
+      activityCode: "customer_subject_requests",
+      action: "read"
+    });
+    const canExport = await can({
+      moduleKey: "commerce",
+      activityCode: "customer_subject_requests",
+      action: "export"
+    });
+    const canErase = await can({
+      moduleKey: "commerce",
+      activityCode: "customer_subject_requests",
+      action: "delete"
+    });
+    const canApprove = await can({
+      moduleKey: "commerce",
+      activityCode: "customer_subject_requests",
+      action: "approve"
+    });
+    const requests = canReadRequests
+      ? await listSubjectRequests(tx, ssr.tenantId)
+      : [];
+
+    return {
+      customers: page.items,
+      canUpdate,
+      canReadRequests,
+      canExport,
+      canErase,
+      canApprove,
+      requests
+    };
   },
   onError: (error) => {
     logAdminPageError(
@@ -46,6 +85,67 @@ const canRead = screen.state !== "denied";
 const loadError = screen.state === "error";
 const customers = screen.state === "allowed" ? screen.data.customers : [];
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canReadRequests =
+  screen.state === "allowed" && screen.data.canReadRequests;
+const canExport = screen.state === "allowed" && screen.data.canExport;
+const canErase = screen.state === "allowed" && screen.data.canErase;
+const canApprove = screen.state === "allowed" && screen.data.canApprove;
+const requests = screen.state === "allowed" ? screen.data.requests : [];
+const showPrivacyColumn = canExport || canErase;
+const tableColumns = 5 + (canUpdate ? 1 : 0) + (showPrivacyColumn ? 1 : 0);
+
+const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
+  dateStyle: "medium",
+  timeZone: "UTC"
+});
+const requestTypeText: Record<string, string> = {
+  export: t("Export"),
+  erasure: t("Erasure")
+};
+const requestStatusText: Record<string, string> = {
+  disclosed: t("Disclosed"),
+  pending_approval: t("Awaiting approval"),
+  refused: t("Refused"),
+  rejected: t("Rejected"),
+  completed: t("Completed")
+};
+const requestStatusTone: Record<string, string> = {
+  disclosed: "success",
+  pending_approval: "warning",
+  refused: "danger",
+  rejected: "neutral",
+  completed: "success"
+};
+const requestChannelText: Record<string, string> = {
+  storefront: t("Shopper"),
+  admin: t("Staff")
+};
+const refusalText: Record<string, string> = {
+  ALREADY_ERASED: t("Already erased"),
+  OPEN_ORDER: t("An order is still open"),
+  OPEN_BOOKING: t("A booking is still active"),
+  STORED_VALUE_BALANCE: t("A stored-value balance remains"),
+  PENDING_REFUND: t("A return or refund is unsettled"),
+  UNPAID_AFFILIATE_PAYOUT: t("An affiliate payout is unpaid")
+};
+const errorMessages = JSON.stringify({
+  ERASURE_REFUSED: t(
+    "Erasure was refused: an order, booking, stored-value balance, refund or affiliate payout is still open. Nothing was changed."
+  ),
+  SEPARATION_OF_DUTIES: t(
+    "The person who requested an erasure cannot approve it."
+  ),
+  INVALID_STATE: t("This request was already decided. Reload the page."),
+  STEP_UP_CANCELLED: t("Confirmation cancelled. Nothing was changed."),
+  STEP_UP_FAILED: t("That code was not accepted. Nothing was changed."),
+  STEP_UP_REQUIRED: t("This action needs a recent second-factor check."),
+  FORBIDDEN: t("You do not have permission to do that."),
+  ACCESS_DENIED: t("You do not have permission to do that."),
+  RESOURCE_NOT_FOUND: t("That customer or request was not found."),
+  IDEMPOTENCY_CONFLICT: t(
+    "This request was already sent with different details. Reload the page."
+  )
+});
 ---
 
 <AdminLayout
@@ -70,6 +170,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
       id="customer-action-error"
       class="admin-create-error"
       role="alert"
+      data-errors={errorMessages}
       hidden
     />
   )}
@@ -95,12 +196,13 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
             <th scope="col">{t("Level")}</th>
             <th scope="col">{t("Status")}</th>
             {canUpdate && <th scope="col">{t("Actions")}</th>}
+            {showPrivacyColumn && <th scope="col">{t("Privacy")}</th>}
           </tr>
         </thead>
         <tbody>
           {customers.length === 0 ? (
             <tr>
-              <td class="data-table-empty" colspan={canUpdate ? 6 : 5}>
+              <td class="data-table-empty" colspan={tableColumns}>
                 <div class="empty-state">
                   <span class="empty-state-icon" aria-hidden="true">
                     ◇
@@ -183,6 +285,53 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                     </div>
                   </td>
                 )}
+                {showPrivacyColumn && (
+                  <td data-label={t("Privacy")} class="stacked-block">
+                    {isErasedSentinel(customer.name) ? (
+                      <span class="admin-status-pill" data-tone="neutral">
+                        {t("Erased")}
+                      </span>
+                    ) : (
+                      <div class="row-actions">
+                        {canExport && (
+                          <button
+                            type="button"
+                            class="module-toggle customer-export-btn"
+                            data-customer-id={customer.id}
+                            data-confirm-title={t(
+                              "Export this customer's data?"
+                            )}
+                            data-confirm-message={t(
+                              "A JSON file with everything the store holds about this customer is produced and downloaded. It is not stored, and the disclosure is recorded in the audit log."
+                            )}
+                            data-confirm-label={t("Export data")}
+                          >
+                            {t("Export data")}
+                          </button>
+                        )}
+                        {canErase && (
+                          <button
+                            type="button"
+                            class="module-toggle customer-erase-btn"
+                            data-customer-id={customer.id}
+                            data-confirm-title={t(
+                              "Request erasure of this customer?"
+                            )}
+                            data-confirm-message={t(
+                              "This does not erase anything yet: it records a request that a second person must approve. Erasing anonymises the customer and deletes personal rows; orders, payments, documents and ledgers are kept for bookkeeping."
+                            )}
+                            data-confirm-label={t("Request erasure")}
+                            data-confirm-note-label={t("Reason (optional)")}
+                            data-confirm-note-max-length="500"
+                            data-confirm-danger="true"
+                          >
+                            {t("Request erasure")}
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </td>
+                )}
               </tr>
             ))
           )}
@@ -190,6 +339,123 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
       </table>
     </div>
   )}
+  {canRead && !loadError && canReadRequests && (
+    <section
+      class="admin-section fade-in-up"
+      aria-labelledby="subject-requests-title"
+    >
+      <h2 id="subject-requests-title" class="admin-dashboard-panel-title">
+        {t("Data-subject requests")}
+      </h2>
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Data-subject requests")}
+      >
+        <table class="data-table data-table--stack" id="subject-requests-table">
+          <caption>
+            {tn("{count} request", "{count} requests", requests.length, {
+              count: requests.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Request")}</th>
+              <th scope="col">{t("Customer")}</th>
+              <th scope="col">{t("Raised by")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Date")}</th>
+              {canApprove && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {requests.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={canApprove ? 6 : 5}>
+                  <div class="empty-state">
+                    <span class="empty-state-title">
+                      {t("No data-subject requests yet")}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              requests.map((request) => (
+                <tr data-subject-request-row={request.id}>
+                  <td data-label={t("Request")}>
+                    {requestTypeText[request.requestType]}
+                  </td>
+                  <td data-label={t("Customer")}>
+                    <span class="cell-code">
+                      {request.customerId.slice(0, 8)}
+                    </span>
+                  </td>
+                  <td data-label={t("Raised by")}>
+                    {requestChannelText[request.channel]}
+                  </td>
+                  <td data-label={t("Status")}>
+                    <span
+                      class="admin-status-pill"
+                      data-tone={requestStatusTone[request.status] ?? "neutral"}
+                    >
+                      {requestStatusText[request.status]}
+                    </span>
+                    {request.refusalCode && (
+                      <span class="cell-code">
+                        {" "}
+                        {refusalText[request.refusalCode] ??
+                          request.refusalCode}
+                      </span>
+                    )}
+                  </td>
+                  <td data-label={t("Date")}>
+                    {dateFormat.format(new Date(request.createdAt))}
+                  </td>
+                  {canApprove && (
+                    <td data-label={t("Actions")} class="stacked-block">
+                      {request.status === "pending_approval" && (
+                        <div class="row-actions">
+                          <button
+                            type="button"
+                            class="module-toggle subject-approve-btn"
+                            data-request-id={request.id}
+                            data-confirm-title={t("Approve this erasure?")}
+                            data-confirm-message={t(
+                              "The customer is anonymised and personal rows are deleted now. This cannot be undone. Orders, payments, documents and ledgers are kept."
+                            )}
+                            data-confirm-label={t("Approve erasure")}
+                            data-confirm-danger="true"
+                          >
+                            {t("Approve")}
+                          </button>
+                          <button
+                            type="button"
+                            class="module-toggle subject-reject-btn"
+                            data-request-id={request.id}
+                            data-confirm-title={t("Reject this erasure?")}
+                            data-confirm-message={t(
+                              "Nothing is erased and the request is closed."
+                            )}
+                            data-confirm-label={t("Reject erasure")}
+                          >
+                            {t("Reject")}
+                          </button>
+                        </div>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+  <CommerceStepUpDialog locale={Astro.locals.locale} id="customers-stepup" />
 </AdminLayout>
 
 <script>
@@ -197,10 +463,34 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
     messageBox,
     mutateAndReload,
     onAction,
-    sendJson
+    sendJson,
+    sendJsonForData
   } from "../../lib/ui/admin-form-client";
+  import {
+    newIdempotencyKey,
+    pickRefusalMessage
+  } from "../../lib/ui/commerce-booking-client";
+  import {
+    confirmFromTrigger,
+    confirmFromTriggerWithNote
+  } from "../../lib/ui/commerce-confirm-dialog-client";
+  import {
+    promptStepUpCode,
+    sendWithStepUp
+  } from "../../lib/ui/commerce-stepup-client";
+  import {
+    downloadJson,
+    subjectExportFileName
+  } from "../../lib/ui/commerce-subject-client";
 
+  const STEP_UP_DIALOG = "customers-stepup";
   const actionError = messageBox("customer-action-error");
+  const errorMap = (): string | undefined =>
+    document.getElementById("customer-action-error")?.dataset.errors;
+  const failureFor =
+    (fallback: string) =>
+    (code: string | null): string =>
+      pickRefusalMessage(errorMap(), code, fallback);
 
   onAction(".customer-save-btn", async (button) => {
     const id = button.dataset.customerId;
@@ -225,4 +515,86 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
       "Saving…"
     );
   });
+
+  // Issue #529 (ADR-0055): export a shopper's data. The bundle is downloaded
+  // from this response and is not stored anywhere.
+  onAction(".customer-export-btn", async (button) => {
+    const id = button.dataset.customerId;
+    if (!id) return;
+    if (!(await confirmFromTrigger(button))) return;
+
+    actionError.clear();
+    const result = await sendJsonForData<{ bundle: unknown }>(
+      "POST",
+      `/api/v1/commerce/customers/${id}/subject-export`,
+      undefined,
+      { "Idempotency-Key": newIdempotencyKey() }
+    );
+    if (!result.ok || !result.data) {
+      actionError.show(
+        failureFor("Could not export the customer's data. Please try again.")(
+          result.errorCode
+        )
+      );
+      return;
+    }
+    downloadJson(result.data.bundle, subjectExportFileName(id, new Date()));
+  });
+
+  // Request an erasure: records a pending request after a step-up; the second
+  // person approves it from the panel below.
+  onAction(".customer-erase-btn", async (button) => {
+    const id = button.dataset.customerId;
+    if (!id) return;
+    const confirmed = await confirmFromTriggerWithNote(button);
+    if (!confirmed) return;
+
+    // One key for the click AND its step-up retry: the second send is safe.
+    const key = newIdempotencyKey();
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendWithStepUp(
+          () =>
+            sendJson(
+              "POST",
+              `/api/v1/commerce/customers/${id}/subject-erasure`,
+              confirmed.note ? { reason: confirmed.note } : {},
+              { "Idempotency-Key": key }
+            ),
+          () => promptStepUpCode(STEP_UP_DIALOG)
+        ),
+      failureFor("Could not request the erasure. Please try again.")
+    );
+  });
+
+  function decideAction(decision: "approve" | "reject") {
+    return async (button: HTMLButtonElement): Promise<void> => {
+      const id = button.dataset.requestId;
+      if (!id) return;
+      if (!(await confirmFromTrigger(button))) return;
+
+      const key = newIdempotencyKey();
+      await mutateAndReload(
+        button,
+        actionError,
+        () =>
+          sendWithStepUp(
+            () =>
+              sendJson(
+                "POST",
+                `/api/v1/commerce/customer-subject-requests/${id}/decide`,
+                { decision },
+                { "Idempotency-Key": key }
+              ),
+            () => promptStepUpCode(STEP_UP_DIALOG)
+          ),
+        failureFor("Could not record the decision. Please try again.")
+      );
+    };
+  }
+
+  onAction(".subject-approve-btn", decideAction("approve"));
+  onAction(".subject-reject-btn", decideAction("reject"));
 </script>

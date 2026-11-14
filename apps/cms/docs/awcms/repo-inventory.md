@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 41    |
-| Migrations                          | 417   |
-| `awcms_*` tables                    | 381   |
-| Tables with `FORCE` RLS             | 361   |
+| Migrations                          | 420   |
+| `awcms_*` tables                    | 382   |
+| Tables with `FORCE` RLS             | 362   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 1037  |
-| Route files                         | 956   |
+| Test files                          | 1040  |
+| Route files                         | 963   |
 | ADR                                 | 326   |
 
 ### Modules
@@ -483,6 +483,9 @@
 | 415 | `sql/1062_awcms_commerce_booking_revenue_export_permission.sql`             |
 | 416 | `sql/1063_awcms_commerce_commission_submissions.sql`                        |
 | 417 | `sql/1064_awcms_commerce_worker_email_guard_reissue.sql`                    |
+| 418 | `sql/1065_awcms_commerce_customer_subject_requests.sql`                     |
+| 419 | `sql/1066_awcms_commerce_customer_erasure_marker.sql`                       |
+| 420 | `sql/1067_awcms_commerce_customer_subject_permissions.sql`                  |
 
 ### Tables & Row-Level Security
 
@@ -570,6 +573,7 @@
 | `awcms_commerce_customer_addresses`              | `sql/913_awcms_commerce_customers_orders_schema.sql`          | yes | yes   |
 | `awcms_commerce_customer_otps`                   | `sql/917_awcms_commerce_customer_accounts_schema.sql`         | yes | yes   |
 | `awcms_commerce_customer_sessions`               | `sql/917_awcms_commerce_customer_accounts_schema.sql`         | yes | yes   |
+| `awcms_commerce_customer_subject_requests`       | `sql/1065_awcms_commerce_customer_subject_requests.sql`       | yes | yes   |
 | `awcms_commerce_customers`                       | `sql/913_awcms_commerce_customers_orders_schema.sql`          | yes | yes   |
 | `awcms_commerce_document_deliveries`             | `sql/965_awcms_commerce_document_deliveries_schema.sql`       | yes | yes   |
 | `awcms_commerce_document_sequences`              | `sql/980_awcms_commerce_documents_schema.sql`                 | yes | yes   |
@@ -874,16 +878,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 734        |
+| `(root)`      | 736        |
 | `e2e`         | 32         |
-| `integration` | 270        |
+| `integration` | 271        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 807   |
+| `/api/v1/**`    | 814   |
 | `/admin/**`     | 118   |
 | publik / anonim | 31    |
 

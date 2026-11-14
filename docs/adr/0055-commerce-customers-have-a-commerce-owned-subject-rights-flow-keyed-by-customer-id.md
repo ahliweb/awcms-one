@@ -1,0 +1,79 @@
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.id.md)
+
+# ADR-0055 — Commerce customers have a commerce-owned subject-rights flow, keyed by customer id
+
+- **Status:** Accepted
+- **Date:** 14 November 2026
+- **Decision maker:** ahliweb
+- **Related:** issue [#529](https://github.com/ahliweb/awcms-one/issues/529) (this ADR and its implementation); [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) (customer accounts, OTP, bearer sessions: D1 is why the engine cannot reach a shopper; D3 is the no-cookie rule this flow keeps); [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) (the generic engine change belongs upstream); [ADR-0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) (customer push data, whose erasure and export functions this flow finally calls); [ADR-0046](0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md) (the commission submission record, retained); the threat model section 5.6 and the standards map gap G1 in [`aw-business-platform-threat-model.md`](../aw-business-platform-threat-model.md) and [`aw-business-platform-standards-map.md`](../aw-business-platform-standards-map.md); upstream `awcms` ADR-0142 (a subject-data descriptor that resolves through one hop must answer `retain_under_obligation`)
+
+## Context
+
+UU PDP 27/2022 gives a data subject a right of access and a right to erasure. `commerce` held no end-to-end path for a shopper's rights (issue #529, found while writing the standards evidence map for epic #280):
+
+- **The engine cannot reach a shopper.** The upstream subject-data engine (`data_lifecycle`) binds exactly three subject ids (a tenant user, an identity, a profile); `awcms_subject_requests` is keyed on a tenant user; `SubjectDataColumn.references` accepts only `tenant_user`, `identity`, `profile` or `principal`; a descriptor that resolves through one hop must answer `retain_under_obligation`. A commerce customer is none of those (ADR-0016 D1: a customer account carries no tenant-user, identity or profile id). So every customer-keyed commerce descriptor is honestly `unreachableBySubject`, and a plan for any subject lists them all as "not answered". The issue counted 73; the real count on the branch was 68 customer-keyed unreachable descriptors out of 96 (the 73 was a grep that also matched README and comment lines). The 28 reachable ones are reachable only through staff actor stamps, never through the customer.
+- **The push erasure had no caller.** `eraseCustomerPushData` and `exportCustomerPushData` (ADR-0048) were written and tested, their docblock said the account-deletion flow calls them "when built", and nothing did.
+- **No route, no page.** `customers/[id]` had only `GET` and `PATCH`; the storefront account route had no export or delete; `/akun` offered neither.
+- **A hard-delete trap.** `customers` and `customer_accounts` carry `deleted_at`, and the `commerce.customers` lifecycle descriptor hard-deletes by `deleted_at` after 365 days; `awcms_commerce_orders.customer_id` is a plain foreign key to the customer. An erasure that set `deleted_at` on a customer with orders would make that purge fail on the foreign key, and would orphan the bookkeeping rows.
+
+## Decision
+
+**D1. The subject.** `commerce` owns an export and erasure flow **keyed by `awcms_commerce_customers.id`**. The subject is resolved from the bearer session on the storefront (the account's own customer) or from the route id for staff, always inside the tenant's RLS transaction, so another tenant's customer is never found (404). `commerce` does **not** fork the engine's `references` union locally. The generic mechanism, a descriptor-declared subject kind, is proposed upstream (appendix A) and arrives, if accepted, by the normal subtree sync. Until then the commerce-owned flow answers the shopper, and every customer-keyed descriptor keeps `unreachableBySubject` with a rationale that now names this flow and says what it does to that table (`withCommerceSubjectFlow`, generated from the registry below, so a rationale cannot drift from the code).
+
+The evidence of each request is its own table, `awcms_commerce_customer_subject_requests` (`sql/1065`): who asked, through which surface, what was decided, the refusal code, a count and the retained summary. It stores no bundle, name, contact, code or token, and a decided row is immutable (a guard trigger; no role may delete one).
+
+**D2. The erase / anonymise / retain matrix.** One registry, `domain/customer-subject-data.ts`, classifies every `awcms_commerce_*` table; `apps/cms/tests/commerce-customer-subject-data.test.ts` parses `sql/` and fails when a table with a customer, account, owner-customer or order column is in neither the registry nor the two "not answered" lists, so a table added later cannot be silently missing from a shopper's export.
+
+| Action                                                                            | Tables                                                                                                                                                                                                                    |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Hard delete**                                                                   | sessions, one-time codes (matched by the account's e-mail and the customer's phone), wishlists, saved addresses, campaign recipients, the retention-projection row, push data (through `eraseCustomerPushData`)           |
+| **Anonymise** with per-row-unique sentinels                                       | `customers` (name, phone, e-mail), `customer_accounts` (`email_normalized`), the shopper's review text, their conversation subjects, the bodies of their own messages (the store's replies stay)                          |
+| **Retain** under the bookkeeping obligation, resolving to the anonymised customer | orders and their items, events, payments, allocations, documents, returns and refunds, the loyalty and stored-value ledgers, entitlements, affiliate accounting, quotations, work orders, the booking links and decisions |
+| **Not answered**                                                                  | OTP and WhatsApp rows matched only by a contact value (WhatsApp stays under its own retention); every catalogue, settings and aggregate table (each with a reason in the registry)                                        |
+
+The identity is anonymised, not soft-deleted. A new column `erased_at` (`sql/1066`) marks an erased customer and account, which also get `status = 'blocked'`; **`deleted_at` is deliberately not used**, for the purge trap above. Every eligibility predicate leaves `erased_at` rows out (segments, push, edit), the phone and e-mail sentinels are derived from the row id so the per-tenant unique indexes still hold and a new registration with the same phone is possible, and the e-mail sentinel is on the reserved `.invalid` top-level domain, so it can never be delivered to.
+
+Decisions inside the matrix:
+
+- `orders.address` and `orders.notes` are **retained** with the order and not scrubbed. The document snapshots keep the same text and are never rewritten after issue (threat model 5.6), so scrubbing one copy would be incoherent. Revisited if counsel advises otherwise.
+- A document's snapshot is not rewritten; the export carries a document's metadata and totals, not its body.
+- The shopper's erasure revokes every session, the one that made the request included: the next request with the old bearer is `401` and the storefront clears its stored session (ADR-0016 D3).
+
+**Refusal rules.** An erasure is refused, with a stable code, while the shopper still has something in flight: `ALREADY_ERASED`, `OPEN_ORDER` (pending payment, paid, processing, shipped), `OPEN_BOOKING` (an active reservation link on an order that is not cancelled or expired), `STORED_VALUE_BALANCE` (an active card or credit above zero), `PENDING_REFUND` (an open return, or a refund pending, processing or failed), `UNPAID_AFFILIATE_PAYOUT` (a commission pending or approved). A refusal is answered **before** the one-time code is consumed and again under the customer-row lock inside the erasure (a checkout racing the erasure waits for the lock, because an order insert takes a key-share lock on the customer row). The export is never refused for these.
+
+**D3. The surfaces.**
+
+- **Storefront** (the shopper): bearer session plus a **fresh one-time code** of its own purpose (`subject_export`, `subject_erasure`; the sign-in table's CHECK is widened in `sql/1066`, and `consumeOtp` filters by purpose, so a login code never authorises a request). Three routes under `/api/v1/commerce/storefront/account/privacy/`: `otp` (mails the code to the account's own address; rate limited per IP and per account), `export`, `erasure` (a required `Idempotency-Key`, stored on the request row: a repeated key answers the stored result, a key used by another request is `409`). No cookie, no `Access-Control-Allow-Credentials` (ADR-0016 D3). The three routes are declared in `CUSTOMER_BEARER_BODY_ENDPOINTS` so the middleware authenticates the customer token before any body is read, and in the OpenAPI contract with `customerBearer`.
+- **Admin** (staff on a shopper's behalf): four permissions on one activity code, `commerce.customer_subject_requests.{read,export,delete,approve}`. The existing `AccessAction` vocabulary is reused (`delete` requests the erasure, not a new `erase` verb), all three write verbs being already high-risk. An export needs `export` and an `Idempotency-Key`. An erasure is **maker/checker**: `delete` plus a fresh step-up records a `pending_approval` request after the precondition check and erases nothing; a **different** person with `approve` plus a fresh step-up decides it. The checker is never the maker, enforced three times: in the flow, in the claiming `UPDATE` (a conditional claim on `status = 'pending_approval'`), and by a table CHECK.
+- **Audit and idempotency.** Every disclosure is audited at `critical` and every erasure at `critical`, with counts and ids only. A shopper's export has no `Idempotency-Key` because its code is single use; an admin export requires one and treats a replay as `409 IDEMPOTENCY_REPLAYED` (the bundle is not kept to replay).
+
+**D4. The export shape.** A versioned JSON bundle (`version: 1`) **returned synchronously and never stored**, so it creates no retention duty of its own, with `Cache-Control: no-store`. It lists one array per table family (capped at 1000 rows per section, a cut section named in `truncated`), the push data through `exportCustomerPushData`, an `unanswered` section naming what could not be matched to the customer and why, and the retention notice. It is read as `to_jsonb(row) - redactedColumns`, so a column added later is disclosed rather than silently missing, and the guard test fails when a column whose name looks like a secret is neither redacted nor on a reviewed allow-list. **Redacted**: token and code hashes, client-address hashes, push endpoints and keys, provider payload bodies and links, idempotency keys, and a document's snapshot and content hash.
+
+## What this ADR does not settle
+
+- **Legal bases.** The bookkeeping duty (UU KUP 28/2007 art. 28) and the UU PDP 27/2022 erasure exceptions are recorded in the registry as proposed bases. **Counsel must confirm them**; the retention defaults and the refusal rules above are the owner's to confirm. Until then they are proposals, and the code states them as such.
+- **The generic subject kind** is upstream work (appendix A). The criterion "the `unreachableBySubject` count for `commerce` drops" can only be met after that change arrives; until then the descriptors keep the flag.
+- **Not built:** WhatsApp message rows matched by contact value are not erased (they age out through their own retention); an erased shopper's rows in the exported WhatsApp log are not matched.
+
+## Consequences
+
+- A shopper can download their data and erase their identity from `/akun/privasi`; staff can do either on their behalf, with a second person for the erasure. `eraseCustomerPushData` and `exportCustomerPushData` have a caller.
+- Migrations `1065`-`1067` (the request table with the worker's read for the lifecycle dry-run; `erased_at` and the OTP purposes; the four permissions). The commerce band note in `AGENTS.md` records them.
+- The customer-bearer body registry gains three endpoints; the asset budget and the OpenAPI contract grow.
+- The DB-backed integration suite and the real-browser `/akun/privasi` e2e run only through local CI (a migrated PostgreSQL; Playwright). They were written in an environment with neither and were not executed there.
+
+## Appendix A — proposed upstream issue (ahliweb/awcms), not opened from here
+
+Opening an issue upstream is a separate action; this is the text proposed for it.
+
+> **Title:** data_lifecycle: descriptor-declared subject kinds, so a module can make its own data subject reachable by export and erasure
+>
+> **Problem.** `buildSubjectPlan` binds exactly three ids (`tenantUserId`, `identityId`, `profileId`), `awcms_subject_requests` is keyed by `subject_tenant_user_id`, and `SubjectDataColumn.references` accepts only `tenant_user | identity | profile | principal`. A module whose data subject is not a tenant user, such as the shoppers of a derived commerce application (accounts with an e-mail OTP and a bearer session, no tenant-user row), can only mark every table `unreachableBySubject`. The engine then reports all of them as "not answered" and nothing exports or erases them. awcms-one (ahliweb/awcms-one#529, ADR-0055) built a module-owned flow because of this; the gap is generic.
+>
+> **Proposal.** (1) `ModuleDescriptor.subjectKinds`: a module declares a kind (`key`, a resolver from a request to a module-owned subject id inside the tenant transaction, a display label). (2) `SubjectDataColumn.references` additionally accepts a declared `<module>.<kind>` key. (3) `awcms_subject_requests` is keyed by `(kind, subject_id)` instead of only `subject_tenant_user_id` (a migration with a backfill of the existing rows as kind `tenant_user`). (4) `subject-data:registry:check` validates a declared kind exists, is owned by the module that uses it, and that an `unreachableBySubject` descriptor still has no subject columns. (5) The plan reports, per kind, which entries were answered and which were not.
+>
+> **What stays module-owned.** The refusal rules (what is still open), the erase / anonymise / retain matrix and its legal bases, the surfaces (OTP and step-up), and the export format of the module's own rows.
+>
+> **Compatibility.** Additive: existing descriptors and requests are unchanged; a module that declares no kind behaves as today.
+>
+> **After adoption in awcms-one:** descriptors whose table has a direct `customer_id` become direct; account-keyed and order-keyed tables use `subjectVia` (one hop, answering `retain_under_obligation`, ADR-0142); the two-hop tables and the contact-matched tables (`customer_otps`, the WhatsApp log) stay unreachable, each with its reason; the commerce-owned flow becomes an adapter over the engine instead of a parallel path.

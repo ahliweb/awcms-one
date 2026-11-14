@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:8926b31f3292284bbe16b24746332ad44b60f2fe7ffc5218f97f8f97658bb38f -->
+<!-- i18n-source-hash: sha256:d092beb4cbfc38c84559e0b03d428ec0d2e9f48b758b1f4fa93854056d1ea263 -->
 
 # Kamus data
 
@@ -506,6 +506,8 @@ Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke buku besar 
 | tautan staf | `awcms_commerce_commission_staff_links` | Menggabungkan login (`tenant_user_id`) dengan employment `hr_workforce` (`employment_id`, **buram**: tanpa foreign key, tanpa pembacaan). Paling banyak satu tautan HIDUP per login dan per employment; dipensiunkan (`retired_at`), tidak pernah dihapus |
 | sumber teratribusi | `awcms_commerce_commission_attributed_sources` | Pasangan `(source_type, rule_key)` yang di bawahnya akrual telah dilaporkan (`sql/1052`, ADR-0046 D9). Begitu ada baris, pengaturan tidak bisa mengubah salah satunya (`409 COMMISSION_SOURCE_LOCKED`, diaudit sebagai `commerce.commission.settings_refused`) |
 | submission komisi | `awcms_commerce_commission_submissions` | Satu baris hanya-tambah per `(source_type, baris pesanan, employment)` yang di-submit konsumer ke antrean intake (`sql/1063`, ADR-0046 D13.1): id, `source_type`, `rule_key`, `created_at`; **tanpa jumlah, tanpa orang**. Pembalik me-void persis baris ini; `queued` bukan `accrued`, sehingga penolakan saat posting tidak terlihat di sini dan hanya terdaftar di pengecualian intake |
+| pelanggan terhapus | `awcms_commerce_customers.erased_at` (dan milik akun) | Pelanggan yang identitasnya dianonimkan oleh penghapusan subjek data pembeli (`sql/1066`, ADR-0055): nama `Erased customer`, telepon `erased-<id>`, e-mail null, status `blocked`; e-mail akunnya `erased-<id>@erased.invalid`. Barisnya tetap (pesanan dan buku besar menunjuk ke sana); `deleted_at` sengaja tidak dipakai |
+| permintaan subjek | `awcms_commerce_customer_subject_requests` | Baris bukti permintaan ekspor atau penghapusan pembeli (`sql/1065`): jenis, permukaan, status, kode penolakan, dan hitungan, tidak pernah bundel |
 | cap kasir | `awcms_commerce_orders.pos_cashier_tenant_user_id` | Login yang mencatat penjualan kasir, dicap dari sesi terautentikasi (`sql/931`). Satu-satunya sumber "siapa yang menjual": tidak pernah kolom request |
 | identitas sumber | kunci unik intake (lalu buku besar) | `(tipe sumber, id pesanan, id baris pesanan)` ditambah employment dan digest permintaan: satu baris intake (`duplicate` saat putar ulang) dan karenanya satu akrual per baris berapa pun event pesanan-dibayar diputar ulang |
 | jumlah dasar | dilaporkan per baris | Total baris dikurangi bagian proporsional `discount` + `loyalty_discount` (sen bilangan bulat, alokasi sisa-terbesar modul retur). Tidak pernah ongkos kirim, asuransi atau pajak |

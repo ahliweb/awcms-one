@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:dbb3376322e3e472a4496c9ca8363068bb8cf8d10bb9799540ffe9423d91e281 -->
+<!-- i18n-source-hash: sha256:b96b601510a23b0f204011cbaa2f36f139d1aff2050e7e568613c3489349b51e -->
 
 # Architecture Decision Records
 
@@ -72,6 +72,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0052](0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md)                    | Aturan segmen turunan booking adalah skema aturan 2 (lima field), dibaca langsung lewat tautan booking dan tidak pernah disimpan; versi skema disimpan per versi segmen, sehingga aturan lama dievaluasi tanpa berubah                                               | Diterima                                                                                                                      |
 | [0053](0053-population-and-area-come-from-the-kepmendagri-region-decree-not-bps.md)                                                     | Penduduk dan luas dari Kepmendagri kode wilayah, bukan BPS (file vendor diverifikasi checksum dan diimpor offline; penduduk menurut Kepmendagri, luas menurut BIG; `sql/883` menghapus BPS)                                                                          | Diterima                                                                                                                      |
 | [0054](0054-the-adr-0133-whatsapp-legacy-path-backstop-moves-to-v0-22-0.md)                                                             | Batas akhir jalur legacy WhatsApp ADR-0133 pindah ke v0.22.0 (rilis minor kedua setelah v0.20.0, dengan lima kondisi akhir yang sama; tanpa perubahan kode atau tabel; ADR baru, bukan pergeseran diam-diam, bila terlewat lagi)                                     | Diterima                                                                                                                      |
+| [0055](0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md) | Pelanggan commerce punya alur hak subjek data milik commerce, berkunci id pelanggan (bundel ekspor dikembalikan dan tidak disimpan; penghapusan menganonimkan, menghapus, dan mempertahankan buku besar; aturan penolakan; OTP storefront dan maker/checker admin) | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

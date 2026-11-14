@@ -15209,3 +15209,87 @@ msgstr "Pekan kerja"
 
 msgid "You do not have permission to view the inbox settings."
 msgstr "Anda tidak memiliki izin untuk melihat pengaturan kotak masuk."
+
+msgid "A JSON file with everything the store holds about this customer is produced and downloaded. It is not stored, and the disclosure is recorded in the audit log."
+msgstr "Sebuah berkas JSON berisi semua yang disimpan toko tentang pelanggan ini dibuat dan diunduh. Berkas tidak disimpan, dan pengungkapan dicatat di log audit."
+
+msgid "A booking is still active"
+msgstr "Ada pemesanan yang masih aktif"
+
+msgid "A return or refund is unsettled"
+msgstr "Ada retur atau pengembalian dana yang belum selesai"
+
+msgid "A stored-value balance remains"
+msgstr "Masih ada saldo nilai tersimpan"
+
+msgid "Already erased"
+msgstr "Sudah dihapus"
+
+msgid "An affiliate payout is unpaid"
+msgstr "Ada pembayaran afiliasi yang belum dibayar"
+
+msgid "An order is still open"
+msgstr "Ada pesanan yang masih berjalan"
+
+msgid "Approve erasure"
+msgstr "Setujui penghapusan"
+
+msgid "Approve this erasure?"
+msgstr "Setujui penghapusan ini?"
+
+msgid "Data-subject requests"
+msgstr "Permintaan subjek data"
+
+msgid "Erasure was refused: an order, booking, stored-value balance, refund or affiliate payout is still open. Nothing was changed."
+msgstr "Penghapusan ditolak: ada pesanan, pemesanan, saldo nilai tersimpan, pengembalian dana, atau pembayaran afiliasi yang masih terbuka. Tidak ada yang diubah."
+
+msgid "Export data"
+msgstr "Ekspor data"
+
+msgid "Export this customer's data?"
+msgstr "Ekspor data pelanggan ini?"
+
+msgid "No data-subject requests yet"
+msgstr "Belum ada permintaan subjek data"
+
+msgid "Nothing is erased and the request is closed."
+msgstr "Tidak ada yang dihapus dan permintaan ditutup."
+
+msgid "Privacy"
+msgstr "Privasi"
+
+msgid "Raised by"
+msgstr "Diajukan oleh"
+
+msgid "Refused"
+msgstr "Ditolak"
+
+msgid "Reject erasure"
+msgstr "Tolak penghapusan"
+
+msgid "Reject this erasure?"
+msgstr "Tolak penghapusan ini?"
+
+msgid "Request erasure of this customer?"
+msgstr "Minta penghapusan pelanggan ini?"
+
+msgid "Shopper"
+msgstr "Pembeli"
+
+msgid "Staff"
+msgstr "Staf"
+
+msgid "That customer or request was not found."
+msgstr "Pelanggan atau permintaan itu tidak ditemukan."
+
+msgid "The customer is anonymised and personal rows are deleted now. This cannot be undone. Orders, payments, documents and ledgers are kept."
+msgstr "Pelanggan dianonimkan dan baris data pribadi dihapus sekarang. Ini tidak dapat dibatalkan. Pesanan, pembayaran, dokumen, dan buku besar tetap disimpan."
+
+msgid "The person who requested an erasure cannot approve it."
+msgstr "Orang yang meminta penghapusan tidak dapat menyetujuinya."
+
+msgid "This does not erase anything yet: it records a request that a second person must approve. Erasing anonymises the customer and deletes personal rows; orders, payments, documents and ledgers are kept for bookkeeping."
+msgstr "Ini belum menghapus apa pun: ini mencatat permintaan yang harus disetujui orang kedua. Penghapusan menganonimkan pelanggan dan menghapus baris data pribadi; pesanan, pembayaran, dokumen, dan buku besar tetap disimpan untuk pembukuan."
+
+msgid "This request was already decided. Reload the page."
+msgstr "Permintaan ini sudah diputuskan. Muat ulang halaman."

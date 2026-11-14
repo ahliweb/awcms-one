@@ -1224,6 +1224,84 @@ function handleAccountRequest(request, path, body, headers) {
   }
 
   // -------------------------------------------------------------------------
+  // Issue #529 (ADR-0055) - the shopper's own data export and erasure. Bearer,
+  // plus the fixed stub code (`OTP_CODE`); any other code is the one generic
+  // `400 OTP_INVALID`. The erasure requires an `Idempotency-Key`, deletes the
+  // account and revokes its sessions (so the next call is `401`), and answers
+  // the real route's shape. A shopper whose e-mail starts with `terbuka-` has an
+  // open order: the erasure is refused `409 ERASURE_REFUSED`, nothing changes.
+  // -------------------------------------------------------------------------
+
+  if (path.startsWith("/privacy/") && request.method === "POST") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    if (path === "/privacy/otp") {
+      if (body?.type !== "export" && body?.type !== "erasure") {
+        return envelopeError(400, "VALIDATION_ERROR", "Invalid request.", [{ field: "type", message: 'type must be "export" or "erasure".' }], headers);
+      }
+      return envelope({ sent: true, expiresInSeconds: OTP_TTL_SECONDS }, { headers });
+    }
+
+    if (body?.code !== OTP_CODE) {
+      return envelopeError(400, "OTP_INVALID", "Kode salah atau kedaluwarsa.", undefined, headers);
+    }
+
+    if (path === "/privacy/export") {
+      return envelope(
+        {
+          bundle: {
+            version: 1,
+            generatedAt: new Date().toISOString(),
+            customerId: `cust-${account.id}`,
+            sections: { customer: [{ id: account.id, name: account.name }], addresses: account.addresses },
+            push: null,
+            truncated: [],
+            unanswered: [],
+            retention: { notice: "stub" }
+          }
+        },
+        { headers }
+      );
+    }
+
+    if (path === "/privacy/erasure") {
+      if (!request.headers.get("idempotency-key")) {
+        return envelopeError(400, "IDEMPOTENCY_KEY_REQUIRED", "Idempotency-Key header is required.", undefined, headers);
+      }
+      if (String(account.email).startsWith("terbuka-")) {
+        return Response.json(
+          {
+            success: false,
+            error: {
+              code: "ERASURE_REFUSED",
+              message: "An order is still being processed.",
+              details: { refusals: [{ code: "OPEN_ORDER", message: "An order is still being processed." }] }
+            },
+            meta: {}
+          },
+          { status: 409, headers }
+        );
+      }
+      for (const [token, session] of [...SESSIONS]) {
+        if (session.emailNormalized === normalizeEmail(account.email)) SESSIONS.delete(token);
+      }
+      ACCOUNTS.delete(normalizeEmail(account.email));
+      return envelope(
+        {
+          erased: true,
+          replayed: false,
+          requestId: "00000000-0000-4000-8000-000000000529",
+          summary: { retained: { sections: ["orders", "documents"], orders: 0, notice: "stub" } }
+        },
+        { headers }
+      );
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // Issue #90 — addresses, the account's own wishlist, orders, reviews.
   // -------------------------------------------------------------------------
 

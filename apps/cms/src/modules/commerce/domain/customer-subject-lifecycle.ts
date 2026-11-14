@@ -119,16 +119,23 @@ const byTable = new Map(SUBJECT_TABLES.map((entry) => [entry.table, entry]));
  * Appends the flow sentence to the rationale of every descriptor whose table the
  * registry covers. Descriptors for other tables pass through unchanged, and a
  * rationale is never appended to twice.
+ *
+ * It edits the descriptor OBJECTS in place and returns the same array of the
+ * same objects: the per-feature descriptor constants (`DOCUMENT_SUBJECT_DATA`,
+ * `RETURNS_SUBJECT_DATA`, ...) are spread into the module's list and tests assert
+ * that identity, so returning copies would make the module's list disagree with
+ * the constants it was built from. The edit is idempotent (the `ADR-0055` marker).
  */
 export function withCommerceSubjectFlow(
   descriptors: SubjectDataDescriptor[]
 ): SubjectDataDescriptor[] {
-  return descriptors.map((descriptor) => {
+  for (const descriptor of descriptors) {
     const entry = byTable.get(descriptor.tableName);
-    if (!entry || descriptor.rationale.includes("ADR-0055")) return descriptor;
+    if (!entry || descriptor.rationale.includes("ADR-0055")) continue;
     const text =
       FAMILY_TEXT[entry.erasure.action] +
       (entry.exported ? "" : NOT_EXPORTED_TEXT);
-    return { ...descriptor, rationale: `${descriptor.rationale} ${text}` };
-  });
+    descriptor.rationale = `${descriptor.rationale} ${text}`;
+  }
+  return descriptors;
 }

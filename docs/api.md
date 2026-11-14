@@ -339,6 +339,20 @@ Owner-side staff routes for the affiliate program itself, gated on `commerce.aff
 
 A commission is created `pending` the moment the referenced order's status reaches `completed` (never on self-referral, never for a since-suspended affiliate); `base = subtotal − discount − voucher_discount` (floored at zero), `amount = round(base × rate / 100, 2)`, both `numeric` strings (ADR-0003). `store-settings/public`'s `affiliateProgramEnabled` boolean is the only affiliate fact exposed publicly — the rate itself is owner-only (`GET /api/v1/commerce/store-settings`).
 
+### Shopper data-subject rights — export and erasure (#529)
+
+[ADR-0055](adr/0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md) records the four decisions (the subject, the erase / anonymise / retain matrix, the surfaces, the export shape). All three storefront routes are `customerBearer` (no cookie), accept a body and are therefore declared in `CUSTOMER_BEARER_BODY_ENDPOINTS`, so the customer token is authenticated before any body is read.
+
+| Method | Path | Auth | Notes |
+| --- | --- | --- | --- |
+| `POST` | `commerce/storefront/account/privacy/otp` | `customerBearer` | `{type: "export"\|"erasure"}` → `200 {sent, expiresInSeconds}`; mails a fresh code to the account's own address (rate limited per IP and per account; a repeat inside the resend window is a no-op) |
+| `POST` | `commerce/storefront/account/privacy/export` | `customerBearer` | `{code}` → `200 {bundle}`, `Cache-Control: no-store`, a versioned JSON bundle returned once and never stored; any code failure is one `400 OTP_INVALID` |
+| `POST` | `commerce/storefront/account/privacy/erasure` | `customerBearer` | `{code}` and a required `Idempotency-Key` → `200 {erased, replayed, requestId, summary}` and every session revoked (the next call is `401`); `409 ERASURE_REFUSED` with `details.refusals` (`OPEN_ORDER`, `OPEN_BOOKING`, `STORED_VALUE_BALANCE`, `PENDING_REFUND`, `UNPAID_AFFILIATE_PAYOUT`, `ALREADY_ERASED`) changes nothing and does not consume the code |
+| `POST` | `commerce/customers/{id}/subject-export` | `commerce.customer_subject_requests.export` | `Idempotency-Key` required → `200 {requestId, bundle}`; a replayed key is `409 IDEMPOTENCY_REPLAYED` (the bundle is not stored) |
+| `POST` | `commerce/customers/{id}/subject-erasure` | `commerce.customer_subject_requests.delete` + fresh step-up | `{reason?}`, `Idempotency-Key` required → `202 {request}` (`pending_approval`; nothing erased) or `409 ERASURE_REFUSED` |
+| `GET` | `commerce/customer-subject-requests` | `commerce.customer_subject_requests.read` | `?status=&customerId=`, newest first, at most 100; counts, codes and the retained summary, never a bundle |
+| `POST` | `commerce/customer-subject-requests/{id}/decide` | `commerce.customer_subject_requests.approve` + fresh step-up | `{decision: "approve"\|"reject"}`, `Idempotency-Key` required; the requester is `403 SEPARATION_OF_DUTIES`; approving runs the erasure; `409 INVALID_STATE` once decided |
+
 ### External providers — courier, payment gateway, WhatsApp, inbox, campaigns, feature toggles/tiered pricing, sales reports and POS all DONE (increment 5 — #107–#118)
 
 [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) records the ten decisions (D1–D10) this surface is designed against, and [issue #106](https://github.com/ahliweb/awcms-one/issues/106) is where the OpenAPI shape lives, exactly as ADR-0016/#86 did for accounts. Courier rates (D4, [issue #107](https://github.com/ahliweb/awcms-one/issues/107)) is now implemented — see "Courier rates" above and [`docs/cms.md`](cms.md). **D5 (WhatsApp), D8 (inbox), D9 (campaigns/consent), the full payment gateway — session half (issue #110) AND webhook intake/reconcile (issue #113) — D7 (sales reports, #117) and D6 (POS, #116) are all implemented — see their own subsections below.** Every path #106 merged ahead of its handler now has one: `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) is empty again, as `AGENTS.md` requires before the epic closes.
