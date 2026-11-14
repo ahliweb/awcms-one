@@ -45,6 +45,7 @@ function descriptor(
     ownerModuleKey: "commerce",
     scope: "tenant",
     cursorColumn: "cohort_month",
+    cursorColumnType: "date",
     ...WINDOW,
     partition: { eligible: false, rationale: partitionRationale },
     archive: {

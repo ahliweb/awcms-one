@@ -1961,8 +1961,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * #1224), and the commerce lineage rides on top of it unchanged except for the
  * nine admin scripts that now bind through the guard instead of their own
  * listeners. A measurement of the merged build rounded up to the next 100 B.
+ *
+ * **The `f0182930` sync (14 November 2026, AWCMS v10.11.0 still) then raises it
+ * to 537,500 B**, MEASURED 537,376 B on the merged build (525,002 B at the
+ * `45a139fa` sync), a measurement and not a sum. Upstream's own constant moved
+ * 358,400 -> 370,720 B (+12,320 B: the channel-account connection manager, the
+ * omnichannel inbox operator screens and the other new modules' admin chrome),
+ * and the commerce lineage is +166,656 B over it, against +166,602 B at the
+ * previous sync (+54 B: the shared `AdminLayout` CSS bundle is not additive
+ * across lineages). `commerce` added no browser byte. 124 B of margin for the
+ * local/CI build difference.
  */
-export const APP_BUDGET_BYTES = 525_100;
+export const APP_BUDGET_BYTES = 537_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

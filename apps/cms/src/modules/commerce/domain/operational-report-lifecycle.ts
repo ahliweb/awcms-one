@@ -50,6 +50,7 @@ function descriptor(
     // A DERIVED reporting projection (sql/998): the cursor is the report `day`
     // itself, as `commerce.sales_daily` does.
     cursorColumn: "day",
+    cursorColumnType: "date",
     ...WINDOW,
     partition: { eligible: false, rationale: partitionRationale },
     archive: {

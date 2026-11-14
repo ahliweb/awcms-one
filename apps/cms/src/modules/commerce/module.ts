@@ -3160,6 +3160,7 @@ export const commerceModule = defineModule({
       // (same ceiling, 3650 days) has purged the events behind it, so the
       // two windows are kept identical on purpose.
       cursorColumn: "day",
+      cursorColumnType: "date",
       retentionClass: "system_event",
       retentionMinDays: 365,
       retentionMaxDays: 3650,
@@ -3205,6 +3206,7 @@ export const commerceModule = defineModule({
       // (same ceiling, 3650 days) has purged the events behind it, so the
       // two windows are kept identical on purpose.
       cursorColumn: "day",
+      cursorColumnType: "date",
       retentionClass: "system_event",
       retentionMinDays: 365,
       retentionMaxDays: 3650,
@@ -3255,6 +3257,7 @@ export const commerceModule = defineModule({
       // (same ceiling, 3650 days) has purged the events behind it, so the
       // two windows are kept identical on purpose.
       cursorColumn: "day",
+      cursorColumnType: "date",
       retentionClass: "system_event",
       retentionMinDays: 365,
       retentionMaxDays: 3650,

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0045-booking-commerce-adapter.md)
 
-<!-- i18n-source-hash: sha256:63ed054e36b21cf664947150fa5d88bed401f059905265b4e816cc5fbb493e96 -->
+<!-- i18n-source-hash: sha256:1e10248bfeca6a390b4b6508547aa22f1be813d912c89c813a42b345158ff7c0 -->
 
 # ADR-0045 — Adapter booking-commerce
 
@@ -286,6 +286,7 @@ Semua yang diusulkan draf di luar yang dibangun issue #378 (tabel, rute tautan o
 - **Rekonsiliasi C-09** adalah rute baca untuk staf (`GET commerce/booking/reconciliation`), bukan skrip: pembacaan tercakup-tenant, diperiksa izinnya, terikat RLS yang dapat dipanggil operator atau monitor sesuai kebutuhan; fungsi yang sama dapat memberi makan job terjadwal kelak. Ia mendaftar `paid_without_confirm` dan `confirmed_without_deposit` di antara tautan aktif, dibatasi 200 baris.
 - **Event.** `awcms.commerce.booking_reservation_link.attention_raised` (kontrak 5.2) terdaftar di registri tipe event, dokumen AsyncAPI, dan `events.publishes`, sekali per flag terbuka, payload `{ orderId, reservationId, reason }`.
 - **Kendala deployment yang ditemukan saat membangun (U2).** Consumer memanggil `BookingPort` dari `domain-events:dispatch`; Booking menahan setiap hak tabel dari `awcms_worker` secara sengaja (worker dengan `UPDATE` pada reservasi dapat mengonfirmasi atau membatalkan booking), sehingga dengan `WORKER_DATABASE_URL` hak-minimal panggilan itu ditolak. Sampai hulu menyediakan confirm dan cancel yang dapat dipanggil worker (pasangan `SECURITY DEFINER` sempit seperti sapuan hold-nya), `domain-events:dispatch` harus berjalan dengan peran aplikasi. Tidak ada grant worker yang ditambahkan karena alasan itu; `sql/1042` tidak dipakai.
+- **Pembaruan, 14 November 2026 (`awcms` hulu #1278, `sql/388`, terbawa oleh sinkronisasi subtree).** Hulu kini menyediakan confirm dan cancel yang bisa dipanggil worker yang ditunggu catatan ini: `awcms_booking_worker_transition`, fungsi `SECURITY DEFINER` sempit yang `EXECUTE`-nya hanya diberikan ke `awcms_worker`, dan adapter BookingPort memilihnya sendiri bila koneksinya berperan worker (`isWorkerConnection`), sehingga separuh TULIS dari kendala ini hilang tanpa perubahan commerce: `composedBookingPort().confirm` dan `.cancel` di consumer berjalan sebagai worker. Separuh BACA masih ada: `readBookingReservationStatus` (dan bacaan lain di `application/booking-reservation-reads.ts`) tetap `SELECT` dari `awcms_booking_reservations`, yang tidak dipegang worker, dan `BookingPort` masih belum punya pembacaan reservasi menurut id (tambahan port hulu U1). Sampai U1 masuk, atau pemilik memutuskan `SELECT` kolom status untuk worker, `domain-events:dispatch` masih berjalan dengan peran aplikasi untuk consumer booking. Tidak ada migrasi commerce yang ditambahkan untuk ini.
 - **Tidak ada di issue ini:** varian POS (`registerSessionId`), kuotasi pembatalan dan perencana leg refund, reschedule, no-show, check-in, pembacaan ketersediaan dan offering storefront, layar apa pun, dan consumer D15 yang tersisa (`booking_cancelled_refund_coordinator`, `booking_rescheduled_link_reconciler`, `booking_no_show_decision_recorder`).
 
 ## Catatan implementasi (issue #381)

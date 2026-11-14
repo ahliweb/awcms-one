@@ -157,6 +157,7 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # delivery attempts past their retention window, across all tenants (Issue
 # #108). Idempotent and bounded.
 */15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-whatsapp-purge.lock $AWCMS_RUN_JOB commerce:whatsapp:purge >> $AWCMS_JOB_LOG/commerce-whatsapp-purge.log 2>&1
+
 # crm_follow_up — Escalates open follow-up tasks whose escalation instant has
 # passed (status, action row, an escalation notice for the rule's recipient)
 # and hands due staff notices to the workflow_notification port (e-mail

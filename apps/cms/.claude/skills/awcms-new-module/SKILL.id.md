@@ -5,7 +5,7 @@ description: Scaffold modul baru pada modular monolith AWCMS. Gunakan saat membu
 
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SKILL.md)
 
-<!-- i18n-source-hash: sha256:e94f5ef512dce93d7b2447b4dcb5a88200c4ccda3fee5eef12a32abfa18275a5 -->
+<!-- i18n-source-hash: sha256:46aba67478267fdb58b68e12566a982bda16f01dd6d6e6fdf7328017ee7da47e -->
 
 # AWCMS — New Module Scaffold
 

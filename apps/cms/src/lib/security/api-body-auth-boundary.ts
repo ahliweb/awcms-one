@@ -238,6 +238,43 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
       "The guest customer reviews a product from their own completed order, holding orderCode + phone as the credential."
   },
 
+  // ---- awcms-one (14 November 2026 sync, upstream api:spec:check H-1): the
+  // remaining public (`security: []`) commerce operations that take a body.
+  // The gate found them unreachable behind the middleware boundary; each is
+  // anonymous by design and carries its own credential, like the entries above.
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/account/otp/request",
+    reason:
+      "A shopper asking for a one-time code has no account session yet (ADR-0016). Always answers 202 whether or not the address or number is known, rate limited per address and per client."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/account/otp/verify",
+    reason:
+      "The other half of the OTP login: the code IS the credential and the response mints the customer bearer session, so none exists yet. Rate limited per client."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/orders/:orderCode/payment-gateway/sessions",
+    reason:
+      "The guest customer opens a hosted gateway page for their own order, holding orderCode + phone as the credential (same rule as the order cancel above)."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/booking/reservations",
+    reason:
+      "A guest books and holds a reservation through the storefront (ADR-0045): there is no account to hold a session, the tenant comes from the request Origin, and an Idempotency-Key is required."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/booking/reservations/:orderCode/cancel",
+    reason:
+      "The guest cancels their own booking order, holding orderCode + phone as the credential, as the order cancel above."
+  },
+
   // ---- Payment-gateway webhooks (Issue #113): opaque per-tenant token, not sessioned ----
   {
     method: "POST",

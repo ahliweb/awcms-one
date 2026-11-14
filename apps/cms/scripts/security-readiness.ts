@@ -5590,7 +5590,7 @@ export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
   "awcms_email_suppression_list.recipient_hash":
     "keyed hash of a suppressed address; not a login secret",
   "awcms_commerce_push_devices.endpoint_hash":
-    "sha256 of the customer push endpoint URL used as the unique lookup key and as the AAD row id of the credential ciphertexts; the endpoint itself is only ever stored as a ciphertext (a credential column) and a mask",,
+    "sha256 of the customer push endpoint URL used as the unique lookup key and as the AAD row id of the credential ciphertexts; the endpoint itself is only ever stored as a ciphertext (a credential column) and a mask",
   "awcms_email_provider_events.recipient_hash":
     "the same lookup hash of a recipient address as awcms_email_messages.to_address_hash, binding a quarantined provider event to our message (sql/379); not a login secret",
   "awcms_email_provider_events.link_hash":
