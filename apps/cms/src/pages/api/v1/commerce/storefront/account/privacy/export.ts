@@ -47,9 +47,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     async (tx, tenant) => {
       const auth = await requireCustomerSession(request, tx, tenant.tenantId);
       if (!auth.ok) return { kind: "unauthenticated" } as const;
-      // Per account, before anything is written: a refusal is recorded (and
-      // audited) before the code is consumed, so an unlimited loop of fresh
-      // keys would flood the evidence and audit tables.
+      // Per account, before anything is written: every disclosure writes an
+      // evidence row and an audit event, so an unlimited loop of fresh keys
+      // would flood those tables.
       const limit = await checkSharedRateLimit(
         `commerce:account:privacy:export:account:${auth.account.id}`,
         { maxAttempts: 20, windowMs: 3_600_000 }

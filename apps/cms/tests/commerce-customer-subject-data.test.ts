@@ -253,9 +253,11 @@ describe("the erasure code does what the registry says", () => {
 
   test("every 'anonymize' table is updated, and nothing else is", () => {
     const expected = new Set(
-      SUBJECT_TABLES.filter((e) => e.erasure.action === "anonymize").map(
-        (e) => e.table
-      )
+      SUBJECT_TABLES.filter(
+        (e) =>
+          e.erasure.action === "anonymize" ||
+          (e.erasure.action === "retain" && e.erasure.suspendOnErasure)
+      ).map((e) => e.table)
     );
     expect(updated).toEqual(expected);
   });
@@ -264,7 +266,8 @@ describe("the erasure code does what the registry says", () => {
     for (const entry of SUBJECT_TABLES) {
       if (entry.erasure.action !== "retain") continue;
       expect(deleted.has(entry.table)).toBe(false);
-      expect(updated.has(entry.table)).toBe(false);
+      // The one allowed write to a retained row is a declared suspension.
+      expect(updated.has(entry.table)).toBe(!!entry.erasure.suspendOnErasure);
     }
   });
 

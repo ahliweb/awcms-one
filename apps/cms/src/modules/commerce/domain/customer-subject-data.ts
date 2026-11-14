@@ -58,7 +58,12 @@ export type SubjectKeySet =
 export type SubjectErasureAction =
   | { action: "delete" }
   | { action: "anonymize"; columns: readonly string[] }
-  | { action: "retain"; legalBasis: string }
+  /**
+   * `suspendOnErasure`: the row is kept untouched except its `status`, which the
+   * erasure sets to `suspended` (the affiliate account, so a public referral code
+   * stops earning).
+   */
+  | { action: "retain"; legalBasis: string; suspendOnErasure?: boolean }
   /** Handled by a function that owns the table family (push data). */
   | { action: "handled_by"; handler: string };
 
@@ -83,6 +88,8 @@ const LEDGER =
 
 const retain = (legalBasis: string = BOOKKEEPING) =>
   ({ action: "retain", legalBasis }) as const;
+const retainSuspended = (legalBasis: string) =>
+  ({ action: "retain", legalBasis, suspendOnErasure: true }) as const;
 
 export const SUBJECT_TABLES: readonly SubjectTable[] = [
   // ---- the customer and what hangs directly off it ----
@@ -147,8 +154,8 @@ export const SUBJECT_TABLES: readonly SubjectTable[] = [
     keyColumn: "customer_id",
     redactedColumns: [],
     exported: true,
-    erasure: retain(
-      "Affiliate commission accounting: the code and rate the commissions were earned under; carries no name, contact or payout detail. Legal basis to be confirmed by counsel (ADR-0055 D2)."
+    erasure: retainSuspended(
+      "Affiliate commission accounting: the code and rate the commissions were earned under; carries no name, contact or payout detail. The erasure SUSPENDS the account (status only) so the public referral code stops earning. Legal basis to be confirmed by counsel (ADR-0055 D2)."
     )
   },
   {
@@ -359,7 +366,9 @@ export const SUBJECT_TABLES: readonly SubjectTable[] = [
     keyColumn: "order_id",
     redactedColumns: [],
     exported: true,
-    erasure: retain()
+    erasure: retain(
+      "Payment evidence tied to its order. The bank account holder name (`account_name`) is retained with it and is NOT rewritten; it is named here for counsel's review (ADR-0055 D2)."
+    )
   },
   {
     table: "awcms_commerce_payment_gateway_sessions",
@@ -452,7 +461,9 @@ export const SUBJECT_TABLES: readonly SubjectTable[] = [
     keyColumn: "quotation_id",
     redactedColumns: ["content_hash"],
     exported: true,
-    erasure: retain()
+    erasure: retain(
+      "Immutable quotation version. Its `customer` jsonb snapshot carries the quoted shopper's name and contact and is NOT rewritten (like a document snapshot); it is named here for counsel's review (ADR-0055 D2)."
+    )
   },
   {
     table: "awcms_commerce_work_order_events",

@@ -123,6 +123,11 @@ export async function storefrontErase(
       : { kind: "key_conflict" };
   }
 
+  // The refusal pre-check runs BEFORE the code is consumed, so a refusal never
+  // burns it. Known narrow race (ADR-0055 D5): if the shopper's state changes
+  // between this check and the locked re-check inside `eraseCustomer` (an order
+  // placed in that window), the code is already consumed and the transaction
+  // commits the `refused` row; the shopper requests a new code.
   const refusals = await findErasureRefusals(tx, tenantId, account.customerId);
   if (refusals.length > 0) {
     return refuse(tx, tenantId, account, refusals, idempotencyKey, options);

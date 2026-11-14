@@ -11,6 +11,7 @@
  * | code                       | while...                                              |
  * | -------------------------- | ----------------------------------------------------- |
  * | `ALREADY_ERASED`           | the customer was erased before                        |
+ * | `NOT_A_PERSON`             | the row is the shared POS walk-in sentinel customer   |
  * | `OPEN_ORDER`               | an order is pending payment, paid, processing, shipped |
  * | `OPEN_BOOKING`             | a booking reservation of the shopper is still active  |
  * | `STORED_VALUE_BALANCE`     | a gift card or store credit of theirs holds a balance |
@@ -51,6 +52,7 @@ export type SubjectOtpPurpose =
 
 export const SUBJECT_REFUSAL_CODES = [
   "ALREADY_ERASED",
+  "NOT_A_PERSON",
   "OPEN_ORDER",
   "OPEN_BOOKING",
   "STORED_VALUE_BALANCE",
@@ -63,6 +65,8 @@ export const SUBJECT_REFUSAL_MESSAGES: Readonly<
   Record<SubjectRefusalCode, string>
 > = {
   ALREADY_ERASED: "This account has already been erased.",
+  NOT_A_PERSON:
+    "This is the shared point-of-sale walk-in record, not a person, and cannot be erased.",
   OPEN_ORDER:
     "An order is still being processed. Erasure is possible once every order is completed or cancelled.",
   OPEN_BOOKING:

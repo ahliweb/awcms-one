@@ -160,6 +160,28 @@ if (root) {
   // One key per erasure ATTEMPT: kept after an ambiguous failure so a retry
   // replays, rotated after a definitive answer.
   let kunciHapus = buatKunciBaru();
+  // True after a timeout or 5xx of the current attempt (the outcome is unknown).
+  let ambigu = false;
+
+  function tampilSelesai(
+    ringkasan: ReturnType<typeof bacaRingkasanPenghapusan>,
+  ): void {
+    // The server revoked every session; drop the local copy so the header and
+    // every other tab return to "Masuk" (a `401` would do the same).
+    hapusSesi();
+    if (memberView) memberView.hidden = true;
+    if (guestView) guestView.hidden = true;
+    if (doneView) doneView.hidden = false;
+    if (doneMessageEl) {
+      doneMessageEl.textContent = `${PESAN_PENYIMPANAN}${
+        ringkasan && ringkasan.orders > 0
+          ? ` (${ringkasan.orders} pesanan disimpan sebagai catatan tanpa identitas.)`
+          : ""
+      }`;
+    }
+    tampilStatus("");
+    sembunyiGalat();
+  }
 
   hapusJalankan?.addEventListener(
     "click",
@@ -180,31 +202,30 @@ if (root) {
         try {
           raw = await hapusDataSaya(kode, kunciHapus);
         } catch (error) {
-          if (
+          const pasti =
             error instanceof TokoApiError &&
             error.status < 500 &&
-            error.code !== "NETWORK_ERROR"
-          ) {
+            error.code !== "NETWORK_ERROR";
+          // A `401` after an AMBIGUOUS failure of this same attempt means the
+          // erasure went through and revoked the session (ADR-0055 D5): show the
+          // done view, not "session expired".
+          if (ambigu && error instanceof TokoApiError && error.status === 401) {
             kunciHapus = buatKunciBaru();
+            ambigu = false;
+            tampilSelesai(null);
+            return;
+          }
+          if (pasti) {
+            kunciHapus = buatKunciBaru();
+            ambigu = false;
+          } else {
+            ambigu = true;
           }
           throw error;
         }
 
-        const ringkasan = bacaRingkasanPenghapusan(raw);
-        // The server revoked every session; drop the local copy so the header and
-        // every other tab return to "Masuk" (a `401` would do the same).
-        hapusSesi();
-        if (memberView) memberView.hidden = true;
-        if (guestView) guestView.hidden = true;
-        if (doneView) doneView.hidden = false;
-        if (doneMessageEl) {
-          doneMessageEl.textContent = `${PESAN_PENYIMPANAN}${
-            ringkasan && ringkasan.orders > 0
-              ? ` (${ringkasan.orders} pesanan disimpan sebagai catatan tanpa identitas.)`
-              : ""
-          }`;
-        }
-        tampilStatus("");
+        ambigu = false;
+        tampilSelesai(bacaRingkasanPenghapusan(raw));
       }),
   );
 

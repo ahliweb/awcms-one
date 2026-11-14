@@ -12,8 +12,8 @@
  * keyed by the customer account, and they cover exactly the four tables:
  * `awcms_commerce_push_devices`, `_preferences`, `_messages`, `_delivery_attempts`.
  *
- * - There is no customer-account deletion flow in `commerce` today. When one is
- *   built it calls {@link eraseCustomerPushData} in its transaction; the account
+ * - The shopper erasure (`application/customer-subject-erasure.ts`, ADR-0055,
+ *   Issue #529) calls {@link eraseCustomerPushData} in its transaction; the account
  *   FKs also cascade (`ON DELETE CASCADE`, sql/1056/1057), so deleting the
  *   account in the database removes the same rows even if no application step
  *   ran.

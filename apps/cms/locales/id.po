@@ -15228,6 +15228,9 @@ msgstr "Sudah dihapus"
 msgid "An affiliate payout is unpaid"
 msgstr "Ada pembayaran afiliasi yang belum dibayar"
 
+msgid "Shared walk-in record, not a person"
+msgstr "Catatan walk-in bersama, bukan orang"
+
 msgid "An order is still open"
 msgstr "Ada pesanan yang masih berjalan"
 

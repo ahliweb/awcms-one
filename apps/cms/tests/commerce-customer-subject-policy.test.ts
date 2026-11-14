@@ -33,7 +33,7 @@ const B = "22222222-2222-4222-8222-222222222222";
 
 describe("refusals", () => {
   test("every code has a message and the set is closed", () => {
-    expect(SUBJECT_REFUSAL_CODES.length).toBe(6);
+    expect(SUBJECT_REFUSAL_CODES.length).toBe(7);
     for (const code of SUBJECT_REFUSAL_CODES) {
       expect(SUBJECT_REFUSAL_MESSAGES[code].length).toBeGreaterThan(10);
     }

@@ -36,8 +36,9 @@
  *
  * - `eraseCustomerPushData` / `exportCustomerPushData`
  *   (`application/customer-push-erasure.ts`): keyed by the customer account,
- *   delete or list exactly these four tables. Any future account-deletion flow
- *   and any operator-assisted erasure call them.
+ *   delete or list exactly these four tables. The shopper erasure
+ *   (`application/customer-subject-erasure.ts`, ADR-0055) and the operator-assisted
+ *   erasure call them.
  * - `ON DELETE CASCADE` from the account: deleting an account removes its
  *   devices, preferences and queued messages in the database, with no
  *   application step to forget.

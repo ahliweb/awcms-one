@@ -15300,6 +15300,9 @@ msgstr ""
 msgid "An affiliate payout is unpaid"
 msgstr ""
 
+msgid "Shared walk-in record, not a person"
+msgstr ""
+
 msgid "An order is still open"
 msgstr ""
 

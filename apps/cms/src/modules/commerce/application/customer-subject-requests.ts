@@ -125,12 +125,25 @@ export async function insertSubjectRequest(
   return toRecord(rows[0]!);
 }
 
-/** The first request recorded under a client key, if any (a replay finds it). */
+/**
+ * The first request recorded under a client key, if any (a replay finds it).
+ *
+ * Takes a transaction-scoped advisory lock on (tenant, key) first, so two
+ * concurrent calls with the same `Idempotency-Key` serialise: the second waits
+ * for the first to commit, then finds its row and replays instead of colliding
+ * on the unique index (`..._key_key`) with an unmapped 500. The lock is released
+ * with the transaction.
+ */
 export async function findSubjectRequestByKey(
   tx: Bun.SQL,
   tenantId: string,
   idempotencyKey: string
 ): Promise<SubjectRequestRecord | null> {
+  await tx`
+    SELECT pg_advisory_xact_lock(
+      hashtextextended(${"commerce.subject_request:" + tenantId + ":" + idempotencyKey}, 0)
+    )
+  `;
   const rows = (await tx`
     SELECT ${tx.unsafe(COLUMNS)}
     FROM awcms_commerce_customer_subject_requests

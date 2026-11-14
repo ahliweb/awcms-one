@@ -46,6 +46,7 @@ import {
   storefrontExport
 } from "../../src/modules/commerce/application/customer-subject-flow";
 import { listSubjectRequests } from "../../src/modules/commerce/application/customer-subject-requests";
+import { POS_WALK_IN_CUSTOMER_SENTINEL_PHONE } from "../../src/modules/commerce/domain/phone-normalisation";
 import type {
   CustomerOtpChannel,
   CustomerOtpChannelRequest
@@ -354,6 +355,11 @@ suite("commerce shopper data-subject rights (Issue #529)", () => {
         id: shopper.accountId,
         customerId: shopper.customerId
       };
+      await getAdminSql()`
+        INSERT INTO awcms_commerce_affiliates
+          (tenant_id, customer_id, code, commission_rate, status)
+        VALUES (${TENANT_A}, ${shopper.customerId}, 'SITI10', 5, 'active')
+      `;
       const code = await subjectCode(TENANT_A, shopper.accountId, "erasure");
 
       const outcome = await inTenant(TENANT_A, (tx) =>
@@ -361,6 +367,16 @@ suite("commerce shopper data-subject rights (Issue #529)", () => {
       );
       expect(outcome.kind).toBe("erased");
       if (outcome.kind !== "erased") return;
+      expect(
+        outcome.request.retainedSummary?.anonymised.affiliatesSuspended
+      ).toBe(1);
+      // The affiliate row is retained but suspended: the public code stops earning.
+      const affiliate = (await getAdminSql()`
+        SELECT status FROM awcms_commerce_affiliates
+        WHERE customer_id = ${shopper.customerId}
+      `) as { status: string }[];
+      expect(affiliate).toHaveLength(1);
+      expect(affiliate[0]!.status).toBe("suspended");
       expect(outcome.request.retainedSummary?.retained.sections).toContain(
         "orders"
       );
@@ -597,6 +613,27 @@ suite("commerce shopper data-subject rights (Issue #529)", () => {
       expect(dryRun.kind).toBe("refused");
       if (dryRun.kind === "refused") {
         expect(dryRun.codes).toContain("STORED_VALUE_BALANCE");
+      }
+    });
+
+    test("the POS walk-in sentinel customer is refused as NOT_A_PERSON", async () => {
+      const walkIn = await seedShopper(TENANT_A, {
+        email: "walkin@example.test",
+        phone: POS_WALK_IN_CUSTOMER_SENTINEL_PHONE
+      });
+      const outcome = await inTenant(TENANT_A, (tx) =>
+        adminRequestErasure(
+          tx,
+          TENANT_A,
+          STAFF_1,
+          walkIn.customerId,
+          null,
+          crypto.randomUUID()
+        )
+      );
+      expect(outcome.kind).toBe("refused");
+      if (outcome.kind === "refused") {
+        expect(outcome.codes).toEqual(["NOT_A_PERSON"]);
       }
     });
 

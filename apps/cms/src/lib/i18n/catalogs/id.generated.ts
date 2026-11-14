@@ -3562,6 +3562,7 @@ export const ID_CATALOG: CompiledCatalog = {
   "Sever": ["Putuskan"],
   "Severity": ["Tingkat keparahan"],
   "Share of the goods payable in points": ["Bagian barang yang dapat dibayar dengan poin"],
+  "Shared walk-in record, not a person": ["Catatan walk-in bersama, bukan orang"],
   "Shift coverage": ["Cakupan shift"],
   "Shifts that ended with no clock-in.": ["Shift yang berakhir tanpa absen masuk."],
   "Shipped": ["Sedang dikirim"],

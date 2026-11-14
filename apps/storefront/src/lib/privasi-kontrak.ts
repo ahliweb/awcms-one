@@ -19,6 +19,7 @@ import { TokoApiError } from "./toko-permintaan";
 
 export const KODE_PENOLAKAN = [
   "ALREADY_ERASED",
+  "NOT_A_PERSON",
   "OPEN_ORDER",
   "OPEN_BOOKING",
   "STORED_VALUE_BALANCE",
@@ -30,6 +31,8 @@ export type KodePenolakan = (typeof KODE_PENOLAKAN)[number];
 
 export const PESAN_PENOLAKAN: Readonly<Record<KodePenolakan, string>> = {
   ALREADY_ERASED: "Akun ini sudah dihapus.",
+  NOT_A_PERSON:
+    "Ini adalah catatan walk-in kasir bersama, bukan orang, dan tidak dapat dihapus.",
   OPEN_ORDER:
     "Masih ada pesanan yang diproses. Penghapusan bisa dilakukan setelah semua pesanan selesai atau dibatalkan.",
   OPEN_BOOKING:

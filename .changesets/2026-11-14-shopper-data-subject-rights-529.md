@@ -17,3 +17,5 @@ Issue #529 (ADR-0055). The upstream subject-data engine cannot bind a commerce c
 The DB-backed integration suite (`commerce-customer-subject.integration.test.ts`) and the real-browser e2e (`akun-privasi.e2e.ts`) run through local CI only and were not executed where this change was written.
 
 Review refinements: the export no longer discloses staff stamps or the staff-typed reason of a request row; the data-request code mail has its own template naming its purpose; the privacy POST routes are rate limited per account; a retried `decide` by the same approver replays; the stored-value refusal also counts disabled accounts; and the e-mail copies in the `email` module's outbound log are named as not reached.
+
+Review follow-ups: an erasure now suspends the shopper's affiliate account so the public referral code stops earning; the shared POS walk-in customer is refused as `NOT_A_PERSON`; the retention projector no longer re-creates an erased shopper's row; every staff stamp is kept out of the export; concurrent requests with one `Idempotency-Key` serialise on an advisory lock; `/akun/privasi` reads a `401` after an ambiguous attempt as "erased".

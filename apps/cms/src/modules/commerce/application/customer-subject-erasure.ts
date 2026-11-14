@@ -10,7 +10,8 @@
  *    `FOR KEY SHARE` an order insert takes on its customer foreign key, so a
  *    checkout racing the erasure waits for it instead of slipping an open order
  *    in after the precondition check.
- * 2. Answers `ALREADY_ERASED` for an erased customer, then checks the refusal
+ * 2. Answers `ALREADY_ERASED` for an erased customer and `NOT_A_PERSON` for the
+ *    POS walk-in sentinel, then checks the refusal
  *    rules ({@link findErasureRefusals}). A refusal changes nothing.
  * 3. Calls `eraseCustomerPushData` (devices, preferences, messages, attempts).
  * 4. DELETES the shopper's sessions (their bearer token dies with them: the next
@@ -22,7 +23,9 @@
  *    of their own messages with per-row-unique sentinels, and marks both rows
  *    `erased_at` with status `blocked` (so every eligibility predicate drops
  *    them; `deleted_at` is deliberately not used, see `sql/1066`).
- * 6. LEAVES the retained families untouched (orders and their children,
+ * 6. SUSPENDS the shopper's affiliate account (retained for accounting, but its
+ *    public referral code stops earning).
+ * 7. LEAVES the retained families untouched (orders and their children,
  *    payments, documents, returns, refunds, both ledgers, entitlements,
  *    affiliate accounting, quotations, work orders): they resolve to the
  *    now-anonymous customer.
@@ -33,6 +36,7 @@
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { eraseCustomerPushData } from "./customer-push-erasure";
+import { POS_WALK_IN_CUSTOMER_SENTINEL_PHONE } from "../domain/phone-normalisation";
 import {
   SUBJECT_TABLES,
   type SubjectTable
@@ -81,6 +85,8 @@ export type ErasureSummary = {
     reviews: number;
     conversations: number;
     messages: number;
+    /** Affiliate accounts suspended so the public referral code stops earning. */
+    affiliatesSuspended: number;
   };
   retained: {
     /** The bundle keys of the table families left in place. */
@@ -100,13 +106,13 @@ export async function readCustomerErasureState(
   tx: Bun.SQL,
   tenantId: string,
   customerId: string
-): Promise<{ exists: boolean; erased: boolean }> {
+): Promise<{ exists: boolean; erased: boolean; phone: string | null }> {
   const rows = (await tx`
     SELECT id, phone, erased_at FROM awcms_commerce_customers
     WHERE tenant_id = ${tenantId} AND id = ${customerId}
   `) as CustomerLockRow[];
   const row = rows[0];
-  return { exists: !!row, erased: !!row?.erased_at };
+  return { exists: !!row, erased: !!row?.erased_at, phone: row?.phone ?? null };
 }
 
 /**
@@ -120,6 +126,12 @@ export async function findErasureRefusals(
 ): Promise<SubjectRefusalCode[]> {
   const state = await readCustomerErasureState(tx, tenantId, customerId);
   if (state.erased) return ["ALREADY_ERASED"];
+  // The per-tenant POS walk-in customer is a shared pseudo-customer, not a
+  // person: erasing it would swap its phone for a sentinel and the next walk-in
+  // sale would mint a new walk-in row, splitting the walk-in history.
+  if (state.phone === POS_WALK_IN_CUSTOMER_SENTINEL_PHONE) {
+    return ["NOT_A_PERSON"];
+  }
 
   const codes: SubjectRefusalCode[] = [];
 
@@ -169,7 +181,8 @@ export async function findErasureRefusals(
   const unpaidCommission = (await tx`
     SELECT count(*)::int AS count
     FROM awcms_commerce_affiliate_commissions c
-    JOIN awcms_commerce_affiliates a ON a.id = c.affiliate_id
+    JOIN awcms_commerce_affiliates a
+      ON a.tenant_id = c.tenant_id AND a.id = c.affiliate_id
     WHERE c.tenant_id = ${tenantId} AND a.customer_id = ${customerId}
       AND c.deleted_at IS NULL
       AND c.status = ANY(${tx.array([...UNPAID_COMMISSION_STATUSES], "text")}::text[])
@@ -296,6 +309,17 @@ export async function eraseCustomer(
       RETURNING id`);
   }
 
+  // The affiliate account is RETAINED (commission accounting) but suspended:
+  // `shouldEarnCommission` refuses a suspended affiliate, so the shopper's public
+  // referral code stops earning commissions that could never be paid to an
+  // anonymised identity. No unpaid commission exists here (refusal rule).
+  const affiliatesSuspended = await count(tx`
+    UPDATE awcms_commerce_affiliates
+    SET status = 'suspended', updated_at = now()
+    WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}
+      AND status <> 'suspended'
+    RETURNING id`);
+
   // ---- anonymise the identity (after the contact-keyed deletes above) ----
   if (account) {
     await tx`
@@ -336,7 +360,8 @@ export async function eraseCustomer(
       account: account !== null,
       reviews,
       conversations,
-      messages
+      messages,
+      affiliatesSuspended
     },
     retained: {
       sections: retainedSections(),
@@ -358,6 +383,7 @@ export async function eraseCustomer(
     reviews +
     conversations +
     messages +
+    affiliatesSuspended +
     1 +
     (account ? 1 : 0);
 

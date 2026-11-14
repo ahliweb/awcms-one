@@ -152,6 +152,15 @@ async function loadCustomerFacts(
     WHERE tenant_id = ${tenantId}
       AND customer_id = ANY(${tx.array([...customerIds], "uuid")}::uuid[])
       AND paid_at IS NOT NULL
+      -- Issue #529 (ADR-0055 D2): an erased shopper has no cohort row. Orders
+      -- are retained and still name the customer, so without this filter every
+      -- rebuild or order event would re-insert the row an erasure deleted.
+      AND NOT EXISTS (
+        SELECT 1 FROM awcms_commerce_customers c
+        WHERE c.tenant_id = awcms_commerce_orders.tenant_id
+          AND c.id = awcms_commerce_orders.customer_id
+          AND c.erased_at IS NOT NULL
+      )
     ORDER BY customer_id ASC, paid_at ASC, id ASC
   `) as OrderFactRow[];
   // Issue #389 - the booking anchor: which of these orders are bookings (or the

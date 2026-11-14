@@ -99,7 +99,7 @@ export const CUSTOMER_SUBJECT_DATA: SubjectDataDescriptor[] = [
     exportable: false,
     erasure: "retain_under_obligation",
     rationale:
-      "Issue #529 (ADR-0055) - the evidence row of a shopper's export or erasure request: a request type, a surface, a status, a refusal code, counts and the retained summary. It carries no name, contact, bundle or token. The two actor columns are staff stamps that resolve to nobody once identity_access.identities anonymises; the customer it concerns is reached through the commerce-owned subject-rights flow (and appears in that customer's own export). Retained for the life of the tenant: it is how the store shows a request was honoured."
+      "Issue #529 (ADR-0055) - the evidence row of a shopper's export or erasure request: a request type, a surface, a status, a refusal code, counts and the retained summary. It carries no name, contact, bundle or token. The two actor columns are staff stamps that resolve to nobody once identity_access.identities anonymises; the customer it concerns is reached through the commerce-owned subject-rights flow (and appears in that customer's own export). Kept with no purge mechanism (ADR-0055 D5; the 3650-day class ceiling of the lifecycle descriptor is a bound, not a schedule): it is how the store shows a request was honoured."
   }
 ];
 

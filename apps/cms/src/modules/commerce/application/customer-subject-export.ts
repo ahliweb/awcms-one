@@ -151,7 +151,18 @@ async function readSection(
   if (keys.length === 0) return { rows: [], truncated: false };
 
   const rows = (await tx`
-    SELECT (to_jsonb(t) - ${tx.array([...entry.redactedColumns], "text")}::text[]) AS row
+    SELECT (
+      to_jsonb(t)
+      - ${tx.array([...entry.redactedColumns], "text")}::text[]
+      -- One policy for staff data (ADR-0055 D4): every staff stamp is kept out of
+      -- the shopper's bundle, not only the request row's. A staff stamp is a
+      -- column named '*_tenant_user_id' or the older 'reviewed_by' /
+      -- 'created_by' pair; it identifies an employee, not the shopper.
+      - ARRAY(
+        SELECT k FROM jsonb_object_keys(to_jsonb(t)) AS k
+        WHERE k ~ '(_tenant_user_id|^reviewed_by|^created_by)$'
+      )
+    ) AS row
     FROM ${tx.unsafe(entry.table)} t
     WHERE t.tenant_id = ${tenantId}
       AND ${tx.unsafe(`t.${entry.keyColumn}`)} = ANY(${tx.array([...keys], "uuid")}::uuid[])
