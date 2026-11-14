@@ -28,6 +28,20 @@ export const CUSTOMER_OTP_TEMPLATE_VARIABLES = [
   "storeName"
 ] as const;
 
+/**
+ * The code mailed for a shopper's data export or erasure (Issue #529,
+ * ADR-0055 D3). A separate template from the sign-in code so the mail says what
+ * the code authorises: `{{action}}` is a purpose phrase, and the subject names
+ * it, so an erasure code cannot be mistaken for a login code.
+ */
+export const SUBJECT_OTP_TEMPLATE_KEY = "derived.commerce_customer_subject_otp";
+export const SUBJECT_OTP_TEMPLATE_VARIABLES = [
+  "code",
+  "expiresInMinutes",
+  "storeName",
+  "action"
+] as const;
+
 export const CONVERSATION_REPLY_TEMPLATE_KEY =
   "derived.commerce_conversation_reply";
 
@@ -46,6 +60,7 @@ export const COMMERCE_DERIVED_EMAIL_CATEGORIES: ReadonlyArray<
   readonly [string, readonly string[]]
 > = [
   [CUSTOMER_OTP_TEMPLATE_KEY, CUSTOMER_OTP_TEMPLATE_VARIABLES],
+  [SUBJECT_OTP_TEMPLATE_KEY, SUBJECT_OTP_TEMPLATE_VARIABLES],
   [CONVERSATION_REPLY_TEMPLATE_KEY, CONVERSATION_REPLY_TEMPLATE_VARIABLES],
   [CAMPAIGN_EMAIL_TEMPLATE_KEY, CAMPAIGN_EMAIL_TEMPLATE_VARIABLES]
 ];

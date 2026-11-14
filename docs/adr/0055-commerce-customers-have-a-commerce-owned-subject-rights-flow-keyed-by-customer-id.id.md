@@ -1,8 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md)
 
-<!-- i18n-source-hash: sha256:99beb66a3752d846359d6b066f32252616229a50d975a2a77e51df8b9134ced8 -->
-
-<!-- i18n-source-hash: sha256:placeholder -->
+<!-- i18n-source-hash: sha256:ce01115ebf183f8dd8cc7c0db6a2721d964965609efe88923e0468561d7acfe9 -->
 
 # ADR-0055 — Pelanggan commerce punya alur hak subjek data milik commerce, berkunci id pelanggan
 
@@ -52,6 +50,16 @@ Keputusan di dalam matriks:
 - **Audit dan idempotensi.** Setiap pengungkapan diaudit pada tingkat `critical` dan setiap penghapusan pada `critical`, hanya dengan hitungan dan id. Ekspor pembeli tidak punya `Idempotency-Key` karena kodenya sekali pakai; ekspor admin mewajibkannya dan memperlakukan pengulangan sebagai `409 IDEMPOTENCY_REPLAYED` (bundel tidak disimpan untuk diputar ulang).
 
 **D4. Bentuk ekspor.** Bundel JSON berversi (`version: 1`) yang **dikembalikan sinkron dan tidak pernah disimpan**, sehingga tidak menimbulkan kewajiban retensi sendiri, dengan `Cache-Control: no-store`. Isinya satu larik per keluarga tabel (dibatasi 1000 baris per bagian, bagian yang terpotong disebut di `truncated`), data push lewat `exportCustomerPushData`, bagian `unanswered` yang menyebut apa yang tidak bisa dicocokkan ke pelanggan beserta alasannya, dan pemberitahuan retensi. Dibaca sebagai `to_jsonb(row) - redactedColumns`, sehingga kolom yang ditambahkan kemudian diungkapkan alih-alih diam-diam hilang, dan tes penjaga gagal bila kolom bernama mirip rahasia tidak disamarkan maupun ada di daftar izin yang ditinjau manual. **Disamarkan**: hash token dan kode, hash alamat klien, endpoint dan kunci push, isi payload dan tautan penyedia, kunci idempotensi, serta snapshot dan hash isi dokumen.
+
+**D5. Penyempurnaan hasil tinjauan (dicatat setelah tinjauan pertama).**
+
+- **Idempotensi penghapusan pembeli.** Kunci yang berulang menjawab hasil tersimpan hanya untuk percobaan yang *ditolak* (`409 ERASURE_REFUSED` yang sama). Setelah penghapusan selesai semua sesi dicabut, sehingga pengulangan mendapat `401` sebelum kunci diperiksa; `401` itu adalah tanda bagi klien bahwa penghapusan berhasil. Keputusan admin (`decide`) juga bisa diulang: penyetuju yang sama mengulang keputusan yang sudah menyelesaikan permintaan mendapat keputusan tersimpan (`200`), kombinasi lain adalah `409 INVALID_STATE`.
+- **Pembatasan laju.** `POST privacy/export` dan `POST privacy/erasure` dibatasi per akun (20 per jam, `429`), karena penolakan dicatat dan diaudit sebelum kode dikonsumsi dan putaran kunci baru tanpa batas akan membanjiri tabel bukti dan audit.
+- **Aturan nilai tersimpan.** Penolakan menghitung setiap akun yang belum kedaluwarsa dan belum dihapus dengan saldo di atas nol, termasuk `disabled` (akun nonaktif tetap menyimpan saldonya, `sql/985`); hanya akun `expired`, yang nilainya hangus, tidak menghalangi.
+- **Baris permintaan di ekspor.** Cap aktor staf, `reason` yang diketik staf, dan id korelasi disamarkan dari bundel pembeli bersama kunci idempotensi; baris tetap menyimpannya.
+- **Retensi baris permintaan.** Disimpan, tanpa purge yang pernah berjalan (`delegated`). Kelas `financial_tax` dan angka 3650 hari pada deskriptor adalah batas atas kelas itu, tidak pernah dieksekusi; sepuluh tahun adalah paling lama purge boleh mengambil.
+- **Salinan alamat e-mail di `awcms_email_messages`** (kode masuk dan kode permintaan data, surel pesanan dan dokumen, surel kampanye) tidak dijangkau ekspor maupun penghapusan: tabel itu milik modul `email` dan berkunci alamat, bukan pelanggan. Salinan itu disebut di bagian `unanswered` bundel dan habis lewat retensi modul e-mail. Menutup celah ini butuh kait subject-data upstream pada lampiran A.
+- **E-mail kode menyebut tujuannya.** Kode permintaan data memakai templatnya sendiri (`derived.commerce_customer_subject_otp`) yang subjek dan isinya menyebut apa yang diotorisasi kode ("mengunduh salinan data Anda" / "menghapus akun dan data pribadi Anda secara permanen"), sehingga kode penghapusan tidak tertukar dengan kode masuk.
 
 ## Yang tidak diselesaikan ADR ini
 

@@ -7,7 +7,11 @@
  *
  * `awcms_commerce_customer_subject_requests` is evidence of what a shopper asked
  * for and what the store did, so it is `delegated` with no purge, kept for the
- * life of the tenant (the pattern `commission-lifecycle.ts` uses). One narrow row
+ * life of the tenant (the pattern `commission-lifecycle.ts` uses). The numbers
+ * the descriptor declares (`financial_tax`, a 3650-day ceiling) are that class's
+ * bound and are never executed: `delegated` runs nothing, so the stated policy
+ * is "kept, no purge", with ten years as the most a purge could ever be allowed
+ * to take. One narrow row
  * per request; the ceiling is the number of requests ever made, which a person
  * makes by hand. A guard trigger refuses every delete and every change to a
  * decided row, so a purge could not run even if one were written.

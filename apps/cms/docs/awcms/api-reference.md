@@ -10947,7 +10947,7 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 - **operationId**: `decideCommerceCustomerSubjectRequest`
 - **Security**: bearerAuth + tenantHeader
 
-Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request that is not pending is `409 INVALID_STATE`; a shopper whose state changed since the request (a new order, say) is `409 ERASURE_REFUSED` and the request is recorded as refused.
+Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request that is not pending is `409 INVALID_STATE`, except that the same approver repeating the decision that already settled it (a retry after a lost response) gets the stored decision back with `200`; a shopper whose state changed since the request (a new order, say) is `409 ERASURE_REFUSED` and the request is recorded as refused.
 
 **Parameters**
 
@@ -14742,7 +14742,7 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 - **operationId**: `eraseCommerceStorefrontAccountData`
 - **Security**: customerBearer
 
-Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "erasure"`) and a required `Idempotency-Key`. Body `{ "code": "123456" }`. On success every session of the account is revoked, so the next request with the old bearer is `401` and the storefront clears its stored session. The response names counts and the table families kept for bookkeeping, never content. It is refused (`409 ERASURE_REFUSED`, `details.refusals`) while an order is pending payment, paid, processing or shipped, a booking is active, a stored-value balance is above zero, a return or refund is unsettled or an affiliate commission is unpaid; the code is not consumed by a refusal. A repeated key answers the stored result (`replayed: true`).
+Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "erasure"`) and a required `Idempotency-Key`. Body `{ "code": "123456" }`. On success every session of the account is revoked, so the next request with the old bearer is `401` and the storefront clears its stored session. The response names counts and the table families kept for bookkeeping, never content. It is refused (`409 ERASURE_REFUSED`, `details.refusals`) while an order is pending payment, paid, processing or shipped, a booking is active, a stored-value balance is above zero, a return or refund is unsettled or an affiliate commission is unpaid; the code is not consumed by a refusal. A repeated key answers the stored result only for a REFUSED attempt (the same `409 ERASURE_REFUSED`). After a completed erasure every session is revoked, so a retry gets `401` before the key is looked at; that `401` tells the client the erasure went through. Rate limited per account (`429`), because a refusal is recorded and audited before the code is consumed.
 
 **Parameters**
 
@@ -14756,10 +14756,11 @@ Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "eras
 
 | Status | Description                                                            | Schema                                 |
 | ------ | ---------------------------------------------------------------------- | -------------------------------------- |
-| 200    | The erasure ran (or this is the stored result of the same key).        | object                                 |
+| 200    | The erasure ran.                                                       | object                                 |
 | 400    | `OTP_INVALID`, `IDEMPOTENCY_KEY_REQUIRED` or a malformed body.         | [`ApiError`](#standard-error-envelope) |
 | 401    | UNAUTHENTICATED.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                                      | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/privacy/export` — Issue #529 (ADR-0055 D4). The shopper's own data-subject export: a versioned JSON bundle of everything the store holds about them. Not stored.
 

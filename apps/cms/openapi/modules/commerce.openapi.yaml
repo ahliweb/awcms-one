@@ -16806,7 +16806,12 @@ paths:
         payment, paid, processing or shipped, a booking is active, a stored-value
         balance is above zero, a return or refund is unsettled or an affiliate
         commission is unpaid; the code is not consumed by a refusal. A repeated
-        key answers the stored result (`replayed: true`).
+        key answers the stored result only for a REFUSED attempt (the same
+        `409 ERASURE_REFUSED`). After a completed erasure every session is
+        revoked, so a retry gets `401` before the key is looked at; that `401`
+        tells the client the erasure went through. Rate limited per account
+        (`429`), because a refusal is recorded and audited before the code is
+        consumed.
       security:
         - customerBearer: []
       parameters:
@@ -16825,7 +16830,7 @@ paths:
                   pattern: "^[0-9]{6}$"
       responses:
         "200":
-          description: "The erasure ran (or this is the stored result of the same key)."
+          description: "The erasure ran."
           content:
             application/json:
               schema:
@@ -16861,6 +16866,12 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "409":
           description: "`ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "RATE_LIMITED, with `Retry-After`."
           content:
             application/json:
               schema:
@@ -17044,7 +17055,9 @@ paths:
       description: >-
         Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in
         this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request
-        that is not pending is `409 INVALID_STATE`; a shopper whose state changed
+        that is not pending is `409 INVALID_STATE`, except that the same approver
+        repeating the decision that already settled it (a retry after a lost
+        response) gets the stored decision back with `200`; a shopper whose state changed
         since the request (a new order, say) is `409 ERASURE_REFUSED` and the
         request is recorded as refused.
       parameters:

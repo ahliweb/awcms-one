@@ -15,3 +15,5 @@ Issue #529 (ADR-0055). The upstream subject-data engine cannot bind a commerce c
 - **Not settled**: counsel's confirmation of the retention legal bases and the owner's confirmation of the refusal rules (proposals in the ADR); the upstream descriptor-declared subject kind (text in the ADR's appendix A, not opened from here); WhatsApp message rows matched only by a phone value.
 
 The DB-backed integration suite (`commerce-customer-subject.integration.test.ts`) and the real-browser e2e (`akun-privasi.e2e.ts`) run through local CI only and were not executed where this change was written.
+
+Review refinements: the export no longer discloses staff stamps or the staff-typed reason of a request row; the data-request code mail has its own template naming its purpose; the privacy POST routes are rate limited per account; a retried `decide` by the same approver replays; the stored-value refusal also counts disabled accounts; and the e-mail copies in the `email` module's outbound log are named as not reached.

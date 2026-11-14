@@ -145,7 +145,7 @@ export async function findErasureRefusals(
   const storedValue = (await tx`
     SELECT count(*)::int AS count FROM awcms_commerce_stored_value_accounts
     WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}
-      AND deleted_at IS NULL AND status = 'active' AND balance > 0
+      AND deleted_at IS NULL AND status <> 'expired' AND balance > 0
   `) as CountRow[];
   if ((storedValue[0]?.count ?? 0) > 0) codes.push("STORED_VALUE_BALANCE");
 

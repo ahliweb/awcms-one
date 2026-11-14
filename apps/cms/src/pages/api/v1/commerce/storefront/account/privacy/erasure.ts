@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 
 import { getDatabaseClient } from "../../../../../../../lib/database/client";
+import { checkSharedRateLimit } from "../../../../../../../lib/security/rate-limit";
 import {
   bodyTooLargeResponse,
   readJsonBody
@@ -37,8 +38,13 @@ import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/
  * - `409 ERASURE_REFUSED` with `details.refusals` - an order, booking, stored-
  *   value balance, refund or affiliate payout is still open. Nothing changed and
  *   the code was not consumed.
- * - A repeated key answers the stored result (`replayed: true`); a key already
- *   used by a different request is `409 IDEMPOTENCY_CONFLICT`.
+ * - A repeated key answers the stored result only for a REFUSED attempt (the
+ *   same `409 ERASURE_REFUSED`); a key already used by a different request is
+ *   `409 IDEMPOTENCY_CONFLICT`. After a COMPLETED erasure every session is
+ *   gone, so a retry of the same request is `401` before the key is looked at:
+ *   that `401` is the client's signal that the erasure went through.
+ * - Per-account rate limit (`429 RATE_LIMITED`), because a refusal is recorded
+ *   and audited before the code is consumed.
  *
  * Every failure of the code is one generic `400 OTP_INVALID` (ADR-0016).
  */
@@ -68,6 +74,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
     async (tx, tenant) => {
       const auth = await requireCustomerSession(request, tx, tenant.tenantId);
       if (!auth.ok) return { kind: "unauthenticated" } as const;
+      // Per account, before anything is written: a refusal is recorded (and
+      // audited) before the code is consumed, so an unlimited loop of fresh
+      // keys would flood the evidence and audit tables.
+      const limit = await checkSharedRateLimit(
+        `commerce:account:privacy:erasure:account:${auth.account.id}`,
+        { maxAttempts: 20, windowMs: 3_600_000 }
+      );
+      if (!limit.allowed) {
+        return { kind: "limited", retryAfterSec: limit.retryAfterSec } as const;
+      }
       if (!isWellFormedSubjectOtpCode(body.code)) {
         return { kind: "otp_invalid" } as const;
       }
@@ -90,6 +106,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
       {},
       undefined,
       corsHeaders
+    );
+  }
+  if (result.kind === "limited") {
+    return fail(
+      429,
+      "RATE_LIMITED",
+      "Too many requests for this account. Try again later.",
+      {},
+      undefined,
+      { ...corsHeaders, "retry-after": String(result.retryAfterSec) }
     );
   }
   if (result.kind === "otp_invalid") {

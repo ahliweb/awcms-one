@@ -364,6 +364,20 @@ export async function adminDecideErasure(
     pending.status !== "pending_approval" ||
     pending.requestType !== "erasure"
   ) {
+    // A retry after a lost response: the same checker repeating the decision
+    // that already settled this request gets the stored decision back, not a
+    // 409. Any other combination is still "not pending".
+    if (
+      pending.requestType === "erasure" &&
+      pending.decidedByTenantUserId === actorTenantUserId
+    ) {
+      if (decision === "reject" && pending.status === "rejected") {
+        return { kind: "rejected", request: pending };
+      }
+      if (decision === "approve" && pending.status === "completed") {
+        return { kind: "erased", request: pending };
+      }
+    }
     return { kind: "not_pending", status: pending.status };
   }
   if (!isSeparateChecker(pending.requestedByTenantUserId, actorTenantUserId)) {

@@ -214,10 +214,17 @@ export const SUBJECT_TABLES: readonly SubjectTable[] = [
     section: "subjectRequests",
     keySet: "customer",
     keyColumn: "customer_id",
-    redactedColumns: ["idempotency_key"],
+    // Staff stamps and the staff-typed `reason` stay out of the shopper's bundle.
+    redactedColumns: [
+      "idempotency_key",
+      "requested_by_tenant_user_id",
+      "decided_by_tenant_user_id",
+      "reason",
+      "correlation_id"
+    ],
     exported: true,
     erasure: retain(
-      "Evidence of the shopper's own data-subject requests and what each one left in place; holds counts and codes only (ADR-0055 D1)."
+      "Evidence of the shopper's own data-subject requests and what each one left in place: counts, codes, status and timestamps, plus staff actor stamps and a staff-typed reason that the export omits (ADR-0055 D1)."
     )
   },
 
@@ -482,6 +489,20 @@ export const CONTACT_MATCHED_TABLES: Readonly<
       "Delivery attempts of the WhatsApp messages above: reached only through them, purged by the same retention.",
     erasedByContact: false
   }
+};
+
+/**
+ * Copies of the shopper's e-mail address in upstream's `awcms_email_messages`
+ * (sign-in and data-request codes, order and document-delivery mails, campaign
+ * mails). That table belongs to the `email` module and is keyed by recipient
+ * address and template, not by a commerce customer, so neither the export nor
+ * the erasure reaches it; each row ages out through the e-mail module's own
+ * retention. Listed in the bundle's `unanswered` section (ADR-0055 D2/D4); the
+ * proper fix is an upstream subject-data hook (ADR-0055 appendix).
+ */
+export const UPSTREAM_CONTACT_COPIES: Readonly<Record<string, string>> = {
+  awcms_email_messages:
+    "Outbound e-mail (sign-in and data-request codes, order and document mails, campaign mails) is stored by the e-mail module under the recipient address; commerce cannot match it to you by customer id, so it is not in this bundle and an erasure does not rewrite it. It is removed by the e-mail module's own retention."
 };
 
 const catalog =

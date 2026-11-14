@@ -35,6 +35,7 @@
 import { exportCustomerPushData } from "./customer-push-erasure";
 import {
   CONTACT_MATCHED_TABLES,
+  UPSTREAM_CONTACT_COPIES,
   SUBJECT_TABLES,
   type SubjectKeySet,
   type SubjectTable
@@ -78,49 +79,40 @@ export async function resolveSubjectKeySets(
   const orderArray = tx.array(order, "uuid");
   const accountArray = tx.array(account, "uuid");
 
-  const [
-    orderItem,
-    refund,
-    document,
-    conversation,
-    loyaltyAccount,
-    storedValueAccount,
-    quotation,
-    workOrder
-  ] = await Promise.all([
-    ids(
-      tx`SELECT id FROM awcms_commerce_order_items
-         WHERE tenant_id = ${tenantId} AND order_id = ANY(${orderArray}::uuid[])`
-    ),
-    ids(
-      tx`SELECT id FROM awcms_commerce_refunds
-         WHERE tenant_id = ${tenantId} AND order_id = ANY(${orderArray}::uuid[])`
-    ),
-    ids(
-      tx`SELECT id FROM awcms_commerce_documents
-         WHERE tenant_id = ${tenantId} AND source_id = ANY(${orderArray}::uuid[])`
-    ),
-    ids(
-      tx`SELECT id FROM awcms_commerce_conversations
-         WHERE tenant_id = ${tenantId} AND account_id = ANY(${accountArray}::uuid[])`
-    ),
-    ids(
-      tx`SELECT id FROM awcms_commerce_loyalty_accounts
-         WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
-    ),
-    ids(
-      tx`SELECT id FROM awcms_commerce_stored_value_accounts
-         WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
-    ),
-    ids(
-      tx`SELECT id FROM awcms_commerce_quotations
-         WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
-    ),
-    ids(
-      tx`SELECT id FROM awcms_commerce_work_orders
-         WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
-    )
-  ]);
+  // One reserved connection: the reads run one after another, never
+  // concurrently (tenant-route.ts: no Promise.all over `tx`).
+  const orderItem = await ids(
+    tx`SELECT id FROM awcms_commerce_order_items
+       WHERE tenant_id = ${tenantId} AND order_id = ANY(${orderArray}::uuid[])`
+  );
+  const refund = await ids(
+    tx`SELECT id FROM awcms_commerce_refunds
+       WHERE tenant_id = ${tenantId} AND order_id = ANY(${orderArray}::uuid[])`
+  );
+  const document = await ids(
+    tx`SELECT id FROM awcms_commerce_documents
+       WHERE tenant_id = ${tenantId} AND source_id = ANY(${orderArray}::uuid[])`
+  );
+  const conversation = await ids(
+    tx`SELECT id FROM awcms_commerce_conversations
+       WHERE tenant_id = ${tenantId} AND account_id = ANY(${accountArray}::uuid[])`
+  );
+  const loyaltyAccount = await ids(
+    tx`SELECT id FROM awcms_commerce_loyalty_accounts
+       WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
+  );
+  const storedValueAccount = await ids(
+    tx`SELECT id FROM awcms_commerce_stored_value_accounts
+       WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
+  );
+  const quotation = await ids(
+    tx`SELECT id FROM awcms_commerce_quotations
+       WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
+  );
+  const workOrder = await ids(
+    tx`SELECT id FROM awcms_commerce_work_orders
+       WHERE tenant_id = ${tenantId} AND customer_id = ${customerId}`
+  );
 
   return {
     customer: [customerId],
@@ -209,9 +201,16 @@ export async function buildSubjectExport(
     sections,
     push,
     truncated,
-    unanswered: Object.entries(CONTACT_MATCHED_TABLES).map(
-      ([table, value]) => ({ table, reason: value.reason })
-    ),
+    unanswered: [
+      ...Object.entries(CONTACT_MATCHED_TABLES).map(([table, value]) => ({
+        table,
+        reason: value.reason
+      })),
+      ...Object.entries(UPSTREAM_CONTACT_COPIES).map(([table, reason]) => ({
+        table,
+        reason
+      }))
+    ],
     retention: { notice: REQUIRED_RETENTION_NOTICE }
   };
 }

@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 
 import { getDatabaseClient } from "../../../../../../../lib/database/client";
+import { checkSharedRateLimit } from "../../../../../../../lib/security/rate-limit";
 import {
   bodyTooLargeResponse,
   readJsonBody
@@ -46,6 +47,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
     async (tx, tenant) => {
       const auth = await requireCustomerSession(request, tx, tenant.tenantId);
       if (!auth.ok) return { kind: "unauthenticated" } as const;
+      // Per account, before anything is written: a refusal is recorded (and
+      // audited) before the code is consumed, so an unlimited loop of fresh
+      // keys would flood the evidence and audit tables.
+      const limit = await checkSharedRateLimit(
+        `commerce:account:privacy:export:account:${auth.account.id}`,
+        { maxAttempts: 20, windowMs: 3_600_000 }
+      );
+      if (!limit.allowed) {
+        return { kind: "limited", retryAfterSec: limit.retryAfterSec } as const;
+      }
       if (!isWellFormedSubjectOtpCode(body.code)) {
         return { kind: "otp_invalid" } as const;
       }
@@ -63,6 +74,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
       {},
       undefined,
       corsHeaders
+    );
+  }
+  if (result.kind === "limited") {
+    return fail(
+      429,
+      "RATE_LIMITED",
+      "Too many requests for this account. Try again later.",
+      {},
+      undefined,
+      { ...corsHeaders, "retry-after": String(result.retryAfterSec) }
     );
   }
   if (result.kind === "otp_invalid") {

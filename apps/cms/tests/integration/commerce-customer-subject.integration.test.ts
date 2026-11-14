@@ -464,6 +464,9 @@ suite("commerce shopper data-subject rights (Issue #529)", () => {
       expect(audit[0]!.attributes).not.toContain(EMAIL);
     });
 
+    // Application layer only: over HTTP a completed erasure revoked every
+    // session, so the route answers 401 before this function is reached; the
+    // stored answer is reachable over HTTP for a refused attempt only.
     test("a replayed Idempotency-Key answers the stored result with no second request row", async () => {
       const shopper = await seedShopper(TENANT_A);
       const account = {
