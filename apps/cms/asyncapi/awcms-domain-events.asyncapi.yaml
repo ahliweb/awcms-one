@@ -1368,6 +1368,41 @@ channels:
       `amount` and `settledVia` (`ledger` | `provider` | `offline` |
       `store_credit`) - never a provider reference, name or phone. A failed
       attempt is an audit event, not a domain event.
+  awcms.commerce.customer.registered:
+    address: awcms.commerce.customer.registered
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A shopper completed the e-mail OTP registration and a commerce customer
+      account was created (Issue #463, ADR-0056 D8). Producer:
+      `commerce/application/customer-account-store.ts`'s
+      `tryCreateAccountForCustomer`, in the same transaction as the account row.
+      A guest checkout does NOT publish it: only a verified registration is a
+      registration fact. Aggregate: the customer (`commerce.customer`). Payload:
+      `customerId` and `accountId` only - never a name, e-mail or phone.
+      `privacyClass: pseudonymous`. Idempotency: one event per account row (the
+      account is unique per customer); correlation id as on every domain event.
+  awcms.commerce.customer.converted:
+    address: awcms.commerce.customer.converted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff member confirmed a CRM lead as this commerce customer on verified
+      commerce evidence and `crm_leads` recorded the conversion (Issue #463,
+      ADR-0056 D8). Producer: `commerce/application/crm-lead-link-directory.ts`'s
+      `linkLeadToCustomer`, in the same transaction as the link row and the
+      conversion. Never published from a message receipt, a fuzzy match or an
+      unconfirmed manual conversion. Aggregate: the customer
+      (`commerce.customer`). Payload: `linkId`, `customerId`, `leadId`,
+      `conversionId`, `evidenceKind` (`customer_registration` | `paid_order`),
+      `orderId` (paid order only), `firstSourceKind` and `firstTouchId` (the
+      lead's first source touch, for source attribution) - opaque ids and codes,
+      never a name, contact or note. `privacyClass: pseudonymous`. Idempotency:
+      one event per link; a replayed confirmation (same evidence) publishes
+      nothing. The reversal of a conversion is `crm_leads`' own
+      `awcms.crm_leads.lead.conversion_reversed`.
   awcms.commerce.conversation.store_replied:
     address: awcms.commerce.conversation.store_replied
     messages:
@@ -2159,6 +2194,18 @@ operations:
       $ref: "#/channels/awcms.commerce.refund.settled"
     messages:
       - $ref: "#/channels/awcms.commerce.refund.settled/messages/DomainEvent"
+  publishCommerceCustomerRegistered:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.customer.registered"
+    messages:
+      - $ref: "#/channels/awcms.commerce.customer.registered/messages/DomainEvent"
+  publishCommerceCustomerConverted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.customer.converted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.customer.converted/messages/DomainEvent"
   publishCommerceConversationStoreReplied:
     action: send
     channel:

@@ -28,6 +28,12 @@
  * phone are masked (`maskIdentifierValue`/`maskPhone`) before they reach any
  * audit attribute.
  */
+import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
+import {
+  COMMERCE_CUSTOMER_AGGREGATE_TYPE,
+  COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE,
+  COMMERCE_EVENT_VERSION
+} from "../domain/commerce-events";
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { maskIdentifierValue } from "../../profile-identity/domain/identifier";
@@ -289,6 +295,20 @@ export async function tryCreateAccountForCustomer(
       phoneMasked: maskPhone(input.phone)
     },
     correlationId
+  });
+
+  // Issue #463 (ADR-0056 D8): a VERIFIED registration is a commerce fact (the
+  // e-mail was proven by OTP just before this call). Published in the same
+  // transaction as the account row, ids only; a guest checkout never reaches
+  // this function, so it never publishes it.
+  await appendDomainEvent(tx, tenantId, {
+    eventType: COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE,
+    eventVersion: COMMERCE_EVENT_VERSION,
+    aggregateType: COMMERCE_CUSTOMER_AGGREGATE_TYPE,
+    aggregateId: customer.id,
+    producerModule: "commerce",
+    correlationId,
+    payload: { customerId: customer.id, accountId: record.id }
   });
 
   return { ok: true, account: record };

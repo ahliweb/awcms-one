@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 41    |
-| Migrations                          | 420   |
-| `awcms_*` tables                    | 382   |
-| Tables with `FORCE` RLS             | 362   |
+| Migrations                          | 422   |
+| `awcms_*` tables                    | 383   |
+| Tables with `FORCE` RLS             | 363   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 1040  |
-| Route files                         | 963   |
+| Test files                          | 1043  |
+| Route files                         | 965   |
 | ADR                                 | 326   |
 
 ### Modules
@@ -486,6 +486,8 @@
 | 418 | `sql/1065_awcms_commerce_customer_subject_requests.sql`                     |
 | 419 | `sql/1066_awcms_commerce_customer_erasure_marker.sql`                       |
 | 420 | `sql/1067_awcms_commerce_customer_subject_permissions.sql`                  |
+| 421 | `sql/1068_awcms_commerce_crm_lead_links.sql`                                |
+| 422 | `sql/1069_awcms_commerce_crm_lead_link_permissions.sql`                     |
 
 ### Tables & Row-Level Security
 
@@ -569,6 +571,7 @@
 | `awcms_commerce_commission_submissions`          | `sql/1063_awcms_commerce_commission_submissions.sql`          | yes | yes   |
 | `awcms_commerce_conversations`                   | `sql/927_awcms_commerce_conversations_schema.sql`             | yes | yes   |
 | `awcms_commerce_courier_destinations`            | `sql/924_awcms_commerce_shipping_rates_schema.sql`            | yes | yes   |
+| `awcms_commerce_crm_lead_links`                  | `sql/1068_awcms_commerce_crm_lead_links.sql`                  | yes | yes   |
 | `awcms_commerce_customer_accounts`               | `sql/917_awcms_commerce_customer_accounts_schema.sql`         | yes | yes   |
 | `awcms_commerce_customer_addresses`              | `sql/913_awcms_commerce_customers_orders_schema.sql`          | yes | yes   |
 | `awcms_commerce_customer_otps`                   | `sql/917_awcms_commerce_customer_accounts_schema.sql`         | yes | yes   |
@@ -878,16 +881,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 736        |
+| `(root)`      | 738        |
 | `e2e`         | 32         |
-| `integration` | 271        |
+| `integration` | 272        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 814   |
+| `/api/v1/**`    | 816   |
 | `/admin/**`     | 118   |
 | publik / anonim | 31    |
 

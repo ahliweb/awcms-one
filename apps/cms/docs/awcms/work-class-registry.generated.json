@@ -887,6 +887,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/crm-lead-links/[id]/reverse.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/crm-lead-links/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/customer-push/diagnostics.ts",
       "workClass": "interactive",
       "source": "factory"

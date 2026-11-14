@@ -235,6 +235,24 @@ export const SUBJECT_TABLES: readonly SubjectTable[] = [
     )
   },
 
+  {
+    table: "awcms_commerce_crm_lead_links",
+    section: "crmLeadLinks",
+    keySet: "customer",
+    keyColumn: "customer_id",
+    // Opaque ids, the evidence kind and the state are the shopper's own
+    // acquisition record; staff stamps stay out of the bundle.
+    redactedColumns: [
+      "linked_by_tenant_user_id",
+      "reversal_actor_tenant_user_id",
+      "reversed_by_tenant_user_id"
+    ],
+    exported: true,
+    erasure: retain(
+      "Evidence that commerce confirmed a CRM lead as this customer on a verified fact: opaque ids, an evidence kind, the lead's first source kind and a state, no name, contact or note. Kept (resolving to the anonymised customer) because it is the handle a reversal needs on a CRM conversion that still stands; the prospect's own personal data is erased in crm_leads (Issue #463, ADR-0056 D7)."
+    )
+  },
+
   // ---- through the customer account ----
   {
     table: "awcms_commerce_customer_accounts",

@@ -143,9 +143,14 @@
           "capability": "booking",
           "providedBy": "booking",
           "optional": true
+        },
+        {
+          "capability": "crm_lead",
+          "providedBy": "crm_leads",
+          "optional": true
         }
       ],
-      "permissionCount": 170,
+      "permissionCount": 173,
       "navigationCount": 30,
       "jobCount": 13,
       "hasHealthCheck": false,

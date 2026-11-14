@@ -13947,6 +13947,184 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/crm-lead-links:
+    get:
+      operationId: listCommerceCrmLeadLinks
+      tags:
+        - Commerce
+      summary: "Issue #463 (ADR-0056). Which CRM leads were confirmed as commerce customers, newest first (at most 100): opaque ids, the evidence kind and the link state, never a name or contact. Optional filters `leadId`, `customerId`, `state`. Gated on `commerce.crm_lead_links.read`."
+      parameters:
+        - name: leadId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: customerId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - linked
+              - reversal_pending
+              - reversed
+      responses:
+        "200":
+          description: The links.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCrmLeadLink"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceCrmLeadLink
+      tags:
+        - Commerce
+      summary: "Issue #463 (ADR-0056). Confirm that a CRM lead became this commerce customer, on a commerce fact the server verifies. Gated on `commerce.crm_lead_links.create` AND `crm_leads.conversions.approve` (the CRM port performs no access check, so both are enforced); audited at warning."
+      description: "The caller names the lead and the customer; nothing is matched on a phone, e-mail or social handle. The evidence is read from the database: `customer_registration` needs a live account with a verified e-mail, `paid_order` needs a paid, not cancelled order OF THAT customer (`orderId` required). The conversion is recorded in `crm_leads` through `CrmLeadPort` with an opaque customer reference and the evidence reference as the replay key, and `awcms.commerce.customer.converted` is published. A replay with the same evidence answers `200` with the existing link and publishes nothing; the same evidence naming another lead or customer is `409 CRM_EVIDENCE_REUSED`. A lead or customer of another tenant is the same `404` as a missing one."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - leadId
+                - customerId
+                - evidenceKind
+                - expectedVersion
+              additionalProperties: false
+              properties:
+                leadId:
+                  type: string
+                  format: uuid
+                customerId:
+                  type: string
+                  format: uuid
+                evidenceKind:
+                  type: string
+                  enum:
+                    - customer_registration
+                    - paid_order
+                orderId:
+                  type: string
+                  format: uuid
+                  description: Required for `paid_order`, forbidden for `customer_registration`.
+                expectedVersion:
+                  type: integer
+                  minimum: 1
+                  description: The version of the lead the caller acted on (optimistic concurrency, enforced by `crm_leads`).
+      responses:
+        "200":
+          description: A replay - the existing link, nothing published.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCrmLeadLink"
+        "201":
+          description: The new link.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCrmLeadLink"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`CRM_LEADS_UNAVAILABLE`, `CRM_EVIDENCE_NOT_VERIFIED` (with `details.reason`), `CRM_LEAD_ALREADY_LINKED`, `CRM_EVIDENCE_REUSED` or `CRM_CONVERSION_REFUSED` (with `details.reason`, a `crm_leads` outcome such as `version_conflict`, `not_open` or `already_converted`)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/crm-lead-links/{id}/reverse:
+    post:
+      operationId: reverseCommerceCrmLeadLink
+      tags:
+        - Commerce
+      summary: "Issue #463 (ADR-0056). Reverse a confirmed lead-to-customer link: the CRM conversion is reversed through the port (a stamped reversal, never an edit of history) and the link becomes `reversed`, which is final. Gated on `commerce.crm_lead_links.approve` (a high-risk action) AND `crm_leads.conversions.approve`; audited at warning."
+      description: Meant for a link a consumer flagged `reversal_pending` because the order its conversion rests on was cancelled or fully refunded (the consumers run as the worker role, which holds no CRM privilege, so they only flag). A person may also reverse a `linked` one. Reversing a reversed link is `409`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The reversed link.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCrmLeadLink"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`CRM_LEAD_LINK_ALREADY_REVERSED`, `CRM_LEADS_UNAVAILABLE`, `CRM_CONVERSION_NOT_FOUND` or `CRM_EVIDENCE_REUSED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`VALIDATION_ERROR` - the reversal request was rejected by `crm_leads` as invalid."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/customer-push/diagnostics:
     get:
       operationId: getCommerceCustomerPushDiagnostics
@@ -59191,6 +59369,74 @@ components:
           description: "Issue #86 (design only). Optional `?ref=` referral code captured by the storefront; ignored if it matches the ordering customer's own affiliate code (self-referral yields no commission — D5)."
         loyaltyRedemption:
           $ref: "#/components/schemas/CommerceLoyaltyRedemptionRequest"
+    CommerceCrmLeadLink:
+      type: object
+      description: "Issue #463 (ADR-0056). The record that a CRM lead was confirmed as a commerce customer: opaque ids, an evidence kind, the lead's first source and a state. No name, contact, note or stage of the prospect."
+      required:
+        - id
+        - leadId
+        - customerId
+        - evidenceKind
+        - conversionId
+        - state
+        - linkedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        leadId:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+          nullable: true
+        evidenceKind:
+          type: string
+          enum:
+            - customer_registration
+            - paid_order
+        conversionId:
+          type: string
+          format: uuid
+        firstSourceKind:
+          type: string
+          nullable: true
+        firstTouchId:
+          type: string
+          format: uuid
+          nullable: true
+        state:
+          type: string
+          enum:
+            - linked
+            - reversal_pending
+            - reversed
+        linkedAt:
+          type: string
+          format: date-time
+        reversalCause:
+          type: string
+          nullable: true
+          enum:
+            - order_cancelled
+            - order_refunded
+            - manual
+            - null
+        reversalRequestedAt:
+          type: string
+          format: date-time
+          nullable: true
+        reversedAt:
+          type: string
+          format: date-time
+          nullable: true
+        replayed:
+          type: boolean
+          description: Present on the create answer only.
     CommerceCustomer:
       type: object
       description: Issue 29 — admin customer record.

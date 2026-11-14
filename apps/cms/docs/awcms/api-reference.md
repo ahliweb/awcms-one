@@ -10921,6 +10921,73 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 404    | Resource not found.                                                                        | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Which CRM leads were confirmed as commerce customers, newest first (at most 100): opaque ids, the evidence kind and the link state, never a name or contact. Optional filters `leadId`, `customerId`, `state`. Gated on `commerce.crm_lead_links.read`.
+
+- **operationId**: `listCommerceCrmLeadLinks`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                           | Description |
+| ------------ | ----- | -------- | ---------------------------------------------- | ----------- |
+| `leadId`     | query | no       | string (uuid)                                  |             |
+| `customerId` | query | no       | string (uuid)                                  |             |
+| `state`      | query | no       | enum(`linked`, `reversal_pending`, `reversed`) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The links.                  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Confirm that a CRM lead became this commerce customer, on a commerce fact the server verifies. Gated on `commerce.crm_lead_links.create` AND `crm_leads.conversions.approve` (the CRM port performs no access check, so both are enforced); audited at warning.
+
+- **operationId**: `createCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+The caller names the lead and the customer; nothing is matched on a phone, e-mail or social handle. The evidence is read from the database: `customer_registration` needs a live account with a verified e-mail, `paid_order` needs a paid, not cancelled order OF THAT customer (`orderId` required). The conversion is recorded in `crm_leads` through `CrmLeadPort` with an opaque customer reference and the evidence reference as the replay key, and `awcms.commerce.customer.converted` is published. A replay with the same evidence answers `200` with the existing link and publishes nothing; the same evidence naming another lead or customer is `409 CRM_EVIDENCE_REUSED`. A lead or customer of another tenant is the same `404` as a missing one.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | A replay - the existing link, nothing published.                                                                                                                                                                                                                         | object                                 |
+| 201    | The new link.                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEADS_UNAVAILABLE`, `CRM_EVIDENCE_NOT_VERIFIED` (with `details.reason`), `CRM_LEAD_ALREADY_LINKED`, `CRM_EVIDENCE_REUSED` or `CRM_CONVERSION_REFUSED` (with `details.reason`, a `crm_leads` outcome such as `version_conflict`, `not_open` or `already_converted`). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links/{id}/reverse` — Issue #463 (ADR-0056). Reverse a confirmed lead-to-customer link: the CRM conversion is reversed through the port (a stamped reversal, never an edit of history) and the link becomes `reversed`, which is final. Gated on `commerce.crm_lead_links.approve` (a high-risk action) AND `crm_leads.conversions.approve`; audited at warning.
+
+- **operationId**: `reverseCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+Meant for a link a consumer flagged `reversal_pending` because the order its conversion rests on was cancelled or fully refunded (the consumers run as the worker role, which holds no CRM privilege, so they only flag). A person may also reverse a `linked` one. Reversing a reversed link is `409`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                                     | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reversed link.                                                                                              | object                                 |
+| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEAD_LINK_ALREADY_REVERSED`, `CRM_LEADS_UNAVAILABLE`, `CRM_CONVERSION_NOT_FOUND` or `CRM_EVIDENCE_REUSED`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `VALIDATION_ERROR` - the reversal request was rejected by `crm_leads` as invalid.                               | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/customer-subject-requests` — Issue #529 (ADR-0055 D3). The tenant's shopper data-subject requests, newest first, at most 100. Gated on `commerce.customer_subject_requests.read`.
 
 - **operationId**: `listCommerceCustomerSubjectRequests`
@@ -32561,7 +32628,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (119)
+### Channels (121)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -32606,6 +32673,8 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
 - `awcms.commerce.booking_reservation.rescheduled` — A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all (same length). Producer: `commerce/application/booking-reschedule.ts`'s `rescheduleBookingReservation`, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`, `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`, `supplementOrderId`, `returnId` - never a customer name/phone, a payment reference or the actor.
 - `awcms.commerce.conversation.store_replied` — A staff reply was stored in a customer conversation (Issue #432, ADR-0048 Q4). Producer: `commerce/application/conversation-directory.ts`'s `postStoreReply`, in the same transaction as the stored message. Aggregate: the conversation (`commerce.conversation`). Payload: `conversationId` only - never the subject, the body or the customer. Consumed by the customer Web Push enqueuer (`commerce.customer_push_enqueuer`, purpose `support_replies`).
+- `awcms.commerce.customer.converted` — A staff member confirmed a CRM lead as this commerce customer on verified commerce evidence and `crm_leads` recorded the conversion (Issue #463, ADR-0056 D8). Producer: `commerce/application/crm-lead-link-directory.ts`'s `linkLeadToCustomer`, in the same transaction as the link row and the conversion. Never published from a message receipt, a fuzzy match or an unconfirmed manual conversion. Aggregate: the customer (`commerce.customer`). Payload: `linkId`, `customerId`, `leadId`, `conversionId`, `evidenceKind` (`customer_registration` | `paid_order`), `orderId` (paid order only), `firstSourceKind` and `firstTouchId` (the lead's first source touch, for source attribution) - opaque ids and codes, never a name, contact or note. `privacyClass: pseudonymous`. Idempotency: one event per link; a replayed confirmation (same evidence) publishes nothing. The reversal of a conversion is `crm_leads`' own `awcms.crm_leads.lead.conversion_reversed`.
+- `awcms.commerce.customer.registered` — A shopper completed the e-mail OTP registration and a commerce customer account was created (Issue #463, ADR-0056 D8). Producer: `commerce/application/customer-account-store.ts`'s `tryCreateAccountForCustomer`, in the same transaction as the account row. A guest checkout does NOT publish it: only a verified registration is a registration fact. Aggregate: the customer (`commerce.customer`). Payload: `customerId` and `accountId` only - never a name, e-mail or phone. `privacyClass: pseudonymous`. Idempotency: one event per account row (the account is unique per customer); correlation id as on every domain event.
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.

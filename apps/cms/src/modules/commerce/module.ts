@@ -28,6 +28,10 @@ import {
   COMMISSION_SUBJECT_DATA
 } from "./domain/commission-lifecycle";
 import {
+  CRM_LEAD_LINK_DATA_LIFECYCLE,
+  CRM_LEAD_LINK_SUBJECT_DATA
+} from "./domain/crm-lead-link-lifecycle";
+import {
   BOOKING_ADAPTER_DATA_LIFECYCLE,
   BOOKING_ADAPTER_SUBJECT_DATA
 } from "./domain/booking-adapter-lifecycle";
@@ -198,7 +202,9 @@ import {
   COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
   COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
   COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
-  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS
+  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS,
+  COMMERCE_CRM_LEAD_LINKS_ACTIVITY_CODE,
+  COMMERCE_CRM_LEAD_LINK_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -235,6 +241,10 @@ import {
   COMMERCE_RETURN_RECORDED_EVENT_TYPE,
   COMMERCE_REFUND_SETTLED_EVENT_TYPE,
   COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE,
+  COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE,
+  COMMERCE_CUSTOMER_CONVERTED_EVENT_TYPE,
+  COMMERCE_ORDER_CANCELLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
+  COMMERCE_REFUND_SETTLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
   COMMERCE_CUSTOMER_PUSH_ENQUEUER_CONSUMER_NAME,
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
@@ -685,6 +695,49 @@ export const COMMISSION_INTAKE_CONSUMERS: ModuleDomainEventConsumer[] = [
 ];
 
 /**
+ * CRM lead link flaggers (Issue #463, ADR-0056 D5), spread into
+ * `domainEventConsumers` beside the commission ones.
+ */
+export const CRM_LEAD_LINK_CONSUMERS: ModuleDomainEventConsumer[] = [
+  {
+    name: COMMERCE_ORDER_CANCELLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
+    description:
+      "commerce module consumer - when an order is cancelled, marks every live CRM lead link that rests on it as reversal_pending; it runs as awcms_worker, which holds no privilege on any crm_leads table, so it only flags and a person with the CRM approval permission applies the reversal through CrmLeadPort (Issue #463, ADR-0056 D5).",
+    eventTypes: [COMMERCE_ORDER_CANCELLED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { flagCrmLeadLinksForCancelledOrder } =
+        await import("./application/crm-lead-link-directory");
+      await flagCrmLeadLinksForCancelledOrder(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        event.id,
+        ctx.correlationId
+      );
+    }
+  },
+  {
+    name: COMMERCE_REFUND_SETTLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME,
+    description:
+      "commerce module consumer - when the last refund leg of a return settles and every line of the order is now fully returned, marks every live CRM lead link that rests on that order as reversal_pending; a partly returned order leaves a real sale, so nothing is flagged; only flags, never reverses (Issue #463, ADR-0056 D5).",
+    eventTypes: [COMMERCE_REFUND_SETTLED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { flagCrmLeadLinksForSettledRefund } =
+        await import("./application/crm-lead-link-directory");
+      await flagCrmLeadLinksForSettledRefund(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        event.id,
+        ctx.correlationId
+      );
+    }
+  }
+];
+
+/**
  * `commerce` (Issue #4, part of epic #1; brought to full product-model parity
  * by Issue #23, part of epic #21) — tenant-scoped product categories
  * (hierarchical, self-referencing) and products, ported from the legacy
@@ -807,6 +860,15 @@ export const commerceModule = defineModule({
       {
         capability: "booking",
         providedBy: "booking",
+        optional: true
+      },
+      // Issue #463 (ADR-0056 D2) - the CRM lead link reaches `crm_leads` through
+      // `CrmLeadPort` only (composition root `src/lib/composition/crm-lead-port.ts`).
+      // A CAPABILITY, not a `dependencies` entry: a hard edge would make `commerce`
+      // un-enableable for a tenant that never switches CRM on.
+      {
+        capability: "crm_lead",
+        providedBy: "crm_leads",
         optional: true
       }
     ]
@@ -1093,7 +1155,8 @@ export const commerceModule = defineModule({
     ...BOOKING_ADAPTER_CONSUMERS,
     // Issue #391 (ADR-0046 D12) - the commission attributor and its two
     // reversers, through `hr_commission`'s intake queue (see above).
-    ...COMMISSION_INTAKE_CONSUMERS
+    ...COMMISSION_INTAKE_CONSUMERS,
+    ...CRM_LEAD_LINK_CONSUMERS
   ],
   events: {
     asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",
@@ -1131,7 +1194,9 @@ export const commerceModule = defineModule({
       COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
       COMMERCE_RETURN_RECORDED_EVENT_TYPE,
       COMMERCE_REFUND_SETTLED_EVENT_TYPE,
-      COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE
+      COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE,
+      COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE,
+      COMMERCE_CUSTOMER_CONVERTED_EVENT_TYPE
     ]
   },
   /**
@@ -3419,6 +3484,8 @@ export const commerceModule = defineModule({
     // Issue #294 (ADR-0031) - the two expense tables; see
     // `domain/expense-lifecycle.ts`.
     ...COMMISSION_DATA_LIFECYCLE,
+    // Issue #463 (ADR-0056) - see `domain/crm-lead-link-lifecycle.ts`.
+    ...CRM_LEAD_LINK_DATA_LIFECYCLE,
     ...EXPENSE_DATA_LIFECYCLE,
     // Issue #360 (ADR-0042) - the two CRM segment tables; see
     // `domain/segment-lifecycle.ts`.
@@ -4397,6 +4464,8 @@ export const commerceModule = defineModule({
     ...DOCUMENT_SUBJECT_DATA,
     // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
     ...COMMISSION_SUBJECT_DATA,
+    // Issue #463 (ADR-0056) - see `domain/crm-lead-link-lifecycle.ts`.
+    ...CRM_LEAD_LINK_SUBJECT_DATA,
     ...EXPENSE_SUBJECT_DATA,
     // Issue #360 (ADR-0042) - see `domain/segment-lifecycle.ts`.
     ...SEGMENT_SUBJECT_DATA,
@@ -5107,6 +5176,25 @@ export const commerceModule = defineModule({
       description:
         "Link a login to the employment that earns its counter-sale commission, and retire a link (Issue #391)"
     },
+    // Issue #463 (ADR-0056) - the CRM lead link.
+    {
+      activityCode: COMMERCE_CRM_LEAD_LINKS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "List which CRM leads were confirmed as commerce customers, with the verified evidence kind and the link state (Issue #463)"
+    },
+    {
+      activityCode: COMMERCE_CRM_LEAD_LINKS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Confirm a CRM lead as a commerce customer on a verified commerce fact (a confirmed registration or a paid order); also requires crm_leads.conversions.approve (Issue #463)"
+    },
+    {
+      activityCode: COMMERCE_CRM_LEAD_LINKS_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Reverse a confirmed lead-to-customer link and its CRM conversion after the evidence order was cancelled or refunded; also requires crm_leads.conversions.approve (Issue #463)"
+    },
     {
       activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,
       action: "read",
@@ -5392,7 +5480,8 @@ export {
   COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
   COMMERCE_SEGMENT_MEMBER_PERMISSIONS,
   COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
-  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS
+  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS,
+  COMMERCE_CRM_LEAD_LINK_PERMISSIONS
 };
 export {
   COMMERCE_LOYALTY_PERMISSIONS,

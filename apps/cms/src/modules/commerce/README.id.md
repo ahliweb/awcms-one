@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:13fda5c62023ea7f7da6666e87b473f9ab557de7f66b9ab1866f2caeef199a1b -->
+<!-- i18n-source-hash: sha256:630e8d28a9fe5defd6cb420b2e9ddd6717355a4d3084d961a629a1ea845696dd -->
 
 # `commerce`
 
@@ -1935,3 +1935,14 @@ Engine subject-data upstream tidak bisa mengikat pelanggan commerce (ADR-0016 D1
 - **Aplikasi**: `customer-subject-export.ts` (bundel berversi dibaca sebagai `to_jsonb(row) - redactedColumns`, dibatasi per bagian, tidak pernah disimpan), `customer-subject-erasure.ts` (aturan penolakan, kunci baris pelanggan, penghapusan dan anonimisasi, ringkasan yang dipertahankan; memanggil `eraseCustomerPushData`), `customer-subject-otp.ts` (kode baru, memakai ulang mesin OTP masuk dengan tujuannya sendiri), `customer-subject-requests.ts` (baris bukti dan keputusan pengklaim), `customer-subject-flow.ts` (lima titik masuk), `customer-subject-http.ts`.
 - **Rute**: storefront `account/privacy/{otp,export,erasure}` (bearer, dideklarasikan di `CUSTOMER_BEARER_BODY_ENDPOINTS`); admin `customers/{id}/subject-export`, `customers/{id}/subject-erasure`, `customer-subject-requests` dan `customer-subject-requests/{id}/decide` (izin, step-up, dan maker/checker untuk penghapusan). Layarnya adalah kolom privasi dan panel permintaan di layar pelanggan, serta `/akun/privasi` di storefront.
 - **Belum diselesaikan di sini**: konfirmasi penasihat hukum atas dasar hukum retensi dan konfirmasi pemilik atas aturan penolakan; jenis subjek berbasis deskriptor di upstream (teks di lampiran A ADR); baris pesan WhatsApp yang hanya cocok lewat nilai telepon.
+
+## Tautan lead CRM - TERIMPLEMENTASI (Issue #463 - [ADR-0056](../../../../../docs/adr/0056-crm-lead-link-confirms-a-prospect-as-a-commerce-customer-only-from-verified-commerce-facts.id.md))
+
+`commerce` adalah otoritas pelanggan bagi `crm_leads` upstream dan hanya menjangkaunya lewat `CrmLeadPort`. Orang yang memegang `commerce.crm_lead_links.create` **dan** `crm_leads.conversions.approve` mengonfirmasi lead sebagai pelanggan; server memverifikasi buktinya (registrasi terverifikasi OTP, atau pesanan terbayar milik pelanggan itu) dan tidak ada yang dicocokkan berdasarkan telepon, e-mail, atau handle.
+
+- **Domain**: `domain/crm-lead-link.ts` (referensi buram, aturan bukti, mesin status, validator permintaan) dan `domain/crm-lead-link-lifecycle.ts` (deskriptor retensi dan subject-data).
+- **Aplikasi**: `application/crm-lead-link-directory.ts` (tautkan, daftar, balik, dan dua fungsi penanda) dan `application/crm-lead-link-http.ts` (otorisasi kedua dan pemetaan respons). Port disuntikkan oleh composition root `src/lib/composition/crm-lead-port.ts`, yang hanya diimpor dua rute (`tests/commerce-crm-lead-boundary.test.ts`).
+- **Rute**: `crm-lead-links` (`GET`, `POST`) dan `crm-lead-links/{id}/reverse`. Migrasi `sql/1068` (tabel: id lead buram, RLS FORCE, trigger penjaga, tanpa hapus, grant worker sempit) dan `sql/1069` (izin).
+- **Konsumer**: `commerce.order_cancelled_crm_lead_link_flagger` dan `commerce.refund_settled_crm_lead_link_flagger` menandai tautan `reversal_pending`; keduanya berjalan sebagai worker, yang tidak memegang apa pun atas tabel CRM, sehingga orang yang menerapkan pembalikannya.
+- **Event**: `awcms.commerce.customer.registered` (dari `tryCreateAccountForCustomer`) dan `awcms.commerce.customer.converted`.
+- **Belum ada**: rekonsiliator terjadwal untuk pembalikan tertunda, layar admin (ketiga kunci ada di `NOT_YET_SCREENED`), kondisi segmen atau kampanye atas tautan. Suite berbasis DB `commerce-crm-lead-link.integration.test.ts` tidak dijalankan di tempat penulisannya.
