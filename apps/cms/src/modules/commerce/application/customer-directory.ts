@@ -200,6 +200,9 @@ export async function updateCustomer(
       status = ${input.status ?? existing.status},
       updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${customerId} AND deleted_at IS NULL
+      -- Issue #529 (ADR-0055): an erased customer is never edited, so an admin
+      -- cannot unblock or re-level an anonymised row back into use.
+      AND erased_at IS NULL
     RETURNING id, name, phone, email, level, status, created_at
   `) as CustomerRow[];
 

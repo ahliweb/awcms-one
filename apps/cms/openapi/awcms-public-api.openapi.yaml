@@ -13980,6 +13980,119 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/customer-subject-requests:
+    get:
+      operationId: listCommerceCustomerSubjectRequests
+      tags:
+        - Commerce
+      summary: "Issue #529 (ADR-0055 D3). The tenant's shopper data-subject requests, newest first, at most 100. Gated on `commerce.customer_subject_requests.read`."
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - disclosed
+              - pending_approval
+              - refused
+              - rejected
+              - completed
+        - name: customerId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The requests.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomerSubjectRequest"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/customer-subject-requests/{id}/decide:
+    post:
+      operationId: decideCommerceCustomerSubjectRequest
+      tags:
+        - Commerce
+      summary: "Issue #529 (ADR-0055 D3). The second person approves or rejects a pending erasure. Gated on `commerce.customer_subject_requests.approve` (high-risk), a fresh step-up and an `Idempotency-Key`; never the requester."
+      description: 'Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request that is not pending is `409 INVALID_STATE`; a shopper whose state changed since the request (a new order, say) is `409 ERASURE_REFUSED` and the request is recorded as refused.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - decision
+              properties:
+                decision:
+                  type: string
+                  enum:
+                    - approve
+                    - reject
+      responses:
+        "200":
+          description: The decided request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      request:
+                        $ref: "#/components/schemas/CommerceCustomerSubjectRequest"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "`FORBIDDEN`, `STEP_UP_REQUIRED` or `SEPARATION_OF_DUTIES`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`INVALID_STATE`, `ERASURE_REFUSED` or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/customers:
     get:
       operationId: listCommerceCustomers
@@ -14101,6 +14214,117 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/customers/{id}/subject-erasure:
+    post:
+      operationId: requestCommerceCustomerSubjectErasure
+      tags:
+        - Commerce
+      summary: "Issue #529 (ADR-0055 D2/D3). Request the erasure of a shopper's personal data. Erases nothing: records a request a second person approves. Gated on `commerce.customer_subject_requests.delete` (high-risk), a fresh step-up and an `Idempotency-Key`."
+      description: 'Runs the precondition check first. `202` records a `pending_approval` request; `409 ERASURE_REFUSED` records a `refused` one (open order or booking, stored-value balance, unsettled refund, unpaid affiliate commission, or already erased). A stale step-up is `403 STEP_UP_REQUIRED` with nothing written. Body `{ "reason"?: string }`, at most 500 characters.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  maxLength: 500
+      responses:
+        "202":
+          description: "The pending request (or the same request, `replayed: true`)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      request:
+                        $ref: "#/components/schemas/CommerceCustomerSubjectRequest"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "`FORBIDDEN` or `STEP_UP_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/customers/{id}/subject-export:
+    post:
+      operationId: exportCommerceCustomerSubjectData
+      tags:
+        - Commerce
+      summary: "Issue #529 (ADR-0055 D3/D4). An administrator produces a shopper's data-subject export bundle on their behalf. Gated on `commerce.customer_subject_requests.export` (high-risk) and an `Idempotency-Key`."
+      description: "The bundle is returned once with `Cache-Control: no-store` and never stored; the disclosure is audited at `critical` with counts only. A repeated key is `409 IDEMPOTENCY_REPLAYED` because the bundle is not kept to replay; use a new key to produce another."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      responses:
+        "200":
+          description: The request id and the bundle.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        format: uuid
+                      bundle:
+                        $ref: "#/components/schemas/CommerceCustomerSubjectExportBundle"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`IDEMPOTENCY_REPLAYED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/document-deliveries:
     get:
       operationId: listCommerceDocumentDeliveries
@@ -23615,6 +23839,183 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "429":
           description: Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/privacy/erasure:
+    post:
+      operationId: eraseCommerceStorefrontAccountData
+      tags:
+        - Commerce
+      summary: "Issue #529 (ADR-0055 D2/D3). The shopper's own erasure: anonymise the identity, delete personal rows, retain the ledgers, revoke every session."
+      description: 'Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "erasure"`) and a required `Idempotency-Key`. Body `{ "code": "123456" }`. On success every session of the account is revoked, so the next request with the old bearer is `401` and the storefront clears its stored session. The response names counts and the table families kept for bookkeeping, never content. It is refused (`409 ERASURE_REFUSED`, `details.refusals`) while an order is pending payment, paid, processing or shipped, a booking is active, a stored-value balance is above zero, a return or refund is unsettled or an affiliate commission is unpaid; the code is not consumed by a refusal. A repeated key answers the stored result (`replayed: true`).'
+      security:
+        - customerBearer: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - code
+              properties:
+                code:
+                  type: string
+                  pattern: ^[0-9]{6}$
+      responses:
+        "200":
+          description: The erasure ran (or this is the stored result of the same key).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      erased:
+                        type: boolean
+                      replayed:
+                        type: boolean
+                      requestId:
+                        type: string
+                        format: uuid
+                      summary:
+                        $ref: "#/components/schemas/CommerceCustomerErasureSummary"
+        "400":
+          description: "`OTP_INVALID`, `IDEMPOTENCY_KEY_REQUIRED` or a malformed body."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "`ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/privacy/export:
+    post:
+      operationId: exportCommerceStorefrontAccountData
+      tags:
+        - Commerce
+      summary: "Issue #529 (ADR-0055 D4). The shopper's own data-subject export: a versioned JSON bundle of everything the store holds about them. Not stored."
+      description: 'Needs the bearer session AND a fresh one-time code from `privacy/otp` (`type: "export"`). Body `{ "code": "123456" }`. The bundle is returned once with `Cache-Control: no-store` and is never stored; the disclosure is audited with counts only. Secrets (token and code hashes, client address hashes, push endpoints and keys, provider payloads) are redacted, and `unanswered` names what could not be matched to the customer. Every code failure is one generic `400 OTP_INVALID`. The code is single use, so the request carries no `Idempotency-Key`.'
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - code
+              properties:
+                code:
+                  type: string
+                  pattern: ^[0-9]{6}$
+      responses:
+        "200":
+          description: The export bundle.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      bundle:
+                        $ref: "#/components/schemas/CommerceCustomerSubjectExportBundle"
+        "400":
+          description: "`OTP_INVALID` (any code failure), or a malformed body."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/privacy/otp:
+    post:
+      operationId: requestCommerceStorefrontAccountPrivacyOtp
+      tags:
+        - Commerce
+      summary: "Issue #529 (ADR-0055 D3). Mail a fresh one-time code to the account's own e-mail address for a data-subject `export` or `erasure`."
+      description: 'The second proof a shopper''s data-subject request needs on top of the bearer session. Body `{ "type": "export" | "erasure" }`. Rate limited per IP and per account; a repeat inside the resend window is a no-op success. The code is single use and of its own purpose, so a sign-in code never authorises a request. Body cap 8 KiB.'
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - type
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - export
+                    - erasure
+      responses:
+        "200":
+          description: The code was sent (or is still live).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      sent:
+                        type: boolean
+                      expiresInSeconds:
+                        type: integer
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
               schema:
@@ -58810,6 +59211,27 @@ components:
         createdAt:
           type: string
           format: date-time
+    CommerceCustomerErasureSummary:
+      type: object
+      description: "Issue #529 (ADR-0055 D2). What an erasure did: counts only, and the table families kept for bookkeeping."
+      properties:
+        deleted:
+          type: object
+          additionalProperties: true
+        anonymised:
+          type: object
+          additionalProperties: true
+        retained:
+          type: object
+          properties:
+            sections:
+              type: array
+              items:
+                type: string
+            orders:
+              type: integer
+            notice:
+              type: string
     CommerceCustomerPushCapability:
       type: object
       description: "Issue #430 (ADR-0048 section 6.1). What the SERVER knows about customer Web Push for this deployment and this request. `enabled: false` is a normal answer, not an error."
@@ -59104,6 +59526,133 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/CommerceCustomerPushPreference"
+    CommerceCustomerSubjectExportBundle:
+      type: object
+      description: "Issue #529 (ADR-0055 D4). The shopper's data-subject export. Versioned; returned once and never stored. Secrets are redacted; `sections` holds one array of row objects per table family."
+      required:
+        - version
+        - generatedAt
+        - customerId
+        - sections
+        - truncated
+        - unanswered
+        - retention
+      properties:
+        version:
+          type: integer
+        generatedAt:
+          type: string
+          format: date-time
+        customerId:
+          type: string
+          format: uuid
+        sections:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: object
+              additionalProperties: true
+        push:
+          type: object
+          nullable: true
+          additionalProperties: true
+        truncated:
+          type: array
+          description: Sections cut at the per-section cap of 1000 rows.
+          items:
+            type: string
+        unanswered:
+          type: array
+          description: Tables that hold the shopper only by a contact value and so could not be matched, with the reason.
+          items:
+            type: object
+            required:
+              - table
+              - reason
+            properties:
+              table:
+                type: string
+              reason:
+                type: string
+        retention:
+          type: object
+          required:
+            - notice
+          properties:
+            notice:
+              type: string
+    CommerceCustomerSubjectRequest:
+      type: object
+      description: "Issue #529 (ADR-0055 D1). The evidence row of a shopper's export or erasure request: codes and counts, never a bundle."
+      required:
+        - id
+        - customerId
+        - requestType
+        - channel
+        - status
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+          nullable: true
+        requestType:
+          type: string
+          enum:
+            - export
+            - erasure
+        channel:
+          type: string
+          enum:
+            - storefront
+            - admin
+        status:
+          type: string
+          enum:
+            - disclosed
+            - pending_approval
+            - refused
+            - rejected
+            - completed
+        refusalCode:
+          type: string
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        requestedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        decidedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        decidedAt:
+          type: string
+          format: date-time
+          nullable: true
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        rowsAffected:
+          type: integer
+          nullable: true
+        retainedSummary:
+          allOf:
+            - $ref: "#/components/schemas/CommerceCustomerErasureSummary"
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
     CommerceDocument:
       type: object
       description: "Issue #286 (ADR-0029). The header of an immutable numbered receipt/invoice document. The money is a frozen copy of the source order's, verified equal at insert; the order stays the monetary authority."

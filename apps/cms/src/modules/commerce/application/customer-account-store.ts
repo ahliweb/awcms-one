@@ -38,6 +38,7 @@ import {
   OTP_RESEND_WINDOW_SECONDS,
   OTP_TTL_SECONDS,
   generateOtpCode,
+  type StoredOtpPurpose,
   hashOtpCode
 } from "../domain/customer-otp";
 import {
@@ -342,7 +343,7 @@ export async function issueOtp(
   tx: Bun.SQL,
   tenantId: string,
   identifierValue: string,
-  purpose: "login" | "register",
+  purpose: StoredOtpPurpose,
   registration: { name: string; phone: string } | null = null,
   now: Date = new Date(),
   identifierColumn: OtpIdentifierColumn = "email_normalized"
@@ -448,7 +449,7 @@ export async function findRecentOtpWithinResendWindow(
   tx: Bun.SQL,
   tenantId: string,
   identifierValue: string,
-  purpose: "login" | "register",
+  purpose: StoredOtpPurpose,
   registration: { name: string; phone: string } | null,
   now: Date,
   identifierColumn: OtpIdentifierColumn = "email_normalized"
@@ -507,7 +508,7 @@ export type ConsumeOtpResult =
       ok: true;
       otp: {
         id: string;
-        purpose: "login" | "register";
+        purpose: StoredOtpPurpose;
         registration: { name: string; phone: string } | null;
       };
     }
@@ -565,7 +566,7 @@ export async function consumeOtp(
   tx: Bun.SQL,
   tenantId: string,
   identifierValue: string,
-  purpose: "login" | "register",
+  purpose: StoredOtpPurpose,
   code: string,
   now: Date = new Date(),
   identifierColumn: OtpIdentifierColumn = "email_normalized"
@@ -639,7 +640,7 @@ export async function consumeOtp(
   `
   ) as {
     id: string;
-    purpose: "login" | "register";
+    purpose: StoredOtpPurpose;
     registration: { name: string; phone: string } | string | null;
     code_matched: boolean;
     not_expired: boolean;

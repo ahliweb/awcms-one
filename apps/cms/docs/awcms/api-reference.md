@@ -10921,6 +10921,54 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 404    | Resource not found.                                                                        | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/customer-subject-requests` — Issue #529 (ADR-0055 D3). The tenant's shopper data-subject requests, newest first, at most 100. Gated on `commerce.customer_subject_requests.read`.
+
+- **operationId**: `listCommerceCustomerSubjectRequests`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                                                      | Description |
+| ------------ | ----- | -------- | ------------------------------------------------------------------------- | ----------- |
+| `status`     | query | no       | enum(`disclosed`, `pending_approval`, `refused`, `rejected`, `completed`) |             |
+| `customerId` | query | no       | string (uuid)                                                             |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The requests.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customer-subject-requests/{id}/decide` — Issue #529 (ADR-0055 D3). The second person approves or rejects a pending erasure. Gated on `commerce.customer_subject_requests.approve` (high-risk), a fresh step-up and an `Idempotency-Key`; never the requester.
+
+- **operationId**: `decideCommerceCustomerSubjectRequest`
+- **Security**: bearerAuth + tenantHeader
+
+Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request that is not pending is `409 INVALID_STATE`; a shopper whose state changed since the request (a new order, say) is `409 ERASURE_REFUSED` and the request is recorded as refused.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------- | -------------------------------------- |
+| 200    | The decided request.                                          | object                                 |
+| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN`, `STEP_UP_REQUIRED` or `SEPARATION_OF_DUTIES`.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `INVALID_STATE`, `ERASURE_REFUSED` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/customers` — Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
 
 - **operationId**: `listCommerceCustomers`
@@ -10982,6 +11030,58 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-erasure` — Issue #529 (ADR-0055 D2/D3). Request the erasure of a shopper's personal data. Erases nothing: records a request a second person approves. Gated on `commerce.customer_subject_requests.delete` (high-risk), a fresh step-up and an `Idempotency-Key`.
+
+- **operationId**: `requestCommerceCustomerSubjectErasure`
+- **Security**: bearerAuth + tenantHeader
+
+Runs the precondition check first. `202` records a `pending_approval` request; `409 ERASURE_REFUSED` records a `refused` one (open order or booking, stored-value balance, unsettled refund, unpaid affiliate commission, or already erased). A stale step-up is `403 STEP_UP_REQUIRED` with nothing written. Body `{ "reason"?: string }`, at most 500 characters.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 202    | The pending request (or the same request, `replayed: true`).           | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN` or `STEP_UP_REQUIRED`.                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-export` — Issue #529 (ADR-0055 D3/D4). An administrator produces a shopper's data-subject export bundle on their behalf. Gated on `commerce.customer_subject_requests.export` (high-risk) and an `Idempotency-Key`.
+
+- **operationId**: `exportCommerceCustomerSubjectData`
+- **Security**: bearerAuth + tenantHeader
+
+The bundle is returned once with `Cache-Control: no-store` and never stored; the disclosure is audited at `critical` with counts only. A repeated key is `409 IDEMPOTENCY_REPLAYED` because the bundle is not kept to replay; use a new key to produce another.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The request id and the bundle. | object                                 |
+| 400    | Validation error.              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.            | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_REPLAYED`.        | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`.
 
@@ -14636,6 +14736,66 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/erasure` — Issue #529 (ADR-0055 D2/D3). The shopper's own erasure: anonymise the identity, delete personal rows, retain the ledgers, revoke every session.
+
+- **operationId**: `eraseCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "erasure"`) and a required `Idempotency-Key`. Body `{ "code": "123456" }`. On success every session of the account is revoked, so the next request with the old bearer is `401` and the storefront clears its stored session. The response names counts and the table families kept for bookkeeping, never content. It is refused (`409 ERASURE_REFUSED`, `details.refusals`) while an order is pending payment, paid, processing or shipped, a booking is active, a stored-value balance is above zero, a return or refund is unsettled or an affiliate commission is unpaid; the code is not consumed by a refusal. A repeated key answers the stored result (`replayed: true`).
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The erasure ran (or this is the stored result of the same key).        | object                                 |
+| 400    | `OTP_INVALID`, `IDEMPOTENCY_KEY_REQUIRED` or a malformed body.         | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/export` — Issue #529 (ADR-0055 D4). The shopper's own data-subject export: a versioned JSON bundle of everything the store holds about them. Not stored.
+
+- **operationId**: `exportCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session AND a fresh one-time code from `privacy/otp` (`type: "export"`). Body `{ "code": "123456" }`. The bundle is returned once with `Cache-Control: no-store` and is never stored; the disclosure is audited with counts only. Secrets (token and code hashes, client address hashes, push endpoints and keys, provider payloads) are redacted, and `unanswered` names what could not be matched to the customer. Every code failure is one generic `400 OTP_INVALID`. The code is single use, so the request carries no `Idempotency-Key`.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                            | Schema                                 |
+| ------ | ------------------------------------------------------ | -------------------------------------- |
+| 200    | The export bundle.                                     | object                                 |
+| 400    | `OTP_INVALID` (any code failure), or a malformed body. | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                       | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/otp` — Issue #529 (ADR-0055 D3). Mail a fresh one-time code to the account's own e-mail address for a data-subject `export` or `erasure`.
+
+- **operationId**: `requestCommerceStorefrontAccountPrivacyOtp`
+- **Security**: customerBearer
+
+The second proof a shopper's data-subject request needs on top of the bearer session. Body `{ "type": "export" | "erasure" }`. Rate limited per IP and per account; a repeat inside the resend window is a no-op success. The code is single use and of its own purpose, so a sign-in code never authorises a request. Body cap 8 KiB.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                           | Schema                                 |
+| ------ | ------------------------------------- | -------------------------------------- |
+| 200    | The code was sent (or is still live). | object                                 |
+| 400    | Validation error.                     | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                      | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.     | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/booking/availability` — Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437), or that is not an active, undeleted resource of the tenant in the offering's mode (a link naming none, and a bound resource since retired - Issue #448) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached.
 

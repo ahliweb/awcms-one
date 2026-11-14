@@ -2370,6 +2370,10 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // per line, the two reversers read them to void exactly those lines. Insert-
   // only (a guard trigger refuses UPDATE and DELETE for every role).
   awcms_commerce_commission_submissions: ["SELECT", "INSERT"],
+  // Issue #529 (sql/1065, ADR-0055): the shopper data-subject request evidence.
+  // The worker reads it only for the data-lifecycle engine's dry-run snapshot of
+  // the table's `delegated` descriptor; every write is the app role's.
+  awcms_commerce_customer_subject_requests: ["SELECT"],
   awcms_tenant_settings: ["SELECT"],
   awcms_tenant_modules: ["SELECT"],
   // Issue #1189 / ADR-0147 (sql/316). The event consumer of a derived

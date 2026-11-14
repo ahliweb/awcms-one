@@ -98,3 +98,13 @@ export function verifyOtpCode(
 export function isOtpExpired(expiresAt: Date, now: Date = new Date()): boolean {
   return now.getTime() >= expiresAt.getTime();
 }
+
+/**
+ * Every purpose a stored OTP row can carry. `login` and `register` are the
+ * sign-in flows (ADR-0016); `subject_export` and `subject_erasure` are the fresh
+ * proof of control a shopper's data-subject request needs on top of the bearer
+ * session (Issue #529, ADR-0055 D3; `sql/1066` widens the CHECK). The two sets
+ * never authorise one another: `consumeOtp` filters by purpose.
+ */
+export type StoredOtpPurpose =
+  "login" | "register" | "subject_export" | "subject_erasure";

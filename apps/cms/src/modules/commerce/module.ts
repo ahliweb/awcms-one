@@ -3,6 +3,12 @@ import {
   CUSTOMER_PUSH_SUBJECT_DATA
 } from "./domain/customer-push-lifecycle";
 import { CUSTOMER_PUSH_PERMISSIONS } from "./domain/customer-push-permissions";
+import {
+  CUSTOMER_SUBJECT_DATA,
+  CUSTOMER_SUBJECT_DATA_LIFECYCLE,
+  withCommerceSubjectFlow
+} from "./domain/customer-subject-lifecycle";
+import { CUSTOMER_SUBJECT_PERMISSIONS } from "./domain/customer-subject-permissions";
 import { defineModule } from "../_shared/module-contract";
 import type { ModuleDomainEventConsumer } from "../_shared/domain-event-consumer-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
@@ -3429,6 +3435,9 @@ export const commerceModule = defineModule({
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
+    // Issue #529 (ADR-0055) - the shopper data-subject request table; see
+    // `domain/customer-subject-lifecycle.ts`.
+    ...CUSTOMER_SUBJECT_DATA_LIFECYCLE,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -3856,7 +3865,7 @@ export const commerceModule = defineModule({
    * person — same `unreachableBySubject`/`retain_under_obligation` shape
    * `tenant_admin.tenant_settings` uses for the same reason.
    */
-  subjectData: [
+  subjectData: withCommerceSubjectFlow([
     {
       key: "commerce.categories",
       tableName: "awcms_commerce_categories",
@@ -4401,6 +4410,8 @@ export const commerceModule = defineModule({
     ...BOOKING_REPORT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
+    // Issue #529 (ADR-0055) - see `domain/customer-subject-lifecycle.ts`.
+    ...CUSTOMER_SUBJECT_DATA,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -4500,7 +4511,7 @@ export const commerceModule = defineModule({
       rationale:
         "Issue #291 — the identity of an applied catalog import (file hash, hashed idempotency key, counts). actor_tenant_user_id names the staff member who ran it, but that is audit evidence of an administrative act on the catalog, retained like the audit log itself rather than erased on a subject request."
     }
-  ],
+  ]),
   permissions: [
     {
       activityCode: COMMERCE_CATEGORIES_ACTIVITY_CODE,
@@ -5325,7 +5336,10 @@ export const commerceModule = defineModule({
     ...BOOKING_ADAPTER_PERMISSIONS,
     // Issue #430 (ADR-0048 Q10) - `commerce.customer_push.read`; see
     // `domain/customer-push-permissions.ts`.
-    ...CUSTOMER_PUSH_PERMISSIONS
+    ...CUSTOMER_PUSH_PERMISSIONS,
+    // Issue #529 (ADR-0055 D3) - `commerce.customer_subject_requests.*`; see
+    // `domain/customer-subject-permissions.ts`.
+    ...CUSTOMER_SUBJECT_PERMISSIONS
   ]
 });
 

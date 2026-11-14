@@ -463,6 +463,20 @@ export const CUSTOMER_BEARER_BODY_ENDPOINTS: readonly CustomerBearerBodyEndpoint
     },
     { method: "POST", pattern: "/api/v1/commerce/storefront/account/logout" },
     { method: "PATCH", pattern: "/api/v1/commerce/storefront/account/me" },
+    // Issue #529 (ADR-0055 D3): the shopper's data-subject requests. All three
+    // read a body, and all three hold a customer bearer session.
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/privacy/otp"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/privacy/export"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/privacy/erasure"
+    },
     {
       method: "PUT",
       pattern: "/api/v1/commerce/storefront/account/push/preferences"

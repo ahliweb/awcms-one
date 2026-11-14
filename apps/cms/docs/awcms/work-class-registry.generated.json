@@ -892,7 +892,27 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/customer-subject-requests/[id]/decide.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/customer-subject-requests/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/customers/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/customers/[id]/subject-erasure.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/customers/[id]/subject-export.ts",
       "workClass": "interactive",
       "source": "factory"
     },

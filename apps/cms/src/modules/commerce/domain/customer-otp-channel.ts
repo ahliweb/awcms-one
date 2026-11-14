@@ -29,7 +29,7 @@ export type CustomerOtpChannelRequest = {
   phoneNormalized: string | null;
   /** The 6-digit code itself. NEVER logged in full by a real-provider adapter (it only reaches the outbox row, never a log line); each channel's own `log` adapter is the ONE place that prints it, for a developer who has no other way to read it. */
   code: string;
-  purpose: "login" | "register";
+  purpose: "login" | "register" | "subject_export" | "subject_erasure";
   expiresInMinutes: number;
   storeName: string;
   correlationId?: string;
