@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:b335eb192bbfffec05d676eb45e265d9453dc1b427305b6692c5b69748956b1e -->
+<!-- i18n-source-hash: sha256:a95e0ffe4d9c09895a130af3c5f75b51859eca15983167206a75c36d273bd736 -->
 
 # Deployment
 
@@ -482,6 +482,75 @@ Keluarannya SATU dokumen JSON di stdout (simpan bersama catatan perubahan) dan s
 **Rollback.** `bun run commerce:whatsapp:cutover --tenant <uuid> --to legacy --reason "<mengapa>" --wait 600` (atau `POST` dengan `"to": "legacy"`). Simetris: ditolak sampai antrean **upstream** tidak memegang baris non-terminal **milik commerce** untuk tenant, dan ditolak selama `COMMERCE_WHATSAPP_ENABLED` mati di proses. Baris modul lain di antrean bersama itu (pengingat booking) dilaporkan di `queues.upstreamScope.unrelatedNonTerminal` dan tidak memblokir. Pesan yang sudah ada di antrean upstream tidak pernah disalin kembali.
 
 **Rollback saat gangguan provider (override).** Jika pesan commerce sendiri tertahan di antrean upstream (biasanya `retry_wait` di belakang provider yang gagal) dan tidak akan terkuras, rollback dapat dipaksa: `--to legacy --force --operator "<nama Anda>"` (CLI mewajibkan nama operator), atau `POST` dengan `"to": "legacy", "force": true` (izin `manage`, step-up terbaru dan `Idempotency-Key` yang sama seperti flip sungguhan mana pun; `400` bila `"to": "upstream"`). Ia melewati pemeriksaan pengurasan dan tidak ada yang lain: kanal legacy yang mati tetap menolak. Ia diaudit sebagai `whatsapp_mode.flip_forced` dengan jumlah pesan yang dilewati, dan `force.applied` pada bukti menyatakan apakah ia benar-benar melewati sesuatu. Pesan-pesan itu **tidak** disentuh: dispatcher upstream terus mengerjakannya, sehingga terlambat, bukan hilang dan bukan ganda; OTP membawa kedaluwarsanya sendiri dan tidak pernah dikirim terlambat, tetapi dokumen atau pemberitahuan pesanan dapat tiba setelah pembeli dikabari lewat legacy. Pakai `--dry-run --force` dulu untuk melihat jumlahnya. Jika provider hanya lambat, menunggu tetap jawaban yang lebih baik.
+
+## Runbook staging: penyedia WhatsApp default yang dapat dikonfigurasi tenant (StarSender atau Meta) untuk commerce (issue #466)
+
+Ini runbook penerimaan sisi commerce untuk produk yang tenant-nya memilih **StarSender atau Meta Cloud API resmi sebagai pengirim WhatsApp default**. Runbook ini tidak menambah kode: pemilihan pengirim, adapter StarSender, dan pengikatan nomor Meta adalah milik `whatsapp_delivery` dan `channel_accounts` upstream (ahliweb/awcms#1139 sampai #1143), dan commerce hanya menjangkaunya lewat mode `upstream` per tenant dari [ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md). Default penyedia adalah **konfigurasi deployment dan produk**: template ini tidak mengirim `WHATSAPP_PROVIDER=starsender`, `WHATSAPP_STARSENDER_ENABLED=true`, maupun kunci penyedia apa pun, di profil build mana pun (`tests/template-tanpa-starsender.test.mjs`). Untuk operasi upstream lihat [`apps/cms/docs/awcms/starsender-adapter-runbook.md`](../apps/cms/docs/awcms/starsender-adapter-runbook.md) dan [`apps/cms/docs/awcms/whatsapp-meta-enable-runbook.md`](../apps/cms/docs/awcms/whatsapp-meta-enable-runbook.md); bagian ini hanya menambahkan apa yang diubah commerce.
+
+**Apa itu StarSender, dengan kata-kata yang harus diulang operator.** StarSender adalah gateway WhatsApp **tidak resmi**. Ia tidak bersertifikat Meta, sebuah nomor dapat dibatasi atau diblokir, dan jawaban `success` hanya berarti StarSender menerima permintaan. AWCMS tidak pernah melaporkan pesan seperti itu sebagai terkirim atau terbaca. Jangan menyebutnya kepada tenant sebagai resmi, aman, atau bebas blokir. Meta Cloud API adalah kanal resmi dengan aturan lebih ketat: nomor Meta milik tenant hanya mengirim template yang disetujui pada WABA-nya sendiri, dan teks bebas hanya di dalam jendela layanan pelanggan 24 jam.
+
+**Batas commerce yang diketahui.** Empat template commerce (`commerce.customer_otp`, `commerce.order_paid`, `commerce.campaign`, `commerce.document`) belum membawa template penyedia Meta, sehingga tenant yang defaultnya **nomor Meta milik tenant** akan melihat setiap pesan commerce ditolak dengan `TEMPLATE_NOT_APPROVED` sampai itu ditambahkan (sementara gunakan perangkat StarSender atau pengirim deployment). Commerce **tidak** meneruskan `senderAccountId`: setiap pesan commerce memakai kebijakan pengirim default tenant. Memilih pengirim per kampanye adalah issue #458 dan **tertunda**: baris kampanye multi-pengirim di bawah belum dapat diuji.
+
+### 1. Prasyarat (staging, bukan deployment referensi)
+
+1. Tenant staging dalam mode `upstream` (cutover di atas), dengan basis data staging. Jangan pernah mendaftarkan perangkat, token, atau data pelanggan asli sebuah produk di deployment referensi repositori ini ([ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)).
+2. `WHATSAPP_ENABLED=true`, `WHATSAPP_RECIPIENT_HASH_KEYS`, `CHANNEL_ACCOUNTS_ENABLED=true`, dan `CHANNEL_SECRETS_ENCRYPTION_KEYS` di environment **CMS dan** sidecar jobs (`whatsapp:dispatch`). Key ring hanya sampai ke dispatcher; lihat `apps/cms/.env.example`.
+3. Khusus StarSender: `WHATSAPP_STARSENDER_ENABLED=true` di kedua environment yang sama. Mati adalah default dan keadaan aman.
+
+### 2. Pengakuan risiko (StarSender)
+
+1. Redaksinya adalah **keputusan pemilik bisnis**. Upstream mengirimkannya belum disetujui, sehingga sebelum perubahan yang ditinjau menyetujuinya `POST /api/v1/channel-accounts/risk-acknowledgements` menjawab `409 RISK_TEXT_NOT_APPROVED` dan tidak ada perangkat yang bisa dihubungkan. Itu perilaku staging yang benar; jangan dielakkan.
+2. Setelah disetujui, setiap operator membaca teksnya (`GET .../risk-acknowledgements?provider=starsender`) dan mencatat pengakuan **miliknya sendiri** dengan `textVersion` yang ia baca (perlu step-up segar). Tidak ada yang mengaku atas nama orang lain.
+3. Catat versi teks dan SHA-256-nya (dikembalikan bersama pengakuan) di catatan perubahan. Versi teks baru membatalkan semua pengakuan sebelumnya.
+4. Mencabut pengakuan terakhir tenant menurunkan semua perangkat StarSender yang terhubung sekaligus dan menolak setiap pengiriman.
+
+### 3. Mendaftarkan perangkat dan default
+
+1. Daftarkan tiap perangkat (`provider: starsender`, `accountKind: device`, `authMode: device_key`) dan tulis kuncinya dengan `PUT .../accounts/{id}/credential` (hanya tulis). Lalu catat bukti kapabilitas `dm`, dan operator **mengesahkan** perangkat (`POST .../attest-device`, disahkan operator, tidak diverifikasi: StarSender tidak punya panggilan status).
+2. Tetapkan default tenant dengan `PUT /api/v1/whatsapp/sender-policy` (atau "jadikan default" di layar akun). Ini hanya mengubah pesan **berikutnya**: pesan yang sudah antre mempertahankan pengirim dan versi kebijakan saat ia diantrekan. Pemeriksaan staging: antrekan satu pesan, ubah default, antrekan satu lagi, lalu pastikan kedua baris membawa dua pengirim (`GET /api/v1/whatsapp/senders`, atau `sender_account_id` pada baris).
+3. Tenant kedua mempertahankan defaultnya sendiri; id akun satu tenant yang dikirim tenant lain ditolak sebagai pengirim tak dikenal.
+
+### 4. Pengiriman canary
+
+1. Hanya ke **penguji internal yang sudah memberi persetujuan** untuk tujuan dan merek itu, dengan nomor yang Anda kendalikan. Jangan daftar pelanggan, jangan CSV hasil impor (impor bukan persetujuan).
+2. Kirim satu pesan keamanan (OTP pelanggan), satu transaksional, dan, hanya untuk penguji yang setuju, satu pemasaran. Pastikan masing-masing tiba lewat perangkat yang **dimaksud** dan baris antrean menunjukkan `sent`. Untuk StarSender, `sent` berarti diterima gateway; pastikan kedatangan di ponsel, karena tidak ada laporan pengiriman.
+3. Pastikan jejak audit dan event hanya membawa penerima **tersamarkan** (tanpa nomor, kunci perangkat, atau id perangkat). Uji integrasi `commerce-whatsapp-sender-matrix.integration.test.ts` menegaskan hal yang sama di setiap rilis.
+
+### 5. Rotasi token (kunci perangkat)
+
+Tulis kredensial lagi (`PUT .../accounts/{id}/credential`). Perangkat kembali ke `pending` (`CREDENTIAL_REPLACED`) dalam transaksi yang sama dan **tidak mengirim apa pun sampai disahkan lagi**: jadwalkan rotasi saat baris antrean boleh menunggu, atau terima bahwa baris itu gagal permanen. Untuk key ring enkripsinya sendiri (`CHANNEL_SECRETS_ENCRYPTION_KEYS`): tambahkan kunci di depan, deploy, jalankan `bun run channel-accounts:secrets:rekey`, pastikan tidak ada yang tersisa di bawah id kunci lama, baru hapus. Kunci yang dipakai dua perangkat adalah salah konfigurasi.
+
+### 6. Menonaktifkan dan rollback
+
+| Lingkup                     | Tindakan                                                                                                    | Efek                                                                                                             |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Satu perangkat              | `PATCH .../accounts/{id}` dengan `status: disabled`, atau `POST .../disconnect` (menghapus kunci tersimpan) | Baris antrean ke perangkat itu gagal permanen. Tidak ada yang dialihkan ke perangkat atau penyedia lain.         |
+| Pemakaian StarSender tenant | Cabut pengakuan                                                                                             | Semua perangkat terhubung turun status dan setiap pengiriman ditolak seketika.                                   |
+| Deployment                  | Hapus `WHATSAPP_STARSENDER_ENABLED` di environment CMS dan jobs, restart keduanya                           | Enqueue menolak dengan `SENDER_UNAVAILABLE`, baris antrean gagal saat dispatch, penyedia tidak pernah dipanggil. |
+| Kanal commerce              | Balikkan tenant ke `legacy` (`commerce:whatsapp:cutover --to legacy`, lihat di atas)                        | Pesan baru masuk ke outbox commerce sendiri dan penyedianya. Menunggu antrean upstream kosong.                   |
+
+Perangkat yang diblokir atau dibatasi: nonaktifkan, pindahkan default ke perangkat terverifikasi (default baru hanya memengaruhi pesan baru), baru daftarkan ulang. Jangan pernah memutar antar perangkat untuk melewati batas; platform tidak punya fitur itu dan rotasi pengirim untuk menghindari kebijakan penyedia adalah non-goal.
+
+### 7. Pemilihan Meta secara manual
+
+Meta dipilih oleh operator, tidak pernah lewat fallback. Prasyarat: nomor terdaftar di bawah kontainer WABA-nya, `bun run whatsapp:meta:preflight` keluar `0`, dan setiap template commerce yang harus lewat nomor itu punya template penyedia yang disetujui dan tercatat dengan bukti (lihat batas yang diketahui di atas). Lalu tetapkan default ke nomor Meta dengan `PUT /api/v1/whatsapp/sender-policy`; pesan baru mengikuti, yang sudah antre mempertahankan pengirimnya. Untuk kembali, tetapkan default ke sebuah perangkat atau `null` (pengirim deployment).
+
+### 8. Gagal tertutup ketika StarSender belum siap
+
+Default yang menunjuk perangkat StarSender saat adapter mati, perangkat tidak `connected`, pengakuan dicabut, atau bukti `dm` hilang akan **ditolak saat enqueue** dengan `SENDER_UNAVAILABLE`: commerce mengembalikan `enqueued: false`, tidak ada yang diantrekan, dan permintaan OTP pelanggan tetap menjawab seolah alamatnya tidak dapat dijangkau. Tidak ada fallback ke penyedia deployment, ke Meta, atau ke perangkat lain. Bedakan apa yang dibuktikan tiap lapisan: **persetujuan** (teks risiko, template Meta) adalah prasyarat yang dicatat orang; **kemampuan pengiriman** (perangkat disahkan, nomor terverifikasi, breaker tertutup) adalah keadaan operasional saat ini; **pengiriman** tidak pernah dibuktikan untuk StarSender dan hanya dilaporkan webhook Meta untuk nomor Meta milik tenant.
+
+### 9. Matriks penerimaan, dan yang tertunda
+
+| Baris                                                                                                                                                                           | Bukti                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Template tidak mengirim default atau kunci StarSender, di ketiga profil dan seed netral                                                                                         | `tests/template-tanpa-starsender.test.mjs`                                                              |
+| Pengirim terpaku pada baris commerce yang antre melewati pergantian default                                                                                                     | `apps/cms/tests/integration/commerce-whatsapp-sender-matrix.integration.test.ts` (perlu `DATABASE_URL`) |
+| Pengirim yang ditolak tidak dialihkan; adapter mati gagal tertutup; id pengirim tenant lain ditolak                                                                             | berkas yang sama                                                                                        |
+| Audit tersamarkan, tanpa nomor, kunci, atau id perangkat di event                                                                                                               | berkas yang sama                                                                                        |
+| Penolakan sampai ke pemanggil sebagai `enqueued: false`; commerce tidak menyebut penyedia dan tidak meneruskan pengirim                                                         | `apps/cms/tests/commerce-whatsapp-sender-matrix.test.ts`                                                |
+| Rahasia per perangkat, breaker, kuota, 429/timeout/5xx, crash antara diterima dan finalisasi, webhook palsu                                                                     | upstream: `starsender-adapter.integration.test.ts`, `whatsapp-sender-routing.integration.test.ts`       |
+| **Tertunda, terblokir #458:** pemilihan pengirim kampanye, pemakuan pengirim per kampanye, gerbang persetujuan kampanye per pengirim, baris persetujuan kampanye multi-pengirim | Belum dibangun di sini; tambahkan barisnya saat #458 selesai.                                           |
+| **Tertunda, keputusan pemilik:** redaksi risiko StarSender yang disetujui; verifikasi API langsung dengan perangkat uji                                                         | Runbook upstream bagian 1 dan 6.                                                                        |
 
 ## Topologi produksi (issue #150, ADR-0019)
 

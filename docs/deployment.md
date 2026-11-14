@@ -476,6 +476,75 @@ Output is ONE JSON document on stdout (keep it with the change record) and a sen
 
 **Rolling back during a provider outage (the override).** If commerce's own messages are stuck in the upstream queue (typically `retry_wait` behind the failing provider) and will not drain, a rollback can be forced: `--to legacy --force --operator "<your name>"` (the CLI demands an operator name), or `POST` with `"to": "legacy", "force": true` (the same `manage` permission, a recent step-up and an `Idempotency-Key` as any real flip; `400` with `"to": "upstream"`). It bypasses the drain check and nothing else: a dead legacy channel still refuses. It is audited as `whatsapp_mode.flip_forced` with the number of messages bypassed, and `force.applied` in the evidence says whether it actually bypassed anything. Those messages are **not** touched: the upstream dispatcher keeps working them, so they are late, not lost and not duplicated; an OTP carries its own expiry and is never sent late, but a document or an order notice may arrive after the shopper has been messaged through legacy. Use `--dry-run --force` first to see the count. If the provider is only slow, waiting remains the better answer.
 
+## Staging runbook: a tenant-configurable default WhatsApp provider (StarSender or Meta) for commerce (issue #466)
+
+This is the commerce-side acceptance runbook for a product whose tenant chooses **StarSender or the official Meta Cloud API as its default WhatsApp sender**. It adds nothing to the code: sender selection, the StarSender adapter and the Meta per-number binding are upstream `whatsapp_delivery` and `channel_accounts` (ahliweb/awcms#1139 to #1143), and commerce reaches them only through the per-tenant `upstream` mode of [ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md). The provider default is **deployment and product configuration**: this template ships no `WHATSAPP_PROVIDER=starsender`, no `WHATSAPP_STARSENDER_ENABLED=true` and no provider key, in any build profile (`tests/template-tanpa-starsender.test.mjs`). For the upstream operations see [`apps/cms/docs/awcms/starsender-adapter-runbook.md`](../apps/cms/docs/awcms/starsender-adapter-runbook.md) and [`apps/cms/docs/awcms/whatsapp-meta-enable-runbook.md`](../apps/cms/docs/awcms/whatsapp-meta-enable-runbook.md); this section only adds what commerce changes about them.
+
+**What StarSender is, in the words operators must repeat.** StarSender is an **unofficial** WhatsApp gateway. It is not Meta-certified, a number can be restricted or banned, and a `success` answer means only that StarSender accepted the request. AWCMS never reports such a message as delivered or read. Do not describe it to a tenant as official, safe or ban-free. Meta Cloud API is the official channel, with stricter rules: a tenant-owned Meta number sends only templates approved on its own WABA, and free text only inside the 24 hour customer-service window.
+
+**Known commerce limits.** Commerce's four templates (`commerce.customer_otp`, `commerce.order_paid`, `commerce.campaign`, `commerce.document`) carry no Meta provider template yet, so a tenant whose default is a **tenant-owned Meta number** has every commerce message refused with `TEMPLATE_NOT_APPROVED` until that is added (use a StarSender device or the deployment sender meanwhile). Commerce passes **no** `senderAccountId`: every commerce message uses the tenant's default-sender policy. Choosing a sender per campaign is issue #458 and is **pending**: the multi-sender campaign rows below are not testable yet.
+
+### 1. Preconditions (staging, never the reference deployment)
+
+1. A staging tenant in `upstream` mode (the cutover above), with a staging database. Never enrol a product's real device, token or customer data in this repository's reference deployment ([ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)).
+2. `WHATSAPP_ENABLED=true`, `WHATSAPP_RECIPIENT_HASH_KEYS`, `CHANNEL_ACCOUNTS_ENABLED=true` and `CHANNEL_SECRETS_ENCRYPTION_KEYS` in the environment of **both** the CMS and the jobs sidecar (`whatsapp:dispatch`). The key ring reaches the dispatcher alone; see `apps/cms/.env.example`.
+3. For StarSender only: `WHATSAPP_STARSENDER_ENABLED=true` in the same two environments. Off is the default and the safe state.
+
+### 2. Risk acknowledgement (StarSender)
+
+1. The wording is a **business-owner decision**. Upstream ships it unapproved, so until a reviewed change approves it `POST /api/v1/channel-accounts/risk-acknowledgements` answers `409 RISK_TEXT_NOT_APPROVED` and no device can be connected. That is correct staging behaviour; do not work around it.
+2. When approved, each operator reads the text (`GET .../risk-acknowledgements?provider=starsender`) and records **their own** acknowledgement with the `textVersion` they read (a fresh step-up is needed). Nobody acknowledges for someone else.
+3. Record the text version and its SHA-256 (returned with the acknowledgement) in the change record. A new text version invalidates every earlier acknowledgement.
+4. Revoking the tenant's last acknowledgement degrades every connected StarSender device at once and denies every send.
+
+### 3. Enrolling devices and the default
+
+1. Register each device (`provider: starsender`, `accountKind: device`, `authMode: device_key`) and write its key with `PUT .../accounts/{id}/credential` (write-only). Then record `dm` capability evidence, and the operator **attests** the device (`POST .../attest-device`, operator-attested, not verified: StarSender has no status call).
+2. Set the tenant default with `PUT /api/v1/whatsapp/sender-policy` (or "make default" on the account screen). It changes **later** messages only: a message already queued keeps the sender and the policy version it was queued with. Staging check: queue one message, change the default, queue another, and confirm the two rows carry two senders (`GET /api/v1/whatsapp/senders`, or `sender_account_id` on the rows).
+3. A second tenant keeps its own default; one tenant's account id sent by another tenant is refused as an unknown sender.
+
+### 4. Canary sends
+
+1. Only to **internal testers who have consented** for the purpose and the brand, with numbers you control. Never a customer list, never an imported CSV (an import is not consent).
+2. Send one security message (the customer OTP), one transactional message and, for a consenting tester only, one marketing message. Confirm each arrives through the **intended** device and that the queue row shows `sent`. For StarSender, `sent` means accepted by the gateway; confirm arrival on the handset, because no delivery report exists.
+3. Confirm the audit trail and events carry the **masked** recipient only (no number, device key or device id). The integration test `commerce-whatsapp-sender-matrix.integration.test.ts` asserts the same on every release.
+
+### 5. Token (device key) rotation
+
+Write the credential again (`PUT .../accounts/{id}/credential`). The device moves back to `pending` (`CREDENTIAL_REPLACED`) in the same transaction and **sends nothing until it is attested again**: schedule the rotation when queued rows can wait, or accept that they fail terminally. For the encryption key ring itself (`CHANNEL_SECRETS_ENCRYPTION_KEYS`): prepend a key, deploy, run `bun run channel-accounts:secrets:rekey`, verify nothing is left under the old key id, and only then remove it. A key used by two devices is a misconfiguration.
+
+### 6. Disable and rollback
+
+| Scope                       | Action                                                                                              | Effect                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| One device                  | `PATCH .../accounts/{id}` with `status: disabled`, or `POST .../disconnect` (erases the stored key) | Queued rows to it fail terminally. Nothing is rerouted to another device or provider.                  |
+| The tenant's StarSender use | Revoke the acknowledgements                                                                         | Every connected device degrades and every send is denied at once.                                      |
+| The deployment              | Unset `WHATSAPP_STARSENDER_ENABLED` in the CMS and the jobs environment, restart both               | Enqueue refuses with `SENDER_UNAVAILABLE`, queued rows fail at dispatch, the provider is never called. |
+| Commerce's channel          | Flip the tenant back to `legacy` (`commerce:whatsapp:cutover --to legacy`, see above)               | New messages go to commerce's own outbox and its provider. It waits for the upstream queue to drain.   |
+
+A banned or restricted device: disable it, move the default to a verified device (a new default affects only new messages), and only then re-enrol. Never rotate between devices to get past a limit; the platform has no such feature and sender rotation to bypass a provider's policy is a non-goal.
+
+### 7. Manual selection of Meta
+
+Meta is chosen by an operator, never by fallback. Preconditions: the number is registered under its WABA container, `bun run whatsapp:meta:preflight` exits `0`, and every commerce template that must go through it has an approved provider template recorded with evidence (see the known limit above). Then set the default to the Meta number with `PUT /api/v1/whatsapp/sender-policy`; new messages follow, queued ones keep their sender. To go back, set the default to a device or to `null` (the deployment sender).
+
+### 8. Fail closed when StarSender is not ready
+
+A default pointing at a StarSender device while the adapter is off, the device is not `connected`, the acknowledgement is revoked or the `dm` evidence is missing is **refused at enqueue** with `SENDER_UNAVAILABLE`: commerce returns `enqueued: false`, nothing is queued, and a customer OTP request still answers as if the address could not be reached. There is no fallback to the deployment provider, to Meta or to another device. Distinguish what each layer proves: **approval** (the risk text, the Meta template) is a precondition recorded by a person; **delivery capability** (the device attested, the number verified, the breaker closed) is the current operational state; **delivery** is never proved for StarSender and is reported by Meta's webhooks only for a tenant-owned Meta number.
+
+### 9. Acceptance matrix, and what is pending
+
+| Row                                                                                                                                                                | Evidence                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Template ships no StarSender default or key, in all three profiles and the neutral seeds                                                                           | `tests/template-tanpa-starsender.test.mjs`                                                              |
+| Sender pinned on queued commerce rows across a default switch                                                                                                      | `apps/cms/tests/integration/commerce-whatsapp-sender-matrix.integration.test.ts` (needs `DATABASE_URL`) |
+| A refused sender is not rerouted; adapter off fails closed; another tenant's sender id refused                                                                     | the same file                                                                                           |
+| Masked audit, no number, key or device id in events                                                                                                                | the same file                                                                                           |
+| A refusal reaches the caller as `enqueued: false`; commerce names no provider and passes no sender                                                                 | `apps/cms/tests/commerce-whatsapp-sender-matrix.test.ts`                                                |
+| Per-device secrets, breaker, quota, 429/timeout/5xx, crash between accept and finalize, spoofed webhook                                                            | upstream: `starsender-adapter.integration.test.ts`, `whatsapp-sender-routing.integration.test.ts`       |
+| **Pending, blocked on #458:** campaign multi-sender selection, per-campaign sender pinning, campaign approval gates per sender, multi-sender campaign consent rows | Not built here; add the rows when #458 lands.                                                           |
+| **Pending, owner decision:** the approved StarSender risk wording; live-API verification with a test device                                                        | Upstream runbook sections 1 and 6.                                                                      |
+
 ## Production topology (issue #150, ADR-0019)
 
 `apps/cms` is PostgreSQL-only, and until this section was written, borneojek's own production infrastructure ran MySQL with no PostgreSQL provisioned anywhere on it — the delivery gap [issue #150](https://github.com/ahliweb/awcms-one/issues/150) named directly. What follows is the real, tested production path this repository now ships; [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) records the decisions behind it. `compose.yaml`'s own `postgres:18.6` container remains a LOCAL/CI convenience — `compose.production.yaml` (below) is the production shape, and the two are never meant to share a database.
