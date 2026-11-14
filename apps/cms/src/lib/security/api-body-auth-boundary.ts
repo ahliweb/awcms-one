@@ -401,6 +401,91 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
   }
 ];
 
+/**
+ * awcms-one (14 November 2026 sync): body-accepting endpoints whose credential
+ * is a CUSTOMER bearer session (`cs_` token, ADR-0016), not a staff session.
+ *
+ * Why this list exists: `refuseUnauthenticatedApiBody` accepts only a staff
+ * session or a machine credential, so before this list every one of these was
+ * refused `401 AUTH_REQUIRED` before its handler ran, for every real shopper
+ * (the OpenAPI `customerBearer` operations that take a body or a mutating
+ * method). They are NOT session-free: nothing unauthenticated reaches body
+ * parsing. The middleware authenticates them with
+ * `lib/auth/customer-bearer-body-authentication.ts` instead, which resolves
+ * the tenant the way the storefront routes do and requires a LIVE customer
+ * session in it, answering `401 UNAUTHENTICATED` (with the storefront CORS
+ * headers, so the browser can read it and clear the stored session) otherwise.
+ *
+ * Eight of these handlers read the body before their own `requireCustomerSession`
+ * (inside the tenant transaction), which is why the check cannot be left to
+ * them; this is the same "authenticate before parse" property the staff API
+ * has. Authorization is not decided here: the handler still applies its own
+ * blocked-account, verification, feature and ownership rules.
+ *
+ * `tests/customer-bearer-body-boundary.test.ts` holds this list equal to the
+ * `customerBearer` operations in the OpenAPI contract and to the route files.
+ */
+export type CustomerBearerBodyEndpoint = {
+  method: "POST" | "PUT" | "PATCH" | "DELETE";
+  /** `:name` matches exactly one path segment. */
+  pattern: string;
+};
+
+export const CUSTOMER_BEARER_BODY_ENDPOINTS: readonly CustomerBearerBodyEndpoint[] =
+  [
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/addresses"
+    },
+    {
+      method: "PATCH",
+      pattern: "/api/v1/commerce/storefront/account/addresses/:id"
+    },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/addresses/:id"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/addresses/:id/default"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/affiliate"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/conversations"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/conversations/:id/messages"
+    },
+    { method: "POST", pattern: "/api/v1/commerce/storefront/account/logout" },
+    { method: "PATCH", pattern: "/api/v1/commerce/storefront/account/me" },
+    {
+      method: "PUT",
+      pattern: "/api/v1/commerce/storefront/account/push/preferences"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/push/subscriptions"
+    },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/push/subscriptions"
+    },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/push/subscriptions/:id"
+    },
+    { method: "PUT", pattern: "/api/v1/commerce/storefront/account/wishlist" },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/wishlist/:productId"
+    }
+  ];
+
 const BODY_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 
 /** Does `pathname` match `pattern`, where `:name` is one segment? */
@@ -430,6 +515,23 @@ export function isSessionFreeBodyEndpoint(
     (endpoint) =>
       endpoint.method === method.toUpperCase() &&
       matchesEndpointPattern(endpoint.pattern, pathname)
+  );
+}
+
+/** Is this method+path authenticated by a customer bearer session instead of a staff credential? */
+export function isCustomerBearerBodyEndpoint(
+  method: string,
+  pathname: string
+): boolean {
+  const normalised =
+    pathname.length > 1 && pathname.endsWith("/")
+      ? pathname.replace(/\/+$/, "")
+      : pathname;
+
+  return CUSTOMER_BEARER_BODY_ENDPOINTS.some(
+    (endpoint) =>
+      endpoint.method === method.toUpperCase() &&
+      matchesEndpointPattern(endpoint.pattern, normalised)
   );
 }
 
