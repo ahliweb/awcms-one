@@ -5,6 +5,7 @@ import type { MiddlewareHandler } from "astro";
 import { installExtensionPointSource } from "./modules/_shared/extension-point-source";
 import { listModules } from "./modules";
 import { refuseUnauthenticatedApiBody } from "./lib/auth/api-body-authentication";
+import { refuseUnauthenticatedCustomerBody } from "./lib/auth/customer-bearer-body-authentication";
 import { resolveSsrContext } from "./lib/auth/ssr-session";
 import { getDatabaseClient } from "./lib/database/client";
 import { annotateEdgeCache } from "./lib/edge-cache/runtime";
@@ -26,7 +27,10 @@ import {
   invalidIdempotencyKeyResponse,
   isIdempotencyKeyHeaderAcceptable
 } from "./lib/security/idempotency-key-bound";
-import { requiresAuthenticatedCallerBeforeBody } from "./lib/security/api-body-auth-boundary";
+import {
+  isCustomerBearerBodyEndpoint,
+  requiresAuthenticatedCallerBeforeBody
+} from "./lib/security/api-body-auth-boundary";
 import { buildSecurityHeaders } from "./lib/security/security-headers";
 import { isTurnstileRequired } from "./lib/security/turnstile";
 import { isVideoEmbedEnabled } from "./lib/security/video-embed";
@@ -303,11 +307,19 @@ const handleRequest: MiddlewareHandler = async (context, next) => {
       context.url.pathname
     )
   ) {
-    const refusal = await refuseUnauthenticatedApiBody(
-      context.request,
-      context.cookies,
-      new Date()
-    );
+    // awcms-one: a customer-bearer endpoint (ADR-0016) is authenticated by a
+    // customer session, which the staff check below would refuse for every
+    // shopper. Same property either way: no credential, no body parsing.
+    const refusal = isCustomerBearerBodyEndpoint(
+      context.request.method,
+      context.url.pathname
+    )
+      ? await refuseUnauthenticatedCustomerBody(context.request, new Date())
+      : await refuseUnauthenticatedApiBody(
+          context.request,
+          context.cookies,
+          new Date()
+        );
 
     if (refusal) return finalize(refusal);
   }
