@@ -15,6 +15,11 @@ import {
   type ChannelAuthMode
 } from "./channel-accounts-constants";
 import {
+  isRiskAcknowledgementProvider,
+  RISK_ACKNOWLEDGEMENT_PROVIDERS,
+  type RiskAcknowledgementProvider
+} from "./risk-acknowledgements";
+import {
   CHANNEL_CAPABILITIES,
   type CapabilityEvidenceKind,
   type ChannelCapability
@@ -316,6 +321,36 @@ export function validateWriteCredential(
     : { valid: true, value: { secret: secret! } };
 }
 
+/** Issue #1143: the Meta app secret of a signed webhook subscription. Shape only; the value is never echoed. */
+export type CreateWebhookSubscriptionInput = { appSecret: string };
+
+const META_APP_SECRET = /^[A-Za-z0-9]{16,128}$/;
+
+export function validateCreateWebhookSubscription(
+  raw: unknown
+): Validated<CreateWebhookSubscriptionInput> {
+  if (!isRecord(raw)) {
+    return {
+      valid: false,
+      errors: [{ field: "body", message: "Must be a JSON object." }]
+    };
+  }
+
+  const errors = unknownFields(raw, ["appSecret"]);
+  const appSecret = typeof raw.appSecret === "string" ? raw.appSecret : null;
+
+  if (appSecret === null || !META_APP_SECRET.test(appSecret)) {
+    errors.push({
+      field: "appSecret",
+      message: "Must be the Meta app secret: 16 to 128 letters or digits."
+    });
+  }
+
+  return errors.length > 0
+    ? { valid: false, errors }
+    : { valid: true, value: { appSecret: appSecret! } };
+}
+
 // ---------------------------------------------------------------------------
 // Capabilities
 // ---------------------------------------------------------------------------
@@ -588,4 +623,54 @@ export function validateListAccountsQuery(
         valid: true,
         value: { provider, status, limit, cursor: params.get("cursor") }
       };
+}
+
+// ---------------------------------------------------------------------------
+// Provider risk acknowledgement (Issue #1142)
+// ---------------------------------------------------------------------------
+
+export type AcknowledgeRiskInput = {
+  provider: RiskAcknowledgementProvider;
+  textVersion: string;
+};
+
+/**
+ * The caller names the provider and the text VERSION they were shown. The
+ * server compares it with the current version, so a stale form (the wording
+ * changed since the page loaded) is refused instead of recording agreement to
+ * words nobody saw. There is no `userId` field: a person acknowledges for
+ * themselves, and the unknown-field rule refuses an attempt to name another.
+ */
+export function validateAcknowledgeRisk(
+  raw: unknown
+): Validated<AcknowledgeRiskInput> {
+  if (!isRecord(raw)) {
+    return {
+      valid: false,
+      errors: [{ field: "body", message: "Must be a JSON object." }]
+    };
+  }
+
+  const errors = unknownFields(raw, ["provider", "textVersion"]);
+
+  if (!isRiskAcknowledgementProvider(raw.provider)) {
+    errors.push({
+      field: "provider",
+      message: `Must be one of ${RISK_ACKNOWLEDGEMENT_PROVIDERS.join(", ")}.`
+    });
+  }
+
+  const textVersion = text(raw, "textVersion", errors, { min: 1, max: 80 });
+
+  if (errors.length > 0 || textVersion === null) {
+    return { valid: false, errors };
+  }
+
+  return {
+    valid: true,
+    value: {
+      provider: raw.provider as RiskAcknowledgementProvider,
+      textVersion
+    }
+  };
 }

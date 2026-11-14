@@ -1,14 +1,16 @@
 /**
- * Activation of BPS population datasets (awcms-one ADR-0051).
+ * Activation of population datasets (awcms-one ADR-0053; the lifecycle itself
+ * is ADR-0051's and survived the change of source).
  *
  * Differs from `dataset-lifecycle.ts` in one way that matters: region datasets
  * are served ONE at a time, platform-wide, while population datasets are served
- * one per `(publication_series, coverage_region_code)` — a province's
- * publication and each of its regencies' publications are all active together.
- * Activating a dataset therefore supersedes only the active dataset of the SAME
- * series and covered region, never another region's. The partial unique index
- * `awcms_idn_population_datasets_single_active` (sql/882) enforces that in the
- * database; the code below vacates the slot first, inside the same transaction,
+ * one per `(publication_series, coverage_region_code)`. Since sql/883 the only
+ * admitted series is the Kepmendagri decree, covering the whole country (`ID`),
+ * so in practice one decree dataset is active at a time; the rule is kept
+ * general because it is the database's (the partial unique index
+ * `awcms_idn_population_datasets_single_active`, sql/882), not this file's.
+ * Activating a dataset supersedes only the active dataset of the SAME series and
+ * covered region. The code vacates the slot first, inside the same transaction,
  * because the index would otherwise reject the legitimate swap.
  */
 import { utcMicrosecondTextSql } from "../../_shared/keyset-pagination";
@@ -23,7 +25,6 @@ export type PopulationDatasetSummary = {
   publicationTitle: string;
   publicationYear: number;
   rowCount: number;
-  csvSha256: string;
   createdAt: string;
   activatedAt: string | null;
 };
@@ -47,7 +48,6 @@ type Row = {
   publication_title: string;
   publication_year: number;
   row_count: number;
-  csv_sha256: string;
   created_at: string;
   activated_at: string | null;
 };
@@ -56,7 +56,7 @@ type Row = {
 // precision), for the same reason as dataset-lifecycle.ts.
 const COLUMNS = `
   id, dataset_code, status, publication_series, coverage_region_code,
-  publication_title, publication_year, row_count, csv_sha256,
+  publication_title, publication_year, row_count,
   ${utcMicrosecondTextSql("created_at", "Z")} AS created_at,
   ${utcMicrosecondTextSql("activated_at", "Z")} AS activated_at
 `;
@@ -71,7 +71,6 @@ function toSummary(row: Row): PopulationDatasetSummary {
     publicationTitle: row.publication_title,
     publicationYear: row.publication_year,
     rowCount: row.row_count,
-    csvSha256: row.csv_sha256,
     createdAt: row.created_at,
     activatedAt: row.activated_at
   };

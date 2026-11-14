@@ -54,291 +54,25 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { basename, join, posix } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import {
+  dockerfileStageViolations,
+  isPinnedTag,
+  jsLaunchViolations,
+  jsLiteralViolations,
+  launchWords,
+  launcherIn,
+  launcherViolations,
+  pinViolations,
+  shebangViolations,
+  tokensOf
+} from "./support/bun-only-scan.mjs";
+
 const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..");
 const read = (rel) => readFileSync(join(REPO_ROOT, rel), "utf8");
 
 const pkg = JSON.parse(read("package.json"));
 /** The exact Bun version this repo pins, read from `packageManager`. */
 const PIN = /^bun@(\d+\.\d+\.\d+)(?:\+.*)?$/.exec(pkg.packageManager ?? "")?.[1] ?? "";
-
-// ---------------------------------------------------------------------------
-// Pure scanners (exported as functions so the fixtures below can drive them)
-// ---------------------------------------------------------------------------
-
-/** Node-ecosystem launchers. Matched as whole tokens, never as substrings. */
-const NODE_LAUNCHERS = new Set([
-  "node",
-  "nodejs",
-  "npm",
-  "npx",
-  "pnpm",
-  "pnpx",
-  "yarn",
-  "yarnpkg",
-  "tsx",
-  "ts-node",
-  "ts-node-esm",
-  "nodemon",
-  "corepack"
-]);
-
-/** A `name:tag` is an image only when the tag looks like a version or variant. */
-const IMAGE_TAG_LOOKS_LIKE_VERSION =
-  /^(\d|lts|latest|current|alpine|slim|bookworm|trixie|bullseye|iron|jod|hydrogen|krypton)/;
-
-/** `node`, `/usr/bin/node`, `node:22`, `docker.io/library/node@sha256:...` -> "node". */
-function launcherIn(token) {
-  if (token === "" || token.startsWith("@") || token.startsWith("-")) return null;
-  const noDigest = token.split("@")[0];
-  const base = noDigest.slice(noDigest.lastIndexOf("/") + 1);
-  const colon = base.indexOf(":");
-  const name = colon === -1 ? base : base.slice(0, colon);
-  const tag = colon === -1 ? "" : base.slice(colon + 1);
-  if (!NODE_LAUNCHERS.has(name)) return null;
-  // `node:fs` is a built-in import specifier; `node:22` is an image.
-  if (tag !== "" && !IMAGE_TAG_LOOKS_LIKE_VERSION.test(tag)) return null;
-  return name;
-}
-
-function countOf(text, char) {
-  return text.split(char).length - 1;
-}
-
-/** Strip a trailing ` # comment` when the text before it has balanced quotes. */
-function stripComment(line) {
-  for (let i = 0; i < line.length; i += 1) {
-    if (line[i] === "#" && (i === 0 || /\s/.test(line[i - 1] ?? ""))) {
-      const before = line.slice(0, i);
-      if (countOf(before, "'") % 2 === 0 && countOf(before, '"') % 2 === 0) return before;
-    }
-  }
-  return line;
-}
-
-/** Split a line into candidate command words, keeping `:` (image tags) intact. */
-function tokensOf(line) {
-  return line
-    .replace(/\$\(|\$\{|[;&|(){}`<>=,[\]]/g, " ")
-    .split(/\s+/)
-    .map((token) => token.replace(/^["'`]+|["'`]+$/g, ""))
-    .filter((token) => token !== "");
-}
-
-/**
- * The non-comment, non-blank lines of a file, with trailing comments removed.
- * `skipProse` also drops `echo` / `printf` / `log` lines: user-facing messages
- * that merely mention a runtime are not launches.
- */
-function activeLines(text, { skipProse = false } = {}) {
-  const out = [];
-  text.split("\n").forEach((raw, index) => {
-    const trimmed = raw.trim();
-    if (trimmed === "" || trimmed.startsWith("#")) return;
-    const withoutChain = trimmed.replace(/^\S+\s*&&\s*/, "");
-    if (skipProse && /^(log|echo|printf)\b/.test(withoutChain)) return;
-    out.push({ line: index + 1, text: stripComment(raw) });
-  });
-  return out;
-}
-
-/** A `#!` line must not select a Node-ecosystem launcher. */
-export function shebangViolations(file, text) {
-  if (!text.startsWith("#!")) return [];
-  const firstLine = text.split("\n", 1)[0];
-  const bad = tokensOf(firstLine.slice(2)).map(launcherIn).find((name) => name);
-  return bad
-    ? [{ file, line: 1, rule: "no-node-shebang", detail: `shebang "${firstLine}" selects ${bad}, not Bun` }]
-    : [];
-}
-
-/**
- * Every Node-ecosystem launcher word in shell, crontab, systemd or Dockerfile
- * text. Not for JS source: there a bare `node` token is a variable, not a launch.
- */
-export function launcherViolations(file, text, { skipProse = false } = {}) {
-  const violations = [...shebangViolations(file, text)];
-  for (const { line, text: code } of activeLines(text, { skipProse })) {
-    for (const token of tokensOf(code)) {
-      const name = launcherIn(token);
-      if (name) {
-        violations.push({
-          file,
-          line,
-          rule: "no-node-launcher",
-          detail: `"${token}" launches ${name}, not Bun (ADR-0002)`
-        });
-      }
-    }
-  }
-  return violations;
-}
-
-/** A quoted launcher name in JS source (`spawn("npm", ...)`), outside comments. */
-const JS_LITERAL = /(["'`])(node|nodejs|npm|npx|pnpm|pnpx|yarn|yarnpkg|tsx|ts-node|nodemon|corepack)\1/g;
-
-export function jsLiteralViolations(file, text) {
-  const violations = [];
-  text.split("\n").forEach((raw, index) => {
-    if (/^\s*(\/\/|\*|\/\*)/.test(raw)) return;
-    for (const match of raw.matchAll(JS_LITERAL)) {
-      violations.push({
-        file,
-        line: index + 1,
-        rule: "no-node-launcher",
-        detail: `"${match[2]}" literal names a Node launcher, not Bun`
-      });
-    }
-  });
-  return violations;
-}
-
-/** `ARG NAME=value` defaults, so `${BUN_VERSION}` can be resolved. */
-function argDefaults(text) {
-  const map = {};
-  for (const { text: line } of activeLines(text)) {
-    const match = /^ARG\s+(\w+)=(\S+)/.exec(line.trim());
-    if (match) map[match[1]] = match[2];
-  }
-  return map;
-}
-
-function expand(value, vars) {
-  return value.replace(/\$\{(\w+)\}|\$(\w+)/g, (whole, braced, bare) => {
-    const name = braced ?? bare;
-    return Object.hasOwn(vars, name) ? vars[name] : whole;
-  });
-}
-
-/** True when an image tag is exactly the pin, with an optional variant suffix. */
-export function isPinnedTag(tag, pin) {
-  const match = /^(\d+\.\d+\.\d+)(?:-[a-z][a-z0-9.-]*)?$/.exec(tag);
-  return match !== null && match[1] === pin;
-}
-
-/**
- * Every Bun version pin in a manifest must equal `pin`: `oven/bun:<tag>`
- * (floating or unresolvable tags fail), `BUN_VERSION=<x>` and `bun@<x>` /
- * `bun-v<x>` install pins. Comments are ignored.
- */
-export function pinViolations(file, text, pin) {
-  const violations = [];
-  const vars = argDefaults(text);
-  const report = (line, detail) =>
-    violations.push({ file, line, rule: "bun-pin", detail });
-
-  for (const { line, text: code } of activeLines(text)) {
-    for (const match of code.matchAll(/oven\/bun(?::([^\s"'`,\]]*))?/g)) {
-      if (match[1] === undefined || match[1] === "") {
-        report(line, "`oven/bun` without a tag floats; pin it to the packageManager version");
-        continue;
-      }
-      const resolved = expand(match[1], vars);
-      if (resolved.includes("$")) {
-        report(line, `oven/bun tag "${match[1]}" cannot be resolved to a literal version`);
-      } else if (!isPinnedTag(resolved, pin)) {
-        report(line, `oven/bun:${resolved} is not the pinned Bun ${pin}`);
-      }
-    }
-    for (const match of code.matchAll(/BUN_VERSION\s*[:=]\s*["']?(\d+\.\d+\.\d+)/g)) {
-      if (match[1] !== pin) report(line, `BUN_VERSION ${match[1]} is not the pinned Bun ${pin}`);
-    }
-    for (const match of code.matchAll(/bun@(\d+\.\d+\.\d+)/g)) {
-      if (match[1] !== pin) report(line, `bun@${match[1]} is not the pinned Bun ${pin}`);
-    }
-    for (const match of code.matchAll(/bun-v(\d+\.\d+\.\d+)/g)) {
-      if (match[1] !== pin) report(line, `bun-v${match[1]} is not the pinned Bun ${pin}`);
-    }
-  }
-  return violations;
-}
-
-/** Dockerfile instructions, with `\` continuations joined and comments removed. */
-export function dockerInstructions(text) {
-  const out = [];
-  let buffer = "";
-  for (const { text: line } of activeLines(text)) {
-    const trimmed = line.trim();
-    if (trimmed.endsWith("\\")) {
-      buffer += `${trimmed.slice(0, -1)} `;
-      continue;
-    }
-    buffer += trimmed;
-    const match = /^(\w+)\s*([\s\S]*)$/.exec(buffer);
-    if (match) out.push({ keyword: match[1].toUpperCase(), args: match[2].trim() });
-    buffer = "";
-  }
-  return out;
-}
-
-const JS_FILE = /\.(?:[cm]?[jt]s|[jt]sx)$/;
-
-/** The words a launch line names: a JSON array form or a shell form. */
-function launchWords(value) {
-  if (Array.isArray(value)) return value.map(String);
-  if (typeof value !== "string") return [];
-  const trimmed = value.trim();
-  if (trimmed.startsWith("[")) {
-    try {
-      return JSON.parse(trimmed).map(String);
-    } catch {
-      // Not valid JSON: fall through to the shell form.
-    }
-  }
-  return trimmed.split(/\s+/).filter((word) => word !== "");
-}
-
-/**
- * A launch that names a JS file must be started by `bun`. The first word is
- * the launcher; `CMD` / `CMD-SHELL` markers from a compose healthcheck are not.
- */
-export function jsLaunchViolations(file, label, value) {
-  const words = launchWords(value).filter((word) => word !== "CMD" && word !== "CMD-SHELL");
-  if (words.some((word) => JS_FILE.test(word)) && words[0] !== "bun") {
-    return [
-      {
-        file,
-        line: 0,
-        rule: "bun-launcher",
-        detail: `${label} runs a JavaScript file via "${words[0] ?? ""}", not bun`
-      }
-    ];
-  }
-  return [];
-}
-
-/** Final-stage check for one Dockerfile: base image pinned, launcher is bun. */
-export function dockerfileStageViolations(file, text, pin) {
-  const instructions = dockerInstructions(text);
-  const froms = instructions.filter((instruction) => instruction.keyword === "FROM");
-  if (froms.length === 0) {
-    return [{ file, line: 0, rule: "bun-final-stage", detail: "no FROM instruction" }];
-  }
-  const vars = argDefaults(text);
-  const last = froms.at(-1);
-  const base = expand(last.args.split(/\s+/)[0], vars);
-  const violations = [];
-  const basePinned = base.startsWith("oven/bun:") && isPinnedTag(base.slice("oven/bun:".length), pin);
-  if (!basePinned) {
-    violations.push({
-      file,
-      line: 0,
-      rule: "bun-final-stage",
-      detail: `final stage base "${base}" is not oven/bun:${pin}`
-    });
-  }
-  const finalStage = instructions.slice(instructions.indexOf(last));
-  for (const instruction of finalStage) {
-    if (instruction.keyword === "CMD" || instruction.keyword === "ENTRYPOINT") {
-      violations.push(...jsLaunchViolations(file, instruction.keyword, instruction.args));
-    }
-    // HEALTHCHECK wraps its launch as `... CMD <launcher> ...`.
-    if (instruction.keyword === "HEALTHCHECK" && /\bCMD\s/.test(instruction.args)) {
-      const launch = instruction.args.slice(instruction.args.search(/\bCMD\s/) + 4);
-      violations.push(...jsLaunchViolations(file, "HEALTHCHECK", launch));
-    }
-  }
-  return violations;
-}
 
 // ---------------------------------------------------------------------------
 // Exemptions. Each entry says why it is not Bun, and is checked for staleness.
@@ -386,10 +120,20 @@ function isTestFixture(rel) {
   return rel === "tests/fixtures" || rel.endsWith("/tests/fixtures");
 }
 
+/**
+ * Git worktrees that agent tooling creates INSIDE the checkout
+ * (`.claude/worktrees/<name>/`, gitignored). Each is a full copy of the
+ * repository, so walking into one re-scans every manifest under a prefix
+ * where `apps/cms` no longer matches {@link UPSTREAM_BUILD_PREFIX}, and a
+ * local run turns red on upstream's own Dockerfile while CI's fresh checkout,
+ * which has no such directory, stays green.
+ */
+const NESTED_WORKTREES_DIR = ".claude/worktrees";
+
 function walk(rel = "", out = []) {
   for (const name of readdirSync(join(REPO_ROOT, rel))) {
     const child = rel === "" ? name : `${rel}/${name}`;
-    if (SKIP_DIRS.has(name) || child === "apps/cms" || isTestFixture(child)) continue;
+    if (SKIP_DIRS.has(name) || child === "apps/cms" || child === NESTED_WORKTREES_DIR || isTestFixture(child)) continue;
     if (statSync(join(REPO_ROOT, child)).isDirectory()) {
       walk(child, out);
     } else {

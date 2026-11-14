@@ -288,7 +288,11 @@ describe("the mapping to and from the port (Issue #392)", () => {
       "MISCONFIGURED",
       "SENDER_UNAVAILABLE",
       "SENDER_AFFINITY_CONFLICT",
-      "REPLY_TARGET_UNKNOWN"
+      "REPLY_TARGET_UNKNOWN",
+      "CONSENT_SCOPE_REQUIRED",
+      "BUSINESS_SCOPE_UNRESOLVED",
+      "TEMPLATE_NOT_APPROVED",
+      "OUTSIDE_SERVICE_WINDOW"
     ] as const) {
       expect(toEnqueueResult({ status: "refused", reason }, "b")).toMatchObject(
         {
@@ -314,7 +318,11 @@ describe("the mapping to and from the port (Issue #392)", () => {
       MISCONFIGURED: "TEMPLATE_UNAVAILABLE",
       SENDER_UNAVAILABLE: "TEMPLATE_UNAVAILABLE",
       SENDER_AFFINITY_CONFLICT: "TEMPLATE_UNAVAILABLE",
-      REPLY_TARGET_UNKNOWN: "TEMPLATE_UNAVAILABLE"
+      REPLY_TARGET_UNKNOWN: "TEMPLATE_UNAVAILABLE",
+      CONSENT_SCOPE_REQUIRED: "RECIPIENT_SUPPRESSED",
+      BUSINESS_SCOPE_UNRESOLVED: "TEMPLATE_UNAVAILABLE",
+      TEMPLATE_NOT_APPROVED: "TEMPLATE_UNAVAILABLE",
+      OUTSIDE_SERVICE_WINDOW: "TEMPLATE_UNAVAILABLE"
     };
 
     for (const [reason, expected] of Object.entries(mapped)) {

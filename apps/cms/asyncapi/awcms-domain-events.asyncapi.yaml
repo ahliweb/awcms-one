@@ -11,6 +11,13 @@ info:
     channels here (and their own `ModuleDescriptor.events.publishes` entries)
     when they start calling `appendDomainEvent`
     (docs/awcms/10_template_kode_coding_standard.md §Domain event envelope).
+
+    Realtime progress streams are NOT channels of this contract (Issue
+    #1171, ADR-0154). `GET /api/v1/whatsapp/senders/{id}/progress/stream`
+    is a Server-Sent Events projection of committed queue rows, re-read and
+    re-authorized per tick; it publishes no domain event, consumes none, and
+    is not a broker. Its frame (`WhatsappSenderProgressFrame`) is documented
+    in the OpenAPI contract with the endpoint that serves it.
 channels:
   awcms.domain-event-runtime.sample.recorded:
     address: awcms.domain-event-runtime.sample.recorded
@@ -321,7 +328,9 @@ channels:
       A recipient's WhatsApp marketing consent was recorded (ADR-0133, Issue
       #963). Producer: `whatsapp-delivery/application/whatsapp-consent-
       directory.ts`'s `grantMarketingConsent`. Payload: `consentId`, `purpose`,
-      `recipientMasked`. Never the number.
+      `recipientMasked`, and since Issue #1231 M4 `businessScope` (`{type, id}`,
+      the brand THIS grant was collected for; absent for an unscoped grant, so
+      that payload is unchanged). Never the number.
   awcms.whatsapp.consent.withdrawn:
     address: awcms.whatsapp.consent.withdrawn
     messages:
@@ -332,7 +341,8 @@ channels:
       marketing messages were cancelled in the same transaction (ADR-0133, Issue
       #963). Producer: `whatsapp-delivery/application/whatsapp-consent-
       directory.ts`'s `withdrawMarketingConsent`. Same payload shape as
-      `consent.granted`.
+      `consent.granted`, never with `businessScope`: a withdrawal is tenant-wide
+      and ends the opt-in for every brand (Issue #1231 M4).
   awcms.whatsapp.dispatch.failed:
     address: awcms.whatsapp.dispatch.failed
     messages:
@@ -343,6 +353,23 @@ channels:
       (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp-
       dispatch.ts`'s `recordWhatsappDispatchFailure`, called by `scripts/whatsapp-
       dispatch.ts`. Payload: `failureCode`, optional `batchSize`, `occurredAt`.
+  awcms.whatsapp.message.provider_status_changed:
+    address: awcms.whatsapp.message.provider_status_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A SIGNED Meta webhook moved a sent WhatsApp message's provider-reported
+      status forward (Issue #1143). Producer: `whatsapp-delivery/application/
+      whatsapp-meta-directory.ts`'s `applyMetaWebhookActions`, in the webhook's
+      tenant transaction. Reconciled ONLY against a row of the sender the
+      callback token resolved to, under that provider message id (and that
+      recipient when Meta names it); forward-only, so a repeated or late status
+      emits nothing. Payload: `messageId`, `templateKey`, `senderAccountId`,
+      `providerStatus` (delivered | read | failed; `sent` only when no earlier
+      status was recorded) and, for `failed`, a coarse `failureCode`
+      (`meta_<code>`). Never a phone number, a body or provider text. The queue
+      `status` of the message is unchanged (`sent`).
   awcms.booking.reservation.created:
     address: awcms.booking.reservation.created
     messages:
@@ -463,7 +490,10 @@ channels:
       contract only, same convention as `database.pool.saturated` — the
       concrete producer is the structured JSON logger, invoked from
       `email/application/announcement-directory.ts`'s `enqueueAnnouncement`
-      (`email.message.queued` log line).
+      (`email.message.queued` log line). Issue #1160 (ADR-0151 section 7,
+      additive): the line carries `senderAccountId` - the tenant-owned
+      Mailketing sender identity snapshotted on the rows, or `null` for the
+      deployment sender. Never the sender's address or credential.
   awcms.email.message.sent:
     address: awcms.email.message.sent
     messages:
@@ -473,7 +503,9 @@ channels:
       The email dispatcher (`bun run email:dispatch`) delivered a message
       through the configured provider. Documented contract only; producer is
       the structured JSON logger (`email/application/email-dispatch.ts`'s
-      `email.dispatch.sent` log line).
+      `email.dispatch.sent` log line). Issue #1160 (additive): a row of a
+      tenant sender's lane carries `senderAccountId`; "sent" means accepted
+      (queued) by the provider, never delivered.
   awcms.email.message.failed:
     address: awcms.email.message.failed
     messages:
@@ -483,7 +515,10 @@ channels:
       The email dispatcher exhausted retries (or hit a non-retryable failure)
       for a queued message. Documented contract only; producer is the
       structured JSON logger (`email/application/email-dispatch.ts`'s
-      `email.dispatch.failed` log line).
+      `email.dispatch.failed` log line). Issue #1160 (additive): a tenant
+      sender's row carries `senderAccountId`, and a row whose sender could not
+      send fails with `SENDER_UNAVAILABLE` or `SENDER_HOLD_BUDGET_EXCEEDED`
+      (never rerouted to another sender).
   awcms.email.message.suppressed:
     address: awcms.email.message.suppressed
     messages:
@@ -756,6 +791,216 @@ channels:
       Documented contract only; producer is
       `pages/api/v1/blog/internal-tag-links/settings.ts`'s
       `blog-content.internal-tag-linking-policy.updated` log line.
+  awcms.website_engagement.submission.received:
+    address: awcms.website_engagement.submission.received
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A website form or interaction was accepted by the public intake, in the
+      transaction that stored it (ADR-0155, Issue #1153). Producer:
+      `website-engagement/application/submission-intake.ts`'s
+      `recordSubmission`. The envelope `payload` is
+      `WebsiteEngagementSubmissionReceived` (contract version 1): the opaque
+      `submissionId`, the `sourceId`/`sourceCode`, the client's `clientEventId`,
+      the `kind`, the authenticated `provenance` (source authenticated, Origin
+      host verified, which `challenge` protected it), the explicit `consent`
+      provenance, the source `attribution`, which `identifiers` the submission
+      holds and its `privacyClass`. Never a name, address, phone number or
+      message: a CRM adapter reads those through `POST
+      /api/v1/website-engagement/submissions/{id}/reveal` under its own
+      permission. A duplicate submission publishes nothing. This event creates,
+      matches and merges no person; linking to one is downstream, through
+      `contact_link_evidence` (ADR-0148 section 6).
+  awcms.website_engagement.submission.withdrawn:
+    address: awcms.website_engagement.submission.withdrawn
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A controller withdrew a website submission (ADR-0155, Issue #1153).
+      Producer: `website-engagement/application/submission-directory.ts`'s
+      `withdrawSubmission`. The envelope `payload` is
+      `WebsiteEngagementSubmissionWithdrawn`. Downstream consumers MUST honour
+      it. Idempotent: withdrawing an already withdrawn submission publishes
+      nothing.
+  awcms.telegram_engagement.interaction.received:
+    address: awcms.telegram_engagement.interaction.received
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A verified customer Telegram update was ingested, in the transaction that
+      receipted it (ADR-0152, ADR-0150 section 3 envelope, Issue #1156). Producer:
+      `telegram-engagement/application/webhook-ingest.ts`'s
+      `ingestVerifiedUpdate`, for a `/start` (`eventKind: command`) or a message
+      (`eventKind: message`) from a contact who started the bot. The envelope
+      `payload` is `TelegramEngagementInteractionReceived` (contract version 1):
+      the channel account id, the opaque ACCOUNT-SCOPED contact reference as both
+      sender and conversation, the per-bot `providerEventId` (the update id,
+      never compared across bots), the content KINDS, whether it was forwarded,
+      `provenance: secret_header` and the `privacyClass`. Never a Telegram user
+      id, chat id, username, display name, phone number, message text, token or
+      header; the body is not kept upstream (ADR-0150 section 1). A replayed or
+      duplicate update publishes nothing. The intended consumer is the
+      cross-channel inbox (#1164) and the downstream CRM adapter (awcms-one #460).
+  awcms.telegram_engagement.consent.changed:
+    address: awcms.telegram_engagement.consent.changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A customer Telegram contact's consent changed for one purpose (ADR-0152
+      section 6, Issue #1156), in the transaction that recorded the append-only
+      evidence. Producer: `telegram-engagement/application/contact-directory.ts`'s
+      `recordConsent`. The envelope `payload` is
+      `TelegramEngagementConsentChanged`: the channel account id, the opaque
+      contact reference, the purpose, the action, the method and the notice
+      version (`privacyClass: consent`). Downstream consumers MUST honour an
+      `opt_out` at once. Never the evidence payload or an identity.
+  awcms.social_publishing.publication.queued:
+    address: awcms.social_publishing.publication.queued
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Social publish jobs were queued for a publication, in the transaction that
+      queued them (ADR-0157, Issue #1145). Producer:
+      `social-publishing/application/publication-enqueue.ts`'s
+      `enqueuePublication`, called from the article path
+      (`SocialPublishingPort.onArticlePublished`, inside `blog_content`'s publish
+      transaction) and from `POST /api/v1/social-publishing/publications`. ONE
+      event per enqueue call that created at least one job, however many accounts
+      it targets (the single domain event over the fan-out). The envelope
+      `payload` is `SocialPublicationQueued` : the
+      `publicationId`, the `sourceKind` and the article `sourceId`, the `trigger`,
+      the approval `state`, the `jobCount` and the target `accountIds`. Never a
+      caption, a title, a link or a credential. A repeated call that creates no
+      job publishes nothing.
+  awcms.social_publishing.publication.cancelled:
+    address: awcms.social_publishing.publication.cancelled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A social publication was cancelled by an operator (ADR-0157, Issue #1145).
+      Producer: `POST /api/v1/social-publishing/publications/{id}/cancel`. The
+      envelope `payload` is `SocialPublicationCancelled`: how many unsent jobs were
+      cancelled and how many had already been published (those are untouched).
+      Idempotent: cancelling an already cancelled publication publishes nothing.
+  awcms.social_publishing.job.published:
+    address: awcms.social_publishing.job.published
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      One per-account social publish job was accepted by its provider, in the
+      transaction that finalised it (ADR-0157, Issue #1145). Producer:
+      `social-publishing/application/social-publish-dispatch.ts`'s finalise step
+      (`bun run social-publishing:dispatch`). The envelope `payload` is
+      `SocialJobPublished`: the job, publication and account ids, the provider key
+      and the attempt number. The provider's post id and URL are read through
+      `GET /api/v1/social-publishing/publications/{id}`, not carried. A superseded
+      finalise (the lease was re-claimed) publishes nothing.
+  awcms.social_publishing.job.failed:
+    address: awcms.social_publishing.job.failed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      One per-account social publish job failed terminally (ADR-0157, Issue
+      #1145): the retry budget is spent, the provider rejected the content or
+      asked for re-authorisation, the account was revoked or disabled or lost its
+      publish capability, or a degraded account stayed unavailable too long.
+      Producer: the same dispatcher. The envelope `payload` is `SocialJobFailed`:
+      the job, publication and account ids, the provider key, a fixed
+      `failureCode` and the attempt number (0 when no attempt was made). Never a
+      provider message. A failed job does not affect a published sibling.
+  awcms.crm_leads.lead.created:
+    address: awcms.crm_leads.lead.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A lead was created through an intake path, in the transaction that
+      stored it (ADR-0153, Issue #1166). Producer:
+      `crm-leads/application/lead-directory.ts`'s `createLead`. The envelope
+      `payload` is `CrmLeadCreated`: opaque lead, pipeline, revision and
+      first-touch ids, the initial stage key and closed category, the source
+      kind with opaque channel-account and campaign references, the KINDS of
+      contact point held (never their values) and the effective and recorded
+      times. A replayed intake publishes nothing. Never a name, an address,
+      a phone number or a note.
+  awcms.crm_leads.lead.stage_changed:
+    address: awcms.crm_leads.lead.stage_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A lead's stage changed: a move, a stage migration on a new revision, a
+      conversion, a conversion reversal, a merge or its rollback
+      (`transitionKind`), in the transaction that appended the transition
+      row. Producer: `crm-leads/application/lead-events.ts`'s
+      `appendLeadTransition`. Payload `CrmLeadStageChanged`; never a reason
+      or a note.
+  awcms.crm_leads.lead.assigned:
+    address: awcms.crm_leads.lead.assigned
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A lead's owner changed. Producer: `lead-directory.ts`'s `assignLead`.
+      Payload `CrmLeadAssigned`: the lead id and the previous and new owner
+      tenant-user ids only.
+  awcms.crm_leads.lead.merged:
+    address: awcms.crm_leads.lead.merged
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Two leads of one pipeline were merged after human review. Producer:
+      `lead-lifecycle.ts`'s `mergeLeads`. Payload `CrmLeadMerged`: the
+      merge, survivor and absorbed lead ids and the undo deadline; never the
+      reviewer's note.
+  awcms.crm_leads.lead.merge_reverted:
+    address: awcms.crm_leads.lead.merge_reverted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A lead merge was rolled back within its undo window. Producer:
+      `lead-lifecycle.ts`'s `revertMerge`. Payload `CrmLeadMergeReverted`.
+  awcms.crm_leads.lead.converted:
+    address: awcms.crm_leads.lead.converted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A conversion was recorded: confirmed by the customer authority (with
+      its opaque `externalCustomerRef`) or a flagged manual conversion
+      (`authority_unconfirmed`). Producer: `lead-lifecycle.ts`'s
+      `recordConversion`. Payload `CrmLeadConverted`; never a note. A
+      replayed confirmation publishes nothing. The lead module never creates
+      the customer.
+  awcms.crm_leads.lead.conversion_reversed:
+    address: awcms.crm_leads.lead.conversion_reversed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The customer authority reversed a conversion (a refund, a
+      cancellation): a correction by event, never an edit of history.
+      Producer: `lead-lifecycle.ts`'s `reverseConversion`. Payload
+      `CrmLeadConversionReversed`.
+  awcms.crm_leads.lead.lost:
+    address: awcms.crm_leads.lead.lost
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A lead ENTERED a lost or disqualified stage. Producer:
+      `lead-events.ts`'s `appendLeadTransition`. Payload `CrmLeadLost`; a
+      stop signal for follow-up cadences (#1165).
   awcms.commerce.product.created:
     address: awcms.commerce.product.created
     messages:
@@ -1123,6 +1368,41 @@ channels:
       `amount` and `settledVia` (`ledger` | `provider` | `offline` |
       `store_credit`) - never a provider reference, name or phone. A failed
       attempt is an audit event, not a domain event.
+  awcms.commerce.customer.registered:
+    address: awcms.commerce.customer.registered
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A shopper completed the e-mail OTP registration and a commerce customer
+      account was created (Issue #463, ADR-0056 D8). Producer:
+      `commerce/application/customer-account-store.ts`'s
+      `tryCreateAccountForCustomer`, in the same transaction as the account row.
+      A guest checkout does NOT publish it: only a verified registration is a
+      registration fact. Aggregate: the customer (`commerce.customer`). Payload:
+      `customerId` and `accountId` only - never a name, e-mail or phone.
+      `privacyClass: pseudonymous`. Idempotency: one event per account row (the
+      account is unique per customer); correlation id as on every domain event.
+  awcms.commerce.customer.converted:
+    address: awcms.commerce.customer.converted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff member confirmed a CRM lead as this commerce customer on verified
+      commerce evidence and `crm_leads` recorded the conversion (Issue #463,
+      ADR-0056 D8). Producer: `commerce/application/crm-lead-link-directory.ts`'s
+      `linkLeadToCustomer`, in the same transaction as the link row and the
+      conversion. Never published from a message receipt, a fuzzy match or an
+      unconfirmed manual conversion. Aggregate: the customer
+      (`commerce.customer`). Payload: `linkId`, `customerId`, `leadId`,
+      `conversionId`, `evidenceKind` (`customer_registration` | `paid_order`),
+      `orderId` (paid order only), `firstSourceKind` and `firstTouchId` (the
+      lead's first source touch, for source attribution) - opaque ids and codes,
+      never a name, contact or note. `privacyClass: pseudonymous`. Idempotency:
+      one event per link; a replayed confirmation (same evidence) publishes
+      nothing. The reversal of a conversion is `crm_leads`' own
+      `awcms.crm_leads.lead.conversion_reversed`.
   awcms.commerce.conversation.store_replied:
     address: awcms.commerce.conversation.store_replied
     messages:
@@ -1200,30 +1480,6 @@ channels:
       `failureReason` - never a recipient or message content; the provider
       outcome lives in the outbox, not in this event.
 operations:
-  publishCommerceQuotationAccepted:
-    action: send
-    channel:
-      $ref: "#/channels/awcms.commerce.quotation.accepted"
-    messages:
-      - $ref: "#/channels/awcms.commerce.quotation.accepted/messages/DomainEvent"
-  publishCommerceQuotationConverted:
-    action: send
-    channel:
-      $ref: "#/channels/awcms.commerce.quotation.converted"
-    messages:
-      - $ref: "#/channels/awcms.commerce.quotation.converted/messages/DomainEvent"
-  publishCommerceWorkOrderStatusChanged:
-    action: send
-    channel:
-      $ref: "#/channels/awcms.commerce.work_order.status_changed"
-    messages:
-      - $ref: "#/channels/awcms.commerce.work_order.status_changed/messages/DomainEvent"
-  publishCommerceDocumentIssued:
-    action: send
-    channel:
-      $ref: "#/channels/awcms.commerce.document.issued"
-    messages:
-      - $ref: "#/channels/awcms.commerce.document.issued/messages/DomainEvent"
   publishDomainEventRuntimeSampleRecorded:
     action: send
     channel:
@@ -1392,6 +1648,12 @@ operations:
       $ref: "#/channels/awcms.whatsapp.dispatch.failed"
     messages:
       - $ref: "#/channels/awcms.whatsapp.dispatch.failed/messages/DomainEvent"
+  publishWhatsappMessageProviderStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.message.provider_status_changed"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.message.provider_status_changed/messages/DomainEvent"
   publishBookingReservationCreated:
     action: send
     channel:
@@ -1638,6 +1900,126 @@ operations:
       $ref: "#/channels/awcms.blog-content.internal-tag-linking-policy.updated"
     messages:
       - $ref: "#/channels/awcms.blog-content.internal-tag-linking-policy.updated/messages/DomainEvent"
+  publishWebsiteEngagementSubmissionReceived:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.website_engagement.submission.received"
+    messages:
+      - $ref: "#/channels/awcms.website_engagement.submission.received/messages/DomainEvent"
+  publishWebsiteEngagementSubmissionWithdrawn:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.website_engagement.submission.withdrawn"
+    messages:
+      - $ref: "#/channels/awcms.website_engagement.submission.withdrawn/messages/DomainEvent"
+  publishTelegramEngagementInteractionReceived:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.telegram_engagement.interaction.received"
+    messages:
+      - $ref: "#/channels/awcms.telegram_engagement.interaction.received/messages/DomainEvent"
+  publishTelegramEngagementConsentChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.telegram_engagement.consent.changed"
+    messages:
+      - $ref: "#/channels/awcms.telegram_engagement.consent.changed/messages/DomainEvent"
+  publishSocialPublicationQueued:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.social_publishing.publication.queued"
+    messages:
+      - $ref: "#/channels/awcms.social_publishing.publication.queued/messages/DomainEvent"
+  publishSocialPublicationCancelled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.social_publishing.publication.cancelled"
+    messages:
+      - $ref: "#/channels/awcms.social_publishing.publication.cancelled/messages/DomainEvent"
+  publishSocialJobPublished:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.social_publishing.job.published"
+    messages:
+      - $ref: "#/channels/awcms.social_publishing.job.published/messages/DomainEvent"
+  publishSocialJobFailed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.social_publishing.job.failed"
+    messages:
+      - $ref: "#/channels/awcms.social_publishing.job.failed/messages/DomainEvent"
+  publishCrmLeadCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.created"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.created/messages/DomainEvent"
+  publishCrmLeadStageChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.stage_changed"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.stage_changed/messages/DomainEvent"
+  publishCrmLeadAssigned:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.assigned"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.assigned/messages/DomainEvent"
+  publishCrmLeadMerged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.merged"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.merged/messages/DomainEvent"
+  publishCrmLeadMergeReverted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.merge_reverted"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.merge_reverted/messages/DomainEvent"
+  publishCrmLeadConverted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.converted"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.converted/messages/DomainEvent"
+  publishCrmLeadConversionReversed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.conversion_reversed"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.conversion_reversed/messages/DomainEvent"
+  publishCrmLeadLost:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.crm_leads.lead.lost"
+    messages:
+      - $ref: "#/channels/awcms.crm_leads.lead.lost/messages/DomainEvent"
+  publishCommerceQuotationAccepted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.quotation.accepted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.quotation.accepted/messages/DomainEvent"
+  publishCommerceQuotationConverted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.quotation.converted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.quotation.converted/messages/DomainEvent"
+  publishCommerceWorkOrderStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.work_order.status_changed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.work_order.status_changed/messages/DomainEvent"
+  publishCommerceDocumentIssued:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.document.issued"
+    messages:
+      - $ref: "#/channels/awcms.commerce.document.issued/messages/DomainEvent"
   publishCommerceProductCreated:
     action: send
     channel:
@@ -1812,6 +2194,18 @@ operations:
       $ref: "#/channels/awcms.commerce.refund.settled"
     messages:
       - $ref: "#/channels/awcms.commerce.refund.settled/messages/DomainEvent"
+  publishCommerceCustomerRegistered:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.customer.registered"
+    messages:
+      - $ref: "#/channels/awcms.commerce.customer.registered/messages/DomainEvent"
+  publishCommerceCustomerConverted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.customer.converted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.customer.converted/messages/DomainEvent"
   publishCommerceConversationStoreReplied:
     action: send
     channel:
@@ -1864,3 +2258,486 @@ components:
           properties:
             sourceModule: { type: string }
             schemaVersion: { type: string }
+    WebsiteEngagementSubmissionReceived:
+      type: object
+      description: >-
+        The `payload` of `awcms.website_engagement.submission.received`, eventVersion
+        1.0, contractVersion 1. An opaque reference and facts ABOUT the submission;
+        never the visitor's details.
+      required:
+        - contractVersion
+        - submissionId
+        - sourceId
+        - sourceCode
+        - clientEventId
+        - kind
+        - occurredAt
+        - receivedAt
+        - provenance
+        - consent
+        - identifiers
+        - privacyClass
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        submissionId: { type: string, format: uuid }
+        sourceId: { type: string, format: uuid }
+        sourceCode: { type: string }
+        clientEventId:
+          type: string
+          description: The client-supplied idempotency/replay key (the provider-event-id analogue).
+        kind: { type: string, enum: [contact, lead, interaction] }
+        interactionType: { type: string, nullable: true }
+        topic: { type: string, nullable: true }
+        locale: { type: string, nullable: true }
+        occurredAt: { type: string, format: date-time }
+        receivedAt: { type: string, format: date-time }
+        provenance:
+          type: object
+          required:
+            [
+              sourceAuthenticated,
+              originVerified,
+              originHost,
+              originVia,
+              challenge
+            ]
+          properties:
+            sourceAuthenticated: { type: boolean, enum: [true] }
+            originVerified: { type: boolean, enum: [true] }
+            originHost: { type: string }
+            originVia: { type: string, enum: [origin, referer] }
+            challenge:
+              type: string
+              enum: [turnstile_verified, not_required, source_none]
+        consent:
+          type: object
+          required: [purposes]
+          properties:
+            purposes:
+              type: array
+              items:
+                {
+                  type: string,
+                  enum: [respond_to_inquiry, marketing_follow_up]
+                }
+            copyVersion: { type: string, nullable: true }
+            pagePath: { type: string, nullable: true }
+            consentAt: { type: string, format: date-time, nullable: true }
+        attribution:
+          type: object
+          description: Only the fields the visitor's browser reported.
+          properties:
+            landingPath: { type: string }
+            referrerHost: { type: string }
+            utmSource: { type: string }
+            utmMedium: { type: string }
+            utmCampaign: { type: string }
+            utmTerm: { type: string }
+            utmContent: { type: string }
+        identifiers:
+          type: array
+          description: Which kinds of identifier the submission holds. The values are never carried.
+          items: { type: string, enum: [email, phone] }
+        privacyClass: { type: string, enum: [personal, anonymous] }
+    WebsiteEngagementSubmissionWithdrawn:
+      type: object
+      description: >-
+        The `payload` of `awcms.website_engagement.submission.withdrawn`, eventVersion 1.0.
+      required:
+        [
+          contractVersion,
+          submissionId,
+          sourceId,
+          sourceCode,
+          reason,
+          withdrawnAt,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        submissionId: { type: string, format: uuid }
+        sourceId: { type: string, format: uuid }
+        sourceCode: { type: string }
+        reason:
+          {
+            type: string,
+            enum: [data_subject_request, consent_withdrawn, controller_decision]
+          }
+        withdrawnAt: { type: string, format: date-time }
+        privacyClass: { type: string, enum: [personal, anonymous] }
+    TelegramEngagementInteractionReceived:
+      type: object
+      description: >-
+        The `payload` of `awcms.telegram_engagement.interaction.received`,
+        eventVersion 1.0, contractVersion 1 (the ADR-0150 section 3 envelope).
+        Ids, kinds and classes; never an identity or the words.
+      required:
+        - contractVersion
+        - provider
+        - channelAccountId
+        - eventKind
+        - providerEventId
+        - conversationRef
+        - senderRef
+        - contentKinds
+        - forwarded
+        - provenance
+        - occurredAt
+        - receivedAt
+        - correlationId
+        - privacyClass
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        provider: { type: string, enum: [telegram] }
+        channelAccountId: { type: string, format: uuid }
+        eventKind: { type: string, enum: [message, command, membership] }
+        providerEventId:
+          type: string
+          description: The per-bot Telegram update id. Unique only together with `channelAccountId`.
+        conversationRef:
+          type: string
+          format: uuid
+          description: The account-scoped contact id (a private chat is the contact).
+        senderRef: { type: string, format: uuid }
+        contentKinds:
+          type: array
+          items: { type: string, enum: [text, media, contact, location, other] }
+        forwarded: { type: boolean }
+        provenance: { type: string, enum: [secret_header] }
+        occurredAt: { type: string, format: date-time }
+        receivedAt: { type: string, format: date-time }
+        correlationId: { type: string }
+        privacyClass:
+          type: string
+          enum: [operational, consent, conversation_meta, customer_content]
+    TelegramEngagementConsentChanged:
+      type: object
+      description: >-
+        The `payload` of `awcms.telegram_engagement.consent.changed`, eventVersion 1.0.
+      required:
+        - contractVersion
+        - provider
+        - channelAccountId
+        - contactRef
+        - purpose
+        - action
+        - method
+        - occurredAt
+        - privacyClass
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        provider: { type: string, enum: [telegram] }
+        channelAccountId: { type: string, format: uuid }
+        contactRef: { type: string, format: uuid }
+        purpose: { type: string, enum: [support, transactional, marketing] }
+        action: { type: string, enum: [opt_in, opt_out] }
+        method:
+          type: string
+          enum:
+            - start_command
+            - stop_command
+            - consent_button
+            - withdraw_button
+            - bot_blocked
+            - provider_forbidden
+            - operator_withdrawal
+        noticeVersion: { type: string, nullable: true }
+        occurredAt: { type: string, format: date-time }
+        privacyClass: { type: string, enum: [consent] }
+    SocialPublicationQueued:
+      type: object
+      description: >-
+        The `payload` of `awcms.social_publishing.publication.queued`, eventVersion
+        1.0. Ids, enums and counts; never content.
+      required:
+        - publicationId
+        - sourceKind
+        - trigger
+        - state
+        - jobCount
+        - accountIds
+      properties:
+        publicationId: { type: string, format: uuid }
+        sourceKind: { type: string, enum: [article, manual] }
+        sourceId: { type: string, format: uuid }
+        trigger:
+          type: string
+          enum: [post_published, scheduled_published, manual_editor_action]
+        state: { type: string, enum: [pending_approval, ready] }
+        jobCount: { type: integer, minimum: 1 }
+        accountIds:
+          type: array
+          items: { type: string, format: uuid }
+    SocialPublicationCancelled:
+      type: object
+      description: >-
+        The `payload` of `awcms.social_publishing.publication.cancelled`,
+        eventVersion 1.0.
+      required: [publicationId, jobsCancelled, jobsAlreadyPublished]
+      properties:
+        publicationId: { type: string, format: uuid }
+        jobsCancelled: { type: integer, minimum: 0 }
+        jobsAlreadyPublished: { type: integer, minimum: 0 }
+    SocialJobPublished:
+      type: object
+      description: >-
+        The `payload` of `awcms.social_publishing.job.published`, eventVersion 1.0.
+      required: [jobId, publicationId, accountId, provider, attemptNo]
+      properties:
+        jobId: { type: string, format: uuid }
+        publicationId: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        provider: { type: string }
+        attemptNo: { type: integer, minimum: 1 }
+    SocialJobFailed:
+      type: object
+      description: >-
+        The `payload` of `awcms.social_publishing.job.failed`, eventVersion 1.0.
+      required:
+        [jobId, publicationId, accountId, provider, failureCode, attemptNo]
+      properties:
+        jobId: { type: string, format: uuid }
+        publicationId: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        provider: { type: string }
+        failureCode: { type: string }
+        attemptNo: { type: integer, minimum: 0 }
+    CrmLeadCreated:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.created`, eventVersion 1.0. Opaque
+        ids and attribution references only.
+      required:
+        [
+          contractVersion,
+          leadId,
+          pipelineId,
+          revisionId,
+          stageKey,
+          stageCategory,
+          source,
+          contactPointKinds,
+          occurredAt,
+          recordedAt,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        leadId: { type: string, format: uuid }
+        pipelineId: { type: string, format: uuid }
+        revisionId: { type: string, format: uuid }
+        stageKey: { type: string }
+        stageCategory:
+          {
+            type: string,
+            enum: [new, working, qualified, converted, lost, disqualified]
+          }
+        ownerTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+          description: >-
+            The staff owner set at intake (the same kind of value
+            `lead.assigned` carries), or null. Additive since Issue #1165
+            (ADR-0159): an intake with an owner publishes no `lead.assigned`,
+            and `crm_follow_up` needs the owner to assign a follow-up task.
+        source:
+          type: object
+          properties:
+            touchId: { type: string, format: uuid }
+            kind:
+              {
+                type: string,
+                enum: [website_form, inbound_message, import, manual, api]
+              }
+            channelAccountId: { type: string, format: uuid, nullable: true }
+            campaignRef: { type: string, nullable: true }
+        contactPointKinds:
+          type: array
+          items: { type: string, enum: [email, phone, platform_id] }
+        occurredAt: { type: string, format: date-time }
+        recordedAt: { type: string, format: date-time }
+    CrmLeadStageChanged:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.stage_changed`, eventVersion 1.0.
+      required:
+        [
+          contractVersion,
+          leadId,
+          pipelineId,
+          revisionId,
+          transitionId,
+          transitionKind,
+          toStageKey,
+          toCategory,
+          occurredAt,
+          recordedAt,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        leadId: { type: string, format: uuid }
+        pipelineId: { type: string, format: uuid }
+        revisionId: { type: string, format: uuid }
+        transitionId: { type: string, format: uuid }
+        transitionKind:
+          {
+            type: string,
+            enum:
+              [
+                moved,
+                stage_migrated,
+                converted,
+                conversion_reversed,
+                merged_away,
+                merge_reverted
+              ]
+          }
+        fromStageKey: { type: string, nullable: true }
+        toStageKey: { type: string }
+        fromCategory:
+          {
+            type: string,
+            nullable: true,
+            enum: [new, working, qualified, converted, lost, disqualified]
+          }
+        toCategory:
+          {
+            type: string,
+            enum: [new, working, qualified, converted, lost, disqualified]
+          }
+        occurredAt: { type: string, format: date-time }
+        recordedAt: { type: string, format: date-time }
+    CrmLeadAssigned:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.assigned`, eventVersion 1.0.
+      required: [contractVersion, leadId, assignedAt, privacyClass]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        leadId: { type: string, format: uuid }
+        fromOwnerTenantUserId: { type: string, format: uuid, nullable: true }
+        toOwnerTenantUserId: { type: string, format: uuid, nullable: true }
+        assignedAt: { type: string, format: date-time }
+    CrmLeadMerged:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.merged`, eventVersion 1.0.
+      required:
+        [
+          contractVersion,
+          mergeId,
+          survivorLeadId,
+          absorbedLeadId,
+          mergedAt,
+          undoUntil,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        mergeId: { type: string, format: uuid }
+        survivorLeadId: { type: string, format: uuid }
+        absorbedLeadId: { type: string, format: uuid }
+        mergedAt: { type: string, format: date-time }
+        undoUntil: { type: string, format: date-time }
+    CrmLeadMergeReverted:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.merge_reverted`, eventVersion 1.0.
+      required:
+        [
+          contractVersion,
+          mergeId,
+          survivorLeadId,
+          absorbedLeadId,
+          revertedAt,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        mergeId: { type: string, format: uuid }
+        survivorLeadId: { type: string, format: uuid }
+        absorbedLeadId: { type: string, format: uuid }
+        revertedAt: { type: string, format: date-time }
+    CrmLeadConverted:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.converted`, eventVersion 1.0.
+      required:
+        [
+          contractVersion,
+          leadId,
+          conversionId,
+          mode,
+          evidenceRef,
+          toStageKey,
+          occurredAt,
+          recordedAt,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        leadId: { type: string, format: uuid }
+        conversionId: { type: string, format: uuid }
+        mode:
+          { type: string, enum: [authority_confirmed, authority_unconfirmed] }
+        externalCustomerRef: { type: string, nullable: true }
+        evidenceRef: { type: string }
+        toStageKey: { type: string }
+        occurredAt: { type: string, format: date-time }
+        recordedAt: { type: string, format: date-time }
+    CrmLeadConversionReversed:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.conversion_reversed`, eventVersion 1.0.
+      required:
+        [
+          contractVersion,
+          leadId,
+          conversionId,
+          reversalEvidenceRef,
+          toStageKey,
+          occurredAt,
+          recordedAt,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        leadId: { type: string, format: uuid }
+        conversionId: { type: string, format: uuid }
+        reversalEvidenceRef: { type: string }
+        toStageKey: { type: string }
+        occurredAt: { type: string, format: date-time }
+        recordedAt: { type: string, format: date-time }
+    CrmLeadLost:
+      type: object
+      description: >-
+        The `payload` of `awcms.crm_leads.lead.lost`, eventVersion 1.0.
+      required:
+        [
+          contractVersion,
+          leadId,
+          pipelineId,
+          transitionId,
+          toStageKey,
+          toCategory,
+          occurredAt,
+          privacyClass
+        ]
+      properties:
+        contractVersion: { type: string, enum: ["1"] }
+        privacyClass: { type: string, enum: [pseudonymous] }
+        leadId: { type: string, format: uuid }
+        pipelineId: { type: string, format: uuid }
+        transitionId: { type: string, format: uuid }
+        toStageKey: { type: string }
+        toCategory: { type: string, enum: [lost, disqualified] }
+        occurredAt: { type: string, format: date-time }

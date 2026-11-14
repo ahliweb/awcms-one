@@ -1,9 +1,10 @@
 /**
  * idn-population-activate.ts — `bun run idn-population:activate`.
  *
- * awcms-one ADR-0051 — chooses which imported BPS population dataset is SERVED
- * for its publication series and covered region. Runs as the least-privilege
- * `awcms_worker` role (grants in `sql/882`), touches no network.
+ * awcms-one ADR-0053 (the lifecycle is ADR-0051's, kept when the source moved
+ * from BPS to the Kepmendagri decree) — chooses which imported population
+ * dataset is SERVED for its publication series and covered region. Runs as the
+ * least-privilege `awcms_worker` role (grants in `sql/882`), touches no network.
  *
  * ```bash
  * bun run idn-population:activate -- --dataset <code|uuid>            # dry run
@@ -11,8 +12,9 @@
  * ```
  *
  * Activating supersedes only the active dataset of the SAME series and covered
- * region (see `population-lifecycle.ts`): the provincial publication and each
- * regency's publication are active side by side.
+ * region (see `population-lifecycle.ts`). Since sql/883 the only series is the
+ * national decree dataset, so activating a newer decree dataset supersedes the
+ * previous one, and re-activating a superseded one is the rollback.
  *
  * ## Why this is a job and not an endpoint
  *

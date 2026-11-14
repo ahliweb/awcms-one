@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:498b52c9b691f6a9b97de5fcf2498feb8a9451fa2589722299ba5ae899e48236 -->
+<!-- i18n-source-hash: sha256:5b33a19933434e66b01558a74ff880ccdd4917ea95b94167e6b09dbf713e5a0b -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-177 target menjalankan berkas di `scripts/`; 65 di antaranya
+186 target menjalankan berkas di `scripts/`; 65 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -98,10 +98,13 @@ terjadwal, atau oleh workflow CI tertentu.
 | `config:validate`                         | `validate-env.ts`                              | —    |
 | `contracts:omes:sync`                     | `sync-omes-contracts.ts`                       | —    |
 | `contracts:omes:sync:check`               | `sync-omes-contracts.ts`                       | ✅   |
+| `crm-follow-up:dispatch`                  | `crm-follow-up-dispatch.ts`                    | —    |
 | `data-lifecycle:archive-purge`            | `data-lifecycle-archive-purge.ts`              | —    |
 | `data-lifecycle:registry:check`           | `data-lifecycle-registry-check.ts`             | ✅   |
 | `data-lifecycle:table-coverage:check`     | `data-lifecycle-table-coverage-check.ts`       | ✅   |
 | `data-lifecycle:worker-grants:check`      | `data-lifecycle-worker-grants-check.ts`        | ✅   |
+| `database:capacity:check`                 | `database-capacity-check.ts`                   | —    |
+| `database:pgbouncer:verify`               | `database-pgbouncer-verify.ts`                 | —    |
 | `db:commerce:renumber`                    | `commerce-migrations-renumber.ts`              | —    |
 | `db:fk-index:check`                       | `db-fk-index-check.ts`                         | ✅   |
 | `db:function-search-path:check`           | `db-function-search-path-check.ts`             | ✅   |
@@ -125,6 +128,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `email:dispatch`                          | `email-dispatch.ts`                            | —    |
 | `email:provider:health`                   | `email-provider-health.ts`                     | —    |
 | `email:queue:purge`                       | `email-queue-purge.ts`                         | —    |
+| `email:senders:verify`                    | `email-senders-verify.ts`                      | —    |
 | `email:templates:seed-defaults`           | `email-templates-seed-defaults.ts`             | —    |
 | `entitlements:backfill`                   | `identity-access-entitlement-backfill.ts`      | —    |
 | `family:conformance:check`                | `family-conformance-check.ts`                  | ✅   |
@@ -169,6 +173,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `news-media:reconcile`                    | `news-media-r2-reconcile.ts`                   | —    |
 | `omes:contract:preflight`                 | `omes-contract-preflight.ts`                   | ✅   |
 | `omes:repository-progress:poll`           | `omes-repository-progress-poll.ts`             | —    |
+| `omnichannel-inbox:sla`                   | `omnichannel-inbox-sla.ts`                     | —    |
 | `openapi:bundle`                          | `openapi-bundle.ts`                            | —    |
 | `payroll:catalog-boundary:check`          | `payroll-catalog-boundary-check.ts`            | —    |
 | `payroll:sql-boundary:check`              | `payroll-sql-boundary-check.ts`                | ✅   |
@@ -195,10 +200,13 @@ terjadwal, atau oleh workflow CI tertentu.
 | `site-search:reconcile`                   | `site-search-reconcile.ts`                     | —    |
 | `site-search:sources:check`               | `site-search-sources-check.ts`                 | ✅   |
 | `skills:check`                            | `skills-check.ts`                              | ✅   |
+| `social-publishing:dispatch`              | `social-publishing-dispatch.ts`                | —    |
+| `social-publishing:retention:purge`       | `social-publishing-retention-purge.ts`         | —    |
 | `subject-data:coverage:check`             | `subject-data-coverage-check.ts`               | ✅   |
 | `subject-data:registry:check`             | `subject-data-registry-check.ts`               | ✅   |
 | `sync:objects:dispatch`                   | `object-sync-dispatch.ts`                      | —    |
 | `sync:objects:purge`                      | `object-queue-purge.ts`                        | —    |
+| `telegram-engagement:dispatch`            | `telegram-engagement-dispatch.ts`              | —    |
 | `telegram:chat:rekey`                     | `telegram-chat-rekey.ts`                       | —    |
 | `telegram:dispatch`                       | `telegram-dispatch.ts`                         | —    |
 | `telegram:queue:purge`                    | `telegram-queue-purge.ts`                      | —    |
@@ -208,6 +216,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `ui:single-flight:audit`                  | `ui-single-flight-audit.ts`                    | —    |
 | `version:check`                           | `version-check.ts`                             | ✅   |
 | `whatsapp:dispatch`                       | `whatsapp-dispatch.ts`                         | —    |
+| `whatsapp:meta:preflight`                 | `whatsapp-meta-preflight.ts`                   | —    |
 | `whatsapp:queue:purge`                    | `whatsapp-queue-purge.ts`                      | —    |
 | `workflow:escalations:dispatch`           | `workflow-escalations-dispatch.ts`             | —    |
 
@@ -219,15 +228,15 @@ Rantai `check` harus aman dijalankan di checkout lokal mana pun tanpa database,
 tanpa server, dan tanpa konteks PR. Yang di luar rantai ada karena melanggar
 salah satu syarat itu:
 
-| Target                                                                  | Kenapa di luar `check`                                                                                         |
-| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `security:readiness`                                                    | Butuh database termigrasi — memeriksa RLS `FORCE`, role app non-superuser, grant worker/setup                  |
-| `config:validate`                                                       | Butuh environment nyata (`process.env`, atau `--file <path>`). Jalankan sebelum deploy                         |
-| `db:migrate`, `db:pool:health`, `redis:health`, `email:provider:health` | Butuh database/Redis/provider yang berjalan                                                                    |
-| Seluruh worker terjadwal                                                | Butuh database, dan dijalankan cron/systemd — lihat `ModuleDescriptor.jobs` + `GET /api/v1/modules/{key}/jobs` |
-| `changesets:policy:check`                                               | Berbentuk PR-diff (`origin/main...HEAD`); dijalankan `.github/workflows/changesets.yml`                        |
-| `release:verify`                                                        | Hanya bermakna pada commit ber-tag `vX.Y.Z`; dijalankan job `validate` di `.github/workflows/release.yml`      |
-| `*:generate`                                                            | Pasangan tulis dari sebuah `*:check`. Yang menggerbangi CI adalah `:check`-nya                                 |
+| Target                                                                                               | Kenapa di luar `check`                                                                                         |
+| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `security:readiness`                                                                                 | Butuh database termigrasi — memeriksa RLS `FORCE`, role app non-superuser, grant worker/setup                  |
+| `config:validate`                                                                                    | Butuh environment nyata (`process.env`, atau `--file <path>`). Jalankan sebelum deploy                         |
+| `db:migrate`, `db:pool:health`, `database:pgbouncer:verify`, `redis:health`, `email:provider:health` | Butuh database/Redis/provider yang berjalan                                                                    |
+| Seluruh worker terjadwal                                                                             | Butuh database, dan dijalankan cron/systemd — lihat `ModuleDescriptor.jobs` + `GET /api/v1/modules/{key}/jobs` |
+| `changesets:policy:check`                                                                            | Berbentuk PR-diff (`origin/main...HEAD`); dijalankan `.github/workflows/changesets.yml`                        |
+| `release:verify`                                                                                     | Hanya bermakna pada commit ber-tag `vX.Y.Z`; dijalankan job `validate` di `.github/workflows/release.yml`      |
+| `*:generate`                                                                                         | Pasangan tulis dari sebuah `*:check`. Yang menggerbangi CI adalah `:check`-nya                                 |
 
 Urutan otoritatif rantai `check` ada di `package.json` langsung — sengaja tidak
 diduplikasi di sini supaya tidak drift.
@@ -263,7 +272,6 @@ tetap hijau karena gate lamanya hanya membaca lima berkas markdown akar.
 | ----------------------------------------------- | ------------------------------------------------------------------ |
 | `config:docs:check`                             | Rekonsiliasi tiga-arah `.env.example` ↔ doc 18 ↔ `validate-env.ts` |
 | `i18n:extract` / `:pot:check` / `:parity:check` | Setup i18n (`.po`/`.pot`) + UI                                     |
-| `database:capacity:check`                       | Validasi kapasitas lintas-instance (preflight)                     |
 | `production:preflight`, `resilience:dr-drill`   | Mengagregasi gate di atas + server berjalan                        |
 | `performance:*`                                 | Harness beban + environment berukuran produksi                     |
 

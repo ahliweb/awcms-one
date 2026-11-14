@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:a0959de28915423dc1b8aa52ccc7bf6fe82a68f6643989b2053d08c48fc4dc4b -->
+<!-- i18n-source-hash: sha256:1bd1f9bf449f7a0dbfbf7c1c6b260f2fdb16f069c7548be4b6b401ef409cabe2 -->
 
 # Routing
 
@@ -91,6 +91,7 @@ Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, te
 | `/akun/pesanan?kode=` | berkas yang sama, dengan `?kode=` | Detail satu pesanan milik akun, memakai ulang renderer `/pesanan` sendiri (`apps/storefront/src/lib/pesanan-render.ts`) — TANPA prompt telepon, sesi sudah membuktikan kepemilikan |
 | `/akun/ulasan` | `apps/storefront/src/profil/toko/pages/akun/ulasan.astro` | Ulasan produk milik akun sendiri — rating sebagai teks + bintang, status moderasi dalam Bahasa Indonesia; `noindex, follow` |
 | `/akun/afiliasi` | `apps/storefront/src/profil/toko/pages/akun/afiliasi.astro` | Program afiliasi (issue #93, S3 dari #32; sisi CMS/staf adalah issue #92): penjelasan tertutup saat `affiliateProgramEnabled` bernilai `false` pada saat build, jika tidak maka gabung/tautan-referral/statistik/komisi; `noindex, follow` |
+| `/akun/privasi` | `apps/storefront/src/profil/toko/pages/akun/privasi.astro` | Ekspor dan penghapusan data milik pembeli sendiri (issue #529, ADR-0055): tampilan tamu dengan tautan masuk; tampilan masuk dengan kartu ekspor dan kartu penghapusan, masing-masing meminta kode baru yang dikirim ke akun (`…/account/privacy/otp`) sebelum `…/export` (berkas JSON yang dibuat dari respons, tidak pernah disimpan) atau `…/erasure` (butuh `Idempotency-Key`; ditolak selama ada pesanan, pemesanan, saldo nilai tersimpan, pengembalian dana, atau pembayaran afiliasi yang masih terbuka; menghapus sesi tersimpan saat berhasil). `noindex, follow`. |
 | `/akun/pesan` | `apps/storefront/src/profil/toko/pages/akun/pesan.astro` | Kotak pesan akun dengan toko (issue #115, S3 dari #33, kontrak #106 D8): daftar percakapan berpaginasi keyset dengan lencana belum-dibaca, formulir "Pesan baru", tampilan thread; `noindex, follow` (diwariskan dari prefix `Disallow` milik `/akun` — tidak perlu perubahan `robots.txt`) |
 | `/akun/pesan?id=` | berkas yang sama, dengan `?id=` | Thread satu percakapan milik akun — setiap pesan, formulir balas selama `status` `"open"`, catatan thread-tertutup jika sebaliknya |
 

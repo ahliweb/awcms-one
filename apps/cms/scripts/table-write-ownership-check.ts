@@ -53,7 +53,7 @@ import { stripComments } from "./lib/source-text";
 const WRITE_PATTERN =
   /\b(?:INSERT\s+INTO|UPDATE|DELETE\s+FROM)\s+(awcms_\w+)/gi;
 
-const SOURCE_GLOBS = ["src/**/*.ts", "src/**/*.astro", "scripts/*.ts"];
+const SOURCE_GLOBS = ["src/**/*.ts", "src/**/*.astro", "scripts/**/*.ts"];
 
 /**
  * Owners that are not modules. Named so a violation reads as a sentence.
@@ -128,6 +128,136 @@ export const DOCUMENTED_EXCEPTIONS: readonly {
       "edge: declaring one would wrongly imply `tenant_admin` cannot function " +
       "without the other two enabled. Confined to that ONE file — a second " +
       "bootstrap-shaped writer is a finding, not a precedent."
+  })),
+  ...[
+    "awcms_tenants",
+    "awcms_channel_secrets",
+    "awcms_channel_provider_connections",
+    "awcms_channel_accounts",
+    "awcms_channel_account_capabilities"
+  ].map((table) => ({
+    table,
+    excusedOwner: TOOLING,
+    reason:
+      "`scripts/security-readiness.ts` `probeSocialDispatchSecretVisibility` " +
+      "(Issue #1145, M-1 of the PR #1261 audit) seeds a throwaway tenant and " +
+      "negative channel rows inside ONE transaction that it ALWAYS rolls back " +
+      "(it throws a sentinel), assumes `awcms_social_dispatch`, and proves the " +
+      "role sees exactly one secret. Nothing it writes is ever committed, so it " +
+      "is a behavioural probe of the row policy, not a second writer of these " +
+      "tables."
+  })),
+  ...[
+    "awcms_tenants",
+    "awcms_channel_accounts",
+    "awcms_channel_webhook_subscriptions",
+    "awcms_email_provider_events"
+  ].map((table) => ({
+    table,
+    excusedOwner: TOOLING,
+    reason:
+      "`scripts/security-readiness.ts` `probeEmailProviderEventRetentionFloor` " +
+      "(Issue #1161, M-3 of the PR #1272 audit) seeds a throwaway tenant, a " +
+      "Mailketing account, a callback and four back-dated quarantine rows inside " +
+      "ONE transaction that it ALWAYS rolls back (it throws a sentinel), assumes " +
+      "`awcms_worker`, and proves the retention DELETE removes exactly the two " +
+      "rows past their window. Nothing it writes is ever committed, so it is a " +
+      "behavioural probe of the floor, not a second writer of these tables."
+  })),
+  ...[
+    "awcms_tenants",
+    "awcms_channel_accounts",
+    "awcms_channel_provider_connections",
+    "awcms_channel_secrets"
+  ].map((table) => ({
+    table,
+    excusedOwner: TOOLING,
+    reason:
+      "`scripts/lib/worker-secret-probe.ts` (used by `security:readiness`, Issue #1160 " +
+      "audit M3) seeds one throwaway tenant, accounts, a connection and secrets " +
+      "INSIDE a transaction it always rolls back, then reads them as " +
+      "`awcms_worker` to measure the worker's real secret visibility. Nothing is " +
+      "ever committed: it is a behavioural probe of a row policy, not a second " +
+      "writer of tenant or channel-account data. Confined to that one function."
+  })),
+  ...[
+    "awcms_tenants",
+    "awcms_channel_secrets",
+    "awcms_channel_accounts",
+    "awcms_telegram_engagement_endpoints",
+    "awcms_telegram_engagement_contacts",
+    // The probe's `refused(...)` forged-opt-in attempt, run as the dispatch
+    // role. It is NOT a seed: the database is expected to refuse it, and the
+    // probe records a finding if it succeeds. It becomes visible only now that
+    // the gate scans `scripts/**` (Issue #1268), and it is excused for the same
+    // reason as the other refused writes, on this one table.
+    "awcms_telegram_engagement_consents"
+  ].map((table) => ({
+    table,
+    excusedOwner: TOOLING,
+    reason:
+      "`scripts/lib/telegram-engagement-dispatch-probe.ts` (used by " +
+      "`security:readiness`, Issue #1156, M-A/M-B of the PR #1260 re-audit) seeds " +
+      "two throwaway tenants, channel secrets, customer bot accounts, webhook " +
+      "endpoints and contacts INSIDE one transaction it always rolls back (it " +
+      "throws a sentinel), then assumes `awcms_telegram_engagement_dispatch` to " +
+      "prove what the role can see and that its forbidden writes are refused. " +
+      "Nothing is ever committed: it is a behavioural probe of row policies, not " +
+      "a second writer. Its attempted writes as the role (the forged consent " +
+      "opt-in, domain events and deliveries) are expected to be REFUSED, never " +
+      "succeed, and roll back with the rest."
+  })),
+  ...[
+    "awcms_channel_webhook_subscriptions",
+    "awcms_whatsapp_service_windows",
+    "awcms_whatsapp_webhook_receipts",
+    // sql/394 (#1298 audit LOW-1): the same probe also seeds a fresh sent, an
+    // old queued and an aged failed message, to prove the worker's queue
+    // DELETE floor; rolled back with the rest.
+    "awcms_whatsapp_messages"
+  ].map((table) => ({
+    table,
+    excusedOwner: TOOLING,
+    reason:
+      "`scripts/security-readiness.ts` `probeWorkerPurgeDeleteFloors` (Issue " +
+      "#1143, L-2 of the PR #1267 review) seeds one fresh and one aged window " +
+      "and webhook receipt (and the subscription a receipt references) inside " +
+      "ONE transaction that it ALWAYS rolls back (it throws a sentinel), " +
+      "assumes `awcms_worker`, and proves the role can delete exactly the aged " +
+      "rows. Nothing it writes is ever committed, so it is a behavioural probe " +
+      "of the purge-only DELETE policies, not a second writer of these tables."
+  })),
+  ...[
+    "awcms_social_publications",
+    "awcms_social_publish_jobs",
+    "awcms_channel_account_health",
+    "awcms_audit_events",
+    "awcms_domain_events",
+    "awcms_domain_event_deliveries"
+  ].map((table) => ({
+    table,
+    excusedOwner: TOOLING,
+    reason:
+      "`scripts/security-readiness.ts` `probeSocialDispatchWriteBoundary` " +
+      "(Issue #1146, sql/373) seeds a throwaway tenant, a publication and jobs, " +
+      "then, as `awcms_social_dispatch`, attempts the legitimate and the " +
+      "forbidden writes (each in a savepoint) inside ONE transaction that it " +
+      "ALWAYS rolls back (it throws a sentinel). Nothing it writes is ever " +
+      "committed: a behavioural probe of the role's RESTRICTIVE write " +
+      "policies, not a second writer of these tables."
+  })),
+  ...["awcms_blog_posts", "awcms_news_media_objects"].map((table) => ({
+    table,
+    excusedOwner: TOOLING,
+    reason:
+      "`scripts/security-readiness.ts` `probeSocialSourceRecheck` (Issue " +
+      "#1145, ADR-0157 L8, sql/386) seeds two throwaway tenants with articles " +
+      "and media objects in every state that matters INSIDE one transaction it " +
+      "ALWAYS rolls back (it throws a sentinel), then, as " +
+      "`awcms_social_dispatch`, asks the two SECURITY DEFINER re-check " +
+      "functions for their verdicts and proves a direct read is refused. " +
+      "Nothing it writes is ever committed: a behavioural probe of the " +
+      "functions, not a second writer of posts or media."
   }))
 ];
 

@@ -5,6 +5,7 @@
 - **Status:** Accepted
 - **Date:** 19 September 2026
 - **Decision maker:** ahliweb
+- **Update (14 November 2026, issue #529):** [ADR-0055](0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md) builds the shopper's data-subject rights on this ADR: D1 (an account carries no tenant-user, identity or profile id) is exactly why the upstream subject-data engine cannot reach a shopper, so the flow is commerce-owned and keyed by the customer id; D3 (bearer, no cookie) is kept (three `privacy/*` routes, a fresh one-time code of its own purpose, every session revoked by an erasure); D2's OTP table gains the `subject_export` and `subject_erasure` purposes. Nothing decided here changes.
 - **Related:** [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md), [ADR-0009](0009-guest-checkout-by-order-code-and-phone.md); issues #32, #86, #87–#93
 
 ## Context

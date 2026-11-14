@@ -59,7 +59,8 @@ describe("derived e-mail categories in the email:dispatch process (Issue #311)",
     expect([...names].sort()).toEqual([
       "derived.commerce_campaign",
       "derived.commerce_conversation_reply",
-      "derived.commerce_customer_otp"
+      "derived.commerce_customer_otp",
+      "derived.commerce_customer_subject_otp"
     ]);
     for (const [name, variables] of COMMERCE_DERIVED_EMAIL_CATEGORIES) {
       expect(resolved[name]).toEqual([...variables]);

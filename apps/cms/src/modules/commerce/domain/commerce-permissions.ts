@@ -618,6 +618,28 @@ export const COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS = {
 } as const;
 
 /**
+ * The CRM lead link (Issue #463, ADR-0056, `sql/1069`). Three keys on one
+ * activity code, EXISTING verbs only (the upstream-owned `AccessAction` union is
+ * not widened):
+ *
+ *   - `read`: list the tenant's links (opaque ids, evidence kind, state).
+ *   - `create`: confirm a lead as a commerce customer on a verified commerce fact.
+ *   - `approve`: apply the reversal of a link (high-risk).
+ *
+ * `create` and `approve` are NEVER sufficient alone: `CrmLeadPort` performs no
+ * access check, so the routes ALSO authorize `crm_leads.conversions.approve`
+ * through the same chokepoint (`authorizeInTransaction`). Neither implies any
+ * `crm_leads.*` key, and no `crm_leads.*` key implies either.
+ */
+export const COMMERCE_CRM_LEAD_LINKS_ACTIVITY_CODE = "crm_lead_links";
+
+export const COMMERCE_CRM_LEAD_LINK_PERMISSIONS = {
+  read: "commerce.crm_lead_links.read",
+  create: "commerce.crm_lead_links.create",
+  approve: "commerce.crm_lead_links.approve"
+} as const;
+
+/**
  * Returns, refunds and exchanges (Issue #287, ADR-0033, `sql/996`). Five
  * permissions on three activity codes, EXISTING verbs only (the upstream-owned
  * `AccessAction` union is not widened - ADR-0025 D9's reasoning again):

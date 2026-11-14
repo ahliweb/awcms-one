@@ -40,6 +40,10 @@
     "build:asset-budget:check": "bun scripts/client-asset-budget.ts",
     "bench:booking": "bun scripts/bench-booking.ts",
     "bench:commerce-load": "bun scripts/bench-commerce-load.ts",
+    "loadtest:env:up": "bun loadtest/ephemeral/ephemeral.ts up",
+    "loadtest:env:down": "bun loadtest/ephemeral/ephemeral.ts down",
+    "loadtest:run": "bun loadtest/run.ts",
+    "loadtest:merge": "bun loadtest/merge-results.ts",
     "pwa:icons:generate": "bun scripts/generate-pwa-icons.ts",
     "build:preview-overlay": "bun scripts/build-preview-overlay.ts",
     "build:preview-overlay:check": "bun scripts/build-preview-overlay.ts --check",
@@ -61,13 +65,19 @@
     "push:queue:purge": "bun scripts/push-queue-purge.ts",
     "push:vapid:generate": "bun scripts/push-vapid-generate.ts",
     "whatsapp:dispatch": "bun scripts/whatsapp-dispatch.ts",
+    "whatsapp:meta:preflight": "bun scripts/whatsapp-meta-preflight.ts",
     "whatsapp:queue:purge": "bun scripts/whatsapp-queue-purge.ts",
+    "social-publishing:dispatch": "bun scripts/social-publishing-dispatch.ts",
+    "social-publishing:retention:purge": "bun scripts/social-publishing-retention-purge.ts",
+    "telegram-engagement:dispatch": "bun scripts/telegram-engagement-dispatch.ts",
     "telegram:dispatch": "bun scripts/telegram-dispatch.ts",
     "telegram:queue:purge": "bun scripts/telegram-queue-purge.ts",
     "telegram:webhook:register": "bun scripts/telegram-webhook-register.ts",
     "telegram:templates:check": "bun scripts/telegram-templates-check.ts",
     "booking:holds:expire": "bun scripts/booking-holds-expire.ts",
     "booking:reminders:dispatch": "bun scripts/booking-reminders-dispatch.ts",
+    "crm-follow-up:dispatch": "bun scripts/crm-follow-up-dispatch.ts",
+    "omnichannel-inbox:sla": "bun scripts/omnichannel-inbox-sla.ts",
     "identity-access:business-scope:expiry": "bun scripts/identity-access-business-scope-expiry.ts",
     "identity-access:delegated-access:expiry": "bun scripts/identity-access-delegated-access-expiry.ts",
     "identity-access:subscription-lifecycle": "bun scripts/identity-access-subscription-lifecycle.ts",
@@ -156,6 +166,7 @@
     "email:dispatch": "bun scripts/email-dispatch.ts",
     "email:provider:health": "bun scripts/email-provider-health.ts",
     "email:queue:purge": "bun scripts/email-queue-purge.ts",
+    "email:senders:verify": "bun scripts/email-senders-verify.ts",
     "email:templates:seed-defaults": "bun scripts/email-templates-seed-defaults.ts",
     "reporting:projections:refresh": "bun scripts/reporting-projections-refresh.ts",
     "reporting:projections:registry:check": "bun scripts/reporting-projection-registry-check.ts",
@@ -178,6 +189,8 @@
     "contracts:omes:sync": "bun scripts/sync-omes-contracts.ts",
     "contracts:omes:sync:check": "bun scripts/sync-omes-contracts.ts --check",
     "omes:contract:preflight": "bun scripts/omes-contract-preflight.ts",
+    "database:capacity:check": "bun scripts/database-capacity-check.ts",
+    "database:pgbouncer:verify": "bun scripts/database-pgbouncer-verify.ts",
     "db:pool:health": "bun scripts/db-pool-health.ts",
     "redis:health": "bun scripts/redis-health.ts",
     "changesets:policy:check": "bun scripts/changeset-policy-check.ts",
@@ -234,7 +247,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
     "@changesets/cli": "^3.0.3",
-    "@playwright/test": "^1.64.1",
+    "@playwright/test": "^1.65.0",
     "@types/bun": "^1.4.4",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.2",
@@ -255,7 +268,7 @@
     "undici": "^8.10.2"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.9",
-    "astro": "^7.4.4"
+    "@astrojs/node": "^11.1.11",
+    "astro": "^7.4.7"
   }
 }

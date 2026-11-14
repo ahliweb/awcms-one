@@ -39,6 +39,7 @@ import {
   type ImportSite
 } from "../scripts/lib/exemption-guards";
 import {
+  APP_ROLE_SCHEDULED_EXCEPTIONS,
   GLOBAL_SECRETS,
   JOB_SCOPED,
   RUNNER_DB_BEGIN,
@@ -599,16 +600,15 @@ describe("DATABASE_URL is withheld from jobs that cannot reach the app connectio
       ].map((match) => match[1] as string)
     )
   ];
-  // The ONE scheduled job that runs as awcms_app on purpose, with the reason: it
-  // posts the commission intake queue into the accrual ledger, and the payroll
-  // boundary lets only the request role touch an accrual (ADR-0147, Issue #1189).
-  // The event consumer that feeds the queue stays awcms_worker with INSERT only.
-  const APP_ROLE_SCHEDULED_JOBS = new Map([
-    [
-      "hr-commission:intents:post",
-      "ADR-0147: posts accruals; only awcms_app may"
-    ]
-  ]);
+  // The scheduled jobs that run as awcms_app on purpose, each with its ADR and
+  // reason, live in APP_ROLE_SCHEDULED_EXCEPTIONS (tests/jobs-app-role-exceptions
+  // .test.ts holds that list to the crontab in both directions).
+  const APP_ROLE_SCHEDULED_JOBS = new Map(
+    APP_ROLE_SCHEDULED_EXCEPTIONS.map((entry) => [
+      entry.target,
+      `${entry.adr}: ${entry.reason}`
+    ])
+  );
   // Tracing every package target takes seconds; do it once for the block.
   let appTargets: string[] = [];
   beforeAll(() => {
@@ -652,7 +652,8 @@ describe("DATABASE_URL is withheld from jobs that cannot reach the app connectio
       if (APP_ROLE_SCHEDULED_JOBS.has(target)) {
         // It reaches the app connection from its own entrypoint and nowhere else.
         expect(offenders, `${target} opens the app connection`).toEqual([
-          "scripts/hr-commission-intents-post.ts"
+          APP_ROLE_SCHEDULED_EXCEPTIONS.find((entry) => entry.target === target)
+            ?.entrypoint as string
         ]);
         continue;
       }

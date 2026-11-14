@@ -1,5 +1,5 @@
 {
-  "moduleCount": 35,
+  "moduleCount": 41,
   "valid": true,
   "issueCount": 0,
   "modules": [
@@ -15,7 +15,11 @@
         "module_management",
         "logging"
       ],
-      "capabilitiesProvided": ["public_content", "seo_facts"],
+      "capabilitiesProvided": [
+        "public_content",
+        "seo_facts",
+        "article_publication_status"
+      ],
       "capabilitiesConsumed": [
         {
           "capability": "media_library",
@@ -71,13 +75,13 @@
       "key": "channel_accounts",
       "name": "Channel Accounts",
       "version": "0.1.0",
-      "status": "experimental",
+      "status": "active",
       "type": "system",
       "dependencies": ["tenant_admin", "identity_access", "logging"],
       "capabilitiesProvided": ["channel_account"],
       "capabilitiesConsumed": [],
-      "permissionCount": 6,
-      "navigationCount": 0,
+      "permissionCount": 10,
+      "navigationCount": 1,
       "jobCount": 1,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
@@ -139,11 +143,73 @@
           "capability": "booking",
           "providedBy": "booking",
           "optional": true
+        },
+        {
+          "capability": "crm_lead",
+          "providedBy": "crm_leads",
+          "optional": true
         }
       ],
-      "permissionCount": 166,
+      "permissionCount": 173,
       "navigationCount": 30,
       "jobCount": 13,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "crm_follow_up",
+      "name": "CRM Follow-up",
+      "version": "0.1.0",
+      "status": "experimental",
+      "type": "domain",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "module_management",
+        "domain_event_runtime",
+        "crm_leads"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [
+        {
+          "capability": "crm_lead",
+          "providedBy": "crm_leads",
+          "optional": false
+        },
+        {
+          "capability": "workflow_notification",
+          "providedBy": "email",
+          "optional": true
+        }
+      ],
+      "permissionCount": 5,
+      "navigationCount": 0,
+      "jobCount": 1,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "crm_leads",
+      "name": "CRM Leads",
+      "version": "0.1.0",
+      "status": "experimental",
+      "type": "domain",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "module_management",
+        "domain_event_runtime",
+        "profile_identity"
+      ],
+      "capabilitiesProvided": ["crm_lead"],
+      "capabilitiesConsumed": [],
+      "permissionCount": 11,
+      "navigationCount": 0,
+      "jobCount": 0,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -183,15 +249,21 @@
     {
       "key": "email",
       "name": "Email",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "status": "active",
       "type": null,
       "dependencies": ["tenant_admin", "profile_identity", "identity_access"],
       "capabilitiesProvided": ["auth_notification", "workflow_notification"],
-      "capabilitiesConsumed": [],
-      "permissionCount": 12,
+      "capabilitiesConsumed": [
+        {
+          "capability": "channel_account",
+          "providedBy": "channel_accounts",
+          "optional": true
+        }
+      ],
+      "permissionCount": 18,
       "navigationCount": 2,
-      "jobCount": 4,
+      "jobCount": 5,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -406,6 +478,35 @@
       "deploymentProfiles": null
     },
     {
+      "key": "omnichannel_inbox",
+      "name": "Omnichannel Inbox",
+      "version": "0.1.0",
+      "status": "active",
+      "type": "system",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "module_management",
+        "domain_event_runtime",
+        "channel_accounts"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [
+        {
+          "capability": "workflow_notification",
+          "providedBy": "email",
+          "optional": true
+        }
+      ],
+      "permissionCount": 7,
+      "navigationCount": 2,
+      "jobCount": 1,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
       "key": "procurement",
       "name": "Procurement",
       "version": "0.1.0",
@@ -548,6 +649,43 @@
       "deploymentProfiles": null
     },
     {
+      "key": "social_publishing",
+      "name": "Social Publishing",
+      "version": "0.1.0",
+      "status": "experimental",
+      "type": "system",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "domain_event_runtime"
+      ],
+      "capabilitiesProvided": ["social_publishing"],
+      "capabilitiesConsumed": [
+        {
+          "capability": "channel_account",
+          "providedBy": "channel_accounts",
+          "optional": true
+        },
+        {
+          "capability": "media_library",
+          "providedBy": "media_library",
+          "optional": true
+        },
+        {
+          "capability": "article_publication_status",
+          "providedBy": "blog_content",
+          "optional": true
+        }
+      ],
+      "permissionCount": 9,
+      "navigationCount": 0,
+      "jobCount": 2,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
       "key": "sync_storage",
       "name": "Sync Storage",
       "version": "1.0.0",
@@ -598,6 +736,29 @@
       "permissionCount": 6,
       "navigationCount": 1,
       "jobCount": 3,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "telegram_engagement",
+      "name": "Telegram Engagement",
+      "version": "0.1.0",
+      "status": "experimental",
+      "type": "system",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "module_management",
+        "domain_event_runtime",
+        "channel_accounts"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 5,
+      "navigationCount": 0,
+      "jobCount": 1,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -679,6 +840,30 @@
       "deploymentProfiles": null
     },
     {
+      "key": "website_engagement",
+      "name": "Website Engagement",
+      "version": "0.1.0",
+      "status": "experimental",
+      "type": "system",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "module_management",
+        "tenant_domain",
+        "domain_event_runtime",
+        "profile_identity"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 5,
+      "navigationCount": 0,
+      "jobCount": 0,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
       "key": "whatsapp_delivery",
       "name": "WhatsApp Delivery",
       "version": "0.1.0",
@@ -698,9 +883,9 @@
           "optional": true
         }
       ],
-      "permissionCount": 12,
+      "permissionCount": 16,
       "navigationCount": 1,
-      "jobCount": 2,
+      "jobCount": 3,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null

@@ -578,7 +578,13 @@ async function enqueueEmail(
     if (!seeded) return { enqueued: false, reason: "TEMPLATE_UNAVAILABLE" };
     result = await attempt();
     if (!result.enqueued) {
-      const suppressed = await fetchSuppressedRecipientHashes(tx, tenantId);
+      // `derived.transactional` is `transactional` mail (upstream #1161: the
+      // purpose decides which suppression sources hold a message back).
+      const suppressed = await fetchSuppressedRecipientHashes(
+        tx,
+        tenantId,
+        "transactional"
+      );
       return {
         enqueued: false,
         reason: suppressed.has(hashIdentifierValue(address))

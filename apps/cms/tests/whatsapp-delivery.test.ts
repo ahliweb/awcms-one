@@ -402,7 +402,11 @@ describe("the template registry enforces purpose and the variable allow-list", (
 });
 
 describe("the consent rule (ADR-0133 section 4)", () => {
-  const none = { suppressionReason: null, consentStatus: null } as const;
+  const none = {
+    suppressionReason: null,
+    consentStatus: null,
+    consentCoversScope: false
+  } as const;
 
   test("transactional needs no consent", () => {
     expect(decideEligibility("transactional", none)).toEqual({
@@ -421,7 +425,8 @@ describe("the consent rule (ADR-0133 section 4)", () => {
     expect(
       decideEligibility("marketing", {
         suppressionReason: null,
-        consentStatus: "granted"
+        consentStatus: "granted",
+        consentCoversScope: true
       })
     ).toEqual({ eligible: true });
   });
@@ -430,7 +435,8 @@ describe("the consent rule (ADR-0133 section 4)", () => {
     expect(
       decideEligibility("marketing", {
         suppressionReason: null,
-        consentStatus: "withdrawn"
+        consentStatus: "withdrawn",
+        consentCoversScope: false
       })
     ).toEqual({ eligible: false, kind: "suppressed", reason: "opt_out" });
   });
@@ -439,7 +445,8 @@ describe("the consent rule (ADR-0133 section 4)", () => {
     expect(
       decideEligibility("marketing", {
         suppressionReason: "stop_reply",
-        consentStatus: "granted"
+        consentStatus: "granted",
+        consentCoversScope: true
       })
     ).toEqual({ eligible: false, kind: "suppressed", reason: "opt_out" });
   });
@@ -448,14 +455,16 @@ describe("the consent rule (ADR-0133 section 4)", () => {
     expect(
       decideEligibility("security", {
         suppressionReason: "hard_failure",
-        consentStatus: null
+        consentStatus: null,
+        consentCoversScope: false
       })
     ).toEqual({ eligible: false, kind: "suppressed", reason: "hard_failure" });
     for (const reason of ["stop_reply", "manual"] as const) {
       expect(
         decideEligibility("security", {
           suppressionReason: reason,
-          consentStatus: "withdrawn"
+          consentStatus: "withdrawn",
+          consentCoversScope: false
         })
       ).toEqual({ eligible: true });
     }
@@ -465,15 +474,54 @@ describe("the consent rule (ADR-0133 section 4)", () => {
     expect(
       decideEligibility("transactional", {
         suppressionReason: "manual",
-        consentStatus: null
+        consentStatus: null,
+        consentCoversScope: false
       })
     ).toEqual({ eligible: false, kind: "suppressed", reason: "opt_out" });
     expect(
       decideEligibility("transactional", {
         suppressionReason: null,
-        consentStatus: "withdrawn"
+        consentStatus: "withdrawn",
+        consentCoversScope: false
       })
     ).toEqual({ eligible: true });
+  });
+
+  test("#1231 M4: a granted opt-in that does not cover the message's brand is its own refusal, never a send", () => {
+    expect(
+      decideEligibility("marketing", {
+        suppressionReason: null,
+        consentStatus: "granted",
+        consentCoversScope: false
+      })
+    ).toEqual({ eligible: false, kind: "consent_scope_required" });
+    // A withdrawal still wins over coverage, and a suppression over both.
+    expect(
+      decideEligibility("marketing", {
+        suppressionReason: null,
+        consentStatus: "withdrawn",
+        consentCoversScope: true
+      })
+    ).toEqual({ eligible: false, kind: "suppressed", reason: "opt_out" });
+    expect(
+      decideEligibility("marketing", {
+        suppressionReason: "manual",
+        consentStatus: "granted",
+        consentCoversScope: true
+      })
+    ).toEqual({ eligible: false, kind: "suppressed", reason: "opt_out" });
+  });
+
+  test("#1231 M4: brand coverage never touches transactional or security messages", () => {
+    for (const purpose of ["transactional", "security"] as const) {
+      expect(
+        decideEligibility(purpose, {
+          suppressionReason: null,
+          consentStatus: "granted",
+          consentCoversScope: false
+        })
+      ).toEqual({ eligible: true });
+    }
   });
 
   test("the rule takes no segment, list or audience input", () => {
@@ -957,24 +1005,42 @@ describe("module descriptor", () => {
       "awcms_whatsapp_suppressions"
     ];
 
+    // Issue #1143: the 24-hour windows and the webhook receipts are purged by
+    // `whatsapp:queue:purge` (delegated descriptors); the template approvals
+    // and WABA signals are BOUNDED_BY_DESIGN (one row per template / per WABA).
+    const purged = [
+      "awcms_whatsapp_service_windows",
+      "awcms_whatsapp_webhook_receipts"
+    ];
+
     expect(
       (whatsappDeliveryModule.dataLifecycle ?? [])
         .map((d) => d.tableName)
         .sort()
-    ).toEqual([...tables].sort());
+    ).toEqual([...tables, ...purged].sort());
     // Issue #1141 added the default-sender policy table: one configuration row
     // per scope, answered by a subjectData descriptor (the admin stamp) and a
     // BOUNDED_BY_DESIGN entry in `data-lifecycle:table-coverage:check`, not by a
     // delegated purge (an age-based purge would reset a brand's default sender).
     expect(
       (whatsappDeliveryModule.subjectData ?? []).map((d) => d.tableName).sort()
-    ).toEqual([...tables, "awcms_whatsapp_sender_policies"].sort());
+    ).toEqual(
+      [
+        ...tables,
+        ...purged,
+        "awcms_whatsapp_sender_policies",
+        "awcms_whatsapp_meta_templates",
+        "awcms_whatsapp_meta_sender_signals"
+      ].sort()
+    );
   });
 
-  test("the twelve permissions mirror the sql/179 and sql/323 seeds exactly", () => {
+  test("the sixteen permissions mirror the sql/179, sql/323, sql/360 and sql/366 seeds exactly", () => {
     const seeded = [
       "sql/179_awcms_whatsapp_delivery_permissions.sql",
-      "sql/323_awcms_whatsapp_sender_routing_permissions.sql"
+      "sql/323_awcms_whatsapp_sender_routing_permissions.sql",
+      "sql/360_awcms_whatsapp_sender_progress_stream.sql",
+      "sql/366_awcms_whatsapp_meta_sender_binding_permissions.sql"
     ]
       .flatMap((file) => [
         ...readFileSync(file, "utf8").matchAll(
@@ -987,7 +1053,7 @@ describe("module descriptor", () => {
       .map((p) => `${p.activityCode}.${p.action}`)
       .sort();
 
-    expect(declared).toHaveLength(12);
+    expect(declared).toHaveLength(16);
     expect(declared).toEqual(seeded);
   });
 

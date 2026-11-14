@@ -28,6 +28,12 @@
  * phone are masked (`maskIdentifierValue`/`maskPhone`) before they reach any
  * audit attribute.
  */
+import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
+import {
+  COMMERCE_CUSTOMER_AGGREGATE_TYPE,
+  COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE,
+  COMMERCE_EVENT_VERSION
+} from "../domain/commerce-events";
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { maskIdentifierValue } from "../../profile-identity/domain/identifier";
@@ -38,6 +44,7 @@ import {
   OTP_RESEND_WINDOW_SECONDS,
   OTP_TTL_SECONDS,
   generateOtpCode,
+  type StoredOtpPurpose,
   hashOtpCode
 } from "../domain/customer-otp";
 import {
@@ -290,6 +297,20 @@ export async function tryCreateAccountForCustomer(
     correlationId
   });
 
+  // Issue #463 (ADR-0056 D8): a VERIFIED registration is a commerce fact (the
+  // e-mail was proven by OTP just before this call). Published in the same
+  // transaction as the account row, ids only; a guest checkout never reaches
+  // this function, so it never publishes it.
+  await appendDomainEvent(tx, tenantId, {
+    eventType: COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE,
+    eventVersion: COMMERCE_EVENT_VERSION,
+    aggregateType: COMMERCE_CUSTOMER_AGGREGATE_TYPE,
+    aggregateId: customer.id,
+    producerModule: "commerce",
+    correlationId,
+    payload: { customerId: customer.id, accountId: record.id }
+  });
+
   return { ok: true, account: record };
 }
 
@@ -342,7 +363,7 @@ export async function issueOtp(
   tx: Bun.SQL,
   tenantId: string,
   identifierValue: string,
-  purpose: "login" | "register",
+  purpose: StoredOtpPurpose,
   registration: { name: string; phone: string } | null = null,
   now: Date = new Date(),
   identifierColumn: OtpIdentifierColumn = "email_normalized"
@@ -448,7 +469,7 @@ export async function findRecentOtpWithinResendWindow(
   tx: Bun.SQL,
   tenantId: string,
   identifierValue: string,
-  purpose: "login" | "register",
+  purpose: StoredOtpPurpose,
   registration: { name: string; phone: string } | null,
   now: Date,
   identifierColumn: OtpIdentifierColumn = "email_normalized"
@@ -507,7 +528,7 @@ export type ConsumeOtpResult =
       ok: true;
       otp: {
         id: string;
-        purpose: "login" | "register";
+        purpose: StoredOtpPurpose;
         registration: { name: string; phone: string } | null;
       };
     }
@@ -565,7 +586,7 @@ export async function consumeOtp(
   tx: Bun.SQL,
   tenantId: string,
   identifierValue: string,
-  purpose: "login" | "register",
+  purpose: StoredOtpPurpose,
   code: string,
   now: Date = new Date(),
   identifierColumn: OtpIdentifierColumn = "email_normalized"
@@ -639,7 +660,7 @@ export async function consumeOtp(
   `
   ) as {
     id: string;
-    purpose: "login" | "register";
+    purpose: StoredOtpPurpose;
     registration: { name: string; phone: string } | string | null;
     code_matched: boolean;
     not_expired: boolean;

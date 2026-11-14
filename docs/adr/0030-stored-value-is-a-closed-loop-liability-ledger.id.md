@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:8fc3c3f5e1123a826a472efc0f55190888b8cce83084f4c27218769ce4961ce2 -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0030 — Nilai tersimpan adalah ledger kewajiban closed-loop: kartu hadiah dan kredit toko adalah baris append-only, database yang menggerakkan saldo, kode ditampilkan sekali dan tidak pernah disimpan
 
 - **Status:** Diterima

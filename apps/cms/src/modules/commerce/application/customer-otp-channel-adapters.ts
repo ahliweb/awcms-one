@@ -15,7 +15,8 @@
 import { log } from "../../../lib/logging/logger";
 import {
   CUSTOMER_OTP_TEMPLATE_KEY,
-  CUSTOMER_OTP_TEMPLATE_VARIABLES
+  CUSTOMER_OTP_TEMPLATE_VARIABLES,
+  SUBJECT_OTP_TEMPLATE_KEY
 } from "../domain/email-template-categories";
 import { enqueueDirectAddressEmail } from "../../email/application/direct-address-notification";
 import {
@@ -58,47 +59,88 @@ export const CUSTOMER_OTP_DEFAULT_TEMPLATE = {
   }
 } as const;
 
+/**
+ * The default template of the data-subject code (Issue #529): the subject and
+ * body name what the code authorises, so the shopper can tell it from a sign-in
+ * code before typing it.
+ */
+export const SUBJECT_OTP_DEFAULT_TEMPLATE = {
+  name: "Customer data request code",
+  subject: {
+    en: "Confirm your data request: {{action}}",
+    id: "Konfirmasi permintaan data Anda: {{action}}"
+  },
+  textBody: {
+    en: "Someone asked to {{action}} for your account. Your confirmation code is {{code}}. It expires in {{expiresInMinutes}} minutes.\n\nIf this was not you, do not share the code: ignore this message and sign out of your account.\n\n{{storeName}}",
+    id: "Ada permintaan untuk {{action}} pada akun Anda. Kode konfirmasi Anda adalah {{code}}. Kode ini kedaluwarsa dalam {{expiresInMinutes}} menit.\n\nJika ini bukan Anda, jangan bagikan kode ini: abaikan pesan ini dan keluar dari akun Anda.\n\n{{storeName}}"
+  }
+} as const;
+
+const SUBJECT_ACTION_PHRASE = {
+  subject_export: {
+    en: "download a copy of your data",
+    id: "mengunduh salinan data Anda"
+  },
+  subject_erasure: {
+    en: "permanently erase your account and personal data",
+    id: "menghapus akun dan data pribadi Anda secara permanen"
+  }
+} as const;
+
 const SEED_ACTOR_ID = "00000000-0000-0000-0000-000000000000";
 
 /** Returns `true` when a template row now exists (seeded here or already present). */
 export async function ensureCustomerOtpTemplate(
   tx: Bun.SQL,
-  tenantId: string
+  tenantId: string,
+  templateKey: string = CUSTOMER_OTP_TEMPLATE_KEY
 ): Promise<boolean> {
+  const def =
+    templateKey === SUBJECT_OTP_TEMPLATE_KEY
+      ? SUBJECT_OTP_DEFAULT_TEMPLATE
+      : CUSTOMER_OTP_DEFAULT_TEMPLATE;
   const existing = await fetchActiveEmailTemplateByKey(
     tx,
     tenantId,
-    CUSTOMER_OTP_TEMPLATE_KEY
+    templateKey
   );
   if (existing) return true;
 
   // Through the email module's own seeder — `awcms_email_templates` is that
   // module's table and `modules:table-writes:check` keeps it so.
   const template: DefaultEmailTemplate = {
-    templateKey: CUSTOMER_OTP_TEMPLATE_KEY,
-    name: CUSTOMER_OTP_DEFAULT_TEMPLATE.name,
-    subjectTemplate: { ...CUSTOMER_OTP_DEFAULT_TEMPLATE.subject },
-    textBodyTemplate: { ...CUSTOMER_OTP_DEFAULT_TEMPLATE.textBody }
+    templateKey,
+    name: def.name,
+    subjectTemplate: { ...def.subject },
+    textBodyTemplate: { ...def.textBody }
   };
   await seedDefaultEmailTemplates(tx, tenantId, SEED_ACTOR_ID, [template]);
 
   return (
-    (await fetchActiveEmailTemplateByKey(
-      tx,
-      tenantId,
-      CUSTOMER_OTP_TEMPLATE_KEY
-    )) !== null
+    (await fetchActiveEmailTemplateByKey(tx, tenantId, templateKey)) !== null
   );
 }
 
+function isSubjectPurpose(
+  purpose: CustomerOtpChannelRequest["purpose"]
+): purpose is keyof typeof SUBJECT_ACTION_PHRASE {
+  return purpose === "subject_export" || purpose === "subject_erasure";
+}
+
+/** Template variables are one string per locale-less variable, so the purpose phrase carries both languages. */
 function buildVariables(
   request: CustomerOtpChannelRequest
 ): Record<string, string> {
-  return {
+  const variables: Record<string, string> = {
     code: request.code,
     expiresInMinutes: String(request.expiresInMinutes),
     storeName: request.storeName
   };
+  if (isSubjectPurpose(request.purpose)) {
+    const phrase = SUBJECT_ACTION_PHRASE[request.purpose];
+    variables.action = `${phrase.en} / ${phrase.id}`;
+  }
+  return variables;
 }
 
 /**
@@ -117,11 +159,14 @@ export function createEmailCustomerOtpChannel(): CustomerOtpChannel {
       // `via: "email"` always carries a non-null `emailNormalized` —
       // `requestCustomerOtp` never resolves this adapter otherwise.
       const emailNormalized = request.emailNormalized!;
+      const templateKey = isSubjectPurpose(request.purpose)
+        ? SUBJECT_OTP_TEMPLATE_KEY
+        : CUSTOMER_OTP_TEMPLATE_KEY;
       const enqueue = () =>
         enqueueDirectAddressEmail(
           tx,
           request.tenantId,
-          CUSTOMER_OTP_TEMPLATE_KEY,
+          templateKey,
           emailNormalized,
           buildVariables(request),
           correlationId
@@ -131,7 +176,11 @@ export function createEmailCustomerOtpChannel(): CustomerOtpChannel {
       if (!result.enqueued) {
         // Either the address is suppressed (respect it — no retry helps) or
         // the tenant has no template yet (seed it, then try once more).
-        const seeded = await ensureCustomerOtpTemplate(tx, request.tenantId);
+        const seeded = await ensureCustomerOtpTemplate(
+          tx,
+          request.tenantId,
+          templateKey
+        );
         if (seeded) result = await enqueue();
       }
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:9a38a63dbee7e72ef074127887f19c17e5a56cdd42067c8e2b2735e429b14b1f -->
+<!-- i18n-source-hash: sha256:cb4d983ca1cb54c46109ff1adbbf9a17b4eaa90e141b4bc0a91ca0edb20e9911 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -163,6 +163,7 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | --- | --- | --- |
 | `404.astro` | shared | Setiap profil butuh halaman tidak-ditemukan |
 | `akun/afiliasi.astro` | toko | Dashboard afiliasi commerce |
+| `akun/privasi.astro` | toko | Ekspor dan penghapusan data milik pembeli sendiri (issue #529) |
 | `akun/alamat.astro` | toko | Buku alamat commerce |
 | `akun/index.astro` | toko | Shell dashboard akun commerce |
 | `akun/pesanan.astro` | toko | Riwayat pesanan commerce |

@@ -45,9 +45,14 @@ import {
   maskIdentifierValue,
   normalizeIdentifierValue
 } from "../../profile-identity/domain/identifier";
+import { purposeForEmailCategory } from "../domain/email-sender";
 import { renderEmailTemplate } from "../domain/email-template-render";
 import { fetchActiveEmailTemplateByKey } from "./email-template-directory";
 import { fetchSuppressedRecipientHashes } from "./suppression-directory";
+import {
+  assertSecurityMailPermitted,
+  type SecurityMailGrant
+} from "./security-mail-grant";
 
 export type EnqueueDirectAddressResult = {
   /** `false` when the tenant has no ACTIVE template for the key, or the address is suppressed. */
@@ -61,8 +66,15 @@ export async function enqueueDirectAddressEmail(
   toAddress: string,
   variables: Record<string, string>,
   correlationId: string,
-  locale = "en"
+  locale = "en",
+  /** Issue #1161 audit H-1: required for a security category (see `security-mail-grant.ts`). */
+  securityMail?: SecurityMailGrant
 ): Promise<EnqueueDirectAddressResult> {
+  assertSecurityMailPermitted(
+    purposeForEmailCategory(templateKey),
+    securityMail
+  );
+
   const template = await fetchActiveEmailTemplateByKey(
     tx,
     tenantId,
@@ -76,7 +88,13 @@ export async function enqueueDirectAddressEmail(
   const normalized = normalizeIdentifierValue("email", toAddress);
   const addressHash = hashIdentifierValue(normalized);
 
-  const suppressedHashes = await fetchSuppressedRecipientHashes(tx, tenantId);
+  // Issue #1161: an invitation or security notice is `security` mail, which a
+  // marketing opt-out or an unauthenticated provider report does not hold back.
+  const suppressedHashes = await fetchSuppressedRecipientHashes(
+    tx,
+    tenantId,
+    purposeForEmailCategory(templateKey)
+  );
   if (suppressedHashes.has(addressHash)) {
     return { enqueued: false };
   }
@@ -88,14 +106,19 @@ export async function enqueueDirectAddressEmail(
     locale
   );
 
+  // Issue #1160: the purpose is recorded (an invitation is `security`), and the
+  // sender is always the deployment sender (ADR-0151 Q7) — this path takes no
+  // sender at all, and the database refuses a tenant sender on security mail.
   await tx`
     INSERT INTO awcms_email_messages
       (tenant_id, correlation_id, category, template_key, to_address,
-       to_address_hash, to_address_masked, subject, variables, priority)
+       to_address_hash, to_address_masked, subject, variables, priority,
+       purpose)
     VALUES
       (${tenantId}, ${correlationId}, ${templateKey}, ${templateKey},
        ${normalized}, ${addressHash}, ${maskIdentifierValue(normalized)},
-       ${rendered.subject}, ${variables}::jsonb, 'high')
+       ${rendered.subject}, ${variables}::jsonb, 'high',
+       ${purposeForEmailCategory(templateKey)})
   `;
 
   return { enqueued: true };

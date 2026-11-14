@@ -24,7 +24,20 @@ import {
   userIdempotencyActor
 } from "../../../../../modules/_shared/idempotency";
 import { enqueueAnnouncement } from "../../../../../modules/email/application/announcement-directory";
+import {
+  logEmailSenderRefusal,
+  resolveEnqueueEmailSender
+} from "../../../../../modules/email/application/email-sender-directory";
 import { validateAnnouncementInput } from "../../../../../modules/email/domain/announcement-validation";
+import {
+  isRequestReservedEmailCategory,
+  purposeForEmailCategory,
+  TEMPLATE_CATEGORY_RESERVED_CODE
+} from "../../../../../modules/email/domain/email-sender";
+import {
+  loadEmailSenderAccess,
+  tryLoadEmailSenderPort
+} from "../../../../../modules/email/infrastructure/channel-account-loaders";
 
 const NOTIFICATION_GUARD = {
   moduleKey: "email",
@@ -38,7 +51,22 @@ const ANNOUNCEMENT_GUARD = {
   action: "create" as const
 };
 
+const SENDER_USE_GUARD = {
+  moduleKey: "email",
+  activityCode: "senders",
+  action: "use" as const
+};
+
 const IDEMPOTENCY_SCOPE = "email_announcement_create";
+
+/** One answer for unknown, another tenant's, unverified, disabled and out-of-scope senders: no existence oracle. */
+function senderUnavailable(): Response {
+  return fail(
+    422,
+    "SENDER_UNAVAILABLE",
+    "That sender cannot send this message now: it must be a verified sender of this tenant that you may use, within the message's business scope."
+  );
+}
 
 /**
  * `POST /api/v1/email/announcements` — enqueue a notification/announcement
@@ -55,7 +83,12 @@ const IDEMPOTENCY_SCOPE = "email_announcement_create";
  * only the base permission can message specific users it already knows
  * about, but cannot blast an entire role/tenant.
  */
-export const POST: APIRoute = async ({ request, cookies, locals }) => {
+export const POST: APIRoute = async ({
+  request,
+  cookies,
+  locals,
+  clientAddress
+}) => {
   const { tenantId, token } = resolveAuthInputs(request, cookies);
 
   if (!tenantId) {
@@ -115,6 +148,17 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
     }
 
     const input = validation.value;
+
+    // Issue #1161: announcement routes no longer accept auth/security
+    // templates; security mail is sent only by internal ports.
+    if (isRequestReservedEmailCategory(input.templateKey)) {
+      return fail(
+        422,
+        TEMPLATE_CATEGORY_RESERVED_CODE,
+        "This template category is reserved for system security mail and cannot be sent as an announcement."
+      );
+    }
+
     const isBulk =
       input.target.type === "role" || input.target.type === "tenant";
     const requestHash = computeRequestHash(input);
@@ -130,6 +174,91 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
 
       if (!bulkAuth.allowed) {
         return bulkAuth.denied;
+      }
+    }
+
+    // Issue #1160 (ADR-0151 section 2). The sender is decided FIRST: explicit,
+    // else the scope's prospective default, else the deployment sender. A
+    // sender that cannot send is refused, never swapped. Decided, and the
+    // caller's right to it checked, BEFORE the idempotent section, so a
+    // refusal is never stored for replay and a replay by a caller who has
+    // since lost the right is refused.
+    const senderDecision = await resolveEnqueueEmailSender(tx, {
+      tenantId,
+      explicitSenderAccountId: input.senderAccountId ?? null,
+      businessScope: input.businessScope ?? null,
+      purpose: purposeForEmailCategory(input.templateKey),
+      senders: tryLoadEmailSenderPort
+    });
+
+    if (!senderDecision.ok) {
+      logEmailSenderRefusal(tenantId, senderDecision.detail, correlationId);
+
+      return senderDecision.reason === "SENDER_ROUTING_DISABLED"
+        ? fail(
+            409,
+            "SENDER_ROUTING_DISABLED",
+            "Tenant email senders are not enabled on this deployment."
+          )
+        : senderUnavailable();
+    }
+
+    // Sending AS a brand needs `email.senders.use` on top of the announcement
+    // permissions, and the per-account access rules of `channel_accounts`
+    // (assignment, scope) on the sender ACTUALLY used. That includes a sender
+    // chosen by the default-sender policy (audit L2, fail closed): a policy
+    // names which brand speaks; it does not grant every mailer the right to
+    // speak as it. Naming a business scope is asking to speak as that brand
+    // even when its policy resolves to the deployment sender.
+    const tenantSenderId = senderDecision.snapshot.senderAccountId;
+
+    if (tenantSenderId !== null || input.businessScope !== undefined) {
+      const useAuth = await authorizeInTransaction(
+        tx,
+        tenantId,
+        tokenHash,
+        now,
+        SENDER_USE_GUARD
+      );
+
+      if (!useAuth.allowed) {
+        return useAuth.denied;
+      }
+
+      const access = await loadEmailSenderAccess();
+
+      if (!access) return fail(403, "ACCESS_DENIED", "Access denied.");
+
+      const accessContext = {
+        tx,
+        tenantId,
+        tokenHash,
+        auth: useAuth,
+        now,
+        request,
+        clientAddress
+      };
+
+      if (input.businessScope !== undefined) {
+        const scopeRefusal = await access.authorizeScope(
+          accessContext,
+          SENDER_USE_GUARD,
+          input.businessScope
+        );
+
+        if (scopeRefusal) return scopeRefusal;
+      }
+
+      if (
+        tenantSenderId !== null &&
+        !(await access.canUseAccount(
+          accessContext,
+          SENDER_USE_GUARD,
+          tenantSenderId,
+          "operator"
+        ))
+      ) {
+        return senderUnavailable();
       }
     }
 
@@ -162,7 +291,8 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
       input.variables,
       input.target,
       correlationId,
-      input.locale
+      input.locale,
+      senderDecision.snapshot
     );
 
     if (!result) {
@@ -184,6 +314,10 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
       attributes: {
         targetType: input.target.type,
         templateKey: input.templateKey,
+        // Issue #1160: the sender key and how it was chosen; never its token.
+        senderAccountId: senderDecision.snapshot.senderAccountId,
+        senderSelection: senderDecision.snapshot.selection,
+        senderPolicyVersion: senderDecision.snapshot.policyVersion,
         recipientCount: result.recipientCount,
         truncated: result.truncated,
         correlationId: result.correlationId,

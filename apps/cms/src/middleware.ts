@@ -1,7 +1,9 @@
 import type { APIContext } from "astro";
 import { defineMiddleware } from "astro:middleware";
+import type { MiddlewareHandler } from "astro";
 
 import { refuseUnauthenticatedApiBody } from "./lib/auth/api-body-authentication";
+import { refuseUnauthenticatedCustomerBody } from "./lib/auth/customer-bearer-body-authentication";
 import { resolveSsrContext } from "./lib/auth/ssr-session";
 import { getDatabaseClient } from "./lib/database/client";
 import { annotateEdgeCache } from "./lib/edge-cache/runtime";
@@ -16,12 +18,16 @@ import {
   resolveRequestLocale
 } from "./lib/i18n/request-locale";
 import { log } from "./lib/logging/logger";
+import { instrumentHttpRequest } from "./lib/observability/http-request-metrics";
 import { resolvePublicTenantByCode } from "./lib/tenant/public-tenant-resolver";
 import {
   invalidIdempotencyKeyResponse,
   isIdempotencyKeyHeaderAcceptable
 } from "./lib/security/idempotency-key-bound";
-import { requiresAuthenticatedCallerBeforeBody } from "./lib/security/api-body-auth-boundary";
+import {
+  isCustomerBearerBodyEndpoint,
+  requiresAuthenticatedCallerBeforeBody
+} from "./lib/security/api-body-auth-boundary";
 import { buildSecurityHeaders } from "./lib/security/security-headers";
 import { isTurnstileRequired } from "./lib/security/turnstile";
 import { isVideoEmbedEnabled } from "./lib/security/video-embed";
@@ -186,7 +192,7 @@ async function resolvePublicRedirectLocale(
  * stream-safe place to do it (a redirect thrown from inside an
  * already-rendering nested component fails).
  */
-export const onRequest = defineMiddleware(async (context, next) => {
+const handleRequest: MiddlewareHandler = async (context, next) => {
   context.locals.correlationId = resolveCorrelationId(context.request);
 
   /**
@@ -291,11 +297,19 @@ export const onRequest = defineMiddleware(async (context, next) => {
       context.url.pathname
     )
   ) {
-    const refusal = await refuseUnauthenticatedApiBody(
-      context.request,
-      context.cookies,
-      new Date()
-    );
+    // awcms-one: a customer-bearer endpoint (ADR-0016) is authenticated by a
+    // customer session, which the staff check below would refuse for every
+    // shopper. Same property either way: no credential, no body parsing.
+    const refusal = isCustomerBearerBodyEndpoint(
+      context.request.method,
+      context.url.pathname
+    )
+      ? await refuseUnauthenticatedCustomerBody(context.request, new Date())
+      : await refuseUnauthenticatedApiBody(
+          context.request,
+          context.cookies,
+          new Date()
+        );
 
     if (refusal) return finalize(refusal);
   }
@@ -428,4 +442,19 @@ export const onRequest = defineMiddleware(async (context, next) => {
   });
 
   return finalize(await next());
-});
+};
+
+/**
+ * Issue #1287 — the one chokepoint for HTTP count and latency. Wrapping the
+ * whole handler (rather than each `return` inside it) means the early
+ * rejections, the redirects and a thrown error are all recorded, and a new
+ * branch added to `handleRequest` later is covered without anyone remembering.
+ * Labels use Astro's static route pattern, never the URL; see
+ * `src/lib/observability/http-request-metrics.ts`.
+ */
+export const onRequest = defineMiddleware((context, next) =>
+  instrumentHttpRequest(
+    { method: context.request.method, routePattern: context.routePattern },
+    async () => (await handleRequest(context, next)) as Response
+  )
+);

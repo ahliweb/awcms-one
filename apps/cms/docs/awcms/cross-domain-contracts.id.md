@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cross-domain-contracts.md)
 
-<!-- i18n-source-hash: sha256:3ca2baa073d0f230214c7b38b6d88a3ad94d05411a8e1e6b721f9295fe5a77f8 -->
+<!-- i18n-source-hash: sha256:eb4825ae11337266b4fb2f76420f257f3213eeabfe871037bb5d735060a4dc84 -->
 
 # Kontrak lintas-domain — capability port, event provisional, dan idempotensi consumer
 
@@ -447,8 +447,34 @@ harus menambah ketiga anggota baru sebelum meneruskan pengirim, dan konsumen yan
 mengambil id pengirim dari pengguna harus mengotorisasi pilihan itu sendiri
 (port tidak melakukan pemeriksaan akses). Kapabilitas `whatsapp_delivery`
 didaftarkan pada `1.1.0` dan kapabilitas baru `channel_account`
-(`ChannelAccountPort`, disediakan oleh `channel_accounts`) pada `1.0.0`
+(`ChannelAccountPort`, disediakan oleh `channel_accounts`) pada `1.1.0`
 (`capability-contract-versions.ts`, `awcms-family-compatibility.yaml`).
+
+**Versi 1.2.0 (Issue #1231 M4) bersifat aditif.** Alasan penolakan mendapat
+`CONSENT_SCOPE_REQUIRED`: opt-in pemasaran kini hanya mencakup business scope
+(brand) tempat ia dikumpulkan, sehingga pesan pemasaran brand B yang penerimanya
+memberi opt-in untuk brand lain (atau hanya untuk tenant, tanpa brand) ditolak dan
+tidak ada yang diantrekan. Juga ditambah `BUSINESS_SCOPE_UNRESOLVED`:
+`businessScope` pesan pemasaran wajib me-resolve ke scope nyata tenant (hanya
+`office` yang dapat di-resolve hari ini). Scope itu adalah yang DINYATAKAN
+pemanggil: terikat ke nomor pengirim hanya bila pengirimnya sendiri ber-scope.
+Penarikan dan supresi tetap berlaku di seluruh tenant;
+pesan transaksional dan keamanan tidak berubah. Tidak ada field atau signature
+yang berubah; `booking` memetakan alasan yang tak dikenal ke kode kasar dan tidak
+terdampak. `whatsapp_delivery` didaftarkan pada `1.2.0`.
+
+**Versi 1.3.0 (Issue #1143) bersifat aditif.** Alasan penolakan mendapat
+`TEMPLATE_NOT_APPROVED` dan `OUTSIDE_SERVICE_WINDOW`, yang hanya dikembalikan
+untuk pesan melalui nomor Meta Cloud API MILIK TENANT: template wajib disetujui
+pada WABA nomor ITU dengan kategori yang dituntut tujuannya, dan registrasi tanpa
+template penyedia hanya boleh dikirim di dalam jendela 24 jam yang dibuka
+penerima dengan nomor ITU. Tidak pernah untuk pengirim deployment, tidak pernah
+untuk StarSender. Identitas pengirim terverifikasi (phone number id, WABA id)
+di-snapshot pada baris oleh guard database. Tidak ada field atau signature yang
+berubah. `whatsapp_delivery` didaftarkan pada `1.3.0`, dan `channel_account` pada
+`1.2.0` (alasan penolakan `CONTAINER_BINDING_INVALID`, identitas container
+opsional dari pengirim yang di-resolve, dan `ChannelWebhookVerifierPort` yang
+diekspor untuk webhook Meta bertanda tangan).
 
 ### 5.1 Port pengiriman Telegram (live, #965)
 

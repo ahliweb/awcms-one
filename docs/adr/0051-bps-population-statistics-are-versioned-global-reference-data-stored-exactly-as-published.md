@@ -2,7 +2,7 @@
 
 # ADR-0051 — BPS population statistics are versioned global reference data, stored exactly as published
 
-- **Status:** Accepted
+- **Status:** Superseded by [ADR-0053](0053-population-and-area-come-from-the-kepmendagri-region-decree-not-bps.md) (11 November 2026: BPS is no longer a source; the two tables stay and hold the Kepmendagri decree's population and BIG's area instead). Kept as the record of what was decided and built; the paths it names under `apps/cms/data/idn-population/` and `tools/bps-population/` no longer exist.
 - **Date:** 26 October 2026
 - **Decision maker:** ahliweb
 - **Related:** issue [#497](https://github.com/ahliweb/awcms-one/issues/497) (this ADR); [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) (template-only ownership; neutral naming); [ADR-0003](0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) (exact numerics); [ADR-0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) (migration bands); the reference repo `awcms` ADR-0052 (region dataset activation is a worker CLI) and its `idn_admin_regions` module (`sql/080`)

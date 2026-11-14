@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:89ae580c1bc2c090a5a1dbb35e4df9f178977a0af5578cf43a3d5a5d9d90d8d5 -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0032 — Barcode adalah pengenal per tenant dengan simbologi turunan, label dirender di server, dan lapisan keyboard kasir hanya berbasis kombinasi tombol
 
 - **Status:** Diterima

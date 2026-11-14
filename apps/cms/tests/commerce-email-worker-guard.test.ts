@@ -44,8 +44,10 @@ describe("the worker e-mail guard re-issued by commerce", () => {
     );
 
   test("the commerce migration is the last definition", () => {
+    // 1064 re-issued 1033's body as the union with upstream's sql/371 (the
+    // 14 November 2026 sync); 1033 stays as applied, as an earlier definition.
     expect(files.at(-1)?.name).toBe(
-      "1033_awcms_commerce_campaign_worker_email_category.sql"
+      "1064_awcms_commerce_worker_email_guard_reissue.sql"
     );
   });
 
@@ -58,6 +60,13 @@ describe("the worker e-mail guard re-issued by commerce", () => {
       }
     }
     expect(final.has("derived.commerce_campaign")).toBe(true);
+  });
+
+  test("it keeps the staff-only recipient and variable rules of the upstream re-issue", () => {
+    const sql = files.at(-1)!.sql;
+
+    expect(sql).toMatch(/EMAIL_WORKER_RECIPIENT_NOT_STAFF/);
+    expect(sql).toMatch(/EMAIL_WORKER_VARIABLE_NOT_ALLOWED/);
   });
 
   test("it still pins search_path with pg_temp last and keeps the membership test", () => {

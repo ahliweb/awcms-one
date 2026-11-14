@@ -264,13 +264,14 @@ Lihat [`CONTRIBUTING.md`](CONTRIBUTING.md#definition-of-done).
 - [`docs/awcms/alur-pengembangan-mini-first.md`](docs/awcms/alur-pengembangan-mini-first.md) — **catatan sejarah**: kontrak alur "uji di awcms-mini dulu, lalu port", dicabut oleh [ADR-0055](docs/adr/0055-development-confined-to-awcms-and-awcms-astro.md) dan digantikan dokumen di atas.
 - [`docs/awcms/sejarah-repo.md`](docs/awcms/sejarah-repo.md) — **catatan sejarah** repo: kenapa dibangun ulang, dan basis teknologi sebelum/sesudah. Dipindahkan keluar dari README.
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — apa yang **sudah ada di kode** saat ini vs gap yang tersisa.
+- [`docs/roadmap.md`](docs/roadmap.md) — **roadmap** per fase (tujuan, kriteria keluar, status); draf, status menunggu konfirmasi pemilik. Aturan issue, label, dan judul: [`CONTRIBUTING.md`](CONTRIBUTING.md#issue-label-dan-roadmap).
 - [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md) — **state proyek & titik-lanjut** (baca lebih dulu saat melanjutkan pekerjaan besar): model tata kelola, inventori ringkas, backlog, jebakan penting.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — proses kontribusi & Definition of Done.
 - [`SECURITY.md`](SECURITY.md) — kebijakan keamanan & pelaporan kerentanan.
 
 ## Orchestrator & Agent (model AI)
 
-> Standar lintas-portofolio dari [`ahliweb/personal-coding`](https://github.com/ahliweb/personal-coding/blob/main/docs/tingkatan-model-ai-claude-openai.md) (`docs/tingkatan-model-ai-claude-openai.md`, snapshot 2026-10-28). Harga, effort, dan lini model dipelihara di sana — jangan disalin ke repo ini.
+> Standar lintas-portofolio internal tentang tingkatan model AI (snapshot 2026-10-28). Harga, effort, dan lini model dipelihara di standar internal itu — jangan disalin ke repo ini.
 
 Pekerjaan yang perlu dipecah ke beberapa agent memakai pola **orchestrator → agent**. Orchestrator memecah pekerjaan, membagi tugas, mengatur ketergantungan, lalu memeriksa dan menyatukan hasil; agent mengerjakan satu bagian yang sudah dibatasi.
 
@@ -305,3 +306,18 @@ Konsistensi skill kini **digerbangi CI**: `bun run skills:check` ada di rantai `
 ## Mulai dari sini
 
 Skeleton Astro + Bun + migration runner dan dua puluh satu modul — fondasi (`tenant-admin`, `identity-access`, `profile-identity`, `logging`, `module-management`, `sync-storage`, `workflow-approval`, `reporting`, `email`, `domain-event-runtime`), website/konten (`theming`, `media-library`, `blog-content`, `tenant-domain`, `visitor-analytics`, `data-lifecycle`, `seo-distribution`, `form-drafts`, `site-search`, `comments`), plus `idn-admin-regions` — **sudah ada** (lihat [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) untuk state kode terkini dan gap yang tersisa). Untuk melanjutkan pengembangan fondasi: mulai dari `awcms-implement-issue`/`awcms-new-module`, lengkapi RBAC/ABAC + Module Management pada modul baru. Modul domain ERP kini dikerjakan langsung di `src/modules/` template ini ([ADR-0034](docs/adr/0034-awcms-family-direct-use-templates-and-derived-pathway-removal.md)), bukan di repo turunan terpisah.
+
+<!-- BEGIN:pengetahuan-ringkas -->
+<!-- pengetahuan-ringkas:v1 -->
+
+## Knowledge Graph (graphify)
+
+Repo ini punya knowledge graph di `graphify-out/`. Prosedur lengkap: skill `.claude/skills/pengetahuan-ringkas/SKILL.md`.
+
+1. **Untuk pertanyaan arsitektur atau hubungan antarberkas, baca graf lebih dulu.** Buka `graphify-out/GRAPH_REPORT.md`, lalu `graphify query "<pertanyaan>"`, sebelum membuka banyak berkas satu per satu. Hemat token.
+2. **Graf adalah peta, bukan sumber kebenaran.** Verifikasi setiap klaim ke `source_file` yang dikutip; edge `INFERRED`/`AMBIGUOUS` bukan fakta.
+3. **Bila `graphify-out/STATUS.md` ada, graf baru berisi kode saja.** Jalankan `/graphify . --update` sebelum mengandalkannya untuk pertanyaan dokumen, hapus `STATUS.md`, lalu commit hasilnya.
+4. **Perbarui graf setelah menambah, menghapus, atau mengubah substansial berkas**, dalam commit yang sama (`graphify update .` untuk kode, `/graphify . --update` untuk dokumen).
+5. **Jangan edit `graphify-out/` dengan tangan** dan jangan memasang `graphify hook install`.
+
+<!-- END:pengetahuan-ringkas -->

@@ -43,6 +43,33 @@ export const COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME =
 export const COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME =
   "commerce.order_paid_commission_attributor";
 
+/**
+ * Issue #463 (ADR-0056): the three flaggers (order cancelled, refund settled,
+ * payment reversed) that mark a CRM lead link `reversal_pending` when the order
+ * its conversion rests on is cancelled, fully refunded or fully reversed. They run as `awcms_worker`, which holds no privilege on any
+ * `crm_leads` table, so they only FLAG; a person applies the reversal.
+ */
+export const COMMERCE_ORDER_CANCELLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME =
+  "commerce.order_cancelled_crm_lead_link_flagger";
+export const COMMERCE_REFUND_SETTLED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME =
+  "commerce.refund_settled_crm_lead_link_flagger";
+export const COMMERCE_PAYMENT_REVERSED_CRM_LEAD_LINK_FLAGGER_CONSUMER_NAME =
+  "commerce.payment_reversed_crm_lead_link_flagger";
+
+/**
+ * Customer facts (Issue #463, ADR-0056 D8). `customer.registered` is published in
+ * the transaction in which a shopper's e-mail OTP registration creates the
+ * account; `customer.converted` is published when a staff member confirms a
+ * CRM lead as that customer on verified evidence. Both are on the customer
+ * aggregate, carry opaque ids only (never a name, e-mail, phone or note) and are
+ * pseudonymous.
+ */
+export const COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE =
+  "awcms.commerce.customer.registered";
+export const COMMERCE_CUSTOMER_CONVERTED_EVENT_TYPE =
+  "awcms.commerce.customer.converted";
+export const COMMERCE_CUSTOMER_AGGREGATE_TYPE = "commerce.customer";
+
 export const COMMERCE_PRODUCT_CREATED_EVENT_TYPE =
   "awcms.commerce.product.created";
 export const COMMERCE_PRODUCT_UPDATED_EVENT_TYPE =

@@ -20,6 +20,8 @@ import {
   readJsonBody
 } from "../../../lib/security/request-body-limit";
 import { authorizeInTransaction } from "../../identity-access/application/access-guard";
+import { getMfaStatus } from "../../identity-access/application/mfa";
+import { requireStepUp } from "../../identity-access/application/mfa-session-assurance";
 import { holdsTenantWidePermissionKey } from "../../identity-access/application/auth-context";
 import {
   createAuthorizationReadCache,
@@ -171,6 +173,38 @@ export async function auditChannelAccounts(
   });
 }
 
+/**
+ * Conditional step-up (ADR-0141 section 4), the same rule as the credential
+ * route: a person who HAS an MFA factor must present a fresh step-up; a person
+ * with none is not locked out (no enrolment is imposed by this check). Used by
+ * the acts that put an unofficial provider into service: acknowledging its risk
+ * and attesting a device (Issue #1142, audit M4). Returns the refusal to send, or
+ * `null` to go on.
+ */
+export async function requireConditionalStepUp(
+  context: Pick<
+    TenantRouteHandlerContext<unknown>,
+    "tx" | "tenantId" | "tokenHash" | "auth" | "now"
+  >
+): Promise<Response | null> {
+  const mfa = await getMfaStatus(
+    context.tx,
+    context.tenantId,
+    context.auth.context.identityId
+  );
+
+  if (!mfa.enabled) return null;
+
+  const stepUp = await requireStepUp(
+    context.tx,
+    context.tenantId,
+    context.tokenHash,
+    context.now
+  );
+
+  return stepUp.ok ? null : stepUp.denied;
+}
+
 export function asUuid(value: string | undefined | null): string | null {
   return isUuid(value) ? value.toLowerCase() : null;
 }
@@ -199,7 +233,20 @@ export async function runIdempotent(
   idempotencyKey: string,
   actorTenantUserId: string,
   requestPayload: unknown,
-  produce: () => Promise<{ status: number; body: unknown } | Response>
+  produce: () => Promise<
+    | {
+        status: number;
+        body: unknown;
+        /**
+         * Issue #1143. Data for the FIRST caller only, never stored: a callback
+         * token is shown once, so a replay answers the stored body without it
+         * and with `revealed: false` (the `website_engagement` source pattern).
+         * Only meaningful when `body` is an object.
+         */
+        reveal?: Record<string, unknown>;
+      }
+    | Response
+  >
 ): Promise<Response> {
   // The credential is part of `requestPayload` for the write endpoint; the hash
   // is a KEYED HMAC (`computeRequestHash`), so it is not recoverable from the table.
@@ -233,7 +280,13 @@ export async function runIdempotent(
 
   if (produced instanceof Response) return produced;
 
-  const body = { success: true as const, data: produced.body, meta: {} };
+  const body = {
+    success: true as const,
+    data: produced.reveal
+      ? { ...(produced.body as Record<string, unknown>), revealed: false }
+      : produced.body,
+    meta: {}
+  };
 
   await saveIdempotencyRecord(
     tx,
@@ -245,6 +298,21 @@ export async function runIdempotent(
     produced.status,
     body
   );
+
+  if (produced.reveal) {
+    return jsonResponse(
+      {
+        success: true as const,
+        data: {
+          ...(produced.body as Record<string, unknown>),
+          ...produced.reveal,
+          revealed: true
+        },
+        meta: {}
+      },
+      { status: produced.status }
+    );
+  }
 
   return jsonResponse(body, { status: produced.status });
 }
@@ -364,6 +432,33 @@ type AccountGuard = Pick<
 >;
 
 /**
+ * Whether the caller ALSO holds `guard`, decided through the same chokepoint
+ * (and written to the decision log like every guard). For an action whose
+ * effect reaches another surface's authority: a signed Meta webhook
+ * subscription can change WABA-level template approvals and restrictions, so
+ * creating one also needs those permissions (Issue #1143 review M-1).
+ */
+export async function callerAlsoHolds(
+  context: AccountRouteContext,
+  guard: AccountGuard,
+  resourceType: string
+): Promise<boolean> {
+  const decision = await authorizeInTransaction(
+    context.tx,
+    context.tenantId,
+    context.tokenHash,
+    context.now,
+    { ...guard, resourceType },
+    {
+      clientIp: resolveClientIp(context.request, context.clientAddress),
+      readCache: readCacheFor(context)
+    }
+  );
+
+  return decision.allowed;
+}
+
+/**
  * Whether the caller holds `scope`, re-evaluated through the SAME chokepoint
  * with the route's own guard, so a deny policy and the decision log both apply.
  *
@@ -416,10 +511,24 @@ async function decideScope(
 
 /**
  * A caller whose access is CONFINED to business scopes (holds at least one
- * currently-effective, non-tenant-wide scope assignment). Such a caller must
- * name a scope they hold when creating an account: "no scope" means tenant-wide,
- * and a confined operator is not allowed to mint a tenant-wide account that
- * escapes the confinement they were given (ADR-0148 review M3).
+ * active, non-tenant-wide scope assignment that has not ENDED). Such a caller
+ * must name a scope they hold when creating an account: "no scope" means
+ * tenant-wide, and a confined operator is not allowed to mint a tenant-wide
+ * account that escapes the confinement they were given (ADR-0148 review M3).
+ *
+ * An assignment that has not STARTED yet confines too (Issue #1171, fail-closed).
+ * Every caller of this answer reads `true` as "show / allow less", so the
+ * uncertain side must be `true`. `effective_from` is stamped by the database
+ * (microseconds, its own clock) and compared here with the request's
+ * `new Date()` (milliseconds, truncated, the application host's clock): a
+ * request made within a millisecond of the grant — or on a host whose clock
+ * runs behind the database's — judged a just-granted confinement "not yet in
+ * force" and treated the caller as tenant-wide, showing them every brand's rows
+ * of a tenant-wide sender. A deliberately future-dated confinement is the same
+ * question asked earlier: until it starts the caller holds no scope that COVERS
+ * anything (`coveredScopesFor` still decides coverage at the chokepoint, which
+ * honours `effective_from`), so they see the rows of no brand rather than of
+ * every brand.
  */
 export function callerIsScopeConfined(
   context: AccountRouteContext
@@ -436,12 +545,106 @@ async function queryScopeConfined(
       AND tenant_user_id = ${context.auth.context.tenantUserId}
       AND status = 'active'
       AND scope_type <> 'tenant'
-      AND effective_from <= ${context.now}
       AND (effective_to IS NULL OR effective_to > ${context.now})
     LIMIT 1
   `) as unknown[];
 
   return rows.length > 0;
+}
+
+/** At most this many scopes are considered for one caller; past it the answer is truncated, which only ever HIDES rows (fail-closed). */
+const MAX_COVERED_SCOPE_CANDIDATES = 200;
+
+/**
+ * The business scopes a scope-confined caller holds for `guard`, as concrete
+ * `(type, id)` pairs a query can filter on (Issue #1171 audit M-1).
+ *
+ * Candidates are the caller's own active, non-tenant assignments plus their
+ * descendants through the same hierarchy port the chokepoint uses; each
+ * candidate is then decided by `scopeCoveredFor` (the chokepoint), so an ABAC
+ * deny or an expired assignment removes it exactly as it would for a single
+ * request. Bounded and fail-closed: a truncated candidate list hides rows, it
+ * never shows more. Memoised per `context.request`, like every decision here.
+ */
+export function coveredScopesFor(
+  context: AccountRouteContext,
+  guard: AccountGuard
+): Promise<ScopeRef[]> {
+  const memoKey = `covered:${guard.moduleKey}.${guard.activityCode}.${guard.action}`;
+  let memo = coveredScopesMemo.get(context.request);
+
+  if (!memo) {
+    memo = new Map();
+    coveredScopesMemo.set(context.request, memo);
+  }
+
+  let pending = memo.get(memoKey);
+
+  if (!pending) {
+    pending = decideCoveredScopes(context, guard);
+    memo.set(memoKey, pending);
+  }
+
+  return pending;
+}
+
+const coveredScopesMemo = new WeakMap<
+  Request,
+  Map<string, Promise<ScopeRef[]>>
+>();
+
+async function decideCoveredScopes(
+  context: AccountRouteContext,
+  guard: AccountGuard
+): Promise<ScopeRef[]> {
+  const held = (await context.tx`
+    SELECT scope_type, scope_id::text AS scope_id
+    FROM awcms_business_scope_assignments
+    WHERE tenant_id = ${context.tenantId}
+      AND tenant_user_id = ${context.auth.context.tenantUserId}
+      AND status = 'active'
+      AND scope_type <> 'tenant'
+      AND effective_from <= ${context.now}
+      AND (effective_to IS NULL OR effective_to > ${context.now})
+    ORDER BY scope_type, scope_id
+    LIMIT ${MAX_COVERED_SCOPE_CANDIDATES}
+  `) as { scope_type: string; scope_id: string }[];
+  const candidates = new Map<string, ScopeRef>();
+
+  for (const row of held) {
+    if (candidates.size >= MAX_COVERED_SCOPE_CANDIDATES) break;
+
+    candidates.set(`${row.scope_type}:${row.scope_id}`, {
+      type: row.scope_type,
+      id: row.scope_id
+    });
+
+    // Sequential: `tx` is one connection.
+    const resolution = await HIERARCHY_PORT.resolveScope(
+      context.tx,
+      context.tenantId,
+      row.scope_type,
+      row.scope_id
+    );
+
+    for (const descendant of resolution.descendantScopes) {
+      if (candidates.size >= MAX_COVERED_SCOPE_CANDIDATES) break;
+
+      candidates.set(`${descendant.scopeType}:${descendant.scopeId}`, {
+        type: descendant.scopeType,
+        id: descendant.scopeId
+      });
+    }
+  }
+
+  const covered: ScopeRef[] = [];
+
+  for (const candidate of candidates.values()) {
+    if (await scopeCoveredFor(context, guard, candidate))
+      covered.push(candidate);
+  }
+
+  return covered;
 }
 
 /**
@@ -693,6 +896,68 @@ export async function authorizeConnectionBinding(
   }
 
   return entry.allowed === entry.accounts ? null : refuse();
+}
+
+/**
+ * Issue #1160 audit M2. Registering a CHILD identity under a parent account (a
+ * Mailketing sender under its account, a WABA number under its WABA) lends the
+ * child the parent's token and its credit: an act on the PARENT, authorised the
+ * way `authorizeConnectionBinding` authorises binding to a connection.
+ *
+ *  - the parent must exist in this tenant and be an account the caller may
+ *    OPERATE (assignment rule, `assignments.assign` bypass, the parent's own
+ *    business scope covered);
+ *  - the child's scope must be contained in the parent's (a tenant-wide parent
+ *    lends to any scope; a scoped parent only to its own scope).
+ *
+ * Every refusal is ONE answer (`422 PARENT_INVALID`), the same one
+ * `createAccount` gives for an unknown or wrong-kind parent, so it says nothing
+ * about whether the id names a real account. Refused before the idempotent
+ * runner, so a refusal is never stored for replay.
+ */
+export async function authorizeParentBinding(
+  context: AccountRouteContext,
+  guard: AccountGuard,
+  parentAccountId: string,
+  accountScope: ScopeRef | null
+): Promise<Response | null> {
+  const refuse = () =>
+    fail(
+      422,
+      "PARENT_INVALID",
+      "The account cannot be registered as requested."
+    );
+  const parent = await fetchAccountRecord(
+    context.tx,
+    context.tenantId,
+    parentAccountId
+  );
+
+  if (!parent) return refuse();
+
+  if (!accountScopeWithinConnection(accountScope, parent.businessScope)) {
+    return refuse();
+  }
+
+  const visible = await isAccountVisibleTo(
+    context.tx,
+    context.tenantId,
+    parentAccountId,
+    context.auth.context.tenantUserId,
+    await canSeeAllAccounts(context),
+    "operator"
+  );
+
+  if (!visible) return refuse();
+
+  if (
+    parent.businessScope &&
+    !(await scopeCoveredFor(context, guard, parent.businessScope))
+  ) {
+    return refuse();
+  }
+
+  return null;
 }
 
 /**

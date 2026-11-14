@@ -4221,14 +4221,15 @@ Requires Idempotency-Key. email.notification.create for every request; email.ann
 
 **Responses**
 
-| Status | Description                                      | Schema                                 |
-| ------ | ------------------------------------------------ | -------------------------------------- |
-| 200    | Recipients enqueued.                             | object                                 |
-| 400    | Validation error.                                | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                      | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                      | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                              | [`ApiError`](#standard-error-envelope) |
-| 409    | Idempotency-Key reused with a different request. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Recipients enqueued.                                                                                                                                                                                                                                                                                                                                  | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Idempotency-Key reused with a different request.                                                                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 422    | SENDER_UNAVAILABLE - the sender is unknown, another tenant's, not verified, disabled, out of scope, or not one the caller may use (one answer for all). TEMPLATE_CATEGORY_RESERVED (Issue #1161) - the `templateKey` is a security category (`auth.*`, `system.security_notice`); security mail is sent only by the system, never as an announcement. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/email/announcements/preview` — Dry-run announcement targeting — recipient count + synthetic sample only.
 
@@ -4245,13 +4246,14 @@ Requires Idempotency-Key. email.notification.create for every request; email.ann
 
 **Responses**
 
-| Status | Description                      | Schema                                 |
-| ------ | -------------------------------- | -------------------------------------- |
-| 200    | Preview (count + sample render). | object                                 |
-| 400    | Validation error.                | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.      | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.      | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.              | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Preview (count + sample render).                                                                                                                                  | object                                 |
+| 400    | Validation error.                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 422    | TEMPLATE_CATEGORY_RESERVED (Issue #1161) - the `templateKey` is a security category (`auth.*`, `system.security_notice`), which is never sent as an announcement. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/email/messages` — Email delivery-queue diagnostics (masked recipient only, keyset-paginated).
 
@@ -4297,6 +4299,100 @@ Requires Idempotency-Key. email.notification.create for every request; email.ann
 | 403    | Access denied by RBAC/ABAC.              | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                      | [`ApiError`](#standard-error-envelope) |
 | 409    | The message is past a cancellable state. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/email/provider-events` — The quarantine of provider-reported, unauthenticated Mailketing events.
+
+- **operationId**: `emailListProviderEvents`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1161, ADR-0151 section 5. Newest first, keyset-paged, optionally by `reviewStatus` and `emailMessageId`. Recipients masked; a click shows the link host only. Every entry says `authenticity: unauthenticated`. With `emailMessageId`, `projection` is that message's provider-reported state (`accepted` < `delivered` < `bounced`, the maximum over its events, so it only moves forward and a replay or a late `delivered` cannot move it back); it is never written onto the message, and is `null` unless the message has events the caller may all see. Mailketing reports no complaint event, so there is no `complained` state. Only events of accounts the caller may see under the channel-account rules. Requires `email.webhook.read`.
+
+**Parameters**
+
+| Name             | In    | Required | Type                                                       | Description |
+| ---------------- | ----- | -------- | ---------------------------------------------------------- | ----------- |
+| `reviewStatus`   | query | no       | enum(`pending`, `confirmed`, `dismissed`, `informational`) |             |
+| `emailMessageId` | query | no       | string (uuid)                                              |             |
+| `cursor`         | query | no       | string                                                     |             |
+
+**Responses**
+
+| Status | Description                     | Schema                                 |
+| ------ | ------------------------------- | -------------------------------------- |
+| 200    | One page of quarantined events. | object                                 |
+| 400    | Validation error.               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.     | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/email/provider-events/{id}/review` — Confirm a quarantined bounce or unsubscribe into the suppression list, or dismiss it (high-risk).
+
+- **operationId**: `emailReviewProviderEvent`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1161, ADR-0151 section 5 `strict`. The ONLY path by which a provider report changes anything, and a human decision. `confirm` adds the recipient to the suppression list (reason `bounced` or `unsubscribed`, `source: provider_report`, which never blocks security mail); an already suppressed recipient keeps its entry. A soft or unclassified bounce may be confirmed only once the recipient soft-bounced on `EMAIL_WEBHOOK_SOFT_BOUNCE_THRESHOLD` (default 3) DISTINCT messages in 30 days. A review is final. Requires `email.provider_events.approve`, a signed-in person, operator access to the event's account and an `Idempotency-Key`; audited at `warning` with ids and codes only.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Reviewed.                                                              | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | ALREADY_REVIEWED, BELOW_SOFT_BOUNCE_THRESHOLD or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+| 413    | Body too large.                                                        | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/email/sender-policy` — Set the default email sender of a business scope (prospective, high-risk).
+
+- **operationId**: `emailSetSenderPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1160. Sets which verified Mailketing sender of THIS tenant sends email when the caller names none, for one business scope or tenant-wide (`businessScope: null`). `defaultSenderAccountId: null` explicitly selects the deployment sender for that scope. PROSPECTIVE: queued messages keep their sender and `configVersion`. Same answer (`422 SENDER_UNAVAILABLE`) for an unknown, another tenant's, unverified or out-of-scope sender. A no-op change bumps nothing (`changed: false`). Audited at `warning`. `Idempotency-Key` required. `409 SENDER_ROUTING_DISABLED` when tenant senders are off. Requires `email.sender_policy.configure`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                      | Schema                                 |
+| ------ | ------------------------------------------------ | -------------------------------------- |
+| 200    | The policy after the change.                     | object                                 |
+| 400    | Validation error.                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                      | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT or SENDER_ROUTING_DISABLED. | [`ApiError`](#standard-error-envelope) |
+| 413    | Body too large.                                  | [`ApiError`](#standard-error-envelope) |
+| 422    | SENDER_UNAVAILABLE.                              | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/email/senders` — The tenant's email senders with diagnostics, and the default-sender policy.
+
+- **operationId**: `emailListSenders`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1160 (ADR-0151 section 2). One entry per sender with a queue row in the last 35 days plus the deployment sender (`senderAccountId: null`): whether it may send now (a coarse reason code when not), queue counts and the hourly quota. Only senders and policies the caller may see by the channel-account rules. Never a credential, secret reference or recipient. Requires `email.senders.read`.
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Senders and policies.       | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/email/suppressions` — List the email suppression list (masked recipient only).
 
@@ -4518,6 +4614,107 @@ Requires Idempotency-Key. email.notification.create for every request; email.ann
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/email/webhook-callbacks` — The Mailketing callback URLs of this tenant (never the token).
+
+- **operationId**: `emailListWebhookCallbacks`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1161. One entry per callback credential (live and revoked) of the Mailketing accounts the caller may see under the channel-account rules: id, account, status, last event. Neither the token nor its hash is returned. `enabled` says whether this deployment accepts callbacks at all; `mode` is always `strict` (events are quarantined, never applied). Requires `email.webhook.read`.
+
+**Responses**
+
+| Status | Description                                                  | Schema                                 |
+| ------ | ------------------------------------------------------------ | -------------------------------------- |
+| 200    | Callback credentials.                                        | object                                 |
+| 401    | Missing or invalid session.                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                  | [`ApiError`](#standard-error-envelope) |
+| 503    | The channel-accounts module cannot be loaded (default-deny). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/email/webhook-callbacks` — Issue or rotate the callback URL of one Mailketing account (token shown once, high-risk).
+
+- **operationId**: `emailIssueWebhookCallback`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1161. Any live callback of the account is revoked in the same transaction, so a leaked URL is cut off by issuing a new one. The path carrying the token is in THIS response once (`revealed: true`); a replay of the same `Idempotency-Key` answers without it (`revealed: false`). Only a hash bound to the tenant and callback id is stored. The URL locates the account; it does not authenticate Mailketing. Requires `email.webhook.configure`, operator access to the account under the channel-account rules, a signed-in person and an `Idempotency-Key`; audited at `warning` (never the token).
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Issued (or rotated).                                                                                              | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 413    | Body too large.                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 422    | ACCOUNT_UNAVAILABLE - not a live Mailketing account of this tenant that the caller operates (one answer for all). | [`ApiError`](#standard-error-envelope) |
+| 503    | The channel-accounts module cannot be loaded (default-deny).                                                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/email/webhook-callbacks/{id}/revoke` — Revoke a Mailketing callback URL (high-risk, idempotent by state).
+
+- **operationId**: `emailRevokeWebhookCallback`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1161. The URL stops verifying at once and is never re-activated. Requires `email.webhook.configure`, operator access to the account, a signed-in person and an `Idempotency-Key`; audited at `warning` when it changed something. An unknown id, another tenant's id and an account the caller cannot operate are the same `404`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                                                  | Schema                                 |
+| ------ | ------------------------------------------------------------ | -------------------------------------- |
+| 200    | Revoked (or already revoked).                                | object                                 |
+| 400    | Validation error.                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.                                        | [`ApiError`](#standard-error-envelope) |
+| 503    | The channel-accounts module cannot be loaded (default-deny). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/email/webhooks/mailketing/{token}` — Mailketing delivery callbacks for one tenant Mailketing account (quarantined, unauthenticated).
+
+- **operationId**: `emailReceiveMailketingWebhook`
+- **Security**: none (public endpoint)
+
+Issue #1161, ADR-0151 section 5 (`strict` mode). Called by Mailketing, never by a person or a browser. Mailketing documents NO way to authenticate a callback (no signature, secret header, source-IP list or event id), so every event is treated as UNAUTHENTICATED and changes no message status, suppression, subscriber, consent or customer: an event bound to a message this tenant sent through this account is written to the quarantine (`GET /api/v1/email/provider-events`), where an operator may confirm a bounce or unsubscribe into the suppression list. The opaque `{token}` (`mkw1.<tenantId>.<callbackId>.<secret>`, issued by `POST /api/v1/email/webhook-callbacks`) only LOCATES the tenant and account; only its hash is stored.
+
+Order of work: (1) `404` when `EMAIL_WEBHOOK_ENABLED` is not `true`; (2) every request is charged to a per-address bucket of FAILED proofs (30 per minute) before any parsing or database work, and refunded once it verifies, so legitimate traffic from shared addresses never fills it (`429` once an address has failed too often); (3) the token shape and a 32 KiB body cap, still without the database; (4) the token verified in constant time inside the tenant it names, on a live callback of a connected Mailketing account with `email` enabled (every failure the same `401`); (5) a per-callback bucket for verified traffic, then the events.
+
+Accepted events (one object, or an array of at most 25): `bounce`, `emailopen`, `delivered` (bound by the provider message id stored at acceptance AND the recipient), `emailclick`, `unsubscribe` (no id in the vendor payload; bound only when this account sent that recipient a message in the last 30 days). `newsubscriber` is ignored and never creates a subscriber or consent; an event for a message we did not issue (another account's or tenant's id, a mismatched recipient) is discarded. The report time must be the vendor's `YYYY-MM-DD HH:MM:SS` (read as UTC) or ISO-8601 with an explicit zone; anything else, or a date more than 30 days old or in the future, is discarded as stale. Dedupe ignores the report time: one row per (account, type, message) for bounce, open and delivered, one per (account, type, recipient, UTC day) for click and unsubscribe, at most one pending unsubscribe per recipient, and at most `EMAIL_WEBHOOK_MAX_PENDING` pending events per tenant (further reviewable events are not recorded until operators review the queue). A bounce's reason text is reduced to a hard/soft class and an RFC 3463 code; a clicked link to its host and a hash, never stored, rendered as a link or fetched.
+
+**Parameters**
+
+| Name    | In   | Required | Type   | Description                                         |
+| ------- | ---- | -------- | ------ | --------------------------------------------------- |
+| `token` | path | yes      | string | The opaque callback token (at most 160 characters). |
+
+**Request body** (required): [`EmailMailketingWebhookEvent`](#schema-emailmailketingwebhookevent) \| array of [`EmailMailketingWebhookEvent`](#schema-emailmailketingwebhookevent)
+
+**Responses**
+
+| Status | Description                                                                                                                                | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | Received. Always the same body after proof, whatever was recorded, discarded or ignored: nothing about a recipient or a message is echoed. | object                                 |
+| 400    | The body is not JSON, not an event object, or an empty or oversized array.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | The token is malformed, unknown, revoked, or does not verify (one answer for all).                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Mailketing callbacks are switched off on this deployment.                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 413    | The body exceeds 32 KiB.                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many FAILED proofs from this address (checked before any database work), or the per-callback rate after proof.                         | [`ApiError`](#standard-error-envelope) |
+| 503    | A transient failure; Mailketing retries and recording is idempotent.                                                                       | [`ApiError`](#standard-error-envelope) |
 
 ## Management Reporting
 
@@ -6494,7 +6691,7 @@ Read-only preview of which tags would be automatically linked in this post's ren
 - **operationId**: `blogPublishPost`
 - **Security**: bearerAuth + tenantHeader
 
-Gated by blog_content.posts.publish (no ownership carve-out). High-risk, requires Idempotency-Key. Blocked (422) if the content quality checklist fails when full-online R2-only mode is active for the tenant. On success, also invokes the social-publishing outbox hook (a documented no-op in this base — social_publishing is not ported).
+Gated by blog_content.posts.publish (no ownership carve-out). High-risk, requires Idempotency-Key. Blocked (422) if the content quality checklist fails when full-online R2-only mode is active for the tenant. On success, also invokes the social-publishing hook (`SocialPublishingPort`), which is a no-op unless the deployment enables the `social_publishing` module (`SOCIAL_PUBLISHING_ENABLED`, ADR-0157) and the tenant has opted in; it never fails the publication.
 
 **Parameters**
 
@@ -9615,7 +9812,7 @@ Only `queued` and `retry_wait` are cancellable. A row in `sending` has been clai
 
 Three event names. `push-queue-summary` carries a `PushQueueSummary` every 5 s. `authorization-revoked` is terminal and the client must NOT reconnect — whatever it held is gone. `stream-error` is terminal and retryable, and is deliberately a DIFFERENT name: telling a client its access was revoked when the database was merely busy is a lie in the direction that gets investigated as a permissions bug.
 
-A connection ends after 10 minutes regardless; `EventSource` reconnects by itself, so the ceiling costs a reconnect while its absence would cost a connection slot forever. The message and attempt lists are NOT streamed — they are bounded at 50 rows and change shape rather than value. Requires `push_delivery.diagnostics.read`, re-checked per tick.
+A connection ends after 10 minutes regardless; `EventSource` reconnects by itself, so the ceiling costs a reconnect while its absence would cost a connection slot forever. The message and attempt lists are NOT streamed — they are bounded at 50 rows and change shape rather than value. Requires `push_delivery.diagnostics.read`, re-checked per tick. A present foreign `Origin`, `Sec-Fetch-Site: cross-site` or `Sec-Fetch-Mode: navigate` is refused with `403 ORIGIN_REFUSED` before any work (Issue #1171, ADR-0154 section 3).
 
 **Responses**
 
@@ -9624,6 +9821,7 @@ A connection ends after 10 minutes regardless; `EventSource` reconnects by itsel
 | 200    | The event stream.           | string                                 |
 | 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/push/subscriptions` — List the caller's own registered push devices.
 
@@ -10723,6 +10921,121 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 404    | Resource not found.                                                                        | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Which CRM leads were confirmed as commerce customers, newest first (at most 100): opaque ids, the evidence kind and the link state, never a name or contact. Optional filters `leadId`, `customerId`, `state`. Gated on `commerce.crm_lead_links.read`.
+
+- **operationId**: `listCommerceCrmLeadLinks`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                           | Description |
+| ------------ | ----- | -------- | ---------------------------------------------- | ----------- |
+| `leadId`     | query | no       | string (uuid)                                  |             |
+| `customerId` | query | no       | string (uuid)                                  |             |
+| `state`      | query | no       | enum(`linked`, `reversal_pending`, `reversed`) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The links.                  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Confirm that a CRM lead became this commerce customer, on a commerce fact the server verifies. Gated on `commerce.crm_lead_links.create` AND `crm_leads.conversions.approve` (the CRM port performs no access check, so both are enforced); audited at warning.
+
+- **operationId**: `createCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+The caller names the lead and the customer; nothing is matched on a phone, e-mail or social handle. The evidence is read from the database: `customer_registration` needs a live account with a verified e-mail, `paid_order` needs a paid, not cancelled order OF THAT customer (`orderId` required). The conversion is recorded in `crm_leads` through `CrmLeadPort` with an opaque customer reference and the evidence reference as the replay key, and `awcms.commerce.customer.converted` is published. A replay with the same evidence answers `200` with the existing link and publishes nothing; the same evidence naming another lead or customer is `409 CRM_EVIDENCE_REUSED`. A lead or customer of another tenant is the same `404` as a missing one. An erased customer, or an order whose every line was returned, is `409 CRM_EVIDENCE_NOT_VERIFIED`. This operation does NOT honour an `Idempotency-Key` header (ADR-0145 does not apply): the evidence reference is the idempotency key, so a replay is recognised from the evidence alone.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | A replay - the existing link, nothing published.                                                                                                                                                                                                                         | object                                 |
+| 201    | The new link.                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEADS_UNAVAILABLE`, `CRM_EVIDENCE_NOT_VERIFIED` (with `details.reason`), `CRM_LEAD_ALREADY_LINKED`, `CRM_EVIDENCE_REUSED` or `CRM_CONVERSION_REFUSED` (with `details.reason`, a `crm_leads` outcome such as `version_conflict`, `not_open` or `already_converted`). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links/{id}/reverse` — Issue #463 (ADR-0056). Reverse a confirmed lead-to-customer link: the CRM conversion is reversed through the port (a stamped reversal, never an edit of history) and the link becomes `reversed`, which is final. Gated on `commerce.crm_lead_links.approve` (a high-risk action) AND `crm_leads.conversions.approve`; audited at warning.
+
+- **operationId**: `reverseCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+Meant for a link a consumer flagged `reversal_pending` because the order its conversion rests on was cancelled or fully refunded (the consumers run as the worker role, which holds no CRM privilege, so they only flag). A person may also reverse a `linked` one. Reversing a reversed link is `409`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                                     | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reversed link.                                                                                              | object                                 |
+| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEAD_LINK_ALREADY_REVERSED`, `CRM_LEADS_UNAVAILABLE`, `CRM_CONVERSION_NOT_FOUND` or `CRM_EVIDENCE_REUSED`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `VALIDATION_ERROR` - the reversal request was rejected by `crm_leads` as invalid.                               | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/customer-subject-requests` — Issue #529 (ADR-0055 D3). The tenant's shopper data-subject requests, newest first, at most 100. Gated on `commerce.customer_subject_requests.read`.
+
+- **operationId**: `listCommerceCustomerSubjectRequests`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                                                      | Description |
+| ------------ | ----- | -------- | ------------------------------------------------------------------------- | ----------- |
+| `status`     | query | no       | enum(`disclosed`, `pending_approval`, `refused`, `rejected`, `completed`) |             |
+| `customerId` | query | no       | string (uuid)                                                             |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The requests.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customer-subject-requests/{id}/decide` — Issue #529 (ADR-0055 D3). The second person approves or rejects a pending erasure. Gated on `commerce.customer_subject_requests.approve` (high-risk), a fresh step-up and an `Idempotency-Key`; never the requester.
+
+- **operationId**: `decideCommerceCustomerSubjectRequest`
+- **Security**: bearerAuth + tenantHeader
+
+Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request that is not pending is `409 INVALID_STATE`, except that the same approver repeating the decision that already settled it (a retry after a lost response) gets the stored decision back with `200`; a shopper whose state changed since the request (a new order, say) is `409 ERASURE_REFUSED` and the request is recorded as refused.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------- | -------------------------------------- |
+| 200    | The decided request.                                          | object                                 |
+| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN`, `STEP_UP_REQUIRED` or `SEPARATION_OF_DUTIES`.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `INVALID_STATE`, `ERASURE_REFUSED` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/customers` — Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
 
 - **operationId**: `listCommerceCustomers`
@@ -10784,6 +11097,58 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-erasure` — Issue #529 (ADR-0055 D2/D3). Request the erasure of a shopper's personal data. Erases nothing: records a request a second person approves. Gated on `commerce.customer_subject_requests.delete` (high-risk), a fresh step-up and an `Idempotency-Key`.
+
+- **operationId**: `requestCommerceCustomerSubjectErasure`
+- **Security**: bearerAuth + tenantHeader
+
+Runs the precondition check first. `202` records a `pending_approval` request; `409 ERASURE_REFUSED` records a `refused` one (open order or booking, stored-value balance, unsettled refund, unpaid affiliate commission, or already erased). A stale step-up is `403 STEP_UP_REQUIRED` with nothing written. Body `{ "reason"?: string }`, at most 500 characters.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 202    | The pending request (or the same request, `replayed: true`).           | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN` or `STEP_UP_REQUIRED`.                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-export` — Issue #529 (ADR-0055 D3/D4). An administrator produces a shopper's data-subject export bundle on their behalf. Gated on `commerce.customer_subject_requests.export` (high-risk) and an `Idempotency-Key`.
+
+- **operationId**: `exportCommerceCustomerSubjectData`
+- **Security**: bearerAuth + tenantHeader
+
+The bundle is returned once with `Cache-Control: no-store` and never stored; the disclosure is audited at `critical` with counts only. A repeated key is `409 IDEMPOTENCY_REPLAYED` because the bundle is not kept to replay; use a new key to produce another.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The request id and the bundle. | object                                 |
+| 400    | Validation error.              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.            | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_REPLAYED`.        | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`.
 
@@ -12520,7 +12885,7 @@ The body is the register and explicit `tenders` (cash with change, QRIS, bank tr
 - **operationId**: `checkInCommercePosBookingReservation`
 - **Security**: bearerAuth + tenantHeader
 
-The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - the owner confirms the default): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only.
+The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - confirmed by the owner on 11 November 2026): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only.
 
 **Parameters**
 
@@ -14438,6 +14803,67 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/erasure` — Issue #529 (ADR-0055 D2/D3). The shopper's own erasure: anonymise the identity, delete personal rows, retain the ledgers, revoke every session.
+
+- **operationId**: `eraseCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "erasure"`) and a required `Idempotency-Key`. Body `{ "code": "123456" }`. On success every session of the account is revoked, so the next request with the old bearer is `401` and the storefront clears its stored session. The response names counts and the table families kept for bookkeeping, never content. It is refused (`409 ERASURE_REFUSED`, `details.refusals`) while an order is pending payment, paid, processing or shipped, a booking is active, a stored-value balance is above zero, a return or refund is unsettled or an affiliate commission is unpaid; the code is not consumed by a refusal. A repeated key answers the stored result only for a REFUSED attempt (the same `409 ERASURE_REFUSED`). After a completed erasure every session is revoked, so a retry gets `401` before the key is looked at; that `401` tells the client the erasure went through. Rate limited per account (`429`), because a refusal is recorded and audited before the code is consumed.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The erasure ran.                                                       | object                                 |
+| 400    | `OTP_INVALID`, `IDEMPOTENCY_KEY_REQUIRED` or a malformed body.         | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/export` — Issue #529 (ADR-0055 D4). The shopper's own data-subject export: a versioned JSON bundle of everything the store holds about them. Not stored.
+
+- **operationId**: `exportCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session AND a fresh one-time code from `privacy/otp` (`type: "export"`). Body `{ "code": "123456" }`. The bundle is returned once with `Cache-Control: no-store` and is never stored; the disclosure is audited with counts only. Secrets (token and code hashes, client address hashes, push endpoints and keys, provider payloads) are redacted, and `unanswered` names what could not be matched to the customer. Every code failure is one generic `400 OTP_INVALID`. The code is single use, so the request carries no `Idempotency-Key`.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                            | Schema                                 |
+| ------ | ------------------------------------------------------ | -------------------------------------- |
+| 200    | The export bundle.                                     | object                                 |
+| 400    | `OTP_INVALID` (any code failure), or a malformed body. | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                       | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/otp` — Issue #529 (ADR-0055 D3). Mail a fresh one-time code to the account's own e-mail address for a data-subject `export` or `erasure`.
+
+- **operationId**: `requestCommerceStorefrontAccountPrivacyOtp`
+- **Security**: customerBearer
+
+The second proof a shopper's data-subject request needs on top of the bearer session. Body `{ "type": "export" | "erasure" }`. Rate limited per IP and per account; a repeat inside the resend window is a no-op success. The code is single use and of its own purpose, so a sign-in code never authorises a request. Body cap 8 KiB.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                           | Schema                                 |
+| ------ | ------------------------------------- | -------------------------------------- |
+| 200    | The code was sent (or is still live). | object                                 |
+| 400    | Validation error.                     | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                      | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.     | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/booking/availability` — Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437), or that is not an active, undeleted resource of the tenant in the offering's mode (a link naming none, and a bound resource since retired - Issue #448) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached.
 
@@ -20788,7 +21214,7 @@ Operator surface of the generic WhatsApp delivery capability (whatsapp_delivery 
 - **operationId**: `listWhatsappConsents`
 - **Security**: bearerAuth + tenantHeader
 
-Per-recipient consent records (masked). Consent is never inferred from segment, list or campaign-audience membership; only this record decides who may receive a marketing message. Bounded: `hasMore` says whether the list was cut. Requires `whatsapp_delivery.consents.read`.
+Per-recipient consent records (masked). Consent is never inferred from segment, list or campaign-audience membership; only this record decides who may receive a marketing message. Bounded: `hasMore` says whether the list was cut. Requires `whatsapp_delivery.consents.read`. Each entry's `businessScopes` lists only the brands the caller holds (business-scope confinement; Issue #1231 M4).
 
 **Parameters**
 
@@ -20812,29 +21238,29 @@ Per-recipient consent records (masked). Consent is never inferred from segment, 
 - **operationId**: `grantWhatsappConsent`
 - **Security**: bearerAuth + tenantHeader
 
-Explicit, per recipient, per channel, recorded with its source and time (ADR-0133 section 4). Naturally idempotent: the unique key is (tenant, recipient, purpose), so a retry re-stamps the same row instead of adding one, which is why no Idempotency-Key is taken. A re-grant after a withdrawal is a new, deliberate act; history lives in the audit log and the `whatsapp.consent.*` events. The body is validated after authorization. Re-granting over a WITHDRAWN consent reverses an opt-out, so it is never implicit: it is refused with 409 unless the body sets `reinstateWithdrawn` with an `evidenceRef`, it is refused for `source` `import` (422), it needs `whatsapp_delivery.consents.restore` (high-risk) instead, and the withdrawal is kept in the row's history. Requires `whatsapp_delivery.consents.create` (or `consents.restore` when reinstating). 503 when the deployment has no recipient-hash key ring.
+Explicit, per recipient, per channel, recorded with its source and time (ADR-0133 section 4). Naturally idempotent: the unique key is (tenant, recipient, purpose), so a retry re-stamps the same row instead of adding one, which is why no Idempotency-Key is taken. A re-grant after a withdrawal is a new, deliberate act; history lives in the audit log and the `whatsapp.consent.*` events. The body is validated after authorization. Re-granting over a WITHDRAWN consent reverses an opt-out, so it is never implicit: it is refused with 409 unless the body sets `reinstateWithdrawn` with an `evidenceRef`, it is refused for `source` `import` (422), it needs `whatsapp_delivery.consents.restore` (high-risk) instead, and the withdrawal is kept in the row's history. Requires `whatsapp_delivery.consents.create` (or `consents.restore` when reinstating). 503 when the deployment has no recipient-hash key ring. Since Issue #1231 M4 (owner decision, option (c)) the opt-in records the business scope (brand) it was collected for: `businessScope` appends that brand to the consent, and marketing of a brand is eligible only when the consent lists it (enqueue refuses `CONSENT_SCOPE_REQUIRED` otherwise, and the dispatcher re-checks before every send). Omitted or `null` records an opt-in for the tenant itself, which covers only marketing that names no business scope. The scope must be one the caller holds (business-scope confinement, 403; an unknown scope is not held, so it is 403 too) and must exist in this tenant (422 `SCOPE_UNRESOLVED`); a caller confined to business scopes cannot record the unscoped opt-in (403). Only `office` scopes resolve today. A reinstatement covers only the brand it names. A brand grant does not change the consent's own `source`/`grantedAt`. The response lists only the brands the caller holds. The consent stays one record per recipient, and a withdrawal stays tenant-wide. Note that a message's brand is the scope its CALLER declares: it is tied to the sending number only when that sender is itself scoped.
 
 **Request body** (required): [`WhatsappConsentGrantRequest`](#schema-whatsappconsentgrantrequest)
 
 **Responses**
 
-| Status | Description                                                                                                      | Schema                                 |
-| ------ | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | The consent was recorded.                                                                                        | object                                 |
-| 400    | Validation error.                                                                                                | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                      | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                      | [`ApiError`](#standard-error-envelope) |
-| 409    | The recipient opted out and the request did not ask to reinstate (`CONSENT_WITHDRAWN`).                          | [`ApiError`](#standard-error-envelope) |
-| 413    | Request body too large.                                                                                          | [`ApiError`](#standard-error-envelope) |
-| 422    | Reinstatement refused (`REINSTATEMENT_REFUSED`) - an import cannot reverse an opt-out, and evidence is required. | [`ApiError`](#standard-error-envelope) |
-| 503    | The deployment has no usable recipient-hash key ring (`WHATSAPP_HASH_KEYS_UNAVAILABLE`).                         | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The consent was recorded.                                                                                                                                                                                                                                               | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | The recipient opted out and the request did not ask to reinstate, including when a concurrent withdrawal committed first (`CONSENT_WITHDRAWN`).                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 413    | Request body too large.                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 422    | Reinstatement refused (`REINSTATEMENT_REFUSED`) - an import cannot reverse an opt-out, and evidence is required; the business scope does not exist in this tenant (`SCOPE_UNRESOLVED`); or the consent already lists the maximum of 256 brands (`CONSENT_SCOPE_LIMIT`). | [`ApiError`](#standard-error-envelope) |
+| 503    | The deployment has no usable recipient-hash key ring (`WHATSAPP_HASH_KEYS_UNAVAILABLE`).                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/whatsapp/consents/{id}/withdraw` — Record a marketing opt-out.
 
 - **operationId**: `withdrawWhatsappConsent`
 - **Security**: bearerAuth + tenantHeader
 
-Immediate, and wins over everything queued: the recipient's waiting marketing messages are cancelled in the same transaction, and the dispatcher re-checks consent again right before every send. Naturally idempotent (withdrawing a withdrawn consent keeps the original stamp). Withdrawing is protective, so it is a separate, lower-friction permission than granting. Requires `whatsapp_delivery.consents.withdraw`.
+Immediate, and wins over everything queued: the recipient's waiting marketing messages are cancelled in the same transaction, and the dispatcher re-checks consent again right before every send. Naturally idempotent (withdrawing a withdrawn consent keeps the original stamp). Withdrawing is protective, so it is a separate, lower-friction permission than granting. Requires `whatsapp_delivery.consents.withdraw`. Tenant-wide and NOT business-scope confined (Issue #1231 M4, owner decision): it ends the opt-in for every brand the consent covered, whichever brands the caller holds; the response's `businessScopes` is therefore empty.
 
 **Parameters**
 
@@ -20899,12 +21325,79 @@ Only `queued` and `retry_wait` are cancellable. A row in `sending` has been clai
 | 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
 | 409    | Not cancellable. One answer for "no such message", "already sent", "already failed", "already cancelled" and "being sent right now" - distinguishing them would hand a narrow grant an existence oracle over the queue. | [`ApiError`](#standard-error-envelope) |
 
+### `POST /api/v1/whatsapp/meta-signals/{id}/clear-restriction` — Clear a recorded WABA restriction.
+
+- **operationId**: `clearWhatsappMetaRestriction`
+- **Security**: bearerAuth + tenantHeader
+
+Clears the restriction Meta reported for a WABA (`{id}` is the WABA account) after the operator verified at Meta that it was lifted. Meta's documented reversals (a ban `REINSTATE`, `ACCOUNT_RECONNECTED`) clear their own restriction automatically; a policy restriction, a deletion or an app uninstall is cleared only here. While restricted, the WABA's numbers are refused at enqueue (`SENDER_UNAVAILABLE`) and held at dispatch (bounded retries); nothing is rerouted to another number. HIGH-RISK: audited at `warning`, `Idempotency-Key` required. Requires `whatsapp_delivery.meta_signals.configure`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------- | -------------------------------------- |
+| 200    | The restriction was cleared.                                   | object                                 |
+| 400    | Validation error.                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOT_RESTRICTED` (nothing to clear) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/whatsapp/meta-templates` — Meta template approvals per WABA, and each WABA's signals.
+
+- **operationId**: `listWhatsappMetaTemplates`
+- **Security**: bearerAuth + tenantHeader
+
+Which Meta templates (name, language, category, Meta's own status) are recorded on which WABA account (`items`), and each WABA's latest restriction and messaging-limit tier as Meta reported them through a signed webhook (`signals`). Only WABA accounts the caller may see (`channel_accounts` assignments and business-scope confinement); default-deny when the channel module cannot be loaded. An evidence reference is never returned (only `hasEvidence`). A template is SENDABLE through a tenant-owned Meta number only when its row on THAT number's WABA is `APPROVED` or `REINSTATED` and its category matches the message's purpose (marketing MARKETING, transactional UTILITY, security AUTHENTICATION). Requires `whatsapp_delivery.meta_templates.read`.
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | Template approvals and WABA signals. | object                                 |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/whatsapp/meta-templates` — Record a Meta template's status on one WABA.
+
+- **operationId**: `recordWhatsappMetaTemplate`
+- **Security**: bearerAuth + tenantHeader
+
+An operator records what Meta shows for ONE template on ONE WABA account (bootstrap: Meta sends a status webhook only when a status CHANGES, so an already-approved template is recorded here). `status` is Meta's own vocabulary; `APPROVED`/`REINSTATED` require an `evidenceRef` (where the approval can be checked). A later signed Meta webhook with a newer event time overrides this record. The WABA must be a live `waba` account of THIS tenant that the caller operates; anything else is the same `422 CONTAINER_NOT_FOUND`. HIGH-RISK (an approved row lets messages be sent with that template through that WABA's numbers): audited at `warning`, `Idempotency-Key` required. Requires `whatsapp_delivery.meta_templates.configure`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`WhatsappMetaTemplateRequest`](#schema-whatsappmetatemplaterequest)
+
+**Responses**
+
+| Status | Description                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The template record as now stored.                                                      | object                                 |
+| 400    | Validation error.                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`: the key was already used with a different request.              | [`ApiError`](#standard-error-envelope) |
+| 413    | Request body too large.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 422    | `CONTAINER_NOT_FOUND`: not a live WABA account of this tenant that the caller operates. | [`ApiError`](#standard-error-envelope) |
+
 ### `PUT /api/v1/whatsapp/sender-policy` — Set the default sender of a business scope (prospective).
 
 - **operationId**: `setWhatsappSenderPolicy`
 - **Security**: bearerAuth + tenantHeader
 
-Sets which of the tenant's own accounts sends WhatsApp messages when the caller names none, for one business scope or tenant-wide (`businessScope: null`). `defaultSenderAccountId: null` is an explicit decision to use the deployment sender for that scope (it overrides a tenant-wide default). PROSPECTIVE: it applies to messages enqueued after the change; a message already queued keeps the sender and the `configVersion` it was given. Both keys are required. The sender must be an account of THIS tenant that may send a business-initiated message now and that has an adapter on this deployment; anything else, including another tenant's account, is the same `422 SENDER_UNAVAILABLE` (no existence oracle). A change to the same default is a no-op that bumps nothing (`changed: false`). High-risk: audited at `warning`. `Idempotency-Key` required. The body is validated after authorization. Requires `whatsapp_delivery.sender_policy.configure`.
+Sets which of the tenant's own accounts sends WhatsApp messages when the caller names none, for one business scope or tenant-wide (`businessScope: null`). `defaultSenderAccountId: null` is an explicit decision to use the deployment sender for that scope (it overrides a tenant-wide default). PROSPECTIVE: it applies to messages enqueued after the change; a message already queued keeps the sender and the `configVersion` it was given. Both keys are required. The sender must be an account of THIS tenant that may send a business-initiated message now and that has an adapter on this deployment; anything else, including another tenant's account, is the same `422 SENDER_UNAVAILABLE` (no existence oracle). A change to the same default is a no-op that bumps nothing (`changed: false`). High-risk: audited at `warning`. `Idempotency-Key` required. A missing `Idempotency-Key`, an oversized body or a body that is not valid JSON is answered (`400`/`413`) to any caller with a bearer token before the permission check; the request schema (the field-level `400`) is validated only after authorization. Requires `whatsapp_delivery.sender_policy.configure`.
 
 **Parameters**
 
@@ -20931,7 +21424,7 @@ Sets which of the tenant's own accounts sends WhatsApp messages when the caller 
 - **operationId**: `listWhatsappSenders`
 - **Security**: bearerAuth + tenantHeader
 
-One entry per sender that has any queue row in the last 35 days, plus the deployment sender (`senderAccountId: null`), from ONE transaction. Per sender: whether it may send a business-initiated message right now (a coarse reason code when it may not), the queue (waiting, in flight, failed in the last day, oldest waiting, last failure code) and the quota (what it really sent in the trailing hour and day against the per-sender caps, and whether it is `throttled`). A throttled or unavailable sender's rows WAIT or fail terminally; they are never rerouted to another sender, number or provider. Bounded to 200 senders. Nothing here is a credential, a secret reference, a phone number or a device id: a sender is its account id. Requires `whatsapp_delivery.senders.read`.
+One entry per sender that has any queue row in the last 35 days, plus the deployment sender (`senderAccountId: null`), from ONE transaction. Per sender: whether it may send a business-initiated message right now (a coarse reason code when it may not), the queue (waiting, in flight, failed in the last day, oldest waiting, last failure code) and the quota (what it really sent in the trailing hour and day against the per-sender caps, and whether it is `throttled`). A throttled or unavailable sender's rows WAIT or fail terminally; they are never rerouted to another sender, number or provider. Bounded to 200 senders. Nothing here is a credential, a secret reference, a phone number or a device id: a sender is its account id. Requires `whatsapp_delivery.senders.read`. Only what the caller may see by the rules of `channel_accounts` is returned: an account the caller is not assigned to (when it has assignees) or whose business scope the caller does not hold is left out, and a caller confined to business scopes gets neither the tenant-wide deployment lane nor the tenant-wide policy, nor a policy whose scope or sender they cannot see.
 
 **Responses**
 
@@ -20940,6 +21433,58 @@ One entry per sender that has any queue row in the last 35 days, plus the deploy
 | 200    | Sender diagnostics and the default-sender policies. | object                                 |
 | 401    | Missing or invalid session.                         | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/whatsapp/senders/{id}/progress` — Snapshot of one sender's delivery progress (the stream's REST snapshot and polling fallback).
+
+- **operationId**: `getWhatsappSenderProgress`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1171, ADR-0154. Counts per queue status for this sender, the 20 most recently changed messages (id, status, when — never a number, a body, a template, a provider response or an error text) and the `cursor` a stream resumes from. It is the page's state with no stream, the polling fallback, and what a client re-fetches on `snapshot-required`. Requires `whatsapp_delivery.progress.read`, and the sender must be an account the caller may see by the rules of `channel_accounts` (assignment, business scope). An unknown id, another tenant's account and a hidden account are one answer: `404`. A caller confined to business scopes sees, through a tenant-wide sender, only the messages whose own business scope they hold (counts, `recent` and `cursor` alike); unscoped messages are not visible to them. `counts` covers messages created in the last 7 days (`countWindowDays`).
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description                             |
+| ---- | ---- | -------- | ------------- | --------------------------------------- |
+| `id` | path | yes      | string (uuid) | The sender's channel account id (uuid). |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The progress snapshot.      | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/whatsapp/senders/{id}/progress/stream` — Server-Sent Events stream of one sender's delivery progress, re-authorized every tick.
+
+- **operationId**: `streamWhatsappSenderProgress`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #1171, ADR-0154. `text/event-stream` from the existing Bun process; there is no WebSocket. A projection of committed queue rows: a frame never causes a send, an enqueue or a status change.
+
+**Opening.** A present `Origin` that is not the site's own origin, or `Sec-Fetch-Site: cross-site`, or `Sec-Fetch-Mode: navigate`, is refused with `403 ORIGIN_REFUSED` before any work. Rows are filtered exactly as in the snapshot (business scope of a confined caller, 7-day counting window). The caller needs `whatsapp_delivery.progress.read` and must be able to see the sender (same rule as the snapshot); otherwise `401`/`403`/`404`, and no stream opens. Over the per-actor, per-tenant or per-instance cap the answer is `429 STREAM_CAPACITY_REACHED` with `Retry-After`, never a queued stream. A client resumes by sending the last event id back as `Last-Event-ID` (`EventSource` does this by itself).
+
+**Events.** Every data event carries `id: <cursor>` (a database keyset position). `progress` carries a `WhatsappSenderProgressFrame`: the current counts (coalesced, latest value per tick) and the messages that changed since the previous cursor, at most 50; a tick with nothing new writes a heartbeat comment instead. `snapshot-required` means re-fetch `GET /api/v1/whatsapp/senders/{id}/progress`: the `Last-Event-ID` was malformed, foreign or purged, or more than 50 messages changed at once. Terminal: `authorization-revoked` (do NOT reconnect; the role, the assignment, the business scope or the session ended — audited), `stream-error` (the database refused; back off with jitter), `slow-consumer` (the client fell behind and was evicted) and `stream-expired` (the 10-minute lifetime ended; reconnect with the cursor). Re-authorized every 5 s, which is also the revocation latency.
+
+**Parameters**
+
+| Name            | In     | Required | Type          | Description                                                    |
+| --------------- | ------ | -------- | ------------- | -------------------------------------------------------------- |
+| `id`            | path   | yes      | string (uuid) | The sender's channel account id (uuid).                        |
+| `Last-Event-ID` | header | no       | string        | The cursor of the last event received, sent back on reconnect. |
+
+**Responses**
+
+| Status | Description                                                                         | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The event stream.                                                                   | string                                 |
+| 400    | Validation error.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 429    | A connection cap is reached; retry after `Retry-After` seconds or use the snapshot. | [`ApiError`](#standard-error-envelope) |
+| 503    | The database refused the opening transaction; retry later.                          | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/whatsapp/suppressions` — List the suppression list.
 
@@ -21022,6 +21567,57 @@ Key, version, the ONE purpose each template is registered with, its variable all
 | 200    | Registered templates.       | object                                 |
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/whatsapp/webhooks/meta/{token}` — Meta's webhook subscription handshake.
+
+- **operationId**: `verifyWhatsappMetaWebhook`
+- **Security**: none (public endpoint)
+
+Meta calls it once when the callback URL is configured. Answers the `hub.challenge` as plain text only when `hub.mode` is `subscribe`, the token names an ACTIVE signed subscription, and `hub.verify_token` equals the callback token itself (constant time). Anything else is `403`. `404` when `WHATSAPP_ENABLED` is not `true`.
+
+**Parameters**
+
+| Name               | In    | Required | Type              | Description |
+| ------------------ | ----- | -------- | ----------------- | ----------- |
+| `hub.mode`         | query | yes      | enum(`subscribe`) |             |
+| `hub.verify_token` | query | yes      | string            |             |
+| `hub.challenge`    | query | yes      | string            |             |
+
+**Responses**
+
+| Status | Description                                          | Schema                                 |
+| ------ | ---------------------------------------------------- | -------------------------------------- |
+| 200    | The challenge, echoed.                               | string                                 |
+| 403    | Access denied by RBAC/ABAC.                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many attempts from this address for this tenant. | [`ApiError`](#standard-error-envelope) |
+| 503    | Temporarily unavailable.                             | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/whatsapp/webhooks/meta/{token}` — Meta Cloud API webhooks for one tenant-owned number.
+
+- **operationId**: `receiveWhatsappMetaWebhook`
+- **Security**: none (public endpoint)
+
+Called by Meta, never by a person or a browser. Authenticated by TWO facts, both compared in constant time: the callback token in the path and `X-Hub-Signature-256`, the HMAC-SHA256 of the exact request body under that number's Meta app secret (stored write-only). Order: (1) `404` when `WHATSAPP_ENABLED` is not `true`; (2) BEFORE any database work, a per-ADDRESS bucket of unverified requests (refunded when a request verifies, so forged tokens naming random tenants cannot evade it) and a per-(tenant of the token, address) attempt bucket, `429` with `retry-after` when either is exhausted (Meta retries a non-200, so nothing is dropped, only delayed); (3) the body, capped at 128 KiB, as raw bytes: the HMAC is computed over them before anything is decoded, and a signed body that is not UTF-8 JSON is accepted and applied nowhere; (4) in the token's tenant transaction, verification (a bad token, an inactive or rotated subscription, a number without a live WABA, a missing app secret, or a wrong or missing signature are ONE `401`, counted against a smaller per-(tenant, address) denial bucket that answers `429`); (5) the body hash is recorded per subscription and a repeated body (a replay or a provider retry) changes nothing; (6) the payload is read WITHIN the token's binding: an entry of another WABA, or a `messages` change of another phone number id, is dropped. Statuses reconcile only rows of the bound sender with that provider message id (and that recipient, when Meta names it), forward-only (sent, delivered, read; failed only before delivery); inbound messages open the 24-hour customer-service window of (that number, that recipient hash) and NOTHING of their content is read or stored; template status, messaging-limit and account events update the bound WABA's records only. Answered `200` with `{}`.
+
+**Parameters**
+
+| Name                  | In     | Required | Type   | Description                                             |
+| --------------------- | ------ | -------- | ------ | ------------------------------------------------------- |
+| `X-Hub-Signature-256` | header | yes      | string | `sha256=<64 lower-case hex>` over the exact body bytes. |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                      | Schema                                 |
+| ------ | ---------------------------------------------------------------- | -------------------------------------- |
+| 200    | Accepted (applied, a duplicate, or nothing applicable).          | object                                 |
+| 401    | Missing or invalid session.                                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                              | [`ApiError`](#standard-error-envelope) |
+| 413    | Request body too large.                                          | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many attempts or refusals from this address for this tenant. | [`ApiError`](#standard-error-envelope) |
+| 503    | Temporarily unavailable; Meta retries.                           | [`ApiError`](#standard-error-envelope) |
 
 ## HR Commission
 
@@ -21938,6 +22534,32 @@ Removing the LAST assignee returns the account to tenant-wide visibility, which 
 | 409    | `IDEMPOTENCY_CONFLICT`.                                                                | [`ApiError`](#standard-error-envelope) |
 | 503    | `CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment. | [`ApiError`](#standard-error-envelope) |
 
+### `POST /api/v1/channel-accounts/accounts/{id}/attest-device` — Attest that an unofficial-provider device is paired (operator-attested, not verified).
+
+- **operationId**: `attestChannelDevice`
+- **Security**: bearerAuth + tenantHeader
+
+The ONE place a person, not a connector, moves an account to `connected`, and only for a device of an UNOFFICIAL provider (StarSender), because StarSender documents no side-effect-free status call a connector could verify with. The health record says `OPERATOR_ATTESTED`; the response says `basis: operator_attested`; nothing may present it as a vendor confirmation. Needs the CALLER's own active acknowledgement of the current approved risk text, a stored credential, and a `pending` or `degraded` account (`422` with `RISK_ACKNOWLEDGEMENT_REQUIRED`, `CREDENTIAL_REQUIRED`, `ACCOUNT_STATE_INVALID` or `NOT_AN_UNOFFICIAL_DEVICE`). It grants no capability: every send re-checks the account, the acknowledgement and the capability evidence. `503 PROVIDER_ADAPTER_DISABLED` unless the deployment sets `WHATSAPP_STARSENDER_ENABLED=true` (off by default). High-risk, audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.accounts.create` and at least the `operator` assignment on the account. A person who has an MFA factor must also present a fresh step-up (`403 STEP_UP_REQUIRED` otherwise; conditional, ADR-0141 section 4, so a person with no factor is not locked out). The device is bound to the acknowledgement it was attested under: revoking that acknowledgement degrades it.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Attested, or already connected (`changed` is false).                                                           | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 422    | `RISK_ACKNOWLEDGEMENT_REQUIRED`, `CREDENTIAL_REQUIRED`, `ACCOUNT_STATE_INVALID` or `NOT_AN_UNOFFICIAL_DEVICE`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `CHANNEL_ACCOUNTS_DISABLED` or `PROVIDER_ADAPTER_DISABLED`.                                                    | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/channel-accounts/accounts/{id}/capabilities` — All nine capabilities with the matrix cell and the effective verdict.
 
 - **operationId**: `listChannelAccountCapabilities`
@@ -21989,7 +22611,7 @@ Refused (`422`) at write time when the provider matrix can never allow the cell 
 - **operationId**: `writeChannelAccountCredential`
 - **Security**: bearerAuth + tenantHeader
 
-Stores an API token, device key or bot token as envelope-encrypted ciphertext (AES-256-GCM, the shared field-encryption helper, associated data binding purpose, tenant and secret). There is no GET and no "show token": the response is `{ replaced, cipherVersion }`, never the value and never the reference, and neither the audit row, the stored idempotency response nor any log carries the value. An OAuth account has no credential of its own (`409 CREDENTIAL_NOT_APPLICABLE`); a `revoked` or `disabled` account is not re-armed by writing one (`409 ACCOUNT_STATE_INVALID`).
+Stores an API token, device key or bot token as envelope-encrypted ciphertext (AES-256-GCM, the shared field-encryption helper, associated data binding purpose, tenant and secret). There is no GET and no "show token": the response is `{ replaced, cipherVersion }`, never the value and never the reference, and neither the audit row, the stored idempotency response nor any log carries the value. An OAuth account has no credential of its own (`409 CREDENTIAL_NOT_APPLICABLE`); a `revoked` or `disabled` account is not re-armed by writing one (`409 ACCOUNT_STATE_INVALID`). For an account of an UNOFFICIAL provider (StarSender) that is `connected` or `degraded`, writing a credential moves it back to `pending` with `statusReason` `CREDENTIAL_REPLACED` in the same transaction (the audit row says `accountDemoted: true`): its `connected` state was an operator's attestation about the previous key, and it must be attested again (`attest-device`).
 
 HIGH-RISK: the permission is separately grantable and declares `requiresMfaEnrolment` (a holder with no MFA factor is refused `403 MFA_ENROLMENT_REQUIRED`); a person WITH a factor must also present a fresh step-up (conditional, ADR-0141 section 4); `Idempotency-Key` is required; the audit row is `warning`. `503 SECRET_STORE_UNAVAILABLE` when CHANNEL_SECRETS_ENCRYPTION_KEYS is not a valid key ring (fail closed: there is no plaintext fallback). Requires `channel_accounts.credentials.manage`.
 
@@ -22055,6 +22677,33 @@ Read-only on purpose: health is REPORTED by a provider connector's check or a di
 | 403    | Access denied by RBAC/ABAC.                                                            | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                    | [`ApiError`](#standard-error-envelope) |
 | 503    | `CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/channel-accounts/accounts/{id}/webhook-subscription` — Create or rotate the signed webhook subscription of a Meta number.
+
+- **operationId**: `createChannelAccountWebhookSubscription`
+- **Security**: bearerAuth + tenantHeader
+
+For a live Meta WhatsApp number (`whatsapp_cloud` `waba_phone_number`) with a live `waba` container: stores the Meta app secret WRITE-ONLY (envelope-encrypted, purpose `webhook_signing_secret`; never returned, logged, audited or put in the idempotency record) and mints an OPAQUE callback token (`wcb1.<tenant>.<subscription>.<256 random bits>`), of which only the SHA-256 is stored. The response carries the token ONCE (`callbackToken`, `callbackPath`, `revealed: true`): it is the last segment of the callback URL to configure at Meta and also the `hub.verify_token`. A replay of the same `Idempotency-Key` answers the stored body WITHOUT it (`revealed: false`). An earlier subscription of the number is revoked and its app-secret ciphertext erased in the same transaction (rotation). A number that is not a live Meta number is `409 NOT_A_META_NUMBER`; one with no live WABA container is `409 CONTAINER_BINDING_INVALID`. HIGH-RISK: the `owner` assignment on the account AND on its WABA container (an invisible container is the same `404`), a conditional step-up (a person with an MFA factor must present a fresh one), `Idempotency-Key`, audited at `warning` with no secret, token or external identifier. Disconnecting or deleting the account also revokes its subscriptions and erases their secrets. The app secret is NOT verified with Meta. Requires `channel_accounts.webhooks.configure` AND, because a subscription can feed WABA-level template approvals, restrictions and 24-hour windows, `whatsapp_delivery.meta_templates.configure` and `whatsapp_delivery.meta_signals.configure` (`403` without them).
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Created; the token is shown once.                                           | object                                 |
+| 400    | Validation error.                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOT_A_META_NUMBER`, `CONTAINER_BINDING_INVALID` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `CHANNEL_ACCOUNTS_DISABLED` or `SECRET_STORE_UNAVAILABLE`.                  | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/channel-accounts/connections` — The tenant's provider connections.
 
@@ -22169,6 +22818,2367 @@ Registrable providers with their account kinds and authentication modes, and the
 | 401    | Missing or invalid session.                                                            | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                                                            | [`ApiError`](#standard-error-envelope) |
 | 503    | `CHANNEL_ACCOUNTS_DISABLED`: CHANNEL_ACCOUNTS_ENABLED is not true for this deployment. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/channel-accounts/risk-acknowledgements` — The current risk text of an unofficial provider and who has acknowledged it.
+
+- **operationId**: `listChannelRiskAcknowledgements`
+- **Security**: bearerAuth + tenantHeader
+
+English and Indonesian text, its version, and whether the business owner has approved it (`approved: false` and `approval: null` while it is a draft: nothing can be acknowledged and no device can be connected). `acknowledgements` lists up to 100 records, newest first, with the person's tenant-user id, the text version and timestamps: no credential and no message content. Requires `channel_accounts.risk_acknowledgements.read`.
+
+**Parameters**
+
+| Name       | In    | Required | Type               | Description |
+| ---------- | ----- | -------- | ------------------ | ----------- |
+| `provider` | query | yes      | enum(`starsender`) |             |
+
+**Responses**
+
+| Status | Description                        | Schema                                 |
+| ------ | ---------------------------------- | -------------------------------------- |
+| 200    | The text and the acknowledgements. | object                                 |
+| 400    | Validation error.                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
+| 503    | `CHANNEL_ACCOUNTS_DISABLED`.       | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/channel-accounts/risk-acknowledgements` — Record your own acknowledgement of an unofficial provider's current risk text.
+
+- **operationId**: `acknowledgeChannelRisk`
+- **Security**: bearerAuth + tenantHeader
+
+The CALLER acknowledges for themselves: the body names the provider and the text version shown, and has no field to name another person (`400` for any other field). A stale version is `409 RISK_TEXT_VERSION_STALE`; while the business owner has not approved the text it is `409 RISK_TEXT_NOT_APPROVED`. The record keeps the provider, the person, the time, the version and the SHA-256 of the exact words. A second acknowledgement of the same version by the same person answers the existing record with `200`. A signed-in person only (a machine credential is `403 INTERACTIVE_SESSION_REQUIRED`). A person who has an MFA factor must also present a fresh step-up (`403 STEP_UP_REQUIRED` otherwise; conditional, ADR-0141 section 4). Audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.risk_acknowledgements.create`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                    | Schema                                 |
+| ------ | ------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | Already acknowledged by this person at this version.                           | object                                 |
+| 201    | Recorded.                                                                      | object                                 |
+| 400    | Validation error.                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `RISK_TEXT_NOT_APPROVED`, `RISK_TEXT_VERSION_STALE` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `CHANNEL_ACCOUNTS_DISABLED`.                                                   | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/channel-accounts/risk-acknowledgements/{id}/revoke` — Revoke a provider risk acknowledgement.
+
+- **operationId**: `revokeChannelRiskAcknowledgement`
+- **Security**: bearerAuth + tenantHeader
+
+A stamp, not a deletion: the record of who accepted what, and when it was withdrawn, stays. The tenant's `connected` accounts of that provider that were attested under THIS acknowledgement become `degraded` in the same transaction, and so does every `connected` account of the provider when it was the tenant's LAST active acknowledgement (`degradedAccounts` counts them). Revocations are serialised, so two concurrent ones cannot leave a connected device with no active acknowledgement. The next send decision denies them regardless. Revoking one that is already revoked answers `200` with `degradedAccounts: 0`. High-risk, audited at `warning`. `Idempotency-Key` required. Requires `channel_accounts.risk_acknowledgements.revoke`. An unknown id and another tenant's id are one `404`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                  | Schema                                 |
+| ------ | ---------------------------- | -------------------------------------- |
+| 200    | Revoked.                     | object                                 |
+| 400    | Validation error.            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.          | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.      | [`ApiError`](#standard-error-envelope) |
+| 503    | `CHANNEL_ACCOUNTS_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+## Website Engagement
+
+Tenant-scoped website lead/contact capture and inbound website interaction events (website_engagement module, Issue #1153, ADR-0155). INTAKE ONLY: one PUBLIC, unauthenticated-by-design submission endpoint authenticated by an opaque per-source token (keyed hash at rest, shown once, rotatable, revocable; the tenant is opened FROM it and a tenant id anywhere else is never believed) and by the verified Origin host against the domains registered for that source, with per-address and per-source rate limits, an optional Turnstile challenge, a closed versioned field set, idempotency on (source, eventId) and explicit consent provenance; plus default-deny administrator operations for sources, masked submissions, an audited reveal and the controller's withdrawal. It creates, matches and merges no person; a CRM adapter consumes the outbox events in the AsyncAPI contract.
+
+### `GET /api/v1/website-engagement/sources` — List website sources
+
+- **operationId**: `listWebsiteEngagementSources`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.sources.read`. Never returns a token or its hash: only the six-character prefix. `challengeEffective` is the challenge the source ACTUALLY gets on this deployment, so a source set to `turnstile` on an offline/LAN profile is visibly running on the non-third-party controls alone.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The tenant's sources.       | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/website-engagement/sources` — Create a website source (token shown once)
+
+- **operationId**: `createWebsiteEngagementSource`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.sources.manage` and a signed-in person. Audited at warning. The response carries the token ONCE (`token`, `revealed: true`); a replay of the same `Idempotency-Key` answers the stored body WITHOUT it (`revealed: false`). `409 SOURCE_CODE_TAKEN` for a duplicate code; `422 DOMAIN_NOT_FOUND` when a listed domain is not a live domain of this tenant (another tenant's domain answers the same).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`WebsiteEngagementCreateSource`](#schema-websiteengagementcreatesource)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                       | Schema                                                                         |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 201    | Created.                                                                                                                                                                                                          | [`WebsiteEngagementSourceWithToken`](#schema-websiteengagementsourcewithtoken) |
+| 400    | Validation error.                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope)                                         |
+| 401    | Missing or invalid session.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope)                                         |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope)                                         |
+| 409    | `SOURCE_CODE_TAKEN` or `IDEMPOTENCY_CONFLICT`.                                                                                                                                                                    | [`ApiError`](#standard-error-envelope)                                         |
+| 422    | `DOMAIN_NOT_FOUND`.                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope)                                         |
+| 503    | The deployment refused its key configuration (`KEY_RING_UNAVAILABLE`) because a ring is missing or malformed, the two rings share a key or reuse a key id, or the retired `WEBSITE_ENGAGEMENT_KEYS` is still set. | [`ApiError`](#standard-error-envelope)                                         |
+
+### `GET /api/v1/website-engagement/sources/{id}` — Read one website source
+
+- **operationId**: `getWebsiteEngagementSource`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.sources.read`. An id in another tenant answers exactly like one that does not exist.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The source.                 | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/website-engagement/sources/{id}` — Change a website source
+
+- **operationId**: `updateWebsiteEngagementSource`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.sources.manage` and a signed-in person. Rename, pause or resume, change the consent copy version, the challenge mode, the accepted kinds or the host list. Audited at warning (the changed field NAMES, never values, plus the old and new `challengeMode` when it changes). Setting `challengeMode` to `none` REQUIRES an `Idempotency-Key` (`400 IDEMPOTENCY_REQUIRED` without it). Revocation is its own operation, and a revoked source cannot be changed (`409 SOURCE_REVOKED`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Request body** (required): [`WebsiteEngagementUpdateSource`](#schema-websiteengagementupdatesource)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The changed source.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | `SOURCE_REVOKED`.           | [`ApiError`](#standard-error-envelope) |
+| 422    | `DOMAIN_NOT_FOUND`.         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/website-engagement/sources/{id}` — Delete (soft) a website source
+
+- **operationId**: `deleteWebsiteEngagementSource`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.sources.manage` and a signed-in person. Soft delete: the source stops accepting at once, and its submissions stay until the retention purge removes them. Audited at warning.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Deleted.                    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/website-engagement/sources/{id}/revoke` — Revoke a website source
+
+- **operationId**: `revokeWebsiteEngagementSource`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.sources.manage` and a signed-in person. Permanently stops the source accepting submissions. One-way, and idempotent BY STATE: revoking a revoked source answers the same and audits nothing the second time, so no `Idempotency-Key` is needed. A revoked source cannot be reactivated (the database refuses it).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The revoked source.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/website-engagement/sources/{id}/rotate` — Rotate a source's token (shown once)
+
+- **operationId**: `rotateWebsiteEngagementSource`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.sources.manage` and a signed-in person. Audited at warning. The previous token stops working IMMEDIATELY (no grace window). The new token is in this response ONCE (`revealed: true`); a replay of the same `Idempotency-Key` answers the stored body without it, so a lost token is recovered by rotating again with a new key, never by reading it back. A revoked source cannot be rotated (`409 SOURCE_REVOKED`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                       | Schema                                                                         |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 200    | Rotated.                                                                                                                                                                                                          | [`WebsiteEngagementSourceWithToken`](#schema-websiteengagementsourcewithtoken) |
+| 400    | Validation error.                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope)                                         |
+| 401    | Missing or invalid session.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope)                                         |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope)                                         |
+| 404    | Resource not found.                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope)                                         |
+| 409    | `SOURCE_REVOKED` or `IDEMPOTENCY_CONFLICT`.                                                                                                                                                                       | [`ApiError`](#standard-error-envelope)                                         |
+| 503    | The deployment refused its key configuration (`KEY_RING_UNAVAILABLE`) because a ring is missing or malformed, the two rings share a key or reuse a key id, or the retired `WEBSITE_ENGAGEMENT_KEYS` is still set. | [`ApiError`](#standard-error-envelope)                                         |
+
+### `GET /api/v1/website-engagement/submissions` — List website submissions (masked)
+
+- **operationId**: `listWebsiteEngagementSubmissions`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.submissions.read`. Newest first, keyset-paginated. Contact details are MASKED (`emailMasked`, `phoneMasked`); the decrypted details are only available from the `reveal` operation under a separate permission.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                   | Description |
+| ------------------ | ------ | -------- | -------------------------------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string                                 |             |
+| `limit`            | query  | no       | integer                                |             |
+| `cursor`           | query  | no       | string                                 |             |
+| `sourceId`         | query  | no       | string (uuid)                          |             |
+| `kind`             | query  | no       | enum(`contact`, `lead`, `interaction`) |             |
+| `status`           | query  | no       | enum(`received`, `withdrawn`)          |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of submissions.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/website-engagement/submissions` — Submit a website contact request, lead or interaction
+
+- **operationId**: `websiteEngagementSubmit`
+- **Security**: none (public endpoint)
+
+PUBLIC and unauthenticated by design. Authenticated by the per-source token in the body (`sourceToken`, opaque, shown once to the tenant's administrator, stored only as a keyed hash) AND by the request's verified `Origin` host, which must be a domain registered for that source. The token is a bearer secret that sits in a page's source, so the Origin check, the challenge and the rate limits are co-equal controls, not optional ones.
+
+Checks run cheapest first and before any database work: per-IP rate limit, `Content-Type: application/json`, a 16 KiB body cap, SHAPE validation against a closed, versioned field set, then the token, tenant, module, source and Origin proof (the Origin must be `https`, or a localhost dev host); then the source's own rules (accepted kinds, the current consent copy version), a honeypot and fill-time signal, the Turnstile challenge where the deployment runs it (none for an `interaction`), THEN the per-source budget (an `interaction` has its own, lower one), and finally one transaction that stores the submission and its outbox event. The per-source budget is spent only after the challenge succeeded, so a scraped token replayed with a forged Origin or a failing challenge cannot keep the real form at `429`; the per-address key is the IPv6 /64 prefix. There is no duplicate probe before the challenge (it would be an `eventId` oracle): a duplicate is decided by the insert.
+
+Every failure BEFORE the source is proven answers the SAME `403 SUBMISSION_REFUSED` without a CORS grant: an unparseable token, an unknown tenant or source, a wrong secret, a paused or revoked source, a disabled module and an unregistered Origin cannot be told apart. A `tenantId` or `sourceId` in the body or query that disagrees with the token is refused with that same answer, and a `tenant_code` query parameter is refused outright; the tenant always comes from the token.
+
+Idempotent on `(source, eventId)`: a duplicate stores nothing, publishes nothing and answers the SAME `200` as the first. The body never reveals whether this event or this person was seen before. The honeypot and fill-time catches also answer that `200` and store nothing.
+
+A `contact` or `lead` is stored only with an explicit `consent.purposes` including `respond_to_inquiry` and a `consent.copyVersion` equal to the source's current copy version (`422 CONSENT_REQUIRED`, `409 CONSENT_COPY_MISMATCH`). Marketing follow-up is a separate purpose and is never implied. An `interaction` carries no contact details and no consent. No IP address, fingerprint, cookie or user agent is stored, and no HTML, upload or URL is accepted or fetched.
+
+CORS answers only the verified Origin, never `*`, never with credentials, and carries `Vary: Origin` on every response. The route also answers the browser's `OPTIONS` preflight (not a documented operation, as for the newsletter): always `204`, granting `Access-Control-Allow-Origin` only when the `Origin` is an active, verified domain of some tenant on this deployment (a refusal is the ABSENCE of that header), `Access-Control-Allow-Headers` is `content-type` and nothing else, and it shares this operation's per-IP rate limit. CORS is not authorization: the POST still verifies the token and that the host is registered for that source.
+
+**Request body** (required): [`WebsiteEngagementSubmitRequest`](#schema-websiteengagementsubmitrequest)
+
+**Responses**
+
+| Status | Description                                                                                                                                                | Schema                                                           |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| 200    | Accepted. The same body for a new submission, a duplicate and a honeypot catch.                                                                            | [`WebsiteEngagementReceived`](#schema-websiteengagementreceived) |
+| 400    | The submission's SHAPE is invalid (`VALIDATION_ERROR`). Decided before the token is looked at, so it is the same answer whether or not the token is valid. | [`ApiError`](#standard-error-envelope)                           |
+| 403    | `SUBMISSION_REFUSED`: the uniform refusal (see above), or a failed challenge after the source was proven.                                                  | [`ApiError`](#standard-error-envelope)                           |
+| 409    | `CONSENT_COPY_MISMATCH`: the consent text version is not the one the source currently shows. Only after proof.                                             | [`ApiError`](#standard-error-envelope)                           |
+| 413    | The body exceeds 16 KiB (`PAYLOAD_TOO_LARGE`).                                                                                                             | [`ApiError`](#standard-error-envelope)                           |
+| 415    | `Content-Type` is not `application/json` (`UNSUPPORTED_MEDIA_TYPE`).                                                                                       | [`ApiError`](#standard-error-envelope)                           |
+| 422    | `KIND_NOT_ACCEPTED` or `CONSENT_REQUIRED`. Only after proof.                                                                                               | [`ApiError`](#standard-error-envelope)                           |
+| 429    | Too many submissions from this address or for this source (`RATE_LIMITED`).                                                                                | [`ApiError`](#standard-error-envelope)                           |
+| 503    | The deployment has no key ring configured (`SERVICE_UNAVAILABLE`). Fails closed.                                                                           | [`ApiError`](#standard-error-envelope)                           |
+
+### `GET /api/v1/website-engagement/submissions/{id}` — Read one website submission (masked)
+
+- **operationId**: `getWebsiteEngagementSubmission`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.submissions.read`. An id in another tenant answers exactly like one that does not exist.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The submission.             | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/website-engagement/submissions/{id}/reveal` — Decrypt a submission's contact details
+
+- **operationId**: `revealWebsiteEngagementSubmission`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.submissions.reveal`, a separately grantable permission, and is audited at warning with the submission id and never the values. This is the sanctioned read a downstream CRM adapter uses, and a machine credential may call it. `POST` rather than `GET` because the response carries personal data and must not be cached or logged as a URL (`Cache-Control: no-store`). A withdrawn submission answers `409 SUBMISSION_WITHDRAWN`; an interaction answers `409 NOTHING_TO_REVEAL`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The decrypted contact details.                                                                                                                                                                                    | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | `SUBMISSION_WITHDRAWN` or `NOTHING_TO_REVEAL`.                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 503    | The deployment refused its key configuration (`KEY_RING_UNAVAILABLE`) because a ring is missing or malformed, the two rings share a key or reuse a key id, or the retired `WEBSITE_ENGAGEMENT_KEYS` is still set. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/website-engagement/submissions/{id}/withdraw` — Withdraw a submission (controller opt-out)
+
+- **operationId**: `withdrawWebsiteEngagementSubmission`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `website_engagement.submissions.withdraw` and a signed-in person (a machine credential is refused with `403 INTERACTIVE_SESSION_REQUIRED`). Marks the submission withdrawn and publishes `awcms.website_engagement.submission.withdrawn`, which downstream consumers must honour. One-way, audited at warning, and idempotent: the same `Idempotency-Key` replays the stored answer, and withdrawing an already withdrawn submission changes and publishes nothing. A raw public withdrawal request is a recorded limitation of this first slice.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                        | Schema                                 |
+| ------ | ------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The withdrawn submission (masked).                                 | object                                 |
+| 400    | Validation error.                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`: the key was used with a different request. | [`ApiError`](#standard-error-envelope) |
+
+## Omnichannel Inbox
+
+Tenant-scoped staff work queue over verified inbound envelopes (omnichannel_inbox module, Issue #1164, ADR-0160, Accepted). A projection of the Telegram and website inbound events into body-free conversation rows (opaque references, states, the channel account's business scope), plus authored staff work state: status, assignment with history, tags and first/next-response SLA in business minutes on a working calendar. Visibility follows the channel_accounts confinement rule: only a caller who is not scope-confined and holds the route's permission on a tenant-wide grant sees everything; anyone else sees only the business scopes they cover and never a tenant-wide conversation. The inbox SENDS NOTHING to a customer and has no send facade: a reply goes through the arrival channel's own route. Ships inert behind OMNICHANNEL_INBOX_ENABLED.
+
+### `GET /api/v1/omnichannel-inbox/conversations` — List the inbox conversations the caller may see
+
+- **operationId**: `listOmnichannelInboxConversations`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.conversations.read`. A scope-confined caller (any active, non-tenant business-scope assignment that has not ended, including one that has not started yet) sees only conversations of the business scopes they cover, and never a tenant-wide one. Newest inbound first, keyset-paginated. Opaque references and states only: never a message body or a customer identifier.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                          | Description                              |
+| ------------------ | ------ | -------- | --------------------------------------------- | ---------------------------------------- |
+| `X-Correlation-ID` | header | no       | string                                        |                                          |
+| `status`           | query  | no       | enum(`open`, `pending`, `resolved`, `closed`) |                                          |
+| `assignee`         | query  | no       | string                                        | `me`, `unassigned`, or a tenant user id. |
+| `slaState`         | query  | no       | enum(`breached`)                              |                                          |
+| `tagId`            | query  | no       | string (uuid)                                 |                                          |
+| `sourceKind`       | query  | no       | enum(`telegram`, `website`)                   |                                          |
+| `limit`            | query  | no       | integer                                       |                                          |
+| `cursor`           | query  | no       | string                                        |                                          |
+
+**Responses**
+
+| Status | Description                 | Schema                                                                         |
+| ------ | --------------------------- | ------------------------------------------------------------------------------ |
+| 200    | One page of conversations.  | [`OmnichannelInboxConversationList`](#schema-omnichannelinboxconversationlist) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                                         |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                         |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                         |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                         |
+
+### `GET /api/v1/omnichannel-inbox/conversations/{id}` — Read one conversation with its tags and latest activity
+
+- **operationId**: `getOmnichannelInboxConversation`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.conversations.read` and visibility (business scope). Unknown, foreign and invisible are the same `404`. The activity history carries ids and closed codes only.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                                                                             |
+| ------ | --------------------------- | -------------------------------------------------------------------------------------------------- |
+| 200    | The conversation.           | [`OmnichannelInboxConversationDetailEnvelope`](#schema-omnichannelinboxconversationdetailenvelope) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                                                             |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                                             |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                                             |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                                             |
+
+### `POST /api/v1/omnichannel-inbox/conversations/{id}/assignment` — Assign or unassign a conversation
+
+- **operationId**: `assignOmnichannelInboxConversation`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.conversations.assign`, a signed-in person, `Idempotency-Key` and visibility; audited. The assignee must be an active user holding `conversations.update` on a tenant-wide grant and, if they are scope-confined, cover the conversation's business scope (or an ancestor); otherwise `422 ASSIGNEE_NOT_ELIGIBLE`, one answer with no reason, whatever the cause (an unknown, inactive, unpermitted or out-of-scope person look alike, so the route is no oracle on a colleague's account). `expectedVersion` guards concurrent reassignment: exactly one writer wins, the other gets `409 VERSION_CONFLICT`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                   | Schema                                                                                           |
+| ------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 200    | Assigned, unassigned or unchanged.            | [`OmnichannelInboxConversationWriteEnvelope`](#schema-omnichannelinboxconversationwriteenvelope) |
+| 400    | Validation error.                             | [`ApiError`](#standard-error-envelope)                                                           |
+| 401    | Missing or invalid session.                   | [`ApiError`](#standard-error-envelope)                                                           |
+| 403    | Access denied by RBAC/ABAC.                   | [`ApiError`](#standard-error-envelope)                                                           |
+| 404    | Resource not found.                           | [`ApiError`](#standard-error-envelope)                                                           |
+| 409    | `VERSION_CONFLICT` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope)                                                           |
+| 422    | `ASSIGNEE_NOT_ELIGIBLE`.                      | [`ApiError`](#standard-error-envelope)                                                           |
+
+### `POST /api/v1/omnichannel-inbox/conversations/{id}/responses` — Record that the customer was answered through the arrival channel
+
+- **operationId**: `recordOmnichannelInboxResponse`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.conversations.update`, a signed-in person and visibility; audited. The inbox SENDS NOTHING: the reply goes through the arrival channel's own route, queue and consent checks; this records that it happened, settles everything received up to now and stops the SLA clock. Refused (`409 CUSTOMER_UNREACHABLE`) when the customer opted out or withdrew.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                   | Schema                                                                                           |
+| ------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 200    | Recorded.                                     | [`OmnichannelInboxConversationWriteEnvelope`](#schema-omnichannelinboxconversationwriteenvelope) |
+| 400    | Validation error.                             | [`ApiError`](#standard-error-envelope)                                                           |
+| 401    | Missing or invalid session.                   | [`ApiError`](#standard-error-envelope)                                                           |
+| 403    | Access denied by RBAC/ABAC.                   | [`ApiError`](#standard-error-envelope)                                                           |
+| 404    | Resource not found.                           | [`ApiError`](#standard-error-envelope)                                                           |
+| 409    | `VERSION_CONFLICT` or `CUSTOMER_UNREACHABLE`. | [`ApiError`](#standard-error-envelope)                                                           |
+
+### `POST /api/v1/omnichannel-inbox/conversations/{id}/status` — Change a conversation's status
+
+- **operationId**: `setOmnichannelInboxConversationStatus`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.conversations.update`, a signed-in person and visibility; audited. `resolved` and `closed` settle everything received so far (the SLA clock stops; only a NEW inbound reopens it). A withdrawn customer's conversation cannot be reopened (`409 CUSTOMER_UNREACHABLE`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                   | Schema                                                                                           |
+| ------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 200    | Changed or unchanged.                         | [`OmnichannelInboxConversationWriteEnvelope`](#schema-omnichannelinboxconversationwriteenvelope) |
+| 400    | Validation error.                             | [`ApiError`](#standard-error-envelope)                                                           |
+| 401    | Missing or invalid session.                   | [`ApiError`](#standard-error-envelope)                                                           |
+| 403    | Access denied by RBAC/ABAC.                   | [`ApiError`](#standard-error-envelope)                                                           |
+| 404    | Resource not found.                           | [`ApiError`](#standard-error-envelope)                                                           |
+| 409    | `VERSION_CONFLICT` or `CUSTOMER_UNREACHABLE`. | [`ApiError`](#standard-error-envelope)                                                           |
+
+### `PUT /api/v1/omnichannel-inbox/conversations/{id}/tags` — Replace a conversation's tags
+
+- **operationId**: `setOmnichannelInboxConversationTags`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.conversations.update`, a signed-in person and visibility; audited. At most 20 live tags of this tenant (`422 TAG_UNKNOWN` otherwise). Each added or removed tag is an activity row.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                                                                           |
+| ------ | --------------------------- | ------------------------------------------------------------------------------------------------ |
+| 200    | Changed or unchanged.       | [`OmnichannelInboxConversationWriteEnvelope`](#schema-omnichannelinboxconversationwriteenvelope) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                                                           |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                                           |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                                           |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                                           |
+| 409    | `VERSION_CONFLICT`.         | [`ApiError`](#standard-error-envelope)                                                           |
+| 422    | `TAG_UNKNOWN`.              | [`ApiError`](#standard-error-envelope)                                                           |
+
+### `POST /api/v1/omnichannel-inbox/projection/rebuild` — Replay the verified inbound events into the projection (one batch)
+
+- **operationId**: `rebuildOmnichannelInboxProjection`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.projection.configure`, a signed-in person and `Idempotency-Key`; audited at warning. Replays this tenant's `awcms.telegram_engagement.*` and `awcms.website_engagement.*` inbound events recorded inside `windowDays` (at most the default conversation retention, 365) in event-sequence order, at most 2000 per call; call again with `afterSequence: nextAfterSequence` until `complete`. Idempotent by value; staff work state is never reset.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One batch replayed.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omnichannel-inbox/sla-policies` — List the tenant's inbox SLA policies
+
+- **operationId**: `listOmnichannelInboxSlaPolicies`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.sla_policies.read`. Newest first, at most 200.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                                                   |
+| ------ | --------------------------- | ------------------------------------------------------------------------ |
+| 200    | The policies.               | [`OmnichannelInboxSlaPolicyList`](#schema-omnichannelinboxslapolicylist) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                   |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                   |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                   |
+
+### `POST /api/v1/omnichannel-inbox/sla-policies` — Create an SLA policy (and retire the active one of the same scope)
+
+- **operationId**: `createOmnichannelInboxSlaPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.sla_policies.configure`, a signed-in person and `Idempotency-Key`; audited at warning. Budgets are BUSINESS minutes on a working calendar: an IANA timezone, seven weekday windows (Monday first; `null` = closed; at least one open) and local holiday dates. A scope-confined caller may name only a business scope they cover, never the tenant default. Terms are immutable; a change is a new policy.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`OmnichannelInboxSlaPolicyCreateRequest`](#schema-omnichannelinboxslapolicycreaterequest)
+
+**Responses**
+
+| Status | Description                                      | Schema                                 |
+| ------ | ------------------------------------------------ | -------------------------------------- |
+| 201    | Created.                                         | object                                 |
+| 400    | Validation error.                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                              | [`ApiError`](#standard-error-envelope) |
+| 409    | `SLA_POLICY_CONFLICT` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `SCOPE_UNRESOLVED`.                              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omnichannel-inbox/sla-policies/{id}/retire` — Retire an SLA policy
+
+- **operationId**: `retireOmnichannelInboxSlaPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.sla_policies.configure`, a signed-in person and `Idempotency-Key`; audited at warning. Conversations already waiting keep their due time. The body must be empty or `{}`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | Retired (or already retired). | object                                 |
+| 400    | Validation error.             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.           | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omnichannel-inbox/tags` — List the tenant's live inbox tags
+
+- **operationId**: `listOmnichannelInboxTags`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.conversations.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                                       |
+| ------ | --------------------------- | ------------------------------------------------------------ |
+| 200    | The tags.                   | [`OmnichannelInboxTagList`](#schema-omnichannelinboxtaglist) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                       |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                       |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                       |
+
+### `POST /api/v1/omnichannel-inbox/tags` — Create an inbox tag
+
+- **operationId**: `createOmnichannelInboxTag`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.tags.configure`, a signed-in person and `Idempotency-Key`; audited. A live duplicate code is `409 TAG_CODE_TAKEN`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                 | Schema                                                               |
+| ------ | ------------------------------------------- | -------------------------------------------------------------------- |
+| 201    | Created.                                    | [`OmnichannelInboxTagEnvelope`](#schema-omnichannelinboxtagenvelope) |
+| 400    | Validation error.                           | [`ApiError`](#standard-error-envelope)                               |
+| 401    | Missing or invalid session.                 | [`ApiError`](#standard-error-envelope)                               |
+| 403    | Access denied by RBAC/ABAC.                 | [`ApiError`](#standard-error-envelope)                               |
+| 404    | Resource not found.                         | [`ApiError`](#standard-error-envelope)                               |
+| 409    | `TAG_CODE_TAKEN` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope)                               |
+
+### `DELETE /api/v1/omnichannel-inbox/tags/{id}` — Delete an inbox tag
+
+- **operationId**: `deleteOmnichannelInboxTag`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `omnichannel_inbox.tags.configure`, a signed-in person and `Idempotency-Key`; audited. Soft-deletes the tag and unlinks it from every conversation in the same transaction.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Deleted.                    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.     | [`ApiError`](#standard-error-envelope) |
+
+## Social Publishing
+
+Account-scoped social publishing (social_publishing module, Issue #1145, ADR-0157, ADR-0148 capability C3) behind the existing SocialPublishingPort that blog_content calls when an article is published. One PUBLICATION (an immutable content snapshot: text, link and a media object verified for type, size and rights) fans out to ONE JOB PER TARGET channel account, idempotent per article, trigger and account; a job names the account and holds no token and no secret reference, because the dispatcher resolves the credential for that account at dispatch time. Approval (required by default; a creator cannot approve their own publication), a schedule, per-account retry and cancel. Provider adapters are plug-ins whose capability map is a CEILING and never a grant: content a provider cannot carry is REFUSED, never downgraded, and an account still needs a granted publish capability with evidence, re-checked at enqueue and at dispatch. A job that was published is terminal, so a partial failure never replays a sibling and never alters the source article. No operation accepts or returns a token, a secret reference, a provider-side id or an account label. One connector ships, Facebook Pages (Issue #1146, Graph API v27.0), behind its own switch SOCIAL_PUBLISHING_FACEBOOK_ENABLED (default off); the other providers are separate issues, and until a connector is on, enabling the module publishes nothing. Ships inert behind SOCIAL_PUBLISHING_ENABLED and a per-tenant switch.
+
+### `POST /api/v1/social-publishing/jobs/{id}/retry` — Retry ONE failed (or unknown-outcome) per-account job.
+
+- **operationId**: `retrySocialPublishJob`
+- **Security**: bearerAuth + tenantHeader
+
+A job whose outcome is UNKNOWN (`needs_reconciliation`: a timeout or a lost response, the post may already exist) is retried only with `{ "confirmPossiblyPublished": true }`, by which the operator states they checked the account (otherwise `409 RECONCILIATION_CONFIRMATION_REQUIRED`); the dispatcher never retries it by itself, and that includes a job whose lease expired while it was in flight for a provider without an idempotency key (`LEASE_EXPIRED_UNKNOWN`). The override is audited at `warning` with the previous status and failure code. A job that has used the whole attempt ceiling is `409 RETRY_BUDGET_EXHAUSTED`. Only that job moves, back to `queued` with a small bounded extra attempt budget. A published sibling is never touched and never replayed, and a job that already PUBLISHED can never be retried (`409 JOB_ALREADY_PUBLISHED`; the database enforces it as well). The publication must still be `ready` (approved and not cancelled). The caller must be able to use the job's account, otherwise `404`. `Idempotency-Key` required; audited. Requires `social_publishing.jobs.retry`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) | The resource id (a UUID of this tenant).                                                                                                                                                                        |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The job is queued again.                                                                                                                                               | object                                 |
+| 400    | Validation error.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `JOB_ALREADY_PUBLISHED`, `JOB_STATE_INVALID`, `PUBLICATION_STATE_INVALID`, `RECONCILIATION_CONFIRMATION_REQUIRED`, `RETRY_BUDGET_EXHAUSTED` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`.                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/social-publishing/providers` — The providers that have a publish adapter on this deployment, and what each can carry.
+
+- **operationId**: `listSocialPublishProviders`
+- **Security**: bearerAuth + tenantHeader
+
+The adapter's capability map: content variants, caption ceiling, image types and size. The map is a CEILING and not a grant: an account still needs a granted `publish` capability row with evidence (see `channel_accounts`). EMPTY until a provider connector registers an adapter, which is the fail-closed state: a provider with no adapter cannot publish. Not tenant data and never a credential. Requires `social_publishing.publications.read`.
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | The registered providers.     | object                                 |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/social-publishing/publications` — The tenant's social publications, newest first.
+
+- **operationId**: `listSocialPublications`
+- **Security**: bearerAuth + tenantHeader
+
+Keyset-paginated (`cursor` from the previous page, `limit` 1-100, default 25). Each item carries the immutable content snapshot, the approval and cancel lifecycle (`state`), the AGGREGATE `status` derived from its jobs (never stored) and per-status job counts. An invalid cursor is `400`. Never a credential, a token reference or an account label. Requires `social_publishing.publications.read`.
+
+**Parameters**
+
+| Name     | In    | Required | Type                                                       | Description                                                       |
+| -------- | ----- | -------- | ---------------------------------------------------------- | ----------------------------------------------------------------- |
+| `state`  | query | no       | [`SocialPublicationState`](#schema-socialpublicationstate) | Narrow to one lifecycle state.                                    |
+| `limit`  | query | no       | integer                                                    | 1-100, default 25. Out-of-range values are REJECTED, not clamped. |
+| `cursor` | query | no       | string                                                     | Opaque cursor from `nextCursor`.                                  |
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | A page of publications.       | object                                 |
+| 400    | Validation error.             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/social-publishing/publications` — Publish one piece of content to N connected accounts, now or later.
+
+- **operationId**: `createSocialPublication`
+- **Security**: bearerAuth + tenantHeader
+
+Creates ONE publication with an immutable content snapshot and ONE JOB PER ACCOUNT, in one transaction, with plain database writes only (no provider call). The request names accounts BY ID and carries no provider, token, page id or phone number (an unknown field is `400`). The caller must be able to use every named account (assignment rule and business scope of `channel_accounts`); any account they cannot use, another tenant's and an unknown id are ONE answer, `422 ACCOUNT_NOT_USABLE`, for the whole request, before anything is created.
+
+The content is snapshotted now. `mediaObjectId` must be a verified object of this tenant that `media_library` reports as an allowed image (JPEG, PNG or WebP) within 10 MB with a KNOWN rights status; otherwise `422 MEDIA_NOT_ELIGIBLE`. `linkUrl` must be a plain `https` URL on a named host (`422 LINK_INVALID`).
+
+Per account the request is accepted or REFUSED with a code: the account may not publish now (revoked, disabled, degraded, no granted `publish` capability with evidence, ...), the provider has no adapter on this deployment (`PROVIDER_ADAPTER_UNAVAILABLE`), or the provider's capability map cannot carry the content (`VARIANT_UNSUPPORTED`, `MEDIA_TYPE_UNSUPPORTED`, `MEDIA_TOO_LARGE`, `CONTENT_TOO_LONG`). Nothing is downgraded (an image is never posted as text), truncated or sent to another account. If EVERY account is refused the answer is `422 NO_ELIGIBLE_ACCOUNT` with the per-account codes in `error.details`, and nothing is recorded. When the tenant requires approval (the default) the publication starts `pending_approval` and its creator cannot approve it. `notBefore` defers dispatch. High-risk: `Idempotency-Key` required (a replay returns the stored response), audited at `warning`. Requires `social_publishing.publications.publish`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`SocialPublicationCreateRequest`](#schema-socialpublicationcreaterequest)
+
+**Responses**
+
+| Status | Description                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | The publication, its jobs, and the per-account outcome.                                                                  | object                                 |
+| 400    | Validation error.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`: the key was already used with a different request.                                               | [`ApiError`](#standard-error-envelope) |
+| 413    | Request body too large.                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 422    | `ACCOUNT_NOT_USABLE`, `MEDIA_NOT_ELIGIBLE`, `LINK_INVALID`, `TITLE_INVALID`, `CAPTION_INVALID` or `NO_ELIGIBLE_ACCOUNT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`.                                                                                            | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/social-publishing/publications/{id}` — One publication with ONE entry per target account.
+
+- **operationId**: `getSocialPublication`
+- **Security**: bearerAuth + tenantHeader
+
+The immutable content snapshot, the derived aggregate `status` and the per-account jobs, each with its own status, attempts, holds, coded failure and, once published, the provider's post id and URL. That list is how a partial failure is read: a failed account does not change a published one. Never a credential, a token reference or an account label. Requires `social_publishing.publications.read`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description                              |
+| ---- | ---- | -------- | ------------- | ---------------------------------------- |
+| `id` | path | yes      | string (uuid) | The resource id (a UUID of this tenant). |
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | The publication and its jobs. | object                                 |
+| 400    | Validation error.             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.           | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/social-publishing/publications/{id}/approve` — Release a publication that is waiting for approval.
+
+- **operationId**: `approveSocialPublication`
+- **Security**: bearerAuth + tenantHeader
+
+Nothing is claimable by the dispatcher before this. Maker and checker: the person who created a manual publication cannot approve it (`403 SELF_APPROVAL_FORBIDDEN`). The caller must be able to use every targeted account, otherwise `404` exactly as for an unknown id. Idempotent: approving what is already approved is a `200` that changes nothing (`alreadyApproved: true`). A publication that is cancelled or refused is `409 PUBLICATION_STATE_INVALID`. High-risk: `Idempotency-Key` required, audited at `warning`. Requires `social_publishing.publications.approve`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) | The resource id (a UUID of this tenant).                                                                                                                                                                        |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                                            | Schema                                 |
+| ------ | ------------------------------------------------------ | -------------------------------------- |
+| 200    | The publication after approval.                        | object                                 |
+| 400    | Validation error.                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `PUBLICATION_STATE_INVALID` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`.                          | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/social-publishing/publications/{id}/cancel` — Stop a publication; unsent jobs are cancelled, published ones are untouched.
+
+- **operationId**: `cancelSocialPublication`
+- **Security**: bearerAuth + tenantHeader
+
+The publication becomes `cancelled` and every job that has NOT been sent is cancelled with it. It never recalls or alters what already went out: a published job is terminal (the database refuses to change it) and is counted in `jobsAlreadyPublished`, and a job being sent right now is left to finish and counted in `jobsInFlight`. Cancelling a waiting publication is also how an approval is declined. The body is optional (`reason`, at most 300 characters). Idempotent. A refused publication is `409 PUBLICATION_STATE_INVALID`. The caller must be able to use every targeted account, otherwise `404`. High-risk: `Idempotency-Key` required, audited at `warning`. Requires `social_publishing.publications.cancel`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) | The resource id (a UUID of this tenant).                                                                                                                                                                        |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                          | Schema                                 |
+| ------ | -------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The publication after cancellation and what was and was not stopped. | object                                 |
+| 400    | Validation error.                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | `PUBLICATION_STATE_INVALID` or `IDEMPOTENCY_CONFLICT`.               | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`.                                        | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/social-publishing/publications/{id}/schedule` — Set or clear when a publication may start going out.
+
+- **operationId**: `scheduleSocialPublication`
+- **Security**: bearerAuth + tenantHeader
+
+`notBefore` is an ISO-8601 timestamp with a UTC offset, in the future and within a year, or `null` to clear. The dispatcher claims nothing of the publication before that instant and nothing before it is approved. Only while no job has left the queue: once any account has been tried the publication has started (`409 ALREADY_DISPATCHED`). The caller must be able to use every targeted account, otherwise `404`. High-risk: `Idempotency-Key` required, audited. Requires `social_publishing.publications.schedule`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) | The resource id (a UUID of this tenant).                                                                                                                                                                        |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The publication with its new schedule.                                       | object                                 |
+| 400    | Validation error.                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `ALREADY_DISPATCHED`, `PUBLICATION_STATE_INVALID` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`.                                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/social-publishing/rules` — Which connected accounts each article event publishes to.
+
+- **operationId**: `listSocialPublishRules`
+- **Security**: bearerAuth + tenantHeader
+
+A rule is a pointer, never a grant: the account's own `publish` capability decides, at enqueue and again at dispatch. Complete (bounded to 200), not paginated. Requires `social_publishing.rules.read`.
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | The rules.                    | object                                 |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/social-publishing/rules` — Publish an article event to one more account, or re-enable a rule.
+
+- **operationId**: `createSocialPublishRule`
+- **Security**: bearerAuth + tenantHeader
+
+The caller must be able to use the account (another tenant's account and an unknown id are one `422 ACCOUNT_NOT_USABLE`), and the account must be of a provider that can publish at all. Whether it MAY publish now is not asked here (a rule can be set up before an approval lands): that is decided at enqueue and at dispatch. `201` when created, `200` when a disabled rule was re-enabled. At most 200 rules per tenant (`422 RULE_LIMIT_REACHED`). High-risk: `Idempotency-Key` required, audited at `warning`. Requires `social_publishing.rules.configure`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`SocialPublishRuleCreateRequest`](#schema-socialpublishrulecreaterequest)
+
+**Responses**
+
+| Status | Description                                   | Schema                                 |
+| ------ | --------------------------------------------- | -------------------------------------- |
+| 200    | A disabled rule was enabled again.            | object                                 |
+| 201    | The rule was added.                           | object                                 |
+| 400    | Validation error.                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.                       | [`ApiError`](#standard-error-envelope) |
+| 422    | `ACCOUNT_NOT_USABLE` or `RULE_LIMIT_REACHED`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`.                 | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/social-publishing/rules/{id}` — Enable or disable a rule.
+
+- **operationId**: `updateSocialPublishRule`
+- **Security**: bearerAuth + tenantHeader
+
+A rule is never deleted (disabled, so history stays readable). A disabled rule stops FUTURE article events from queueing for that account and does not touch a publication already queued (cancel that). The caller must be able to use the rule's account, otherwise `404`. High-risk: `Idempotency-Key` required, audited at `warning`. Requires `social_publishing.rules.configure`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) | The resource id (a UUID of this tenant).                                                                                                                                                                        |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | The rule.                     | object                                 |
+| 400    | Validation error.             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.           | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.       | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/social-publishing/settings` — This tenant's two switches.
+
+- **operationId**: `getSocialPublishingSettings`
+- **Security**: bearerAuth + tenantHeader
+
+A tenant that never set them is the safe default: nothing is published automatically (`autoPublishEnabled: false`) and approval is required (`approvalRequired: true`). Requires `social_publishing.rules.read`.
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | The settings.                 | object                                 |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/social-publishing/settings` — Switch automatic publishing and the approval requirement.
+
+- **operationId**: `updateSocialPublishingSettings`
+- **Security**: bearerAuth + tenantHeader
+
+Prospective: a publication keeps the approval requirement it was created with, so turning approval OFF does not release anything already waiting. A NEW target added to an already approved publication needs a fresh approval when the setting that holds NOW requires approval (`NEW_TARGET_NEEDS_APPROVAL`). At least one field. High-risk: `Idempotency-Key` required, audited at `warning` with the previous and the new values. Requires `social_publishing.settings.configure`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The settings after the change. | object                                 |
+| 400    | Validation error.              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`.        | [`ApiError`](#standard-error-envelope) |
+| 503    | `SOCIAL_PUBLISHING_DISABLED`.  | [`ApiError`](#standard-error-envelope) |
+
+## CRM Leads
+
+The reusable lead/prospect pipeline (crm_leads module, Issue #1166, ADR-0153): a PRE-CUSTOMER context that never owns the customer, the identity or the consent. Tenant-defined pipelines with a VERSIONED, immutable stage catalog (closed stage categories, edges with closed declarative guards), idempotent intake on the source key, an immutable first source touch, masked contact points (ciphertext plus per-tenant keyed hash), append-only transition history decided under a row lock with optimistic concurrency, identity candidates by exact hash inside one tenant, human-verified undoable merges, conversions recorded from the customer authority (an opaque external reference) or a flagged manual path and reversed by event, soft delete and anonymising erasure that keeps funnel counts. Ships inert behind CRM_LEADS_ENABLED, Module Management and a per-tenant switch.
+
+### `POST /api/v1/crm-leads/conversions/{id}/reverse` — Record a conversion reversal
+
+- **operationId**: `reverseCrmLeadConversion`
+- **Security**: bearerAuth + tenantHeader
+
+The conversion record is stamped once with the reversal facts and the lead returns to the stage it converted from (or the initial stage) with a `conversion_reversed` transition. A replay with the same evidence answers `200` with `replayed: true`. High-risk, audited at warning. Requires `crm_leads.conversions.approve`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmReverseConversionRequest`](#schema-crmreverseconversionrequest)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The lead.                                                                                             | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `ALREADY_REVERSED`, `EVIDENCE_REUSED`.                         | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-leads/leads` — The tenant's leads, newest first
+
+- **operationId**: `listCrmLeads`
+- **Security**: bearerAuth + tenantHeader
+
+Keyset-paginated (`cursor` from `nextCursor`, `limit` 1-100, default 25; out-of-range values are rejected, not clamped). Contact points are MASKED; no read path decrypts. `includeDeleted=true` additionally requires `crm_leads.leads.restore` or `crm_leads.leads.delete` (`403` otherwise). Requires `crm_leads.leads.read`.
+
+**Parameters**
+
+| Name                | In     | Required | Type                                           | Description |
+| ------------------- | ------ | -------- | ---------------------------------------------- | ----------- |
+| `X-Correlation-ID`  | header | no       | string                                         |             |
+| `pipelineId`        | query  | no       | string (uuid)                                  |             |
+| `stageCategory`     | query  | no       | [`CrmStageCategory`](#schema-crmstagecategory) |             |
+| `ownerTenantUserId` | query  | no       | string (uuid)                                  |             |
+| `includeDeleted`    | query  | no       | boolean                                        |             |
+| `cursor`            | query  | no       | string                                         |             |
+| `limit`             | query  | no       | integer                                        |             |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of leads.                                                                                      | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads` — Lead intake (manual, import, api)
+
+- **operationId**: `createCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+Idempotent on the `Idempotency-Key` AND on the source key (kind, channel account, `externalEventId`): a replayed webhook or a re-uploaded row answers `200` with ONLY `{id, duplicate: true}` (no lead data: `leads.create` is not a right to read it) and writes nothing. `import` and `api` sources must carry `externalEventId`. `website_form` and `inbound_message` are not accepted over HTTP (their consumers are follow-ups). Creates no profile, no consent and no customer. `409 CRM_LEADS_TENANT_DISABLED` while the tenant switch is off. Requires `crm_leads.leads.create`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CrmCreateLeadRequest`](#schema-crmcreateleadrequest)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A replayed source key: the existing lead's id only.                                                   | object                                 |
+| 201    | The new lead.                                                                                         | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `PIPELINE_ARCHIVED`.                                           | [`ApiError`](#standard-error-envelope) |
+| 422    | `PIPELINE_NOT_FOUND` or `OWNER_NOT_FOUND`.                                                            | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-leads/leads/{id}` — One lead with its history
+
+- **operationId**: `getCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+Masked contact points, source touches (the first touch is immutable), transitions (each naming its revision), assignments, conversions and merges. Requires `crm_leads.leads.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The lead.                                                                                             | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/crm-leads/leads/{id}` — Change the display name or contact points
+
+- **operationId**: `updateCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+Needs `expectedVersion` (`409 VERSION_CONFLICT`). A contact value is never edited: revoke it and add another. Requires `crm_leads.leads.update`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmUpdateLeadRequest`](#schema-crmupdateleadrequest)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The lead.                                                                                             | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `VERSION_CONFLICT`, `LEAD_NOT_OPEN`.                           | [`ApiError`](#standard-error-envelope) |
+| 422    | `CONTACT_POINT_NOT_FOUND`.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/crm-leads/leads/{id}` — Soft-delete a lead
+
+- **operationId**: `deleteCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+Restorable. Needs `If-Match: "<version>"` (`428 PRECONDITION_REQUIRED` without it). Erasure is `/anonymize`. High-risk, audited at warning. Requires `crm_leads.leads.delete`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `If-Match`         | header | yes      | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Deleted.                                                                                              | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `VERSION_CONFLICT`, `LEAD_ALREADY_DELETED`.                    | [`ApiError`](#standard-error-envelope) |
+| 428    | `PRECONDITION_REQUIRED`.                                                                              | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/{id}/anonymize` — Anonymising erasure of a lead
+
+- **operationId**: `anonymizeCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+Erases the display name, every contact point and every free-text reason and note irreversibly; keeps the lead row, stage, source touches and transition and conversion facts so reported funnel counts do not change. `survivorOfLeadIds` lists leads this one absorbed by merge. High-risk, audited at warning. Requires `crm_leads.leads.delete`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Anonymised.                                                                                           | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `LEAD_ALREADY_ANONYMIZED`.                                                                  | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/{id}/assign` — Set or clear a lead's owner
+
+- **operationId**: `assignCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+The owner must be an active user of this tenant. Appends an assignment row and publishes `lead.assigned`. High-risk, audited at warning. Requires `crm_leads.leads.assign`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmAssignRequest`](#schema-crmassignrequest)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The lead.                                                                                             | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `VERSION_CONFLICT`, `LEAD_NOT_OPEN`.                           | [`ApiError`](#standard-error-envelope) |
+| 422    | `OWNER_NOT_FOUND`.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-leads/leads/{id}/candidates` — Identity candidates for a lead
+
+- **operationId**: `listCrmLeadCandidates`
+- **Security**: bearerAuth + tenantHeader
+
+Other open leads of THIS tenant sharing an exact keyed hash with one of this lead's live contact points, with the matched KINDS (never values). Never a merge, never across tenants, never an email against a platform id. Requires `crm_leads.leads.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Candidates.                                                                                           | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/{id}/conversions` — Record an authority-confirmed conversion
+
+- **operationId**: `confirmCrmLeadConversion`
+- **Security**: bearerAuth + tenantHeader
+
+`mode` must be `authority_confirmed` with the authority's opaque `externalCustomerRef`. The lead moves to a converted stage along an allowed edge. A replay of the same `evidenceRef` is a no-op. Never creates a customer. High-risk, audited at warning. Requires `crm_leads.conversions.approve`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmConversionRequest`](#schema-crmconversionrequest)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | A replayed confirmation (`replayed: true`).                                                                                                                                          | object                                 |
+| 201    | The converted lead with the conversion id.                                                                                                                                           | object                                 |
+| 400    | Validation error.                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `VERSION_CONFLICT`, `LEAD_NOT_OPEN`, `EVIDENCE_REUSED`, `ALREADY_CONVERTED`, `NO_CONVERTED_STAGE`, `TRANSITION_NOT_ALLOWED`, `GUARD_NOT_MET`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `STAGE_NOT_FOUND` or `CONVERSION_MODE_MISMATCH`.                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`.                                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/{id}/manual-conversions` — Record a manual (unconfirmed) conversion
+
+- **operationId**: `recordCrmLeadManualConversion`
+- **Security**: bearerAuth + tenantHeader
+
+`mode` must be `authority_unconfirmed`, with a note and an evidence reference; reported separately (ADR-0153 O13). Audited at warning. Requires `crm_leads.manual_conversions.create`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmConversionRequest`](#schema-crmconversionrequest)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | A replayed confirmation (`replayed: true`).                                                                                                                                          | object                                 |
+| 201    | The converted lead with the conversion id.                                                                                                                                           | object                                 |
+| 400    | Validation error.                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `VERSION_CONFLICT`, `LEAD_NOT_OPEN`, `EVIDENCE_REUSED`, `ALREADY_CONVERTED`, `NO_CONVERTED_STAGE`, `TRANSITION_NOT_ALLOWED`, `GUARD_NOT_MET`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `STAGE_NOT_FOUND` or `CONVERSION_MODE_MISMATCH`.                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`.                                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/{id}/move` — Move a lead along an allowed edge
+
+- **operationId**: `moveCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+Decided under the row lock: `expectedVersion` (the loser of a race gets `409 VERSION_CONFLICT`), the edge of the current revision (`409 TRANSITION_NOT_ALLOWED`) and its guards re-checked in the transaction (`409 GUARD_NOT_MET` naming the guards). A converted stage is entered only by a conversion (`409 CONVERSION_REQUIRED`) and left only by its reversal (`409 REVERSAL_REQUIRED`). Requires `crm_leads.stages.update`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmMoveRequest`](#schema-crmmoverequest)
+
+**Responses**
+
+| Status | Description                                                                                                                                                        | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The lead with the new transition id.                                                                                                                               | object                                 |
+| 400    | Validation error.                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `VERSION_CONFLICT`, `LEAD_NOT_OPEN`, `TRANSITION_NOT_ALLOWED`, `GUARD_NOT_MET`, `CONVERSION_REQUIRED`, `REVERSAL_REQUIRED`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `STAGE_NOT_FOUND`.                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`.                                                              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/{id}/restore` — Restore a soft-deleted lead
+
+- **operationId**: `restoreCrmLead`
+- **Security**: bearerAuth + tenantHeader
+
+High-risk, audited at warning. Requires `crm_leads.leads.restore`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmExpectedVersion`](#schema-crmexpectedversion)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Restored.                                                                                             | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `VERSION_CONFLICT`, `LEAD_NOT_DELETED`.                        | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/{id}/touches` — Append a later source touch
+
+- **operationId**: `addCrmLeadTouch`
+- **Security**: bearerAuth + tenantHeader
+
+The first touch never changes. A replay of the same source key on the same lead answers `200` with `duplicate: true`; the same key already attributed to another lead is `409 SOURCE_KEY_USED` (two leads being one person is a merge, never a side effect). Requires `crm_leads.leads.update`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The existing touch.                                                                                   | object                                 |
+| 201    | The new touch.                                                                                        | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `SOURCE_KEY_USED`, `LEAD_NOT_OPEN`.                            | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/lookup` — Find leads by an exact contact value
+
+- **operationId**: `lookupCrmLeads`
+- **Security**: bearerAuth + tenantHeader
+
+An EXACT keyed-hash match inside this tenant. A POST so the value never sits in a URL. Returns ids only; audited without the value. Requires `crm_leads.leads.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): [`CrmContactPointInput`](#schema-crmcontactpointinput)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Matches.                                                                                              | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/leads/merge` — Merge two leads after human review
+
+- **operationId**: `mergeCrmLeads`
+- **Security**: bearerAuth + tenantHeader
+
+Both leads must be open, live and in the same pipeline, at the versions the reviewer saw. Another tenant's lead answers `404`. The absorbed lead is marked `merged`; nothing is moved or deleted, so the merge is undoable within the tenant's window. High-risk, audited at warning. Requires `crm_leads.merges.manage`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CrmMergeRequest`](#schema-crmmergerequest)
+
+**Responses**
+
+| Status | Description                                                                                                                                             | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The merge.                                                                                                                                              | object                                 |
+| 400    | Validation error.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `PIPELINE_MISMATCH`, `LEAD_NOT_OPEN`, `VERSION_CONFLICT`, `ABSORBED_LEAD_CONVERTED`, `ABSORBED_LEAD_HAS_MERGES`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`.                                                   | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/merges/{id}/revert` — Roll a merge back
+
+- **operationId**: `revertCrmLeadMerge`
+- **Security**: bearerAuth + tenantHeader
+
+Within the tenant's undo window the absorbed lead is open again exactly as it was. A second rollback is `409 ALREADY_REVERTED`; after the window `409 UNDO_WINDOW_CLOSED`. High-risk, audited at warning. Requires `crm_leads.merges.manage`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Reverted.                                                                                                 | object                                 |
+| 400    | Validation error.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_LEADS_TENANT_DISABLED`, `ALREADY_REVERTED`, `UNDO_WINDOW_CLOSED`, `ABSORBED_LEAD_CHANGED`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`.     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-leads/pipelines` — The tenant's pipelines
+
+- **operationId**: `listCrmPipelines`
+- **Security**: bearerAuth + tenantHeader
+
+At most 200, ordered by code. Requires `crm_leads.leads.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The pipelines.                                                                                        | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/pipelines` — Create a pipeline with its first immutable revision
+
+- **operationId**: `createCrmPipeline`
+- **Security**: bearerAuth + tenantHeader
+
+Stages carry a tenant-chosen key and name and a CLOSED category; edges carry guards from a closed set (no expression language). No product vocabulary is seeded or assumed (ADR-0153 L2). Requires `crm_leads.pipelines.configure`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CrmCreatePipelineRequest`](#schema-crmcreatepipelinerequest)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The pipeline with its current revision.                                                               | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `PIPELINE_CODE_TAKEN`.                                                                      | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-leads/pipelines/{id}` — One pipeline with its current revision
+
+- **operationId**: `getCrmPipeline`
+- **Security**: bearerAuth + tenantHeader
+
+An id of another tenant answers like a missing one. Requires `crm_leads.leads.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The pipeline.                                                                                         | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-leads/pipelines/{id}/revisions` — Publish a new immutable revision
+
+- **operationId**: `publishCrmPipelineRevision`
+- **Security**: bearerAuth + tenantHeader
+
+Needs the pipeline's `expectedVersion`. A revision that removes a stage some lead is in is refused (`409 STAGES_IN_USE`, naming the stage keys) unless `stageMigrations` maps each such stage to a stage of the new revision; those leads then get a `stage_migrated` transition. A migration never crosses the converted boundary: a converted lead may only be migrated to another converted stage, and a lead that is not converted never into one (`409 CONVERTED_STAGE_MIGRATION_REFUSED`, naming the stage keys); conversions and their reversals are the only way across. An identical definition is `409 REVISION_UNCHANGED`. High-risk, audited at warning. Requires `crm_leads.pipelines.configure`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmPublishRevisionRequest`](#schema-crmpublishrevisionrequest)
+
+**Responses**
+
+| Status | Description                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The pipeline with its new current revision.                                                               | object                                 |
+| 400    | Validation error.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `VERSION_CONFLICT`, `STAGES_IN_USE`, `REVISION_UNCHANGED`, `CONVERTED_STAGE_MIGRATION_REFUSED`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `UNKNOWN_MIGRATION_SOURCE`.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`.     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-leads/settings` — The tenant switch and merge-undo window
+
+- **operationId**: `getCrmLeadsSettings`
+- **Security**: bearerAuth + tenantHeader
+
+A tenant that never set them is OFF (`enabled: false`, `mergeUndoHours: 168`). Requires `crm_leads.leads.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The settings.                                                                                         | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/crm-leads/settings` — Switch the module on or off for this tenant
+
+- **operationId**: `updateCrmLeadsSettings`
+- **Security**: bearerAuth + tenantHeader
+
+High-risk (`configure`), audited at warning with the previous and new values. Requires `crm_leads.pipelines.configure`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Mutation responses never carry `displayName` or a contact point's `masked` form (the stored replay body must not outlive an erasure). Bodies above 32 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CrmLeadsSettingsPatch`](#schema-crmleadssettingspatch)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The settings.                                                                                         | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_LEADS_DISABLED` (deployment switch off, answered after authorization) or `KEY_RING_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+
+## Telegram Engagement
+
+Customer Telegram conversations through a tenant's own bots (telegram_engagement module, Issue #1156, ADR-0152), a context SEPARATE from the staff-only Telegram Delivery operations (unchanged; nothing shared). Many bots per tenant, each an existing channel account whose token is a write-only channel secret; one verified webhook per bot (an opaque per-bot callback token proven against a stored hash and a constant-time X-Telegram-Bot-Api-Secret-Token check before the body is read, one generic 401 for every failure, idempotent on (bot, update_id)); contacts exist only after the person sent /start, keyed per bot by a keyed hash with the chat id encrypted and never returned; /start grants support only, marketing and transactional need the explicit opt-in button with a notice version, /stop, a block and a provider 403 withdraw at once; replies and opted-in notices are queued and sent by a pinned-Bun dispatcher with per-bot pacing, 429 retry_after, a breaker and a daily ceiling. No operation accepts or returns a Telegram id, a chat id, a username, a token, a secret or a callback URL. Ships inert behind TELEGRAM_ENGAGEMENT_ENABLED.
+
+### `GET /api/v1/telegram-engagement/bots` — List the tenant's customer Telegram bots
+
+- **operationId**: `listTelegramEngagementBots`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.bots.read`. Only bots whose channel account the caller may see (channel-account assignments and business scope). Never a token, a secret, a callback URL or a header value.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                                           |
+| ------ | --------------------------- | ---------------------------------------------------------------- |
+| 200    | The bots.                   | [`TelegramEngagementBotList`](#schema-telegramengagementbotlist) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                           |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                           |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                           |
+
+### `POST /api/v1/telegram-engagement/bots` — Register an existing telegram bot channel account for a verified webhook
+
+- **operationId**: `registerTelegramEngagementBot`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.bots.configure`, a signed-in person and, when the person has an MFA factor, a fresh step-up. Audited at warning. The bot is an existing `channel_accounts` account (provider `telegram`, kind `bot`, `external_id` = the bot's numeric id) whose token was stored write-only through `PUT /api/v1/channel-accounts/accounts/{id}/credential`. The deployment's STAFF bot is refused (`STAFF_BOT_REFUSED`). Creates a `pending` endpoint with a fresh webhook seed; the connector job then calls `getMe` (the bot id must equal the account's external id) and `setWebhook` and only then marks it `active`. No provider call happens in this request.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`TelegramEngagementRegisterBotRequest`](#schema-telegramengagementregisterbotrequest)
+
+**Responses**
+
+| Status | Description                                                        | Schema                                                                   |
+| ------ | ------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| 201    | Registered (pending until the connector job finishes).             | [`TelegramEngagementBotEnvelope`](#schema-telegramengagementbotenvelope) |
+| 400    | Validation error.                                                  | [`ApiError`](#standard-error-envelope)                                   |
+| 401    | Missing or invalid session.                                        | [`ApiError`](#standard-error-envelope)                                   |
+| 403    | Access denied by RBAC/ABAC.                                        | [`ApiError`](#standard-error-envelope)                                   |
+| 404    | Resource not found.                                                | [`ApiError`](#standard-error-envelope)                                   |
+| 409    | `ALREADY_REGISTERED` or `IDEMPOTENCY_CONFLICT`.                    | [`ApiError`](#standard-error-envelope)                                   |
+| 422    | `ACCOUNT_NOT_USABLE`, `CREDENTIAL_MISSING` or `STAFF_BOT_REFUSED`. | [`ApiError`](#standard-error-envelope)                                   |
+| 503    | `KEY_RING_UNAVAILABLE` or `CHANNEL_ACCOUNTS_UNAVAILABLE`.          | [`ApiError`](#standard-error-envelope)                                   |
+
+### `POST /api/v1/telegram-engagement/bots/{id}/revoke` — Revoke a bot's webhook
+
+- **operationId**: `revokeTelegramEngagementBot`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.bots.configure`, a signed-in person and a conditional step-up. Audited at warning. `{id}` is the bot's channel account id. Ends the webhook at once, cancels every queued message of the bot, and asks the connector job to call `deleteWebhook`. The channel account and its credential are untouched (disconnect them through `channel_accounts`). The body must be empty or `{}`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                                                         |
+| ------ | --------------------------- | ------------------------------------------------------------------------------ |
+| 200    | Revoked.                    | [`TelegramEngagementRevokeEnvelope`](#schema-telegramengagementrevokeenvelope) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                                         |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                         |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                         |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                         |
+| 409    | `IDEMPOTENCY_CONFLICT`.     | [`ApiError`](#standard-error-envelope)                                         |
+
+### `POST /api/v1/telegram-engagement/bots/{id}/rotate` — Rotate a bot's webhook secret (hard cut)
+
+- **operationId**: `rotateTelegramEngagementBot`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.bots.configure`, a signed-in person and a conditional step-up. Audited at warning. `{id}` is the bot's channel account id. The live endpoint is revoked in this transaction (its callback URL and header stop working at once, no grace window) and a new `pending` one is created; the connector job registers it with Telegram. Use after a BotFather token rotation (store the new token first) or a suspected leak. The body must be empty or `{}`. Every check registration makes is made again: a revoked, disabled or non-bot-token account, one with no stored token, and the deployment's staff bot are refused (`422`), and nothing is revoked.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                        | Schema                                                                   |
+| ------ | ------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| 200    | Rotated.                                                           | [`TelegramEngagementBotEnvelope`](#schema-telegramengagementbotenvelope) |
+| 400    | Validation error.                                                  | [`ApiError`](#standard-error-envelope)                                   |
+| 401    | Missing or invalid session.                                        | [`ApiError`](#standard-error-envelope)                                   |
+| 403    | Access denied by RBAC/ABAC.                                        | [`ApiError`](#standard-error-envelope)                                   |
+| 404    | Resource not found.                                                | [`ApiError`](#standard-error-envelope)                                   |
+| 409    | `IDEMPOTENCY_CONFLICT`.                                            | [`ApiError`](#standard-error-envelope)                                   |
+| 422    | `ACCOUNT_NOT_USABLE`, `CREDENTIAL_MISSING` or `STAFF_BOT_REFUSED`. | [`ApiError`](#standard-error-envelope)                                   |
+| 503    | `KEY_RING_UNAVAILABLE` or `CHANNEL_ACCOUNTS_UNAVAILABLE`.          | [`ApiError`](#standard-error-envelope)                                   |
+
+### `GET /api/v1/telegram-engagement/contacts` — List the contacts of one bot
+
+- **operationId**: `listTelegramEngagementContacts`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.contacts.read`. `accountId` is required: the contacts of ONE bot the caller may see (another tenant's or an invisible bot is the same `404`). Newest first, keyset-paginated. A masked label and states only, never a Telegram id, chat id, username or message.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `accountId`        | query  | yes      | string (uuid) |             |
+| `limit`            | query  | no       | integer       |             |
+| `cursor`           | query  | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                                                   |
+| ------ | --------------------------- | ------------------------------------------------------------------------ |
+| 200    | One page.                   | [`TelegramEngagementContactPage`](#schema-telegramengagementcontactpage) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                                   |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                   |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                   |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                   |
+
+### `GET /api/v1/telegram-engagement/contacts/{id}` — Read one contact with its per-purpose eligibility
+
+- **operationId**: `getTelegramEngagementContact`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.contacts.read`. Unknown, another tenant's and a contact of a bot the caller may not see are ONE answer (`404`). Carries the eligibility for `support`, `transactional` and `marketing` and the status of the 20 latest outbound messages (never their text).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                                                                       |
+| ------ | --------------------------- | -------------------------------------------------------------------------------------------- |
+| 200    | The contact.                | [`TelegramEngagementContactDetailEnvelope`](#schema-telegramengagementcontactdetailenvelope) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                                                       |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                                       |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                                       |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                                       |
+
+### `POST /api/v1/telegram-engagement/contacts/{id}/consent-prompts` — Queue the explicit opt-in step for marketing or transactional
+
+- **operationId**: `queueTelegramEngagementConsentPrompt`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.messages.create` and a signed-in person. Audited. Queues the notice text the controller approved, its version and two buttons (agree / decline). The prompt is itself a `support` message in the conversation the person opened. The person's press on THIS message, for this purpose and notice version, is the consent evidence; a press on any other message or version is ignored. `/start` never grants these purposes.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`TelegramEngagementConsentPromptRequest`](#schema-telegramengagementconsentpromptrequest)
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                                                         |
+| ------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| 202    | Queued.                                                                              | [`TelegramEngagementQueuedEnvelope`](#schema-telegramengagementqueuedenvelope) |
+| 400    | Validation error.                                                                    | [`ApiError`](#standard-error-envelope)                                         |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope)                                         |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope)                                         |
+| 404    | Resource not found.                                                                  | [`ApiError`](#standard-error-envelope)                                         |
+| 409    | `IDEMPOTENCY_CONFLICT`.                                                              | [`ApiError`](#standard-error-envelope)                                         |
+| 422    | `CONTACT_NOT_STARTED`, `CONSENT_WITHDRAWN`, `BOT_NOT_ACTIVE` or `CAPABILITY_DENIED`. | [`ApiError`](#standard-error-envelope)                                         |
+| 503    | `KEY_RING_UNAVAILABLE` or `CHANNEL_ACCOUNTS_UNAVAILABLE`.                            | [`ApiError`](#standard-error-envelope)                                         |
+
+### `POST /api/v1/telegram-engagement/contacts/{id}/erase` — End a contact (data-subject request or controller decision)
+
+- **operationId**: `eraseTelegramEngagementContact`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.contacts.delete`, a signed-in person and a conditional step-up. Audited at warning. Withdraws every purpose and cancels queued messages; the encrypted chat id, the masked label and the keyed hash are erased in ONE statement, so the row can no longer be found from the person's Telegram id and a returning person starts an unrelated contact. Consent evidence is kept for its proof window. Terminal; ending an ended contact answers `alreadyEnded: true`. The body must be empty or `{}`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                                                       |
+| ------ | --------------------------- | ---------------------------------------------------------------------------- |
+| 200    | Ended.                      | [`TelegramEngagementEraseEnvelope`](#schema-telegramengagementeraseenvelope) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                                       |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                                       |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                                       |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                                       |
+| 409    | `IDEMPOTENCY_CONFLICT`.     | [`ApiError`](#standard-error-envelope)                                       |
+
+### `POST /api/v1/telegram-engagement/contacts/{id}/messages` — Queue a reply or an opted-in notice to one contact
+
+- **operationId**: `queueTelegramEngagementMessage`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `telegram_engagement.messages.create` and a signed-in person. Audited (ids and the purpose, never the text). The ONLY addressee is an existing contact of this tenant, i.e. a person who started the bot: there is no field for a chat id, a handle, a phone number or an imported id, and an unknown field is a `400`. Eligibility is checked here and again at dispatch: `support` needs the `/start`, `transactional` and `marketing` need the explicit opt-in; the bot needs an active verified webhook and the `dm` capability with evidence. Sent later by the dispatcher; never a fallback to another channel or bot.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`TelegramEngagementSendMessageRequest`](#schema-telegramengagementsendmessagerequest)
+
+**Responses**
+
+| Status | Description                                                                                              | Schema                                                                         |
+| ------ | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 202    | Queued.                                                                                                  | [`TelegramEngagementQueuedEnvelope`](#schema-telegramengagementqueuedenvelope) |
+| 400    | Validation error.                                                                                        | [`ApiError`](#standard-error-envelope)                                         |
+| 401    | Missing or invalid session.                                                                              | [`ApiError`](#standard-error-envelope)                                         |
+| 403    | Access denied by RBAC/ABAC.                                                                              | [`ApiError`](#standard-error-envelope)                                         |
+| 404    | Resource not found.                                                                                      | [`ApiError`](#standard-error-envelope)                                         |
+| 409    | `IDEMPOTENCY_CONFLICT`.                                                                                  | [`ApiError`](#standard-error-envelope)                                         |
+| 422    | `CONTACT_NOT_STARTED`, `CONSENT_REQUIRED`, `CONSENT_WITHDRAWN`, `BOT_NOT_ACTIVE` or `CAPABILITY_DENIED`. | [`ApiError`](#standard-error-envelope)                                         |
+| 503    | `KEY_RING_UNAVAILABLE` or `CHANNEL_ACCOUNTS_UNAVAILABLE`.                                                | [`ApiError`](#standard-error-envelope)                                         |
+
+### `POST /api/v1/telegram-engagement/webhooks/{callbackToken}` — Receive a Telegram update for one customer bot (called by Telegram)
+
+- **operationId**: `telegramEngagementWebhook`
+- **Security**: none (public endpoint)
+
+Called by Telegram, never by a person. One route per customer bot: the `callbackToken` (`tge1.<tenantId>.<endpointId>.<secret>`) is generated by the server, registered with Telegram through `setWebhook`, and stored only as a SHA-256. The bot, the tenant and the business scope are resolved from it, NEVER from the update body.
+
+Order: the deployment switch (`404` when off, nothing probed); the token is parsed and the named tenant's endpoint row is proven against the stored hash; the account must be a live telegram bot and the tenant's module toggle on; the `X-Telegram-Bot-Api-Secret-Token` header must equal the per-bot value (derived from the endpoint's encrypted seed) in constant time. Only then is the body read (default body cap). Every failure before that point is the SAME `401` (a missing or wrong header, an unknown, malformed, revoked or foreign token, a disabled account), so the route is not an oracle; failures are counted and audited once a minute in aggregate on the platform tenant, and repeated failures from one address are throttled to `429`.
+
+Idempotent on `(bot account, update_id)`: a replay, a Telegram retry or a concurrent duplicate has ONE effect. Private chats only; a bot sender, a group or channel update, an edited message and a forwarded `/start` change nothing. `/start` creates a contact and grants `support` only; `/stop`, a block and the opt-in buttons record append-only consent evidence. Nothing here calls Telegram: the answer is `{}` or, for a consent button, the Bot API's webhook-reply form `answerCallbackQuery`.
+
+**Parameters**
+
+| Name                              | In     | Required | Type   | Description |
+| --------------------------------- | ------ | -------- | ------ | ----------- |
+| `callbackToken`                   | path   | yes      | string |             |
+| `X-Telegram-Bot-Api-Secret-Token` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                                                     |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| 200    | Received (or deliberately ignored, or an over-limit chat). Either an empty object or a webhook reply. | [`TelegramEngagementWebhookReply`](#schema-telegramengagementwebhookreply) |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope)                                     |
+| 401    | `UNAUTHORIZED`: the uniform refusal (see above).                                                      | [`ApiError`](#standard-error-envelope)                                     |
+| 404    | The module is switched off on this deployment.                                                        | [`ApiError`](#standard-error-envelope)                                     |
+| 413    | The body is larger than the cap.                                                                      | [`ApiError`](#standard-error-envelope)                                     |
+| 429    | Rate limited (per address or per bot endpoint). Telegram retries.                                     | [`ApiError`](#standard-error-envelope)                                     |
+| 503    | The database is unavailable. Telegram retries; the replay key makes the retry safe.                   | [`ApiError`](#standard-error-envelope)                                     |
+
+## CRM Follow-up
+
+Rule-versioned follow-up tasks for STAFF keyed by crm_leads events (crm_follow_up module, Issue #1165, ADR-0159): tenant rules with IMMUTABLE revisions (a closed trigger, offsets in working minutes over the revision's own calendar, an assignee mode, staff notices, a per-lead cap; no expression language), a read-only simulation of a draft revision, the task queue (worklist, overdue, per lead) with optimistic-concurrency completion and cancellation, and stop signals that cancel a lead's open tasks and pending notices and win every race. Nothing is ever sent to the lead; staff notices go through the existing e-mail workflow_notification port after a dispatch-time re-check. Ships inert behind CRM_FOLLOW_UP_ENABLED, Module Management and a per-tenant switch.
+
+### `GET /api/v1/crm-follow-up/leads/{leadId}/stop-signals` — A lead's stop signals
+
+- **operationId**: `listCrmFollowUpStopSignals`
+- **Security**: bearerAuth + tenantHeader
+
+Oldest first. An unknown lead answers an empty list (this module holds no lead copy and is no existence oracle). Requires `crm_follow_up.tasks.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `leadId`           | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The stop signals.                                                               | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-follow-up/leads/{leadId}/stop-signals` — Stop all follow-up for a lead
+
+- **operationId**: `createCrmFollowUpStopSignal`
+- **Security**: bearerAuth + tenantHeader
+
+Cancels every open or escalated task of the lead and their pending notices; no task is created for the lead afterwards (a database trigger refuses one). The answer reports notices ALREADY handed to the e-mail outbox, never claimed to be recalled. `409 CRM_FOLLOW_UP_TENANT_DISABLED` while the tenant switch is off. High-risk, audited at warning. Requires `crm_follow_up.stop_signals.create`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Bodies above 16 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `leadId`           | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmFollowUpStopSignalCreate`](#schema-crmfollowupstopsignalcreate)
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The stop and what it cancelled.                                                 | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_FOLLOW_UP_TENANT_DISABLED`, `IDEMPOTENCY_CONFLICT`.              | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-follow-up/rules` — The tenant's follow-up rules
+
+- **operationId**: `listCrmFollowUpRules`
+- **Security**: bearerAuth + tenantHeader
+
+At most 200, ordered by code, each with its current immutable revision. Requires `crm_follow_up.rules.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The rules.                                                                      | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-follow-up/rules` — Create a rule with its first immutable revision
+
+- **operationId**: `createCrmFollowUpRule`
+- **Security**: bearerAuth + tenantHeader
+
+A fixed assignee or escalation recipient must be an ACTIVE user of this tenant (`422 USER_NOT_FOUND`). High-risk (`configure`), audited at warning. Requires `crm_follow_up.rules.configure`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Bodies above 16 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CrmFollowUpRuleCreate`](#schema-crmfollowuprulecreate)
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The rule.                                                                       | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `RULE_CODE_TAKEN`, `IDEMPOTENCY_CONFLICT`.                            | [`ApiError`](#standard-error-envelope) |
+| 422    | `USER_NOT_FOUND`.                                                               | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-follow-up/rules/{id}` — One rule with every revision
+
+- **operationId**: `getCrmFollowUpRule`
+- **Security**: bearerAuth + tenantHeader
+
+Revisions newest first, at most 200. Requires `crm_follow_up.rules.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The rule and its revisions.                                                     | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                             | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-follow-up/rules/{id}/archive` — Archive a rule
+
+- **operationId**: `archiveCrmFollowUpRule`
+- **Security**: bearerAuth + tenantHeader
+
+The rule creates no new task from now on; tasks it created keep running. A rule is never deleted. High-risk (`configure`), audited at warning. Requires `crm_follow_up.rules.configure`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Bodies above 16 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmFollowUpVersioned`](#schema-crmfollowupversioned)
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The archived rule.                                                              | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `VERSION_CONFLICT`, `RULE_ARCHIVED`, `IDEMPOTENCY_CONFLICT`.          | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-follow-up/rules/{id}/revisions` — Publish the next immutable revision of a rule
+
+- **operationId**: `publishCrmFollowUpRevision`
+- **Security**: bearerAuth + tenantHeader
+
+Tasks already created keep the revision that created them. An identical definition is `409 REVISION_UNCHANGED`; an archived rule `409 RULE_ARCHIVED`; a stale `expectedVersion` `409 VERSION_CONFLICT`. High-risk (`configure`), audited at warning. Requires `crm_follow_up.rules.configure`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Bodies above 16 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmFollowUpRevisionPublish`](#schema-crmfollowuprevisionpublish)
+
+**Responses**
+
+| Status | Description                                                                                  | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The rule with its new current revision.                                                      | object                                 |
+| 400    | Validation error.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `VERSION_CONFLICT`, `RULE_ARCHIVED`, `REVISION_UNCHANGED`, `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `USER_NOT_FOUND`.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization).              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-follow-up/rules/simulate` — Dry-run a draft revision against a sample trigger
+
+- **operationId**: `simulateCrmFollowUpRule`
+- **Security**: bearerAuth + tenantHeader
+
+READ-ONLY: evaluates the draft exactly as the consumer would (trigger match, due and escalation instants over the draft's calendar, assignee, notices) and, with `leadId`, whether that lead's stop signals or live tasks would block it. Writes no task, action, notice, audit row or event; needs no `Idempotency-Key`; works while the tenant switch is off. Requires `crm_follow_up.rules.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): [`CrmFollowUpSimulateRequest`](#schema-crmfollowupsimulaterequest)
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | What would happen.                                                              | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-follow-up/settings` — The tenant switch and the hourly notice cap
+
+- **operationId**: `getCrmFollowUpSettings`
+- **Security**: bearerAuth + tenantHeader
+
+A tenant that never set them is OFF (`enabled: false`, `maxNoticesPerRecipientHour: 20`). Requires `crm_follow_up.rules.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The settings.                                                                   | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/crm-follow-up/settings` — Switch follow-up on or off for this tenant
+
+- **operationId**: `updateCrmFollowUpSettings`
+- **Security**: bearerAuth + tenantHeader
+
+High-risk (`configure`), audited at warning with the previous and new values. Requires `crm_follow_up.rules.configure`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Bodies above 16 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CrmFollowUpSettingsPatch`](#schema-crmfollowupsettingspatch)
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The settings.                                                                   | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-follow-up/tasks` — The follow-up queue
+
+- **operationId**: `listCrmFollowUpTasks`
+- **Security**: bearerAuth + tenantHeader
+
+Ordered by due instant, keyset-paginated. The daily worklist is `assignee=me`, the overdue queue `overdue=true`, a lead's work `leadId=...`. Requires `crm_follow_up.tasks.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                | Description                            |
+| ------------------ | ------ | -------- | --------------------------------------------------- | -------------------------------------- |
+| `X-Correlation-ID` | header | no       | string                                              |                                        |
+| `status`           | query  | no       | enum(`open`, `escalated`, `completed`, `cancelled`) |                                        |
+| `assignee`         | query  | no       | string                                              | `me` or a tenant-user id.              |
+| `leadId`           | query  | no       | string (uuid)                                       |                                        |
+| `overdue`          | query  | no       | enum(`true`, `false`)                               |                                        |
+| `limit`            | query  | no       | integer                                             |                                        |
+| `cursor`           | query  | no       | string                                              | The `nextCursor` of the previous page. |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of tasks.                                                                | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/crm-follow-up/tasks/{id}` — One task with its actions and notices
+
+- **operationId**: `getCrmFollowUpTask`
+- **Security**: bearerAuth + tenantHeader
+
+Requires `crm_follow_up.tasks.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `X-Correlation-ID` | header | no       | string        |             |
+| `id`               | path   | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The task.                                                                       | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                             | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-follow-up/tasks/{id}/cancel` — Cancel one task
+
+- **operationId**: `cancelCrmFollowUpTask`
+- **Security**: bearerAuth + tenantHeader
+
+`manual_cancel`; its pending notices are cancelled. To stop all work on a lead, record a stop signal. Audited. Requires `crm_follow_up.tasks.update`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Bodies above 16 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmFollowUpVersioned`](#schema-crmfollowupversioned)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The cancelled task.                                                                                   | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_FOLLOW_UP_TENANT_DISABLED`, `VERSION_CONFLICT`, `TASK_CLOSED`, `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization).                       | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/crm-follow-up/tasks/{id}/complete` — Complete a task with a closed outcome
+
+- **operationId**: `completeCrmFollowUpTask`
+- **Security**: bearerAuth + tenantHeader
+
+Its pending notices are cancelled. `409 CRM_FOLLOW_UP_TENANT_DISABLED` while the tenant switch is off. Audited. Requires `crm_follow_up.tasks.update`. A signed-in person only (`403 INTERACTIVE_SESSION_REQUIRED` for a machine credential); a replay of the same `Idempotency-Key` answers the stored response, a different body with it `409 IDEMPOTENCY_CONFLICT`. Bodies above 16 KiB are `413 PAYLOAD_TOO_LARGE`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`CrmFollowUpTaskComplete`](#schema-crmfollowuptaskcomplete)
+
+**Responses**
+
+| Status | Description                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The completed task.                                                                                   | object                                 |
+| 400    | Validation error.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Conflict: `CRM_FOLLOW_UP_TENANT_DISABLED`, `VERSION_CONFLICT`, `TASK_CLOSED`, `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 503    | `CRM_FOLLOW_UP_DISABLED` (deployment switch off, answered after authorization).                       | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 
@@ -24403,29 +27413,29 @@ Every field of CommerceSliderCreateInput, all optional.
 
 The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
 
-| Field                       | Type                   | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --------------------------- | ---------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`             | enum(`1`)              | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `storeName`                 | string                 | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `tagline`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `logoMediaObjectId`         | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `faviconMediaObjectId`      | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `address`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `phone`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `whatsapp`                  | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `email`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `mapsEmbedUrl`              | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `faqs`                      | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `social`                    | object                 | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `customerLevels`            | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `shipping`                  | object                 | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                               |
-| `payment`                   | object                 | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule.              |
-| `promoSection`              | object                 | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `meta`                      | object                 | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `affiliateCommissionRate`   | string                 | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                                           |
-| `taxMode`                   | enum(`flat`, `engine`) | no       | no       | Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling.                                                                                                                                                                                                           |
-| `taxProfileCode`            | string                 | no       | no       | Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `checkinRequiresSettlement` | boolean                | no       | no       | Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default is a recommendation the owner confirms. |
+| Field                       | Type                   | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------------------------- | ---------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`             | enum(`1`)              | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `storeName`                 | string                 | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `tagline`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `logoMediaObjectId`         | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `faviconMediaObjectId`      | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `address`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `phone`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `whatsapp`                  | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `email`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `mapsEmbedUrl`              | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `faqs`                      | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `social`                    | object                 | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `customerLevels`            | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `shipping`                  | object                 | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                                               |
+| `payment`                   | object                 | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule.                              |
+| `promoSection`              | object                 | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `meta`                      | object                 | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `affiliateCommissionRate`   | string                 | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                                                           |
+| `taxMode`                   | enum(`flat`, `engine`) | no       | no       | Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling.                                                                                                                                                                                                                           |
+| `taxProfileCode`            | string                 | no       | no       | Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `checkinRequiresSettlement` | boolean                | no       | no       | Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default (block) was confirmed by the owner on 11 November 2026. |
 
 **Example**
 
@@ -24733,6 +27743,684 @@ Every field optional; status may move between active and inactive.
 }
 ```
 
+### Schema: CrmAssignRequest
+
+| Field               | Type          | Required | Nullable | Description |
+| ------------------- | ------------- | -------- | -------- | ----------- |
+| `expectedVersion`   | integer       | yes      | no       |             |
+| `ownerTenantUserId` | string (uuid) | yes      | yes      |             |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1,
+  "ownerTenantUserId": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: CrmContactPointInput
+
+| Field      | Type                                  | Required | Nullable | Description                                       |
+| ---------- | ------------------------------------- | -------- | -------- | ------------------------------------------------- |
+| `kind`     | enum(`email`, `phone`, `platform_id`) | yes      | no       |                                                   |
+| `platform` | string                                | no       | no       | Required for `platform_id` only.                  |
+| `value`    | string                                | yes      | no       | Normalised, encrypted and hashed; never returned. |
+
+**Example**
+
+```json
+{
+  "kind": "email",
+  "platform": "string",
+  "value": "string"
+}
+```
+
+### Schema: CrmConversionRequest
+
+| Field                 | Type                                                 | Required | Nullable | Description                                                                                                                                                           |
+| --------------------- | ---------------------------------------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mode`                | enum(`authority_confirmed`, `authority_unconfirmed`) | yes      | no       |                                                                                                                                                                       |
+| `expectedVersion`     | integer                                              | yes      | no       |                                                                                                                                                                       |
+| `externalCustomerRef` | string                                               | no       | no       | Required for authority_confirmed. The authority's OPAQUE customer id: never an email, a phone, a name or a national id (it is stored in clear and carried in events). |
+| `evidenceRef`         | string                                               | yes      | no       | The replay key. An OPAQUE reference (an invoice or enrolment id): never personal data (stored in clear, carried in events and audit rows).                            |
+| `note`                | string                                               | no       | no       | Required for authority_unconfirmed.                                                                                                                                   |
+| `toStageKey`          | string                                               | no       | no       |                                                                                                                                                                       |
+| `occurredAt`          | string (date-time)                                   | no       | no       |                                                                                                                                                                       |
+
+**Example**
+
+```json
+{
+  "mode": "authority_confirmed",
+  "expectedVersion": 1,
+  "externalCustomerRef": "string",
+  "evidenceRef": "string",
+  "note": "string",
+  "toStageKey": "string",
+  "occurredAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CrmCreateLeadRequest
+
+| Field               | Type                                                            | Required | Nullable | Description |
+| ------------------- | --------------------------------------------------------------- | -------- | -------- | ----------- |
+| `pipelineId`        | string (uuid)                                                   | yes      | no       |             |
+| `displayName`       | string                                                          | no       | no       |             |
+| `ownerTenantUserId` | string (uuid)                                                   | no       | no       |             |
+| `contactPoints`     | array of [`CrmContactPointInput`](#schema-crmcontactpointinput) | no       | no       |             |
+| `source`            | [`CrmSourceInput`](#schema-crmsourceinput)                      | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "pipelineId": "00000000-0000-0000-0000-000000000000",
+  "displayName": "string",
+  "ownerTenantUserId": "00000000-0000-0000-0000-000000000000",
+  "contactPoints": [
+    {
+      "kind": "email",
+      "platform": "string",
+      "value": "string"
+    }
+  ],
+  "source": {
+    "kind": "manual",
+    "externalEventId": "string",
+    "channelAccountId": "00000000-0000-0000-0000-000000000000",
+    "campaignRef": "string",
+    "utmSource": "string",
+    "utmMedium": "string",
+    "utmCampaign": "string",
+    "landingPath": "string",
+    "referrerHost": "string",
+    "legalBasis": "consent",
+    "occurredAt": "2026-01-01T00:00:00.000Z"
+  }
+}
+```
+
+### Schema: CrmCreatePipelineRequest
+
+| Field        | Type                                                     | Required | Nullable | Description                                     |
+| ------------ | -------------------------------------------------------- | -------- | -------- | ----------------------------------------------- |
+| `code`       | string                                                   | yes      | no       |                                                 |
+| `name`       | string                                                   | yes      | no       |                                                 |
+| `timeZone`   | string                                                   | no       | no       | IANA zone used for report buckets. Default UTC. |
+| `scope`      | object                                                   | no       | no       |                                                 |
+| `definition` | [`CrmPipelineDefinition`](#schema-crmpipelinedefinition) | yes      | no       |                                                 |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "timeZone": "string",
+  "scope": {
+    "type": "string",
+    "id": "00000000-0000-0000-0000-000000000000"
+  },
+  "definition": {
+    "initialStageKey": "string",
+    "stages": [
+      {
+        "key": "string",
+        "name": "string",
+        "category": null,
+        "position": 0
+      }
+    ],
+    "transitions": [
+      {
+        "from": "string",
+        "to": "string",
+        "guards": []
+      }
+    ]
+  }
+}
+```
+
+### Schema: CrmExpectedVersion
+
+| Field             | Type    | Required | Nullable | Description |
+| ----------------- | ------- | -------- | -------- | ----------- |
+| `expectedVersion` | integer | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1
+}
+```
+
+### Schema: CrmFollowUpDefinition
+
+A CLOSED, declarative revision definition: no expression, script or callback. Offsets are WORKING minutes over the calendar.
+
+| Field             | Type    | Required | Nullable | Description                                                  |
+| ----------------- | ------- | -------- | -------- | ------------------------------------------------------------ |
+| `trigger`         | object  | yes      | no       | A `lead_assigned` trigger takes no pipeline or stage filter. |
+| `taskTitle`       | string  | yes      | no       |                                                              |
+| `dueAfterMinutes` | integer | yes      | no       |                                                              |
+| `escalation`      | object  | no       | yes      |                                                              |
+| `assignee`        | object  | yes      | no       |                                                              |
+| `notify`          | object  | no       | no       |                                                              |
+| `maxOpenPerLead`  | integer | no       | no       |                                                              |
+| `calendar`        | object  | yes      | no       |                                                              |
+
+**Example**
+
+```json
+{
+  "trigger": {
+    "kind": "lead_created",
+    "pipelineId": "00000000-0000-0000-0000-000000000000",
+    "stageCategory": "new",
+    "stageKey": "string"
+  },
+  "taskTitle": "string",
+  "dueAfterMinutes": 0,
+  "escalation": {
+    "afterMinutes": 1,
+    "recipientTenantUserId": "00000000-0000-0000-0000-000000000000"
+  },
+  "assignee": {
+    "mode": "lead_owner",
+    "tenantUserId": "00000000-0000-0000-0000-000000000000"
+  },
+  "notify": {
+    "onAssign": false,
+    "onDue": false
+  },
+  "maxOpenPerLead": 1,
+  "calendar": {
+    "timeZone": "string",
+    "workingDays": [1],
+    "workStartMinute": 0,
+    "workEndMinute": 1,
+    "holidays": ["2026-01-01"]
+  }
+}
+```
+
+### Schema: CrmFollowUpRevisionPublish
+
+| Field             | Type                                                     | Required | Nullable | Description |
+| ----------------- | -------------------------------------------------------- | -------- | -------- | ----------- |
+| `expectedVersion` | integer                                                  | yes      | no       |             |
+| `definition`      | [`CrmFollowUpDefinition`](#schema-crmfollowupdefinition) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1,
+  "definition": {
+    "trigger": {
+      "kind": "lead_created",
+      "pipelineId": "00000000-0000-0000-0000-000000000000",
+      "stageCategory": "new",
+      "stageKey": "string"
+    },
+    "taskTitle": "string",
+    "dueAfterMinutes": 0,
+    "escalation": {
+      "afterMinutes": 1,
+      "recipientTenantUserId": "00000000-0000-0000-0000-000000000000"
+    },
+    "assignee": {
+      "mode": "lead_owner",
+      "tenantUserId": "00000000-0000-0000-0000-000000000000"
+    },
+    "notify": {
+      "onAssign": false,
+      "onDue": false
+    },
+    "maxOpenPerLead": 1,
+    "calendar": {
+      "timeZone": "string",
+      "workingDays": [],
+      "workStartMinute": 0,
+      "workEndMinute": 1,
+      "holidays": []
+    }
+  }
+}
+```
+
+### Schema: CrmFollowUpRuleCreate
+
+| Field        | Type                                                     | Required | Nullable | Description |
+| ------------ | -------------------------------------------------------- | -------- | -------- | ----------- |
+| `code`       | string                                                   | yes      | no       |             |
+| `name`       | string                                                   | yes      | no       |             |
+| `definition` | [`CrmFollowUpDefinition`](#schema-crmfollowupdefinition) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "definition": {
+    "trigger": {
+      "kind": "lead_created",
+      "pipelineId": "00000000-0000-0000-0000-000000000000",
+      "stageCategory": "new",
+      "stageKey": "string"
+    },
+    "taskTitle": "string",
+    "dueAfterMinutes": 0,
+    "escalation": {
+      "afterMinutes": 1,
+      "recipientTenantUserId": "00000000-0000-0000-0000-000000000000"
+    },
+    "assignee": {
+      "mode": "lead_owner",
+      "tenantUserId": "00000000-0000-0000-0000-000000000000"
+    },
+    "notify": {
+      "onAssign": false,
+      "onDue": false
+    },
+    "maxOpenPerLead": 1,
+    "calendar": {
+      "timeZone": "string",
+      "workingDays": [],
+      "workStartMinute": 0,
+      "workEndMinute": 1,
+      "holidays": []
+    }
+  }
+}
+```
+
+### Schema: CrmFollowUpSettingsPatch
+
+| Field                        | Type    | Required | Nullable | Description |
+| ---------------------------- | ------- | -------- | -------- | ----------- |
+| `enabled`                    | boolean | no       | no       |             |
+| `maxNoticesPerRecipientHour` | integer | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "enabled": false,
+  "maxNoticesPerRecipientHour": 1
+}
+```
+
+### Schema: CrmFollowUpSimulateRequest
+
+| Field        | Type                                                     | Required | Nullable | Description |
+| ------------ | -------------------------------------------------------- | -------- | -------- | ----------- |
+| `definition` | [`CrmFollowUpDefinition`](#schema-crmfollowupdefinition) | yes      | no       |             |
+| `trigger`    | object                                                   | yes      | no       |             |
+| `leadId`     | string (uuid)                                            | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "definition": {
+    "trigger": {
+      "kind": "lead_created",
+      "pipelineId": "00000000-0000-0000-0000-000000000000",
+      "stageCategory": "new",
+      "stageKey": "string"
+    },
+    "taskTitle": "string",
+    "dueAfterMinutes": 0,
+    "escalation": {
+      "afterMinutes": 1,
+      "recipientTenantUserId": "00000000-0000-0000-0000-000000000000"
+    },
+    "assignee": {
+      "mode": "lead_owner",
+      "tenantUserId": "00000000-0000-0000-0000-000000000000"
+    },
+    "notify": {
+      "onAssign": false,
+      "onDue": false
+    },
+    "maxOpenPerLead": 1,
+    "calendar": {
+      "timeZone": "string",
+      "workingDays": [],
+      "workStartMinute": 0,
+      "workEndMinute": 1,
+      "holidays": []
+    }
+  },
+  "trigger": {
+    "kind": "lead_created",
+    "pipelineId": "00000000-0000-0000-0000-000000000000",
+    "stageCategory": "new",
+    "stageKey": "string",
+    "ownerTenantUserId": "00000000-0000-0000-0000-000000000000",
+    "occurredAt": "2026-01-01T00:00:00.000Z"
+  },
+  "leadId": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: CrmFollowUpStopSignalCreate
+
+| Field        | Type                                                                    | Required | Nullable | Description                           |
+| ------------ | ----------------------------------------------------------------------- | -------- | -------- | ------------------------------------- |
+| `kind`       | enum(`reply_received`, `consent_withdrawn`, `sender_blocked`, `manual`) | yes      | no       |                                       |
+| `occurredAt` | string (date-time)                                                      | no       | no       | Defaults to now; never in the future. |
+
+**Example**
+
+```json
+{
+  "kind": "reply_received",
+  "occurredAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CrmFollowUpTaskComplete
+
+| Field             | Type                                                                   | Required | Nullable | Description |
+| ----------------- | ---------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `expectedVersion` | integer                                                                | yes      | no       |             |
+| `outcome`         | enum(`reached`, `no_answer`, `rescheduled`, `not_interested`, `other`) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1,
+  "outcome": "reached"
+}
+```
+
+### Schema: CrmFollowUpVersioned
+
+| Field             | Type    | Required | Nullable | Description |
+| ----------------- | ------- | -------- | -------- | ----------- |
+| `expectedVersion` | integer | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1
+}
+```
+
+### Schema: CrmLeadsSettingsPatch
+
+| Field            | Type    | Required | Nullable | Description |
+| ---------------- | ------- | -------- | -------- | ----------- |
+| `enabled`        | boolean | no       | no       |             |
+| `mergeUndoHours` | integer | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "enabled": false,
+  "mergeUndoHours": 1
+}
+```
+
+### Schema: CrmMergeRequest
+
+| Field             | Type          | Required | Nullable | Description |
+| ----------------- | ------------- | -------- | -------- | ----------- |
+| `survivorLeadId`  | string (uuid) | yes      | no       |             |
+| `absorbedLeadId`  | string (uuid) | yes      | no       |             |
+| `survivorVersion` | integer       | yes      | no       |             |
+| `absorbedVersion` | integer       | yes      | no       |             |
+| `note`            | string        | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "survivorLeadId": "00000000-0000-0000-0000-000000000000",
+  "absorbedLeadId": "00000000-0000-0000-0000-000000000000",
+  "survivorVersion": 1,
+  "absorbedVersion": 1,
+  "note": "string"
+}
+```
+
+### Schema: CrmMoveRequest
+
+| Field             | Type               | Required | Nullable | Description |
+| ----------------- | ------------------ | -------- | -------- | ----------- |
+| `expectedVersion` | integer            | yes      | no       |             |
+| `toStageKey`      | string             | yes      | no       |             |
+| `reason`          | string             | no       | no       |             |
+| `occurredAt`      | string (date-time) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1,
+  "toStageKey": "string",
+  "reason": "string",
+  "occurredAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CrmPipelineDefinition
+
+| Field             | Type                                              | Required | Nullable | Description |
+| ----------------- | ------------------------------------------------- | -------- | -------- | ----------- |
+| `initialStageKey` | string                                            | yes      | no       |             |
+| `stages`          | array of [`CrmStage`](#schema-crmstage)           | yes      | no       |             |
+| `transitions`     | array of [`CrmTransition`](#schema-crmtransition) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "initialStageKey": "string",
+  "stages": [
+    {
+      "key": "string",
+      "name": "string",
+      "category": "new",
+      "position": 0
+    }
+  ],
+  "transitions": [
+    {
+      "from": "string",
+      "to": "string",
+      "guards": []
+    }
+  ]
+}
+```
+
+### Schema: CrmPublishRevisionRequest
+
+| Field             | Type                                                     | Required | Nullable | Description                                                                       |
+| ----------------- | -------------------------------------------------------- | -------- | -------- | --------------------------------------------------------------------------------- |
+| `expectedVersion` | integer                                                  | yes      | no       |                                                                                   |
+| `definition`      | [`CrmPipelineDefinition`](#schema-crmpipelinedefinition) | yes      | no       |                                                                                   |
+| `stageMigrations` | object                                                   | no       | no       | Removed stage key -> stage key of the new revision. Never into a converted stage. |
+| `reason`          | string                                                   | no       | no       |                                                                                   |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1,
+  "definition": {
+    "initialStageKey": "string",
+    "stages": [
+      {
+        "key": "string",
+        "name": "string",
+        "category": null,
+        "position": 0
+      }
+    ],
+    "transitions": [
+      {
+        "from": "string",
+        "to": "string",
+        "guards": []
+      }
+    ]
+  },
+  "stageMigrations": "(operation-specific payload)",
+  "reason": "string"
+}
+```
+
+### Schema: CrmReverseConversionRequest
+
+| Field         | Type               | Required | Nullable | Description |
+| ------------- | ------------------ | -------- | -------- | ----------- |
+| `evidenceRef` | string             | yes      | no       |             |
+| `reason`      | string             | no       | no       |             |
+| `occurredAt`  | string (date-time) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "evidenceRef": "string",
+  "reason": "string",
+  "occurredAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CrmSourceInput
+
+| Field              | Type                                                                   | Required | Nullable | Description                                                                                                                                                                                      |
+| ------------------ | ---------------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `kind`             | enum(`manual`, `import`, `api`)                                        | yes      | no       |                                                                                                                                                                                                  |
+| `externalEventId`  | string                                                                 | no       | no       | Required for import and api: the intake replay key. An OPAQUE id of the source event: never an email, a phone, a name or any other personal value (it is stored in clear and appears in events). |
+| `channelAccountId` | string (uuid)                                                          | no       | no       |                                                                                                                                                                                                  |
+| `campaignRef`      | string                                                                 | no       | no       |                                                                                                                                                                                                  |
+| `utmSource`        | string                                                                 | no       | no       |                                                                                                                                                                                                  |
+| `utmMedium`        | string                                                                 | no       | no       |                                                                                                                                                                                                  |
+| `utmCampaign`      | string                                                                 | no       | no       |                                                                                                                                                                                                  |
+| `landingPath`      | string                                                                 | no       | no       |                                                                                                                                                                                                  |
+| `referrerHost`     | string                                                                 | no       | no       |                                                                                                                                                                                                  |
+| `legalBasis`       | enum(`consent`, `contract_steps`, `legitimate_interest`, `not_stated`) | no       | no       | Recorded, never decided, never a consent grant.                                                                                                                                                  |
+| `occurredAt`       | string (date-time)                                                     | no       | no       |                                                                                                                                                                                                  |
+
+**Example**
+
+```json
+{
+  "kind": "manual",
+  "externalEventId": "string",
+  "channelAccountId": "00000000-0000-0000-0000-000000000000",
+  "campaignRef": "string",
+  "utmSource": "string",
+  "utmMedium": "string",
+  "utmCampaign": "string",
+  "landingPath": "string",
+  "referrerHost": "string",
+  "legalBasis": "consent",
+  "occurredAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CrmStage
+
+| Field      | Type                                           | Required | Nullable | Description                     |
+| ---------- | ---------------------------------------------- | -------- | -------- | ------------------------------- |
+| `key`      | string                                         | yes      | no       |                                 |
+| `name`     | string                                         | yes      | no       |                                 |
+| `category` | [`CrmStageCategory`](#schema-crmstagecategory) | yes      | no       |                                 |
+| `position` | integer                                        | no       | no       | Response only: the array order. |
+
+**Example**
+
+```json
+{
+  "key": "string",
+  "name": "string",
+  "category": "new",
+  "position": 0
+}
+```
+
+### Schema: CrmStageCategory
+
+The CLOSED platform category of a stage. Reports use it, never stage names.
+
+Enum values: `new`, `working`, `qualified`, `converted`, `lost`, `disqualified`.
+
+**Example**
+
+```json
+"new"
+```
+
+### Schema: CrmTransition
+
+| Field    | Type                                                        | Required | Nullable | Description |
+| -------- | ----------------------------------------------------------- | -------- | -------- | ----------- |
+| `from`   | string                                                      | yes      | no       |             |
+| `to`     | string                                                      | yes      | no       |             |
+| `guards` | array of [`CrmTransitionGuard`](#schema-crmtransitionguard) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "from": "string",
+  "to": "string",
+  "guards": ["owner_assigned"]
+}
+```
+
+### Schema: CrmTransitionGuard
+
+Enum values: `owner_assigned`, `contact_point_present`, `reason_required`.
+
+**Example**
+
+```json
+"owner_assigned"
+```
+
+### Schema: CrmUpdateLeadRequest
+
+| Field                   | Type                                                            | Required | Nullable | Description |
+| ----------------------- | --------------------------------------------------------------- | -------- | -------- | ----------- |
+| `expectedVersion`       | integer                                                         | yes      | no       |             |
+| `displayName`           | string                                                          | no       | yes      |             |
+| `addContactPoints`      | array of [`CrmContactPointInput`](#schema-crmcontactpointinput) | no       | no       |             |
+| `revokeContactPointIds` | array of string (uuid)                                          | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "expectedVersion": 1,
+  "displayName": "string",
+  "addContactPoints": [
+    {
+      "kind": "email",
+      "platform": "string",
+      "value": "string"
+    }
+  ],
+  "revokeContactPointIds": ["00000000-0000-0000-0000-000000000000"]
+}
+```
+
 ### Schema: DataLifecycleCreateLegalHoldRequest
 
 | Field                | Type               | Required | Nullable | Description                                                                                                                                                      |
@@ -24828,6 +28516,38 @@ Every field optional; status may move between active and inactive.
 ```json
 {
   "reason": "string"
+}
+```
+
+### Schema: EmailMailketingWebhookEvent
+
+One Mailketing webhook event as the vendor documents it (https://api.mailketing.co.id/docs/webhook.html, re-verified 2026-11-11). Only the fields named here are read; anything else is ignored. `newsubscriber` is accepted and ignored.
+
+| Field          | Type                                                                                   | Required | Nullable | Description                                                                  |
+| -------------- | -------------------------------------------------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------- |
+| `type`         | enum(`emailopen`, `emailclick`, `bounce`, `newsubscriber`, `unsubscribe`, `delivered`) | yes      | no       |                                                                              |
+| `email`        | string                                                                                 | no       | no       |                                                                              |
+| `message_id`   | string                                                                                 | no       | no       |                                                                              |
+| `date`         | string                                                                                 | no       | no       |                                                                              |
+| `reason`       | string                                                                                 | no       | no       | Bounce diagnostic; reduced to a class and an RFC 3463 code, never stored.    |
+| `link_clicked` | string                                                                                 | no       | no       | Reduced to its host and a hash; never stored, rendered as a link or fetched. |
+| `rcpt`         | string                                                                                 | no       | no       |                                                                              |
+| `jobid`        | string                                                                                 | no       | no       |                                                                              |
+| `send_time`    | string                                                                                 | no       | no       |                                                                              |
+
+**Example**
+
+```json
+{
+  "type": "emailopen",
+  "email": "user@example.com",
+  "message_id": "string",
+  "date": "string",
+  "reason": "string",
+  "link_clicked": "string",
+  "rcpt": "string",
+  "jobid": "string",
+  "send_time": "string"
 }
 ```
 
@@ -26140,6 +29860,441 @@ There is deliberately no consent field. PRD §30 forbids a pre-ticked consent, a
 }
 ```
 
+### Schema: OmnichannelInboxActivity
+
+| Field                 | Type                                                                                                                                  | Required | Nullable | Description |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `id`                  | string (uuid)                                                                                                                         | no       | no       |             |
+| `kind`                | enum(`assigned`, `unassigned`, `assignee_revoked`, `status_changed`, `response_recorded`, `tag_added`, `tag_removed`, `sla_breached`) | no       | no       |             |
+| `actorTenantUserId`   | string (uuid)                                                                                                                         | no       | yes      |             |
+| `subjectTenantUserId` | string (uuid)                                                                                                                         | no       | yes      |             |
+| `detailCode`          | string                                                                                                                                | no       | yes      |             |
+| `createdAt`           | string (date-time)                                                                                                                    | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "kind": "assigned",
+  "actorTenantUserId": "00000000-0000-0000-0000-000000000000",
+  "subjectTenantUserId": "00000000-0000-0000-0000-000000000000",
+  "detailCode": "string",
+  "createdAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: OmnichannelInboxConversation
+
+A conversation: opaque references (the account-scoped Telegram contact id or the website submission id), states and staff work state. Never a message body, a sender address or an external identifier.
+
+| Field                  | Type                                          | Required | Nullable | Description |
+| ---------------------- | --------------------------------------------- | -------- | -------- | ----------- |
+| `id`                   | string (uuid)                                 | no       | no       |             |
+| `sourceKind`           | enum(`telegram`, `website`)                   | no       | no       |             |
+| `sourceRef`            | string (uuid)                                 | no       | no       |             |
+| `channelAccountId`     | string (uuid)                                 | no       | yes      |             |
+| `businessScope`        | object                                        | no       | yes      |             |
+| `status`               | enum(`open`, `pending`, `resolved`, `closed`) | no       | no       |             |
+| `customerState`        | enum(`active`, `opted_out`, `withdrawn`)      | no       | no       |             |
+| `assigneeTenantUserId` | string (uuid)                                 | no       | yes      |             |
+| `assignedAt`           | string (date-time)                            | no       | yes      |             |
+| `firstInboundAt`       | string (date-time)                            | no       | no       |             |
+| `lastInboundAt`        | string (date-time)                            | no       | no       |             |
+| `awaitingSince`        | string (date-time)                            | no       | yes      |             |
+| `firstRespondedAt`     | string (date-time)                            | no       | yes      |             |
+| `lastRespondedAt`      | string (date-time)                            | no       | yes      |             |
+| `sla`                  | object                                        | no       | no       |             |
+| `tagIds`               | array of string (uuid)                        | no       | no       |             |
+| `version`              | integer                                       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "sourceKind": "telegram",
+  "sourceRef": "00000000-0000-0000-0000-000000000000",
+  "channelAccountId": "00000000-0000-0000-0000-000000000000",
+  "businessScope": {
+    "type": "string",
+    "id": "00000000-0000-0000-0000-000000000000"
+  },
+  "status": "open",
+  "customerState": "active",
+  "assigneeTenantUserId": "00000000-0000-0000-0000-000000000000",
+  "assignedAt": "2026-01-01T00:00:00.000Z",
+  "firstInboundAt": "2026-01-01T00:00:00.000Z",
+  "lastInboundAt": "2026-01-01T00:00:00.000Z",
+  "awaitingSince": "2026-01-01T00:00:00.000Z",
+  "firstRespondedAt": "2026-01-01T00:00:00.000Z",
+  "lastRespondedAt": "2026-01-01T00:00:00.000Z",
+  "sla": {
+    "state": "none",
+    "policyId": "00000000-0000-0000-0000-000000000000",
+    "dueKind": "first",
+    "dueAt": "2026-01-01T00:00:00.000Z",
+    "breachedAt": "2026-01-01T00:00:00.000Z"
+  },
+  "tagIds": ["00000000-0000-0000-0000-000000000000"],
+  "version": 0
+}
+```
+
+### Schema: OmnichannelInboxConversationDetailEnvelope
+
+| Field     | Type                                                                            | Required | Nullable | Description |
+| --------- | ------------------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `success` | enum(`true`)                                                                    | no       | no       |             |
+| `data`    | [`OmnichannelInboxConversation`](#schema-omnichannelinboxconversation) & object | no       | no       |             |
+| `meta`    | object                                                                          | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "sourceKind": "telegram",
+    "sourceRef": "00000000-0000-0000-0000-000000000000",
+    "channelAccountId": "00000000-0000-0000-0000-000000000000",
+    "businessScope": {
+      "type": "string",
+      "id": "00000000-0000-0000-0000-000000000000"
+    },
+    "status": "open",
+    "customerState": "active",
+    "assigneeTenantUserId": "00000000-0000-0000-0000-000000000000",
+    "assignedAt": "2026-01-01T00:00:00.000Z",
+    "firstInboundAt": "2026-01-01T00:00:00.000Z",
+    "lastInboundAt": "2026-01-01T00:00:00.000Z",
+    "awaitingSince": "2026-01-01T00:00:00.000Z",
+    "firstRespondedAt": "2026-01-01T00:00:00.000Z",
+    "lastRespondedAt": "2026-01-01T00:00:00.000Z",
+    "sla": {
+      "state": "none",
+      "policyId": "00000000-0000-0000-0000-000000000000",
+      "dueKind": "first",
+      "dueAt": "2026-01-01T00:00:00.000Z",
+      "breachedAt": "2026-01-01T00:00:00.000Z"
+    },
+    "tagIds": ["00000000-0000-0000-0000-000000000000"],
+    "version": 0,
+    "activity": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "kind": "assigned",
+        "actorTenantUserId": "00000000-0000-0000-0000-000000000000",
+        "subjectTenantUserId": "00000000-0000-0000-0000-000000000000",
+        "detailCode": "string",
+        "createdAt": "2026-01-01T00:00:00.000Z"
+      }
+    ]
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: OmnichannelInboxConversationList
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "sourceKind": "telegram",
+        "sourceRef": "00000000-0000-0000-0000-000000000000",
+        "channelAccountId": "00000000-0000-0000-0000-000000000000",
+        "businessScope": {
+          "type": "string",
+          "id": "00000000-0000-0000-0000-000000000000"
+        },
+        "status": "open",
+        "customerState": "active",
+        "assigneeTenantUserId": "00000000-0000-0000-0000-000000000000",
+        "assignedAt": "2026-01-01T00:00:00.000Z",
+        "firstInboundAt": "2026-01-01T00:00:00.000Z",
+        "lastInboundAt": "2026-01-01T00:00:00.000Z",
+        "awaitingSince": "2026-01-01T00:00:00.000Z",
+        "firstRespondedAt": "2026-01-01T00:00:00.000Z",
+        "lastRespondedAt": "2026-01-01T00:00:00.000Z",
+        "sla": {
+          "state": "none",
+          "policyId": "00000000-0000-0000-0000-000000000000",
+          "dueKind": "first",
+          "dueAt": "2026-01-01T00:00:00.000Z",
+          "breachedAt": "2026-01-01T00:00:00.000Z"
+        },
+        "tagIds": [],
+        "version": 0
+      }
+    ],
+    "nextCursor": "string"
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: OmnichannelInboxConversationWriteEnvelope
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "outcome": "assigned",
+    "conversation": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "sourceKind": "telegram",
+      "sourceRef": "00000000-0000-0000-0000-000000000000",
+      "channelAccountId": "00000000-0000-0000-0000-000000000000",
+      "businessScope": {
+        "type": "string",
+        "id": "00000000-0000-0000-0000-000000000000"
+      },
+      "status": "open",
+      "customerState": "active",
+      "assigneeTenantUserId": "00000000-0000-0000-0000-000000000000",
+      "assignedAt": "2026-01-01T00:00:00.000Z",
+      "firstInboundAt": "2026-01-01T00:00:00.000Z",
+      "lastInboundAt": "2026-01-01T00:00:00.000Z",
+      "awaitingSince": "2026-01-01T00:00:00.000Z",
+      "firstRespondedAt": "2026-01-01T00:00:00.000Z",
+      "lastRespondedAt": "2026-01-01T00:00:00.000Z",
+      "sla": {
+        "state": "none",
+        "policyId": "00000000-0000-0000-0000-000000000000",
+        "dueKind": "first",
+        "dueAt": "2026-01-01T00:00:00.000Z",
+        "breachedAt": "2026-01-01T00:00:00.000Z"
+      },
+      "tagIds": [],
+      "version": 0
+    }
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: OmnichannelInboxSlaPolicy
+
+| Field                  | Type                                                                              | Required | Nullable | Description |
+| ---------------------- | --------------------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `id`                   | string (uuid)                                                                     | no       | no       |             |
+| `businessScope`        | object                                                                            | no       | yes      |             |
+| `name`                 | string                                                                            | no       | no       |             |
+| `timezone`             | string                                                                            | no       | no       |             |
+| `firstResponseMinutes` | integer                                                                           | no       | no       |             |
+| `nextResponseMinutes`  | integer                                                                           | no       | no       |             |
+| `workingHours`         | array of [`OmnichannelInboxWorkingWindow`](#schema-omnichannelinboxworkingwindow) | no       | no       |             |
+| `holidays`             | array of string (date)                                                            | no       | no       |             |
+| `status`               | enum(`active`, `retired`)                                                         | no       | no       |             |
+| `createdAt`            | string (date-time)                                                                | no       | no       |             |
+| `retiredAt`            | string (date-time)                                                                | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "businessScope": {
+    "type": "string",
+    "id": "00000000-0000-0000-0000-000000000000"
+  },
+  "name": "string",
+  "timezone": "string",
+  "firstResponseMinutes": 0,
+  "nextResponseMinutes": 0,
+  "workingHours": [
+    {
+      "start": 0,
+      "end": 1
+    }
+  ],
+  "holidays": ["2026-01-01"],
+  "status": "active",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "retiredAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: OmnichannelInboxSlaPolicyCreateRequest
+
+| Field                  | Type                                                                              | Required | Nullable | Description                                                                      |
+| ---------------------- | --------------------------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------- |
+| `businessScope`        | object                                                                            | no       | yes      |                                                                                  |
+| `name`                 | string                                                                            | yes      | no       |                                                                                  |
+| `timezone`             | string                                                                            | yes      | no       | An IANA zone name.                                                               |
+| `firstResponseMinutes` | integer                                                                           | yes      | no       |                                                                                  |
+| `nextResponseMinutes`  | integer                                                                           | yes      | no       |                                                                                  |
+| `workingHours`         | array of [`OmnichannelInboxWorkingWindow`](#schema-omnichannelinboxworkingwindow) | yes      | no       | Monday first; each a {start, end} in minutes of the local day, or null (closed). |
+| `holidays`             | array of string (date)                                                            | no       | no       |                                                                                  |
+
+**Example**
+
+```json
+{
+  "businessScope": {
+    "type": "string",
+    "id": "00000000-0000-0000-0000-000000000000"
+  },
+  "name": "string",
+  "timezone": "string",
+  "firstResponseMinutes": 1,
+  "nextResponseMinutes": 1,
+  "workingHours": [
+    {
+      "start": 0,
+      "end": 1
+    }
+  ],
+  "holidays": ["2026-01-01"]
+}
+```
+
+### Schema: OmnichannelInboxSlaPolicyList
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "businessScope": {
+          "type": "string",
+          "id": "00000000-0000-0000-0000-000000000000"
+        },
+        "name": "string",
+        "timezone": "string",
+        "firstResponseMinutes": 0,
+        "nextResponseMinutes": 0,
+        "workingHours": [],
+        "holidays": [],
+        "status": "active",
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "retiredAt": "2026-01-01T00:00:00.000Z"
+      }
+    ]
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: OmnichannelInboxTag
+
+| Field       | Type               | Required | Nullable | Description |
+| ----------- | ------------------ | -------- | -------- | ----------- |
+| `id`        | string (uuid)      | no       | no       |             |
+| `code`      | string             | no       | no       |             |
+| `label`     | string             | no       | no       |             |
+| `createdAt` | string (date-time) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "code": "string",
+  "label": "string",
+  "createdAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: OmnichannelInboxTagEnvelope
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "tag": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "code": "string",
+      "label": "string",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    }
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: OmnichannelInboxTagList
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "code": "string",
+        "label": "string",
+        "createdAt": "2026-01-01T00:00:00.000Z"
+      }
+    ]
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: OmnichannelInboxWorkingWindow
+
+| Field   | Type    | Required | Nullable | Description |
+| ------- | ------- | -------- | -------- | ----------- |
+| `start` | integer | yes      | no       |             |
+| `end`   | integer | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "start": 0,
+  "end": 1
+}
+```
+
 ### Schema: OtpRequest
 
 Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/request`. `email` is required unless `via` is `"whatsapp"`, in which case `phone` is required instead and `purpose` must be `"login"` (registration stays e-mail OTP only).
@@ -26773,6 +30928,68 @@ Every field is optional — an omitted field keeps its current value.
   "platform": "string",
   "url": "https://example.com/resource"
 }
+```
+
+### Schema: SocialPublicationCreateRequest
+
+| Field           | Type                   | Required | Nullable | Description                                                                                           |
+| --------------- | ---------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| `title`         | string                 | yes      | no       |                                                                                                       |
+| `caption`       | string                 | yes      | no       |                                                                                                       |
+| `linkUrl`       | string                 | no       | yes      | A plain `https` URL on a named host.                                                                  |
+| `mediaObjectId` | string (uuid)          | no       | yes      | A verified media object of this tenant: JPEG, PNG or WebP, at most 10 MB, with a known rights status. |
+| `accountIds`    | array of string (uuid) | yes      | no       |                                                                                                       |
+| `notBefore`     | string (date-time)     | no       | yes      | ISO-8601 with a UTC offset, in the future, within a year.                                             |
+
+**Example**
+
+```json
+{
+  "title": "string",
+  "caption": "string",
+  "linkUrl": "https://example.com/resource",
+  "mediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "accountIds": ["00000000-0000-0000-0000-000000000000"],
+  "notBefore": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: SocialPublicationState
+
+The approval and cancel lifecycle only. `refused` is an article event whose CONTENT could not be published (an unsafe link, media that is not eligible): zero jobs, nothing sent. The publish status is `status`.
+
+Enum values: `pending_approval`, `ready`, `cancelled`, `refused`.
+
+**Example**
+
+```json
+"pending_approval"
+```
+
+### Schema: SocialPublishRuleCreateRequest
+
+| Field       | Type                                                   | Required | Nullable | Description |
+| ----------- | ------------------------------------------------------ | -------- | -------- | ----------- |
+| `trigger`   | [`SocialPublishTrigger`](#schema-socialpublishtrigger) | yes      | no       |             |
+| `accountId` | string (uuid)                                          | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "trigger": "post_published",
+  "accountId": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: SocialPublishTrigger
+
+Enum values: `post_published`, `scheduled_published`, `manual_editor_action`.
+
+**Example**
+
+```json
+"post_published"
 ```
 
 ### Schema: SoftDeleteMediaObjectRequest
@@ -27522,6 +31739,409 @@ Enum values: `pending_confirmation`, `active`, `revoked`, `suspended`.
 "pending_confirmation"
 ```
 
+### Schema: TelegramEngagementBot
+
+| Field                   | Type                                           | Required | Nullable | Description |
+| ----------------------- | ---------------------------------------------- | -------- | -------- | ----------- |
+| `endpointId`            | string (uuid)                                  | no       | no       |             |
+| `accountId`             | string (uuid)                                  | no       | no       |             |
+| `accountName`           | string                                         | no       | no       |             |
+| `accountStatus`         | string                                         | no       | no       |             |
+| `businessScope`         | object                                         | no       | yes      |             |
+| `state`                 | enum(`pending`, `active`, `failed`, `revoked`) | no       | no       |             |
+| `pendingProviderAction` | enum(`set`, `delete`)                          | no       | yes      |             |
+| `verifiedBotId`         | string                                         | no       | yes      |             |
+| `botUsername`           | string                                         | no       | yes      |             |
+| `lastErrorCode`         | string                                         | no       | yes      |             |
+| `dailySendCeiling`      | integer                                        | no       | no       |             |
+| `breakerOpenUntil`      | string (date-time)                             | no       | yes      |             |
+| `activatedAt`           | string (date-time)                             | no       | yes      |             |
+| `lastUpdateAt`          | string (date-time)                             | no       | yes      |             |
+| `createdAt`             | string (date-time)                             | no       | no       |             |
+| `revokedAt`             | string (date-time)                             | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "endpointId": "00000000-0000-0000-0000-000000000000",
+  "accountId": "00000000-0000-0000-0000-000000000000",
+  "accountName": "string",
+  "accountStatus": "string",
+  "businessScope": {
+    "type": "string",
+    "id": "00000000-0000-0000-0000-000000000000"
+  },
+  "state": "pending",
+  "pendingProviderAction": "set",
+  "verifiedBotId": "string",
+  "botUsername": "string",
+  "lastErrorCode": "string",
+  "dailySendCeiling": 0,
+  "breakerOpenUntil": "2026-01-01T00:00:00.000Z",
+  "activatedAt": "2026-01-01T00:00:00.000Z",
+  "lastUpdateAt": "2026-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "revokedAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: TelegramEngagementBotEnvelope
+
+| Field     | Type                                                     | Required | Nullable | Description |
+| --------- | -------------------------------------------------------- | -------- | -------- | ----------- |
+| `success` | enum(`true`)                                             | no       | no       |             |
+| `data`    | [`TelegramEngagementBot`](#schema-telegramengagementbot) | no       | no       |             |
+| `meta`    | object                                                   | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "endpointId": "00000000-0000-0000-0000-000000000000",
+    "accountId": "00000000-0000-0000-0000-000000000000",
+    "accountName": "string",
+    "accountStatus": "string",
+    "businessScope": {
+      "type": "string",
+      "id": "00000000-0000-0000-0000-000000000000"
+    },
+    "state": "pending",
+    "pendingProviderAction": "set",
+    "verifiedBotId": "string",
+    "botUsername": "string",
+    "lastErrorCode": "string",
+    "dailySendCeiling": 0,
+    "breakerOpenUntil": "2026-01-01T00:00:00.000Z",
+    "activatedAt": "2026-01-01T00:00:00.000Z",
+    "lastUpdateAt": "2026-01-01T00:00:00.000Z",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "revokedAt": "2026-01-01T00:00:00.000Z"
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: TelegramEngagementBotList
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "endpointId": "00000000-0000-0000-0000-000000000000",
+        "accountId": "00000000-0000-0000-0000-000000000000",
+        "accountName": "string",
+        "accountStatus": "string",
+        "businessScope": {
+          "type": "string",
+          "id": "00000000-0000-0000-0000-000000000000"
+        },
+        "state": "pending",
+        "pendingProviderAction": "set",
+        "verifiedBotId": "string",
+        "botUsername": "string",
+        "lastErrorCode": "string",
+        "dailySendCeiling": 0,
+        "breakerOpenUntil": "2026-01-01T00:00:00.000Z",
+        "activatedAt": "2026-01-01T00:00:00.000Z",
+        "lastUpdateAt": "2026-01-01T00:00:00.000Z",
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "revokedAt": "2026-01-01T00:00:00.000Z"
+      }
+    ]
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: TelegramEngagementConsentPromptRequest
+
+| Field           | Type                               | Required | Nullable | Description |
+| --------------- | ---------------------------------- | -------- | -------- | ----------- |
+| `purpose`       | enum(`transactional`, `marketing`) | yes      | no       |             |
+| `noticeVersion` | string                             | yes      | no       |             |
+| `noticeText`    | string                             | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "purpose": "transactional",
+  "noticeVersion": "string",
+  "noticeText": "string"
+}
+```
+
+### Schema: TelegramEngagementContact
+
+| Field           | Type                                           | Required | Nullable | Description                                                                                                       |
+| --------------- | ---------------------------------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| `id`            | string (uuid)                                  | no       | no       |                                                                                                                   |
+| `accountId`     | string (uuid)                                  | no       | no       |                                                                                                                   |
+| `label`         | string                                         | no       | yes      | A masked label derived from the keyed hash (`TG-1A2B3C`); carries no digit of the Telegram id. `null` once ended. |
+| `state`         | enum(`started`, `stopped`, `blocked`, `ended`) | no       | no       |                                                                                                                   |
+| `startParam`    | string                                         | no       | yes      | The first `/start` deep-link parameter (provenance, never consent).                                               |
+| `startedAt`     | string (date-time)                             | no       | no       |                                                                                                                   |
+| `lastInboundAt` | string (date-time)                             | no       | yes      |                                                                                                                   |
+| `stoppedAt`     | string (date-time)                             | no       | yes      |                                                                                                                   |
+| `blockedAt`     | string (date-time)                             | no       | yes      |                                                                                                                   |
+| `endedAt`       | string (date-time)                             | no       | yes      |                                                                                                                   |
+| `privacyClass`  | enum(`conversation_meta`)                      | no       | no       |                                                                                                                   |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "accountId": "00000000-0000-0000-0000-000000000000",
+  "label": "string",
+  "state": "started",
+  "startParam": "string",
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "lastInboundAt": "2026-01-01T00:00:00.000Z",
+  "stoppedAt": "2026-01-01T00:00:00.000Z",
+  "blockedAt": "2026-01-01T00:00:00.000Z",
+  "endedAt": "2026-01-01T00:00:00.000Z",
+  "privacyClass": "conversation_meta"
+}
+```
+
+### Schema: TelegramEngagementContactDetailEnvelope
+
+| Field     | Type                                                                      | Required | Nullable | Description |
+| --------- | ------------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `success` | enum(`true`)                                                              | no       | no       |             |
+| `data`    | [`TelegramEngagementContact`](#schema-telegramengagementcontact) & object | no       | no       |             |
+| `meta`    | object                                                                    | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "accountId": "00000000-0000-0000-0000-000000000000",
+    "label": "string",
+    "state": "started",
+    "startParam": "string",
+    "startedAt": "2026-01-01T00:00:00.000Z",
+    "lastInboundAt": "2026-01-01T00:00:00.000Z",
+    "stoppedAt": "2026-01-01T00:00:00.000Z",
+    "blockedAt": "2026-01-01T00:00:00.000Z",
+    "endedAt": "2026-01-01T00:00:00.000Z",
+    "privacyClass": "conversation_meta",
+    "eligibility": {
+      "support": {
+        "eligible": false,
+        "reason": "CONTACT_NOT_STARTED"
+      },
+      "transactional": {
+        "eligible": false,
+        "reason": "CONTACT_NOT_STARTED"
+      },
+      "marketing": {
+        "eligible": false,
+        "reason": "CONTACT_NOT_STARTED"
+      }
+    },
+    "recentMessages": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "purpose": "support",
+        "kind": "text",
+        "status": "queued",
+        "failureCode": "string",
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "sentAt": "2026-01-01T00:00:00.000Z"
+      }
+    ]
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: TelegramEngagementContactPage
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "accountId": "00000000-0000-0000-0000-000000000000",
+        "label": "string",
+        "state": "started",
+        "startParam": "string",
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "lastInboundAt": "2026-01-01T00:00:00.000Z",
+        "stoppedAt": "2026-01-01T00:00:00.000Z",
+        "blockedAt": "2026-01-01T00:00:00.000Z",
+        "endedAt": "2026-01-01T00:00:00.000Z",
+        "privacyClass": "conversation_meta"
+      }
+    ],
+    "nextCursor": "string"
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: TelegramEngagementEligibility
+
+| Field      | Type                                                                         | Required | Nullable | Description |
+| ---------- | ---------------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `eligible` | boolean                                                                      | no       | no       |             |
+| `reason`   | enum(`CONTACT_NOT_STARTED`, `CONSENT_REQUIRED`, `CONSENT_WITHDRAWN`, `null`) | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "eligible": false,
+  "reason": "CONTACT_NOT_STARTED"
+}
+```
+
+### Schema: TelegramEngagementEraseEnvelope
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "state": "ended",
+    "alreadyEnded": false,
+    "withdrawnPurposes": ["support"],
+    "cancelledMessages": 0
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: TelegramEngagementQueuedEnvelope
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "contactId": "00000000-0000-0000-0000-000000000000",
+    "status": "queued"
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: TelegramEngagementRegisterBotRequest
+
+| Field              | Type          | Required | Nullable | Description                                                                      |
+| ------------------ | ------------- | -------- | -------- | -------------------------------------------------------------------------------- |
+| `accountId`        | string (uuid) | yes      | no       | A telegram bot channel account of this tenant.                                   |
+| `dailySendCeiling` | integer       | no       | yes      | Per-bot daily outbound ceiling; never above the deployment cap. Defaults to 500. |
+
+**Example**
+
+```json
+{
+  "accountId": "00000000-0000-0000-0000-000000000000",
+  "dailySendCeiling": 1
+}
+```
+
+### Schema: TelegramEngagementRevokeEnvelope
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "accountId": "00000000-0000-0000-0000-000000000000",
+    "revoked": true,
+    "cancelledMessages": 0
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: TelegramEngagementSendMessageRequest
+
+| Field     | Type                                          | Required | Nullable | Description                                                                                          |
+| --------- | --------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------- |
+| `purpose` | enum(`support`, `transactional`, `marketing`) | yes      | no       |                                                                                                      |
+| `text`    | string                                        | yes      | no       | Plain text; control characters are refused. Encrypted at rest and cleared when the message is final. |
+
+**Example**
+
+```json
+{
+  "purpose": "support",
+  "text": "string"
+}
+```
+
+### Schema: TelegramEngagementWebhookReply
+
+`{}`, or the Bot API webhook-reply form for a consent button: `{ "method": "answerCallbackQuery", "callback_query_id": "..." }`.
+
+| Field               | Type                        | Required | Nullable | Description |
+| ------------------- | --------------------------- | -------- | -------- | ----------- |
+| `method`            | enum(`answerCallbackQuery`) | no       | no       |             |
+| `callback_query_id` | string                      | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "method": "answerCallbackQuery",
+  "callback_query_id": "string"
+}
+```
+
 ### Schema: TelegramMessageStatus
 
 Enum values: `queued`, `retry_wait`, `sending`, `sent`, `failed`, `cancelled`, `expired`.
@@ -27596,6 +32216,230 @@ At least one field required. `status` may not be `active` (use verify); `hostnam
 }
 ```
 
+### Schema: WebsiteEngagementCreateSource
+
+| Field                | Type                                            | Required | Nullable | Description                                                                                      |
+| -------------------- | ----------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `code`               | string                                          | yes      | no       |                                                                                                  |
+| `name`               | string                                          | yes      | no       |                                                                                                  |
+| `consentCopyVersion` | string                                          | yes      | no       |                                                                                                  |
+| `challengeMode`      | enum(`turnstile`, `none`)                       | no       | no       |                                                                                                  |
+| `acceptedKinds`      | array of enum(`contact`, `lead`, `interaction`) | no       | no       |                                                                                                  |
+| `domainIds`          | array of string (uuid)                          | no       | no       | Live `tenant_domain` ids of THIS tenant. The browser Origin host must be one of the ACTIVE ones. |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "consentCopyVersion": "string",
+  "challengeMode": "turnstile",
+  "acceptedKinds": ["contact"],
+  "domainIds": ["00000000-0000-0000-0000-000000000000"]
+}
+```
+
+### Schema: WebsiteEngagementReceived
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+| `meta`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "received": true,
+    "message": "string"
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: WebsiteEngagementSource
+
+| Field                | Type                                            | Required | Nullable | Description                                                                                  |
+| -------------------- | ----------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
+| `id`                 | string (uuid)                                   | no       | no       |                                                                                              |
+| `code`               | string                                          | no       | no       |                                                                                              |
+| `name`               | string                                          | no       | no       |                                                                                              |
+| `status`             | enum(`active`, `paused`, `revoked`)             | no       | no       |                                                                                              |
+| `contractVersion`    | enum(`1`)                                       | no       | no       |                                                                                              |
+| `acceptedKinds`      | array of enum(`contact`, `lead`, `interaction`) | no       | no       |                                                                                              |
+| `consentCopyVersion` | string                                          | no       | no       |                                                                                              |
+| `challengeMode`      | enum(`turnstile`, `none`)                       | no       | no       |                                                                                              |
+| `challengeEffective` | enum(`turnstile`, `none`)                       | no       | no       | What this deployment actually runs for this source.                                          |
+| `tokenPrefix`        | string                                          | no       | no       | Six non-sensitive characters, to tell which token is on which site. Never accepted as proof. |
+| `tokenRotatedAt`     | string (date-time)                              | no       | no       |                                                                                              |
+| `revokedAt`          | string (date-time)                              | no       | yes      |                                                                                              |
+| `domains`            | array of object                                 | no       | no       |                                                                                              |
+| `createdAt`          | string (date-time)                              | no       | no       |                                                                                              |
+| `updatedAt`          | string (date-time)                              | no       | no       |                                                                                              |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "code": "string",
+  "name": "string",
+  "status": "active",
+  "contractVersion": "1",
+  "acceptedKinds": ["contact"],
+  "consentCopyVersion": "string",
+  "challengeMode": "turnstile",
+  "challengeEffective": "turnstile",
+  "tokenPrefix": "string",
+  "tokenRotatedAt": "2026-01-01T00:00:00.000Z",
+  "revokedAt": "2026-01-01T00:00:00.000Z",
+  "domains": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "hostname": "tenant.example.com",
+      "status": "string"
+    }
+  ],
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "updatedAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: WebsiteEngagementSourceWithToken
+
+| Field     | Type                                                                  | Required | Nullable | Description |
+| --------- | --------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `success` | enum(`true`)                                                          | no       | no       |             |
+| `data`    | [`WebsiteEngagementSource`](#schema-websiteengagementsource) & object | no       | no       |             |
+| `meta`    | object                                                                | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "code": "string",
+    "name": "string",
+    "status": "active",
+    "contractVersion": "1",
+    "acceptedKinds": ["contact"],
+    "consentCopyVersion": "string",
+    "challengeMode": "turnstile",
+    "challengeEffective": "turnstile",
+    "tokenPrefix": "string",
+    "tokenRotatedAt": "2026-01-01T00:00:00.000Z",
+    "revokedAt": "2026-01-01T00:00:00.000Z",
+    "domains": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "hostname": "tenant.example.com",
+        "status": "string"
+      }
+    ],
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z",
+    "token": "string",
+    "revealed": false
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: WebsiteEngagementSubmitRequest
+
+Contract v1, a CLOSED field set: an unknown key is a `400`, never stored and never echoed. A `contact` carries `contact` (with a message and an email or phone) and `consent`; a `lead` carries `contact` (an email or phone) and `consent`; an `interaction` carries `interaction` and nothing personal.
+
+| Field            | Type                                   | Required | Nullable | Description                                                                                                                                  |
+| ---------------- | -------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sourceToken`    | string                                 | yes      | no       | The source's opaque bearer token, `wes1.<tenantId>.<sourceId>.<secret>`. The tenant is opened FROM it. Never put it in a URL.                |
+| `tenantId`       | string (uuid)                          | no       | no       | Optional and never trusted. Refused if it disagrees with the token.                                                                          |
+| `sourceId`       | string (uuid)                          | no       | no       | Optional and never trusted. Refused if it disagrees with the token.                                                                          |
+| `eventId`        | string                                 | yes      | no       | The client-generated idempotency/replay key. The same `(source, eventId)` is stored once.                                                    |
+| `kind`           | enum(`contact`, `lead`, `interaction`) | yes      | no       |                                                                                                                                              |
+| `occurredAt`     | string (date-time)                     | no       | no       | Within the last 7 days and no more than 5 minutes ahead. Defaults to the receive time.                                                       |
+| `locale`         | string                                 | no       | no       | Selects the language of the answer (`en`, `id`) and is stored.                                                                               |
+| `topic`          | string                                 | no       | no       |                                                                                                                                              |
+| `contact`        | object                                 | no       | no       | Text only. Control characters, bidi overrides and tag-shaped input are refused; the stored value is escaped on output by whoever renders it. |
+| `interaction`    | object                                 | no       | no       |                                                                                                                                              |
+| `consent`        | object                                 | no       | no       |                                                                                                                                              |
+| `attribution`    | object                                 | no       | no       |                                                                                                                                              |
+| `challengeToken` | string                                 | no       | no       | The Turnstile response, where the deployment runs the challenge. Never logged.                                                               |
+| `honeypot`       | string                                 | no       | no       | Honeypot, named so a browser will not autofill it. Leave empty; a non-empty value is answered like a success and stored as nothing.          |
+| `fillMs`         | integer                                | no       | no       | Client-reported time to fill the form. A very short time is treated like the honeypot. A cheap signal, never proof.                          |
+
+**Example**
+
+```json
+{
+  "sourceToken": "string",
+  "tenantId": "00000000-0000-0000-0000-000000000000",
+  "sourceId": "00000000-0000-0000-0000-000000000000",
+  "eventId": "string",
+  "kind": "contact",
+  "occurredAt": "2026-01-01T00:00:00.000Z",
+  "locale": "string",
+  "topic": "string",
+  "contact": {
+    "name": "string",
+    "email": "user@example.com",
+    "phone": "string",
+    "company": "string",
+    "subject": "string",
+    "message": "string"
+  },
+  "interaction": {
+    "type": "form_view"
+  },
+  "consent": {
+    "purposes": ["respond_to_inquiry"],
+    "copyVersion": "string",
+    "pagePath": "string"
+  },
+  "attribution": {
+    "landingPath": "string",
+    "referrerHost": "string",
+    "utmSource": "string",
+    "utmMedium": "string",
+    "utmCampaign": "string",
+    "utmTerm": "string",
+    "utmContent": "string"
+  },
+  "challengeToken": "string",
+  "honeypot": "string",
+  "fillMs": 0
+}
+```
+
+### Schema: WebsiteEngagementUpdateSource
+
+| Field                | Type                                            | Required | Nullable | Description |
+| -------------------- | ----------------------------------------------- | -------- | -------- | ----------- |
+| `name`               | string                                          | no       | no       |             |
+| `consentCopyVersion` | string                                          | no       | no       |             |
+| `challengeMode`      | enum(`turnstile`, `none`)                       | no       | no       |             |
+| `acceptedKinds`      | array of enum(`contact`, `lead`, `interaction`) | no       | no       |             |
+| `status`             | enum(`active`, `paused`)                        | no       | no       |             |
+| `domainIds`          | array of string (uuid)                          | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "consentCopyVersion": "string",
+  "challengeMode": "turnstile",
+  "acceptedKinds": ["contact"],
+  "status": "active",
+  "domainIds": ["00000000-0000-0000-0000-000000000000"]
+}
+```
+
 ### Schema: WhatsappBusinessScope
 
 A brand or unit (the generic business-scope pair). Null is tenant-wide.
@@ -27616,18 +32460,23 @@ A brand or unit (the generic business-scope pair). Null is tenant-wide.
 
 ### Schema: WhatsappConsentGrantRequest
 
-| Field                | Type    | Required | Nullable | Description                                                                                    |
-| -------------------- | ------- | -------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `phone`              | string  | yes      | no       | Same forms as the suppression request. Never echoed back.                                      |
-| `reinstateWithdrawn` | boolean | no       | no       | Must be true to grant over a recorded opt-out; needs `consents.restore` and `evidenceRef`.     |
-| `evidenceRef`        | string  | no       | no       | A reference to the evidence of the new consent (ticket, form id). Required when reinstating.   |
-| `source`             | string  | yes      | no       | Where the opt-in came from (`admin`, `form`, `import`, `inbound_reply`); recorded as evidence. |
+| Field                | Type    | Required | Nullable | Description                                                                                                                                                                                                                                                            |
+| -------------------- | ------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `phone`              | string  | yes      | no       | Same forms as the suppression request. Never echoed back.                                                                                                                                                                                                              |
+| `businessScope`      | object  | no       | yes      | Issue #1231 M4. The business scope (brand) this opt-in was collected for. Omitted or `null`: an opt-in for the tenant itself, covering only marketing that names no business scope. Must be held by the caller and exist in this tenant; only `office` resolves today. |
+| `reinstateWithdrawn` | boolean | no       | no       | Must be true to grant over a recorded opt-out; needs `consents.restore` and `evidenceRef`.                                                                                                                                                                             |
+| `evidenceRef`        | string  | no       | no       | A reference to the evidence of the new consent (ticket, form id). Required when reinstating.                                                                                                                                                                           |
+| `source`             | string  | yes      | no       | Where the opt-in came from (`admin`, `form`, `import`, `inbound_reply`); recorded as evidence.                                                                                                                                                                         |
 
 **Example**
 
 ```json
 {
   "phone": "string",
+  "businessScope": {
+    "type": "string",
+    "id": "00000000-0000-0000-0000-000000000000"
+  },
   "reinstateWithdrawn": false,
   "evidenceRef": "string",
   "source": "string"
@@ -27652,6 +32501,42 @@ Enum values: `queued`, `retry_wait`, `sending`, `sent`, `failed`, `cancelled`, `
 
 ```json
 "queued"
+```
+
+### Schema: WhatsappMetaTemplateRequest
+
+| Field                | Type                                                               | Required | Nullable | Description                                           |
+| -------------------- | ------------------------------------------------------------------ | -------- | -------- | ----------------------------------------------------- |
+| `containerAccountId` | string (uuid)                                                      | yes      | no       |                                                       |
+| `name`               | string                                                             | yes      | no       |                                                       |
+| `language`           | string                                                             | yes      | no       |                                                       |
+| `category`           | enum(`MARKETING`, `UTILITY`, `AUTHENTICATION`)                     | yes      | no       |                                                       |
+| `status`             | [`WhatsappMetaTemplateStatus`](#schema-whatsappmetatemplatestatus) | yes      | no       |                                                       |
+| `evidenceRef`        | string                                                             | no       | yes      | Required when `status` is `APPROVED` or `REINSTATED`. |
+
+**Example**
+
+```json
+{
+  "containerAccountId": "00000000-0000-0000-0000-000000000000",
+  "name": "string",
+  "language": "string",
+  "category": "MARKETING",
+  "status": "APPROVED",
+  "evidenceRef": "string"
+}
+```
+
+### Schema: WhatsappMetaTemplateStatus
+
+Meta's own template status vocabulary. Only `APPROVED` and `REINSTATED` are sendable; every other value (including `FLAGGED`) is refused.
+
+Enum values: `APPROVED`, `ARCHIVED`, `UNARCHIVED`, `DELETED`, `DISABLED`, `FLAGGED`, `IN_APPEAL`, `LIMIT_EXCEEDED`, `LOCKED`, `PAUSED`, `PENDING`, `REINSTATED`, `PENDING_DELETION`, `REJECTED`.
+
+**Example**
+
+```json
+"APPROVED"
 ```
 
 ### Schema: WhatsappSenderPolicyRequest
@@ -27743,7 +32628,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (102)
+### Channels (121)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -27788,6 +32673,8 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
 - `awcms.commerce.booking_reservation.rescheduled` — A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all (same length). Producer: `commerce/application/booking-reschedule.ts`'s `rescheduleBookingReservation`, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`, `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`, `supplementOrderId`, `returnId` - never a customer name/phone, a payment reference or the actor.
 - `awcms.commerce.conversation.store_replied` — A staff reply was stored in a customer conversation (Issue #432, ADR-0048 Q4). Producer: `commerce/application/conversation-directory.ts`'s `postStoreReply`, in the same transaction as the stored message. Aggregate: the conversation (`commerce.conversation`). Payload: `conversationId` only - never the subject, the body or the customer. Consumed by the customer Web Push enqueuer (`commerce.customer_push_enqueuer`, purpose `support_replies`).
+- `awcms.commerce.customer.converted` — A staff member confirmed a CRM lead as this commerce customer on verified commerce evidence and `crm_leads` recorded the conversion (Issue #463, ADR-0056 D8). Producer: `commerce/application/crm-lead-link-directory.ts`'s `linkLeadToCustomer`, in the same transaction as the link row and the conversion. Never published from a message receipt, a fuzzy match or an unconfirmed manual conversion. Aggregate: the customer (`commerce.customer`). Payload: `linkId`, `customerId`, `leadId`, `conversionId`, `evidenceKind` (`customer_registration` | `paid_order`), `orderId` (paid order only), `firstSourceKind` and `firstTouchId` (the lead's first source touch, for source attribution) - opaque ids and codes, never a name, contact or note. `privacyClass: pseudonymous`. Idempotency: one event per link; a replayed confirmation (same evidence) publishes nothing. The reversal of a conversion is `crm_leads`' own `awcms.crm_leads.lead.conversion_reversed`.
+- `awcms.commerce.customer.registered` — A shopper completed the e-mail OTP registration and a commerce customer account was created (Issue #463, ADR-0056 D8). Producer: `commerce/application/customer-account-store.ts`'s `tryCreateAccountForCustomer`, in the same transaction as the account row. A guest checkout does NOT publish it: only a verified registration is a registration fact. Aggregate: the customer (`commerce.customer`). Payload: `customerId` and `accountId` only - never a name, e-mail or phone. `privacyClass: pseudonymous`. Idempotency: one event per account row (the account is unique per customer); correlation id as on every domain event.
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.
@@ -27818,25 +32705,42 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.stored_value.entry_recorded` — A closed-loop stored-value ledger entry (gift card / store credit: issue, load, redeem, refund, adjust, expire, disable, enable) was appended. Producer: `commerce/application/stored-value-ledger.ts`'s `appendStoredValueEntry`, in the same transaction as the ledger insert (and, for redeem/refund, the payment-allocation row it mirrors). Aggregate: the stored-value account (`commerce.stored_value_account`). Payload: `entryId`, `accountId`, `accountKind` (`gift_card` | `store_credit`), `entryKind`, the signed `amount`, the resulting `balanceAfter` and, for redeem/refund, `allocationId` - never the code (which is not stored), the customer, or the free-text reason.
 - `awcms.commerce.voucher.redeemed` — A voucher's `used_count` was incremented by a real order. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order that redeemed it.
 - `awcms.commerce.work_order.status_changed` — A work order moved to a new operational status (Issue #286, ADR-0029 D6). Producer: `commerce/application/work-order-directory.ts`'s `updateWorkOrder`, in the same transaction as the status change and its history row. Payload: `workOrderId`, `number`, `fromStatus`, `toStatus`, `assigneeTenantUserId` - never the title, description or note.
+- `awcms.crm_leads.lead.assigned` — A lead's owner changed. Producer: `lead-directory.ts`'s `assignLead`. Payload `CrmLeadAssigned`: the lead id and the previous and new owner tenant-user ids only.
+- `awcms.crm_leads.lead.conversion_reversed` — The customer authority reversed a conversion (a refund, a cancellation): a correction by event, never an edit of history. Producer: `lead-lifecycle.ts`'s `reverseConversion`. Payload `CrmLeadConversionReversed`.
+- `awcms.crm_leads.lead.converted` — A conversion was recorded: confirmed by the customer authority (with its opaque `externalCustomerRef`) or a flagged manual conversion (`authority_unconfirmed`). Producer: `lead-lifecycle.ts`'s `recordConversion`. Payload `CrmLeadConverted`; never a note. A replayed confirmation publishes nothing. The lead module never creates the customer.
+- `awcms.crm_leads.lead.created` — A lead was created through an intake path, in the transaction that stored it (ADR-0153, Issue #1166). Producer: `crm-leads/application/lead-directory.ts`'s `createLead`. The envelope `payload` is `CrmLeadCreated`: opaque lead, pipeline, revision and first-touch ids, the initial stage key and closed category, the source kind with opaque channel-account and campaign references, the KINDS of contact point held (never their values) and the effective and recorded times. A replayed intake publishes nothing. Never a name, an address, a phone number or a note.
+- `awcms.crm_leads.lead.lost` — A lead ENTERED a lost or disqualified stage. Producer: `lead-events.ts`'s `appendLeadTransition`. Payload `CrmLeadLost`; a stop signal for follow-up cadences (#1165).
+- `awcms.crm_leads.lead.merge_reverted` — A lead merge was rolled back within its undo window. Producer: `lead-lifecycle.ts`'s `revertMerge`. Payload `CrmLeadMergeReverted`.
+- `awcms.crm_leads.lead.merged` — Two leads of one pipeline were merged after human review. Producer: `lead-lifecycle.ts`'s `mergeLeads`. Payload `CrmLeadMerged`: the merge, survivor and absorbed lead ids and the undo deadline; never the reviewer's note.
+- `awcms.crm_leads.lead.stage_changed` — A lead's stage changed: a move, a stage migration on a new revision, a conversion, a conversion reversal, a merge or its rollback (`transitionKind`), in the transaction that appended the transition row. Producer: `crm-leads/application/lead-events.ts`'s `appendLeadTransition`. Payload `CrmLeadStageChanged`; never a reason or a note.
 - `awcms.domain-event-runtime.sample.recorded` — Reference/example event used to exercise the domain-event-runtime outbox, dispatcher, ordering, retry/backoff, dead-letter, and replay mechanism end-to-end. Real producer modules publish their OWN event types the same way, via `appendDomainEvent` — this one is intentionally self-contained rather than tied to another module's business logic in this foundation module (see `src/modules/domain-event-runtime/domain/event-type-registry.ts`'s own doc comment). Producer: any caller of `application/append-domain-event.ts`'s `appendDomainEvent` for this event type; consumers: the reference consumers declared in the descriptors of `domain_event_runtime` (a same-process cross-module audit projector and a self-contained read-model activity-rollup projection) and `reporting` (an event-activity projector), ADR-0134.
 - `awcms.email.message.cancelled` — An operator cancelled a still-queued message (`POST /api/v1/email/messages/{id}/cancel`) before dispatch. Documented contract only; producer is the structured JSON logger (`pages/api/v1/email/messages/[id]/cancel.ts`'s `email.message.cancelled` log line).
-- `awcms.email.message.failed` — The email dispatcher exhausted retries (or hit a non-retryable failure) for a queued message. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.failed` log line).
-- `awcms.email.message.queued` — An email message was enqueued into `awcms_email_messages`. Documented contract only, same convention as `database.pool.saturated` — the concrete producer is the structured JSON logger, invoked from `email/application/announcement-directory.ts`'s `enqueueAnnouncement` (`email.message.queued` log line).
-- `awcms.email.message.sent` — The email dispatcher (`bun run email:dispatch`) delivered a message through the configured provider. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.sent` log line).
+- `awcms.email.message.failed` — The email dispatcher exhausted retries (or hit a non-retryable failure) for a queued message. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.failed` log line). Issue #1160 (additive): a tenant sender's row carries `senderAccountId`, and a row whose sender could not send fails with `SENDER_UNAVAILABLE` or `SENDER_HOLD_BUDGET_EXCEEDED` (never rerouted to another sender).
+- `awcms.email.message.queued` — An email message was enqueued into `awcms_email_messages`. Documented contract only, same convention as `database.pool.saturated` — the concrete producer is the structured JSON logger, invoked from `email/application/announcement-directory.ts`'s `enqueueAnnouncement` (`email.message.queued` log line). Issue #1160 (ADR-0151 section 7, additive): the line carries `senderAccountId` - the tenant-owned Mailketing sender identity snapshotted on the rows, or `null` for the deployment sender. Never the sender's address or credential.
+- `awcms.email.message.sent` — The email dispatcher (`bun run email:dispatch`) delivered a message through the configured provider. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.sent` log line). Issue #1160 (additive): a row of a tenant sender's lane carries `senderAccountId`; "sent" means accepted (queued) by the provider, never delivered.
 - `awcms.email.message.suppressed` — The email dispatcher found a claimed message's recipient newly present on `awcms_email_suppression_list` (added after enqueue, before dispatch) and skipped the provider call entirely. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.suppressed` log line).
 - `awcms.hr.commission.voided` — A commission accrual was voided (ADR-0132, Issue #1109), in the transaction that voided it: a pending or approved accrual, by the HTTP void route or by `CommissionAccrualPort.void` when the sale it came from was voided, refunded or cancelled. Producer: `hr-commission/application/hr-commission- accrual-ledger.ts`'s `transitionAccrual`. Payload: `accrualId`, `employmentId`, `sourceType`, `ruleKey`, `ruleVersion`, `fromStatus` (`pending` or `approved`), `reasonCode` (a code or null). Never an amount, a source reference, a payment reference or a name. A replayed void publishes nothing.
 - `awcms.inventory.movement.posted` — A stock movement was posted to the append-only inventory ledger and its balance updated, in ONE transaction (ADR-0126, Issue #887). Producer: `inventory/application/inventory-ledger.ts`'s posting core, shared by `postMovement`, `postAdjustment`, `reverseAdjustment` and `postTransfer` (a transfer publishes one event per leg). Published in the same commit as the movement, so a rolled-back posting publishes nothing; a REPLAY of an already-posted source identity publishes nothing either. Ordered per balance (`order_key` = location + item). The payload carries opaque item and source references and decimal-string quantities only — `movementId`, `locationId`, `itemType`, `itemRef`, `unitCode`, `movementType`, `operation`, `quantityDelta`, `balanceAfter`, `sourceType`, `sourceId`, `sourceLine`, `transferId`, `reversesMovementId`. Never the free-text note and never anything identifying a person.
 - `awcms.inventory.stock.low` — A stock balance crossed to or below its low-stock threshold (ADR-0126, Issue #887) — by a movement or by a threshold change. Producer: `inventory/application/inventory-ledger.ts`'s `recordLowStockTransition`. Published ONCE per downward crossing, not on every movement while the balance stays low, and never for the recovery (that is recorded in the signals table the reporting projection reads). Payload: `locationId`, `itemType`, `itemRef`, `onHand`, `threshold`, `movementId` (null when a threshold change caused it).
 - `awcms.procurement.document.finalised` — A procurement document (receive, supplier_return, requisition or transfer) was finalised and its inventory movements posted through the ledger's port (ADR-0128, Issue #888), in one transaction. Producer: `procurement/application/procurement-posting.ts`'s `finaliseDocument`. Published once per document — a replayed finalise posts and publishes nothing. Payload: `documentId`, `documentNo`, `mode`, `supplierId`, `locationId`, `sourceLocationId`, `currencyCode`, `totalCost` (decimal string), `lineCount`, `movementCount`. Never a supplier name, an identifier, a note or a reason.
 - `awcms.procurement.document.reversed` — A finalised procurement document was reversed: compensating inventory movements were posted and the document marked reversed (ADR-0128, Issue #888), in one transaction. Producer: `procurement/application/procurement-posting.ts`'s `reverseDocument`. Same payload shape as `document.finalised`.
+- `awcms.social_publishing.job.failed` — One per-account social publish job failed terminally (ADR-0157, Issue #1145): the retry budget is spent, the provider rejected the content or asked for re-authorisation, the account was revoked or disabled or lost its publish capability, or a degraded account stayed unavailable too long. Producer: the same dispatcher. The envelope `payload` is `SocialJobFailed`: the job, publication and account ids, the provider key, a fixed `failureCode` and the attempt number (0 when no attempt was made). Never a provider message. A failed job does not affect a published sibling.
+- `awcms.social_publishing.job.published` — One per-account social publish job was accepted by its provider, in the transaction that finalised it (ADR-0157, Issue #1145). Producer: `social-publishing/application/social-publish-dispatch.ts`'s finalise step (`bun run social-publishing:dispatch`). The envelope `payload` is `SocialJobPublished`: the job, publication and account ids, the provider key and the attempt number. The provider's post id and URL are read through `GET /api/v1/social-publishing/publications/{id}`, not carried. A superseded finalise (the lease was re-claimed) publishes nothing.
+- `awcms.social_publishing.publication.cancelled` — A social publication was cancelled by an operator (ADR-0157, Issue #1145). Producer: `POST /api/v1/social-publishing/publications/{id}/cancel`. The envelope `payload` is `SocialPublicationCancelled`: how many unsent jobs were cancelled and how many had already been published (those are untouched). Idempotent: cancelling an already cancelled publication publishes nothing.
+- `awcms.social_publishing.publication.queued` — Social publish jobs were queued for a publication, in the transaction that queued them (ADR-0157, Issue #1145). Producer: `social-publishing/application/publication-enqueue.ts`'s `enqueuePublication`, called from the article path (`SocialPublishingPort.onArticlePublished`, inside `blog_content`'s publish transaction) and from `POST /api/v1/social-publishing/publications`. ONE event per enqueue call that created at least one job, however many accounts it targets (the single domain event over the fan-out). The envelope `payload` is `SocialPublicationQueued` : the `publicationId`, the `sourceKind` and the article `sourceId`, the `trigger`, the approval `state`, the `jobCount` and the target `accountIds`. Never a caption, a title, a link or a credential. A repeated call that creates no job publishes nothing.
 - `awcms.tax.rule_version.published` — A tax rule version was published and became the rule in force from its effective date (ADR-0127). Producer: `tax/application/tax-event-publisher.ts`'s `publishRuleVersionPublishedEvent`, called by `POST /api/v1/tax/rule-versions/{id}/publish` inside the same transaction as the publish. Ordered per profile (`orderKey` `tax.profile:<code>`). The payload carries identifiers, codes and dates only — `ruleVersionId`, `profileCode`, `versionNo`, `jurisdictionCode`, `effectiveFrom`, and `closedVersionId` (the predecessor whose window this ended, or null).
 - `awcms.tax.snapshot.finalised` — A document's tax was finalised into an immutable snapshot (ADR-0127). Producer: `tax/application/tax-event-publisher.ts`'s `publishSnapshotEvent`, called by `POST /api/v1/tax/snapshots` only when a NEW snapshot is written — an idempotent replay publishes nothing. The payload carries the opaque document reference, the rule version used, the tax date and decimal-string totals; no customer data of any kind.
 - `awcms.tax.snapshot.reversed` — A finalised document's tax was reversed from its original snapshot (refund or return, ADR-0127). Producer: `publishSnapshotEvent`, called by `POST /api/v1/tax/snapshots/{id}/reverse` only when a NEW reversal is written. Same payload shape as `snapshot.finalised`; the totals are negative decimal strings and `originalSnapshotId` is set.
-- `awcms.whatsapp.consent.granted` — A recipient's WhatsApp marketing consent was recorded (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp-consent- directory.ts`'s `grantMarketingConsent`. Payload: `consentId`, `purpose`, `recipientMasked`. Never the number.
-- `awcms.whatsapp.consent.withdrawn` — A recipient's WhatsApp marketing consent was withdrawn; their waiting marketing messages were cancelled in the same transaction (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp-consent- directory.ts`'s `withdrawMarketingConsent`. Same payload shape as `consent.granted`.
+- `awcms.telegram_engagement.consent.changed` — A customer Telegram contact's consent changed for one purpose (ADR-0152 section 6, Issue #1156), in the transaction that recorded the append-only evidence. Producer: `telegram-engagement/application/contact-directory.ts`'s `recordConsent`. The envelope `payload` is `TelegramEngagementConsentChanged`: the channel account id, the opaque contact reference, the purpose, the action, the method and the notice version (`privacyClass: consent`). Downstream consumers MUST honour an `opt_out` at once. Never the evidence payload or an identity.
+- `awcms.telegram_engagement.interaction.received` — A verified customer Telegram update was ingested, in the transaction that receipted it (ADR-0152, ADR-0150 section 3 envelope, Issue #1156). Producer: `telegram-engagement/application/webhook-ingest.ts`'s `ingestVerifiedUpdate`, for a `/start` (`eventKind: command`) or a message (`eventKind: message`) from a contact who started the bot. The envelope `payload` is `TelegramEngagementInteractionReceived` (contract version 1): the channel account id, the opaque ACCOUNT-SCOPED contact reference as both sender and conversation, the per-bot `providerEventId` (the update id, never compared across bots), the content KINDS, whether it was forwarded, `provenance: secret_header` and the `privacyClass`. Never a Telegram user id, chat id, username, display name, phone number, message text, token or header; the body is not kept upstream (ADR-0150 section 1). A replayed or duplicate update publishes nothing. The intended consumer is the cross-channel inbox (#1164) and the downstream CRM adapter (awcms-one #460).
+- `awcms.website_engagement.submission.received` — A website form or interaction was accepted by the public intake, in the transaction that stored it (ADR-0155, Issue #1153). Producer: `website-engagement/application/submission-intake.ts`'s `recordSubmission`. The envelope `payload` is `WebsiteEngagementSubmissionReceived` (contract version 1): the opaque `submissionId`, the `sourceId`/`sourceCode`, the client's `clientEventId`, the `kind`, the authenticated `provenance` (source authenticated, Origin host verified, which `challenge` protected it), the explicit `consent` provenance, the source `attribution`, which `identifiers` the submission holds and its `privacyClass`. Never a name, address, phone number or message: a CRM adapter reads those through `POST /api/v1/website-engagement/submissions/{id}/reveal` under its own permission. A duplicate submission publishes nothing. This event creates, matches and merges no person; linking to one is downstream, through `contact_link_evidence` (ADR-0148 section 6).
+- `awcms.website_engagement.submission.withdrawn` — A controller withdrew a website submission (ADR-0155, Issue #1153). Producer: `website-engagement/application/submission-directory.ts`'s `withdrawSubmission`. The envelope `payload` is `WebsiteEngagementSubmissionWithdrawn`. Downstream consumers MUST honour it. Idempotent: withdrawing an already withdrawn submission publishes nothing.
+- `awcms.whatsapp.consent.granted` — A recipient's WhatsApp marketing consent was recorded (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp-consent- directory.ts`'s `grantMarketingConsent`. Payload: `consentId`, `purpose`, `recipientMasked`, and since Issue #1231 M4 `businessScope` (`{type, id}`, the brand THIS grant was collected for; absent for an unscoped grant, so that payload is unchanged). Never the number.
+- `awcms.whatsapp.consent.withdrawn` — A recipient's WhatsApp marketing consent was withdrawn; their waiting marketing messages were cancelled in the same transaction (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp-consent- directory.ts`'s `withdrawMarketingConsent`. Same payload shape as `consent.granted`, never with `businessScope`: a withdrawal is tenant-wide and ends the opt-in for every brand (Issue #1231 M4).
 - `awcms.whatsapp.dispatch.failed` — A WhatsApp dispatcher pass failed as a whole — job level, not one message (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp- dispatch.ts`'s `recordWhatsappDispatchFailure`, called by `scripts/whatsapp- dispatch.ts`. Payload: `failureCode`, optional `batchSize`, `occurredAt`.
 - `awcms.whatsapp.message.expired` — A WhatsApp message passed its expiry before it was sent and was not retried late (ADR-0133, Issue #963) — an OTP that arrives after its validity is worse than none. Producer: `whatsapp-delivery/application/whatsapp- dispatch.ts`. Same payload shape as `message.queued` with `status` expired.
 - `awcms.whatsapp.message.failed` — A WhatsApp message reached a terminal failure (ADR-0133, Issue #963): a non- retryable provider rejection, exhausted retries, or a template that is no longer registered. Producer: `whatsapp-delivery/application/whatsapp- dispatch.ts`. Same payload shape as `message.queued` with `status` failed and a coarse `failureCode` (including `senderAccountId` for a tenant-owned sender). Since Issue #1141 `failureCode` may be `sender_unavailable`: the row's sender was revoked, disabled, disconnected, unapproved or has no adapter, and the message was NOT sent through any other sender, number or provider.
+- `awcms.whatsapp.message.provider_status_changed` — A SIGNED Meta webhook moved a sent WhatsApp message's provider-reported status forward (Issue #1143). Producer: `whatsapp-delivery/application/ whatsapp-meta-directory.ts`'s `applyMetaWebhookActions`, in the webhook's tenant transaction. Reconciled ONLY against a row of the sender the callback token resolved to, under that provider message id (and that recipient when Meta names it); forward-only, so a repeated or late status emits nothing. Payload: `messageId`, `templateKey`, `senderAccountId`, `providerStatus` (delivered | read | failed; `sent` only when no earlier status was recorded) and, for `failed`, a coarse `failureCode` (`meta_<code>`). Never a phone number, a body or provider text. The queue `status` of the message is unchanged (`sent`).
 - `awcms.whatsapp.message.queued` — A message was accepted into the WhatsApp outbox (ADR-0133, Issue #963), in the SAME transaction as the caller's fact: a rolled-back booking emits nothing. Producer: `whatsapp-delivery/application/whatsapp-enqueue.ts`'s `enqueueWhatsappMessage`. Payload: `messageId`, `templateKey`, `purpose` (transactional | security | marketing), `recipientMasked`, `status` (queued), and, since Issue #1141 (ADR-0148 section 4), `senderAccountId` (the tenant-owned sender account snapshotted on the row, a uuid; the key is ABSENT for the deployment sender, so the payload of a message that names no sender is byte for byte what it was). Never a phone number, message body, template variable, token or device id; the caller's own record is joined through the envelope `correlationId`. The addition is optional and the event version stays 1.0: a consumer that ignores unknown keys is unaffected.
 - `awcms.whatsapp.message.sent` — The provider accepted the WhatsApp message (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp-dispatch.ts`, in the finalise transaction after the provider call returned. Same payload shape as `message.queued` with `status` sent (including `senderAccountId` for a tenant-owned sender). "Accepted" by the provider is never "delivered".
 - `awcms.workflow.delegation.created` — A workflow delegation/substitute assignment was created. Producer: `workflow-approval/application/workflow-delegation-directory.ts`'s `createWorkflowDelegation`.
