@@ -28,7 +28,6 @@ import {
   statSync,
   symlinkSync,
 } from "node:fs";
-import { execSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { dirname, join, relative } from "node:path";
 
@@ -52,7 +51,7 @@ const describe = PKG_NAME === "awcms-one" ? bunDescribe : bunDescribe.skip;
 
 /** Assignments that would switch a derivation onto StarSender (commented-out `# NAME=...` lines are documentation, not configuration). */
 const FORBIDDEN_ASSIGNMENTS = [
-  /^\s*(?:export\s+)?WHATSAPP_PROVIDER\s*[=:]\s*["']?starsender/im,
+  /^\s*(?:-\s*)?(?:export\s+)?WHATSAPP_PROVIDER\s*[=:]\s*["']?starsender/im,
   /^\s*(?:-\s*)?(?:export\s+)?WHATSAPP_STARSENDER_ENABLED\s*[=:]\s*["']?true/im,
   /^\s*(?:-\s*)?(?:export\s+)?COMMERCE_WHATSAPP_PROVIDER\s*[=:]\s*["']?starsender/im,
 ];
@@ -209,11 +208,11 @@ function makeTempCopy() {
     }
   }
 
-  execSync("git init -q", { cwd: dir });
-  execSync('git config user.email "test@example.com"', { cwd: dir });
-  execSync('git config user.name "template-starsender test"', { cwd: dir });
-  execSync("git add -A", { cwd: dir });
-  execSync('git commit -q -m "initial"', { cwd: dir });
+  gitRunOrThrow(dir, "init", "-q");
+  gitRunOrThrow(dir, "config", "user.email", "test@example.com");
+  gitRunOrThrow(dir, "config", "user.name", "template-starsender test");
+  gitRunOrThrow(dir, "add", "-A");
+  gitRunOrThrow(dir, "commit", "-q", "-m", "initial");
 
   return dir;
 }

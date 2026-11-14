@@ -24,6 +24,15 @@ import { toEnqueueResult } from "../src/modules/commerce/application/whatsapp-up
 import { documentDeliveryFailureReason } from "../src/modules/commerce/domain/whatsapp-enqueue-types";
 
 const SRC = join(import.meta.dir, "..", "src", "modules", "commerce");
+const ROUTES = join(
+  import.meta.dir,
+  "..",
+  "src",
+  "pages",
+  "api",
+  "v1",
+  "commerce"
+);
 
 function filesUnder(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
@@ -92,14 +101,17 @@ describe("commerce keeps no sender or provider logic of its own (template bounda
   });
 
   test("no commerce route or input type accepts a sender from a request", () => {
-    const hits = files.filter(
-      (file) =>
-        file.includes("/pages/") === false &&
-        /senderAccountId/.test(
-          readFileSync(file, "utf8")
-            .replace(/\/\*[\s\S]*?\*\//g, "")
-            .replace(/^\s*\/\/.*$/gm, "")
-        )
+    const routeFiles = filesUnder(ROUTES);
+
+    // Non-vacuity: the route tree really is scanned.
+    expect(routeFiles.length).toBeGreaterThan(20);
+
+    const hits = [...files, ...routeFiles].filter((file) =>
+      /senderAccountId/.test(
+        readFileSync(file, "utf8")
+          .replace(/\/\*[\s\S]*?\*\//g, "")
+          .replace(/^\s*\/\/.*$/gm, "")
+      )
     );
 
     // `senderAccountId` belongs to the campaign work of #458, which is pending.

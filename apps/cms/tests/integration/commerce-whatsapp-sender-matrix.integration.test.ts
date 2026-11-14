@@ -50,6 +50,11 @@ import {
 } from "../../src/modules/channel-accounts/application/secret-store";
 import { resolveChannelSecretsRing } from "../../src/modules/channel-accounts/domain/channel-accounts-config";
 import { PROVIDER_MATRIX_VERSION } from "../../src/modules/channel-accounts/domain/provider-matrix";
+import {
+  hashRiskText,
+  overrideRiskAcknowledgementCatalogueForTests,
+  resolveRiskAcknowledgement
+} from "../../src/modules/channel-accounts/domain/risk-acknowledgements";
 import { enqueueWhatsappMessage } from "../../src/modules/commerce/application/whatsapp-enqueue";
 import { flipWhatsappMode } from "../../src/modules/commerce/application/whatsapp-mode-flip";
 import {
@@ -79,7 +84,8 @@ const suite = integrationEnabled ? describe : describe.skip;
 
 const TENANT_A = "46600000-0000-4000-8000-00000000000a";
 const TENANT_B = "46600000-0000-4000-8000-00000000000b";
-const PHONE = "+6281234567890";
+const PHONE = "+628000000000";
+const PHONE_2 = "+628000000001";
 
 const bytes = (mul: number) =>
   Buffer.from(
@@ -160,15 +166,35 @@ async function seedUser(tenantId: string): Promise<string> {
   return user[0]!.id;
 }
 
-/** sql/340: a StarSender device cannot be connected without an active acknowledgement. */
+/**
+ * Upstream ships the StarSender risk text UNAPPROVED (`approval: null`), and an
+ * unapproved text counts for nothing (`hasActiveRiskAcknowledgement`), so every
+ * device would resolve as unusable. The suite approves a fixture catalogue, as
+ * `starsender-adapter.integration.test.ts` does, and resets it in `afterAll`.
+ */
+const approveRiskText = () =>
+  overrideRiskAcknowledgementCatalogueForTests({
+    starsender: {
+      ...resolveRiskAcknowledgement("starsender").entry,
+      approval: {
+        approvedBy: "business owner (test fixture)",
+        approvedOn: "2026-11-10",
+        reference: "fixture"
+      }
+    }
+  });
+
+/** sql/340: a StarSender device cannot be connected without an active acknowledgement of the CURRENT text. */
 async function ensureRiskAcknowledgement(
   tenantId: string,
   userId: string
 ): Promise<void> {
+  const entry = resolveRiskAcknowledgement("starsender").entry;
+
   await getAdminSql()`
     INSERT INTO awcms_channel_provider_risk_acknowledgements
       (tenant_id, provider, tenant_user_id, text_version, text_sha256)
-    SELECT ${tenantId}, 'starsender', ${userId}, 'fixture-v1', ${"0".repeat(64)}
+    SELECT ${tenantId}, 'starsender', ${userId}, ${entry.textVersion}, ${hashRiskText(entry)}
     WHERE NOT EXISTS (
       SELECT 1 FROM awcms_channel_provider_risk_acknowledgements
       WHERE tenant_id = ${tenantId} AND provider = 'starsender' AND revoked_at IS NULL
@@ -227,7 +253,11 @@ const CA_ENV = {
 const senders = createChannelAccountPortAdapter({ env: CA_ENV });
 const credentials = createChannelSenderCredentialAdapter({
   store,
-  env: CA_ENV
+  // The credential port checks the adapter flag before it decrypts any key.
+  env: {
+    ...CA_ENV,
+    WHATSAPP_STARSENDER_ENABLED: "true"
+  } as NodeJS.ProcessEnv
 });
 
 async function setDefault(
@@ -235,7 +265,7 @@ async function setDefault(
   userId: string,
   deviceId: string | null
 ) {
-  return await inTenant(tenantId, (tx) =>
+  const result = await inTenant(tenantId, (tx) =>
     setSenderPolicy(
       tx,
       tenantId,
@@ -244,10 +274,16 @@ async function setDefault(
       senders
     )
   );
+
+  // A fixture that silently failed to set the default would make every later
+  // assertion vacuous (the message would go through the deployment sender).
+  expect(result).toMatchObject({ outcome: "set" });
+
+  return result;
 }
 
 async function setUpstreamMode(tenantId: string, userId: string) {
-  return await inTenant(tenantId, (tx) =>
+  const result = await inTenant(tenantId, (tx) =>
     flipWhatsappMode(
       tx,
       tenantId,
@@ -260,6 +296,10 @@ async function setUpstreamMode(tenantId: string, userId: string) {
       }
     )
   );
+
+  expect(result.outcome).toBe("flipped");
+
+  return result;
 }
 
 const OTP_VARIABLES = {
@@ -354,10 +394,13 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
 
   beforeAll(async () => {
     for (const name of ENV_KEYS) SAVED[name] = process.env[name];
+    approveRiskText();
     await setupIntegrationDatabase();
   }, 120000);
 
   afterAll(async () => {
+    overrideRiskAcknowledgementCatalogueForTests(null);
+
     for (const name of ENV_KEYS) {
       if (SAVED[name] === undefined) delete process.env[name];
       else process.env[name] = SAVED[name];
@@ -389,17 +432,17 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
     expect(await setDefault(TENANT_A, userA, s1.id)).toMatchObject({
       outcome: "set"
     });
+    expect(s1.id).not.toBe(s2.id);
 
     const first = await commerceEnqueue(TENANT_A);
 
     expect(first.enqueued).toBe(true);
 
     expect(await setDefault(TENANT_A, userA, s2.id)).toMatchObject({
-      outcome: "set",
-      changed: true
+      outcome: "set"
     });
 
-    const second = await commerceEnqueue(TENANT_A, "+6281234567891");
+    const second = await commerceEnqueue(TENANT_A, PHONE_2);
 
     expect(second.enqueued).toBe(true);
 
@@ -429,9 +472,10 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
     const s2 = await seedDevice(TENANT_A, userA);
 
     await setDefault(TENANT_A, userA, s1.id);
-    // S1 is blocked at the provider; S2 is healthy and WOULD be a tempting fallback.
+    // S1 is blocked at the provider ('revoked' is a status sql/318 allows); S2 is
+    // healthy and WOULD be a tempting fallback.
     await getAdminSql()`
-      UPDATE awcms_channel_accounts SET status = 'disconnected' WHERE id = ${s1.id}
+      UPDATE awcms_channel_accounts SET status = 'revoked' WHERE id = ${s1.id}
     `;
 
     const refused = await commerceEnqueue(TENANT_A);
@@ -450,6 +494,11 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
     );
 
     expect(sent).toHaveLength(0);
+    // Control: the other device is usable, so the refusal is S1's own state, not a global one.
+    const control = await setDefault(TENANT_A, userA, s2.id);
+
+    expect(control).toMatchObject({ outcome: "set" });
+    expect((await commerceEnqueue(TENANT_A, PHONE_2)).enqueued).toBe(true);
     expect(built.some((input) => input.sender.accountId === s2.id)).toBe(false);
   });
 
@@ -457,6 +506,15 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
     const s1 = await seedDevice(TENANT_A, userA);
 
     await setDefault(TENANT_A, userA, s1.id);
+
+    // Control: with the adapter on, the same default queues through the device.
+    const control = await commerceEnqueue(TENANT_A, PHONE_2);
+
+    expect(control.enqueued).toBe(true);
+    expect((await messageRow(control.id)).sender_account_id).toBe(s1.id);
+
+    const queuedBefore = await queueCount(TENANT_A);
+
     setEnv(false);
 
     const refused = await commerceEnqueue(TENANT_A);
@@ -465,11 +523,30 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
       enqueued: false,
       reason: "SENDER_UNAVAILABLE"
     });
-    expect(await queueCount(TENANT_A)).toBe(0);
+    // Nothing new was queued: no fallback to the deployment sender.
+    expect(await queueCount(TENANT_A)).toBe(queuedBefore);
   });
 
   test("another tenant's senderAccountId, named through the port, is refused like an unknown one and queues nothing", async () => {
     const foreign = await seedDevice(TENANT_B, userB);
+
+    // Positive control: the foreign device IS usable for its OWN tenant, so the
+    // refusal below is tenant isolation and not an unusable fixture.
+    const own = await inTenant(TENANT_B, (tx) =>
+      whatsappDeliveryPortAdapter.enqueue(tx, {
+        tenantId: TENANT_B,
+        templateKey: "commerce.customer_otp",
+        variables: OTP_VARIABLES,
+        recipient: { kind: "address", phone: PHONE },
+        idempotencyKey: `own-${crypto.randomUUID()}`,
+        expiresAt: new Date(Date.now() + 600_000),
+        senderAccountId: foreign.id
+      })
+    );
+
+    expect(own).toMatchObject({ status: "queued" });
+    expect(await queueCount(TENANT_B)).toBe(1);
+
     const outcome = await inTenant(TENANT_A, (tx) =>
       whatsappDeliveryPortAdapter.enqueue(tx, {
         tenantId: TENANT_A,
@@ -536,7 +613,11 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
 
     const row = await messageRow(queued.id);
 
-    expect(row.recipient_masked).not.toContain("1234567890");
+    // The message really went through the StarSender device, not the deployment sender.
+    expect(row.sender_account_id).toBe(s1.id);
+    expect(sent).toHaveLength(1);
+    expect(sent[0]!.senderAccountId).toBe(s1.id);
+    expect(row.recipient_masked).not.toContain(PHONE.slice(1));
     expect(row.recipient_masked).toContain("****");
 
     const evidence = JSON.stringify([
@@ -549,7 +630,7 @@ suite("commerce upstream WhatsApp across tenant senders (Issue #466)", () => {
     ]);
 
     expect(evidence).not.toContain(PHONE);
-    expect(evidence).not.toContain("81234567890");
+    expect(evidence).not.toContain(PHONE.slice(1));
     expect(evidence).not.toContain(s1.token);
     expect(evidence).not.toContain(s1.externalId);
     expect(evidence).not.toContain(OTP_VARIABLES.code);
