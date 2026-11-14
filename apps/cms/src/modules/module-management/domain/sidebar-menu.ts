@@ -110,6 +110,26 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // Issue #598 — a subscriber list is audience engagement, not content: it is
   // about who is reached, not about what is published.
   newsletter: "engagement",
+  // ADR-0155 (Issue #1153). Audience engagement: it captures what a visitor
+  // submits on a website. Placed even though the module declares NO navigation
+  // yet (the operator screen is a follow-up): this map must cover every
+  // registered module so its first screen lands in `engagement`.
+  website_engagement: "engagement",
+  // ADR-0157 (Issue #1145). Audience engagement: it puts the tenant's content in
+  // front of an audience on social platforms. Placed even though the module
+  // declares NO navigation yet (the operator screen is a follow-up): this map
+  // must cover every registered module so its first screen lands in
+  // `engagement`.
+  social_publishing: "engagement",
+  // ADR-0152 (Issue #1156). Audience engagement: customer conversations through
+  // the tenant's own Telegram bots. Placed even though the module declares NO
+  // navigation yet (the operator screen is a follow-up): this map must cover
+  // every registered module so its first screen lands in `engagement`.
+  telegram_engagement: "engagement",
+  // ADR-0160 (Issue #1164). Customer conversations worked by staff: engagement.
+  // Placed even though the module declares NO navigation yet (the operator
+  // screen is a follow-up): this map must cover every registered module.
+  omnichannel_inbox: "engagement",
   // ADR-0127. Placed even though the module declares NO navigation yet (the
   // rule-authoring screens are a recorded follow-up): this map must cover every
   // registered module, so its first screen lands in `commerce` rather than
@@ -153,6 +173,15 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // yet (API-first; admin screens are a recorded follow-up): this map must cover
   // every registered module so its first screen lands in the commerce section.
   procurement: "commerce",
+  // ADR-0153 (Issue #1166). The pre-customer pipeline sits beside the other
+  // commercial modules. Placed even though the module declares NO navigation yet
+  // (the operator screen is a recorded follow-up): this map must cover every
+  // registered module so its first screen lands in the commerce section.
+  crm_leads: "commerce",
+  // ADR-0159 (Issue #1165). The follow-up worklist sits beside the lead
+  // pipeline it serves. Placed even though the module declares NO navigation
+  // yet (the worklist screen is a recorded follow-up).
+  crm_follow_up: "commerce",
   // ADR-0132 (Issue #945). Placed even though the module declares NO navigation
   // yet (`experimental`, no admin screen): this map must cover every registered
   // module so its first screen lands with the people/identity screens rather
@@ -283,6 +312,9 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_push_notifications": "Push notifications",
   "admin.layout.nav_whatsapp": "WhatsApp delivery",
   "admin.layout.nav_telegram": "Telegram delivery",
+  "admin.layout.nav_channel_accounts": "Channel accounts",
+  "admin.layout.nav_omnichannel_inbox": "Omnichannel inbox",
+  "admin.layout.nav_omnichannel_inbox_settings": "Inbox settings",
   "admin.layout.nav_sync": "Sync & storage",
   "admin.layout.nav_profiles": "Profiles",
   "admin.layout.nav_users": "Users",
@@ -422,6 +454,9 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_push_notifications": "bell",
   "admin.layout.nav_whatsapp": "chat",
   "admin.layout.nav_telegram": "chat",
+  "admin.layout.nav_channel_accounts": "chat",
+  "admin.layout.nav_omnichannel_inbox": "chat",
+  "admin.layout.nav_omnichannel_inbox_settings": "gear",
   // Operations.
   "admin.layout.nav_visitor_analytics": "chart",
   "admin.layout.nav_data_lifecycle": "database",

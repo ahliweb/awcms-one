@@ -572,7 +572,89 @@ describe("the real repository", () => {
       // number of brands an administrator configures, written by no request path
       // and no job. A generic age purge would silently reset a brand's default
       // sender to the deployment sender.
-      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(30);
+      // **30 since the WhatsApp sender policy (Issue #1141) AND `website_engagement` (Issue #1153, ADR-0155).** Two more, both
+      // bounded by AUTHORSHIP: `awcms_engagement_sources` (an administrator
+      // registers a website/form channel; the public intake never inserts one) and
+      // `awcms_engagement_source_domains` (a link the same administrator writes,
+      // capped at 20 per source). The table that DOES grow with traffic, the
+      // visitor's submissions, has a real `dataLifecycle` descriptor with a
+      // retention window and a legal-hold-aware purge, not an exemption.
+      //
+      // **31 since the provider risk acknowledgement (Issue #1142, ADR-0148
+      // section 7)**, an honest raise, written out because the bar above is "a
+      // net shrink, not an argument" and this one brings neither. It is the one
+      // entry that is an ACCOUNTABILITY RECORD rather than configuration: a row is
+      // one person's recorded acceptance of an unofficial provider's risk, so
+      // deleting it by age would erase who accepted what and when, which is the
+      // point of the table. Its growth is bounded by people (a partial unique
+      // index allows one active row per person, provider and text version) and by
+      // deliberate revoke-and-redo cycles, never by traffic, and an append-only
+      // trigger forbids both UPDATE of the record and DELETE. The alternative
+      // (`dataLifecycle`, generic, age-only) would delete live acknowledgements
+      // and silently disconnect a tenant's devices.
+      //
+      // **36 since `social_publishing` (Issue #1145, ADR-0157), and this raise does
+      // NOT clear the bar above ("a net shrink, not an argument"). Said plainly,
+      // as the hr_commission raise (18) said it.** Five tables arrive, in two
+      // different classes:
+      //
+      // - `awcms_social_publishing_settings` (one row per tenant) and
+      //   `awcms_social_publish_rules` (authored by an administrator, unique per
+      //   trigger and account, capped at 200) are the authored-configuration
+      //   argument of the first entries, not a new kind of one.
+      // - `awcms_social_publications`, `awcms_social_publish_jobs` and
+      //   `awcms_social_publish_attempts` are NOT authored configuration. They
+      //   grow with editorial activity (one publication per article event, one job
+      //   per account, at most `max_attempts` attempt rows per job), and they are
+      //   parked here for the reason the hr_commission ledger was: nothing in this
+      //   repository purges them yet and nobody has decided how long the evidence
+      //   of what was published under a tenant's name must be kept, so a
+      //   `dataLifecycle` descriptor would assert a retention window and a purge
+      //   mode that do not exist. The generic engine is age-only with no status
+      //   predicate and would delete jobs that are still queued. The recorded
+      //   follow-up is a delegated, legal-hold-aware purge of terminal jobs and
+      //   attempts (docs/awcms/social-publishing.md, remaining limitations), which
+      //   replaces three of these five entries with a real descriptor.
+      //
+      // **48 since `crm_leads` (Issue #1166, ADR-0153).** Twelve tables, in the
+      // same two classes. Five are authored configuration or immutable catalog
+      // (`awcms_crm_leads_settings`, `awcms_crm_pipelines` and the per-revision
+      // `_pipeline_revisions`, `_pipeline_stages`, `_pipeline_transitions`,
+      // bounded by administrator edits and the 50-stage / 400-edge caps). Seven
+      // (the lead, its contact points, touches, transitions, assignments,
+      // conversions and merges) are the hr_commission/social_publishing case:
+      // they grow with intake, the retention windows are ADR-0153 open question
+      // O4 awaiting the controller, and the generic age-only engine would delete
+      // CONVERTED leads (evidence) and cannot delete a lead before its
+      // append-only children. Anonymising erasure exists today; the delegated,
+      // status-aware sweep is the recorded follow-up in
+      // src/modules/crm-leads/README.md, which replaces those seven entries.
+      //
+      // **58 since the Meta multi-WABA senders (Issue #1143): +2, see the end of this block.** Before that **56 since crm_follow_up (Issue #1165, ADR-0159): +7.** Earlier: **49 since email sender routing (Issue #1160, ADR-0151 section 2), and
+      // this raise does not clear the bar either.** One table:
+      // `awcms_email_sender_policies`, the email twin of
+      // `awcms_whatsapp_sender_policies` already on this list, for the same
+      // reason: authored configuration, one row per business scope, changed in
+      // place and never deleted (trigger). An age-based purge would silently
+      // reset a brand's sender to the deployment sender.
+      // **+7 (cap 56) since `crm_follow_up` (Issue #1165, ADR-0159).** Seven tables in
+      // the same two classes. Three are authored configuration (`_settings`,
+      // `_rules`, the immutable `_rule_revisions`). Four (tasks, actions, stop
+      // signals, notifications) grow with lead events under unique keys, and
+      // their retention window is ADR-0159 O4, decided with ADR-0153 O4: the
+      // status-aware sweep is the recorded follow-up in
+      // src/modules/crm-follow-up/README.md, which replaces those four entries.
+      // **+2 (cap 58) since the Meta multi-WABA senders (Issue #1143).** Two tables, both
+      // the first class and both bounded by a KEY, not by authorship alone:
+      // `awcms_whatsapp_meta_templates` has a unique key per (WABA, template
+      // name, language) and is upserted, so its ceiling is the templates a
+      // business registers at Meta; `awcms_whatsapp_meta_sender_signals` is one
+      // row per WABA by primary key. Both are LIVE state an age-based purge would
+      // break: it would un-approve a template still in use (refusing every
+      // message that uses it) or lift a recorded ban. The two tables of the same
+      // change that DO grow with traffic (the 24-hour windows and the webhook
+      // receipts) got real delegated descriptors and are not here.
+      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(58);
     });
 
     test("every entry names a table that really exists in sql/", () => {

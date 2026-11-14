@@ -129,8 +129,8 @@ describe("rule 3 — absent code must be declared", () => {
   test("a LISTED skill may cite missing paths", () => {
     expect(
       checkCitedPaths(
-        "awcms-social-publishing",
-        ["src/modules/social-publishing/module.ts"],
+        "awcms-document-infrastructure",
+        ["src/modules/document-infrastructure/module.ts"],
         false,
         exists([])
       )
@@ -139,7 +139,7 @@ describe("rule 3 — absent code must be declared", () => {
 
   test("being listed does not require citing missing paths", () => {
     expect(
-      checkCitedPaths("awcms-social-publishing", [], false, exists([]))
+      checkCitedPaths("awcms-document-infrastructure", [], false, exists([]))
     ).toEqual([]);
   });
 });
@@ -225,7 +225,6 @@ describe("rule 4 — cited `bun run` targets are real or declared deferred", () 
 
     for (const prefix of [
       "config:docs:check",
-      "database:capacity:check",
       "i18n:",
       "modules:sync",
       "performance:",

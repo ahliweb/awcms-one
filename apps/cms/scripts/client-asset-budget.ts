@@ -1330,6 +1330,60 @@ export const READER_BUDGET_BYTES = 24_000;
  * flags, pixel dimensions read from the header before any decode) and one more
  * translated refusal message. Same single screen (`/admin/media`), same single
  * copy of the code.
+ *
+ * **Raised for Issue #1154** (the channel-account connection manager):
+ * +4,152 B (358,381 -> 362,533 measured on `main` + this change; `main` sat at
+ * its budget, so the whole delta is this feature), set to 362,560 with 27 B of
+ * margin for the local/CI build difference seen on #1224. About 3,700 B of it is
+ * the ONE script of the ONE screen that mutates (`/admin/channel-accounts/[id]`:
+ * write-only credential replacement with an inline step-up retry, two typed
+ * confirmations, the default-sender action, one error box per action and the
+ * mapping of the endpoints' error codes to translated messages), which loads on
+ * that screen only. The rest is about 450 B of stylesheet (`.admin-subsection`).
+ * The key generators are the shared ones in `admin-idempotency-key.ts`
+ * (`newKey` exported and `createIdempotencyKeySource` imported, not copied), the
+ * form lifecycle is `admin-form-client.ts`, and the list screen ships no script
+ * at all, so there is no per-screen duplication to recover. What remains is
+ * this screen's own behaviour: no other screen replaces a secret or confirms a
+ * terminal action by typing.
+ *
+ * **Raised for Issue #1238** (the over-cap refusal said "2 MiB over the 2 MiB
+ * limit"): +320 B (362,560 -> 362,880), of which 316 B measured locally (362,533
+ * on `main`, 362,849 with this change; `main` sat 27 B under its budget) and 4 B
+ * of margin for the local/CI build difference. It is one small pure function,
+ * `formatByteSizeAgainstCap` in `media-image-compression-plan.ts`, and the two
+ * lines in `describeCompressionFailure` that call it; both ship only in
+ * `/admin/media`'s script, which already carried the formatter they refine.
+ *
+ * **Raised for Issue #1171** (ADR-0154 realtime progress): +2,720 B (362,880 ->
+ * 365,600), measured 365,563 locally with this change (`main` sat about 30 B
+ * under its budget), with about 37 B of margin for the local/CI build
+ * difference. It is ONE module, `src/lib/ui/delivery-progress-client.ts`, which
+ * ADR-0154 R11 requires to ship in the same change as the stream: the
+ * `EventSource` wiring with its four terminal events, the polling fallback, the
+ * manual refresh, the text connection state and the rate-limited `aria-live`
+ * announcement. It loads only on `/admin/channel-accounts/[id]`, which already
+ * carried a script, and duplicates nothing: no other screen consumes a cursor
+ * stream (the push console's counters are a dozen lines with no fallback).
+ *
+ * **Raised for Issue #1164** (the omnichannel inbox screens): +4,960 B (365,600
+ * -> 370,560), measured 370,523 locally with this change (`main` sat about 40 B
+ * under its budget), with 37 B of margin for the local/CI build difference. Two
+ * page scripts, each on its own screen only: the conversation detail
+ * (`/admin/omnichannel-inbox/[id]`: status, tags, record-a-response and the
+ * assignment, each mapped to a translated-in-English error sentence) and the
+ * settings (`/admin/omnichannel-inbox/settings`: policy form, tag form, two
+ * confirmed deletions and the batched rebuild loop), plus a small pure helper
+ * (`omnichannel-inbox-screen.ts`, the policy form's body builder) the settings
+ * script imports. The list screen ships no script. The lifecycle is the shared
+ * `admin-form-client.ts`, the key source is the shared
+ * `admin-idempotency-key.ts` and the confirmation is the shared
+ * `confirm-dialog-client.ts`, so there is no per-screen duplication to recover.
+ *
+ * **Raised again for the #1164 audit follow-up**: +160 B (370,560 -> 370,720),
+ * measured 370,615 locally (+92 B). The rebuild button now continues from where
+ * the previous click stopped (state across clicks plus a pure resume-point
+ * helper) instead of replaying the first batches forever on a large tenant.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue

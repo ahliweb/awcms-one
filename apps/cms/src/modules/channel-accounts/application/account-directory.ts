@@ -20,6 +20,7 @@ import type {
   ChannelSecretPurpose
 } from "../domain/channel-accounts-constants";
 import { checkAccountShape } from "../domain/provider-matrix";
+import { isRiskAcknowledgementProvider } from "../domain/risk-acknowledgements";
 import type {
   AssignmentInput,
   CreateAccountInput,
@@ -27,6 +28,7 @@ import type {
   UpdateAccountInput
 } from "../domain/channel-accounts-validation";
 import type { SecretStorePort } from "./secret-store";
+import { revokeAccountWebhookSubscriptions } from "./webhook-subscription-directory";
 
 export type AccountView = {
   id: string;
@@ -295,15 +297,36 @@ export async function createAccount(
     }
 
     const parent = (await tx`
-      SELECT provider, account_kind FROM awcms_channel_accounts
+      SELECT provider, account_kind, business_scope_type, business_scope_id
+      FROM awcms_channel_accounts
       WHERE tenant_id = ${tenantId} AND id = ${input.parentAccountId}
         AND deleted_at IS NULL
-    `) as { provider: string; account_kind: string }[];
+    `) as {
+      provider: string;
+      account_kind: string;
+      business_scope_type: string | null;
+      business_scope_id: string | null;
+    }[];
 
     if (
       parent.length === 0 ||
       parent[0]!.provider !== input.provider ||
       parent[0]!.account_kind !== shape.parentKind
+    ) {
+      return { outcome: "refused", code: "PARENT_INVALID" };
+    }
+
+    // Issue #1160 audit M2: a child borrows its parent's token and credit, so
+    // its scope must be CONTAINED in the parent's (a tenant-wide parent lends
+    // to any scope; a scoped parent only to its own). Same rule as binding to
+    // a connection (#1215), and the same refusal as an unknown parent.
+    const parentScopeType = parent[0]!.business_scope_type;
+
+    if (
+      parentScopeType !== null &&
+      (input.businessScope?.type !== parentScopeType ||
+        input.businessScope.id.toLowerCase() !==
+          String(parent[0]!.business_scope_id).toLowerCase())
     ) {
       return { outcome: "refused", code: "PARENT_INVALID" };
     }
@@ -496,7 +519,13 @@ const CREDENTIAL_PURPOSE: Partial<
 };
 
 export type WriteCredentialOutcome =
-  | { outcome: "written"; replaced: boolean; version: number }
+  | {
+      outcome: "written";
+      replaced: boolean;
+      version: number;
+      /** The account was moved back to `pending` (`CREDENTIAL_REPLACED`) and must be attested again (audit M2, Issue #1142). */
+      demoted: boolean;
+    }
   | { outcome: "not_found" }
   | {
       outcome: "refused";
@@ -510,6 +539,42 @@ export type WriteCredentialOutcome =
  * disabled account cannot be re-armed by writing one: re-enabling is a separate,
  * audited step.
  */
+export const CREDENTIAL_REPLACED_STATUS_REASON = "CREDENTIAL_REPLACED";
+
+/**
+ * For an UNOFFICIAL provider a device's `connected` state is an operator's
+ * attestation about THAT key's pairing (Issue #1142). A new key is a different
+ * claim: it could belong to another device or another number, and the attested
+ * state must not carry over to it. The account goes back to `pending` in the
+ * caller's transaction and needs a fresh attestation, which needs the attester's
+ * own acknowledgement and step-up. Official providers keep their status (their
+ * health is verified by a connector, not asserted).
+ */
+async function demoteAfterCredentialChange(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  account: AccountRecord
+): Promise<boolean> {
+  if (
+    !isRiskAcknowledgementProvider(account.provider) ||
+    (account.status !== "connected" && account.status !== "degraded")
+  ) {
+    return false;
+  }
+
+  await tx`
+    UPDATE awcms_channel_accounts
+    SET status = 'pending', status_reason = ${CREDENTIAL_REPLACED_STATUS_REASON},
+        connected_at = NULL, attested_acknowledgement_id = NULL,
+        updated_by = ${actorTenantUserId}, updated_at = now(),
+        version = version + 1
+    WHERE tenant_id = ${tenantId} AND id = ${account.id}
+  `;
+
+  return true;
+}
+
 export async function writeAccountCredential(
   tx: Bun.SQL,
   store: SecretStorePort,
@@ -526,7 +591,15 @@ export async function writeAccountCredential(
 
   const purpose = CREDENTIAL_PURPOSE[account.authMode];
 
-  if (!purpose) {
+  // Issue #1160: a Mailketing sender identity holds NO credential of its own;
+  // it borrows its account's token. A token stored on it would be one the
+  // worker's row policy hides (sql/348) and the dispatcher never reads, i.e. a
+  // dead copy of a live secret.
+  if (
+    !purpose ||
+    (account.provider === "mailketing" &&
+      account.accountKind === "sender_identity")
+  ) {
     return { outcome: "refused", code: "CREDENTIAL_NOT_APPLICABLE" };
   }
 
@@ -550,7 +623,17 @@ export async function writeAccountCredential(
         WHERE tenant_id = ${tenantId} AND id = ${accountId}
       `;
 
-      return { outcome: "written", replaced: true, version: replaced.version };
+      return {
+        outcome: "written",
+        replaced: true,
+        version: replaced.version,
+        demoted: await demoteAfterCredentialChange(
+          tx,
+          tenantId,
+          actorTenantUserId,
+          account
+        )
+      };
     }
   }
 
@@ -568,7 +651,17 @@ export async function writeAccountCredential(
     WHERE tenant_id = ${tenantId} AND id = ${accountId}
   `;
 
-  return { outcome: "written", replaced: false, version: ref.version };
+  return {
+    outcome: "written",
+    replaced: false,
+    version: ref.version,
+    demoted: await demoteAfterCredentialChange(
+      tx,
+      tenantId,
+      actorTenantUserId,
+      account
+    )
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -703,12 +796,8 @@ export async function disconnectAccount(
         updated_at = now(), version = version + 1
     WHERE tenant_id = ${tenantId} AND id = ${accountId}
   `;
-  await tx`
-    UPDATE awcms_channel_webhook_subscriptions
-    SET status = 'revoked', updated_at = now()
-    WHERE tenant_id = ${tenantId} AND account_id = ${accountId}
-      AND status <> 'revoked'
-  `;
+  // Revoked AND their app-secret ciphertext erased (Issue #1143 review M-3).
+  await revokeAccountWebhookSubscriptions(tx, store, tenantId, accountId);
   await eraseAccountCredential(
     tx,
     store,
@@ -769,12 +858,8 @@ export async function deleteAccount(
     accountId,
     account.secretId
   );
-  await tx`
-    UPDATE awcms_channel_webhook_subscriptions
-    SET status = 'revoked', updated_at = now()
-    WHERE tenant_id = ${tenantId} AND account_id = ${accountId}
-      AND status <> 'revoked'
-  `;
+  // Revoked AND their app-secret ciphertext erased (Issue #1143 review M-3).
+  await revokeAccountWebhookSubscriptions(tx, store, tenantId, accountId);
   await tx`
     UPDATE awcms_channel_accounts
     SET status = 'deleted', deleted_at = now(), deleted_by = ${actorTenantUserId},
@@ -846,9 +931,14 @@ export type RecordHealthInput = {
 };
 
 /**
- * Called by health jobs and dispatch failures of provider connectors (NOT by an
- * HTTP route: a person cannot assert that an account works). It records the
- * latest health and moves the account between `pending`/`connected`/`degraded`:
+ * Called by health jobs and dispatch failures of provider connectors, and by ONE
+ * route: `attest-device` (Issue #1142), for a device of an UNOFFICIAL provider
+ * with no status call a connector could verify with. That is the single
+ * recorded exception to "a person cannot assert that an account works"; it is
+ * stamped `OPERATOR_ATTESTED` and gated by the attester's own risk
+ * acknowledgement and a step-up. Every other route is read-only here. It
+ * records the latest health and moves the account between
+ * `pending`/`connected`/`degraded`:
  *
  *   ok       pending|degraded -> connected
  *   degraded connected        -> degraded

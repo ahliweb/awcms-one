@@ -40,6 +40,24 @@
  * (none in this repository does; booking maps an unknown reason to a coarse
  * code) must add the three new members before it passes a sender.
  *
+ * ## Port version 1.2.0 — brand-scoped marketing consent (Issue #1231 M4)
+ *
+ * ADDITIVE: two new refusal reasons, `CONSENT_SCOPE_REQUIRED` and
+ * `BUSINESS_SCOPE_UNRESOLVED` (a marketing message's scope must resolve in the
+ * tenant). A marketing
+ * opt-in covers only the business scope (brand) it was collected for; an
+ * unscoped or legacy opt-in covers only marketing that names no scope. Opt-out
+ * and suppression stay tenant-wide. Transactional and security messages are
+ * unchanged.
+ *
+ * ## Port version 1.3.0 — Meta multi-WABA sender binding (Issue #1143)
+ *
+ * ADDITIVE: two new refusal reasons, `TEMPLATE_NOT_APPROVED` and
+ * `OUTSIDE_SERVICE_WINDOW`, returned only for a message through a TENANT-OWNED
+ * Meta Cloud API number (never for the deployment sender, never for
+ * StarSender). The verified sender identity (phone number id and WABA id) is
+ * snapshotted on the row; no input field changed.
+ *
  * - The sender is `senderAccountId`, else the prospective default of the
  *   message's business scope, else the deployment sender, and is SNAPSHOTTED on
  *   the queue row. It is never a token, a phone number id or a device id: the
@@ -113,7 +131,35 @@ export type EnqueueWhatsappRefusalReason =
   /** Port 1.1.0. `senderAccountId` names a different sender than the thread's. A reroute is a separate, authorised request. */
   | "SENDER_AFFINITY_CONFLICT"
   /** Port 1.1.0. `inReplyToMessageId` is unknown, foreign, or addressed to another recipient. */
-  | "REPLY_TARGET_UNKNOWN";
+  | "REPLY_TARGET_UNKNOWN"
+  /**
+   * Issue #1231 M4. A marketing message whose recipient HAS a granted opt-in,
+   * but not for this message's business scope (brand): the opt-in lists other
+   * brands, or it is unscoped while the message names a brand, or it names
+   * brands while the message names none. Nothing is queued; record a consent
+   * for that brand first. Never downgraded to another purpose.
+   */
+  | "CONSENT_SCOPE_REQUIRED"
+  /**
+   * Issue #1231 M4. A MARKETING message names a `businessScope` that is not a
+   * real scope of the tenant (unknown type, unknown, foreign, deleted or
+   * inactive id; only `office` resolves today). Nothing is queued.
+   */
+  | "BUSINESS_SCOPE_UNRESOLVED"
+  /**
+   * Port 1.3.0 (Issue #1143). The message goes through a tenant-owned Meta
+   * Cloud API number, and its template has no APPROVED (or REINSTATED)
+   * approval of the category the purpose requires on THAT number's WABA; or
+   * it is marketing without a provider template. Nothing is queued, never sent
+   * as free text, never through another number.
+   */
+  | "TEMPLATE_NOT_APPROVED"
+  /**
+   * Port 1.3.0 (Issue #1143). A free-text (no provider template) message
+   * through a tenant-owned Meta number while the recipient's 24-hour
+   * customer-service window with THAT number is closed. Nothing is queued.
+   */
+  | "OUTSIDE_SERVICE_WINDOW";
 
 export type EnqueueWhatsappResult =
   | { status: "queued"; messageId: string }

@@ -81,7 +81,7 @@
  *   bun run jobs:env-allowlist:check
  */
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 import {
@@ -247,6 +247,24 @@ export const RUNNER_DB_END = "# END GENERATED: targets that need DATABASE_URL";
 export const DATABASE_CLIENT_FILE = "src/lib/database/client.ts";
 
 /**
+ * Whether one source file (comments already stripped) opens the app connection.
+ * Three spellings count: calling the app or the setup client,
+ * IMPORTING either name from anywhere (so `import { getDatabaseClient as open }`
+ * is caught even though the call is spelled `open(`, audit L-4 of PR #1301), and
+ * naming `DATABASE_URL`. The import form can over-report a file that imports and
+ * never calls; the failure to avoid is a job that cannot connect, so the doubt
+ * keeps the credential.
+ */
+export function opensAppConnection(source: string): boolean {
+  const call = /\b(getDatabaseClient|getSetupDatabaseClient)\s*\(/;
+  const imported =
+    /\bimport\s*(?:type\s*)?\{[^}]*\b(?:getDatabaseClient|getSetupDatabaseClient)\b[^}]*\}\s*from\b/;
+  const spelled = /\b(?:process\.)?env\.DATABASE_URL\b|["'`]DATABASE_URL["'`]/;
+
+  return call.test(source) || imported.test(source) || spelled.test(source);
+}
+
+/**
  * Which `bun run` targets can touch the `awcms_app` connection string (Issue
  * #1132, row `DATABASE_URL`).
  *
@@ -258,8 +276,8 @@ export const DATABASE_CLIENT_FILE = "src/lib/database/client.ts";
  * never uses. Whether a target needs it is a property of its import closure, so
  * it is derived rather than listed by hand:
  *
- * - it calls `getDatabaseClient(` (the app client) or `getSetupDatabaseClient(`
- *   (which also falls back to `DATABASE_URL`), outside the resolver itself;
+ * - it calls the app client (`getDatabaseClient`) or the setup client
+ *   (`getSetupDatabaseClient`, which also falls back to `DATABASE_URL`), outside the resolver itself;
  * - or a file in its closure spells the name `"DATABASE_URL"` / `env.DATABASE_URL`
  *   (a script that opens its own connection, such as the migration runner);
  * - or its closure holds something the tracer cannot follow (a computed
@@ -285,14 +303,134 @@ export function needsAppConnectionString(
   ) {
     return true;
   }
-  const call = /\b(getDatabaseClient|getSetupDatabaseClient)\s*\(/;
-  const spelled = /\b(?:process\.)?env\.DATABASE_URL\b|["'`]DATABASE_URL["'`]/;
   return trace.files.some((file) => {
     if (file === DATABASE_CLIENT_FILE) return false;
     if (!/\.(ts|tsx|mts|cts|js|jsx|mjs|cjs)$/.test(file)) return false;
-    const source = stripComments(readFileSync(path.join(root, file), "utf8"));
-    return call.test(source) || spelled.test(source);
+    return opensAppConnection(
+      stripComments(readFileSync(path.join(root, file), "utf8"))
+    );
   });
+}
+
+/**
+ * Whether the ADR file `docs/adr/<number>-*.md` says `Status: Accepted`. A
+ * Proposed or Superseded ADR does not admit an app-role exception (audit L-3 of
+ * PR #1301: the index-link check accepted any ADR that merely existed).
+ */
+export function adrIsAccepted(adr: string, root = process.cwd()): boolean {
+  const number = adr.replace(/^ADR-/, "");
+  const dir = path.join(root, "docs/adr");
+  const file = readdirSync(dir).find(
+    (name) => name.startsWith(`${number}-`) && /(?<!\.id)\.md$/.test(name)
+  );
+
+  if (file === undefined) return false;
+
+  return /^- \*\*Status:\*\*\s*Accepted\b/m.test(
+    readFileSync(path.join(dir, file), "utf8")
+  );
+}
+
+/**
+ * The scheduled jobs that run as `awcms_app` ON PURPOSE (Issue #1132 keeps the
+ * app connection out of every crontab job; each entry here is a recorded
+ * exception to that rule). A crontab job that keeps `DATABASE_URL` and is not
+ * named here fails `tests/jobs-app-role-exceptions.test.ts`; an entry that is no
+ * longer scheduled, no longer keeps the credential, or has no reason or ADR fails
+ * it too. Add an entry only with an Accepted ADR that says why the worker role
+ * cannot do the job and why the extra login is safe.
+ */
+export const APP_ROLE_SCHEDULED_EXCEPTIONS: readonly {
+  target: string;
+  /** The Accepted ADR that admits the exception, e.g. `ADR-0147`. */
+  adr: string;
+  /** The one script in the job's reach that opens the app connection. */
+  entrypoint: string;
+  reason: string;
+}[] = [
+  {
+    target: "hr-commission:intents:post",
+    adr: "ADR-0147",
+    entrypoint: "scripts/hr-commission-intents-post.ts",
+    reason:
+      "posts commission accruals; the payroll boundary lets only awcms_app touch an accrual (Issue #1189)"
+  },
+  {
+    target: "omnichannel-inbox:sla",
+    adr: "ADR-0160",
+    entrypoint: "scripts/omnichannel-inbox-sla.ts",
+    reason:
+      "re-checks an assignee's role grants and enqueues the SLA e-mail; awcms_worker can read neither the role-grant tables nor insert an e-mail (Issue #1164)"
+  },
+  {
+    target: "email:senders:verify",
+    adr: "ADR-0162",
+    entrypoint: "scripts/email-senders-verify.ts",
+    reason:
+      "records channel-account health and status, which only awcms_app may write (a worker that could would mark an unverified sender verified); the provider calls are read-only GETs (Issue #1160, owner decision of 11 November 2026)"
+  }
+];
+
+/**
+ * Holds `exceptions` to the crontab in both directions. Pure, so a test can feed
+ * it a mutated list. `scheduled` is every target on the crontab, `keepers` is
+ * `appConnectionTargets()`, and `appClientFiles(target)` is the files in that
+ * target's import closure that open the app connection.
+ */
+export function validateAppRoleExceptions(
+  exceptions: readonly {
+    target: string;
+    adr: string;
+    entrypoint: string;
+    reason: string;
+  }[],
+  scheduled: readonly string[],
+  keepers: ReadonlySet<string>,
+  appClientFiles: (target: string) => readonly string[],
+  adrAccepted: (adr: string) => boolean = (adr) => adrIsAccepted(adr)
+): string[] {
+  const problems: string[] = [];
+  const named = new Set(exceptions.map((entry) => entry.target));
+
+  if (named.size !== exceptions.length) {
+    problems.push("an app-role exception is listed twice");
+  }
+
+  for (const target of scheduled) {
+    if (keepers.has(target) && !named.has(target)) {
+      problems.push(
+        `${target} is scheduled and keeps DATABASE_URL (awcms_app) but is not in APP_ROLE_SCHEDULED_EXCEPTIONS`
+      );
+    }
+  }
+
+  for (const entry of exceptions) {
+    if (!/^ADR-\d{4}$/.test(entry.adr)) {
+      problems.push(`${entry.target}: adr must look like ADR-0147`);
+    }
+    if (/^ADR-\d{4}$/.test(entry.adr) && !adrAccepted(entry.adr)) {
+      problems.push(`${entry.target}: ${entry.adr} is not an Accepted ADR`);
+    }
+    if (entry.reason.trim().length < 40) {
+      problems.push(`${entry.target}: the reason is missing or too short`);
+    }
+    if (!scheduled.includes(entry.target)) {
+      problems.push(`${entry.target}: listed but not on the crontab (stale)`);
+    }
+    if (!keepers.has(entry.target)) {
+      problems.push(
+        `${entry.target}: listed but does not keep DATABASE_URL (stale)`
+      );
+    }
+    const files = appClientFiles(entry.target);
+    if (files.length !== 1 || files[0] !== entry.entrypoint) {
+      problems.push(
+        `${entry.target}: the only file opening the app connection must be ${entry.entrypoint}; found ${JSON.stringify(files)}`
+      );
+    }
+  }
+
+  return problems;
 }
 
 /** Every target that keeps `DATABASE_URL` regardless of `WORKER_DATABASE_URL`, sorted. */
@@ -342,6 +480,212 @@ export function renderRunnerDatabaseUrl(targets: readonly string[]): string {
     "    ;;",
     "esac",
     RUNNER_DB_END
+  ].join("\n");
+}
+
+/** The markers around the generated dedicated-role decision in `ops/run-job.sh`. */
+export const RUNNER_DEDICATED_BEGIN =
+  "# BEGIN GENERATED: dedicated-role jobs (bun run jobs:env-allowlist:generate)";
+export const RUNNER_DEDICATED_END = "# END GENERATED: dedicated-role jobs";
+
+/**
+ * Connection seams of a DEDICATED per-job database role (Issue #1156, audit H-A
+ * of PR #1260): file -> the one env name holding that role's login. A job that
+ * reaches one of these runs as that role ONLY, so the runner withholds
+ * `DATABASE_URL`, `WORKER_DATABASE_URL` and `SETUP_DATABASE_URL`
+ * unconditionally: either broader login next to the job's key ring would undo
+ * the role (`awcms_app` sees every channel secret; `awcms_worker` sees the
+ * WhatsApp sender credentials).
+ */
+export const DEDICATED_ROLE_CLIENT_FILES: Readonly<Record<string, string>> = {
+  "src/lib/database/telegram-engagement-dispatch-client.ts":
+    "TELEGRAM_ENGAGEMENT_DATABASE_URL",
+  "src/lib/database/social-publishing-dispatch-client.ts":
+    "SOCIAL_PUBLISHING_DATABASE_URL"
+};
+
+/** The shared-role client calls a dedicated-role job must not reach. */
+const SHARED_CLIENT_CALL =
+  /\b(getDatabaseClient|getWorkerDatabaseClient|getSetupDatabaseClient)\s*\(/;
+
+/**
+ * Targets that run as a dedicated role, derived from the import closure (a
+ * closure that reaches a `DEDICATED_ROLE_CLIENT_FILES` entry). Two-way gate:
+ * such a target must NOT also reach a shared-role client call or need the app
+ * connection string, or the generator fails; the generated runner block lists
+ * exactly these targets, so a new dedicated-role job cannot ship without the
+ * runner withholding the broader logins from it.
+ */
+export function dedicatedRoleTargets(
+  packageScripts: Record<string, string>,
+  root = process.cwd()
+): { targets: string[]; problems: string[] } {
+  const operatorOnly = new Set(
+    OPERATOR_ONLY_TARGETS.map((entry) => entry.target)
+  );
+  const targets: string[] = [];
+  const problems: string[] = [];
+
+  for (const target of Object.keys(packageScripts)) {
+    if (operatorOnly.has(target)) continue;
+
+    const entry = resolveTargetEntry(target, packageScripts);
+
+    if (entry === null) continue;
+
+    const trace = traceImports(entry, root);
+
+    if (
+      !trace.files.some((file) =>
+        Object.hasOwn(DEDICATED_ROLE_CLIENT_FILES, file)
+      )
+    ) {
+      continue;
+    }
+
+    targets.push(target);
+
+    for (const file of trace.files) {
+      if (file === DATABASE_CLIENT_FILE) continue;
+      if (!/\.(ts|tsx|mts|cts|js|jsx|mjs|cjs)$/.test(file)) continue;
+
+      const source = stripComments(readFileSync(path.join(root, file), "utf8"));
+
+      if (SHARED_CLIENT_CALL.test(source)) {
+        problems.push(
+          `${target} runs as a dedicated database role but ${file} calls a shared-role client; split it out of the job's closure`
+        );
+      }
+    }
+
+    if (needsAppConnectionString(target, packageScripts, root)) {
+      problems.push(
+        `${target} runs as a dedicated database role but needs the app connection string (DATABASE_URL); a dedicated-role job may hold no broader login`
+      );
+    }
+  }
+
+  return { targets: sortedCodePoints(targets), problems };
+}
+
+/**
+ * The shell that sets `WITHHOLD_ALL_DATABASE_URLS=1` for a dedicated-role job:
+ * the runner then drops `DATABASE_URL`, `WORKER_DATABASE_URL` and
+ * `SETUP_DATABASE_URL` from its environment whatever the host configured.
+ */
+export function renderRunnerDedicatedRoles(targets: readonly string[]): string {
+  const names = sortedCodePoints(targets);
+  const bad = names.filter(
+    (name) => !/^[A-Za-z0-9][A-Za-z0-9:_-]*$/.test(name)
+  );
+
+  if (bad.length > 0) {
+    throw new Error(
+      `the dedicated-role target list must hold plain package-script names; got ${JSON.stringify(bad)}`
+    );
+  }
+
+  return [
+    RUNNER_DEDICATED_BEGIN,
+    "# Source: dedicatedRoleTargets() in scripts/jobs-env-allowlist.ts, derived from each",
+    "# target's import closure. Do not edit between the markers; regenerate.",
+    'case "$JOB" in',
+    ...(names.length > 0
+      ? [
+          `  ${names.join(" | ")})`,
+          "    WITHHOLD_ALL_DATABASE_URLS=1",
+          "    ;;"
+        ]
+      : []),
+    "  *)",
+    "    WITHHOLD_ALL_DATABASE_URLS=0",
+    "    ;;",
+    "esac",
+    RUNNER_DEDICATED_END
+  ].join("\n");
+}
+
+/** The markers around the generated worker-login decision in `ops/run-job.sh`. */
+export const RUNNER_NOWORKER_BEGIN =
+  "# BEGIN GENERATED: app-role jobs that never open the worker connection (bun run jobs:env-allowlist:generate)";
+export const RUNNER_NOWORKER_END =
+  "# END GENERATED: app-role jobs that never open the worker connection";
+
+/**
+ * App-role exceptions whose import closure never touches the worker client
+ * (`getWorkerDatabaseClient` or the name `WORKER_DATABASE_URL`) and holds
+ * nothing the tracer cannot follow. Such a job runs as `awcms_app` only, so the
+ * runner withholds `WORKER_DATABASE_URL` from it: a container that holds the
+ * app login and the secret ring has no use for a third credential (audit L-5 of
+ * PR #1301). A target whose closure DOES reach the worker client keeps it.
+ */
+export function appRoleTargetsWithoutWorkerClient(
+  exceptions: readonly { target: string }[],
+  packageScripts: Record<string, string>,
+  root = process.cwd()
+): string[] {
+  const targets: string[] = [];
+
+  for (const { target } of exceptions) {
+    const entry = resolveTargetEntry(target, packageScripts);
+
+    if (entry === null) continue;
+
+    const trace = traceImports(entry, root);
+
+    if (
+      trace.dynamic.length > 0 ||
+      trace.escapes.length > 0 ||
+      trace.unresolved.length > 0
+    ) {
+      continue;
+    }
+
+    const reachesWorker = trace.files.some((file) => {
+      if (file === DATABASE_CLIENT_FILE) return false;
+      if (!/\.(ts|tsx|mts|cts|js|jsx|mjs|cjs)$/.test(file)) return false;
+
+      return /\bgetWorkerDatabaseClient\b|\bWORKER_DATABASE_URL\b/.test(
+        stripComments(readFileSync(path.join(root, file), "utf8"))
+      );
+    });
+
+    if (!reachesWorker) targets.push(target);
+  }
+
+  return sortedCodePoints(targets);
+}
+
+/** The shell that sets `WITHHOLD_WORKER_DATABASE_URL=1` for those targets. */
+export function renderRunnerNoWorker(targets: readonly string[]): string {
+  const names = sortedCodePoints(targets);
+  const bad = names.filter(
+    (name) => !/^[A-Za-z0-9][A-Za-z0-9:_-]*$/.test(name)
+  );
+
+  if (bad.length > 0) {
+    throw new Error(
+      `the no-worker target list must hold plain package-script names; got ${JSON.stringify(bad)}`
+    );
+  }
+
+  return [
+    RUNNER_NOWORKER_BEGIN,
+    "# Source: appRoleTargetsWithoutWorkerClient() in scripts/jobs-env-allowlist.ts, derived",
+    "# from each app-role exception's import closure. Do not edit between the markers; regenerate.",
+    'case "$JOB" in',
+    ...(names.length > 0
+      ? [
+          `  ${names.join(" | ")})`,
+          "    WITHHOLD_WORKER_DATABASE_URL=1",
+          "    ;;"
+        ]
+      : []),
+    "  *)",
+    "    WITHHOLD_WORKER_DATABASE_URL=0",
+    "    ;;",
+    "esac",
+    RUNNER_NOWORKER_END
   ].join("\n");
 }
 
@@ -451,6 +795,62 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
         target: "whatsapp:dispatch",
         reason:
           "decrypts a tenant-owned WhatsApp sender's credential in memory, per lane, for the claimed row's tenant (#1141, the residual risk ADR-0148 section 5 accepts). The job that only ENQUEUES (booking:reminders:dispatch) never reaches the secret store"
+      },
+      {
+        target: "email:dispatch",
+        reason:
+          "decrypts the Mailketing token a tenant-owned email sender borrows from its account, in memory, per lane, for the claimed rows' tenant (#1160, ADR-0151 section 2 applying ADR-0148 section 5 to email)"
+      },
+      {
+        target: "email:senders:verify",
+        reason:
+          "decrypts each tenant Mailketing account's token once per pass for the read-only GET /credits and GET /senders probes (#1160)"
+      },
+      {
+        target: "telegram-engagement:dispatch",
+        reason:
+          "decrypts a customer bot's token and webhook seed in memory, per claimed endpoint or message, for that row's tenant (#1156, ADR-0152 section 10). It connects ONLY as its own role awcms_telegram_engagement_dispatch (sql/353), whose RESTRICTIVE policy shows it only live customer bot tokens and webhook seeds; the runner withholds DATABASE_URL, WORKER_DATABASE_URL and SETUP_DATABASE_URL from it unconditionally (dedicatedRoleTargets), and the job refuses to start if either is present or if it is not connected as that role, so the ring meets no login that could read a WhatsApp, Mailketing or social secret (audits H-2 and H-A of PR #1260)"
+      },
+      {
+        target: "social-publishing:dispatch",
+        reason:
+          "decrypts a social account's publishing access token in memory, per claimed job, for that job's tenant, and only while a connector is switched on (#1146, ADR-0157 section 6). It connects ONLY as its own role awcms_social_dispatch (sql/358, sql/373), whose RESTRICTIVE policy shows it only the access token of a live, publish-granted facebook/instagram/threads/tiktok/youtube/linkedin account; the runner withholds DATABASE_URL, WORKER_DATABASE_URL and SETUP_DATABASE_URL from it unconditionally (dedicatedRoleTargets), and the job refuses to start if one is present or if it is not connected as that role, so the ring meets no login that could read a WhatsApp, Mailketing or Telegram secret"
+      }
+    ]
+  },
+  {
+    name: "TELEGRAM_ENGAGEMENT_DATABASE_URL",
+    reason:
+      "the login of the awcms_telegram_engagement_dispatch role (sql/353); whoever holds it can read the customer bot tokens and webhook seeds of every tenant, and nothing else of the channel secrets",
+    jobs: [
+      {
+        target: "telegram-engagement:dispatch",
+        reason:
+          "its only database connection, with no fallback to DATABASE_URL (#1156, audit H-2 of PR #1260)"
+      }
+    ]
+  },
+  {
+    name: "TELEGRAM_ENGAGEMENT_KEYS",
+    reason:
+      "the ring that encrypts customer Telegram chat ids and queued message text and keys the contact hash (ADR-0152 section 6); whoever holds it can read every stored customer chat id",
+    jobs: [
+      {
+        target: "telegram-engagement:dispatch",
+        reason:
+          "decrypts the chat id and the text of each message it delivers (#1156)"
+      }
+    ]
+  },
+  {
+    name: "SOCIAL_PUBLISHING_DATABASE_URL",
+    reason:
+      "the login of the awcms_social_dispatch role (sql/358, sql/373); whoever holds it can read the publishing access tokens of every tenant's social accounts, and nothing else of the channel secrets",
+    jobs: [
+      {
+        target: "social-publishing:dispatch",
+        reason:
+          "its only database connection, with no fallback to another one (#1146, ADR-0157 section 6)"
       }
     ]
   },
@@ -612,6 +1012,18 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
     ]
   },
   {
+    name: "EDGE_CACHE_CDN_API_TOKEN",
+    reason:
+      "the credential that purges the CDN copy of public pages (Issue #1282); it can force a mass cache miss",
+    jobs: [
+      {
+        target: "edge-cache:purge",
+        reason:
+          "the purge worker: the only job that calls the CDN purge API, which is what the token authenticates"
+      }
+    ]
+  },
+  {
     name: "REDIS_URL",
     reason:
       "a Redis connection string (it usually carries the password); only the health probe opens a Redis connection from a job",
@@ -724,6 +1136,18 @@ export const OPERATOR_ONLY_TARGETS: readonly {
     kind: "needs-web-only",
     reason:
       "validates the WHOLE environment, web-only and setup variables included (TELEGRAM_WEBHOOK_SECRET, SETUP_DATABASE_URL)"
+  },
+  {
+    target: "database:capacity:check",
+    kind: "needs-web-only",
+    reason:
+      "the operator's connection-budget preflight (Issue #1286); reads the capacity budget and the SETUP_DATABASE_URL role name, both web-only"
+  },
+  {
+    target: "database:pgbouncer:verify",
+    kind: "tooling",
+    reason:
+      "operator-run PgBouncer isolation check (Issue #1286); needs a privileged direct URL no job container holds and writes a scratch table, so it is never a scheduled job"
   },
   {
     target: "security:readiness",
@@ -944,6 +1368,36 @@ export const WEB_ONLY: readonly { name: string; reason: string }[] = [
       "verified by the webhook route; the registration script is run by an operator, not scheduled"
   },
   {
+    name: "WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS",
+    reason:
+      "a secret: the ring that encrypts website submissions' contact details (ADR-0155, ADR-0137 section 3, Issue #1262); read only by the public intake and the admin routes. The retention purge deletes aged rows by id under column-only grants and never decrypts, so no cron job reads it"
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_HASH_KEYS",
+    reason:
+      "a secret: the HMAC ring that keys every website source-token and identifier hash (ADR-0155, ADR-0137 section 3, Issue #1262); read only by the public intake and the admin routes. No cron job hashes or looks up a token"
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS",
+    reason:
+      "a secret: verify-only keys of the retired single ring, accepted only when the public intake checks a source token during the Issue #1262 transition; never used by a job"
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_KEYS",
+    reason:
+      "the RETIRED single ring (Issue #1262), read only so a stale value makes the website_engagement routes refuse by name; no job reads it"
+  },
+  {
+    name: "CRM_LEADS_ENCRYPTION_KEYS",
+    reason:
+      "a secret: the ring that encrypts lead contact points (ADR-0153, ADR-0137 section 3); read only by the /api/v1/crm-leads routes. crm_leads has no job (the rekey job is deferred) and awcms_worker holds no grant on its tables"
+  },
+  {
+    name: "CRM_LEADS_HASH_KEYS",
+    reason:
+      "a secret: the HMAC ring that keys lead contact-point hashes (ADR-0153, ADR-0137 section 3); read only by the /api/v1/crm-leads routes. crm_leads has no job and awcms_worker holds no grant on its tables"
+  },
+  {
     name: "SETUP_DATABASE_URL",
     reason:
       "the awcms_setup bootstrap connection, used by POST /api/v1/setup/initialize only; handing it to cron jobs would defeat the role split"
@@ -976,7 +1430,8 @@ export const WEB_ONLY: readonly { name: string; reason: string }[] = [
     "APPROVED_CONNECTIONS",
     "RESERVED_ADMIN_CONNECTIONS",
     "PGBOUNCER_MAX_CLIENT_CONN",
-    "PGBOUNCER_DEFAULT_POOL_SIZE"
+    "PGBOUNCER_DEFAULT_POOL_SIZE",
+    "PGBOUNCER_POOL_COUNT"
   ].map((name) => ({
     name: `DATABASE_CAPACITY_${name}`,
     reason:
@@ -1110,6 +1565,18 @@ export const GLOBAL_SECRETS: readonly {
     kind: "not-a-secret",
     reason:
       "the public origin of the application, used to build absolute links; carries no credential"
+  },
+  {
+    name: "EMAIL_MAILKETING_V2_VERIFIED",
+    kind: "not-a-secret",
+    reason:
+      "operator acknowledgement that the live Mailketing v2 stage-2 check was done; a flag, not a credential"
+  },
+  {
+    name: "EMAIL_MAILKETING_API_VERSION",
+    kind: "not-a-secret",
+    reason:
+      "selects the Mailketing API version (v1 default, v2 opt-in); a mode switch, not a credential"
   },
   {
     name: "EMAIL_MAILKETING_API_BASE_URL",
@@ -1353,11 +1820,56 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
+  const dedicated = dedicatedRoleTargets(packageScripts, ROOT);
+
+  if (dedicated.problems.length > 0) {
+    console.error(
+      `jobs:env-allowlist FAILED — dedicated-role jobs reach a broader database login:\n  ${dedicated.problems.join("\n  ")}`
+    );
+    process.exit(1);
+  }
+
+  const runnerWithDedicated = spliceBetween(
+    runnerRendered,
+    RUNNER_DEDICATED_BEGIN,
+    RUNNER_DEDICATED_END,
+    renderRunnerDedicatedRoles(dedicated.targets)
+  );
+
+  if (runnerWithDedicated === null) {
+    console.error(
+      `jobs:env-allowlist FAILED — ${RUNNER} lacks the generated block between\n  ${RUNNER_DEDICATED_BEGIN}\n  ${RUNNER_DEDICATED_END}\n` +
+        "  Without it a dedicated-role job would receive DATABASE_URL and WORKER_DATABASE_URL."
+    );
+    process.exit(1);
+  }
+
+  const noWorker = spliceBetween(
+    runnerWithDedicated,
+    RUNNER_NOWORKER_BEGIN,
+    RUNNER_NOWORKER_END,
+    renderRunnerNoWorker(
+      appRoleTargetsWithoutWorkerClient(
+        APP_ROLE_SCHEDULED_EXCEPTIONS,
+        packageScripts,
+        ROOT
+      )
+    )
+  );
+
+  if (noWorker === null) {
+    console.error(
+      `jobs:env-allowlist FAILED — ${RUNNER} lacks the generated block between\n  ${RUNNER_NOWORKER_BEGIN}\n  ${RUNNER_NOWORKER_END}\n` +
+        "  Without it an app-role job would receive WORKER_DATABASE_URL it never uses."
+    );
+    process.exit(1);
+  }
+
   const fingerprint = envFingerprint(names, pairs);
   const outputs = [
     { file: OUTPUT, rendered: renderGlobal(names, fingerprint) },
     { file: SCOPED_OUTPUT, rendered: renderScoped(pairs, fingerprint) },
-    { file: RUNNER, rendered: runnerRendered }
+    { file: RUNNER, rendered: noWorker }
   ];
 
   if (CHECK_ONLY) {

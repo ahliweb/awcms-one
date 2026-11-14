@@ -275,22 +275,129 @@ export const NOT_YET_SCREENED: readonly string[] = [
   // recorded follow-up; until then both are reachable only through the API.
   "hr_workforce.attendance_evidence.read",
   "hr_workforce.geolocation_evidence.configure",
-  // channel_accounts (6) — ADR-0148 / Issue #1140. API-first and `experimental`:
-  // the connection manager (accounts, connections, capabilities with their
-  // evidence, health, assignments) is tracked separately as Issue #1154, which
-  // flips the module to `active` and adds its navigation entry in the same change
-  // (a nav entry without a page is a permanent 404).
+  // channel_accounts (3 of 6 still unscreened) — ADR-0148 / Issue #1140. The
+  // connection manager (#1154) screens `accounts.read`, `accounts.revoke` and
+  // `credentials.manage` (/admin/channel-accounts and its detail). The three
+  // below are the recorded remainder: registering/enabling an account and the
+  // OAuth/device connect wizard need a provider connector that does not exist
+  // yet (`POST /connections/oauth/start` answers PROVIDER_ADAPTER_UNAVAILABLE);
+  // recording a capability grant needs an evidence form with a review step; and
+  // assigning operators needs a person picker. Each is a screen of its own.
   "channel_accounts.accounts.create",
-  "channel_accounts.accounts.read",
-  "channel_accounts.accounts.revoke",
   "channel_accounts.assignments.assign",
   "channel_accounts.capabilities.configure",
-  "channel_accounts.credentials.manage",
+  // channel_accounts risk acknowledgements (3) — Issue #1142, ADR-0148 section
+  // 7. API-first: the text, the acknowledgement, its revocation and the device
+  // attestation are complete (`/risk-acknowledgements`, `/accounts/{id}/attest-device`).
+  // The connection manager (#1154) does NOT claim them: its detail screen shows
+  // none of the unofficial-provider text, the acknowledgement or the attestation,
+  // so they stay here until a screen of their own reads that text next to the
+  // device it governs.
+  "channel_accounts.risk_acknowledgements.create",
+  "channel_accounts.risk_acknowledgements.read",
+  "channel_accounts.risk_acknowledgements.revoke",
+  // Meta multi-WABA sender binding (4) — Issue #1143. API-first: the signed
+  // webhook subscription (app secret write-only, callback token shown once),
+  // the per-WABA template approvals with their evidence, and clearing a WABA
+  // restriction. Each needs its own screen next to the WABA it governs (the
+  // one-time token display has the same WCAG contract as the website source
+  // token); until then they are reachable only through the API.
+  "channel_accounts.webhooks.configure",
+  "whatsapp_delivery.meta_signals.configure",
+  "whatsapp_delivery.meta_templates.configure",
+  "whatsapp_delivery.meta_templates.read",
   // whatsapp_delivery sender routing (2) — Issue #1141, ADR-0148 section 4.
-  // API-first: the sender and default-sender-policy surface (`GET /senders`,
-  // `PUT /sender-policy`) is complete, and its screen rides with the connection
-  // manager (Issue #1154), which is where an operator picks the accounts a
-  // policy names. `/admin/whatsapp` stays gated on `messages.read` meanwhile.
-  "whatsapp_delivery.senders.read",
-  "whatsapp_delivery.sender_policy.configure"
+  // The default-sender action is on the channel-account detail screen (#1154),
+  // which claims BOTH keys (`sender_policy.configure` for the action,
+  // `senders.read` for the "is this the default" readout and queue impact) and
+  // so they leave this ledger. `/admin/whatsapp` stays gated on `messages.read`.
+  // website_engagement (5) — ADR-0155 / Issue #1153. API-first and
+  // `experimental`: the operator screen (sources and their hosts, a one-time
+  // token display, the masked submission list with its consent provenance, the
+  // audited reveal and the withdrawal) is the recorded follow-up that flips the
+  // module to `active` and adds its navigation entry in the same change (a nav
+  // entry without a page is a permanent 404). The WCAG contract of that screen
+  // (the source token is shown ONCE; the `none` challenge must be visible) is in
+  // docs/awcms/website-engagement.md.
+  "website_engagement.sources.manage",
+  "website_engagement.sources.read",
+  "website_engagement.submissions.read",
+  "website_engagement.submissions.reveal",
+  "website_engagement.submissions.withdraw",
+  // social_publishing (9) — ADR-0157 / Issue #1145. API-first and
+  // `experimental`: the operator screen (the publication list with its derived
+  // status, the per-account job table where a partial failure is read, the
+  // approval and caption/alt/media review, the schedule, per-job retry, the
+  // rules and the two tenant switches; the omnichannel screen contract UP-08..16)
+  // is the recorded follow-up that flips the module to `active` and adds its
+  // navigation entry in the same change (a nav entry without a page is a
+  // permanent 404). Admin screens for this family belong to `ahliweb/awcms-astro`
+  // only for the USER surface; this is SYSTEM admin and is built here.
+  "social_publishing.jobs.retry",
+  "social_publishing.publications.approve",
+  "social_publishing.publications.cancel",
+  "social_publishing.publications.publish",
+  "social_publishing.publications.read",
+  "social_publishing.publications.schedule",
+  "social_publishing.rules.configure",
+  "social_publishing.rules.read",
+  "social_publishing.settings.configure",
+  // crm_leads (11) — ADR-0153 / Issue #1166. API-first and `experimental`: the
+  // operator screen (pipeline and revision editor with stage categories and
+  // edge guards, the lead list with masked contact points, the lead detail with
+  // its transition history, candidates, merge review with undo, conversions and
+  // the tenant switch) is the recorded follow-up that flips the module to
+  // `active` and adds its navigation entry in the same change (a nav entry
+  // without a page is a permanent 404). SYSTEM admin, built here.
+  "crm_leads.conversions.approve",
+  "crm_leads.leads.assign",
+  "crm_leads.leads.create",
+  "crm_leads.leads.delete",
+  "crm_leads.leads.read",
+  "crm_leads.leads.restore",
+  "crm_leads.leads.update",
+  "crm_leads.manual_conversions.create",
+  "crm_leads.merges.manage",
+  "crm_leads.pipelines.configure",
+  "crm_leads.stages.update",
+
+  // email sender routing (3) — Issue #1160, ADR-0151 section 2. API-first:
+  // the operator screen (accounts with the v2 badge, verified senders, credit,
+  // queue status, last sync, the default-sender policy and the migration
+  // warning, ADR-0151 section 7) is Issue #1162, which claims these keys and
+  // removes them from this ledger in the same change.
+  "email.sender_policy.configure",
+  "email.senders.read",
+  "email.senders.use",
+  // telegram_engagement (5) — ADR-0152 / Issue #1156. API-first and
+  // `experimental`: the operator screen (the bot list with webhook state and
+  // health, register/rotate/revoke behind step-up, the per-bot contact list with
+  // masked labels and per-purpose eligibility, the reply composer and the
+  // explicit opt-in prompt, the audited erase) is the recorded follow-up that
+  // flips the module to `active` and adds its navigation entry in the same
+  // change (a nav entry without a page is a permanent 404).
+  "telegram_engagement.bots.configure",
+  "telegram_engagement.bots.read",
+  "telegram_engagement.contacts.delete",
+  "telegram_engagement.contacts.read",
+  "telegram_engagement.messages.create",
+  // crm_follow_up (5) — ADR-0159 (Proposed) / Issue #1165. API-first and
+  // `experimental`: the operator screens (the worklist and overdue queue with
+  // complete/cancel, the rule editor with its revision history and simulation,
+  // a lead's stop signals, the tenant switch) are the recorded follow-up that
+  // flips the module to `active` and adds its navigation entry in the same
+  // change. SYSTEM admin, built here.
+  "crm_follow_up.rules.configure",
+  "crm_follow_up.rules.read",
+  "crm_follow_up.stop_signals.create",
+  "crm_follow_up.tasks.read",
+  "crm_follow_up.tasks.update",
+
+  // email Mailketing webhook (3) — Issue #1161, ADR-0151 section 5. API-first:
+  // the callback URL management and the quarantine review queue ("provider-
+  // reported, unauthenticated") belong to the email admin UI of Issue #1162,
+  // which claims these keys and removes them from this ledger in that change.
+  "email.provider_events.approve",
+  "email.webhook.configure",
+  "email.webhook.read"
 ];

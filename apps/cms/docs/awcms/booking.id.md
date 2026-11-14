@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking.md)
 
-<!-- i18n-source-hash: sha256:30981d953f5582b4911a7e2b3d2d7df848fe91c469f598ccd57ca941a4edaeb0 -->
+<!-- i18n-source-hash: sha256:3220f1b5d86d08f0eadc0f21b3180409e05ad526af282f95a782d99972759261 -->
 
 <!-- i18n-source-hash: sha256:pending -->
 
@@ -432,6 +432,40 @@ booking; peran pemilik fungsi (`awcms_booking_expiry`, NOLOGIN, tanpa anggota)
 hanya memegang privilege per-kolom yang dibutuhkan literal-literalnya, dan
 `EXECUTE` hanya milik worker. Reklamasi malas (§5.1) bukan job ini: ia berjalan
 di dalam transaksi klaim sebagai peran aplikasi.
+
+**Confirm dan cancel yang bisa dipanggil worker** (Issue #1278, `sql/388`).
+Konsumen hilir yang mengonfirmasi atau membatalkan dari `domain-events:dispatch`
+berjalan sebagai `awcms_worker`, yang tak punya privilege pada tabel ini, jadi
+`BookingPort.confirm` dan `.cancel` mengambil jalur kedua bila `current_user`
+koneksi adalah `awcms_worker`: `awcms_booking_worker_transition(tenant,
+reservation, action, actor, correlation, reason)`, pola sweep lagi. Owner khusus
+NOLOGIN tanpa anggota (`awcms_booking_transition`) hanya memegang `UPDATE` per
+kolom pada kolom rilis dan status serta `INSERT` pada tabel riwayat;
+`search_path` dipin; argumen tenant harus sama dengan `app.current_tenant_id`
+sesi (jika tidak 42501); `EXECUTE` hanya milik worker. `action` hanya `confirm`
+atau `cancel` (22023): check-in, completion, dan no-show tetap tanpa jalur
+worker. Aturannya ditulis dua kali (fungsi ini dan `transitionReservation`),
+maka `booking-worker-transition.integration.test.ts` menjalankan KEDUANYA untuk
+tiap status dan membandingkan baris yang ditinggalkan. Baris audit
+(`recordTransitionAudit`) dan domain event ditulis sekali, oleh fungsi yang
+sama, dari fakta yang dikembalikan fungsi. **Keputusan tercatat:** jalur worker
+tidak menyimpan rekaman Idempotency-Key (worker tak punya `INSERT` pada
+`awcms_idempotency_keys`, dan fungsi yang menulisnya akan menulis hash dan
+respons yang dipasok pemanggil). Ia tetap MENGHORMATI rekaman tersimpan (replay
+atau konflik), dan keamanan retry-nya adalah lapisan 2, cek status: meminta
+status yang sudah dicapai tidak menulis apa pun. Akibat yang harus diketahui
+konsumen worker (audit PR #1302, L-3): (a) kunci yang dipakai ulang untuk
+reservasi BERBEDA tidak terdeteksi di jalur ini (jalur aplikasi menjawab
+`IDEMPOTENCY_CONFLICT`; hanya rekaman buatan jalur aplikasi yang dihormati);
+(b) `confirm` yang dikirim ulang setelah reservasi dibatalkan dijawab
+`INVALID_STATE`, sedangkan jalur aplikasi memutar ulang `ok` tersimpan.
+Konsumen yang melakukan efek samping (refund, pesan) pada penolakan tidak boleh
+menggantungkannya pada jawaban saja: arahkan lewat
+`awcms_domain_event_consumer_effects` untuk exactly-once. Aktor bersifat
+self-asserted (user tenant yang SAMA lewat FK komposit, status apa pun), seperti
+jalur aplikasi lewat port; worker yang menyebut user keliru salah mengatribusikan
+baris audit, bukan memperoleh hak. Keduanya keputusan terbuka; fungsi definer
+yang menyimpan hash di sisi server adalah tindak lanjut opsional.
 
 **Constraint eksklusi** (pada `resource_allocations`; constraint staf identik
 pada `staff_ref`):
@@ -885,11 +919,11 @@ terhadap repo ini: tak ada migrasi yang membuat `btree_gist` hari ini; `sql/001`
 (`pgcrypto`) dan `sql/064` (`pg_trgm`) sudah menjalankan `CREATE EXTENSION IF NOT
 EXISTS`; ketiganya **ekstensi trusted** di PostgreSQL 13+ (pemilik database
 dengan `CREATE` pada database bisa membuatnya tanpa superuser); profil
-deployment mem-pin `postgres:18.4`. Biaya: satu `CREATE EXTENSION IF NOT EXISTS
+deployment mem-pin `postgres:18.6`. Biaya: satu `CREATE EXTENSION IF NOT EXISTS
 btree_gist;` di migrasi booking, satu baris pra-pemeriksaan operator di runbook
 deploy, dan satu mode kegagalan yang diketahui — database terkelola yang peran
 migrasinya tak bisa membuat ekstensi trusted menggagalkan migrasi sebelum tabel
-apa pun ada. Profil offline/LAN (`postgres:18.4`) tak terpengaruh. ADR-0127 §4
+apa pun ada. Profil offline/LAN (`postgres:18.6`) tak terpengaruh. ADR-0127 §4
 menolak ekstensi untuk jendela pajak; alasannya (hak istimewa) tidak berlaku untuk
 ekstensi trusted, dan kalimat basi di `sql/171` adalah komentar historis di
 migrasi terapan, yang immutable dan dibiarkan. (Bila deployment target benar-benar

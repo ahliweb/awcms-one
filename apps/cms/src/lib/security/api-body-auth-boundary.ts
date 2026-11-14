@@ -245,6 +245,12 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
     reason:
       "Server-to-server callback from the payment gateway (contract #106 D2). Authenticated by the opaque per-tenant webhook-endpoint token in the path plus the provider's own signature (verifyWebhook), never a session — there is no admin/customer caller to hold one."
   },
+  {
+    method: "POST",
+    pattern: "/api/v1/website-engagement/submissions",
+    reason:
+      "A visitor's browser posts a website contact request, lead or interaction. Authenticated by the per-source token in the body and the verified Origin host (ADR-0155), rate-limited per address and per source, with one uniform refusal before the source is proven."
+  },
 
   // ---- Node-to-node: signed, not sessioned ----
   {
@@ -324,6 +330,24 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
     pattern: "/api/v1/telegram/webhook",
     reason:
       "Telegram's Bot API calls it, never a person. The credential is X-Telegram-Bot-Api-Secret-Token, compared in constant time before any body read; off (TELEGRAM_ENABLED unset) it is a 404 (ADR-0140 section 7)."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/telegram-engagement/webhooks/:callbackToken",
+    reason:
+      "Telegram's Bot API calls it for one CUSTOMER bot, never a person (ADR-0152 section 4, Issue #1156). The credential is the opaque per-bot callback token in the path (proven against a stored SHA-256; it names the tenant and endpoint, nothing in the body does) plus X-Telegram-Bot-Api-Secret-Token compared in constant time before the body is read; every failure is one generic 401; off (TELEGRAM_ENGAGEMENT_ENABLED unset) it is a 404."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/email/webhooks/mailketing/:token",
+    reason:
+      "Mailketing calls it, never a person, and documents no signature: the opaque per-account token in the path only locates the tenant and account, compared in constant time after a per-address bucket and a 32 KiB cap. Every event is quarantined as unauthenticated and changes no state (ADR-0151 section 5 strict); off (EMAIL_WEBHOOK_ENABLED unset) it is a 404."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/whatsapp/webhooks/meta/:token",
+    reason:
+      "Meta's WhatsApp Cloud API calls it, never a person (Issue #1143). Two credentials, both compared in constant time: the opaque per-account callback token in the path (tenant and account are resolved from it, never from the payload) and X-Hub-Signature-256, the HMAC-SHA256 of the exact body under that number's app secret. Every refusal is one 401; a per-(tenant, address) bucket answers 429 before any database work; off (WHATSAPP_ENABLED unset) it is a 404."
   },
 
   // ---- Retired: answers 410 without reading anything ----

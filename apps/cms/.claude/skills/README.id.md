@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:f072c24b60e4fb3bdd8bd0c7958c732f1893b349b931855019b1f68344c04203 -->
+<!-- i18n-source-hash: sha256:d596c44370a400459e4ef420c1bb7eb0c86c00f12b6d050ccf95dbff09a44e36 -->
 
 # AWCMS Project Skills
 
@@ -43,7 +43,7 @@ Skill Claude Code tingkat-proyek untuk AWCMS. Setiap skill meng-encode standar d
 > Keluarga hari ini dua repo, `awcms` + [`awcms-astro`](https://github.com/ahliweb/awcms-astro)
 > (halaman publik + permukaan admin USER, ADR-0070). **KOREKSI:** versi sebelumnya menyatakan
 > implementasi ini "baru fondasi Sprint 1–2" dengan empat modul — itu **sudah
-> lama tidak benar**. Repo ini punya **35 modul terdaftar** dan `sql/001–sql/224` plus milik modul `commerce` sendiri yang dicadangkan di `sql/901` sampai `sql/999`;
+> lama tidak benar**. Repo ini punya **41 modul terdaftar** dan `sql/001–sql/394` plus this embed's own `sql/880` through `sql/899` and `commerce`'s reserved `sql/901` onwards;
 > lihat [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) untuk daftar nyata.
 > Skill yang badannya masih menandai dirinya "BACAAN SAJA" tetap begitu — itu
 > per-skill, bukan pernyataan tentang repo secara keseluruhan.
@@ -103,7 +103,7 @@ Skill Claude Code tingkat-proyek untuk AWCMS. Setiap skill meng-encode standar d
 | `awcms-jualanku-porting`                     | **RENCANA** — porting Jualanku.info (ADR-0045): merchant = business scope, BFF, 5 bounded context. Belum ada kode                                                                  | docs/awcms/jualanku/                        |
 | `awcms-news-portal`                          | **HISTORIS** — modul dilebur ke `blog_content` (ADR-0044/#300); spesifikasi pra-merge, pakai `awcms-blog-content`                                                                  | news-portal/SKILL.md                        |
 | `awcms-idn-admin-regions`                    | Kerjakan bagian mana pun epic master data wilayah administratif Indonesia (Issue #655-#664)                                                                                        | idn-admin-regions/SKILL.md                  |
-| `awcms-social-publishing`                    | Kerjakan bagian mana pun epic social_publishing auto-posting outbox foundation (Issue #643-#647)                                                                                   | social-publishing/SKILL.md                  |
+| `awcms-social-publishing`                    | Kerjakan bagian mana pun modul social_publishing (publikasi berbasis akun dan job per akun, Issue #1145, ADR-0157)                                                                 | social-publishing/SKILL.md                  |
 | `awcms-data-lifecycle`                       | Daftarkan tabel bervolume tinggi ke registry retensi/partisi/arsip/legal hold/purge (Issue #745)                                                                                   | data-lifecycle/README.md, data-lifecycle.md |
 | `awcms-media-library`                        | Kelola/konsumsi modul media_library — registry objek media per-tenant, presigned R2 upload/finalize, reconcile, enforcement (ADR-0036)                                             | media-library/SKILL.md, ADR-0036            |
 | `awcms-seo-distribution`                     | Kelola/konsumsi modul seo_distribution — metadata SEO terpusat, rute discovery publik (robots/sitemap/feed), tata kelola redirect + telemetri 404 (ADR-0038/0039)                  | seo-distribution/SKILL.md, ADR-0038/0039    |

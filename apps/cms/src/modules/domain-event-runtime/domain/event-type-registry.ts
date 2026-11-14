@@ -221,6 +221,8 @@ export const WHATSAPP_CONSENT_WITHDRAWN_EVENT_TYPE =
   "awcms.whatsapp.consent.withdrawn";
 export const WHATSAPP_DISPATCH_FAILED_EVENT_TYPE =
   "awcms.whatsapp.dispatch.failed";
+export const WHATSAPP_MESSAGE_PROVIDER_STATUS_CHANGED_EVENT_TYPE =
+  "awcms.whatsapp.message.provider_status_changed";
 
 /**
  * `hr_commission` (ADR-0132, Issue #1109). Declared here -- not imported from
@@ -257,8 +259,143 @@ export const BOOKING_RESERVATION_NO_SHOW_EVENT_TYPE =
 export const BOOKING_RESERVATION_EXPIRED_EVENT_TYPE =
   "awcms.booking.reservation.expired";
 
+/**
+ * `website_engagement` (ADR-0155, Issue #1153). Declared here -- not imported
+ * from `website-engagement/domain/website-engagement-constants.ts` -- for the
+ * same reason as `inventory` above. The literals are kept identical by the
+ * AsyncAPI parity gate and by `tests/website-engagement-contract.test.ts`.
+ */
+export const WEBSITE_ENGAGEMENT_EVENT_VERSION = "1.0";
+export const WEBSITE_ENGAGEMENT_SUBMISSION_RECEIVED_EVENT_TYPE =
+  "awcms.website_engagement.submission.received";
+export const WEBSITE_ENGAGEMENT_SUBMISSION_WITHDRAWN_EVENT_TYPE =
+  "awcms.website_engagement.submission.withdrawn";
+
+/**
+ * `social_publishing` (ADR-0157, Issue #1145). Declared here -- not imported
+ * from `social-publishing/domain/social-publishing-constants.ts` -- for the same
+ * reason as `website_engagement` above. The literals are kept identical by the
+ * AsyncAPI parity gate and by `tests/social-publishing-contract.test.ts`.
+ */
+export const SOCIAL_PUBLISHING_EVENT_VERSION = "1.0";
+export const SOCIAL_PUBLICATION_QUEUED_EVENT_TYPE =
+  "awcms.social_publishing.publication.queued";
+export const SOCIAL_PUBLICATION_CANCELLED_EVENT_TYPE =
+  "awcms.social_publishing.publication.cancelled";
+export const SOCIAL_JOB_PUBLISHED_EVENT_TYPE =
+  "awcms.social_publishing.job.published";
+export const SOCIAL_JOB_FAILED_EVENT_TYPE =
+  "awcms.social_publishing.job.failed";
+
+/**
+ * `crm_leads` (ADR-0153, Issue #1166). Declared here -- not imported from
+ * `crm-leads/domain/crm-leads-constants.ts` -- for the same reason as
+ * `website_engagement` above. The literals are kept identical by the AsyncAPI
+ * parity gate and by `tests/crm-leads-contract.test.ts`.
+ */
+export const CRM_LEADS_EVENT_VERSION = "1.0";
+const CRM_LEADS_EVENT_DESCRIPTIONS: readonly [string, string][] = [
+  [
+    "awcms.crm_leads.lead.created",
+    "A lead was created through an intake path, in the transaction that stored it. Carries the opaque lead, pipeline, revision and first-touch ids, the initial stage key and category, the source kind with its opaque channel-account and campaign references, the KINDS of contact point held (never their values), and the source's effective and recorded times; never a name, an address, a phone number or a note. A replayed intake publishes nothing."
+  ],
+  [
+    "awcms.crm_leads.lead.stage_changed",
+    "A lead's stage changed (a move, a stage migration on a new revision, a conversion, a conversion reversal, a merge or its rollback), in the transaction that appended the transition row. Carries the lead, pipeline, revision and transition ids, the transition kind, the from/to stage keys and closed categories and the effective and recorded times; never a reason or a note."
+  ],
+  [
+    "awcms.crm_leads.lead.assigned",
+    "A lead's owner changed. Carries the lead id and the previous and new owner tenant-user ids only."
+  ],
+  [
+    "awcms.crm_leads.lead.merged",
+    "Two leads of one pipeline were merged after human review. Carries the merge, survivor and absorbed lead ids and the undo deadline; never the reviewer's note."
+  ],
+  [
+    "awcms.crm_leads.lead.merge_reverted",
+    "A lead merge was rolled back within its undo window. Carries the merge, survivor and absorbed lead ids only."
+  ],
+  [
+    "awcms.crm_leads.lead.converted",
+    "A conversion was recorded for a lead: confirmed by the customer authority (with its opaque external customer reference) or a flagged manual conversion (authority_unconfirmed). Carries the lead and conversion ids, the mode, the opaque customer and evidence references and the converted stage key; never a note. A replayed confirmation publishes nothing."
+  ],
+  [
+    "awcms.crm_leads.lead.conversion_reversed",
+    "The customer authority reversed a conversion (a refund, a cancellation). Carries the lead and conversion ids, the opaque reversal evidence reference and the stage key the lead returned to."
+  ],
+  [
+    "awcms.crm_leads.lead.lost",
+    "A lead entered a lost or disqualified stage. Carries the lead, pipeline and transition ids, the stage key and its category; a stop signal for follow-up cadences."
+  ]
+];
+
+/**
+ * `telegram_engagement` (ADR-0152, Issue #1156). Declared here -- not imported
+ * from `telegram-engagement/domain/telegram-engagement-constants.ts` -- for the
+ * same reason as `website_engagement` above. The literals are kept identical by
+ * the AsyncAPI parity gate and by `tests/telegram-engagement-contract.test.ts`.
+ */
+export const TELEGRAM_ENGAGEMENT_EVENT_VERSION = "1.0";
+export const TELEGRAM_ENGAGEMENT_INTERACTION_RECEIVED_EVENT_TYPE =
+  "awcms.telegram_engagement.interaction.received";
+export const TELEGRAM_ENGAGEMENT_CONSENT_CHANGED_EVENT_TYPE =
+  "awcms.telegram_engagement.consent.changed";
+
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
+    ...CRM_LEADS_EVENT_DESCRIPTIONS.map(([eventType, description]) => ({
+      eventType,
+      eventVersion: CRM_LEADS_EVENT_VERSION,
+      description
+    })),
+    {
+      eventType: TELEGRAM_ENGAGEMENT_INTERACTION_RECEIVED_EVENT_TYPE,
+      eventVersion: TELEGRAM_ENGAGEMENT_EVENT_VERSION,
+      description:
+        "A verified customer Telegram update was ingested (ADR-0150 envelope), in the transaction that receipted it: a message or a command from a contact who started the bot. Carries the channel account id, the opaque account-scoped contact reference as sender and conversation, the per-bot update id, a closed event kind, the content KINDS, the provenance (secret_header) and the privacy class; never a Telegram user id, chat id, username, display name, message text, token or header."
+    },
+    {
+      eventType: TELEGRAM_ENGAGEMENT_CONSENT_CHANGED_EVENT_TYPE,
+      eventVersion: TELEGRAM_ENGAGEMENT_EVENT_VERSION,
+      description:
+        "A customer Telegram contact's consent changed for one purpose (support from /start; marketing or transactional through the explicit button; a withdrawal through /stop, the button, a block, a provider 403 or the controller), in the transaction that recorded the evidence. Carries the channel account id, the opaque contact reference, the purpose, the action, the method and the notice version; never the evidence payload or any identity."
+    },
+    {
+      eventType: SOCIAL_PUBLICATION_QUEUED_EVENT_TYPE,
+      eventVersion: SOCIAL_PUBLISHING_EVENT_VERSION,
+      description:
+        "Social publish jobs were queued for a publication, in the transaction that queued them (one event per enqueue call that created at least one job, however many accounts it targets). Carries the publication id, its source kind and article id, the trigger, the approval state, the number of jobs and the target account ids; never a caption, a title, a link or a credential."
+    },
+    {
+      eventType: SOCIAL_PUBLICATION_CANCELLED_EVENT_TYPE,
+      eventVersion: SOCIAL_PUBLISHING_EVENT_VERSION,
+      description:
+        "A social publication was cancelled by an operator. Carries the publication id, how many unsent jobs were cancelled and how many had already been published (those are untouched); never content."
+    },
+    {
+      eventType: SOCIAL_JOB_PUBLISHED_EVENT_TYPE,
+      eventVersion: SOCIAL_PUBLISHING_EVENT_VERSION,
+      description:
+        "One per-account social publish job was accepted by its provider, in the transaction that finalised it. Carries the job, publication and account ids, the provider key and the attempt number; the provider's post id and URL are read through the API, not carried."
+    },
+    {
+      eventType: SOCIAL_JOB_FAILED_EVENT_TYPE,
+      eventVersion: SOCIAL_PUBLISHING_EVENT_VERSION,
+      description:
+        "One per-account social publish job failed terminally (retry budget spent, a rejection, a revoked or disabled account, an account that stayed unavailable). Carries the job, publication and account ids, the provider key, a fixed failure code and the attempt number; never a provider message. A failed job does not affect a published sibling."
+    },
+    {
+      eventType: WEBSITE_ENGAGEMENT_SUBMISSION_RECEIVED_EVENT_TYPE,
+      eventVersion: WEBSITE_ENGAGEMENT_EVENT_VERSION,
+      description:
+        "A website form or interaction was accepted by the public intake, in the transaction that stored it. Carries the opaque submission id, the source, the kind, the authenticated provenance (source authenticated, Origin host verified, which challenge protected it), the explicit consent provenance and the source attribution; never a name, address, phone number or message. A downstream CRM adapter reads the details through the audited reveal endpoint."
+    },
+    {
+      eventType: WEBSITE_ENGAGEMENT_SUBMISSION_WITHDRAWN_EVENT_TYPE,
+      eventVersion: WEBSITE_ENGAGEMENT_EVENT_VERSION,
+      description:
+        "A controller withdrew a website submission (data subject request, consent withdrawn or controller decision). Downstream consumers must honour it. Carries the opaque submission id, the source, a coded reason and the instant only."
+    },
     {
       eventType: HR_COMMISSION_ACCRUAL_VOIDED_EVENT_TYPE,
       eventVersion: HR_COMMISSION_EVENT_VERSION,
@@ -622,6 +759,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: WHATSAPP_EVENT_VERSION,
       description:
         "A WhatsApp dispatcher pass failed as a whole (job level, not one message). Carries a coarse failureCode and the failure instant."
+    },
+    {
+      eventType: WHATSAPP_MESSAGE_PROVIDER_STATUS_CHANGED_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "A signed Meta webhook moved a sent WhatsApp message's provider-reported status forward (delivered, read or failed), reconciled only against the row's own sender and provider message id. Carries the message id, sender account id, provider status and a coarse failure code; never a number or a body."
     },
     {
       eventType: BOOKING_RESERVATION_CREATED_EVENT_TYPE,

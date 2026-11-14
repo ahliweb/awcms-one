@@ -110,7 +110,7 @@ esac
 # Source: OPERATOR_ONLY_TARGETS in scripts/jobs-env-allowlist.ts, where each
 # entry carries its reason. Do not edit between the markers; regenerate.
 case "$JOB" in
-  bench:booking | bench:commerce-load | commerce:deploy:preflight | config:validate | jobs:env-allowlist:check | jobs:env-allowlist:generate | security:readiness | subject-data:coverage:check | telegram:webhook:register)
+  bench:booking | bench:commerce-load | commerce:deploy:preflight | config:validate | database:capacity:check | database:pgbouncer:verify | jobs:env-allowlist:check | jobs:env-allowlist:generate | security:readiness | subject-data:coverage:check | telegram:webhook:register)
     log "$JOB is an operator-only command and does not run in a job container; refusing" >&2
     log "  It needs variables the runner never copies (or is a CI/developer gate), so" >&2
     log "  it would run against a partial environment and print a misleading report." >&2
@@ -313,7 +313,7 @@ fi
 # Source: appConnectionTargets() in scripts/jobs-env-allowlist.ts, derived from each
 # target's import closure. Do not edit between the markers; regenerate.
 case "$JOB" in
-  blog:legacy:article-paths | blog:legacy:cutover:verify | blog:legacy:import | blog:legacy:redirects:import | changesets:policy:check | channel-accounts:secrets:rekey | check:astro-frontmatter:check | check:astro-scripts:check | check:docs | check:docs:translation | ci:local | commerce:booking:reconcile | commerce:inventory:cutover | commerce:tax:cutover | commerce:whatsapp:cutover | data-lifecycle:registry:check | db:commerce:renumber | db:migrate | deps:audit:check | deps:freshness | docs:i18n:stamp | docs:i18n:stamp:check | email:templates:seed-defaults | entitlements:backfill | family:conformance:check | graph:artifacts:check | hr-commission:intents:post | identity-access:permissions:backfill | identity:mfa-collisions:preflight | identity:principals:preflight | modules:table-writes:check | payroll:catalog-boundary:check | payroll:sql-boundary:check | release:verify | telegram:chat:rekey | version:check)
+  blog:legacy:article-paths | blog:legacy:cutover:verify | blog:legacy:import | blog:legacy:redirects:import | changesets:policy:check | channel-accounts:secrets:rekey | check:astro-frontmatter:check | check:astro-scripts:check | check:docs | check:docs:translation | ci:local | commerce:booking:reconcile | commerce:inventory:cutover | commerce:tax:cutover | commerce:whatsapp:cutover | data-lifecycle:registry:check | db:commerce:renumber | db:migrate | deps:audit:check | deps:freshness | docs:i18n:stamp | docs:i18n:stamp:check | email:senders:verify | email:templates:seed-defaults | entitlements:backfill | family:conformance:check | graph:artifacts:check | hr-commission:intents:post | identity-access:permissions:backfill | identity:mfa-collisions:preflight | identity:principals:preflight | modules:table-writes:check | omnichannel-inbox:sla | payroll:catalog-boundary:check | payroll:sql-boundary:check | release:verify | telegram:chat:rekey | version:check)
     WITHHOLD_DATABASE_URL=0
     ;;
   *)
@@ -322,13 +322,48 @@ case "$JOB" in
 esac
 # END GENERATED: targets that need DATABASE_URL
 
+# A job that runs as its OWN database role (Issue #1156, audit H-A of PR #1260)
+# receives none of the shared logins, whatever the host configured: next to its
+# key ring, `DATABASE_URL` (awcms_app) or `WORKER_DATABASE_URL` (awcms_worker)
+# would be a broader credential than the role it was given.
+# BEGIN GENERATED: dedicated-role jobs (bun run jobs:env-allowlist:generate)
+# Source: dedicatedRoleTargets() in scripts/jobs-env-allowlist.ts, derived from each
+# target's import closure. Do not edit between the markers; regenerate.
+case "$JOB" in
+  social-publishing:dispatch | telegram-engagement:dispatch)
+    WITHHOLD_ALL_DATABASE_URLS=1
+    ;;
+  *)
+    WITHHOLD_ALL_DATABASE_URLS=0
+    ;;
+esac
+# END GENERATED: dedicated-role jobs
+
+# An app-role job whose code never opens the worker connection (audit L-5 of
+# PR #1301) holds the app login and, for the senders job, the secret key ring;
+# a third credential it never uses would only widen what a compromised job holds.
+# BEGIN GENERATED: app-role jobs that never open the worker connection (bun run jobs:env-allowlist:generate)
+# Source: appRoleTargetsWithoutWorkerClient() in scripts/jobs-env-allowlist.ts, derived
+# from each app-role exception's import closure. Do not edit between the markers; regenerate.
+case "$JOB" in
+  email:senders:verify | omnichannel-inbox:sla)
+    WITHHOLD_WORKER_DATABASE_URL=1
+    ;;
+  *)
+    WITHHOLD_WORKER_DATABASE_URL=0
+    ;;
+esac
+# END GENERATED: app-role jobs that never open the worker connection
+
 # `WORKER_DATABASE_URL` counts as configured only when it is not blank after
 # trimming, exactly as `readConfiguredUrl` in `src/lib/database/client.ts` reads
 # it: a blank value falls back to DATABASE_URL, so the credential stays.
 docker exec "$APP" printenv \
-  | WITHHOLD="$WITHHOLD_DATABASE_URL" awk -F= '
+  | WITHHOLD="$WITHHOLD_DATABASE_URL" DEDICATED="$WITHHOLD_ALL_DATABASE_URLS" NOWORKER="$WITHHOLD_WORKER_DATABASE_URL" awk -F= '
       NR==FNR { want[$0]=1; next }
       ($1 in want) {
+        if (ENVIRON["DEDICATED"] == "1" && ($1 == "DATABASE_URL" || $1 == "WORKER_DATABASE_URL" || $1 == "SETUP_DATABASE_URL")) next
+        if (ENVIRON["NOWORKER"] == "1" && $1 == "WORKER_DATABASE_URL") next
         kept[++n] = $0
         if ($1 == "DATABASE_URL") db = n
         if ($1 == "WORKER_DATABASE_URL") {
@@ -346,7 +381,11 @@ docker exec "$APP" printenv \
     ' <(printf '%s\n' "$NAMES") - \
   > "$ENVFILE"
 
-if [ "$WITHHOLD_DATABASE_URL" = "1" ] && ! grep -q '^DATABASE_URL=' "$ENVFILE"; then
+if [ "$WITHHOLD_ALL_DATABASE_URLS" = "1" ]; then
+  log "DATABASE_URL, WORKER_DATABASE_URL and SETUP_DATABASE_URL withheld from $JOB (it runs as its own database role)"
+elif [ "$WITHHOLD_WORKER_DATABASE_URL" = "1" ]; then
+  log "WORKER_DATABASE_URL withheld from $JOB (it runs as awcms_app and never opens the worker connection)"
+elif [ "$WITHHOLD_DATABASE_URL" = "1" ] && ! grep -q '^DATABASE_URL=' "$ENVFILE"; then
   log "DATABASE_URL withheld from $JOB (WORKER_DATABASE_URL is configured; this job never opens the app connection)"
 fi
 

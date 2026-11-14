@@ -31,6 +31,14 @@
  * `refused: SENDER_UNAVAILABLE` and nothing is queued: never another sender,
  * never the other provider. Consent, suppression and the rate limits are keyed
  * by the RECIPIENT, never the sender, so they run unchanged for every sender.
+ *
+ * ## Marketing consent is per brand (Issue #1231 M4, option (c))
+ *
+ * A granted marketing consent must also cover the message's business scope:
+ * that brand listed on the row, or, for a message with no scope, an unscoped
+ * (or legacy) opt-in. Otherwise `refused: CONSENT_SCOPE_REQUIRED`, nothing is
+ * queued, and nothing is retried under another scope or purpose. The SAME rule
+ * runs again at dispatch.
  */
 import { log } from "../../../lib/logging/logger";
 import type { ChannelAccountPort } from "../../_shared/ports/channel-account-port";
@@ -62,8 +70,11 @@ import {
   getWhatsappTemplate,
   renderWhatsappTemplate
 } from "../domain/whatsapp-templates";
+import type { BusinessScopeHierarchyPort } from "../../_shared/ports/business-scope-hierarchy-port";
+import { whatsappBusinessScopeResolver } from "../infrastructure/business-scope-resolver";
 import { loadChannelAccountPort } from "../infrastructure/channel-account-port-loader";
 import { readEligibilityFacts } from "./whatsapp-consent-directory";
+import { decideMetaSendForMessage } from "./whatsapp-meta-directory";
 import { emitWhatsappMessageEvent } from "./whatsapp-event-emit";
 import {
   logSenderRefusal,
@@ -81,6 +92,12 @@ export type EnqueueWhatsappOptions = {
    * A test seam and the composition roots' override; never a request input.
    */
   senders?: ChannelAccountPort;
+  /**
+   * Issue #1231 M4 (audit M-1). Resolves the business scope of a MARKETING
+   * message against the tenant. Omitted: `tenant_admin`'s office hierarchy. A
+   * test seam, never a request input.
+   */
+  scopes?: BusinessScopeHierarchyPort;
 };
 
 type ResolvedRecipient =
@@ -248,7 +265,8 @@ export async function enqueueWhatsappMessage(
     input,
     purpose: template.purpose,
     hashes,
-    senders: async () => options.senders ?? (await loadChannelAccountPort())
+    senders: async () => options.senders ?? (await loadChannelAccountPort()),
+    env
   });
 
   if (!sender.ok) {
@@ -257,15 +275,68 @@ export async function enqueueWhatsappMessage(
     return { status: "refused", reason: sender.reason };
   }
 
+  // The brand of a MARKETING message decides which opt-in covers it, so it must
+  // be a REAL scope of this tenant (#1231 audit M-1): an unknown type, an id
+  // that does not exist, another tenant's, a deleted or inactive office is
+  // `BUSINESS_SCOPE_UNRESOLVED`, nothing queued. It is still the scope the
+  // CALLER declares: with a scoped sender it is bound to that sender's own
+  // scope (`senderScopeAllows`); with a tenant-wide or deployment sender
+  // nothing ties the declared brand to the number that sends it (README).
+  if (template.purpose === "marketing" && sender.businessScope !== null) {
+    const resolution = await (
+      options.scopes ?? whatsappBusinessScopeResolver
+    ).resolveScope(
+      tx,
+      input.tenantId,
+      sender.businessScope.type,
+      sender.businessScope.id
+    );
+
+    if (!resolution.resolved) {
+      return { status: "refused", reason: "BUSINESS_SCOPE_UNRESOLVED" };
+    }
+  }
+
+  // Coverage is asked for the scope the message is SNAPSHOTTED with (the
+  // request's, or the thread's for a reply).
   const decision = decideEligibility(
     template.purpose,
-    await readEligibilityFacts(tx, input.tenantId, hashes)
+    await readEligibilityFacts(tx, input.tenantId, hashes, sender.businessScope)
   );
 
   if (!decision.eligible) {
-    return decision.kind === "consent_required"
-      ? { status: "refused", reason: "CONSENT_REQUIRED" }
-      : { status: "suppressed", reason: decision.reason };
+    switch (decision.kind) {
+      case "consent_required":
+        return { status: "refused", reason: "CONSENT_REQUIRED" };
+      case "consent_scope_required":
+        return { status: "refused", reason: "CONSENT_SCOPE_REQUIRED" };
+      case "suppressed":
+        return { status: "suppressed", reason: decision.reason };
+    }
+  }
+
+  // Issue #1143: Meta's own rules, for a TENANT-OWNED Meta number only (not the
+  // deployment sender, not StarSender). The template must be approved on THAT
+  // number's WABA in the category the purpose requires; a registration without
+  // a provider template may go only inside the 24-hour window the recipient
+  // opened with THAT number. Checked again immediately before the send.
+  if (
+    sender.resolved?.provider === "whatsapp_cloud" &&
+    sender.senderAccountId !== null
+  ) {
+    const meta = await decideMetaSendForMessage(tx, {
+      tenantId: input.tenantId,
+      senderAccountId: sender.senderAccountId,
+      wabaId: sender.resolved.containerExternalId!,
+      purpose: template.purpose,
+      providerTemplate: template.providerTemplate,
+      hashes,
+      now
+    });
+
+    if (!meta.ok) {
+      return { status: "refused", reason: meta.reason };
+    }
   }
 
   if (await isRateLimited(tx, input.tenantId, hashes, template.purpose, env)) {
@@ -282,7 +353,7 @@ export async function enqueueWhatsappMessage(
        profile_id, variables, body, contains_secret, status, not_before,
        expires_at, next_attempt_at, created_by, sender_account_id,
        sender_selection, sender_policy_version, business_scope_type,
-       business_scope_id)
+       business_scope_id, sender_external_id, sender_container_external_id)
     VALUES (
       ${input.tenantId}, ${input.idempotencyKey}, ${input.correlationId ?? null},
       ${template.key}, ${template.version}, ${template.purpose},
@@ -291,7 +362,9 @@ export async function enqueueWhatsappMessage(
       ${rendered.containsSecret}, 'queued', ${input.notBefore ?? null},
       ${input.expiresAt ?? null}, ${dueAt}, ${input.createdBy ?? null},
       ${sender.senderAccountId}, ${sender.selection}, ${sender.policyVersion},
-      ${sender.businessScope?.type ?? null}, ${sender.businessScope?.id ?? null}
+      ${sender.businessScope?.type ?? null}, ${sender.businessScope?.id ?? null},
+      ${sender.resolved?.externalId ?? null},
+      ${sender.resolved?.containerExternalId ?? null}
     )
     ON CONFLICT ON CONSTRAINT awcms_whatsapp_messages_idempotency_unique
     DO NOTHING

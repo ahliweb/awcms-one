@@ -5,7 +5,7 @@ description: Kirim email transaksional (password reset, announcement, workflow n
 
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SKILL.md)
 
-<!-- i18n-source-hash: sha256:e967ae39ade5623fa095614a55fe0927536669b9e10702db839555dc93149052 -->
+<!-- i18n-source-hash: sha256:4f98cdc01688c186fe2919a2e5d171cec5caab4adab6572b8e88c6bf063cde7f -->
 
 # AWCMS — Email Module
 
@@ -75,6 +75,17 @@ Ikuti `src/modules/email/README.md` (arsitektur lengkap: kontrak provider, adapt
   alamat penerima nyata ke endpoint ini, dan endpoint ini sendiri **tidak**
   menyentuh `email_messages`/antrean.
 
+- **Pengirim tenant (Issue #1160, ADR-0151 §2).** Jangan pernah menaruh token
+  Mailketing atau alamat pengirim tenant di env, JSON pengaturan, atau body
+  request. Pengirim adalah id `channel_accounts` `mailketing`/`sender_identity`;
+  pilih hanya lewat `resolveEnqueueEmailSender`
+  (`application/email-sender-directory.ts`) dan teruskan snapshot hasilnya ke
+  `enqueueAnnouncement`. Jangan pernah mengalihkan pengirim yang ditolak ke
+  pengirim, akun, atau pengirim deployment lain; email keamanan (`auth.*`,
+  `system.security_notice`) selalu memakai pengirim deployment. Hanya
+  `scripts/email-dispatch.ts` dan `scripts/email-senders-verify.ts` yang boleh
+  menyusun `channel-sender-credential-adapter`.
+
 ## Observability & ops (Issue #499)
 
 - **Antrean gagal/tertunda**: `GET /api/v1/email/messages?status=failed|retry_wait`
@@ -107,6 +118,7 @@ Ikuti `src/modules/email/README.md` (arsitektur lengkap: kontrak provider, adapt
 - Kirim dengan `EMAIL_PROVIDER=log` dulu (tanpa kredensial Mailketing) —
   lihat log `email.log_provider.send` (alamat ter-mask) untuk konfirmasi
   alur end-to-end sebelum menyalakan Mailketing nyata.
+- Mailketing v2 (Issue #1159) bersifat opt-in lewat `EMAIL_MAILKETING_API_VERSION=v2` (bawaan v1, fail-closed untuk nilai tak dikenal; host tetap, token hanya di header, 402 ditahan, 429 menghormati `Retry-After`; API live BELUM diverifikasi). Jangan menambah jalur kirim baru; pakai adapter v2 di balik `EmailProvider`.
 - `bun run email:provider:health` — cek konektivitas Mailketing nyata
   (live network call, jalankan manual/smoke-test, bukan bagian CI).
 - `bun test tests/integration/email-*.integration.test.ts` terhadap

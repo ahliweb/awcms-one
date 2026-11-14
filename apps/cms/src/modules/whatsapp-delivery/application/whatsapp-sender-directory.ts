@@ -22,7 +22,10 @@
  * (same default again) changes nothing and bumps nothing, which also makes a
  * replayed request naturally idempotent.
  */
-import type { ChannelAccountPort } from "../../_shared/ports/channel-account-port";
+import type {
+  ChannelAccountPort,
+  ResolvedWhatsappSender
+} from "../../_shared/ports/channel-account-port";
 import type {
   EnqueueWhatsappInput,
   WhatsappPurpose
@@ -49,6 +52,7 @@ import {
   type WhatsappSenderSelection
 } from "../domain/whatsapp-sender";
 import { hasWhatsappSenderAdapter } from "../infrastructure/whatsapp-sender-providers";
+import { readMetaRestriction } from "./whatsapp-meta-directory";
 
 const MODULE_KEY = "whatsapp_delivery";
 
@@ -95,6 +99,7 @@ function toPolicyView(row: PolicyDbRow): SenderPolicyView {
   };
 }
 
+/** The full list, for the admin view only (never used to choose a sender). */
 async function loadPolicies(
   tx: Bun.SQL,
   tenantId: string
@@ -106,6 +111,37 @@ async function loadPolicies(
     WHERE tenant_id = ${tenantId}
     ORDER BY business_scope_type NULLS FIRST, business_scope_id
     LIMIT 500
+  `) as PolicyDbRow[];
+}
+
+/**
+ * The policy rows that can decide a message of `scope`: its OWN scope row and the
+ * tenant-wide row, each by its key (Issue #1233 L2). Never filtered out of a
+ * capped list: a tenant with more than 500 scopes would otherwise lose a scope's
+ * own row (including an explicit NULL "deployment sender") and silently fall back
+ * to the tenant-wide default.
+ */
+async function loadApplicablePolicies(
+  tx: Bun.SQL,
+  tenantId: string,
+  scope: WhatsappBusinessScope | null
+): Promise<PolicyDbRow[]> {
+  const scopeType = scope?.type ?? null;
+  const scopeId = scope?.id ?? null;
+
+  return (await tx`
+    SELECT id, business_scope_type, business_scope_id,
+           default_sender_account_id, config_version, effective_from, updated_at
+    FROM awcms_whatsapp_sender_policies
+    WHERE tenant_id = ${tenantId}
+      AND (
+        (business_scope_type IS NULL AND business_scope_id IS NULL)
+        OR (
+          ${scopeType}::text IS NOT NULL
+          AND business_scope_type = ${scopeType}
+          AND business_scope_id = ${scopeId}
+        )
+      )
   `) as PolicyDbRow[];
 }
 
@@ -130,6 +166,12 @@ export type EnqueueSenderDecision =
       selection: WhatsappSenderSelection;
       policyVersion: number | null;
       businessScope: WhatsappBusinessScope | null;
+      /**
+       * Issue #1143. The verified identity of a tenant-owned sender as the port
+       * resolved it (provider, phone number id, WABA). Absent for the
+       * deployment sender. Snapshotted on the row; never from the caller.
+       */
+      resolved?: ResolvedWhatsappSender;
     }
   | { ok: false; reason: EnqueueSenderRefusal; detail: string };
 
@@ -168,6 +210,8 @@ export async function resolveEnqueueSender(
     purpose: WhatsappPurpose;
     hashes: RecipientHashes;
     senders: (() => Promise<ChannelAccountPort | null>) | null;
+    /** Deployment switches (an unofficial adapter exists only when enabled). Defaults to the process environment. */
+    env?: NodeJS.ProcessEnv;
   }
 ): Promise<EnqueueSenderDecision> {
   const { tenantId, input, purpose } = context;
@@ -222,7 +266,10 @@ export async function resolveEnqueueSender(
   // The policy is read only when nothing else decides the sender.
   const policy =
     explicit === null && thread === null
-      ? pickPolicy((await loadPolicies(tx, tenantId)).map(toPolicyRow), scope)
+      ? pickPolicy(
+          (await loadApplicablePolicies(tx, tenantId, scope)).map(toPolicyRow),
+          scope
+        )
       : null;
 
   const choice = chooseSender({
@@ -263,7 +310,12 @@ export async function resolveEnqueueSender(
     return refuse("SENDER_UNAVAILABLE", `denied_${verdict.reason}`);
   }
 
-  if (!hasWhatsappSenderAdapter(verdict.sender.provider)) {
+  if (
+    !hasWhatsappSenderAdapter(
+      verdict.sender.provider,
+      context.env ?? process.env
+    )
+  ) {
     return refuse("SENDER_UNAVAILABLE", "provider_has_no_adapter");
   }
 
@@ -271,12 +323,28 @@ export async function resolveEnqueueSender(
     return refuse("SENDER_UNAVAILABLE", "scope_mismatch");
   }
 
+  // Issue #1143: a Meta number sends only as part of a verified WABA, and
+  // not while Meta reports that WABA restricted (banned, restricted, deleted,
+  // offboarded, app uninstalled). Never another number instead.
+  if (verdict.sender.provider === "whatsapp_cloud") {
+    const wabaId = verdict.sender.containerExternalId ?? null;
+
+    if (!wabaId || !verdict.sender.containerAccountId) {
+      return refuse("SENDER_UNAVAILABLE", "meta_container_binding_missing");
+    }
+
+    if (await readMetaRestriction(tx, tenantId, wabaId)) {
+      return refuse("SENDER_UNAVAILABLE", "meta_waba_restricted");
+    }
+  }
+
   return {
     ok: true,
     senderAccountId: choice.senderAccountId,
     selection: choice.selection,
     policyVersion: choice.policyVersion,
-    businessScope: scope
+    businessScope: scope,
+    resolved: verdict.sender
   };
 }
 
@@ -318,7 +386,8 @@ export async function setSenderPolicy(
   tenantId: string,
   actorTenantUserId: string,
   input: SetSenderPolicyInput,
-  senders: ChannelAccountPort | null
+  senders: ChannelAccountPort | null,
+  env: NodeJS.ProcessEnv = process.env
 ): Promise<SetSenderPolicyOutcome> {
   if (input.defaultSenderAccountId !== null) {
     if (!senders) {
@@ -333,7 +402,7 @@ export async function setSenderPolicy(
 
     if (
       !verdict.usable ||
-      !hasWhatsappSenderAdapter(verdict.sender.provider) ||
+      !hasWhatsappSenderAdapter(verdict.sender.provider, env) ||
       !senderScopeAllows(verdict.sender.businessScope, input.businessScope)
     ) {
       return { outcome: "refused", code: "SENDER_UNAVAILABLE" };

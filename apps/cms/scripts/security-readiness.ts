@@ -45,11 +45,22 @@ import { execFileSync } from "node:child_process";
 import path from "node:path";
 
 import { getDatabaseClient } from "../src/lib/database/client";
+import { probeTelegramEngagementDispatchRole } from "./lib/telegram-engagement-dispatch-probe";
 import { withTenantOrThrow } from "../src/lib/database/tenant-context";
 import { countPushAuthSecretsByKeyId } from "../src/modules/push-delivery/application/push-auth-secret-backfill";
 import { resolvePushAuthSecretRing } from "../src/modules/push-delivery/domain/push-auth-secret";
 import { countTelegramChatsByKeyId } from "../src/modules/telegram-delivery/application/telegram-chat-rekey";
 import { resolveTelegramEncryptionRingUnchecked } from "../src/modules/telegram-delivery/domain/telegram-config";
+import {
+  countSourceTokensByKeyId,
+  countSubmissionContactsByKeyId,
+  probeKeyMaterial
+} from "../src/modules/website-engagement/application/key-transition";
+import {
+  resolveWebsiteEngagementEncryptionRingUnchecked,
+  resolveWebsiteEngagementHashRingUnchecked,
+  resolveWebsiteEngagementLegacyHashKeysUnchecked
+} from "../src/modules/website-engagement/domain/engagement-config";
 import { hashPassword } from "../src/lib/auth/password";
 import { listModules } from "../src/modules";
 import {
@@ -89,6 +100,10 @@ import {
   resolvePlatformTenant,
   resolveTenancyMode
 } from "../src/lib/tenant/platform-tenant";
+import {
+  listMissingCdnPurgeSettings,
+  loadCdnPurgeConfig
+} from "../src/lib/edge-cache/cdn-purge-config";
 import { validateEnv } from "./validate-env";
 
 export type CheckSeverity = "critical" | "warning" | "info";
@@ -800,6 +815,89 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // Issue #295 / `sql/965`. Append-only delivery requests: written once by the
   // sender role, never rewritten (trigger) and never deleted by it.
   awcms_commerce_document_deliveries: ["SELECT", "INSERT"],
+  // ADR-0155 / `sql/325` (Issue #1153). NOT retired -- the website intake's
+  // source registry and its submissions, both actively written. Narrowed by
+  // removing exactly one verb, DELETE: a source is revoked (a state), never
+  // removed by the runtime that serves the public endpoint, and a submission is
+  // evidence that only the retention job (`awcms_worker`, DELETE on a
+  // column-only grant) may purge, so a compromised web process cannot erase it.
+  awcms_engagement_sources: ["SELECT", "INSERT", "UPDATE"],
+  awcms_engagement_submissions: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0157 / `sql/330` (Issue #1145). NOT retired -- the social publishing
+  // settings, rules, publications, per-account jobs and attempt ledger, all
+  // actively written. Narrowed by removing exactly one verb, DELETE: a rule is
+  // disabled, a publication cancelled, a job's published state terminal and an
+  // attempt is evidence, so the runtime that serves the API cannot erase what was
+  // published under the tenant's name. (No retention sweep exists yet; see the
+  // recorded follow-up in docs/awcms/social-publishing.md.)
+  awcms_social_publishing_settings: ["SELECT", "INSERT", "UPDATE"],
+  awcms_social_publish_rules: ["SELECT", "INSERT", "UPDATE"],
+  awcms_social_publications: ["SELECT", "INSERT", "UPDATE"],
+  awcms_social_publish_jobs: ["SELECT", "INSERT", "UPDATE"],
+  awcms_social_publish_attempts: ["SELECT", "INSERT"],
+  // ADR-0153 / `sql/342` (Issue #1166). NOT retired -- the lead pipeline, all
+  // actively written. DELETE is removed everywhere: a lead is soft-deleted or
+  // anonymised, a conversion is reversed, a merge rolled back, never removed by
+  // the runtime. UPDATE is ALSO removed from the immutable catalog (revisions,
+  // stages, edges) and the append-only touches and assignments; the triggers of
+  // sql/344 bind the owner as well.
+  awcms_crm_leads_settings: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_pipelines: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_pipeline_revisions: ["SELECT", "INSERT"],
+  awcms_crm_pipeline_stages: ["SELECT", "INSERT"],
+  awcms_crm_pipeline_transitions: ["SELECT", "INSERT"],
+  awcms_crm_leads: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_lead_contact_points: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_lead_source_touches: ["SELECT", "INSERT"],
+  awcms_crm_lead_transitions: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_lead_assignments: ["SELECT", "INSERT"],
+  awcms_crm_lead_conversions: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_lead_merges: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0152 / `sql/350` (Issue #1156). NOT retired -- the customer Telegram
+  // endpoints, contacts, consent evidence, inbound receipts and outbound queue,
+  // all actively written. Narrowed by removing DELETE everywhere (an endpoint is
+  // revoked, a contact ended in place, a message finalised; only the retention
+  // job may purge receipts and messages) and UPDATE on the two append-only
+  // ledgers (consent evidence and receipts are evidence, a correction is a new row).
+  // `sql/379` (Issue #1161). NOT retired -- the quarantine of provider-reported
+  // events, actively written (and reviewed, hence UPDATE). The runtime role has
+  // no DELETE at all: nothing in the request path deletes evidence, only the
+  // retention job (`awcms_worker`, under a restrictive floor and a trigger) does.
+  awcms_email_provider_events: ["SELECT", "INSERT", "UPDATE"],
+  // `sql/393` (Issue #1298 L4). NOT retired -- the Meta webhook body-hash
+  // receipts and 24-hour service windows, both actively written. A receipt is
+  // only ever INSERTed (its stamp is the database clock, and only the purge,
+  // as awcms_worker under a restrictive floor, deletes it); a window is
+  // upserted but never deleted by the runtime.
+  awcms_whatsapp_webhook_receipts: ["SELECT", "INSERT"],
+  awcms_whatsapp_service_windows: ["SELECT", "INSERT", "UPDATE"],
+  awcms_telegram_engagement_endpoints: ["SELECT", "INSERT", "UPDATE"],
+  awcms_telegram_engagement_contacts: ["SELECT", "INSERT", "UPDATE"],
+  awcms_telegram_engagement_consents: ["SELECT", "INSERT"],
+  awcms_telegram_engagement_inbound: ["SELECT", "INSERT"],
+  awcms_telegram_engagement_messages: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0159 / `sql/369` (Issue #1165). NOT retired -- the follow-up rules,
+  // tasks, stops and notices, all actively written. DELETE is removed
+  // everywhere (a rule is archived, a task cancelled, a stop permanent); UPDATE
+  // is ALSO removed from the immutable revisions and the append-only actions
+  // and stop signals, whose triggers bind the owner as well.
+  awcms_crm_follow_up_settings: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_follow_up_rules: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_follow_up_rule_revisions: ["SELECT", "INSERT"],
+  awcms_crm_follow_up_tasks: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_follow_up_task_actions: ["SELECT", "INSERT"],
+  awcms_crm_follow_up_stop_signals: ["SELECT", "INSERT"],
+  awcms_crm_follow_up_notifications: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0160 / `sql/382` (Issue #1164). NOT retired -- the omnichannel inbox.
+  // Narrowed by removing DELETE from the conversation projection (only the
+  // retention job, awcms_worker, purges it), from the tag catalogue (soft
+  // delete) and from SLA policies (retired, never deleted); and both UPDATE and
+  // DELETE from the append-only activity ledger (history is evidence; it goes
+  // with its conversation by ON DELETE CASCADE, never by the runtime).
+  awcms_inbox_conversations: ["SELECT", "INSERT", "UPDATE"],
+  awcms_inbox_activity: ["SELECT", "INSERT"],
+  awcms_inbox_tags: ["SELECT", "INSERT", "UPDATE"],
+  awcms_inbox_sla_policies: ["SELECT", "INSERT", "UPDATE"],
   // ADR-0126 / `sql/169`. NOT retired — the append-only stock ledger and its
   // low-stock signals. A finalised movement is corrected by a compensating
   // movement, never edited, so the runtime keeps exactly the two verbs posting
@@ -1482,6 +1580,10 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // seeds the tenant's derived e-mail template (`ON CONFLICT DO NOTHING`).
   awcms_email_templates: ["SELECT", "INSERT"],
   awcms_email_suppression_list: ["SELECT"],
+  // `sql/379` (Issue #1161) for `bun run email:queue:purge`: the quarantine of
+  // provider-reported events, under a RESTRICTIVE delete floor on
+  // `received_at` (a column only the table's trigger writes).
+  awcms_email_provider_events: ["SELECT", "DELETE"],
   awcms_workflow_tasks: ["SELECT", "UPDATE"],
   awcms_workflow_instances: ["SELECT"],
   awcms_workflow_definitions: ["SELECT"],
@@ -1536,7 +1638,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // never writes them. `whatsapp:queue:purge` deletes terminal rows (the DELETE
   // is the one to notice, per sql/091). Consents and suppressions are never
   // deleted by any job.
-  awcms_whatsapp_messages: ["DELETE", "INSERT", "SELECT", "UPDATE"],
+  // UPDATE is column-only since sql/392 (Issue #1298 L3): see WORKER_COLUMN_GRANTS.
+  awcms_whatsapp_messages: ["DELETE", "INSERT", "SELECT"],
   awcms_whatsapp_delivery_attempts: ["DELETE", "INSERT", "SELECT"],
   awcms_whatsapp_consents: ["SELECT"],
   awcms_whatsapp_suppressions: ["INSERT", "SELECT"],
@@ -1545,6 +1648,29 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // scope; a worker that could write it could change which number and provider
   // speak for a tenant.
   awcms_whatsapp_sender_policies: ["SELECT"],
+  // Issue #1143 (sql/365) - `whatsapp:dispatch` re-reads Meta template
+  // approvals and WABA restrictions immediately before a send, read-only: a
+  // worker that could write them would decide what Meta approved or whether a
+  // WABA is banned. `whatsapp:queue:purge` deletes closed service windows and
+  // old webhook receipts (the DELETE is the one to notice, per sql/091).
+  awcms_whatsapp_meta_templates: ["SELECT"],
+  awcms_whatsapp_meta_sender_signals: ["SELECT"],
+  awcms_whatsapp_service_windows: ["DELETE", "SELECT"],
+  awcms_whatsapp_webhook_receipts: ["DELETE", "SELECT"],
+  // ADR-0157 / `sql/330` (Issue #1145). The article path enqueues from
+  // `blog:publish:scheduled` (reads the two tenant switches and the rules, inserts
+  // a publication and its jobs); `social-publishing:dispatch` claims and finalises
+  // jobs (UPDATE) and writes the attempt ledger. Neither updates a publication
+  // (its snapshot is immutable and its approval is an operator's act), and
+  // neither writes the switches or the rules: a worker that could would decide
+  // which accounts publish what. DELETE added by `sql/357` (Issue #1145) for
+  // `social-publishing:retention:purge`, bounded by RESTRICTIVE row policies to
+  // terminal evidence older than 365 days (pinned below).
+  awcms_social_publishing_settings: ["SELECT"],
+  awcms_social_publish_rules: ["SELECT"],
+  awcms_social_publications: ["DELETE", "SELECT", "INSERT"],
+  awcms_social_publish_jobs: ["DELETE", "SELECT", "INSERT", "UPDATE"],
+  awcms_social_publish_attempts: ["DELETE", "SELECT", "INSERT"],
   // ADR-0140 (sql/216) — `telegram:dispatch` claims/updates queue rows, writes
   // attempts, and ends (revokes/suspends) a binding whose principal is gone or
   // whose chat Telegram reports unreachable, nulling its ciphertext; it reads the
@@ -1705,6 +1831,28 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // an unsubscribe record is what answers a later complaint.
   // SELECT is column-only since sql/304: see WORKER_COLUMN_GRANTS.
   awcms_newsletter_subscribers: ["DELETE"],
+  // ADR-0155 (Issue #1153) -- data-lifecycle:archive-purge (sql/325): the
+  // retention sweep over website submissions. DELETE to remove aged rows; SELECT
+  // is COLUMN-ONLY (id, tenant_id, received_at): see WORKER_COLUMN_GRANTS. No
+  // UPDATE and no INSERT: a submission is evidence written by the public intake
+  // on awcms_app, and a compromised job can read no identifier, hash or
+  // ciphertext.
+  awcms_engagement_submissions: ["DELETE"],
+  // ADR-0152 (Issue #1156) -- data-lifecycle:archive-purge (sql/350): the
+  // retention sweep over customer Telegram receipts and outbound rows. DELETE
+  // only; SELECT is COLUMN-ONLY (id, tenant_id, cursor): see
+  // WORKER_COLUMN_GRANTS. The dispatcher is NOT this role: it runs as its own
+  // role awcms_telegram_engagement_dispatch (sql/353), pinned below by
+  // checkTelegramEngagementDispatchRole.
+  awcms_telegram_engagement_inbound: ["DELETE"],
+  awcms_telegram_engagement_messages: ["DELETE"],
+  // ADR-0160 (Issue #1164) -- data-lifecycle:archive-purge (sql/382): the
+  // retention sweep over inbox conversations, DELETE; the activity history and
+  // tag links go with a conversation by ON DELETE CASCADE. The domain-event
+  // dispatcher also runs the inbox projector as this role (#1275 audit, H-1):
+  // its SELECT/INSERT/UPDATE are COLUMN-ONLY (never the assignee or the
+  // response stamps): see WORKER_COLUMN_GRANTS.
+  awcms_inbox_conversations: ["DELETE"],
   // ADR-0127 — data-lifecycle:archive-purge (sql/172): SELECT to find aged tax
   // snapshots, DELETE to remove them. No UPDATE — a snapshot is never edited,
   // and the immutability trigger refuses to delete anything younger than 1826
@@ -2232,7 +2380,21 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // drained by `hr-commission:intents:post` as `awcms_app`. The insert carries a
   // bare `ON CONFLICT DO NOTHING` (no arbiter), which is why INSERT alone is
   // enough here, unlike the `ON CONFLICT ON CONSTRAINT` rows sql/127 repaired.
-  awcms_hr_commission_intents: ["INSERT"]
+  awcms_hr_commission_intents: ["INSERT"],
+  // ADR-0159 / `sql/369` (Issue #1165). The `crm_follow_up.lead_signals`
+  // consumer (in `domain-events:dispatch`) and `crm-follow-up:dispatch` both run
+  // as `awcms_worker`: they READ the configuration (settings, rules, revisions;
+  // never written by the worker), create and settle tasks and notices, and
+  // append actions and stop signals. No DELETE anywhere; the triggers of
+  // sql/369 keep actions and stop signals append-only and a closed task or a
+  // settled notice frozen.
+  awcms_crm_follow_up_settings: ["SELECT"],
+  awcms_crm_follow_up_rules: ["SELECT"],
+  awcms_crm_follow_up_rule_revisions: ["SELECT"],
+  awcms_crm_follow_up_tasks: ["SELECT", "INSERT", "UPDATE"],
+  awcms_crm_follow_up_task_actions: ["SELECT", "INSERT"],
+  awcms_crm_follow_up_stop_signals: ["SELECT", "INSERT"],
+  awcms_crm_follow_up_notifications: ["SELECT", "INSERT", "UPDATE"]
   // `awcms_hr_commission_intake_settings` is deliberately absent: the worker
   // holds only a COLUMN-level SELECT on (tenant_id, commission_intake_enabled)
   // (see WORKER_COLUMN_GRANTS), which the port and the intake insert trigger read.
@@ -2284,10 +2446,38 @@ export const SETUP_ROLE_GRANTS: Record<string, string[]> = {
  * of those lists contains a credential column).
  * A table-wide grant elsewhere in `WORKER_ROLE_GRANTS` is not repeated here.
  */
+/**
+ * Issue #1160 audit M3. The canonical form of a policy expression: the
+ * `pg_get_expr` deparse with whitespace and `::text` casts removed and
+ * lower-cased, so the pin is exact about every predicate, literal and operator
+ * while not depending on how a server version indents its deparse.
+ */
+export function normalizeWorkerPolicyExpression(expression: string): string {
+  return expression
+    .replace(/::text/g, "")
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+/** The exact sql/348 expression of `awcms_channel_secrets_worker_dispatch_purposes`, normalised. Changing the policy means changing THIS constant in the same reviewed change. */
+export const WORKER_SECRET_POLICY_EXPRESSION =
+  "((purpose=any(array['provider_access_token','api_token','device_key']))and((exists(select1fromawcms_channel_accountsawhere((a.tenant_id=awcms_channel_secrets.tenant_id)and(a.secret_id=awcms_channel_secrets.id)and(a.provider=any(array['whatsapp_cloud','starsender']))and(a.deleted_atisnull))))or(exists(select1fromawcms_channel_provider_connectionscwhere((c.tenant_id=awcms_channel_secrets.tenant_id)and(c.access_secret_id=awcms_channel_secrets.id)and(c.provider='whatsapp_cloud'))))or((purpose='api_token')and(exists(select1fromawcms_channel_accountsawhere((a.tenant_id=awcms_channel_secrets.tenant_id)and(a.secret_id=awcms_channel_secrets.id)and(a.provider='mailketing')and(a.account_kind='esp_account')and(a.status='connected')and(a.deleted_atisnull)))))))";
+
+import { probeWorkerSecretVisibility } from "./lib/worker-secret-probe";
+
+export { probeWorkerSecretVisibility };
+
 export const WORKER_COLUMN_GRANTS: Record<
   string,
   Partial<Record<"SELECT" | "INSERT" | "UPDATE", string[]>>
 > = {
+  // The #1145 audit, M4 and L-5: the social enqueue path and dispatcher honour a
+  // tenant's decision to switch the module off, so they read the enablement flag.
+  // Exactly the columns `resolveModuleEnabled` selects; never `disable_reason`
+  // (free text) or the actor stamps.
+  awcms_tenant_modules: {
+    SELECT: ["tenant_id", "module_key", "enabled"]
+  },
   awcms_hr_attendance_corrections: {
     SELECT: [
       "id",
@@ -2309,6 +2499,26 @@ export const WORKER_COLUMN_GRANTS: Record<
     UPDATE: ["status", "decided_by", "decided_at", "updated_at"]
   },
   awcms_hr_employments: { UPDATE: ["updated_at"] },
+  // sql/392 (Issue #1298 L3): the dispatcher and the expiry sweep write exactly
+  // these columns. The provider-reported status (`provider_status*`, written by
+  // a signed webhook as awcms_app), the recipient, template, purpose and sender
+  // columns are not writable by the worker; the values it may write are bounded
+  // by the awcms_whatsapp_messages_worker_guard trigger (pinned below).
+  awcms_whatsapp_messages: {
+    UPDATE: [
+      "status",
+      "next_attempt_at",
+      "retry_count",
+      "updated_at",
+      "sent_at",
+      "provider_name",
+      "provider_message_id",
+      "body",
+      "variables",
+      "failure_code",
+      "last_error"
+    ]
+  },
   // sql/316 (Issue #1189, ADR-0147): the commission intake switch. The port and
   // the intake insert trigger read exactly these two columns; the intake system
   // actor and the stamps are not readable by the worker.
@@ -2448,6 +2658,116 @@ export const WORKER_COLUMN_GRANTS: Record<
   awcms_delegated_access_grants: { SELECT: ["id", "tenant_id", "created_at"] },
   awcms_omes_enrollments: { SELECT: ["id", "tenant_id", "created_at"] },
   awcms_newsletter_subscribers: { SELECT: ["id", "tenant_id", "created_at"] },
+  // sql/325 (Issue #1153): the generic purge's candidate selection and delete
+  // subquery need the key, the tenant and the cursor, nothing about the person.
+  awcms_engagement_submissions: {
+    SELECT: ["id", "tenant_id", "received_at"]
+  },
+  // sql/350 (Issue #1156): the generic purge (receipts, messages) and the
+  // lifecycle dry-run count (endpoints, contacts, consents) need the key, the
+  // tenant and the cursor only: no hash, ciphertext, label or secret reference.
+  awcms_telegram_engagement_endpoints: {
+    SELECT: ["id", "tenant_id", "created_at"]
+  },
+  awcms_telegram_engagement_contacts: {
+    SELECT: ["id", "tenant_id", "started_at"]
+  },
+  awcms_telegram_engagement_consents: {
+    SELECT: ["id", "tenant_id", "recorded_at"]
+  },
+  awcms_telegram_engagement_inbound: {
+    SELECT: ["id", "tenant_id", "received_at"]
+  },
+  awcms_telegram_engagement_messages: {
+    SELECT: ["id", "tenant_id", "created_at"]
+  },
+  // sql/382 (Issue #1164): the generic purge's key, tenant and cursor, plus
+  // what the projector reads and writes when the domain-event dispatcher runs it
+  // as this role (#1275 audit, H-1). Never `assignee_tenant_user_id`,
+  // `assigned_at` or `last_responded_at`: the dispatcher cannot assign work or
+  // fake a response.
+  awcms_inbox_conversations: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "source_kind",
+      "source_ref",
+      "channel_account_id",
+      "business_scope_type",
+      "business_scope_id",
+      "first_inbound_at",
+      "last_inbound_at",
+      "awaiting_since",
+      "customer_state",
+      "customer_state_sequence",
+      "status",
+      "first_responded_at",
+      "answered_through",
+      "sla_policy_id",
+      "response_due_kind",
+      "response_due_at",
+      "sla_breached_at",
+      "version",
+      "created_at",
+      "updated_at"
+    ],
+    INSERT: [
+      "tenant_id",
+      "source_kind",
+      "source_ref",
+      "channel_account_id",
+      "business_scope_type",
+      "business_scope_id",
+      "first_inbound_at",
+      "last_inbound_at"
+    ],
+    UPDATE: [
+      "business_scope_type",
+      "business_scope_id",
+      "first_inbound_at",
+      "last_inbound_at",
+      "awaiting_since",
+      "customer_state",
+      "customer_state_sequence",
+      "status",
+      "answered_through",
+      "sla_policy_id",
+      "response_due_kind",
+      "response_due_at",
+      "sla_breached_at",
+      "version",
+      "updated_at"
+    ]
+  },
+  // sql/382: the delegated descriptors' dry-run snapshot (tenant, cursor); the
+  // projector appends a reopen row (append-only: no UPDATE, no DELETE).
+  awcms_inbox_activity: {
+    SELECT: ["id", "tenant_id", "created_at"],
+    INSERT: ["tenant_id", "conversation_id", "kind", "detail_code"]
+  },
+  awcms_inbox_conversation_tags: {
+    SELECT: ["tenant_id", "conversation_id", "created_at"]
+  },
+  awcms_inbox_tags: { SELECT: ["id", "tenant_id", "created_at"] },
+  // The projector resolves the policy that starts an SLA clock: its TERMS,
+  // never the author stamps.
+  awcms_inbox_sla_policies: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "business_scope_type",
+      "business_scope_id",
+      "name",
+      "timezone",
+      "first_response_minutes",
+      "next_response_minutes",
+      "working_hours",
+      "holidays",
+      "status",
+      "retired_at",
+      "created_at"
+    ]
+  },
   // `confirmed` too: comments:retention filters `confirmed = false`.
   awcms_comments_reply_subscriptions: {
     SELECT: ["id", "tenant_id", "created_at", "confirmed"]
@@ -2536,6 +2856,28 @@ export const WORKER_COLUMN_GRANTS: Record<
   awcms_channel_secrets: {
     SELECT: ["id", "tenant_id", "purpose", "ciphertext"]
   },
+  // sql/348 (Issue #1160, ADR-0151 section 2): `email:dispatch` holds a tenant
+  // sender whose verification or account credit is stale, unknown or below the
+  // floor. It reads the latest health row: state, fixed reason code, when it was
+  // checked and the reported balance. No token expiry, no quota limit, and no
+  // write (a worker that could write health could mark a sender verified).
+  awcms_channel_account_health: {
+    SELECT: [
+      "tenant_id",
+      "account_id",
+      "state",
+      "reason_code",
+      "checked_at",
+      "quota_remaining"
+    ]
+  },
+  // sql/340 (Issue #1142, ADR-0148 section 7): the send decision asks whether the
+  // tenant's acknowledgement of an UNOFFICIAL provider's current text is still in
+  // force. Exactly those five columns: not the acting person, not the text hash,
+  // not who revoked it, and no write of any kind.
+  awcms_channel_provider_risk_acknowledgements: {
+    SELECT: ["id", "tenant_id", "provider", "text_version", "revoked_at"]
+  },
   awcms_telegram_bindings: {
     // sql/216 + sql/288: the dispatcher and purge only END a binding.
     UPDATE: [
@@ -2591,6 +2933,1839 @@ export const SETUP_COLUMN_GRANTS: typeof WORKER_COLUMN_GRANTS = {
   }
 };
 
+/**
+ * `awcms_social_dispatch` (sql/358, Issue #1145, ADR-0157 section 6): the
+ * SEPARATE role through which the social dispatcher may read a publishing
+ * token. It holds NO table-level privilege anywhere and exactly these column
+ * reads, so the matrix below is empty and every awcms_% table must be fully
+ * ungranted at table level. The rows it may see of `awcms_channel_secrets` are
+ * bounded by the RESTRICTIVE policy `awcms_channel_secrets_social_dispatch_publish`,
+ * pinned in `checkWorkerSetupRoleGrants`.
+ */
+export const SOCIAL_DISPATCH_ROLE = "awcms_social_dispatch";
+
+export const SOCIAL_DISPATCH_ROLE_GRANTS: Record<string, string[]> = {};
+
+export const SOCIAL_DISPATCH_COLUMN_GRANTS: typeof WORKER_COLUMN_GRANTS = {
+  awcms_channel_accounts: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "business_scope_type",
+      "business_scope_id",
+      "provider",
+      "account_kind",
+      "external_id",
+      "auth_mode",
+      "connection_id",
+      "parent_account_id",
+      "secret_id",
+      "status",
+      "deleted_at",
+      // sql/373 (Issue #1146): `version = version + 1` of the degrade report.
+      "version"
+    ],
+    UPDATE: ["status", "status_reason", "updated_at", "version"]
+  },
+  awcms_channel_account_capabilities: {
+    SELECT: [
+      "tenant_id",
+      "account_id",
+      "capability",
+      "state",
+      // sql/373: `resolvePublisher` evaluates the evidence and matrix version.
+      "evidence_kind",
+      "evidence_ref",
+      "matrix_version"
+    ]
+  },
+  // sql/373 (Issue #1146): what the WHOLE dispatch job needs once it runs as
+  // this role and nothing else (the dedicated-role job class).
+  awcms_tenants: { SELECT: ["id", "status"] },
+  awcms_tenant_modules: { SELECT: ["tenant_id", "module_key", "enabled"] },
+  awcms_channel_account_health: {
+    SELECT: ["tenant_id", "account_id", "state", "reason_code", "checked_at"],
+    INSERT: ["tenant_id", "account_id", "state", "reason_code", "checked_at"],
+    UPDATE: ["state", "reason_code", "checked_at", "updated_at"]
+  },
+  awcms_social_publications: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "state",
+      "not_before",
+      "title",
+      "caption",
+      "link_url",
+      "media_snapshot",
+      // sql/386 (ADR-0157 L8): which source the dispatcher re-checks. Ids
+      // and a kind only; the article and the media object themselves are
+      // answered by two SECURITY DEFINER functions, never read.
+      "source_kind",
+      "source_id",
+      "media_object_id"
+    ]
+  },
+  awcms_social_publish_jobs: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "publication_id",
+      "channel_account_id",
+      "provider",
+      "account_kind",
+      "variant",
+      "idempotency_key",
+      "status",
+      "attempt_count",
+      "max_attempts",
+      "hold_count",
+      "next_attempt_at",
+      "published_at"
+    ],
+    UPDATE: [
+      "status",
+      "attempt_count",
+      "dedupe_key_supported",
+      "next_attempt_at",
+      "external_post_id",
+      "external_post_url",
+      "published_at",
+      "failure_code",
+      "last_error",
+      "hold_count",
+      "updated_at"
+    ]
+  },
+  awcms_social_publish_attempts: {
+    SELECT: ["tenant_id", "job_id", "attempt_no"],
+    INSERT: [
+      "tenant_id",
+      "job_id",
+      "attempt_no",
+      "outcome",
+      "error_code",
+      "error_message"
+    ]
+  },
+  awcms_audit_events: {
+    INSERT: [
+      "tenant_id",
+      "actor_tenant_user_id",
+      "actor_tenant_id",
+      "delegated_grant_id",
+      "module_key",
+      "action",
+      "resource_type",
+      "resource_id",
+      "severity",
+      "message",
+      "attributes",
+      "correlation_id"
+    ]
+  },
+  awcms_domain_events: {
+    SELECT: ["id", "event_sequence", "producer_module", "event_type"],
+    INSERT: [
+      "tenant_id",
+      "event_type",
+      "event_version",
+      "aggregate_type",
+      "aggregate_id",
+      "aggregate_version",
+      "order_key",
+      "correlation_id",
+      "causation_id",
+      "producer_module",
+      "schema_ref",
+      "actor_tenant_user_id",
+      "actor_profile_id",
+      "payload",
+      "occurred_at"
+    ]
+  },
+  // sql/373 (the #1271 audit, M1): NO grant on awcms_domain_event_deliveries.
+  awcms_channel_provider_connections: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "provider",
+      "grant_state",
+      "access_secret_id",
+      "expires_at"
+    ]
+  },
+  awcms_channel_secrets: {
+    SELECT: ["id", "tenant_id", "purpose", "ciphertext"]
+  }
+};
+
+/**
+ * A row policy pinned to its EXACT canonical expression (M-1/M-3 of the #1261
+ * audit). A substring pin (`LIKE '%365 days%'`) passes `... OR true`, a
+ * reversed comparison or a dropped condition; an exact pin passes only the
+ * policy that was reviewed. `expression` is `pg_get_expr(polqual, polrelid)`
+ * with every run of whitespace collapsed to one space (PostgreSQL's deparse
+ * indents sub-selects; the words are what is reviewed, not the layout).
+ * Changing a pinned policy is a migration AND an edit here, on purpose.
+ */
+export type PinnedPolicy = {
+  table: string;
+  policy: string;
+  role: string;
+  /** `pg_policy.polcmd`: r = SELECT, d = DELETE, a = INSERT, w = UPDATE, * = ALL. */
+  command: "r" | "a" | "w" | "d" | "*";
+  /** The USING expression; `""` for a policy that has none (an INSERT policy). */
+  expression: string;
+  /**
+   * The WITH CHECK expression of a write policy (Issue #1146). Absent means the
+   * policy must have NO WITH CHECK at all, as every read and delete pin does.
+   */
+  withCheck?: string;
+};
+
+export function normalizePolicyExpression(expression: string): string {
+  return expression.replace(/\s+/g, " ").trim();
+}
+
+const SIX_SOCIAL_PROVIDERS =
+  "ARRAY['facebook'::text, 'instagram'::text, 'threads'::text, 'tiktok'::text, 'youtube'::text, 'linkedin'::text]";
+
+/** sql/358: what `awcms_social_dispatch` may see. */
+export const SOCIAL_DISPATCH_PINNED_POLICIES: readonly PinnedPolicy[] = [
+  {
+    table: "awcms_channel_secrets",
+    policy: "awcms_channel_secrets_social_dispatch_publish",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "r",
+    expression:
+      "((purpose = 'provider_access_token'::text) AND (EXISTS ( SELECT 1 FROM ((awcms_channel_provider_connections c JOIN awcms_channel_accounts a ON (((a.tenant_id = c.tenant_id) AND (a.connection_id = c.id) AND (a.provider = c.provider)))) JOIN awcms_channel_account_capabilities k ON (((k.tenant_id = a.tenant_id) AND (k.account_id = a.id)))) WHERE ((c.tenant_id = awcms_channel_secrets.tenant_id) AND (c.access_secret_id = awcms_channel_secrets.id) AND (c.provider = ANY (" +
+      SIX_SOCIAL_PROVIDERS +
+      ")) AND (c.grant_state = ANY (ARRAY['active'::text, 'expired'::text])) AND (a.deleted_at IS NULL) AND (a.status = ANY (ARRAY['connected'::text, 'degraded'::text])) AND (k.capability = 'publish'::text) AND (k.state = 'granted'::text)))))"
+  },
+  {
+    table: "awcms_channel_accounts",
+    policy: "awcms_channel_accounts_social_dispatch_providers",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "r",
+    expression: `(provider = ANY (${SIX_SOCIAL_PROVIDERS}))`
+  },
+  {
+    table: "awcms_channel_provider_connections",
+    policy: "awcms_channel_provider_connections_social_dispatch_providers",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "r",
+    expression: `(provider = ANY (${SIX_SOCIAL_PROVIDERS}))`
+  }
+];
+
+const SOCIAL_ACCOUNT_OF_HEALTH_ROW =
+  "(EXISTS ( SELECT 1 FROM awcms_channel_accounts a WHERE ((a.tenant_id = awcms_channel_account_health.tenant_id) AND (a.id = awcms_channel_account_health.account_id) AND (a.provider = ANY (" +
+  SIX_SOCIAL_PROVIDERS +
+  ")) AND (a.deleted_at IS NULL))))";
+const SOCIAL_DISPATCH_EVENT_TYPES =
+  "ARRAY['awcms.social_publishing.job.published'::text, 'awcms.social_publishing.job.failed'::text]";
+
+/**
+ * sql/373 (Issue #1146): the row and value bounds of every WRITE the social
+ * dispatcher makes once the whole job runs as `awcms_social_dispatch`. Each is
+ * pinned with its USING and its WITH CHECK, exactly: a widened status list, a
+ * dropped provider test or a `true OR` on either side is a finding.
+ */
+export const SOCIAL_DISPATCH_WRITE_POLICIES: readonly PinnedPolicy[] = [
+  {
+    table: "awcms_social_publish_jobs",
+    policy: "awcms_social_publish_jobs_social_dispatch_update",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "w",
+    expression:
+      "(status = ANY (ARRAY['queued'::text, 'retry_wait'::text, 'publishing'::text]))",
+    withCheck:
+      "(status = ANY (ARRAY['queued'::text, 'publishing'::text, 'retry_wait'::text, 'published'::text, 'failed'::text, 'needs_reconciliation'::text]))"
+  },
+  {
+    table: "awcms_channel_accounts",
+    policy: "awcms_channel_accounts_social_dispatch_degrade",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "w",
+    expression: `((provider = ANY (${SIX_SOCIAL_PROVIDERS})) AND (deleted_at IS NULL) AND (status = 'connected'::text))`,
+    withCheck: `((provider = ANY (${SIX_SOCIAL_PROVIDERS})) AND (deleted_at IS NULL) AND (status = 'degraded'::text))`
+  },
+  {
+    table: "awcms_channel_account_health",
+    policy: "awcms_channel_account_health_social_dispatch",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "*",
+    expression: SOCIAL_ACCOUNT_OF_HEALTH_ROW,
+    withCheck: `((state = 'failing'::text) AND ${SOCIAL_ACCOUNT_OF_HEALTH_ROW})`
+  },
+  {
+    table: "awcms_audit_events",
+    policy: "awcms_audit_events_social_dispatch_insert",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "a",
+    expression: "",
+    withCheck: "(module_key = 'social_publishing'::text)"
+  },
+  {
+    table: "awcms_domain_events",
+    policy: "awcms_domain_events_social_dispatch_insert",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "a",
+    expression: "",
+    withCheck: `((producer_module = 'social_publishing'::text) AND (event_type = ANY (${SOCIAL_DISPATCH_EVENT_TYPES})))`
+  },
+  {
+    // The #1271 audit, M1: the role reads back only its own module's events.
+    table: "awcms_domain_events",
+    policy: "awcms_domain_events_social_dispatch_select",
+    role: SOCIAL_DISPATCH_ROLE,
+    command: "r",
+    expression: `((producer_module = 'social_publishing'::text) AND (event_type = ANY (${SOCIAL_DISPATCH_EVENT_TYPES})))`
+  }
+];
+
+/** sql/357: the per-row floors under the worker's retention DELETE. */
+export const SOCIAL_RETENTION_FLOOR_POLICIES: readonly PinnedPolicy[] = [
+  {
+    table: "awcms_social_publish_attempts",
+    policy: "awcms_social_publish_attempts_worker_retention_floor",
+    role: WORKER_ROLE,
+    command: "d",
+    expression:
+      "((created_at < (now() - '365 days'::interval)) AND (EXISTS ( SELECT 1 FROM awcms_social_publish_jobs j WHERE ((j.tenant_id = awcms_social_publish_attempts.tenant_id) AND (j.id = awcms_social_publish_attempts.job_id) AND (j.status = ANY (ARRAY['published'::text, 'failed'::text, 'cancelled'::text])) AND (j.terminal_at < (now() - '365 days'::interval))))))"
+  },
+  {
+    table: "awcms_social_publish_jobs",
+    policy: "awcms_social_publish_jobs_worker_retention_floor",
+    role: WORKER_ROLE,
+    command: "d",
+    expression:
+      "((status = ANY (ARRAY['published'::text, 'failed'::text, 'cancelled'::text])) AND (terminal_at < (now() - '365 days'::interval)))"
+  },
+  {
+    table: "awcms_social_publications",
+    policy: "awcms_social_publications_worker_retention_floor",
+    role: WORKER_ROLE,
+    command: "d",
+    expression:
+      "((state = ANY (ARRAY['ready'::text, 'cancelled'::text, 'refused'::text])) AND (terminal_at < (now() - '365 days'::interval)) AND (NOT (EXISTS ( SELECT 1 FROM awcms_social_publish_jobs j WHERE ((j.tenant_id = awcms_social_publications.tenant_id) AND (j.publication_id = awcms_social_publications.id))))))"
+  }
+];
+
+/**
+ * sql/379 (Issue #1161, audit M-3 of PR #1272): the worker's retention DELETE
+ * on the Mailketing quarantine, pinned to its exact canonical expression.
+ */
+export const EMAIL_PROVIDER_EVENT_RETENTION_FLOOR_POLICY: PinnedPolicy = {
+  table: "awcms_email_provider_events",
+  policy: "awcms_email_provider_events_worker_retention_floor",
+  role: WORKER_ROLE,
+  command: "d",
+  expression:
+    "((received_at < (now() - '30 days'::interval)) AND ((review_status <> 'pending'::text) OR (received_at < (now() - '365 days'::interval))))"
+};
+
+/** A trigger whose function body is pinned exactly (whitespace-normalised `prosrc`). */
+export type PinnedTrigger = {
+  table: string;
+  trigger: string;
+  fn: string;
+  body: string;
+  /**
+   * Default `insert_update`: BEFORE INSERT OR UPDATE FOR EACH ROW (the INSERT and
+   * UPDATE bits must be set; other bits are not examined, as before). `insert`
+   * and `update` are EXACT: the named event and no other
+   * (sql/392, sql/393).
+   */
+  events?: "insert_update" | "delete" | "insert" | "update";
+};
+
+/**
+ * sql/379: the only writer of `received_at` (the stamp the retention floor rests
+ * on) and the immutability of the quarantine; and the role-independent DELETE
+ * floor that holds where the restrictive policy does not bind (an owner, or a
+ * single-role deployment).
+ */
+export const EMAIL_PROVIDER_EVENT_TRIGGERS: readonly PinnedTrigger[] = [
+  {
+    table: "awcms_email_provider_events",
+    trigger: "awcms_email_provider_events_guard",
+    fn: "awcms_email_provider_events_guard",
+    body: "BEGIN IF TG_OP = 'INSERT' THEN NEW.received_at := now(); NEW.authenticity := 'unauthenticated'; IF NEW.review_status NOT IN ('pending', 'informational') THEN RAISE EXCEPTION 'a provider event is recorded unreviewed' USING ERRCODE = '23514'; END IF; RETURN NEW; END IF; IF NEW.id IS DISTINCT FROM OLD.id OR NEW.tenant_id IS DISTINCT FROM OLD.tenant_id OR NEW.subscription_id IS DISTINCT FROM OLD.subscription_id OR NEW.esp_account_id IS DISTINCT FROM OLD.esp_account_id OR NEW.email_message_id IS DISTINCT FROM OLD.email_message_id OR NEW.provider IS DISTINCT FROM OLD.provider OR NEW.event_type IS DISTINCT FROM OLD.event_type OR NEW.correlation IS DISTINCT FROM OLD.correlation OR NEW.provider_message_id IS DISTINCT FROM OLD.provider_message_id OR NEW.recipient_hash IS DISTINCT FROM OLD.recipient_hash OR NEW.recipient_masked IS DISTINCT FROM OLD.recipient_masked OR NEW.bounce_class IS DISTINCT FROM OLD.bounce_class OR NEW.status_code IS DISTINCT FROM OLD.status_code OR NEW.link_host IS DISTINCT FROM OLD.link_host OR NEW.link_hash IS DISTINCT FROM OLD.link_hash OR NEW.provider_reported_at IS DISTINCT FROM OLD.provider_reported_at OR NEW.dedupe_key IS DISTINCT FROM OLD.dedupe_key OR NEW.authenticity IS DISTINCT FROM OLD.authenticity OR NEW.received_at IS DISTINCT FROM OLD.received_at THEN RAISE EXCEPTION 'a provider event is immutable except its review' USING ERRCODE = '23514'; END IF; IF NEW.review_status IS DISTINCT FROM OLD.review_status THEN IF OLD.review_status <> 'pending' OR NEW.review_status NOT IN ('confirmed', 'dismissed') THEN RAISE EXCEPTION 'a provider event is reviewed once, from pending' USING ERRCODE = '23514'; END IF; NEW.reviewed_at := now(); ELSIF NEW.reviewed_by IS DISTINCT FROM OLD.reviewed_by OR NEW.reviewed_at IS DISTINCT FROM OLD.reviewed_at OR NEW.suppression_id IS DISTINCT FROM OLD.suppression_id THEN RAISE EXCEPTION 'a provider event review is final' USING ERRCODE = '23514'; END IF; RETURN NEW; END;"
+  },
+  {
+    table: "awcms_email_provider_events",
+    trigger: "awcms_email_provider_events_delete_floor",
+    fn: "awcms_email_provider_events_delete_floor",
+    events: "delete",
+    body: "BEGIN IF OLD.received_at >= now() - interval '30 days' OR (OLD.review_status = 'pending' AND OLD.received_at >= now() - interval '365 days') THEN RAISE EXCEPTION 'a provider event is deleted only by retention, past its window' USING ERRCODE = '23514'; END IF; RETURN OLD; END;"
+  }
+];
+
+/**
+ * sql/392 and sql/393 (Issue #1298): the value guard on the dispatcher's queue
+ * writes, the database clock of the webhook receipts (the stamp the worker's
+ * purge floor rests on) and the cap on a service window's time.
+ */
+export const WHATSAPP_META_AUDIT_TRIGGERS: readonly PinnedTrigger[] = [
+  {
+    table: "awcms_whatsapp_messages",
+    trigger: "awcms_whatsapp_messages_worker_guard",
+    fn: "awcms_whatsapp_messages_worker_guard",
+    events: "update",
+    body: "BEGIN IF current_user <> 'awcms_worker' THEN RETURN NEW; END IF; IF OLD.status IN ('sent', 'failed', 'expired', 'cancelled') THEN RAISE EXCEPTION 'the WhatsApp dispatcher does not change a terminal message' USING ERRCODE = '23514'; END IF; IF NEW.status IS DISTINCT FROM OLD.status AND NOT ( (NEW.status = 'sending' AND OLD.status IN ('queued', 'retry_wait')) OR (NEW.status IN ('retry_wait', 'sent', 'failed') AND OLD.status = 'sending') OR (NEW.status = 'cancelled' AND OLD.status IN ('queued', 'retry_wait', 'sending')) OR (NEW.status = 'expired' AND OLD.status IN ('queued', 'retry_wait', 'sending')) ) THEN RAISE EXCEPTION 'the WhatsApp dispatcher made a status change the queue does not allow' USING ERRCODE = '23514'; END IF; IF NEW.body IS DISTINCT FROM OLD.body AND NOT (NEW.body = '' AND OLD.contains_secret) THEN RAISE EXCEPTION 'the WhatsApp dispatcher may only clear the body of a secret message' USING ERRCODE = '23514'; END IF; IF NEW.variables IS DISTINCT FROM OLD.variables AND NOT (NEW.variables = '{}'::jsonb AND OLD.contains_secret) THEN RAISE EXCEPTION 'the WhatsApp dispatcher may only clear the variables of a secret message' USING ERRCODE = '23514'; END IF; IF (NEW.provider_name IS DISTINCT FROM OLD.provider_name OR NEW.provider_message_id IS DISTINCT FROM OLD.provider_message_id OR NEW.sent_at IS DISTINCT FROM OLD.sent_at) AND NOT (NEW.status = 'sent' AND OLD.status = 'sending') THEN RAISE EXCEPTION 'the WhatsApp dispatcher records a provider acceptance only when it marks a message sent' USING ERRCODE = '23514'; END IF; IF NEW.retry_count < OLD.retry_count THEN RAISE EXCEPTION 'the WhatsApp retry count never goes down' USING ERRCODE = '23514'; END IF; RETURN NEW; END;"
+  },
+  {
+    table: "awcms_whatsapp_webhook_receipts",
+    trigger: "awcms_whatsapp_webhook_receipts_clock",
+    fn: "awcms_whatsapp_webhook_receipts_clock",
+    events: "insert",
+    body: "BEGIN NEW.received_at := now(); RETURN NEW; END;"
+  },
+  {
+    table: "awcms_whatsapp_service_windows",
+    trigger: "awcms_whatsapp_service_windows_clock",
+    fn: "awcms_whatsapp_service_windows_clock",
+    body: "BEGIN NEW.last_inbound_at := LEAST(NEW.last_inbound_at, now()); RETURN NEW; END;"
+  },
+  {
+    table: "awcms_whatsapp_messages",
+    trigger: "awcms_whatsapp_messages_worker_insert_guard",
+    fn: "awcms_whatsapp_messages_worker_insert_guard",
+    events: "insert",
+    body: "BEGIN IF current_user <> 'awcms_worker' THEN RETURN NEW; END IF; IF NEW.status <> 'queued' OR NEW.provider_name IS NOT NULL OR NEW.provider_message_id IS NOT NULL OR NEW.sent_at IS NOT NULL OR NEW.provider_status IS NOT NULL OR NEW.provider_status_rank <> 0 OR NEW.failure_code IS NOT NULL OR NEW.last_error IS NOT NULL OR NEW.retry_count <> 0 THEN RAISE EXCEPTION 'the WhatsApp dispatcher role may only enqueue a fresh queued message' USING ERRCODE = '23514'; END IF; RETURN NEW; END;"
+  }
+];
+
+/** sql/357: the only writers of `terminal_at`, the stamp the floors rest on. */
+export const SOCIAL_TERMINAL_STAMP_TRIGGERS: readonly PinnedTrigger[] = [
+  {
+    table: "awcms_social_publish_jobs",
+    trigger: "awcms_social_publish_jobs_terminal_stamp",
+    fn: "awcms_social_publish_jobs_terminal_stamp",
+    body: "BEGIN IF TG_OP = 'INSERT' THEN NEW.terminal_at := NULL; ELSIF NEW.status NOT IN ('published', 'failed', 'cancelled') THEN NEW.terminal_at := NULL; ELSIF OLD.status IN ('published', 'failed', 'cancelled') THEN NEW.terminal_at := OLD.terminal_at; ELSE NEW.terminal_at := now(); END IF; RETURN NEW; END;"
+  },
+  {
+    table: "awcms_social_publications",
+    trigger: "awcms_social_publications_terminal_stamp",
+    fn: "awcms_social_publications_terminal_stamp",
+    body: "BEGIN IF TG_OP = 'INSERT' THEN NEW.terminal_at := CASE WHEN NEW.state IN ('ready', 'cancelled', 'refused') THEN now() ELSE NULL END; ELSIF NEW.state IS DISTINCT FROM OLD.state AND NEW.state IN ('ready', 'cancelled', 'refused') THEN NEW.terminal_at := now(); ELSE NEW.terminal_at := OLD.terminal_at; END IF; RETURN NEW; END;"
+  }
+];
+
+/**
+ * `null` when the policy exists, is RESTRICTIVE, has exactly the pinned command
+ * and role, no WITH CHECK, and its canonical expression equals the pin; else a
+ * finding that names what differs.
+ */
+export async function pinPolicyExpression(
+  db: Bun.SQL,
+  pin: PinnedPolicy
+): Promise<string | null> {
+  const rows = (await db`
+    SELECT NOT p.polpermissive AS restrictive,
+           p.polcmd::text AS command,
+           p.polroles = ARRAY[to_regrole(${pin.role})::oid] AS role_ok,
+           pg_get_expr(p.polqual, p.polrelid) AS expression,
+           pg_get_expr(p.polwithcheck, p.polrelid) AS with_check
+    FROM pg_policy p
+    WHERE p.polrelid = to_regclass(${pin.table}) AND p.polname = ${pin.policy}
+  `) as {
+    restrictive: boolean;
+    command: string;
+    role_ok: boolean;
+    expression: string | null;
+    with_check: string | null;
+  }[];
+  const row = rows[0];
+  const label = `${pin.table} restrictive policy ${pin.policy}`;
+
+  if (!row) return `${label} is missing`;
+
+  if (!row.restrictive || row.command !== pin.command || !row.role_ok) {
+    return `${label} is no longer RESTRICTIVE ${pin.command} TO ${pin.role}`;
+  }
+
+  const actual = normalizePolicyExpression(row.expression ?? "");
+  const actualCheck = normalizePolicyExpression(row.with_check ?? "");
+  const checkMatches =
+    pin.withCheck === undefined
+      ? row.with_check === null
+      : actualCheck === normalizePolicyExpression(pin.withCheck);
+
+  if (!checkMatches || actual !== normalizePolicyExpression(pin.expression)) {
+    const excerpt = (
+      actual !== normalizePolicyExpression(pin.expression)
+        ? actual
+        : actualCheck
+    ).slice(0, 160);
+
+    return `${label} no longer matches its reviewed expression exactly (got: ${excerpt}...)`;
+  }
+
+  return null;
+}
+
+/** `null` when the trigger exists, is enabled, fires BEFORE INSERT OR UPDATE per row, runs the pinned function, and the function body equals the pin. */
+export async function pinTriggerFunction(
+  db: Bun.SQL,
+  pin: PinnedTrigger
+): Promise<string | null> {
+  // tgtype bits: 1 ROW, 2 BEFORE, 4 INSERT, 8 DELETE, 16 UPDATE.
+  const exactEvents =
+    pin.events === "insert" ? 4 : pin.events === "update" ? 16 : null;
+  const shapeMask =
+    exactEvents !== null
+      ? 1 | 2 | 4 | 8 | 16
+      : pin.events === "delete"
+        ? 1 | 2 | 8
+        : 1 | 2 | 4 | 16;
+  const shapeWant = exactEvents !== null ? 1 | 2 | exactEvents : shapeMask;
+  const rows = (await db`
+    SELECT t.tgenabled <> 'D' AS enabled,
+           (t.tgtype & ${shapeMask}) = ${shapeWant} AS shape_ok,
+           t.tgfoid = to_regproc(${pin.fn}) AS fn_ok,
+           p.prosrc AS body
+    FROM pg_trigger t
+    JOIN pg_proc p ON p.oid = t.tgfoid
+    WHERE t.tgrelid = to_regclass(${pin.table}) AND t.tgname = ${pin.trigger}
+      AND NOT t.tgisinternal
+  `) as {
+    enabled: boolean;
+    shape_ok: boolean;
+    fn_ok: boolean;
+    body: string;
+  }[];
+  const row = rows[0];
+  const label = `${pin.table} trigger ${pin.trigger}`;
+
+  if (!row) return `${label} is missing`;
+
+  if (
+    !row.enabled ||
+    !row.shape_ok ||
+    !row.fn_ok ||
+    normalizePolicyExpression(row.body) !== normalizePolicyExpression(pin.body)
+  ) {
+    return `${label} is disabled, reshaped or no longer runs its reviewed body (a retention floor's stamp could be forged or its floor bypassed)`;
+  }
+
+  return null;
+}
+
+class RollbackProbe extends Error {}
+
+/**
+ * The behavioural half of the sql/358 pin (M-1 of the #1261 audit): in ONE
+ * transaction that is always rolled back, seed a throwaway tenant with one
+ * secret the role SHOULD see and five it must not (an unreferenced token, a
+ * WhatsApp connection token behind a publish-granted account, a denied
+ * capability, a revoked account, a refresh token), `SET LOCAL ROLE
+ * awcms_social_dispatch`, and require that exactly the first is visible.
+ *
+ * It needs to assume the role. A connection that cannot (the usual
+ * `awcms_app` DATABASE_URL in production) skips it and says so: the exact
+ * expression pin above is then the guard.
+ */
+export async function probeSocialDispatchSecretVisibility(
+  db: Bun.SQL
+): Promise<{ ran: boolean; finding?: string }> {
+  const can = (await db`
+    SELECT rolsuper OR pg_has_role(current_user, ${SOCIAL_DISPATCH_ROLE}, 'SET') AS can
+    FROM pg_roles WHERE rolname = current_user
+  `) as { can: boolean }[];
+
+  if (!can[0]?.can) return { ran: false };
+
+  let visible: string[] = [];
+  let expected = "";
+
+  try {
+    await db.begin(async (tx) => {
+      const tenant = crypto.randomUUID();
+      const code = `probe-${tenant.slice(0, 8)}`;
+
+      await tx`
+        INSERT INTO awcms_tenants (id, tenant_code, tenant_name)
+        VALUES (${tenant}, ${code}, ${code})
+      `;
+      await tx`SELECT set_config('app.current_tenant_id', ${tenant}, true)`;
+
+      const secret = async (purpose: string): Promise<string> => {
+        const rows = (await tx`
+          INSERT INTO awcms_channel_secrets (tenant_id, purpose, ciphertext, key_id)
+          VALUES (${tenant}, ${purpose}, 'v2:k1:AA:AA:AA', 'k1')
+          RETURNING id
+        `) as { id: string }[];
+
+        return rows[0]!.id;
+      };
+      let seq = 0;
+      const account = async (input: {
+        provider: string;
+        kind: string;
+        status: string;
+        purpose: string;
+        capability: "granted" | "denied";
+      }): Promise<string> => {
+        const secretId = await secret(input.purpose);
+        const connection = (await tx`
+          INSERT INTO awcms_channel_provider_connections
+            (tenant_id, provider, auth_mode, grant_state, access_secret_id)
+          VALUES (${tenant}, ${input.provider}, 'oauth2', 'active', ${secretId})
+          RETURNING id
+        `) as { id: string }[];
+        const created = (await tx`
+          INSERT INTO awcms_channel_accounts
+            (tenant_id, provider, account_kind, external_id, display_name,
+             auth_mode, status, connection_id)
+          VALUES (${tenant}, ${input.provider}, ${input.kind},
+                  ${`probe-${(seq += 1)}`}, 'probe', 'oauth2', ${input.status},
+                  ${connection[0]!.id})
+          RETURNING id
+        `) as { id: string }[];
+        const granted = input.capability === "granted";
+
+        await tx`
+          INSERT INTO awcms_channel_account_capabilities
+            (tenant_id, account_id, capability, state, evidence_kind,
+             evidence_ref, matrix_version, verified_at)
+          VALUES (${tenant}, ${created[0]!.id}, 'publish', ${input.capability},
+                  ${granted ? "app_review_reference" : null},
+                  ${granted ? "probe" : null}, 1, ${granted ? new Date() : null})
+        `;
+
+        return secretId;
+      };
+
+      expected = await account({
+        provider: "facebook",
+        kind: "page",
+        status: "connected",
+        purpose: "provider_access_token",
+        capability: "granted"
+      });
+      await secret("provider_access_token");
+      await account({
+        provider: "whatsapp_cloud",
+        kind: "waba_phone_number",
+        status: "connected",
+        purpose: "provider_access_token",
+        capability: "granted"
+      });
+      await account({
+        provider: "facebook",
+        kind: "page",
+        status: "connected",
+        purpose: "provider_access_token",
+        capability: "denied"
+      });
+      await account({
+        provider: "facebook",
+        kind: "page",
+        status: "revoked",
+        purpose: "provider_access_token",
+        capability: "granted"
+      });
+      await account({
+        provider: "facebook",
+        kind: "page",
+        status: "connected",
+        purpose: "provider_refresh_token",
+        capability: "granted"
+      });
+
+      await tx.unsafe(`SET LOCAL ROLE ${SOCIAL_DISPATCH_ROLE}`);
+
+      const rows = (await tx`
+        SELECT id FROM awcms_channel_secrets
+      `) as { id: string }[];
+
+      visible = rows.map((row) => row.id);
+
+      throw new RollbackProbe();
+    });
+  } catch (error) {
+    if (!(error instanceof RollbackProbe)) {
+      return {
+        ran: true,
+        finding: `the awcms_social_dispatch visibility probe could not run: ${errorMessage(error)}`
+      };
+    }
+  }
+
+  if (visible.length !== 1 || visible[0] !== expected) {
+    return {
+      ran: true,
+      finding: `awcms_social_dispatch saw ${visible.length} secret(s) where exactly the one live, publish-granted social access token was expected (the row policies admit WhatsApp, refresh, unreferenced, denied or revoked secrets, or hide the legitimate one)`
+    };
+  }
+
+  return { ran: true };
+}
+
+/**
+ * The behavioural half of the sql/379 pins (Issue #1161, audit M-3 of PR
+ * #1272). In ONE transaction that is always rolled back: seed a throwaway
+ * tenant with four quarantined events whose `received_at` is back-dated (the
+ * guard trigger would stamp `now()`, so triggers are suspended for the seed via
+ * `session_replication_role`, superuser only), `SET LOCAL ROLE awcms_worker`,
+ * try to delete each one in its own savepoint, and require that exactly the two
+ * the retention rule allows are gone: a reviewed row of 100 days and a pending
+ * row of 400 days; never a reviewed row of 10 days or a pending row of 100.
+ *
+ * Skipped (and said so) on a connection that is not a superuser or cannot
+ * assume the worker role; the exact pins above are then the guard.
+ */
+export async function probeEmailProviderEventRetentionFloor(
+  db: Bun.SQL
+): Promise<{ ran: boolean; finding?: string }> {
+  const can = (await db`
+    SELECT rolsuper AS can FROM pg_roles WHERE rolname = current_user
+  `) as { can: boolean }[];
+
+  if (!can[0]?.can) return { ran: false };
+
+  const expectedGone = new Set<string>();
+  const gone = new Set<string>();
+
+  try {
+    await db.begin(async (tx) => {
+      const tenant = crypto.randomUUID();
+      const code = `probe-${tenant.slice(0, 8)}`;
+
+      await tx`
+        INSERT INTO awcms_tenants (id, tenant_code, tenant_name)
+        VALUES (${tenant}, ${code}, ${code})
+      `;
+      await tx`SELECT set_config('app.current_tenant_id', ${tenant}, true)`;
+
+      const esp = (await tx`
+        INSERT INTO awcms_channel_accounts
+          (tenant_id, provider, account_kind, external_id, display_name,
+           auth_mode, status)
+        VALUES (${tenant}, 'mailketing', 'esp_account', ${`probe-${code}`},
+                'probe', 'api_token', 'connected')
+        RETURNING id
+      `) as { id: string }[];
+      const subscription = crypto.randomUUID();
+
+      await tx`
+        INSERT INTO awcms_channel_webhook_subscriptions
+          (id, tenant_id, account_id, provider, callback_token_hash,
+           verification_mode, status)
+        VALUES (${subscription}, ${tenant}, ${esp[0]!.id}, 'mailketing',
+                ${`sha256:${"0".repeat(64)}`}, 'unauthenticated', 'active')
+      `;
+
+      await tx`SET LOCAL session_replication_role = replica`;
+
+      const seed = async (
+        reviewStatus: "pending" | "dismissed",
+        ageDays: number,
+        shouldGo: boolean
+      ): Promise<string> => {
+        const rows = (await tx`
+          INSERT INTO awcms_email_provider_events
+            (tenant_id, subscription_id, esp_account_id, email_message_id,
+             event_type, correlation, recipient_hash, recipient_masked,
+             dedupe_key, review_status, reviewed_at, received_at)
+          VALUES
+            (${tenant}, ${subscription}, ${esp[0]!.id}, ${crypto.randomUUID()},
+             'unsubscribe', 'recipient_only',
+             ${crypto.randomUUID().replaceAll("-", "").repeat(2)}, 'p***',
+             ${crypto.randomUUID().replaceAll("-", "").repeat(2)},
+             ${reviewStatus},
+             ${reviewStatus === "pending" ? null : new Date()},
+             now() - make_interval(days => ${ageDays}))
+          RETURNING id
+        `) as { id: string }[];
+
+        if (shouldGo) expectedGone.add(rows[0]!.id);
+
+        return rows[0]!.id;
+      };
+
+      const ids = [
+        await seed("dismissed", 10, false),
+        await seed("dismissed", 100, true),
+        await seed("pending", 100, false),
+        await seed("pending", 400, true)
+      ];
+
+      await tx`SET LOCAL session_replication_role = origin`;
+      await tx.unsafe(`SET LOCAL ROLE ${WORKER_ROLE}`);
+
+      for (const id of ids) {
+        try {
+          await tx.savepoint(async (sp) => {
+            const deleted = (await sp`
+              DELETE FROM awcms_email_provider_events WHERE id = ${id}
+              RETURNING id
+            `) as { id: string }[];
+
+            if (deleted.length > 0) gone.add(id);
+          });
+        } catch {
+          // tx-swallow-ok: savepoint — the trigger refusing an ineligible row
+          // rolls back to the savepoint only; the probe records "not gone".
+        }
+      }
+
+      throw new RollbackProbe();
+    });
+  } catch (error) {
+    if (!(error instanceof RollbackProbe)) {
+      return {
+        ran: true,
+        finding: `the awcms_email_provider_events retention probe could not run: ${errorMessage(error)}`
+      };
+    }
+  }
+
+  const same =
+    gone.size === expectedGone.size &&
+    [...gone].every((id) => expectedGone.has(id));
+
+  if (!same) {
+    return {
+      ran: true,
+      finding: `awcms_worker deleted ${gone.size} of 4 probe rows from awcms_email_provider_events where exactly the 2 past their retention window were expected (the floor no longer protects young or pending quarantine rows, or the purge can no longer remove expired ones)`
+    };
+  }
+
+  return { ran: true };
+}
+
+/**
+ * Issue #1143 review L-2, the BEHAVIOURAL half of the purge-only DELETE pin:
+ * in a transaction that is always rolled back, one fresh and one aged row of
+ * each table are seeded, the session becomes `awcms_worker`, and it deletes
+ * everything it can. Exactly the two aged rows may go; a fresh row deleted (a
+ * re-opened replay gap or an erased open window) or an aged row kept (a purge
+ * that silently stopped working) is a finding. Skipped (`ran: false`) when the
+ * connecting role cannot `SET ROLE awcms_worker`.
+ */
+export async function probeWorkerPurgeDeleteFloors(
+  db: Bun.SQL
+): Promise<{ ran: boolean; finding?: string }> {
+  const can = (await db`
+    SELECT rolsuper OR pg_has_role(current_user, 'awcms_worker', 'SET') AS can
+    FROM pg_roles WHERE rolname = current_user
+  `) as { can: boolean }[];
+
+  if (!can[0]?.can) return { ran: false };
+
+  let deleted: string[] = [];
+
+  try {
+    await db.begin(async (tx) => {
+      const tenant = crypto.randomUUID();
+      const code = `probe-${tenant.slice(0, 8)}`;
+
+      await tx`
+        INSERT INTO awcms_tenants (id, tenant_code, tenant_name)
+        VALUES (${tenant}, ${code}, ${code})
+      `;
+      await tx`SELECT set_config('app.current_tenant_id', ${tenant}, true)`;
+
+      const account = (await tx`
+        INSERT INTO awcms_channel_accounts
+          (tenant_id, provider, account_kind, external_id, display_name,
+           auth_mode, status)
+        VALUES (${tenant}, 'whatsapp_cloud', 'waba_phone_number',
+                ${`probe-${tenant}`}, 'probe', 'api_token', 'pending')
+        RETURNING id
+      `) as { id: string }[];
+      const subscription = (await tx`
+        INSERT INTO awcms_channel_webhook_subscriptions
+          (tenant_id, account_id, provider, callback_token_hash,
+           verification_mode, status)
+        VALUES (${tenant}, ${account[0]!.id}, 'whatsapp_cloud',
+                ${`sha256:${crypto.randomUUID().replace(/-/g, "").padEnd(64, "0")}`},
+                'hmac_signature', 'revoked')
+        RETURNING id
+      `) as { id: string }[];
+
+      await tx`
+        INSERT INTO awcms_whatsapp_service_windows
+          (tenant_id, sender_account_id, recipient_hash, last_inbound_at)
+        VALUES (${tenant}, ${account[0]!.id}, 'k1:fresh', now()),
+               (${tenant}, ${account[0]!.id}, 'k1:aged', now() - interval '3 days')
+      `;
+      // sql/393: the insert trigger stamps the database clock whatever the
+      // statement says, so the aged receipt is aged afterwards, as the
+      // connecting (owner) role, which is the one thing no runtime role can do.
+      await tx`
+        INSERT INTO awcms_whatsapp_webhook_receipts
+          (tenant_id, subscription_id, payload_sha256)
+        VALUES (${tenant}, ${subscription[0]!.id}, ${"a".repeat(64)}),
+               (${tenant}, ${subscription[0]!.id}, ${"b".repeat(64)})
+      `;
+      await tx`
+        UPDATE awcms_whatsapp_webhook_receipts
+        SET received_at = now() - interval '9 days'
+        WHERE payload_sha256 = ${"b".repeat(64)}
+      `;
+
+      // sql/394 (#1298 audit LOW-1): a fresh sent row, a fresh failed row, a
+      // queued row (never deletable, however old) and an aged terminal row.
+      // Deployment-sender rows (no sender account), seeded as the connecting role, so neither the sender guard nor the worker insert guard is in play.
+      for (const [key, status, ageDays] of [
+        ["fresh-sent", "sent", 0],
+        ["queued-old", "queued", 40],
+        ["aged-failed", "failed", 40]
+      ] as const) {
+        await tx`
+          INSERT INTO awcms_whatsapp_messages
+            (tenant_id, idempotency_key, template_key, template_version,
+             purpose, recipient, recipient_hash, recipient_masked, body,
+             status)
+          VALUES (${tenant}, ${`probe-${key}`}, 'probe.t', 1, 'transactional',
+                  '+6280000000001', ${`k1:${key}`}, '+62***01', 'probe',
+                  ${status})
+        `;
+        await tx`
+          UPDATE awcms_whatsapp_messages
+          SET updated_at = now() - make_interval(days => ${ageDays})
+          WHERE idempotency_key = ${`probe-${key}`}
+        `;
+      }
+
+      await tx.unsafe("SET LOCAL ROLE awcms_worker");
+
+      const messages = (await tx`
+        DELETE FROM awcms_whatsapp_messages RETURNING idempotency_key
+      `) as { idempotency_key: string }[];
+      const windows = (await tx`
+        DELETE FROM awcms_whatsapp_service_windows RETURNING recipient_hash
+      `) as { recipient_hash: string }[];
+      const receipts = (await tx`
+        DELETE FROM awcms_whatsapp_webhook_receipts RETURNING payload_sha256
+      `) as { payload_sha256: string }[];
+
+      deleted = [
+        ...messages.map((row) => `message:${row.idempotency_key}`),
+        ...windows.map((row) => `window:${row.recipient_hash}`),
+        ...receipts.map((row) => `receipt:${row.payload_sha256.slice(0, 1)}`)
+      ].sort();
+
+      throw new RollbackProbe();
+    });
+  } catch (error) {
+    if (!(error instanceof RollbackProbe)) {
+      return {
+        ran: true,
+        finding: `the awcms_worker purge-floor probe could not run: ${errorMessage(error)}`
+      };
+    }
+  }
+
+  const expected = ["message:probe-aged-failed", "receipt:b", "window:k1:aged"];
+
+  if (JSON.stringify(deleted) !== JSON.stringify(expected)) {
+    return {
+      ran: true,
+      finding: `awcms_worker deleted [${deleted.join(", ")}] where exactly the aged window, the aged webhook receipt and the aged terminal message were expected (the purge-only DELETE floors of sql/365 and sql/394 are missing or wrong)`
+    };
+  }
+
+  return { ran: true };
+}
+
+/**
+ * The behavioural half of the sql/373 write pins (Issue #1146): in ONE
+ * transaction that is always rolled back, seed a throwaway tenant with a live
+ * Facebook account, a WhatsApp account, a revoked Facebook account and three
+ * jobs (queued, failed, needs_reconciliation), `SET LOCAL ROLE
+ * awcms_social_dispatch`, and require that:
+ *
+ *   - the legitimate writes work: claim the queued job, degrade the live
+ *     Facebook account, record a failing health row, write this module's audit
+ *     row (positive controls, so a probe that refuses EVERYTHING does not pass);
+ *   - the role cannot send a failed or unknown job again, cannot cancel a job,
+ *     cannot put a degraded account back to `connected`, cannot touch a WhatsApp
+ *     or revoked account, cannot write an `ok` health row, another module's
+ *     audit row, or another module's event.
+ *
+ * Skipped (and said so) when the connection cannot assume the role.
+ */
+export async function probeSocialDispatchWriteBoundary(
+  db: Bun.SQL
+): Promise<{ ran: boolean; finding?: string }> {
+  const can = (await db`
+    SELECT rolsuper OR pg_has_role(current_user, ${SOCIAL_DISPATCH_ROLE}, 'SET') AS can
+    FROM pg_roles WHERE rolname = current_user
+  `) as { can: boolean }[];
+
+  if (!can[0]?.can) return { ran: false };
+
+  const failures: string[] = [];
+
+  try {
+    await db.begin(async (tx) => {
+      const tenant = crypto.randomUUID();
+      const code = `probe-${tenant.slice(0, 8)}`;
+
+      await tx`
+        INSERT INTO awcms_tenants (id, tenant_code, tenant_name)
+        VALUES (${tenant}, ${code}, ${code})
+      `;
+      await tx`SELECT set_config('app.current_tenant_id', ${tenant}, true)`;
+
+      let seq = 0;
+      const account = async (provider: string, kind: string, status: string) =>
+        (
+          (await tx`
+            INSERT INTO awcms_channel_accounts
+              (tenant_id, provider, account_kind, external_id, display_name,
+               auth_mode, status)
+            VALUES (${tenant}, ${provider}, ${kind}, ${`probe-${(seq += 1)}`},
+                    'probe', 'oauth2', ${status})
+            RETURNING id
+          `) as { id: string }[]
+        )[0]!.id;
+      const facebook = await account("facebook", "page", "connected");
+      const otherFacebook = await account("facebook", "page", "connected");
+      const whatsapp = await account(
+        "whatsapp_cloud",
+        "waba_phone_number",
+        "connected"
+      );
+      const revoked = await account("facebook", "page", "revoked");
+      const publication = (
+        (await tx`
+          INSERT INTO awcms_social_publications
+            (tenant_id, source_kind, trigger_event, state, title, caption,
+             content_hash, approval_required)
+          VALUES (${tenant}, 'manual', 'manual_editor_action', 'ready',
+                  'probe', 'probe', ${"0".repeat(64)}, false)
+          RETURNING id
+        `) as { id: string }[]
+      )[0]!.id;
+      const job = async (
+        accountId: string,
+        key: string,
+        path: string[]
+      ): Promise<string> => {
+        const id = (
+          (await tx`
+            INSERT INTO awcms_social_publish_jobs
+              (tenant_id, publication_id, channel_account_id, provider,
+               account_kind, variant, idempotency_key)
+            VALUES (${tenant}, ${publication}, ${accountId}, 'facebook', 'page',
+                    'text', ${key.repeat(64)})
+            RETURNING id
+          `) as { id: string }[]
+        )[0]!.id;
+
+        for (const status of path) {
+          await tx`
+            UPDATE awcms_social_publish_jobs SET status = ${status}
+            WHERE tenant_id = ${tenant} AND id = ${id}
+          `;
+        }
+
+        return id;
+      };
+      const queued = await job(facebook, "a", []);
+      const failed = await job(otherFacebook, "b", ["failed"]);
+
+      await tx`
+        UPDATE awcms_social_publish_jobs
+        SET dedupe_key_supported = false
+        WHERE tenant_id = ${tenant} AND id = ${failed}
+      `;
+
+      const unknownOutcome = (
+        (await tx`
+          INSERT INTO awcms_social_publications
+            (tenant_id, source_kind, trigger_event, state, title, caption,
+             content_hash, approval_required)
+          VALUES (${tenant}, 'manual', 'manual_editor_action', 'ready',
+                  'probe2', 'probe2', ${"1".repeat(64)}, false)
+          RETURNING id
+        `) as { id: string }[]
+      )[0]!.id;
+      const reconcile = (
+        (await tx`
+          INSERT INTO awcms_social_publish_jobs
+            (tenant_id, publication_id, channel_account_id, provider,
+             account_kind, variant, idempotency_key)
+          VALUES (${tenant}, ${unknownOutcome}, ${facebook}, 'facebook', 'page',
+                  'text', ${"c".repeat(64)})
+          RETURNING id
+        `) as { id: string }[]
+      )[0]!.id;
+
+      await tx`
+        UPDATE awcms_social_publish_jobs SET status = 'publishing',
+               attempt_count = 1
+        WHERE tenant_id = ${tenant} AND id = ${reconcile}
+      `;
+      await tx`
+        UPDATE awcms_social_publish_jobs SET status = 'needs_reconciliation'
+        WHERE tenant_id = ${tenant} AND id = ${reconcile}
+      `;
+
+      // The #1271 audit, L1: an in-flight job of a provider that does not
+      // dedupe, whose flag the role must not flip.
+      const inFlight = (
+        (await tx`
+          INSERT INTO awcms_social_publish_jobs
+            (tenant_id, publication_id, channel_account_id, provider,
+             account_kind, variant, idempotency_key)
+          VALUES (${tenant}, ${unknownOutcome}, ${otherFacebook}, 'facebook',
+                  'page', 'text', ${"e".repeat(64)})
+          RETURNING id
+        `) as { id: string }[]
+      )[0]!.id;
+
+      await tx`
+        UPDATE awcms_social_publish_jobs SET status = 'publishing',
+               attempt_count = 1
+        WHERE tenant_id = ${tenant} AND id = ${inFlight}
+      `;
+
+      // The #1271 audit, M1: another module's event the role must neither see
+      // nor deliver.
+      const foreignEvent = (
+        (await tx`
+          INSERT INTO awcms_domain_events
+            (tenant_id, event_type, event_version, aggregate_type,
+             aggregate_id, order_key, producer_module, payload, occurred_at)
+          VALUES (${tenant}, 'awcms.workflow.instance.approved', '1.0',
+                  'workflow_instance', ${tenant}, 'probe', 'workflow_approval',
+                  ${{}}::jsonb, now())
+          RETURNING id, event_sequence
+        `) as { id: string; event_sequence: string }[]
+      )[0]!;
+
+      await tx.unsafe(`SET LOCAL ROLE ${SOCIAL_DISPATCH_ROLE}`);
+
+      /** Runs `statement` in a savepoint; returns rows changed (the command tag), or -1 when it was refused. */
+      const attempt = async (
+        statement: () => Promise<unknown[]>
+      ): Promise<number> => {
+        try {
+          return await tx.savepoint(async () => {
+            const result = (await statement()) as unknown[] & {
+              count?: number;
+            };
+
+            return result.count ?? result.length;
+          });
+        } catch {
+          return -1;
+        }
+      };
+      const expectRows = (what: string, got: number, want: number) => {
+        if (got !== want)
+          failures.push(`${what} (changed ${got}, expected ${want})`);
+      };
+      const expectRefused = (what: string, got: number) => {
+        if (got > 0) failures.push(`${what} was allowed`);
+      };
+
+      expectRows(
+        "claiming a queued job",
+        await attempt(
+          () => tx`
+            UPDATE awcms_social_publish_jobs SET status = 'publishing',
+                   dedupe_key_supported = true
+            WHERE tenant_id = ${tenant} AND id = ${queued} RETURNING id
+          `
+        ),
+        1
+      );
+      expectRefused(
+        "re-queueing a failed job",
+        await attempt(
+          () => tx`
+            UPDATE awcms_social_publish_jobs SET status = 'queued'
+            WHERE tenant_id = ${tenant} AND id = ${failed} RETURNING id
+          `
+        )
+      );
+      expectRefused(
+        "re-queueing a needs_reconciliation job",
+        await attempt(
+          () => tx`
+            UPDATE awcms_social_publish_jobs SET status = 'queued'
+            WHERE tenant_id = ${tenant} AND id = ${reconcile} RETURNING id
+          `
+        )
+      );
+      expectRefused(
+        "cancelling a job",
+        await attempt(
+          () => tx`
+            UPDATE awcms_social_publish_jobs SET status = 'cancelled'
+            WHERE tenant_id = ${tenant} AND id = ${queued} RETURNING id
+          `
+        )
+      );
+      expectRows(
+        "degrading a live Facebook account",
+        await attempt(
+          () => tx`
+            UPDATE awcms_channel_accounts SET status = 'degraded'
+            WHERE tenant_id = ${tenant} AND id = ${facebook} RETURNING id
+          `
+        ),
+        1
+      );
+      expectRefused(
+        "putting a degraded account back to connected",
+        await attempt(
+          () => tx`
+            UPDATE awcms_channel_accounts SET status = 'connected'
+            WHERE tenant_id = ${tenant} AND id = ${facebook} RETURNING id
+          `
+        )
+      );
+      expectRefused(
+        "degrading a WhatsApp account",
+        await attempt(
+          () => tx`
+            UPDATE awcms_channel_accounts SET status = 'degraded'
+            WHERE tenant_id = ${tenant} AND id = ${whatsapp} RETURNING id
+          `
+        )
+      );
+      expectRefused(
+        "reviving a revoked account",
+        await attempt(
+          () => tx`
+            UPDATE awcms_channel_accounts SET status = 'degraded'
+            WHERE tenant_id = ${tenant} AND id = ${revoked} RETURNING id
+          `
+        )
+      );
+      expectRows(
+        "recording a failing health row",
+        await attempt(
+          () => tx`
+            INSERT INTO awcms_channel_account_health
+              (tenant_id, account_id, state, reason_code, checked_at)
+            VALUES (${tenant}, ${otherFacebook}, 'failing', 'PROBE', now())
+          `
+        ),
+        1
+      );
+      expectRefused(
+        "recording an ok health row",
+        await attempt(
+          () => tx`
+            INSERT INTO awcms_channel_account_health
+              (tenant_id, account_id, state, reason_code, checked_at)
+            VALUES (${tenant}, ${facebook}, 'ok', NULL, now())
+          `
+        )
+      );
+      expectRows(
+        "writing this module's audit row",
+        await attempt(
+          () => tx`
+            INSERT INTO awcms_audit_events
+              (tenant_id, module_key, action, resource_type, severity, message)
+            VALUES (${tenant}, 'social_publishing', 'probe', 'probe', 'info',
+                    'probe')
+          `
+        ),
+        1
+      );
+      expectRefused(
+        "writing another module's audit row",
+        await attempt(
+          () => tx`
+            INSERT INTO awcms_audit_events
+              (tenant_id, module_key, action, resource_type, severity, message)
+            VALUES (${tenant}, 'channel_accounts', 'probe', 'probe', 'info',
+                    'probe')
+          `
+        )
+      );
+      expectRows(
+        "emitting this module's job event",
+        await attempt(
+          () => tx`
+            INSERT INTO awcms_domain_events
+              (tenant_id, event_type, event_version, aggregate_type,
+               aggregate_id, order_key, producer_module, payload, occurred_at)
+            VALUES (${tenant}, 'awcms.social_publishing.job.failed', '1.0',
+                    'probe', ${tenant}, 'probe', 'social_publishing',
+                    ${{}}::jsonb, now())
+            RETURNING id
+          `
+        ),
+        1
+      );
+      expectRefused(
+        "emitting another module's event",
+        await attempt(
+          () => tx`
+            INSERT INTO awcms_domain_events
+              (tenant_id, event_type, event_version, aggregate_type,
+               aggregate_id, order_key, producer_module, payload, occurred_at)
+            VALUES (${tenant}, 'awcms.channel_accounts.account.connected', '1.0',
+                    'probe', ${tenant}, 'probe', 'channel_accounts',
+                    ${{}}::jsonb, now())
+            RETURNING id
+          `
+        )
+      );
+      expectRows(
+        "reading another module's event id and sequence",
+        await attempt(
+          () => tx`
+            SELECT id, event_sequence FROM awcms_domain_events
+            WHERE id = ${foreignEvent.id}
+          `
+        ),
+        0
+      );
+      expectRefused(
+        "delivering another module's event to a consumer",
+        await attempt(
+          () => tx`
+            INSERT INTO awcms_domain_event_deliveries
+              (tenant_id, event_id, event_sequence, event_type, event_version,
+               order_key, consumer_name)
+            VALUES (${tenant}, ${foreignEvent.id}, ${foreignEvent.event_sequence},
+                    'awcms.social_publishing.job.failed', '1.0', 'probe',
+                    'hr_workforce.attendance_correction_settler')
+          `
+        )
+      );
+      expectRefused(
+        "flipping the dedupe flag of an in-flight job",
+        await attempt(
+          () => tx`
+            UPDATE awcms_social_publish_jobs SET dedupe_key_supported = true
+            WHERE tenant_id = ${tenant} AND id = ${inFlight}
+          `
+        )
+      );
+
+      throw new RollbackProbe();
+    });
+  } catch (error) {
+    if (!(error instanceof RollbackProbe)) {
+      return {
+        ran: true,
+        finding: `the awcms_social_dispatch write-boundary probe could not run: ${errorMessage(error)}`
+      };
+    }
+  }
+
+  if (failures.length > 0) {
+    return {
+      ran: true,
+      finding: `awcms_social_dispatch write boundary (sql/373) does not hold: ${failures.join("; ")}`
+    };
+  }
+
+  return { ran: true };
+}
+
+// ---------------------------------------------------------------------------
+// sql/386 (Issue #1145, residual L8 of ADR-0157): the social dispatcher's
+// source re-check. Two SECURITY DEFINER functions answer one closed code per
+// (tenant, id); the dispatcher's role holds EXECUTE and no read of either table.
+// ---------------------------------------------------------------------------
+
+/** The NOLOGIN owner of the two re-check functions. */
+export const SOCIAL_SOURCE_CHECK_ROLE = "awcms_social_source_check";
+
+/** It holds no table-level privilege anywhere. */
+export const SOCIAL_SOURCE_CHECK_ROLE_GRANTS: Record<string, string[]> = {};
+
+/** Exactly the columns the two bodies read, both directions. */
+export const SOCIAL_SOURCE_CHECK_COLUMN_GRANTS: typeof WORKER_COLUMN_GRANTS = {
+  awcms_blog_posts: {
+    SELECT: [
+      "tenant_id",
+      "id",
+      "status",
+      "visibility",
+      "published_at",
+      "unpublish_at",
+      "deleted_at"
+    ]
+  },
+  awcms_news_media_objects: {
+    SELECT: [
+      "tenant_id",
+      "id",
+      "status",
+      "deleted_at",
+      "rights_verification_status",
+      "copyright_status"
+    ]
+  }
+};
+
+/**
+ * A SECURITY DEFINER function pinned EXACTLY: its whitespace-normalised body,
+ * owner, language, volatility, `search_path`, return type, and the complete
+ * list of roles that may EXECUTE it (the owner and `executors`, never PUBLIC).
+ * A substring pin would pass a body that drops the tenant binding, admits a
+ * `private` article or a `rejected` rights adjudication; an exact pin passes
+ * only what was reviewed. Changing one is a migration AND an edit here.
+ */
+export type PinnedDefinerFunction = {
+  /** `regprocedure` text, e.g. `awcms_x(uuid,uuid)`. */
+  signature: string;
+  owner: string;
+  executors: readonly string[];
+  body: string;
+};
+
+export const SOCIAL_SOURCE_CHECK_FUNCTIONS: readonly PinnedDefinerFunction[] = [
+  {
+    signature: "awcms_social_source_article_state(uuid,uuid)",
+    owner: SOCIAL_SOURCE_CHECK_ROLE,
+    executors: [SOCIAL_DISPATCH_ROLE],
+    body: "BEGIN IF p_tenant_id IS NULL OR p_article_id IS NULL OR p_tenant_id IS DISTINCT FROM NULLIF(current_setting('app.current_tenant_id', true), '')::uuid THEN RAISE EXCEPTION 'awcms_social_source_article_state: the tenant is not the transaction tenant' USING ERRCODE = '42501'; END IF; IF EXISTS ( SELECT 1 FROM awcms_blog_posts AS p WHERE p.tenant_id = p_tenant_id AND p.id = p_article_id AND p.deleted_at IS NULL AND p.status = 'published' AND p.visibility IN ('public', 'unlisted') AND p.published_at IS NOT NULL AND p.published_at <= now() AND (p.unpublish_at IS NULL OR p.unpublish_at > now()) ) THEN RETURN 'PUBLISHED'; END IF; RETURN 'SOURCE_RETRACTED'; END;"
+  },
+  {
+    signature: "awcms_social_source_media_state(uuid,uuid)",
+    owner: SOCIAL_SOURCE_CHECK_ROLE,
+    executors: [SOCIAL_DISPATCH_ROLE],
+    body: "DECLARE v_status text; v_rights text; v_copyright text; BEGIN IF p_tenant_id IS NULL OR p_media_object_id IS NULL OR p_tenant_id IS DISTINCT FROM NULLIF(current_setting('app.current_tenant_id', true), '')::uuid THEN RAISE EXCEPTION 'awcms_social_source_media_state: the tenant is not the transaction tenant' USING ERRCODE = '42501'; END IF; SELECT m.status, m.rights_verification_status, m.copyright_status INTO v_status, v_rights, v_copyright FROM awcms_news_media_objects AS m WHERE m.tenant_id = p_tenant_id AND m.id = p_media_object_id AND m.deleted_at IS NULL; IF NOT FOUND OR v_status IS NULL OR v_status NOT IN ('verified', 'attached') THEN RETURN 'MEDIA_UNAVAILABLE'; END IF; IF v_rights IS DISTINCT FROM 'verified' OR v_copyright IS NULL OR v_copyright NOT IN ( 'owned', 'licensed', 'public_domain', 'permission_granted', 'fair_use' ) THEN RETURN 'MEDIA_RIGHTS_REVOKED'; END IF; RETURN 'AVAILABLE'; END;"
+  }
+];
+
+/** `null` when the function exists exactly as pinned; else a finding naming what differs. */
+export async function pinDefinerFunction(
+  db: Bun.SQL,
+  pin: PinnedDefinerFunction
+): Promise<string | null> {
+  const rows = (await db`
+    SELECT p.prosecdef AS definer,
+           p.provolatile::text AS volatility,
+           l.lanname AS language,
+           p.prorettype = 'text'::regtype AS returns_text,
+           p.proretset AS returns_set,
+           COALESCE(p.proconfig, ARRAY[]::text[]) AS config,
+           pg_get_userbyid(p.proowner) AS owner,
+           p.prosrc AS body,
+           ARRAY(
+             SELECT CASE WHEN a.grantee = 0 THEN 'PUBLIC'
+                         ELSE pg_get_userbyid(a.grantee) END
+             FROM aclexplode(COALESCE(p.proacl, acldefault('f', p.proowner))) a
+             WHERE a.privilege_type = 'EXECUTE'
+             ORDER BY 1
+           ) AS executors
+    FROM pg_proc p
+    JOIN pg_language l ON l.oid = p.prolang
+    WHERE p.oid = to_regprocedure(${pin.signature})
+  `) as {
+    definer: boolean;
+    volatility: string;
+    language: string;
+    returns_text: boolean;
+    returns_set: boolean;
+    config: string[];
+    owner: string;
+    body: string;
+    executors: string[];
+  }[];
+  const row = rows[0];
+  const label = `function ${pin.signature}`;
+
+  if (!row) return `${label} is missing`;
+
+  const differences: string[] = [];
+
+  if (!row.definer) differences.push("not SECURITY DEFINER");
+  if (row.volatility !== "s") differences.push("not STABLE");
+  if (row.language !== "plpgsql") differences.push("not plpgsql");
+  if (!row.returns_text || row.returns_set) {
+    differences.push("does not return one text");
+  }
+  if (
+    row.config.length !== 1 ||
+    row.config[0] !== "search_path=public, pg_temp"
+  ) {
+    differences.push(`search_path is not exactly "public, pg_temp"`);
+  }
+  if (row.owner !== pin.owner) differences.push(`owned by ${row.owner}`);
+
+  const expectedExecutors = [...new Set([pin.owner, ...pin.executors])].sort();
+  const heldExecutors = [...new Set(row.executors)].sort();
+
+  if (heldExecutors.join(",") !== expectedExecutors.join(",")) {
+    differences.push(`EXECUTE is held by ${heldExecutors.join(", ")}`);
+  }
+  if (
+    normalizePolicyExpression(row.body) !== normalizePolicyExpression(pin.body)
+  ) {
+    differences.push("its body is no longer the reviewed one");
+  }
+
+  return differences.length === 0
+    ? null
+    : `${label} differs from its reviewed definition: ${differences.join("; ")}`;
+}
+
+/**
+ * The behavioural half of the sql/386 pins: in ONE transaction that is always
+ * rolled back, seed a throwaway tenant (and a second one) with articles and
+ * media objects in every state that matters, `SET LOCAL ROLE
+ * awcms_social_dispatch`, and require that:
+ *
+ *   - the two functions answer exactly the reviewed code for each row
+ *     (positive controls included, so a function that refuses EVERYTHING does
+ *     not pass): a published public or unlisted article is `PUBLISHED`; an
+ *     archived, private, deleted, scheduled (future `published_at`),
+ *     past-unpublish, unknown or other-tenant one is
+ *     `SOURCE_RETRACTED`; a verified media object with verified rights (`owned`,
+ *     `fair_use`) is `AVAILABLE`; a deleted, failed, unknown or other-tenant one
+ *     is `MEDIA_UNAVAILABLE`; rejected or unverified rights, or an unknown
+ *     copyright status, is `MEDIA_RIGHTS_REVOKED`;
+ *   - a tenant argument that is not the transaction tenant RAISES;
+ *   - the role cannot read either table directly (its view did not widen).
+ *
+ * Skipped when the connection cannot assume the role; `checkWorkerSetupRoleGrants`
+ * then names the skipped probe in its evidence (the #1274 audit, L4).
+ */
+export async function probeSocialSourceRecheck(
+  db: Bun.SQL
+): Promise<{ ran: boolean; finding?: string }> {
+  const can = (await db`
+    SELECT rolsuper OR pg_has_role(current_user, ${SOCIAL_DISPATCH_ROLE}, 'SET') AS can
+    FROM pg_roles WHERE rolname = current_user
+  `) as { can: boolean }[];
+
+  if (!can[0]?.can) return { ran: false };
+
+  const failures: string[] = [];
+
+  try {
+    await db.begin(async (tx) => {
+      const tenant = crypto.randomUUID();
+      const other = crypto.randomUUID();
+      const actor = crypto.randomUUID();
+
+      for (const id of [tenant, other]) {
+        const code = `probe-${id.slice(0, 8)}`;
+
+        await tx`
+          INSERT INTO awcms_tenants (id, tenant_code, tenant_name)
+          VALUES (${id}, ${code}, ${code})
+        `;
+      }
+
+      let seq = 0;
+      const article = async (
+        tenantId: string,
+        input: {
+          status: string;
+          visibility: string;
+          deleted?: boolean;
+          unpublishedAlready?: boolean;
+          scheduled?: boolean;
+        }
+      ): Promise<string> => {
+        await tx`SELECT set_config('app.current_tenant_id', ${tenantId}, true)`;
+        seq += 1;
+
+        const rows = (await tx`
+          INSERT INTO awcms_blog_posts
+            (tenant_id, author_tenant_user_id, title, slug, content_json,
+             content_text, status, visibility, published_at, unpublish_at,
+             deleted_at)
+          VALUES (${tenantId}, ${actor}, 'probe', ${`probe-${seq}`}, '{}'::jsonb,
+                  'probe', ${input.status}, ${input.visibility},
+                  ${new Date(Date.now() + (input.scheduled ? 3600_000 : -2 * 3600_000))},
+                  ${input.unpublishedAlready ? new Date(Date.now() - 3600_000) : null},
+                  ${input.deleted ? new Date() : null})
+          RETURNING id
+        `) as { id: string }[];
+
+        return rows[0]!.id;
+      };
+      const media = async (
+        tenantId: string,
+        input: {
+          status: string;
+          rights: "unverified" | "verified" | "rejected";
+          copyright: string;
+          deleted?: boolean;
+        }
+      ): Promise<string> => {
+        await tx`SELECT set_config('app.current_tenant_id', ${tenantId}, true)`;
+
+        const id = crypto.randomUUID();
+        const adjudicated = input.rights !== "unverified";
+        const attached = input.status === "attached";
+
+        await tx`
+          INSERT INTO awcms_news_media_objects
+            (id, tenant_id, bucket_name, object_key, public_url, mime_type,
+             status, created_by_tenant_user_id, copyright_status,
+             rights_verification_status, rights_verified_by, rights_verified_at,
+             owner_resource_type, owner_resource_id, deleted_at)
+          VALUES (${id}, ${tenantId}, 'probe',
+                  ${`news-media/${tenantId}/2026/11/${id}.jpg`},
+                  ${`https://media.example/${id}.jpg`}, 'image/jpeg',
+                  ${input.status}, ${actor}, ${input.copyright}, ${input.rights},
+                  ${adjudicated ? actor : null},
+                  ${adjudicated ? new Date() : null},
+                  ${attached ? "blog_post" : null},
+                  ${attached ? actor : null},
+                  ${input.deleted ? new Date() : null})
+        `;
+
+        return id;
+      };
+
+      const articles: { id: string; expected: string; label: string }[] = [
+        {
+          id: await article(tenant, {
+            status: "published",
+            visibility: "public"
+          }),
+          expected: "PUBLISHED",
+          label: "a published public article"
+        },
+        {
+          id: await article(tenant, {
+            status: "published",
+            visibility: "unlisted"
+          }),
+          expected: "PUBLISHED",
+          label: "a published unlisted article"
+        },
+        {
+          id: await article(tenant, {
+            status: "archived",
+            visibility: "public"
+          }),
+          expected: "SOURCE_RETRACTED",
+          label: "an archived article"
+        },
+        {
+          id: await article(tenant, { status: "draft", visibility: "public" }),
+          expected: "SOURCE_RETRACTED",
+          label: "an unpublished (draft) article"
+        },
+        {
+          id: await article(tenant, {
+            status: "published",
+            visibility: "private"
+          }),
+          expected: "SOURCE_RETRACTED",
+          label: "a private article"
+        },
+        {
+          id: await article(tenant, {
+            status: "published",
+            visibility: "public",
+            deleted: true
+          }),
+          expected: "SOURCE_RETRACTED",
+          label: "a deleted article"
+        },
+        {
+          id: await article(tenant, {
+            status: "published",
+            visibility: "public",
+            unpublishedAlready: true
+          }),
+          expected: "SOURCE_RETRACTED",
+          label: "an article past its unpublish time"
+        },
+        {
+          // The #1274 audit, L5: published, but its publication moment is
+          // still in the future (scheduled): not yet publicly reachable.
+          id: await article(tenant, {
+            status: "published",
+            visibility: "public",
+            scheduled: true
+          }),
+          expected: "SOURCE_RETRACTED",
+          label: "a scheduled article (published_at in the future)"
+        },
+        {
+          id: crypto.randomUUID(),
+          expected: "SOURCE_RETRACTED",
+          label: "an unknown article"
+        },
+        {
+          id: await article(other, {
+            status: "published",
+            visibility: "public"
+          }),
+          expected: "SOURCE_RETRACTED",
+          label: "another tenant's published article"
+        }
+      ];
+      const medias: { id: string; expected: string; label: string }[] = [
+        {
+          id: await media(tenant, {
+            status: "verified",
+            rights: "verified",
+            copyright: "owned"
+          }),
+          expected: "AVAILABLE",
+          label: "a verified, rights-verified, owned object"
+        },
+        {
+          id: await media(tenant, {
+            status: "attached",
+            rights: "verified",
+            copyright: "fair_use"
+          }),
+          expected: "AVAILABLE",
+          label: "an attached, rights-verified, fair_use object"
+        },
+        {
+          id: await media(tenant, {
+            status: "verified",
+            rights: "verified",
+            copyright: "owned",
+            deleted: true
+          }),
+          expected: "MEDIA_UNAVAILABLE",
+          label: "a soft-deleted (taken down) object"
+        },
+        {
+          id: await media(tenant, {
+            status: "failed",
+            rights: "verified",
+            copyright: "owned"
+          }),
+          expected: "MEDIA_UNAVAILABLE",
+          label: "a failed object"
+        },
+        {
+          id: await media(tenant, {
+            status: "verified",
+            rights: "rejected",
+            copyright: "owned"
+          }),
+          expected: "MEDIA_RIGHTS_REVOKED",
+          label: "an object whose rights were rejected"
+        },
+        {
+          id: await media(tenant, {
+            status: "verified",
+            rights: "unverified",
+            copyright: "owned"
+          }),
+          expected: "MEDIA_RIGHTS_REVOKED",
+          label: "an object whose rights are unverified"
+        },
+        {
+          id: await media(tenant, {
+            status: "verified",
+            rights: "verified",
+            copyright: "unknown"
+          }),
+          expected: "MEDIA_RIGHTS_REVOKED",
+          label: "an object of unknown copyright"
+        },
+        {
+          id: crypto.randomUUID(),
+          expected: "MEDIA_UNAVAILABLE",
+          label: "an unknown object"
+        },
+        {
+          id: await media(other, {
+            status: "verified",
+            rights: "verified",
+            copyright: "owned"
+          }),
+          expected: "MEDIA_UNAVAILABLE",
+          label: "another tenant's object"
+        }
+      ];
+
+      await tx`SELECT set_config('app.current_tenant_id', ${tenant}, true)`;
+      await tx.unsafe(`SET LOCAL ROLE ${SOCIAL_DISPATCH_ROLE}`);
+
+      for (const row of articles) {
+        const got = (await tx`
+          SELECT awcms_social_source_article_state(${tenant}::uuid, ${row.id}::uuid) AS state
+        `) as { state: string }[];
+
+        if (got[0]?.state !== row.expected) {
+          failures.push(
+            `${row.label} answered ${got[0]?.state ?? "nothing"}, not ${row.expected}`
+          );
+        }
+      }
+
+      for (const row of medias) {
+        const got = (await tx`
+          SELECT awcms_social_source_media_state(${tenant}::uuid, ${row.id}::uuid) AS state
+        `) as { state: string }[];
+
+        if (got[0]?.state !== row.expected) {
+          failures.push(
+            `${row.label} answered ${got[0]?.state ?? "nothing"}, not ${row.expected}`
+          );
+        }
+      }
+
+      const refused = async (
+        label: string,
+        run: (sp: Bun.SQL) => Promise<unknown>
+      ) => {
+        try {
+          await tx.savepoint(async (sp) => {
+            await run(sp);
+          });
+          failures.push(`${label} was allowed`);
+        } catch {
+          // Refused, as required.
+        }
+      };
+
+      await refused(
+        "asking about another tenant's article from this tenant's transaction",
+        (sp) =>
+          sp`SELECT awcms_social_source_article_state(${other}::uuid, ${articles[8]!.id}::uuid)`
+      );
+      await refused(
+        "asking about another tenant's media object from this tenant's transaction",
+        (sp) =>
+          sp`SELECT awcms_social_source_media_state(${other}::uuid, ${medias[8]!.id}::uuid)`
+      );
+      await refused(
+        "reading awcms_blog_posts directly",
+        (sp) => sp`SELECT status FROM awcms_blog_posts LIMIT 1`
+      );
+      await refused(
+        "reading awcms_news_media_objects directly",
+        (sp) => sp`SELECT status FROM awcms_news_media_objects LIMIT 1`
+      );
+
+      throw new RollbackProbe();
+    });
+  } catch (error) {
+    if (!(error instanceof RollbackProbe)) {
+      return {
+        ran: true,
+        finding: `the awcms_social_dispatch source re-check probe could not run: ${errorMessage(error)}`
+      };
+    }
+  }
+
+  if (failures.length > 0) {
+    return {
+      ran: true,
+      finding: `awcms_social_dispatch source re-check (sql/386) does not hold: ${failures.join("; ")}`
+    };
+  }
+
+  return { ran: true };
+}
+
 export type WorkerSetupRoleGrantsPolicy = {
   worker: Record<string, string[]>;
   setup: Record<string, string[]>;
@@ -2598,6 +4773,16 @@ export type WorkerSetupRoleGrantsPolicy = {
   workerColumns?: typeof WORKER_COLUMN_GRANTS;
   /** Optional: defaults to `SETUP_COLUMN_GRANTS`. */
   setupColumns?: typeof WORKER_COLUMN_GRANTS;
+  /** Optional: defaults to `SOCIAL_DISPATCH_ROLE_GRANTS` (empty). */
+  socialDispatch?: Record<string, string[]>;
+  /** Optional: defaults to `SOCIAL_DISPATCH_COLUMN_GRANTS`. */
+  socialDispatchColumns?: typeof WORKER_COLUMN_GRANTS;
+  /** Optional: defaults to `SOCIAL_SOURCE_CHECK_ROLE_GRANTS` (empty). */
+  socialSourceCheck?: Record<string, string[]>;
+  /** Optional: defaults to `SOCIAL_SOURCE_CHECK_COLUMN_GRANTS`. */
+  socialSourceCheckColumns?: typeof WORKER_COLUMN_GRANTS;
+  /** Optional: defaults to `SOCIAL_SOURCE_CHECK_FUNCTIONS`. */
+  socialSourceCheckFunctions?: readonly PinnedDefinerFunction[];
 };
 
 /**
@@ -2612,7 +4797,12 @@ export function defaultWorkerSetupRoleGrantsPolicy(): WorkerSetupRoleGrantsPolic
     worker: WORKER_ROLE_GRANTS,
     setup: SETUP_ROLE_GRANTS,
     workerColumns: WORKER_COLUMN_GRANTS,
-    setupColumns: SETUP_COLUMN_GRANTS
+    setupColumns: SETUP_COLUMN_GRANTS,
+    socialDispatch: SOCIAL_DISPATCH_ROLE_GRANTS,
+    socialDispatchColumns: SOCIAL_DISPATCH_COLUMN_GRANTS,
+    socialSourceCheck: SOCIAL_SOURCE_CHECK_ROLE_GRANTS,
+    socialSourceCheckColumns: SOCIAL_SOURCE_CHECK_COLUMN_GRANTS,
+    socialSourceCheckFunctions: SOCIAL_SOURCE_CHECK_FUNCTIONS
   };
 }
 
@@ -2655,7 +4845,15 @@ export async function checkWorkerSetupRoleGrants(
   const severity: CheckSeverity = "critical";
   const matrices: { role: string; grants: Record<string, string[]> }[] = [
     { role: WORKER_ROLE, grants: policy?.worker ?? WORKER_ROLE_GRANTS },
-    { role: SETUP_ROLE, grants: policy?.setup ?? SETUP_ROLE_GRANTS }
+    { role: SETUP_ROLE, grants: policy?.setup ?? SETUP_ROLE_GRANTS },
+    {
+      role: SOCIAL_DISPATCH_ROLE,
+      grants: policy?.socialDispatch ?? SOCIAL_DISPATCH_ROLE_GRANTS
+    },
+    {
+      role: SOCIAL_SOURCE_CHECK_ROLE,
+      grants: policy?.socialSourceCheck ?? SOCIAL_SOURCE_CHECK_ROLE_GRANTS
+    }
   ];
 
   try {
@@ -2667,6 +4865,7 @@ export async function checkWorkerSetupRoleGrants(
     const findings: string[] = [];
     const absent: string[] = [];
     const present: string[] = [];
+    const skippedProbes: string[] = [];
 
     for (const { role, grants } of matrices) {
       const roleRows = (await sql`
@@ -2751,6 +4950,15 @@ export async function checkWorkerSetupRoleGrants(
       {
         role: SETUP_ROLE,
         columns: policy?.setupColumns ?? SETUP_COLUMN_GRANTS
+      },
+      {
+        role: SOCIAL_DISPATCH_ROLE,
+        columns: policy?.socialDispatchColumns ?? SOCIAL_DISPATCH_COLUMN_GRANTS
+      },
+      {
+        role: SOCIAL_SOURCE_CHECK_ROLE,
+        columns:
+          policy?.socialSourceCheckColumns ?? SOCIAL_SOURCE_CHECK_COLUMN_GRANTS
       }
     ]) {
       if (!present.includes(role)) {
@@ -2838,6 +5046,315 @@ export async function checkWorkerSetupRoleGrants(
       }
     }
 
+    // The worker sees only WhatsApp sender credentials (sql/328, Issue #1233):
+    // the grant on awcms_channel_secrets.ciphertext is column-wide, and the
+    // RESTRICTIVE row policy is what keeps every tenant's social and email tokens
+    // out of a compromised dispatcher's reach. Pinned by name, kind, command,
+    // role and by naming the provider test, so dropping or weakening it is a
+    // finding rather than a silent loss.
+    if (present.includes(WORKER_ROLE)) {
+      // Issue #1160 audit M3: pinned EXACTLY, not by substring. A substring pin
+      // (the L-6 list of social names) passed a policy widened to bot tokens,
+      // refresh tokens, Telegram or a sender_identity's own token. The
+      // expression is compared in its canonical, normalised deparse, and then
+      // PROBED: what the worker can actually see is measured on seeded rows.
+      const policy = (await sql`
+        SELECT pg_get_expr(p.polqual, p.polrelid) AS expr
+        FROM pg_policy p
+        WHERE p.polrelid = to_regclass('awcms_channel_secrets')
+          AND p.polname = 'awcms_channel_secrets_worker_dispatch_purposes'
+          AND NOT p.polpermissive AND p.polcmd = 'r'
+          AND p.polroles = ARRAY[to_regrole('awcms_worker')::oid]
+          AND p.polwithcheck IS NULL
+      `) as { expr: string | null }[];
+      const expr = policy[0]?.expr ?? null;
+
+      if (
+        expr === null ||
+        normalizeWorkerPolicyExpression(expr) !==
+          WORKER_SECRET_POLICY_EXPRESSION
+      ) {
+        findings.push(
+          `awcms_channel_secrets restrictive policy awcms_channel_secrets_worker_dispatch_purposes (FOR SELECT TO awcms_worker, exactly the sql/348 expression: WhatsApp sender credentials and the token of a CONNECTED Mailketing esp_account) is missing or differs from the pinned expression (a compromised dispatcher could read other tenants' social, bot, refresh or sender tokens)`
+        );
+      } else {
+        const probe = await probeWorkerSecretVisibility(sql);
+
+        if (probe !== null) findings.push(probe);
+      }
+
+      // Issue #1143 review L-2 (sql/365): the worker's DELETE on the 24-hour
+      // windows and the webhook receipts is for the purge only. Pinned by the
+      // EXACT canonical expression, so a policy loosened to `interval '0
+      // days'` or `true` (a compromised worker re-opening the dedupe gap for a
+      // fresh webhook) is a finding.
+      const purgePolicies = (await sql`
+        SELECT p.polname AS name, NOT p.polpermissive AS restrictive,
+               p.polcmd AS command,
+               p.polroles = ARRAY[to_regrole('awcms_worker')::oid] AS worker_only,
+               pg_get_expr(p.polqual, p.polrelid) AS expression
+        FROM pg_policy p
+        WHERE p.polname IN (
+          'awcms_whatsapp_service_windows_worker_purge_only',
+          'awcms_whatsapp_webhook_receipts_worker_purge_only',
+          'awcms_whatsapp_messages_worker_purge_only'
+        )
+      `) as WorkerPurgePolicyRow[];
+
+      findings.push(...evaluateWorkerPurgePolicies(purgePolicies));
+
+      const purgeProbe = await probeWorkerPurgeDeleteFloors(sql);
+
+      if (purgeProbe.finding) findings.push(purgeProbe.finding);
+
+      // sql/357 (Issue #1145): the worker may DELETE publication evidence only
+      // through three RESTRICTIVE floors, each pinned to its EXACT canonical
+      // expression (M-3 of the #1261 audit: a substring pin let `OR true`, a
+      // reversed comparison and a dropped status condition pass), plus the two
+      // triggers that alone write the `terminal_at` stamp the floors rest on
+      // (M-2: `updated_at` is writable by app and worker, `terminal_at` by none).
+      for (const pin of SOCIAL_RETENTION_FLOOR_POLICIES) {
+        const finding = await pinPolicyExpression(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
+
+      for (const pin of SOCIAL_TERMINAL_STAMP_TRIGGERS) {
+        const finding = await pinTriggerFunction(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
+
+      // sql/379 (Issue #1161, audit M-3 of PR #1272): the worker's DELETE on
+      // the Mailketing quarantine, its two triggers (the only writer of the
+      // `received_at` stamp the floor rests on, and the role-independent
+      // delete floor), each pinned exactly, then PROBED on back-dated rows in a
+      // rolled-back transaction.
+      const floorFinding = await pinPolicyExpression(
+        sql,
+        EMAIL_PROVIDER_EVENT_RETENTION_FLOOR_POLICY
+      );
+
+      if (floorFinding) findings.push(floorFinding);
+
+      for (const pin of EMAIL_PROVIDER_EVENT_TRIGGERS) {
+        const finding = await pinTriggerFunction(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
+
+      for (const pin of WHATSAPP_META_AUDIT_TRIGGERS) {
+        const finding = await pinTriggerFunction(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
+
+      const floorProbe = await probeEmailProviderEventRetentionFloor(sql);
+
+      if (floorProbe.finding) findings.push(floorProbe.finding);
+    }
+
+    // sql/358 (Issue #1145, ADR-0157 section 6): the social dispatcher's own
+    // role sees ONLY the access token of a social account that may publish right
+    // now, and only the accounts and connections of the six social providers.
+    // Its column grant on awcms_channel_secrets.ciphertext is column-wide, so
+    // the RESTRICTIVE row policies are the whole boundary. M-1 of the #1261
+    // audit: they are pinned to their EXACT canonical expressions (a LIKE pin let
+    // a dropped correlation, `true OR ...`, `k.state <> 'granted'` and an
+    // inverted status list pass), and a behavioural probe seeds negative rows in
+    // a rolled-back transaction and proves the role sees exactly one secret.
+    if (present.includes(SOCIAL_DISPATCH_ROLE)) {
+      for (const pin of SOCIAL_DISPATCH_PINNED_POLICIES) {
+        const finding = await pinPolicyExpression(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
+
+      const probe = await probeSocialDispatchSecretVisibility(sql);
+
+      if (probe.finding) findings.push(probe.finding);
+
+      // sql/373 (Issue #1146): the whole dispatch job runs as this role, so its
+      // WRITES are bounded too, each pinned with USING and WITH CHECK, and
+      // probed (positive controls included) in a rolled-back transaction.
+      for (const pin of SOCIAL_DISPATCH_WRITE_POLICIES) {
+        const finding = await pinPolicyExpression(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
+
+      const writeProbe = await probeSocialDispatchWriteBoundary(sql);
+
+      if (writeProbe.finding) findings.push(writeProbe.finding);
+
+      // sql/386 (Issue #1145, ADR-0157 L8): the dispatch-time source re-check.
+      // The two SECURITY DEFINER functions are pinned exactly (body, owner,
+      // search_path, volatility, EXECUTE list) and probed in a rolled-back
+      // transaction (every verdict, the tenant binding, and that a direct read
+      // of either table is still refused).
+      for (const pin of policy?.socialSourceCheckFunctions ??
+        SOCIAL_SOURCE_CHECK_FUNCTIONS) {
+        const finding = await pinDefinerFunction(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
+
+      const sourceProbe = await probeSocialSourceRecheck(sql);
+
+      if (sourceProbe.finding) findings.push(sourceProbe.finding);
+
+      // The #1271 audit, M1: a policy naming the role that is NOT one of the
+      // reviewed pins (a re-added delivery INSERT, a new write path) is a
+      // finding by itself, whatever its expression.
+      const reviewed = new Set(
+        [
+          ...SOCIAL_DISPATCH_PINNED_POLICIES,
+          ...SOCIAL_DISPATCH_WRITE_POLICIES
+        ].map((pin) => `${pin.table}.${pin.policy}`)
+      );
+      const named = (await sql`
+        SELECT c.relname AS table_name, p.polname AS name
+        FROM pg_policy p
+        JOIN pg_class c ON c.oid = p.polrelid
+        WHERE to_regrole(${SOCIAL_DISPATCH_ROLE})::oid = ANY (p.polroles)
+      `) as { table_name: string; name: string }[];
+
+      for (const row of named) {
+        if (!reviewed.has(`${row.table_name}.${row.name}`)) {
+          findings.push(
+            `${row.table_name} policy ${row.name} names ${SOCIAL_DISPATCH_ROLE} and is not a reviewed pin`
+          );
+        }
+      }
+
+      // The #1274 audit, L3: the two pins say what the reviewed functions ARE,
+      // not that they are the only ones. A third function owned by the owner
+      // role (it can read the posts' and media objects' columns), or any
+      // SECURITY DEFINER function the dispatcher may EXECUTE (directly, through
+      // PUBLIC or a membership), that is not one of the pins is a finding by
+      // itself: the closure of what the role can reach through a definer is
+      // exactly the reviewed list.
+      const reviewedFunctions = new Set(
+        (
+          policy?.socialSourceCheckFunctions ?? SOCIAL_SOURCE_CHECK_FUNCTIONS
+        ).map((pin) => pin.signature)
+      );
+      const reachable = (await sql`
+        SELECT p.oid::regprocedure::text AS signature,
+               pg_get_userbyid(p.proowner) AS owner,
+               p.prosecdef AS definer
+        FROM pg_proc p
+        WHERE p.proowner = to_regrole(${SOCIAL_SOURCE_CHECK_ROLE})::oid
+           OR (p.prosecdef
+               AND has_function_privilege(${SOCIAL_DISPATCH_ROLE}, p.oid, 'EXECUTE'))
+        ORDER BY 1
+      `) as { signature: string; owner: string; definer: boolean }[];
+
+      for (const row of reachable) {
+        if (reviewedFunctions.has(row.signature)) continue;
+
+        findings.push(
+          row.owner === SOCIAL_SOURCE_CHECK_ROLE
+            ? `function ${row.signature} is owned by ${SOCIAL_SOURCE_CHECK_ROLE} and is not a reviewed pin (it runs with that role's reads of the posts and media objects)`
+            : `SECURITY DEFINER function ${row.signature} (owner ${row.owner}) is executable by ${SOCIAL_DISPATCH_ROLE} and is not a reviewed pin`
+        );
+      }
+
+      // The #1274 audit, L4: a probe that could not assume the role did not
+      // prove anything; say so in the evidence instead of passing silently.
+      if (!probe.ran) skippedProbes.push("secret visibility (sql/358)");
+      if (!writeProbe.ran) skippedProbes.push("write boundary (sql/373)");
+      if (!sourceProbe.ran) skippedProbes.push("source re-check (sql/386)");
+    }
+
+    // Issue #1160 audit L3: the two triggers that make an email sender snapshot
+    // mean something (sql/346), pinned like the sql/340 risk-ack triggers. Without
+    // the first a queued message could be re-pointed at another sender, carry a
+    // forged address or borrow another brand's token; without the second a policy
+    // could be deleted and re-created, so a recorded policy version would name
+    // two configurations.
+    const emailSenderTriggers = (await sql`
+      SELECT
+        EXISTS (
+          SELECT 1 FROM pg_trigger t
+          WHERE t.tgrelid = to_regclass('awcms_email_messages')
+            AND t.tgname = 'awcms_email_messages_sender_guard'
+            AND NOT t.tgisinternal AND t.tgenabled <> 'D'
+            AND (t.tgtype & 2) = 2 AND (t.tgtype & 1) = 1
+            AND (t.tgtype & 4) = 4 AND (t.tgtype & 16) = 16
+            AND t.tgfoid = to_regproc('awcms_email_messages_sender_guard')
+            AND pg_get_functiondef(t.tgfoid) LIKE '%esp_account%'
+            AND pg_get_functiondef(t.tgfoid) LIKE '%immutable%'
+        ) AS has_sender_guard,
+        EXISTS (
+          SELECT 1 FROM pg_trigger t
+          WHERE t.tgrelid = to_regclass('awcms_email_sender_policies')
+            AND t.tgname = 'awcms_email_sender_policies_no_delete'
+            AND NOT t.tgisinternal AND t.tgenabled <> 'D'
+            AND (t.tgtype & 2) = 2 AND (t.tgtype & 1) = 1
+            AND (t.tgtype & 8) = 8
+            AND t.tgfoid = to_regproc('awcms_email_sender_policies_no_delete')
+            AND pg_get_functiondef(t.tgfoid) LIKE '%never deleted%'
+        ) AS has_policy_no_delete
+    `) as { has_sender_guard: boolean; has_policy_no_delete: boolean }[];
+
+    if (!emailSenderTriggers[0]?.has_sender_guard) {
+      findings.push(
+        `awcms_email_messages trigger awcms_email_messages_sender_guard is missing, disabled or hollowed out (a queued email could be re-pointed at another sender, forged, or borrow another brand's Mailketing account)`
+      );
+    }
+    if (!emailSenderTriggers[0]?.has_policy_no_delete) {
+      findings.push(
+        `awcms_email_sender_policies trigger awcms_email_sender_policies_no_delete is missing or disabled (a policy could be deleted and re-created, so a recorded sender policy version would name two configurations)`
+      );
+    }
+
+    // The two triggers that make an UNOFFICIAL provider's risk acknowledgement
+    // mean something (sql/340, Issue #1142). Checked whatever roles are
+    // provisioned: they are table integrity, not a grant. Without the first a
+    // StarSender device could be `connected` on no acknowledgement at all; without
+    // the second an acknowledgement could be edited, back-dated or deleted, and the
+    // record of who accepted what would be worthless. Pinned by relation, name,
+    // enabled state, trigger events and the function they run (and the one fact
+    // each function must still name), so dropping, disabling or hollowing one out
+    // is a finding rather than a silent loss.
+    const riskTriggers = (await sql`
+      SELECT
+        EXISTS (
+          SELECT 1 FROM pg_trigger t
+          WHERE t.tgrelid = to_regclass('awcms_channel_accounts')
+            AND t.tgname = 'awcms_channel_accounts_risk_ack_guard'
+            AND NOT t.tgisinternal AND t.tgenabled <> 'D'
+            AND (t.tgtype & 2) = 2 AND (t.tgtype & 1) = 1
+            AND (t.tgtype & 4) = 4 AND (t.tgtype & 16) = 16
+            AND t.tgfoid = to_regproc('awcms_channel_accounts_risk_ack_guard')
+            AND pg_get_functiondef(t.tgfoid)
+                LIKE '%awcms_channel_provider_risk_acknowledgements%'
+        ) AS has_connect_guard,
+        EXISTS (
+          SELECT 1 FROM pg_trigger t
+          WHERE t.tgrelid = to_regclass('awcms_channel_provider_risk_acknowledgements')
+            AND t.tgname = 'awcms_channel_provider_risk_acks_guard'
+            AND NOT t.tgisinternal AND t.tgenabled <> 'D'
+            AND (t.tgtype & 2) = 2 AND (t.tgtype & 1) = 1
+            AND (t.tgtype & 4) = 4 AND (t.tgtype & 8) = 8
+            AND (t.tgtype & 16) = 16
+            AND t.tgfoid = to_regproc('awcms_channel_provider_risk_acks_guard')
+            AND pg_get_functiondef(t.tgfoid) LIKE '%never deleted%'
+        ) AS has_append_only_guard
+    `) as { has_connect_guard: boolean; has_append_only_guard: boolean }[];
+
+    if (!riskTriggers[0]?.has_connect_guard) {
+      findings.push(
+        `awcms_channel_accounts trigger awcms_channel_accounts_risk_ack_guard is missing, disabled or no longer reads the acknowledgement table (a StarSender device could be connected with no risk acknowledgement)`
+      );
+    }
+    if (!riskTriggers[0]?.has_append_only_guard) {
+      findings.push(
+        `awcms_channel_provider_risk_acknowledgements trigger awcms_channel_provider_risk_acks_guard is missing, disabled or hollowed out (an acknowledgement could be edited, back-dated or deleted)`
+      );
+    }
+
     if (findings.length > 0) {
       return {
         name,
@@ -2860,7 +5377,7 @@ export async function checkWorkerSetupRoleGrants(
       name,
       severity,
       status: "pass",
-      evidence: `Provisioned split role(s) ${present.join(", ")} hold exactly their least-privilege matrix and nothing more (non-super, non-BYPASSRLS, zero grant on every out-of-matrix awcms_% table)${absent.length > 0 ? `; ${absent.join(", ")} not provisioned (DATABASE_URL fallback, fine)` : ""}.`
+      evidence: `Provisioned split role(s) ${present.join(", ")} hold exactly their least-privilege matrix and nothing more (non-super, non-BYPASSRLS, zero grant on every out-of-matrix awcms_% table)${absent.length > 0 ? `; ${absent.join(", ")} not provisioned (DATABASE_URL fallback, fine)` : ""}${skippedProbes.length > 0 ? `; WARNING: behavioural probe(s) NOT run, only the exact pins stood: ${skippedProbes.join(", ")} (this connection can neither SET ROLE ${SOCIAL_DISPATCH_ROLE} nor is it a superuser)` : ""}.`
     };
   } catch (error) {
     return {
@@ -2883,7 +5400,12 @@ export async function checkWorkerSetupRoleGrants(
  * (`awcms_delegated_expiry`, `awcms_telegram_bootstrap`, ...) are NOT job roles:
  * nothing connects as them, they are reachable only through one narrow EXECUTE.
  */
-export const WORKER_JOB_ROLES: readonly string[] = [WORKER_ROLE];
+export const WORKER_JOB_ROLES: readonly string[] = [
+  WORKER_ROLE,
+  // sql/358 (Issue #1145): the social dispatcher's own role. A job role (an
+  // operator activates LOGIN for it), so it is checked like the worker.
+  SOCIAL_DISPATCH_ROLE
+];
 
 /**
  * Every role the credential-column check covers: the job roles plus the one-time
@@ -2945,6 +5467,25 @@ export const CREDENTIAL_COLUMNS: readonly string[] = [
   "awcms_omes_enrollments.enrollment_challenge_hash",
   "awcms_newsletter_subscribers.confirmation_token_hash",
   "awcms_newsletter_subscribers.unsubscribe_token_hash",
+  // website_engagement (sql/325, ADR-0155): the source's bearer-token keyed hash,
+  // the envelope-encrypted contact blob and the keyed hashes of a visitor's
+  // email and phone (an offline guessing oracle for a low-entropy identifier,
+  // so treated as credential material, like profile identifier hashes).
+  "awcms_engagement_sources.token_hash",
+  "awcms_engagement_submissions.contact_encrypted",
+  "awcms_engagement_submissions.email_hash",
+  "awcms_engagement_submissions.phone_hash",
+  // crm_leads (sql/342, ADR-0153): a lead contact point's envelope ciphertext and
+  // its per-tenant keyed hash (an offline guessing oracle for an email or phone).
+  "awcms_crm_lead_contact_points.value_encrypted",
+  "awcms_crm_lead_contact_points.value_hash",
+  // telegram_engagement (sql/350, ADR-0152): the per-bot callback hash, the
+  // account-scoped contact hash (an offline guessing oracle for a Telegram id),
+  // the encrypted chat id and the encrypted outbound text.
+  "awcms_telegram_engagement_endpoints.callback_hash",
+  "awcms_telegram_engagement_contacts.contact_hash",
+  "awcms_telegram_engagement_contacts.chat_ciphertext",
+  "awcms_telegram_engagement_messages.text_ciphertext",
   "awcms_comments_reply_subscriptions.unsubscribe_token_hash",
   "awcms_telegram_link_codes.code_hash",
   "awcms_telegram_bindings.pin_hash",
@@ -2992,7 +5533,7 @@ export const WORKER_CREDENTIAL_COLUMN_EXCEPTIONS: Readonly<
   "awcms_telegram_bindings.chat_ciphertext":
     "telegram:dispatch decrypts the chat id in-process to send; it is ciphertext under a key ring the worker already holds (sql/216)",
   "awcms_channel_secrets.ciphertext":
-    "whatsapp:dispatch decrypts a TENANT-OWNED sender's credential in-process, in memory, for the claimed row's tenant, to call the provider (Issue #1141, sql/322). ADR-0148 section 5 ACCEPTS this residual risk. What bounds it: the grant is column-only and read-only (id, tenant_id, purpose, ciphertext); since sql/324 a RESTRICTIVE policy limits the rows the worker can see to provider_access_token, api_token and device_key (never a refresh token, bot token, webhook secret, PKCE verifier or authorisation code); the key ring (CHANNEL_SECRETS_ENCRYPTION_KEYS) is outside the database and its backups and granted to this job alone; decrypts are counted per tenant. What does NOT bound it: AES-GCM associated data (purpose, tenant, row) stops a ciphertext being re-labelled or moved, but the grant exposes those inputs, so a compromised worker that sets the tenant can still read and decrypt every tenant's access tokens, API tokens and device keys"
+    "whatsapp:dispatch decrypts a TENANT-OWNED sender's credential in-process, in memory, for the claimed row's tenant, to call the provider (Issue #1141, sql/322). ADR-0148 section 5 ACCEPTS this residual risk. What bounds it: the grant is column-only and read-only (id, tenant_id, purpose, ciphertext); since sql/324 and sql/328 a RESTRICTIVE policy limits the rows the worker can see to provider_access_token, api_token and device_key (never a refresh token, bot token, webhook secret, PKCE verifier or authorisation code) AND to rows a whatsapp_cloud or starsender account or a whatsapp_cloud connection references (never a Facebook, Instagram, Threads, TikTok, YouTube, LinkedIn or Mailketing token; security:readiness pins the policy); the key ring (CHANNEL_SECRETS_ENCRYPTION_KEYS) is outside the database and its backups and granted to this job alone. What does NOT bound it: the in-process decrypt counter (telemetry in the worker's own process, which a compromised process can skip or reset); AES-GCM associated data (purpose, tenant, row) stops a ciphertext being re-labelled or moved, but the grant exposes those inputs, so a compromised worker that sets the tenant can still read and decrypt every tenant's WhatsApp sender credentials (access tokens, API tokens and device keys of whatsapp_cloud and starsender accounts). The SAME column is read by the separate role awcms_social_dispatch (sql/358, Issue #1145, ADR-0157 section 6), under its OWN restrictive policy (awcms_channel_secrets_social_dispatch_publish: only the provider_access_token of a facebook, instagram, threads, tiktok, youtube or linkedin connection whose grant is active or expired and that a connected or degraded account with a granted publish capability uses; security:readiness pins it). That role ships NOLOGIN, no job holds its connection string or the key ring for it yet, and awcms_worker's view does not widen."
 };
 
 /**
@@ -3010,8 +5551,16 @@ export const CREDENTIAL_LOOKING_COLUMN_PATTERN =
  * reason, so the scan does not need a human to re-judge them every run.
  */
 export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
+  "awcms_crm_follow_up_rule_revisions.definition_hash":
+    "SHA-256 over a follow-up rule revision's own declarative definition (trigger, offsets, assignee mode, calendar), kept to prove a published revision unchanged and to refuse an identical republish; it is not keyed, holds nothing about a person and unlocks nothing (sql/369)",
+  "awcms_crm_pipeline_revisions.definition_hash":
+    "SHA-256 over a pipeline revision's own stage catalog (stage keys, names, categories, edges, guard codes), kept to prove a published revision unchanged and to refuse an identical republish; it is not keyed, holds nothing about a person and unlocks nothing (sql/342)",
   "awcms_auth_providers.client_secret_env_var":
     "the NAME of an environment variable, not its value (sql/025)",
+  "awcms_telegram_engagement_inbound.payload_hash":
+    "unkeyed SHA-256 of a received Telegram update body, kept as an audit anchor beside the replay key (ADR-0150 section 2); the body itself is never stored, and the hash unlocks nothing (sql/350)",
+  "awcms_social_publications.content_hash":
+    "SHA-256 over the publication's own PUBLIC content snapshot (title, caption, link, media), kept so two publications of the same content are recognisable and an edit is detectable; it is not keyed, protects nothing and unlocks nothing (sql/330)",
   "awcms_channel_oauth_states.redirect_uri_hash":
     "hash of the OAuth callback redirect URI the authorisation request was started with; not a secret (sql/318)",
   "awcms_channel_provider_connections.redirect_uri_hash":
@@ -3041,7 +5590,11 @@ export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
   "awcms_email_suppression_list.recipient_hash":
     "keyed hash of a suppressed address; not a login secret",
   "awcms_commerce_push_devices.endpoint_hash":
-    "sha256 of the customer push endpoint URL used as the unique lookup key and as the AAD row id of the credential ciphertexts; the endpoint itself is only ever stored as a ciphertext (a credential column) and a mask",
+    "sha256 of the customer push endpoint URL used as the unique lookup key and as the AAD row id of the credential ciphertexts; the endpoint itself is only ever stored as a ciphertext (a credential column) and a mask",,
+  "awcms_email_provider_events.recipient_hash":
+    "the same lookup hash of a recipient address as awcms_email_messages.to_address_hash, binding a quarantined provider event to our message (sql/379); not a login secret",
+  "awcms_email_provider_events.link_hash":
+    "SHA-256 of a clicked link reported by the provider, kept instead of the URL so the link is never stored, rendered or fetched (sql/379); not a secret",
   "awcms_idempotency_keys.request_hash":
     "keyed hash of the request body that binds a replay to its first request (ADR-0145); not a login secret",
   "awcms_idn_admin_regions.source_row_hash":
@@ -3079,8 +5632,59 @@ export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
   "awcms_whatsapp_messages.recipient_hash":
     "keyed hash of a recipient number; not a login secret",
   "awcms_whatsapp_suppressions.recipient_hash":
-    "keyed hash of a suppressed number; not a login secret"
+    "keyed hash of a suppressed number; not a login secret",
+  "awcms_whatsapp_service_windows.recipient_hash":
+    "keyed hash of the number that wrote to a Meta sender, for the 24-hour window (Issue #1143); not a login secret"
 };
+
+export type WorkerPurgePolicyRow = {
+  name: string;
+  restrictive: boolean;
+  command: string;
+  worker_only: boolean;
+  expression: string | null;
+};
+
+/**
+ * Issue #1143 review L-2: the canonical (deparsed) expressions of the two
+ * RESTRICTIVE `FOR DELETE TO awcms_worker` policies of `sql/365`, matched
+ * EXACTLY. They mirror the purge's own retention (two days for a window, eight
+ * for a receipt); any other text, a missing policy, a permissive one or one for
+ * another command or role is a finding.
+ */
+export const WORKER_PURGE_POLICIES: Readonly<Record<string, string>> = {
+  awcms_whatsapp_service_windows_worker_purge_only:
+    "(last_inbound_at < (now() - '2 days'::interval))",
+  awcms_whatsapp_webhook_receipts_worker_purge_only:
+    "(received_at < (now() - '8 days'::interval))",
+  // sql/394 (#1298 audit LOW-1): terminal and older than seven days only.
+  awcms_whatsapp_messages_worker_purge_only:
+    "((status = ANY (ARRAY['sent'::text, 'failed'::text, 'cancelled'::text, 'expired'::text])) AND (updated_at < (now() - '7 days'::interval)))"
+};
+
+export function evaluateWorkerPurgePolicies(
+  rows: readonly WorkerPurgePolicyRow[]
+): string[] {
+  const findings: string[] = [];
+
+  for (const [name, expected] of Object.entries(WORKER_PURGE_POLICIES)) {
+    const row = rows.find((candidate) => candidate.name === name);
+
+    if (
+      !row ||
+      !row.restrictive ||
+      row.command !== "d" ||
+      !row.worker_only ||
+      row.expression !== expected
+    ) {
+      findings.push(
+        `${name} (RESTRICTIVE FOR DELETE TO awcms_worker USING ${expected}) is missing or no longer exact: a compromised worker could delete fresh webhook receipts (re-opening replay) or open service windows`
+      );
+    }
+  }
+
+  return findings;
+}
 
 export type WorkerCredentialColumnPolicy = {
   credentialColumns?: readonly string[];
@@ -3278,6 +5882,10 @@ export const DEFINER_OWNER_ROLES: readonly string[] = [
   "awcms_booking_expiry",
   "awcms_booking_lifecycle_counter",
   "awcms_booking_reminders",
+  // sql/388 (Issue #1278): owns the worker-callable confirm/cancel of a
+  // reservation; column-scoped UPDATE on the reservation, allocation and staff
+  // assignment release columns, INSERT on the history table, nothing else.
+  "awcms_booking_transition",
   "awcms_delegated_expiry",
   "awcms_domain_bootstrap",
   // sql/306 (Issue #970): owns the operator-run erasure of one employment's
@@ -3292,6 +5900,10 @@ export const DEFINER_OWNER_ROLES: readonly string[] = [
   "awcms_principal_ensure",
   "awcms_principal_reach",
   "awcms_procurement_lifecycle_counter",
+  // sql/386 (Issue #1145, ADR-0157 L8): owns the two source re-check functions
+  // of the social dispatcher; column SELECT on the posts and media columns
+  // their bodies read, nothing else.
+  "awcms_social_source_check",
   "awcms_telegram_bootstrap"
 ];
 
@@ -3881,6 +6493,17 @@ export function checkEdgeCacheConfigured(
       status: "pass",
       evidence:
         "EDGE_CACHE_MODE is off (or unset) — the edge-cache subsystem is inert: no surrogate headers are emitted and no invalidation is attempted."
+    };
+  }
+
+  const cdnMissing = listMissingCdnPurgeSettings(loadCdnPurgeConfig(env));
+
+  if (cdnMissing.length > 0) {
+    return {
+      name,
+      severity: "critical",
+      status: "fail",
+      evidence: `EDGE_CACHE_CDN_PURGE=on but ${cdnMissing.join(", ")} ${cdnMissing.length === 1 ? "is" : "are"} unset or unusable. The purge worker refuses to run, so no invalidation (Varnish or CDN) is sent and the queue only grows until this is fixed.`
     };
   }
 
@@ -5138,6 +7761,8 @@ type KeyIdCountInput = {
   name: string;
   ringEnv: string;
   rekeyCommand: string;
+  /** Replaces the "Run `bun run <rekeyCommand>`" advice when a dataset has no re-key job. */
+  remedy?: string;
   ring: { ok: true; keys: { id: string }[] } | { ok: false };
   count: typeof countPushAuthSecretsByKeyId;
 };
@@ -5208,7 +7833,7 @@ async function checkCiphertextKeyIdDistribution(
         name,
         severity,
         status: "fail",
-        evidence: `${stale} row(s) are still under a key id other than the active key "${activeKeyId}" (rows per key id: ${summary}). Run \`bun run ${input.rekeyCommand}\` (idempotent, resumable); an old key in ${input.ringEnv} may be removed only once this reaches zero.`
+        evidence: `${stale} row(s) are still under a key id other than the active key "${activeKeyId}" (rows per key id: ${summary}). ${input.remedy ?? `Run \`bun run ${input.rekeyCommand}\` (idempotent, resumable);`} an old key in ${input.ringEnv} may be removed only once this reaches zero.`
       };
     }
 
@@ -5256,6 +7881,738 @@ export function checkTelegramChatKeyIds(
   });
 }
 
+export type WebsiteEngagementMaterialFindings = {
+  /** Encryption key ids whose sample ciphertext does not decrypt. */
+  contactUnreadable: string[];
+  /** Hash key ids whose sample identifier hash does not recompute. */
+  hashMismatch: string[];
+  /** Hash key ids of LIVE source tokens that no configured key carries. */
+  tokenUnknown: string[];
+};
+
+/**
+ * #1269 audit M-1: a key id count proves nothing about MATERIAL. `k1` reused
+ * for a new key passes an id comparison while every old row stays shut. This
+ * decrypts ONE sample per encryption key id and recomputes ONE sample
+ * identifier hash per hash key id, per tenant, and reports only key ids.
+ */
+export async function probeWebsiteEngagementMaterial(
+  env: NodeJS.ProcessEnv,
+  // Type inferred on purpose: a `name: Bun.SQL` annotation makes
+  // db:transaction-swallow:check treat `sql` as a transaction handle file-wide.
+  sql = getDatabaseClient()
+): Promise<WebsiteEngagementMaterialFindings> {
+  const encryption = resolveWebsiteEngagementEncryptionRingUnchecked(env);
+  const hash = resolveWebsiteEngagementHashRingUnchecked(env);
+  const legacy = resolveWebsiteEngagementLegacyHashKeysUnchecked(env);
+  const hashKeys = [
+    ...(hash.ok ? hash.keys : []),
+    ...(legacy.ok ? legacy.keys : [])
+  ];
+  const tenants = (await sql`
+    SELECT id FROM awcms_tenants ORDER BY id
+  `) as { id: string }[];
+  const contactUnreadable = new Set<string>();
+  const hashMismatch = new Set<string>();
+  const tokenUnknown = new Set<string>();
+
+  for (const tenant of tenants) {
+    const probe = await probeKeyMaterial(
+      sql,
+      tenant.id,
+      encryption.ok ? encryption : null,
+      hashKeys
+    );
+
+    for (const [keyId, state] of Object.entries(probe.contact)) {
+      if (state !== "ok") contactUnreadable.add(keyId);
+    }
+
+    for (const [keyId, state] of Object.entries(probe.identifierHash)) {
+      if (state === "mismatch") hashMismatch.add(keyId);
+    }
+
+    for (const keyId of Object.keys(
+      await countSourceTokensByKeyId(sql, tenant.id)
+    )) {
+      if (!hashKeys.some((key) => key.id === keyId)) tokenUnknown.add(keyId);
+    }
+  }
+
+  const sorted = (set: Set<string>) => [...set].sort();
+
+  return {
+    contactUnreadable: sorted(contactUnreadable),
+    hashMismatch: sorted(hashMismatch),
+    tokenUnknown: sorted(tokenUnknown)
+  };
+}
+
+/**
+ * Adds the material verdict to an id-distribution result: a finding turns even
+ * a `pass` into `fail` (the M-1 case, where every id "matches"). Key ids only.
+ */
+export async function withMaterialProbe(
+  base: SecurityCheckResult,
+  verdict: (findings: WebsiteEngagementMaterialFindings) => string | null,
+  probe: () => Promise<WebsiteEngagementMaterialFindings>
+): Promise<SecurityCheckResult> {
+  // A count that already failed to run has nothing to add to.
+  if (base.evidence.startsWith("Could not count")) return base;
+
+  try {
+    const problem = verdict(await probe());
+
+    return problem
+      ? { ...base, status: "fail", evidence: `${problem} ${base.evidence}` }
+      : base;
+  } catch (error) {
+    return {
+      ...base,
+      status: "fail",
+      evidence: `Could not verify key material: ${errorMessage(error)}.`
+    };
+  }
+}
+
+/**
+ * Issue #1262: live website source tokens still hashed under a key other than
+ * the hash ring's active one, which includes every token still verified only by
+ * `WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS`. There is no re-key job for a token (its
+ * secret is not stored): it is re-hashed on its next accepted submission, or
+ * moved by rotating it. #1269 M-1: plus a material check (see above).
+ */
+export async function checkWebsiteEngagementTokenKeyIds(
+  env: NodeJS.ProcessEnv = process.env
+): Promise<SecurityCheckResult> {
+  const ring = resolveWebsiteEngagementHashRingUnchecked(env);
+
+  const base = await checkCiphertextKeyIdDistribution({
+    name: "Website engagement source tokens are under the active hash key",
+    ringEnv:
+      "WEBSITE_ENGAGEMENT_HASH_KEYS (or WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS)",
+    rekeyCommand: "",
+    remedy:
+      "Each source is re-hashed on its next accepted submission; rotate any source that does not submit (POST /api/v1/website-engagement/sources/{id}/rotate);",
+    ring: ring.ok ? ring : { ok: false },
+    count: countSourceTokensByKeyId
+  });
+
+  return withMaterialProbe(base, websiteEngagementTokenMaterialProblem, () =>
+    probeWebsiteEngagementMaterial(env)
+  );
+}
+
+/** The token check's verdict on the material findings; `null` when sound. */
+export function websiteEngagementTokenMaterialProblem(
+  findings: WebsiteEngagementMaterialFindings
+): string | null {
+  const problems: string[] = [];
+
+  if (findings.tokenUnknown.length > 0) {
+    problems.push(
+      `Live source tokens are under key id(s) ${findings.tokenUnknown.join(", ")} that neither WEBSITE_ENGAGEMENT_HASH_KEYS nor WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS carries: those sources are refused.`
+    );
+  }
+
+  if (findings.hashMismatch.length > 0) {
+    problems.push(
+      `A sample hash under key id(s) ${findings.hashMismatch.join(", ")} does not recompute under the configured key of that id: the id was reused for different material, so tokens under it are refused. Restore the original key under its original id and give the new key a NEW id.`
+    );
+  }
+
+  return problems.length > 0 ? problems.join(" ") : null;
+}
+
+/** The contact check's verdict on the material findings; `null` when sound. */
+export function websiteEngagementContactMaterialProblem(
+  findings: WebsiteEngagementMaterialFindings
+): string | null {
+  return findings.contactUnreadable.length > 0
+    ? `A sample contact ciphertext under key id(s) ${findings.contactUnreadable.join(", ")} does not decrypt under WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS (the key is missing, or its id was reused for different material): those submissions cannot be revealed.`
+    : null;
+}
+
+/**
+ * Issue #1262: submission contact ciphertexts still under a key other than the
+ * encryption ring's active one (after the transition: the retired single-ring
+ * key). There is deliberately no re-encryption job: a submission is append-only
+ * evidence (sql/327 guard), so old rows leave by retention or withdrawal.
+ */
+export async function checkWebsiteEngagementContactKeyIds(
+  env: NodeJS.ProcessEnv = process.env
+): Promise<SecurityCheckResult> {
+  const ring = resolveWebsiteEngagementEncryptionRingUnchecked(env);
+
+  const base = await checkCiphertextKeyIdDistribution({
+    name: "Website engagement contact ciphertexts are under the active key",
+    ringEnv: "WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS",
+    rekeyCommand: "",
+    remedy:
+      "There is no re-encryption job (a submission is append-only evidence); these rows leave through the retention purge or a withdrawal;",
+    ring: ring.ok ? ring : { ok: false },
+    count: countSubmissionContactsByKeyId
+  });
+
+  return withMaterialProbe(base, websiteEngagementContactMaterialProblem, () =>
+    probeWebsiteEngagementMaterial(env)
+  );
+}
+
+// ---------------------------------------------------------------------------
+// telegram_engagement dispatcher role (sql/353, Issue #1156, audit H-2 of #1260)
+// ---------------------------------------------------------------------------
+
+export const TELEGRAM_ENGAGEMENT_DISPATCH_ROLE =
+  "awcms_telegram_engagement_dispatch";
+
+export const TELEGRAM_ENGAGEMENT_DISPATCH_POLICY =
+  "awcms_channel_secrets_telegram_engagement_dispatch";
+
+/**
+ * Every column privilege the role holds, exactly (both directions). It holds
+ * NO table-level privilege anywhere. Kept in step with `sql/353`, whose header
+ * gives the reason for each line.
+ */
+export const TELEGRAM_ENGAGEMENT_DISPATCH_COLUMN_GRANTS: Record<
+  string,
+  Partial<Record<"SELECT" | "INSERT" | "UPDATE", string[]>>
+> = {
+  awcms_tenants: { SELECT: ["id", "status"] },
+  awcms_channel_accounts: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "business_scope_type",
+      "business_scope_id",
+      "provider",
+      "account_kind",
+      "external_id",
+      "display_name",
+      "auth_mode",
+      "connection_id",
+      "parent_account_id",
+      "secret_id",
+      "status",
+      "status_reason",
+      "connected_at",
+      "revoked_at",
+      "created_at",
+      "updated_at",
+      "version",
+      "deleted_at"
+    ],
+    UPDATE: ["status", "status_reason", "connected_at", "updated_at", "version"]
+  },
+  awcms_channel_account_health: {
+    SELECT: [
+      "tenant_id",
+      "account_id",
+      "state",
+      "reason_code",
+      "checked_at",
+      "token_expires_at",
+      "quota_remaining",
+      "quota_limit"
+    ],
+    INSERT: [
+      "tenant_id",
+      "account_id",
+      "state",
+      "reason_code",
+      "checked_at",
+      "token_expires_at",
+      "quota_remaining",
+      "quota_limit"
+    ],
+    UPDATE: [
+      "state",
+      "reason_code",
+      "checked_at",
+      "token_expires_at",
+      "quota_remaining",
+      "quota_limit",
+      "updated_at"
+    ]
+  },
+  awcms_channel_account_capabilities: {
+    SELECT: [
+      "tenant_id",
+      "account_id",
+      "capability",
+      "state",
+      "evidence_kind",
+      "evidence_ref",
+      "matrix_version",
+      "verified_at",
+      "updated_at"
+    ]
+  },
+  awcms_channel_provider_connections: {
+    SELECT: ["id", "tenant_id", "grant_state"]
+  },
+  awcms_channel_secrets: {
+    SELECT: ["id", "tenant_id", "purpose", "ciphertext"]
+  },
+  awcms_telegram_engagement_endpoints: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "account_id",
+      "secret_id",
+      "state",
+      "provider_action",
+      "connector_attempts",
+      "next_attempt_at",
+      "connector_lease_until",
+      "daily_send_ceiling",
+      "breaker_open_until",
+      "consecutive_failures"
+    ],
+    UPDATE: [
+      "state",
+      "provider_action",
+      "connector_attempts",
+      "next_attempt_at",
+      "connector_lease_until",
+      "last_error_code",
+      "verified_bot_id",
+      "bot_username",
+      "verified_at",
+      "activated_at",
+      "consecutive_failures",
+      "breaker_open_until",
+      "updated_at"
+    ]
+  },
+  awcms_telegram_engagement_contacts: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "account_id",
+      "state",
+      "chat_ciphertext",
+      "version"
+    ],
+    UPDATE: ["state", "blocked_at", "version", "updated_at"]
+  },
+  awcms_telegram_engagement_consents: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "contact_id",
+      "purpose",
+      "action",
+      "method",
+      "evidence_seq"
+    ],
+    INSERT: [
+      "tenant_id",
+      "contact_id",
+      "purpose",
+      "action",
+      "notice_version",
+      "update_id",
+      "method",
+      "occurred_at",
+      "recorded_by"
+    ]
+  },
+  awcms_telegram_engagement_messages: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "account_id",
+      "contact_id",
+      "purpose",
+      "kind",
+      "prompt_purpose",
+      "prompt_notice_version",
+      "attempts",
+      "lease_token",
+      "lease_until",
+      "status",
+      "next_attempt_at",
+      "created_at",
+      "expires_at",
+      "text_ciphertext",
+      "sent_at"
+    ],
+    UPDATE: [
+      "status",
+      "attempts",
+      "lease_until",
+      "lease_token",
+      "provider_message_id",
+      "failure_code",
+      "text_ciphertext",
+      "next_attempt_at",
+      "sent_at",
+      "finalized_at",
+      "updated_at"
+    ]
+  },
+  awcms_domain_events: {
+    SELECT: ["id", "event_sequence"],
+    INSERT: [
+      "tenant_id",
+      "event_type",
+      "event_version",
+      "aggregate_type",
+      "aggregate_id",
+      "aggregate_version",
+      "order_key",
+      "correlation_id",
+      "causation_id",
+      "producer_module",
+      "schema_ref",
+      "actor_tenant_user_id",
+      "actor_profile_id",
+      "payload",
+      "occurred_at"
+    ]
+  }
+  // sql/374 (the #1271 audit, M1): the delivery grants were REVOKED.
+};
+
+export type PinnedRolePolicy = {
+  table: string;
+  name: string;
+  /** `pg_policy.polcmd`: r SELECT, a INSERT, w UPDATE, d DELETE, * ALL. */
+  cmd: "r" | "a" | "w" | "d" | "*";
+  /** Normalised USING (`null` when the policy has none). */
+  using: string | null;
+  /** Normalised WITH CHECK (`null` when the policy has none). */
+  check: string | null;
+};
+
+const LIVE_BOT_ACCOUNT =
+  "(exists(select1fromawcms_channel_accountsawhere((a.tenant_id=awcms_channel_account_health.tenant_id)and(a.id=awcms_channel_account_health.account_id)and(a.provider='telegram')and(a.account_kind='bot')and(a.deleted_atisnull))))";
+
+/**
+ * EVERY policy that names `awcms_telegram_engagement_dispatch`, exactly
+ * (audits M-A and M-B of PR #1260). All RESTRICTIVE, all `TO` that role only.
+ * Changing any of them means changing THIS list in the same reviewed change;
+ * an extra policy naming the role is a finding too.
+ */
+export const TELEGRAM_ENGAGEMENT_DISPATCH_POLICIES: readonly PinnedRolePolicy[] =
+  [
+    {
+      table: "awcms_channel_secrets",
+      name: "awcms_channel_secrets_telegram_engagement_dispatch",
+      cmd: "r",
+      using:
+        "(((purpose='bot_token')and(exists(select1from(awcms_channel_accountsajoinawcms_telegram_engagement_endpointseon(((e.tenant_id=a.tenant_id)and(e.account_id=a.id))))where((a.tenant_id=awcms_channel_secrets.tenant_id)and(a.secret_id=awcms_channel_secrets.id)and(a.provider='telegram')and(a.account_kind='bot')and(a.auth_mode='bot_token')and(a.deleted_atisnull)and(a.status=any(array['pending','connected','degraded']))and((e.state<>'revoked')or(e.provider_action='delete'))))))or((purpose='webhook_signing_secret')and(exists(select1from(awcms_telegram_engagement_endpointsejoinawcms_channel_accountsaon(((a.tenant_id=e.tenant_id)and(a.id=e.account_id))))where((e.tenant_id=awcms_channel_secrets.tenant_id)and(e.secret_id=awcms_channel_secrets.id)and(e.state<>'revoked')and(a.provider='telegram')and(a.account_kind='bot')and(a.deleted_atisnull)and(a.status=any(array['pending','connected','degraded'])))))))",
+      check: null
+    },
+    {
+      table: "awcms_channel_accounts",
+      name: "awcms_channel_accounts_telegram_engagement_dispatch_update",
+      cmd: "w",
+      using:
+        "((provider='telegram')and(account_kind='bot')and(deleted_atisnull)and(status=any(array['pending','connected','degraded'])))",
+      check:
+        "((provider='telegram')and(account_kind='bot')and(deleted_atisnull)and(status=any(array['connected','degraded'])))"
+    },
+    {
+      table: "awcms_channel_account_health",
+      name: "awcms_channel_account_health_telegram_engagement_dispatch",
+      cmd: "*",
+      using: LIVE_BOT_ACCOUNT,
+      check: LIVE_BOT_ACCOUNT
+    },
+    {
+      table: "awcms_telegram_engagement_consents",
+      name: "awcms_telegram_engagement_consents_dispatch_insert",
+      cmd: "a",
+      using: null,
+      check: "((action='opt_out')and(method='provider_forbidden'))"
+    },
+    {
+      table: "awcms_telegram_engagement_contacts",
+      name: "awcms_telegram_engagement_contacts_dispatch_update",
+      cmd: "w",
+      using: "(state='started')",
+      check: "(state='blocked')"
+    },
+    {
+      table: "awcms_domain_events",
+      name: "awcms_domain_events_telegram_engagement_dispatch_insert",
+      cmd: "a",
+      using: null,
+      check:
+        "((producer_module='telegram_engagement')and(event_type='awcms.telegram_engagement.consent.changed'))"
+    },
+    {
+      // sql/374 (the #1271 audit, M1): the role reads back only its own event;
+      // its delivery INSERT (bound only by the delivery's own event_type) is gone.
+      table: "awcms_domain_events",
+      name: "awcms_domain_events_tge_dispatch_select",
+      cmd: "r",
+      using:
+        "((producer_module='telegram_engagement')and(event_type='awcms.telegram_engagement.consent.changed'))",
+      check: null
+    }
+  ];
+
+/**
+ * The customer Telegram dispatcher's role holds no table-level privilege, the
+ * column privileges pinned above exactly, is neither SUPERUSER nor BYPASSRLS,
+ * and its view of `awcms_channel_secrets` is bounded by the RESTRICTIVE policy
+ * `awcms_channel_secrets_telegram_engagement_dispatch` (customer bot tokens and
+ * webhook seeds of live bots only). The column grant on `ciphertext` is
+ * column-wide, so that policy IS the boundary: dropping or widening it fails
+ * here (audit H-2 of PR #1260).
+ */
+export async function checkTelegramEngagementDispatchRole(options?: {
+  columns?: typeof TELEGRAM_ENGAGEMENT_DISPATCH_COLUMN_GRANTS;
+  policies?: readonly PinnedRolePolicy[];
+}): Promise<SecurityCheckResult> {
+  const name =
+    "Customer Telegram dispatcher role sees only customer bot credentials";
+  const severity: CheckSeverity = "critical";
+  const role = TELEGRAM_ENGAGEMENT_DISPATCH_ROLE;
+  const columns =
+    options?.columns ?? TELEGRAM_ENGAGEMENT_DISPATCH_COLUMN_GRANTS;
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const findings: string[] = [];
+    const roleRows = (await sql`
+      SELECT rolsuper, rolbypassrls FROM pg_roles WHERE rolname = ${role}
+    `) as { rolsuper: boolean; rolbypassrls: boolean }[];
+
+    if (roleRows.length === 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `${role} does not exist: sql/353 has not been applied, and telegram-engagement:dispatch has no least-privilege role to connect as.`
+      };
+    }
+
+    if (roleRows[0]!.rolsuper || roleRows[0]!.rolbypassrls) {
+      findings.push(
+        `${role} is SUPERUSER or BYPASSRLS (every policy is bypassed)`
+      );
+    }
+
+    const tableGrants = (await sql`
+      SELECT c.relname
+      FROM pg_class c
+      JOIN pg_namespace n ON n.oid = c.relnamespace
+      WHERE c.relname LIKE 'awcms\\_%' AND c.relkind IN ('r', 'p')
+        AND n.nspname = current_schema()
+        AND (
+          has_table_privilege(${role}, c.oid, 'SELECT')
+          OR has_table_privilege(${role}, c.oid, 'INSERT')
+          OR has_table_privilege(${role}, c.oid, 'UPDATE')
+          OR has_table_privilege(${role}, c.oid, 'DELETE')
+        )
+      ORDER BY c.relname
+    `) as { relname: string }[];
+
+    for (const row of tableGrants) {
+      findings.push(
+        `${role} holds a TABLE-level privilege on ${row.relname} (only pinned column grants are allowed)`
+      );
+    }
+
+    for (const privilege of ["SELECT", "INSERT", "UPDATE"] as const) {
+      const heldRows = (await sql`
+        SELECT c.relname AS table_name, a.attname AS column_name
+        FROM pg_attribute a
+        JOIN pg_class c ON c.oid = a.attrelid
+        JOIN pg_namespace n ON n.oid = c.relnamespace
+        WHERE c.relname LIKE 'awcms\\_%' AND c.relkind IN ('r', 'p')
+          AND n.nspname = current_schema()
+          AND a.attnum > 0 AND NOT a.attisdropped
+          AND has_column_privilege(${role}, c.oid, a.attnum, ${privilege})
+        ORDER BY c.relname, a.attname
+      `) as { table_name: string; column_name: string }[];
+      const held = new Map<string, string[]>();
+
+      for (const row of heldRows) {
+        held.set(row.table_name, [
+          ...(held.get(row.table_name) ?? []),
+          row.column_name
+        ]);
+      }
+
+      for (const table of new Set([...Object.keys(columns), ...held.keys()])) {
+        const expected = columns[table]?.[privilege] ?? [];
+        const actual = held.get(table) ?? [];
+        const extra = actual.filter((column) => !expected.includes(column));
+        const missing = expected.filter((column) => !actual.includes(column));
+
+        if (extra.length > 0) {
+          findings.push(
+            `${role} over-granted: ${privilege} on ${table}(${extra.join(", ")})`
+          );
+        }
+        if (missing.length > 0) {
+          findings.push(
+            `${role} under-granted: ${privilege} on ${table}(${missing.join(", ")})`
+          );
+        }
+      }
+    }
+
+    // Every policy naming the role, compared EXACTLY with the pins (audit M-A:
+    // a substring check let 9 of 11 widening mutations through).
+    const policyRows = (await sql`
+      SELECT c.relname AS table_name, p.polname AS name, p.polcmd::text AS cmd,
+             p.polpermissive AS permissive,
+             p.polroles = ARRAY[to_regrole(${role})::oid] AS only_role,
+             pg_get_expr(p.polqual, p.polrelid) AS using_expr,
+             pg_get_expr(p.polwithcheck, p.polrelid) AS check_expr
+      FROM pg_policy p
+      JOIN pg_class c ON c.oid = p.polrelid
+      WHERE to_regrole(${role})::oid = ANY (p.polroles)
+    `) as {
+      table_name: string;
+      name: string;
+      cmd: string;
+      permissive: boolean;
+      only_role: boolean;
+      using_expr: string | null;
+      check_expr: string | null;
+    }[];
+    const pinnedKeys = new Set(
+      (options?.policies ?? TELEGRAM_ENGAGEMENT_DISPATCH_POLICIES).map(
+        (pin) => `${pin.table}.${pin.name}`
+      )
+    );
+
+    for (const pin of options?.policies ??
+      TELEGRAM_ENGAGEMENT_DISPATCH_POLICIES) {
+      const row = policyRows.find(
+        (candidate) =>
+          candidate.table_name === pin.table && candidate.name === pin.name
+      );
+
+      if (!row) {
+        findings.push(
+          `${pin.table} restrictive policy ${pin.name} (TO ${role}) is missing`
+        );
+        continue;
+      }
+
+      const usingNow =
+        row.using_expr === null
+          ? null
+          : normalizeWorkerPolicyExpression(row.using_expr);
+      const checkNow =
+        row.check_expr === null
+          ? null
+          : normalizeWorkerPolicyExpression(row.check_expr);
+
+      if (
+        row.permissive ||
+        !row.only_role ||
+        row.cmd !== pin.cmd ||
+        usingNow !== pin.using ||
+        checkNow !== pin.check
+      ) {
+        findings.push(
+          `${pin.table} policy ${pin.name} differs from its pin (${row.permissive ? "PERMISSIVE" : "restrictive"}, command ${row.cmd}, ${row.only_role ? "this role only" : "other roles too"}${usingNow !== pin.using ? ", USING changed" : ""}${checkNow !== pin.check ? ", WITH CHECK changed" : ""})`
+        );
+      }
+    }
+
+    for (const row of policyRows) {
+      if (!pinnedKeys.has(`${row.table_name}.${row.name}`)) {
+        findings.push(
+          `${row.table_name} policy ${row.name} names ${role} and is not a reviewed pin`
+        );
+      }
+    }
+
+    // ...and what the policies DO, as the role, in a rolled-back transaction.
+    const probe = await probeTelegramEngagementDispatchRole(sql);
+
+    if (probe !== null) findings.push(...probe);
+
+    return findings.length === 0
+      ? {
+          name,
+          severity,
+          status: "pass",
+          evidence: `${role} holds no table-level privilege, exactly its pinned column grants on ${Object.keys(columns).length} table(s), exactly its ${TELEGRAM_ENGAGEMENT_DISPATCH_POLICIES.length} pinned restrictive policies (secret view, account/health/contact/consent/outbox writes), and a rolled-back probe as the role confirms what they allow and refuse.`
+        }
+      : { name, severity, status: "fail", evidence: findings.join("; ") };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify ${role}: ${error instanceof Error ? error.message : "unknown error"}`
+    };
+  }
+}
+
+/**
+ * The #1271 audit, L3: the behavioural probes of the dedicated roles
+ * (`awcms_worker`'s secret view, `awcms_social_dispatch`'s secret view and
+ * write boundary, `awcms_telegram_engagement_dispatch`) run only when the
+ * readiness connection can assume the role. On the usual production
+ * `DATABASE_URL` (`awcms_app`) they cannot, and each probe quietly returns
+ * "did not run": the exact policy pins are then the only guard. That is
+ * reported here as a WARNING, naming the roles, instead of passing silently.
+ * Run readiness once with a superuser or role-member connection to prove them.
+ */
+export async function checkDedicatedRoleProbesRan(): Promise<SecurityCheckResult> {
+  const name =
+    "Behavioural probes of the dedicated DB roles ran (not only the policy pins)";
+  const severity: CheckSeverity = "warning";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const rows = (await sql`
+      SELECT r.rolname AS role,
+             (SELECT rolsuper FROM pg_roles WHERE rolname = current_user)
+               OR pg_has_role(current_user, r.oid, 'MEMBER') AS can
+      FROM pg_roles r
+      WHERE r.rolname IN (${WORKER_ROLE}, ${SOCIAL_DISPATCH_ROLE},
+                          'awcms_telegram_engagement_dispatch')
+      ORDER BY r.rolname
+    `) as { role: string; can: boolean }[];
+    const skipped = rows.filter((row) => !row.can).map((row) => row.role);
+
+    return skipped.length === 0
+      ? {
+          name,
+          severity,
+          status: "pass",
+          evidence:
+            rows.length === 0
+              ? "No dedicated role is provisioned; there is nothing to probe."
+              : `The readiness connection can assume ${rows.map((row) => row.role).join(", ")}, so their rolled-back probes ran.`
+        }
+      : {
+          name,
+          severity,
+          status: "fail",
+          evidence: `The readiness connection cannot assume ${skipped.join(", ")}: their rolled-back behavioural probes did NOT run and only the exact policy pins guarded them. Run security:readiness once with a superuser or a member of those roles to prove what the policies allow and refuse.`
+        };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not tell whether the role probes ran: ${errorMessage(error)}`
+    };
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Orchestration
 // ---------------------------------------------------------------------------
@@ -5274,6 +8631,8 @@ export async function runSecurityReadinessChecks(): Promise<
     await checkRuntimeRoleGrants(),
     await checkWorkerSetupRoleGrants(),
     await checkWorkerCredentialColumnsUnreadable(),
+    await checkTelegramEngagementDispatchRole(),
+    await checkDedicatedRoleProbesRan(),
     await checkDefinerOwnerRolesNoLogin(),
     checkAbacDefaultDeny(),
     checkDataLifecycleRegistryValid(),
@@ -5300,6 +8659,8 @@ export async function runSecurityReadinessChecks(): Promise<
     checkPushAuthSecretRingConfigured(),
     await checkPushAuthSecretKeyIds(),
     await checkTelegramChatKeyIds(),
+    await checkWebsiteEngagementTokenKeyIds(),
+    await checkWebsiteEngagementContactKeyIds(),
     // MUST stay last: it closes the shared database pool when it finishes.
     await checkEntitlementBlastRadius()
   ];

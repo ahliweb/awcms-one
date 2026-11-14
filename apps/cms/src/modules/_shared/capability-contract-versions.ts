@@ -69,11 +69,14 @@ export const CAPABILITY_CONTRACT_VERSIONS: Readonly<Record<string, string>> =
     // to `news_media` must fail loudly rather than silently bind to a port that no
     // longer asks the question it asked.
     //
-    // The other content capabilities `public_content`/`social_publishing`
-    // (blog_content provides public_content; social_publishing is not ported)
-    // remain unlisted — out of scope for this change and, for social_publishing,
-    // not owned by any base module yet.
-    media_library: "1.0.0",
+    // The other content capability `public_content` (blog_content provides it)
+    // remains unlisted — out of scope for this change. `social_publishing` is
+    // listed at the end of this map since Issue #1145 gave it a provider.
+    // `1.1.0` (Issue #1145, residual L8 of ADR-0157) ADDS the exported
+    // `MediaPublicationRecheckPort` (the social dispatcher re-checks a media
+    // object's availability and rights just before a provider call).
+    // `MediaLibraryPort` is unchanged: a new interface, a MINOR bump.
+    media_library: "1.1.0",
     // seo_facts provides (ADR-0038 seo_distribution admission — the DISCOVERY
     // scope, adapting awcms-micro ADR-0028). Owned (provided) by `blog_content`
     // and consumed by `seo_distribution` (optional), both shipping in this base,
@@ -92,7 +95,9 @@ export const CAPABILITY_CONTRACT_VERSIONS: Readonly<Record<string, string>> =
     // (the workflow `notify` node's seam); it is listed now because
     // `hr_workforce` is the first module to consume it, telling a correction's
     // requester the outcome. First assigned number, not a stability milestone.
-    workflow_notification: "1.0.0",
+    // 1.1.0 (#1165 audit, additive): `enqueueNotification` returns
+    // `{ queued }` so a caller can tell "no template, nothing queued" from sent.
+    workflow_notification: "1.1.0",
     // staff_availability is provided by `hr_workforce` (Issue #946, ADR-0132) and
     // consumed, optionally, by `booking` (Issue #949). First assigned number.
     staff_availability: "1.0.0",
@@ -129,10 +134,52 @@ export const CAPABILITY_CONTRACT_VERSIONS: Readonly<Record<string, string>> =
     // and the refusals `SENDER_UNAVAILABLE`, `SENDER_AFFINITY_CONFLICT` and
     // `REPLY_TARGET_UNKNOWN`. No existing signature changed (a MINOR bump), so
     // booking and the commerce adapter behind `awcms-one`'s mode router compile
-    // and behave unchanged. First entry for this key.
-    whatsapp_delivery: "1.1.0",
+    // and behave unchanged. First entry for this key. `1.2.0` (Issue #1231 M4,
+    // owner decision option (c)) ADDS the refusals `CONSENT_SCOPE_REQUIRED` and
+    // `BUSINESS_SCOPE_UNRESOLVED` (a marketing message's scope must resolve): a
+    // marketing opt-in now covers the brand (business scope) it was collected for
+    // only. No signature changed (a MINOR bump); a consumer that maps an unknown
+    // reason to a coarse code (booking) is unchanged. `1.3.0` (Issue #1143) ADDS
+    // the refusals `TEMPLATE_NOT_APPROVED` and `OUTSIDE_SERVICE_WINDOW`, returned
+    // only for a tenant-owned Meta Cloud API sender. No signature changed.
+    whatsapp_delivery: "1.3.0",
     // channel_account is provided by the base `channel_accounts` module (Issue
     // #1141, ADR-0148 capability C1) and consumed, optionally, by
-    // `whatsapp_delivery`. First assigned number, not a stability milestone.
-    channel_account: "1.0.0"
+    // `whatsapp_delivery`. `1.0.0` was the first assigned number. `1.1.0` ADDS
+    // (Issue #1142, ADR-0148 section 7) the refusal reason
+    // `RISK_ACKNOWLEDGEMENT_REQUIRED`, and (Issue #1145, ADR-0157) two exported
+    // ports, `ChannelPublisherPort` and `ChannelPublisherCredentialPort`, for
+    // `social_publishing`. All are additive: no signature changed (a MINOR bump),
+    // a 1.0.0 implementer or fake still compiles, and a consumer that switches
+    // exhaustively over the reasons must add the member. `1.2.0` (Issue #1160,
+    // ADR-0151 section 2) ADDS two more exported ports, `ChannelEmailSenderPort`
+    // and `ChannelEmailCredentialPort`, and the refusal `NOT_AN_EMAIL_SENDER`
+    // (on the email result type only), for `email`'s tenant-owned Mailketing
+    // senders. Additive again: no signature changed. `1.3.0` (Issue #1146)
+    // ADDS the exported `ChannelPublisherHealthPort` (the social dispatcher
+    // reports a credential the provider refused, which degrades the account).
+    // Additive: a new interface, no signature changed. `1.4.0` (Issue #1143,
+    // integrated after 1.3.0 landed) ADDS the refusal reason
+    // `CONTAINER_BINDING_INVALID`, the OPTIONAL `containerAccountId`/
+    // `containerExternalId` of a resolved sender (a Meta number's WABA), and the
+    // exported `ChannelWebhookVerifierPort` (signed Meta webhooks). Additive:
+    // no signature changed.
+    channel_account: "1.4.0",
+    // social_publishing is provided by the base `social_publishing` module
+    // (Issue #1145, ADR-0157), port `_shared/ports/social-publishing-port.ts`,
+    // which `blog_content` already consumed (optional) while the provider was a
+    // no-op. First assigned number: the port is unchanged from the day it was
+    // declared (#643), what changed is that a base module now provides it.
+    social_publishing: "1.0.0",
+    // article_publication_status is provided by `blog_content` (Issue #1145,
+    // residual L8 of ADR-0157), port
+    // `_shared/ports/article-publication-status-port.ts`, consumed (optional) by
+    // `social_publishing`'s dispatcher: "is this article still published
+    // publicly?" asked just before a provider call. First assigned number.
+    article_publication_status: "1.0.0",
+    // crm_lead is provided by the base `crm_leads` module (Issue #1166,
+    // ADR-0153 section 6), port `_shared/ports/crm-lead-port.ts`: read a lead's
+    // state, confirm or reverse a conversion, opaque ids only. No in-repo
+    // consumer: the customer authority is downstream. First assigned number.
+    crm_lead: "1.0.0"
   });

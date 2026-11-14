@@ -149,7 +149,9 @@ contracts:
   # public_content/social_publishing) remain unlisted.
   capabilityContractVersions:
     party_directory: "1.0.0"
-    media_library: "1.0.0"
+    # 1.1.0 (#1145, ADR-0157 L8) adds the exported MediaPublicationRecheckPort,
+    # additively: MediaLibraryPort is unchanged.
+    media_library: "1.1.0"
     # seo_facts is owned (provided) by the base `blog_content` module and consumed
     # by `seo_distribution` (ADR-0038 discovery scope). Declared at 1.1.0 — the port
     # ships with the `summarizePublicResourceFacts` roll-up + `offset`/`order` list
@@ -163,7 +165,8 @@ contracts:
     auth_notification: "1.0.0"
     # workflow_notification is owned (provided) by the base `email` module and
     # consumed (optional) by `hr_workforce`'s attendance-correction settler (#1044).
-    workflow_notification: "1.0.0"
+    # 1.1.0 (#1165 audit, additive): enqueueNotification returns { queued }.
+    workflow_notification: "1.1.0"
     # staff_availability is owned (provided) by the base `hr_workforce` module
     # (#946) and consumed (optional) by `booking` (#949): a resource that names the
     # people who serve it is narrowed by their rostered working time.
@@ -196,13 +199,46 @@ contracts:
     # port of #963; 1.1.0 (#1141, ADR-0148 section 4) adds the optional
     # senderAccountId, inReplyToMessageId and businessScope inputs and three
     # refusal reasons, additively: every existing consumer is unchanged. First
-    # entry in this registry.
-    whatsapp_delivery: "1.1.0"
+    # entry in this registry. 1.2.0 (#1231 M4) adds the refusal
+    # CONSENT_SCOPE_REQUIRED and BUSINESS_SCOPE_UNRESOLVED (marketing consent
+    # covers only the brand it was
+    # collected for), additively. 1.3.0 (#1143) adds the refusals
+    # TEMPLATE_NOT_APPROVED and OUTSIDE_SERVICE_WINDOW for a tenant-owned Meta
+    # Cloud API sender, additively.
+    whatsapp_delivery: "1.3.0"
     # channel_account is owned (provided) by the base `channel_accounts` module
     # (#1141, ADR-0148 capability C1): the port a channel module asks whether a
     # tenant-owned account may send now. Consumed (optional) by
-    # `whatsapp_delivery`. First assigned number.
-    channel_account: "1.0.0"
+    # `whatsapp_delivery`. 1.0.0 was the first assigned number. 1.1.0 adds, both
+    # additively, the refusal reason RISK_ACKNOWLEDGEMENT_REQUIRED (#1142,
+    # ADR-0148 section 7) and the exported ChannelPublisherPort and
+    # ChannelPublisherCredentialPort for `social_publishing` (#1145, ADR-0157):
+    # no signature changed. 1.2.0 (#1160, ADR-0151 section 2) adds the exported
+    # ChannelEmailSenderPort and ChannelEmailCredentialPort for `email`'s
+    # tenant-owned Mailketing senders, additively. 1.3.0 (#1146) adds the
+    # exported ChannelPublisherHealthPort, additively: the social dispatcher
+    # reports a credential the provider refused, which degrades the account.
+    # 1.4.0 (#1143, integrated after 1.3.0) adds the refusal reason
+    # CONTAINER_BINDING_INVALID, the optional container identity of a resolved
+    # sender (a Meta number's WABA) and the exported ChannelWebhookVerifierPort,
+    # additively.
+    channel_account: "1.4.0"
+    # social_publishing is owned (provided) by the base `social_publishing`
+    # module (#1145, ADR-0157), port `_shared/ports/social-publishing-port.ts`,
+    # consumed (optional) by `blog_content`. First assigned number: the port
+    # shape is unchanged since #643.
+    social_publishing: "1.0.0"
+    # article_publication_status is owned (provided) by the base `blog_content`
+    # module (#1145, ADR-0157 L8), port
+    # `_shared/ports/article-publication-status-port.ts`, consumed (optional) by
+    # `social_publishing`'s dispatcher just before a provider call. First
+    # assigned number.
+    article_publication_status: "1.0.0"
+    # crm_lead is owned (provided) by the base `crm_leads` module (#1166,
+    # ADR-0153), port `_shared/ports/crm-lead-port.ts`: a downstream customer
+    # authority reads lead state and confirms or reverses a conversion with
+    # opaque ids only. First assigned number.
+    crm_lead: "1.0.0"
   apiResponseEnvelopeVersion: "1.0.0"
   restApiInfoVersion: "0.1.0"
   eventApiInfoVersion: "0.1.0"
@@ -233,16 +269,16 @@ stack:
       declared: "1.3.0"
       source: .github/workflows/ci.yml minimum-supported job setup-bun (== engines floor)
   astro:
-    declared: "^7.4.4"
+    declared: "^7.4.7"
     source: package.json dependencies.astro
   astroNode:
-    declared: "^11.1.9"
+    declared: "^11.1.11"
     source: package.json dependencies["@astrojs/node"]
   typescript:
     declared: "^7.0.2"
     source: package.json devDependencies.typescript
   postgres:
-    declared: "18.4"
+    declared: "18.6"
     source: .github/workflows/ci.yml services.postgres image
 
 # Intentional divergences from a contract this repo must bind against — today
