@@ -67,5 +67,9 @@
     "shell-quote": "^1.12.0",
     "smol-toml": "^1.9.0",
     "source-map-js": "^1.2.2"
+  },
+  "patchedDependencies": {
+    "picomatch@4.0.7": "patches/picomatch@4.0.7.patch",
+    "picomatch@2.3.2": "patches/picomatch@2.3.2.patch"
   }
 }
