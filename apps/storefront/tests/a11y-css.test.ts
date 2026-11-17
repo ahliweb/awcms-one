@@ -214,9 +214,10 @@ describe("panel markup and styles", () => {
   });
 
   test("no inline style or script in the markup, no remote URL in the styles", () => {
-    expect(PANEL).not.toMatch(/\sstyle=/);
-    expect(PANEL).not.toMatch(/<style[\s>]/);
-    expect(PANEL).not.toMatch(/<script[\s>]/);
+    // Plain substring checks: this is a tripwire on our own markup, not an HTML filter.
+    expect(PANEL.toLowerCase()).not.toContain(" style=");
+    expect(PANEL.toLowerCase()).not.toContain("<style");
+    expect(PANEL.toLowerCase()).not.toContain("<script");
     expect(CSS).not.toMatch(/url\(\s*["']?https?:/);
     expect(CSS).not.toMatch(/@import/);
   });
