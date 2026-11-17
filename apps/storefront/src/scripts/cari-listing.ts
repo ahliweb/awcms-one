@@ -10,6 +10,7 @@
  * search result page is bookmarkable and back/forward both work.
  */
 import { fetchProdukIndex, renderProdukGrid, renderPagination } from "./produk-index-klien";
+import { preferredScrollBehavior } from "../lib/a11y-preferences";
 import { filterProdukIndex, paginateProdukIndex } from "../lib/catalog";
 
 const grid = document.querySelector<HTMLElement>("[data-produk-grid]");
@@ -62,7 +63,7 @@ if (grid) {
         next.set("halaman", String(nextPage));
         window.history.pushState(null, "", `?${next.toString()}`);
         void run(nextPage);
-        gridEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        gridEl.scrollIntoView({ behavior: preferredScrollBehavior(document, window), block: "start" });
       });
     }
   }

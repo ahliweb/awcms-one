@@ -42,7 +42,9 @@ import { GROUP_STYLESHEET_HREFS, PRIMARY_FEED } from "../config/profil";
 import type { MetaTag, OgType } from "../lib/meta-sosial";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import A11yPanel from "../components/A11yPanel.astro";
 import "../styles/global.css";
+import "../styles/a11y.css";
 
 interface Props {
   title: string;
@@ -139,6 +141,16 @@ function jsonForScript(value: unknown): string {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {/* Reading preferences (issue #539, ADR-0057): applies the visitor's stored
+        choices to `<html>` before first paint. A same-origin CLASSIC, BLOCKING
+        script file — no `defer`/`async`, not a module — because a bundled
+        module is deferred and the page would flash in the wrong size/contrast,
+        and an inline body is blocked by `script-src 'self'`. Placed before
+        every stylesheet so it never waits on one. `is:inline` only stops Astro
+        from bundling it; like the GA tag below it has a `src=` and no body. */}
+    <script is:inline src="/a11y-early.js"></script>
+
     <title>{fullTitle}</title>
     <meta name="description" content={metaDescription} />
 
@@ -293,6 +305,11 @@ function jsonForScript(value: unknown): string {
 
     <slot name="footer"><Footer identity={identity} staticPages={staticPages} /></slot>
 
+    {/* The reading-preferences panel (issue #539, ADR-0057): the one place it is
+        mounted, so every page of every profile — store, news and landing — has
+        it. Rendered `hidden`; `src/scripts/a11y-panel.ts` reveals the button. */}
+    <A11yPanel siteName={identity.name} />
+
     {/* Referral capture (issue #93, S3 of #32) — mounted on EVERY page, the
         same "external module, mounted once from a layout" rule the read-
         aloud player and the Daerah panel already established (see
@@ -317,5 +334,8 @@ function jsonForScript(value: unknown): string {
         empty, returns) whenever GA is off, so it is always mounted rather
         than conditioned on `gaId` here too. */}
     <script>import "../scripts/ga-init";</script>
+
+    {/* Reading-preferences panel behaviour (issue #539) — see `<A11yPanel>` above. */}
+    <script>import "../scripts/a11y-panel";</script>
   </body>
 </html>
