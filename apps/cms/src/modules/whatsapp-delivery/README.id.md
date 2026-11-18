@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:9a1225f2013d87e5aabad058a5b924793c6830821092b2f57e15e595c3968c14 -->
+<!-- i18n-source-hash: sha256:ab00c9c8f28320c17bca8d3fac8a079c8faf770cb368001e84caba2967627e4a -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -27,7 +27,7 @@ ADR-0074 sudah menjadikan `push_delivery` outbox kedua, sehingga batasan di issu
 - `getStatusByCorrelation` membaca kembali status lewat id rekaman milik pemanggil sendiri (penerima disamarkan, tidak pernah nomornya); `cancelByCorrelation` membatalkan pesan yang masih menunggu dan tidak berbuat apa-apa setelah terkirim.
 - Port **tidak melakukan pemeriksaan akses dan tidak menulis baris audit**: konsumen mengotorisasi dan mengaudit aksi bisnisnya sendiri.
 
-Konsumen mendaftarkan templat dengan `registerWhatsappTemplate` (kunci berawalan modul, mis. `booking.reminder`). Sebuah templat punya **tepat satu tujuan** dan daftar variabel yang diizinkan; variabel yang tidak ada dalam daftar **dibuang** oleh renderer, itulah yang menjaga pemberitahuan gaji bebas dari data gaji.
+Konsumen mendeklarasikan templat di descriptor modulnya (`whatsappTemplates`, ADR-0164; kunci berawalan modul, mis. `booking.reminder`); registry memuatnya pada pencarian pertama di setiap proses, termasuk `whatsapp:dispatch`. Sebuah templat punya **tepat satu tujuan** dan daftar variabel yang diizinkan; variabel yang tidak ada dalam daftar **dibuang** oleh renderer, itulah yang menjaga pemberitahuan gaji bebas dari data gaji.
 
 ## Kelas tujuan dan persetujuan
 
@@ -321,4 +321,4 @@ Progres pengiriman satu pengirim, secara langsung, sebagai Server-Sent Events da
 - **Teredaksi.** Jumlah per status, dan per pesan yang berubah hanya id, status, dan waktunya. Tidak pernah nomor (mentah, masked, atau hash), isi, variabel, template, respons provider, atau teks error.
 - **Cursor.** `wsp1.<akun>.<updated_at µs>.<id pesan>`, dihitung PostgreSQL; `Last-Event-ID` melanjutkan; cursor asing, salah bentuk, atau sudah dipurge, atau lebih dari 50 perubahan sekaligus, menghasilkan `snapshot-required`.
 - **Layar.** Panel progres di `/admin/channel-accounts/{id}` merender jumlah di server, punya tombol muat ulang manual, melakukan polling saat stream tak tersedia, menyatakan koneksi sebagai teks, dan mengumumkan secara sopan dengan laju terbatas.
-- **Keputusan terbuka (fail-closed untuk sekarang):** pengirim deployment (`sender_account_id` NULL) tidak punya stream: ia tidak punya id akun untuk diputuskan visibilitasnya. **Catatan deploy:** `sql/360` membangun dua indeks tanpa `CONCURRENTLY` (runner membungkus tiap migrasi dalam transaksi), yang menahan tulisan ke `awcms_whatsapp_messages` sampai selesai; jalankan di jendela sepi untuk antrean besar. **Sudah ada sebelumnya, di luar cakupan:** `POST /whatsapp/messages/{id}/cancel` tidak menerapkan pengurungan business scope; dilacak terpisah. Operasional: [stream progres real-time](../../../docs/awcms/realtime-progress-streams.id.md).
+- **Keputusan terbuka (fail-closed untuk sekarang):** pengirim deployment (`sender_account_id` NULL) tidak punya stream: ia tidak punya id akun untuk diputuskan visibilitasnya. **Catatan deploy:** `sql/360` membangun dua indeks tanpa `CONCURRENTLY` (runner membungkus tiap migrasi dalam transaksi), yang menahan tulisan ke `awcms_whatsapp_messages` sampai selesai; jalankan di jendela sepi untuk antrean besar. **Ditutup oleh #1265:** `POST /whatsapp/messages/{id}/cancel` dan `GET /whatsapp/diagnostics` (serta `/admin/whatsapp`) mengurung BARIS pesan menurut business scope-nya sendiri; pesan brand lain atau yang tanpa scope menghasilkan `409` yang sama dengan id tak dikenal, dan diagnostics menyembunyikan baris tanpa scope serta mengosongkan (`null`) total suppression/consent tenant-wide bagi pemanggil yang terkurung. Operasional: [stream progres real-time](../../../docs/awcms/realtime-progress-streams.id.md).

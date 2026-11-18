@@ -618,7 +618,7 @@ export const COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS = {
 } as const;
 
 /**
- * The CRM lead link (Issue #463, ADR-0056, `sql/1069`). Three keys on one
+ * The CRM lead link (Issue #463, ADR-0056, `sql/1070`). Three keys on one
  * activity code, EXISTING verbs only (the upstream-owned `AccessAction` union is
  * not widened):
  *

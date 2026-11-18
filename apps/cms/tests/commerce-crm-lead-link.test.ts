@@ -208,7 +208,7 @@ describe("the state machine", () => {
   });
 
   test("the migration's guard trigger and CHECKs state the same machine", () => {
-    const sql = read("sql/1068_awcms_commerce_crm_lead_links.sql");
+    const sql = read("sql/1069_awcms_commerce_crm_lead_links.sql");
     for (const state of CRM_LEAD_LINK_STATES)
       expect(sql).toContain(`'${state}'`);
     for (const cause of CRM_LEAD_LINK_REVERSAL_CAUSES) {
@@ -572,7 +572,7 @@ describe("the module descriptor", () => {
     for (const key of Object.values(COMMERCE_CRM_LEAD_LINK_PERMISSIONS)) {
       expect(declared.has(key)).toBe(true);
     }
-    const sql = read("sql/1069_awcms_commerce_crm_lead_link_permissions.sql");
+    const sql = read("sql/1070_awcms_commerce_crm_lead_link_permissions.sql");
     for (const action of ["read", "create", "approve"]) {
       expect(sql).toContain(`'crm_lead_links', '${action}'`);
     }
@@ -641,8 +641,8 @@ describe("the module descriptor", () => {
   });
 });
 
-describe("migration 1068", () => {
-  const sql = read("sql/1068_awcms_commerce_crm_lead_links.sql");
+describe("migration 1069", () => {
+  const sql = read("sql/1069_awcms_commerce_crm_lead_links.sql");
   const code = sql
     .split("\n")
     .filter((line) => !/^\s*--/.test(line))

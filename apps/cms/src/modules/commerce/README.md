@@ -477,7 +477,7 @@ codebase that does — selected whenever `EMAIL_PROVIDER=log` or
 `commerce` gained a dependency on `email` for this (see `module.ts`), the
 same way `newsletter` already depends on it for its own confirmation mail.
 
-**Registration in the `email:dispatch` process (Issue #311).** The three `derived.commerce_*` e-mail categories (`customer_otp`, `conversation_reply`, `campaign`) are registered by ONE dependency-free side-effect file, `domain/email-template-categories.ts`, which the application files import and which `email/application/email-dispatch.ts` imports too (one recorded upstream divergence, see the root `AGENTS.md`). The registry is per process and `renderEmailTemplate` drops every variable for an unknown category, so a registration that lived only in application files the separate dispatcher never loaded sent OTP e-mails with an empty code. Add every new `derived.commerce_*` category in that file only; `tests/commerce-email-categories-dispatch.test.ts` checks it from a fresh process.
+**Registration in the `email:dispatch` process (Issue #311, ADR-0164).** The three `derived.commerce_*` e-mail categories (`customer_otp`, `conversation_reply`, `campaign`) are declared in the module descriptor (`emailTemplateCategories`, built from the dependency-free list in `domain/email-template-categories.ts`), and `email` resolves their allow-lists from the installed descriptors in every process that installs the extension-point source: the web entry and each dispatcher script, including `scripts/email-dispatch.ts` and `scripts/commerce-campaigns-dispatch.ts`. No upstream-owned file imports a commerce file for its side effect any more (that divergence of `email-dispatch.ts` retired). Only the campaign category is `workerInsert`: the campaign dispatcher enqueues it as `awcms_worker`, so `sql/1064` seeds its row of `awcms_email_worker_categories` (and restores the table-driven guard that `sql/1033` had overwritten with a hard-coded body; see the root `AGENTS.md`). Add every new `derived.commerce_*` category to the list in that file only; `tests/commerce-email-categories-dispatch.test.ts` checks it from a fresh process.
 
 **Sessions** (`application/customer-session-auth.ts`): `requireCustomerSession`
 parses `Authorization: Bearer cs_…`, looks up a live row in
@@ -786,11 +786,12 @@ phase 2, [ADR-0047](../../../../../docs/adr/0047-commerce-whatsapp-moves-to-the-
 `whatsapp-enqueue-legacy.ts` (the function exactly as it was) or
 `whatsapp-upstream-enqueue.ts` (`WhatsappDeliveryPort.enqueue` in the
 caller's transaction, into the `whatsapp_delivery` queue). No dual write, no
-row copying. `domain/whatsapp-upstream-templates.ts` registers the four
-`commerce.*` templates with `whatsapp_delivery` (OTP `security` with an
-expiry; order paid and documents `transactional`; campaigns `marketing`);
-`scripts/whatsapp-dispatch.ts` imports it so the upstream dispatcher knows
-them. In `upstream` mode a refusal comes back as `enqueued: false` with a
+row copying. `domain/whatsapp-upstream-templates.ts` holds the four
+`commerce.*` templates, which the module descriptor declares
+(`whatsappTemplates`, ADR-0164) so `whatsapp_delivery` resolves them in every
+process that installs the extension-point source, the upstream dispatcher
+included (OTP `security` with an expiry; order paid and documents
+`transactional`; campaigns `marketing`). In `upstream` mode a refusal comes back as `enqueued: false` with a
 reason, channel availability asks `WHATSAPP_ENABLED` instead of
 `COMMERCE_WHATSAPP_ENABLED`, and the document-delivery history reads the
 queue back by correlation id. The dispatcher, purge and admin screens above
@@ -1830,7 +1831,7 @@ Migration `sql/1055` only (additive, no down migration); no new table, role, gra
 
 ## Shopper data-subject rights - IMPLEMENTED (Issue #529 - [ADR-0055](../../../../../docs/adr/0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md))
 
-The upstream subject-data engine cannot bind a commerce customer (ADR-0016 D1), so `commerce` owns an export and erasure flow keyed by the customer id. Migrations `sql/1065` (the request evidence table), `sql/1066` (`erased_at` on customers and accounts, and the `subject_export` and `subject_erasure` OTP purposes), `sql/1067` (the four `commerce.customer_subject_requests.*` permissions).
+The upstream subject-data engine cannot bind a commerce customer (ADR-0016 D1), so `commerce` owns an export and erasure flow keyed by the customer id. Migrations `sql/1066` (the request evidence table), `sql/1067` (`erased_at` on customers and accounts, and the `subject_export` and `subject_erasure` OTP purposes), `sql/1068` (the four `commerce.customer_subject_requests.*` permissions).
 
 - **Registry**: `domain/customer-subject-data.ts` classifies every `awcms_commerce_*` table (delete, anonymise, retain with a recorded legal basis, contact-matched, or not about a customer, each with a reason); `tests/commerce-customer-subject-data.test.ts` parses `sql/` so a new table cannot be missing. `domain/customer-subject-lifecycle.ts` adds the request table's descriptors and `withCommerceSubjectFlow`, which appends the flow sentence to the rationale of every customer-keyed descriptor. `domain/customer-subject-policy.ts` holds the refusal codes, the sentinels and the request shapes.
 - **Application**: `customer-subject-export.ts` (a versioned bundle read as `to_jsonb(row) - redactedColumns`, capped per section, never stored), `customer-subject-erasure.ts` (the refusal rules, the customer-row lock, the deletes and anonymisations, the retained summary; calls `eraseCustomerPushData`), `customer-subject-otp.ts` (the fresh code, reusing the sign-in OTP machinery under its own purposes), `customer-subject-requests.ts` (the evidence row and the claiming decision), `customer-subject-flow.ts` (the five entry points), `customer-subject-http.ts`.
@@ -1843,7 +1844,7 @@ The upstream subject-data engine cannot bind a commerce customer (ADR-0016 D1), 
 
 - **Domain**: `domain/crm-lead-link.ts` (the opaque references, the evidence rules, the state machine, the request validator) and `domain/crm-lead-link-lifecycle.ts` (retention and subject-data descriptors).
 - **Application**: `application/crm-lead-link-directory.ts` (link, list, reverse, and the two flag functions) and `application/crm-lead-link-http.ts` (the second authorization and the response mapping). The port is injected by the composition root `src/lib/composition/crm-lead-port.ts`, which only the two routes import (`tests/commerce-crm-lead-boundary.test.ts`).
-- **Routes**: `crm-lead-links` (`GET`, `POST`) and `crm-lead-links/{id}/reverse`. Migrations `sql/1068` (the table: opaque lead id, RLS FORCE, guard trigger, no delete, narrow worker grant) and `sql/1069` (permissions).
+- **Routes**: `crm-lead-links` (`GET`, `POST`) and `crm-lead-links/{id}/reverse`. Migrations `sql/1069` (the table: opaque lead id, RLS FORCE, guard trigger, no delete, narrow worker grant) and `sql/1070` (permissions).
 - **Consumers**: `commerce.order_cancelled_crm_lead_link_flagger`, `commerce.refund_settled_crm_lead_link_flagger` and `commerce.payment_reversed_crm_lead_link_flagger` flag a link `reversal_pending`; they run as the worker, which holds nothing on the `crm_leads` tables, so a person applies the reversal.
 - **Events**: `awcms.commerce.customer.registered` (from `tryCreateAccountForCustomer`) and `awcms.commerce.customer.converted`.
 - **Not here yet**: a scheduled reconciler for pending reversals, an admin screen (the three keys are in `NOT_YET_SCREENED`), a segment or campaign condition over links. The DB-backed suite `commerce-crm-lead-link.integration.test.ts` was not executed where this was written.

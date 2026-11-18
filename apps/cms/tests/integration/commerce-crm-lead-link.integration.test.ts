@@ -6,7 +6,7 @@
  * Written without a database, then executed against a scratch PostgreSQL 16
  * (migrated with `db:migrate`): 12 of 12 pass. It
  * is type-checked and linted, and its assertions follow the migrated schema of
- * `sql/1068`, `sql/1069` and the `crm_leads` migrations `sql/342`-`344`. Run it
+ * `sql/1069`, `sql/1070` and the `crm_leads` migrations `sql/342`-`344`. Run it
  * with `bun test tests/integration/commerce-crm-lead-link.integration.test.ts`
  * against a disposable database before relying on it.
  *

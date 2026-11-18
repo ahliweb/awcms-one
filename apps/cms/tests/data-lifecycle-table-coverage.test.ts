@@ -565,7 +565,7 @@ describe("the real repository", () => {
       // worker touch. The recorded follow-up, when a connector adds a worker, is
       // a delegated descriptor for that table with its count function.
       //
-      // **28 upstream, 30 in this embed (29 plus this one), since the WhatsApp sender policy (Issue #1141, ADR-0148 section 4).**
+      // **28 since the WhatsApp sender policy (Issue #1141, ADR-0148 section 4).**
       // `awcms_whatsapp_sender_policies` holds at most ONE row per business scope
       // per tenant (two partial unique indexes) plus one tenant-wide row, and a
       // change UPDATES it in place and bumps `config_version`: the ceiling is the

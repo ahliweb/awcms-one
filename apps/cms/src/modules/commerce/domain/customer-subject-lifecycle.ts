@@ -71,7 +71,7 @@ export const CUSTOMER_SUBJECT_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
       {
         columns: ["tenant_id", "created_at", "id"],
         purpose:
-          "awcms_commerce_customer_subject_requests_tenant_created_idx (sql/1065) - the admin list, newest first; nothing scans this table by age."
+          "awcms_commerce_customer_subject_requests_tenant_created_idx (sql/1066) - the admin list, newest first; nothing scans this table by age."
       }
     ],
     batchLimit: 5000,

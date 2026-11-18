@@ -125,7 +125,7 @@ describe("request shapes", () => {
     const migration = readFileSync(
       path.resolve(
         import.meta.dir,
-        "../sql/1066_awcms_commerce_customer_erasure_marker.sql"
+        "../sql/1067_awcms_commerce_customer_erasure_marker.sql"
       ),
       "utf8"
     );
@@ -160,7 +160,7 @@ describe("permissions", () => {
     const sql = readFileSync(
       path.resolve(
         import.meta.dir,
-        "../sql/1067_awcms_commerce_customer_subject_permissions.sql"
+        "../sql/1068_awcms_commerce_customer_subject_permissions.sql"
       ),
       "utf8"
     );
@@ -174,7 +174,7 @@ describe("the migration", () => {
   const sql = readFileSync(
     path.resolve(
       import.meta.dir,
-      "../sql/1065_awcms_commerce_customer_subject_requests.sql"
+      "../sql/1066_awcms_commerce_customer_subject_requests.sql"
     ),
     "utf8"
   );

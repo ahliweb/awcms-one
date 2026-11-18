@@ -64,7 +64,7 @@ export const CRM_LEAD_LINK_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
       {
         columns: ["tenant_id", "linked_at", "id"],
         purpose:
-          "awcms_commerce_crm_lead_links_tenant_linked_idx (sql/1068) - the list, newest first; nothing scans this table by age."
+          "awcms_commerce_crm_lead_links_tenant_linked_idx (sql/1069) - the list, newest first; nothing scans this table by age."
       }
     ],
     batchLimit: 5000,

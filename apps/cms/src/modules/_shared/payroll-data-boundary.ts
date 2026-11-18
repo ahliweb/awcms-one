@@ -399,14 +399,20 @@ export function normalizeTableNameForBoundary(name: string): string {
  * `awcms_x_refund_compensations_payroll_runs`, and an entry that is a prefix of
  * a known payroll table is refused at load. An exception is the maintainer
  * saying "this is not pay"; it is made in a PR that says why. FAIL-CLOSED: empty
- * today (the table that motivated it lives downstream, not here), and a name in
+ * upstream (the table that motivated it lives downstream), and a name in
  * {@link PAYROLL_REQUIRED_TABLES} or one that is not a pattern hit is refused at
  * load.
+ *
+ * awcms-one divergence (issue #377, upstream's #1276 mechanism): upstream
+ * registers nothing because the table that motivated the mechanism lives
+ * downstream, here. `commerce`'s refund compensation ledger (migration 994)
+ * records goods or store credit handed to a SHOPPER in place of a cash refund;
+ * it has no employee, pay period or earnings column. Keep this one entry on
+ * conflict.
  */
 export const NON_PAYROLL_TABLE_NAME_EXCEPTIONS: Readonly<
   Record<string, string>
 > = {
-  // awcms-one (issue #377, retired onto upstream's registry at the #1276 sync).
   awcms_commerce_refund_compensations:
     "commerce returns: the goods or credit a shopper receives in place of a cash refund (migration 994). No employee, pay period or earnings column; the word 'compensation' is the only overlap with the payroll family."
 };
@@ -462,9 +468,25 @@ const FOREIGN_OBJECT_STEMS: ReadonlySet<string> = new Set([
   "periods"
 ]);
 
-/** Suffix of a catalog object PostgreSQL names `<table>_<columns>_<suffix>`. */
+/**
+ * Suffix of a catalog object PostgreSQL names `<table>_<columns>_<suffix>`.
+ *
+ * awcms-one local divergence (root AGENTS.md): three suffix families are added
+ * to upstream's `key|idx|fkey|check|seq|trg`, all of them the names of objects
+ * of an EXCEPTED table that the real migrated database holds, found by
+ * `payroll-catalog-boundary.integration.test.ts`:
+ *   - `not_null`: PostgreSQL 18 names a NOT NULL constraint
+ *     `<table>_<column>_not_null`, for every table;
+ *   - `fk`: a foreign key this repo's migrations name `<table>_<ref>_fk`;
+ *   - `tenant_isolation` and `append_only`: the RLS policy and the guard trigger
+ *     of a commerce ledger table (`sql/994`).
+ * The rest of the rule is untouched: the remainder must still carry no other
+ * table's stem and must not itself be a payroll-pattern hit, so
+ * `<excepted table>_payroll_runs_...` stays refused. Candidate to upstream (at
+ * least `not_null`).
+ */
 const CATALOG_SUFFIX =
-  /^(?:pkey|(?:[a-z0-9]+_)*(?:key|idx|fkey|check|seq|trg))$/;
+  /^(?:pkey|(?:[a-z0-9]+_)*(?:key|idx|fkey|fk|check|seq|trg|not_null|tenant_isolation|append_only))$/;
 
 /**
  * Whether `normalized` is covered by an entry of `exceptions`: the exact name,

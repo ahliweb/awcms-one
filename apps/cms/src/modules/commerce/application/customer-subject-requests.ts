@@ -4,7 +4,7 @@
  * Counts and codes only; never a bundle, a name or a token.
  *
  * Every function takes a `tx` already inside the tenant's RLS-scoped
- * transaction. The table's own guard trigger (`sql/1065`) makes a terminal row
+ * transaction. The table's own guard trigger (`sql/1066`) makes a terminal row
  * immutable and refuses every delete; {@link decidePendingErasure} is the one
  * UPDATE, a conditional claim (`status = 'pending_approval'` and a checker who
  * is not the maker), so two approvers racing cannot both run the erasure.

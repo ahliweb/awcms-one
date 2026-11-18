@@ -45,6 +45,7 @@ function descriptor(
     ownerModuleKey: "commerce",
     scope: "tenant",
     cursorColumn: "cohort_month",
+    // `date` column: upstream's date cursor (ahliweb/awcms#1276) compares the UTC day.
     cursorColumnType: "date",
     ...WINDOW,
     partition: { eligible: false, rationale: partitionRationale },

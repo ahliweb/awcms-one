@@ -50,6 +50,7 @@ function descriptor(
     // A DERIVED reporting projection (sql/998): the cursor is the report `day`
     // itself, as `commerce.sales_daily` does.
     cursorColumn: "day",
+    // `date` column: upstream's date cursor (ahliweb/awcms#1276) compares the UTC day.
     cursorColumnType: "date",
     ...WINDOW,
     partition: { eligible: false, rationale: partitionRationale },

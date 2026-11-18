@@ -57,7 +57,7 @@
  */
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
 import { log } from "../../../lib/logging/logger";
-import { enqueueDirectAddressEmail } from "../../email/application/direct-address-notification";
+import { enqueueWorkerDirectAddressEmail } from "../../email/application/direct-address-worker-enqueue";
 import {
   fetchActiveEmailTemplateByKey,
   seedDefaultEmailTemplates
@@ -314,7 +314,7 @@ async function dispatchOnePage(
           const email = recipient.email;
           addressMasked = email ? maskIdentifierValue(email, "email") : "";
           if (email) {
-            let result = await enqueueDirectAddressEmail(
+            let result = await enqueueWorkerDirectAddressEmail(
               tx,
               tenantId,
               CAMPAIGN_EMAIL_TEMPLATE_KEY,
@@ -325,7 +325,7 @@ async function dispatchOnePage(
             if (!result.enqueued) {
               const seeded = await ensureCampaignEmailTemplate(tx, tenantId);
               if (seeded) {
-                result = await enqueueDirectAddressEmail(
+                result = await enqueueWorkerDirectAddressEmail(
                   tx,
                   tenantId,
                   CAMPAIGN_EMAIL_TEMPLATE_KEY,

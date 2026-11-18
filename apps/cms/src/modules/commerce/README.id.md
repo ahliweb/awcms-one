@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:832682b529c54c4203772467045181e06beed13721a5ae67d4f0be8297441e7e -->
+<!-- i18n-source-hash: sha256:a709cf63991eec080ceff95e35ab1aa05d0b1c629115b6d669344101c53f8a0d -->
 
 # `commerce`
 
@@ -518,7 +518,7 @@ dev/CI bekerja tanpa kredensial e-mail). `commerce` mendapat dependensi ke
 `email` untuk ini (lihat `module.ts`), sama seperti `newsletter` yang sudah
 bergantung padanya untuk e-mail konfirmasinya sendiri.
 
-**Registrasi di proses `email:dispatch` (Issue #311).** Ketiga kategori e-mail `derived.commerce_*` (`customer_otp`, `conversation_reply`, `campaign`) didaftarkan oleh SATU berkas efek-samping tanpa dependensi, `domain/email-template-categories.ts`, yang diimpor berkas application dan juga oleh `email/application/email-dispatch.ts` (satu divergensi upstream yang tercatat, lihat `AGENTS.md` root). Registri bersifat per proses dan `renderEmailTemplate` membuang semua variabel untuk kategori tak dikenal, sehingga registrasi yang hanya ada di berkas application yang tak pernah dimuat dispatcher terpisah membuat OTP e-mail terkirim dengan kode kosong. Tambahkan setiap kategori `derived.commerce_*` baru hanya di berkas itu; `tests/commerce-email-categories-dispatch.test.ts` memeriksanya dari proses baru.
+**Registrasi di proses `email:dispatch` (Issue #311, ADR-0164).** Ketiga kategori e-mail `derived.commerce_*` (`customer_otp`, `conversation_reply`, `campaign`) dideklarasikan di descriptor modul (`emailTemplateCategories`, dibangun dari daftar tanpa dependensi di `domain/email-template-categories.ts`), dan `email` me-resolve allow-list-nya dari descriptor terpasang di setiap proses yang memasang sumber extension-point: entri web dan setiap skrip dispatcher, termasuk `scripts/email-dispatch.ts` dan `scripts/commerce-campaigns-dispatch.ts`. Tidak ada lagi berkas milik upstream yang mengimpor berkas commerce demi efek sampingnya (divergensi `email-dispatch.ts` itu pensiun). Hanya kategori campaign yang `workerInsert`: dispatcher campaign meng-enqueue-nya sebagai `awcms_worker`, sehingga `sql/1064` menyemai barisnya di `awcms_email_worker_categories` (dan memulihkan guard berbasis tabel yang ditimpa `sql/1033` dengan badan hard-coded; lihat `AGENTS.md` root). Tambahkan setiap kategori `derived.commerce_*` baru hanya ke daftar di berkas itu; `tests/commerce-email-categories-dispatch.test.ts` memeriksanya dari proses baru.
 
 **Sesi** (`application/customer-session-auth.ts`): `requireCustomerSession`
 mem-parsing `Authorization: Bearer cs_…`, mencari baris hidup di
@@ -845,11 +845,12 @@ membaca `awcms_commerce_store_settings.whatsapp_mode` (`sql/1027`, default
 bersama) lalu memanggil `whatsapp-enqueue-legacy.ts` (fungsi persis seperti
 semula) atau `whatsapp-upstream-enqueue.ts` (`WhatsappDeliveryPort.enqueue`
 dalam transaksi pemanggil, ke antrean `whatsapp_delivery`). Tanpa dual write,
-tanpa menyalin baris. `domain/whatsapp-upstream-templates.ts` mendaftarkan
-empat template `commerce.*` ke `whatsapp_delivery` (OTP `security` dengan
-kedaluwarsa; pesanan dibayar dan dokumen `transactional`; kampanye
-`marketing`); `scripts/whatsapp-dispatch.ts` mengimpornya agar dispatcher
-upstream mengenalnya. Pada mode `upstream`, penolakan kembali sebagai
+tanpa menyalin baris. `domain/whatsapp-upstream-templates.ts` memuat
+empat template `commerce.*` yang dideklarasikan descriptor modul
+(`whatsappTemplates`, ADR-0164) sehingga `whatsapp_delivery` me-resolve-nya di
+setiap proses yang memasang sumber extension-point, dispatcher upstream
+termasuk (OTP `security` dengan kedaluwarsa; pesanan dibayar dan dokumen
+`transactional`; kampanye `marketing`). Pada mode `upstream`, penolakan kembali sebagai
 `enqueued: false` beserta alasan, ketersediaan kanal menanyakan
 `WHATSAPP_ENABLED` alih-alih `COMMERCE_WHATSAPP_ENABLED`, dan riwayat
 pengiriman dokumen membaca antrean lewat correlation id. Dispatcher, purge,
@@ -1929,7 +1930,7 @@ Hanya migrasi `sql/1055` (aditif, tanpa migrasi turun); tidak ada tabel, peran, 
 
 ## Hak subjek data pembeli - TERIMPLEMENTASI (Issue #529 - [ADR-0055](../../../../../docs/adr/0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.id.md))
 
-Engine subject-data upstream tidak bisa mengikat pelanggan commerce (ADR-0016 D1), sehingga `commerce` memiliki alur ekspor dan penghapusan berkunci id pelanggan. Migrasi `sql/1065` (tabel bukti permintaan), `sql/1066` (`erased_at` pada pelanggan dan akun, serta tujuan OTP `subject_export` dan `subject_erasure`), `sql/1067` (empat izin `commerce.customer_subject_requests.*`).
+Engine subject-data upstream tidak bisa mengikat pelanggan commerce (ADR-0016 D1), sehingga `commerce` memiliki alur ekspor dan penghapusan berkunci id pelanggan. Migrasi `sql/1066` (tabel bukti permintaan), `sql/1067` (`erased_at` pada pelanggan dan akun, serta tujuan OTP `subject_export` dan `subject_erasure`), `sql/1068` (empat izin `commerce.customer_subject_requests.*`).
 
 - **Registri**: `domain/customer-subject-data.ts` mengklasifikasikan setiap tabel `awcms_commerce_*` (hapus, anonimkan, pertahankan dengan dasar hukum tercatat, cocok-lewat-kontak, atau bukan tentang pelanggan, masing-masing dengan alasan); `tests/commerce-customer-subject-data.test.ts` mem-parse `sql/` sehingga tabel baru tidak bisa terlewat. `domain/customer-subject-lifecycle.ts` menambah deskriptor tabel permintaan dan `withCommerceSubjectFlow`, yang menambahkan kalimat alur pada rasional setiap deskriptor berkunci pelanggan. `domain/customer-subject-policy.ts` memuat kode penolakan, sentinel, dan bentuk permintaan.
 - **Aplikasi**: `customer-subject-export.ts` (bundel berversi dibaca sebagai `to_jsonb(row) - redactedColumns`, dibatasi per bagian, tidak pernah disimpan), `customer-subject-erasure.ts` (aturan penolakan, kunci baris pelanggan, penghapusan dan anonimisasi, ringkasan yang dipertahankan; memanggil `eraseCustomerPushData`), `customer-subject-otp.ts` (kode baru, memakai ulang mesin OTP masuk dengan tujuannya sendiri), `customer-subject-requests.ts` (baris bukti dan keputusan pengklaim), `customer-subject-flow.ts` (lima titik masuk), `customer-subject-http.ts`.
@@ -1942,7 +1943,7 @@ Engine subject-data upstream tidak bisa mengikat pelanggan commerce (ADR-0016 D1
 
 - **Domain**: `domain/crm-lead-link.ts` (referensi buram, aturan bukti, mesin status, validator permintaan) dan `domain/crm-lead-link-lifecycle.ts` (deskriptor retensi dan subject-data).
 - **Aplikasi**: `application/crm-lead-link-directory.ts` (tautkan, daftar, balik, dan dua fungsi penanda) dan `application/crm-lead-link-http.ts` (otorisasi kedua dan pemetaan respons). Port disuntikkan oleh composition root `src/lib/composition/crm-lead-port.ts`, yang hanya diimpor dua rute (`tests/commerce-crm-lead-boundary.test.ts`).
-- **Rute**: `crm-lead-links` (`GET`, `POST`) dan `crm-lead-links/{id}/reverse`. Migrasi `sql/1068` (tabel: id lead buram, RLS FORCE, trigger penjaga, tanpa hapus, grant worker sempit) dan `sql/1069` (izin).
+- **Rute**: `crm-lead-links` (`GET`, `POST`) dan `crm-lead-links/{id}/reverse`. Migrasi `sql/1069` (tabel: id lead buram, RLS FORCE, trigger penjaga, tanpa hapus, grant worker sempit) dan `sql/1070` (izin).
 - **Konsumer**: `commerce.order_cancelled_crm_lead_link_flagger`, `commerce.refund_settled_crm_lead_link_flagger` dan `commerce.payment_reversed_crm_lead_link_flagger` menandai tautan `reversal_pending`; keduanya berjalan sebagai worker, yang tidak memegang apa pun atas tabel `crm_leads`, sehingga orang yang menerapkan pembalikannya.
 - **Event**: `awcms.commerce.customer.registered` (dari `tryCreateAccountForCustomer`) dan `awcms.commerce.customer.converted`.
 - **Belum ada**: rekonsiliator terjadwal untuk pembalikan tertunda, layar admin (ketiga kunci ada di `NOT_YET_SCREENED`), kondisi segmen atau kampanye atas tautan. Suite berbasis DB `commerce-crm-lead-link.integration.test.ts` tidak dijalankan di tempat penulisannya.

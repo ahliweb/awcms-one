@@ -65,6 +65,7 @@ import {
 } from "../../email/application/email-template-directory";
 import type { DefaultEmailTemplate } from "../../email/domain/email-default-templates";
 import { fetchSuppressedRecipientHashes } from "../../email/application/suppression-directory";
+import { purposeForEmailCategory } from "../../email/domain/email-sender";
 import {
   hashIdentifierValue,
   maskIdentifierValue
@@ -578,12 +579,12 @@ async function enqueueEmail(
     if (!seeded) return { enqueued: false, reason: "TEMPLATE_UNAVAILABLE" };
     result = await attempt();
     if (!result.enqueued) {
-      // `derived.transactional` is `transactional` mail (upstream #1161: the
-      // purpose decides which suppression sources hold a message back).
+      // Same purpose the enqueue itself used (Issue #1161): a document is
+      // `transactional`, which a marketing opt-out does not hold back.
       const suppressed = await fetchSuppressedRecipientHashes(
         tx,
         tenantId,
-        "transactional"
+        purposeForEmailCategory(DOCUMENT_DELIVERY_EMAIL_TEMPLATE_KEY)
       );
       return {
         enqueued: false,

@@ -1,7 +1,7 @@
 /**
  * Permission keys of the admin side of a shopper's data-subject requests
  * (Issue #529, ADR-0055 D3), declared once here and spread into `module.ts`'s
- * `permissions` array. Mirrors `sql/1067` exactly.
+ * `permissions` array. Mirrors `sql/1068` exactly.
  *
  * One activity code, four keys, all on EXISTING `AccessAction` verbs (a new
  * `erase` verb would widen a shared union that upstream owns):

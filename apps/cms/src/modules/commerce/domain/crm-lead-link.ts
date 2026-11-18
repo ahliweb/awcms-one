@@ -190,7 +190,7 @@ export function orderEvidenceIsReverted(input: {
 }
 
 // ---------------------------------------------------------------------------
-// State machine (mirrors the guard trigger of sql/1068)
+// State machine (mirrors the guard trigger of sql/1069)
 // ---------------------------------------------------------------------------
 
 export function isLegalLinkTransition(

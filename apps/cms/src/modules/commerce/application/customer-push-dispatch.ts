@@ -48,7 +48,7 @@ import {
   type KeyRing
 } from "../../../lib/security/field-encryption";
 import { log } from "../../../lib/logging/logger";
-import { fetchTenantModuleEntry } from "../../module-management/application/tenant-module-lifecycle";
+import { resolveModuleEnabled } from "../../identity-access/application/auth-context";
 import {
   PUSH_CIRCUIT_BREAKER_KEY,
   isPushEnabled,
@@ -788,8 +788,13 @@ async function tenantGate(
     sql,
     tenantId,
     async (tx) => {
-      const entry = await fetchTenantModuleEntry(tx, tenantId, MODULE_KEY);
-      if (!entry?.tenantEnabled) return "module_disabled" as const;
+      // `resolveModuleEnabled` reads exactly (tenant_id, module_key, enabled),
+      // the three columns the worker may read of the module-enablement row
+      // (`sql/1065`; upstream's L-5 pin): `fetchTenantModuleEntry` also selects
+      // `disable_reason` (free text) and the stamps, which this gate never used.
+      if (!(await resolveModuleEnabled(tx, tenantId, MODULE_KEY))) {
+        return "module_disabled" as const;
+      }
       if (!(await fetchCommerceFeatures(tx, tenantId)).customerPush) {
         return "feature_off" as const;
       }

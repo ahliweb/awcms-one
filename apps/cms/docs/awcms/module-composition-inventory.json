@@ -161,7 +161,7 @@
       "key": "crm_follow_up",
       "name": "CRM Follow-up",
       "version": "0.1.0",
-      "status": "experimental",
+      "status": "active",
       "type": "domain",
       "dependencies": [
         "tenant_admin",
@@ -185,7 +185,7 @@
         }
       ],
       "permissionCount": 5,
-      "navigationCount": 0,
+      "navigationCount": 2,
       "jobCount": 1,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
@@ -195,7 +195,7 @@
       "key": "crm_leads",
       "name": "CRM Leads",
       "version": "0.1.0",
-      "status": "experimental",
+      "status": "active",
       "type": "domain",
       "dependencies": [
         "tenant_admin",
@@ -208,7 +208,7 @@
       "capabilitiesProvided": ["crm_lead"],
       "capabilitiesConsumed": [],
       "permissionCount": 11,
-      "navigationCount": 0,
+      "navigationCount": 2,
       "jobCount": 0,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
@@ -262,7 +262,7 @@
         }
       ],
       "permissionCount": 18,
-      "navigationCount": 2,
+      "navigationCount": 3,
       "jobCount": 5,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
@@ -467,7 +467,11 @@
       "version": "0.1.0",
       "status": "active",
       "type": "domain",
-      "dependencies": ["tenant_admin", "identity_access"],
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "domain_event_runtime"
+      ],
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [],
       "permissionCount": 18,
@@ -499,7 +503,7 @@
           "optional": true
         }
       ],
-      "permissionCount": 7,
+      "permissionCount": 8,
       "navigationCount": 2,
       "jobCount": 1,
       "hasHealthCheck": false,
@@ -843,7 +847,7 @@
       "key": "website_engagement",
       "name": "Website Engagement",
       "version": "0.1.0",
-      "status": "experimental",
+      "status": "active",
       "type": "system",
       "dependencies": [
         "tenant_admin",
@@ -857,7 +861,7 @@
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [],
       "permissionCount": 5,
-      "navigationCount": 0,
+      "navigationCount": 2,
       "jobCount": 0,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,

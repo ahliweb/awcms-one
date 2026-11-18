@@ -25,9 +25,9 @@ describe("NON_PAYROLL_TABLE_NAME_EXCEPTIONS (#1276)", () => {
     expect(isPayrollTable(REFUND, {})).toBe(true);
   });
 
-  test("the registered list is valid", () => {
-    // LOCAL DIVERGENCE (awcms-one): upstream pins an empty list; this embed
-    // registers the one commerce table. Keep ours on conflict.
+  test("the registered list holds only this embed's reviewed entry and is valid", () => {
+    // awcms-one divergence: upstream's list is empty; this embed registers
+    // commerce's refund compensation ledger (migration 994). Keep ours on conflict.
     expect(Object.keys(NON_PAYROLL_TABLE_NAME_EXCEPTIONS)).toEqual([
       "awcms_commerce_refund_compensations"
     ]);

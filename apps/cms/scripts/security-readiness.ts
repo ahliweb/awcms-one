@@ -45,6 +45,16 @@ import { execFileSync } from "node:child_process";
 import path from "node:path";
 
 import { getDatabaseClient } from "../src/lib/database/client";
+import {
+  findRestrictedCreatePrivileges,
+  findTenantIsolationPolicyDrift,
+  probeTenantIsolationUnderDefinerRead
+} from "./lib/schema-create-and-tenant-policy-readiness";
+import { findViewRlsBypass } from "./lib/view-rls-bypass-readiness";
+import {
+  pinChannelAccountsAccessGuards,
+  probeChannelAccountsAccessGuards
+} from "./lib/channel-accounts-access-guards";
 import { probeTelegramEngagementDispatchRole } from "./lib/telegram-engagement-dispatch-probe";
 import { withTenantOrThrow } from "../src/lib/database/tenant-context";
 import { countPushAuthSecretsByKeyId } from "../src/modules/push-delivery/application/push-auth-secret-backfill";
@@ -670,7 +680,15 @@ export const GLOBAL_TABLE_FORBIDDEN_PRIVILEGES: Record<string, string[]> = {
   awcms_principal_preferences: ["DELETE"],
   awcms_entitlements: ["INSERT", "UPDATE", "DELETE"],
   awcms_plans: ["INSERT", "UPDATE", "DELETE"],
-  awcms_plan_entitlements: ["INSERT", "UPDATE", "DELETE"]
+  awcms_plan_entitlements: ["INSERT", "UPDATE", "DELETE"],
+  // The worker's e-mail category allow-list (ADR-0164, sql/410). Global and
+  // read-only at runtime for the strongest reason on this list: a runtime path
+  // holding INSERT here could widen what the INSERT guard admits and no RLS
+  // policy would object, there being no tenant column. The guard covers INSERT
+  // only: `awcms_worker` also holds a table-level UPDATE on awcms_email_messages
+  // (sql/022), a separate pre-existing gap. Adding a category is a migration. `awcms_worker` keeps SELECT (the guard
+  // trigger runs as the inserting role) and is keyed in `WORKER_ROLE_GRANTS`.
+  awcms_email_worker_categories: ["INSERT", "UPDATE", "DELETE"]
 };
 
 /**
@@ -711,6 +729,22 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // an investigator can still answer "who held what in March"; every write is
   // revoked, because a row that can be added or edited is not history, and a row
   // that cannot be revoked must not be one the runtime can create.
+  // Issue #1341 / `sql/408`. NOT retired -- the audit trail, actively written on
+  // every sensitive action. Narrowed to SELECT + INSERT: a row the runtime can
+  // UPDATE or DELETE is not evidence, and a compromised web process must not be
+  // able to rewrite or erase the record of what it did. Retention is the one
+  // legitimate DELETE and it belongs to `awcms_worker` (`WORKER_ROLE_GRANTS`).
+  // `sql/019` granted all four verbs schema-wide, so only the REVOKE achieves it.
+  awcms_audit_events: ["SELECT", "INSERT"],
+  // Issue #1346 / `sql/409`. The remaining append-only ledgers, narrowed the same
+  // way and for the same reason. Each was audited by call site: the runtime only
+  // INSERTs and SELECTs them. The decision-log retention DELETE belongs to
+  // `awcms_worker` (`WORKER_ROLE_GRANTS`); `awcms_domain_events` is an outbox
+  // whose processing state lives in `awcms_domain_event_deliveries`, not here.
+  awcms_abac_decision_logs: ["SELECT", "INSERT"],
+  awcms_access_policy_events: ["SELECT", "INSERT"],
+  awcms_business_scope_assignment_events: ["SELECT", "INSERT"],
+  awcms_domain_events: ["SELECT", "INSERT"],
   awcms_access_assignments: ["SELECT"],
   // ADR-0087 / `sql/114`. The tenant-scoped MFA factor and its recovery codes,
   // superseded by the principal-scoped pair. Retained populated as history (the
@@ -1282,6 +1316,19 @@ type RoleGrantRow = {
   ins: boolean;
   upd: boolean;
   del: boolean;
+  /**
+   * Privileges the four-verb columns above cannot see (Issue #1341 audit M1).
+   * `has_table_privilege(..., 'UPDATE')` is false for a COLUMN-level grant, so
+   * `GRANT UPDATE (message) ON awcms_audit_events` left the gate green while
+   * the role could rewrite the column; TRUNCATE ignores RLS, so a table-wide
+   * TRUNCATE grant lets one tenant's context empty every tenant's rows.
+   */
+  trunc: boolean;
+  trig: boolean;
+  refs: boolean;
+  col_ins: boolean;
+  col_upd: boolean;
+  col_refs: boolean;
 };
 
 /**
@@ -1382,7 +1429,13 @@ export async function checkRuntimeRoleGrants(
         has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'SELECT') AS sel,
         has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'INSERT') AS ins,
         has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'UPDATE') AS upd,
-        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'DELETE') AS del
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'DELETE') AS del,
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'TRUNCATE') AS trunc,
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'TRIGGER') AS trig,
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'REFERENCES') AS refs,
+        has_any_column_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'INSERT') AS col_ins,
+        has_any_column_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'UPDATE') AS col_upd,
+        has_any_column_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'REFERENCES') AS col_refs
       FROM pg_class c
       JOIN pg_namespace n ON n.oid = c.relnamespace
       WHERE c.relname LIKE 'awcms\\_%' AND c.relkind IN ('r', 'p')
@@ -1456,9 +1509,23 @@ export async function checkRuntimeRoleGrants(
           );
         }
 
+        // Beyond the four verbs: a narrowed table must also hold NO TRUNCATE,
+        // TRIGGER or REFERENCES, and no COLUMN-level INSERT/UPDATE/REFERENCES
+        // that its declaration does not already grant table-wide. Column
+        // grants are the sneaky one: `has_table_privilege` stays false for
+        // them (audit M1).
+        if (row.trunc) excess.push("TRUNCATE");
+        if (row.trig) excess.push("TRIGGER");
+        if (row.refs) excess.push("REFERENCES");
+        if (row.col_refs && !row.refs) excess.push("column-level REFERENCES");
+        if (row.col_ins && !privileges.INSERT)
+          excess.push("column-level INSERT");
+        if (row.col_upd && !privileges.UPDATE)
+          excess.push("column-level UPDATE");
+
         if (excess.length > 0) {
           overGranted.push(
-            `${row.relname} (retired read-only table still has ${excess.join(", ")})`
+            `${row.relname} (narrowed table holds privileges beyond its declaration: ${excess.join(", ")})`
           );
         }
 
@@ -1479,7 +1546,7 @@ export async function checkRuntimeRoleGrants(
 
       if (overGranted.length > 0) {
         parts.push(
-          `over-granted on global RLS-free or retired read-only table(s): ${overGranted.join("; ")}`
+          `over-granted on global RLS-free or narrowed table(s): ${overGranted.join("; ")}`
         );
       }
 
@@ -1509,7 +1576,7 @@ export async function checkRuntimeRoleGrants(
     const retiredTables = Object.keys(retiredTablePrivileges).join(", ");
     const retiredNote =
       retiredTables.length > 0
-        ? ` Retired read-only table(s) hold exactly their declared privileges (${retiredTables}).`
+        ? ` Narrowed table(s) hold exactly their declared privileges (${retiredTables}).`
         : "";
 
     return {
@@ -1580,6 +1647,9 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // seeds the tenant's derived e-mail template (`ON CONFLICT DO NOTHING`).
   awcms_email_templates: ["SELECT", "INSERT"],
   awcms_email_suppression_list: ["SELECT"],
+  // `sql/410` (ADR-0164): the guard trigger of `awcms_email_messages` reads the
+  // category allow-list as the inserting role. SELECT only, never a write verb.
+  awcms_email_worker_categories: ["SELECT"],
   // `sql/379` (Issue #1161) for `bun run email:queue:purge`: the quarantine of
   // provider-reported events, under a RESTRICTIVE delete floor on
   // `received_at` (a column only the table's trigger writes).
@@ -1713,6 +1783,10 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_blog_posts: ["SELECT", "UPDATE"],
   awcms_blog_post_terms: ["SELECT"],
   awcms_blog_settings: ["SELECT"],
+  // blog_content — the same sweep records a revision per post it publishes
+  // (sql/397): INSERT the append-only snapshot, SELECT the post's latest
+  // revision number. No UPDATE/DELETE: history is never rewritten.
+  awcms_blog_revisions: ["INSERT", "SELECT"],
   // blog_content — site-search:reconcile (sql/136, Issue #625). SELECT-only:
   // the index engine reads each registered search source and writes exclusively
   // to its own awcms_site_search_* tables, so an UPDATE here would be a
@@ -2370,17 +2444,20 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // per line, the two reversers read them to void exactly those lines. Insert-
   // only (a guard trigger refuses UPDATE and DELETE for every role).
   awcms_commerce_commission_submissions: ["SELECT", "INSERT"],
-  // Issue #529 (sql/1065, ADR-0055): the shopper data-subject request evidence.
+  // Issue #529 (sql/1066, ADR-0055): the shopper data-subject request evidence.
   // The worker reads it only for the data-lifecycle engine's dry-run snapshot of
   // the table's `delegated` descriptor; every write is the app role's.
   awcms_commerce_customer_subject_requests: ["SELECT"],
-  // Issue #463 (sql/1068, ADR-0056 D5): the three CRM lead link flaggers read the
+  // Issue #463 (sql/1069, ADR-0056 D5): the three CRM lead link flaggers read the
   // links resting on an order; their UPDATE is column-only (see
   // WORKER_COLUMN_GRANTS). The worker holds no privilege on the `crm_leads` tables
   // (`awcms_crm_leads`, `awcms_crm_lead_conversions`; upstream sql/342), so it can flag a link and never reverse a conversion.
   awcms_commerce_crm_lead_links: ["SELECT"],
   awcms_tenant_settings: ["SELECT"],
-  awcms_tenant_modules: ["SELECT"],
+  // `awcms_tenant_modules` is deliberately NOT here: the worker reads exactly
+  // (tenant_id, module_key, enabled), a COLUMN grant pinned in
+  // WORKER_COLUMN_GRANTS below (upstream sql/330, L-5). sql/1031's table-level
+  // SELECT was revoked by sql/1065.
   // Issue #1189 / ADR-0147 (sql/316). The event consumer of a derived
   // repository runs in `domain-events:dispatch` as `awcms_worker` and SUBMITS a
   // commission request to the intake queue: INSERT and NOTHING else on it (no
@@ -2487,6 +2564,13 @@ export const WORKER_COLUMN_GRANTS: Record<
   awcms_tenant_modules: {
     SELECT: ["tenant_id", "module_key", "enabled"]
   },
+  // awcms-one (Issue #282, sql/947): the restock path locks a location row
+  // (`FOR UPDATE` needs an UPDATE privilege) as `awcms_worker`, so the worker
+  // holds a COLUMN-level UPDATE on `updated_at` and nothing else of the row; its
+  // table-level SELECT is pinned in the table map above.
+  awcms_inventory_locations: {
+    UPDATE: ["updated_at"]
+  },
   awcms_hr_attendance_corrections: {
     SELECT: [
       "id",
@@ -2508,6 +2592,15 @@ export const WORKER_COLUMN_GRANTS: Record<
     UPDATE: ["status", "decided_by", "decided_at", "updated_at"]
   },
   awcms_hr_employments: { UPDATE: ["updated_at"] },
+  // sql/414 (Issue ahliweb/awcms#1335): the omes_control workflow-verdict settler
+  // moves a pending request / egress approval to the workflow's verdict. The
+  // request itself (operation, parameters, requester, link) is not writable.
+  awcms_omes_operation_requests: {
+    UPDATE: ["status", "approved_by", "updated_at"]
+  },
+  awcms_omes_ai_egress_approvals: {
+    UPDATE: ["decision", "decided_at", "updated_at"]
+  },
   // sql/392 (Issue #1298 L3): the dispatcher and the expiry sweep write exactly
   // these columns. The provider-reported status (`provider_status*`, written by
   // a signed webhook as awcms_app), the recipient, template, purpose and sender
@@ -2566,7 +2659,7 @@ export const WORKER_COLUMN_GRANTS: Record<
       "auth_secret_ciphertext"
     ]
   },
-  // sql/1068 (Issue #463, ADR-0056 D5): the three CRM lead link flaggers mark a
+  // sql/1069 (Issue #463, ADR-0056 D5): the three CRM lead link flaggers mark a
   // `linked` link `reversal_pending` and say why and who raised it. NOT writable:
   // lead_id, customer_id, order_id, the evidence, the conversion id and the
   // `reversed_*` columns - a worker able to rewrite those could repoint a
@@ -3323,6 +3416,21 @@ export const EMAIL_PROVIDER_EVENT_TRIGGERS: readonly PinnedTrigger[] = [
     fn: "awcms_email_provider_events_delete_floor",
     events: "delete",
     body: "BEGIN IF OLD.received_at >= now() - interval '30 days' OR (OLD.review_status = 'pending' AND OLD.received_at >= now() - interval '365 days') THEN RAISE EXCEPTION 'a provider event is deleted only by retention, past its window' USING ERRCODE = '23514'; END IF; RETURN OLD; END;"
+  }
+];
+
+/**
+ * sql/410 (ADR-0164, audit Low of PR #1361): the BEFORE INSERT guard on the
+ * worker's e-mail queue. Pinned so an override, a disable or a detach shows up
+ * whatever lexer trick a later migration used to hide it.
+ */
+export const EMAIL_WORKER_GUARD_TRIGGERS: readonly PinnedTrigger[] = [
+  {
+    table: "awcms_email_messages",
+    trigger: "awcms_email_messages_worker_guard",
+    fn: "awcms_email_guard_worker_insert",
+    events: "insert",
+    body: "DECLARE by_worker boolean; BEGIN by_worker := NOT EXISTS ( SELECT 1 FROM pg_roles r WHERE r.rolname IN (session_user, current_user) AND r.rolsuper ) AND (pg_has_role(session_user, 'awcms_worker', 'MEMBER') OR pg_has_role(current_user, 'awcms_worker', 'MEMBER')); IF NOT by_worker THEN RETURN NEW; END IF; IF NOT EXISTS ( SELECT 1 FROM awcms_email_worker_categories c WHERE c.category = NEW.category ) THEN RAISE EXCEPTION 'awcms_email: EMAIL_WORKER_CATEGORY_NOT_ALLOWED' USING ERRCODE = '42501'; END IF; IF NEW.category IN ('crm.follow_up_assigned', 'crm.follow_up_due', 'crm.follow_up_escalated') THEN IF NOT EXISTS ( SELECT 1 FROM awcms_tenant_users tu JOIN awcms_identities i ON i.tenant_id = tu.tenant_id AND i.id = tu.identity_id WHERE tu.tenant_id = NEW.tenant_id AND tu.status = 'active' AND lower(btrim(i.login_identifier)) = NEW.to_address ) THEN RAISE EXCEPTION 'awcms_email: EMAIL_WORKER_RECIPIENT_NOT_STAFF' USING ERRCODE = '42501'; END IF; IF NEW.variables IS NOT NULL AND (jsonb_typeof(NEW.variables) <> 'object' OR EXISTS ( SELECT 1 FROM jsonb_object_keys(NEW.variables) AS k(key) WHERE k.key NOT IN ('userName', 'taskTitle', 'dueAt', 'taskReference') )) THEN RAISE EXCEPTION 'awcms_email: EMAIL_WORKER_VARIABLE_NOT_ALLOWED' USING ERRCODE = '42501'; END IF; END IF; RETURN NEW; END;"
   }
 ];
 
@@ -5171,6 +5279,11 @@ export async function checkWorkerSetupRoleGrants(
 
         if (finding) findings.push(finding);
       }
+      for (const pin of EMAIL_WORKER_GUARD_TRIGGERS) {
+        const finding = await pinTriggerFunction(sql, pin);
+
+        if (finding) findings.push(finding);
+      }
 
       const floorProbe = await probeEmailProviderEventRetentionFloor(sql);
 
@@ -5408,6 +5521,134 @@ export async function checkWorkerSetupRoleGrants(
       severity,
       status: "fail",
       evidence: `Could not verify worker/setup role grants: ${errorMessage(error)}.`
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7c-bis. Worker jobs are reachable when the web connection IS `awcms_app`
+//         (critical) — Issue #1341 audit M2
+// ---------------------------------------------------------------------------
+
+/**
+ * `getWorkerDatabaseClient` falls back to `DATABASE_URL` when
+ * `WORKER_DATABASE_URL` is empty (`src/lib/database/client.ts`). That is a
+ * supported default while the web connection is the schema owner, which holds
+ * everything. Once `DATABASE_URL` is the NARROWED `awcms_app` login, though, the
+ * fallback means every unattended job runs as `awcms_app` and hits `permission
+ * denied` on each verb that only `awcms_worker` is meant to hold (for instance
+ * the audit retention DELETE on `awcms_audit_events`, since `sql/408`): the
+ * jobs fail, retention stops, and the readiness gate used to stay green.
+ *
+ * Reports every table where the declared worker matrix grants a verb the
+ * connected `awcms_app` does not, but ONLY in that exact configuration. Any
+ * other connection (the owner, a dedicated worker URL) is out of scope here;
+ * `checkWorkerSetupRoleGrants` covers the worker role itself.
+ */
+export async function checkWorkerJobsReachableWithoutWorkerUrl(options?: {
+  workerGrants?: Record<string, string[]>;
+  workerDatabaseUrl?: string | undefined;
+  /** Injectable for tests that must connect AS `awcms_app`. */
+  client?: Bun.SQL;
+}): Promise<SecurityCheckResult> {
+  const name =
+    "Worker jobs are reachable when the web connection is the narrowed app role";
+  const severity: CheckSeverity = "critical";
+  const workerGrants = options?.workerGrants ?? WORKER_ROLE_GRANTS;
+  const configured =
+    options && "workerDatabaseUrl" in options
+      ? options.workerDatabaseUrl
+      : process.env.WORKER_DATABASE_URL;
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    if (configured !== undefined && configured.trim().length > 0) {
+      return {
+        name,
+        severity,
+        status: "pass",
+        evidence:
+          "WORKER_DATABASE_URL is set, so unattended jobs do not inherit the web connection."
+      };
+    }
+
+    const sql = options?.client ?? getDatabaseClient();
+    const whoRows = (await sql`SELECT current_user AS who`) as {
+      who: string;
+    }[];
+
+    if (whoRows[0]?.who !== LEAST_PRIVILEGE_APP_ROLE) {
+      return {
+        name,
+        severity,
+        status: "pass",
+        evidence: `The web connection is not "${LEAST_PRIVILEGE_APP_ROLE}" (it is the schema owner), so the WORKER_DATABASE_URL fallback holds every verb. Nothing to verify.`
+      };
+    }
+
+    const rows = (await sql`
+      SELECT
+        c.relname,
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'SELECT') AS sel,
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'INSERT') AS ins,
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'UPDATE') AS upd,
+        has_table_privilege(${LEAST_PRIVILEGE_APP_ROLE}, c.oid, 'DELETE') AS del
+      FROM pg_class c
+      JOIN pg_namespace n ON n.oid = c.relnamespace
+      WHERE c.relname LIKE 'awcms\\_%' AND c.relkind IN ('r', 'p')
+        AND n.nspname = current_schema()
+    `) as {
+      relname: string;
+      sel: boolean;
+      ins: boolean;
+      upd: boolean;
+      del: boolean;
+    }[];
+
+    const missing: string[] = [];
+
+    for (const row of rows) {
+      const needed = workerGrants[row.relname];
+
+      if (needed === undefined) continue;
+
+      const held: Record<string, boolean> = {
+        SELECT: row.sel,
+        INSERT: row.ins,
+        UPDATE: row.upd,
+        DELETE: row.del
+      };
+      const lacking = needed.filter((privilege) => !held[privilege]);
+
+      if (lacking.length > 0) {
+        missing.push(`${row.relname} (${lacking.join(", ")})`);
+      }
+    }
+
+    if (missing.length > 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `DATABASE_URL is the narrowed "${LEAST_PRIVILEGE_APP_ROLE}" login and WORKER_DATABASE_URL is empty, so unattended jobs fall back to it and hit "permission denied": ${missing.join("; ")}. Point WORKER_DATABASE_URL at the "${WORKER_ROLE}" login before or together with the migration that narrowed the table.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `DATABASE_URL is "${LEAST_PRIVILEGE_APP_ROLE}" with no WORKER_DATABASE_URL, and it still holds every verb the worker jobs use.`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify worker job reachability: ${errorMessage(error)}.`
     };
   }
 }
@@ -8579,6 +8820,49 @@ export async function checkTelegramEngagementDispatchRole(options?: {
 }
 
 /**
+ * Channel-account access guards (Issue #1215 M-c, `sql/398` and `sql/399`): an
+ * account is `assigned` by default, an assigned account cannot lose its last
+ * owner by a demotion, an erasure that orphans one leaves an audit row, and an
+ * account's business scope and identity cannot be rewritten. Exact pins on the
+ * column, the CHECK and the four trigger functions, plus a rolled-back
+ * behavioural probe: a pin alone passes a hollowed-out function that keeps its
+ * shape. Runs as whichever role the checking connection is; the guards are
+ * triggers, so they fire for every role.
+ */
+export async function checkChannelAccountsAccessGuards(): Promise<SecurityCheckResult> {
+  const name = "Channel accounts are assigned by default and keep their owner";
+  const severity: CheckSeverity = "critical";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const findings = await pinChannelAccountsAccessGuards(sql);
+    const probe = await probeChannelAccountsAccessGuards(sql);
+
+    if (probe !== null) findings.push(...probe);
+
+    return findings.length === 0
+      ? {
+          name,
+          severity,
+          status: "pass",
+          evidence: `access_mode defaults to the closed mode behind its CHECK and the four guard triggers (identity and scope, owned switch, last-owner demotion, orphan audit) equal their reviewed bodies${probe === null ? "; the rolled-back behavioural probe was NOT run (this connection cannot seed a throwaway tenant), so only the exact pins stood" : ", and a rolled-back probe confirmed what they refuse and what they allow"}.`
+        }
+      : { name, severity, status: "fail", evidence: findings.join("; ") };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify the channel account access guards: ${errorMessage(error)}`
+    };
+  }
+}
+
+/**
  * The #1271 audit, L3: the behavioural probes of the dedicated roles
  * (`awcms_worker`'s secret view, `awcms_social_dispatch`'s secret view and
  * write boundary, `awcms_telegram_engagement_dispatch`) run only when the
@@ -8609,6 +8893,16 @@ export async function checkDedicatedRoleProbesRan(): Promise<SecurityCheckResult
       ORDER BY r.rolname
     `) as { role: string; can: boolean }[];
     const skipped = rows.filter((row) => !row.can).map((row) => row.role);
+    const superuser = (await sql`
+      SELECT rolsuper FROM pg_roles WHERE rolname = current_user
+    `) as { rolsuper: boolean }[];
+
+    // The tenant-isolation probe (#1279, X4) needs a superuser, not a member.
+    if (!superuser[0]?.rolsuper) {
+      skipped.push(
+        `the tenant-isolation probe (${LEAST_PRIVILEGE_APP_ROLE}, ${SOCIAL_SOURCE_CHECK_ROLE})`
+      );
+    }
 
     return skipped.length === 0
       ? {
@@ -8637,6 +8931,150 @@ export async function checkDedicatedRoleProbesRan(): Promise<SecurityCheckResult
 }
 
 // ---------------------------------------------------------------------------
+// 7f. No schema/database CREATE for a restricted role (critical) — #1279 (X3)
+// ---------------------------------------------------------------------------
+
+/**
+ * Roles allowed to hold CREATE besides the schema/database owner: a deployment
+ * whose migrator is a LOGIN member of a NOLOGIN owner role lists it in
+ * `SECURITY_READINESS_MIGRATOR_ROLES` (comma separated). Empty by default.
+ */
+function migratorRolesFromEnv(): string[] {
+  return (process.env.SECURITY_READINESS_MIGRATOR_ROLES ?? "")
+    .split(",")
+    .map((role) => role.trim())
+    .filter((role) => role.length > 0);
+}
+
+export async function checkNoRestrictedSchemaCreate(
+  definerOwners?: readonly string[],
+  migrators?: readonly string[]
+): Promise<SecurityCheckResult> {
+  const name = "No restricted role can CREATE in the schema or the database";
+  const severity: CheckSeverity = "critical";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const findings = await findRestrictedCreatePrivileges(
+      getDatabaseClient(),
+      definerOwners ?? DEFINER_OWNER_ROLES,
+      migrators ?? migratorRolesFromEnv()
+    );
+
+    return findings.length > 0
+      ? {
+          name,
+          severity,
+          status: "fail",
+          evidence: `Every SECURITY DEFINER function pins search_path = public, pg_temp, so a role that can CREATE in the schema can plant an object they resolve. Only the schema/database owner and the explicitly allow-listed migrators may hold CREATE, and every SECURITY DEFINER function must pin exactly that search_path: ${findings.join("; ")}.`
+        }
+      : {
+          name,
+          severity,
+          status: "pass",
+          evidence:
+            "Only the schema and database owner (and any allow-listed migrator) hold CREATE: PUBLIC, every other LOGIN role, the runtime, worker, setup and dispatch roles and every definer owner do not (ACLs and effective privilege, membership included); every SECURITY DEFINER function pins exactly search_path = public, pg_temp."
+        };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify schema CREATE privileges: ${errorMessage(error)}.`
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7g. Tenant isolation policies keep their canonical shape (critical) — #1279 (X4)
+// ---------------------------------------------------------------------------
+
+export async function checkTenantIsolationPoliciesCanonical(): Promise<SecurityCheckResult> {
+  const name =
+    "Every FORCE-RLS table keeps its canonical tenant isolation policy";
+  const severity: CheckSeverity = "critical";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const { checkedTables, findings } =
+      await findTenantIsolationPolicyDrift(sql);
+    const probe = await probeTenantIsolationUnderDefinerRead(sql, [
+      LEAST_PRIVILEGE_APP_ROLE,
+      SOCIAL_SOURCE_CHECK_ROLE
+    ]);
+
+    findings.push(...probe.findings);
+
+    return findings.length > 0
+      ? {
+          name,
+          severity,
+          status: "fail",
+          evidence: `A permissive policy is OR-ed with the tenant isolation policy, and a SECURITY DEFINER function reads on the strength of it, so a widened or extra policy exposes other tenants: ${findings.join("; ")}.`
+        }
+      : {
+          name,
+          severity,
+          status: "pass",
+          evidence: `${checkedTables} FORCE-RLS table(s): each has the canonical FOR ALL tenant isolation policy and no unreviewed permissive policy; ${probe.ran ? `the rolled-back probe saw only its own tenant's rows as ${probe.probedRoles.join(", ")}${probe.skippedRoles.length > 0 ? ` (not probed: ${probe.skippedRoles.join(", ")}, not provisioned or without a read grant)` : ""}` : "the behavioural probe did not run (the connection is not a superuser), so the exact expression pin is the only guard here"}.`
+        };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify the tenant isolation policies: ${errorMessage(error)}.`
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7h. No view or materialized view bypasses RLS (critical) — #1347
+// ---------------------------------------------------------------------------
+
+export async function checkNoViewBypassesRls(): Promise<SecurityCheckResult> {
+  const name = "No view or materialized view bypasses RLS on a FORCE-RLS table";
+  const severity: CheckSeverity = "critical";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const { checkedViews, findings } =
+      await findViewRlsBypass(getDatabaseClient());
+
+    return findings.length > 0
+      ? {
+          name,
+          severity,
+          status: "fail",
+          evidence: `A view runs with its owner's privileges and policies unless it is security_invoker (and FORCE RLS does not bind a superuser or BYPASSRLS owner); a materialized view has no RLS at all. Views also need an entry in the reviewed view grant matrix before a restricted role can touch them: ${findings.join("; ")}.`
+        }
+      : {
+          name,
+          severity,
+          status: "pass",
+          evidence: `${checkedViews} view(s)/materialized view(s) in every non-system schema: no view that reaches a FORCE-RLS table lacks security_invoker (whatever its owner), no materialized view over one is owned by a superuser or BYPASSRLS role, no materialized view over one is readable by a restricted role, and no restricted role holds a privilege on a view outside the reviewed matrix.`
+        };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify views: ${errorMessage(error)}.`
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Orchestration
 // ---------------------------------------------------------------------------
 
@@ -8653,10 +9091,15 @@ export async function runSecurityReadinessChecks(): Promise<
     await checkLeastPrivilegeRoleProvisioned(),
     await checkRuntimeRoleGrants(),
     await checkWorkerSetupRoleGrants(),
+    await checkWorkerJobsReachableWithoutWorkerUrl(),
     await checkWorkerCredentialColumnsUnreadable(),
     await checkTelegramEngagementDispatchRole(),
+    await checkChannelAccountsAccessGuards(),
     await checkDedicatedRoleProbesRan(),
     await checkDefinerOwnerRolesNoLogin(),
+    await checkNoRestrictedSchemaCreate(),
+    await checkTenantIsolationPoliciesCanonical(),
+    await checkNoViewBypassesRls(),
     checkAbacDefaultDeny(),
     checkDataLifecycleRegistryValid(),
     checkDataLifecycleLegalHoldReleaseSeparate(),

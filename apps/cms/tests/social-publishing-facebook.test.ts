@@ -566,10 +566,8 @@ describe("the dedicated-role job (ADR-0157 section 6)", () => {
     expect(dedicated.targets).not.toContain(
       "social-publishing:retention:purge"
     );
-    // LOCAL DIVERGENCE (awcms-one): the import-graph trace over every
-    // package.json script takes about 12 s in this embed (the `commerce`
-    // registry is reached by about 70 scripts), past bun's 5 s default; upstream
-    // runs it in under 5 s. Keep ours on conflict.
+    // The transitive import walk over every job takes ~4s on an idle machine
+    // (same on main), so the 5s default left no headroom under CI load.
   }, 60_000);
 
   test("the job holds the key ring and its own login, and the runner withholds every shared login from it", () => {

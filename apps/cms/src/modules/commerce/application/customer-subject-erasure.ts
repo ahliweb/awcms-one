@@ -22,7 +22,7 @@
  *    shopper's review text, the subjects of their conversations and the bodies
  *    of their own messages with per-row-unique sentinels, and marks both rows
  *    `erased_at` with status `blocked` (so every eligibility predicate drops
- *    them; `deleted_at` is deliberately not used, see `sql/1066`).
+ *    them; `deleted_at` is deliberately not used, see `sql/1067`).
  * 6. SUSPENDS the shopper's affiliate account (retained for accounting, but its
  *    public referral code stops earning).
  * 7. LEAVES the retained families untouched (orders and their children,

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md)
 
-<!-- i18n-source-hash: sha256:dda8083bf4727dba0ce552922ce4634d25ebabd7f5e06e53699424d15bc35c86 -->
+<!-- i18n-source-hash: sha256:b08e116f4cc761ee0a9ebc363d9817ae1420bedacd2d79b2a736c889d98cd8ce -->
 
 # ADR-0055 — Pelanggan commerce punya alur hak subjek data milik commerce, berkunci id pelanggan
 
@@ -22,7 +22,7 @@ UU PDP 27/2022 memberi subjek data hak akses dan hak penghapusan. `commerce` bel
 
 **D1. Subjek.** `commerce` memiliki alur ekspor dan penghapusan **berkunci `awcms_commerce_customers.id`**. Subjek ditentukan dari sesi bearer di storefront (pelanggan milik akun itu sendiri) atau dari id rute untuk staf, selalu di dalam transaksi RLS tenant, sehingga pelanggan tenant lain tidak pernah ditemukan (404). `commerce` **tidak** memfork union `references` engine secara lokal. Mekanisme generiknya, jenis subjek yang dideklarasikan deskriptor, diusulkan ke upstream (lampiran A) dan tiba, bila diterima, lewat sinkronisasi subtree biasa. Sampai saat itu alur milik commerce yang menjawab pembeli, dan setiap deskriptor berkunci pelanggan tetap `unreachableBySubject` dengan rasional yang kini menyebut alur ini dan apa yang dilakukannya pada tabel itu (`withCommerceSubjectFlow`, dibangkitkan dari registri di bawah sehingga rasional tidak bisa menyimpang dari kode).
 
-Bukti tiap permintaan adalah tabelnya sendiri, `awcms_commerce_customer_subject_requests` (`sql/1065`): siapa yang meminta, lewat permukaan mana, apa yang diputuskan, kode penolakan, sebuah hitungan, dan ringkasan yang dipertahankan. Tabel ini tidak menyimpan bundel, nama, kontak, kode, atau token, dan baris yang sudah diputuskan tidak dapat diubah (trigger penjaga; tidak ada role yang boleh menghapusnya).
+Bukti tiap permintaan adalah tabelnya sendiri, `awcms_commerce_customer_subject_requests` (`sql/1066`): siapa yang meminta, lewat permukaan mana, apa yang diputuskan, kode penolakan, sebuah hitungan, dan ringkasan yang dipertahankan. Tabel ini tidak menyimpan bundel, nama, kontak, kode, atau token, dan baris yang sudah diputuskan tidak dapat diubah (trigger penjaga; tidak ada role yang boleh menghapusnya).
 
 **D2. Matriks hapus / anonimkan / pertahankan.** Satu registri, `domain/customer-subject-data.ts`, mengklasifikasikan setiap tabel `awcms_commerce_*`; `apps/cms/tests/commerce-customer-subject-data.test.ts` mem-parse `sql/` dan gagal bila tabel dengan kolom pelanggan, akun, pemilik-pelanggan, atau pesanan tidak ada di registri maupun di dua daftar "tidak terjawab", sehingga tabel yang ditambahkan kemudian tidak bisa diam-diam hilang dari ekspor pembeli.
 
@@ -33,7 +33,7 @@ Bukti tiap permintaan adalah tabelnya sendiri, `awcms_commerce_customer_subject_
 | **Pertahankan** di bawah kewajiban pembukuan, menunjuk ke pelanggan yang dianonimkan | pesanan beserta item, peristiwa, pembayaran, alokasi, dokumen, retur dan pengembalian dana, buku besar poin dan nilai tersimpan, hak akses (entitlement), pembukuan afiliasi, penawaran, perintah kerja, tautan dan keputusan booking |
 | **Tidak terjawab**                                                                   | baris OTP dan WhatsApp yang hanya cocok lewat nilai kontak (WhatsApp tetap di bawah retensinya sendiri); setiap tabel katalog, pengaturan, dan agregat (masing-masing dengan alasan di registri)                                      |
 
-Identitas dianonimkan, bukan di-soft-delete. Kolom baru `erased_at` (`sql/1066`) menandai pelanggan dan akun yang dihapus, yang juga mendapat `status = 'blocked'`; **`deleted_at` sengaja tidak dipakai**, karena jebakan purge di atas. Setiap predikat kelayakan mengecualikan baris `erased_at` (segmen, push, edit), sentinel telepon dan e-mail diturunkan dari id baris sehingga indeks unik per tenant tetap terjaga dan pendaftaran baru dengan telepon yang sama dimungkinkan, dan sentinel e-mail berada di domain tingkat atas `.invalid` yang dicadangkan, sehingga tidak pernah bisa dikirimi.
+Identitas dianonimkan, bukan di-soft-delete. Kolom baru `erased_at` (`sql/1067`) menandai pelanggan dan akun yang dihapus, yang juga mendapat `status = 'blocked'`; **`deleted_at` sengaja tidak dipakai**, karena jebakan purge di atas. Setiap predikat kelayakan mengecualikan baris `erased_at` (segmen, push, edit), sentinel telepon dan e-mail diturunkan dari id baris sehingga indeks unik per tenant tetap terjaga dan pendaftaran baru dengan telepon yang sama dimungkinkan, dan sentinel e-mail berada di domain tingkat atas `.invalid` yang dicadangkan, sehingga tidak pernah bisa dikirimi.
 
 Keputusan di dalam matriks:
 
@@ -48,7 +48,7 @@ Keputusan di dalam matriks:
 
 **D3. Permukaan.**
 
-- **Storefront** (pembeli): sesi bearer ditambah **kode sekali pakai baru** dengan tujuan sendiri (`subject_export`, `subject_erasure`; CHECK tabel masuk dilebarkan di `sql/1066`, dan `consumeOtp` menyaring berdasarkan tujuan, sehingga kode login tidak pernah mengotorisasi permintaan). Tiga rute di bawah `/api/v1/commerce/storefront/account/privacy/`: `otp` (mengirim kode ke alamat akun sendiri; dibatasi per IP dan per akun), `export`, `erasure` (wajib `Idempotency-Key`, disimpan pada baris permintaan: kunci yang berulang menjawab hasil tersimpan, kunci yang dipakai permintaan lain adalah `409`). Tanpa cookie, tanpa `Access-Control-Allow-Credentials` (ADR-0016 D3). Ketiga rute dideklarasikan di `CUSTOMER_BEARER_BODY_ENDPOINTS` agar middleware mengautentikasi token pelanggan sebelum body dibaca, dan di kontrak OpenAPI dengan `customerBearer`.
+- **Storefront** (pembeli): sesi bearer ditambah **kode sekali pakai baru** dengan tujuan sendiri (`subject_export`, `subject_erasure`; CHECK tabel masuk dilebarkan di `sql/1067`, dan `consumeOtp` menyaring berdasarkan tujuan, sehingga kode login tidak pernah mengotorisasi permintaan). Tiga rute di bawah `/api/v1/commerce/storefront/account/privacy/`: `otp` (mengirim kode ke alamat akun sendiri; dibatasi per IP dan per akun), `export`, `erasure` (wajib `Idempotency-Key`, disimpan pada baris permintaan: kunci yang berulang menjawab hasil tersimpan, kunci yang dipakai permintaan lain adalah `409`). Tanpa cookie, tanpa `Access-Control-Allow-Credentials` (ADR-0016 D3). Ketiga rute dideklarasikan di `CUSTOMER_BEARER_BODY_ENDPOINTS` agar middleware mengautentikasi token pelanggan sebelum body dibaca, dan di kontrak OpenAPI dengan `customerBearer`.
 - **Admin** (staf atas nama pembeli): empat izin pada satu kode aktivitas, `commerce.customer_subject_requests.{read,export,delete,approve}`. Kosakata `AccessAction` yang ada dipakai ulang (`delete` meminta penghapusan, bukan kata kerja `erase` baru), ketiga kata kerja tulis sudah berisiko tinggi. Ekspor butuh `export` dan `Idempotency-Key`. Penghapusan adalah **maker/checker**: `delete` ditambah step-up baru mencatat permintaan `pending_approval` setelah pemeriksaan prasyarat dan tidak menghapus apa pun; orang **lain** dengan `approve` ditambah step-up baru memutuskannya. Checker tidak pernah maker, ditegakkan tiga kali: di alur, di `UPDATE` pengklaim (klaim bersyarat pada `status = 'pending_approval'`), dan oleh CHECK tabel.
 - **Audit dan idempotensi.** Setiap pengungkapan diaudit pada tingkat `critical` dan setiap penghapusan pada `critical`, hanya dengan hitungan dan id. Ekspor pembeli tidak punya `Idempotency-Key` karena kodenya sekali pakai; ekspor admin mewajibkannya dan memperlakukan pengulangan sebagai `409 IDEMPOTENCY_REPLAYED` (bundel tidak disimpan untuk diputar ulang).
 
@@ -75,7 +75,7 @@ Keputusan di dalam matriks:
 ## Konsekuensi
 
 - Pembeli dapat mengunduh datanya dan menghapus identitasnya dari `/akun/privasi`; staf dapat melakukan keduanya atas nama mereka, dengan orang kedua untuk penghapusan. `eraseCustomerPushData` dan `exportCustomerPushData` kini punya pemanggil.
-- Migrasi `1065`-`1067` (tabel permintaan dengan hak baca worker untuk dry-run siklus hidup; `erased_at` dan tujuan OTP; empat izin). Catatan band commerce di `AGENTS.md` mencatatnya.
+- Migrasi `1066`-`1068` (tabel permintaan dengan hak baca worker untuk dry-run siklus hidup; `erased_at` dan tujuan OTP; empat izin). Catatan band commerce di `AGENTS.md` mencatatnya.
 - Registri body bearer-pelanggan bertambah tiga endpoint; anggaran aset dan kontrak OpenAPI bertambah.
 - Suite integrasi berbasis DB dan e2e `/akun/privasi` di peramban sungguhan hanya berjalan lewat CI lokal (PostgreSQL termigrasi; Playwright). Keduanya ditulis di lingkungan tanpa keduanya dan tidak dijalankan di sana.
 

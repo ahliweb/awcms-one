@@ -3,6 +3,8 @@ import { join, resolve } from "node:path";
 
 import { describe, expect, test } from "bun:test";
 
+import { installExtensionPointSource } from "../src/modules/_shared/extension-point-source";
+import { listModules } from "../src/modules";
 import { enqueueLegacyWhatsappMessage } from "../src/modules/commerce/application/whatsapp-enqueue-legacy";
 import {
   enqueueWhatsappMessage,
@@ -47,6 +49,11 @@ import {
  * message) is `tests/integration/commerce-whatsapp-compat.integration.test.ts`.
  */
 const CMS_ROOT = resolve(import.meta.dir, "..");
+
+// The commerce templates are declared in the module descriptor (ADR-0164) and
+// resolved from the installed source, as the web entry and every dispatcher
+// script install it; this file's in-process lookups need the same.
+installExtensionPointSource(listModules);
 
 type Call = { sql: string; values: unknown[] };
 
@@ -429,9 +436,9 @@ describe("the commerce.* templates registered with whatsapp_delivery (Issue #392
 });
 
 describe("a fresh whatsapp:dispatch process knows the commerce templates (Issue #392)", () => {
-  test("importing only the dispatch script registers every commerce.* template", async () => {
-    // A fresh process: this test file's own imports have already populated the
-    // registry here, so only a child can show what the dispatcher process sees.
+  test("importing only the dispatch script resolves every commerce.* template from the descriptors", async () => {
+    // A fresh process: the dispatch script installs the descriptor source itself
+    // (ADR-0164), so only a child can show what the dispatcher process sees.
     const script = `
       await import(${JSON.stringify(join(CMS_ROOT, "scripts/whatsapp-dispatch.ts"))});
       const { getWhatsappTemplate } = await import(${JSON.stringify(

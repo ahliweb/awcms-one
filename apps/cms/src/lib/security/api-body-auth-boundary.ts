@@ -238,41 +238,39 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
       "The guest customer reviews a product from their own completed order, holding orderCode + phone as the credential."
   },
 
-  // ---- awcms-one (14 November 2026 sync, upstream api:spec:check H-1): the
-  // remaining public (`security: []`) commerce operations that take a body.
-  // The gate found them unreachable behind the middleware boundary; each is
-  // anonymous by design and carries its own credential, like the entries above.
+  // ---- Storefront (found by the `f476fdbb` sync's parity gate): the five public body operations of
+  // the commerce OpenAPI that declare `security: []` and were never listed here ----
   {
     method: "POST",
     pattern: "/api/v1/commerce/storefront/account/otp/request",
     reason:
-      "A shopper asking for a one-time code has no account session yet (ADR-0016). Always answers 202 whether or not the address or number is known, rate limited per address and per client."
+      "Anonymous by nature: it asks for the code that mints a customer session (ADR-0016 D2), so no session can exist yet. Rate-limited per IP and per mailbox in the route; answers 202 for every outcome."
   },
   {
     method: "POST",
     pattern: "/api/v1/commerce/storefront/account/otp/verify",
     reason:
-      "The other half of the OTP login: the code IS the credential and the response mints the customer bearer session, so none exists yet. Rate limited per client."
-  },
-  {
-    method: "POST",
-    pattern:
-      "/api/v1/commerce/storefront/orders/:orderCode/payment-gateway/sessions",
-    reason:
-      "The guest customer opens a hosted gateway page for their own order, holding orderCode + phone as the credential (same rule as the order cancel above)."
+      "Anonymous by nature: it exchanges the one-time code for the customer bearer session (ADR-0016 D3). Every failure is the same 401 OTP_INVALID; rate-limited per IP in the route."
   },
   {
     method: "POST",
     pattern: "/api/v1/commerce/storefront/booking/reservations",
     reason:
-      "A guest books and holds a reservation through the storefront (ADR-0045): there is no account to hold a session, the tenant comes from the request Origin, and an Idempotency-Key is required."
+      "Guest checkout for a booking (ADR-0045 G15): no bearer is a guest with guest.name and guest.phone; an OPTIONAL customer bearer makes it the account's own. Idempotency key required and namespaced by who asks."
   },
   {
     method: "POST",
     pattern:
       "/api/v1/commerce/storefront/booking/reservations/:orderCode/cancel",
     reason:
-      "The guest cancels their own booking order, holding orderCode + phone as the credential, as the order cancel above."
+      "The shopper cancels their own reservation, holding the order's phone in the body or an OPTIONAL customer bearer as the credential (ADR-0045 D4/D9). Idempotency key required."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/orders/:orderCode/payment-gateway/sessions",
+    reason:
+      "Same orderCode + phone credential, or an optional customer bearer, as the other anonymous order routes above; a mismatch is the same neutral 404 (Issue #110)."
   },
 
   // ---- Payment-gateway webhooks (Issue #113): opaque per-tenant token, not sessioned ----

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:5b33a19933434e66b01558a74ff880ccdd4917ea95b94167e6b09dbf713e5a0b -->
+<!-- i18n-source-hash: sha256:bb60608431b88c13aff2333afcbb1745ae3445236c664ad889010a81a3352231 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-186 target menjalankan berkas di `scripts/`; 65 di antaranya
+190 target menjalankan berkas di `scripts/`; 68 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -117,6 +117,9 @@ terjadwal, atau oleh workflow CI tertentu.
 | `db:work-class:generate`                  | `work-class-registry-generate.ts`              | —    |
 | `deps:audit:check`                        | `dependency-audit-check.ts`                    | ✅   |
 | `deps:freshness`                          | `dependency-freshness.ts`                      | —    |
+| `deps:issues:sync`                        | `dependency-issue-sync.ts`                     | —    |
+| `deps:license:check`                      | `dependency-license-check.ts`                  | ✅   |
+| `deps:provider-changelog:check`           | `provider-changelog-check.ts`                  | ✅   |
 | `design:token-contrast:check`             | `design-token-contrast-check.ts`               | ✅   |
 | `docs:i18n:stamp`                         | `docs-i18n-stamp.mjs`                          | —    |
 | `docs:i18n:stamp:check`                   | `docs-i18n-stamp.mjs`                          | ✅   |
@@ -131,6 +134,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `email:senders:verify`                    | `email-senders-verify.ts`                      | —    |
 | `email:templates:seed-defaults`           | `email-templates-seed-defaults.ts`             | —    |
 | `entitlements:backfill`                   | `identity-access-entitlement-backfill.ts`      | —    |
+| `extension-points:check`                  | `extension-points-check.ts`                    | ✅   |
 | `family:conformance:check`                | `family-conformance-check.ts`                  | ✅   |
 | `form-drafts:purge`                       | `form-draft-purge.ts`                          | —    |
 | `graph:artifacts:check`                   | `graph-artifacts-check.ts`                     | —    |
