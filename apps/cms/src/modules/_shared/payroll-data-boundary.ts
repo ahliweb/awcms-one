@@ -468,9 +468,25 @@ const FOREIGN_OBJECT_STEMS: ReadonlySet<string> = new Set([
   "periods"
 ]);
 
-/** Suffix of a catalog object PostgreSQL names `<table>_<columns>_<suffix>`. */
+/**
+ * Suffix of a catalog object PostgreSQL names `<table>_<columns>_<suffix>`.
+ *
+ * awcms-one local divergence (root AGENTS.md): three suffix families are added
+ * to upstream's `key|idx|fkey|check|seq|trg`, all of them the names of objects
+ * of an EXCEPTED table that the real migrated database holds, found by
+ * `payroll-catalog-boundary.integration.test.ts`:
+ *   - `not_null`: PostgreSQL 18 names a NOT NULL constraint
+ *     `<table>_<column>_not_null`, for every table;
+ *   - `fk`: a foreign key this repo's migrations name `<table>_<ref>_fk`;
+ *   - `tenant_isolation` and `append_only`: the RLS policy and the guard trigger
+ *     of a commerce ledger table (`sql/994`).
+ * The rest of the rule is untouched: the remainder must still carry no other
+ * table's stem and must not itself be a payroll-pattern hit, so
+ * `<excepted table>_payroll_runs_...` stays refused. Candidate to upstream (at
+ * least `not_null`).
+ */
 const CATALOG_SUFFIX =
-  /^(?:pkey|(?:[a-z0-9]+_)*(?:key|idx|fkey|check|seq|trg))$/;
+  /^(?:pkey|(?:[a-z0-9]+_)*(?:key|idx|fkey|fk|check|seq|trg|not_null|tenant_isolation|append_only))$/;
 
 /**
  * Whether `normalized` is covered by an entry of `exceptions`: the exact name,

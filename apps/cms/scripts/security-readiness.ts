@@ -2444,7 +2444,10 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // only (a guard trigger refuses UPDATE and DELETE for every role).
   awcms_commerce_commission_submissions: ["SELECT", "INSERT"],
   awcms_tenant_settings: ["SELECT"],
-  awcms_tenant_modules: ["SELECT"],
+  // `awcms_tenant_modules` is deliberately NOT here: the worker reads exactly
+  // (tenant_id, module_key, enabled), a COLUMN grant pinned in
+  // WORKER_COLUMN_GRANTS below (upstream sql/330, L-5). sql/1031's table-level
+  // SELECT was revoked by sql/1065.
   // Issue #1189 / ADR-0147 (sql/316). The event consumer of a derived
   // repository runs in `domain-events:dispatch` as `awcms_worker` and SUBMITS a
   // commission request to the intake queue: INSERT and NOTHING else on it (no
@@ -2550,6 +2553,13 @@ export const WORKER_COLUMN_GRANTS: Record<
   // (free text) or the actor stamps.
   awcms_tenant_modules: {
     SELECT: ["tenant_id", "module_key", "enabled"]
+  },
+  // awcms-one (Issue #282, sql/947): the restock path locks a location row
+  // (`FOR UPDATE` needs an UPDATE privilege) as `awcms_worker`, so the worker
+  // holds a COLUMN-level UPDATE on `updated_at` and nothing else of the row; its
+  // table-level SELECT is pinned in the table map above.
+  awcms_inventory_locations: {
+    UPDATE: ["updated_at"]
   },
   awcms_hr_attendance_corrections: {
     SELECT: [

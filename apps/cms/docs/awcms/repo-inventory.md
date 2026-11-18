@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 41    |
-| Migrations                          | 424   |
+| Migrations                          | 425   |
 | `awcms_*` tables                    | 382   |
 | Tables with `FORCE` RLS             | 361   |
 | RLS-free tables (global, by design) | 21    |
-| Test files                          | 1085  |
+| Test files                          | 1086  |
 | Route files                         | 969   |
 | ADR                                 | 334   |
 
@@ -490,6 +490,7 @@
 | 422 | `sql/1062_awcms_commerce_booking_revenue_export_permission.sql`             |
 | 423 | `sql/1063_awcms_commerce_commission_submissions.sql`                        |
 | 424 | `sql/1064_awcms_commerce_worker_email_category_data.sql`                    |
+| 425 | `sql/1065_awcms_commerce_worker_tenant_modules_columns.sql`                 |
 
 ### Tables & Row-Level Security
 
@@ -882,7 +883,7 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 762        |
+| `(root)`      | 763        |
 | `e2e`         | 33         |
 | `integration` | 288        |
 | `unit`        | 2          |
