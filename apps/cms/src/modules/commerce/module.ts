@@ -6,11 +6,8 @@ import { CUSTOMER_PUSH_PERMISSIONS } from "./domain/customer-push-permissions";
 import { defineModule } from "../_shared/module-contract";
 import type { ModuleDomainEventConsumer } from "../_shared/domain-event-consumer-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
-// Side-effect import (Issue #392): registers the `commerce.*` WhatsApp templates
-// with `whatsapp_delivery`, so wherever the module graph is loaded - the CMS
-// server, the admin template list - they are present. The dispatch process
-// imports the same file from `scripts/whatsapp-dispatch.ts`.
-import "./domain/whatsapp-upstream-templates";
+import { COMMERCE_WHATSAPP_TEMPLATE_DECLARATIONS } from "./domain/whatsapp-upstream-templates";
+import { COMMERCE_EMAIL_TEMPLATE_CATEGORY_DECLARATIONS } from "./domain/email-template-categories";
 import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
 import { DEFAULT_EXPENSE_APPROVAL_THRESHOLD } from "./domain/expense";
 import {
@@ -769,8 +766,8 @@ export const commerceModule = defineModule({
    *
    * Issue #392 (ADR-0133 section 6 phase 2) - a tenant in `upstream` WhatsApp
    * mode sends through `whatsapp_delivery`'s port (`application/whatsapp-upstream-enqueue.ts`),
-   * and `domain/whatsapp-upstream-templates.ts` registers the `commerce.*`
-   * templates with it. A source-level relationship that deliberately does NOT
+   * and `domain/whatsapp-upstream-templates.ts` holds the `commerce.*`
+   * templates this descriptor declares (`whatsappTemplates`, ADR-0164). A source-level relationship that deliberately does NOT
    * imply lifecycle ordering, so it is a `capabilities.consumes` entry and not a
    * `dependencies` one: a hard dependency would make commerce un-enableable for a
    * tenant that has not enabled `whatsapp_delivery`, and the default (`legacy`)
@@ -989,6 +986,18 @@ export const commerceModule = defineModule({
    * ledger's `earn:order:<id>` idempotency key). `handle` lazily imports its
    * implementation so the descriptor stays import-light.
    */
+  // ADR-0164: declared here, resolved by `email` and `whatsapp_delivery` in every
+  // process that installs the extension-point source, so no upstream-owned file
+  // imports a commerce file for its side effect. `workerInsert` is the campaign
+  // category only (`sql/1064` seeds its row of `awcms_email_worker_categories`).
+  emailTemplateCategories: COMMERCE_EMAIL_TEMPLATE_CATEGORY_DECLARATIONS.map(
+    (entry) => ({
+      category: entry.category,
+      allowedVariables: entry.allowedVariables,
+      ...(entry.workerInsert ? { workerInsert: true } : {})
+    })
+  ),
+  whatsappTemplates: [...COMMERCE_WHATSAPP_TEMPLATE_DECLARATIONS],
   domainEventConsumers: [
     {
       name: COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
@@ -3160,6 +3169,8 @@ export const commerceModule = defineModule({
       // (same ceiling, 3650 days) has purged the events behind it, so the
       // two windows are kept identical on purpose.
       cursorColumn: "day",
+      // `date` column: upstream's date cursor (ahliweb/awcms#1276) compares the UTC day.
+      cursorColumnType: "date",
       retentionClass: "system_event",
       retentionMinDays: 365,
       retentionMaxDays: 3650,
@@ -3205,6 +3216,8 @@ export const commerceModule = defineModule({
       // (same ceiling, 3650 days) has purged the events behind it, so the
       // two windows are kept identical on purpose.
       cursorColumn: "day",
+      // `date` column: upstream's date cursor (ahliweb/awcms#1276) compares the UTC day.
+      cursorColumnType: "date",
       retentionClass: "system_event",
       retentionMinDays: 365,
       retentionMaxDays: 3650,
@@ -3255,6 +3268,8 @@ export const commerceModule = defineModule({
       // (same ceiling, 3650 days) has purged the events behind it, so the
       // two windows are kept identical on purpose.
       cursorColumn: "day",
+      // `date` column: upstream's date cursor (ahliweb/awcms#1276) compares the UTC day.
+      cursorColumnType: "date",
       retentionClass: "system_event",
       retentionMinDays: 365,
       retentionMaxDays: 3650,

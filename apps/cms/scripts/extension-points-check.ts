@@ -499,6 +499,28 @@ export function findWorkerCategoryProblems(
 }
 
 /**
+ * awcms-one local divergence (root AGENTS.md; owner decision 2026-11-18): the
+ * two migrations of this embed that re-issue the guard function and are allowed
+ * to, each with its reason. EXACT migration names, never a pattern, so no third
+ * one can slip in.
+ *
+ *   - `1033_...`: the commerce campaign category was a literal in the function
+ *     body before the allow-list became data, and the file is applied in
+ *     existing databases (its checksum is immutable).
+ *   - `1064_...`: restores sql/410's table-driven body after 1033 overwrote it
+ *     on a fresh database, and seeds the commerce row. Its body is pinned equal
+ *     to sql/410's by `tests/commerce-worker-email-guard-order.test.ts`.
+ *
+ * Candidate to upstream as a pragma or a registered exception list.
+ */
+export const GUARD_REISSUE_EXCEPTIONS: Readonly<Record<string, string>> = {
+  "1033_awcms_commerce_campaign_worker_email_category.sql":
+    "applied before the allow-list became data; its hard-coded body is overwritten by sql/1064 on every database",
+  "1064_awcms_commerce_worker_email_category_data.sql":
+    "restores the table-driven guard of sql/410 after sql/1033 and seeds the commerce campaign row"
+};
+
+/**
  * Migrations after the guard's own that CREATE, ALTER or DROP the guard
  * function or its trigger, in any spelling (schema-qualified, quoted, any
  * whitespace or case). Any such statement is reported: replacing the function
@@ -506,7 +528,8 @@ export function findWorkerCategoryProblems(
  * detach it.
  */
 export function findGuardFunctionReissues(
-  migrations: readonly { name: string; sql: string }[]
+  migrations: readonly { name: string; sql: string }[],
+  exceptions: Readonly<Record<string, string>> = GUARD_REISSUE_EXCEPTIONS
 ): string[] {
   const offenders = new Set<string>();
 
@@ -514,6 +537,7 @@ export function findGuardFunctionReissues(
     const prefix = Number.parseInt(migration.name.slice(0, 4), 10);
 
     if (!(prefix > GUARD_FUNCTION_MIGRATION_PREFIX)) continue;
+    if (Object.hasOwn(exceptions, migration.name)) continue;
 
     const scan = scanSqlStatements(migration.sql);
 

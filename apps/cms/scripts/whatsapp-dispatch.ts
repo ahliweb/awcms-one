@@ -29,11 +29,6 @@
 import { installExtensionPointSource } from "../src/modules/_shared/extension-point-source";
 import { listModules } from "../src/modules";
 import { getWorkerDatabaseClient } from "../src/lib/database/client";
-// awcms-one divergence (Issue #392, ADR-0133 section 6): this process imports no
-// module, so it would look every `commerce.*` message up in an empty template
-// registry and fail it as `template_unknown`. One side-effect import registers
-// them. Retires when upstream loads consumer template registrations generically.
-import "../src/modules/commerce/domain/whatsapp-upstream-templates";
 import { logScriptFailure } from "../src/lib/logging/error-log";
 import { channelAccountPortAdapter } from "../src/modules/channel-accounts/application/channel-account-port-adapter";
 import { channelSenderCredentialAdapter } from "../src/modules/channel-accounts/application/channel-sender-credential-adapter";

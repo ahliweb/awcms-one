@@ -13,4 +13,4 @@ impact: public
 - `apps/cms/tests/customer-bearer-body-boundary.test.ts` holds the registry equal to the OpenAPI `customerBearer` body operations and the route files; a new customer route that is neither registered nor session-free fails the test.
 - The DB-backed check (`commerce-customer-auth.integration.test.ts`, `findLiveCustomerSession`) is gated on `DATABASE_URL` and was not executed where this change was written.
 
-AGENTS.md records the new local divergence in `apps/cms` and marks the open finding of the `f0182930` sync as fixed.
+AGENTS.md records the new local divergence in `apps/cms`.
