@@ -183,22 +183,63 @@ describe("the properties this screen exists to keep", () => {
   });
 });
 
+describe("row confinement (Issue #1265)", () => {
+  test("the page resolves the caller's scope keys once and hands them to all three reads", async () => {
+    const page = await readFile(PAGE, "utf8");
+
+    expect(page).toContain("resolveMessageScopeKeys(");
+    expect(page).toContain(
+      "summarizeWhatsappQueue(tx, ssr.tenantId, scopeKeys)"
+    );
+
+    for (const call of [
+      "listRecentWhatsappMessages(",
+      "listRecentWhatsappAttempts("
+    ]) {
+      const start = page.indexOf(call);
+
+      expect(start).toBeGreaterThan(-1);
+      expect(page.slice(start, page.indexOf(");", start))).toMatch(
+        /scopeKeys\s*\}?$/
+      );
+    }
+  });
+
+  test("scopeKeys is a REQUIRED parameter of every confined read (no fail-open default)", async () => {
+    const diagnostics = await readFile(
+      "src/modules/whatsapp-delivery/application/whatsapp-diagnostics.ts",
+      "utf8"
+    );
+    const enqueue = await readFile(
+      "src/modules/whatsapp-delivery/application/whatsapp-enqueue.ts",
+      "utf8"
+    );
+
+    expect(diagnostics).not.toMatch(/scopeKeys\??: [^;\n]*= null/);
+    expect(diagnostics).not.toContain("scopeKeys?:");
+    expect(diagnostics).not.toContain("options.scopeKeys ?? null");
+    expect(enqueue).not.toMatch(/scopeKeys: string\[\] \| null = null/);
+  });
+});
+
 describe("the admin ledger", () => {
-  test("no `whatsapp_delivery` key is left on NOT_YET_SCREENED, except the two sender-routing keys", async () => {
+  test("the only `whatsapp_delivery` keys on NOT_YET_SCREENED are the three Meta keys of Issue #1143", async () => {
     const { NOT_YET_SCREENED } =
       await import("../scripts/admin-screen-coverage-ledger");
 
-    // Issue #1141 added `senders.read` and `sender_policy.configure` API-first:
-    // their screen rides with the connection manager (Issue #1154), where an
-    // operator picks the accounts a policy names. Every key of the ORIGINAL ten
-    // is still screened, and these two may only leave the list.
+    // Issue #1141 added `senders.read` and `sender_policy.configure` API-first;
+    // the channel-account detail screen (Issue #1154,
+    // `/admin/channel-accounts/[id]`) now claims both. Issue #1143 added three
+    // Meta keys API-first (template approvals and clearing a WABA restriction);
+    // their screen is the recorded follow-up, and nothing else may join them.
     expect(
       NOT_YET_SCREENED.filter((key) =>
         key.startsWith("whatsapp_delivery.")
       ).sort()
     ).toEqual([
-      "whatsapp_delivery.sender_policy.configure",
-      "whatsapp_delivery.senders.read"
+      "whatsapp_delivery.meta_signals.configure",
+      "whatsapp_delivery.meta_templates.configure",
+      "whatsapp_delivery.meta_templates.read"
     ]);
     expect(EXPECTED).toHaveLength(10);
   });

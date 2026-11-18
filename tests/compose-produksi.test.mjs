@@ -310,7 +310,7 @@ describe("ops/run-job-compose.sh — job to database-role routing", () => {
     // fails: confirm the compose wiring (docs/deployment.md "Which job runs
     // under which database role") and extend the list on purpose.
     const app = new Set(appTargets());
-    expect(crontabTargets().filter((t) => app.has(t)).sort()).toEqual(["hr-commission:intents:post"]);
+    expect(crontabTargets().filter((t) => app.has(t)).sort()).toEqual(["email:senders:verify", "hr-commission:intents:post", "omnichannel-inbox:sla"]);
   });
 
   test("fails closed: a missing or garbled classification, an operator-only target and a path-shaped target all refuse", () => {

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a916419edaa0e3af97f5b3ecefecde49f81585ae154a0dad80680372d6338a01 -->
+<!-- i18n-source-hash: sha256:c3a0dd043d8e1a96b551a0d7fd362d1514ce8ce4ef08bf3a81b97646a595d5f2 -->
 
 # `commerce`
 
@@ -518,7 +518,7 @@ dev/CI bekerja tanpa kredensial e-mail). `commerce` mendapat dependensi ke
 `email` untuk ini (lihat `module.ts`), sama seperti `newsletter` yang sudah
 bergantung padanya untuk e-mail konfirmasinya sendiri.
 
-**Registrasi di proses `email:dispatch` (Issue #311).** Ketiga kategori e-mail `derived.commerce_*` (`customer_otp`, `conversation_reply`, `campaign`) didaftarkan oleh SATU berkas efek-samping tanpa dependensi, `domain/email-template-categories.ts`, yang diimpor berkas application dan juga oleh `email/application/email-dispatch.ts` (satu divergensi upstream yang tercatat, lihat `AGENTS.md` root). Registri bersifat per proses dan `renderEmailTemplate` membuang semua variabel untuk kategori tak dikenal, sehingga registrasi yang hanya ada di berkas application yang tak pernah dimuat dispatcher terpisah membuat OTP e-mail terkirim dengan kode kosong. Tambahkan setiap kategori `derived.commerce_*` baru hanya di berkas itu; `tests/commerce-email-categories-dispatch.test.ts` memeriksanya dari proses baru.
+**Registrasi di proses `email:dispatch` (Issue #311, ADR-0164).** Ketiga kategori e-mail `derived.commerce_*` (`customer_otp`, `conversation_reply`, `campaign`) dideklarasikan di descriptor modul (`emailTemplateCategories`, dibangun dari daftar tanpa dependensi di `domain/email-template-categories.ts`), dan `email` me-resolve allow-list-nya dari descriptor terpasang di setiap proses yang memasang sumber extension-point: entri web dan setiap skrip dispatcher, termasuk `scripts/email-dispatch.ts` dan `scripts/commerce-campaigns-dispatch.ts`. Tidak ada lagi berkas milik upstream yang mengimpor berkas commerce demi efek sampingnya (divergensi `email-dispatch.ts` itu pensiun). Hanya kategori campaign yang `workerInsert`: dispatcher campaign meng-enqueue-nya sebagai `awcms_worker`, sehingga `sql/1064` menyemai barisnya di `awcms_email_worker_categories` (dan memulihkan guard berbasis tabel yang ditimpa `sql/1033` dengan badan hard-coded; lihat `AGENTS.md` root). Tambahkan setiap kategori `derived.commerce_*` baru hanya ke daftar di berkas itu; `tests/commerce-email-categories-dispatch.test.ts` memeriksanya dari proses baru.
 
 **Sesi** (`application/customer-session-auth.ts`): `requireCustomerSession`
 mem-parsing `Authorization: Bearer cs_…`, mencari baris hidup di
@@ -845,11 +845,12 @@ membaca `awcms_commerce_store_settings.whatsapp_mode` (`sql/1027`, default
 bersama) lalu memanggil `whatsapp-enqueue-legacy.ts` (fungsi persis seperti
 semula) atau `whatsapp-upstream-enqueue.ts` (`WhatsappDeliveryPort.enqueue`
 dalam transaksi pemanggil, ke antrean `whatsapp_delivery`). Tanpa dual write,
-tanpa menyalin baris. `domain/whatsapp-upstream-templates.ts` mendaftarkan
-empat template `commerce.*` ke `whatsapp_delivery` (OTP `security` dengan
-kedaluwarsa; pesanan dibayar dan dokumen `transactional`; kampanye
-`marketing`); `scripts/whatsapp-dispatch.ts` mengimpornya agar dispatcher
-upstream mengenalnya. Pada mode `upstream`, penolakan kembali sebagai
+tanpa menyalin baris. `domain/whatsapp-upstream-templates.ts` memuat
+empat template `commerce.*` yang dideklarasikan descriptor modul
+(`whatsappTemplates`, ADR-0164) sehingga `whatsapp_delivery` me-resolve-nya di
+setiap proses yang memasang sumber extension-point, dispatcher upstream
+termasuk (OTP `security` dengan kedaluwarsa; pesanan dibayar dan dokumen
+`transactional`; kampanye `marketing`). Pada mode `upstream`, penolakan kembali sebagai
 `enqueued: false` beserta alasan, ketersediaan kanal menanyakan
 `WHATSAPP_ENABLED` alih-alih `COMMERCE_WHATSAPP_ENABLED`, dan riwayat
 pengiriman dokumen membaca antrean lewat correlation id. Dispatcher, purge,

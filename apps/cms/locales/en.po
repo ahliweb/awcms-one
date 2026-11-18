@@ -516,6 +516,9 @@ msgstr ""
 msgid "Two-factor authentication is already switched on for your account."
 msgstr ""
 
+msgid "QR code for your authenticator app. If you cannot scan it, type the secret shown below into the app instead."
+msgstr ""
+
 msgid "Could not start setup. Please try again."
 msgstr ""
 
@@ -1888,6 +1891,18 @@ msgid "Interval (minutes)"
 msgstr ""
 
 msgid "Invite somebody"
+msgstr ""
+
+msgid "Invitation sent."
+msgstr ""
+
+msgid "Invitation sent again."
+msgstr ""
+
+msgid "Invitation revoked."
+msgstr ""
+
+msgid "Invite user"
 msgstr ""
 
 msgid "IP hash"
@@ -4096,6 +4111,12 @@ msgstr ""
 msgid "Upload an image"
 msgstr ""
 
+msgid "Uploading is unavailable for your role"
+msgstr ""
+
+msgid "Uploading an image needs all of media.create, media.verify and media.cancel, because a started upload must be finishable and cancellable. Your role is missing: {missing}. Ask a tenant administrator to grant them."
+msgstr ""
+
 msgid "The file goes straight to storage from this browser. The server checks the real bytes on arrival — the type is read from the file itself, not from its name."
 msgstr ""
 
@@ -5021,9 +5042,6 @@ msgstr ""
 msgid "Sale price"
 msgstr ""
 
-msgid "Quota"
-msgstr ""
-
 msgid "Add product to sale"
 msgstr ""
 
@@ -5290,9 +5308,6 @@ msgid "Orders could not be loaded right now. Please try again later."
 msgstr ""
 
 msgid "Order code"
-msgstr ""
-
-msgid "Customer"
 msgstr ""
 
 msgid "Payment"
@@ -5570,12 +5585,6 @@ msgstr ""
 msgid "Customer conversations with the store — reply, close, and reopen threads."
 msgstr ""
 
-msgid "You do not have permission to view the inbox."
-msgstr ""
-
-msgid "The inbox could not be loaded right now. Please try again later."
-msgstr ""
-
 msgid "Filter conversations"
 msgstr ""
 
@@ -5588,15 +5597,7 @@ msgstr ""
 msgid "Unread"
 msgstr ""
 
-msgid "{count} conversation"
-msgid_plural "{count} conversations"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Last message"
-msgstr ""
-
-msgid "No conversations yet"
 msgstr ""
 
 msgid "Conversations customers start from the storefront will appear here."
@@ -5624,9 +5625,6 @@ msgid "Campaigns could not be loaded right now. Please try again later."
 msgstr ""
 
 msgid "New campaign"
-msgstr ""
-
-msgid "Channel"
 msgstr ""
 
 msgid "Subject (e-mail only)"
@@ -7602,9 +7600,6 @@ msgstr ""
 msgid "Maximum points per order (optional)"
 msgstr ""
 
-msgid "Never"
-msgstr ""
-
 msgid "No customer found."
 msgstr ""
 
@@ -7678,9 +7673,6 @@ msgid "Repair balances"
 msgstr ""
 
 msgid "Repair balances from the ledger?"
-msgstr ""
-
-msgid "Retire"
 msgstr ""
 
 msgid "Retire this version?"
@@ -7891,9 +7883,6 @@ msgid "Filterable"
 msgstr ""
 
 msgid "Images and other media are not imported here: a media column rejects the file."
-msgstr ""
-
-msgid "Import"
 msgstr ""
 
 msgid "Included in free-text search (text and choice lists only)"
@@ -8197,9 +8186,6 @@ msgid "Outstanding balances"
 msgstr ""
 
 msgid "Payments by tender"
-msgstr ""
-
-msgid "Received"
 msgstr ""
 
 msgid "Reversals"
@@ -9131,9 +9117,6 @@ msgstr ""
 msgid "Within threshold"
 msgstr ""
 
-msgid "You"
-msgstr ""
-
 msgid "You do not have permission to view register sessions."
 msgstr ""
 
@@ -9186,9 +9169,6 @@ msgstr ""
 msgid "A refund goes back onto the same card"
 msgstr ""
 
-msgid "Accounts"
-msgstr ""
-
 msgid "Adjust the balance"
 msgstr ""
 
@@ -9222,9 +9202,6 @@ msgstr ""
 msgid "Balance differs from the ledger"
 msgstr ""
 
-msgid "By"
-msgstr ""
-
 msgid "Check and rebuild differing balances"
 msgstr ""
 
@@ -9247,9 +9224,6 @@ msgid "Could not run the check. Please try again."
 msgstr ""
 
 msgid "Could not run the expiry. Please try again."
-msgstr ""
-
-msgid "Could not save the change. Please try again."
 msgstr ""
 
 msgid "Could not save the program. Please try again."
@@ -9319,9 +9293,6 @@ msgid "Issue a card or credit above."
 msgstr ""
 
 msgid "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
-msgstr ""
-
-msgid "Issued"
 msgstr ""
 
 msgid "It cannot be shown again. If it is lost, disable the account and issue a new one."
@@ -9455,11 +9426,6 @@ msgstr ""
 
 msgid "You do not have permission to view gift cards and store credit."
 msgstr ""
-
-msgid "{count} account"
-msgid_plural "{count} accounts"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "{count} entry"
 msgid_plural "{count} entries"
@@ -9745,9 +9711,6 @@ msgid "Quotations, work orders and documents are turned off for this store."
 msgstr ""
 
 msgid "Quotations, work orders, receipts and invoices, and parked POS sales."
-msgstr ""
-
-msgid "Ready"
 msgstr ""
 
 msgid "Receipts and invoices"
@@ -10290,9 +10253,6 @@ msgstr ""
 msgid "Nothing has been sent yet."
 msgstr ""
 
-msgid "Not sent"
-msgstr ""
-
 msgid "Other recipient"
 msgstr ""
 
@@ -10333,9 +10293,6 @@ msgid "This is a transactional message about the customer's own purchase, built 
 msgstr ""
 
 msgid "Too many deliveries were requested for this document. Try again later."
-msgstr ""
-
-msgid "Waiting to be sent"
 msgstr ""
 
 msgid "Will retry"
@@ -11797,9 +11754,6 @@ msgstr ""
 msgid "any of the conditions is true"
 msgstr ""
 
-msgid "Conditions"
-msgstr ""
-
 msgid "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
 msgstr ""
 
@@ -12263,6 +12217,22 @@ msgid "Telegram Delivery"
 msgstr ""
 
 msgid "Channel Accounts"
+msgstr ""
+
+msgid "Website Engagement"
+msgstr ""
+
+msgid "Social Publishing"
+msgstr ""
+
+msgid "CRM Leads"
+msgstr ""
+
+msgid "Telegram Engagement"
+msgid "CRM Follow-up"
+msgstr ""
+
+msgid "Omnichannel Inbox"
 msgstr ""
 
 msgid "Tenant suspended"
@@ -13549,9 +13519,6 @@ msgstr ""
 msgid "Arrival"
 msgstr ""
 
-msgid "Authenticator code"
-msgstr ""
-
 msgid "Authored by"
 msgstr ""
 
@@ -14410,5 +14377,2367 @@ msgstr ""
 
 msgid "{count} user matches your search and filters"
 msgid_plural "{count} users match your search and filters"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Connected"
+msgstr ""
+
+msgid "Disconnected"
+msgstr ""
+
+msgid "Awaiting authorisation"
+msgstr ""
+
+msgid "OAuth authorisation"
+msgstr ""
+
+msgid "API token"
+msgstr ""
+
+msgid "Bot token"
+msgstr ""
+
+msgid "Device key"
+msgstr ""
+
+msgid "Healthy"
+msgstr ""
+
+msgid "Failing"
+msgstr ""
+
+msgid "Publish posts"
+msgstr ""
+
+msgid "Reply to messages"
+msgstr ""
+
+msgid "Send direct messages"
+msgstr ""
+
+msgid "Receive inbound events"
+msgstr ""
+
+msgid "Manage comments"
+msgstr ""
+
+msgid "Read analytics"
+msgstr ""
+
+msgid "Capture leads"
+msgstr ""
+
+msgid "Advertising"
+msgstr ""
+
+msgid "Broadcast to a list"
+msgstr ""
+
+msgid "Granted"
+msgstr ""
+
+msgid "Not offered"
+msgstr ""
+
+msgid "Not available (unverified)"
+msgstr ""
+
+msgid "No grant recorded"
+msgstr ""
+
+msgid "Granted scope list"
+msgstr ""
+
+msgid "App review reference"
+msgstr ""
+
+msgid "Contract reference"
+msgstr ""
+
+msgid "Written authorisation"
+msgstr ""
+
+msgid "The provider is not recognised."
+msgstr ""
+
+msgid "This account only groups other accounts and does not act itself."
+msgstr ""
+
+msgid "The provider does not offer this."
+msgstr ""
+
+msgid "This is not permitted by policy."
+msgstr ""
+
+msgid "The provider's support for this is not verified."
+msgstr ""
+
+msgid "This needs a contract or written authorisation as evidence."
+msgstr ""
+
+msgid "No grant has been recorded."
+msgstr ""
+
+msgid "The grant is not in the granted state."
+msgstr ""
+
+msgid "The grant has no evidence."
+msgstr ""
+
+msgid "The grant predates the current provider matrix."
+msgstr ""
+
+msgid "The account is not connected."
+msgstr ""
+
+msgid "The provider authorisation is not active."
+msgstr ""
+
+msgid "WhatsApp Cloud API"
+msgstr ""
+
+msgid "StarSender (unofficial)"
+msgstr ""
+
+msgid "Facebook Page"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "Threads"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "LinkedIn Page"
+msgstr ""
+
+msgid "LinkedIn member data"
+msgstr ""
+
+msgid "Telegram"
+msgstr ""
+
+msgid "Website forms"
+msgstr ""
+
+msgid "Mailketing email"
+msgstr ""
+
+msgid "WhatsApp Business account"
+msgstr ""
+
+msgid "WhatsApp phone number"
+msgstr ""
+
+msgid "Professional account"
+msgstr ""
+
+msgid "Creator account"
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "Organisation page"
+msgstr ""
+
+msgid "Bot"
+msgstr ""
+
+msgid "Email service account"
+msgstr ""
+
+msgid "Sender identity"
+msgstr ""
+
+msgid "Not connectable: a policy boundary, not an account"
+msgstr ""
+
+msgid "Connector installed"
+msgstr ""
+
+msgid "Unsupported on this deployment: no connector installed, requires approval"
+msgstr ""
+
+msgid "Not connectable: phase-gated, documented only; needs a business case and the provider's approval"
+msgstr ""
+
+msgid "X account"
+msgstr ""
+
+msgid "LINE Official Account"
+msgstr ""
+
+msgid "Pinterest"
+msgstr ""
+
+msgid "Google Business Profile"
+msgstr ""
+
+msgid "Discord"
+msgstr ""
+
+msgid "Bluesky"
+msgstr ""
+
+msgid "Mastodon"
+msgstr ""
+
+msgid "Snapchat"
+msgstr ""
+
+msgid "Reddit"
+msgstr ""
+
+msgid "Provider: {value}"
+msgstr ""
+
+msgid "Provider authorisation"
+msgstr ""
+
+msgid "Stored (write-only)"
+msgstr ""
+
+msgid "None stored"
+msgstr ""
+
+msgid "Whole tenant"
+msgstr ""
+
+msgid "Scope: {type}"
+msgstr ""
+
+msgid "Channel accounts"
+msgstr ""
+
+msgid "External accounts this tenant has connected (messaging numbers, pages, bots, email logins) and the provider authorisations behind them. Credentials are never shown."
+msgstr ""
+
+msgid "You do not have permission to view channel accounts."
+msgstr ""
+
+msgid "Channel accounts could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Channel accounts are switched off on this deployment, so nothing can be connected or listed."
+msgstr ""
+
+msgid "Accounts"
+msgstr ""
+
+
+msgid "Search channel accounts"
+msgstr ""
+
+msgid "All providers"
+msgstr ""
+
+msgid "Account"
+msgstr ""
+
+msgid "Credential"
+msgstr ""
+
+msgid "Bound to"
+msgstr ""
+
+msgid "No channel accounts yet"
+msgstr ""
+
+msgid "Connected accounts will appear here once a provider connector is installed and an account is registered."
+msgstr ""
+
+msgid "Provider connections"
+msgstr ""
+
+msgid "An authorisation the tenant granted a provider. Tokens, authorisation codes and their references are never shown."
+msgstr ""
+
+msgid "Method"
+msgstr ""
+
+msgid "Granted scopes"
+msgstr ""
+
+msgid "No provider connections yet."
+msgstr ""
+
+msgid "Waiting for the connector to finish"
+msgstr ""
+
+msgid "What can be connected"
+msgstr ""
+
+msgid "Provider matrix v{version}. A provider without a connector on this deployment cannot be connected from here; connecting it needs the provider's approval and a connector, so there is no Connect button."
+msgstr ""
+
+msgid "Providers and how they connect"
+msgstr ""
+
+msgid "Availability"
+msgstr ""
+
+msgid "The credential was replaced. The previous one is gone and cannot be shown."
+msgstr ""
+
+msgid "This account is now the default sender. It applies to messages queued from now on."
+msgstr ""
+
+msgid "The account was disconnected and its stored credential was erased."
+msgstr ""
+
+msgid "The provider authorisation was revoked and its credentials were erased."
+msgstr ""
+
+msgid "{remaining} remaining"
+msgstr ""
+
+msgid "{remaining} of {limit} remaining"
+msgstr ""
+
+msgid "Channel account"
+msgstr ""
+
+msgid "Status, health and what this account is allowed to do, with the evidence for each. Credentials are never shown."
+msgstr ""
+
+msgid "All channel accounts"
+msgstr ""
+
+msgid "This channel account could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "This channel account does not exist, or you cannot see it."
+msgstr ""
+
+msgid "Held by the provider authorisation"
+msgstr ""
+
+msgid "Stored (write-only, never shown)"
+msgstr ""
+
+msgid "No health report yet. Health is reported by a provider connector and is never set by a person, so this account is not shown as healthy until one reports."
+msgstr ""
+
+msgid "Last synced"
+msgstr ""
+
+msgid "Token expires"
+msgstr ""
+
+msgid "Quota"
+msgstr ""
+
+msgid "None recorded"
+msgstr ""
+
+msgid "Issued"
+msgstr ""
+
+msgid "Capabilities and evidence"
+msgstr ""
+
+msgid "What this account may do is decided per capability: the provider must offer it, a grant must be recorded with evidence, and the account and its authorisation must be active. A capability the provider does not offer is listed but disabled. Recording or withdrawing a grant is done through the API."
+msgstr ""
+
+msgid "Evidence state"
+msgstr ""
+
+msgid "Usable now"
+msgstr ""
+
+msgid "Default sender"
+msgstr ""
+
+msgid "This account is the default WhatsApp sender for its scope."
+msgstr ""
+
+msgid "This account is not the default WhatsApp sender for its scope."
+msgstr ""
+
+msgid "This deployment has no sending adapter for this provider, so it cannot be the default sender."
+msgstr ""
+
+msgid "Making this account the default changes which number sends when no sender is named. It applies to messages queued from now on; messages already queued keep the sender they were given."
+msgstr ""
+
+msgid "Make default sender"
+msgstr ""
+
+msgid "Replace credential"
+msgstr ""
+
+msgid "Writing a new credential overwrites the stored one. The old value cannot be shown and the new value is never displayed again. Writing a credential needs two-factor authentication and may ask for a fresh code."
+msgstr ""
+
+msgid "New credential"
+msgstr ""
+
+msgid "No spaces. Between 8 and 4096 characters."
+msgstr ""
+
+msgid "Disconnect account"
+msgstr ""
+
+msgid "Disconnecting is permanent. Nothing will send or publish as this account again, its stored credential is erased and its webhook subscriptions are revoked. The provider is not told: revoke it there as well."
+msgstr ""
+
+msgid "{waiting} waiting and {sending} in flight for this sender. They are not rerouted to another sender: they will fail."
+msgstr ""
+
+msgid "Type the account name to confirm: {name}"
+msgstr ""
+
+msgid "Revoke provider authorisation"
+msgstr ""
+
+msgid "Type the provider name to confirm: {name}"
+msgstr ""
+
+msgid "Revoke authorisation"
+msgstr ""
+
+msgid "What you typed does not match. Nothing was changed."
+msgstr ""
+
+msgid "Could not replace the credential. Please try again."
+msgstr ""
+
+msgid "Writing a credential needs two-factor authentication. Turn it on under your account first."
+msgstr ""
+
+msgid "Confirmation cancelled. Nothing changed."
+msgstr ""
+
+msgid "Credentials cannot be stored on this deployment right now."
+msgstr ""
+
+msgid "This account has no credential of its own."
+msgstr ""
+
+msgid "The account's state does not allow this."
+msgstr ""
+
+msgid "That account or authorisation no longer exists, or you cannot act on it."
+msgstr ""
+
+msgid "That was already done, or the request conflicts with an earlier one. Reload the page."
+msgstr ""
+
+msgid "Could not disconnect the account. Please try again."
+msgstr ""
+
+msgid "Could not revoke the authorisation. Please try again."
+msgstr ""
+
+msgid "Could not change the default sender. Please try again."
+msgstr ""
+
+msgid "That account cannot be the default sender: it must be connected, may send business messages and have a sending adapter."
+msgstr ""
+
+msgid "Too many attempts. Try again later."
+msgstr ""
+
+msgid "{count} account matches your search and filters"
+msgid_plural "{count} accounts match your search and filters"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} account"
+msgid_plural "{count} accounts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} connection"
+msgid_plural "{count} connections"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} scope"
+msgid_plural "{count} scopes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} capability"
+msgid_plural "{count} capabilities"
+msgstr[0] ""
+msgstr[1] ""
+
+
+msgid "Identity"
+msgstr ""
+
+msgid "Authenticator code"
+msgstr ""
+
+msgid "Enter the current six-digit code, then replace the credential again."
+msgstr ""
+
+msgid "This tenant has more accounts than this screen loads. Showing the newest {count}. The provider and status filters cover every account; search covers only these. The API lists the rest."
+msgstr ""
+
+msgid "Your role may write credentials, but the form is withheld: writing one needs two-factor authentication enrolled on your account, or a policy denies it."
+msgstr ""
+
+msgid "That code is not right. Check it and try again; your new credential is still in the form."
+msgstr ""
+
+msgid "Too many wrong codes. The factor is locked for a while; your new credential is still in the form."
+msgstr ""
+
+msgid "The credential must be at least 8 characters."
+msgstr ""
+
+msgid "The credential cannot contain spaces. Remove them and try again."
+msgstr ""
+
+msgid "Revoking is permanent. The authorisation's credentials are erased and up to {count} account bound to it is disconnected."
+msgid_plural "Revoking is permanent. The authorisation's credentials are erased and up to {count} accounts bound to it are disconnected."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Only a connected account can be the default sender. This one is not connected yet."
+msgstr ""
+
+msgid "Delivery progress"
+msgstr ""
+
+msgid "Messages queued through this sender in the last {days} days that you may see, by status. It updates while this page is open; it is not a delivery receipt and it stops when the tab is closed."
+msgstr ""
+
+msgid "Connection"
+msgstr ""
+
+msgid "Reconnecting…"
+msgstr ""
+
+msgid "Not live — showing the state as of {time}"
+msgstr ""
+
+msgid "Your access to this progress ended. Reload the page to see what you can still view."
+msgstr ""
+
+msgid "{sent} sent, {failed} failed, {waiting} waiting"
+msgstr ""
+
+msgid "Refresh progress"
+msgstr ""
+
+msgid "Add tag"
+msgstr ""
+
+msgid "All sources"
+msgstr ""
+
+msgid "All tags"
+msgstr ""
+
+msgid "Another staff member"
+msgstr ""
+
+msgid "Anyone"
+msgstr ""
+
+msgid "Any response state"
+msgstr ""
+
+msgid "Applies to the whole tenant and replaces the active default. A policy for one business scope is written through the API."
+msgstr ""
+
+msgid "Assigned"
+msgstr ""
+
+msgid "Assigned to me"
+msgstr ""
+
+msgid "Assignee"
+msgstr ""
+
+msgid "Assignee removed (no longer eligible)"
+msgstr ""
+
+msgid "Assignee: {value}"
+msgstr ""
+
+msgid "Assignment"
+msgstr ""
+
+msgid "Assign to another person"
+msgstr ""
+
+msgid "Assign to me"
+msgstr ""
+
+msgid "Back to the inbox"
+msgstr ""
+
+msgid "By"
+msgstr ""
+
+msgid "Can be answered"
+msgstr ""
+
+msgid "Closes at (24-hour, HH:MM)"
+msgstr ""
+
+msgid "Conversation"
+msgstr ""
+
+msgid "Conversations"
+msgstr ""
+
+msgid "Conversations appear here when a customer writes to a connected Telegram bot or submits a website form."
+msgstr ""
+
+msgid "{count} conversation"
+msgid_plural "{count} conversations"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} conversation matches your search and filters"
+msgid_plural "{count} conversations match your search and filters"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} history entry (newest first)"
+msgid_plural "{count} history entries (newest first)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} holiday"
+msgid_plural "{count} holidays"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} tag"
+msgid_plural "{count} tags"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} working minute"
+msgid_plural "{count} working minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Customer"
+msgstr ""
+
+msgid "First inbound"
+msgstr ""
+
+msgid "First response"
+msgstr ""
+
+msgid "First response (working minutes)"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "Holidays (one date per line, YYYY-MM-DD)"
+msgstr ""
+
+msgid "How long staff have to answer, counted only inside working hours. A new policy replaces the active one for the same scope; replaced policies are kept so an overdue conversation always names the terms it was measured against."
+msgstr ""
+
+msgid "Inbox settings"
+msgstr ""
+
+msgid "Last inbound"
+msgstr ""
+
+msgid "Last response recorded"
+msgstr ""
+
+msgid "Lower-case letters, digits, hyphen or underscore."
+msgstr ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "New default policy"
+msgstr ""
+
+msgid "Newest inbound first. A conversation here is a work item over an opaque reference: to read or answer the customer, use the channel it arrived through, then record the response on the conversation."
+msgstr ""
+
+msgid "New tag"
+msgstr ""
+
+msgid "Next response"
+msgstr ""
+
+msgid "Next response (working minutes)"
+msgstr ""
+
+msgid "No conversations yet"
+msgstr ""
+
+msgid "No history yet."
+msgstr ""
+
+msgid "No policy yet. Without one, conversations have no response deadline."
+msgstr ""
+
+msgid "No response due"
+msgstr ""
+
+msgid "No tags exist yet. An administrator creates them."
+msgstr ""
+
+msgid "No tags yet."
+msgstr ""
+
+msgid "Not available yet: there is no list of the people eligible to be assignees. They can assign the conversation to themselves."
+msgstr ""
+
+msgid "Omnichannel inbox"
+msgstr ""
+
+msgid "On track"
+msgstr ""
+
+msgid "Open days"
+msgstr ""
+
+msgid "Opens at (24-hour, HH:MM)"
+msgstr ""
+
+msgid "Rebuild now"
+msgstr ""
+
+msgid "Rebuild the conversation list"
+msgstr ""
+
+msgid "Record that I answered"
+msgstr ""
+
+msgid "Removed tag"
+msgstr ""
+
+msgid "Replaced the previous assignee"
+msgstr ""
+
+msgid "Replays the verified inbound events still inside the retention window (365 days) into the conversation list, for example after a restore. Status, assignment and tags are never changed. It runs in batches and reports what it processed."
+msgstr ""
+
+msgid "Response"
+msgstr ""
+
+msgid "Response deadline missed"
+msgstr ""
+
+msgid "Response due"
+msgstr ""
+
+msgid "Response policies"
+msgstr ""
+
+msgid "Response policies, the tag catalogue and the conversation projection of the omnichannel inbox."
+msgstr ""
+
+msgid "Response recorded"
+msgstr ""
+
+msgid "Response: {value}"
+msgstr ""
+
+msgid "Retire"
+msgstr ""
+
+msgid "Retired {when}"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Save status"
+msgstr ""
+
+msgid "Save tags"
+msgstr ""
+
+msgid "Search conversations"
+msgstr ""
+
+msgid "Source: {value}"
+msgstr ""
+
+msgid "State, history and actions of one inbox conversation. Message text and customer identifiers are never shown."
+msgstr ""
+
+msgid "Status changed"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Tag added"
+msgstr ""
+
+msgid "Tag removed"
+msgstr ""
+
+msgid "Tags and response policies"
+msgstr ""
+
+msgid "Tag: {value}"
+msgstr ""
+
+msgid "Telegram bot"
+msgstr ""
+
+msgid "That conversation was not found."
+msgstr ""
+
+msgid "The conversation could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The inbox could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The inbox sends nothing to the customer. Answer through the channel the conversation arrived on, then record the response here to stop the deadline clock."
+msgstr ""
+
+msgid "The omnichannel inbox is switched off on this deployment."
+msgstr ""
+
+msgid "The omnichannel inbox is switched off on this deployment, so no conversation is collected or listed."
+msgstr ""
+
+msgid "The person does not cover this business scope"
+msgstr ""
+
+msgid "The person lost the permission"
+msgstr ""
+
+msgid "The person no longer covers this business scope"
+msgstr ""
+
+msgid "The person was deactivated"
+msgstr ""
+
+msgid "There are more conversations than this screen loads. Showing the newest {count}. The status, assignee, overdue, source and tag filters cover every conversation; search covers only these. The API lists the rest."
+msgstr ""
+
+msgid "The settings could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The staff work queue over verified inbound conversations: status, assignment, tags and response deadlines. Message text and customer identifiers are never shown."
+msgstr ""
+
+msgid "This customer opted out or withdrew. The conversation cannot be answered, reopened, assigned or tagged."
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Timezone (IANA name)"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Unassign"
+msgstr ""
+
+msgid "Unassigned"
+msgstr ""
+
+msgid "Website form"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Whole tenant (default)"
+msgstr ""
+
+msgid "Withdrew"
+msgstr ""
+
+msgid "Working week"
+msgstr ""
+
+msgid "You"
+msgstr ""
+
+msgid "You do not have permission to view the inbox."
+msgstr ""
+
+msgid "You do not have permission to view the inbox settings."
+
+msgid "A check older than {minutes} minutes is out of date and holds sending, exactly as the queue does. Credit below {floor} holds every sender of that account."
+msgstr ""
+
+msgid "A sender is usable only when the provider reported it verified, recently, and its account has credit. The default is chosen per brand; messages already queued keep the sender they were given and are never moved to another."
+msgstr ""
+
+msgid "A tenant sender is the default; the deployment sender is used only where a message asks for it."
+msgstr ""
+
+msgid "The default sender is not shown to you; the deployment sender is used where a message asks for it."
+msgstr ""
+
+msgid "A test send needs an allow-listed address and a confirmation step that do not exist yet."
+msgstr ""
+
+msgid "{balance} credits"
+msgstr ""
+
+msgid "{balance} credits, below the {floor} needed to send"
+msgstr ""
+
+msgid "{balance} credits (out of date)"
+msgstr ""
+
+msgid "Brand or scope: {type} {id}"
+msgstr ""
+
+msgid "Cannot send right now"
+msgstr ""
+
+msgid "Can send now"
+msgstr ""
+
+msgid "Channel accounts are not available"
+msgstr ""
+
+msgid "Channel accounts are switched off on this deployment, so tenant email senders cannot be connected or listed."
+msgstr ""
+
+msgid "Channel accounts (connect, replace credential, disconnect)"
+msgstr ""
+
+msgid "Check out of date"
+msgstr ""
+
+msgid "{count} sender"
+msgid_plural "{count} senders"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Credential rejected by the provider"
+msgstr ""
+
+msgid "Credit"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Default for its scope"
+msgstr ""
+
+msgid "Deployment sender"
+msgstr ""
+
+msgid "Deployment sender: API {version}"
+msgstr ""
+
+msgid "Email senders"
+msgstr ""
+
+msgid "Email senders could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Email suppression list"
+msgstr ""
+
+msgid "Held: sender verification is out of date"
+msgstr ""
+
+msgid "Held: sender verification is unknown"
+msgstr ""
+
+msgid "Held: the account credit is out of date"
+msgstr ""
+
+msgid "Held: the account credit is too low"
+msgstr ""
+
+msgid "Held: the account credit is unknown"
+msgstr ""
+
+msgid "Held: the provider does not list this sender as verified"
+msgstr ""
+
+msgid "hourly limit of {limit} reached"
+msgstr ""
+
+msgid "Last checked"
+msgstr ""
+
+msgid "Mailketing accounts"
+msgstr ""
+
+msgid "Mailketing API version"
+msgstr ""
+
+msgid "Mailketing offers no documented API for creating lists or campaigns, so it is not shown as working. Use the provider's own dashboard."
+msgstr ""
+
+msgid "Mailketing sends outbound mail only. These senders have no inbox: replies are not received here."
+msgstr ""
+
+msgid "Mail with no sender named goes out from the deployment sender."
+msgstr ""
+
+msgid "Manage Mailketing lists and campaigns"
+msgstr ""
+
+msgid "Never checked"
+msgstr ""
+
+msgid "No Mailketing account is connected for this tenant yet."
+msgstr ""
+
+msgid "No messages in the last 35 days"
+msgstr ""
+
+msgid "No sender identity is registered for this tenant."
+msgstr ""
+
+msgid "Not available yet"
+msgstr ""
+
+msgid "Not connected yet"
+msgstr ""
+
+msgid "Not known"
+msgstr ""
+
+msgid "Not verified by the provider"
+msgstr ""
+
+msgid "Older than the {minutes}-minute window"
+msgstr ""
+
+msgid "oldest waiting since {time}"
+msgstr ""
+
+msgid "Only a connected sender can be the default."
+msgstr ""
+
+msgid "Only a sender that may send right now can be the default. Run the sender verification first."
+msgstr ""
+
+msgid "Out of credit"
+msgstr ""
+
+msgid "Provider answer not recognised"
+msgstr ""
+
+msgid "Ready"
+msgstr ""
+
+msgid "Related email screens"
+msgstr ""
+
+msgid "Send a test email"
+msgstr ""
+
+msgid "Sender"
+msgstr ""
+
+msgid "Sender identities"
+msgstr ""
+
+msgid "Senders"
+msgstr ""
+
+msgid "Sending email is not granted to this sender"
+msgstr ""
+
+msgid "Tenant senders: API v2"
+msgstr ""
+
+msgid "Tenant senders are switched off on this deployment."
+msgstr ""
+
+msgid "Tenant senders are switched off on this deployment: mail goes out from the deployment sender only, and the default cannot be changed."
+msgstr ""
+
+msgid "That sender cannot be the default: it must be a connected, verified sender of this tenant that may send now, within its brand."
+msgstr ""
+
+msgid "The account credential cannot be used right now"
+msgstr ""
+
+msgid "The channel account registry could not be loaded, so sender status is not known. This is not the same as having no senders."
+msgstr ""
+
+msgid "The default sender was changed. It applies to messages queued from now on."
+msgstr ""
+
+msgid "The deployment sender is not Mailketing, so there is no API version to migrate."
+msgstr ""
+
+msgid "The deployment sender still uses Mailketing API v1. v2 is the target; v1 is a limited rollback path only. Switch after the sandbox check and confirm it with a real send. Tenant-owned senders already use v2."
+msgstr ""
+
+msgid "The deployment sender uses Mailketing API v2, but the live check has not been acknowledged (EMAIL_MAILKETING_V2_VERIFIED). v2 is not approved for production until it is."
+msgstr ""
+
+msgid "The deployment sender uses the verified Mailketing API v2."
+msgstr ""
+
+msgid "The deployment's Mailketing API version setting is not v1 or v2, so the deployment sender does not send until it is fixed."
+msgstr ""
+
+msgid "The Mailketing account is not connected yet"
+msgstr ""
+
+msgid "The Mailketing accounts and sender identities of this tenant: whether each may send right now, its credit, when it was last checked and its queue. Credentials are never shown."
+msgstr ""
+
+msgid "These are not offered because nothing safe stands behind them yet. They are shown so you know they are missing, not forgotten."
+msgstr ""
+
+msgid "This sender cannot be made the default."
+msgstr ""
+
+msgid "This tenant has more Mailketing accounts than this screen loads. The newest are shown; the API lists the rest."
+msgstr ""
+
+msgid "Verification failing"
+msgstr ""
+
+msgid "Verified by the provider"
+msgstr ""
+
+msgid "via {account}"
+msgstr ""
+
+msgid "{waiting} waiting, {sending} sending, {failed} failed today"
+msgstr ""
+
+msgid "Within the {minutes}-minute window"
+msgstr ""
+
+msgid "You are not assigned to operate this sender."
+msgstr ""
+
+msgid "You do not have permission to view email senders."
+msgstr ""
+
+msgid "You do not hold this sender's business scope."
+msgstr ""
+
+msgid "You may view senders but not change the default."
+
+#. Pre-session auth pages (/login, /forgot-password, /reset-password) — ADR-0095
+msgctxt "login"
+msgid "Sign in"
+msgstr ""
+
+msgctxt "login"
+msgid "Welcome back. Sign in to your workspace."
+msgstr ""
+
+msgctxt "login"
+msgid "Signing in to"
+msgstr ""
+
+msgctxt "login"
+msgid "Password"
+msgstr ""
+
+msgctxt "login"
+msgid "Forgot your password?"
+msgstr ""
+
+msgctxt "login"
+msgid "Sign in failed. Check your details and try again."
+msgstr ""
+
+msgctxt "login"
+msgid "One admin surface for every tenant, module and audit trail."
+msgstr ""
+
+msgctxt "login"
+msgid "AWCMS keeps content, identity and operations in one governed workspace — with every decision logged."
+msgstr ""
+
+msgctxt "login"
+msgid "Multi-tenant"
+msgstr ""
+
+msgctxt "login"
+msgid "ABAC access control"
+msgstr ""
+
+msgctxt "login"
+msgid "Full audit trail"
+msgstr ""
+
+msgctxt "login"
+msgid "Organization"
+msgstr ""
+
+msgctxt "login"
+msgid "Choose your organization"
+msgstr ""
+
+msgctxt "login"
+msgid "Tenant ID"
+msgstr ""
+
+msgctxt "login"
+msgid "Login identifier"
+msgstr ""
+
+msgctxt "login"
+msgid "Show"
+msgstr ""
+
+msgctxt "login"
+msgid "Hide"
+msgstr ""
+
+msgctxt "login"
+msgid "Show password"
+msgstr ""
+
+msgctxt "login"
+msgid "Hide password"
+msgstr ""
+
+msgctxt "login"
+msgid "Account recovery"
+msgstr ""
+
+msgctxt "login"
+msgid "Secured workspace access"
+msgstr ""
+
+msgctxt "login"
+msgid "Please wait…"
+msgstr ""
+
+msgctxt "login"
+msgid "Network error. Please try again."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Reset your password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Locked out? A reset link is one step away."
+msgstr ""
+
+msgctxt "recovery"
+msgid "We send a single-use link to the address on file. Nothing about your account changes until you use it."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Enter the identifier you sign in with. If it belongs to an account, we'll email a link to set a new password."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Recovering for"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Send reset link"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Back to sign in"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Too many requests. Please wait a few minutes and try again."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Could not send the reset link. Check your details and try again."
+msgstr ""
+
+msgctxt "recovery"
+msgid "If an account exists for that identifier, password reset instructions have been sent."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Set a new password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Choose a new password."
+msgstr ""
+
+msgctxt "recovery"
+msgid "The link that brought you here works once and expires; setting a password signs out every other session."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Choose a new password for your account. Signing you out everywhere is part of the reset."
+msgstr ""
+
+msgctxt "recovery"
+msgid "This password reset link is invalid or has expired."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Request a new link"
+msgstr ""
+
+msgctxt "recovery"
+msgid "New password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "At least {count} characters."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Confirm new password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Set new password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Sign in with your new password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Password must be at least {count} characters."
+msgstr ""
+
+msgctxt "recovery"
+msgid "The two passwords do not match."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Your password has been changed and every session was signed out."
+msgstr ""
+
+msgctxt "recovery"
+msgid "Organization"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Choose your organization"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Tenant ID"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Login identifier"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Show"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Hide"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Show password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Hide password"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Account recovery"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Secured workspace access"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Please wait…"
+msgstr ""
+
+msgctxt "recovery"
+msgid "Network error. Please try again."
+msgstr ""
+
+msgid "{count} submission matches your search and filters"
+msgid_plural "{count} submissions match your search and filters"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} submission"
+msgid_plural "{count} submissions"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Kind: {value}"
+msgstr ""
+
+msgid "Website engagement"
+msgstr ""
+
+msgid "Contact requests, leads and interactions posted by your websites. Contact details are shown masked."
+msgstr ""
+
+msgid "You do not have permission to view website submissions."
+msgstr ""
+
+msgid "The submissions could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Submissions"
+msgstr ""
+
+msgid "Newest first. Contact details are masked here: reading them in full is a separate, audited permission that this screen does not offer. A submission is evidence of what a visitor consented to, so it cannot be edited."
+msgstr ""
+
+msgid "Websites and their access tokens"
+msgstr ""
+
+msgid "The key configuration for website engagement is not valid on this deployment, so new submissions are being refused. The ones listed below were received earlier."
+msgstr ""
+
+msgid "There are more submissions than this screen loads. Showing the newest {count}. The source, kind and status filters cover every submission; search covers only these. The API lists the rest."
+msgstr ""
+
+msgid "Search submissions"
+msgstr ""
+
+msgid "Received"
+msgstr ""
+
+msgid "Contact (masked)"
+msgstr ""
+
+msgid "No submissions yet"
+msgstr ""
+
+msgid "Submissions appear here when a registered website posts a contact request, a lead or an interaction."
+msgstr ""
+
+msgid "Website submission"
+msgstr ""
+
+msgid "One submission with its consent record and provenance. Contact details are masked."
+msgstr ""
+
+msgid "Back to submissions"
+msgstr ""
+
+msgid "The submission could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "That submission does not exist, or you cannot see it."
+msgstr ""
+
+msgid "Submission"
+msgstr ""
+
+msgid "Topic"
+msgstr ""
+
+msgid "Email (masked)"
+msgstr ""
+
+msgid "Phone (masked)"
+msgstr ""
+
+msgid "The full contact details and message are not shown on this screen. Reading them is a separate, audited permission available through the API."
+msgstr ""
+
+msgid "Purposes"
+msgstr ""
+
+msgid "Consent copy version"
+msgstr ""
+
+msgid "Shown on page"
+msgstr ""
+
+msgid "Consented at"
+msgstr ""
+
+msgid "Provenance and attribution"
+msgstr ""
+
+msgid "Website host"
+msgstr ""
+
+msgid "Anti-abuse challenge"
+msgstr ""
+
+msgid "Landing page"
+msgstr ""
+
+msgid "Referrer host"
+msgstr ""
+
+msgid "Campaign source"
+msgstr ""
+
+msgid "Campaign medium"
+msgstr ""
+
+msgid "Campaign name"
+msgstr ""
+
+msgid "Campaign term"
+msgstr ""
+
+msgid "Campaign content"
+msgstr ""
+
+msgid "Withdraw this submission"
+msgstr ""
+
+msgid "Withdrawing is permanent. The contact details are erased and downstream consumers are told to stop using this submission. The consent record and attribution are kept."
+msgstr ""
+
+msgid "Withdraw this submission? The contact details are erased and this cannot be undone."
+msgstr ""
+
+msgid "Could not withdraw the submission. Please try again."
+msgstr ""
+
+msgid "That submission no longer exists, or you cannot act on it."
+msgstr ""
+
+msgid "This request was already used for something else. Reload the page and try again."
+msgstr ""
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr ""
+
+msgid "Withdrawing needs a signed-in person; a machine credential cannot do it."
+msgstr ""
+
+msgid "Withdraw submission"
+msgstr ""
+
+msgid "{count} source"
+msgid_plural "{count} sources"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Website sources"
+msgstr ""
+
+msgid "The websites registered to post submissions, the hosts they may post from and how each is protected."
+msgstr ""
+
+msgid "You do not have permission to view website sources."
+msgstr ""
+
+msgid "The sources could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "A submission is accepted only with the source's access token and from one of its hosts. The token itself is never shown again after it was created or rotated: only its first characters are listed so you can tell which token a website uses."
+msgstr ""
+
+msgid "The key configuration for website engagement is not valid on this deployment, so new submissions are being refused."
+msgstr ""
+
+msgid "Revoke the source {name}? Its website stops being able to post submissions, and this cannot be undone."
+msgstr ""
+
+msgid "Could not revoke the source. Please try again."
+msgstr ""
+
+msgid "That source no longer exists, or you cannot act on it."
+msgstr ""
+
+msgid "Revoking needs a signed-in person; a machine credential cannot do it."
+msgstr ""
+
+msgid "Accepted hosts"
+msgstr ""
+
+msgid "Accepts"
+msgstr ""
+
+msgid "Access token"
+msgstr ""
+
+msgid "No website is registered yet. Sources are created through the API."
+msgstr ""
+
+msgid "None: every request is refused"
+msgstr ""
+
+msgid "Not run on this deployment: the other controls apply alone."
+msgstr ""
+
+msgid "rotated {time}"
+msgstr ""
+
+msgid "Contact request"
+msgstr ""
+
+msgid "Lead"
+msgstr ""
+
+msgid "Interaction"
+msgstr ""
+
+msgid "Form viewed"
+msgstr ""
+
+msgid "Form started"
+msgstr ""
+
+msgid "Call-to-action clicked"
+msgstr ""
+
+msgid "Phone link clicked"
+msgstr ""
+
+msgid "WhatsApp link clicked"
+msgstr ""
+
+msgid "Map link clicked"
+msgstr ""
+
+msgid "Download clicked"
+msgstr ""
+
+msgid "Turnstile challenge"
+msgstr ""
+
+msgid "No challenge"
+msgstr ""
+
+msgid "Challenge passed"
+msgstr ""
+
+msgid "Challenge not run on this deployment"
+msgstr ""
+
+msgid "Source has no challenge"
+msgstr ""
+
+msgid "Respond to the inquiry"
+msgstr ""
+
+msgid "Marketing follow-up"
+msgstr ""
+
+msgid "Data subject request"
+msgstr ""
+
+msgid "Consent withdrawn"
+msgstr ""
+
+msgid "Controller decision"
+msgstr ""
+
+msgid "Origin header"
+msgstr ""
+
+msgid "Referer header"
+msgstr ""
+
+msgid "Unknown pipeline"
+msgstr ""
+
+msgid "Pipeline: {value}"
+msgstr ""
+
+msgid "Stage: {value}"
+msgstr ""
+
+msgid "Owner: {value}"
+msgstr ""
+
+msgid "Lead pipeline"
+msgstr ""
+
+msgid "The tenant's prospects by pipeline stage: owner, first source and how long they have been in their stage. Contact points are always masked."
+msgstr ""
+
+msgid "You do not have permission to view leads."
+msgstr ""
+
+msgid "The leads could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The lead pipeline is switched off on this deployment, so no lead is collected or listed."
+msgstr ""
+
+msgid "Leads"
+msgstr ""
+
+msgid "Newest first. A lead is a prospect, not a customer: the customer record stays with the system that owns it."
+msgstr ""
+
+msgid "Pipelines and settings"
+msgstr ""
+
+msgid "The lead pipeline is switched off for this tenant, so leads cannot be changed. Existing leads can still be read."
+msgstr ""
+
+msgid "There are more leads than this screen loads. Showing the newest {count}. The pipeline, stage and owner filters cover every lead; the source filter and search cover only these. The API lists the rest."
+msgstr ""
+
+msgid "Search leads"
+msgstr ""
+
+msgid "Pipeline"
+msgstr ""
+
+msgid "All pipelines"
+msgstr ""
+
+msgid "Stage"
+msgstr ""
+
+msgid "All stages"
+msgstr ""
+
+msgid "In stage since"
+msgstr ""
+
+msgid "No leads yet"
+msgstr ""
+
+msgid "Leads appear here when they are entered by hand, imported, or sent by an integration through the API."
+msgstr ""
+
+msgid "Unnamed lead"
+msgstr ""
+
+msgid "The merge-undo window must be a whole number of hours from 1 to 720."
+msgstr ""
+
+msgid "Could not save the settings. Please try again."
+msgstr ""
+
+msgid "Lead pipeline settings"
+msgstr ""
+
+msgid "Switch the lead pipeline on for this tenant and review each pipeline's published stages and allowed moves."
+msgstr ""
+
+msgid "Back to the leads"
+msgstr ""
+
+msgid "You do not have permission to change the lead pipeline settings."
+msgstr ""
+
+msgid "The lead pipeline settings could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The lead pipeline is switched off on this deployment, so it cannot be configured."
+msgstr ""
+
+msgid "This tenant"
+msgstr ""
+
+msgid "While the pipeline is off for this tenant, leads can be read but not created or changed. Pipelines can be prepared in the meantime."
+msgstr ""
+
+msgid "The lead pipeline is on for this tenant"
+msgstr ""
+
+msgid "Merge-undo window (hours)"
+msgstr ""
+
+msgid "Save settings"
+msgstr ""
+
+msgid "Never changed: the default is off."
+msgstr ""
+
+msgid "Last changed {time}"
+msgstr ""
+
+msgid "Pipelines"
+msgstr ""
+
+msgid "Revision"
+msgstr ""
+
+msgid "No pipeline exists yet. Create one through the API."
+msgstr ""
+
+msgid "Catalogue of {name}, revision {number}"
+msgstr ""
+
+msgid "A published revision never changes. A new revision is published through the API; leads in a removed stage are moved by an explicit, audited migration."
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "Conditions"
+msgstr ""
+
+msgid "Someone else changed this lead. Reload the page and try again."
+msgstr ""
+
+msgid "The pipeline does not allow this move."
+msgstr ""
+
+msgid "This move needs something the lead does not have yet (an owner, a contact point or a reason)."
+msgstr ""
+
+msgid "A converted stage is entered only by recording a conversion."
+msgstr ""
+
+msgid "A converted lead leaves its stage only by reversing the conversion."
+msgstr ""
+
+msgid "That stage is no longer part of the pipeline. Reload the page and try again."
+msgstr ""
+
+msgid "You cannot be made the owner of this lead."
+msgstr ""
+
+msgid "This lead can no longer be changed."
+msgstr ""
+
+msgid "The lead pipeline is switched off for this tenant."
+msgstr ""
+
+msgid "That lead is no longer available."
+msgstr ""
+
+msgid "Could not save the change. Please try again."
+msgstr ""
+
+msgid "State, history and actions of one lead. Contact points are always masked."
+msgstr ""
+
+msgid "The lead could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The lead pipeline is switched off on this deployment."
+msgstr ""
+
+msgid "That lead was not found."
+msgstr ""
+
+msgid "Contact points"
+msgstr ""
+
+msgid "revoked"
+msgstr ""
+
+msgid "The lead pipeline is switched off for this tenant, so this lead cannot be changed."
+msgstr ""
+
+msgid "This lead is converted. It leaves this stage only by reversing the conversion."
+msgstr ""
+
+msgid "This lead is in a stage the pipeline no longer defines, so it cannot be moved from here."
+msgstr ""
+
+msgid "The pipeline defines no move out of this stage."
+msgstr ""
+
+msgid "Move to"
+msgstr ""
+
+msgid "Move lead"
+msgstr ""
+
+msgid "Not available yet: there is no list of the people eligible to own a lead. They can assign the lead to themselves."
+msgstr ""
+
+msgid "Stage history"
+msgstr ""
+
+msgid "Owner history"
+msgstr ""
+
+msgid "Campaign"
+msgstr ""
+
+msgid "Legal basis stated"
+msgstr ""
+
+msgid "Conversions"
+msgstr ""
+
+msgid "How"
+msgstr ""
+
+msgid "No conversion recorded."
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Working"
+msgstr ""
+
+msgid "Qualified"
+msgstr ""
+
+msgid "Converted"
+msgstr ""
+
+msgid "Lost"
+msgstr ""
+
+msgid "Disqualified"
+msgstr ""
+
+msgid "Inbound message"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Entered by hand"
+msgstr ""
+
+msgid "Not recorded"
+msgstr ""
+
+msgid "Moved"
+msgstr ""
+
+msgid "Moved by a catalogue change"
+msgstr ""
+
+msgid "Conversion reversed"
+msgstr ""
+
+msgid "Merged into another lead"
+msgstr ""
+
+msgid "Merge undone"
+msgstr ""
+
+msgid "needs an owner"
+msgstr ""
+
+msgid "needs a contact point"
+msgstr ""
+
+msgid "needs a reason"
+msgstr ""
+
+msgid "Confirmed by the customer authority"
+msgstr ""
+
+msgid "Recorded by hand, not confirmed"
+msgstr ""
+
+msgid "Anonymised"
+msgstr ""
+
+msgid "Steps towards a contract"
+msgstr ""
+
+msgid "Legitimate interest"
+msgstr ""
+
+msgid "Not stated"
+msgstr ""
+
+msgid "{count} lead matches your search and filters"
+msgid_plural "{count} leads match your search and filters"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} lead"
+msgid_plural "{count} leads"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} pipeline"
+msgid_plural "{count} pipelines"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} stage"
+msgid_plural "{count} stages"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} allowed move"
+msgid_plural "{count} allowed moves"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} stage change"
+msgid_plural "{count} stage changes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} owner change"
+msgid_plural "{count} owner changes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} source touch (the first is immutable)"
+msgid_plural "{count} source touches (the first is immutable)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} conversion"
+msgid_plural "{count} conversions"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Pipeline settings"
+msgstr ""
+
+msgid "Escalated"
+msgstr ""
+
+msgid "Reached the lead"
+msgstr ""
+
+msgid "No answer"
+msgstr ""
+
+msgid "Not interested"
+msgstr ""
+
+msgid "Lead created"
+msgstr ""
+
+msgid "Stage entered"
+msgstr ""
+
+msgid "Lead assigned"
+msgstr ""
+
+msgid "Lead converted"
+msgstr ""
+
+msgid "Lead lost"
+msgstr ""
+
+msgid "Lead merged"
+msgstr ""
+
+msgid "Reply received"
+msgstr ""
+
+msgid "Sender blocked"
+msgstr ""
+
+msgid "Stopped by staff"
+msgstr ""
+
+msgid "Reassigned"
+msgstr ""
+
+msgid "Started by a rule"
+msgstr ""
+
+msgid "The lead's owner changed"
+msgstr ""
+
+msgid "The assignee is no longer active"
+msgstr ""
+
+msgid "Cancelled by staff"
+msgstr ""
+
+msgid "Stopped: {reason}"
+msgstr ""
+
+msgid "Assignment notice"
+msgstr ""
+
+msgid "Due notice"
+msgstr ""
+
+msgid "Escalation notice"
+msgstr ""
+
+msgid "Waiting to be sent"
+msgstr ""
+
+msgid "Handed to e-mail"
+msgstr ""
+
+msgid "Not sent"
+msgstr ""
+
+msgid "The task was closed"
+msgstr ""
+
+msgid "Follow-up for the lead was stopped"
+msgstr ""
+
+msgid "The recipient is no longer active"
+msgstr ""
+
+msgid "The task moved to someone else"
+msgstr ""
+
+msgid "The rule's calendar has no working time"
+msgstr ""
+
+msgid "No e-mail template is set up"
+msgstr ""
+
+msgid "The lead's owner"
+msgstr ""
+
+msgid "A fixed person"
+msgstr ""
+
+msgid "Due: {value}"
+msgstr ""
+
+msgid "Follow-up worklist"
+msgstr ""
+
+msgid "The follow-up tasks staff have to do, who they are assigned to and when they are due. Nothing about the prospect is shown."
+msgstr ""
+
+msgid "You do not have permission to view follow-up tasks."
+msgstr ""
+
+msgid "The follow-up worklist could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Follow-up tasks are switched off on this deployment, so no task is created or listed."
+msgstr ""
+
+msgid "Soonest due first. Choose Assigned to me for your daily worklist, or Overdue for what is late."
+msgstr ""
+
+msgid "Rules and settings"
+msgstr ""
+
+msgid "Follow-up is switched off for this organisation. No new task is created, and tasks cannot be completed or cancelled until it is switched on."
+msgstr ""
+
+msgid "There are more tasks than this screen loads. Showing the {count} due soonest. The status, assignee and overdue filters cover every task; search covers only these. The API lists the rest."
+msgstr ""
+
+msgid "Search tasks"
+msgstr ""
+
+msgid "Open and escalated"
+msgstr ""
+
+msgid "Any due date"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Started by"
+msgstr ""
+
+msgid "No follow-up tasks"
+msgstr ""
+
+msgid "Tasks appear here when a rule matches a lead event, such as a lead being created, entering a stage or being assigned."
+msgstr ""
+
+msgid "Follow-up task"
+msgstr ""
+
+msgid "State, history and actions of one follow-up task. Nothing about the prospect is shown."
+msgstr ""
+
+msgid "Back to the worklist"
+msgstr ""
+
+msgid "The task could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Follow-up tasks are switched off on this deployment."
+msgstr ""
+
+msgid "That task was not found."
+msgstr ""
+
+msgid "Escalates"
+msgstr ""
+
+msgid "Escalated at {time}"
+msgstr ""
+
+msgid "Cancelled because"
+msgstr ""
+
+msgid "This module sends nothing to the lead. Staff notices go out by e-mail; contact the lead through your own channel, then record the result here."
+msgstr ""
+
+msgid "Follow-up is switched off for this organisation, so tasks cannot be completed or cancelled and stops cannot be recorded."
+msgstr ""
+
+msgid "This task is closed and cannot be changed."
+msgstr ""
+
+msgid "Complete task"
+msgstr ""
+
+msgid "Cancel task"
+msgstr ""
+
+msgid "Not available: a task follows the lead's owner (or the rule's fixed person). Change the lead's owner to move it."
+msgstr ""
+
+msgid "Stop follow-up for this lead"
+msgstr ""
+
+msgid "A stop is permanent. It cancels every open task of this lead and its waiting notices, and no new task is created for the lead."
+msgstr ""
+
+msgid "Record stop"
+msgstr ""
+
+msgid "Staff notices"
+msgstr ""
+
+msgid "Notice"
+msgstr ""
+
+msgid "No staff notice was scheduled for this task."
+msgstr ""
+
+msgid "Stop signals for this lead"
+msgstr ""
+
+msgid "Follow-up for this lead has not been stopped."
+msgstr ""
+
+msgid "Stopped because"
+msgstr ""
+
+msgid "Lead event"
+msgstr ""
+
+msgid "{hours} h {minutes} min of working time"
+msgstr ""
+
+msgid "Follow-up rules"
+msgstr ""
+
+msgid "The rules that turn lead events into follow-up tasks, their immutable revisions, and the organisation's follow-up switch."
+msgstr ""
+
+msgid "You do not have permission to view follow-up rules."
+msgstr ""
+
+msgid "The rules could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Follow-up for this organisation"
+msgstr ""
+
+msgid "Rules create tasks, due tasks are escalated and staff are notified."
+msgstr ""
+
+msgid "While follow-up is off no task is created and no notice is sent. Rules can still be read."
+msgstr ""
+
+msgid "Staff notices per person per hour: {count}"
+msgstr ""
+
+msgid "Switch follow-up off"
+msgstr ""
+
+msgid "Switch follow-up on"
+msgstr ""
+
+msgid "A rule's published revisions never change. Creating or editing rules is not available on this screen yet."
+msgstr ""
+
+msgid "Starts when"
+msgstr ""
+
+msgid "Due after"
+msgstr ""
+
+msgid "No follow-up rules yet."
+msgstr ""
+
+msgid "That rule was not found."
+msgstr ""
+
+msgid "Only for stage category"
+msgstr ""
+
+msgid "Only for stage"
+msgstr ""
+
+msgid "Only for pipeline"
+msgstr ""
+
+msgid "Task title"
+msgstr ""
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Escalates after"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "When assigned"
+msgstr ""
+
+msgid "When due"
+msgstr ""
+
+msgid "Open tasks per lead, at most"
+msgstr ""
+
+msgid "Working time"
+msgstr ""
+
+msgid "Holidays"
+msgstr ""
+
+msgid "Fingerprint"
+msgstr ""
+
+msgid "Follow-up"
+msgstr ""
+
+msgid "{count} task matches your search and filters"
+msgid_plural "{count} tasks match your search and filters"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} task"
+msgid_plural "{count} tasks"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} history entry (oldest first)"
+msgid_plural "{count} history entries (oldest first)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} staff notice"
+msgid_plural "{count} staff notices"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} rule"
+msgid_plural "{count} rules"
 msgstr[0] ""
 msgstr[1] ""

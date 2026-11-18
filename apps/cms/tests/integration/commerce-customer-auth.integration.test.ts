@@ -44,7 +44,10 @@ import {
   verifyCustomerOtp,
   fetchCustomerAccountView
 } from "../../src/modules/commerce/application/customer-auth";
-import { requireCustomerSession } from "../../src/modules/commerce/application/customer-session-auth";
+import {
+  findLiveCustomerSession,
+  requireCustomerSession
+} from "../../src/modules/commerce/application/customer-session-auth";
 import { revokeSession } from "../../src/modules/commerce/application/customer-account-store";
 import {
   CUSTOMER_OTP_TEMPLATE_KEY,
@@ -182,6 +185,23 @@ suite("commerce customer auth integration (Issue #89)", () => {
       requireCustomerSession(bearerRequest(verified.token), tx, TENANT_A)
     );
     expect(afterLogout.ok).toBe(false);
+
+    // The pre-body boundary's read-only half (`findLiveCustomerSession`)
+    // agrees: live before logout is covered by requireCustomerSession above,
+    // and the revoked bearer, another tenant and a staff-shaped token all
+    // answer null.
+    const revoked = await inTenant(TENANT_A, (tx) =>
+      findLiveCustomerSession(bearerRequest(verified.token), tx, TENANT_A)
+    );
+    expect(revoked).toBeNull();
+    const otherTenant = await inTenant(TENANT_B, (tx) =>
+      findLiveCustomerSession(bearerRequest(verified.token), tx, TENANT_B)
+    );
+    expect(otherTenant).toBeNull();
+    const notACustomerToken = await inTenant(TENANT_A, (tx) =>
+      findLiveCustomerSession(bearerRequest("nonsense"), tx, TENANT_A)
+    );
+    expect(notACustomerToken).toBeNull();
   });
 
   test("the e-mail channel seeds the tenant's OTP template on first use, so a tenant created after sql/919 still gets a message enqueued", async () => {

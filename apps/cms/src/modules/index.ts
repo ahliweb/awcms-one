@@ -34,6 +34,12 @@ import { bookingModule } from "./booking/module";
 import { hrCommissionModule } from "./hr-commission/module";
 import { telegramDeliveryModule } from "./telegram-delivery/module";
 import { channelAccountsModule } from "./channel-accounts/module";
+import { websiteEngagementModule } from "./website-engagement/module";
+import { socialPublishingModule } from "./social-publishing/module";
+import { crmLeadsModule } from "./crm-leads/module";
+import { telegramEngagementModule } from "./telegram-engagement/module";
+import { crmFollowUpModule } from "./crm-follow-up/module";
+import { omnichannelInboxModule } from "./omnichannel-inbox/module";
 
 /**
  * The reviewed BASE registry. Every module below is reviewed, in-repo code.
@@ -252,7 +258,58 @@ const baseModules: ModuleDescriptor[] = [
   // depends on it yet (the WhatsApp sender key, #1141, is its first consumer).
   // Ships INERT: CHANNEL_ACCOUNTS_ENABLED is off by default. See
   // src/modules/channel-accounts/module.ts's `description`.
-  channelAccountsModule
+  channelAccountsModule,
+  // Admitted by ADR-0155 (Issue #1153): tenant-scoped website lead/contact
+  // capture and inbound website interaction events. INTAKE ONLY: one public,
+  // token- and Origin-authenticated endpoint, consent provenance, and an outbox
+  // event a CRM adapter consumes. Creates, matches and merges no person.
+  // Depends on tenant_admin/identity_access/logging/module_management/
+  // tenant_domain/domain_event_runtime/profile_identity (all above), so the DAG
+  // stays acyclic; nothing depends on it. Inert until a tenant creates a source.
+  // See src/modules/website-engagement/module.ts's `description`.
+  websiteEngagementModule,
+  // Admitted by ADR-0157 (Issue #1145, ADR-0148 capability C3): account-scoped
+  // social publishing behind the existing `SocialPublishingPort`. One
+  // publication, one job per target `channel_account`, a credential that never
+  // enters a job. Ships with NO provider adapter (connectors are #1146 to #1151),
+  // `experimental` and OFF by default (SOCIAL_PUBLISHING_ENABLED). Depends on
+  // tenant_admin/identity_access/logging/domain_event_runtime (all above);
+  // `channel_accounts` and `media_library` are soft (optional capability)
+  // consumptions, and nothing depends on it. See
+  // src/modules/social-publishing/module.ts's `description`.
+  socialPublishingModule,
+  // Admitted by ADR-0153 (Issue #1166): the reusable lead/prospect pipeline, a
+  // PRE-CUSTOMER context that never owns the customer, the identity or the
+  // consent. `experimental` and OFF at three levels (CRM_LEADS_ENABLED, Module
+  // Management, its own tenant switch). Depends on
+  // tenant_admin/identity_access/logging/module_management/domain_event_runtime/
+  // profile_identity (all above); nothing depends on it. See
+  // src/modules/crm-leads/module.ts's `description`.
+  crmLeadsModule,
+  // Admitted by ADR-0152 (Issue #1156): CUSTOMER Telegram conversations through
+  // a tenant's own bots, a context separate from the staff-only
+  // `telegram_delivery` (unchanged; nothing is shared). Per-bot verified
+  // webhooks, account-scoped contacts, append-only consent evidence and its own
+  // outbound queue. Depends on tenant_admin/identity_access/logging/
+  // module_management/domain_event_runtime/channel_accounts (all above), so the
+  // DAG stays acyclic; nothing depends on it. `experimental` and OFF by default
+  // (TELEGRAM_ENGAGEMENT_ENABLED). See
+  // src/modules/telegram-engagement/module.ts's `description`.
+  telegramEngagementModule,
+  // Admission PROPOSED by ADR-0159 (Issue #1165): rule-versioned STAFF
+  // follow-up tasks keyed by crm_leads events, with stop signals that win every
+  // race. `experimental` and OFF at three levels (CRM_FOLLOW_UP_ENABLED, Module
+  // Management, its own tenant switch). Depends on crm_leads (above) for its
+  // events; consumes `email`'s workflow_notification capability optionally.
+  // See src/modules/crm-follow-up/module.ts's `description`.
+  crmFollowUpModule,
+  // ADR-0160 (Accepted, Issue #1164): a body-free staff work projection over the
+  // verified Telegram and website envelopes (assignment, tags, status, SLA).
+  // Depends on tenant_admin/identity_access/logging/module_management/
+  // domain_event_runtime/channel_accounts (all above); it imports nothing from
+  // the channel modules (it reads their published events). Ships INERT:
+  // OMNICHANNEL_INBOX_ENABLED is off by default.
+  omnichannelInboxModule
 ];
 
 /**

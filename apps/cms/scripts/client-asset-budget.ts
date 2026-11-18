@@ -109,6 +109,14 @@ export const PUBLIC_ASSET_AUDIENCE: Readonly<
   // Linked by `src/pages/blog/[tenantCode]/[slug].ts`
   // (`NEWS_SHARE_CLIENT_SCRIPT_SRC`) — the share annotator on article pages.
   "js/news-share.js": "reader",
+  // Linked by `src/lib/ui/reading-preferences-panel.ts`
+  // (`renderReadingPreferencesHead`) from every public surface — the blog
+  // shell, `/search` and the theme preview (Issue #1369, ADR-0166): the
+  // reader's own display preferences. Early-apply script (blocking, in
+  // <head>), panel script (deferred) and their stylesheet.
+  "js/a11y-early.js": "reader",
+  "js/a11y-panel.js": "reader",
+  "css/public-a11y.css": "reader",
   // Registered by `src/lib/ui/push-subscription-client.ts`, reached from the
   // `/admin/push-notifications` console. A reader never fetches it.
   "push-sw.js": "app",
@@ -160,8 +168,37 @@ export const PUBLIC_ASSET_AUDIENCE: Readonly<
  * Deliberately tight. This is the number the original budget's premise — "the
  * public pages feel slow" — was always about, and 2,585 B of headroom is about
  * one more small script. It should be hard to grow this without saying why.
+ *
+ * **Raised to 39,000 for the reading-preferences panel (Issue #1369,
+ * ADR-0166), and the gate's own question — which reader-visible feature bought
+ * the weight, and was it re-measured — has a direct answer.** Measured on a
+ * clean build:
+ *
+ * ```
+ * main                         21,415 B
+ * + js/a11y-early.js            3,246 B   (blocking, <head>: storage contract + apply)
+ * + js/a11y-panel.js            2,394 B   (deferred: wires the dialog)
+ * + css/public-a11y.css        10,840 B   (preferences + panel; 3,054 B gzipped)
+ * + public-content.css            ~+0 B   (px font tokens became rem)
+ * after                        38,388 B   (delta 16,973 B; ~5.2 kB gzipped)
+ * ```
+ *
+ * The three files are the whole feature: no dependency, no framework, no font
+ * (a "dyslexia font" was rejected, ADR-0166). The panel's HTML is rendered into
+ * the page by the server and is not counted here. 39,000 is measured + ~1.6%,
+ * deliberately tight for the reason above. Later minification of these three
+ * files is the known way to win some of it back and is recorded as a follow-up
+ * rather than done here, because a generated, version-pinned bundle is a
+ * separate decision (ADR-0166 §Alternatives).
+ *
+ * This is above `PER_FILE_BUDGET_BYTES` (27,000), which ADR-0101 had kept above
+ * the reader budget so the surface budget always fired first. The per-file rule
+ * is therefore now reachable on the reader surface as well: one file over 27,000
+ * B fails on its own, before the surface total is reached. That is the stricter
+ * direction, so the ordering test was replaced by one asserting the two rules
+ * are independent and both positive.
  */
-export const READER_BUDGET_BYTES = 24_000;
+export const READER_BUDGET_BYTES = 39_000;
 
 /**
  * What the APP surface downloads (admin, auth, landing, theming preview):
@@ -1330,6 +1367,181 @@ export const READER_BUDGET_BYTES = 24_000;
  * flags, pixel dimensions read from the header before any decode) and one more
  * translated refusal message. Same single screen (`/admin/media`), same single
  * copy of the code.
+ *
+ * **Raised for Issue #1154** (the channel-account connection manager):
+ * +4,152 B (358,381 -> 362,533 measured on `main` + this change; `main` sat at
+ * its budget, so the whole delta is this feature), set to 362,560 with 27 B of
+ * margin for the local/CI build difference seen on #1224. About 3,700 B of it is
+ * the ONE script of the ONE screen that mutates (`/admin/channel-accounts/[id]`:
+ * write-only credential replacement with an inline step-up retry, two typed
+ * confirmations, the default-sender action, one error box per action and the
+ * mapping of the endpoints' error codes to translated messages), which loads on
+ * that screen only. The rest is about 450 B of stylesheet (`.admin-subsection`).
+ * The key generators are the shared ones in `admin-idempotency-key.ts`
+ * (`newKey` exported and `createIdempotencyKeySource` imported, not copied), the
+ * form lifecycle is `admin-form-client.ts`, and the list screen ships no script
+ * at all, so there is no per-screen duplication to recover. What remains is
+ * this screen's own behaviour: no other screen replaces a secret or confirms a
+ * terminal action by typing.
+ *
+ * **Raised for Issue #1328** (flash message after a reloading mutation): +500 B
+ * (365,600 -> 366,100), measured 366,022 locally with this change (+422 B over
+ * `main`, which sat under its budget), with 78 B of margin for the local/CI
+ * build difference. It is two small functions, `flashAndReload` and
+ * `showFlash`, in the SHARED `admin-form-client.ts` (so they are imported, not
+ * copied, by every screen that adopts them), plus the three call sites and the
+ * sentence attributes on `/admin/invitations` and the one link on
+ * `/admin/users`. Nothing is duplicated per screen. The audit follow-up scoped
+ * the stored flash to its page and a 10 s window (a JSON record plus a parse
+ * guard, +383 B), so the budget is 366,600 B (measured 366,405 B).
+ *
+ * **Raised for Issue #1238** (the over-cap refusal said "2 MiB over the 2 MiB
+ * limit"): +320 B (362,560 -> 362,880), of which 316 B measured locally (362,533
+ * on `main`, 362,849 with this change; `main` sat 27 B under its budget) and 4 B
+ * of margin for the local/CI build difference. It is one small pure function,
+ * `formatByteSizeAgainstCap` in `media-image-compression-plan.ts`, and the two
+ * lines in `describeCompressionFailure` that call it; both ship only in
+ * `/admin/media`'s script, which already carried the formatter they refine.
+ *
+ * **Raised for Issue #1171** (ADR-0154 realtime progress): +2,720 B (362,880 ->
+ * 365,600), measured 365,563 locally with this change (`main` sat about 30 B
+ * under its budget), with about 37 B of margin for the local/CI build
+ * difference. It is ONE module, `src/lib/ui/delivery-progress-client.ts`, which
+ * ADR-0154 R11 requires to ship in the same change as the stream: the
+ * `EventSource` wiring with its four terminal events, the polling fallback, the
+ * manual refresh, the text connection state and the rate-limited `aria-live`
+ * announcement. It loads only on `/admin/channel-accounts/[id]`, which already
+ * carried a script, and duplicates nothing: no other screen consumes a cursor
+ * stream (the push console's counters are a dozen lines with no fallback).
+ *
+ * **Raised for Issue #1164** (the omnichannel inbox screens): +4,960 B (365,600
+ * -> 370,560), measured 370,523 locally with this change (`main` sat about 40 B
+ * under its budget), with 37 B of margin for the local/CI build difference. Two
+ * page scripts, each on its own screen only: the conversation detail
+ * (`/admin/omnichannel-inbox/[id]`: status, tags, record-a-response and the
+ * assignment, each mapped to a translated-in-English error sentence) and the
+ * settings (`/admin/omnichannel-inbox/settings`: policy form, tag form, two
+ * confirmed deletions and the batched rebuild loop), plus a small pure helper
+ * (`omnichannel-inbox-screen.ts`, the policy form's body builder) the settings
+ * script imports. The list screen ships no script. The lifecycle is the shared
+ * `admin-form-client.ts`, the key source is the shared
+ * `admin-idempotency-key.ts` and the confirmation is the shared
+ * `confirm-dialog-client.ts`, so there is no per-screen duplication to recover.
+ *
+ * **Raised again for the #1164 audit follow-up**: +160 B (370,560 -> 370,720),
+ * measured 370,615 locally (+92 B). The rebuild button now continues from where
+ * the previous click stopped (state across clicks plus a pure resume-point
+ * helper) instead of replaying the first batches forever on a large tenant.
+ *
+ * **Raised for Issue #1162** (`/admin/email-senders`), stacked on the #1164
+ * budget above: +1,130 B (370,720 -> 371,850), measured 371,708 locally with
+ * both changes (370,615 for #1164 alone, so the growth is the page's own 1,093 B
+ * script): the one "make default sender" action (`PUT
+ * /api/v1/email/sender-policy` with an idempotency key and the endpoint's own
+ * error codes mapped to server-rendered sentences). It duplicates no shared
+ * code: it imports `admin-form-client` and `admin-idempotency-key`, which the
+ * account screens already ship, and it is the one control of the screen on
+ * purpose (rotation and disconnect are links to the connection manager, not a
+ * second copy of their forms). 142 B of margin for the local/CI build
+ * difference.
+ *
+ * Rebase note: `main` had moved to 371,850 B, so this branch's own raise
+ * (+500 B, written against 365,600 B) is stacked on it, giving
+ * 372,350 B; the gate re-measures the combined bundle.
+ *
+ * Rebase note: `main` had moved to 372,350 B, so this branch's own raise
+ * (+500 B, written against 366,100 B) is stacked on it, giving
+ * 372,850 B; the gate re-measures the combined bundle.
+ *
+ * **Raised for Issue #1316** (TOTP enrolment QR): +6,500 B (365,600 -> 372,100),
+ * measured 372,060 locally with this change, with about 40 B of margin for the
+ * local/CI build difference. It is ONE module, `src/lib/qr/qr-code.ts`, a
+ * dependency-free byte-mode/ECC-M encoder (versions 1-15) imported by
+ * `/admin/account` only. Encoding locally is the point: the otpauth URI carries
+ * the shared TOTP secret, so a third-party QR service or an image URL is not an
+ * option, and a library would cost more than this and add a dependency. No other
+ * screen consumes it.
+ *
+ * Rebase note: `main` had moved to 372,850 B, so this branch's own raise
+ * (+6,500 B, written against 365,600 B) is stacked on it, giving
+ * 379,350 B; the gate re-measures the combined bundle.
+ *
+ * screen consumes it. The audit follow-up (page-cache restore + the DOM half in
+ * `enrolment-qr.ts`) raised it again to 372,600 B, measured 372,327 locally.
+ *
+ * Rebase note: `main` had moved to 379,350 B, so this branch's own raise
+ * (+500 B, written against 372,100 B) is stacked on it, giving
+ * 379,850 B; the gate re-measures the combined bundle.
+ *
+ * **Raised for Issue #1153** (the website engagement screens): +1,500 B
+ * (365,600 -> 367,100), measured 366,974 locally with this change (`main` sat
+ * about 40 B under its budget), with 126 B of margin for the local/CI build
+ * difference. Two page scripts, each on its own screen only:
+ * `/admin/website-engagement/[id]` (the confirmed, idempotent withdrawal with
+ * its translated error sentences) and `/admin/website-engagement/sources` (the
+ * confirmed revoke). The list screen ships no script. The lifecycle is the
+ * shared `admin-form-client.ts`, the key source is the shared
+ * `admin-idempotency-key.ts` and the confirmation is the shared
+ * `confirm-dialog-client.ts`, so there is no per-screen duplication to recover.
+ *
+ * Rebase note: `main` had moved to 379,850 B, so this branch's own raise
+ * (+1,500 B, written against 365,600 B) is stacked on it, giving
+ * 381,350 B; the gate re-measures the combined bundle.
+ *
+ * **Raised for Issue #1166** (the lead pipeline screens): +1,600 B of its
+ * own. Two page scripts, each on its own screen only:
+ * the lead detail (`/admin/crm-leads/[id]`: move and assign, each sentence
+ * translated on the server and carried in a `data-messages` attribute) and the
+ * settings (`/admin/crm-leads/settings`: the tenant switch). The list screen
+ * ships no script. The lifecycle is the shared `admin-form-client.ts` and the
+ * key source the shared `admin-idempotency-key.ts`, so there is no per-screen
+ * duplication to recover.
+ *
+ * **Raised again for the #1166 audit follow-up (M-1)**: +300 B of its own. The settings form now
+ * sends only the fields the viewer changed (a stale tab must not re-assert a tenant switch
+ * another admin turned off), which is a small diff helper plus the page's
+ * initial values: ~200 B on that one screen.
+ *
+ * Rebase note (#1166): `main` had moved to 379,850 B; with both #1166 changes
+ * on top, the rebased build measures 380,829 B locally, so the budget is set to
+ * 380,970 B (measured + 141 B margin for the local/CI build difference).
+ *
+ * Rebase note: `main` had moved to 381,350 B, so this branch's own raise
+ * (+1,120 B, written against 379,850 B) is stacked on it, giving
+ * 382,470 B; the gate re-measures the combined bundle.
+ *
+ * **Raised for Issue #1165** (the follow-up screens): +2,500 B (365,600 ->
+ * 368,100), measured 368,053 locally with this change (`main` sat about 40 B
+ * under its budget), with 47 B of margin for the local/CI build difference.
+ * Two page scripts, each on its own screen only: the task detail
+ * (`/admin/crm-follow-up/[id]`: complete, cancel and the stop signal, each with
+ * an `Idempotency-Key`, a confirmation and one mapped error sentence) and the
+ * rules screen (the tenant switch), plus a three-function pure helper
+ * (`crm-follow-up-screen.ts`) the switch script imports. The worklist ships no
+ * script. The lifecycle is the shared `admin-form-client.ts`, the key source
+ * the shared `admin-idempotency-key.ts` and the confirmation the shared
+ * `confirm-dialog-client.ts`, so there is no per-screen duplication to recover.
+ *
+ * Rebase note: `main` had moved to 379,850 B, so this branch's own raise (the
+ * +2,500 B above, written against 365,600 B) is stacked on it. Re-measured on
+ * the rebased bundle: 381,571 B locally (`main` alone sat about 40 B under
+ * 379,850, so the follow-up screens cost about 1,720 B), budget set to 381,710
+ * B (measured + 139 B for the local/CI build difference).
+ *
+ * Rebase note: `main` had moved to 382,470 B, so this branch's own raise
+ * (+1,860 B, written against 379,850 B) stacked on it would give 384,330 B,
+ * but the combined bundle measures 384,730 B (shared chunks do not add up
+ * linearly), so the budget is 384,870 B: measured + 140 B, the same tight
+ * margin as the raises above.
+ *
+ * **Raised for Issue #1369** (reading-preferences panel on the theme preview):
+ * +590 B (384,870 -> 385,460), measured 385,319 B with this change on a clean
+ * build (`main` sat at 384,826 B). The cost is one scoped-style block in
+ * `PublicThemeLayout.astro` — two `:root` mappings between the layout's `--_*`
+ * tokens and the `--color-*` tokens the panel and its high-contrast palette use
+ * — and the panel markup itself. The layout is the only app-surface page that
+ * renders the panel; every other public page is a reader-surface route, whose
+ * weight is in `READER_BUDGET_BYTES`. Margin 141 B, as above.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -1907,8 +2119,22 @@ export const READER_BUDGET_BYTES = 24_000;
  * #1224), and the commerce lineage rides on top of it unchanged except for the
  * nine admin scripts that now bind through the guard instead of their own
  * listeners. A measurement of the merged build rounded up to the next 100 B.
+ *
+ * **The `f476fdbb` sync (124 upstream commits after `45a139fa`) then raises it
+ * to 552,000 B**, MEASURED 551,921 B on the merged build (525,002 B at the
+ * `45a139fa` sync): +26,919 B. Upstream's own constant moved over the same range
+ * 358,400 -> 385,460 B (+27,060 B; its own docblock above lists the raises:
+ * the channel-account connection manager #1154, the flash message after a
+ * reloading mutation #1328, realtime progress #1171, the omnichannel inbox
+ * #1164, `/admin/email-senders` #1162, the TOTP enrolment QR #1316, the
+ * website engagement #1153, lead pipeline #1166 and follow-up #1165 screens,
+ * and the reading-preferences panel #1369), and the commerce lineage rides on top of it unchanged;
+ * the figure differs by the margin upstream keeps and by the shared
+ * `AdminLayout` CSS bundle and the compiled catalogue, which are not additive
+ * across lineages (the same effect the #260, #427 and `ab313273` syncs
+ * recorded). A measurement of the merged build rounded up to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 525_100;
+export const APP_BUDGET_BYTES = 552_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
