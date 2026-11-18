@@ -6,7 +6,7 @@
  *
  * Every one of this profile's key pages (`profil-halaman.ts`, itself driven
  * by `src/config/profil.ts`'s own group composition) is scanned for WCAG
- * 2.1 A/AA violations — `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa` tags only,
+ * 2.2 A/AA violations — `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa`/`wcag22aa` tags only,
  * never axe's broader "best practice" rule set, which is a style opinion,
  * not a deterministic pass/fail a CI gate can own. A `serious`/`critical`
  * violation fails the test; `minor`/`moderate` ones are attached to the
@@ -26,11 +26,11 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { ACTIVE_PROFILE, KEY_PAGES } from "./profil-halaman";
 
-const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
+const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 const FAILING_IMPACT = new Set(["serious", "critical"]);
 
 for (const keyPage of KEY_PAGES) {
-  test(`${ACTIVE_PROFILE}/${keyPage.name} (${keyPage.path}) has no serious/critical WCAG 2.1 A/AA violations`, async ({
+  test(`${ACTIVE_PROFILE}/${keyPage.name} (${keyPage.path}) has no serious/critical WCAG 2.2 A/AA violations`, async ({
     page
   }, testInfo) => {
     await page.goto(keyPage.path);
@@ -63,6 +63,6 @@ for (const keyPage of KEY_PAGES) {
       )
       .join("\n");
 
-    expect(serious, `Serious/critical WCAG 2.1 A/AA violations on ${keyPage.path}:\n${summary}`).toHaveLength(0);
+    expect(serious, `Serious/critical WCAG 2.2 A/AA violations on ${keyPage.path}:\n${summary}`).toHaveLength(0);
   });
 }

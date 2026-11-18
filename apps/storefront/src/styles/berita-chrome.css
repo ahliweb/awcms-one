@@ -471,6 +471,13 @@ html[data-a11y-motion="reduce"] .ticker-berita__titik {
   margin-bottom: 0.35rem;
 }
 
+.footer-berita a {
+  display: inline-flex;
+  align-items: center;
+  /* WCAG 2.2 SC 2.5.8 (issue #542): see `.site-footer a` in `global.css`. */
+  min-block-size: var(--target-min);
+}
+
 .footer-berita__kontak {
   display: flex;
   flex-direction: column;

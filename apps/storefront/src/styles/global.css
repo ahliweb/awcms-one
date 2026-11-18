@@ -226,6 +226,11 @@
   --radius-full: 999px;
 
   /* Type scale (2026-09 redesign) — `rem`-based, 16px root. */
+  /* WCAG 2.2 SC 2.5.8 (Target Size, Minimum): the floor, in CSS px, for any
+     interactive target that has no other room around it (issue #542). The
+     controls that are sized for touch (44px) are well past it. */
+  --target-min: 24px;
+
   --text-xs: 0.75rem;    /* 12px — the AA floor; nothing in this app goes smaller */
   --text-sm: 0.8125rem;  /* 13px */
   --text-base: 0.875rem; /* 14px */
@@ -940,6 +945,18 @@ main {
 
 .site-footer-lang {
   margin-left: auto;
+}
+
+/* Footer links are plain text on one line (about 20px tall), below SC 2.5.8's
+   24px (issue #542). Grow the target, not the type: the link becomes an
+   inline flex box at least `--target-min` tall with its text centred, so
+   the layout of every column stays as it was and a wrapped link still
+   reads as one block. `.footer-berita` (the `berita` profile's footer,
+   `berita-chrome.css`) takes the same rule there. */
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-min);
 }
 
 /* --- Portable Text content (issue #24 — `/halaman/[slug]`) --------------- */
