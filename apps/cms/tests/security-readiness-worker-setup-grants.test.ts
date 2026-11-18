@@ -18,12 +18,14 @@
  * never touched, so this test is safe to run against a shared cluster.
  */
 import { describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
 
 import {
   SETUP_COLUMN_GRANTS,
   WORKER_COLUMN_GRANTS,
   checkWorkerSetupRoleGrants,
-  defaultWorkerSetupRoleGrantsPolicy
+  defaultWorkerSetupRoleGrantsPolicy,
+  probeWorkerSecretVisibility
 } from "../scripts/security-readiness";
 
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -190,6 +192,259 @@ describeOrSkip(
         expect(noPolicy.status).toBe("fail");
         expect(noPolicy.evidence).toContain("awcms_identities_setup_link_once");
         expect((await checkWorkerSetupRoleGrants()).status).toBe("pass");
+      } finally {
+        await admin.close({ timeout: 1 });
+      }
+    });
+
+    /**
+     * The worker secret policy is pinned EXACTLY (Issue #1160 audit M1/M3).
+     * Each mutation below replaces the live policy with a variant of the
+     * `CREATE POLICY` in `sql/348` (the migration that defines it today, NOT
+     * `sql/328`, which predates the Mailketing branch), runs the check, and
+     * restores the policy from the same text in a `finally`, so a failing
+     * assertion never leaves the database without the Mailketing branch.
+     */
+    const POLICY_SOURCE = "sql/348_awcms_email_sender_worker_visibility.sql";
+
+    function currentCreatePolicy(): string {
+      const source = readFileSync(POLICY_SOURCE, "utf8");
+      const start = source.indexOf(
+        "CREATE POLICY awcms_channel_secrets_worker_dispatch_purposes"
+      );
+      const end = source.indexOf(");", start) + 2;
+
+      return source.slice(start, end);
+    }
+
+    async function withPolicy<T>(
+      text: string,
+      run: () => Promise<T>
+    ): Promise<T> {
+      const admin = new Bun.SQL(DATABASE_URL!, { max: 1 });
+      const restore = currentCreatePolicy();
+
+      try {
+        await admin.unsafe(
+          "DROP POLICY awcms_channel_secrets_worker_dispatch_purposes ON awcms_channel_secrets"
+        );
+        await admin.unsafe(text);
+
+        return await run();
+      } finally {
+        await admin.unsafe(
+          "DROP POLICY IF EXISTS awcms_channel_secrets_worker_dispatch_purposes ON awcms_channel_secrets"
+        );
+        await admin.unsafe(restore);
+        await admin.close({ timeout: 1 });
+      }
+    }
+
+    const MUTATIONS: [string, (create: string) => string][] = [
+      [
+        "L-6: a SOCIAL provider (facebook)",
+        (create) =>
+          create.replace(
+            "a.provider IN ('whatsapp_cloud', 'starsender')",
+            "a.provider IN ('whatsapp_cloud', 'starsender', 'facebook')"
+          )
+      ],
+      [
+        "M1: Mailketing without the esp_account restriction",
+        (create) => create.replace("AND a.account_kind = 'esp_account'", "")
+      ],
+      [
+        "M3: a bot token purpose",
+        (create) =>
+          create.replace(
+            "purpose IN ('provider_access_token', 'api_token', 'device_key')",
+            "purpose IN ('provider_access_token', 'api_token', 'device_key', 'bot_token')"
+          )
+      ],
+      [
+        "M3: refresh tokens of a WhatsApp connection",
+        (create) =>
+          create.replace(
+            "AND c.access_secret_id = awcms_channel_secrets.id",
+            "AND (c.access_secret_id = awcms_channel_secrets.id OR c.refresh_secret_id = awcms_channel_secrets.id)"
+          )
+      ],
+      [
+        "L1: a NON-connected Mailketing account",
+        (create) => create.replace("AND a.status = 'connected'", "")
+      ]
+    ];
+
+    for (const [label, mutate] of MUTATIONS) {
+      test(`the worker secret policy is pinned exactly: widening it (${label}) FAILS the check, and the sql/348 policy passes`, async () => {
+        if (!(await awcmsWorkerExists())) {
+          return;
+        }
+
+        const create = currentCreatePolicy();
+        const widened = mutate(create);
+
+        expect(widened).not.toBe(create);
+
+        const result = await withPolicy(widened, () =>
+          checkWorkerSetupRoleGrants()
+        );
+
+        expect(result.status).toBe("fail");
+        expect(result.evidence).toContain(
+          "awcms_channel_secrets_worker_dispatch_purposes"
+        );
+        expect((await checkWorkerSetupRoleGrants()).status).toBe("pass");
+      });
+    }
+
+    test("the behavioural probe: under the sql/348 policy the worker sees only the connected Mailketing account token; widened, the probe reports the leak", async () => {
+      if (!(await awcmsWorkerExists())) {
+        return;
+      }
+
+      const sql = new Bun.SQL(DATABASE_URL!, { max: 1 });
+
+      try {
+        expect(await probeWorkerSecretVisibility(sql)).toBeNull();
+
+        const leak = await withPolicy(
+          currentCreatePolicy()
+            .replace(
+              "purpose IN ('provider_access_token', 'api_token', 'device_key')",
+              "purpose IN ('provider_access_token', 'api_token', 'device_key', 'bot_token', 'provider_refresh_token')"
+            )
+            .replace(
+              "a.provider IN ('whatsapp_cloud', 'starsender')",
+              "a.provider IN ('whatsapp_cloud', 'starsender', 'telegram', 'facebook', 'mailketing')"
+            ),
+          () => probeWorkerSecretVisibility(sql)
+        );
+
+        expect(leak).toContain("probe FAILED");
+        expect(await probeWorkerSecretVisibility(sql)).toBeNull();
+      } finally {
+        await sql.close({ timeout: 1 });
+      }
+    });
+
+    test("Issue #1160 audit L3: disabling the email sender guard or the policy no-delete trigger FAILS", async () => {
+      const admin = new Bun.SQL(DATABASE_URL!, { max: 1 });
+
+      try {
+        for (const [table, trigger] of [
+          ["awcms_email_messages", "awcms_email_messages_sender_guard"],
+          [
+            "awcms_email_sender_policies",
+            "awcms_email_sender_policies_no_delete"
+          ]
+        ] as const) {
+          await admin.unsafe(`ALTER TABLE ${table} DISABLE TRIGGER ${trigger}`);
+          let result;
+
+          try {
+            result = await checkWorkerSetupRoleGrants();
+          } finally {
+            await admin.unsafe(
+              `ALTER TABLE ${table} ENABLE TRIGGER ${trigger}`
+            );
+          }
+
+          expect(result.status).toBe("fail");
+          expect(result.evidence).toContain(trigger);
+        }
+
+        expect((await checkWorkerSetupRoleGrants()).status).toBe("pass");
+      } finally {
+        await admin.close({ timeout: 1 });
+      }
+    });
+
+    test("L-5 of the #1145 re-audit: the worker's read of the module-enablement row is exactly (tenant_id, module_key, enabled); one more column FAILS", async () => {
+      if (!(await awcmsWorkerExists())) {
+        return;
+      }
+
+      expect(WORKER_COLUMN_GRANTS.awcms_tenant_modules).toEqual({
+        SELECT: ["tenant_id", "module_key", "enabled"]
+      });
+
+      const admin = new Bun.SQL(DATABASE_URL!, { max: 1 });
+
+      try {
+        await admin.unsafe(
+          "GRANT SELECT (disable_reason) ON awcms_tenant_modules TO awcms_worker"
+        );
+
+        let result;
+
+        try {
+          result = await checkWorkerSetupRoleGrants();
+        } finally {
+          await admin.unsafe(
+            "REVOKE SELECT (disable_reason) ON awcms_tenant_modules FROM awcms_worker"
+          );
+        }
+
+        expect(result.status).toBe("fail");
+        expect(result.evidence).toContain("awcms_tenant_modules");
+        expect((await checkWorkerSetupRoleGrants()).status).toBe("pass");
+      } finally {
+        await admin.close({ timeout: 1 });
+      }
+    });
+
+    test("sql/340 (Issue #1142): disabling OR dropping either risk-acknowledgement trigger FAILS, and putting it back passes", async () => {
+      const admin = new Bun.SQL(DATABASE_URL!, { max: 1 });
+      try {
+        for (const [table, trigger, message] of [
+          [
+            "awcms_channel_accounts",
+            "awcms_channel_accounts_risk_ack_guard",
+            "awcms_channel_accounts_risk_ack_guard is missing"
+          ],
+          [
+            "awcms_channel_provider_risk_acknowledgements",
+            "awcms_channel_provider_risk_acks_guard",
+            "awcms_channel_provider_risk_acks_guard is missing"
+          ]
+        ] as const) {
+          expect((await checkWorkerSetupRoleGrants()).status).toBe("pass");
+
+          // Disabled.
+          await admin.unsafe(`ALTER TABLE ${table} DISABLE TRIGGER ${trigger}`);
+          let disabled;
+          try {
+            disabled = await checkWorkerSetupRoleGrants();
+          } finally {
+            await admin.unsafe(
+              `ALTER TABLE ${table} ENABLE TRIGGER ${trigger}`
+            );
+          }
+
+          expect(disabled.status).toBe("fail");
+          expect(disabled.evidence).toContain(message);
+
+          // Dropped (recreated from its own definition afterwards).
+          const definition = (await admin`
+            SELECT pg_get_triggerdef(t.oid) AS def FROM pg_trigger t
+            WHERE t.tgname = ${trigger} AND NOT t.tgisinternal
+          `) as { def: string }[];
+
+          expect(definition).toHaveLength(1);
+          await admin.unsafe(`DROP TRIGGER ${trigger} ON ${table}`);
+
+          let dropped;
+          try {
+            dropped = await checkWorkerSetupRoleGrants();
+          } finally {
+            await admin.unsafe(definition[0]!.def);
+          }
+
+          expect(dropped.status).toBe("fail");
+          expect(dropped.evidence).toContain(message);
+          expect((await checkWorkerSetupRoleGrants()).status).toBe("pass");
+        }
       } finally {
         await admin.close({ timeout: 1 });
       }

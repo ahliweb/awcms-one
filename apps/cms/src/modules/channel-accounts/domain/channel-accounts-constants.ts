@@ -11,6 +11,8 @@ export const ACCOUNTS_ACTIVITY_CODE = "accounts";
 export const CAPABILITIES_ACTIVITY_CODE = "capabilities";
 export const CREDENTIALS_ACTIVITY_CODE = "credentials";
 export const ASSIGNMENTS_ACTIVITY_CODE = "assignments";
+export const RISK_ACKNOWLEDGEMENTS_ACTIVITY_CODE = "risk_acknowledgements";
+export const WEBHOOKS_ACTIVITY_CODE = "webhooks";
 
 /**
  * The guards, one per seeded permission. `AccessAction` is a CLOSED vocabulary
@@ -55,6 +57,28 @@ export const CHANNEL_ACCOUNTS_GUARDS = {
     moduleKey: CHANNEL_ACCOUNTS_MODULE_KEY,
     activityCode: ASSIGNMENTS_ACTIVITY_CODE,
     action: "assign" as const
+  },
+  // Issue #1142: the risk acknowledgement of an UNOFFICIAL provider.
+  readRiskAcknowledgements: {
+    moduleKey: CHANNEL_ACCOUNTS_MODULE_KEY,
+    activityCode: RISK_ACKNOWLEDGEMENTS_ACTIVITY_CODE,
+    action: "read" as const
+  },
+  acknowledgeRisk: {
+    moduleKey: CHANNEL_ACCOUNTS_MODULE_KEY,
+    activityCode: RISK_ACKNOWLEDGEMENTS_ACTIVITY_CODE,
+    action: "create" as const
+  },
+  revokeRiskAcknowledgement: {
+    moduleKey: CHANNEL_ACCOUNTS_MODULE_KEY,
+    activityCode: RISK_ACKNOWLEDGEMENTS_ACTIVITY_CODE,
+    action: "revoke" as const
+  },
+  // Issue #1143: the signed webhook subscription of a Meta number (high-risk).
+  manageWebhooks: {
+    moduleKey: CHANNEL_ACCOUNTS_MODULE_KEY,
+    activityCode: WEBHOOKS_ACTIVITY_CODE,
+    action: "configure" as const
   }
 } as const;
 
@@ -114,6 +138,16 @@ export type ChannelGrantState = (typeof GRANT_STATES)[number];
 export const ASSIGNMENT_KINDS = ["owner", "operator", "viewer"] as const;
 
 export type ChannelAssignmentKind = (typeof ASSIGNMENT_KINDS)[number];
+
+/**
+ * Who may see and operate an account (Issue #1215 M-c). `assigned` is the
+ * default and the closed one: assignees and the tenant administrators only, and
+ * an assigned account with no assignee is administrators-only, never open.
+ * `tenant_wide` is an explicit, audited choice: the permission alone decides.
+ */
+export const ACCESS_MODES = ["assigned", "tenant_wide"] as const;
+
+export type ChannelAccessMode = (typeof ACCESS_MODES)[number];
 
 export const HEALTH_STATES = ["ok", "degraded", "failing", "unknown"] as const;
 

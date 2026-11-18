@@ -40,7 +40,11 @@ const LEGACY_TABLE_FILES = new Set([
   "application/whatsapp-queue-purge.ts",
   "application/whatsapp-message-directory.ts",
   // The retention/subject-data descriptors of the two tables.
-  "module.ts"
+  "module.ts",
+  // Issue #529 (ADR-0055): the shopper data-subject registry CLASSIFIES the two
+  // tables (as matched only by a phone value, so not erased by a customer id).
+  // Names only; it reads, writes and enqueues nothing.
+  "domain/customer-subject-data.ts"
 ]);
 
 /** Commerce files that SEND a WhatsApp message. Each must go through the router. */
@@ -105,6 +109,8 @@ describe("the upstream path never names commerce's own WhatsApp table or provide
         const allowed =
           specifier.startsWith("node:") ||
           specifier === "../../_shared/ports/whatsapp-delivery-port" ||
+          // The descriptor field's type (ADR-0164), `import type` only.
+          specifier === "../../_shared/module-contract" ||
           // The in-process adapter, the config and the template registry.
           /^\.\.\/\.\.\/whatsapp-delivery\/(application\/whatsapp-enqueue|domain\/whatsapp-templates)$/.test(
             specifier

@@ -28,7 +28,11 @@ function looksLikeHardcodedSecret(value) {
   if (value.includes("${")) return false; // an env-var reference, not a literal
   // A long, high-entropy-looking alnum string with no spaces and no slash —
   // the shape of an actual password/token, not a role name or a path.
-  return /^[A-Za-z0-9_\-.]{20,}$/.test(value) && /[0-9]/.test(value) && /[A-Za-z]/.test(value);
+  return (
+    /^[A-Za-z0-9_\-.]{20,}$/.test(value) &&
+    /[0-9]/.test(value) &&
+    /[A-Za-z]/.test(value)
+  );
 }
 
 function walkStrings(value, out = []) {
@@ -54,18 +58,20 @@ describe("compose.production.yaml", () => {
         "offsite-copy",
         "postgres",
         "restore-drill",
-        "storefront"
-      ].sort()
+        "storefront",
+      ].sort(),
     );
   });
 
   test("no service's environment/build-args contains a hardcoded credential-shaped value", () => {
     const offenders = [];
     for (const [name, service] of Object.entries(doc.services)) {
-      const strings = walkStrings(service.environment ?? {})
-        .concat(walkStrings(service.build?.args ?? {}));
+      const strings = walkStrings(service.environment ?? {}).concat(
+        walkStrings(service.build?.args ?? {}),
+      );
       for (const value of strings) {
-        if (looksLikeHardcodedSecret(value)) offenders.push(`${name}: ${value}`);
+        if (looksLikeHardcodedSecret(value))
+          offenders.push(`${name}: ${value}`);
       }
     }
     expect(offenders).toEqual([]);
@@ -130,11 +136,15 @@ describe("compose.production.yaml", () => {
     expect(app).toMatch(/^\$\{DATABASE_URL:\?/);
     expect(app).toMatch(/awcms_app/);
     expect(app).not.toMatch(/WORKER_DATABASE_URL|SETUP_DATABASE_URL/);
-    expect(doc.services.jobs.environment.DATABASE_URL).not.toMatch(/^\$\{DATABASE_URL[:}-]/);
+    expect(doc.services.jobs.environment.DATABASE_URL).not.toMatch(
+      /^\$\{DATABASE_URL[:}-]/,
+    );
     // Same image and build as `jobs`: one image, two roles.
     expect(doc.services["jobs-app"].image).toBe(doc.services.jobs.image);
     expect(doc.services["jobs-app"].build).toEqual(doc.services.jobs.build);
-    expect(doc.services["jobs-app"].env_file).toEqual(doc.services.jobs.env_file);
+    expect(doc.services["jobs-app"].env_file).toEqual(
+      doc.services.jobs.env_file,
+    );
   });
 
   test("every DATABASE_URL-shaped variable across services is distinct by role name", () => {
@@ -148,7 +158,9 @@ describe("compose.production.yaml", () => {
     // SETUP_DATABASE_URL) — a real drift (e.g. jobs accidentally reusing
     // cms's own DATABASE_URL) would collapse this set to fewer than 3.
     expect(roles.size).toBe(3);
-    expect(doc.services["jobs-app"].environment.DATABASE_URL).toBe(doc.services.cms.environment.DATABASE_URL);
+    expect(doc.services["jobs-app"].environment.DATABASE_URL).toBe(
+      doc.services.cms.environment.DATABASE_URL,
+    );
   });
 });
 
@@ -168,7 +180,9 @@ describe("compose.production.yaml — backup assurance (issue #213)", () => {
 
   test("backup and restore-drill connect with the SAME migration-owner DSN as migrate, never awcms_app/awcms_worker", () => {
     for (const name of ["backup", "restore-drill"]) {
-      expect(doc.services[name].environment.DATABASE_URL).toMatch(/SETUP_DATABASE_URL/);
+      expect(doc.services[name].environment.DATABASE_URL).toMatch(
+        /SETUP_DATABASE_URL/,
+      );
     }
   });
 
@@ -179,7 +193,10 @@ describe("compose.production.yaml — backup assurance (issue #213)", () => {
   });
 
   test("backup's command is hard-coded to backup-postgres.sh", () => {
-    expect(doc.services.backup.command).toEqual(["bash", "/scripts/backup-postgres.sh"]);
+    expect(doc.services.backup.command).toEqual([
+      "bash",
+      "/scripts/backup-postgres.sh",
+    ]);
   });
 
   test("no compose service anywhere in this file passes --target to a backup script", () => {
@@ -193,8 +210,12 @@ describe("compose.production.yaml — backup assurance (issue #213)", () => {
   });
 
   test("restore_age_identity (private key) is never in backup's own secret list — only in restore-drill's", () => {
-    expect(doc.services.backup.secrets ?? []).not.toContain("restore_age_identity");
-    expect(doc.services["restore-drill"].secrets ?? []).toContain("restore_age_identity");
+    expect(doc.services.backup.secrets ?? []).not.toContain(
+      "restore_age_identity",
+    );
+    expect(doc.services["restore-drill"].secrets ?? []).toContain(
+      "restore_age_identity",
+    );
   });
 
   test("backup/restore-drill/offsite-copy read their secrets from /run/secrets, never a literal value in `environment:`", () => {
@@ -202,7 +223,9 @@ describe("compose.production.yaml — backup assurance (issue #213)", () => {
       const strings = walkStrings(doc.services[name].environment ?? {});
       for (const value of strings) {
         if (/AGE|HMAC|SSH_KEY/.test(value)) {
-          expect(value.startsWith("/run/secrets/") || value.includes("${")).toBe(true);
+          expect(
+            value.startsWith("/run/secrets/") || value.includes("${"),
+          ).toBe(true);
         }
       }
     }
@@ -213,7 +236,7 @@ describe("compose.production.yaml — backup assurance (issue #213)", () => {
       "backup_age_recipients",
       "backup_hmac_key",
       "restore_age_identity",
-      "offsite_ssh_key"
+      "offsite_ssh_key",
     ]) {
       expect(doc.secrets[name]).toBeDefined();
       expect(doc.secrets[name].file).toMatch(/\.secrets\//);
@@ -223,7 +246,7 @@ describe("compose.production.yaml — backup assurance (issue #213)", () => {
   test("awcms-one-production-backups is a named volume, distinct from the pgdata volume", () => {
     expect(doc.volumes["awcms-one-production-backups"]).toBeDefined();
     expect(doc.volumes["awcms-one-production-backups"].name).toBe(
-      "awcms-one-production-backups"
+      "awcms-one-production-backups",
     );
   });
 });
@@ -244,7 +267,9 @@ describe("root .dockerignore (apps/storefront/Dockerfile's build stage COPYs the
   // workspace, not merely be present under some name.
   for (const required of ["**/node_modules", ".git", ".secrets"]) {
     test(`lists \`${required}\``, () => {
-      expect(dockerignore.split("\n").some((line) => line.trim() === required)).toBe(true);
+      expect(
+        dockerignore.split("\n").some((line) => line.trim() === required),
+      ).toBe(true);
     });
   }
 });
@@ -265,7 +290,11 @@ describe("ops/run-job-compose.sh — job to database-role routing", () => {
   function route(job, upstream = UPSTREAM) {
     const r = spawnSync("bash", [SCRIPT, job], {
       encoding: "utf8",
-      env: { ...process.env, AWCMS_RUN_JOB_PRINT_SERVICE: "1", AWCMS_UPSTREAM_RUN_JOB: upstream }
+      env: {
+        ...process.env,
+        AWCMS_RUN_JOB_PRINT_SERVICE: "1",
+        AWCMS_UPSTREAM_RUN_JOB: upstream,
+      },
     });
     return { code: r.status, out: r.stdout.trim(), err: r.stderr };
   }
@@ -274,14 +303,17 @@ describe("ops/run-job-compose.sh — job to database-role routing", () => {
   function appTargets() {
     const src = readFileSync(UPSTREAM, "utf8");
     const block = src.match(
-      /BEGIN GENERATED: targets that need DATABASE_URL[\s\S]*?case "\$JOB" in\n\s+([^)\n]+)\)/
+      /BEGIN GENERATED: targets that need DATABASE_URL[\s\S]*?case "\$JOB" in\n\s+([^)\n]+)\)/,
     );
     expect(block).not.toBeNull();
     return block[1].split("|").map((t) => t.trim());
   }
 
   function crontabTargets() {
-    const text = readFileSync(join(REPO_ROOT, "apps", "cms", "ops", "awcms-jobs.crontab"), "utf8");
+    const text = readFileSync(
+      join(REPO_ROOT, "apps", "cms", "ops", "awcms-jobs.crontab"),
+      "utf8",
+    );
     const out = [];
     for (const line of text.split("\n")) {
       const m = line.match(/\$AWCMS_RUN_JOB (\S+)/);
@@ -291,9 +323,15 @@ describe("ops/run-job-compose.sh — job to database-role routing", () => {
   }
 
   test("hr-commission:intents:post runs as the app role; a worker job does not", () => {
-    expect(route("hr-commission:intents:post")).toMatchObject({ code: 0, out: "jobs-app" });
+    expect(route("hr-commission:intents:post")).toMatchObject({
+      code: 0,
+      out: "jobs-app",
+    });
     expect(route("email:dispatch")).toMatchObject({ code: 0, out: "jobs" });
-    expect(route("commerce:whatsapp:dispatch")).toMatchObject({ code: 0, out: "jobs" });
+    expect(route("commerce:whatsapp:dispatch")).toMatchObject({
+      code: 0,
+      out: "jobs",
+    });
   });
 
   test("every generated-crontab target routes exactly as upstream's classification says", () => {
@@ -309,14 +347,29 @@ describe("ops/run-job-compose.sh — job to database-role routing", () => {
     // If upstream schedules another job that reaches the app client, this
     // fails: confirm the compose wiring (docs/deployment.md "Which job runs
     // under which database role") and extend the list on purpose.
+    // 14 November 2026 sync: upstream scheduled `email:senders:verify` (ADR-0162,
+    // hourly) and `omnichannel-inbox:sla` (ADR-0160) as named app-role exceptions
+    // (`APP_ROLE_SCHEDULED_EXCEPTIONS` in apps/cms/scripts/jobs-env-allowlist.ts);
+    // the wrapper routes both to `jobs-app` by itself.
     const app = new Set(appTargets());
-    expect(crontabTargets().filter((t) => app.has(t)).sort()).toEqual(["hr-commission:intents:post"]);
+    expect(
+      crontabTargets()
+        .filter((t) => app.has(t))
+        .sort(),
+    ).toEqual([
+      "email:senders:verify",
+      "hr-commission:intents:post",
+      "omnichannel-inbox:sla",
+    ]);
   });
 
   test("fails closed: a missing or garbled classification, an operator-only target and a path-shaped target all refuse", () => {
     const dir = mkdtempSync(join(tmpdir(), "run-job-compose-"));
     const noBlock = join(dir, "no-block.sh");
-    writeFileSync(noBlock, "#!/usr/bin/env bash\necho nothing generated here\n");
+    writeFileSync(
+      noBlock,
+      "#!/usr/bin/env bash\necho nothing generated here\n",
+    );
     expect(route("hr-commission:intents:post", noBlock).code).toBe(1);
     expect(route("email:dispatch", join(dir, "absent.sh")).code).toBe(1);
     expect(route("config:validate").code).toBe(1); // operator-only per upstream

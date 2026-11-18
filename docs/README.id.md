@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a7c27ce1b076aa2b37f8d006c8764c6803207431f501a956b879ec100abcdf7c -->
+<!-- i18n-source-hash: sha256:3568846d03c586446f2a6cde688428727cfadd2620d6010fde0f126e0888444d -->
 
 # Dokumentasi
 
@@ -27,6 +27,9 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`rilis.md`](rilis.id.md)                                                             | Runbook rilis end-to-end: changeset ke tag, `release:images`, `release:publish`, bukti, verifikasi konsumen                                                                                                                 |
 | [`template.md`](template.id.md)                                                       | Menggunakan awcms-one sebagai template: `template:init`, matriks profil build, seed per profil, BjekMart sebagai contoh referensi                                                                                           |
 | [`aw-business-platform-dor.md`](aw-business-platform-dor.id.md)                       | Pelacak Definition of Ready untuk epik #280 (AW Business Platform): sepuluh artefak DoR, keputusan pemilik, isu Wave A                                                                                                      |
+| [`aw-business-platform-dod.md`](aw-business-platform-dod.id.md)                       | Penelusuran Definition of Done epik #280: vonis dan tautan bukti untuk tiap dari 20 butirnya, dan yang tersisa                                                                                                              |
+| [`aw-business-platform-traceability.md`](aw-business-platform-traceability.id.md)     | Matriks keterlacakan epik #280: setiap story PRD ke ujinya, dan setiap kontrol threat model (C-01 sampai C-41) ke status as-built serta uji regresinya                                                                      |
+| [`aw-business-platform-standards-map.md`](aw-business-platform-standards-map.id.md)   | Peta bukti standar untuk komponen yang dibangun repositori ini bagi epik #280 (OWASP ASVS, ISO/IEC 27001, PCI DSS, UU PDP): target pemetaan dengan penunjuk bukti dan daftar celah, bukan klaim kepatuhan                   |
 | [`aw-business-platform-prd.md`](aw-business-platform-prd.id.md)                       | Blueprint platform dan PRD untuk bagian milik awcms-one dari epik #280: persona, alur kerja, non-tujuan, cerita pengguna, hasil, MoSCoW                                                                                     |
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md)               | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama                                                                                                |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md)     | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280                                                                                                                 |
@@ -38,6 +41,8 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 ## Standar kebutuhan CRM Omnichannel
 
 [**Standar kebutuhan CRM Omnichannel reusable**](crm-omnichannel-requirements.id.md) memuat **target** funnel lead hingga konversi, batas akun dan kemampuan provider, inbox terverifikasi, persetujuan kampanye, SLA/follow-up staf, AI Hermes/OMES, KPI, pengecualian provider, dan tes penerimaan. Kebutuhan tersebut dipromosikan dari spesifikasi sektor pendidikan tanpa mengunci template pada bisnis tertentu. **Ini standar usulan, bukan bukti seluruh modul CRM sudah ada**; kondisi aktual tetap mengacu ke [status.md](status.id.md). Dilacak melalui [#462](https://github.com/ahliweb/awcms-one/issues/462).
+
+[**Kontrak KPI CRM v1.0.0-draft**](crm-kpi-contract.id.md) mendefinisikan, sebelum kode apa pun, funnel lead (dari kategori tahap `crm_leads`), konversi (dari fakta commerce terverifikasi #463), atribusi kampanye sentuhan pertama dengan lookback, SLA respons pertama staf dalam menit kerja, penyebut, penekanan penyebut nol dan sel kecil, aturan tanpa PII, ekspor CSV aman-formula, kumpulan bentuk respons yang **diusulkan** (tidak ada di OpenAPI), dan **daftar periksa persetujuan pemilik** yang menjadi gerbang setiap proyeksi. **Ini kontrak yang menunggu persetujuan, bukan dasbor**; [status.md](status.id.md) tetap kebenaran implementasi. Dilacak melalui [#464](https://github.com/ahliweb/awcms-one/issues/464).
 
 ## Spesifikasi UI/UX CRM Omnichannel lengkap
 

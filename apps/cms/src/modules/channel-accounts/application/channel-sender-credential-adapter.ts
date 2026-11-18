@@ -24,16 +24,43 @@
  *
  * A failure is a RETURNED reason with no value and no key material; the caller
  * fails the row or holds it. There is no fallback to any other credential.
+ *
+ * ## `resolvePublishCredential` has no composer yet (Issue #1145, audit H1)
+ *
+ * The same decrypt, for an account that PUBLISHES (`social_publishing`). No
+ * script composes it: `awcms_worker` cannot read a social token (`sql/328`) and
+ * `social-publishing:dispatch` is deliberately granted no key ring. The first
+ * connector composes it under a SEPARATE DB role (ADR-0157 section 6).
+ *
+ * ## Email (Issue #1160, ADR-0151 section 2)
+ *
+ * `resolveEmailCredential` is composed by `scripts/email-dispatch.ts` (as
+ * `awcms_worker`, which sees a Mailketing account token only through the
+ * provider-aware row policy of `sql/348`). `resolveEmailAccountCredential` is
+ * composed by `scripts/email-senders-verify.ts` (as `awcms_app`), for the two
+ * read-only probes that verify senders and read the credit balance.
  */
 import type {
+  ChannelEmailAccountCredentialPort,
+  ChannelEmailCredentialPort,
+  ChannelPublisherCredentialPort,
   ChannelSenderCredentialPort,
+  EmailSenderUnavailableReason,
+  PublisherUnavailableReason,
+  ResolveEmailAccountCredentialResult,
+  ResolveEmailCredentialResult,
+  ResolvePublishCredentialResult,
   ResolveSenderCredentialResult,
   SenderUnavailableReason
 } from "../../_shared/ports/channel-account-port";
 import { log } from "../../../lib/logging/logger";
+import { isStarsenderAdapterEnabled } from "../../_shared/unofficial-provider-flags";
 import { isChannelAccountsEnabled } from "../domain/channel-accounts-constants";
 import type { ChannelSecretPurpose } from "../domain/channel-accounts-constants";
+import { isRiskAcknowledgementProvider } from "../domain/risk-acknowledgements";
 import {
+  isEmailSenderShape,
+  isPublisherShape,
   isWhatsappSenderShape,
   loadLendingParent,
   loadSenderAccount,
@@ -41,11 +68,17 @@ import {
   reasonForGrantState,
   type SenderAccountRow
 } from "./channel-account-port-adapter";
+import { hasActiveRiskAcknowledgement } from "./risk-acknowledgement-check";
 import {
   defaultSecretStore,
   SecretStoreError,
   type SecretStorePort
 } from "./secret-store";
+
+/** The providers whose adapter is an opt-in, unofficial one (today: StarSender). */
+function isUnofficialProvider(provider: string): boolean {
+  return provider === "starsender";
+}
 
 type ConnectionRow = {
   grant_state: string;
@@ -125,7 +158,14 @@ async function referenceFor(
 
   if (!purpose) return { reason: "CREDENTIAL_UNAVAILABLE" };
 
-  let secretId = account.secret_id;
+  // Issue #1160: a Mailketing sender identity never uses a token of its own,
+  // even if one was stored on it by a path that bypassed the credential route;
+  // it only ever borrows its (connected, scope-containing) account's.
+  let secretId =
+    account.provider === "mailketing" &&
+    account.account_kind === "sender_identity"
+      ? null
+      : account.secret_id;
 
   if (!secretId && account.parent_account_id) {
     // Only a parent that really is this child's `connected` container lends.
@@ -149,15 +189,186 @@ export type ChannelSenderCredentialOptions = {
 
 export function createChannelSenderCredentialAdapter(
   options: ChannelSenderCredentialOptions = {}
-): ChannelSenderCredentialPort {
+): ChannelSenderCredentialPort &
+  ChannelPublisherCredentialPort &
+  ChannelEmailCredentialPort &
+  ChannelEmailAccountCredentialPort {
   const store = options.store ?? defaultSecretStore;
   const now = options.now ?? (() => new Date());
+
+  /** The shared tail: status, reference, decrypt. Identical for every channel. */
+  async function resolveFor(
+    tx: Bun.SQL,
+    input: { tenantId: string; accountId: string },
+    isRightKind: (account: SenderAccountRow) => boolean,
+    wrongKindReason:
+      "NOT_A_WHATSAPP_SENDER" | "NOT_A_PUBLISHER" | "NOT_AN_EMAIL_SENDER",
+    /**
+     * Refusals decided after the status and BEFORE any secret is read (the
+     * WhatsApp provider gates of Issue #1142); `null` lets the call go on.
+     */
+    gate?: (
+      account: SenderAccountRow
+    ) => Promise<SenderUnavailableReason | null>
+  ): Promise<
+    | { ok: true; credential: string }
+    | {
+        ok: false;
+        reason:
+          SenderUnavailableReason | "NOT_A_PUBLISHER" | "NOT_AN_EMAIL_SENDER";
+      }
+  > {
+    if (!isChannelAccountsEnabled(options.env ?? process.env)) {
+      return { ok: false, reason: "CHANNEL_ACCOUNTS_DISABLED" };
+    }
+
+    const account = await loadSenderAccount(
+      tx,
+      input.tenantId,
+      input.accountId
+    );
+
+    if (!account) return { ok: false, reason: "ACCOUNT_NOT_FOUND" };
+
+    if (!isRightKind(account)) {
+      return { ok: false, reason: wrongKindReason };
+    }
+
+    const statusReason = reasonForAccountStatus(account.status);
+
+    if (statusReason) return { ok: false, reason: statusReason };
+
+    const gated = gate ? await gate(account) : null;
+
+    if (gated) return { ok: false, reason: gated };
+
+    const reference = await referenceFor(tx, input.tenantId, account, now());
+
+    if ("reason" in reference) return { ok: false, reason: reference.reason };
+
+    try {
+      const credential = await store.resolve(tx, {
+        tenantId: input.tenantId,
+        secretId: reference.secretId,
+        purpose: reference.purpose
+      });
+
+      return { ok: true, credential };
+    } catch (error) {
+      // tx-swallow-ok: a SecretStoreError is raised before any statement (no
+      // key ring) or after a SUCCESSFUL select (not found, does not
+      // authenticate), so the transaction is not aborted; any other error, a
+      // database one, is rethrown below.
+      if (error instanceof SecretStoreError) {
+        // Only a secret-store REFUSAL is answered here. It is raised before any
+        // statement (no key ring) or after a successful SELECT (not found, does
+        // not authenticate), so it leaves the transaction usable. Only the code
+        // is logged: the error carries a fixed message, never the value or key
+        // material, and neither does this line.
+        log("error", "channel_accounts.sender_credential.unavailable", {
+          tenantId: input.tenantId,
+          moduleKey: "channel_accounts",
+          code: error.code
+        });
+
+        return {
+          ok: false,
+          reason:
+            error.code === "SECRET_NOT_FOUND"
+              ? "CREDENTIAL_UNAVAILABLE"
+              : "SECRET_STORE_UNAVAILABLE"
+        };
+      }
+
+      // Anything else is a database error, which WOULD have aborted the
+      // transaction: never swallowed.
+      throw error;
+    }
+  }
 
   return {
     async resolveWhatsappCredential(
       tx,
       input
     ): Promise<ResolveSenderCredentialResult> {
+      const result = await resolveFor(
+        tx,
+        input,
+        (account) =>
+          isWhatsappSenderShape(account.provider, account.account_kind),
+        "NOT_A_WHATSAPP_SENDER",
+        async (account) => {
+          // Defence in depth (Issue #1142): the device key of an UNOFFICIAL
+          // provider is not decrypted for a tenant whose acknowledgement is not
+          // in force, even if a caller skipped the sender decision.
+          if (
+            isRiskAcknowledgementProvider(account.provider) &&
+            !(await hasActiveRiskAcknowledgement(
+              tx,
+              input.tenantId,
+              account.provider
+            ))
+          ) {
+            return "RISK_ACKNOWLEDGEMENT_REQUIRED";
+          }
+
+          // The adapter's switch comes before ANY secret is read (audit L2,
+          // Issue #1142): with the flag off the device key is not decrypted at
+          // all, even if a caller skipped the sender decision.
+          if (
+            isUnofficialProvider(account.provider) &&
+            !isStarsenderAdapterEnabled(options.env ?? process.env)
+          ) {
+            return "PROVIDER_ADAPTER_DISABLED";
+          }
+
+          return null;
+        }
+      );
+
+      return result.ok
+        ? result
+        : { ok: false, reason: result.reason as SenderUnavailableReason };
+    },
+
+    /**
+     * Issue #1160 (ADR-0151 section 2): the API token a Mailketing sender
+     * identity borrows from its parent account. A sender holds no credential
+     * of its own, so the parent lends it only while it really is this sender's
+     * `connected` `esp_account` (`loadLendingParent`, the same rule a WABA
+     * number follows). No fallback to the deployment token, ever (ADR-0151
+     * section 2: "the deployment token is never used for a tenant-owned
+     * account").
+     */
+    async resolveEmailCredential(
+      tx,
+      input
+    ): Promise<ResolveEmailCredentialResult> {
+      const result = await resolveFor(
+        tx,
+        input,
+        (account) => isEmailSenderShape(account.provider, account.account_kind),
+        "NOT_AN_EMAIL_SENDER"
+      );
+
+      return result.ok
+        ? result
+        : {
+            ok: false,
+            reason: result.reason as EmailSenderUnavailableReason
+          };
+    },
+
+    /**
+     * Issue #1160: the token of a Mailketing ACCOUNT itself, for the read-only
+     * verification probes. A `pending` or `degraded` account may be probed
+     * (that is how it becomes `connected`); a revoked, disabled or deleted one
+     * may not. Its own `secret_id` only: an account lends, it never borrows.
+     */
+    async resolveEmailAccountCredential(
+      tx,
+      input
+    ): Promise<ResolveEmailAccountCredentialResult> {
       if (!isChannelAccountsEnabled(options.env ?? process.env)) {
         return { ok: false, reason: "CHANNEL_ACCOUNTS_DISABLED" };
       }
@@ -170,42 +381,62 @@ export function createChannelSenderCredentialAdapter(
 
       if (!account) return { ok: false, reason: "ACCOUNT_NOT_FOUND" };
 
-      if (!isWhatsappSenderShape(account.provider, account.account_kind)) {
-        return { ok: false, reason: "NOT_A_WHATSAPP_SENDER" };
+      if (
+        account.provider !== "mailketing" ||
+        account.account_kind !== "esp_account" ||
+        account.auth_mode !== "api_token"
+      ) {
+        return { ok: false, reason: "NOT_AN_EMAIL_SENDER" };
       }
 
-      const statusReason = reasonForAccountStatus(account.status);
+      if (!["pending", "connected", "degraded"].includes(account.status)) {
+        return {
+          ok: false,
+          reason: reasonForAccountStatus(account.status) ?? "ACCOUNT_NOT_FOUND"
+        };
+      }
 
-      if (statusReason) return { ok: false, reason: statusReason };
+      if (!account.secret_id) {
+        return { ok: false, reason: "CREDENTIAL_UNAVAILABLE" };
+      }
 
-      const reference = await referenceFor(tx, input.tenantId, account, now());
+      // Audit L5: the version is read BEFORE the decrypt. If the token is
+      // replaced in between, the recorded version is the older one and the
+      // verify job refuses to write health for it (the safe direction).
+      const versions = (await tx`
+        SELECT version FROM awcms_channel_secrets
+        WHERE tenant_id = ${input.tenantId} AND id = ${account.secret_id}
+      `) as { version: number }[];
 
-      if ("reason" in reference) return { ok: false, reason: reference.reason };
+      if (!versions[0]) return { ok: false, reason: "CREDENTIAL_UNAVAILABLE" };
+
+      const secretRef = {
+        secretId: account.secret_id,
+        version: Number(versions[0].version)
+      };
 
       try {
         const credential = await store.resolve(tx, {
           tenantId: input.tenantId,
-          secretId: reference.secretId,
-          purpose: reference.purpose
+          secretId: account.secret_id,
+          purpose: "api_token"
         });
 
-        return { ok: true, credential };
+        return { ok: true, credential, secretRef };
       } catch (error) {
-        // tx-swallow-ok: a SecretStoreError is raised before any statement (no
-        // key ring) or after a SUCCESSFUL select (not found, does not
-        // authenticate), so the transaction is not aborted; any other error, a
-        // database one, is rethrown below.
+        // tx-swallow-ok: a SecretStoreError is raised before any statement or
+        // after a SUCCESSFUL select, so the transaction is not aborted; any
+        // other (database) error is rethrown below.
         if (error instanceof SecretStoreError) {
-          // Only a secret-store REFUSAL is answered here. It is raised before any
-          // statement (no key ring) or after a successful SELECT (not found, does
-          // not authenticate), so it leaves the transaction usable. Only the code
-          // is logged: the error carries a fixed message, never the value or key
-          // material, and neither does this line.
-          log("error", "channel_accounts.sender_credential.unavailable", {
-            tenantId: input.tenantId,
-            moduleKey: "channel_accounts",
-            code: error.code
-          });
+          log(
+            "error",
+            "channel_accounts.email_account_credential.unavailable",
+            {
+              tenantId: input.tenantId,
+              moduleKey: "channel_accounts",
+              code: error.code
+            }
+          );
 
           return {
             ok: false,
@@ -216,14 +447,45 @@ export function createChannelSenderCredentialAdapter(
           };
         }
 
-        // Anything else is a database error, which WOULD have aborted the
-        // transaction: never swallowed.
         throw error;
       }
+    },
+
+    /** Issue #1145: the same decrypt, for an account that publishes. */
+    async resolvePublishCredential(
+      tx,
+      input
+    ): Promise<ResolvePublishCredentialResult> {
+      const result = await resolveFor(
+        tx,
+        input,
+        (account) => isPublisherShape(account.provider, account.account_kind),
+        "NOT_A_PUBLISHER",
+        async () => {
+          // L-5 of the #1261 audit: the DB row policy of
+          // `awcms_social_dispatch` (sql/358) is keyed on the CONNECTION (a
+          // token is visible when SOME publish-granted account uses it). Which
+          // account this request is for is checked here, before any secret is
+          // read: THAT account must hold a granted `publish` capability.
+          const rows = (await tx`
+            SELECT 1 FROM awcms_channel_account_capabilities
+            WHERE tenant_id = ${input.tenantId} AND account_id = ${input.accountId}
+              AND capability = 'publish' AND state = 'granted'
+          `) as unknown[];
+
+          return rows.length === 1 ? null : "CAPABILITY_DENIED";
+        }
+      );
+
+      return result.ok
+        ? result
+        : { ok: false, reason: result.reason as PublisherUnavailableReason };
     }
   };
 }
 
-/** The adapter the dispatcher's composition root hands to `whatsapp_delivery`. */
-export const channelSenderCredentialAdapter: ChannelSenderCredentialPort =
-  createChannelSenderCredentialAdapter();
+/** The adapter the dispatchers' composition roots hand to `whatsapp_delivery` and `email`. */
+export const channelSenderCredentialAdapter: ChannelSenderCredentialPort &
+  ChannelPublisherCredentialPort &
+  ChannelEmailCredentialPort &
+  ChannelEmailAccountCredentialPort = createChannelSenderCredentialAdapter();

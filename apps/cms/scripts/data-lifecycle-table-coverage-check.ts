@@ -99,6 +99,126 @@ export const BOUNDED_BY_DESIGN: readonly {
       "ADR-0148 / Issue #1140. Every row is AUTHORED by an administrator registering an external account the tenant really operates (a page, a number, a bot), never accumulated by traffic: the ceiling is the number of accounts a business connects, and an account is soft-deleted (terminal) when it is retired. Nothing in a request path or a job inserts one."
   },
   {
+    table: "awcms_channel_provider_risk_acknowledgements",
+    reason:
+      "ADR-0148 section 7 / Issue #1142. An accountability record, not traffic: one row per act of a person accepting (or withdrawing) the risk of an UNOFFICIAL provider, written only by that person through `risk_acknowledgements.create` and stamped revoked by a holder of `risk_acknowledgements.revoke`. A unique index over ACTIVE rows allows one live acknowledgement per person, provider and text version, so the ceiling is people times text versions times deliberate revoke-and-redo cycles, a handful per tenant. It is append-only by trigger and must NOT be purged by age: deleting it would erase who accepted what and when. The person identity is anonymised on erasure, the row stays (subject-data descriptor, severed_with_subject_row)."
+  },
+  {
+    table: "awcms_engagement_sources",
+    reason:
+      "ADR-0155 / Issue #1153. Every row is AUTHORED by an administrator registering a website or form channel the tenant really operates, never accumulated by traffic: the ceiling is the number of sites a business runs, a source is soft-deleted (terminal) when retired, and nothing in the public intake path inserts one. The visitor's own data lives in awcms_engagement_submissions, which has its own retention descriptor."
+  },
+  {
+    table: "awcms_engagement_source_domains",
+    reason:
+      "ADR-0155 / Issue #1153. A link between a source and a tenant domain, written only by an administrator holding `sources.manage` and capped at 20 per source by the validator: the ceiling is sources times that cap. It holds no visitor data and is replaced as a set when the host list is edited."
+  },
+  {
+    table: "awcms_social_publishing_settings",
+    reason:
+      "ADR-0157 / Issue #1145. One row per tenant, written only by an administrator holding `settings.configure`: the ceiling is the number of tenants. It holds two switches and no content."
+  },
+  {
+    table: "awcms_social_publish_rules",
+    reason:
+      "ADR-0157 / Issue #1145. Authored by an administrator holding `rules.configure`, unique per (trigger, account) and capped at 200 per tenant by the route and the list bound; a rule is disabled, never deleted. Nothing in a request path or a job inserts one."
+  },
+  {
+    table: "awcms_crm_leads_settings",
+    reason:
+      "ADR-0153 / Issue #1166. One row per tenant (primary key tenant_id), written only by a holder of `pipelines.configure`: the ceiling is the number of tenants. It holds a switch and a window length."
+  },
+  {
+    table: "awcms_crm_pipelines",
+    reason:
+      "ADR-0153 / Issue #1166. AUTHORED by an administrator holding `pipelines.configure`, unique per (tenant, code) and listed at most 200 per tenant; nothing in a request path or a job inserts one. A pipeline is the definition of a process, not traffic."
+  },
+  {
+    table: "awcms_crm_pipeline_revisions",
+    reason:
+      "ADR-0153 / Issue #1166. One row per PUBLISHED revision of an authored pipeline, written only by `pipelines.configure` and only when the definition changes (an identical definition is refused): the ceiling is administrator edits. Immutable by trigger, and must not be purged by age: every lead transition names the revision it happened under (L10)."
+  },
+  {
+    table: "awcms_crm_pipeline_stages",
+    reason:
+      "ADR-0153 / Issue #1166. At most 50 rows per revision (validator and CHECK), written only in the transaction that publishes the revision; bounded by revisions times 50. Immutable by trigger."
+  },
+  {
+    table: "awcms_crm_pipeline_transitions",
+    reason:
+      "ADR-0153 / Issue #1166. At most 400 edges per revision (validator), written only in the transaction that publishes the revision; bounded by revisions times 400. Immutable by trigger."
+  },
+  {
+    table: "awcms_crm_leads",
+    reason:
+      "ADR-0153 / Issue #1166. NOT bounded in time, and deliberately so FOR NOW: the retention windows for unconverted, lost and disqualified leads are open question O4 of ADR-0153 and need the controller's decision. A `generic` age-based descriptor would be wrong here: it deletes by age with no status predicate, so it would remove CONVERTED leads whose conversion record is evidence, and it cannot delete a lead before its append-only children. Growth is bounded by intake (one lead per distinct source key; replays write nothing), each lead can be anonymised on a subject's request today, and the retention sweep is the recorded follow-up in src/modules/crm-leads/README.md."
+  },
+  {
+    table: "awcms_crm_lead_contact_points",
+    reason:
+      "ADR-0153 / Issue #1166. At most 10 per intake or edit request and one live copy of a value per lead (unique index), so bounded by leads times edits; erased in place by anonymisation. Not bounded in time; see awcms_crm_leads for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_lead_source_touches",
+    reason:
+      "ADR-0153 / Issue #1166. One row per DISTINCT source event (unique intake key; a replay writes nothing) attributed to a lead: bounded by intake. Append-only by trigger and a non-personal funnel fact. Not bounded in time; see awcms_crm_leads for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_lead_transitions",
+    reason:
+      "ADR-0153 / Issue #1166. One row per stage change of a lead, each a deliberate act (a move, a revision migration, a conversion, a reversal, a merge or its rollback), unique on (lead, sequence). Append-only by trigger: funnel counts are reproduced from it (L10), so an age-based purge would change published figures. Not bounded in time; see awcms_crm_leads for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_lead_assignments",
+    reason:
+      "ADR-0153 / Issue #1166. One row per owner change, each a deliberate act by a holder of `leads.assign`; append-only by trigger and staff stamps only. Not bounded in time; see awcms_crm_leads for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_lead_conversions",
+    reason:
+      "ADR-0153 / Issue #1166. At most one LIVE conversion per lead (unique index), each a deliberate confirmation by the customer authority or a flagged manual act, unique on its evidence reference. It is evidence of a commercial fact and is never purged by age. Not bounded in time; see awcms_crm_leads for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_lead_merges",
+    reason:
+      "ADR-0153 / Issue #1166. One row per human-reviewed merge (at most one live merge per absorbed lead, unique index), written only by a holder of `merges.manage`. It is the undo record and is never purged by age. Not bounded in time; see awcms_crm_leads for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_follow_up_settings",
+    reason:
+      "ADR-0159 / Issue #1165. One row per tenant (primary key tenant_id), written only by a holder of `rules.configure`: the ceiling is the number of tenants. It holds a switch and a cap."
+  },
+  {
+    table: "awcms_crm_follow_up_rules",
+    reason:
+      "ADR-0159 / Issue #1165. AUTHORED by an administrator holding `rules.configure`, unique per (tenant, code) and listed at most 200 per tenant; nothing in a request path or a job inserts one. Never deleted: its revisions are what its tasks point at."
+  },
+  {
+    table: "awcms_crm_follow_up_rule_revisions",
+    reason:
+      "ADR-0159 / Issue #1165. One row per PUBLISHED revision of an authored rule, written only by `rules.configure` and only when the definition changes (an identical definition is refused): the ceiling is administrator edits. Immutable by trigger, and must not be purged while a task names it."
+  },
+  {
+    table: "awcms_crm_follow_up_tasks",
+    reason:
+      "ADR-0159 / Issue #1165. At most one task per (rule, source lead event) (unique key) and at most `max_open_per_lead` (1-5) LIVE tasks per lead and rule: bounded by lead events times active rules. Not bounded in time FOR NOW: the retention window for closed tasks is ADR-0159 open question O4, decided together with crm_leads' own (ADR-0153 O4); the status-aware sweep is the recorded follow-up in src/modules/crm-follow-up/README.md."
+  },
+  {
+    table: "awcms_crm_follow_up_task_actions",
+    reason:
+      "ADR-0159 / Issue #1165. Append-only by trigger; a task's status can change at most three times (open -> escalated -> closed) plus one row per owner change of its lead: bounded by tasks times lead reassignments. Not bounded in time; see awcms_crm_follow_up_tasks for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_follow_up_stop_signals",
+    reason:
+      "ADR-0159 / Issue #1165. Append-only. A staff stop is unique per (lead, kind) (partial unique index; four staff kinds, so at most four staff rows per lead whatever the Idempotency-Key), and a lead-event stop is unique per (source event, kind), so its rows are bounded by the lead's converted, lost and merged events. Not bounded in time; see awcms_crm_follow_up_tasks for the recorded retention follow-up (O4)."
+  },
+  {
+    table: "awcms_crm_follow_up_notifications",
+    reason:
+      "ADR-0159 / Issue #1165. At most one row per (task, kind, recipient) (unique key) and three kinds, so bounded by tasks times their assignees. Holds ids, a kind, instants and a closed reason: no content. Not bounded in time; see awcms_crm_follow_up_tasks for the recorded retention follow-up (O4)."
+  },
+  {
     table: "awcms_channel_provider_connections",
     reason:
       "ADR-0148 / Issue #1140. One row per authorisation an administrator granted a provider, written only through the authenticated OAuth callback or the connector that completes it. Abandoned `pending` hand-offs are failed and their authorisation-code ciphertext erased by the bounded sweep on the next authorisation start (`sweepExpiredOAuthStates`); a revoked row keeps no credential reference, so it is an inert few-hundred-byte record of the fact."
@@ -139,6 +259,21 @@ export const BOUNDED_BY_DESIGN: readonly {
       "ADR-0148 section 4 / Issue #1141. At most ONE row per business scope per tenant (plus one tenant-wide row), by two partial unique indexes: a change UPDATES the row and bumps its version rather than appending, so the ceiling is the number of brands a tenant configures. Written only by an administrator holding `whatsapp_delivery.sender_policy.configure`, never by traffic or a job. An age-based purge would silently reset a brand's default sender to the deployment sender, so none is declared."
   },
   {
+    table: "awcms_email_sender_policies",
+    reason:
+      "ADR-0151 section 2 / Issue #1160. The email twin of `awcms_whatsapp_sender_policies`: at most ONE row per business scope per tenant (plus one tenant-wide row), by two partial unique indexes; a change UPDATES the row and bumps its version, and a DELETE is refused by trigger (`sql/346`). Written only by an administrator holding `email.sender_policy.configure`, never by traffic or a job. An age-based purge would silently reset a brand's default sender to the deployment sender, so none is declared."
+  },
+  {
+    table: "awcms_whatsapp_meta_templates",
+    reason:
+      "Issue #1143. A unique key per (WABA, template name, language): the ceiling is the templates a business registers at Meta on its own WABAs, upserted (never appended) by an operator or by a signed status webhook for an existing template. An age-based purge would silently un-approve a template still in use, refusing every message that uses it."
+  },
+  {
+    table: "awcms_whatsapp_meta_sender_signals",
+    reason:
+      "Issue #1143. One row per WABA account by primary key (tenant, container account), upserted by the latest restriction or messaging-limit event: the ceiling is the tenant's WABA accounts. An age-based purge would silently lift a recorded ban or restriction."
+  },
+  {
     table: "awcms_site_profile",
     reason:
       "ADR-0102. At most ONE row per tenant, by primary key — the row is upserted, never appended, so the table's ceiling IS `awcms_tenants` and no request path or job can add a second. Nothing here is traffic-generated: every value is typed by an administrator on `/admin/site-profile`. An age-based purge would be actively WRONG rather than merely unnecessary, for the same reason it is wrong for `awcms_principal_preferences`: `executionMode: 'generic'` deletes by age with no status predicate, so a newsroom that set its editorial address two years ago and has not touched it since — the healthy case — would have its masthead, footer and contact block silently emptied for being OLD. The row has no natural expiry and its age says nothing about whether it is still wanted; deleting it would blank the published contact details of a live site. Erasure is not a question here either: this is the PUBLISHER's own published identity, deliberately public, not a data subject's personal data — which is exactly why the audit row for a change records which fields are set and never their values."
@@ -146,12 +281,12 @@ export const BOUNDED_BY_DESIGN: readonly {
   {
     table: "awcms_idn_population_datasets",
     reason:
-      "awcms-one ADR-0051 / Issue #497. Global reference data written ONLY by the operator job `idn-population:import`, one row per reviewed BPS publication file added to the repository: its ceiling is the number of publications the project has chosen to vendor (hundreds at most across all of Indonesia), and no request path or timer can add one. RETAINED INDEFINITELY, never purged: a dataset is superseded, not deleted, so the provenance of every figure ever served stays answerable, and no role holds DELETE (`sql/882`). An age-based purge would be actively WRONG rather than merely unnecessary: `executionMode: 'generic'` deletes purely by age with no status predicate, so it would delete the dataset CURRENTLY BEING SERVED for any publication that has not been re-issued in years (the healthy case). Holds no personal data."
+      "awcms-one ADR-0051 / ADR-0053 (Issue #497). Global reference data written ONLY by the operator job `idn-population:import`, one row per distinct pair of vendored Kepmendagri population/area files (the dataset code is derived from both sha256): its ceiling is the number of times the project re-vendors the decree's files, a handful per decade, and no request path or timer can add one. RETAINED INDEFINITELY, never purged: a dataset is superseded, not deleted, so the provenance of every figure ever served stays answerable, and no role holds DELETE (`sql/882`). An age-based purge would be actively WRONG rather than merely unnecessary: `executionMode: 'generic'` deletes purely by age with no status predicate, so it would delete the dataset CURRENTLY BEING SERVED for any publication that has not been re-issued in years (the healthy case). Holds no personal data."
   },
   {
     table: "awcms_idn_population_stats",
     reason:
-      "awcms-one ADR-0051 / Issue #497. The figures of the datasets above, written only in the same import transaction: growth is the row count of reviewed publications (a few thousand rows each, once), never traffic. RETAINED WITH ITS DATASET and never purged by age, for the reason given for `awcms_idn_population_datasets`: a generic age-based purge would delete the figures currently served. Aggregate public statistics, no personal data; small-cell suppression (`population-privacy.ts`) governs how they may be read."
+      "awcms-one ADR-0051 / ADR-0053 (Issue #497). The figures of the datasets above, written only in the same import transaction: four per province and regency/city (2,208 for the vendored decree), once per dataset, never traffic. RETAINED WITH ITS DATASET and never purged by age, for the reason given for `awcms_idn_population_datasets`: a generic age-based purge would delete the figures currently served. Aggregate public figures for whole regencies and provinces, no personal data."
   },
   {
     table: "awcms_hr_commission_rules",

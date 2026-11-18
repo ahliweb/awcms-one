@@ -1,12 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.md)
 
-<!-- i18n-source-hash: sha256:de1cab0fae982420cc481c4ddb107cf053904fbaaf16498a805400ae023c3d2b -->
-
-<!-- i18n-source-hash: sha256:placeholder -->
+<!-- i18n-source-hash: sha256:3b28de69bb9f57d971c94e0ba44402f8c48a265c4b1568385d1274ae949139f7 -->
 
 # ADR-0051 — Statistik penduduk BPS adalah data referensi global berversi, disimpan persis seperti yang diterbitkan
 
-- **Status:** Accepted
+- **Status:** Digantikan oleh [ADR-0053](0053-population-and-area-come-from-the-kepmendagri-region-decree-not-bps.id.md) (11 November 2026: BPS tidak lagi menjadi sumber; kedua tabel tetap dan kini berisi jumlah penduduk menurut Kepmendagri dan luas menurut BIG). Dipertahankan sebagai catatan apa yang diputuskan dan dibangun; path yang disebutnya di bawah `apps/cms/data/idn-population/` dan `tools/bps-population/` sudah tidak ada.
 - **Tanggal:** 26 Oktober 2026
 - **Pengambil keputusan:** ahliweb
 - **Terkait:** issue [#497](https://github.com/ahliweb/awcms-one/issues/497) (ADR ini); [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md) (kepemilikan template-only; penamaan netral); [ADR-0003](0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) (numerik eksak); [ADR-0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.id.md) (pita migrasi); repo acuan `awcms` ADR-0052 (aktivasi dataset wilayah adalah CLI worker) dan modul `idn_admin_regions`-nya (`sql/080`)

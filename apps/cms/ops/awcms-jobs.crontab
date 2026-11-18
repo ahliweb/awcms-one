@@ -158,6 +158,16 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # #108). Idempotent and bounded.
 */15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-whatsapp-purge.lock $AWCMS_RUN_JOB commerce:whatsapp:purge >> $AWCMS_JOB_LOG/commerce-whatsapp-purge.log 2>&1
 
+# crm_follow_up — Escalates open follow-up tasks whose escalation instant has
+# passed (status, action row, an escalation notice for the rule's recipient)
+# and hands due staff notices to the workflow_notification port (e-mail
+# outbox) after re-checking that the task is live, the lead has no stop
+# signal, the recipient is still the assignee and an ACTIVE user, the notice
+# is inside the rule's working hours and the recipient is under the tenant's
+# hourly cap; otherwise the notice is cancelled, suppressed or deferred. Never
+# sends anything to a lead.
+* * * * * /usr/bin/flock -n $AWCMS_LOCK/crm-follow-up-dispatch.lock $AWCMS_RUN_JOB crm-follow-up:dispatch >> $AWCMS_JOB_LOG/crm-follow-up-dispatch.log 2>&1
+
 # data_lifecycle — Archive (where applicable) and purge rows past retention
 # for every registered generic-execution descriptor; record a dry-run backlog
 # snapshot for every delegated (existing-adopter) descriptor.
@@ -181,6 +191,12 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # email — Delete terminal email queue rows and spent delivery attempts past
 # their retention windows (legal-hold gated, bounded batches).
 20 3 * * * /usr/bin/flock -n $AWCMS_LOCK/email-queue-purge.lock $AWCMS_RUN_JOB email:queue:purge >> $AWCMS_JOB_LOG/email-queue-purge.log 2>&1
+
+# email — Read each tenant Mailketing account's credit balance and verified
+# senders (read-only GET /credits and GET /senders) and record them as account
+# health; a sender becomes usable only when the provider reports it verified
+# (Issue #1160).
+0 * * * * /usr/bin/flock -n $AWCMS_LOCK/email-senders-verify.lock $AWCMS_RUN_JOB email:senders:verify >> $AWCMS_JOB_LOG/email-senders-verify.log 2>&1
 
 # form_drafts — Expire overdue draft rows, then physically delete
 # expired/abandoned drafts past the retention cutoff, for every active tenant.
@@ -237,6 +253,14 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # tenant with no repository configured.
 */15 * * * * /usr/bin/flock -n $AWCMS_LOCK/omes-repository-progress-poll.lock $AWCMS_RUN_JOB omes:repository-progress:poll >> $AWCMS_JOB_LOG/omes-repository-progress-poll.log 2>&1
 
+# omnichannel_inbox — For every active tenant with the inbox on: apply the
+# Telegram consent changes and website withdrawals of the last 48 hours that
+# the projection has not applied yet, unassign assignees who are no longer
+# eligible (deactivated, permission lost, confinement no longer covering the
+# conversation), stamp SLA breaches once and notify each affected assignee
+# through the e-mail outbox. Database-only: no provider call.
+*/5 * * * * /usr/bin/flock -n $AWCMS_LOCK/omnichannel-inbox-sla.lock $AWCMS_RUN_JOB omnichannel-inbox:sla >> $AWCMS_JOB_LOG/omnichannel-inbox-sla.log 2>&1
+
 # push_delivery — Drain the due push delivery queue (claim-lease,
 # retry/backoff, circuit breaker, dead-subscription disabling) for every
 # active tenant.
@@ -265,6 +289,19 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # authoritative backbone.
 */15 * * * * /usr/bin/flock -n $AWCMS_LOCK/site-search-reconcile.lock $AWCMS_RUN_JOB site-search:reconcile >> $AWCMS_JOB_LOG/site-search-reconcile.log 2>&1
 
+# social_publishing — Drain the due social publish queue (claim lease,
+# per-account fair share and daily cap, account re-check, provider call
+# outside any transaction, retry/backoff, per-account circuit breaker) for
+# every active tenant.
+*/2 * * * * /usr/bin/flock -n $AWCMS_LOCK/social-publishing-dispatch.lock $AWCMS_RUN_JOB social-publishing:dispatch >> $AWCMS_JOB_LOG/social-publishing-dispatch.log 2>&1
+
+# social_publishing — Delete whole social publications (attempts, then jobs,
+# then the publication) whose every job is terminal and older than the
+# retention window (default 730 days, never under 365), for every tenant
+# (legal-hold gated, bounded batches). Never deletes a waiting job, a job
+# awaiting reconciliation or a publication awaiting approval.
+35 4 * * * /usr/bin/flock -n $AWCMS_LOCK/social-publishing-retention-purge.lock $AWCMS_RUN_JOB social-publishing:retention:purge >> $AWCMS_JOB_LOG/social-publishing-retention-purge.log 2>&1
+
 # sync_storage — Drain the due object sync upload queue (claim-lease,
 # retry/backoff, circuit breaker) for every active tenant.
 */2 * * * * /usr/bin/flock -n $AWCMS_LOCK/sync-objects-dispatch.lock $AWCMS_RUN_JOB sync:objects:dispatch >> $AWCMS_JOB_LOG/sync-objects-dispatch.log 2>&1
@@ -272,6 +309,13 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # sync_storage — Delete terminal object sync queue rows past their retention
 # window (legal-hold gated, bounded batches).
 35 3 * * * /usr/bin/flock -n $AWCMS_LOCK/sync-objects-purge.lock $AWCMS_RUN_JOB sync:objects:purge >> $AWCMS_JOB_LOG/sync-objects-purge.log 2>&1
+
+# telegram_engagement — For every active tenant: finish bot registrations,
+# rotations and revocations with Telegram (getMe, setWebhook, deleteWebhook)
+# and drain the customer outbound queue (claim lease, re-check consent and
+# capability, per-bot and per-chat pacing, 429 retry_after, per-bot breaker
+# and daily ceiling, uncertain sends never retried).
+* * * * * /usr/bin/flock -n $AWCMS_LOCK/telegram-engagement-dispatch.lock $AWCMS_RUN_JOB telegram-engagement:dispatch >> $AWCMS_JOB_LOG/telegram-engagement-dispatch.log 2>&1
 
 # telegram_delivery — Drain the due Telegram queue (tenant gate, binding and
 # principal re-check, per-chat spacing, global rate ceiling, retry_after
@@ -377,9 +421,9 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 #   Automatic activation would publish figures nobody read.
 
 # idn-population:import
-#   Runs by hand after a reviewed BPS publication (a manifest JSON plus its
-#   extracted CSV) is added under `data/idn-population/datasets/`. A timer would
-#   re-parse unchanged files forever.
+#   Runs by hand after the region dataset is activated, and again only when the
+#   vendored population/area files change. A timer would re-parse unchanged
+#   files forever.
 
 # idn-regions:activate
 #   A platform operator activates a reviewed dataset version deliberately.
@@ -410,3 +454,10 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 #   first key to TELEGRAM_CHAT_ENCRYPTION_KEYS, until `security:readiness`
 #   reports no binding under a non-active key id, and only then is the old key
 #   removed. A timer would re-scan an unchanged table forever.
+
+# whatsapp:meta:preflight
+#   A read-only operator check (Issue #1298 L5) run once, before the
+#   tenant-owned Meta path is enabled on a deployment that already holds Meta
+#   numbers, and again after fixing what it names. Scheduling it would only
+#   repeat a report nobody is waiting for; the dispatcher already fails a bad
+#   row terminally by itself.

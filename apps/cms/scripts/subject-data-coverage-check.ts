@@ -86,6 +86,16 @@ export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
       "Issue #117 (ADR-0017 D7). One row per (tenant, day, category): a quantity, a gross sum and the category's own name. A category is a catalogue label, not a person; the same reasoning as `awcms_commerce_sales_daily` covers the figures."
   },
   {
+    table: "awcms_crm_pipeline_stages",
+    reason:
+      "ADR-0153 / Issue #1166. A stage of a pipeline revision: a tenant-chosen key, name, position and closed category. It describes a step of a process; there is no actor stamp on the row (the revision carries `published_by`) and nothing about a person."
+  },
+  {
+    table: "awcms_crm_pipeline_transitions",
+    reason:
+      "ADR-0153 / Issue #1166. An allowed edge between two stages of a revision with its closed guard codes. It describes a process rule; there is no actor stamp on the row and nothing about a person."
+  },
+  {
     table: "awcms_channel_account_health",
     reason:
       "ADR-0148 / Issue #1140. One row per ACCOUNT holding the latest health report: a state, a fixed reason code, a token expiry and quota figures. It records how an external account is doing, not anything about a person, and there is no actor stamp on the row at all."
@@ -204,6 +214,11 @@ export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
     table: "awcms_schema_migrations",
     reason:
       "The migration ledger. It records which SQL file ran and when, which is a fact about the deployment and about nobody."
+  },
+  {
+    table: "awcms_email_worker_categories",
+    reason:
+      "ADR-0164 (sql/410). The allow-list of e-mail category NAMES an awcms_worker transaction may enqueue, migration-written and read-only for both runtime roles. A category name is a string a module author chose; it identifies no one."
   },
   {
     table: "awcms_plan_entitlements",

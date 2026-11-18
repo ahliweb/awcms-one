@@ -513,6 +513,9 @@ msgstr "Tidak dapat mengubah kata sandi Anda. Silakan coba lagi."
 msgid "Two-factor authentication is already switched on for your account."
 msgstr "Autentikasi dua faktor sudah aktif untuk akun Anda."
 
+msgid "QR code for your authenticator app. If you cannot scan it, type the secret shown below into the app instead."
+msgstr "Kode QR untuk aplikasi autentikator Anda. Jika tidak dapat dipindai, ketik rahasia yang ditampilkan di bawah ke dalam aplikasi."
+
 msgid "Could not start setup. Please try again."
 msgstr "Tidak dapat memulai penyiapan. Silakan coba lagi."
 
@@ -1876,6 +1879,18 @@ msgstr "Interval (menit)"
 
 msgid "Invite somebody"
 msgstr "Undang seseorang"
+
+msgid "Invitation sent."
+msgstr "Undangan terkirim."
+
+msgid "Invitation sent again."
+msgstr "Undangan dikirim ulang."
+
+msgid "Invitation revoked."
+msgstr "Undangan dicabut."
+
+msgid "Invite user"
+msgstr "Undang pengguna"
 
 msgid "IP hash"
 msgstr "Hash IP"
@@ -4083,6 +4098,12 @@ msgstr "Lepas tautan"
 msgid "Upload an image"
 msgstr "Unggah gambar"
 
+msgid "Uploading is unavailable for your role"
+msgstr "Pengunggahan tidak tersedia untuk peran Anda"
+
+msgid "Uploading an image needs all of media.create, media.verify and media.cancel, because a started upload must be finishable and cancellable. Your role is missing: {missing}. Ask a tenant administrator to grant them."
+msgstr "Mengunggah gambar memerlukan media.create, media.verify, dan media.cancel sekaligus, karena unggahan yang dimulai harus bisa diselesaikan dan dibatalkan. Peran Anda belum memiliki: {missing}. Mintalah administrator tenant untuk memberikannya."
+
 msgid "The file goes straight to storage from this browser. The server checks the real bytes on arrival — the type is read from the file itself, not from its name."
 msgstr "Berkas dikirim langsung ke penyimpanan dari peramban ini. Server memeriksa byte sebenarnya saat tiba — tipenya dibaca dari isi berkas, bukan dari namanya."
 
@@ -5006,9 +5027,6 @@ msgstr "Produk"
 msgid "Sale price"
 msgstr "Harga diskon"
 
-msgid "Quota"
-msgstr "Kuota"
-
 msgid "Add product to sale"
 msgstr "Tambahkan produk ke flash sale"
 
@@ -5271,9 +5289,6 @@ msgstr "Pesanan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
 
 msgid "Order code"
 msgstr "Kode pesanan"
-
-msgid "Customer"
-msgstr "Pelanggan"
 
 msgid "Payment"
 msgstr "Pembayaran"
@@ -5613,12 +5628,6 @@ msgstr "Kotak Masuk"
 msgid "Customer conversations with the store — reply, close, and reopen threads."
 msgstr "Percakapan pelanggan dengan toko — balas, tutup, dan buka kembali percakapan."
 
-msgid "You do not have permission to view the inbox."
-msgstr "Anda tidak memiliki izin untuk melihat kotak masuk."
-
-msgid "The inbox could not be loaded right now. Please try again later."
-msgstr "Kotak masuk tidak dapat dimuat saat ini. Silakan coba lagi nanti."
-
 msgid "Filter conversations"
 msgstr "Filter percakapan"
 
@@ -5631,15 +5640,8 @@ msgstr "Ditutup"
 msgid "Unread"
 msgstr "Belum dibaca"
 
-msgid "{count} conversation"
-msgid_plural "{count} conversations"
-msgstr[0] "{count} percakapan"
-
 msgid "Last message"
 msgstr "Pesan terakhir"
-
-msgid "No conversations yet"
-msgstr "Belum ada percakapan"
 
 msgid "Conversations customers start from the storefront will appear here."
 msgstr "Percakapan yang dimulai pelanggan dari etalase akan muncul di sini."
@@ -5667,9 +5669,6 @@ msgstr "Kampanye tidak dapat dimuat saat ini. Silakan coba lagi nanti."
 
 msgid "New campaign"
 msgstr "Kampanye baru"
-
-msgid "Channel"
-msgstr "Saluran"
 
 msgid "Subject (e-mail only)"
 msgstr "Subjek (khusus e-mail)"
@@ -7586,9 +7585,6 @@ msgstr "Poin loyalitas"
 msgid "Maximum points per order (optional)"
 msgstr "Poin maksimum per pesanan (opsional)"
 
-msgid "Never"
-msgstr "Tidak pernah"
-
 msgid "No customer found."
 msgstr "Pelanggan tidak ditemukan."
 
@@ -7663,9 +7659,6 @@ msgstr "Perbaiki saldo"
 
 msgid "Repair balances from the ledger?"
 msgstr "Perbaiki saldo dari buku besar?"
-
-msgid "Retire"
-msgstr "Pensiunkan"
 
 msgid "Retire this version?"
 msgstr "Pensiunkan versi ini?"
@@ -7863,9 +7856,6 @@ msgstr "Dapat difilter"
 
 msgid "Images and other media are not imported here: a media column rejects the file."
 msgstr "Gambar dan media lain tidak diimpor di sini: kolom media akan menolak file."
-
-msgid "Import"
-msgstr "Impor"
 
 msgid "Included in free-text search (text and choice lists only)"
 msgstr "Disertakan dalam pencarian teks bebas (hanya teks dan daftar pilihan)"
@@ -8169,9 +8159,6 @@ msgstr "Saldo terutang"
 
 msgid "Payments by tender"
 msgstr "Pembayaran per metode"
-
-msgid "Received"
-msgstr "Diterima"
 
 msgid "Reversals"
 msgstr "Pembalikan"
@@ -8613,9 +8600,6 @@ msgstr "Aktifkan di Fitur pada pengaturan toko."
 msgid "Within threshold"
 msgstr "Dalam ambang"
 
-msgid "You"
-msgstr "Anda"
-
 msgid "You do not have permission to view register sessions."
 msgstr "Anda tidak memiliki izin untuk melihat sesi register."
 
@@ -8662,9 +8646,6 @@ msgstr "Alasan wajib diisi."
 msgid "A refund goes back onto the same card"
 msgstr "Pengembalian dana kembali ke kartu yang sama"
 
-msgid "Accounts"
-msgstr "Akun"
-
 msgid "Adjust the balance"
 msgstr "Sesuaikan saldo"
 
@@ -8689,9 +8670,6 @@ msgstr "Batas saldo"
 msgid "Balance differs from the ledger"
 msgstr "Saldo berbeda dari buku besar"
 
-msgid "By"
-msgstr "Oleh"
-
 msgid "Check and rebuild differing balances"
 msgstr "Periksa dan bangun ulang saldo yang berbeda"
 
@@ -8715,9 +8693,6 @@ msgstr "Tidak dapat menjalankan pemeriksaan. Silakan coba lagi."
 
 msgid "Could not run the expiry. Please try again."
 msgstr "Tidak dapat menjalankan kedaluwarsa. Silakan coba lagi."
-
-msgid "Could not save the change. Please try again."
-msgstr "Tidak dapat menyimpan perubahan. Silakan coba lagi."
 
 msgid "Could not save the program. Please try again."
 msgstr "Tidak dapat menyimpan program. Silakan coba lagi."
@@ -8787,9 +8762,6 @@ msgstr "Terbitkan kartu atau kredit di atas."
 
 msgid "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
 msgstr "Terbitkan kartu hadiah dan kredit toko, pantau kewajiban kepada pemegang kartu, dan jaga saldo tetap terekonsiliasi."
-
-msgid "Issued"
-msgstr "Diterbitkan"
 
 msgid "It cannot be shown again. If it is lost, disable the account and issue a new one."
 msgstr "Kode tidak dapat ditampilkan lagi. Jika hilang, nonaktifkan akun lalu terbitkan yang baru."
@@ -8922,10 +8894,6 @@ msgstr "Nilai yang diterbitkan dan dipakai per jenis, {from} sampai {to}, menuru
 
 msgid "You do not have permission to view gift cards and store credit."
 msgstr "Anda tidak memiliki izin untuk melihat kartu hadiah dan kredit toko."
-
-msgid "{count} account"
-msgid_plural "{count} accounts"
-msgstr[0] "{count} akun"
 
 msgid "{count} entry"
 msgid_plural "{count} entries"
@@ -10435,9 +10403,6 @@ msgstr "Penawaran, perintah kerja, dan dokumen dimatikan untuk toko ini."
 msgid "Quotations, work orders, receipts and invoices, and parked POS sales."
 msgstr "Penawaran, perintah kerja, struk dan faktur, serta penjualan POS yang tertahan."
 
-msgid "Ready"
-msgstr "Siap"
-
 msgid "Receipts and invoices"
 msgstr "Struk dan faktur"
 
@@ -10863,9 +10828,6 @@ msgstr "Tidak ada templat pesan yang tersedia; tidak ada yang dikirim."
 msgid "Nothing has been sent yet."
 msgstr "Belum ada yang dikirim."
 
-msgid "Not sent"
-msgstr "Tidak terkirim"
-
 msgid "Other recipient"
 msgstr "Penerima lain"
 
@@ -10907,9 +10869,6 @@ msgstr "Ini pesan transaksional tentang pembelian pelanggan itu sendiri, disusun
 
 msgid "Too many deliveries were requested for this document. Try again later."
 msgstr "Terlalu banyak pengiriman diminta untuk dokumen ini. Coba lagi nanti."
-
-msgid "Waiting to be sent"
-msgstr "Menunggu dikirim"
 
 msgid "Will retry"
 msgstr "Akan dicoba lagi"
@@ -11757,9 +11716,6 @@ msgstr "semua kondisi terpenuhi"
 msgid "any of the conditions is true"
 msgstr "salah satu kondisi terpenuhi"
 
-msgid "Conditions"
-msgstr "Kondisi"
-
 msgid "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
 msgstr "Tanggal berformat YYYY-MM-DD, atau bilangan bulat hari yang lalu. Uang berupa angka biasa seperti 150000.00."
 
@@ -12223,6 +12179,23 @@ msgstr "Pengiriman Telegram"
 
 msgid "Channel Accounts"
 msgstr "Akun Kanal"
+
+msgid "Website Engagement"
+msgstr "Keterlibatan Situs Web"
+
+msgid "Social Publishing"
+msgstr "Penerbitan Sosial"
+
+msgid "CRM Leads"
+msgstr "Prospek CRM"
+
+msgid "Telegram Engagement"
+msgstr "Keterlibatan Telegram"
+msgid "CRM Follow-up"
+msgstr "Tindak Lanjut CRM"
+
+msgid "Omnichannel Inbox"
+msgstr "Kotak Masuk Omnichannel"
 
 msgid "Tenant suspended"
 msgstr "Tenant ditangguhkan"
@@ -13488,9 +13461,6 @@ msgstr "Disetujui pada"
 msgid "Arrival"
 msgstr "Kedatangan"
 
-msgid "Authenticator code"
-msgstr "Kode autentikator"
-
 msgid "Authored by"
 msgstr "Disusun oleh"
 
@@ -14349,3 +14319,2424 @@ msgstr "Hapus filter: {label}"
 msgid "{count} user matches your search and filters"
 msgid_plural "{count} users match your search and filters"
 msgstr[0] "{count} pengguna cocok dengan pencarian dan filter Anda"
+
+msgid "Connected"
+msgstr "Terhubung"
+
+msgid "Disconnected"
+msgstr "Terputus"
+
+msgid "Awaiting authorisation"
+msgstr "Menunggu otorisasi"
+
+msgid "OAuth authorisation"
+msgstr "Otorisasi OAuth"
+
+msgid "API token"
+msgstr "Token API"
+
+msgid "Bot token"
+msgstr "Token bot"
+
+msgid "Device key"
+msgstr "Kunci perangkat"
+
+msgid "Healthy"
+msgstr "Sehat"
+
+msgid "Failing"
+msgstr "Gagal"
+
+msgid "Publish posts"
+msgstr "Publikasikan kiriman"
+
+msgid "Reply to messages"
+msgstr "Balas pesan"
+
+msgid "Send direct messages"
+msgstr "Kirim pesan langsung"
+
+msgid "Receive inbound events"
+msgstr "Terima peristiwa masuk"
+
+msgid "Manage comments"
+msgstr "Kelola komentar"
+
+msgid "Read analytics"
+msgstr "Baca analitik"
+
+msgid "Capture leads"
+msgstr "Tangkap prospek"
+
+msgid "Advertising"
+msgstr "Iklan"
+
+msgid "Broadcast to a list"
+msgstr "Siarkan ke daftar"
+
+msgid "Granted"
+msgstr "Diberikan"
+
+msgid "Not offered"
+msgstr "Tidak ditawarkan"
+
+msgid "Not available (unverified)"
+msgstr "Tidak tersedia (belum terverifikasi)"
+
+msgid "No grant recorded"
+msgstr "Belum ada pemberian tercatat"
+
+msgid "Granted scope list"
+msgstr "Daftar cakupan yang diberikan"
+
+msgid "App review reference"
+msgstr "Referensi tinjauan aplikasi"
+
+msgid "Contract reference"
+msgstr "Referensi kontrak"
+
+msgid "Written authorisation"
+msgstr "Otorisasi tertulis"
+
+msgid "The provider is not recognised."
+msgstr "Penyedia tidak dikenali."
+
+msgid "This account only groups other accounts and does not act itself."
+msgstr "Akun ini hanya mengelompokkan akun lain dan tidak bertindak sendiri."
+
+msgid "The provider does not offer this."
+msgstr "Penyedia tidak menawarkan ini."
+
+msgid "This is not permitted by policy."
+msgstr "Ini tidak diizinkan oleh kebijakan."
+
+msgid "The provider's support for this is not verified."
+msgstr "Dukungan penyedia untuk ini belum terverifikasi."
+
+msgid "This needs a contract or written authorisation as evidence."
+msgstr "Ini memerlukan kontrak atau otorisasi tertulis sebagai bukti."
+
+msgid "No grant has been recorded."
+msgstr "Belum ada pemberian yang tercatat."
+
+msgid "The grant is not in the granted state."
+msgstr "Pemberian tidak berada dalam status diberikan."
+
+msgid "The grant has no evidence."
+msgstr "Pemberian tidak memiliki bukti."
+
+msgid "The grant predates the current provider matrix."
+msgstr "Pemberian ini lebih lama dari matriks penyedia saat ini."
+
+msgid "The account is not connected."
+msgstr "Akun tidak terhubung."
+
+msgid "The provider authorisation is not active."
+msgstr "Otorisasi penyedia tidak aktif."
+
+msgid "WhatsApp Cloud API"
+msgstr "WhatsApp Cloud API"
+
+msgid "StarSender (unofficial)"
+msgstr "StarSender (tidak resmi)"
+
+msgid "Facebook Page"
+msgstr "Halaman Facebook"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "Threads"
+msgstr "Threads"
+
+msgid "TikTok"
+msgstr "TikTok"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "LinkedIn Page"
+msgstr "Halaman LinkedIn"
+
+msgid "LinkedIn member data"
+msgstr "Data anggota LinkedIn"
+
+msgid "Telegram"
+msgstr "Telegram"
+
+msgid "Website forms"
+msgstr "Formulir situs web"
+
+msgid "Mailketing email"
+msgstr "Email Mailketing"
+
+msgid "WhatsApp Business account"
+msgstr "Akun WhatsApp Business"
+
+msgid "WhatsApp phone number"
+msgstr "Nomor WhatsApp"
+
+msgid "Professional account"
+msgstr "Akun profesional"
+
+msgid "Creator account"
+msgstr "Akun kreator"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Organisation page"
+msgstr "Halaman organisasi"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid "Email service account"
+msgstr "Akun layanan email"
+
+msgid "Sender identity"
+msgstr "Identitas pengirim"
+
+msgid "Not connectable: a policy boundary, not an account"
+msgstr "Tidak dapat dihubungkan: batas kebijakan, bukan akun"
+
+msgid "Connector installed"
+msgstr "Konektor terpasang"
+
+msgid "Unsupported on this deployment: no connector installed, requires approval"
+msgstr "Tidak didukung pada deployment ini: tidak ada konektor terpasang, memerlukan persetujuan"
+
+msgid "Not connectable: phase-gated, documented only; needs a business case and the provider's approval"
+msgstr "Tidak dapat dihubungkan: ditahan fase, hanya terdokumentasi; memerlukan kasus bisnis dan persetujuan penyedia"
+
+msgid "X account"
+msgstr "Akun X"
+
+msgid "LINE Official Account"
+msgstr "LINE Official Account"
+
+msgid "Pinterest"
+msgstr "Pinterest"
+
+msgid "Google Business Profile"
+msgstr "Google Business Profile"
+
+msgid "Discord"
+msgstr "Discord"
+
+msgid "Bluesky"
+msgstr "Bluesky"
+
+msgid "Mastodon"
+msgstr "Mastodon"
+
+msgid "Snapchat"
+msgstr "Snapchat"
+
+msgid "Reddit"
+msgstr "Reddit"
+
+msgid "Provider: {value}"
+msgstr "Penyedia: {value}"
+
+msgid "Provider authorisation"
+msgstr "Otorisasi penyedia"
+
+msgid "Stored (write-only)"
+msgstr "Tersimpan (hanya tulis)"
+
+msgid "None stored"
+msgstr "Tidak ada yang tersimpan"
+
+msgid "Whole tenant"
+msgstr "Seluruh tenant"
+
+msgid "Scope: {type}"
+msgstr "Cakupan: {type}"
+
+msgid "Channel accounts"
+msgstr "Akun kanal"
+
+msgid "External accounts this tenant has connected (messaging numbers, pages, bots, email logins) and the provider authorisations behind them. Credentials are never shown."
+msgstr "Akun eksternal yang telah dihubungkan tenant ini (nomor pesan, halaman, bot, login email) dan otorisasi penyedia di baliknya. Kredensial tidak pernah ditampilkan."
+
+msgid "You do not have permission to view channel accounts."
+msgstr "Anda tidak memiliki izin untuk melihat akun kanal."
+
+msgid "Channel accounts could not be loaded right now. Please try again later."
+msgstr "Akun kanal tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Channel accounts are switched off on this deployment, so nothing can be connected or listed."
+msgstr "Akun kanal dimatikan pada deployment ini, sehingga tidak ada yang dapat dihubungkan atau ditampilkan."
+
+msgid "Accounts"
+msgstr "Akun"
+
+
+msgid "Search channel accounts"
+msgstr "Cari akun kanal"
+
+msgid "All providers"
+msgstr "Semua penyedia"
+
+msgid "Account"
+msgstr "Akun"
+
+msgid "Credential"
+msgstr "Kredensial"
+
+msgid "Bound to"
+msgstr "Terikat ke"
+
+msgid "No channel accounts yet"
+msgstr "Belum ada akun kanal"
+
+msgid "Connected accounts will appear here once a provider connector is installed and an account is registered."
+msgstr "Akun yang terhubung akan muncul di sini setelah konektor penyedia dipasang dan akun didaftarkan."
+
+msgid "Provider connections"
+msgstr "Koneksi penyedia"
+
+msgid "An authorisation the tenant granted a provider. Tokens, authorisation codes and their references are never shown."
+msgstr "Otorisasi yang diberikan tenant kepada penyedia. Token, kode otorisasi, dan referensinya tidak pernah ditampilkan."
+
+msgid "Method"
+msgstr "Metode"
+
+msgid "Granted scopes"
+msgstr "Cakupan yang diberikan"
+
+msgid "No provider connections yet."
+msgstr "Belum ada koneksi penyedia."
+
+msgid "Waiting for the connector to finish"
+msgstr "Menunggu konektor menyelesaikan"
+
+msgid "What can be connected"
+msgstr "Yang dapat dihubungkan"
+
+msgid "Provider matrix v{version}. A provider without a connector on this deployment cannot be connected from here; connecting it needs the provider's approval and a connector, so there is no Connect button."
+msgstr "Matriks penyedia v{version}. Penyedia tanpa konektor pada deployment ini tidak dapat dihubungkan dari sini; menghubungkannya memerlukan persetujuan penyedia dan sebuah konektor, sehingga tidak ada tombol Hubungkan."
+
+msgid "Providers and how they connect"
+msgstr "Penyedia dan cara terhubung"
+
+msgid "Availability"
+msgstr "Ketersediaan"
+
+msgid "The credential was replaced. The previous one is gone and cannot be shown."
+msgstr "Kredensial telah diganti. Kredensial sebelumnya sudah hilang dan tidak dapat ditampilkan."
+
+msgid "This account is now the default sender. It applies to messages queued from now on."
+msgstr "Akun ini sekarang menjadi pengirim default. Berlaku untuk pesan yang diantrekan mulai sekarang."
+
+msgid "The account was disconnected and its stored credential was erased."
+msgstr "Akun diputuskan dan kredensial tersimpannya dihapus."
+
+msgid "The provider authorisation was revoked and its credentials were erased."
+msgstr "Otorisasi penyedia dicabut dan kredensialnya dihapus."
+
+msgid "{remaining} remaining"
+msgstr "Sisa {remaining}"
+
+msgid "{remaining} of {limit} remaining"
+msgstr "Sisa {remaining} dari {limit}"
+
+msgid "Channel account"
+msgstr "Akun kanal"
+
+msgid "Status, health and what this account is allowed to do, with the evidence for each. Credentials are never shown."
+msgstr "Status, kesehatan, dan apa yang boleh dilakukan akun ini, beserta buktinya. Kredensial tidak pernah ditampilkan."
+
+msgid "All channel accounts"
+msgstr "Semua akun kanal"
+
+msgid "This channel account could not be loaded right now. Please try again later."
+msgstr "Akun kanal ini tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "This channel account does not exist, or you cannot see it."
+msgstr "Akun kanal ini tidak ada, atau Anda tidak dapat melihatnya."
+
+msgid "Held by the provider authorisation"
+msgstr "Dipegang oleh otorisasi penyedia"
+
+msgid "Stored (write-only, never shown)"
+msgstr "Tersimpan (hanya tulis, tidak pernah ditampilkan)"
+
+msgid "No health report yet. Health is reported by a provider connector and is never set by a person, so this account is not shown as healthy until one reports."
+msgstr "Belum ada laporan kesehatan. Kesehatan dilaporkan oleh konektor penyedia dan tidak pernah ditetapkan oleh manusia, sehingga akun ini tidak ditampilkan sehat sampai ada laporan."
+
+msgid "Last synced"
+msgstr "Terakhir disinkronkan"
+
+msgid "Token expires"
+msgstr "Token kedaluwarsa"
+
+msgid "Quota"
+msgstr "Kuota"
+
+msgid "None recorded"
+msgstr "Tidak ada yang tercatat"
+
+msgid "Issued"
+msgstr "Diterbitkan"
+
+msgid "Capabilities and evidence"
+msgstr "Kapabilitas dan bukti"
+
+msgid "What this account may do is decided per capability: the provider must offer it, a grant must be recorded with evidence, and the account and its authorisation must be active. A capability the provider does not offer is listed but disabled. Recording or withdrawing a grant is done through the API."
+msgstr "Apa yang boleh dilakukan akun ini ditentukan per kapabilitas: penyedia harus menawarkannya, pemberian harus tercatat dengan bukti, dan akun serta otorisasinya harus aktif. Kapabilitas yang tidak ditawarkan penyedia tetap ditampilkan tetapi dinonaktifkan. Mencatat atau menarik pemberian dilakukan melalui API."
+
+msgid "Evidence state"
+msgstr "Status bukti"
+
+msgid "Usable now"
+msgstr "Dapat dipakai sekarang"
+
+msgid "Default sender"
+msgstr "Pengirim default"
+
+msgid "This account is the default WhatsApp sender for its scope."
+msgstr "Akun ini adalah pengirim WhatsApp default untuk cakupannya."
+
+msgid "This account is not the default WhatsApp sender for its scope."
+msgstr "Akun ini bukan pengirim WhatsApp default untuk cakupannya."
+
+msgid "This deployment has no sending adapter for this provider, so it cannot be the default sender."
+msgstr "Deployment ini tidak memiliki adaptor pengiriman untuk penyedia ini, sehingga tidak dapat menjadi pengirim default."
+
+msgid "Making this account the default changes which number sends when no sender is named. It applies to messages queued from now on; messages already queued keep the sender they were given."
+msgstr "Menjadikan akun ini default mengubah nomor mana yang mengirim bila tidak ada pengirim yang disebut. Berlaku untuk pesan yang diantrekan mulai sekarang; pesan yang sudah diantrekan tetap memakai pengirim yang diberikan kepadanya."
+
+msgid "Make default sender"
+msgstr "Jadikan pengirim default"
+
+msgid "Replace credential"
+msgstr "Ganti kredensial"
+
+msgid "Writing a new credential overwrites the stored one. The old value cannot be shown and the new value is never displayed again. Writing a credential needs two-factor authentication and may ask for a fresh code."
+msgstr "Menulis kredensial baru menimpa yang tersimpan. Nilai lama tidak dapat ditampilkan dan nilai baru tidak pernah ditampilkan lagi. Menulis kredensial memerlukan autentikasi dua faktor dan dapat meminta kode baru."
+
+msgid "New credential"
+msgstr "Kredensial baru"
+
+msgid "No spaces. Between 8 and 4096 characters."
+msgstr "Tanpa spasi. Antara 8 dan 4096 karakter."
+
+msgid "Disconnect account"
+msgstr "Putuskan akun"
+
+msgid "Disconnecting is permanent. Nothing will send or publish as this account again, its stored credential is erased and its webhook subscriptions are revoked. The provider is not told: revoke it there as well."
+msgstr "Pemutusan bersifat permanen. Tidak akan ada lagi yang mengirim atau memublikasikan sebagai akun ini, kredensial tersimpannya dihapus, dan langganan webhook-nya dicabut. Penyedia tidak diberi tahu: cabut juga di sana."
+
+msgid "{waiting} waiting and {sending} in flight for this sender. They are not rerouted to another sender: they will fail."
+msgstr "{waiting} menunggu dan {sending} sedang dikirim untuk pengirim ini. Pesan itu tidak dialihkan ke pengirim lain: pesan itu akan gagal."
+
+msgid "Type the account name to confirm: {name}"
+msgstr "Ketik nama akun untuk mengonfirmasi: {name}"
+
+msgid "Revoke provider authorisation"
+msgstr "Cabut otorisasi penyedia"
+
+msgid "Type the provider name to confirm: {name}"
+msgstr "Ketik nama penyedia untuk mengonfirmasi: {name}"
+
+msgid "Revoke authorisation"
+msgstr "Cabut otorisasi"
+
+msgid "What you typed does not match. Nothing was changed."
+msgstr "Yang Anda ketik tidak cocok. Tidak ada yang diubah."
+
+msgid "Could not replace the credential. Please try again."
+msgstr "Kredensial tidak dapat diganti. Silakan coba lagi."
+
+msgid "Writing a credential needs two-factor authentication. Turn it on under your account first."
+msgstr "Menulis kredensial memerlukan autentikasi dua faktor. Aktifkan terlebih dahulu di akun Anda."
+
+msgid "Confirmation cancelled. Nothing changed."
+msgstr "Konfirmasi dibatalkan. Tidak ada yang berubah."
+
+msgid "Credentials cannot be stored on this deployment right now."
+msgstr "Kredensial tidak dapat disimpan pada deployment ini saat ini."
+
+msgid "This account has no credential of its own."
+msgstr "Akun ini tidak memiliki kredensial sendiri."
+
+msgid "The account's state does not allow this."
+msgstr "Status akun tidak mengizinkan ini."
+
+msgid "That account or authorisation no longer exists, or you cannot act on it."
+msgstr "Akun atau otorisasi itu sudah tidak ada, atau Anda tidak dapat bertindak atasnya."
+
+msgid "That was already done, or the request conflicts with an earlier one. Reload the page."
+msgstr "Itu sudah dilakukan, atau permintaan bertentangan dengan yang sebelumnya. Muat ulang halaman."
+
+msgid "Could not disconnect the account. Please try again."
+msgstr "Akun tidak dapat diputuskan. Silakan coba lagi."
+
+msgid "Could not revoke the authorisation. Please try again."
+msgstr "Otorisasi tidak dapat dicabut. Silakan coba lagi."
+
+msgid "Could not change the default sender. Please try again."
+msgstr "Pengirim default tidak dapat diubah. Silakan coba lagi."
+
+msgid "That account cannot be the default sender: it must be connected, may send business messages and have a sending adapter."
+msgstr "Akun itu tidak dapat menjadi pengirim default: harus terhubung, boleh mengirim pesan bisnis, dan memiliki adaptor pengiriman."
+
+msgid "Too many attempts. Try again later."
+msgstr "Terlalu banyak percobaan. Coba lagi nanti."
+
+msgid "{count} account matches your search and filters"
+msgid_plural "{count} accounts match your search and filters"
+msgstr[0] "{count} akun cocok dengan pencarian dan filter Anda"
+
+msgid "{count} account"
+msgid_plural "{count} accounts"
+msgstr[0] "{count} akun"
+
+msgid "{count} connection"
+msgid_plural "{count} connections"
+msgstr[0] "{count} koneksi"
+
+msgid "{count} scope"
+msgid_plural "{count} scopes"
+msgstr[0] "{count} cakupan"
+
+msgid "{count} capability"
+msgid_plural "{count} capabilities"
+msgstr[0] "{count} kapabilitas"
+
+
+msgid "Identity"
+msgstr "Identitas"
+
+msgid "Authenticator code"
+msgstr "Kode autentikator"
+
+msgid "Enter the current six-digit code, then replace the credential again."
+msgstr "Masukkan kode enam digit saat ini, lalu ganti kredensial sekali lagi."
+
+msgid "This tenant has more accounts than this screen loads. Showing the newest {count}. The provider and status filters cover every account; search covers only these. The API lists the rest."
+msgstr "Tenant ini memiliki lebih banyak akun daripada yang dimuat layar ini. Menampilkan {count} terbaru. Filter penyedia dan status mencakup semua akun; pencarian hanya mencakup yang ditampilkan. API menampilkan sisanya."
+
+msgid "Your role may write credentials, but the form is withheld: writing one needs two-factor authentication enrolled on your account, or a policy denies it."
+msgstr "Peran Anda boleh menulis kredensial, tetapi formulirnya ditahan: menulis kredensial memerlukan autentikasi dua faktor yang terdaftar pada akun Anda, atau sebuah kebijakan menolaknya."
+
+msgid "That code is not right. Check it and try again; your new credential is still in the form."
+msgstr "Kode itu tidak benar. Periksa lalu coba lagi; kredensial baru Anda masih ada di formulir."
+
+msgid "Too many wrong codes. The factor is locked for a while; your new credential is still in the form."
+msgstr "Terlalu banyak kode salah. Faktor terkunci untuk sementara; kredensial baru Anda masih ada di formulir."
+
+msgid "The credential must be at least 8 characters."
+msgstr "Kredensial minimal 8 karakter."
+
+msgid "The credential cannot contain spaces. Remove them and try again."
+msgstr "Kredensial tidak boleh berisi spasi. Hapus spasinya lalu coba lagi."
+
+msgid "Revoking is permanent. The authorisation's credentials are erased and up to {count} account bound to it is disconnected."
+msgid_plural "Revoking is permanent. The authorisation's credentials are erased and up to {count} accounts bound to it are disconnected."
+msgstr[0] "Pencabutan bersifat permanen. Kredensial otorisasi dihapus dan hingga {count} akun yang terikat padanya diputuskan."
+
+msgid "Only a connected account can be the default sender. This one is not connected yet."
+msgstr "Hanya akun yang terhubung yang dapat menjadi pengirim default. Akun ini belum terhubung."
+
+msgid "Delivery progress"
+msgstr "Progres pengiriman"
+
+msgid "Messages queued through this sender in the last {days} days that you may see, by status. It updates while this page is open; it is not a delivery receipt and it stops when the tab is closed."
+msgstr "Pesan yang diantrekan melalui pengirim ini dalam {days} hari terakhir yang boleh Anda lihat, menurut status. Diperbarui selama halaman ini terbuka; ini bukan tanda terima pengiriman dan berhenti saat tab ditutup."
+
+msgid "Connection"
+msgstr "Koneksi"
+
+msgid "Reconnecting…"
+msgstr "Menyambung ulang…"
+
+msgid "Not live — showing the state as of {time}"
+msgstr "Tidak langsung — menampilkan keadaan per {time}"
+
+msgid "Your access to this progress ended. Reload the page to see what you can still view."
+msgstr "Akses Anda ke progres ini berakhir. Muat ulang halaman untuk melihat apa yang masih dapat Anda lihat."
+
+msgid "{sent} sent, {failed} failed, {waiting} waiting"
+msgstr "{sent} terkirim, {failed} gagal, {waiting} menunggu"
+
+msgid "Refresh progress"
+msgstr "Muat ulang progres"
+
+msgid "Add tag"
+msgstr "Tambah label"
+
+msgid "All sources"
+msgstr "Semua sumber"
+
+msgid "All tags"
+msgstr "Semua label"
+
+msgid "Another staff member"
+msgstr "Staf lain"
+
+msgid "Anyone"
+msgstr "Siapa saja"
+
+msgid "Any response state"
+msgstr "Semua status respons"
+
+msgid "Applies to the whole tenant and replaces the active default. A policy for one business scope is written through the API."
+msgstr "Berlaku untuk seluruh tenant dan menggantikan kebijakan bawaan yang aktif. Kebijakan untuk satu lingkup bisnis ditulis lewat API."
+
+msgid "Assigned"
+msgstr "Ditugaskan"
+
+msgid "Assigned to me"
+msgstr "Ditugaskan ke saya"
+
+msgid "Assignee"
+msgstr "Penerima tugas"
+
+msgid "Assignee removed (no longer eligible)"
+msgstr "Penerima tugas dicabut (tidak lagi memenuhi syarat)"
+
+msgid "Assignee: {value}"
+msgstr "Penerima tugas: {value}"
+
+msgid "Assignment"
+msgstr "Penugasan"
+
+msgid "Assign to another person"
+msgstr "Tugaskan ke orang lain"
+
+msgid "Assign to me"
+msgstr "Tugaskan ke saya"
+
+msgid "Back to the inbox"
+msgstr "Kembali ke kotak masuk"
+
+msgid "By"
+msgstr "Oleh"
+
+msgid "Can be answered"
+msgstr "Dapat dijawab"
+
+msgid "Closes at (24-hour, HH:MM)"
+msgstr "Tutup pukul (24 jam, JJ:MM)"
+
+msgid "Conversation"
+msgstr "Percakapan"
+
+msgid "Conversations"
+msgstr "Percakapan"
+
+msgid "Conversations appear here when a customer writes to a connected Telegram bot or submits a website form."
+msgstr "Percakapan muncul di sini saat pelanggan menulis ke bot Telegram yang terhubung atau mengirim formulir situs web."
+
+msgid "{count} conversation"
+msgid_plural "{count} conversations"
+msgstr[0] "{count} percakapan"
+
+msgid "{count} conversation matches your search and filters"
+msgid_plural "{count} conversations match your search and filters"
+msgstr[0] "{count} percakapan cocok dengan pencarian dan filter Anda"
+
+msgid "{count} history entry (newest first)"
+msgid_plural "{count} history entries (newest first)"
+msgstr[0] "{count} entri riwayat (terbaru lebih dulu)"
+
+msgid "{count} holiday"
+msgid_plural "{count} holidays"
+msgstr[0] "{count} hari libur"
+
+msgid "{count} tag"
+msgid_plural "{count} tags"
+msgstr[0] "{count} label"
+
+msgid "{count} working minute"
+msgid_plural "{count} working minutes"
+msgstr[0] "{count} menit kerja"
+
+msgid "Customer"
+msgstr "Pelanggan"
+
+msgid "First inbound"
+msgstr "Masuk pertama"
+
+msgid "First response"
+msgstr "Respons pertama"
+
+msgid "First response (working minutes)"
+msgstr "Respons pertama (menit kerja)"
+
+msgid "Friday"
+msgstr "Jumat"
+
+msgid "Holidays (one date per line, YYYY-MM-DD)"
+msgstr "Hari libur (satu tanggal per baris, TTTT-BB-HH)"
+
+msgid "How long staff have to answer, counted only inside working hours. A new policy replaces the active one for the same scope; replaced policies are kept so an overdue conversation always names the terms it was measured against."
+msgstr "Berapa lama staf punya waktu menjawab, dihitung hanya pada jam kerja. Kebijakan baru menggantikan yang aktif untuk lingkup yang sama; kebijakan yang diganti tetap disimpan agar percakapan yang terlambat selalu menyebut ketentuan pengukurannya."
+
+msgid "Inbox settings"
+msgstr "Pengaturan kotak masuk"
+
+msgid "Last inbound"
+msgstr "Masuk terakhir"
+
+msgid "Last response recorded"
+msgstr "Respons terakhir dicatat"
+
+msgid "Lower-case letters, digits, hyphen or underscore."
+msgstr "Huruf kecil, angka, tanda hubung, atau garis bawah."
+
+msgid "Monday"
+msgstr "Senin"
+
+msgid "New default policy"
+msgstr "Kebijakan bawaan baru"
+
+msgid "Newest inbound first. A conversation here is a work item over an opaque reference: to read or answer the customer, use the channel it arrived through, then record the response on the conversation."
+msgstr "Masuk terbaru lebih dulu. Percakapan di sini adalah butir kerja atas referensi buram: untuk membaca atau menjawab pelanggan, gunakan kanal tempat percakapan itu masuk, lalu catat responsnya pada percakapan."
+
+msgid "New tag"
+msgstr "Label baru"
+
+msgid "Next response"
+msgstr "Respons berikutnya"
+
+msgid "Next response (working minutes)"
+msgstr "Respons berikutnya (menit kerja)"
+
+msgid "No conversations yet"
+msgstr "Belum ada percakapan"
+
+msgid "No history yet."
+msgstr "Belum ada riwayat."
+
+msgid "No policy yet. Without one, conversations have no response deadline."
+msgstr "Belum ada kebijakan. Tanpa kebijakan, percakapan tidak punya tenggat respons."
+
+msgid "No response due"
+msgstr "Tidak ada respons yang jatuh tempo"
+
+msgid "No tags exist yet. An administrator creates them."
+msgstr "Belum ada label. Administrator yang membuatnya."
+
+msgid "No tags yet."
+msgstr "Belum ada label."
+
+msgid "Not available yet: there is no list of the people eligible to be assignees. They can assign the conversation to themselves."
+msgstr "Belum tersedia: belum ada daftar orang yang memenuhi syarat menjadi penerima tugas. Mereka dapat menugaskan percakapan ke dirinya sendiri."
+
+msgid "Omnichannel inbox"
+msgstr "Kotak masuk omnichannel"
+
+msgid "On track"
+msgstr "Sesuai jadwal"
+
+msgid "Open days"
+msgstr "Hari buka"
+
+msgid "Opens at (24-hour, HH:MM)"
+msgstr "Buka pukul (24 jam, JJ:MM)"
+
+msgid "Rebuild now"
+msgstr "Bangun ulang sekarang"
+
+msgid "Rebuild the conversation list"
+msgstr "Bangun ulang daftar percakapan"
+
+msgid "Record that I answered"
+msgstr "Catat bahwa saya sudah menjawab"
+
+msgid "Removed tag"
+msgstr "Label dihapus"
+
+msgid "Replaced the previous assignee"
+msgstr "Menggantikan penerima tugas sebelumnya"
+
+msgid "Replays the verified inbound events still inside the retention window (365 days) into the conversation list, for example after a restore. Status, assignment and tags are never changed. It runs in batches and reports what it processed."
+msgstr "Memutar ulang peristiwa masuk terverifikasi yang masih dalam jendela retensi (365 hari) ke daftar percakapan, misalnya setelah pemulihan. Status, penugasan, dan label tidak pernah diubah. Berjalan per kelompok dan melaporkan yang diproses."
+
+msgid "Response"
+msgstr "Respons"
+
+msgid "Response deadline missed"
+msgstr "Tenggat respons terlewat"
+
+msgid "Response due"
+msgstr "Respons jatuh tempo"
+
+msgid "Response policies"
+msgstr "Kebijakan respons"
+
+msgid "Response policies, the tag catalogue and the conversation projection of the omnichannel inbox."
+msgstr "Kebijakan respons, katalog label, dan proyeksi percakapan kotak masuk omnichannel."
+
+msgid "Response recorded"
+msgstr "Respons dicatat"
+
+msgid "Response: {value}"
+msgstr "Respons: {value}"
+
+msgid "Retire"
+msgstr "Pensiunkan"
+
+msgid "Retired {when}"
+msgstr "Dipensiunkan {when}"
+
+msgid "Saturday"
+msgstr "Sabtu"
+
+msgid "Save status"
+msgstr "Simpan status"
+
+msgid "Save tags"
+msgstr "Simpan label"
+
+msgid "Search conversations"
+msgstr "Cari percakapan"
+
+msgid "Source: {value}"
+msgstr "Sumber: {value}"
+
+msgid "State, history and actions of one inbox conversation. Message text and customer identifiers are never shown."
+msgstr "Status, riwayat, dan tindakan satu percakapan kotak masuk. Isi pesan dan pengenal pelanggan tidak pernah ditampilkan."
+
+msgid "Status changed"
+msgstr "Status diubah"
+
+msgid "Sunday"
+msgstr "Minggu"
+
+msgid "Tag"
+msgstr "Label"
+
+msgid "Tag added"
+msgstr "Label ditambahkan"
+
+msgid "Tag removed"
+msgstr "Label dilepas"
+
+msgid "Tags and response policies"
+msgstr "Label dan kebijakan respons"
+
+msgid "Tag: {value}"
+msgstr "Label: {value}"
+
+msgid "Telegram bot"
+msgstr "Bot Telegram"
+
+msgid "That conversation was not found."
+msgstr "Percakapan itu tidak ditemukan."
+
+msgid "The conversation could not be loaded right now. Please try again later."
+msgstr "Percakapan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The inbox could not be loaded right now. Please try again later."
+msgstr "Kotak masuk tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The inbox sends nothing to the customer. Answer through the channel the conversation arrived on, then record the response here to stop the deadline clock."
+msgstr "Kotak masuk tidak mengirim apa pun ke pelanggan. Jawab lewat kanal tempat percakapan masuk, lalu catat respons di sini untuk menghentikan hitungan tenggat."
+
+msgid "The omnichannel inbox is switched off on this deployment."
+msgstr "Kotak masuk omnichannel dimatikan pada deployment ini."
+
+msgid "The omnichannel inbox is switched off on this deployment, so no conversation is collected or listed."
+msgstr "Kotak masuk omnichannel dimatikan pada deployment ini, sehingga tidak ada percakapan yang dikumpulkan atau ditampilkan."
+
+msgid "The person does not cover this business scope"
+msgstr "Orang tersebut tidak mencakup lingkup bisnis ini"
+
+msgid "The person lost the permission"
+msgstr "Orang tersebut kehilangan izin"
+
+msgid "The person no longer covers this business scope"
+msgstr "Orang tersebut tidak lagi mencakup lingkup bisnis ini"
+
+msgid "The person was deactivated"
+msgstr "Orang tersebut dinonaktifkan"
+
+msgid "There are more conversations than this screen loads. Showing the newest {count}. The status, assignee, overdue, source and tag filters cover every conversation; search covers only these. The API lists the rest."
+msgstr "Percakapan lebih banyak daripada yang dimuat layar ini. Menampilkan {count} terbaru. Filter status, penerima tugas, terlambat, sumber, dan label mencakup semua percakapan; pencarian hanya mencakup yang dimuat. API menampilkan sisanya."
+
+msgid "The settings could not be loaded right now. Please try again later."
+msgstr "Pengaturan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The staff work queue over verified inbound conversations: status, assignment, tags and response deadlines. Message text and customer identifiers are never shown."
+msgstr "Antrean kerja staf atas percakapan masuk terverifikasi: status, penugasan, label, dan tenggat respons. Isi pesan dan pengenal pelanggan tidak pernah ditampilkan."
+
+msgid "This customer opted out or withdrew. The conversation cannot be answered, reopened, assigned or tagged."
+msgstr "Pelanggan ini berhenti berlangganan atau menarik persetujuan. Percakapan tidak dapat dijawab, dibuka kembali, ditugaskan, atau diberi label."
+
+msgid "Thursday"
+msgstr "Kamis"
+
+msgid "Timezone (IANA name)"
+msgstr "Zona waktu (nama IANA)"
+
+msgid "Tuesday"
+msgstr "Selasa"
+
+msgid "Unassign"
+msgstr "Batalkan penugasan"
+
+msgid "Unassigned"
+msgstr "Belum ditugaskan"
+
+msgid "Website form"
+msgstr "Formulir situs web"
+
+msgid "Wednesday"
+msgstr "Rabu"
+
+msgid "Whole tenant (default)"
+msgstr "Seluruh tenant (bawaan)"
+
+msgid "Withdrew"
+msgstr "Menarik persetujuan"
+
+msgid "Working week"
+msgstr "Pekan kerja"
+
+msgid "You"
+msgstr "Anda"
+
+msgid "You do not have permission to view the inbox."
+msgstr "Anda tidak memiliki izin untuk melihat kotak masuk."
+
+msgid "You do not have permission to view the inbox settings."
+msgstr "Anda tidak memiliki izin untuk melihat pengaturan kotak masuk."
+
+msgid "A check older than {minutes} minutes is out of date and holds sending, exactly as the queue does. Credit below {floor} holds every sender of that account."
+msgstr "Pemeriksaan yang lebih lama dari {minutes} menit sudah kedaluwarsa dan menahan pengiriman, persis seperti antrean. Kredit di bawah {floor} menahan setiap pengirim pada akun tersebut."
+
+msgid "A sender is usable only when the provider reported it verified, recently, and its account has credit. The default is chosen per brand; messages already queued keep the sender they were given and are never moved to another."
+msgstr "Pengirim hanya dapat dipakai bila penyedia melaporkannya terverifikasi baru-baru ini dan akunnya punya kredit. Default dipilih per merek; pesan yang sudah antre tetap memakai pengirim yang diberikan dan tidak pernah dipindahkan ke pengirim lain."
+
+msgid "A tenant sender is the default; the deployment sender is used only where a message asks for it."
+msgstr "Pengirim tenant adalah default; pengirim deployment hanya dipakai bila sebuah pesan memintanya."
+
+msgid "The default sender is not shown to you; the deployment sender is used where a message asks for it."
+msgstr "Pengirim default tidak ditampilkan kepada Anda; pengirim deployment dipakai bila sebuah pesan memintanya."
+
+msgid "A test send needs an allow-listed address and a confirmation step that do not exist yet."
+msgstr "Kirim uji memerlukan alamat dalam daftar izin dan langkah konfirmasi yang belum tersedia."
+
+msgid "{balance} credits"
+msgstr "{balance} kredit"
+
+msgid "{balance} credits, below the {floor} needed to send"
+msgstr "{balance} kredit, di bawah {floor} yang diperlukan untuk mengirim"
+
+msgid "{balance} credits (out of date)"
+msgstr "{balance} kredit (kedaluwarsa)"
+
+msgid "Brand or scope: {type} {id}"
+msgstr "Merek atau cakupan: {type} {id}"
+
+msgid "Cannot send right now"
+msgstr "Tidak dapat mengirim saat ini"
+
+msgid "Can send now"
+msgstr "Dapat mengirim sekarang"
+
+msgid "Channel accounts are not available"
+msgstr "Akun kanal tidak tersedia"
+
+msgid "Channel accounts are switched off on this deployment, so tenant email senders cannot be connected or listed."
+msgstr "Akun kanal dimatikan pada deployment ini, sehingga pengirim email tenant tidak dapat dihubungkan atau ditampilkan."
+
+msgid "Channel accounts (connect, replace credential, disconnect)"
+msgstr "Akun kanal (hubungkan, ganti kredensial, putuskan)"
+
+msgid "Check out of date"
+msgstr "Pemeriksaan kedaluwarsa"
+
+msgid "{count} sender"
+msgid_plural "{count} senders"
+msgstr[0] "{count} pengirim"
+
+msgid "Credential rejected by the provider"
+msgstr "Kredensial ditolak oleh penyedia"
+
+msgid "Credit"
+msgstr "Kredit"
+
+msgid "Default"
+msgstr "Default"
+
+msgid "Default for its scope"
+msgstr "Default untuk cakupannya"
+
+msgid "Deployment sender"
+msgstr "Pengirim deployment"
+
+msgid "Deployment sender: API {version}"
+msgstr "Pengirim deployment: API {version}"
+
+msgid "Email senders"
+msgstr "Pengirim email"
+
+msgid "Email senders could not be loaded right now. Please try again later."
+msgstr "Pengirim email tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Email suppression list"
+msgstr "Daftar penekanan email"
+
+msgid "Held: sender verification is out of date"
+msgstr "Ditahan: verifikasi pengirim kedaluwarsa"
+
+msgid "Held: sender verification is unknown"
+msgstr "Ditahan: verifikasi pengirim tidak diketahui"
+
+msgid "Held: the account credit is out of date"
+msgstr "Ditahan: kredit akun kedaluwarsa"
+
+msgid "Held: the account credit is too low"
+msgstr "Ditahan: kredit akun terlalu rendah"
+
+msgid "Held: the account credit is unknown"
+msgstr "Ditahan: kredit akun tidak diketahui"
+
+msgid "Held: the provider does not list this sender as verified"
+msgstr "Ditahan: penyedia tidak mencantumkan pengirim ini sebagai terverifikasi"
+
+msgid "hourly limit of {limit} reached"
+msgstr "batas {limit} per jam tercapai"
+
+msgid "Last checked"
+msgstr "Terakhir diperiksa"
+
+msgid "Mailketing accounts"
+msgstr "Akun Mailketing"
+
+msgid "Mailketing API version"
+msgstr "Versi API Mailketing"
+
+msgid "Mailketing offers no documented API for creating lists or campaigns, so it is not shown as working. Use the provider's own dashboard."
+msgstr "Mailketing tidak menyediakan API terdokumentasi untuk membuat daftar atau kampanye, sehingga tidak ditampilkan sebagai berfungsi. Gunakan dasbor milik penyedia."
+
+msgid "Mailketing sends outbound mail only. These senders have no inbox: replies are not received here."
+msgstr "Mailketing hanya mengirim email keluar. Pengirim ini tidak punya kotak masuk: balasan tidak diterima di sini."
+
+msgid "Mail with no sender named goes out from the deployment sender."
+msgstr "Email tanpa pengirim yang disebutkan keluar dari pengirim deployment."
+
+msgid "Manage Mailketing lists and campaigns"
+msgstr "Kelola daftar dan kampanye Mailketing"
+
+msgid "Never checked"
+msgstr "Belum pernah diperiksa"
+
+msgid "No Mailketing account is connected for this tenant yet."
+msgstr "Belum ada akun Mailketing yang terhubung untuk tenant ini."
+
+msgid "No messages in the last 35 days"
+msgstr "Tidak ada pesan dalam 35 hari terakhir"
+
+msgid "No sender identity is registered for this tenant."
+msgstr "Belum ada identitas pengirim yang terdaftar untuk tenant ini."
+
+msgid "Not available yet"
+msgstr "Belum tersedia"
+
+msgid "Not connected yet"
+msgstr "Belum terhubung"
+
+msgid "Not known"
+msgstr "Tidak diketahui"
+
+msgid "Not verified by the provider"
+msgstr "Belum diverifikasi oleh penyedia"
+
+msgid "Older than the {minutes}-minute window"
+msgstr "Lebih lama dari jendela {minutes} menit"
+
+msgid "oldest waiting since {time}"
+msgstr "menunggu terlama sejak {time}"
+
+msgid "Only a connected sender can be the default."
+msgstr "Hanya pengirim yang terhubung yang dapat menjadi default."
+
+msgid "Only a sender that may send right now can be the default. Run the sender verification first."
+msgstr "Hanya pengirim yang boleh mengirim saat ini yang dapat menjadi default. Jalankan verifikasi pengirim terlebih dahulu."
+
+msgid "Out of credit"
+msgstr "Kredit habis"
+
+msgid "Provider answer not recognised"
+msgstr "Jawaban penyedia tidak dikenali"
+
+msgid "Ready"
+msgstr "Siap"
+
+msgid "Related email screens"
+msgstr "Layar email terkait"
+
+msgid "Send a test email"
+msgstr "Kirim email uji"
+
+msgid "Sender"
+msgstr "Pengirim"
+
+msgid "Sender identities"
+msgstr "Identitas pengirim"
+
+msgid "Senders"
+msgstr "Pengirim"
+
+msgid "Sending email is not granted to this sender"
+msgstr "Pengiriman email tidak diberikan kepada pengirim ini"
+
+msgid "Tenant senders: API v2"
+msgstr "Pengirim tenant: API v2"
+
+msgid "Tenant senders are switched off on this deployment."
+msgstr "Pengirim tenant dimatikan pada deployment ini."
+
+msgid "Tenant senders are switched off on this deployment: mail goes out from the deployment sender only, and the default cannot be changed."
+msgstr "Pengirim tenant dimatikan pada deployment ini: email hanya keluar dari pengirim deployment, dan default tidak dapat diubah."
+
+msgid "That sender cannot be the default: it must be a connected, verified sender of this tenant that may send now, within its brand."
+msgstr "Pengirim itu tidak dapat menjadi default: harus pengirim tenant ini yang terhubung, terverifikasi, boleh mengirim sekarang, dan berada dalam mereknya."
+
+msgid "The account credential cannot be used right now"
+msgstr "Kredensial akun tidak dapat dipakai saat ini"
+
+msgid "The channel account registry could not be loaded, so sender status is not known. This is not the same as having no senders."
+msgstr "Registri akun kanal tidak dapat dimuat, sehingga status pengirim tidak diketahui. Ini tidak sama dengan tidak memiliki pengirim."
+
+msgid "The default sender was changed. It applies to messages queued from now on."
+msgstr "Pengirim default diubah. Berlaku untuk pesan yang diantrekan mulai sekarang."
+
+msgid "The deployment sender is not Mailketing, so there is no API version to migrate."
+msgstr "Pengirim deployment bukan Mailketing, sehingga tidak ada versi API yang perlu dimigrasikan."
+
+msgid "The deployment sender still uses Mailketing API v1. v2 is the target; v1 is a limited rollback path only. Switch after the sandbox check and confirm it with a real send. Tenant-owned senders already use v2."
+msgstr "Pengirim deployment masih memakai API Mailketing v1. v2 adalah targetnya; v1 hanya jalur pemulihan terbatas. Beralih setelah pemeriksaan sandbox dan konfirmasikan dengan pengiriman nyata. Pengirim milik tenant sudah memakai v2."
+
+msgid "The deployment sender uses Mailketing API v2, but the live check has not been acknowledged (EMAIL_MAILKETING_V2_VERIFIED). v2 is not approved for production until it is."
+msgstr "Pengirim deployment memakai API Mailketing v2, tetapi pemeriksaan langsung belum diakui (EMAIL_MAILKETING_V2_VERIFIED). v2 belum disetujui untuk produksi sampai diakui."
+
+msgid "The deployment sender uses the verified Mailketing API v2."
+msgstr "Pengirim deployment memakai API Mailketing v2 yang terverifikasi."
+
+msgid "The deployment's Mailketing API version setting is not v1 or v2, so the deployment sender does not send until it is fixed."
+msgstr "Pengaturan versi API Mailketing deployment bukan v1 atau v2, sehingga pengirim deployment tidak mengirim sampai diperbaiki."
+
+msgid "The Mailketing account is not connected yet"
+msgstr "Akun Mailketing belum terhubung"
+
+msgid "The Mailketing accounts and sender identities of this tenant: whether each may send right now, its credit, when it was last checked and its queue. Credentials are never shown."
+msgstr "Akun Mailketing dan identitas pengirim tenant ini: apakah masing-masing boleh mengirim saat ini, kreditnya, kapan terakhir diperiksa, dan antreannya. Kredensial tidak pernah ditampilkan."
+
+msgid "These are not offered because nothing safe stands behind them yet. They are shown so you know they are missing, not forgotten."
+msgstr "Ini tidak ditawarkan karena belum ada dasar yang aman. Ditampilkan agar Anda tahu bahwa ini belum ada, bukan terlupakan."
+
+msgid "This sender cannot be made the default."
+msgstr "Pengirim ini tidak dapat dijadikan default."
+
+msgid "This tenant has more Mailketing accounts than this screen loads. The newest are shown; the API lists the rest."
+msgstr "Tenant ini memiliki lebih banyak akun Mailketing daripada yang dimuat layar ini. Yang terbaru ditampilkan; API menampilkan sisanya."
+
+msgid "Verification failing"
+msgstr "Verifikasi gagal"
+
+msgid "Verified by the provider"
+msgstr "Terverifikasi oleh penyedia"
+
+msgid "via {account}"
+msgstr "melalui {account}"
+
+msgid "{waiting} waiting, {sending} sending, {failed} failed today"
+msgstr "{waiting} menunggu, {sending} dikirim, {failed} gagal hari ini"
+
+msgid "Within the {minutes}-minute window"
+msgstr "Dalam jendela {minutes} menit"
+
+msgid "You are not assigned to operate this sender."
+msgstr "Anda tidak ditugaskan untuk mengoperasikan pengirim ini."
+
+msgid "You do not have permission to view email senders."
+msgstr "Anda tidak memiliki izin untuk melihat pengirim email."
+
+msgid "You do not hold this sender's business scope."
+msgstr "Anda tidak memegang cakupan bisnis pengirim ini."
+
+msgid "You may view senders but not change the default."
+msgstr "Anda dapat melihat pengirim tetapi tidak dapat mengubah default."
+
+#. Pre-session auth pages (/login, /forgot-password, /reset-password) — ADR-0095
+msgctxt "login"
+msgid "Sign in"
+msgstr "Masuk"
+
+msgctxt "login"
+msgid "Welcome back. Sign in to your workspace."
+msgstr "Selamat datang kembali. Masuk ke ruang kerja Anda."
+
+msgctxt "login"
+msgid "Signing in to"
+msgstr "Masuk ke"
+
+msgctxt "login"
+msgid "Password"
+msgstr "Kata sandi"
+
+msgctxt "login"
+msgid "Forgot your password?"
+msgstr "Lupa kata sandi?"
+
+msgctxt "login"
+msgid "Sign in failed. Check your details and try again."
+msgstr "Gagal masuk. Periksa data Anda lalu coba lagi."
+
+msgctxt "login"
+msgid "One admin surface for every tenant, module and audit trail."
+msgstr "Satu permukaan admin untuk setiap tenant, modul, dan jejak audit."
+
+msgctxt "login"
+msgid "AWCMS keeps content, identity and operations in one governed workspace — with every decision logged."
+msgstr "AWCMS menyatukan konten, identitas, dan operasional dalam satu ruang kerja yang terkelola, dengan setiap keputusan tercatat."
+
+msgctxt "login"
+msgid "Multi-tenant"
+msgstr "Multi-tenant"
+
+msgctxt "login"
+msgid "ABAC access control"
+msgstr "Kendali akses ABAC"
+
+msgctxt "login"
+msgid "Full audit trail"
+msgstr "Jejak audit lengkap"
+
+msgctxt "login"
+msgid "Organization"
+msgstr "Organisasi"
+
+msgctxt "login"
+msgid "Choose your organization"
+msgstr "Pilih organisasi Anda"
+
+msgctxt "login"
+msgid "Tenant ID"
+msgstr "ID tenant"
+
+msgctxt "login"
+msgid "Login identifier"
+msgstr "Nama pengguna atau email"
+
+msgctxt "login"
+msgid "Show"
+msgstr "Tampilkan"
+
+msgctxt "login"
+msgid "Hide"
+msgstr "Sembunyikan"
+
+msgctxt "login"
+msgid "Show password"
+msgstr "Tampilkan kata sandi"
+
+msgctxt "login"
+msgid "Hide password"
+msgstr "Sembunyikan kata sandi"
+
+msgctxt "login"
+msgid "Account recovery"
+msgstr "Pemulihan akun"
+
+msgctxt "login"
+msgid "Secured workspace access"
+msgstr "Akses ruang kerja yang aman"
+
+msgctxt "login"
+msgid "Please wait…"
+msgstr "Mohon tunggu…"
+
+msgctxt "login"
+msgid "Network error. Please try again."
+msgstr "Kesalahan jaringan. Silakan coba lagi."
+
+msgctxt "recovery"
+msgid "Reset your password"
+msgstr "Atur ulang kata sandi Anda"
+
+msgctxt "recovery"
+msgid "Locked out? A reset link is one step away."
+msgstr "Tidak bisa masuk? Tautan atur ulang tinggal satu langkah."
+
+msgctxt "recovery"
+msgid "We send a single-use link to the address on file. Nothing about your account changes until you use it."
+msgstr "Kami mengirim tautan sekali pakai ke alamat yang tercatat. Tidak ada yang berubah pada akun Anda sampai Anda memakainya."
+
+msgctxt "recovery"
+msgid "Enter the identifier you sign in with. If it belongs to an account, we'll email a link to set a new password."
+msgstr "Masukkan nama masuk Anda. Jika milik sebuah akun, kami akan mengirim email berisi tautan untuk mengatur kata sandi baru."
+
+msgctxt "recovery"
+msgid "Recovering for"
+msgstr "Memulihkan akun untuk"
+
+msgctxt "recovery"
+msgid "Send reset link"
+msgstr "Kirim tautan atur ulang"
+
+msgctxt "recovery"
+msgid "Back to sign in"
+msgstr "Kembali ke halaman masuk"
+
+msgctxt "recovery"
+msgid "Too many requests. Please wait a few minutes and try again."
+msgstr "Terlalu banyak permintaan. Tunggu beberapa menit lalu coba lagi."
+
+msgctxt "recovery"
+msgid "Could not send the reset link. Check your details and try again."
+msgstr "Tautan atur ulang tidak dapat dikirim. Periksa isian Anda lalu coba lagi."
+
+msgctxt "recovery"
+msgid "If an account exists for that identifier, password reset instructions have been sent."
+msgstr "Jika ada akun untuk nama masuk itu, petunjuk atur ulang kata sandi telah dikirim."
+
+msgctxt "recovery"
+msgid "Set a new password"
+msgstr "Atur kata sandi baru"
+
+msgctxt "recovery"
+msgid "Choose a new password."
+msgstr "Pilih kata sandi baru."
+
+msgctxt "recovery"
+msgid "The link that brought you here works once and expires; setting a password signs out every other session."
+msgstr "Tautan yang membawa Anda ke sini hanya berlaku sekali dan kedaluwarsa; mengatur kata sandi akan mengeluarkan semua sesi lain."
+
+msgctxt "recovery"
+msgid "Choose a new password for your account. Signing you out everywhere is part of the reset."
+msgstr "Pilih kata sandi baru untuk akun Anda. Keluar dari semua perangkat adalah bagian dari pengaturan ulang."
+
+msgctxt "recovery"
+msgid "This password reset link is invalid or has expired."
+msgstr "Tautan atur ulang kata sandi ini tidak valid atau sudah kedaluwarsa."
+
+msgctxt "recovery"
+msgid "Request a new link"
+msgstr "Minta tautan baru"
+
+msgctxt "recovery"
+msgid "New password"
+msgstr "Kata sandi baru"
+
+msgctxt "recovery"
+msgid "At least {count} characters."
+msgstr "Minimal {count} karakter."
+
+msgctxt "recovery"
+msgid "Confirm new password"
+msgstr "Ulangi kata sandi baru"
+
+msgctxt "recovery"
+msgid "Set new password"
+msgstr "Atur kata sandi baru"
+
+msgctxt "recovery"
+msgid "Sign in with your new password"
+msgstr "Masuk dengan kata sandi baru"
+
+msgctxt "recovery"
+msgid "Password must be at least {count} characters."
+msgstr "Kata sandi minimal {count} karakter."
+
+msgctxt "recovery"
+msgid "The two passwords do not match."
+msgstr "Kedua kata sandi tidak sama."
+
+msgctxt "recovery"
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr "Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi."
+
+msgctxt "recovery"
+msgid "Your password has been changed and every session was signed out."
+msgstr "Kata sandi Anda telah diganti dan semua sesi telah dikeluarkan."
+
+msgctxt "recovery"
+msgid "Organization"
+msgstr "Organisasi"
+
+msgctxt "recovery"
+msgid "Choose your organization"
+msgstr "Pilih organisasi Anda"
+
+msgctxt "recovery"
+msgid "Tenant ID"
+msgstr "ID tenant"
+
+msgctxt "recovery"
+msgid "Login identifier"
+msgstr "Nama pengguna atau email"
+
+msgctxt "recovery"
+msgid "Show"
+msgstr "Tampilkan"
+
+msgctxt "recovery"
+msgid "Hide"
+msgstr "Sembunyikan"
+
+msgctxt "recovery"
+msgid "Show password"
+msgstr "Tampilkan kata sandi"
+
+msgctxt "recovery"
+msgid "Hide password"
+msgstr "Sembunyikan kata sandi"
+
+msgctxt "recovery"
+msgid "Account recovery"
+msgstr "Pemulihan akun"
+
+msgctxt "recovery"
+msgid "Secured workspace access"
+msgstr "Akses ruang kerja yang aman"
+
+msgctxt "recovery"
+msgid "Please wait…"
+msgstr "Mohon tunggu…"
+
+msgctxt "recovery"
+msgid "Network error. Please try again."
+msgstr "Kesalahan jaringan. Silakan coba lagi."
+
+msgid "{count} submission matches your search and filters"
+msgid_plural "{count} submissions match your search and filters"
+msgstr[0] "{count} kiriman cocok dengan pencarian dan filter Anda"
+
+msgid "{count} submission"
+msgid_plural "{count} submissions"
+msgstr[0] "{count} kiriman"
+
+msgid "Kind: {value}"
+msgstr "Jenis: {value}"
+
+msgid "Website engagement"
+msgstr "Interaksi situs web"
+
+msgid "Contact requests, leads and interactions posted by your websites. Contact details are shown masked."
+msgstr "Permintaan kontak, prospek, dan interaksi yang dikirim situs web Anda. Detail kontak ditampilkan tersamar."
+
+msgid "You do not have permission to view website submissions."
+msgstr "Anda tidak memiliki izin untuk melihat kiriman situs web."
+
+msgid "The submissions could not be loaded right now. Please try again later."
+msgstr "Kiriman tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Submissions"
+msgstr "Kiriman"
+
+msgid "Newest first. Contact details are masked here: reading them in full is a separate, audited permission that this screen does not offer. A submission is evidence of what a visitor consented to, so it cannot be edited."
+msgstr "Terbaru lebih dulu. Detail kontak disamarkan di sini: membacanya utuh adalah izin terpisah yang diaudit dan tidak ditawarkan layar ini. Kiriman adalah bukti atas apa yang disetujui pengunjung, sehingga tidak dapat diubah."
+
+msgid "Websites and their access tokens"
+msgstr "Situs web dan token aksesnya"
+
+msgid "The key configuration for website engagement is not valid on this deployment, so new submissions are being refused. The ones listed below were received earlier."
+msgstr "Konfigurasi kunci untuk interaksi situs web tidak valid pada deployment ini, sehingga kiriman baru ditolak. Yang tercantum di bawah diterima sebelumnya."
+
+msgid "There are more submissions than this screen loads. Showing the newest {count}. The source, kind and status filters cover every submission; search covers only these. The API lists the rest."
+msgstr "Kiriman lebih banyak daripada yang dimuat layar ini. Menampilkan {count} terbaru. Filter sumber, jenis, dan status mencakup semua kiriman; pencarian hanya mencakup yang ini. API menampilkan sisanya."
+
+msgid "Search submissions"
+msgstr "Cari kiriman"
+
+msgid "Received"
+msgstr "Diterima"
+
+msgid "Contact (masked)"
+msgstr "Kontak (tersamar)"
+
+msgid "No submissions yet"
+msgstr "Belum ada kiriman"
+
+msgid "Submissions appear here when a registered website posts a contact request, a lead or an interaction."
+msgstr "Kiriman muncul di sini ketika situs web terdaftar mengirim permintaan kontak, prospek, atau interaksi."
+
+msgid "Website submission"
+msgstr "Kiriman situs web"
+
+msgid "One submission with its consent record and provenance. Contact details are masked."
+msgstr "Satu kiriman beserta catatan persetujuan dan asal-usulnya. Detail kontak disamarkan."
+
+msgid "Back to submissions"
+msgstr "Kembali ke kiriman"
+
+msgid "The submission could not be loaded right now. Please try again later."
+msgstr "Kiriman tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "That submission does not exist, or you cannot see it."
+msgstr "Kiriman itu tidak ada, atau Anda tidak dapat melihatnya."
+
+msgid "Submission"
+msgstr "Kiriman"
+
+msgid "Topic"
+msgstr "Topik"
+
+msgid "Email (masked)"
+msgstr "Email (tersamar)"
+
+msgid "Phone (masked)"
+msgstr "Telepon (tersamar)"
+
+msgid "The full contact details and message are not shown on this screen. Reading them is a separate, audited permission available through the API."
+msgstr "Detail kontak lengkap dan pesan tidak ditampilkan di layar ini. Membacanya adalah izin terpisah yang diaudit dan tersedia melalui API."
+
+msgid "Purposes"
+msgstr "Tujuan"
+
+msgid "Consent copy version"
+msgstr "Versi teks persetujuan"
+
+msgid "Shown on page"
+msgstr "Ditampilkan di halaman"
+
+msgid "Consented at"
+msgstr "Disetujui pada"
+
+msgid "Provenance and attribution"
+msgstr "Asal-usul dan atribusi"
+
+msgid "Website host"
+msgstr "Host situs web"
+
+msgid "Anti-abuse challenge"
+msgstr "Tantangan anti-penyalahgunaan"
+
+msgid "Landing page"
+msgstr "Halaman tujuan"
+
+msgid "Referrer host"
+msgstr "Host perujuk"
+
+msgid "Campaign source"
+msgstr "Sumber kampanye"
+
+msgid "Campaign medium"
+msgstr "Medium kampanye"
+
+msgid "Campaign name"
+msgstr "Nama kampanye"
+
+msgid "Campaign term"
+msgstr "Istilah kampanye"
+
+msgid "Campaign content"
+msgstr "Konten kampanye"
+
+msgid "Withdraw this submission"
+msgstr "Tarik kiriman ini"
+
+msgid "Withdrawing is permanent. The contact details are erased and downstream consumers are told to stop using this submission. The consent record and attribution are kept."
+msgstr "Penarikan bersifat permanen. Detail kontak dihapus dan konsumen hilir diberi tahu untuk berhenti menggunakan kiriman ini. Catatan persetujuan dan atribusi tetap disimpan."
+
+msgid "Withdraw this submission? The contact details are erased and this cannot be undone."
+msgstr "Tarik kiriman ini? Detail kontak dihapus dan ini tidak dapat dibatalkan."
+
+msgid "Could not withdraw the submission. Please try again."
+msgstr "Kiriman tidak dapat ditarik. Silakan coba lagi."
+
+msgid "That submission no longer exists, or you cannot act on it."
+msgstr "Kiriman itu sudah tidak ada, atau Anda tidak dapat menindaklanjutinya."
+
+msgid "This request was already used for something else. Reload the page and try again."
+msgstr "Permintaan ini sudah dipakai untuk hal lain. Muat ulang halaman lalu coba lagi."
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr "Terlalu banyak permintaan. Tunggu sebentar lalu coba lagi."
+
+msgid "Withdrawing needs a signed-in person; a machine credential cannot do it."
+msgstr "Penarikan memerlukan orang yang sedang masuk; kredensial mesin tidak dapat melakukannya."
+
+msgid "Withdraw submission"
+msgstr "Tarik kiriman"
+
+msgid "{count} source"
+msgid_plural "{count} sources"
+msgstr[0] "{count} sumber"
+
+msgid "Website sources"
+msgstr "Sumber situs web"
+
+msgid "The websites registered to post submissions, the hosts they may post from and how each is protected."
+msgstr "Situs web yang terdaftar untuk mengirim kiriman, host tempat mereka boleh mengirim, dan cara masing-masing dilindungi."
+
+msgid "You do not have permission to view website sources."
+msgstr "Anda tidak memiliki izin untuk melihat sumber situs web."
+
+msgid "The sources could not be loaded right now. Please try again later."
+msgstr "Sumber tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "A submission is accepted only with the source's access token and from one of its hosts. The token itself is never shown again after it was created or rotated: only its first characters are listed so you can tell which token a website uses."
+msgstr "Kiriman diterima hanya dengan token akses sumber dan dari salah satu hostnya. Token itu sendiri tidak pernah ditampilkan lagi setelah dibuat atau diputar: hanya karakter awalnya yang dicantumkan agar Anda tahu token mana yang dipakai sebuah situs web."
+
+msgid "The key configuration for website engagement is not valid on this deployment, so new submissions are being refused."
+msgstr "Konfigurasi kunci untuk interaksi situs web tidak valid pada deployment ini, sehingga kiriman baru ditolak."
+
+msgid "Revoke the source {name}? Its website stops being able to post submissions, and this cannot be undone."
+msgstr "Cabut sumber {name}? Situs webnya tidak dapat lagi mengirim kiriman, dan ini tidak dapat dibatalkan."
+
+msgid "Could not revoke the source. Please try again."
+msgstr "Sumber tidak dapat dicabut. Silakan coba lagi."
+
+msgid "That source no longer exists, or you cannot act on it."
+msgstr "Sumber itu sudah tidak ada, atau Anda tidak dapat menindaklanjutinya."
+
+msgid "Revoking needs a signed-in person; a machine credential cannot do it."
+msgstr "Pencabutan memerlukan orang yang sedang masuk; kredensial mesin tidak dapat melakukannya."
+
+msgid "Accepted hosts"
+msgstr "Host yang diterima"
+
+msgid "Accepts"
+msgstr "Menerima"
+
+msgid "Access token"
+msgstr "Token akses"
+
+msgid "No website is registered yet. Sources are created through the API."
+msgstr "Belum ada situs web terdaftar. Sumber dibuat melalui API."
+
+msgid "None: every request is refused"
+msgstr "Tidak ada: setiap permintaan ditolak"
+
+msgid "Not run on this deployment: the other controls apply alone."
+msgstr "Tidak dijalankan pada deployment ini: hanya kontrol lain yang berlaku."
+
+msgid "rotated {time}"
+msgstr "diputar {time}"
+
+msgid "Contact request"
+msgstr "Permintaan kontak"
+
+msgid "Lead"
+msgstr "Prospek"
+
+msgid "Interaction"
+msgstr "Interaksi"
+
+msgid "Form viewed"
+msgstr "Formulir dilihat"
+
+msgid "Form started"
+msgstr "Formulir mulai diisi"
+
+msgid "Call-to-action clicked"
+msgstr "Ajakan bertindak diklik"
+
+msgid "Phone link clicked"
+msgstr "Tautan telepon diklik"
+
+msgid "WhatsApp link clicked"
+msgstr "Tautan WhatsApp diklik"
+
+msgid "Map link clicked"
+msgstr "Tautan peta diklik"
+
+msgid "Download clicked"
+msgstr "Unduhan diklik"
+
+msgid "Turnstile challenge"
+msgstr "Tantangan Turnstile"
+
+msgid "No challenge"
+msgstr "Tanpa tantangan"
+
+msgid "Challenge passed"
+msgstr "Tantangan lolos"
+
+msgid "Challenge not run on this deployment"
+msgstr "Tantangan tidak dijalankan pada deployment ini"
+
+msgid "Source has no challenge"
+msgstr "Sumber tanpa tantangan"
+
+msgid "Respond to the inquiry"
+msgstr "Menanggapi pertanyaan"
+
+msgid "Marketing follow-up"
+msgstr "Tindak lanjut pemasaran"
+
+msgid "Data subject request"
+msgstr "Permintaan subjek data"
+
+msgid "Consent withdrawn"
+msgstr "Persetujuan ditarik"
+
+msgid "Controller decision"
+msgstr "Keputusan pengendali"
+
+msgid "Origin header"
+msgstr "Header Origin"
+
+msgid "Referer header"
+msgstr "Header Referer"
+
+msgid "Unknown pipeline"
+msgstr "Pipeline tidak dikenal"
+
+msgid "Pipeline: {value}"
+msgstr "Pipeline: {value}"
+
+msgid "Stage: {value}"
+msgstr "Tahap: {value}"
+
+msgid "Owner: {value}"
+msgstr "Pemilik: {value}"
+
+msgid "Lead pipeline"
+msgstr "Pipeline lead"
+
+msgid "The tenant's prospects by pipeline stage: owner, first source and how long they have been in their stage. Contact points are always masked."
+msgstr "Prospek tenant menurut tahap pipeline: pemilik, sumber pertama, dan sudah berapa lama berada di tahapnya. Titik kontak selalu disamarkan."
+
+msgid "You do not have permission to view leads."
+msgstr "Anda tidak memiliki izin untuk melihat lead."
+
+msgid "The leads could not be loaded right now. Please try again later."
+msgstr "Lead tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The lead pipeline is switched off on this deployment, so no lead is collected or listed."
+msgstr "Pipeline lead dimatikan pada deployment ini, sehingga tidak ada lead yang dikumpulkan atau ditampilkan."
+
+msgid "Leads"
+msgstr "Lead"
+
+msgid "Newest first. A lead is a prospect, not a customer: the customer record stays with the system that owns it."
+msgstr "Terbaru lebih dulu. Lead adalah prospek, bukan pelanggan: catatan pelanggan tetap berada di sistem yang memilikinya."
+
+msgid "Pipelines and settings"
+msgstr "Pipeline dan pengaturan"
+
+msgid "The lead pipeline is switched off for this tenant, so leads cannot be changed. Existing leads can still be read."
+msgstr "Pipeline lead dimatikan untuk tenant ini, sehingga lead tidak dapat diubah. Lead yang ada masih dapat dibaca."
+
+msgid "There are more leads than this screen loads. Showing the newest {count}. The pipeline, stage and owner filters cover every lead; the source filter and search cover only these. The API lists the rest."
+msgstr "Jumlah lead melebihi yang dimuat layar ini. Menampilkan {count} terbaru. Filter pipeline, tahap, dan pemilik mencakup setiap lead; filter sumber dan pencarian hanya mencakup yang dimuat. API menampilkan sisanya."
+
+msgid "Search leads"
+msgstr "Cari lead"
+
+msgid "Pipeline"
+msgstr "Pipeline"
+
+msgid "All pipelines"
+msgstr "Semua pipeline"
+
+msgid "Stage"
+msgstr "Tahap"
+
+msgid "All stages"
+msgstr "Semua tahap"
+
+msgid "In stage since"
+msgstr "Di tahap sejak"
+
+msgid "No leads yet"
+msgstr "Belum ada lead"
+
+msgid "Leads appear here when they are entered by hand, imported, or sent by an integration through the API."
+msgstr "Lead muncul di sini saat dimasukkan manual, diimpor, atau dikirim oleh integrasi melalui API."
+
+msgid "Unnamed lead"
+msgstr "Lead tanpa nama"
+
+msgid "The merge-undo window must be a whole number of hours from 1 to 720."
+msgstr "Jendela pembatalan penggabungan harus berupa bilangan bulat jam dari 1 sampai 720."
+
+msgid "Could not save the settings. Please try again."
+msgstr "Pengaturan tidak dapat disimpan. Silakan coba lagi."
+
+msgid "Lead pipeline settings"
+msgstr "Pengaturan pipeline lead"
+
+msgid "Switch the lead pipeline on for this tenant and review each pipeline's published stages and allowed moves."
+msgstr "Aktifkan pipeline lead untuk tenant ini dan tinjau tahap terbit serta perpindahan yang diizinkan pada setiap pipeline."
+
+msgid "Back to the leads"
+msgstr "Kembali ke daftar lead"
+
+msgid "You do not have permission to change the lead pipeline settings."
+msgstr "Anda tidak memiliki izin untuk mengubah pengaturan pipeline lead."
+
+msgid "The lead pipeline settings could not be loaded right now. Please try again later."
+msgstr "Pengaturan pipeline lead tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The lead pipeline is switched off on this deployment, so it cannot be configured."
+msgstr "Pipeline lead dimatikan pada deployment ini, sehingga tidak dapat dikonfigurasi."
+
+msgid "This tenant"
+msgstr "Tenant ini"
+
+msgid "While the pipeline is off for this tenant, leads can be read but not created or changed. Pipelines can be prepared in the meantime."
+msgstr "Selama pipeline mati untuk tenant ini, lead dapat dibaca tetapi tidak dapat dibuat atau diubah. Pipeline dapat disiapkan sementara itu."
+
+msgid "The lead pipeline is on for this tenant"
+msgstr "Pipeline lead aktif untuk tenant ini"
+
+msgid "Merge-undo window (hours)"
+msgstr "Jendela pembatalan penggabungan (jam)"
+
+msgid "Save settings"
+msgstr "Simpan pengaturan"
+
+msgid "Never changed: the default is off."
+msgstr "Belum pernah diubah: bawaannya mati."
+
+msgid "Last changed {time}"
+msgstr "Terakhir diubah {time}"
+
+msgid "Pipelines"
+msgstr "Pipeline"
+
+msgid "Revision"
+msgstr "Revisi"
+
+msgid "No pipeline exists yet. Create one through the API."
+msgstr "Belum ada pipeline. Buat satu melalui API."
+
+msgid "Catalogue of {name}, revision {number}"
+msgstr "Katalog {name}, revisi {number}"
+
+msgid "A published revision never changes. A new revision is published through the API; leads in a removed stage are moved by an explicit, audited migration."
+msgstr "Revisi yang terbit tidak pernah berubah. Revisi baru diterbitkan melalui API; lead pada tahap yang dihapus dipindahkan lewat migrasi eksplisit yang diaudit."
+
+msgid "initial"
+msgstr "awal"
+
+msgid "Conditions"
+msgstr "Syarat"
+
+msgid "Someone else changed this lead. Reload the page and try again."
+msgstr "Orang lain mengubah lead ini. Muat ulang halaman lalu coba lagi."
+
+msgid "The pipeline does not allow this move."
+msgstr "Pipeline tidak mengizinkan perpindahan ini."
+
+msgid "This move needs something the lead does not have yet (an owner, a contact point or a reason)."
+msgstr "Perpindahan ini membutuhkan sesuatu yang belum dimiliki lead (pemilik, titik kontak, atau alasan)."
+
+msgid "A converted stage is entered only by recording a conversion."
+msgstr "Tahap terkonversi hanya dimasuki dengan mencatat konversi."
+
+msgid "A converted lead leaves its stage only by reversing the conversion."
+msgstr "Lead terkonversi hanya meninggalkan tahapnya dengan membatalkan konversi."
+
+msgid "That stage is no longer part of the pipeline. Reload the page and try again."
+msgstr "Tahap itu tidak lagi menjadi bagian pipeline. Muat ulang halaman lalu coba lagi."
+
+msgid "You cannot be made the owner of this lead."
+msgstr "Anda tidak dapat dijadikan pemilik lead ini."
+
+msgid "This lead can no longer be changed."
+msgstr "Lead ini tidak dapat diubah lagi."
+
+msgid "The lead pipeline is switched off for this tenant."
+msgstr "Pipeline lead dimatikan untuk tenant ini."
+
+msgid "That lead is no longer available."
+msgstr "Lead itu tidak lagi tersedia."
+
+msgid "Could not save the change. Please try again."
+msgstr "Perubahan tidak dapat disimpan. Silakan coba lagi."
+
+msgid "State, history and actions of one lead. Contact points are always masked."
+msgstr "Status, riwayat, dan aksi satu lead. Titik kontak selalu disamarkan."
+
+msgid "The lead could not be loaded right now. Please try again later."
+msgstr "Lead tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The lead pipeline is switched off on this deployment."
+msgstr "Pipeline lead dimatikan pada deployment ini."
+
+msgid "That lead was not found."
+msgstr "Lead itu tidak ditemukan."
+
+msgid "Contact points"
+msgstr "Titik kontak"
+
+msgid "revoked"
+msgstr "dicabut"
+
+msgid "The lead pipeline is switched off for this tenant, so this lead cannot be changed."
+msgstr "Pipeline lead dimatikan untuk tenant ini, sehingga lead ini tidak dapat diubah."
+
+msgid "This lead is converted. It leaves this stage only by reversing the conversion."
+msgstr "Lead ini terkonversi. Ia meninggalkan tahap ini hanya dengan membatalkan konversi."
+
+msgid "This lead is in a stage the pipeline no longer defines, so it cannot be moved from here."
+msgstr "Lead ini berada di tahap yang tidak lagi didefinisikan pipeline, sehingga tidak dapat dipindahkan dari sini."
+
+msgid "The pipeline defines no move out of this stage."
+msgstr "Pipeline tidak mendefinisikan perpindahan keluar dari tahap ini."
+
+msgid "Move to"
+msgstr "Pindahkan ke"
+
+msgid "Move lead"
+msgstr "Pindahkan lead"
+
+msgid "Not available yet: there is no list of the people eligible to own a lead. They can assign the lead to themselves."
+msgstr "Belum tersedia: belum ada daftar orang yang berhak memiliki lead. Mereka dapat menugaskan lead ke diri sendiri."
+
+msgid "Stage history"
+msgstr "Riwayat tahap"
+
+msgid "Owner history"
+msgstr "Riwayat pemilik"
+
+msgid "Campaign"
+msgstr "Kampanye"
+
+msgid "Legal basis stated"
+msgstr "Dasar hukum yang dinyatakan"
+
+msgid "Conversions"
+msgstr "Konversi"
+
+msgid "How"
+msgstr "Cara"
+
+msgid "No conversion recorded."
+msgstr "Belum ada konversi tercatat."
+
+msgid "New"
+msgstr "Baru"
+
+msgid "Working"
+msgstr "Dikerjakan"
+
+msgid "Qualified"
+msgstr "Terkualifikasi"
+
+msgid "Converted"
+msgstr "Terkonversi"
+
+msgid "Lost"
+msgstr "Hilang"
+
+msgid "Disqualified"
+msgstr "Didiskualifikasi"
+
+msgid "Inbound message"
+msgstr "Pesan masuk"
+
+msgid "Import"
+msgstr "Impor"
+
+msgid "Entered by hand"
+msgstr "Dimasukkan manual"
+
+msgid "Not recorded"
+msgstr "Tidak tercatat"
+
+msgid "Moved"
+msgstr "Dipindahkan"
+
+msgid "Moved by a catalogue change"
+msgstr "Dipindahkan oleh perubahan katalog"
+
+msgid "Conversion reversed"
+msgstr "Konversi dibatalkan"
+
+msgid "Merged into another lead"
+msgstr "Digabung ke lead lain"
+
+msgid "Merge undone"
+msgstr "Penggabungan dibatalkan"
+
+msgid "needs an owner"
+msgstr "butuh pemilik"
+
+msgid "needs a contact point"
+msgstr "butuh titik kontak"
+
+msgid "needs a reason"
+msgstr "butuh alasan"
+
+msgid "Confirmed by the customer authority"
+msgstr "Dikonfirmasi oleh otoritas pelanggan"
+
+msgid "Recorded by hand, not confirmed"
+msgstr "Dicatat manual, tidak dikonfirmasi"
+
+msgid "Anonymised"
+msgstr "Dianonimkan"
+
+msgid "Steps towards a contract"
+msgstr "Langkah menuju kontrak"
+
+msgid "Legitimate interest"
+msgstr "Kepentingan sah"
+
+msgid "Not stated"
+msgstr "Tidak dinyatakan"
+
+msgid "{count} lead matches your search and filters"
+msgid_plural "{count} leads match your search and filters"
+msgstr[0] "{count} lead cocok dengan pencarian dan filter Anda"
+
+msgid "{count} lead"
+msgid_plural "{count} leads"
+msgstr[0] "{count} lead"
+
+msgid "{count} pipeline"
+msgid_plural "{count} pipelines"
+msgstr[0] "{count} pipeline"
+
+msgid "{count} stage"
+msgid_plural "{count} stages"
+msgstr[0] "{count} tahap"
+
+msgid "{count} allowed move"
+msgid_plural "{count} allowed moves"
+msgstr[0] "{count} perpindahan diizinkan"
+
+msgid "{count} stage change"
+msgid_plural "{count} stage changes"
+msgstr[0] "{count} perubahan tahap"
+
+msgid "{count} owner change"
+msgid_plural "{count} owner changes"
+msgstr[0] "{count} perubahan pemilik"
+
+msgid "{count} source touch (the first is immutable)"
+msgid_plural "{count} source touches (the first is immutable)"
+msgstr[0] "{count} sentuhan sumber (yang pertama tidak dapat diubah)"
+
+msgid "{count} conversion"
+msgid_plural "{count} conversions"
+msgstr[0] "{count} konversi"
+
+msgid "Pipeline settings"
+msgstr "Pengaturan pipeline"
+
+msgid "Escalated"
+msgstr "Dieskalasi"
+
+msgid "Reached the lead"
+msgstr "Berhasil menghubungi prospek"
+
+msgid "No answer"
+msgstr "Tidak ada jawaban"
+
+msgid "Not interested"
+msgstr "Tidak berminat"
+
+msgid "Lead created"
+msgstr "Prospek dibuat"
+
+msgid "Stage entered"
+msgstr "Memasuki tahap"
+
+msgid "Lead assigned"
+msgstr "Prospek ditugaskan"
+
+msgid "Lead converted"
+msgstr "Prospek dikonversi"
+
+msgid "Lead lost"
+msgstr "Prospek hilang"
+
+msgid "Lead merged"
+msgstr "Prospek digabung"
+
+msgid "Reply received"
+msgstr "Balasan diterima"
+
+msgid "Sender blocked"
+msgstr "Pengirim diblokir"
+
+msgid "Stopped by staff"
+msgstr "Dihentikan oleh staf"
+
+msgid "Reassigned"
+msgstr "Ditugaskan ulang"
+
+msgid "Started by a rule"
+msgstr "Dimulai oleh aturan"
+
+msgid "The lead's owner changed"
+msgstr "Pemilik prospek berubah"
+
+msgid "The assignee is no longer active"
+msgstr "Penerima tugas tidak lagi aktif"
+
+msgid "Cancelled by staff"
+msgstr "Dibatalkan oleh staf"
+
+msgid "Stopped: {reason}"
+msgstr "Dihentikan: {reason}"
+
+msgid "Assignment notice"
+msgstr "Pemberitahuan penugasan"
+
+msgid "Due notice"
+msgstr "Pemberitahuan jatuh tempo"
+
+msgid "Escalation notice"
+msgstr "Pemberitahuan eskalasi"
+
+msgid "Waiting to be sent"
+msgstr "Menunggu dikirim"
+
+msgid "Handed to e-mail"
+msgstr "Diserahkan ke e-mail"
+
+msgid "Not sent"
+msgstr "Tidak dikirim"
+
+msgid "The task was closed"
+msgstr "Tugas telah ditutup"
+
+msgid "Follow-up for the lead was stopped"
+msgstr "Tindak lanjut untuk prospek dihentikan"
+
+msgid "The recipient is no longer active"
+msgstr "Penerima tidak lagi aktif"
+
+msgid "The task moved to someone else"
+msgstr "Tugas dipindahkan ke orang lain"
+
+msgid "The rule's calendar has no working time"
+msgstr "Kalender aturan tidak memiliki waktu kerja"
+
+msgid "No e-mail template is set up"
+msgstr "Belum ada templat e-mail yang disiapkan"
+
+msgid "The lead's owner"
+msgstr "Pemilik prospek"
+
+msgid "A fixed person"
+msgstr "Orang tetap"
+
+msgid "Due: {value}"
+msgstr "Jatuh tempo: {value}"
+
+msgid "Follow-up worklist"
+msgstr "Daftar kerja tindak lanjut"
+
+msgid "The follow-up tasks staff have to do, who they are assigned to and when they are due. Nothing about the prospect is shown."
+msgstr "Tugas tindak lanjut yang harus dikerjakan staf, kepada siapa ditugaskan, dan kapan jatuh tempo. Tidak ada data prospek yang ditampilkan."
+
+msgid "You do not have permission to view follow-up tasks."
+msgstr "Anda tidak memiliki izin untuk melihat tugas tindak lanjut."
+
+msgid "The follow-up worklist could not be loaded right now. Please try again later."
+msgstr "Daftar kerja tindak lanjut tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Follow-up tasks are switched off on this deployment, so no task is created or listed."
+msgstr "Tugas tindak lanjut dimatikan pada deployment ini, sehingga tidak ada tugas yang dibuat atau ditampilkan."
+
+msgid "Soonest due first. Choose Assigned to me for your daily worklist, or Overdue for what is late."
+msgstr "Yang paling cepat jatuh tempo lebih dulu. Pilih Ditugaskan ke saya untuk daftar kerja harian Anda, atau Terlambat untuk yang tertunda."
+
+msgid "Rules and settings"
+msgstr "Aturan dan pengaturan"
+
+msgid "Follow-up is switched off for this organisation. No new task is created, and tasks cannot be completed or cancelled until it is switched on."
+msgstr "Tindak lanjut dimatikan untuk organisasi ini. Tidak ada tugas baru yang dibuat, dan tugas tidak dapat diselesaikan atau dibatalkan sampai dinyalakan."
+
+msgid "There are more tasks than this screen loads. Showing the {count} due soonest. The status, assignee and overdue filters cover every task; search covers only these. The API lists the rest."
+msgstr "Tugas lebih banyak daripada yang dimuat layar ini. Menampilkan {count} yang paling cepat jatuh tempo. Filter status, penerima tugas, dan keterlambatan mencakup semua tugas; pencarian hanya mencakup ini. API mendaftar sisanya."
+
+msgid "Search tasks"
+msgstr "Cari tugas"
+
+msgid "Open and escalated"
+msgstr "Terbuka dan dieskalasi"
+
+msgid "Any due date"
+msgstr "Semua tenggat"
+
+msgid "Task"
+msgstr "Tugas"
+
+msgid "Started by"
+msgstr "Dimulai oleh"
+
+msgid "No follow-up tasks"
+msgstr "Tidak ada tugas tindak lanjut"
+
+msgid "Tasks appear here when a rule matches a lead event, such as a lead being created, entering a stage or being assigned."
+msgstr "Tugas muncul di sini saat sebuah aturan cocok dengan peristiwa prospek, seperti prospek dibuat, memasuki tahap, atau ditugaskan."
+
+msgid "Follow-up task"
+msgstr "Tugas tindak lanjut"
+
+msgid "State, history and actions of one follow-up task. Nothing about the prospect is shown."
+msgstr "Status, riwayat, dan tindakan satu tugas tindak lanjut. Tidak ada data prospek yang ditampilkan."
+
+msgid "Back to the worklist"
+msgstr "Kembali ke daftar kerja"
+
+msgid "The task could not be loaded right now. Please try again later."
+msgstr "Tugas tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Follow-up tasks are switched off on this deployment."
+msgstr "Tugas tindak lanjut dimatikan pada deployment ini."
+
+msgid "That task was not found."
+msgstr "Tugas itu tidak ditemukan."
+
+msgid "Escalates"
+msgstr "Eskalasi"
+
+msgid "Escalated at {time}"
+msgstr "Dieskalasi pada {time}"
+
+msgid "Cancelled because"
+msgstr "Dibatalkan karena"
+
+msgid "This module sends nothing to the lead. Staff notices go out by e-mail; contact the lead through your own channel, then record the result here."
+msgstr "Modul ini tidak mengirim apa pun ke prospek. Pemberitahuan staf dikirim lewat e-mail; hubungi prospek melalui kanal Anda sendiri, lalu catat hasilnya di sini."
+
+msgid "Follow-up is switched off for this organisation, so tasks cannot be completed or cancelled and stops cannot be recorded."
+msgstr "Tindak lanjut dimatikan untuk organisasi ini, sehingga tugas tidak dapat diselesaikan atau dibatalkan dan penghentian tidak dapat dicatat."
+
+msgid "This task is closed and cannot be changed."
+msgstr "Tugas ini sudah ditutup dan tidak dapat diubah."
+
+msgid "Complete task"
+msgstr "Selesaikan tugas"
+
+msgid "Cancel task"
+msgstr "Batalkan tugas"
+
+msgid "Not available: a task follows the lead's owner (or the rule's fixed person). Change the lead's owner to move it."
+msgstr "Tidak tersedia: tugas mengikuti pemilik prospek (atau orang tetap pada aturan). Ubah pemilik prospek untuk memindahkannya."
+
+msgid "Stop follow-up for this lead"
+msgstr "Hentikan tindak lanjut untuk prospek ini"
+
+msgid "A stop is permanent. It cancels every open task of this lead and its waiting notices, and no new task is created for the lead."
+msgstr "Penghentian bersifat permanen. Semua tugas terbuka prospek ini dan pemberitahuan yang menunggu dibatalkan, dan tidak ada tugas baru dibuat untuk prospek ini."
+
+msgid "Record stop"
+msgstr "Catat penghentian"
+
+msgid "Staff notices"
+msgstr "Pemberitahuan staf"
+
+msgid "Notice"
+msgstr "Pemberitahuan"
+
+msgid "No staff notice was scheduled for this task."
+msgstr "Tidak ada pemberitahuan staf yang dijadwalkan untuk tugas ini."
+
+msgid "Stop signals for this lead"
+msgstr "Sinyal penghentian untuk prospek ini"
+
+msgid "Follow-up for this lead has not been stopped."
+msgstr "Tindak lanjut untuk prospek ini belum dihentikan."
+
+msgid "Stopped because"
+msgstr "Dihentikan karena"
+
+msgid "Lead event"
+msgstr "Peristiwa prospek"
+
+msgid "{hours} h {minutes} min of working time"
+msgstr "{hours} j {minutes} mnt waktu kerja"
+
+msgid "Follow-up rules"
+msgstr "Aturan tindak lanjut"
+
+msgid "The rules that turn lead events into follow-up tasks, their immutable revisions, and the organisation's follow-up switch."
+msgstr "Aturan yang mengubah peristiwa prospek menjadi tugas tindak lanjut, revisinya yang tidak dapat diubah, dan saklar tindak lanjut organisasi."
+
+msgid "You do not have permission to view follow-up rules."
+msgstr "Anda tidak memiliki izin untuk melihat aturan tindak lanjut."
+
+msgid "The rules could not be loaded right now. Please try again later."
+msgstr "Aturan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Follow-up for this organisation"
+msgstr "Tindak lanjut untuk organisasi ini"
+
+msgid "Rules create tasks, due tasks are escalated and staff are notified."
+msgstr "Aturan membuat tugas, tugas yang jatuh tempo dieskalasi, dan staf diberi tahu."
+
+msgid "While follow-up is off no task is created and no notice is sent. Rules can still be read."
+msgstr "Selama tindak lanjut mati, tidak ada tugas dibuat dan tidak ada pemberitahuan dikirim. Aturan tetap dapat dibaca."
+
+msgid "Staff notices per person per hour: {count}"
+msgstr "Pemberitahuan staf per orang per jam: {count}"
+
+msgid "Switch follow-up off"
+msgstr "Matikan tindak lanjut"
+
+msgid "Switch follow-up on"
+msgstr "Nyalakan tindak lanjut"
+
+msgid "A rule's published revisions never change. Creating or editing rules is not available on this screen yet."
+msgstr "Revisi aturan yang sudah diterbitkan tidak pernah berubah. Membuat atau mengubah aturan belum tersedia di layar ini."
+
+msgid "Starts when"
+msgstr "Dimulai saat"
+
+msgid "Due after"
+msgstr "Jatuh tempo setelah"
+
+msgid "No follow-up rules yet."
+msgstr "Belum ada aturan tindak lanjut."
+
+msgid "That rule was not found."
+msgstr "Aturan itu tidak ditemukan."
+
+msgid "Only for stage category"
+msgstr "Hanya untuk kategori tahap"
+
+msgid "Only for stage"
+msgstr "Hanya untuk tahap"
+
+msgid "Only for pipeline"
+msgstr "Hanya untuk pipeline"
+
+msgid "Task title"
+msgstr "Judul tugas"
+
+msgid "Assigned to"
+msgstr "Ditugaskan kepada"
+
+msgid "Escalates after"
+msgstr "Eskalasi setelah"
+
+msgid "Never"
+msgstr "Tidak pernah"
+
+msgid "When assigned"
+msgstr "Saat ditugaskan"
+
+msgid "When due"
+msgstr "Saat jatuh tempo"
+
+msgid "Open tasks per lead, at most"
+msgstr "Tugas terbuka per prospek, paling banyak"
+
+msgid "Working time"
+msgstr "Waktu kerja"
+
+msgid "Holidays"
+msgstr "Hari libur"
+
+msgid "Fingerprint"
+msgstr "Sidik"
+
+msgid "Follow-up"
+msgstr "Tindak lanjut"
+
+msgid "{count} task matches your search and filters"
+msgid_plural "{count} tasks match your search and filters"
+msgstr[0] "{count} tugas cocok dengan pencarian dan filter Anda"
+
+msgid "{count} task"
+msgid_plural "{count} tasks"
+msgstr[0] "{count} tugas"
+
+msgid "{count} history entry (oldest first)"
+msgid_plural "{count} history entries (oldest first)"
+msgstr[0] "{count} entri riwayat (terlama lebih dulu)"
+
+msgid "{count} staff notice"
+msgid_plural "{count} staff notices"
+msgstr[0] "{count} pemberitahuan staf"
+
+msgid "{count} rule"
+msgid_plural "{count} rules"
+msgstr[0] "{count} aturan"
+
+msgid "A JSON file with everything the store holds about this customer is produced and downloaded. It is not stored, and the disclosure is recorded in the audit log."
+msgstr "Sebuah berkas JSON berisi semua yang disimpan toko tentang pelanggan ini dibuat dan diunduh. Berkas tidak disimpan, dan pengungkapan dicatat di log audit."
+
+msgid "A booking is still active"
+msgstr "Ada pemesanan yang masih aktif"
+
+msgid "A return or refund is unsettled"
+msgstr "Ada retur atau pengembalian dana yang belum selesai"
+
+msgid "A stored-value balance remains"
+msgstr "Masih ada saldo nilai tersimpan"
+
+msgid "Already erased"
+msgstr "Sudah dihapus"
+
+msgid "An affiliate payout is unpaid"
+msgstr "Ada pembayaran afiliasi yang belum dibayar"
+
+msgid "Shared walk-in record, not a person"
+msgstr "Catatan walk-in bersama, bukan orang"
+
+msgid "An order is still open"
+msgstr "Ada pesanan yang masih berjalan"
+
+msgid "Approve erasure"
+msgstr "Setujui penghapusan"
+
+msgid "Approve this erasure?"
+msgstr "Setujui penghapusan ini?"
+
+msgid "Data-subject requests"
+msgstr "Permintaan subjek data"
+
+msgid "Erasure was refused: an order, booking, stored-value balance, refund or affiliate payout is still open. Nothing was changed."
+msgstr "Penghapusan ditolak: ada pesanan, pemesanan, saldo nilai tersimpan, pengembalian dana, atau pembayaran afiliasi yang masih terbuka. Tidak ada yang diubah."
+
+msgid "Export data"
+msgstr "Ekspor data"
+
+msgid "Export this customer's data?"
+msgstr "Ekspor data pelanggan ini?"
+
+msgid "No data-subject requests yet"
+msgstr "Belum ada permintaan subjek data"
+
+msgid "Nothing is erased and the request is closed."
+msgstr "Tidak ada yang dihapus dan permintaan ditutup."
+
+msgid "Privacy"
+msgstr "Privasi"
+
+msgid "Raised by"
+msgstr "Diajukan oleh"
+
+msgid "Refused"
+msgstr "Ditolak"
+
+msgid "Reject erasure"
+msgstr "Tolak penghapusan"
+
+msgid "Reject this erasure?"
+msgstr "Tolak penghapusan ini?"
+
+msgid "Request erasure of this customer?"
+msgstr "Minta penghapusan pelanggan ini?"
+
+msgid "Shopper"
+msgstr "Pembeli"
+
+msgid "Staff"
+msgstr "Staf"
+
+msgid "That customer or request was not found."
+msgstr "Pelanggan atau permintaan itu tidak ditemukan."
+
+msgid "The customer is anonymised and personal rows are deleted now. This cannot be undone. Orders, payments, documents and ledgers are kept."
+msgstr "Pelanggan dianonimkan dan baris data pribadi dihapus sekarang. Ini tidak dapat dibatalkan. Pesanan, pembayaran, dokumen, dan buku besar tetap disimpan."
+
+msgid "The person who requested an erasure cannot approve it."
+msgstr "Orang yang meminta penghapusan tidak dapat menyetujuinya."
+
+msgid "This does not erase anything yet: it records a request that a second person must approve. Erasing anonymises the customer and deletes personal rows; orders, payments, documents and ledgers are kept for bookkeeping."
+msgstr "Ini belum menghapus apa pun: ini mencatat permintaan yang harus disetujui orang kedua. Penghapusan menganonimkan pelanggan dan menghapus baris data pribadi; pesanan, pembayaran, dokumen, dan buku besar tetap disimpan untuk pembukuan."
+
+msgid "This request was already decided. Reload the page."
+msgstr "Permintaan ini sudah diputuskan. Muat ulang halaman."

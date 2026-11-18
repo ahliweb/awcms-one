@@ -23,6 +23,26 @@ import {
   isDeclaredAppUrl,
   resolveChannelSecretsRing
 } from "../src/modules/channel-accounts/domain/channel-accounts-config";
+import {
+  MAILKETING_V2_UNVERIFIED_WARNING,
+  isMailketingTokenHeaderSafe,
+  isMailketingV2Verified,
+  resolveMailketingV2BaseUrl
+} from "../src/modules/email/domain/mailketing-v2-contract";
+import {
+  RETIRED_SINGLE_RING_REASON,
+  isRetiredSingleRingSet,
+  resolveWebsiteEngagementEncryptionRingUnchecked,
+  resolveWebsiteEngagementHashRingUnchecked,
+  resolveWebsiteEngagementLegacyHashKeysUnchecked,
+  websiteEngagementRingConflicts
+} from "../src/modules/website-engagement/domain/engagement-config";
+import {
+  crmLeadsRingsShareAKey,
+  resolveCrmLeadsEncryptionRingUnchecked,
+  resolveCrmLeadsHashRingUnchecked
+} from "../src/modules/crm-leads/domain/crm-leads-config";
+import { resolveTelegramEngagementRing } from "../src/modules/telegram-engagement/domain/telegram-engagement-config";
 import { parseFcmCredentialsBase64 } from "../src/modules/push-delivery/domain/fcm-credentials";
 import { resolvePushAuthSecretRing } from "../src/modules/push-delivery/domain/push-auth-secret";
 import {
@@ -115,6 +135,7 @@ const RULES: readonly Rule[] = [
   },
   { name: "SETUP_RATE_LIMIT_MAX", required: false, type: "int", min: 1 },
   { name: "SETUP_RATE_LIMIT_WINDOW_SEC", required: false, type: "int", min: 1 },
+  { name: "APP_INSTANCE_COUNT", required: false, type: "int", min: 1 },
   { name: "TRUSTED_PROXY_ENABLED", required: false, type: "bool" },
   { name: "TRUSTED_PROXY_HOP_COUNT", required: false, type: "int", min: 1 },
   {
@@ -301,6 +322,14 @@ const RULES: readonly Rule[] = [
   { name: "EMAIL_FROM_NAME", required: false, type: "string" },
   { name: "EMAIL_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
   { name: "EMAIL_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
+  // Issue #1159 (ADR-0151 §1). Unset = v1; anything else but v1/v2 is an error.
+  { name: "EMAIL_MAILKETING_V2_VERIFIED", required: false, type: "bool" },
+  {
+    name: "EMAIL_MAILKETING_API_VERSION",
+    required: false,
+    type: "enum",
+    values: ["v1", "v2"]
+  },
 
   // Installable admin (Issue #1105). Optional branding of the Home Screen app;
   // the manifest falls back to defaults on an empty or invalid value.
@@ -314,6 +343,39 @@ const RULES: readonly Rule[] = [
   // the adapters that EXIST — `fcm`/`web_push` join it in Issue #466, and
   // listing them early would let a deployment pass validation here and then
   // fail at resolve time, which is the worst place to learn it.
+  // Issue #1171, ADR-0154 section 5 — realtime progress stream caps and the
+  // slow-consumer threshold. Optional; unset means the conservative default in
+  // `_shared/sse-progress.ts`. The caps are PER INSTANCE.
+  {
+    name: "REALTIME_SSE_MAX_CONNECTIONS_PER_ACTOR",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "REALTIME_SSE_MAX_CONNECTIONS_PER_TENANT",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "REALTIME_SSE_MAX_CONNECTIONS_PER_INSTANCE",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "REALTIME_SSE_SLOW_CONSUMER_BYTES",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "REALTIME_SSE_SLOW_CONSUMER_GRACE_MS",
+    required: false,
+    type: "int",
+    min: 1
+  },
   { name: "PUSH_ENABLED", required: false, type: "bool" },
   {
     name: "PUSH_PROVIDER",
@@ -386,6 +448,13 @@ const RULES: readonly Rule[] = [
     type: "int",
     min: 1
   },
+  // Rows sent before a tenant-owned sender is re-validated mid-pass (Issue #1231 L1).
+  {
+    name: "WHATSAPP_SENDER_REVALIDATE_EVERY_ROWS",
+    required: false,
+    type: "int",
+    min: 1
+  },
   {
     name: "WHATSAPP_RATE_SECURITY_PER_RECIPIENT_PER_HOUR",
     required: false,
@@ -404,6 +473,12 @@ const RULES: readonly Rule[] = [
   { name: "WHATSAPP_META_ACCESS_TOKEN", required: false, type: "string" },
   { name: "WHATSAPP_META_PHONE_NUMBER_ID", required: false, type: "string" },
   { name: "WHATSAPP_META_API_VERSION", required: false, type: "string" },
+  // StarSender (UNOFFICIAL WhatsApp gateway, Issue #1142, ADR-0148 section 7).
+  // Off by default; only the exact value `true` enables the adapter. Enabling it
+  // is necessary and not sufficient to send: a device must be attested, the
+  // tenant must hold an active risk acknowledgement of the current approved text,
+  // and the capability needs evidence.
+  { name: "WHATSAPP_STARSENDER_ENABLED", required: false, type: "bool" },
 
   // channel_accounts (ADR-0148, Issue #1140). Off by default; off means every
   // route answers 503 after authorization. The ring encrypts every tenant's
@@ -414,6 +489,139 @@ const RULES: readonly Rule[] = [
     required: false,
     type: "string",
     secret: true
+  },
+
+  // social_publishing (Issue #1145, ADR-0157). Deployment switch, OFF by default:
+  // with it unset the composition roots keep blog_content's no-op adapter, every
+  // route answers 503 after authorization and the dispatcher claims nothing. It
+  // needs CHANNEL_ACCOUNTS_ENABLED (checked below): an account registry that is
+  // off refuses every account, so nothing could publish.
+  { name: "SOCIAL_PUBLISHING_ENABLED", required: false, type: "bool" },
+  {
+    name: "SOCIAL_PUBLISHING_FACEBOOK_ENABLED",
+    required: false,
+    type: "bool"
+  },
+  {
+    name: "SOCIAL_PUBLISHING_DATABASE_URL",
+    required: false,
+    type: "url-postgres"
+  },
+
+  // crm_leads (ADR-0153, Issue #1166). Deployment switch, OFF by default: every
+  // route answers 503 after authorization. TWO secret rings (ADR-0137 section
+  // 3): one encrypts every lead contact point, the other keys every per-tenant
+  // contact-point hash; never echoed. Absent means intake with contact points
+  // and lookup fail closed; present they are validated below.
+  { name: "CRM_LEADS_ENABLED", required: false, type: "bool" },
+  {
+    name: "CRM_LEADS_ENCRYPTION_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "CRM_LEADS_HASH_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+
+  // website_engagement (ADR-0155, Issue #1153). No deployment switch: the module
+  // is inert until a tenant creates a source. TWO secret rings (ADR-0137 section
+  // 3, Issue #1262): one encrypts every submission's contact details, the other
+  // keys every source-token and identifier hash; never echoed. Absent means the
+  // public intake and source creation fail closed; present they are validated
+  // below. The LEGACY hash keys are verify-only, for source tokens hashed under
+  // the retired single ring, and are removed once `security:readiness` shows no
+  // source left on them. `WEBSITE_ENGAGEMENT_KEYS` is that retired single ring:
+  // still declared so a stale value is REFUSED by name instead of ignored.
+  {
+    name: "WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_HASH_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_RATE_LIMIT_MAX",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_SOURCE_RATE_LIMIT_MAX",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_INTERACTION_RATE_LIMIT_MAX",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "WEBSITE_ENGAGEMENT_SOURCE_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+
+  // telegram_engagement (ADR-0152, Issue #1156): CUSTOMER bots, separate from
+  // telegram_delivery. Off by default; the ring is a secret and never echoed.
+  { name: "TELEGRAM_ENGAGEMENT_ENABLED", required: false, type: "bool" },
+  {
+    name: "TELEGRAM_ENGAGEMENT_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "TELEGRAM_ENGAGEMENT_DATABASE_URL",
+    required: false,
+    type: "url-postgres"
+  },
+  {
+    name: "TELEGRAM_ENGAGEMENT_DAILY_CAP",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_ENGAGEMENT_WEBHOOK_RATE_PER_MINUTE",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_ENGAGEMENT_ENDPOINT_RATE_PER_MINUTE",
+    required: false,
+    type: "int",
+    min: 1
   },
 
   // telegram_delivery (ADR-0140, Issue #965). Off by default; off means enqueue
@@ -643,7 +851,25 @@ const RULES: readonly Rule[] = [
     type: "int",
     min: 1
   },
-  { name: "EDGE_CACHE_PURGE_BATCH_SIZE", required: false, type: "int", min: 1 }
+  {
+    name: "EDGE_CACHE_PUBLIC_SURFACES",
+    required: false,
+    type: "enum",
+    values: ["pressure", "always"]
+  },
+  { name: "EDGE_CACHE_PURGE_BATCH_SIZE", required: false, type: "int", min: 1 },
+  // Issue #1282 CDN purge (revisit of C14): off unless EDGE_CACHE_CDN_PURGE=on;
+  // with it on, missing credentials are a CRITICAL `security:readiness` finding
+  // and the purge worker refuses to run (the queue keeps its rows).
+  { name: "EDGE_CACHE_CDN_PURGE", required: false, type: "string" },
+  { name: "EDGE_CACHE_CDN_API_BASE", required: false, type: "string" },
+  { name: "EDGE_CACHE_CDN_ZONE_ID", required: false, type: "string" },
+  {
+    name: "EDGE_CACHE_CDN_API_TOKEN",
+    required: false,
+    type: "string",
+    secret: true
+  }
 ];
 
 /** Nilai placeholder yang aman di dev tapi dilarang di produksi. */
@@ -693,6 +919,301 @@ function isValidUrl(value: string, protocols: readonly string[]): boolean {
   } catch {
     return false;
   }
+}
+
+/**
+ * The decoded key bytes an environment variable carries, whatever its shape:
+ * a ring (`keyId:base64,keyId:base64`) or a single base64 key (the AUTH_* and
+ * COMMENTS_* secrets). Unparseable entries contribute nothing; the variable's
+ * own validator reports them.
+ */
+export function keyMaterialOf(env: EnvBag, name: string): Buffer[] {
+  const raw = (env[name] ?? "").trim();
+
+  if (raw === "") return [];
+
+  const entries = raw.includes(":") ? raw.split(",") : [raw];
+  const keys: Buffer[] = [];
+
+  for (const entry of entries) {
+    const separator = entry.indexOf(":");
+    const encoded = separator >= 1 ? entry.slice(separator + 1) : entry;
+    const decoded = Buffer.from(encoded.trim(), "base64");
+
+    if (decoded.length > 0) keys.push(decoded);
+  }
+
+  return keys;
+}
+
+/** Every OTHER secret key a crm_leads ring must not share material with. */
+export const CRM_LEADS_FOREIGN_KEY_VARIABLES = [
+  "WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS",
+  "WEBSITE_ENGAGEMENT_HASH_KEYS",
+  "WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS",
+  "CHANNEL_SECRETS_ENCRYPTION_KEYS",
+  "TELEGRAM_CHAT_ENCRYPTION_KEYS",
+  "TELEGRAM_CHAT_HASH_KEYS",
+  "PUSH_AUTH_SECRET_ENCRYPTION_KEYS",
+  "WHATSAPP_RECIPIENT_HASH_KEYS",
+  // Single-key secrets (one base64 value, not a ring).
+  "AUTH_MFA_SECRET_ENCRYPTION_KEY",
+  "AUTH_SSO_CREDENTIAL_ENCRYPTION_KEY",
+  "AUTH_URL_PARAM_ENCRYPTION_KEY",
+  "COMMENTS_SUBSCRIBER_ENCRYPTION_KEY"
+] as const;
+
+/** Every OTHER secret key a website_engagement ring must not share material with. */
+export const WEBSITE_ENGAGEMENT_FOREIGN_KEY_VARIABLES = [
+  "CRM_LEADS_ENCRYPTION_KEYS",
+  "CRM_LEADS_HASH_KEYS",
+  "CHANNEL_SECRETS_ENCRYPTION_KEYS",
+  "TELEGRAM_CHAT_ENCRYPTION_KEYS",
+  "TELEGRAM_CHAT_HASH_KEYS",
+  "PUSH_AUTH_SECRET_ENCRYPTION_KEYS",
+  "WHATSAPP_RECIPIENT_HASH_KEYS",
+  // Single-key secrets (one base64 value, not a ring).
+  "AUTH_MFA_SECRET_ENCRYPTION_KEY",
+  "AUTH_SSO_CREDENTIAL_ENCRYPTION_KEY",
+  "AUTH_URL_PARAM_ENCRYPTION_KEY",
+  "COMMENTS_SUBSCRIBER_ENCRYPTION_KEY"
+] as const;
+
+/**
+ * The website_engagement key problems (ADR-0155, ADR-0137 section 3, Issue
+ * #1262). Optional as a whole (the module is inert without a source), but:
+ * the retired single ring is refused by name; the encryption and hash rings
+ * are set together, parse, and share no key; the verify-only legacy hash keys
+ * need the pair, parse, and break none of the transition rules; and no ring or
+ * legacy key shares material with another module's ring or single-key secret.
+ * Same predicates as the runtime resolver. No value is ever echoed.
+ */
+export function websiteEngagementKeyProblems(env: EnvBag): string[] {
+  const problems: string[] = [];
+  const processEnv = env as NodeJS.ProcessEnv;
+
+  if (isRetiredSingleRingSet(processEnv)) {
+    problems.push(
+      `${RETIRED_SINGLE_RING_REASON} Selama transisi: kunci lama masuk ke WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS sebagai kunci BUKAN-pertama dan ke WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS (hanya verifikasi); kunci pertama kedua cincin wajib kunci baru.`
+    );
+  }
+
+  const encryptionSet =
+    (env.WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS ?? "").trim() !== "";
+  const hashSet = (env.WEBSITE_ENGAGEMENT_HASH_KEYS ?? "").trim() !== "";
+  const legacySet =
+    (env.WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS ?? "").trim() !== "";
+
+  if (!encryptionSet && !hashSet) {
+    if (legacySet) {
+      problems.push(
+        "WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS hanya bermakna bersama WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS dan WEBSITE_ENGAGEMENT_HASH_KEYS (kunci lama hanya untuk verifikasi token sumber)."
+      );
+    }
+
+    return problems;
+  }
+
+  if (encryptionSet !== hashSet) {
+    problems.push(
+      "WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS dan WEBSITE_ENGAGEMENT_HASH_KEYS harus diisi bersama (kontak pengunjung dienkripsi dengan yang satu, token sumber dan identifier di-hash dengan yang lain)."
+    );
+    return problems;
+  }
+
+  const encryption =
+    resolveWebsiteEngagementEncryptionRingUnchecked(processEnv);
+  const hash = resolveWebsiteEngagementHashRingUnchecked(processEnv);
+  const legacy = resolveWebsiteEngagementLegacyHashKeysUnchecked(processEnv);
+
+  if (!encryption.ok) {
+    problems.push(
+      `${encryption.reason} Cincin kunci enkripsi website_engagement tidak valid (tanpa kunci yang sah, kontak pengunjung tidak dapat disimpan; tidak ada fallback plaintext).`
+    );
+  }
+
+  if (!hash.ok) {
+    problems.push(
+      `${hash.reason} Cincin kunci hash website_engagement tidak valid (tanpa kunci yang sah, token sumber tidak dapat diverifikasi).`
+    );
+  }
+
+  if (!legacy.ok) {
+    problems.push(
+      `${legacy.reason} Kunci hash lama website_engagement tidak valid.`
+    );
+  }
+
+  if (!encryption.ok || !hash.ok || !legacy.ok) return problems;
+
+  for (const conflict of websiteEngagementRingConflicts(
+    encryption,
+    hash,
+    legacy.keys
+  )) {
+    problems.push(
+      `${conflict} (ADR-0137 bagian 3: kunci HMAC tidak pernah melindungi ciphertext.)`
+    );
+  }
+
+  for (const [name, keys] of [
+    ["WEBSITE_ENGAGEMENT_ENCRYPTION_KEYS", encryption.keys],
+    ["WEBSITE_ENGAGEMENT_HASH_KEYS", hash.keys],
+    ["WEBSITE_ENGAGEMENT_LEGACY_HASH_KEYS", legacy.keys]
+  ] as const) {
+    for (const other of WEBSITE_ENGAGEMENT_FOREIGN_KEY_VARIABLES) {
+      const shares = keyMaterialOf(env, other).some((material) =>
+        keys.some((key) => key.key.equals(material))
+      );
+
+      if (shares) {
+        problems.push(
+          `${name} dan ${other} tidak boleh berbagi kunci yang sama; tiap modul memakai kunci terpisah.`
+        );
+      }
+    }
+  }
+
+  return problems;
+}
+
+/** The crm_leads key-ring problems (ADR-0153, ADR-0137 section 3). No value is ever echoed. */
+export function crmLeadsKeyProblems(env: EnvBag): string[] {
+  const problems: string[] = [];
+  const encryptionSet = (env.CRM_LEADS_ENCRYPTION_KEYS ?? "").trim() !== "";
+  const hashSet = (env.CRM_LEADS_HASH_KEYS ?? "").trim() !== "";
+
+  if (!encryptionSet && !hashSet) return problems;
+
+  if (encryptionSet !== hashSet) {
+    problems.push(
+      "CRM_LEADS_ENCRYPTION_KEYS dan CRM_LEADS_HASH_KEYS harus diisi bersama (titik kontak lead dienkripsi dengan yang satu dan di-hash dengan yang lain)."
+    );
+    return problems;
+  }
+
+  const encryption = resolveCrmLeadsEncryptionRingUnchecked(
+    env as NodeJS.ProcessEnv
+  );
+  const hash = resolveCrmLeadsHashRingUnchecked(env as NodeJS.ProcessEnv);
+
+  if (!encryption.ok) {
+    problems.push(
+      `${encryption.reason} Cincin kunci enkripsi crm_leads tidak valid (tanpa kunci yang sah, titik kontak lead tidak dapat disimpan; tidak ada fallback plaintext).`
+    );
+  }
+
+  if (!hash.ok) {
+    problems.push(
+      `${hash.reason} Cincin kunci hash crm_leads tidak valid (tanpa kunci yang sah, titik kontak lead tidak dapat dicari).`
+    );
+  }
+
+  if (!encryption.ok || !hash.ok) return problems;
+
+  if (crmLeadsRingsShareAKey(encryption, hash)) {
+    problems.push(
+      "CRM_LEADS_ENCRYPTION_KEYS dan CRM_LEADS_HASH_KEYS tidak boleh berbagi kunci yang sama (ADR-0137 bagian 3: kunci HMAC tidak pernah melindungi ciphertext)."
+    );
+  }
+
+  for (const [name, ring] of [
+    ["CRM_LEADS_ENCRYPTION_KEYS", encryption],
+    ["CRM_LEADS_HASH_KEYS", hash]
+  ] as const) {
+    for (const other of CRM_LEADS_FOREIGN_KEY_VARIABLES) {
+      const shares = keyMaterialOf(env, other).some((material) =>
+        ring.keys.some((key) => key.key.equals(material))
+      );
+
+      if (shares) {
+        problems.push(
+          `${name} dan ${other} tidak boleh berbagi kunci yang sama; tiap modul memakai kunci terpisah.`
+        );
+      }
+    }
+  }
+
+  return problems;
+}
+
+/**
+ * Non-fatal advisories printed by `config:validate` (never change its exit
+ * code). Today: Mailketing v2 selected without the stage-2 acknowledgement.
+ */
+/**
+ * Issue #1156, audit H-A of PR #1260: the customer Telegram dispatcher's login
+ * must be its OWN role. The same user as the app or worker connection would
+ * put the channel key ring next to a login that reads every channel secret
+ * (awcms_app) or the WhatsApp sender credentials (awcms_worker). No value is
+ * echoed, only the variable names.
+ */
+export function telegramDispatchLoginProblems(env: EnvBag): string[] {
+  return dedicatedLoginProblems(
+    env,
+    "TELEGRAM_ENGAGEMENT_DATABASE_URL",
+    "TELEGRAM_ENGAGEMENT_DATABASE_URL harus berupa URL postgres dengan user (role awcms_telegram_engagement_dispatch).",
+    (name) =>
+      `TELEGRAM_ENGAGEMENT_DATABASE_URL memakai user yang sama dengan ${name}; dispatcher pelanggan Telegram wajib login sebagai role-nya sendiri (awcms_telegram_engagement_dispatch).`
+  );
+}
+
+/**
+ * Issue #1146 (ADR-0157 section 6): the social dispatcher's login must be its
+ * OWN role, for the same reason as the Telegram one above.
+ */
+export function socialDispatchLoginProblems(env: EnvBag): string[] {
+  return dedicatedLoginProblems(
+    env,
+    "SOCIAL_PUBLISHING_DATABASE_URL",
+    "SOCIAL_PUBLISHING_ENABLED=true membutuhkan SOCIAL_PUBLISHING_DATABASE_URL berupa URL postgres dengan user (role awcms_social_dispatch, sql/358 dan sql/373); job dispatcher tidak pernah jatuh balik ke DATABASE_URL atau WORKER_DATABASE_URL.",
+    (name) =>
+      `SOCIAL_PUBLISHING_DATABASE_URL memakai user yang sama dengan ${name}; dispatcher penerbitan sosial wajib login sebagai role-nya sendiri (awcms_social_dispatch).`
+  );
+}
+
+/**
+ * The shared rule of a dedicated-role job's login: present with a user, and
+ * that user is none of the shared logins (app, worker, and since the #1271
+ * audit L2 the setup one as well). No value is echoed.
+ */
+function dedicatedLoginProblems(
+  env: EnvBag,
+  name: string,
+  missing: string,
+  shared: (sharedName: string) => string
+): string[] {
+  const userOf = (variable: string): string | null => {
+    const raw = (env[variable] ?? "").trim();
+
+    if (raw === "") return null;
+
+    try {
+      return decodeURIComponent(new URL(raw).username) || null;
+    } catch {
+      return null;
+    }
+  };
+  const dispatchUser = userOf(name);
+
+  if (dispatchUser === null) return [missing];
+
+  return ["DATABASE_URL", "WORKER_DATABASE_URL", "SETUP_DATABASE_URL"]
+    .filter((sharedName) => userOf(sharedName) === dispatchUser)
+    .map(shared);
+}
+
+export function collectEnvWarnings(env: EnvBag): string[] {
+  const warnings: string[] = [];
+
+  if (
+    env.EMAIL_MAILKETING_API_VERSION?.trim() === "v2" &&
+    !isMailketingV2Verified(env as NodeJS.ProcessEnv)
+  ) {
+    warnings.push(MAILKETING_V2_UNVERIFIED_WARNING);
+  }
+
+  return warnings;
 }
 
 export function validateEnv(env: EnvBag): string[] {
@@ -776,6 +1297,33 @@ export function validateEnv(env: EnvBag): string[] {
     if (problem !== null) {
       problems.push(
         `IDEMPOTENCY_HMAC_SECRET wajib berisi secret nyata (>= 32 karakter) di produksi, tetapi ${problem} (mis. \`openssl rand -base64 48\`).`
+      );
+    }
+  }
+
+  // Mailketing v2 (Issue #1159): the API host is a fixed allow-list, not an
+  // operator-supplied endpoint. Same resolver the runtime uses, so a value the
+  // validator accepts is a value the runtime accepts. v1 is unchanged.
+  if (env.EMAIL_MAILKETING_API_VERSION?.trim() === "v2") {
+    const baseUrl = resolveMailketingV2BaseUrl(
+      env.EMAIL_MAILKETING_API_BASE_URL
+    );
+
+    if (!baseUrl.ok) {
+      problems.push(baseUrl.reason);
+    }
+
+    const v2Token = env.EMAIL_MAILKETING_API_TOKEN ?? "";
+
+    if (v2Token !== "" && !isMailketingTokenHeaderSafe(v2Token)) {
+      problems.push(
+        "EMAIL_MAILKETING_API_TOKEN tidak dapat dipakai sebagai nilai header HTTP (hanya ASCII tampak, tanpa spasi/baris baru)."
+      );
+    }
+
+    if (env.EMAIL_ENABLED === "true" && v2Token.trim() === "") {
+      problems.push(
+        "EMAIL_MAILKETING_API_TOKEN wajib diisi saat EMAIL_ENABLED=true dan EMAIL_MAILKETING_API_VERSION=v2."
       );
     }
   }
@@ -980,6 +1528,35 @@ export function validateEnv(env: EnvBag): string[] {
   // plaintext fallback, so without it no credential could ever be stored. The
   // ring must not share a key with another module's encryption ring: one
   // compromised ring would then open two datasets. No value is ever echoed.
+  // social_publishing (ADR-0157): the module publishes only through accounts of
+  // the account registry, so enabling it without the registry is a configuration
+  // that can never do anything and says nothing about why.
+  if (
+    env.SOCIAL_PUBLISHING_ENABLED === "true" &&
+    env.CHANNEL_ACCOUNTS_ENABLED !== "true"
+  ) {
+    problems.push(
+      "SOCIAL_PUBLISHING_ENABLED=true memerlukan CHANNEL_ACCOUNTS_ENABLED=true (penerbitan sosial hanya berjalan lewat akun terhubung dari registri akun kanal; tanpa registri, setiap akun ditolak)."
+    );
+  }
+
+  // Issue #1146 (ADR-0157 section 6): the dispatcher runs ONLY as its own role
+  // awcms_social_dispatch, with no fallback. Enabling the module without that
+  // login is a job that refuses every run; the same user as the app or worker
+  // login would put the channel key ring next to a broader credential.
+  if (env.SOCIAL_PUBLISHING_ENABLED === "true") {
+    problems.push(...socialDispatchLoginProblems(env));
+  }
+
+  if (
+    env.SOCIAL_PUBLISHING_FACEBOOK_ENABLED === "true" &&
+    env.SOCIAL_PUBLISHING_ENABLED !== "true"
+  ) {
+    problems.push(
+      "SOCIAL_PUBLISHING_FACEBOOK_ENABLED=true memerlukan SOCIAL_PUBLISHING_ENABLED=true (konektor Facebook Pages adalah bagian dari modul social_publishing)."
+    );
+  }
+
   if (env.CHANNEL_ACCOUNTS_ENABLED === "true") {
     const channelRing = resolveChannelSecretsRing(env as NodeJS.ProcessEnv);
 
@@ -1033,6 +1610,85 @@ export function validateEnv(env: EnvBag): string[] {
           );
         }
       }
+    }
+  }
+
+  // website_engagement (ADR-0155, ADR-0137 section 3, Issue #1262): TWO rings
+  // plus the verify-only legacy hash keys of the single-ring transition. See
+  // `websiteEngagementKeyProblems`.
+  problems.push(...websiteEngagementKeyProblems(env));
+
+  // crm_leads (ADR-0153, ADR-0137 section 3): TWO rings, an encryption ring and
+  // an HMAC ring. Optional (the module ships off), but a PRESENT ring must
+  // parse, the pair must be set together, the two must share no key with each
+  // other, and neither may share a key with any other module's ring OR any
+  // single-key secret of the deployment (the AUTH_* and COMMENTS_* keys are
+  // one base64 value, not a ring, and used to escape this check). No value is
+  // echoed.
+  problems.push(...crmLeadsKeyProblems(env));
+  // telegram_engagement (ADR-0152, Issue #1156): enabling the CUSTOMER bot
+  // module requires its own ring (parsed by the runtime's helper), the
+  // channel-account registry and its ring (a bot IS a channel account, its token
+  // a channel secret), and APP_URL as an https origin (the per-bot webhook URL).
+  // The ring must not share a key with any other ring. No value is echoed.
+  if (env.TELEGRAM_ENGAGEMENT_ENABLED === "true") {
+    const ring = resolveTelegramEngagementRing(env as NodeJS.ProcessEnv);
+
+    if (!ring.ok) {
+      problems.push(
+        `${ring.reason} TELEGRAM_ENGAGEMENT_KEYS wajib berisi cincin kunci yang sah saat TELEGRAM_ENGAGEMENT_ENABLED=true (tanpa fallback plaintext).`
+      );
+    } else {
+      for (const other of [
+        "CHANNEL_SECRETS_ENCRYPTION_KEYS",
+        "TELEGRAM_CHAT_ENCRYPTION_KEYS",
+        "TELEGRAM_CHAT_HASH_KEYS",
+        "PUSH_AUTH_SECRET_ENCRYPTION_KEYS",
+        "WHATSAPP_RECIPIENT_HASH_KEYS",
+        "WEBSITE_ENGAGEMENT_KEYS"
+      ]) {
+        const sharesKey = (env[other] ?? "").split(",").some((entry) => {
+          const separator = entry.indexOf(":");
+
+          if (separator < 1) return false;
+
+          const decoded = Buffer.from(
+            entry.slice(separator + 1).trim(),
+            "base64"
+          );
+
+          return (
+            decoded.length > 0 &&
+            ring.keys.some((key) => key.key.equals(decoded))
+          );
+        });
+
+        if (sharesKey) {
+          problems.push(
+            `TELEGRAM_ENGAGEMENT_KEYS dan ${other} tidak boleh berbagi kunci yang sama; tiap modul memakai cincin kunci terpisah.`
+          );
+        }
+      }
+    }
+
+    if ((env.TELEGRAM_ENGAGEMENT_DATABASE_URL ?? "").trim() === "") {
+      problems.push(
+        "TELEGRAM_ENGAGEMENT_ENABLED=true membutuhkan TELEGRAM_ENGAGEMENT_DATABASE_URL (role awcms_telegram_engagement_dispatch, sql/353); job dispatcher tidak pernah jatuh balik ke DATABASE_URL."
+      );
+    } else {
+      problems.push(...telegramDispatchLoginProblems(env));
+    }
+
+    if (env.CHANNEL_ACCOUNTS_ENABLED !== "true") {
+      problems.push(
+        "TELEGRAM_ENGAGEMENT_ENABLED=true membutuhkan CHANNEL_ACCOUNTS_ENABLED=true: bot pelanggan adalah akun channel_accounts."
+      );
+    }
+
+    if (!/^https:\/\/[^/@\s]+/.test((env.APP_URL ?? "").trim())) {
+      problems.push(
+        "TELEGRAM_ENGAGEMENT_ENABLED=true membutuhkan APP_URL berupa origin https (URL webhook per bot dibangun darinya)."
+      );
     }
   }
 
@@ -1206,6 +1862,25 @@ export function validateEnv(env: EnvBag): string[] {
     );
   }
 
+  // Multi-instance wajib punya rate limiter bersama (#1285, ADR-0066): tanpa
+  // Redis tiap instance menghitung jendelanya sendiri sehingga setiap batas
+  // menjadi N kali lipat. Ini error, bukan peringatan.
+  const instanceCount = Number.parseInt(
+    (env.APP_INSTANCE_COUNT ?? "").trim(),
+    10
+  );
+
+  if (
+    Number.isInteger(instanceCount) &&
+    instanceCount > 1 &&
+    ((env.REDIS_ENABLED ?? "").trim().toLowerCase() !== "true" ||
+      (env.REDIS_URL ?? "").trim() === "")
+  ) {
+    problems.push(
+      `APP_INSTANCE_COUNT=${instanceCount} (lebih dari satu instance) tetapi Redis belum dikonfigurasi: set REDIS_ENABLED=true dan REDIS_URL agar rate limiter dipakai bersama. Tanpa itu tiap instance menghitung sendiri dan setiap batas menjadi ${instanceCount} kali lipat (ADR-0066).`
+    );
+  }
+
   // `TRUSTED_PROXY_HOP_COUNT` hanya berarti bila headernya dipercaya sama
   // sekali. Menyetelnya sambil `TRUSTED_PROXY_ENABLED=false` adalah operator
   // yang mengira sudah menyetel sesuatu — persis kelas kesalahan yang
@@ -1238,6 +1913,10 @@ if (import.meta.main) {
   }
 
   const problems = validateEnv(env);
+
+  for (const warning of collectEnvWarnings(env)) {
+    console.warn(`  ! PERINGATAN: ${warning}`);
+  }
 
   if (problems.length > 0) {
     for (const problem of problems) console.error(`  - ${problem}`);

@@ -109,11 +109,14 @@ describe("idn_admin_regions vendored dataset provenance", () => {
         path.join(ROOT, DATA_DIR, entry.path),
         "utf8"
       );
-      const header = text.slice(0, 2000).replace(/\r/g, "");
+      // Whitespace is folded on both sides: db/wilayah_penduduk.sql wraps its
+      // decree reference across two header lines (awcms-one, ADR-0053).
+      const fold = (value: string) => value.replace(/\s+/g, " ").trim();
+      const header = fold(text.slice(0, 2000));
 
-      expect(`${entry.path} -> ${header.includes(entry.decreeReference)}`).toBe(
-        `${entry.path} -> true`
-      );
+      expect(
+        `${entry.path} -> ${header.includes(fold(entry.decreeReference))}`
+      ).toBe(`${entry.path} -> true`);
     }
   });
 

@@ -55,8 +55,11 @@
  * daily cap counted from what it really sent, and its own provider adapter and
  * credential, resolved from THAT sender's record in THIS tenant
  * (`ChannelAccountPort`, `ChannelSenderCredentialPort`), in memory, once per
- * lane per pass, never from a request. Revocation therefore takes effect on the
- * next claim.
+ * lane per pass and again every `WHATSAPP_SENDER_REVALIDATE_EVERY_ROWS` rows
+ * (default 10), never from a request. Revocation therefore takes effect on the
+ * next claim, or within at most that many rows of a pass already in flight
+ * (Issue #1231 L1); the row being sent at the instant of revocation is not
+ * recalled.
  *
  * A sender that cannot send now never sends through anything else:
  *
@@ -64,7 +67,12 @@
  *   with no adapter: the row is `failed` with `sender_unavailable` (terminal);
  * - degraded, pending, a token awaiting refresh, no key ring, the control plane
  *   switched off: the lane is HELD (rows stay waiting, nothing is claimed);
- * - an open per-sender breaker or a reached cap: the lane waits.
+ * - an open per-sender breaker or a reached cap: the lane waits. The cap is
+ *   computed and claimed in ONE transaction under a per-sender advisory lock, so
+ *   overlapping passes cannot each claim up to `share` against the same
+ *   allowance (Issue #1231 M2); a lane at its cap is reported as
+ *   `quota_reached` and takes neither a share nor a discovery slot from the
+ *   healthy lanes (L5). The per-sender breaker is in-process, per worker.
  *
  * There is no rotation to another number to escape a limit, a quality rating or
  * a failure (ADR-0148 I4, I5).
@@ -89,6 +97,9 @@ import {
   isWhatsappEnabled,
   resolveWhatsappSendMaxRetries,
   resolveWhatsappSendTimeoutMs,
+  resolveWhatsappSenderRatePerDay,
+  resolveWhatsappSenderRatePerHour,
+  resolveWhatsappSenderRevalidateEveryRows,
   whatsappSenderBreakerKey
 } from "../domain/whatsapp-config";
 import { decideEligibility } from "../domain/whatsapp-eligibility";
@@ -110,6 +121,7 @@ import { loadChannelAccountPort } from "../infrastructure/channel-account-port-l
 import { resolveWhatsappProvider } from "../infrastructure/whatsapp-provider-resolver";
 import {
   buildWhatsappSenderProvider,
+  isWhatsappMetaApiVersionValid,
   type BuildSenderProviderInput
 } from "../infrastructure/whatsapp-sender-providers";
 import { senderAllowance } from "./whatsapp-sender-directory";
@@ -126,6 +138,10 @@ import {
   emitWhatsappDispatchFailedEvent,
   emitWhatsappMessageEvent
 } from "./whatsapp-event-emit";
+import {
+  decideMetaSendForMessage,
+  readMetaRestriction
+} from "./whatsapp-meta-directory";
 
 const MODULE_KEY = "whatsapp_delivery";
 
@@ -136,6 +152,17 @@ const MAX_RESPONSE_SNIPPET_LENGTH = 500;
 
 /** How long a row is parked when its sender cannot send for a reason that is not the message's own (the lane is HELD). */
 const SENDER_HOLD_MS = 5 * 60_000;
+/** Holds that COUNT an attempt and end in a terminal failure, not an indefinite wait (Issue #1233 L1). */
+const BOUNDED_HOLD_REASONS: ReadonlySet<string> = new Set([
+  "CREDENTIAL_REJECTED",
+  "PROVIDER_CONFIG_INVALID",
+  // Issue #1143: Meta reports the sender's WABA restricted (banned,
+  // restricted, deleted, offboarded, app uninstalled). Retried with backoff,
+  // counted, then terminal; never sent through another number.
+  "SENDER_RESTRICTED"
+]);
+/** Issue #1143: after the provider answered "rate limited", the rest of THAT sender's lane waits this long (not counted as an attempt). */
+const RATE_LIMIT_HOLD_MS = 60_000;
 /** Most lanes one pass serves; the oldest-waiting come first, so a lane past this limit is served by the next pass, not starved. */
 const MAX_LANES_PER_PASS = 64;
 
@@ -157,6 +184,9 @@ type ClaimedRow = {
   expires_at: Date | string | null;
   retry_count: string | number;
   created_at: Date | string;
+  /** Issue #1143: the verified identity snapshotted at enqueue (NULL on rows queued before `sql/365`). */
+  sender_external_id: string | null;
+  sender_container_external_id: string | null;
 };
 
 export type DispatchWhatsappQueueOptions = {
@@ -170,6 +200,12 @@ export type DispatchWhatsappQueueOptions = {
   senders?: ChannelAccountPort;
   /** Issue #1141. Decrypts a sender's credential, in memory, per lane. Supplied ONLY by the dispatcher's composition root; omitted, every tenant-owned sender lane is held (fail closed). */
   credentials?: ChannelSenderCredentialPort;
+  /**
+   * Issue #1231 L1. Rows of one tenant-owned sender lane sent before the
+   * sender's verdict and credential are resolved afresh. Omitted: the
+   * environment (`WHATSAPP_SENDER_REVALIDATE_EVERY_ROWS`, default 10).
+   */
+  senderRevalidateEveryRows?: number;
   /** Issue #1141. A test seam for the sender adapter factory (no network). */
   buildSenderProvider?: (
     input: BuildSenderProviderInput
@@ -211,36 +247,93 @@ export type DispatchWhatsappQueueResult = {
 
 type Terminal = "failed" | "expired" | "cancelled";
 
+/** What lane discovery found: the lanes this pass serves, and the lanes that wait on their own quota. */
+type DiscoveredLanes = {
+  /** Senders with rows due now AND room under their caps, oldest-waiting first (`null` is the deployment sender). */
+  servable: (string | null)[];
+  /** Tenant-owned senders with rows due now but no allowance: they wait, claim nothing, and do not shrink anybody's share. */
+  quotaHeld: string[];
+};
+
 /**
  * The senders that have rows due now, oldest-waiting first (`null` is the
  * deployment sender). The due predicate is the claim's own, so a lane listed
  * here has something the claim below can take.
+ *
+ * A tenant-owned sender that is already AT its hourly or daily cap (counted the
+ * way `senderAllowance` counts: sent in the trailing hour/day plus in flight) is
+ * reported apart as `quotaHeld`. It stays "due" for as long as the window runs,
+ * so listing it among the servable lanes would let a handful of capped senders
+ * (a) fill the `MAX_LANES_PER_PASS` discovery slots ahead of healthy senders
+ * whose rows are younger and (b) shrink every healthy lane's fair share for
+ * nothing (Issue #1231 L5). The authoritative check still happens inside the
+ * claim, under the sender's lock; this one is the cheap pre-filter.
  */
 async function discoverLanes(
   sql: Bun.SQL,
   tenantId: string,
-  now: Date
-): Promise<(string | null)[]> {
+  now: Date,
+  env: NodeJS.ProcessEnv
+): Promise<DiscoveredLanes> {
+  const ratePerHour = resolveWhatsappSenderRatePerHour(env);
+  const ratePerDay = resolveWhatsappSenderRatePerDay(env);
   const rows = (await withTenantOrThrow(
     sql,
     tenantId,
     (tx) => tx`
-      SELECT sender_account_id
-      FROM awcms_whatsapp_messages
-      WHERE tenant_id = ${tenantId}
-        AND (
-          (status IN ('queued', 'retry_wait')
-            AND (next_attempt_at IS NULL OR next_attempt_at <= ${now}))
-          OR (status = 'sending' AND next_attempt_at <= ${now})
-        )
-      GROUP BY sender_account_id
-      ORDER BY min(created_at), sender_account_id NULLS FIRST
-      LIMIT ${MAX_LANES_PER_PASS}
+      WITH due_lanes AS (
+        SELECT sender_account_id, min(created_at) AS oldest
+        FROM awcms_whatsapp_messages
+        WHERE tenant_id = ${tenantId}
+          AND (
+            (status IN ('queued', 'retry_wait')
+              AND (next_attempt_at IS NULL OR next_attempt_at <= ${now}))
+            OR (status = 'sending' AND next_attempt_at <= ${now})
+          )
+        GROUP BY sender_account_id
+      ),
+      usage AS (
+        SELECT m.sender_account_id,
+          count(*) FILTER (WHERE m.status = 'sent'
+                             AND m.sent_at > now() - interval '1 hour') AS sent_hour,
+          count(*) FILTER (WHERE m.status = 'sent'
+                             AND m.sent_at > now() - interval '1 day') AS sent_day,
+          count(*) FILTER (WHERE m.status = 'sending') AS in_flight
+        FROM awcms_whatsapp_messages m
+        WHERE m.tenant_id = ${tenantId}
+          AND m.sender_account_id IN (
+            SELECT sender_account_id FROM due_lanes
+            WHERE sender_account_id IS NOT NULL)
+          AND (m.status = 'sending'
+               OR (m.status = 'sent' AND m.sent_at > now() - interval '1 day'))
+        GROUP BY m.sender_account_id
+      ),
+      lanes AS (
+        SELECT d.sender_account_id, d.oldest,
+          (d.sender_account_id IS NOT NULL AND LEAST(
+             ${ratePerHour}::bigint - coalesce(u.sent_hour, 0) - coalesce(u.in_flight, 0),
+             ${ratePerDay}::bigint - coalesce(u.sent_day, 0) - coalesce(u.in_flight, 0)
+           ) <= 0) AS held
+        FROM due_lanes d
+        LEFT JOIN usage u ON u.sender_account_id = d.sender_account_id
+      )
+      (SELECT sender_account_id, held FROM lanes WHERE NOT held
+        ORDER BY oldest, sender_account_id NULLS FIRST
+        LIMIT ${MAX_LANES_PER_PASS})
+      UNION ALL
+      (SELECT sender_account_id, held FROM lanes WHERE held
+        ORDER BY oldest, sender_account_id
+        LIMIT ${MAX_LANES_PER_PASS})
     `,
     { workClass: "background_sync" }
-  )) as { sender_account_id: string | null }[];
+  )) as { sender_account_id: string | null; held: boolean }[];
 
-  return rows.map((row) => row.sender_account_id);
+  return {
+    servable: rows.filter((r) => !r.held).map((r) => r.sender_account_id),
+    quotaHeld: rows
+      .filter((r) => r.held)
+      .map((r) => r.sender_account_id as string)
+  };
 }
 
 /**
@@ -260,16 +353,49 @@ async function claimEligibleMessages(
   sql: Bun.SQL,
   tenantId: string,
   now: Date,
-  limit: number,
-  leaseMs: number,
-  laneSenderId: string | null
-): Promise<ClaimedRow[]> {
-  const leaseExpiry = new Date(now.getTime() + leaseMs);
-
+  share: number,
+  leaseMsFor: (take: number) => number,
+  laneSenderId: string | null,
+  quotaEnv: NodeJS.ProcessEnv | null
+): Promise<{ rows: ClaimedRow[]; take: number; quotaReached: boolean }> {
   return withTenantOrThrow(
     sql,
     tenantId,
     async (tx) => {
+      let limit = share;
+
+      if (laneSenderId !== null && quotaEnv !== null) {
+        // The allowance is computed and CLAIMED in this one transaction, under a
+        // lock keyed on the sender (Issue #1231 M2). Computed in one transaction
+        // and claimed in another, two overlapping passes both read the same
+        // allowance and each claimed up to `share`, so the cap was exceeded by
+        // about `workers x share`. Now the second claimer waits here until the
+        // first has COMMITTED its `sending` rows, and then counts them as in
+        // flight. One lock per transaction, taken first and before any row lock
+        // (the claim below is `SKIP LOCKED` and never waits), so there is no
+        // lock order to get wrong and no deadlock. The lock is released by
+        // COMMIT/ROLLBACK; it is never held across a network send.
+        await tx`
+          SELECT pg_advisory_xact_lock(
+            hashtextextended(${`awcms_whatsapp_sender_quota:${tenantId}:${laneSenderId}`}, 0)
+          )
+        `;
+
+        const allowance = await senderAllowance(
+          tx,
+          tenantId,
+          laneSenderId,
+          quotaEnv
+        );
+
+        limit = Math.min(share, allowance);
+
+        if (limit <= 0) {
+          return { rows: [], take: 0, quotaReached: true };
+        }
+      }
+
+      const leaseExpiry = new Date(now.getTime() + leaseMsFor(limit));
       // `MATERIALIZED` is load-bearing. Without it the planner may inline the
       // locking sub-select into the UPDATE, and on stale statistics for a
       // near-empty table it then re-runs the `LIMIT` once per outer row, so
@@ -309,7 +435,8 @@ async function claimEligibleMessages(
                   t.correlation_id, t.template_key, t.purpose,
                   t.recipient, t.recipient_hash, t.recipient_masked, t.body,
                   t.variables, t.contains_secret, t.expires_at, t.retry_count,
-                  t.created_at
+                  t.created_at, t.sender_external_id,
+                  t.sender_container_external_id
       `;
 
       // `UPDATE ... RETURNING` does not preserve the CTE's ORDER BY, so the
@@ -317,12 +444,17 @@ async function claimEligibleMessages(
       const rank = (purpose: string) =>
         purpose === "security" ? 0 : purpose === "transactional" ? 1 : 2;
 
-      return (rows as unknown as ClaimedRow[]).sort(
-        (a, b) =>
-          rank(a.purpose) - rank(b.purpose) ||
-          new Date(a.created_at).getTime() - new Date(b.created_at).getTime() ||
-          a.id.localeCompare(b.id)
-      );
+      return {
+        rows: (rows as unknown as ClaimedRow[]).sort(
+          (a, b) =>
+            rank(a.purpose) - rank(b.purpose) ||
+            new Date(a.created_at).getTime() -
+              new Date(b.created_at).getTime() ||
+            a.id.localeCompare(b.id)
+        ),
+        take: limit,
+        quotaReached: false
+      };
     },
     { workClass: "background_sync" }
   );
@@ -593,11 +725,25 @@ type LaneState = {
   providerFailure: { kind: "terminal" | "hold"; reason: string } | null;
   /** The provider rejected this sender's credential: the rest of the lane fails closed without another call. */
   credentialRejected: boolean;
+  /** Rows gated since the verdict and provider were last resolved (Issue #1231 L1). */
+  rowsSinceRevalidation: number;
+  /**
+   * Issue #1143. The provider answered "rate limited" for this sender: the rest
+   * of its lane waits ({@link RATE_LIMIT_HOLD_MS}) instead of hammering it.
+   */
+  rateLimited: boolean;
+  /** Issue #1143. The WABA's restriction, read once per revalidation window (`undefined` = not read yet). */
+  restriction: string | null | undefined;
 };
 
 type RowGate =
-  | ({ ok: true } & LaneProvider)
-  | { ok: false; kind: "terminal" | "hold"; reason: string };
+  | ({ ok: true; metaWabaId: string | null } & LaneProvider)
+  | {
+      ok: false;
+      kind: "terminal" | "hold";
+      reason: string;
+      holdMs?: number;
+    };
 
 /**
  * Dispatches one batch of due `awcms_whatsapp_messages` rows for ONE tenant.
@@ -663,7 +809,23 @@ export async function dispatchWhatsappQueue(
 
   const startedAt = Date.now();
   const clock = () => new Date(now.getTime() + (Date.now() - startedAt));
-  const lanes = await discoverLanes(sql, tenantId, now);
+  const discovered = await discoverLanes(sql, tenantId, now, env);
+  const lanes = discovered.servable;
+
+  // A sender waiting on its own quota claims nothing and is not part of the fair
+  // share, so it cannot shrink a healthy lane's share or crowd it out of the
+  // discovery window (Issue #1231 L5). It is still reported.
+  for (const quotaHeldId of discovered.quotaHeld) {
+    result.senders.push({
+      senderAccountId: quotaHeldId,
+      claimed: 0,
+      sent: 0,
+      retried: 0,
+      failed: 0,
+      held: 0,
+      skipped: "quota_reached"
+    });
+  }
 
   if (lanes.length === 0) {
     return result;
@@ -673,6 +835,11 @@ export async function dispatchWhatsappQueue(
   // lane counts only while its breaker is closed.
   const servable = lanes.filter((lane) => lane !== null || !breakerOpen);
   const share = Math.max(1, Math.floor(limit / Math.max(1, servable.length)));
+  const revalidateEveryRows =
+    options.senderRevalidateEveryRows !== undefined &&
+    Number.isFinite(options.senderRevalidateEveryRows)
+      ? Math.max(1, Math.floor(options.senderRevalidateEveryRows))
+      : resolveWhatsappSenderRevalidateEveryRows(env);
   let channelPort: ChannelAccountPort | null | undefined;
 
   for (const laneSenderId of lanes) {
@@ -703,9 +870,12 @@ export async function dispatchWhatsappQueue(
       deployment: null,
       provider: null,
       providerFailure: null,
-      credentialRejected: false
+      credentialRejected: false,
+      rowsSinceRevalidation: 0,
+      rateLimited: false,
+      restriction: undefined
     };
-    let take = share;
+    let enforceQuota = false;
 
     if (laneSenderId !== null) {
       if (!getProviderCircuitBreaker(lane.breakerKey).canAttempt(now)) {
@@ -741,42 +911,36 @@ export async function dispatchWhatsappQueue(
       // capability it holds: a sender approved only for `broadcast` or `reply` is
       // `CAPABILITY_DENIED` for `dm` and must not escape its quota because of it.
       // A sender that is gone (terminal at account level) fails its rows, which
-      // sends nothing, so it spends no quota and is not throttled.
-      if (availability.usable || !accountLevelDenial) {
-        const allowance = await withTenantOrThrow(
-          sql,
-          tenantId,
-          (tx) => senderAllowance(tx, tenantId, laneSenderId, env),
-          { workClass: "background_sync" }
-        );
-
-        take = Math.min(share, allowance);
-
-        if (take <= 0) {
-          summary.skipped = "quota_reached";
-          continue;
-        }
-      }
+      // sends nothing, so it spends no quota and is not throttled. The allowance
+      // itself is computed INSIDE the claim, under the sender's lock (M2).
+      enforceQuota = availability.usable || !accountLevelDenial;
     }
 
     // The claim lease must outlive the whole lane batch (see the header): `take`
-    // rows at the worst-case provider timeout, plus a margin.
-    const claimLeaseMs =
-      take * resolveWhatsappSendTimeoutMs(env) +
-      WHATSAPP_DISPATCH_LEASE_MINUTES * 60_000;
+    // rows at the worst-case provider timeout, plus a margin. `take` is only
+    // known inside the claim (it depends on the allowance), so the lease is a
+    // function of it.
     const claimed = await claimEligibleMessages(
       sql,
       tenantId,
       now,
-      take,
-      claimLeaseMs,
-      laneSenderId
+      share,
+      (take) =>
+        take * resolveWhatsappSendTimeoutMs(env) +
+        WHATSAPP_DISPATCH_LEASE_MINUTES * 60_000,
+      laneSenderId,
+      enforceQuota ? env : null
     );
 
-    result.claimed += claimed.length;
-    summary.claimed = claimed.length;
+    if (claimed.quotaReached) {
+      summary.skipped = "quota_reached";
+      continue;
+    }
 
-    if (claimed.length === 0) {
+    result.claimed += claimed.rows.length;
+    summary.claimed = claimed.rows.length;
+
+    if (claimed.rows.length === 0) {
       continue;
     }
 
@@ -793,11 +957,11 @@ export async function dispatchWhatsappQueue(
       correlationId,
       tenantId,
       moduleKey: MODULE_KEY,
-      count: claimed.length,
+      count: claimed.rows.length,
       ...(laneSenderId ? { senderAccountId: laneSenderId } : {})
     });
 
-    for (const entry of claimed) {
+    for (const entry of claimed.rows) {
       const owned: { lease: Date | null } = { lease: null };
 
       try {
@@ -906,13 +1070,37 @@ export async function dispatchWhatsappQueue(
    */
   async function gateRow(lane: LaneState, entry: ClaimedRow): Promise<RowGate> {
     if (lane.senderAccountId === null) {
-      return { ok: true, ...lane.deployment! };
+      return { ok: true, metaWabaId: null, ...lane.deployment! };
     }
 
     const accountId = lane.senderAccountId;
 
+    // Bounded revocation window (Issue #1231 L1). The verdict and the built
+    // provider (the decrypted token, in memory) used to live for the whole
+    // claimed lease, so a sender revoked mid-pass kept sending until the batch
+    // ended. Every `revalidateEveryRows` rows both are dropped and resolved
+    // afresh: a sender that is no longer usable then fails closed through the
+    // normal policy (terminal or held, per `classifySenderUnavailable`), and the
+    // stale credential is never used again. The window that remains: the rows
+    // sent between two re-checks (at most `revalidateEveryRows`, each bounded by
+    // the send timeout), and the one row already in flight when the revocation
+    // lands. `credentialRejected` is a fact about the provider's answer, not a
+    // cached verdict, so it is deliberately NOT reset here.
+    if (lane.rowsSinceRevalidation >= revalidateEveryRows) {
+      lane.verdicts.clear();
+      lane.provider = null;
+      lane.providerFailure = null;
+      lane.restriction = undefined;
+      lane.rowsSinceRevalidation = 0;
+    }
+
+    lane.rowsSinceRevalidation += 1;
+
     if (lane.credentialRejected) {
-      return { ok: false, kind: "terminal", reason: "CREDENTIAL_REJECTED" };
+      // A 401 is as likely to be a token the tenant is about to reconnect (or a
+      // transient provider fault) as a revoked one: the row waits and is retried
+      // with backoff, bounded by `WHATSAPP_SEND_MAX_RETRIES` (Issue #1233 L1).
+      return { ok: false, kind: "hold", reason: "CREDENTIAL_REJECTED" };
     }
 
     // This sender's breaker only: another sender's failures never reach it.
@@ -943,6 +1131,68 @@ export async function dispatchWhatsappQueue(
 
     if (!senderScopeAllows(verdict.sender.businessScope, rowScope)) {
       return { ok: false, kind: "terminal", reason: "SCOPE_MISMATCH" };
+    }
+
+    // Issue #1143: the row is sent ONLY from the identity it was queued for.
+    // A row queued before `sql/365` has no snapshot and is bound by the
+    // current record (which must still have a valid WABA, below).
+    if (
+      entry.sender_external_id !== null &&
+      entry.sender_external_id !== verdict.sender.externalId
+    ) {
+      return { ok: false, kind: "terminal", reason: "SENDER_BINDING_CHANGED" };
+    }
+
+    let metaWabaId: string | null = null;
+
+    if (verdict.sender.provider === "whatsapp_cloud") {
+      metaWabaId = verdict.sender.containerExternalId ?? null;
+
+      if (!metaWabaId || !verdict.sender.containerAccountId) {
+        return {
+          ok: false,
+          kind: "terminal",
+          reason: "CONTAINER_BINDING_INVALID"
+        };
+      }
+
+      if (
+        entry.sender_container_external_id !== null &&
+        entry.sender_container_external_id !==
+          verdict.sender.containerExternalId
+      ) {
+        return {
+          ok: false,
+          kind: "terminal",
+          reason: "SENDER_BINDING_CHANGED"
+        };
+      }
+
+      if (lane.restriction === undefined) {
+        const wabaId = metaWabaId;
+
+        lane.restriction = await withTenantOrThrow(
+          sql,
+          tenantId,
+          (tx) => readMetaRestriction(tx, tenantId, wabaId),
+          { workClass: "background_sync" }
+        );
+      }
+
+      if (lane.restriction) {
+        return { ok: false, kind: "hold", reason: "SENDER_RESTRICTED" };
+      }
+    }
+
+    if (lane.rateLimited) {
+      // Backoff after the provider's rate-limit answer (Issue #1143): the rest
+      // of this sender's lane waits, uncounted; other senders are unaffected.
+      return {
+        ok: false,
+        kind: "hold",
+        reason: "RATE_LIMITED",
+        holdMs: RATE_LIMIT_HOLD_MS
+      };
     }
 
     if (lane.providerFailure) {
@@ -990,6 +1240,21 @@ export async function dispatchWhatsappQueue(
         return { ok: false, ...lane.providerFailure };
       }
 
+      if (
+        verdict.sender.provider === "whatsapp_cloud" &&
+        !isWhatsappMetaApiVersionValid(env)
+      ) {
+        // An operator misconfiguration, not a fact about this message or sender:
+        // the row waits (bounded retries) until the deployment is fixed. It is
+        // never sent through another sender or provider (Issue #1233 L1).
+        lane.providerFailure = {
+          kind: "hold",
+          reason: "PROVIDER_CONFIG_INVALID"
+        };
+
+        return { ok: false, ...lane.providerFailure };
+      }
+
       const built = (
         options.buildSenderProvider ?? buildWhatsappSenderProvider
       )({
@@ -1014,7 +1279,7 @@ export async function dispatchWhatsappQueue(
       };
     }
 
-    return { ok: true, ...lane.provider };
+    return { ok: true, metaWabaId, ...lane.provider };
   }
 
   /**
@@ -1102,12 +1367,57 @@ export async function dispatchWhatsappQueue(
     const gate = await gateRow(lane, entry);
 
     if (!gate.ok) {
+      if (gate.kind === "hold" && BOUNDED_HOLD_REASONS.has(gate.reason)) {
+        // Retry with backoff and COUNT the attempt, so a sender whose credential
+        // stays rejected (or a deployment that stays misconfigured) ends in a
+        // terminal failure instead of waiting forever. No send was attempted
+        // this time, so no delivery attempt is recorded.
+        const retry = evaluateWhatsappRetry(retryCount, maxRetries, now);
+
+        if (retry.eligible && retry.nextAttemptAt) {
+          const delay = retry.nextAttemptAt.getTime() - now.getTime();
+
+          await scheduleRetry(
+            sql,
+            tenantId,
+            entry.id,
+            retryCount + 1,
+            new Date(clock().getTime() + delay),
+            SENDER_UNAVAILABLE_FAILURE_CODE,
+            `The sender cannot send this message yet (${gate.reason}).`,
+            leaseUntil
+          );
+          result.retried += 1;
+          summary.retried += 1;
+
+          return;
+        }
+
+        await terminal(
+          "failed",
+          retryCount + 1,
+          SENDER_UNAVAILABLE_FAILURE_CODE,
+          `The sender cannot send this message (${gate.reason}).`
+        );
+        log("warning", "whatsapp.dispatch.sender_unavailable", {
+          correlationId: messageCorrelationId,
+          tenantId,
+          moduleKey: MODULE_KEY,
+          senderAccountId: lane.senderAccountId,
+          reason: gate.reason
+        });
+        result.failed += 1;
+        summary.failed += 1;
+
+        return;
+      }
+
       if (gate.kind === "hold") {
         await holdMessage(
           sql,
           tenantId,
           entry.id,
-          new Date(clock().getTime() + SENDER_HOLD_MS),
+          new Date(clock().getTime() + (gate.holdMs ?? SENDER_HOLD_MS)),
           leaseUntil
         );
         result.held += 1;
@@ -1135,21 +1445,28 @@ export async function dispatchWhatsappQueue(
       return;
     }
 
-    const { provider, providerName } = gate;
+    const { provider, providerName, metaWabaId } = gate;
 
     // 3. Eligibility, read again immediately before the send, under EVERY ring key.
-    //    Keyed by the recipient, never by the sender (ADR-0148 section 4).
+    //    Keyed by the recipient, never by the sender (ADR-0148 section 4); a
+    //    marketing consent must still cover the row's SNAPSHOTTED business
+    //    scope (Issue #1231 M4): coverage can only have narrowed since enqueue
+    //    (a withdrawal clears every brand), never be widened for this row.
     const hashes = buildRecipientHashes(
       tenantId,
       entry.recipient,
       ring as Extract<RecipientKeyRing, { ok: true }>
     );
+    const messageScope =
+      entry.business_scope_type && entry.business_scope_id
+        ? { type: entry.business_scope_type, id: entry.business_scope_id }
+        : null;
     const decision = decideEligibility(
       entry.purpose as "transactional" | "security" | "marketing",
       await withTenantOrThrow(
         sql,
         tenantId,
-        (tx) => readEligibilityFacts(tx, tenantId, hashes),
+        (tx) => readEligibilityFacts(tx, tenantId, hashes, messageScope),
         { workClass: "background_sync" }
       )
     );
@@ -1158,9 +1475,11 @@ export async function dispatchWhatsappQueue(
       const code =
         decision.kind === "consent_required"
           ? "consent_required"
-          : decision.reason === "hard_failure"
-            ? "suppressed"
-            : "consent_withdrawn";
+          : decision.kind === "consent_scope_required"
+            ? "consent_scope_required"
+            : decision.reason === "hard_failure"
+              ? "suppressed"
+              : "consent_withdrawn";
 
       await terminal(
         "cancelled",
@@ -1199,6 +1518,56 @@ export async function dispatchWhatsappQueue(
 
     const variables = entry.variables ?? {};
 
+    // 4b. Meta's own rules for a TENANT-OWNED Meta number (Issue #1143), read
+    //     again immediately before the send: the template must still be
+    //     approved on THIS sender's WABA (a webhook may have paused it), or a
+    //     free-text row must still be inside the recipient's 24-hour window
+    //     with THIS number. Terminal, never free text instead of a template,
+    //     never another number.
+    let serviceWindowOpen = false;
+
+    if (metaWabaId !== null && lane.senderAccountId !== null) {
+      const senderAccountId = lane.senderAccountId;
+      const meta = await withTenantOrThrow(
+        sql,
+        tenantId,
+        (tx) =>
+          decideMetaSendForMessage(tx, {
+            tenantId,
+            senderAccountId,
+            wabaId: metaWabaId,
+            purpose: entry.purpose as
+              "transactional" | "security" | "marketing",
+            providerTemplate: template.providerTemplate,
+            hashes,
+            now: clock()
+          }),
+        { workClass: "background_sync" }
+      );
+
+      if (!meta.ok) {
+        const code =
+          meta.reason === "TEMPLATE_NOT_APPROVED"
+            ? "template_not_approved"
+            : "outside_service_window";
+
+        await terminal(
+          "failed",
+          retryCount,
+          code,
+          meta.reason === "TEMPLATE_NOT_APPROVED"
+            ? "The template is not approved on this sender's WABA."
+            : "The recipient's 24-hour service window with this sender is closed."
+        );
+        result.failed += 1;
+        summary.failed += 1;
+
+        return;
+      }
+
+      serviceWindowOpen = meta.mode === "session";
+    }
+
     // 5. SEND — outside any transaction.
     const sendResult = await provider.send({
       to: entry.recipient,
@@ -1209,7 +1578,8 @@ export async function dispatchWhatsappQueue(
         ? { providerTemplate: template.providerTemplate }
         : {}),
       parameters: template.variables.map((name) => variables[name] ?? ""),
-      correlationId: messageCorrelationId
+      correlationId: messageCorrelationId,
+      ...(serviceWindowOpen ? { serviceWindowOpen: true } : {})
     });
 
     if (sendResult.ok) {
@@ -1266,11 +1636,22 @@ export async function dispatchWhatsappQueue(
       safeError
     );
 
-    if (sendResult.failureCode === "unauthorized" && lane.senderAccountId) {
-      // The provider rejected THIS sender's credential. The rest of the lane
-      // fails closed without another call; the credential is the tenant's to
-      // fix, and no other sender or credential is tried.
+    if (
+      (sendResult.failureCode === "unauthorized" ||
+        sendResult.failureCode === "device_disconnected") &&
+      lane.senderAccountId
+    ) {
+      // The provider rejected THIS sender's credential, or (StarSender, Issue
+      // #1142) reported THIS device as disconnected. The rest of the lane is held
+      // without another call; the credential or the pairing is the tenant's to
+      // fix, and no other sender, device or credential is tried.
       lane.credentialRejected = true;
+    }
+
+    if (sendResult.failureCode === "rate_limited" && lane.senderAccountId) {
+      // Issue #1143: back off THIS sender for the rest of the pass; the row
+      // itself is retried with backoff below. No other sender is tried.
+      lane.rateLimited = true;
     }
 
     if (sendResult.recipientInvalid) {
@@ -1302,7 +1683,14 @@ export async function dispatchWhatsappQueue(
       return;
     }
 
-    const retry = sendResult.retryable
+    // A tenant-owned sender's 401 is retried with backoff like any transient
+    // failure (bounded), not failed on the spot: the tenant may reconnect, and the
+    // rest of this lane is held meanwhile (Issue #1233 L1).
+    const retryable =
+      sendResult.retryable ||
+      (sendResult.failureCode === "unauthorized" &&
+        lane.senderAccountId !== null);
+    const retry = retryable
       ? evaluateWhatsappRetry(retryCount, maxRetries, now)
       : { eligible: false as const };
 

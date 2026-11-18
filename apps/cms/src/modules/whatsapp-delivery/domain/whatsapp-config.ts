@@ -44,6 +44,14 @@ export function isKnownWhatsappProvider(
 export const WHATSAPP_CIRCUIT_BREAKER_KEY = "whatsapp-delivery";
 
 /**
+ * The Meta Graph API version used when `WHATSAPP_META_API_VERSION` is unset.
+ * One constant, read by every path that builds a Graph URL: the provider
+ * changelog register pins THIS declaration, so a bump here is one edit and one
+ * register update, not three call sites that can drift apart.
+ */
+export const WHATSAPP_META_DEFAULT_API_VERSION = "v21.0";
+
+/**
  * The breaker of ONE tenant-owned sender. Each sender has its own, so a failing
  * number cannot stop another sender (or the deployment sender, which keeps
  * {@link WHATSAPP_CIRCUIT_BREAKER_KEY}). Keyed by the account id (a uuid), never
@@ -57,6 +65,8 @@ export const DEFAULT_WHATSAPP_SEND_MAX_RETRIES = 3;
 /** Per-sender caps, counted from what the sender really sent (trailing hour and day). Provider limits are lower for some numbers and unofficial devices; these are the deployment-wide ceiling, not a promise. */
 export const DEFAULT_WHATSAPP_SENDER_RATE_PER_HOUR = 1000;
 export const DEFAULT_WHATSAPP_SENDER_RATE_PER_DAY = 10_000;
+/** How many rows of one claimed lane are sent before the sender's verdict and credential are resolved afresh (Issue #1231 L1). */
+export const DEFAULT_WHATSAPP_SENDER_REVALIDATE_EVERY_ROWS = 10;
 export const DEFAULT_WHATSAPP_SEND_TIMEOUT_MS = 10_000;
 export const DEFAULT_WHATSAPP_RATE_PER_RECIPIENT_PER_HOUR = 10;
 export const DEFAULT_WHATSAPP_RATE_PER_TENANT_PER_HOUR = 2000;
@@ -142,6 +152,26 @@ export function resolveWhatsappSenderRatePerHour(
     positiveNumber(
       env.WHATSAPP_SENDER_RATE_PER_HOUR,
       DEFAULT_WHATSAPP_SENDER_RATE_PER_HOUR
+    )
+  );
+}
+
+/**
+ * Rows of one claimed sender lane a pass sends before it re-asks whether the
+ * sender may still send and re-reads its credential (Issue #1231 L1). A
+ * revocation lands within this many rows (at most N x the send timeout) rather
+ * than after the whole claimed batch. `1` re-checks before every row.
+ */
+export function resolveWhatsappSenderRevalidateEveryRows(
+  env: NodeJS.ProcessEnv = process.env
+): number {
+  return Math.max(
+    1,
+    Math.floor(
+      positiveNumber(
+        env.WHATSAPP_SENDER_REVALIDATE_EVERY_ROWS,
+        DEFAULT_WHATSAPP_SENDER_REVALIDATE_EVERY_ROWS
+      )
     )
   );
 }

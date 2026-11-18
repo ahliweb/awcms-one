@@ -23,16 +23,13 @@
  * `scripts/jobs-env-allowlist.ts`). Without it every tenant-owned sender lane is
  * held (fail closed) and the deployment sender is unaffected. The key ring is
  * read in memory inside the dispatch call, for the claimed row's tenant, and a
- * decrypt counter per tenant is printed in the summary line.
+ * decrypt count is printed in the summary line (telemetry only: it lives in
+ * this process, so it bounds nothing against a compromised one; Issue #1233).
  */
+import { installExtensionPointSource } from "../src/modules/_shared/extension-point-source";
+import { listModules } from "../src/modules";
 import { getWorkerDatabaseClient } from "../src/lib/database/client";
-// awcms-one divergence (Issue #392, ADR-0133 section 6): this process imports no
-// module, so it would look every `commerce.*` message up in an empty template
-// registry and fail it as `template_unknown`. One side-effect import registers
-// them. Retires when upstream loads consumer template registrations generically.
-import "../src/modules/commerce/domain/whatsapp-upstream-templates";
 import { logScriptFailure } from "../src/lib/logging/error-log";
-import { registerBookingWhatsappTemplates } from "../src/modules/booking/infrastructure/booking-whatsapp-templates";
 import { channelAccountPortAdapter } from "../src/modules/channel-accounts/application/channel-account-port-adapter";
 import { channelSenderCredentialAdapter } from "../src/modules/channel-accounts/application/channel-sender-credential-adapter";
 import { snapshotSecretDecryptCounts } from "../src/modules/channel-accounts/application/secret-store";
@@ -45,12 +42,15 @@ const MAX_PASSES_PER_TENANT = 20;
 
 type TenantRow = { id: string };
 
+// Composition root (ADR-0164): this process renders or sends declared
+// categories/templates, so it installs the descriptor source itself.
+installExtensionPointSource(listModules);
+
 async function main() {
   const sql = getWorkerDatabaseClient();
-  // The template registry is process-local: a consumer's templates (booking's
-  // reminders, Issue #943) must be registered here too, or a queued message
-  // fails terminally as `template_unknown` at send time.
-  registerBookingWhatsappTemplates();
+  // A consumer's templates (booking's reminders) are declared in its module
+  // descriptor and loaded by the template registry on first lookup (ADR-0164):
+  // nothing to import or register here.
   const correlationId = crypto.randomUUID();
 
   try {

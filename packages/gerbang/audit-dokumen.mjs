@@ -531,6 +531,17 @@ const EXCLUDED_PATHS = new Map([
     }
   ],
   [
+    "apps/cms/data/idn-population/NOTICE.md",
+    {
+      reason:
+        "ADR-0053 removed the BPS population datasets together with this NOTICE (the owner stopped the BPS source on 11 November 2026). ADR-0051, superseded by ADR-0053, is kept as the record of what was decided and built, and names the file it shipped.",
+      onlyIn: [
+        "docs/adr/0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.md",
+        "docs/adr/0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.id.md"
+      ]
+    }
+  ],
+  [
     "tools/out/seputarborneo/posts.ndjson",
     {
       reason:

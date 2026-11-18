@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:f9994ffee0b3251f588c3512e32d53132e9978b3c7f5a493d9f828278c8c3fde -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0028 — Sesi register POS dan tutup kas: jumlah yang seharusnya DITURUNKAN dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah
 
 - **Status:** Diterima

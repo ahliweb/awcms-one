@@ -238,12 +238,53 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
       "The guest customer reviews a product from their own completed order, holding orderCode + phone as the credential."
   },
 
+  // ---- Storefront (found by the `f476fdbb` sync's parity gate): the five public body operations of
+  // the commerce OpenAPI that declare `security: []` and were never listed here ----
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/account/otp/request",
+    reason:
+      "Anonymous by nature: it asks for the code that mints a customer session (ADR-0016 D2), so no session can exist yet. Rate-limited per IP and per mailbox in the route; answers 202 for every outcome."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/account/otp/verify",
+    reason:
+      "Anonymous by nature: it exchanges the one-time code for the customer bearer session (ADR-0016 D3). Every failure is the same 401 OTP_INVALID; rate-limited per IP in the route."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/booking/reservations",
+    reason:
+      "Guest checkout for a booking (ADR-0045 G15): no bearer is a guest with guest.name and guest.phone; an OPTIONAL customer bearer makes it the account's own. Idempotency key required and namespaced by who asks."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/booking/reservations/:orderCode/cancel",
+    reason:
+      "The shopper cancels their own reservation, holding the order's phone in the body or an OPTIONAL customer bearer as the credential (ADR-0045 D4/D9). Idempotency key required."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/orders/:orderCode/payment-gateway/sessions",
+    reason:
+      "Same orderCode + phone credential, or an optional customer bearer, as the other anonymous order routes above; a mismatch is the same neutral 404 (Issue #110)."
+  },
+
   // ---- Payment-gateway webhooks (Issue #113): opaque per-tenant token, not sessioned ----
   {
     method: "POST",
     pattern: "/api/v1/commerce/webhooks/:provider/:endpointToken",
     reason:
       "Server-to-server callback from the payment gateway (contract #106 D2). Authenticated by the opaque per-tenant webhook-endpoint token in the path plus the provider's own signature (verifyWebhook), never a session — there is no admin/customer caller to hold one."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/website-engagement/submissions",
+    reason:
+      "A visitor's browser posts a website contact request, lead or interaction. Authenticated by the per-source token in the body and the verified Origin host (ADR-0155), rate-limited per address and per source, with one uniform refusal before the source is proven."
   },
 
   // ---- Node-to-node: signed, not sessioned ----
@@ -325,6 +366,24 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
     reason:
       "Telegram's Bot API calls it, never a person. The credential is X-Telegram-Bot-Api-Secret-Token, compared in constant time before any body read; off (TELEGRAM_ENABLED unset) it is a 404 (ADR-0140 section 7)."
   },
+  {
+    method: "POST",
+    pattern: "/api/v1/telegram-engagement/webhooks/:callbackToken",
+    reason:
+      "Telegram's Bot API calls it for one CUSTOMER bot, never a person (ADR-0152 section 4, Issue #1156). The credential is the opaque per-bot callback token in the path (proven against a stored SHA-256; it names the tenant and endpoint, nothing in the body does) plus X-Telegram-Bot-Api-Secret-Token compared in constant time before the body is read; every failure is one generic 401; off (TELEGRAM_ENGAGEMENT_ENABLED unset) it is a 404."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/email/webhooks/mailketing/:token",
+    reason:
+      "Mailketing calls it, never a person, and documents no signature: the opaque per-account token in the path only locates the tenant and account, compared in constant time after a per-address bucket and a 32 KiB cap. Every event is quarantined as unauthenticated and changes no state (ADR-0151 section 5 strict); off (EMAIL_WEBHOOK_ENABLED unset) it is a 404."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/whatsapp/webhooks/meta/:token",
+    reason:
+      "Meta's WhatsApp Cloud API calls it, never a person (Issue #1143). Two credentials, both compared in constant time: the opaque per-account callback token in the path (tenant and account are resolved from it, never from the payload) and X-Hub-Signature-256, the HMAC-SHA256 of the exact body under that number's app secret. Every refusal is one 401; a per-(tenant, address) bucket answers 429 before any database work; off (WHATSAPP_ENABLED unset) it is a 404."
+  },
 
   // ---- Retired: answers 410 without reading anything ----
   {
@@ -339,6 +398,105 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
     reason: "Retired (410), same reason."
   }
 ];
+
+/**
+ * awcms-one (14 November 2026 sync): body-accepting endpoints whose credential
+ * is a CUSTOMER bearer session (`cs_` token, ADR-0016), not a staff session.
+ *
+ * Why this list exists: `refuseUnauthenticatedApiBody` accepts only a staff
+ * session or a machine credential, so before this list every one of these was
+ * refused `401 AUTH_REQUIRED` before its handler ran, for every real shopper
+ * (the OpenAPI `customerBearer` operations that take a body or a mutating
+ * method). They are NOT session-free: nothing unauthenticated reaches body
+ * parsing. The middleware authenticates them with
+ * `lib/auth/customer-bearer-body-authentication.ts` instead, which resolves
+ * the tenant the way the storefront routes do and requires a LIVE customer
+ * session in it, answering `401 UNAUTHENTICATED` (with the storefront CORS
+ * headers, so the browser can read it and clear the stored session) otherwise.
+ *
+ * Eight of these handlers read the body before their own `requireCustomerSession`
+ * (inside the tenant transaction), which is why the check cannot be left to
+ * them; this is the same "authenticate before parse" property the staff API
+ * has. Authorization is not decided here: the handler still applies its own
+ * blocked-account, verification, feature and ownership rules.
+ *
+ * `tests/customer-bearer-body-boundary.test.ts` holds this list equal to the
+ * `customerBearer` operations in the OpenAPI contract and to the route files.
+ */
+export type CustomerBearerBodyEndpoint = {
+  method: "POST" | "PUT" | "PATCH" | "DELETE";
+  /** `:name` matches exactly one path segment. */
+  pattern: string;
+};
+
+export const CUSTOMER_BEARER_BODY_ENDPOINTS: readonly CustomerBearerBodyEndpoint[] =
+  [
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/addresses"
+    },
+    {
+      method: "PATCH",
+      pattern: "/api/v1/commerce/storefront/account/addresses/:id"
+    },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/addresses/:id"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/addresses/:id/default"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/affiliate"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/conversations"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/conversations/:id/messages"
+    },
+    { method: "POST", pattern: "/api/v1/commerce/storefront/account/logout" },
+    { method: "PATCH", pattern: "/api/v1/commerce/storefront/account/me" },
+    // Issue #529 (ADR-0055 D3): the shopper's data-subject requests. All three
+    // read a body, and all three hold a customer bearer session.
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/privacy/otp"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/privacy/export"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/privacy/erasure"
+    },
+    {
+      method: "PUT",
+      pattern: "/api/v1/commerce/storefront/account/push/preferences"
+    },
+    {
+      method: "POST",
+      pattern: "/api/v1/commerce/storefront/account/push/subscriptions"
+    },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/push/subscriptions"
+    },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/push/subscriptions/:id"
+    },
+    { method: "PUT", pattern: "/api/v1/commerce/storefront/account/wishlist" },
+    {
+      method: "DELETE",
+      pattern: "/api/v1/commerce/storefront/account/wishlist/:productId"
+    }
+  ];
 
 const BODY_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 
@@ -369,6 +527,23 @@ export function isSessionFreeBodyEndpoint(
     (endpoint) =>
       endpoint.method === method.toUpperCase() &&
       matchesEndpointPattern(endpoint.pattern, pathname)
+  );
+}
+
+/** Is this method+path authenticated by a customer bearer session instead of a staff credential? */
+export function isCustomerBearerBodyEndpoint(
+  method: string,
+  pathname: string
+): boolean {
+  const normalised =
+    pathname.length > 1 && pathname.endsWith("/")
+      ? pathname.replace(/\/+$/, "")
+      : pathname;
+
+  return CUSTOMER_BEARER_BODY_ENDPOINTS.some(
+    (endpoint) =>
+      endpoint.method === method.toUpperCase() &&
+      matchesEndpointPattern(endpoint.pattern, normalised)
   );
 }
 

@@ -83,22 +83,45 @@ export function resolvePoolMaxForKind(
  *   which Bun applies to every pooled connection at connect time. `onconnect`
  *   is still used below, only to log connection failures.
  */
+/**
+ * `true` when the app talks to PostgreSQL through PgBouncer in transaction
+ * mode (`DATABASE_PGBOUNCER=true`, Issue #1286).
+ */
+export function isPgBouncerMode(
+  env: Record<string, string | undefined> = process.env
+): boolean {
+  return env.DATABASE_PGBOUNCER === "true";
+}
+
+/** The effective `statement_timeout` in milliseconds (`DATABASE_STATEMENT_TIMEOUT_MS`, default 15000; invalid values fall back to the default). */
+export function resolveStatementTimeoutMs(
+  env: Record<string, string | undefined> = process.env
+): number {
+  const parsed = Number(
+    env.DATABASE_STATEMENT_TIMEOUT_MS ?? DEFAULT_STATEMENT_TIMEOUT_MS
+  );
+
+  return Number.isFinite(parsed) && parsed > 0
+    ? Math.floor(parsed)
+    : DEFAULT_STATEMENT_TIMEOUT_MS;
+}
+
 function buildClient(databaseUrl: string, kind: ClientKind): Bun.SQL {
   const poolMax = resolvePoolMaxForKind(kind);
-  const statementTimeoutMs = Number(
-    process.env.DATABASE_STATEMENT_TIMEOUT_MS ?? DEFAULT_STATEMENT_TIMEOUT_MS
-  );
-  const usePgBouncer = process.env.DATABASE_PGBOUNCER === "true";
+  const usePgBouncer = isPgBouncerMode();
 
+  // Issue #1286: PgBouncer rejects an unknown startup parameter
+  // ("unsupported startup parameter: statement_timeout", verified against
+  // PgBouncer 1.25), so under `DATABASE_PGBOUNCER=true` the timeout is NOT sent
+  // at connect time. `withTenant` applies it per transaction instead
+  // (`SET LOCAL statement_timeout`), and the runbook recommends a role-level
+  // `ALTER ROLE ... SET statement_timeout` for queries outside a transaction.
   return new Bun.SQL(databaseUrl, {
     max: poolMax,
     prepare: !usePgBouncer,
-    connection: {
-      statement_timeout:
-        Number.isFinite(statementTimeoutMs) && statementTimeoutMs > 0
-          ? statementTimeoutMs
-          : DEFAULT_STATEMENT_TIMEOUT_MS
-    },
+    ...(usePgBouncer
+      ? {}
+      : { connection: { statement_timeout: resolveStatementTimeoutMs() } }),
     onconnect: (err) => {
       if (err) {
         log("error", "database.connection.failed", {
@@ -222,4 +245,55 @@ export function getWorkerDatabaseClient(): Bun.SQL {
 /** The "bootstrap/setup" connection — used ONLY by `tenant-admin/application/platform-bootstrap.ts`'s one-time setup wizard. Its own pool; maps to the least-privilege `awcms_setup` role (`sql/022`) when `SETUP_DATABASE_URL` points at it, else falls back to `DATABASE_URL` (`awcms_app`) — opt-in, see the mapping note above. */
 export function getSetupDatabaseClient(): Bun.SQL {
   return getNamedDatabaseClient("setup");
+}
+
+/**
+ * A pool configured exactly like the named clients above, for a dedicated
+ * per-job role whose connection string lives in its own module (so that only
+ * the job that needs that role's URL reaches the code reading it). First user:
+ * `telegram-engagement-dispatch-client.ts` (Issue #1156), then
+ * `social-publishing-dispatch-client.ts` (Issue #1146).
+ */
+export function buildDedicatedRoleClient(databaseUrl: string): Bun.SQL {
+  return buildClient(databaseUrl, "worker");
+}
+
+/**
+ * The start-up check of a dedicated-role job (the #1271 audit, L2): the server
+ * must say this connection IS `roleName` in BOTH senses. `current_user` alone
+ * is not enough: another login that is a member of the role could connect and
+ * `SET ROLE` to it, keeping its own login next to the job's key ring. So
+ * `session_user` (the login itself) must be the role too, and the role must
+ * not be SUPERUSER or BYPASSRLS. The message names roles only, never a
+ * connection string.
+ */
+export async function assertConnectedAsDedicatedRole(
+  sql: Bun.SQL,
+  roleName: string,
+  jobName: string
+): Promise<void> {
+  const rows = (await sql`
+    SELECT current_user AS name, session_user AS login,
+           r.rolsuper AS superuser, r.rolbypassrls AS bypass
+    FROM pg_roles r
+    WHERE r.rolname = current_user
+  `) as {
+    name: string;
+    login: string;
+    superuser: boolean;
+    bypass: boolean;
+  }[];
+  const who = rows[0];
+
+  if (
+    !who ||
+    who.name !== roleName ||
+    who.login !== roleName ||
+    who.superuser ||
+    who.bypass
+  ) {
+    throw new Error(
+      `${jobName} must log in as ${roleName} (session and current user, non-superuser, no BYPASSRLS); connected as ${who?.login ?? "unknown"}${who && who.login !== who.name ? ` acting as ${who.name}` : ""}${who?.superuser ? " (SUPERUSER)" : ""}${who?.bypass ? " (BYPASSRLS)" : ""}.`
+    );
+  }
 }

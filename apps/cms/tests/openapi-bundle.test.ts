@@ -361,6 +361,16 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
     // intentional divergences are acknowledged HERE instead. Each entry needs a
     // reason so an accidental drift can't hide behind the allow-list.
     const INTENTIONALLY_EVOLVED_PATHS: Record<string, string> = {
+      // #1160 adds OPTIONAL `senderAccountId`/`businessScope` to the request
+      // body, a 422 SENDER_UNAVAILABLE and a second 409 reason; every existing
+      // field and response is preserved.
+      "/api/v1/email/announcements":
+        "#1160 optional tenant sender routing (backward-compatible)",
+      // #1161 adds a 422 TEMPLATE_CATEGORY_RESERVED: security templates are
+      // never previewed or sent as announcements. Every existing field and
+      // response is preserved.
+      "/api/v1/email/announcements/preview":
+        "#1161 added 422 TEMPLATE_CATEGORY_RESERVED (additive)",
       // Turnstile #186 adds an OPTIONAL `turnstileToken` to the request body.
       "/api/v1/auth/login":
         "#186 optional turnstileToken (backward-compatible)",
@@ -477,6 +487,14 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // schedules, schedule exceptions and the availability read. Nothing here
       // is anonymous.
       "Booking",
+      // "CRM Follow-up" (crm_follow_up, ADR-0159, Issue #1165) — genuinely new
+      // surface: versioned follow-up rules, simulation, the task queue and stop
+      // signals. Nothing here is anonymous. ("CRM F" < "CRM L".)
+      "CRM Follow-up",
+      // "CRM Leads" (crm_leads, ADR-0153, Issue #1166) — genuinely new surface:
+      // versioned pipelines, lead intake, moves, merges with undo, conversions
+      // and erasure. Nothing here is anonymous. (Code-unit order: "CR" < "Ch".)
+      "CRM Leads",
       "Channel Accounts",
       "Comments",
       // "Commerce" (commerce, Issue #4, epic #1) — genuinely new surface: the
@@ -532,6 +550,10 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // safe-operation submission, worker jobs, health/backup/audit
       // projections. Genuinely new surface.
       "OMES Control Center",
+      // "Omnichannel Inbox" (omnichannel_inbox, ADR-0160, Issue #1164) --
+      // genuinely new surface: conversations, assignment, tags, SLA policies
+      // and the projection rebuild. Nothing here is anonymous.
+      "Omnichannel Inbox",
       // "Push Delivery" (push_delivery, ADR-0074, Issue #466) — the device
       // registration/revocation self-service plus the operator's queue
       // diagnostics, cancel and delivery probe. Genuinely new surface, unlike
@@ -548,6 +570,11 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // composed read a build client uses. Nothing here is anonymous.
       "Site Profile",
       "Site Search",
+      // "Social Publishing" (social_publishing, ADR-0157, Issue #1145) —
+      // genuinely new surface: publications with a per-account job each,
+      // approval, schedule, cancel and per-job retry, article-event rules and the
+      // tenant switches. Nothing here is anonymous.
+      "Social Publishing",
       // "Tax" (tax, ADR-0127, Issue #889) — genuinely new surface: the
       // jurisdiction-neutral calculator (quote, snapshot, reversal), rule-version
       // authoring and the reconciliation report. Nothing here is anonymous.
@@ -559,9 +586,22 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // by its secret header and individually justified in
       // ALLOWED_PUBLIC_OPERATIONS.
       "Telegram Delivery",
+      // "Telegram Engagement" (telegram_engagement, ADR-0152, Issue #1156) --
+      // genuinely new surface: customer bots, contacts, consent prompts and
+      // the outbound queue. The ONE anonymous operation is the per-bot webhook
+      // (`telegramEngagementWebhook`), authenticated by its callback token and
+      // the constant-time secret header, individually justified in
+      // ALLOWED_PUBLIC_OPERATIONS.
+      "Telegram Engagement",
       "Tenant Domains",
       "Theming",
       "Visitor Analytics",
+      // "Website Engagement" (website_engagement, ADR-0155, Issue #1153) --
+      // genuinely new surface. The ONE anonymous operation is the public
+      // intake (`websiteEngagementSubmit`), authenticated by the per-source token
+      // and the verified Origin host, individually justified in
+      // ALLOWED_PUBLIC_OPERATIONS.
+      "Website Engagement",
       // "WhatsApp Delivery" (whatsapp_delivery, ADR-0133, Issue #963) — genuinely
       // new surface: queue diagnostics, cancel, templates, suppressions and the
       // consent store. Nothing here is anonymous.

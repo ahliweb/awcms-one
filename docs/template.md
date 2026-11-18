@@ -158,6 +158,7 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | --- | --- | --- |
 | `404.astro` | shared | Every profile needs a not-found page |
 | `akun/afiliasi.astro` | toko | Commerce affiliate dashboard |
+| `akun/privasi.astro` | toko | The shopper's own data export and erasure (issue #529) |
 | `akun/alamat.astro` | toko | Commerce address book |
 | `akun/index.astro` | toko | Commerce account dashboard shell |
 | `akun/pesanan.astro` | toko | Commerce order history |

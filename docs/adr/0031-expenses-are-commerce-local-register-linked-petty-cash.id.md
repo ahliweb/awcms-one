@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:9f3d79c683f92f57f080a1d6240fec8f6b07c189d5e9138d798e882a9167d2e4 -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0031 — Pengeluaran adalah kas kecil lokal-commerce yang terhubung ke register, bukan buku besar: pengeluaran yang diposting menambah mutasi register dan tidak pernah mengedit tutup kas
 
 - **Status:** Diterima

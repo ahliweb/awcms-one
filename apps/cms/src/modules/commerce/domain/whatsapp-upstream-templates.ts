@@ -2,28 +2,18 @@
  * The `commerce.*` WhatsApp templates, registered with `whatsapp_delivery`
  * (Issue #392, ADR-0133 section 6 phase 2).
  *
- * This file is a SIDE-EFFECT module: importing it calls
- * `registerWhatsappTemplate` for every commerce template. The registry is a
- * per-process `Map`, so every process that can ENQUEUE or DISPATCH a commerce
- * message in `upstream` mode must import this file:
+ * Declared in the module descriptor (`module.ts`, `whatsappTemplates`,
+ * ADR-0164): `whatsapp_delivery` registers every declared template on the first
+ * lookup in any process that installed the extension-point source (the web
+ * entry and each dispatcher script, `whatsapp:dispatch` included), so nothing
+ * imports this file for its effect any more. It used to be a side-effect module
+ * that `scripts/whatsapp-dispatch.ts` imported, a divergence from upstream that
+ * retired with the descriptor mechanism.
  *
- *   * the CMS server, through `application/whatsapp-upstream-enqueue.ts` (the
- *     only caller of the port) and through `module.ts`, so the admin template
- *     list shows them;
- *   * the `whatsapp:dispatch` process, which renders nothing but looks the
- *     template up to send (`providerTemplate`, the parameter order) and fails a
- *     message whose key is not registered as `template_unknown`. That process
- *     imports no module, so `scripts/whatsapp-dispatch.ts` carries ONE
- *     side-effect import of this file (a recorded divergence from upstream, see
- *     root `AGENTS.md`; it retires when upstream gains a descriptor-declared
- *     template registration the dispatcher loads generically, the mechanism
- *     ADR-0134 gave domain-event consumers).
- *
- * Deliberately dependency-free beyond the registry itself and this module's own
- * pure template definitions (no database, no logger), so that import stays cheap
- * and cannot form a cycle. `tests/commerce-whatsapp-upstream-templates.test.ts`
- * proves the registration from a fresh process importing only the dispatch
- * script.
+ * Deliberately dependency-free beyond this module's own pure template
+ * definitions (no database, no logger). `tests/commerce-whatsapp-upstream-
+ * templates.test.ts` proves the resolution from a fresh process that installs
+ * the source the way the dispatch script does.
  *
  * ## Purposes (ADR-0133 section 4), fixed per template
  *
@@ -43,10 +33,8 @@
  * fall back to free text (ADR-0133 section 10, Q4); a deployment on Meta needs
  * the approved names added here first. Fonnte and `log` need nothing.
  */
-import {
-  registerWhatsappTemplate,
-  type WhatsappPurpose
-} from "../../whatsapp-delivery/domain/whatsapp-templates";
+import type { ModuleWhatsappTemplate } from "../../_shared/module-contract";
+import type { WhatsappPurpose } from "../../whatsapp-delivery/domain/whatsapp-templates";
 import {
   whatsappTemplateDefinition,
   type WhatsappTemplateKey
@@ -70,18 +58,22 @@ export const COMMERCE_UPSTREAM_TEMPLATE_PLANS: Record<
   "commerce.document": { purpose: "transactional" }
 };
 
-for (const [key, plan] of Object.entries(COMMERCE_UPSTREAM_TEMPLATE_PLANS) as [
-  WhatsappTemplateKey,
-  UpstreamTemplatePlan
-][]) {
-  const definition = whatsappTemplateDefinition(key);
+/** The templates as the module descriptor declares them (ADR-0164). */
+export const COMMERCE_WHATSAPP_TEMPLATE_DECLARATIONS: readonly ModuleWhatsappTemplate[] =
+  (
+    Object.entries(COMMERCE_UPSTREAM_TEMPLATE_PLANS) as [
+      WhatsappTemplateKey,
+      UpstreamTemplatePlan
+    ][]
+  ).map(([key, plan]) => {
+    const definition = whatsappTemplateDefinition(key);
 
-  registerWhatsappTemplate({
-    key,
-    version: COMMERCE_WHATSAPP_TEMPLATE_VERSION,
-    purpose: plan.purpose,
-    body: definition.body,
-    variables: definition.variables,
-    ...(plan.secretVariables ? { secretVariables: plan.secretVariables } : {})
+    return {
+      key,
+      version: COMMERCE_WHATSAPP_TEMPLATE_VERSION,
+      purpose: plan.purpose,
+      body: definition.body,
+      variables: definition.variables,
+      ...(plan.secretVariables ? { secretVariables: plan.secretVariables } : {})
+    };
   });
-}

@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:a6a69c54e84709bb48e54fbaf95dec7c015525dd5a7bba8b866251b64ca4223d -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0052 — Aturan segmen turunan booking adalah skema aturan 2, dibaca langsung lewat tautan booking dan tidak pernah disimpan
 
 - **Status:** Diterima
