@@ -41,6 +41,7 @@ import {
   resetDatabase,
   setupIntegrationDatabase,
   teardownIntegrationDatabase,
+  reassertRuntimeRoleLogins,
   workerRoleActivated
 } from "./harness";
 import {
@@ -245,7 +246,16 @@ async function seedTenants(): Promise<void> {
  */
 function workerTest(name: string, fn: () => Promise<void>): void {
   test(name, async () => {
-    if (!workerRoleActivated) return;
+    // Re-assert LOGIN (cluster-scoped role, another process's teardown can shut
+    // it) and FAIL if the role is still unusable: a worker assertion that is
+    // skipped is not a pass (Issue #1233).
+    await reassertRuntimeRoleLogins();
+
+    if (!workerRoleActivated) {
+      throw new Error(
+        "awcms_worker is not provisioned or cannot log in: the worker-role assertions cannot run."
+      );
+    }
 
     await fn();
   });
@@ -1131,10 +1141,14 @@ suite("whatsapp_delivery against PostgreSQL", () => {
           })
         );
         const queued = await promo();
-        // A withdrawal that did NOT go through `withdrawMarketingConsent`.
+        // A withdrawal that did NOT go through `withdrawMarketingConsent`. A
+        // withdrawn row covers nothing (the `sql/354` CHECK), so the bypass
+        // clears the coverage too.
         await getAdminSql()`
           UPDATE awcms_whatsapp_consents
-          SET status = 'withdrawn', withdrawn_at = now() WHERE tenant_id = ${TENANT_A}
+          SET status = 'withdrawn', withdrawn_at = now(),
+              unscoped_granted = false, business_scopes = '[]'::jsonb
+          WHERE tenant_id = ${TENANT_A}
         `;
         const provider = fakeProvider(() => OK);
 
@@ -1695,14 +1709,18 @@ suite("whatsapp_delivery against PostgreSQL", () => {
         ).toEqual({
           purgedAttempts: 0,
           purgedMessages: 0,
-          expiredMessages: 0
+          expiredMessages: 0,
+          purgedServiceWindows: 0,
+          purgedWebhookReceipts: 0
         });
         expect(
           await purgeWhatsappQueue(getWorkerRoleSql(), TENANT_A, guard)
         ).toEqual({
           purgedAttempts: 1,
           purgedMessages: 1,
-          expiredMessages: 0
+          expiredMessages: 0,
+          purgedServiceWindows: 0,
+          purgedWebhookReceipts: 0
         });
       }
     );

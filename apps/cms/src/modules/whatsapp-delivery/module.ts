@@ -6,6 +6,7 @@ import {
   WHATSAPP_DISPATCH_FAILED_EVENT_TYPE,
   WHATSAPP_MESSAGE_EXPIRED_EVENT_TYPE,
   WHATSAPP_MESSAGE_FAILED_EVENT_TYPE,
+  WHATSAPP_MESSAGE_PROVIDER_STATUS_CHANGED_EVENT_TYPE,
   WHATSAPP_MESSAGE_QUEUED_EVENT_TYPE,
   WHATSAPP_MESSAGE_SENT_EVENT_TYPE,
   WHATSAPP_MODULE_KEY
@@ -14,7 +15,9 @@ import {
   WHATSAPP_ATTEMPTS_LIFECYCLE_KEY,
   WHATSAPP_CONSENTS_LIFECYCLE_KEY,
   WHATSAPP_MESSAGES_LIFECYCLE_KEY,
-  WHATSAPP_SUPPRESSIONS_LIFECYCLE_KEY
+  WHATSAPP_SERVICE_WINDOWS_LIFECYCLE_KEY,
+  WHATSAPP_SUPPRESSIONS_LIFECYCLE_KEY,
+  WHATSAPP_WEBHOOK_RECEIPTS_LIFECYCLE_KEY
 } from "./domain/whatsapp-lifecycle-keys";
 
 export {
@@ -128,7 +131,8 @@ export const whatsappDeliveryModule = defineModule({
       WHATSAPP_MESSAGE_EXPIRED_EVENT_TYPE,
       WHATSAPP_CONSENT_GRANTED_EVENT_TYPE,
       WHATSAPP_CONSENT_WITHDRAWN_EVENT_TYPE,
-      WHATSAPP_DISPATCH_FAILED_EVENT_TYPE
+      WHATSAPP_DISPATCH_FAILED_EVENT_TYPE,
+      WHATSAPP_MESSAGE_PROVIDER_STATUS_CHANGED_EVENT_TYPE
     ],
     subscribes: []
   },
@@ -208,6 +212,34 @@ export const whatsappDeliveryModule = defineModule({
       action: "configure",
       description:
         "Set or clear the default WhatsApp sender of a business scope; affects later messages only (high-risk, audited at warning)"
+    },
+    {
+      // Issue #1171, ADR-0154: the realtime progress topic
+      // `whatsapp.sender.progress` (REST snapshot + SSE stream), seeded by
+      // `sql/360`. Separate from `senders.read` so live progress can be granted
+      // without the sender diagnostics, and revoked on its own mid-stream.
+      activityCode: "progress",
+      action: "read",
+      description:
+        "Watch one WhatsApp sender's delivery progress live (counts per status and message ids with their status; never a number, a body or a provider response)"
+    },
+    {
+      activityCode: "meta_templates",
+      action: "read",
+      description:
+        "Read the Meta template approvals per WABA and each WABA's restriction and messaging-limit signals"
+    },
+    {
+      activityCode: "meta_templates",
+      action: "configure",
+      description:
+        "Record a Meta template approval status on a WABA (approved needs evidence; high-risk, audited at warning)"
+    },
+    {
+      activityCode: "meta_signals",
+      action: "configure",
+      description:
+        "Clear a recorded WABA restriction once it was verified lifted at Meta (high-risk, audited at warning)"
     }
   ],
   navigation: [
@@ -245,6 +277,21 @@ export const whatsappDeliveryModule = defineModule({
       recommendedSchedule: "Daily, off-peak.",
       environmentNotes:
         "Runs regardless of WHATSAPP_ENABLED: a deployment that turned WhatsApp OFF still has rows from when it was on, and nothing else will ever clean them up.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run whatsapp:meta:preflight",
+      schedule: {
+        mode: "manual",
+        because:
+          "A read-only operator check (Issue #1298 L5) run once, before the tenant-owned Meta path is enabled on a deployment that already holds Meta numbers, and again after fixing what it names. Scheduling it would only repeat a report nobody is waiting for; the dispatcher already fails a bad row terminally by itself."
+      },
+      purpose:
+        "List, per tenant, the connected Meta numbers with no live WABA parent and the queued rows that would fail terminally at their next dispatch (no sendable template approval of the right category on the number's WABA, or free text outside the 24-hour window), OTP rows counted apart. Applies the dispatcher's own rule. Writes nothing, calls no provider, prints ids and counts only.",
+      recommendedSchedule:
+        "Once by an operator before enabling the Meta path, and after each fix. See docs/awcms/whatsapp-meta-enable-runbook.md.",
+      environmentNotes:
+        "Needs WORKER_DATABASE_URL (three SELECTs per tenant as awcms_worker). Exit code 1 when anything would fail.",
       safeInOfflineLan: true
     }
   ],
@@ -318,6 +365,49 @@ export const whatsappDeliveryModule = defineModule({
       erasure: "severed_with_subject_row",
       rationale:
         "The default WhatsApp sender per business scope, with its configuration version. The row describes which of the tenant's own accounts speaks for a scope, not a person; its only person-shaped column is the stamp of the administrator who last changed it, which resolves to nobody once that identity is anonymised."
+    },
+    {
+      key: "whatsapp_delivery.whatsapp_meta_templates",
+      tableName: "awcms_whatsapp_meta_templates",
+      ownerModuleKey: WHATSAPP_MODULE_KEY,
+      subjectColumns: [{ column: "updated_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Issue #1143. Which Meta template is approved on which of the tenant's WABAs. The row describes the business's own template, not a person; its only person-shaped column is the stamp of the operator who last recorded it, which resolves to nobody once that identity is anonymised."
+    },
+    {
+      key: "whatsapp_delivery.whatsapp_meta_sender_signals",
+      tableName: "awcms_whatsapp_meta_sender_signals",
+      ownerModuleKey: WHATSAPP_MODULE_KEY,
+      subjectColumns: [{ column: "cleared_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Issue #1143. Meta's restriction and messaging-limit tier for one of the tenant's WABAs, in fixed codes. Its only person-shaped column is the stamp of the operator who cleared a restriction."
+    },
+    {
+      key: "whatsapp_delivery.whatsapp_service_windows",
+      tableName: "awcms_whatsapp_service_windows",
+      ownerModuleKey: WHATSAPP_MODULE_KEY,
+      subjectColumns: [],
+      unreachableBySubject: true,
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #1143. The last time a number wrote to one of the tenant's Meta senders, keyed by the keyed recipient hash only (no number, no content). Nothing joins it to a profile, and it is deleted two days after the 24-hour window closed by the module's own purge, which bounds it far more tightly than an erasure request could.",
+      redactedColumns: ["recipient_hash"]
+    },
+    {
+      key: "whatsapp_delivery.whatsapp_webhook_receipts",
+      tableName: "awcms_whatsapp_webhook_receipts",
+      ownerModuleKey: WHATSAPP_MODULE_KEY,
+      subjectColumns: [],
+      unreachableBySubject: true,
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #1143. The SHA-256 of each verified webhook body per subscription, kept eight days to drop replays and provider retries. No column names a person and the body is not stored."
     },
     {
       key: "whatsapp_delivery.whatsapp_delivery_attempts",
@@ -421,6 +511,96 @@ export const whatsappDeliveryModule = defineModule({
           "src/modules/whatsapp-delivery/application/whatsapp-queue-purge.ts#purgeWhatsappQueue",
         description:
           "Deletes attempt rows older than the cutoff in bounded batches, before the messages step so the foreign key ordering holds. Skips the step when a legal hold covers whatsapp_delivery.delivery_attempts."
+      }
+    },
+    {
+      key: WHATSAPP_SERVICE_WINDOWS_LIFECYCLE_KEY,
+      tableName: "awcms_whatsapp_service_windows",
+      ownerModuleKey: WHATSAPP_MODULE_KEY,
+      scope: "tenant",
+      cursorColumn: "last_inbound_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 2,
+      retentionMaxDays: 7,
+      defaultRetentionDays: 2,
+      partition: {
+        eligible: false,
+        rationale:
+          "One row per (Meta sender, recipient) that wrote in, upserted rather than appended, and dropped two days after the 24-hour window closed: the live set is the conversations of the last two days."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A closed window decides nothing (Issue #1143); keeping it would keep a hashed record of who wrote to which number for no purpose."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "A window older than its 24 hours answers 'closed' whether the row exists or not, so deleting it changes no decision."
+      },
+      legalHold: { applicable: true, precedence: "overrides_retention" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "last_inbound_at"],
+          purpose:
+            "awcms_whatsapp_service_windows_purge_idx (sql/365) — the purge's cursor path."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore. A restored window can only be older than the backup, so it can only be closed or about to close; it never opens a window that was not opened by a verified inbound message.",
+      executionMode: "delegated",
+      existingAdopter: {
+        jobCommand: "bun run whatsapp:queue:purge",
+        purgeFunctionRef:
+          "src/modules/whatsapp-delivery/application/whatsapp-queue-purge.ts#purgeWhatsappQueue",
+        description:
+          "Deletes windows whose last inbound message is older than two days, in bounded batches. Skips the step when a legal hold covers whatsapp_delivery.service_windows."
+      }
+    },
+    {
+      key: WHATSAPP_WEBHOOK_RECEIPTS_LIFECYCLE_KEY,
+      tableName: "awcms_whatsapp_webhook_receipts",
+      ownerModuleKey: WHATSAPP_MODULE_KEY,
+      scope: "tenant",
+      cursorColumn: "received_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 8,
+      retentionMaxDays: 30,
+      defaultRetentionDays: 8,
+      partition: {
+        eligible: false,
+        rationale:
+          "One row per verified webhook delivery, which grows with traffic, but only the last eight days are kept: the answer to its volume is the short window."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A body hash has no meaning once Meta's retry period (up to seven days) has passed; the status rules are forward-only, so an old replay changes nothing anyway."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Append-only dedupe rows holding a hash and a subscription id; no status, no person."
+      },
+      legalHold: { applicable: true, precedence: "overrides_retention" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "received_at"],
+          purpose:
+            "awcms_whatsapp_webhook_receipts_received_idx (sql/365) — the purge's cursor path."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore. A restore loses receipts newer than the backup, so a webhook Meta retries after the restore is applied again; the forward-only status rank and the GREATEST() window upsert make that re-application a no-op.",
+      executionMode: "delegated",
+      existingAdopter: {
+        jobCommand: "bun run whatsapp:queue:purge",
+        purgeFunctionRef:
+          "src/modules/whatsapp-delivery/application/whatsapp-queue-purge.ts#purgeWhatsappQueue",
+        description:
+          "Deletes receipts older than eight days, in bounded batches. Skips the step when a legal hold covers whatsapp_delivery.webhook_receipts."
       }
     },
     retainedDecision({

@@ -17,9 +17,9 @@
     "screenshots:readme": "bun scripts/screenshots-readme.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.5",
+    "@astrojs/node": "^11.1.13",
     "@awcms-one/kontrak": "workspace:*",
-    "astro": "^7.3.1"
+    "astro": "^7.4.12"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

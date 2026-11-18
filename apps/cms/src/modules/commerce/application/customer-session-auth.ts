@@ -36,6 +36,35 @@ export type CustomerSessionAuthResult =
   | { ok: false; reason: "unauthenticated" };
 
 /**
+ * The read-only half of `requireCustomerSession`: is there a LIVE session for
+ * the bearer on this request, in THIS tenant, and whose is it. Nothing is
+ * written (no sliding-TTL touch), so the pre-body authentication boundary
+ * (`lib/auth/customer-bearer-body-authentication.ts`) can call it without
+ * making an unauthenticated-or-not decision cost a write.
+ */
+export async function findLiveCustomerSession(
+  request: Request,
+  tx: Bun.SQL,
+  tenantId: string,
+  now: Date = new Date()
+): Promise<{ account: CustomerAccountRecord; sessionId: string } | null> {
+  const authorization = request.headers.get("authorization") ?? "";
+  const match = /^Bearer\s+(.+)$/i.exec(authorization.trim());
+  const token = match?.[1]?.trim();
+
+  if (!token || !looksLikeCustomerSessionToken(token)) return null;
+
+  const session = await findSessionByTokenHash(
+    tx,
+    hashCustomerSessionToken(token),
+    now,
+    tenantId
+  );
+
+  return session ? { account: session.account, sessionId: session.id } : null;
+}
+
+/**
  * `tenantId` is required (not re-derived from the session row) because the
  * caller is already inside a `withPublicCommerceTenant`-resolved
  * transaction — a token has to belong to THIS tenant's account, not merely
@@ -49,22 +78,13 @@ export async function requireCustomerSession(
   tenantId: string,
   now: Date = new Date()
 ): Promise<CustomerSessionAuthResult> {
-  const authorization = request.headers.get("authorization") ?? "";
-  const match = /^Bearer\s+(.+)$/i.exec(authorization.trim());
-  const token = match?.[1]?.trim();
-
-  if (!token || !looksLikeCustomerSessionToken(token)) {
-    return { ok: false, reason: "unauthenticated" };
-  }
-
-  const tokenHash = hashCustomerSessionToken(token);
-  const session = await findSessionByTokenHash(tx, tokenHash, now, tenantId);
+  const session = await findLiveCustomerSession(request, tx, tenantId, now);
 
   if (!session) {
     return { ok: false, reason: "unauthenticated" };
   }
 
-  await touchSession(tx, tenantId, session.id, now);
+  await touchSession(tx, tenantId, session.sessionId, now);
 
-  return { ok: true, account: session.account, sessionId: session.id };
+  return { ok: true, account: session.account, sessionId: session.sessionId };
 }

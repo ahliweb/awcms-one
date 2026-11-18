@@ -76,7 +76,24 @@ paths = [
   # excluded instead.
   '''apps/cms/src/modules/push-delivery/domain/fcm-credentials\.ts''',
   '''apps/cms/src/modules/push-delivery/infrastructure/google-access-token\.ts''',
-  '''apps/cms/tests/push-fcm-adapter\.test\.ts'''
+  '''apps/cms/tests/push-fcm-adapter\.test\.ts''',
+
+  # Upstream files of the awcms f476fdbb sync whose gitleaks matches were each
+  # read and are not credentials; editing upstream files to annotate them would
+  # be a subtree divergence, so these exact paths are excluded instead:
+  #   - the omes-control compatibility PIN lists SHA-256 digests of its fixture
+  #     files (`"invalid-secret-field.json": "8e8ba5..."`), the same class as the
+  #     contracts/v1 PIN excluded above;
+  #   - the channel-accounts, WhatsApp Meta sender and audit-fix tests build
+  #     made-up app secrets (`"0123456789abcdef0123456789abcdef"`,
+  #     `"appsecret1298appsecret1298abcdef"`) and a template key
+  #     (`it1298.reminder`) to exercise HMAC verification and template lookup;
+  #     they authenticate nothing outside the test.
+  '''apps/cms/src/modules/omes-control/contracts/compatibility/v1/PIN\.json''',
+  '''apps/cms/tests/integration/channel-accounts-api\.integration\.test\.ts''',
+  '''apps/cms/tests/integration/whatsapp-meta-audit-lows\.integration\.test\.ts''',
+  '''apps/cms/tests/integration/whatsapp-meta-audit-fixes\.integration\.test\.ts''',
+  '''apps/cms/tests/whatsapp-meta-senders\.test\.ts'''
 ]
 
 # Not a path exclusion: this one benign line (`row.p256dhKey`/`row.p256dh_key`,

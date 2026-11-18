@@ -21,6 +21,7 @@
  */
 import {
   afterAll,
+  afterEach,
   beforeAll,
   beforeEach,
   describe,
@@ -65,12 +66,25 @@ import {
   GET as listAssignments,
   POST as postAssignment
 } from "../../src/pages/api/v1/channel-accounts/accounts/[id]/assignments/index";
+import { DELETE as removeAssignment } from "../../src/pages/api/v1/channel-accounts/accounts/[id]/assignments/[assignmentId]";
+import { PUT as putAccessMode } from "../../src/pages/api/v1/channel-accounts/accounts/[id]/access-mode";
 import { GET as listConnections } from "../../src/pages/api/v1/channel-accounts/connections/index";
 import { POST as createPolicyRoute } from "../../src/pages/api/v1/access/policies/index";
 import { POST as enablePolicy } from "../../src/pages/api/v1/access/policies/[id]/enable";
+import {
+  overrideRiskAcknowledgementCatalogueForTests,
+  resolveRiskAcknowledgement
+} from "../../src/modules/channel-accounts/domain/risk-acknowledgements";
 import { rekeyChannelSecretsForTenant } from "../../src/modules/channel-accounts/application/secret-rekey";
 import { resolveChannelSecretsRing } from "../../src/modules/channel-accounts/domain/channel-accounts-config";
 import { POST as revokeConnection } from "../../src/pages/api/v1/channel-accounts/connections/[id]/revoke";
+import {
+  GET as listRiskAcknowledgementsRoute,
+  POST as acknowledgeRiskRoute
+} from "../../src/pages/api/v1/channel-accounts/risk-acknowledgements/index";
+import { POST as attestDeviceRoute } from "../../src/pages/api/v1/channel-accounts/accounts/[id]/attest-device";
+import { POST as createWebhookSubscriptionRoute } from "../../src/pages/api/v1/channel-accounts/accounts/[id]/webhook-subscription";
+import { POST as revokeRiskAcknowledgementRoute } from "../../src/pages/api/v1/channel-accounts/risk-acknowledgements/[id]/revoke";
 import { POST as startOAuth } from "../../src/pages/api/v1/channel-accounts/connections/oauth/start";
 import { GET as oauthCallback } from "../../src/pages/api/v1/channel-accounts/connections/oauth/callback";
 
@@ -91,6 +105,7 @@ type Envelope<T = unknown> = {
 
 type Account = {
   id: string;
+  accessMode: string;
   status: string;
   hasCredential: boolean;
   externalId: string;
@@ -287,13 +302,21 @@ function call<T = unknown>(
 
 const BASE = "/api/v1/channel-accounts";
 
-function register(
+/**
+ * Registers an account through the API and, unless `open: false`, switches it
+ * to `tenant_wide` (#1215 M-c). A new account starts `assigned` to its creator,
+ * so every older test that registers as one person and then drives the account
+ * as another would otherwise see the uniform 404. The tests of the mode itself
+ * pass `open: false`.
+ */
+async function register(
   externalId: string,
   token?: string | null,
   extra: Record<string, unknown> = {},
-  tenantId?: string
+  tenantId?: string,
+  options: { open?: boolean } = {}
 ) {
-  return call<Account>(createAccount, {
+  const response = await call<Account>(createAccount, {
     method: "POST",
     path: `${BASE}/accounts`,
     token,
@@ -307,6 +330,15 @@ function register(
       ...extra
     }
   });
+
+  if (options.open !== false && response.status === 201 && response.body.data) {
+    await admin()`
+      UPDATE awcms_channel_accounts SET access_mode = 'tenant_wide'
+      WHERE id = ${response.body.data.id}
+    `;
+  }
+
+  return response;
 }
 
 function credential(
@@ -521,6 +553,50 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
             token,
             body: { tenantUserId: crypto.randomUUID(), kind: "viewer" }
           })
+      ],
+      [
+        "channel_accounts.risk_acknowledgements.read",
+        (_id, token) =>
+          call(listRiskAcknowledgementsRoute, {
+            path: `${BASE}/risk-acknowledgements`,
+            query: "provider=starsender",
+            token
+          })
+      ],
+      [
+        "channel_accounts.risk_acknowledgements.create",
+        (_id, token) =>
+          call(acknowledgeRiskRoute, {
+            method: "POST",
+            path: `${BASE}/risk-acknowledgements`,
+            token,
+            body: { provider: "starsender", textVersion: "any" }
+          })
+      ],
+      [
+        "channel_accounts.risk_acknowledgements.revoke",
+        (_id, token) => {
+          const ackId = crypto.randomUUID();
+
+          return call(revokeRiskAcknowledgementRoute, {
+            method: "POST",
+            path: `${BASE}/risk-acknowledgements/${ackId}/revoke`,
+            params: { id: ackId },
+            token
+          });
+        }
+      ],
+      [
+        // Issue #1143.
+        "channel_accounts.webhooks.configure",
+        (id, token) =>
+          call(createWebhookSubscriptionRoute, {
+            method: "POST",
+            path: `${BASE}/accounts/${id}/webhook-subscription`,
+            params: { id },
+            token,
+            body: { appSecret: "0123456789abcdef0123456789abcdef" }
+          })
       ]
     ];
 
@@ -532,17 +608,36 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       );
     });
 
+    // Issue #1143 review M-1: a signed Meta webhook subscription can change
+    // WABA-level state, so it ALSO needs the two permissions governing it.
+    const ALSO_REQUIRED: Record<string, readonly string[]> = {
+      "channel_accounts.webhooks.configure": [
+        "whatsapp_delivery.meta_templates.configure",
+        "whatsapp_delivery.meta_signals.configure"
+      ]
+    };
+
     for (const [permission, run] of actions) {
       test(`${permission}: refused without it, allowed with only it`, async () => {
         if (!handlerReady) return;
 
         const id = (await register("guard-dev")).body.data!.id;
-        const without = await seedUser(
-          env.tenantId,
-          "without",
-          ALL_PERMISSIONS.filter((key) => key !== permission)
-        );
-        const only = await seedUser(env.tenantId, "only", [permission]);
+        const extra = ALSO_REQUIRED[permission] ?? [];
+        const without = await seedUser(env.tenantId, "without", [
+          ...ALL_PERMISSIONS.filter((key) => key !== permission),
+          ...extra
+        ]);
+        const only = await seedUser(env.tenantId, "only", [
+          permission,
+          ...extra
+        ]);
+
+        if (extra.length > 0) {
+          // ...and the permission ALONE is not enough (review M-1, T3).
+          const bare = await seedUser(env.tenantId, "bare", [permission]);
+
+          expect((await run(id, bare.token)).status).toBe(403);
+        }
 
         expect((await run(id, without.token)).status).toBe(403);
         // "Allowed" means: past authorization. The action itself may then be a
@@ -550,6 +645,67 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
         expect((await run(id, only.token)).status).not.toBe(403);
       });
     }
+  });
+
+  test("#1143 M-1 (T3): owning ONE Meta number is not enough; a webhook needs the owner assignment on its WABA container too", async () => {
+    if (!handlerReady) return;
+
+    const waba = (await admin()`
+      INSERT INTO awcms_channel_accounts
+        (tenant_id, provider, account_kind, external_id, display_name,
+         auth_mode, status)
+      VALUES (${env.tenantId}, 'whatsapp_cloud', 'waba', 'waba-t3-1', 'waba',
+              'api_token', 'connected')
+      RETURNING id
+    `) as { id: string }[];
+    const number = (await admin()`
+      INSERT INTO awcms_channel_accounts
+        (tenant_id, provider, account_kind, external_id, display_name,
+         auth_mode, status, parent_account_id)
+      VALUES (${env.tenantId}, 'whatsapp_cloud', 'waba_phone_number',
+              '8880000000001', 'number', 'api_token', 'connected',
+              ${waba[0]!.id})
+      RETURNING id
+    `) as { id: string }[];
+    const holder = await seedUser(env.tenantId, "t3", [
+      "channel_accounts.webhooks.configure",
+      "whatsapp_delivery.meta_templates.configure",
+      "whatsapp_delivery.meta_signals.configure"
+    ]);
+    const other = await seedUser(env.tenantId, "t3-other", []);
+    const subscribe = () =>
+      call(createWebhookSubscriptionRoute, {
+        method: "POST",
+        path: `${BASE}/accounts/${number[0]!.id}/webhook-subscription`,
+        params: { id: number[0]!.id },
+        token: holder.token,
+        body: { appSecret: "0123456789abcdef0123456789abcdef" }
+      });
+    const assign = (accountId: string, tenantUserId: string) => admin()`
+      INSERT INTO awcms_channel_account_assignments
+        (tenant_id, account_id, tenant_user_id, kind)
+      VALUES (${env.tenantId}, ${accountId}, ${tenantUserId}, 'owner')
+    `;
+
+    // The holder owns the NUMBER; the WABA container belongs to someone else.
+    await assign(number[0]!.id, holder.tenantUserId);
+    await assign(waba[0]!.id, other.tenantUserId);
+
+    const refused = await subscribe();
+
+    expect(refused.status).toBe(404);
+    expect(
+      (
+        (await admin()`
+          SELECT count(*)::int AS n FROM awcms_channel_webhook_subscriptions
+        `) as { n: number }[]
+      )[0]!.n
+    ).toBe(0);
+
+    // Owning the container as well: allowed.
+    await assign(waba[0]!.id, holder.tenantUserId);
+
+    expect((await subscribe()).status).toBe(201);
   });
 
   test("the deployment switch answers 503 after authorization, and nothing is written", async () => {
@@ -580,6 +736,7 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       providers: {
         provider: string;
         registrable: boolean;
+        phase: string | null;
         capabilityCells: Record<string, string>;
       }[];
     }>(getProviders, { path: `${BASE}/providers` });
@@ -592,6 +749,15 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
 
     expect(member.registrable).toBe(false);
     expect(member.capabilityCells.leads).toBe("barred");
+
+    // A phase-gated provider (Issue #1152) is served with its phase and is
+    // never registrable; an admitted one has a null phase.
+    const providers = response.body.data!.providers;
+    const x = providers.find((p) => p.provider === "x")!;
+
+    expect(x).toMatchObject({ registrable: false, phase: "P3" });
+    expect(providers.find((p) => p.provider === "reddit")!.phase).toBe("P4");
+    expect(providers.find((p) => p.provider === "facebook")!.phase).toBeNull();
   });
 
   describe("registration", () => {
@@ -714,7 +880,9 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
     test("an unknown id, another tenant's id and an unassigned account are the same 404", async () => {
       if (!handlerReady) return;
 
-      const id = (await register("idor-dev")).body.data!.id;
+      const id = (
+        await register("idor-dev", undefined, {}, undefined, { open: false })
+      ).body.data!.id;
       const sql = admin();
       const tenant2 = crypto.randomUUID();
 
@@ -743,18 +911,31 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       expect(foreignRead.status).toBe(404);
       expect(foreignRead.body).toEqual(unknown.body);
 
-      // Tenant-wide until the first assignment: a reader sees it...
-      expect((await read(colleague.token, env.tenantId, id)).status).toBe(200);
+      // `assigned` is the default (#1215 M-c): the creator owns it and a reader
+      // who is not an assignee does not see it...
+      expect((await read(colleague.token, env.tenantId, id)).status).toBe(404);
+      expect((await read(env.token, env.tenantId, id)).status).toBe(200);
 
-      // ...then only its assignee and the assignment manager do.
-      const assigned = await call(postAssignment, {
-        method: "POST",
-        path: `${BASE}/accounts/${id}/assignments`,
+      // ...until an administrator opens it on purpose...
+      const open = await call(putAccessMode, {
+        method: "PUT",
+        path: `${BASE}/accounts/${id}/access-mode`,
         params: { id },
-        body: { tenantUserId: env.ownerTenantUserId, kind: "owner" }
+        body: { mode: "tenant_wide" }
       });
 
-      expect(assigned.status).toBe(200);
+      expect(open.status).toBe(200);
+      expect((await read(colleague.token, env.tenantId, id)).status).toBe(200);
+
+      // ...and closes it again: only its assignee and the assignment manager.
+      const close = await call(putAccessMode, {
+        method: "PUT",
+        path: `${BASE}/accounts/${id}/access-mode`,
+        params: { id },
+        body: { mode: "assigned" }
+      });
+
+      expect(close.status).toBe(200);
 
       const hidden = await read(colleague.token, env.tenantId, id);
 
@@ -930,9 +1111,9 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       const account = (await sql`
         INSERT INTO awcms_channel_accounts
           (tenant_id, provider, account_kind, external_id, display_name,
-           auth_mode, connection_id)
+           auth_mode, connection_id, access_mode)
         VALUES (${env.tenantId}, 'facebook', 'page', 'pg-1', 'Page 1',
-                'oauth2', ${connection[0]!.id}) RETURNING id
+                'oauth2', ${connection[0]!.id}, 'tenant_wide') RETURNING id
       `) as { id: string }[];
       const fresh = await holder({ enrolled: true, steppedUp: true });
       const response = await credential(account[0]!.id, CANARY, fresh.token);
@@ -1014,6 +1195,15 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
 
       const id = (await register("warn-dev")).body.data!.id;
 
+      // A StarSender device cannot be connected without an active risk
+      // acknowledgement (sql/340): record the owner's, as the fixture of a tenant
+      // that has accepted the risk.
+      await admin()`
+        INSERT INTO awcms_channel_provider_risk_acknowledgements
+          (tenant_id, provider, tenant_user_id, text_version, text_sha256)
+        VALUES (${env.tenantId}, 'starsender', ${env.ownerTenantUserId},
+                'fixture-v1', ${"0".repeat(64)})
+      `;
       await admin()`
         UPDATE awcms_channel_accounts SET status = 'connected', connected_at = now()
         WHERE id = ${id}
@@ -1260,15 +1450,21 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
     async function seedBoundAccount(
       connectionId: string,
       externalId: string,
-      scope: { officeId: string } | null = null
+      scope: { officeId: string } | null = null,
+      // #1215 M-c: `assigned` is the default (nobody but the assignees and the
+      // administrator sees it); a test of SCOPE or LISTING behaviour, not of
+      // assignment, passes `tenant_wide` so that only the scope decides.
+      accessMode: "assigned" | "tenant_wide" = "assigned"
     ): Promise<string> {
       const rows = (await admin()`
         INSERT INTO awcms_channel_accounts
           (tenant_id, provider, account_kind, external_id, display_name,
-           auth_mode, connection_id, business_scope_type, business_scope_id)
+           auth_mode, connection_id, business_scope_type, business_scope_id,
+           access_mode)
         VALUES (${env.tenantId}, 'facebook', 'page', ${externalId},
                 ${`Page ${externalId}`}, 'oauth2', ${connectionId},
-                ${scope ? "office" : null}, ${scope?.officeId ?? null})
+                ${scope ? "office" : null}, ${scope?.officeId ?? null},
+                ${accessMode})
         RETURNING id
       `) as { id: string }[];
 
@@ -1341,6 +1537,95 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       expect(await grantState(connection)).toBe("revoked");
     });
 
+    test("Issue #1160 audit M2: a child account is registered under a parent only when the caller may operate the parent AND the child's scope is contained in the parent's; every refusal is the same 422 PARENT_INVALID", async () => {
+      if (!handlerReady) return;
+
+      const officeA = await seedOffice("m2-a");
+      const officeB = await seedOffice("m2-b");
+      const parentRows = (await admin()`
+        INSERT INTO awcms_channel_accounts
+          (tenant_id, provider, account_kind, external_id, display_name,
+           auth_mode, business_scope_type, business_scope_id)
+        VALUES (${env.tenantId}, 'mailketing', 'esp_account', 'm2-esp-a',
+                'Brand A account', 'api_token', 'office', ${officeA})
+        RETURNING id
+      `) as { id: string }[];
+      const parentId = parentRows[0]!.id;
+      // Holds BOTH offices, and may operate the parent.
+      const operator = await seedUser(env.tenantId, "m2-op", OPERATOR_KEYS);
+      // Holds office A, but is not assigned to the parent.
+      const stranger = await seedUser(env.tenantId, "m2-x", OPERATOR_KEYS);
+
+      await holdScope(operator.tenantUserId, officeA);
+      await holdScope(operator.tenantUserId, officeB);
+      await holdScope(stranger.tenantUserId, officeA);
+      // Seeded directly: the owner does not hold office A, so the assignment
+      // route would (rightly) not show it the scoped parent.
+      await admin()`
+        INSERT INTO awcms_channel_account_assignments
+          (tenant_id, account_id, tenant_user_id, kind)
+        VALUES (${env.tenantId}, ${parentId}, ${operator.tenantUserId}, 'operator')
+      `;
+
+      const register = (
+        externalId: string,
+        parentAccountId: string,
+        officeId: string,
+        token: string
+      ) =>
+        call<Account>(createAccount, {
+          method: "POST",
+          path: `${BASE}/accounts`,
+          token,
+          body: {
+            provider: "mailketing",
+            accountKind: "sender_identity",
+            externalId,
+            displayName: externalId,
+            authMode: "api_token",
+            parentAccountId,
+            businessScope: { type: "office", id: officeId }
+          }
+        });
+
+      // Brand B's sender under brand A's account: the caller holds both
+      // scopes and may operate the parent; containment alone refuses it.
+      const crossScope = await register(
+        "m2-b@brand.example",
+        parentId,
+        officeB,
+        operator.token
+      );
+      const unknown = await register(
+        "m2-u@brand.example",
+        crypto.randomUUID(),
+        officeA,
+        operator.token
+      );
+      // The right scope, but a parent this person may not operate.
+      const notMine = await register(
+        "m2-n@brand.example",
+        parentId,
+        officeA,
+        stranger.token
+      );
+
+      for (const refused of [crossScope, unknown, notMine]) {
+        expect(refused.status).toBe(422);
+        expect(refused.body.error?.code).toBe("PARENT_INVALID");
+        expect(refused.body).toEqual(unknown.body);
+      }
+
+      const contained = await register(
+        "m2-a@brand.example",
+        parentId,
+        officeA,
+        operator.token
+      );
+
+      expect(contained.status).toBe(201);
+    });
+
     test("a connection holding a scoped account needs that scope to be revoked", async () => {
       if (!handlerReady) return;
 
@@ -1348,7 +1633,12 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       const operator = await seedUser(env.tenantId, "scoped-op", OPERATOR_KEYS);
       const connection = await seedConnection();
 
-      await seedBoundAccount(connection, "page-scoped", { officeId: office });
+      await seedBoundAccount(
+        connection,
+        "page-scoped",
+        { officeId: office },
+        "tenant_wide"
+      );
 
       const without = await revoke(connection, operator.token);
 
@@ -1371,12 +1661,17 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       const scopedAway = await seedConnection();
       const empty = await seedConnection();
 
-      await seedBoundAccount(visible, "list-visible");
+      await seedBoundAccount(visible, "list-visible", null, "tenant_wide");
 
       const away = await seedBoundAccount(assignedAway, "list-away");
 
       await assign(away, env.ownerTenantUserId, "owner");
-      await seedBoundAccount(scopedAway, "list-scoped", { officeId: office });
+      await seedBoundAccount(
+        scopedAway,
+        "list-scoped",
+        { officeId: office },
+        "tenant_wide"
+      );
 
       const list = (token: string) =>
         call<{ id: string }[]>(listConnections, {
@@ -1411,10 +1706,18 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
       const office = await seedOffice("acct-office");
       const operator = await seedUser(env.tenantId, "acct-op", OPERATOR_KEYS);
       const connection = await seedConnection();
-      const open = await seedBoundAccount(connection, "acct-open");
-      const scoped = await seedBoundAccount(connection, "acct-scoped", {
-        officeId: office
-      });
+      const open = await seedBoundAccount(
+        connection,
+        "acct-open",
+        null,
+        "tenant_wide"
+      );
+      const scoped = await seedBoundAccount(
+        connection,
+        "acct-scoped",
+        { officeId: office },
+        "tenant_wide"
+      );
 
       const listed = async () =>
         (
@@ -2258,6 +2561,852 @@ suite("channel_accounts HTTP surface (Issue #1140)", () => {
           rotated
         )
       ).toEqual({ converted: 1, failed: 0, complete: true });
+    });
+  });
+
+  describe("provider risk acknowledgements and device attestation (Issue #1142)", () => {
+    const approve = () =>
+      overrideRiskAcknowledgementCatalogueForTests({
+        starsender: {
+          ...resolveRiskAcknowledgement("starsender").entry,
+          approval: {
+            approvedBy: "business owner (test fixture)",
+            approvedOn: "2026-11-10",
+            reference: "fixture"
+          }
+        }
+      });
+    const version = () =>
+      resolveRiskAcknowledgement("starsender").entry.textVersion;
+    const ack = (token: string | null | undefined, key?: string | null) =>
+      call<{ id: string; textVersion: string }>(acknowledgeRiskRoute, {
+        method: "POST",
+        path: `${BASE}/risk-acknowledgements`,
+        token,
+        idempotencyKey: key,
+        body: { provider: "starsender", textVersion: version() }
+      });
+    const person = (label: string) =>
+      seedUser(env.tenantId, label, [
+        "channel_accounts.risk_acknowledgements.read",
+        "channel_accounts.risk_acknowledgements.create",
+        "channel_accounts.risk_acknowledgements.revoke",
+        "channel_accounts.accounts.create"
+      ]);
+
+    afterEach(() => {
+      overrideRiskAcknowledgementCatalogueForTests(null);
+      delete process.env.WHATSAPP_STARSENDER_ENABLED;
+    });
+
+    test("the shipped text is a draft: GET says so (both languages, no approval) and POST is 409 until the business owner approves it", async () => {
+      if (!handlerReady) return;
+
+      const who = await person("draft");
+      const read = await call<{
+        approved: boolean;
+        approval: unknown;
+        textVersion: string;
+        text: { en: string; id: string };
+        acknowledgements: unknown[];
+      }>(listRiskAcknowledgementsRoute, {
+        path: `${BASE}/risk-acknowledgements`,
+        query: "provider=starsender",
+        token: who.token
+      });
+
+      expect(read.status).toBe(200);
+      expect(read.body.data!.approved).toBe(false);
+      expect(read.body.data!.approval).toBeNull();
+      expect(read.body.data!.text.en).toContain("UNOFFICIAL");
+      expect(read.body.data!.text.id).toContain("TIDAK RESMI");
+      expect(read.body.data!.acknowledgements).toEqual([]);
+
+      const refused = await ack(who.token);
+
+      expect(refused.status).toBe(409);
+      expect(refused.body.error?.code).toBe("RISK_TEXT_NOT_APPROVED");
+
+      const rows = (await admin()`
+        SELECT count(*)::int AS n FROM awcms_channel_provider_risk_acknowledgements
+      `) as { n: number }[];
+
+      expect(rows[0]!.n).toBe(0);
+      expect(
+        (
+          await call(listRiskAcknowledgementsRoute, {
+            path: `${BASE}/risk-acknowledgements`,
+            query: "provider=whatsapp_cloud",
+            token: who.token
+          })
+        ).status
+      ).toBe(400);
+    });
+
+    test("approved: the caller acknowledges for THEMSELVES, idempotently, audited at warning without secrets; a body naming another person is refused", async () => {
+      if (!handlerReady) return;
+
+      approve();
+
+      const who = await person("signer");
+      const key = nextKey();
+      const first = await ack(who.token, key);
+
+      expect(first.status).toBe(201);
+      expect(first.body.data!.textVersion).toBe(version());
+
+      const replay = await ack(who.token, key);
+
+      expect(replay.status).toBe(201);
+      expect(replay.body.data!.id).toBe(first.body.data!.id);
+
+      const other = await ack(who.token);
+
+      expect(other.status).toBe(200);
+      expect(other.body.data!.id).toBe(first.body.data!.id);
+
+      const conflict = await call(acknowledgeRiskRoute, {
+        method: "POST",
+        path: `${BASE}/risk-acknowledgements`,
+        token: who.token,
+        idempotencyKey: key,
+        body: { provider: "starsender", textVersion: "something-else" }
+      });
+
+      expect(conflict.status).toBe(409);
+      expect(conflict.body.error?.code).toBe("IDEMPOTENCY_CONFLICT");
+
+      const forged = await call(acknowledgeRiskRoute, {
+        method: "POST",
+        path: `${BASE}/risk-acknowledgements`,
+        token: who.token,
+        body: {
+          provider: "starsender",
+          textVersion: version(),
+          tenantUserId: env.ownerTenantUserId
+        }
+      });
+
+      expect(forged.status).toBe(400);
+
+      const stale = await call(acknowledgeRiskRoute, {
+        method: "POST",
+        path: `${BASE}/risk-acknowledgements`,
+        token: who.token,
+        body: { provider: "starsender", textVersion: "an-older-version" }
+      });
+
+      expect(stale.status).toBe(409);
+      expect(stale.body.error?.code).toBe("RISK_TEXT_VERSION_STALE");
+      expect(
+        (
+          await call(acknowledgeRiskRoute, {
+            method: "POST",
+            path: `${BASE}/risk-acknowledgements`,
+            token: who.token,
+            idempotencyKey: null,
+            body: { provider: "starsender", textVersion: version() }
+          })
+        ).status
+      ).toBe(400);
+
+      const rows = (await admin()`
+        SELECT tenant_user_id FROM awcms_channel_provider_risk_acknowledgements
+      `) as { tenant_user_id: string }[];
+
+      expect(rows).toHaveLength(1);
+      expect(rows[0]!.tenant_user_id).toBe(who.tenantUserId);
+
+      const audit = (await admin()`
+        SELECT severity, action FROM awcms_audit_events
+        WHERE action = 'channel_accounts.risk_acknowledgement.create'
+      `) as { severity: string; action: string }[];
+
+      // One row: the replay and the second acknowledgement wrote none.
+      expect(audit).toEqual([
+        {
+          severity: "warning",
+          action: "channel_accounts.risk_acknowledgement.create"
+        }
+      ]);
+    });
+
+    test("audit M4: a person who HAS an MFA factor needs a fresh step-up to acknowledge and to attest; one with no factor is not locked out", async () => {
+      if (!handlerReady) return;
+
+      approve();
+      process.env.WHATSAPP_STARSENDER_ENABLED = "true";
+
+      const permissions = [
+        "channel_accounts.risk_acknowledgements.create",
+        "channel_accounts.accounts.create"
+      ];
+      const stale = await seedUser(env.tenantId, "stale", permissions, {
+        enrolled: true,
+        steppedUp: false
+      });
+      const fresh = await seedUser(env.tenantId, "fresh", permissions, {
+        enrolled: true,
+        steppedUp: true
+      });
+      const noFactor = await seedUser(env.tenantId, "nofactor", permissions);
+      const device = (await register("stepup-dev")).body.data!;
+      const attest = (token: string) =>
+        call(attestDeviceRoute, {
+          method: "POST",
+          path: `${BASE}/accounts/${device.id}/attest-device`,
+          params: { id: device.id },
+          token
+        });
+
+      const refusedAck = await ack(stale.token);
+
+      expect(refusedAck.status).toBe(403);
+      expect(refusedAck.body.error?.code).toBe("STEP_UP_REQUIRED");
+
+      const refusedAttest = await attest(stale.token);
+
+      expect(refusedAttest.status).toBe(403);
+      expect(refusedAttest.body.error?.code).toBe("STEP_UP_REQUIRED");
+
+      const rows = (await admin()`
+        SELECT count(*)::int AS n FROM awcms_channel_provider_risk_acknowledgements
+      `) as { n: number }[];
+
+      expect(rows[0]!.n).toBe(0);
+      expect((await ack(fresh.token)).status).toBe(201);
+      expect((await ack(noFactor.token)).status).toBe(201);
+
+      // The step-up gate is passed (the attestation then stops at "no credential",
+      // which is its own, later refusal).
+      const afterStepUp = await attest(fresh.token);
+
+      expect(afterStepUp.status).toBe(422);
+      expect(afterStepUp.body.error?.code).toBe("CREDENTIAL_REQUIRED");
+    });
+
+    test("revoke is audited at warning; an unknown id is a 404; the list shows the stamp and who revoked", async () => {
+      if (!handlerReady) return;
+
+      approve();
+
+      const who = await person("revoker");
+      const made = await ack(who.token);
+      const id = made.body.data!.id;
+      const revoke = (target: string) =>
+        call<{
+          acknowledgement: {
+            revokedAt: string | null;
+            revokedBy: string | null;
+          };
+          degradedAccounts: number;
+        }>(revokeRiskAcknowledgementRoute, {
+          method: "POST",
+          path: `${BASE}/risk-acknowledgements/${target}/revoke`,
+          params: { id: target },
+          token: who.token
+        });
+
+      expect((await revoke(crypto.randomUUID())).status).toBe(404);
+      expect(
+        (
+          await call(revokeRiskAcknowledgementRoute, {
+            method: "POST",
+            path: `${BASE}/risk-acknowledgements/not-a-uuid/revoke`,
+            params: { id: "not-a-uuid" },
+            token: who.token
+          })
+        ).status
+      ).toBe(400);
+
+      const done = await revoke(id);
+
+      expect(done.status).toBe(200);
+      expect(done.body.data!.acknowledgement.revokedBy).toBe(who.tenantUserId);
+      expect(done.body.data!.degradedAccounts).toBe(0);
+
+      const audit = (await admin()`
+        SELECT severity FROM awcms_audit_events
+        WHERE action = 'channel_accounts.risk_acknowledgement.revoke'
+      `) as { severity: string }[];
+
+      expect(audit).toEqual([{ severity: "warning" }]);
+    });
+
+    test("attest-device: off by default (503 after authorization); with the flag, the caller's own acknowledgement and a credential it connects, as operator-attested, audited at warning", async () => {
+      if (!handlerReady) return;
+
+      approve();
+
+      const who = await person("attester");
+      const bystander = await person("bystander");
+      const device = (await register("attest-dev")).body.data!;
+      const attest = (token: string, id = device.id) =>
+        call<{ status: string; basis: string; changed: boolean }>(
+          attestDeviceRoute,
+          {
+            method: "POST",
+            path: `${BASE}/accounts/${id}/attest-device`,
+            params: { id },
+            token
+          }
+        );
+
+      // No permission: 403, and it learns nothing about the switch.
+      const noRole = await seedUser(env.tenantId, "norole-attest", []);
+
+      expect((await attest(noRole.token)).status).toBe(403);
+
+      const off = await attest(who.token);
+
+      expect(off.status).toBe(503);
+      expect(off.body.error?.code).toBe("PROVIDER_ADAPTER_DISABLED");
+
+      process.env.WHATSAPP_STARSENDER_ENABLED = "true";
+
+      // No acknowledgement of the CALLER yet, and no credential.
+      expect((await attest(who.token)).status).toBe(422);
+
+      await ack(who.token);
+
+      const noKey = await attest(who.token);
+
+      expect(noKey.status).toBe(422);
+      expect(noKey.body.error?.code).toBe("CREDENTIAL_REQUIRED");
+
+      const holder = await seedUser(
+        env.tenantId,
+        "keyholder",
+        ["channel_accounts.credentials.manage"],
+        { enrolled: true, steppedUp: true }
+      );
+
+      expect((await credential(device.id, CANARY, holder.token)).status).toBe(
+        200
+      );
+
+      // A bystander who never acknowledged cannot attest on the strength of the
+      // signer's acknowledgement.
+      const refused = await attest(bystander.token);
+
+      expect(refused.status).toBe(422);
+      expect(refused.body.error?.code).toBe("RISK_ACKNOWLEDGEMENT_REQUIRED");
+
+      const done = await attest(who.token);
+
+      expect(done.status).toBe(200);
+      expect(done.body.data).toMatchObject({
+        status: "connected",
+        basis: "operator_attested",
+        changed: true
+      });
+      expect((await attest(who.token)).body.data!.changed).toBe(false);
+
+      const health = await call<{
+        status: string;
+        health: { reasonCode: string };
+      }>(getHealth, {
+        path: `${BASE}/accounts/${device.id}/health`,
+        params: { id: device.id }
+      });
+
+      expect(health.body.data!.status).toBe("connected");
+      expect(health.body.data!.health.reasonCode).toBe("OPERATOR_ATTESTED");
+
+      const audit = (await admin()`
+        SELECT severity, message FROM awcms_audit_events
+        WHERE action = 'channel_accounts.device.attest'
+      `) as { severity: string; message: string }[];
+
+      expect(audit).toHaveLength(1);
+      expect(audit[0]!.severity).toBe("warning");
+      expect(audit[0]!.message).toContain("not verified by the provider");
+      expect(await everythingPersisted()).not.toContain(CANARY);
+    });
+  });
+  describe("explicit access mode and the last owner (Issue #1215 M-c)", () => {
+    type Assignment = { id: string; tenantUserId: string; kind: string };
+
+    const readAccount = (id: string, token: string) =>
+      call<Account>(getAccount, {
+        path: `${BASE}/accounts/${id}`,
+        params: { id },
+        token
+      });
+    const assignments = async (id: string) =>
+      (
+        await call<Assignment[]>(listAssignments, {
+          path: `${BASE}/accounts/${id}/assignments`,
+          params: { id }
+        })
+      ).body.data!;
+    const setMode = (id: string, mode: string, token?: string) =>
+      call<{ accountId: string; accessMode: string }>(putAccessMode, {
+        method: "PUT",
+        path: `${BASE}/accounts/${id}/access-mode`,
+        params: { id },
+        token,
+        body: { mode }
+      });
+    const assignRoute = (id: string, tenantUserId: string, kind: string) =>
+      call<Assignment>(postAssignment, {
+        method: "POST",
+        path: `${BASE}/accounts/${id}/assignments`,
+        params: { id },
+        body: { tenantUserId, kind }
+      });
+    const unassign = (id: string, assignmentId: string) =>
+      call(removeAssignment, {
+        method: "DELETE",
+        path: `${BASE}/accounts/${id}/assignments/${assignmentId}`,
+        params: { id, assignmentId }
+      });
+    const closed = async (externalId: string) =>
+      (await register(externalId, undefined, {}, undefined, { open: false }))
+        .body.data!.id;
+    /** The SQLSTATE and message of a statement the database must refuse. */
+    async function refusedBy(statement: Promise<unknown>) {
+      try {
+        await statement;
+      } catch (error) {
+        return error as { errno?: string; message: string };
+      }
+
+      return null;
+    }
+    const orphanAudits = async (id: string) =>
+      (
+        (await admin()`
+          SELECT severity FROM awcms_audit_events
+          WHERE action = 'channel_accounts.account.owner_orphaned'
+            AND resource_id = ${id}
+        `) as { severity: string }[]
+      ).length;
+
+    test("a new account is `assigned`, its creator is its first owner, and a colleague who is not an assignee does not see it", async () => {
+      if (!handlerReady) return;
+
+      const creator = await seedUser(env.tenantId, "mc-creator", [
+        "channel_accounts.accounts.create",
+        "channel_accounts.accounts.read"
+      ]);
+      const colleague = await seedUser(env.tenantId, "mc-colleague", [
+        "channel_accounts.accounts.read"
+      ]);
+      const created = await register("mc-new", creator.token, {}, undefined, {
+        open: false
+      });
+
+      expect(created.status).toBe(201);
+
+      const id = created.body.data!.id;
+
+      expect(created.body.data!.accessMode).toBe("assigned");
+      expect(
+        (await assignments(id)).map((a) => [a.tenantUserId, a.kind])
+      ).toEqual([[creator.tenantUserId, "owner"]]);
+      expect((await readAccount(id, creator.token)).status).toBe(200);
+      expect((await readAccount(id, colleague.token)).status).toBe(404);
+      // The tenant administrator is the break-glass.
+      expect((await readAccount(id, env.token)).status).toBe(200);
+    });
+
+    test("an assigned account whose assignees are all gone is administrators-only, never open", async () => {
+      if (!handlerReady) return;
+
+      const id = await closed("mc-orphan");
+      const colleague = await seedUser(env.tenantId, "mc-orph-c", [
+        "channel_accounts.accounts.read"
+      ]);
+
+      await admin()`DELETE FROM awcms_channel_account_assignments WHERE account_id = ${id}`;
+
+      expect((await readAccount(id, colleague.token)).status).toBe(404);
+      expect((await readAccount(id, env.token)).status).toBe(200);
+
+      const listed = await call<{ items: Account[] }>(listAccounts, {
+        path: `${BASE}/accounts`,
+        token: colleague.token
+      });
+
+      expect(listed.body.data!.items.map((a) => a.id)).not.toContain(id);
+    });
+
+    test("the last owner cannot be removed or demoted through the API; with a second owner each can go in turn", async () => {
+      if (!handlerReady) return;
+
+      const id = await closed("mc-last");
+      const other = await seedUser(env.tenantId, "mc-other", []);
+      const [first] = await assignments(id);
+
+      // The only owner: refused, and the row is still there.
+      const removeLast = await unassign(id, first!.id);
+
+      expect(removeLast.status).toBe(409);
+      expect(removeLast.body.error?.code).toBe("LAST_OWNER");
+
+      const demote = await assignRoute(id, first!.tenantUserId, "viewer");
+
+      expect(demote.status).toBe(409);
+      expect(demote.body.error?.code).toBe("LAST_OWNER");
+      expect((await assignments(id)).map((a) => a.kind)).toEqual(["owner"]);
+
+      // A non-owner assignee is not an owner: removing it is allowed.
+      const viewer = await assignRoute(id, other.tenantUserId, "viewer");
+
+      expect(viewer.status).toBe(200);
+      expect((await unassign(id, viewer.body.data!.id)).status).toBe(200);
+
+      // Two owners: one may be demoted, then the remaining one is the last.
+      const second = await assignRoute(id, other.tenantUserId, "owner");
+
+      expect(second.status).toBe(200);
+      expect(
+        (await assignRoute(id, first!.tenantUserId, "operator")).status
+      ).toBe(200);
+      expect((await unassign(id, second.body.data!.id)).status).toBe(409);
+    });
+
+    test("tenant_wide has no last-owner rule, and switching back to assigned needs an owner", async () => {
+      if (!handlerReady) return;
+
+      const id = await closed("mc-wide");
+      const [owner] = await assignments(id);
+
+      expect((await setMode(id, "tenant_wide")).status).toBe(200);
+      expect((await unassign(id, owner!.id)).status).toBe(200);
+
+      const refused = await setMode(id, "assigned");
+
+      expect(refused.status).toBe(422);
+      expect(refused.body.error?.code).toBe("OWNER_REQUIRED");
+      expect((await assignRoute(id, owner!.tenantUserId, "owner")).status).toBe(
+        200
+      );
+      expect((await setMode(id, "assigned")).status).toBe(200);
+    });
+
+    test("the access-mode endpoint needs assignments.assign, is idempotent, and audits only a real change at warning", async () => {
+      if (!handlerReady) return;
+
+      const id = await closed("mc-mode");
+      const reader = await seedUser(env.tenantId, "mc-mode-r", [
+        "channel_accounts.accounts.read"
+      ]);
+      const audits = async () =>
+        (await admin()`
+          SELECT severity, attributes FROM awcms_audit_events
+          WHERE action = 'channel_accounts.account.access_mode_set'
+            AND resource_id = ${id}
+        `) as { severity: string; attributes: { accessMode: string } }[];
+
+      expect((await setMode(id, "tenant_wide", reader.token)).status).toBe(403);
+      expect(await audits()).toHaveLength(0);
+
+      const put = () =>
+        call(putAccessMode, {
+          method: "PUT",
+          path: `${BASE}/accounts/${id}/access-mode`,
+          params: { id },
+          idempotencyKey: "mc-mode-key-1",
+          body: { mode: "tenant_wide" }
+        });
+      const first = await put();
+      const replay = await put();
+
+      expect(first.status).toBe(200);
+      expect(replay.status).toBe(200);
+      expect(await audits()).toEqual([
+        { severity: "warning", attributes: { accessMode: "tenant_wide" } }
+      ]);
+
+      // The same mode under a fresh key changes nothing and audits nothing.
+      expect((await setMode(id, "tenant_wide")).status).toBe(200);
+      expect(await audits()).toHaveLength(1);
+      expect((await setMode(id, "everyone")).status).toBe(400);
+    });
+
+    test("#1215 audit M1: an administrator confined to office A cannot open office B's account to the whole tenant: the same 404 as an unknown or foreign id, the mode is untouched, nothing is audited", async () => {
+      if (!handlerReady) return;
+
+      const sql = admin();
+      const offices = (await sql`
+        INSERT INTO awcms_offices (tenant_id, office_code, office_name)
+        VALUES (${env.tenantId}, 'mc-sa', 'Office mc-sa'),
+               (${env.tenantId}, 'mc-sb', 'Office mc-sb')
+        RETURNING id, office_code
+      `) as { id: string; office_code: string }[];
+      const officeA = offices.find((o) => o.office_code === "mc-sa")!.id;
+      const officeB = offices.find((o) => o.office_code === "mc-sb")!.id;
+      // An administrator by permission (tenant-wide `assignments.assign`), but
+      // confined to one office by an active business-scope assignment.
+      const confined = await seedUser(env.tenantId, "mc-confined", [
+        "channel_accounts.assignments.assign",
+        "channel_accounts.accounts.read"
+      ]);
+
+      await sql`
+        INSERT INTO awcms_business_scope_assignments
+          (tenant_id, tenant_user_id, scope_type, scope_id,
+           granted_by_tenant_user_id)
+        VALUES (${env.tenantId}, ${confined.tenantUserId}, 'office', ${officeA},
+                ${env.ownerTenantUserId})
+      `;
+
+      async function scopedAccount(externalId: string, officeId: string) {
+        const rows = (await sql`
+          INSERT INTO awcms_channel_accounts
+            (tenant_id, provider, account_kind, external_id, display_name,
+             auth_mode, business_scope_type, business_scope_id, access_mode)
+          VALUES (${env.tenantId}, 'starsender', 'device', ${externalId},
+                  ${externalId}, 'device_key', 'office', ${officeId},
+                  'assigned')
+          RETURNING id
+        `) as { id: string }[];
+
+        await sql`
+          INSERT INTO awcms_channel_account_assignments
+            (tenant_id, account_id, tenant_user_id, kind)
+          VALUES (${env.tenantId}, ${rows[0]!.id}, ${env.ownerTenantUserId},
+                  'owner')
+        `;
+
+        return rows[0]!.id;
+      }
+
+      const modeOf = async (id: string) =>
+        (
+          (await sql`SELECT access_mode FROM awcms_channel_accounts WHERE id = ${id}`) as {
+            access_mode: string;
+          }[]
+        )[0]!.access_mode;
+      const audits = async (id: string) =>
+        (
+          (await sql`
+            SELECT 1 FROM awcms_audit_events
+            WHERE action = 'channel_accounts.account.access_mode_set'
+              AND resource_id = ${id}
+          `) as unknown[]
+        ).length;
+      const inB = await scopedAccount("mc-scope-b", officeB);
+      const inA = await scopedAccount("mc-scope-a", officeA);
+      const tenant2 = crypto.randomUUID();
+
+      await sql`
+        INSERT INTO awcms_tenants (id, tenant_code, tenant_name)
+        VALUES (${tenant2}, 'ca-mc-scope', 'CA MC Scope')
+      `;
+
+      const foreign = await seedUser(tenant2, "mc-foreign", ALL_PERMISSIONS);
+      const refused = await setMode(inB, "tenant_wide", confined.token);
+      const unknown = await setMode(
+        crypto.randomUUID(),
+        "tenant_wide",
+        confined.token
+      );
+
+      const foreignTenant = await call(putAccessMode, {
+        method: "PUT",
+        path: `${BASE}/accounts/${inB}/access-mode`,
+        params: { id: inB },
+        token: foreign.token,
+        tenantId: tenant2,
+        body: { mode: "tenant_wide" }
+      });
+
+      expect(refused.status).toBe(404);
+      expect(refused.body).toEqual(unknown.body);
+      expect(foreignTenant.status).toBe(404);
+      expect(foreignTenant.body).toEqual(unknown.body);
+      expect(await modeOf(inB)).toBe("assigned");
+      expect(await audits(inB)).toBe(0);
+
+      // The same person, same permission, on an account of their OWN office:
+      // allowed. So the 404 above is the scope gate and nothing else.
+      expect((await setMode(inA, "tenant_wide", confined.token)).status).toBe(
+        200
+      );
+      expect(await modeOf(inA)).toBe("tenant_wide");
+
+      // An administrator who holds office B's scope can (no break-glass around
+      // the scope: the administrator is no exception).
+      const holderB = await seedUser(env.tenantId, "mc-holder-b", [
+        "channel_accounts.assignments.assign"
+      ]);
+
+      await sql`
+        INSERT INTO awcms_business_scope_assignments
+          (tenant_id, tenant_user_id, scope_type, scope_id,
+           granted_by_tenant_user_id)
+        VALUES (${env.tenantId}, ${holderB.tenantUserId}, 'office', ${officeB},
+                ${env.ownerTenantUserId})
+      `;
+
+      expect((await setMode(inB, "tenant_wide", holderB.token)).status).toBe(
+        200
+      );
+      expect(await modeOf(inB)).toBe("tenant_wide");
+    });
+
+    test("#1215 audit L1: an erasure racing a mode switch or an unassignment waits for it, so an orphaned `assigned` account always leaves its audit row", async () => {
+      if (!handlerReady) return;
+
+      const sql = admin();
+      const { unassignAccount } =
+        await import("../../src/modules/channel-accounts/application/account-directory");
+      const settle = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+      // (1) tenant_wide + one owner. A switches the account to `assigned`
+      // (the guard counted the owner); while A is still open, an erasure
+      // deletes that owner without any account lock.
+      const a = await closed("mc-race-a");
+      const [ownerA] = await assignments(a);
+
+      await sql`UPDATE awcms_channel_accounts SET access_mode = 'tenant_wide' WHERE id = ${a}`;
+
+      let switched!: () => void;
+      const switchedSignal = new Promise<void>((r) => (switched = r));
+      const switchTx = sql.begin(async (tx) => {
+        await tx`UPDATE awcms_channel_accounts SET access_mode = 'assigned' WHERE id = ${a}`;
+        switched();
+        await settle(700);
+      });
+
+      await switchedSignal;
+
+      const erase = sql`DELETE FROM awcms_channel_account_assignments WHERE id = ${ownerA!.id}`;
+
+      await Promise.all([switchTx, erase]);
+
+      // Whatever the interleaving, the invariant holds: an `assigned` account
+      // with no owner has its trace.
+      const modeA = (
+        (await sql`SELECT access_mode FROM awcms_channel_accounts WHERE id = ${a}`) as {
+          access_mode: string;
+        }[]
+      )[0]!.access_mode;
+
+      expect(modeA).toBe("assigned");
+      expect(await orphanAudits(a)).toBe(1);
+
+      // (2) `assigned` + owners X and Y. The API unassigns Y (it counted X);
+      // while it is open, an erasure deletes X.
+      const b = await closed("mc-race-b");
+      const second = await seedUser(env.tenantId, "mc-race-y", []);
+
+      expect((await assignRoute(b, second.tenantUserId, "owner")).status).toBe(
+        200
+      );
+
+      const rows = await assignments(b);
+      const y = rows.find((r) => r.tenantUserId === second.tenantUserId)!;
+      const x = rows.find((r) => r.tenantUserId !== second.tenantUserId)!;
+      let unassigned!: () => void;
+      const unassignedSignal = new Promise<void>((r) => (unassigned = r));
+      const unassignTx = sql.begin(async (tx) => {
+        expect(await unassignAccount(tx, env.tenantId, b, y.id)).toBe(
+          "removed"
+        );
+        unassigned();
+        await settle(700);
+      });
+
+      await unassignedSignal;
+
+      const eraseX = sql`DELETE FROM awcms_channel_account_assignments WHERE id = ${x.id}`;
+
+      await Promise.all([unassignTx, eraseX]);
+
+      expect(
+        (
+          (await sql`SELECT 1 FROM awcms_channel_account_assignments WHERE account_id = ${b} AND kind = 'owner'`) as unknown[]
+        ).length
+      ).toBe(0);
+      expect(await orphanAudits(b)).toBe(1);
+    }, 30000);
+
+    test("the database refuses what the application would: demoting the last owner, an unowned switch to assigned, and a business-scope rewrite", async () => {
+      if (!handlerReady) return;
+
+      const sql = admin();
+      const office = (
+        (await sql`
+          INSERT INTO awcms_offices (tenant_id, office_code, office_name)
+          VALUES (${env.tenantId}, 'mc-guard', 'Office mc-guard')
+          RETURNING id
+        `) as { id: string }[]
+      )[0]!.id;
+      const id = await closed("mc-db");
+
+      const demote = await refusedBy(
+        sql`UPDATE awcms_channel_account_assignments SET kind = 'viewer' WHERE account_id = ${id}`
+      );
+
+      expect(demote?.errno).toBe("23514");
+      expect(demote?.message).toContain("last owner");
+
+      const move = await refusedBy(
+        sql`UPDATE awcms_channel_account_assignments SET account_id = ${crypto.randomUUID()} WHERE account_id = ${id}`
+      );
+
+      expect(move).not.toBeNull();
+
+      const scope = await refusedBy(
+        sql`UPDATE awcms_channel_accounts SET business_scope_type = 'office', business_scope_id = ${office} WHERE id = ${id}`
+      );
+
+      expect(scope?.errno).toBe("23514");
+      expect(scope?.message).toContain("business scope is immutable");
+
+      await sql`UPDATE awcms_channel_accounts SET access_mode = 'tenant_wide' WHERE id = ${id}`;
+      await sql`DELETE FROM awcms_channel_account_assignments WHERE account_id = ${id}`;
+
+      const unowned = await refusedBy(
+        sql`UPDATE awcms_channel_accounts SET access_mode = 'assigned' WHERE id = ${id}`
+      );
+
+      expect(unowned?.errno).toBe("23514");
+      expect(unowned?.message).toContain("has an owner");
+
+      const garbage = await refusedBy(
+        sql`UPDATE awcms_channel_accounts SET access_mode = 'open' WHERE id = ${id}`
+      );
+
+      expect(garbage?.errno).toBe("23514");
+    });
+
+    test("deleting the last owner (what an erasure does) always completes and leaves one warning audit row; deleting a non-last owner or a tenant_wide owner leaves none", async () => {
+      if (!handlerReady) return;
+
+      const sql = admin();
+      const second = await seedUser(env.tenantId, "mc-er", []);
+      const id = await closed("mc-erase");
+
+      expect((await assignRoute(id, second.tenantUserId, "owner")).status).toBe(
+        200
+      );
+
+      // Not the last owner: no trace.
+      await sql`DELETE FROM awcms_channel_account_assignments WHERE account_id = ${id} AND tenant_user_id = ${second.tenantUserId}`;
+      expect(await orphanAudits(id)).toBe(0);
+
+      // The last one goes (an erasure cannot be refused): one audit row, no person in it.
+      await sql`DELETE FROM awcms_channel_account_assignments WHERE account_id = ${id}`;
+      expect(await orphanAudits(id)).toBe(1);
+
+      const row = (await sql`
+        SELECT severity, attributes::text AS attributes FROM awcms_audit_events
+        WHERE action = 'channel_accounts.account.owner_orphaned' AND resource_id = ${id}
+      `) as { severity: string; attributes: string }[];
+
+      expect(row[0]!.severity).toBe("warning");
+      expect(JSON.parse(row[0]!.attributes)).toEqual({ accountId: id });
+
+      // tenant_wide has no owner rule: nothing to report.
+      const wide = (await register("mc-erase-wide")).body.data!.id;
+
+      await sql`DELETE FROM awcms_channel_account_assignments WHERE account_id = ${wide}`;
+      expect(await orphanAudits(wide)).toBe(0);
     });
   });
 });

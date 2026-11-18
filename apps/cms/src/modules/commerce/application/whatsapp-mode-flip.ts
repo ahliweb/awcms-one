@@ -239,7 +239,10 @@ async function readUpstreamDrain(
   scope: UpstreamScope;
   grantedConsents: number;
 }> {
-  const summary = await summarizeWhatsappQueue(tx, tenantId);
+  // `null` scope keys = every row of the tenant, chosen explicitly (upstream
+  // Issue #1265): the mode flip is a tenant-level decision and must count the
+  // whole queue, or a confined view would under-count and call a drain safe.
+  const summary = await summarizeWhatsappQueue(tx, tenantId, null);
   const commerceCounts: Record<string, number> = {};
   let unrelated = 0;
   let exact = true;
@@ -251,7 +254,8 @@ async function readUpstreamDrain(
 
     const page = await listRecentWhatsappMessages(tx, tenantId, {
       status,
-      limit: UPSTREAM_DRAIN_PAGE_LIMIT
+      limit: UPSTREAM_DRAIN_PAGE_LIMIT,
+      scopeKeys: null
     });
     let commerce = 0;
 
@@ -286,7 +290,8 @@ async function readUpstreamDrain(
         : Math.max(0, Math.floor((now.getTime() - oldestCommerceMs) / 1000))
     ),
     scope: { unrelatedNonTerminal: unrelated, commerceCountExact: exact },
-    grantedConsents: summary.grantedConsents
+    // Unconfined scope: the tenant-wide total is always a number.
+    grantedConsents: summary.grantedConsents ?? 0
   };
 }
 

@@ -105,6 +105,8 @@ describe("the upstream path never names commerce's own WhatsApp table or provide
         const allowed =
           specifier.startsWith("node:") ||
           specifier === "../../_shared/ports/whatsapp-delivery-port" ||
+          // The descriptor field's type (ADR-0164), `import type` only.
+          specifier === "../../_shared/module-contract" ||
           // The in-process adapter, the config and the template registry.
           /^\.\.\/\.\.\/whatsapp-delivery\/(application\/whatsapp-enqueue|domain\/whatsapp-templates)$/.test(
             specifier

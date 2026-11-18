@@ -91,20 +91,17 @@ export type CsvCellOptions = {
    */
   reversible?: boolean;
   /**
-   * awcms-one divergence (issue #377): the cell is a decimal figure carried as
-   * TEXT (a `numeric(14,2)` money string such as `-5.50`, whose two decimals
-   * are part of the value). A string that is nothing but an optionally signed
-   * decimal (see {@link NUMERIC_TEXT}) is written as it is: its sign is a
-   * number's, not a formula's, and no function name can fit in it. Everything
-   * else, `=1+1` and `-5.5.5` included, is neutralised as usual. A candidate
-   * to upstream as the string counterpart of the "numbers are not strings"
-   * rule above.
+   * Opt-in (Issue #1276). A STRING that is only an optionally signed decimal
+   * (`-12.50`, `+5`, `.5`) is written as is, so negative money carried as
+   * `numeric(14,2)` text stays a number. Anything else (`-1+cmd`, `-1e5`,
+   * `-12.50\n=cmd`, whitespace, TAB, CR) is neutralised exactly as without the
+   * option. Callers that do not pass it see no change.
    */
   numericText?: boolean;
 };
 
-/** An optionally signed decimal figure and nothing else. */
-const NUMERIC_TEXT = /^[+-]?\d+(?:\.\d+)?$/;
+/** Optionally signed plain decimal, ASCII digits only, anchored both ends. */
+const SIGNED_DECIMAL_TEXT = /^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/;
 
 /** Text for any cell value, before neutralisation. */
 function stringifyCsvValue(value: unknown): string {
@@ -132,7 +129,11 @@ export function csvCellForWrite(
 
   const text = stringifyCsvValue(value);
 
-  if (options.numericText && NUMERIC_TEXT.test(text)) {
+  if (
+    options.numericText &&
+    typeof value === "string" &&
+    SIGNED_DECIMAL_TEXT.test(text)
+  ) {
     return text;
   }
 

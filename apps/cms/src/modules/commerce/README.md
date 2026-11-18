@@ -477,7 +477,7 @@ codebase that does — selected whenever `EMAIL_PROVIDER=log` or
 `commerce` gained a dependency on `email` for this (see `module.ts`), the
 same way `newsletter` already depends on it for its own confirmation mail.
 
-**Registration in the `email:dispatch` process (Issue #311).** The three `derived.commerce_*` e-mail categories (`customer_otp`, `conversation_reply`, `campaign`) are registered by ONE dependency-free side-effect file, `domain/email-template-categories.ts`, which the application files import and which `email/application/email-dispatch.ts` imports too (one recorded upstream divergence, see the root `AGENTS.md`). The registry is per process and `renderEmailTemplate` drops every variable for an unknown category, so a registration that lived only in application files the separate dispatcher never loaded sent OTP e-mails with an empty code. Add every new `derived.commerce_*` category in that file only; `tests/commerce-email-categories-dispatch.test.ts` checks it from a fresh process.
+**Registration in the `email:dispatch` process (Issue #311, ADR-0164).** The three `derived.commerce_*` e-mail categories (`customer_otp`, `conversation_reply`, `campaign`) are declared in the module descriptor (`emailTemplateCategories`, built from the dependency-free list in `domain/email-template-categories.ts`), and `email` resolves their allow-lists from the installed descriptors in every process that installs the extension-point source: the web entry and each dispatcher script, including `scripts/email-dispatch.ts` and `scripts/commerce-campaigns-dispatch.ts`. No upstream-owned file imports a commerce file for its side effect any more (that divergence of `email-dispatch.ts` retired). Only the campaign category is `workerInsert`: the campaign dispatcher enqueues it as `awcms_worker`, so `sql/1064` seeds its row of `awcms_email_worker_categories` (and restores the table-driven guard that `sql/1033` had overwritten with a hard-coded body; see the root `AGENTS.md`). Add every new `derived.commerce_*` category to the list in that file only; `tests/commerce-email-categories-dispatch.test.ts` checks it from a fresh process.
 
 **Sessions** (`application/customer-session-auth.ts`): `requireCustomerSession`
 parses `Authorization: Bearer cs_…`, looks up a live row in
@@ -786,11 +786,12 @@ phase 2, [ADR-0047](../../../../../docs/adr/0047-commerce-whatsapp-moves-to-the-
 `whatsapp-enqueue-legacy.ts` (the function exactly as it was) or
 `whatsapp-upstream-enqueue.ts` (`WhatsappDeliveryPort.enqueue` in the
 caller's transaction, into the `whatsapp_delivery` queue). No dual write, no
-row copying. `domain/whatsapp-upstream-templates.ts` registers the four
-`commerce.*` templates with `whatsapp_delivery` (OTP `security` with an
-expiry; order paid and documents `transactional`; campaigns `marketing`);
-`scripts/whatsapp-dispatch.ts` imports it so the upstream dispatcher knows
-them. In `upstream` mode a refusal comes back as `enqueued: false` with a
+row copying. `domain/whatsapp-upstream-templates.ts` holds the four
+`commerce.*` templates, which the module descriptor declares
+(`whatsappTemplates`, ADR-0164) so `whatsapp_delivery` resolves them in every
+process that installs the extension-point source, the upstream dispatcher
+included (OTP `security` with an expiry; order paid and documents
+`transactional`; campaigns `marketing`). In `upstream` mode a refusal comes back as `enqueued: false` with a
 reason, channel availability asks `WHATSAPP_ENABLED` instead of
 `COMMERCE_WHATSAPP_ENABLED`, and the document-delivery history reads the
 queue back by correlation id. The dispatcher, purge and admin screens above

@@ -9,9 +9,19 @@
  * `active` tenant and drains its due campaign backlog, looping per tenant
  * until a pass claims nothing.
  */
+import { installExtensionPointSource } from "../src/modules/_shared/extension-point-source";
+import { listModules } from "../src/modules";
 import { getWorkerDatabaseClient } from "../src/lib/database/client";
 import { logScriptFailure } from "../src/lib/logging/error-log";
 import { dispatchCampaignQueue } from "../src/modules/commerce/application/campaign-dispatch";
+
+// Composition root (ADR-0164): the campaign fan-out renders the
+// `derived.commerce_campaign` e-mail and enqueues the `commerce.campaign`
+// WhatsApp template, both declared in the commerce descriptor, so this process
+// installs the descriptor source itself. awcms-one: this root is not in
+// upstream's COMPOSITION_ROOTS list, so
+// `tests/commerce-campaigns-dispatch-composition-root.test.ts` pins it.
+installExtensionPointSource(listModules);
 
 const MAX_PASSES_PER_TENANT = 10;
 

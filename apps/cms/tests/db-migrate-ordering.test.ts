@@ -112,10 +112,13 @@ describe("discoverMigrationFiles", () => {
     );
   });
 
-  test("the repo's own sql/ keeps its numeric-prefix order (identical to lexical while every name is three digits)", async () => {
+  test("the repo's own sql/ is applied in numeric order, whatever its widths", async () => {
     const onDisk = (await readdir(MIGRATIONS_DIR)).filter((name) =>
       name.endsWith(".sql")
     );
+    // `compareMigrationNames`, not `localeCompare`: the latter puts `1000_`
+    // before `999_`, which would turn this into a test that fails the day the
+    // first four-digit migration lands.
     const lexical = [...onDisk].sort(compareMigrationNames);
     const applied = (await discoverMigrationFiles(MIGRATIONS_DIR)).map(
       (m) => m.name
