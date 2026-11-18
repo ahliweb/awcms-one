@@ -726,6 +726,11 @@ main {
 .search-form {
   display: flex;
   align-items: stretch;
+  /* Issue #539: never wider than the row it sits in. At the panel's extra-large
+     text size the field's own minimum plus the button is wider than a 360px
+     phone's content box, and `overflow: hidden` below would then clip the
+     button; the input gives way instead (`min-width: 0` below). */
+  max-width: 100%;
   height: 44px;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-m);
@@ -735,7 +740,12 @@ main {
 
 .search-form input[type="search"] {
   flex: 1;
-  min-width: 9rem;
+  /* `width: 100%` is what lets a form control shrink when this row is sized
+     from its content (a percentage width on a form control counts as zero in
+     the minimum size, and as `auto` in the maximum one, so the desktop width
+     is unchanged). */
+  width: 100%;
+  min-width: 0;
   height: 100%;
   padding: 0 0.75rem;
   border: 0;
@@ -1128,6 +1138,17 @@ main {
   color: var(--color-primary-foreground, #000000);
 }
 
+/* The same fix for `.btn--secondary` (issue #539): its surface is `--bg-surface`
+   (white in light mode) wherever it sits, but inside a `.band-inverse` the
+   generic muted-grey link/button text colour above won, which is 1.48:1 on the
+   home slider's second call-to-action. It stayed hidden because the home page's
+   promotional popup, open in the scan, made the page behind it inert. The text
+   token matching that surface is `--text-primary`. */
+.band-inverse .btn--secondary,
+.band-inverse .btn--secondary:hover {
+  color: var(--text-primary);
+}
+
 /* Form controls — 42px inputs/selects/textareas (issue #166's own height,
    distinct from the 44px `.btn`, matching the mockup's own address/checkout
    forms). `.is-mono` switches the value font for a code/phone/postcode
@@ -1151,6 +1172,12 @@ input[type="password"],
 select,
 textarea {
   height: 42px;
+  /* Issue #539: a form control's intrinsic width grows with the text size and
+     letter-spacing (the reading-preferences panel changes both), and in a
+     grid or flex column that stretched the whole column past a 360px phone.
+     Capped at its container; a percentage max-width on a form control is
+     ignored when sizing its parent, so it can also shrink. */
+  max-width: 100%;
   padding: 0 0.75rem;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-s);
@@ -1306,13 +1333,20 @@ textarea {
    Trims transitions/animations to near-zero rather than removing them
    outright: `transition: none` on everything also kills the focus-visible
    outline transition, and losing that feedback is a bigger accessibility
-   cost than 0.01ms of motion on a property that is not moving anything. */
+   cost than 0.01ms of motion on a property that is not moving anything.
+
+   `:root:not([data-a11y-user])` (issue #539): once a visitor has a stored
+   choice in the reading-preferences panel, THAT choice decides — an explicit
+   "off" must not be overruled by the OS setting — and `a11y.css`'s own
+   `data-a11y-motion="reduce"` rule takes over for an explicit "on". */
 @media (prefers-reduced-motion: reduce) {
-  html {
+  :root:not([data-a11y-user]) {
     scroll-behavior: auto;
   }
 
-  *, *::before, *::after {
+  :root:not([data-a11y-user]) *,
+  :root:not([data-a11y-user]) *::before,
+  :root:not([data-a11y-user]) *::after {
     animation: none !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;

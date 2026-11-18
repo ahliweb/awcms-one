@@ -13,6 +13,7 @@
  * on first paint once JS is available, not just after an interaction.
  */
 import { fetchProdukIndex, renderProdukGrid, renderPagination } from "./produk-index-klien";
+import { preferredScrollBehavior } from "../lib/a11y-preferences";
 import {
   filterProdukIndex,
   paginateProdukIndex,
@@ -126,7 +127,7 @@ if (grid && form) {
         const next = { ...state, page: nextPage };
         writeStateToUrl(next);
         void render(next);
-        gridEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        gridEl.scrollIntoView({ behavior: preferredScrollBehavior(document, window), block: "start" });
       });
     }
   }

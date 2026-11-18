@@ -1,0 +1,697 @@
+/**
+ * Styles for the public reading-preferences panel and for the preferences it
+ * sets (issue #539, ADR-0057). Loaded once from `BaseLayout.astro`, after
+ * `global.css`, so every page of every build profile has it.
+ *
+ * Two halves:
+ *
+ * 1. The panel itself (`.a11y*`, markup in `src/components/A11yPanel.astro`),
+ *    built from this site's own tokens so it fits each theme, light or dark.
+ * 2. The preferences — every rule scoped under a `data-a11y-*` attribute on
+ *    `<html>` (written by `src/lib/a11y-early.js` before first paint and by
+ *    `src/scripts/a11y-panel.ts` live), so nothing changes for a visitor who
+ *    never touches the panel. The attribute contract is in
+ *    `src/lib/a11y-preferences.ts`.
+ *
+ * ## OS preferences are the default
+ *
+ * With nothing stored, `prefers-contrast: more` and
+ * `prefers-reduced-motion: reduce` apply through CSS alone — that is also what
+ * a visitor without JavaScript gets. `data-a11y-user` ("this visitor has a
+ * stored choice") switches those media-query defaults off, which is what makes
+ * an explicit "off" in the panel really off. Under `forced-colors: active` the
+ * high-contrast palette is never applied: the browser's own forced palette
+ * must not be fought.
+ *
+ * ## The high-contrast palette exists twice, on purpose
+ *
+ * Once under `:root[data-a11y-contrast]` (a choice) and once under
+ * `:root:not([data-a11y-user])` inside `prefers-contrast: more` (the OS
+ * default). CSS cannot share one declaration block between an attribute
+ * selector and a media query, so the two sections between the BEGIN/END markers
+ * below are copies. `tests/a11y-css.test.ts` normalises both and fails if they
+ * differ, and checks every text/background pair in them against 7:1 (WCAG
+ * 1.4.6) — edit them together.
+ *
+ * Every override sits at specificity (0,2,0) or above on purpose: the brand
+ * tokens in `/theme-tokens.css` and the dark-scheme tokens in `global.css` are
+ * plain `:root` (0,1,0), and the palette must win over both whatever order the
+ * stylesheets load in.
+ */
+
+/* --- Panel ------------------------------------------------------------- */
+
+.a11y__fab {
+  position: fixed;
+  inset-inline-start: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid var(--text-on-inverse);
+  border-radius: var(--radius-full);
+  background: var(--bg-inverse);
+  color: var(--text-on-inverse);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.a11y__fab:hover {
+  background: var(--bg-inverse-2);
+}
+
+.a11y__icon {
+  display: block;
+  flex: none;
+}
+
+.a11y__panel {
+  position: fixed;
+  inset-inline-start: 1rem;
+  bottom: calc(1rem + 48px + 0.5rem);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  width: min(23rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 6rem);
+  max-height: calc(100dvh - 6rem);
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.a11y__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.a11y__eyebrow {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.a11y__title {
+  margin: 0.15rem 0 0.25rem;
+  font-size: var(--text-lg);
+}
+
+.a11y__title:focus {
+  outline: none;
+}
+
+.a11y__title:focus-visible {
+  outline: 3px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.a11y__summary {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.a11y__close {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-m);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.a11y__close:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-color);
+}
+
+.a11y__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.a11y__group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.a11y__legend {
+  margin-bottom: 0.4rem;
+  padding: 0;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.a11y__segments {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.a11y__segment {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* The native radio covers its whole segment (a large, familiar target that
+   is keyboard-operable with the arrow keys) but is invisible; the face below
+   draws it, and carries the focus ring because the input itself cannot. */
+.a11y__radio {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.a11y__segment-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.35rem 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-m);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.a11y__radio:checked + .a11y__segment-face {
+  border-color: var(--text-primary);
+  background: var(--text-primary);
+  color: var(--bg-surface);
+}
+
+.a11y__radio:focus-visible + .a11y__segment-face {
+  outline: 3px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.a11y__switches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* One whole-row button per switch: the label, its description and the track
+   are a single >=44px target. The accessible name and description come from
+   `aria-labelledby`/`aria-describedby`, so the track is `aria-hidden`. */
+.a11y__switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-m);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.a11y__switch:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-color);
+}
+
+.a11y__switch-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.a11y__switch-label {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.a11y__switch-desc {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.a11y__track {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--text-muted);
+  transition: background-color 0.15s ease;
+}
+
+.a11y__knob {
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  transition: inset-inline-start 0.15s ease;
+}
+
+.a11y__switch[aria-checked="true"] .a11y__track {
+  background: var(--link-color);
+}
+
+.a11y__switch[aria-checked="true"] .a11y__knob {
+  inset-inline-start: 23px;
+}
+
+.a11y__reset {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-m);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.a11y__reset:hover {
+  background: var(--bg-subtle);
+}
+
+.a11y__note {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+}
+
+@media (forced-colors: active) {
+  .a11y__fab,
+  .a11y__panel {
+    border: 1px solid CanvasText;
+  }
+
+  .a11y__track {
+    border: 1px solid ButtonText;
+    background: ButtonFace;
+  }
+
+  .a11y__knob {
+    background: ButtonText;
+  }
+
+  .a11y__switch[aria-checked="true"] .a11y__track {
+    background: Highlight;
+  }
+
+  .a11y__switch[aria-checked="true"] .a11y__knob {
+    background: HighlightText;
+  }
+
+  .a11y__radio:checked + .a11y__segment-face {
+    border: 3px solid Highlight;
+    background: Canvas;
+    color: CanvasText;
+  }
+}
+
+/* A floating control and its dialog are meaningless on paper. */
+@media print {
+  .a11y {
+    display: none;
+  }
+}
+
+/* --- Preferences ------------------------------------------------------- */
+
+/* Text size — every text size in this app is `rem`, so the root scales it all. */
+html[data-a11y-text="large"] {
+  font-size: 120%;
+}
+
+html[data-a11y-text="x-large"] {
+  font-size: 140%;
+}
+
+/* Larger text and wider letter-spacing make a single long word (a news
+   headline's first word at 1.75rem, a long link) wider than a 360px phone's
+   content box, and `overflow-wrap` is inherited, so one declaration on the root
+   lets every such word break instead of forcing a horizontal scroll (WCAG
+   1.4.10 reflow). Only while one of those preferences is on. */
+html[data-a11y-text],
+html[data-a11y-dyslexia] {
+  overflow-wrap: anywhere;
+}
+
+/* `.btn` is a fixed-height, no-wrap pill; with bigger or wider-spaced text a
+   long label ("Cari ketersediaan") no longer fits a phone, so it may wrap and
+   grow past its nominal height (never below the 44px target). */
+html[data-a11y-text] .btn,
+html[data-a11y-dyslexia] .btn {
+  height: auto;
+  min-height: 44px;
+  padding-block: 0.4rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+/* Monochrome — on the ROOT element only. A `filter` on `body` or a wrapper
+   makes it the containing block of every `position: fixed` descendant (the
+   floating button, the back-to-top button) and breaks them; on the document
+   root the specification exempts it. */
+html[data-a11y-mono] {
+  filter: grayscale(1);
+}
+
+/* Dyslexia-friendly text — a plain system sans stack (no bundled "dyslexia
+   font": the studies that exist found no reading benefit from one) plus the
+   WCAG 1.4.12 text-spacing values. The font is applied by redefining the
+   family tokens, so headings and the serif news headlines follow too. */
+html[data-a11y-dyslexia] {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: var(--font-sans);
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+}
+
+html[data-a11y-dyslexia] * {
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+}
+
+html[data-a11y-dyslexia] :is(body, p, li, dt, dd, h1, h2, h3, h4, h5, h6, a, span, label, legend, blockquote, figcaption, td, th) {
+  line-height: 1.5;
+}
+
+html[data-a11y-dyslexia] :is(body, p, li, dt, dd, blockquote, figcaption, td, th, .article-body) {
+  text-align: start;
+}
+
+html[data-a11y-dyslexia] p:not(:last-child) {
+  margin-block-end: 2em;
+}
+
+/* Underline all links. */
+html[data-a11y-underline] a[href] {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Highlight links — yellow with near-black text (16:1), over any surface. The
+   colour is `!important` because a few components colour their own links
+   `!important` (`.utility-bar-akun`), and this is an explicit visitor choice. */
+html[data-a11y-highlight] a[href] {
+  background-color: #ffeb3b;
+  color: #111111 !important;
+}
+
+html[data-a11y-highlight] a[href]:focus-visible {
+  outline: 3px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Reduce motion — also what `prefers-reduced-motion` gives while nothing is
+   stored (`global.css`). Script-driven motion reads the attribute through
+   `isMotionReduced()` in `src/lib/a11y-preferences.ts`. */
+html[data-a11y-motion="reduce"],
+html[data-a11y-motion="reduce"] *,
+html[data-a11y-motion="reduce"] *::before,
+html[data-a11y-motion="reduce"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* High contrast ----------------------------------------------------------- */
+
+/* BEGIN contrast-attribute */
+@media (forced-colors: none) {
+:root[data-a11y-contrast] {
+  --bg-primary: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f2f2f2;
+  --text-primary: #000000;
+  --text-secondary: #1a1a1a;
+  --text-muted: #333333;
+  --border-color: #000000;
+  --border-subtle: #000000;
+  --border-focus: #0033cc;
+  --accent-primary: #003a8c;
+  --accent-hover: #00225a;
+  --link-color: #0000b8;
+  --link-hover: #000080;
+  --accent-on-inverse: #ffeb3b;
+  --danger-bg: #ffffff;
+  --danger-text: #7a0000;
+  --success-bg: #ffffff;
+  --success-text: #003d00;
+  --status-success-bg: #e6ffe6;
+  --status-success-fg: #003d00;
+  --status-warning-bg: #fff4cc;
+  --status-warning-fg: #4d2600;
+  --status-info-bg: #e8f1ff;
+  --status-info-border: #00225a;
+  --status-info-fg: #00225a;
+  --status-danger-bg: #ffe6e6;
+  --status-danger-fg: #6b0000;
+  --status-neutral-bg: #f2f2f2;
+  --status-neutral-fg: #000000;
+  --bg-inverse: #000000;
+  --bg-inverse-2: #1a1a1a;
+  --text-on-inverse: #ffffff;
+  --text-on-inverse-muted: #ffffff;
+  --border-on-inverse: #ffffff;
+  --news-bar-bg: #000000;
+  --news-accent: #8b0000;
+  --text-rating: #6b3a00;
+  --color-primary: #003a8c;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #1a1a1a;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #ffeb3b;
+  --color-accent-foreground: #000000;
+  --shadow-sm: none;
+  --shadow-md: 0 0 0 2px #000000;
+}
+
+:root[data-a11y-contrast] :is(.card, input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  border-width: 2px;
+}
+
+:root[data-a11y-contrast] .slider-caption {
+  background: var(--bg-inverse);
+}
+
+:root[data-a11y-contrast] :is(.skip-link, .ticker-berita__label) {
+  color: var(--bg-primary);
+}
+
+:root[data-a11y-contrast] :is(.band-inverse, .bilah-utilitas) {
+  --border-focus: #ffeb3b;
+}
+}
+
+@media (forced-colors: none) and (prefers-color-scheme: dark) {
+:root[data-a11y-contrast] {
+  --bg-primary: #000000;
+  --bg-surface: #000000;
+  --bg-subtle: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #f2f2f2;
+  --text-muted: #d9d9d9;
+  --border-color: #ffffff;
+  --border-subtle: #ffffff;
+  --border-focus: #ffeb3b;
+  --accent-primary: #ffeb3b;
+  --accent-hover: #fff59d;
+  --link-color: #9ecbff;
+  --link-hover: #cfe5ff;
+  --accent-on-inverse: #ffeb3b;
+  --danger-bg: #000000;
+  --danger-text: #ff9e9e;
+  --success-bg: #000000;
+  --success-text: #9dffa0;
+  --status-success-bg: #000000;
+  --status-success-fg: #9dffa0;
+  --status-warning-bg: #000000;
+  --status-warning-fg: #ffe082;
+  --status-info-bg: #000000;
+  --status-info-border: #9ecbff;
+  --status-info-fg: #9ecbff;
+  --status-danger-bg: #000000;
+  --status-danger-fg: #ff9e9e;
+  --status-neutral-bg: #1a1a1a;
+  --status-neutral-fg: #ffffff;
+  --bg-inverse: #000000;
+  --bg-inverse-2: #1a1a1a;
+  --text-on-inverse: #ffffff;
+  --text-on-inverse-muted: #ffffff;
+  --border-on-inverse: #ffffff;
+  --news-bar-bg: #000000;
+  --news-accent: #ff9e9e;
+  --text-rating: #ffd54f;
+  --color-primary: #ffeb3b;
+  --color-primary-foreground: #000000;
+  --color-secondary: #ffffff;
+  --color-secondary-foreground: #000000;
+  --color-accent: #9ecbff;
+  --color-accent-foreground: #000000;
+  --shadow-sm: none;
+  --shadow-md: 0 0 0 2px #ffffff;
+}
+}
+/* END contrast-attribute */
+
+/* BEGIN contrast-os-default */
+@media (forced-colors: none) and (prefers-contrast: more) {
+:root:not([data-a11y-user]) {
+  --bg-primary: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f2f2f2;
+  --text-primary: #000000;
+  --text-secondary: #1a1a1a;
+  --text-muted: #333333;
+  --border-color: #000000;
+  --border-subtle: #000000;
+  --border-focus: #0033cc;
+  --accent-primary: #003a8c;
+  --accent-hover: #00225a;
+  --link-color: #0000b8;
+  --link-hover: #000080;
+  --accent-on-inverse: #ffeb3b;
+  --danger-bg: #ffffff;
+  --danger-text: #7a0000;
+  --success-bg: #ffffff;
+  --success-text: #003d00;
+  --status-success-bg: #e6ffe6;
+  --status-success-fg: #003d00;
+  --status-warning-bg: #fff4cc;
+  --status-warning-fg: #4d2600;
+  --status-info-bg: #e8f1ff;
+  --status-info-border: #00225a;
+  --status-info-fg: #00225a;
+  --status-danger-bg: #ffe6e6;
+  --status-danger-fg: #6b0000;
+  --status-neutral-bg: #f2f2f2;
+  --status-neutral-fg: #000000;
+  --bg-inverse: #000000;
+  --bg-inverse-2: #1a1a1a;
+  --text-on-inverse: #ffffff;
+  --text-on-inverse-muted: #ffffff;
+  --border-on-inverse: #ffffff;
+  --news-bar-bg: #000000;
+  --news-accent: #8b0000;
+  --text-rating: #6b3a00;
+  --color-primary: #003a8c;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #1a1a1a;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #ffeb3b;
+  --color-accent-foreground: #000000;
+  --shadow-sm: none;
+  --shadow-md: 0 0 0 2px #000000;
+}
+
+:root:not([data-a11y-user]) :is(.card, input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  border-width: 2px;
+}
+
+:root:not([data-a11y-user]) .slider-caption {
+  background: var(--bg-inverse);
+}
+
+:root:not([data-a11y-user]) :is(.skip-link, .ticker-berita__label) {
+  color: var(--bg-primary);
+}
+
+:root:not([data-a11y-user]) :is(.band-inverse, .bilah-utilitas) {
+  --border-focus: #ffeb3b;
+}
+}
+
+@media (forced-colors: none) and (prefers-contrast: more) and (prefers-color-scheme: dark) {
+:root:not([data-a11y-user]) {
+  --bg-primary: #000000;
+  --bg-surface: #000000;
+  --bg-subtle: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #f2f2f2;
+  --text-muted: #d9d9d9;
+  --border-color: #ffffff;
+  --border-subtle: #ffffff;
+  --border-focus: #ffeb3b;
+  --accent-primary: #ffeb3b;
+  --accent-hover: #fff59d;
+  --link-color: #9ecbff;
+  --link-hover: #cfe5ff;
+  --accent-on-inverse: #ffeb3b;
+  --danger-bg: #000000;
+  --danger-text: #ff9e9e;
+  --success-bg: #000000;
+  --success-text: #9dffa0;
+  --status-success-bg: #000000;
+  --status-success-fg: #9dffa0;
+  --status-warning-bg: #000000;
+  --status-warning-fg: #ffe082;
+  --status-info-bg: #000000;
+  --status-info-border: #9ecbff;
+  --status-info-fg: #9ecbff;
+  --status-danger-bg: #000000;
+  --status-danger-fg: #ff9e9e;
+  --status-neutral-bg: #1a1a1a;
+  --status-neutral-fg: #ffffff;
+  --bg-inverse: #000000;
+  --bg-inverse-2: #1a1a1a;
+  --text-on-inverse: #ffffff;
+  --text-on-inverse-muted: #ffffff;
+  --border-on-inverse: #ffffff;
+  --news-bar-bg: #000000;
+  --news-accent: #ff9e9e;
+  --text-rating: #ffd54f;
+  --color-primary: #ffeb3b;
+  --color-primary-foreground: #000000;
+  --color-secondary: #ffffff;
+  --color-secondary-foreground: #000000;
+  --color-accent: #9ecbff;
+  --color-accent-foreground: #000000;
+  --shadow-sm: none;
+  --shadow-md: 0 0 0 2px #ffffff;
+}
+}
+/* END contrast-os-default */

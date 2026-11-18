@@ -157,6 +157,7 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | Path | Group | Why |
 | --- | --- | --- |
 | `404.astro` | shared | Every profile needs a not-found page |
+| `a11y-early.js.ts` | shared | Every profile carries the reading-preferences panel, whose early-apply script is served from here (source: `apps/storefront/src/lib/a11y-early.js`, never `public/`) |
 | `akun/afiliasi.astro` | toko | Commerce affiliate dashboard |
 | `akun/alamat.astro` | toko | Commerce address book |
 | `akun/index.astro` | toko | Commerce account dashboard shell |

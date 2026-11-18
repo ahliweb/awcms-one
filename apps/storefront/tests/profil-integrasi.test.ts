@@ -74,9 +74,9 @@ describe("integrations/profil: routePatternFor", () => {
 describe("integrations/profil: the real src/profil tree", () => {
   const matrix = readProfileMatrix();
 
-  test("the matrix in docs/template.md parsed (57 rows, 3 groups)", () => {
-    expect(matrix.length).toBe(57);
-    expect(matrix.filter((row) => row.group === "shared").length).toBe(12);
+  test("the matrix in docs/template.md parsed (58 rows, 3 groups)", () => {
+    expect(matrix.length).toBe(58);
+    expect(matrix.filter((row) => row.group === "shared").length).toBe(13);
     expect(matrix.filter((row) => row.group === "toko").length).toBe(26);
     expect(matrix.filter((row) => row.group === "berita").length).toBe(19);
   });
