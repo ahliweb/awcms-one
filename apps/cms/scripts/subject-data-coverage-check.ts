@@ -84,6 +84,8 @@ export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
     table: "awcms_commerce_sales_by_category",
     reason:
       "Issue #117 (ADR-0017 D7). One row per (tenant, day, category): a quantity, a gross sum and the category's own name. A category is a catalogue label, not a person; the same reasoning as `awcms_commerce_sales_daily` covers the figures."
+  },
+  {
     table: "awcms_crm_pipeline_stages",
     reason:
       "ADR-0153 / Issue #1166. A stage of a pipeline revision: a tenant-chosen key, name, position and closed category. It describes a step of a process; there is no actor stamp on the row (the revision carries `published_by`) and nothing about a person."

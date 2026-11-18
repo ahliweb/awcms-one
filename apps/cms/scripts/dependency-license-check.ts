@@ -38,7 +38,7 @@
  * Exit code 1 on: a license outside the allow-list, a package whose license
  * cannot be read, an exception that matches nothing, or an expired exception.
  */
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -863,6 +863,53 @@ async function loadPolicy(file: string | undefined): Promise<{
   };
 }
 
+/**
+ * awcms-one local divergence (root AGENTS.md): Bun's ISOLATED linker, which this
+ * workspace uses, installs only a package's direct dependencies under
+ * `apps/cms/node_modules`; every other package lives once in the workspace
+ * root's `node_modules/.bun/<name>@<version>[+<peer hash>]/node_modules/<name>`
+ * store. Where the hoisted path of {@link installPathOf} does not exist, this
+ * looks for the lock's exact `name@version` in the nearest enclosing store, so
+ * the gate reads the real installed license instead of reporting every
+ * transitive package as UNKNOWN. A package in neither place is still UNKNOWN.
+ * Candidate to upstream (a downstream may also use `--root` at a hoisted tree).
+ */
+export function findIsolatedStoreDir(start: string): string | null {
+  let dir = path.resolve(start);
+
+  for (;;) {
+    const candidate = path.join(dir, "node_modules", ".bun");
+
+    if (existsSync(candidate)) {
+      return candidate;
+    }
+
+    const parent = path.dirname(dir);
+
+    if (parent === dir) {
+      return null;
+    }
+
+    dir = parent;
+  }
+}
+
+/** `@scope/name` is stored as `@scope+name`; a peer-hash suffix may follow the version. */
+export function isolatedStorePackageJson(
+  storeDir: string,
+  entries: readonly string[],
+  pkg: { name: string; version: string }
+): string | null {
+  const stem = `${pkg.name.replace("/", "+")}@${pkg.version}`;
+  const entry = entries.find(
+    (candidate) => candidate === stem || candidate.startsWith(`${stem}+`)
+  );
+
+  return entry === undefined
+    ? null
+    : path.join(storeDir, entry, "node_modules", pkg.name, "package.json");
+}
+
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const root = path.resolve(argValue(args, "--root") ?? process.cwd());
@@ -879,13 +926,25 @@ async function main(): Promise<void> {
   const { allowed, exceptions } = await loadPolicy(argValue(args, "--policy"));
   const generatedAt = new Date().toISOString();
 
+  const storeDir = findIsolatedStoreDir(root);
+  const storeEntries = storeDir === null ? [] : readdirSync(storeDir);
+  const byInstallPath = new Map(
+    packages.map((pkg) => [installPathOf(pkg.key), pkg] as const)
+  );
+
   const report = evaluateLicenses({
     packages,
     rootDependencies: parseRootDependencies(lockText),
     readPackageJson: (installPath) => {
-      const file = path.join(root, installPath, "package.json");
+      const hoisted = path.join(root, installPath, "package.json");
+      const pkg = byInstallPath.get(installPath);
+      const file = existsSync(hoisted)
+        ? hoisted
+        : storeDir !== null && pkg !== undefined
+          ? isolatedStorePackageJson(storeDir, storeEntries, pkg)
+          : null;
 
-      return existsSync(file)
+      return file !== null && existsSync(file)
         ? (JSON.parse(readFileSync(file, "utf8")) as unknown)
         : undefined;
     },

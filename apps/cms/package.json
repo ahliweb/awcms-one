@@ -146,7 +146,7 @@
     "deps:audit:check": "bun scripts/dependency-audit-check.ts",
     "deps:freshness": "bun scripts/dependency-freshness.ts",
     "deps:issues:sync": "bun scripts/dependency-issue-sync.ts",
-    "deps:license:check": "bun scripts/dependency-license-check.ts",
+    "deps:license:check": "bun scripts/dependency-license-check.ts --root ../..",
     "deps:provider-changelog:check": "bun scripts/provider-changelog-check.ts",
     "access:chokepoint:check": "bun scripts/access-chokepoint-check.ts",
     "access:decision-log:coverage:check": "bun scripts/access-decision-log-coverage-check.ts",

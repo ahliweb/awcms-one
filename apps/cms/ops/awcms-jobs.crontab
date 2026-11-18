@@ -71,6 +71,93 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # retention).
 0 4 * * * /usr/bin/flock -n $AWCMS_LOCK/comments-retention.lock $AWCMS_RUN_JOB comments:retention >> $AWCMS_JOB_LOG/comments-retention.log 2>&1
 
+# commerce — Fans a scheduled/sending campaign out into the same
+# e-mail/WhatsApp outboxes D5/D7 already dispatch from, in pages of 200 (Issue
+# #114). Resumable: a crash mid-dispatch is picked back up on the next tick
+# from wherever awcms_commerce_campaign_recipients left off.
+*/2 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-campaigns-dispatch.lock $AWCMS_RUN_JOB commerce:campaigns:dispatch >> $AWCMS_JOB_LOG/commerce-campaigns-dispatch.log 2>&1
+
+# commerce — Deletes every expired customer OTP and every expired or
+# revoked-more-than-7-days-ago customer session, across all tenants (Issue
+# #87). Idempotent and bounded — a row already deleted is simply absent from
+# the next run's scan.
+*/15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-auth-purge.lock $AWCMS_RUN_JOB commerce:customer-auth:purge >> $AWCMS_JOB_LOG/commerce-customer-auth-purge.log 2>&1
+
+# commerce — Drain the due customer Web Push outbox (Issue #432, ADR-0048) for
+# every active tenant that turned the customerPush feature on: claim with a
+# lease, re-check eligibility at send time (revoked device, withdrawn
+# preference, blocked account, ended session, stale origin all cancel with no
+# provider call), apply the per-account cap (12 per hour, 40 per day), send
+# through the upstream Web Push provider with a TTL and an Urgency header, and
+# record every attempt. A 404/410 from the push service revokes the device;
+# other failures back off exponentially. `sent` means the push service
+# accepted the request, never that a device displayed it. Idempotent: a sent
+# row is terminal and a claimed row is invisible until its lease lapses.
+* * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-push-dispatch.lock $AWCMS_RUN_JOB commerce:customer-push:dispatch >> $AWCMS_JOB_LOG/commerce-customer-push-dispatch.log 2>&1
+
+# commerce — Customer Web Push housekeeping across all tenants (Issue #430,
+# ADR-0048): revokes the devices of ended customer sessions and of blocked
+# accounts (destroying their stored credentials), then purges tombstoned
+# devices, terminal messages and attempts older than the 30-day retention
+# window. Runs even when the customerPush feature is off, because rows from an
+# earlier period still need removing. Idempotent and bounded.
+*/15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-push-maintenance.lock $AWCMS_RUN_JOB commerce:customer-push:maintenance >> $AWCMS_JOB_LOG/commerce-customer-push-maintenance.log 2>&1
+
+# commerce — Recompute every active tenant's non-draft, non-ended flash sales
+# against now() and persist the derived status, firing
+# commerce.flash_sale.started/.ended on the transition. Idempotent — a sale
+# whose derived status has not changed since the last tick is a no-op on
+# re-run.
+*/5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-flash-sales-tick.lock $AWCMS_RUN_JOB commerce:flash-sales:tick >> $AWCMS_JOB_LOG/commerce-flash-sales-tick.log 2>&1
+
+# commerce — Expires every loyalty earn lot whose expires_at has passed across
+# every active tenant, appending one `expire` ledger entry per lot (a
+# zero-point marker when the lot was already fully spent) — never a delete or
+# an update (Issue #289). Idempotent: a lot with an expire entry is
+# anti-joined out of the next scan and cannot get a second one (unique index,
+# sql/950). Bounded: 200 accounts per tenant per run, each in its own short
+# transaction.
+10 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-loyalty-expire.lock $AWCMS_RUN_JOB commerce:loyalty:expire >> $AWCMS_JOB_LOG/commerce-loyalty-expire.log 2>&1
+
+# commerce — Recomputes every active tenant's loyalty balances from the
+# append-only ledger and reports any account whose projected balance/version
+# disagrees with it, plus any ledger row whose running balance_after is not
+# the running sum (Issue #289). READ-ONLY: it never writes — repair is the
+# authenticated POST /api/v1/commerce/loyalty/reconcile with repair:true.
+# Exits non-zero (status partial) when drift is found so the scheduler
+# surfaces it.
+40 2 * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-loyalty-reconcile.lock $AWCMS_RUN_JOB commerce:loyalty:reconcile >> $AWCMS_JOB_LOG/commerce-loyalty-reconcile.log 2>&1
+
+# commerce — Move every pending_payment order in every active tenant whose
+# expires_at has elapsed to expired, restocking its line items and
+# un-redeeming its voucher (if any). Idempotent — an order already moved out
+# of pending_payment is simply absent from the next tick's scan (FOR UPDATE
+# SKIP LOCKED, bounded batch).
+*/5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-orders-expire.lock $AWCMS_RUN_JOB commerce:orders:expire >> $AWCMS_JOB_LOG/commerce-orders-expire.log 2>&1
+
+# commerce — Polls every payment-gateway session still pending more than 2
+# minutes across every active tenant (provider.fetchStatus, outside any DB
+# transaction, timeout + circuit breaker), applying the same paid/expired
+# transition path the webhook intake route uses; also expires every session
+# past expires_at regardless of fetchStatus (Issue #113, contract #106 D2 —
+# 'webhooks get lost'). Idempotent — a session already moved out of pending is
+# simply absent from the next scan.
+*/2 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-payments-reconcile.lock $AWCMS_RUN_JOB commerce:payments:reconcile >> $AWCMS_JOB_LOG/commerce-payments-reconcile.log 2>&1
+
+# commerce — Deletes every expired awcms_commerce_shipping_rates row across
+# all active tenants (Issue #107). Idempotent and bounded — a row already
+# deleted is simply absent from the next run's scan.
+0 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-shipping-rates-purge.lock $AWCMS_RUN_JOB commerce:shipping-rates:purge >> $AWCMS_JOB_LOG/commerce-shipping-rates-purge.log 2>&1
+
+# commerce — Drain the due WhatsApp delivery queue (claim-lease,
+# retry/backoff, circuit breaker) for every active tenant (Issue #108).
+*/2 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-whatsapp-dispatch.lock $AWCMS_RUN_JOB commerce:whatsapp:dispatch >> $AWCMS_JOB_LOG/commerce-whatsapp-dispatch.log 2>&1
+
+# commerce — Deletes terminal (sent/failed) WhatsApp outbox messages and
+# delivery attempts past their retention window, across all tenants (Issue
+# #108). Idempotent and bounded.
+*/15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-whatsapp-purge.lock $AWCMS_RUN_JOB commerce:whatsapp:purge >> $AWCMS_JOB_LOG/commerce-whatsapp-purge.log 2>&1
+
 # crm_follow_up — Escalates open follow-up tasks whose escalation instant has
 # passed (status, action row, an escalation notice for the rule's recipient)
 # and hands due staff notices to the workflow_notification port (e-mail
@@ -305,6 +392,12 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 #   a non-active key id, and only then is the old key removed. A timer would
 #   re-scan an unchanged table forever.
 
+# commerce:customer-push:rekey
+#   A key-rotation action (Issue #430, ADR-0048 Q2): run by an operator after
+#   adding a new first key to PUSH_AUTH_SECRET_ENCRYPTION_KEYS, until no active
+#   device carries a ciphertext under the old key id, and only then is the old
+#   key removed. A timer would re-scan an unchanged table forever.
+
 # config:validate
 #   A deploy gate, not a background task: it runs as the first stage of a
 #   deployment and its whole value is failing BEFORE the app starts.
@@ -322,6 +415,15 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 #   A one-shot data migration, run once before merging the change that depends
 #   on it. Running it on a schedule would re-derive state that is already
 #   correct.
+
+# idn-population:activate
+#   A platform operator serves a reviewed population dataset deliberately.
+#   Automatic activation would publish figures nobody read.
+
+# idn-population:import
+#   Runs by hand after a reviewed BPS publication (a manifest JSON plus its
+#   extracted CSV) is added under `data/idn-population/datasets/`. A timer would
+#   re-parse unchanged files forever.
 
 # idn-regions:activate
 #   A platform operator activates a reviewed dataset version deliberately.

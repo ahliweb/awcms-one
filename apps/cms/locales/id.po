@@ -5027,9 +5027,6 @@ msgstr "Produk"
 msgid "Sale price"
 msgstr "Harga diskon"
 
-msgid "Quota"
-msgstr "Kuota"
-
 msgid "Add product to sale"
 msgstr "Tambahkan produk ke flash sale"
 
@@ -5292,9 +5289,6 @@ msgstr "Pesanan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
 
 msgid "Order code"
 msgstr "Kode pesanan"
-
-msgid "Customer"
-msgstr "Pelanggan"
 
 msgid "Payment"
 msgstr "Pembayaran"
@@ -5634,12 +5628,6 @@ msgstr "Kotak Masuk"
 msgid "Customer conversations with the store — reply, close, and reopen threads."
 msgstr "Percakapan pelanggan dengan toko — balas, tutup, dan buka kembali percakapan."
 
-msgid "You do not have permission to view the inbox."
-msgstr "Anda tidak memiliki izin untuk melihat kotak masuk."
-
-msgid "The inbox could not be loaded right now. Please try again later."
-msgstr "Kotak masuk tidak dapat dimuat saat ini. Silakan coba lagi nanti."
-
 msgid "Filter conversations"
 msgstr "Filter percakapan"
 
@@ -5652,15 +5640,8 @@ msgstr "Ditutup"
 msgid "Unread"
 msgstr "Belum dibaca"
 
-msgid "{count} conversation"
-msgid_plural "{count} conversations"
-msgstr[0] "{count} percakapan"
-
 msgid "Last message"
 msgstr "Pesan terakhir"
-
-msgid "No conversations yet"
-msgstr "Belum ada percakapan"
 
 msgid "Conversations customers start from the storefront will appear here."
 msgstr "Percakapan yang dimulai pelanggan dari etalase akan muncul di sini."
@@ -5688,9 +5669,6 @@ msgstr "Kampanye tidak dapat dimuat saat ini. Silakan coba lagi nanti."
 
 msgid "New campaign"
 msgstr "Kampanye baru"
-
-msgid "Channel"
-msgstr "Saluran"
 
 msgid "Subject (e-mail only)"
 msgstr "Subjek (khusus e-mail)"
@@ -7607,9 +7585,6 @@ msgstr "Poin loyalitas"
 msgid "Maximum points per order (optional)"
 msgstr "Poin maksimum per pesanan (opsional)"
 
-msgid "Never"
-msgstr "Tidak pernah"
-
 msgid "No customer found."
 msgstr "Pelanggan tidak ditemukan."
 
@@ -7684,9 +7659,6 @@ msgstr "Perbaiki saldo"
 
 msgid "Repair balances from the ledger?"
 msgstr "Perbaiki saldo dari buku besar?"
-
-msgid "Retire"
-msgstr "Pensiunkan"
 
 msgid "Retire this version?"
 msgstr "Pensiunkan versi ini?"
@@ -7884,9 +7856,6 @@ msgstr "Dapat difilter"
 
 msgid "Images and other media are not imported here: a media column rejects the file."
 msgstr "Gambar dan media lain tidak diimpor di sini: kolom media akan menolak file."
-
-msgid "Import"
-msgstr "Impor"
 
 msgid "Included in free-text search (text and choice lists only)"
 msgstr "Disertakan dalam pencarian teks bebas (hanya teks dan daftar pilihan)"
@@ -8190,9 +8159,6 @@ msgstr "Saldo terutang"
 
 msgid "Payments by tender"
 msgstr "Pembayaran per metode"
-
-msgid "Received"
-msgstr "Diterima"
 
 msgid "Reversals"
 msgstr "Pembalikan"
@@ -8634,9 +8600,6 @@ msgstr "Aktifkan di Fitur pada pengaturan toko."
 msgid "Within threshold"
 msgstr "Dalam ambang"
 
-msgid "You"
-msgstr "Anda"
-
 msgid "You do not have permission to view register sessions."
 msgstr "Anda tidak memiliki izin untuk melihat sesi register."
 
@@ -8683,9 +8646,6 @@ msgstr "Alasan wajib diisi."
 msgid "A refund goes back onto the same card"
 msgstr "Pengembalian dana kembali ke kartu yang sama"
 
-msgid "Accounts"
-msgstr "Akun"
-
 msgid "Adjust the balance"
 msgstr "Sesuaikan saldo"
 
@@ -8710,9 +8670,6 @@ msgstr "Batas saldo"
 msgid "Balance differs from the ledger"
 msgstr "Saldo berbeda dari buku besar"
 
-msgid "By"
-msgstr "Oleh"
-
 msgid "Check and rebuild differing balances"
 msgstr "Periksa dan bangun ulang saldo yang berbeda"
 
@@ -8736,9 +8693,6 @@ msgstr "Tidak dapat menjalankan pemeriksaan. Silakan coba lagi."
 
 msgid "Could not run the expiry. Please try again."
 msgstr "Tidak dapat menjalankan kedaluwarsa. Silakan coba lagi."
-
-msgid "Could not save the change. Please try again."
-msgstr "Tidak dapat menyimpan perubahan. Silakan coba lagi."
 
 msgid "Could not save the program. Please try again."
 msgstr "Tidak dapat menyimpan program. Silakan coba lagi."
@@ -8808,9 +8762,6 @@ msgstr "Terbitkan kartu atau kredit di atas."
 
 msgid "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
 msgstr "Terbitkan kartu hadiah dan kredit toko, pantau kewajiban kepada pemegang kartu, dan jaga saldo tetap terekonsiliasi."
-
-msgid "Issued"
-msgstr "Diterbitkan"
 
 msgid "It cannot be shown again. If it is lost, disable the account and issue a new one."
 msgstr "Kode tidak dapat ditampilkan lagi. Jika hilang, nonaktifkan akun lalu terbitkan yang baru."
@@ -8943,10 +8894,6 @@ msgstr "Nilai yang diterbitkan dan dipakai per jenis, {from} sampai {to}, menuru
 
 msgid "You do not have permission to view gift cards and store credit."
 msgstr "Anda tidak memiliki izin untuk melihat kartu hadiah dan kredit toko."
-
-msgid "{count} account"
-msgid_plural "{count} accounts"
-msgstr[0] "{count} akun"
 
 msgid "{count} entry"
 msgid_plural "{count} entries"
@@ -10456,9 +10403,6 @@ msgstr "Penawaran, perintah kerja, dan dokumen dimatikan untuk toko ini."
 msgid "Quotations, work orders, receipts and invoices, and parked POS sales."
 msgstr "Penawaran, perintah kerja, struk dan faktur, serta penjualan POS yang tertahan."
 
-msgid "Ready"
-msgstr "Siap"
-
 msgid "Receipts and invoices"
 msgstr "Struk dan faktur"
 
@@ -10884,9 +10828,6 @@ msgstr "Tidak ada templat pesan yang tersedia; tidak ada yang dikirim."
 msgid "Nothing has been sent yet."
 msgstr "Belum ada yang dikirim."
 
-msgid "Not sent"
-msgstr "Tidak terkirim"
-
 msgid "Other recipient"
 msgstr "Penerima lain"
 
@@ -10928,9 +10869,6 @@ msgstr "Ini pesan transaksional tentang pembelian pelanggan itu sendiri, disusun
 
 msgid "Too many deliveries were requested for this document. Try again later."
 msgstr "Terlalu banyak pengiriman diminta untuk dokumen ini. Coba lagi nanti."
-
-msgid "Waiting to be sent"
-msgstr "Menunggu dikirim"
 
 msgid "Will retry"
 msgstr "Akan dicoba lagi"
@@ -11777,9 +11715,6 @@ msgstr "semua kondisi terpenuhi"
 
 msgid "any of the conditions is true"
 msgstr "salah satu kondisi terpenuhi"
-
-msgid "Conditions"
-msgstr "Kondisi"
 
 msgid "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
 msgstr "Tanggal berformat YYYY-MM-DD, atau bilangan bulat hari yang lalu. Uang berupa angka biasa seperti 150000.00."
@@ -13525,9 +13460,6 @@ msgstr "Disetujui pada"
 
 msgid "Arrival"
 msgstr "Kedatangan"
-
-msgid "Authenticator code"
-msgstr "Kode autentikator"
 
 msgid "Authored by"
 msgstr "Disusun oleh"

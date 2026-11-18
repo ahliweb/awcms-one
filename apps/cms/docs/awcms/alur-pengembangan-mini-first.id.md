@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-pengembangan-mini-first.md)
 
-<!-- i18n-source-hash: sha256:7bb9a12747a747751562e4f348f7a67a16846a08101b1aeb138d41904ac7c639 -->
+<!-- i18n-source-hash: sha256:d332574f48f7709e159dbc79d494db0ad879b2d22de364526e5901fc0c87dd61 -->
 
 # Alur pengembangan: awcms-mini dulu, lalu port ke awcms
 

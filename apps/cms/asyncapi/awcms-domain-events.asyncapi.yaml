@@ -1004,7 +1004,474 @@ channels:
       A lead ENTERED a lost or disqualified stage. Producer:
       `lead-events.ts`'s `appendLeadTransition`. Payload `CrmLeadLost`; a
       stop signal for follow-up cadences (#1165).
+  awcms.commerce.product.created:
+    address: awcms.commerce.product.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A product was created (status `draft`). Producer:
+      `commerce/application/product-directory.ts`'s `createProduct`, via
+      `appendDomainEvent` in the same transaction as the row's creation.
+  awcms.commerce.product.updated:
+    address: awcms.commerce.product.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A product's fields other than `status` were changed. Producer:
+      `commerce/application/product-directory.ts`'s `updateProduct`.
+      Published alongside `commerce.product.status_changed` when a single
+      `PATCH` changes both.
+  awcms.commerce.product.status_changed:
+    address: awcms.commerce.product.status_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A product's lifecycle status transitioned
+      (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer:
+      `commerce/application/product-directory.ts`'s `updateProduct`. Carries
+      `previousStatus` and `status`; a consumer that only cares whether a
+      product is still sellable can key off this without diffing the row.
+  awcms.commerce.flash_sale.started:
+    address: awcms.commerce.flash_sale.started
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A flash sale's derived status crossed into `active` (`now()` entered
+      `[starts_at, ends_at]`). Producer:
+      `commerce/application/flash-sale-directory.ts`'s
+      `tickFlashSalesForTenant`, run by the scheduled
+      `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
+  awcms.commerce.flash_sale.ended:
+    address: awcms.commerce.flash_sale.ended
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A flash sale's derived status crossed into `ended` (`now()` passed
+      `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s
+      `tickFlashSalesForTenant`, run by the scheduled
+      `commerce:flash-sales:tick` job.
+  awcms.commerce.order.created:
+    address: awcms.commerce.order.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order was created via the anonymous storefront checkout path.
+      Producer: `commerce/application/order-directory.ts`'s
+      `createOrderFromCart`, in the same transaction as the order/order-items
+      insert, the stock/flash-sale-quota decrement, and (when a voucher was
+      used) its redemption.
+  awcms.commerce.order.paid:
+    address: awcms.commerce.order.paid
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order's status transitioned to `paid` — normally an admin accepting
+      a payment confirmation. Producer:
+      `commerce/application/order-directory.ts`'s `transitionOrderStatus`,
+      published alongside `commerce.order.status_changed`.
+  awcms.commerce.order.status_changed:
+    address: awcms.commerce.order.status_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order's status transitioned
+      (`commerce/domain/order-status.ts`'s
+      `LEGAL_ORDER_STATUS_TRANSITIONS`). Producer:
+      `commerce/application/order-directory.ts`'s `transitionOrderStatus`.
+      Carries `from`/`to` status; a consumer that only cares an order moved
+      can key off this without diffing the row.
+  awcms.commerce.order.cancelled:
+    address: awcms.commerce.order.cancelled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order was cancelled, by the customer (while `pending_payment`) or
+      an admin. Producer: `commerce/application/order-directory.ts`'s
+      `transitionOrderStatus`, published alongside
+      `commerce.order.status_changed`; its line items are restocked and any
+      redeemed voucher un-redeemed in the same transaction.
+  awcms.commerce.order.expired:
+    address: awcms.commerce.order.expired
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A `pending_payment` order's payment window elapsed. Producer:
+      `commerce/application/order-directory.ts`'s `transitionOrderStatus`,
+      run by the scheduled `commerce:orders:expire` job; its line items are
+      restocked and any redeemed voucher un-redeemed in the same
+      transaction.
+  awcms.commerce.voucher.redeemed:
+    address: awcms.commerce.voucher.redeemed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A voucher's `used_count` was incremented by a real order. Producer:
+      `commerce/application/order-directory.ts`'s `createOrderFromCart`, in
+      the same transaction as the order that redeemed it.
+  awcms.commerce.review.published:
+    address: awcms.commerce.review.published
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A pending review was moderated to `published` by an admin. Producer:
+      `commerce/application/review-directory.ts`'s `moderateReview` — never
+      fired on review creation, since a pending review is not yet a fact
+      worth publishing to anyone.
+  awcms.commerce.payment.recorded:
+    address: awcms.commerce.payment.recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A payment-allocation ledger leg became a `succeeded` payment against an
+      order (an operator-recorded tender, a POS tender, an accepted
+      manual-transfer confirmation, or a confirmed gateway leg). Producer:
+      `commerce/application/payment-allocation-directory.ts`'s
+      `recordPaymentAllocation` / `resolveGatewayAllocation`, in the same
+      transaction as the ledger write. The order aggregate carries the
+      stream, so `payment.recorded` is ordered against `order.paid`. Payload:
+      `orderId`, `orderCode`, `allocationId`, `tenderType`, `amount`,
+      `source`, and the order's resulting `paid`/`outstanding`/
+      `paymentStatus` — never a customer name/phone or a payment reference.
+      A pending gateway leg and the `sql/943` backfill do not fire it.
+  awcms.commerce.order.settled:
+    address: awcms.commerce.order.settled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Settlement of a deposit order (`payment_method = 'dp'`, `dp_amount`
+      below the total) reached the total (Issue #379, ADR-0041 D7). Producer:
+      `commerce/application/payment-allocation-directory.ts`'s
+      `finalizeSettlement`, in the same transaction as the ledger write that
+      made the outstanding amount zero. Fires for a deposit order only:
+      `order.paid` fires for it at the deposit (the release threshold), so
+      this is the fact that says it is fully paid, and the loyalty earner
+      reacts to it. A whole-total order fires none. Payload: `orderId`,
+      `orderCode`, `total`, `deposit`, `settledAt` - never a customer
+      name/phone or a payment reference.
+  awcms.commerce.booking_reservation_link.attention_raised:
+    address: awcms.commerce.booking_reservation_link.attention_raised
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The booking adapter could not reconcile an order with its Booking
+      reservation on its own (Issue #380, ADR-0045 G7, threat controls
+      C-08/C-09): a deposit settled after the hold lapsed
+      (`deposit_after_expiry`), the confirmation was refused
+      (`confirm_failed`), or the reservation was cancelled or moved outside the
+      adapter while the order holds money (`cancelled_externally_paid`,
+      `rescheduled_externally`). Producer:
+      `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in
+      the same transaction as the flag on the reservation link; fired once per
+      open flag. Aggregate: the order. Payload: `orderId`, `reservationId`,
+      `reason` - never a customer name/phone, an amount or a payment reference.
+  awcms.commerce.booking_refund.decided:
+    address: awcms.commerce.booking_refund.decided
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A booking cancellation's or no-show's refund decision was recorded (Issue
+      #381 and #382, ADR-0045 D8/D15, threat controls C-10/C-40/C-41): the policy
+      source, the amount paid, the policy-computed refund, the final refund and
+      whether a manager or finance override made them differ. For a no-show
+      (`triggerKind` `no_show`) both refunds are zero and `retainedAmount` is
+      what the policy version retained - a no-show never creates a refund leg.
+      Producers: `commerce/application/booking-cancellation.ts`'s
+      `cancelBookingReservation` and `booking-no-show.ts`'s
+      `recordBookingNoShow`, in the same transaction as the decision row, the
+      released reservation link and - for a positive cancellation refund - the
+      pending refund legs. Aggregate: the order. Payload: `decisionId`,
+      `orderId`, `reservationId`, `triggerKind`, `policySource`, `amountPaid`,
+      `computedRefund`, `finalRefund`, `overridden`, and `retainedAmount`
+      (no-show only) - never a customer name/phone, a payment reference, the
+      override reason or the actor.
+  awcms.commerce.booking_reservation.rescheduled:
+    address: awcms.commerce.booking_reservation.rescheduled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff member rescheduled a booking reservation through the adapter
+      (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now
+      points at the replacement reservation and the price difference was carried
+      as a supplementary order (more nights), a policy-limited refund return
+      (fewer nights) or not at all (same length). Producer:
+      `commerce/application/booking-reschedule.ts`'s
+      `rescheduleBookingReservation`, in the same transaction as the reschedule
+      record and the moved reservation link. Aggregate: the order. Payload:
+      `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`,
+      `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`,
+      `supplementOrderId`, `returnId` - never a customer name/phone, a payment
+      reference or the actor.
+  awcms.commerce.payment.reversed:
+    address: awcms.commerce.payment.reversed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A compensating reversal was recorded against an earlier
+      payment-allocation (a refund or a corrected entry). Producer:
+      `commerce/application/payment-allocation-directory.ts`'s
+      `recordPaymentReversal`, in the same transaction as the ledger insert.
+      Payload: `orderId`, `orderCode`, `allocationId`,
+      `reversesAllocationId`, `tenderType`, `amount`, and the order's
+      resulting `paid`/`outstanding`/`paymentStatus`. Never moves the order
+      lifecycle (`status`).
+  awcms.commerce.register_session.opened:
+    address: awcms.commerce.register_session.opened
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A POS register session was opened with an opening float (Issue #284,
+      ADR-0028). Producer: `commerce/application/register-session-directory.ts`'s
+      `openRegisterSession`, in the same transaction as the session row.
+      Aggregate: the register session. Payload: `sessionId`, `registerId`,
+      `openingFloat`, `cashierTenantUserId`.
+  awcms.commerce.register_session.movement_recorded:
+    address: awcms.commerce.register_session.movement_recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A cash drawer movement (cash in/out, safe drop, expense, transfer,
+      correction) was recorded against an open register session. Producer:
+      `commerce/application/register-session-directory.ts`'s
+      `recordRegisterMovement`. Payload: `sessionId`, `movementId`,
+      `movementType`, `direction`, `amount` - never the free-text reference
+      or note.
+  awcms.commerce.register_session.closed:
+    address: awcms.commerce.register_session.closed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A POS register session was closed (cash-up). Producer:
+      `commerce/application/register-cash-up.ts`'s `closeRegisterSession` /
+      `decideRegisterClose`, in the same transaction as the status change.
+      Fired once per session, only when it actually reaches `closed` (a
+      close awaiting approval, or a rejected one, does not fire it).
+      Payload: `sessionId`, `registerId`, `varianceTotal`, `varianceGross`,
+      `approvalRequired`, and per-tender `lines` (`tenderType`, `expected`,
+      `counted`, `variance`).
+  awcms.commerce.register_session.corrected:
+    address: awcms.commerce.register_session.corrected
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A compensating correction was recorded against a closed register
+      session; the original close request and lines are preserved untouched.
+      Producer: `commerce/application/register-cash-up.ts`'s
+      `recordRegisterCorrection`. Payload: `sessionId`, `correctionId`, and
+      `adjustments` (`tenderType`, `adjustment`) - never the free-text reason.
+  awcms.commerce.expense.posted:
+    address: awcms.commerce.expense.posted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An expense reached `posted` (Issue #294, ADR-0031): within the tenant's
+      approval threshold, or approved by someone other than its creator.
+      Producer: `commerce/application/expense-posting.ts`'s `postExpense` /
+      `decideExpense`, in the same transaction as the status change and - for
+      a drawer-paid expense - the register `expense` movement. Aggregate:
+      the expense (`commerce.expense`). Fired once; a pending submission or a
+      rejection does not fire it. Payload: `expenseId`, `categoryId`,
+      `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision`
+      - never the free-text description or payee.
+  awcms.commerce.expense.reversed:
+    address: awcms.commerce.expense.reversed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A posted expense was reversed with a compensating entry (Issue #294,
+      ADR-0031). Producer: `commerce/application/expense-posting.ts`'s
+      `reverseExpense`, in the same transaction as the status change and -
+      for a drawer-paid expense - the compensating register movement.
+      Aggregate: the expense. Payload: `expenseId`, `categoryId`, `amount`,
+      `tenderType`, `registerSessionId`, `reversalSessionId`, `movementId` -
+      never the free-text reason.
+  awcms.commerce.loyalty.entry_recorded:
+    address: awcms.commerce.loyalty.entry_recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A row was appended to the append-only loyalty points ledger (Issue
+      #289) — an earn for a paid order, a redemption, an expiry, a manual
+      adjustment, a reversal or (Issue #363) a restore of redeemed points
+      when the order is cancelled or refunded. Producer:
+      `commerce/application/loyalty-ledger.ts`'s `appendLedgerEntry`, in
+      the same transaction as the ledger insert and the account projection
+      update. Aggregate is the loyalty account; the payload carries
+      `entryId`, `customerId`, `kind`, signed integer `points`,
+      `balanceAfter` and `sourceType` — never a name, phone or free-text
+      reason.
+  awcms.commerce.stored_value.entry_recorded:
+    address: awcms.commerce.stored_value.entry_recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A closed-loop stored-value ledger entry (gift card / store credit: issue,
+      load, redeem, refund, adjust, expire, disable, enable) was appended.
+      Producer: `commerce/application/stored-value-ledger.ts`'s
+      `appendStoredValueEntry`, in the same transaction as the ledger insert
+      (and, for redeem/refund, the payment-allocation row it mirrors).
+      Aggregate: the stored-value account (`commerce.stored_value_account`).
+      Payload: `entryId`, `accountId`, `accountKind` (`gift_card` |
+      `store_credit`), `entryKind`, the signed `amount`, the resulting
+      `balanceAfter` and, for redeem/refund, `allocationId` - never the code
+      (which is not stored), the customer, or the free-text reason.
+  awcms.commerce.return.recorded:
+    address: awcms.commerce.return.recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Goods were accepted back against an order (Issue #287, ADR-0033): a
+      return or exchange. Producer: `commerce/application/return-directory.ts`'s
+      `createReturn`, in the same transaction as the return rows, the stock
+      effect and the `order_events` row the sales-report projections read.
+      Aggregate: the return (`commerce.return`). Payload: `returnId`,
+      `orderId`, `kind`, `lines` (`orderItemId`, `quantity`, `reason`,
+      `disposition`, `refundAmount`), `goodsGross`, `discountShare`,
+      `shippingRefund`, `taxRefund`, `refundTotal` - never a name, phone or
+      free-text note.
+  awcms.commerce.refund.settled:
+    address: awcms.commerce.refund.settled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      One refund leg of a return reached `succeeded` (Issue #287, ADR-0033):
+      the payment-ledger reversal is booked and the proportional compensations
+      (loyalty points, affiliate commission, store credit) are applied.
+      Producer: `commerce/application/refund-settlement.ts`'s
+      `settleRefundLeg`, in the same transaction. Aggregate: the return
+      (`commerce.return`). Payload: `refundId`, `returnId`, `orderId`,
+      `allocationId`, `reversalAllocationId`, `tenderType`, `destination`,
+      `amount` and `settledVia` (`ledger` | `provider` | `offline` |
+      `store_credit`) - never a provider reference, name or phone. A failed
+      attempt is an audit event, not a domain event.
+  awcms.commerce.conversation.store_replied:
+    address: awcms.commerce.conversation.store_replied
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff reply was stored in a customer conversation (Issue #432, ADR-0048
+      Q4). Producer: `commerce/application/conversation-directory.ts`'s
+      `postStoreReply`, in the same transaction as the stored message.
+      Aggregate: the conversation (`commerce.conversation`). Payload:
+      `conversationId` only - never the subject, the body or the customer.
+      Consumed by the customer Web Push enqueuer
+      (`commerce.customer_push_enqueuer`, purpose `support_replies`).
+  awcms.commerce.quotation.accepted:
+    address: awcms.commerce.quotation.accepted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A quotation version was accepted and pinned (Issue #286, ADR-0029).
+      Producer: `commerce/application/quotation-directory.ts`'s
+      `applyQuotationAction`, in the same transaction as the status change.
+      Aggregate: the quotation. Payload: `quotationId`, `number`,
+      `acceptedVersion`, `total` - never the customer.
+  awcms.commerce.quotation.converted:
+    address: awcms.commerce.quotation.converted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An accepted quotation was converted into a commerce order through the
+      ordinary POS order path (Issue #286, ADR-0029 D5). Producer:
+      `commerce/application/quotation-directory.ts`'s `convertQuotation`, in
+      the same transaction as the order. Fired once per quotation. Payload
+      (the conversion's provenance): `quotationId`, `number`,
+      `acceptedVersion`, `orderId`, `orderCode`, `quotedTotal`, `orderTotal`.
+  awcms.commerce.work_order.status_changed:
+    address: awcms.commerce.work_order.status_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A work order moved to a new operational status (Issue #286, ADR-0029
+      D6). Producer: `commerce/application/work-order-directory.ts`'s
+      `updateWorkOrder`, in the same transaction as the status change and its
+      history row. Payload: `workOrderId`, `number`, `fromStatus`,
+      `toStatus`, `assigneeTenantUserId` - never the title, description or
+      note.
+  awcms.commerce.document.issued:
+    address: awcms.commerce.document.issued
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A numbered receipt or invoice document was issued for a finalized order
+      (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer:
+      `commerce/application/document-directory.ts`'s `issueDocument`, in the
+      same transaction as the numbered row. Aggregate: the document. Payload:
+      `documentId`, `docType`, `number`, `sourceType`, `sourceId`,
+      `sourceVersion`, `total` - never the customer.
+  awcms.commerce.document.delivery_requested:
+    address: awcms.commerce.document.delivery_requested
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A delivery of a commercial document (receipt, invoice, quotation version
+      or work-order notice) was requested (Issue #295, ADR-0034): handed to the
+      e-mail or commerce WhatsApp outbox, or refused at the hand-off (a
+      suppressed address). Producer:
+      `commerce/application/document-delivery-directory.ts`'s
+      `requestDocumentDelivery`, in the same transaction as the outbox row.
+      Aggregate: the delivery request. Payload: `deliveryId`, `targetType`,
+      `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`),
+      `failureReason` - never a recipient or message content; the provider
+      outcome lives in the outbox, not in this event.
 operations:
+  publishCommerceQuotationAccepted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.quotation.accepted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.quotation.accepted/messages/DomainEvent"
+  publishCommerceQuotationConverted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.quotation.converted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.quotation.converted/messages/DomainEvent"
+  publishCommerceWorkOrderStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.work_order.status_changed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.work_order.status_changed/messages/DomainEvent"
+  publishCommerceDocumentIssued:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.document.issued"
+    messages:
+      - $ref: "#/channels/awcms.commerce.document.issued/messages/DomainEvent"
   publishDomainEventRuntimeSampleRecorded:
     action: send
     channel:
@@ -1521,6 +1988,186 @@ operations:
       $ref: "#/channels/awcms.crm_leads.lead.lost"
     messages:
       - $ref: "#/channels/awcms.crm_leads.lead.lost/messages/DomainEvent"
+  publishCommerceProductCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.product.created"
+    messages:
+      - $ref: "#/channels/awcms.commerce.product.created/messages/DomainEvent"
+  publishCommerceExpensePosted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.expense.posted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.expense.posted/messages/DomainEvent"
+  publishCommerceExpenseReversed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.expense.reversed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.expense.reversed/messages/DomainEvent"
+  publishCommerceProductUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.product.updated"
+    messages:
+      - $ref: "#/channels/awcms.commerce.product.updated/messages/DomainEvent"
+  publishCommerceProductStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.product.status_changed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.product.status_changed/messages/DomainEvent"
+  publishCommerceFlashSaleStarted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.flash_sale.started"
+    messages:
+      - $ref: "#/channels/awcms.commerce.flash_sale.started/messages/DomainEvent"
+  publishCommerceFlashSaleEnded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.flash_sale.ended"
+    messages:
+      - $ref: "#/channels/awcms.commerce.flash_sale.ended/messages/DomainEvent"
+  publishCommerceOrderCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.created"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.created/messages/DomainEvent"
+  publishCommerceOrderPaid:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.paid"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.paid/messages/DomainEvent"
+  publishCommerceOrderStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.status_changed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.status_changed/messages/DomainEvent"
+  publishCommerceOrderCancelled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.cancelled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.cancelled/messages/DomainEvent"
+  publishCommerceOrderExpired:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.expired"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.expired/messages/DomainEvent"
+  publishCommerceVoucherRedeemed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.voucher.redeemed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.voucher.redeemed/messages/DomainEvent"
+  publishCommerceReviewPublished:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.review.published"
+    messages:
+      - $ref: "#/channels/awcms.commerce.review.published/messages/DomainEvent"
+  publishCommercePaymentRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.payment.recorded"
+    messages:
+      - $ref: "#/channels/awcms.commerce.payment.recorded/messages/DomainEvent"
+  publishCommerceOrderSettled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.settled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.settled/messages/DomainEvent"
+  publishCommerceBookingAttentionRaised:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised/messages/DomainEvent"
+  publishCommerceBookingRefundDecided:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_refund.decided"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_refund.decided/messages/DomainEvent"
+  publishCommerceBookingReservationRescheduled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_reservation.rescheduled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_reservation.rescheduled/messages/DomainEvent"
+  publishCommercePaymentReversed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.payment.reversed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.payment.reversed/messages/DomainEvent"
+  publishCommerceRegisterSessionOpened:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.register_session.opened"
+    messages:
+      - $ref: "#/channels/awcms.commerce.register_session.opened/messages/DomainEvent"
+  publishCommerceRegisterSessionMovementRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.register_session.movement_recorded"
+    messages:
+      - $ref: "#/channels/awcms.commerce.register_session.movement_recorded/messages/DomainEvent"
+  publishCommerceDocumentDeliveryRequested:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.document.delivery_requested"
+    messages:
+      - $ref: "#/channels/awcms.commerce.document.delivery_requested/messages/DomainEvent"
+  publishCommerceRegisterSessionClosed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.register_session.closed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.register_session.closed/messages/DomainEvent"
+  publishCommerceRegisterSessionCorrected:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.register_session.corrected"
+    messages:
+      - $ref: "#/channels/awcms.commerce.register_session.corrected/messages/DomainEvent"
+  publishCommerceLoyaltyEntryRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.loyalty.entry_recorded"
+    messages:
+      - $ref: "#/channels/awcms.commerce.loyalty.entry_recorded/messages/DomainEvent"
+  publishCommerceStoredValueEntryRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.stored_value.entry_recorded"
+    messages:
+      - $ref: "#/channels/awcms.commerce.stored_value.entry_recorded/messages/DomainEvent"
+  publishCommerceReturnRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.return.recorded"
+    messages:
+      - $ref: "#/channels/awcms.commerce.return.recorded/messages/DomainEvent"
+  publishCommerceRefundSettled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.refund.settled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.refund.settled/messages/DomainEvent"
+  publishCommerceConversationStoreReplied:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.conversation.store_replied"
+    messages:
+      - $ref: "#/channels/awcms.commerce.conversation.store_replied/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

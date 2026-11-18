@@ -71,7 +71,13 @@ export const PROVIDER_HOSTS: readonly string[] = [
   "api.starsender.online",
   "api.cloudflare.com",
   "challenges.cloudflare.com",
-  "api.github.com"
+  "api.github.com",
+  // awcms-one: the `commerce` module's own providers (see the register tail).
+  "api.midtrans.com",
+  "api.sandbox.midtrans.com",
+  "app.midtrans.com",
+  "app.sandbox.midtrans.com",
+  "rajaongkir.komerce.id"
 ];
 
 /** Warn this many days before a review is due. */
@@ -216,7 +222,9 @@ export const PROVIDER_REGISTER: readonly ProviderEntry[] = [
     files: [
       "src/modules/push-delivery/domain/fcm-credentials.ts",
       "src/modules/push-delivery/domain/push-endpoint.ts",
-      "src/modules/push-delivery/domain/web-push-error-mapping.ts"
+      "src/modules/push-delivery/domain/web-push-error-mapping.ts",
+      // awcms-one: commerce's customer push recognises the same endpoint host.
+      "src/modules/commerce/domain/customer-push-endpoint.ts"
     ],
     recordedOn: "2026-11-14",
     lastReview: null,
@@ -367,5 +375,104 @@ export const PROVIDER_REGISTER: readonly ProviderEntry[] = [
     maxAgeDays: 90,
     owner: "maintainer",
     note: "Planned entry. When a connector lands, flip this to `active`, add its files and pins, and perform the first changelog review in the same PR; the gate fails if a TikTok host appears in source while the entry is `planned`."
+  },
+  // awcms-one: the `commerce` module's own provider adapters. Rows beside
+  // upstream's, never edited by it; keep them on conflict.
+  {
+    id: "commerce-meta-whatsapp",
+    hosts: ["graph.facebook.com"],
+    provider: "Meta WhatsApp Business Cloud API (commerce legacy-mode sender)",
+    surface:
+      "Message send (`/{phone-number-id}/messages`) by commerce's own legacy-mode adapter",
+    status: "active",
+    usedVersion: "Graph API v20.0 (the adapter's default base URL)",
+    changelogUrl:
+      "https://developers.facebook.com/docs/whatsapp/cloud-api/changelog",
+    pins: [
+      {
+        file: "src/modules/commerce/infrastructure/meta-whatsapp-provider.ts",
+        literal: 'DEFAULT_BASE_URL = "https://graph.facebook.com/v20.0"'
+      }
+    ],
+    files: ["src/modules/commerce/infrastructure/meta-whatsapp-provider.ts"],
+    recordedOn: "2026-11-18",
+    lastReview: null,
+    maxAgeDays: 90,
+    owner: "maintainer",
+    note: "A separate pin from `meta-whatsapp-cloud` (v21.0): commerce's legacy-mode adapter has its own base URL. Retired with the legacy mode once every tenant runs in `upstream` mode (ADR-0047)."
+  },
+  {
+    id: "commerce-fonnte-whatsapp",
+    hosts: ["api.fonnte.com"],
+    provider: "Fonnte (commerce legacy-mode sender)",
+    surface: "WhatsApp send by commerce's own legacy-mode adapter",
+    status: "active",
+    usedVersion: "Unversioned HTTP API (default base URL)",
+    changelogUrl: "https://docs.fonnte.com/",
+    pins: [
+      {
+        file: "src/modules/commerce/infrastructure/fonnte-provider.ts",
+        literal: 'DEFAULT_BASE_URL = "https://api.fonnte.com"'
+      }
+    ],
+    files: ["src/modules/commerce/infrastructure/fonnte-provider.ts"],
+    recordedOn: "2026-11-18",
+    lastReview: null,
+    maxAgeDays: 90,
+    owner: "maintainer",
+    note: "Unofficial gateway with no dated changelog; compare its docs with the adapter at each review. Retired with the legacy mode (ADR-0047)."
+  },
+  {
+    id: "commerce-midtrans",
+    hosts: [
+      "app.midtrans.com",
+      "app.sandbox.midtrans.com",
+      "api.midtrans.com",
+      "api.sandbox.midtrans.com"
+    ],
+    provider: "Midtrans",
+    surface:
+      "Payment gateway: Snap session creation and transaction status (commerce payment-gateway adapter)",
+    status: "active",
+    usedVersion: "Snap and Core API v2 status (production and sandbox hosts)",
+    changelogUrl: "https://docs.midtrans.com/",
+    pins: [
+      {
+        file: "src/modules/commerce/infrastructure/midtrans-provider.ts",
+        literal: 'SNAP_BASE_URL_PRODUCTION = "https://app.midtrans.com"'
+      },
+      {
+        file: "src/modules/commerce/infrastructure/midtrans-provider.ts",
+        literal: 'STATUS_BASE_URL_PRODUCTION = "https://api.midtrans.com"'
+      }
+    ],
+    files: ["src/modules/commerce/infrastructure/midtrans-provider.ts"],
+    recordedOn: "2026-11-18",
+    lastReview: null,
+    maxAgeDays: 90,
+    owner: "maintainer",
+    note: "No dated general changelog was found on the docs site (the version-history page covers GoPay MiniApps only); at the first review the maintainer records where Midtrans announces Snap and Core API changes, and confirms the sandbox hosts still match."
+  },
+  {
+    id: "commerce-rajaongkir",
+    hosts: ["rajaongkir.komerce.id"],
+    provider: "RajaOngkir (Komerce API v2)",
+    surface:
+      "Shipping cost and destination lookup (commerce shipping adapter, base `/api/v1`)",
+    status: "active",
+    usedVersion: "Komerce API v2, base path `/api/v1`",
+    changelogUrl: "https://rajaongkir.komerce.id/",
+    pins: [
+      {
+        file: "src/modules/commerce/infrastructure/rajaongkir-provider.ts",
+        literal: 'DEFAULT_BASE_URL = "https://rajaongkir.komerce.id/api/v1"'
+      }
+    ],
+    files: ["src/modules/commerce/infrastructure/rajaongkir-provider.ts"],
+    recordedOn: "2026-11-18",
+    lastReview: null,
+    maxAgeDays: 120,
+    owner: "maintainer",
+    note: "No API changelog page was found from the site root; at the first review the maintainer records where Komerce announces API changes (the site root is a placeholder, not a changelog)."
   }
 ];

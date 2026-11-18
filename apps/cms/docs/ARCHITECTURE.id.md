@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ARCHITECTURE.md)
 
-<!-- i18n-source-hash: sha256:c6790d729a1feec52ba16099470dbb32d0b5f931749e2bda3cf1b005d94bc5d4 -->
+<!-- i18n-source-hash: sha256:919c0eaa8c7bfefb7720bb410d7b5c068cf6e4742c063b44c23e6dae85bf0564 -->
 
 # Arsitektur AWCMS
 

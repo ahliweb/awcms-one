@@ -2119,8 +2119,22 @@ export const READER_BUDGET_BYTES = 39_000;
  * #1224), and the commerce lineage rides on top of it unchanged except for the
  * nine admin scripts that now bind through the guard instead of their own
  * listeners. A measurement of the merged build rounded up to the next 100 B.
+ *
+ * **The `f476fdbb` sync (124 upstream commits after `45a139fa`) then raises it
+ * to 552,000 B**, MEASURED 551,921 B on the merged build (525,002 B at the
+ * `45a139fa` sync): +26,919 B. Upstream's own constant moved over the same range
+ * 358,400 -> 385,460 B (+27,060 B; its own docblock above lists the raises:
+ * the channel-account connection manager #1154, the flash message after a
+ * reloading mutation #1328, realtime progress #1171, the omnichannel inbox
+ * #1164, `/admin/email-senders` #1162, the TOTP enrolment QR #1316, the
+ * website engagement #1153, lead pipeline #1166 and follow-up #1165 screens,
+ * and the reading-preferences panel #1369), and the commerce lineage rides on top of it unchanged;
+ * the figure differs by the margin upstream keeps and by the shared
+ * `AdminLayout` CSS bundle and the compiled catalogue, which are not additive
+ * across lineages (the same effect the #260, #427 and `ab313273` syncs
+ * recorded). A measurement of the merged build rounded up to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 525_100;
+export const APP_BUDGET_BYTES = 552_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

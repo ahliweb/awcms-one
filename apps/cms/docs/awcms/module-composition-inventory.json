@@ -1,5 +1,5 @@
 {
-  "moduleCount": 40,
+  "moduleCount": 41,
   "valid": true,
   "issueCount": 0,
   "modules": [
@@ -105,6 +105,49 @@
       "permissionCount": 8,
       "navigationCount": 1,
       "jobCount": 1,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "commerce",
+      "name": "Commerce",
+      "version": "0.2.0",
+      "status": "active",
+      "type": "domain",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "domain_event_runtime",
+        "media_library",
+        "module_management",
+        "email",
+        "profile_identity",
+        "inventory",
+        "idn_admin_regions",
+        "tax"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [
+        {
+          "capability": "commission_intake",
+          "providedBy": "hr_commission",
+          "optional": true
+        },
+        {
+          "capability": "whatsapp_delivery",
+          "providedBy": "whatsapp_delivery",
+          "optional": true
+        },
+        {
+          "capability": "booking",
+          "providedBy": "booking",
+          "optional": true
+        }
+      ],
+      "permissionCount": 166,
+      "navigationCount": 30,
+      "jobCount": 13,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -316,7 +359,7 @@
       "capabilitiesConsumed": [],
       "permissionCount": 4,
       "navigationCount": 1,
-      "jobCount": 3,
+      "jobCount": 5,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -368,7 +411,7 @@
       "dependencies": ["tenant_admin", "identity_access"],
       "capabilitiesProvided": ["media_library"],
       "capabilitiesConsumed": [],
-      "permissionCount": 11,
+      "permissionCount": 12,
       "navigationCount": 1,
       "jobCount": 1,
       "hasHealthCheck": false,

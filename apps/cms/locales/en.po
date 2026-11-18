@@ -5042,9 +5042,6 @@ msgstr ""
 msgid "Sale price"
 msgstr ""
 
-msgid "Quota"
-msgstr ""
-
 msgid "Add product to sale"
 msgstr ""
 
@@ -5311,9 +5308,6 @@ msgid "Orders could not be loaded right now. Please try again later."
 msgstr ""
 
 msgid "Order code"
-msgstr ""
-
-msgid "Customer"
 msgstr ""
 
 msgid "Payment"
@@ -5591,12 +5585,6 @@ msgstr ""
 msgid "Customer conversations with the store — reply, close, and reopen threads."
 msgstr ""
 
-msgid "You do not have permission to view the inbox."
-msgstr ""
-
-msgid "The inbox could not be loaded right now. Please try again later."
-msgstr ""
-
 msgid "Filter conversations"
 msgstr ""
 
@@ -5609,15 +5597,7 @@ msgstr ""
 msgid "Unread"
 msgstr ""
 
-msgid "{count} conversation"
-msgid_plural "{count} conversations"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Last message"
-msgstr ""
-
-msgid "No conversations yet"
 msgstr ""
 
 msgid "Conversations customers start from the storefront will appear here."
@@ -5645,9 +5625,6 @@ msgid "Campaigns could not be loaded right now. Please try again later."
 msgstr ""
 
 msgid "New campaign"
-msgstr ""
-
-msgid "Channel"
 msgstr ""
 
 msgid "Subject (e-mail only)"
@@ -7623,9 +7600,6 @@ msgstr ""
 msgid "Maximum points per order (optional)"
 msgstr ""
 
-msgid "Never"
-msgstr ""
-
 msgid "No customer found."
 msgstr ""
 
@@ -7699,9 +7673,6 @@ msgid "Repair balances"
 msgstr ""
 
 msgid "Repair balances from the ledger?"
-msgstr ""
-
-msgid "Retire"
 msgstr ""
 
 msgid "Retire this version?"
@@ -7912,9 +7883,6 @@ msgid "Filterable"
 msgstr ""
 
 msgid "Images and other media are not imported here: a media column rejects the file."
-msgstr ""
-
-msgid "Import"
 msgstr ""
 
 msgid "Included in free-text search (text and choice lists only)"
@@ -8218,9 +8186,6 @@ msgid "Outstanding balances"
 msgstr ""
 
 msgid "Payments by tender"
-msgstr ""
-
-msgid "Received"
 msgstr ""
 
 msgid "Reversals"
@@ -9152,9 +9117,6 @@ msgstr ""
 msgid "Within threshold"
 msgstr ""
 
-msgid "You"
-msgstr ""
-
 msgid "You do not have permission to view register sessions."
 msgstr ""
 
@@ -9207,9 +9169,6 @@ msgstr ""
 msgid "A refund goes back onto the same card"
 msgstr ""
 
-msgid "Accounts"
-msgstr ""
-
 msgid "Adjust the balance"
 msgstr ""
 
@@ -9243,9 +9202,6 @@ msgstr ""
 msgid "Balance differs from the ledger"
 msgstr ""
 
-msgid "By"
-msgstr ""
-
 msgid "Check and rebuild differing balances"
 msgstr ""
 
@@ -9268,9 +9224,6 @@ msgid "Could not run the check. Please try again."
 msgstr ""
 
 msgid "Could not run the expiry. Please try again."
-msgstr ""
-
-msgid "Could not save the change. Please try again."
 msgstr ""
 
 msgid "Could not save the program. Please try again."
@@ -9340,9 +9293,6 @@ msgid "Issue a card or credit above."
 msgstr ""
 
 msgid "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
-msgstr ""
-
-msgid "Issued"
 msgstr ""
 
 msgid "It cannot be shown again. If it is lost, disable the account and issue a new one."
@@ -9476,11 +9426,6 @@ msgstr ""
 
 msgid "You do not have permission to view gift cards and store credit."
 msgstr ""
-
-msgid "{count} account"
-msgid_plural "{count} accounts"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "{count} entry"
 msgid_plural "{count} entries"
@@ -9766,9 +9711,6 @@ msgid "Quotations, work orders and documents are turned off for this store."
 msgstr ""
 
 msgid "Quotations, work orders, receipts and invoices, and parked POS sales."
-msgstr ""
-
-msgid "Ready"
 msgstr ""
 
 msgid "Receipts and invoices"
@@ -10311,9 +10253,6 @@ msgstr ""
 msgid "Nothing has been sent yet."
 msgstr ""
 
-msgid "Not sent"
-msgstr ""
-
 msgid "Other recipient"
 msgstr ""
 
@@ -10354,9 +10293,6 @@ msgid "This is a transactional message about the customer's own purchase, built 
 msgstr ""
 
 msgid "Too many deliveries were requested for this document. Try again later."
-msgstr ""
-
-msgid "Waiting to be sent"
 msgstr ""
 
 msgid "Will retry"
@@ -11816,9 +11752,6 @@ msgid "all the conditions are true"
 msgstr ""
 
 msgid "any of the conditions is true"
-msgstr ""
-
-msgid "Conditions"
 msgstr ""
 
 msgid "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
@@ -13584,9 +13517,6 @@ msgid "Approved on"
 msgstr ""
 
 msgid "Arrival"
-msgstr ""
-
-msgid "Authenticator code"
 msgstr ""
 
 msgid "Authored by"

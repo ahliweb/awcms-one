@@ -31,10 +31,17 @@ export type EnqueueWhatsappMessageInput = {
  * Why an `upstream`-mode message was not queued. The upstream port's own reasons, plus its two suppressions.
  *
  * The three sender-aware reasons (`SENDER_UNAVAILABLE`, `SENDER_AFFINITY_CONFLICT`,
- * `REPLY_TARGET_UNKNOWN`, port 1.1.0, upstream awcms#1230) are in the union so the
- * adapter's `satisfies` check stays total. Commerce never passes `senderAccountId`,
- * `inReplyToMessageId` or `businessScope`, so it does not receive them today; if one
- * ever arrives it is a sending-side refusal (`TEMPLATE_UNAVAILABLE`), never a recipient one.
+ * `REPLY_TARGET_UNKNOWN`, port 1.1.0, upstream awcms#1230) and the four later
+ * additive ones (`CONSENT_SCOPE_REQUIRED` and `BUSINESS_SCOPE_UNRESOLVED`, port
+ * 1.2.0, awcms#1231; `TEMPLATE_NOT_APPROVED` and `OUTSIDE_SERVICE_WINDOW`, port
+ * 1.3.0, awcms#1143) are in the union so the adapter's `satisfies` check stays
+ * total. Commerce never passes `senderAccountId`, `inReplyToMessageId` or
+ * `businessScope`, and its messages go through the deployment or tenant sender
+ * with commerce's own templates, so it does not receive the sender-side ones
+ * today; if one ever arrives it is a sending-side refusal (`TEMPLATE_UNAVAILABLE`),
+ * never a recipient one. `CONSENT_SCOPE_REQUIRED` is the one recipient-side
+ * addition: a marketing opt-in recorded for other brands does not cover this
+ * message.
  */
 export type WhatsappNotQueuedReason =
   | "CONSENT_REQUIRED"
@@ -48,6 +55,10 @@ export type WhatsappNotQueuedReason =
   | "SENDER_UNAVAILABLE"
   | "SENDER_AFFINITY_CONFLICT"
   | "REPLY_TARGET_UNKNOWN"
+  | "CONSENT_SCOPE_REQUIRED"
+  | "BUSINESS_SCOPE_UNRESOLVED"
+  | "TEMPLATE_NOT_APPROVED"
+  | "OUTSIDE_SERVICE_WINDOW"
   | "SUPPRESSED_HARD_FAILURE"
   | "SUPPRESSED_OPT_OUT";
 
@@ -82,6 +93,7 @@ export function documentDeliveryFailureReason(
     case "SUPPRESSED_HARD_FAILURE":
     case "SUPPRESSED_OPT_OUT":
     case "CONSENT_REQUIRED":
+    case "CONSENT_SCOPE_REQUIRED":
     case "RECIPIENT_INVALID":
     case "RECIPIENT_UNRESOLVED":
       return "RECIPIENT_SUPPRESSED";

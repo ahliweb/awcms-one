@@ -242,7 +242,11 @@ describe("the repository's own register, against the real source tree", () => {
     providerHosts: PROVIDER_HOSTS,
     sources,
     readFile: (relative) => sources.get(relative),
-    today: "2026-11-14",
+    // awcms-one local divergence: the real calendar day, not a fixed
+    // "2026-11-14", so a register row this embed adds after that day (the
+    // `commerce-*` entries) is not read as recorded "in the future". The clock
+    // itself stays unchecked here. Candidate to upstream.
+    today: new Date().toISOString().slice(0, 10),
     warnDays: WARN_DAYS,
     // Structure only: the clock is the CLI gate's job, a test that fails on a
     // calendar date would break unrelated PRs.

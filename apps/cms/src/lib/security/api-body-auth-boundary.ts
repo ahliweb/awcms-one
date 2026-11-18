@@ -238,12 +238,48 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
       "The guest customer reviews a product from their own completed order, holding orderCode + phone as the credential."
   },
 
+  // ---- Storefront (found by the `f476fdbb` sync's parity gate): the five public body operations of
+  // the commerce OpenAPI that declare `security: []` and were never listed here ----
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/account/otp/request",
+    reason:
+      "Anonymous by nature: it asks for the code that mints a customer session (ADR-0016 D2), so no session can exist yet. Rate-limited per IP and per mailbox in the route; answers 202 for every outcome."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/account/otp/verify",
+    reason:
+      "Anonymous by nature: it exchanges the one-time code for the customer bearer session (ADR-0016 D3). Every failure is the same 401 OTP_INVALID; rate-limited per IP in the route."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/booking/reservations",
+    reason:
+      "Guest checkout for a booking (ADR-0045 G15): no bearer is a guest with guest.name and guest.phone; an OPTIONAL customer bearer makes it the account's own. Idempotency key required and namespaced by who asks."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/booking/reservations/:orderCode/cancel",
+    reason:
+      "The shopper cancels their own reservation, holding the order's phone in the body or an OPTIONAL customer bearer as the credential (ADR-0045 D4/D9). Idempotency key required."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/orders/:orderCode/payment-gateway/sessions",
+    reason:
+      "Same orderCode + phone credential, or an optional customer bearer, as the other anonymous order routes above; a mismatch is the same neutral 404 (Issue #110)."
+  },
+
   // ---- Payment-gateway webhooks (Issue #113): opaque per-tenant token, not sessioned ----
   {
     method: "POST",
     pattern: "/api/v1/commerce/webhooks/:provider/:endpointToken",
     reason:
       "Server-to-server callback from the payment gateway (contract #106 D2). Authenticated by the opaque per-tenant webhook-endpoint token in the path plus the provider's own signature (verifyWebhook), never a session — there is no admin/customer caller to hold one."
+  },
   {
     method: "POST",
     pattern: "/api/v1/website-engagement/submissions",
