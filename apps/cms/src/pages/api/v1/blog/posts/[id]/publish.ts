@@ -14,6 +14,7 @@ import {
 } from "../../../../../../modules/identity-access/application/access-guard";
 import { hashSessionToken } from "../../../../../../lib/auth/session-token";
 import { log } from "../../../../../../lib/logging/logger";
+import { createBlogRevision } from "../../../../../../modules/blog-content/application/blog-revision-directory";
 import { recordAuditEvent } from "../../../../../../modules/logging/application/audit-log";
 import {
   computeRequestHash,
@@ -34,13 +35,18 @@ import {
 } from "../../../../../../modules/blog-content/application/content-quality-checklist-gate";
 import { mediaLibraryPortAdapter } from "../../../../../../modules/media-library/application/media-library-port-adapter";
 import { noopSocialPublishingPortAdapter } from "../../../../../../modules/blog-content/application/social-publishing-port-noop-adapter";
+import { resolveSocialPublishingPort } from "../../../../../../modules/social-publishing/application/social-publishing-port-adapter";
 
-// This route is the composition root that would wire `social_publishing`'s
-// real `SocialPublishingPort` into the manual publish action (trigger
-// `post_published`) once that module is ported. Neither `news_portal` nor
-// `social_publishing` is ported to this base yet, so both ports are the
-// no-op adapters — see their own headers for the full reasoning.
-const socialPublishingPort = noopSocialPublishingPortAdapter;
+// This route is the composition root that wires `social_publishing`'s real
+// `SocialPublishingPort` into the manual publish action (trigger
+// `post_published`) — but ONLY when the deployment enables the module
+// (`SOCIAL_PUBLISHING_ENABLED`, ADR-0157 section 7). Otherwise it is
+// `blog_content`'s own no-op, exactly as before the module existed, so a
+// deployment that configures nothing behaves byte for byte the same.
+const socialPublishingPort = resolveSocialPublishingPort(
+  noopSocialPublishingPortAdapter,
+  mediaLibraryPortAdapter
+);
 
 const PUBLISH_GUARD = {
   moduleKey: "blog_content",
@@ -200,6 +206,31 @@ export const POST: APIRoute = async ({ request, params, cookies, locals }) => {
     if (!updated) {
       return fail(404, "RESOURCE_NOT_FOUND", "Blog post not found.");
     }
+
+    // Snapshot the content AS PUBLISHED, in the same transaction as the
+    // transition: without it the sequence create -> publish -> edit leaves only
+    // the post-edit text in history and the version readers saw is lost. A
+    // `published -> published` republish of unchanged content writes one too.
+    await createBlogRevision(
+      tx,
+      tenantId,
+      "post",
+      postId,
+      auth.context.tenantUserId,
+      {
+        title: updated.title,
+        contentJson: updated.contentJson,
+        contentText: updated.contentText,
+        bodyPortableText: updated.bodyPortableText,
+        excerpt: updated.excerpt,
+        seoTitle: updated.seoTitle,
+        metaDescription: updated.metaDescription,
+        canonicalUrl: updated.canonicalUrl,
+        status: updated.status
+      },
+      "Published.",
+      correlationId
+    );
 
     await recordAuditEvent(tx, {
       tenantId,

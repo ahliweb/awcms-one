@@ -432,8 +432,33 @@ switches exhaustively over the refusal reasons must add the three new members
 before it passes a sender, and a consumer that takes a sender id from a user must
 authorise that choice itself (the port performs no access check). The capability
 `whatsapp_delivery` is registered at `1.1.0` and the new `channel_account`
-capability (`ChannelAccountPort`, provided by `channel_accounts`) at `1.0.0`
+capability (`ChannelAccountPort`, provided by `channel_accounts`) at `1.1.0`
 (`capability-contract-versions.ts`, `awcms-family-compatibility.yaml`).
+
+**Version 1.2.0 (Issue #1231 M4) is additive.** The refusal reasons gain
+`CONSENT_SCOPE_REQUIRED`: a marketing opt-in now covers only the business scope
+(brand) it was collected for, so a marketing message of brand B whose recipient
+opted in for another brand (or only for the tenant, with no brand) is refused and
+nothing is queued. They also gain `BUSINESS_SCOPE_UNRESOLVED`: the
+`businessScope` of a marketing message must resolve to a real scope of the tenant
+(only `office` resolves today). That scope is what the CALLER declares: it is
+bound to the sending number only when the sender itself is scoped. Withdrawal and
+suppression stay tenant-wide; transactional and
+security messages are unchanged. No field or signature changed; `booking` maps an
+unknown reason to a coarse code and is unaffected. `whatsapp_delivery` is
+registered at `1.2.0`.
+
+**Version 1.3.0 (Issue #1143) is additive.** The refusal reasons gain
+`TEMPLATE_NOT_APPROVED` and `OUTSIDE_SERVICE_WINDOW`, returned only for a message
+through a TENANT-OWNED Meta Cloud API number: the template must be approved on
+THAT number's WABA in the category the purpose requires, and a registration
+without a provider template may go only inside the 24-hour window the recipient
+opened with THAT number. Never for the deployment sender, never for StarSender.
+The verified sender identity (phone number id, WABA id) is snapshotted on the
+row by the database guard. No field or signature changed. `whatsapp_delivery`
+is registered at `1.3.0`, and `channel_account` at `1.2.0` (the refusal reason
+`CONTAINER_BINDING_INVALID`, the optional container identity of a resolved
+sender, and the exported `ChannelWebhookVerifierPort` for signed Meta webhooks).
 
 ### 5.1 Telegram delivery port (live, #965)
 

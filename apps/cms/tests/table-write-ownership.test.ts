@@ -109,9 +109,143 @@ describe("findSharedTableWrites", () => {
     // alongside `tenant_admin` and `profile_identity` — which silently
     // re-permitted the exact write this change removed. The first test in this
     // file failed on it, which is why the shape is `excusedOwner` now.
+    // Issue #1160 audit M3 adds ONE more forgiven writer: the rolled-back
+    // behavioural probe in `scripts/lib/worker-secret-probe.ts`, on exactly the four tables
+    // it seeds. Each entry still names a single writer.
+    const PROBE_TABLES = [
+      "awcms_tenants",
+      "awcms_channel_accounts",
+      "awcms_channel_provider_connections",
+      "awcms_channel_secrets",
+      "awcms_channel_account_capabilities",
+      "awcms_telegram_engagement_endpoints",
+      "awcms_telegram_engagement_contacts",
+      // #1268: the telegram probe's refused forged-opt-in attempt.
+      "awcms_telegram_engagement_consents",
+      // #1161 M-3 of the PR #1272 audit: the rolled-back retention-floor probe;
+      // #1143: the worker purge-floor probe (subscriptions seeded by both).
+      "awcms_channel_webhook_subscriptions",
+      "awcms_email_provider_events",
+      "awcms_whatsapp_service_windows",
+      "awcms_whatsapp_webhook_receipts",
+      // #1298 LOW-1: the same probe seeds queue rows for the DELETE floor.
+      "awcms_whatsapp_messages",
+      // #1146: the social dispatch write-boundary probe.
+      "awcms_social_publications",
+      "awcms_social_publish_jobs",
+      "awcms_channel_account_health",
+      "awcms_audit_events",
+      "awcms_domain_events",
+      "awcms_domain_event_deliveries",
+      // #1145 L8 (sql/386): the social source re-check probe.
+      "awcms_blog_posts",
+      "awcms_news_media_objects",
+      // #1215 M-c: the channel-account access-guard probe seeds two people (a
+      // profile, an identity and a tenant user each) and their assignments.
+      "awcms_channel_account_assignments",
+      "awcms_profiles",
+      "awcms_identities",
+      "awcms_tenant_users"
+    ];
+
     for (const entry of DOCUMENTED_EXCEPTIONS) {
+      // Tooling exceptions: the rolled-back behavioural probes (#1145 M-1 in
+      // `scripts/security-readiness.ts`, #1160 M3 in `scripts/lib/worker-secret-probe.ts`,
+      // #1156 M-A/M-B in `scripts/lib/telegram-engagement-dispatch-probe.ts`).
+      // Each forgives only the tooling writer, only on the tables it seeds, and
+      // only with a reason that says the transaction always rolls back.
+      if (entry.excusedOwner === "(scripts tooling)") {
+        expect(PROBE_TABLES).toContain(entry.table);
+        expect(entry.reason).toMatch(/always rolls/i);
+        continue;
+      }
+
       expect(entry.excusedOwner).toBe("tenant_admin");
     }
+  });
+});
+
+describe("scripts/** is scanned (Issue #1268)", () => {
+  const TOOLING = "(scripts tooling)";
+
+  test("a file under scripts/lib is attributed to tooling, not to nobody", () => {
+    expect(ownerOfFile("scripts/lib/some-probe.ts", new Map(), [])).toBe(
+      TOOLING
+    );
+  });
+
+  test("a planted scripts/lib write to a module-owned table is a finding", () => {
+    const shared = findSharedTableWrites([
+      {
+        table: "awcms_planted_probe_table",
+        owner: "some_module",
+        file: "src/modules/some-module/application/x.ts"
+      },
+      {
+        table: "awcms_planted_probe_table",
+        owner: TOOLING,
+        file: "scripts/lib/planted-probe.ts"
+      }
+    ]);
+
+    expect(shared).toHaveLength(1);
+    expect(shared[0]!.owners).toContain(TOOLING);
+  });
+
+  test("every real tooling write has a documented exception, and every tooling exception matches a real write", async () => {
+    const writes = await collectTableWrites();
+    const written = new Set(
+      writes
+        .filter((write) => write.owner === TOOLING)
+        .map((write) => write.table)
+    );
+    const excused = new Set(
+      DOCUMENTED_EXCEPTIONS.filter(
+        (entry) => entry.excusedOwner === TOOLING
+      ).map((entry) => entry.table)
+    );
+
+    // The glob must really reach scripts/lib: the probes live there.
+    expect(
+      writes.some(
+        (write) =>
+          write.file === "scripts/lib/worker-secret-probe.ts" &&
+          write.owner === TOOLING
+      )
+    ).toBe(true);
+
+    // A tooling write with no exception: a second writer added under scripts/
+    // (also catches a table nobody else writes, which the one-writer rule
+    // alone would not flag).
+    // Tooling-only tables: no module writes them, so tooling is their owner
+    // rather than a second writer. Anything else added here needs the same
+    // argument.
+    // - `awcms_schema_migrations`: the migration runner's ledger.
+    // - `awcms_pgbouncer_verify` (#1286): a scratch table that
+    //   `scripts/database-pgbouncer-verify.ts` creates, writes and drops
+    //   itself; no migration defines it and no module can see it.
+    const TOOLING_OWNED = new Set([
+      "awcms_schema_migrations",
+      "awcms_pgbouncer_verify"
+    ]);
+
+    for (const table of TOOLING_OWNED) {
+      expect(
+        writes.filter(
+          (write) => write.table === table && write.owner !== TOOLING
+        )
+      ).toEqual([]);
+    }
+
+    expect(
+      [...written].filter(
+        (table) => !excused.has(table) && !TOOLING_OWNED.has(table)
+      )
+    ).toEqual([]);
+
+    // An exception nothing uses is a paper exception: it would silently
+    // excuse a future writer of that table.
+    expect([...excused].filter((table) => !written.has(table))).toEqual([]);
   });
 });
 
@@ -192,13 +326,44 @@ describe("the real repository", () => {
     // creating an identity structurally needs a profile — which is exactly why
     // the shortcut kept being taken, and why it is worth pinning.
     const writes = await collectTableWrites();
+    // The one rolled-back readiness probe that seeds people is tooling, not a
+    // module writing the table (excused in DOCUMENTED_EXCEPTIONS). The filter
+    // names that FILE, not the whole "(scripts tooling)" owner: the gate
+    // excuses per owner, so any OTHER script that began writing this table
+    // would otherwise slip past both the gate and this pin (#1215 audit L4).
     const owners = writes
-      .filter((write) => write.table === "awcms_profiles")
+      .filter(
+        (write) =>
+          write.table === "awcms_profiles" &&
+          write.file !== "scripts/lib/channel-accounts-access-guards.ts"
+      )
       .map((write) => write.owner);
 
     expect([...new Set(owners)].sort()).toEqual([
       "profile_identity",
       "tenant_admin"
+    ]);
+  }, 60000);
+
+  test("#1215 audit L4: the tooling excused on the four identity tables is that one probe file and no other", async () => {
+    // The gate excuses by OWNER ("(scripts tooling)"), which is every script, so
+    // a reason that says "confined to that one function" is a claim only this
+    // test enforces: a second script writing these tables fails here.
+    const writes = await collectTableWrites();
+    const files = writes
+      .filter(
+        (write) =>
+          [
+            "awcms_channel_account_assignments",
+            "awcms_profiles",
+            "awcms_identities",
+            "awcms_tenant_users"
+          ].includes(write.table) && write.owner === "(scripts tooling)"
+      )
+      .map((write) => write.file);
+
+    expect([...new Set(files)]).toEqual([
+      "scripts/lib/channel-accounts-access-guards.ts"
     ]);
   }, 60000);
 

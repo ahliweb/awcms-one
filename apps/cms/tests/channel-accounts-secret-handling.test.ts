@@ -4,7 +4,7 @@
  * closed without a ring, and can reach no API response, log or audit row.
  */
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import { listModules } from "../src/modules";
 import {
@@ -402,7 +402,7 @@ describe("no API surface can leak a decrypted value", () => {
 describe("the module descriptor", () => {
   const module = listModules().find((item) => item.key === "channel_accounts")!;
 
-  test("declares the six seeded permissions and nothing else", () => {
+  test("declares the ten seeded permissions and nothing else", () => {
     expect(
       module.permissions?.map((p) => `${p.activityCode}.${p.action}`).sort()
     ).toEqual([
@@ -411,7 +411,13 @@ describe("the module descriptor", () => {
       "accounts.revoke",
       "assignments.assign",
       "capabilities.configure",
-      "credentials.manage"
+      "credentials.manage",
+      // Issue #1142 (sql/341)
+      "risk_acknowledgements.create",
+      "risk_acknowledgements.read",
+      "risk_acknowledgements.revoke",
+      // Issue #1143 (sql/366)
+      "webhooks.configure"
     ]);
   });
 
@@ -424,10 +430,16 @@ describe("the module descriptor", () => {
   });
 
   test("the migration seeds exactly the declared permissions", () => {
-    const sql = readFileSync(
+    // `sql/319` seeded the first six; `sql/341` (Issue #1142) the three of the
+    // risk acknowledgement surface; `sql/366` (Issue #1143) the signed webhook
+    // subscription. Together they are the declared ten.
+    const sql = [
       "sql/319_awcms_channel_accounts_permissions.sql",
-      "utf8"
-    );
+      "sql/341_awcms_channel_provider_risk_acknowledgements_permissions.sql",
+      "sql/366_awcms_whatsapp_meta_sender_binding_permissions.sql"
+    ]
+      .map((file) => readFileSync(file, "utf8"))
+      .join("\n");
     const seeded = [
       ...sql.matchAll(/\('channel_accounts', '([a-z_]+)', '([a-z_]+)',/g)
     ]
@@ -441,9 +453,17 @@ describe("the module descriptor", () => {
     );
   });
 
-  test("it is experimental and declares no navigation until its screen exists (#1154)", () => {
-    expect(module.status).toBe("experimental");
-    expect(module.navigation ?? []).toEqual([]);
+  test("it is active and its one navigation entry opens the connection manager (#1154)", () => {
+    expect(module.status).toBe("active");
+    expect(module.navigation).toEqual([
+      expect.objectContaining({
+        path: "/admin/channel-accounts",
+        requiredPermission: "channel_accounts.accounts.read"
+      })
+    ]);
+    // The screen exists (admin-navigation-registry.test.ts proves it for every
+    // entry); this pins that no other, unscreened entry slips in beside it.
+    expect(existsSync("src/pages/admin/channel-accounts.astro")).toBe(true);
   });
 
   test("every table the migration creates has RLS enabled and FORCED", () => {

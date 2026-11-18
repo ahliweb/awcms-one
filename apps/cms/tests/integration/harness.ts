@@ -69,7 +69,7 @@
  * ------------------------------------------------------------------------
  * `ci.yml`'s `quality` job runs `bun test` with NO Postgres service and no
  * `DATABASE_URL`, so `integrationEnabled` is false there and every suite
- * skips cleanly. Two pipelines DO provide a `postgres:18.4` service, set
+ * skips cleanly. Two pipelines DO provide a `postgres:18.6` service, set
  * `DATABASE_URL`, and migrate before executing this suite for real:
  * `ci.yml`'s dedicated `integration-tests` job (`bun test tests/integration/`
  * — scoped to exactly these 4 harness-based files, added alongside this
@@ -114,6 +114,11 @@ import {
 import { resetDatabaseCircuitBreakerForTests } from "../../src/lib/database/circuit-breaker";
 import { resetWorkClassGatesForTests } from "../../src/lib/database/work-class";
 import { resetRateLimitForTests } from "../../src/lib/security/rate-limit";
+import { installExtensionPointSource } from "../../src/modules/_shared/extension-point-source";
+import { listModules } from "../../src/modules";
+
+// Every harness-based suite is a composition root of its own process (ADR-0164).
+installExtensionPointSource(listModules);
 
 /**
  * Captured at module load. The privileged/admin connection string the CI
@@ -245,6 +250,29 @@ export function getAdminSql(): Bun.SQL {
   }
 
   return adminSql;
+}
+
+/**
+ * Re-scopes a channel account the way a defect or a compromised owner role
+ * could: with the identity guard switched off inside ONE transaction. Since
+ * #1215 the guard refuses a scope rewrite for EVERY role (sql/398), so a
+ * scenario that needs "the scope changed after a child was registered" must
+ * disable it here; production trigger stays untouched. `null` clears the scope.
+ */
+export async function rescopeChannelAccount(
+  id: string,
+  scope: { type: string; id: string } | null
+): Promise<void> {
+  await getAdminSql().begin(async (tx) => {
+    await tx`ALTER TABLE awcms_channel_accounts DISABLE TRIGGER awcms_channel_accounts_identity_guard`;
+    await tx`
+      UPDATE awcms_channel_accounts
+      SET business_scope_type = ${scope?.type ?? null},
+          business_scope_id = ${scope?.id ?? null}
+      WHERE id = ${id}
+    `;
+    await tx`ALTER TABLE awcms_channel_accounts ENABLE TRIGGER awcms_channel_accounts_identity_guard`;
+  });
 }
 
 /**
@@ -529,7 +557,7 @@ export async function setupIntegrationDatabase(): Promise<void> {
 /**
  * `afterAll` entry point for WORLD-1 files. The last to release drops the
  * database and the owner role — a single-use database cleaned up after itself,
- * exactly as the `postgres:18.4` CI service is thrown away after the job.
+ * exactly as the `postgres:18.6` CI service is thrown away after the job.
  */
 export async function teardownIntegrationDatabase(): Promise<void> {
   if (!integrationEnabled) {
@@ -564,6 +592,9 @@ export async function teardownIntegrationDatabase(): Promise<void> {
  * make the next migration run replay everything) and `awcms_permissions` (the
  * global ABAC seed catalog INSERTed by migrations — wiping it would silently
  * break every access check and turn real 200s into misleading 403s).
+ * `awcms_email_worker_categories` (sql/410, ADR-0164) is preserved for the same
+ * reason: it is migration-seeded data, and wiping it would make the worker
+ * guard refuse every category, the hr notices included.
  *
  * ALSO resets the two pieces of PROCESS-GLOBAL in-memory state `withTenant`
  * consults on every call: the database circuit breaker and the work-class
@@ -589,7 +620,8 @@ async function truncateAwcmsTables(sql: Bun.SQL): Promise<void> {
     SELECT tablename FROM pg_tables
     WHERE schemaname = 'public'
       AND tablename LIKE 'awcms\\_%'
-      AND tablename NOT IN ('awcms_schema_migrations', 'awcms_permissions')
+      AND tablename NOT IN ('awcms_schema_migrations', 'awcms_permissions',
+                            'awcms_email_worker_categories')
   `) as { tablename: string }[];
 
   if (rows.length === 0) {

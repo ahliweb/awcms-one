@@ -16,13 +16,18 @@ Follow `src/modules/email/README.md` (full architecture: provider contract, Mail
    `system.maintenance`, `workflow.task_assigned`,
    `workflow.decision_required`) already have a built-in variable allowlist
    (`domain/email-template-categories.ts`'s `BASE_EMAIL_TEMPLATE_CATEGORIES`).
-   Your own categories must be `derived.*` and must be registered first:
+   Your own categories must be `derived.*` and must be DECLARED in your module descriptor (ADR-0164), never registered by an
+   import at startup — `email:dispatch` is another process and would not have it:
    ```ts
-   registerDerivedEmailTemplateCategory("derived.order_confirmation", [
-     "orderNumber",
-     "total",
-     "trackingUrl"
-   ]);
+   emailTemplateCategories: [
+     {
+       category: "derived.order_confirmation",
+       allowedVariables: ["orderNumber", "total", "trackingUrl"]
+       // workerInsert: true  (only if enqueued from a worker transaction; then
+       // seed `awcms_email_worker_categories` in your migration, never re-issue
+       // the guard function)
+     }
+   ],
    ```
    Unknown categories are rejected at template create time (fail-closed) —
    **do not** try to reuse an existing base category for something else,
@@ -73,6 +78,17 @@ Follow `src/modules/email/README.md` (full architecture: provider contract, Mail
   recipient address to this endpoint, and the endpoint itself **does not**
   touch `email_messages`/the queue.
 
+- **Tenant senders (Issue #1160, ADR-0151 §2).** Never put a tenant's
+  Mailketing token or from-address in env, settings JSON or a request body. A
+  sender is a `channel_accounts` `mailketing`/`sender_identity` id; choose it
+  only through `resolveEnqueueEmailSender`
+  (`application/email-sender-directory.ts`) and pass the resulting snapshot to
+  `enqueueAnnouncement`. Never reroute a refused sender to another sender,
+  account or the deployment sender; security mail (`auth.*`,
+  `system.security_notice`) always uses the deployment sender. Only
+  `scripts/email-dispatch.ts` and `scripts/email-senders-verify.ts` may compose
+  `channel-sender-credential-adapter`.
+
 ## Observability & ops (Issue #499)
 
 - **Failed/pending queue**: `GET /api/v1/email/messages?status=failed|retry_wait`
@@ -105,6 +121,7 @@ Follow `src/modules/email/README.md` (full architecture: provider contract, Mail
 - Send with `EMAIL_PROVIDER=log` first (no Mailketing credentials) —
   look at the `email.log_provider.send` log (masked address) to confirm the
   end-to-end flow before switching real Mailketing on.
+- Mailketing v2 (Issue #1159) is opt-in via `EMAIL_MAILKETING_API_VERSION=v2` (default v1, fail-closed on unknown values; fixed host, header-only token, 402 held, 429 honours `Retry-After`; live API NOT yet verified). Do not add a new send path; use the v2 adapter behind `EmailProvider`.
 - `bun run email:provider:health` — check real Mailketing connectivity
   (a live network call; run it manually/as a smoke test, not part of CI).
 - `bun test tests/integration/email-*.integration.test.ts` against a

@@ -147,10 +147,6 @@ const seeded = Boolean(tenantId && loginIdentifier && password);
  * `color-contrast [serious] target=".admin-status-pill" — Elements must have
  * sufficient colour contrast — help: https://…`
  */
-// awcms-one local divergence (root AGENTS.md): derived from `AxeBuilder`
-// rather than `import("axe-core").Result` — `axe-core` is only a transitive
-// dependency and this workspace's isolated linker does not hoist it, so a
-// direct type import does not resolve under `tsc`.
 type AxeViolation = Awaited<
   ReturnType<AxeBuilder["analyze"]>
 >["violations"][number];

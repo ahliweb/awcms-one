@@ -99,6 +99,10 @@ export const READ_WAVE: readonly string[] = [
   // it never logs in and never touches tenant state, and it needs no content
   // fixture because an empty blog index is itself a `200`.
   "public-blog-locale-prefix.e2e.ts",
+  // Issue #1369 — the public reading-preferences panel: opens it, flips each
+  // preference, reloads, runs axe. Everything it stores is in the browser's own
+  // `localStorage`; it sends no request that changes tenant state.
+  "public-reading-preferences.e2e.ts",
   "responsive-360.e2e.ts"
 ];
 
@@ -114,6 +118,7 @@ export const READ_WAVE: readonly string[] = [
  */
 export const WRITE_WAVE: readonly string[] = [
   "admin-abac-policies.e2e.ts",
+  "admin-channel-accounts.e2e.ts",
   // Issue #942 — drives the six booking screens by keyboard and mutates
   // tenant-wide booking configuration (a policy, an offering, a resource with
   // units in a pool, schedules, a closure, a reservation placed through the
