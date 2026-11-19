@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:ce12fb15f109ced82efd3a343f7fcd524baacb8cfe6fa53ca814abae0336b7cf -->
+<!-- i18n-source-hash: sha256:7c00a3c097a8c9371c999783be8b311b747d7a8997b6a64df0efb00cd229536c -->
 
 # AWCMS — Project State & Continuation
 
@@ -132,9 +132,9 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 
 | Aspek                              | Nilai (ter-generate)                                                                                                                | Sumber kebenaran                                                                        |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Versi                              | **10.11.0**                                                                                                                         | `package.json`                                                                          |
+| Versi                              | **10.12.0**                                                                                                                         | `package.json`                                                                          |
 | Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                                                                  | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
-| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                                                                  | `git rev-list --count v10.11.0..HEAD`                                                   |
+| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                                                                  | `git rev-list --count v10.12.0..HEAD`                                                   |
 | Modul base                         | **41** (lihat daftar di ARCHITECTURE.md)                                                                                            | `src/modules/index.ts`                                                                  |
 | Migrasi                            | **425** (`sql/001`–`1065`)                                                                                                          | `ls sql/`                                                                               |
 | ADR                                | **0000**–**0166** (`0000` = template; status ADR tertinggi: **Accepted**)                                                           | `ls docs/adr/`                                                                          |
