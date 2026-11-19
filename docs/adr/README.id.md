@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:81f79340870c9f7023aed68b4a27ef315e2a17e42faef9410cb3321a73b06d1d -->
+<!-- i18n-source-hash: sha256:b70eeb3133e7a331511fc9272827d065630ae47f2d5cbf03cafd95ca8b81d027 -->
 
 # Architecture Decision Records
 
@@ -74,7 +74,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0050](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md)                                              | LynxJS/ReactLynx untuk aplikasi persona terpisah; Astro tetap untuk admin dan setiap profil publik (hanya arah, belum diimplementasikan)                                                                                                                             | Accepted as direction; not implemented                                                                                        |
 | [0051](0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.md)                               | Statistik penduduk BPS adalah data referensi global berversi, disimpan persis seperti yang diterbitkan (nilai + unit + dasar + level, tidak pernah dikonversi; impor dan aktivasi lewat CLI operator; penahanan sel kecil; MIT hanya mencakup perkakas, bukan angka) | Accepted                                                                                                                      |
 | [0052](0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md)                    | Aturan segmen turunan booking adalah skema aturan 2 (lima field), dibaca langsung lewat tautan booking dan tidak pernah disimpan; versi skema disimpan per versi segmen, sehingga aturan lama dievaluasi tanpa berubah                                               | Diterima                                                                                                                      |
-| [0057](0057-the-public-reading-preferences-panel-is-a-native-same-origin-component-not-a-third-party-overlay.md) | Panel preferensi baca publik adalah komponen native satu-origin (storefront, ketiga profil), bukan overlay pihak ketiga: preferensi tinggal di `localStorage`, CSP tidak berubah, preferensi OS adalah bawaan | Accepted |
+| [0057](0057-the-public-reading-preferences-panel-is-a-native-same-origin-component-not-a-third-party-overlay.md) | Panel preferensi baca publik adalah komponen native satu-origin (storefront, ketiga profil), bukan overlay pihak ketiga: preferensi tinggal di `localStorage`, CSP tidak berubah, preferensi OS adalah bawaan. Diamandemen 2026-11-19: uji kegunaan dengan pembaca nyata bukan gerbang repo ini, melainkan milik UAT tiap repo turunan | Accepted |
 
 ## Mengapa penomoran dimulai dari 0001
 

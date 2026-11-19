@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0057-the-public-reading-preferences-panel-is-a-native-same-origin-component-not-a-third-party-overlay.md)
 
-<!-- i18n-source-hash: sha256:fe48c65bb60f10d60a634136107201e8373937d6abcdeb6c9d1d3e6397936b6c -->
+<!-- i18n-source-hash: sha256:80ee92288f14fb556a78dce4faddee6321bf7757dbdc56c28201169969823124 -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -50,3 +50,9 @@ Ada dua cara menyediakannya: menanam "widget aksesibilitas" pihak ketiga (skrip 
 - Cacat tata letak yang hanya muncul pada ukuran teks lebih besar atau letter-spacing lebih lebar di ponsel 360 px diperbaiki dalam perubahan yang sama (kolom pencarian header, kolom grid formulir buletin, lebar kontrol formulir, kata panjang tak terputus, tombol tanpa-bungkus); suite e2e kini menjaga 360 px pada ukuran terbesar, dengan dan tanpa jarak disleksia, di setiap halaman kunci. Satu cacat kontras lama ikut terungkap: tombol sekunder slider beranda 1,48:1, tersembunyi sampai kini karena popup promosi beranda toko, yang terbuka saat pemindaian axe lama, membuat halaman di belakangnya inert; diperbaiki di `global.css`.
 - Chrome situs sendiri belum dituntut memenuhi aturan target-size WCAG 2.2 (beberapa tautan footer kecil di bawah 24 px); pemindaian axe seluruh halaman tetap pada WCAG 2.1 A/AA seperti sebelumnya, dan panel sendirian dipindai terhadap 2.2 AA. Menutup celah itu adalah perubahan terpisah.
 - **Proses (alur v2.0.0).** Irisan ini hanya sisi klien, sehingga langkah 5-8 (ERD, RBAC/RLS, spesifikasi domain, kontrak API) tidak berlaku: tanpa tabel, tanpa endpoint, tanpa data server. Pemilik meloloskan gerbang 9 untuk irisan ini pada 2026-11-18. Uji kegunaan dengan pengguna nyata sengaja belum dilakukan; ia butir UAT (langkah 14), sebelum gerbang 15.
+
+## Amandemen (2026-11-19: uji kegunaan pindah ke repo implementasi)
+
+Keputusan pemilik **2026-11-19**: repo upstream (`awcms`, `awcms-astro`, `awcms-one`) tidak menjalankan UAT; UAT (langkah 14 alur pengembangan) dijalankan di repo implementasi atau proyek turunan, dan `awcms-one` diperlakukan sebagai upstream (template). Ini selaras dengan amandemen yang sama pada ADR-0166 `ahliweb/awcms` dan standar lintas-portofolio internal.
+
+Kalimat pada butir "Proses" di atas yang menunda uji kegunaan dengan pengguna nyata ke UAT (langkah 14) sebelum gerbang 15 **diganti** oleh ini: uji kegunaan panel preferensi baca dengan pembaca nyata, termasuk pengguna teknologi bantu, **bukan prasyarat gerbang kesiapan rilis repo ini**. Itu tanggung jawab tiap repo turunan yang mengadopsi template, dalam UAT-nya sendiri. Cakupan otomatis di sini (pemindaian axe, e2e panel) tetap bukan penggantinya. Keputusan intinya (panel bawaan same-origin, bukan overlay pihak ketiga) tidak berubah.
