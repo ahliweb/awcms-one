@@ -37,6 +37,17 @@ for (const keyPage of KEY_PAGES) {
 
     const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
 
+    // Text whose colour equals its background (a 1:1 ratio, invisible text) is
+    // never filed by axe under `violations`: it cannot judge the ratio, so the
+    // node lands in `incomplete` with message key `equalRatio` (issue #551: the
+    // footer headings were `#0f172a` on `#0f172a` and this gate stayed green).
+    const invisibleText = results.incomplete
+      .filter((rule) => rule.id === "color-contrast")
+      .flatMap((rule) => rule.nodes)
+      .filter((node) => node.any.some((check) => (check.data as { messageKey?: string } | null)?.messageKey === "equalRatio"))
+      .map((node) => node.target.join(" "));
+    expect(invisibleText, `Text with the same colour as its background on ${keyPage.path}`).toEqual([]);
+
     const serious = results.violations.filter((violation) => FAILING_IMPACT.has(violation.impact ?? ""));
     const other = results.violations.filter((violation) => !FAILING_IMPACT.has(violation.impact ?? ""));
 
