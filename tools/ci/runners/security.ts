@@ -32,7 +32,7 @@
  *     replaces — a deliberate scope decision (see that file's own comment),
  *     not a gap introduced here.
  */
-import { existsSync, mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
 import { partitionHighSeverityFindings, parseBaseline } from "../lib/baseline.ts";
@@ -81,34 +81,43 @@ export async function runSecurityLeg(
   });
   if (packDownload.exitCode !== 0) return fail(`codeql pack download failed (exit ${packDownload.exitCode})`);
 
-  const create = await run(
-    [
-      codeqlExecutable,
-      "database",
-      "create",
-      dbPath,
-      "--language=javascript-typescript",
-      "--source-root",
-      worktreeRoot,
-      "--overwrite"
-    ],
-    { logFile: log("codeql-database-create") }
-  );
-  if (create.exitCode !== 0) return fail(`codeql database create failed (exit ${create.exitCode})`);
+  // The database (~1.2 GB per run) is an intermediate, not evidence — the
+  // SARIF and the create/analyze logs are what this leg keeps. Left in
+  // evidenceDir it filled the operator's disk at ~1.2 GB per security run,
+  // so it is removed as soon as analysis ends, pass or fail.
+  let analyze: Awaited<ReturnType<typeof run>>;
+  try {
+    const create = await run(
+      [
+        codeqlExecutable,
+        "database",
+        "create",
+        dbPath,
+        "--language=javascript-typescript",
+        "--source-root",
+        worktreeRoot,
+        "--overwrite"
+      ],
+      { logFile: log("codeql-database-create") }
+    );
+    if (create.exitCode !== 0) return fail(`codeql database create failed (exit ${create.exitCode})`);
 
-  const analyze = await run(
-    [
-      codeqlExecutable,
-      "database",
-      "analyze",
-      dbPath,
-      "--format=sarif-latest",
-      `--output=${sarifPath}`,
-      "--sarif-add-snippets",
-      `${CODEQL_JS_QUERY_PACK}:codeql-suites/javascript-security-extended.qls`
-    ],
-    { logFile: log("codeql-database-analyze") }
-  );
+    analyze = await run(
+      [
+        codeqlExecutable,
+        "database",
+        "analyze",
+        dbPath,
+        "--format=sarif-latest",
+        `--output=${sarifPath}`,
+        "--sarif-add-snippets",
+        `${CODEQL_JS_QUERY_PACK}:codeql-suites/javascript-security-extended.qls`
+      ],
+      { logFile: log("codeql-database-analyze") }
+    );
+  } finally {
+    rmSync(dbPath, { recursive: true, force: true });
+  }
   if (analyze.exitCode !== 0 || !existsSync(sarifPath)) {
     return fail(`codeql database analyze failed (exit ${analyze.exitCode})`);
   }
