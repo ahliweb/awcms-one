@@ -195,19 +195,19 @@ Recommendation, as a proposal for the owner, not a decision: adopt **fixture plu
 4. **Fix F-03 to F-05 in the fixtures and the storefront type** once the gate in item 2 exists, so the gate is what turns them red first.
 5. **Do not open implementation issues until gate 9.** The epic that owns this work forbids it; the proposals below are text for that later step.
 
-### 8.1 Decisions that wait for the owner
+### 8.1 Owner decisions (decided 20 November 2026)
 
-| Decision | Options | Recommended |
+The three decisions that waited for the owner were decided on 20 November 2026 and are recorded in [ADR-0058](adr/0058-contract-parity-fixtures-with-schema-check-consumer-slice-at-the-root-and-generic-gaps-go-upstream.md).
+
+| Decision | Outcome | Where it goes |
 | --- | --- | --- |
-| Where the consumer-contract slice lives | (a) root `tests/` in this repository; (b) inside `apps/cms` next to the `awcms-astro` slice, proposed upstream first | (a), because `apps/cms` is a subtree and a local divergence has a cost at every sync |
-| Mock strategy | fixture plus schema check; generated mock; both | fixture plus schema check first (section 7) |
-| Whether `RATE_LIMITED` and `IdempotencyKeyOptional` belong in the generic `awcms` contract | yes, upstream; no, document locally | yes, upstream |
-
-Each option is scored against the eleven criteria of the execution guideline in the pull request description, not here, to keep this report to findings.
+| Where the consumer-contract slice lives | root `tests/` of this repository, not `apps/cms` (a subtree) | [#555](https://github.com/ahliweb/awcms-one/issues/555), [#556](https://github.com/ahliweb/awcms-one/issues/556) |
+| Mock strategy | fixture plus schema check first; a generated mock follows only if needed | [#553](https://github.com/ahliweb/awcms-one/issues/553), [#554](https://github.com/ahliweb/awcms-one/issues/554) |
+| Whether `RATE_LIMITED` and `IdempotencyKeyOptional` belong in the generic `awcms` contract | yes, reported upstream and not patched in `apps/cms`: [ahliweb/awcms#1385](https://github.com/ahliweb/awcms/issues/1385) (upstream also chose to publish a pinned fixture pack for consumers) | [#557](https://github.com/ahliweb/awcms-one/issues/557) adopts it after the next subtree sync |
 
 ### 8.2 Proposed acceptance criteria and Definition of Ready for later atomic issues
 
-These are proposals. No issue was created. Duplicate check at the baseline: no open or closed issue in this repository covers fixture-to-schema parity or a storefront consumer-contract slice. Related, and not duplicates: #6 (closed, type-only foundation), #430 and #431 (push), #535 (landing build without a CMS), #420 (upstream tracking).
+These began as proposals. After the owner decisions of 20 November 2026 (section 8.1) they were opened as backlog issues #553 to #557, all waiting for gate 9 and the Definition of Ready and none implemented: Issue A is #553 (with #554 for F-03 to F-05), Issue B is #555 and #556, and the upstream follow-up is #557. Duplicate check at the baseline (before those issues existed): no open or closed issue in this repository covers fixture-to-schema parity or a storefront consumer-contract slice. Related, and not duplicates: #6 (closed, type-only foundation), #430 and #431 (push), #535 (landing build without a CMS), #420 (upstream tracking).
 
 **Issue A. Fixture versus schema gate.**
 
@@ -237,6 +237,10 @@ These are proposals. No issue was created. Duplicate check at the baseline: no o
 Limits the reader should keep in mind: database-backed behaviour was not executed; the fixture comparison and the `RATE_LIMITED` scan are throwaway static checks; the audit read a snapshot and PR #530 may change it.
 
 ## Changelog
+
+### 2026-11-20 (owner decisions)
+
+- Section 8.1 now records the three owner decisions of 20 November 2026 and points to ADR-0058; section 8.2 notes the backlog issues #553 to #557. Findings and baseline unchanged.
 
 ### 2026-11-20
 
