@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](audit-paritas-kontrak-cms-storefront.md)
 
-<!-- i18n-source-hash: sha256:4117e191bb36fbefc2cb5de366b93005337d066b3c15e4f0fc458f9e9b8ff67a -->
+<!-- i18n-source-hash: sha256:ace99f0692f02255d57167f7f1c1aa14895db3acb50fdd9a6d8c86da8d1fdb9c -->
 
 # Audit paritas kontrak: CMS dan storefront, tiga profil (issue #547)
 
@@ -197,19 +197,19 @@ Rekomendasi, sebagai usulan untuk pemilik, bukan keputusan: adopsi **fixture plu
 4. **Perbaiki F-03 sampai F-05 pada fixture dan tipe storefront** setelah gerbang pada butir 2 ada, agar gerbanglah yang pertama menjadi merah.
 5. **Jangan membuka issue implementasi sebelum gerbang 9.** Epik pemilik pekerjaan ini melarangnya; usulan di bawah adalah teks untuk langkah itu kelak.
 
-### 8.1 Keputusan yang menunggu pemilik
+### 8.1 Keputusan pemilik (diputuskan 20 November 2026)
 
-| Keputusan | Opsi | Disarankan |
+Tiga keputusan yang menunggu pemilik diputuskan pada 20 November 2026 dan dicatat di [ADR-0058](adr/0058-contract-parity-fixtures-with-schema-check-consumer-slice-at-the-root-and-generic-gaps-go-upstream.md).
+
+| Keputusan | Hasil | Ke mana |
 | --- | --- | --- |
-| Letak irisan kontrak konsumen | (a) `tests/` akar di repo ini; (b) di dalam `apps/cms` di samping irisan `awcms-astro`, diusulkan ke upstream lebih dulu | (a), karena `apps/cms` adalah subtree dan divergensi lokal berbiaya di setiap sinkron |
-| Strategi mock | fixture plus pemeriksaan skema; mock hasil generasi; keduanya | fixture plus pemeriksaan skema lebih dulu (bagian 7) |
-| Apakah `RATE_LIMITED` dan `IdempotencyKeyOptional` termasuk kontrak generik `awcms` | ya, upstream; tidak, dokumentasikan lokal | ya, upstream |
-
-Setiap opsi dinilai dengan sebelas kriteria pedoman eksekusi di deskripsi pull request, bukan di sini, agar laporan ini tetap berupa temuan.
+| Letak irisan kontrak konsumen | `tests/` akar repo ini, bukan `apps/cms` (subtree) | [#555](https://github.com/ahliweb/awcms-one/issues/555), [#556](https://github.com/ahliweb/awcms-one/issues/556) |
+| Strategi mock | fixture plus pemeriksaan skema lebih dulu; mock hasil generasi menyusul hanya bila perlu | [#553](https://github.com/ahliweb/awcms-one/issues/553), [#554](https://github.com/ahliweb/awcms-one/issues/554) |
+| Apakah `RATE_LIMITED` dan `IdempotencyKeyOptional` termasuk kontrak generik `awcms` | ya, dilaporkan ke upstream dan tidak ditambal di `apps/cms`: [ahliweb/awcms#1385](https://github.com/ahliweb/awcms/issues/1385) (upstream juga memilih menerbitkan paket fixture terpatok untuk konsumen) | [#557](https://github.com/ahliweb/awcms-one/issues/557) mengadopsinya setelah sinkron subtree berikutnya |
 
 ### 8.2 Usulan kriteria penerimaan dan Definition of Ready untuk issue atomik kelak
 
-Ini usulan. Tidak ada issue yang dibuat. Pemeriksaan duplikat pada baseline: tidak ada issue terbuka maupun tertutup di repo ini yang mencakup paritas fixture terhadap skema atau irisan kontrak konsumen storefront. Terkait, dan bukan duplikat: #6 (tertutup, fondasi type-only), #430 dan #431 (push), #535 (build landing tanpa CMS), #420 (pelacakan upstream).
+Ini awalnya usulan. Setelah keputusan pemilik 20 November 2026 (bagian 8.1) ia dibuka sebagai issue backlog #553 sampai #557, semuanya menunggu gerbang 9 dan Definition of Ready dan belum ada yang diimplementasikan: Issue A adalah #553 (dengan #554 untuk F-03 sampai F-05), Issue B adalah #555 dan #556, dan tindak lanjut upstream adalah #557. Pemeriksaan duplikat pada baseline (sebelum issue-issue itu ada): tidak ada issue terbuka maupun tertutup di repo ini yang mencakup paritas fixture terhadap skema atau irisan kontrak konsumen storefront. Terkait, dan bukan duplikat: #6 (tertutup, fondasi type-only), #430 dan #431 (push), #535 (build landing tanpa CMS), #420 (pelacakan upstream).
 
 **Issue A. Gerbang fixture terhadap skema.**
 
@@ -239,6 +239,10 @@ Ini usulan. Tidak ada issue yang dibuat. Pemeriksaan duplikat pada baseline: tid
 Batas yang perlu diingat pembaca: perilaku berbasis database tidak dieksekusi; perbandingan fixture dan pemindaian `RATE_LIMITED` adalah pemeriksaan statis sekali pakai; audit membaca satu snapshot dan PR #530 dapat mengubahnya.
 
 ## Changelog
+
+### 2026-11-20 (keputusan pemilik)
+
+- Bagian 8.1 kini mencatat tiga keputusan pemilik 20 November 2026 dan menunjuk ADR-0058; bagian 8.2 mencatat issue backlog #553 sampai #557. Temuan dan baseline tidak berubah.
 
 ### 2026-11-20
 

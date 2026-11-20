@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:b70eeb3133e7a331511fc9272827d065630ae47f2d5cbf03cafd95ca8b81d027 -->
+<!-- i18n-source-hash: sha256:20704371f9e260dcce7b68060eef8f230a60d18e2c8bdb1c1795b4a03b0143c4 -->
 
 # Architecture Decision Records
 
@@ -75,6 +75,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0051](0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.md)                               | Statistik penduduk BPS adalah data referensi global berversi, disimpan persis seperti yang diterbitkan (nilai + unit + dasar + level, tidak pernah dikonversi; impor dan aktivasi lewat CLI operator; penahanan sel kecil; MIT hanya mencakup perkakas, bukan angka) | Accepted                                                                                                                      |
 | [0052](0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md)                    | Aturan segmen turunan booking adalah skema aturan 2 (lima field), dibaca langsung lewat tautan booking dan tidak pernah disimpan; versi skema disimpan per versi segmen, sehingga aturan lama dievaluasi tanpa berubah                                               | Diterima                                                                                                                      |
 | [0057](0057-the-public-reading-preferences-panel-is-a-native-same-origin-component-not-a-third-party-overlay.md) | Panel preferensi baca publik adalah komponen native satu-origin (storefront, ketiga profil), bukan overlay pihak ketiga: preferensi tinggal di `localStorage`, CSP tidak berubah, preferensi OS adalah bawaan. Diamandemen 2026-11-19: uji kegunaan dengan pembaca nyata bukan gerbang repo ini, melainkan milik UAT tiap repo turunan | Accepted |
+| [0058](0058-contract-parity-fixtures-with-schema-check-consumer-slice-at-the-root-and-generic-gaps-go-upstream.md) | Paritas kontrak (keputusan pemilik 2026-11-20): fixture storefront mendapat pemeriksaan skema lebih dulu (mock hasil generasi hanya bila perlu); irisan consumer-contract storefront ada di `tests/` akar, bukan di subtree `apps/cms`; `429 RATE_LIMITED` dan header idempotency opsional dilaporkan ke upstream (awcms#1385), tidak ditambal di `apps/cms` | Accepted |
 
 ## Mengapa penomoran dimulai dari 0001
 

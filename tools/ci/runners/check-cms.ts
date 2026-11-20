@@ -42,7 +42,9 @@ export async function runCheckCmsLeg(context: string, ctx: LegContext): Promise<
   let containerStarted = false;
   const removeContainer = () => {
     if (!containerStarted) return;
-    Bun.spawnSync(["docker", "rm", "-f", containerName], { stdout: "ignore", stderr: "ignore" });
+    // `-v`: postgres:18.6 declares VOLUME /var/lib/postgresql, so without it
+    // every run leaves an anonymous ~50-500 MB volume behind.
+    Bun.spawnSync(["docker", "rm", "-f", "-v", containerName], { stdout: "ignore", stderr: "ignore" });
   };
   const onSignal = () => {
     removeContainer();
