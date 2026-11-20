@@ -915,9 +915,11 @@ main {
   padding-block: 2rem;
 }
 
+/* No `color` here (issue #551): the footer sits on `.band-inverse`, and the
+   heading colour comes from `.site-footer h2` (`--text-on-inverse`). A
+   `--text-primary` here equals `--bg-inverse` in light mode (1:1). */
 .site-footer-column h2 {
   font-size: 0.95rem;
-  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
