@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:267963d5969b1389a911854067e897eb1da3050757cea7b7d1783e232dd7c7fe -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0038 — Stok commerce adalah cache write-through dari ledger inventori: mode per tenant, cut-over atomik, dan satu rekonsiliasi
 
 - **Status:** Diterima

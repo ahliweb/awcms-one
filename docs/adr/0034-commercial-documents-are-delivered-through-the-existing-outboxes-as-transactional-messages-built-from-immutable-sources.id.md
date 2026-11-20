@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:b2667c408da181ce28e2d0fd4db46b4232d75c9744ee107e5b4e5ee6615e73d7 -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0034 — Dokumen komersial dikirim lewat outbox yang sudah ada, sebagai pesan transaksional yang disusun dari sumber yang tidak dapat diubah
 
 - **Status:** Diterima

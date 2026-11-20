@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:571f53ad3696e21302e283b0aef03cf62f36225a4a8a7084f2fce61d4a8c39ba -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0033 — Pengembalian barang, pengembalian dana, dan penukaran adalah catatan tambahan yang mengompensasi lewat ledger yang sudah ada: tidak ada yang final diubah, uang kembali melalui pembayaran asal, penyedia dipanggil di luar setiap transaksi
 
 - **Status:** Diterima

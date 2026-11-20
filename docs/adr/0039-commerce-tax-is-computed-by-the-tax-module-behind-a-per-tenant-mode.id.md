@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:98735bb225c1e69193fc65599070cdce9f109196efdf9ded616850abbb45e72e -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0039 — Pajak commerce dihitung oleh modul `tax`, di belakang mode per tenant
 
 - **Status:** Diterima

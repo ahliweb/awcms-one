@@ -19,6 +19,7 @@ import {
   deriveMirrorPath,
   deriveSourcePath,
   extractRecordedHash,
+  findMarkerLines,
   isInScope,
   isMirrorInScope
 } from "../packages/gerbang/lib/docs-i18n-checks.mjs";
@@ -244,5 +245,86 @@ describe("the ledger itself", () => {
   /** Sorted, so a shrinking ledger produces a one-line diff per document. */
   test("is sorted", () => {
     expect(DOCS_AWAITING_MIRROR).toEqual([...DOCS_AWAITING_MIRROR].sort());
+  });
+});
+
+describe("invalid and duplicate markers", () => {
+  const source = "# Source\n";
+  const hash = computeSourceHash(source);
+  const mirror = (...lines) => `${lines.join("\n")}\n\n# Dokumen\n`;
+
+  test("a placeholder marker is rejected with a clear message", () => {
+    const problems = checkTranslationPair(
+      "docs/a.md",
+      source,
+      "docs/a.id.md",
+      mirror("<!-- i18n-source-hash: sha256:placeholder -->")
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]?.message).toContain("invalid i18n-source-hash marker");
+  });
+
+  test("two markers are rejected even when one is valid and current", () => {
+    const problems = checkTranslationPair(
+      "docs/a.md",
+      source,
+      "docs/a.id.md",
+      mirror(
+        "<!-- i18n-source-hash: sha256:placeholder -->",
+        `<!-- i18n-source-hash: ${hash} -->`
+      )
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]?.message).toContain("2 i18n-source-hash markers");
+  });
+
+  test("a single valid current marker still passes", () => {
+    expect(
+      checkTranslationPair("docs/a.md", source, "docs/a.id.md", mirror(`<!-- i18n-source-hash: ${hash} -->`))
+    ).toEqual([]);
+  });
+
+  test("a mention of the marker inside prose is not a marker line", () => {
+    expect(findMarkerLines("Use `<!-- i18n-source-hash: sha256:x -->` here.")).toEqual([]);
+  });
+});
+
+describe("docs-i18n-stamp removes every marker line", () => {
+  test("a placeholder is dropped and one valid marker is written", async () => {
+    const { mkdtempSync, mkdirSync, writeFileSync, readFileSync } = await import("node:fs");
+    const { tmpdir } = await import("node:os");
+    const { join } = await import("node:path");
+    const { spawnSync } = await import("node:child_process");
+
+    const root = mkdtempSync(join(tmpdir(), "i18n-stamp-"));
+    const run = (cmd, ...args) =>
+      spawnSync(cmd, args, { cwd: root, encoding: "utf8" });
+    run("git", "init", "-q");
+    mkdirSync(join(root, "docs"));
+    mkdirSync(join(root, "tools"));
+    mkdirSync(join(root, "packages/gerbang/lib"), { recursive: true });
+    const repo = join(import.meta.dirname, "..");
+    for (const f of [
+      "tools/docs-i18n-stamp.mjs",
+      "packages/gerbang/lib/docs-i18n-checks.mjs",
+      "packages/gerbang/lib/files.mjs",
+      "packages/gerbang/lib/git.mjs"
+    ]) {
+      writeFileSync(join(root, f), readFileSync(join(repo, f)));
+    }
+    writeFileSync(join(root, "docs/a.md"), "# Source\n");
+    writeFileSync(
+      join(root, "docs/a.id.md"),
+      "🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](a.md)\n\n<!-- i18n-source-hash: sha256:placeholder -->\n\n# Dokumen\n"
+    );
+
+    const result = run("bun", "tools/docs-i18n-stamp.mjs");
+    expect(result.status).toBe(0);
+    const stamped = readFileSync(join(root, "docs/a.id.md"), "utf8");
+    expect(stamped).not.toContain("placeholder");
+    expect(findMarkerLines(stamped)).toHaveLength(1);
+    expect(extractRecordedHash(stamped)).toBe(
+      computeSourceHash(readFileSync(join(root, "docs/a.md"), "utf8"))
+    );
   });
 });

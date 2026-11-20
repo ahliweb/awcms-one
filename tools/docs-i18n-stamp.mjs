@@ -13,6 +13,10 @@
  *  3. REMOVES any marker left in the English source. A marker on the source
  *     side is not inert — it looks like bookkeeping and records nothing.
  *
+ * Every `i18n-source-hash` marker line is removed whatever its value
+ * (including a hand-written `sha256:placeholder`), then one valid marker is
+ * written — so a mirror never ends up with two.
+ *
  * Idempotent: running it twice changes nothing. It does NOT translate; it
  * only moves the bookkeeping, which is why `--check` can be trusted to say
  * whether a tree is already correct.
@@ -24,7 +28,7 @@
 import { writeFileSync } from "node:fs";
 import { basename, join, resolve } from "node:path";
 import {
-  MARKER_REGEX,
+  MARKER_LINE_REGEX,
   computeSourceHash,
   deriveSourcePath,
   isMirrorInScope
@@ -112,7 +116,7 @@ function withBanner(content, banner) {
 function withoutMarker(content) {
   return content
     .split("\n")
-    .filter((/** @type {string} */ line) => !MARKER_REGEX.test(line))
+    .filter((/** @type {string} */ line) => !MARKER_LINE_REGEX.test(line))
     .join("\n")
     .replace(/\n{3,}/g, "\n\n");
 }
