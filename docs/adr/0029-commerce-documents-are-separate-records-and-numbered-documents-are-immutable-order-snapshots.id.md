@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:0a62357777ccd234f3dcb4694d79a7f364b392c342d0b0cd725f98a551b37dd8 -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0029 — Dokumen commerce: penjualan tertahan, penawaran, perintah kerja, dan struk/faktur adalah rekaman terpisah, dan dokumen bernomor adalah snapshot pesanan yang tidak dapat diubah
 
 - **Status:** Diterima

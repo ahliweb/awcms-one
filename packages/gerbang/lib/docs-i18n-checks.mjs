@@ -44,6 +44,25 @@ export const MARKER_REGEX =
   /<!--\s*i18n-source-hash:\s*(sha256:[0-9a-f]{64})\s*-->/;
 
 /**
+ * A line that IS a marker comment, whatever sits in the value position.
+ *
+ * `MARKER_REGEX` only recognises a well-formed marker, so a hand-written
+ * `<!-- i18n-source-hash: sha256:placeholder -->` was invisible to both the
+ * stamper (it was not removed, so stamping stacked a second, real marker on
+ * top of it) and the gate. This matches the whole line, so a mention of the
+ * marker inside running prose or inline code is not mistaken for one.
+ */
+export const MARKER_LINE_REGEX = /^[ \t]*<!--\s*i18n-source-hash\b[^\n]*?-->[ \t]*\r?$/;
+
+/**
+ * @param {string} content
+ * @returns {string[]} every marker-comment line in `content`, valid or not.
+ */
+export function findMarkerLines(content) {
+  return content.split("\n").filter((line) => MARKER_LINE_REGEX.test(line));
+}
+
+/**
  * Is this path a document mirrored by the policy?
  *
  * Kept as a pure predicate rather than inlined into the git call so it can
@@ -179,6 +198,22 @@ export function checkTranslationPair(
     problems.push({
       file: mirrorPath,
       message: `Indonesian mirror with no English source (${sourcePath} does not exist). English is the source language — either restore the source or delete the orphan mirror.`
+    });
+    return problems;
+  }
+
+  const markerLines = findMarkerLines(mirrorContent);
+  if (markerLines.length > 1) {
+    problems.push({
+      file: mirrorPath,
+      message: `${markerLines.length} i18n-source-hash markers — a mirror carries exactly one. Remove the extra lines (run \`bun run docs:i18n:stamp\`, which keeps a single valid marker).`
+    });
+    return problems;
+  }
+  if (markerLines.length === 1 && !MARKER_REGEX.test(markerLines[0] ?? "")) {
+    problems.push({
+      file: mirrorPath,
+      message: `invalid i18n-source-hash marker (${(markerLines[0] ?? "").trim()}) — the value must be sha256:<64 hex>. Run \`bun run docs:i18n:stamp\` to replace it with the hash of ${sourcePath}.`
     });
     return problems;
   }

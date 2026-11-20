@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:72a31a4e321b6b672afabd46516f52cfd8b85e6d2e6d8de009eed198955b978c -->
 
-<!-- i18n-source-hash: sha256:0 -->
-
 # Alur UX pemesanan — pemesanan menginap di storefront, uang muka, pembatalan, dan check-in meja depan
 
 Artefak DoR 8 dari epik [#280](https://github.com/ahliweb/awcms-one/issues/280), item Wave A W8 ([#359](https://github.com/ahliweb/awcms-one/issues/359)), dilacak di [`aw-business-platform-dor.md`](aw-business-platform-dor.md). Ditulis 10 Oktober 2026.

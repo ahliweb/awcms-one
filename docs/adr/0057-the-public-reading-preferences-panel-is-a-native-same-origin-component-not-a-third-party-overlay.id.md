@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:80ee92288f14fb556a78dce4faddee6321bf7757dbdc56c28201169969823124 -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0057 — Panel preferensi baca publik adalah komponen native satu-origin, bukan overlay pihak ketiga
 
 - **Status:** Accepted

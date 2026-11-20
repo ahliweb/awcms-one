@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:8aeaed2f6b111266d4928d7287a393544c1e57ea87b51457a400c4e7da7a6151 -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0042 — Segmen CRM adalah aturan berversi yang tak dapat diubah dalam kosakata tertutup, dievaluasi sesuai permintaan dan tidak pernah disimpan sebagai daftar anggota
 
 - **Status:** Diterima

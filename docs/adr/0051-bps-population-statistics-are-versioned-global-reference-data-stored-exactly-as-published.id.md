@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:de1cab0fae982420cc481c4ddb107cf053904fbaaf16498a805400ae023c3d2b -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # ADR-0051 — Statistik penduduk BPS adalah data referensi global berversi, disimpan persis seperti yang diterbitkan
 
 - **Status:** Accepted
