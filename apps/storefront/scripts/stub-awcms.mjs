@@ -393,16 +393,12 @@ function shippingRatesFixture() {
 }
 
 /**
- * The real courier toggle (issue #109, contract: #106 D4) — `shipping.
- * courier.enabled`/`.couriers` when present, falling back to the older
- * `shipping.courierEnabled` boolean (with no per-courier allow-list) for a
- * settings fixture that predates this issue, exactly as `store-settings-
- * public.json`'s own comment for this app's read side (`pemasaran.ts`)
- * describes.
+ * The courier toggle (issue #109, contract: #106 D4) — the public read model
+ * sends only `shipping.courierEnabled`; the per-courier allow-list stays
+ * private to the CMS, so the stub quotes every courier it has a rate row for
+ * (an empty `couriers` means "all", see `courierOptions`).
  */
 function courierSettings(storeSettingsValue) {
-  const courier = storeSettingsValue.shipping?.courier;
-  if (courier) return { enabled: Boolean(courier.enabled), couriers: courier.couriers ?? [] };
   return { enabled: Boolean(storeSettingsValue.shipping?.courierEnabled), couriers: [] };
 }
 

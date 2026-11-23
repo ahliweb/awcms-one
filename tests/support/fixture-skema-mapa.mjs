@@ -32,7 +32,7 @@ const GET = "get";
 /** @type {ReadonlyArray<object>} */
 export const FIXTURE_MAP = [
   // --- clean responses -------------------------------------------------------
-  { file: "products.json", kind: "response", op: { path: "/api/v1/commerce/products", method: GET, status: 200 }, bodies: whole, reason: "Public product list; judged whole. Violates the schema today through F-03 (downloadLink), recorded as an exception." },
+  { file: "products.json", kind: "response", op: { path: "/api/v1/commerce/products", method: GET, status: 200 }, bodies: whole, reason: "Public product list, matches the schema." },
   { file: "categories.json", kind: "response", op: { path: "/api/v1/commerce/categories", method: GET, status: 200 }, bodies: whole, reason: "Public category list, matches the schema." },
   { file: "site-profile-composed.json", kind: "response", op: { path: "/api/v1/site-profile/composed", method: GET, status: 200 }, bodies: whole, reason: "Composed site identity (allOf of SiteProfile and the four SEO-owned fields), matches the schema." },
   { file: "blog-pages-public.json", kind: "response", op: { path: "/api/v1/blog/pages/public", method: GET, status: 200 }, bodies: whole, reason: "Public page summaries, matches the schema." },
@@ -44,8 +44,8 @@ export const FIXTURE_MAP = [
   { file: "popups-active.json", kind: "response", op: { path: "/api/v1/commerce/popups/active", method: GET, status: 200 }, bodies: whole, reason: "The one active popup (an object or null in data), matches the schema." },
   { file: "media-public-origin.json", kind: "response", op: { path: "/api/v1/media/public-origin", method: GET, status: 200 }, bodies: whole, reason: "Public media origin, matches the schema." },
   { file: "analytics-pages.json", kind: "response", op: { path: "/api/v1/analytics/pages", method: GET, status: 200 }, bodies: whole, reason: "Top pages; the stub overrides only `range` with the requested one. Matches the schema." },
-  { file: "store-settings-public.json", kind: "response", op: { path: "/api/v1/commerce/store-settings/public", method: GET, status: 200 }, bodies: whole, reason: "Public store settings; violates the schema today through F-04 (tax without mode, shipping.courier), recorded as an exception." },
-  { file: "regions-kalteng.json", kind: "response", op: { path: "/api/v1/idn-regions/regions", method: GET, status: 200 }, bodies: whole, reason: "Region list the stub filters by query before sending; judged whole. Violates the schema today through F-05 (regionType city), recorded as an exception." },
+  { file: "store-settings-public.json", kind: "response", op: { path: "/api/v1/commerce/store-settings/public", method: GET, status: 200 }, bodies: whole, reason: "Public store settings, matches the schema." },
+  { file: "regions-kalteng.json", kind: "response", op: { path: "/api/v1/idn-regions/regions", method: GET, status: 200 }, bodies: whole, reason: "Region list the stub filters by query before sending; judged whole, matches the schema." },
 
   // --- declared subsets (audit F-02: four fixtures omit required fields) ----
   {
@@ -126,60 +126,19 @@ export const FIXTURE_MAP = [
 ];
 
 /**
- * Known contract violations by fixtures: F-03 to F-05 of the audit (fixed by
- * issue #554) plus N-01 and N-02, which the gate found on its first run. Delete each entry
- * in the change that fixes it; the gate fails if one matches nothing.
+ * Known contract violations by fixtures. F-03 to F-05 and N-01 were fixed by
+ * issue #554 and their entries deleted; what stays is one upstream spec gap.
+ * Delete each entry in the change that fixes it; the gate fails if one
+ * matches nothing.
  */
 export const EXCEPTIONS = [
-  {
-    id: "F-03",
-    fixture: "products.json",
-    issue: "#554",
-    reviewBy: "2026-12-15",
-    reason:
-      "downloadLink is absent from the public product record by design (toAdminRecord adds it for admins only); the fixture and the storefront CommerceProduct type still carry it.",
-    matches: [{ keyword: "unevaluatedProperties", instancePath: "^/data/items/\\d+$", property: "downloadLink" }]
-  },
-  {
-    id: "F-04",
-    fixture: "store-settings-public.json",
-    issue: "#554",
-    reviewBy: "2026-12-15",
-    reason:
-      "payment.tax has no `mode` although the schema is a union discriminated on it (issue #324), and shipping.courier is a property the schema does not list. The tax `oneOf` and the two unevaluated tax members (active, percent) are consequences of the missing mode.",
-    matches: [
-      { keyword: "unevaluatedProperties", instancePath: "^/data/shipping$", property: "courier" },
-      { keyword: "required", instancePath: "^/data/payment/tax$", property: "mode" },
-      { keyword: "oneOf", instancePath: "^/data/payment/tax$" },
-      { keyword: "unevaluatedProperties", instancePath: "^/data/payment/tax$", property: "active" },
-      { keyword: "unevaluatedProperties", instancePath: "^/data/payment/tax$", property: "percent" }
-    ]
-  },
-  {
-    id: "F-05",
-    fixture: "regions-kalteng.json",
-    issue: "#554",
-    reviewBy: "2026-12-15",
-    reason:
-      "One region has regionType `city`; the schema enum is province, regency, district, village.",
-    matches: [{ keyword: "enum", instancePath: "^/data/items/\\d+/regionType$" }]
-  },
-  {
-    id: "N-01",
-    fixture: "media-objects.json",
-    issue: "#554",
-    reviewBy: "2026-12-15",
-    reason:
-      "Found by this gate on its first run, not in the audit: one registry entry has copyrightStatus `own_work`, which is not in the ResolvedMediaReference enum (the nearest member is `owned`). Triage into #554 or its own issue is the owner's call.",
-    matches: [{ keyword: "enum", instancePath: "^/data/items/\\d+/copyrightStatus$" }]
-  },
   {
     id: "N-02",
     fixture: "blog-posts.json",
     issue: "#554",
     reviewBy: "2026-12-15",
     reason:
-      "Found by this gate on its first run, not in the audit: a videoNews node carries title, caption, durationSeconds and sourceLabel, which PortableTextNode (blog_content) does not declare - it lists only provider and videoId for that type. Either the fixture invents fields or the upstream spec under-declares them; which one is the owner's call (a spec fix belongs in ahliweb/awcms, not apps/cms here).",
+      "Upstream spec gap, to be reported to ahliweb/awcms: the provider emits title, caption, durationSeconds and sourceLabel on a videoNews node (VideoNewsBlockItem in apps/cms/src/modules/_shared/rendering/video-news-block-renderer.ts, validated and rendered by blog_content) and the storefront renders them (apps/storefront/src/lib/portable-text.ts), but PortableTextNode in the OpenAPI spec lists only provider and videoId for that type. The fixture is right and the spec under-declares; no spec change is possible here (apps/cms is upstream-owned).",
     matches: ["title", "caption", "durationSeconds", "sourceLabel"].map((property) => ({
       keyword: "unevaluatedProperties",
       instancePath: "^/data/posts/\\d+/bodyPortableText/\\d+$",

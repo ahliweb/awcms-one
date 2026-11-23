@@ -39,7 +39,6 @@ function product(overrides: Partial<CommerceProduct> = {}): CommerceProduct {
     sizeChartDetails: null,
     serviceForm: null,
     subscriptionPeriod: null,
-    downloadLink: null,
     allowDp: false,
     allowFreeShipping: false,
     variantAttributes: null,

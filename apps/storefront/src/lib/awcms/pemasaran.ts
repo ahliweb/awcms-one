@@ -42,21 +42,8 @@ export type ShippingSettings = {
   alternativeServices: ShippingAlternativeService[];
   selfPickup: boolean;
   courierEnabled: boolean;
-  /**
-   * Issue #109 (contract: #106 D4) — the real courier toggle, additive
-   * beside the older `courierEnabled` flag above (kept for whatever awcms
-   * build still only sends that one). Optional for the same reason every
-   * other #109-and-earlier addition in this file is: an awcms predating
-   * this contract never sends it at all, and every read site defaults it
-   * rather than assuming a courier integration that does not exist yet.
-   * This app itself never READS this field today — `checkout.ts` never
-   * decides whether to show real rates client-side, it always asks the
-   * quote endpoint and renders whatever `shippingOptions[]` comes back —
-   * but it is modelled here so `StoreSettings` stays a faithful mirror of
-   * the public read model (the same posture `payment.proofUpload` and
-   * `affiliateProgramEnabled` above already take).
-   */
-  courier?: { enabled: boolean; couriers: string[] };
+  // No `courier` object: the public read model sends only `courierEnabled` (the
+  // `couriers` allow-list and origin never cross to an anonymous shopper; audit F-04, issue #554).
   pinpointEnabled: boolean;
   freeShipping: { active: boolean; minOrder: string; maxDiscount: string };
   originCityName: string | null;
