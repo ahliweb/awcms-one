@@ -199,6 +199,40 @@ describe("every community has a name somebody chose", () => {
     expect(code).toBe(1);
     expect(output).toContain("that is a filename");
   });
+
+  const fallbackGraph = {
+    nodes: [{ id: "n1", community: 0, community_name: "thing.ts", source_file: "src/thing.ts" }]
+  };
+  const fallbackReport = ["## Summary", "- 1 nodes · 0 edges · 1 communities", "", '### Community 0 - "thing.ts"'].join("\n");
+
+  test("a code-only graph (STATUS.md) with hub-name fallbacks passes with a note (issue #534)", async () => {
+    const root = fixture({
+      graph: fallbackGraph,
+      report: fallbackReport,
+      extra: { "graphify-out/STATUS.md": "# Status\n\nCode-only graph.\n" }
+    });
+    const { code, output } = await run(root);
+    expect(output).toContain("OK — no violations.");
+    expect(output).toContain("accepted because graphify-out/STATUS.md marks the graph code-only");
+    expect(code).toBe(0);
+  });
+
+  test("the same graph without STATUS.md still fails", async () => {
+    const { code, output } = await run(fixture({ graph: fallbackGraph, report: fallbackReport }));
+    expect(code).toBe(1);
+    expect(output).toContain("that is a filename");
+  });
+
+  test("a code-only graph still fails on a placeholder label", async () => {
+    const root = fixture({
+      graph: { nodes: [{ id: "n1", community: 0, community_name: "Community 0", source_file: "src/thing.ts" }] },
+      report: ["## Summary", "- 1 nodes · 0 edges · 1 communities", "", '### Community 0 - "Community 0"'].join("\n"),
+      extra: { "graphify-out/STATUS.md": "code only\n" }
+    });
+    const { code, output } = await run(root);
+    expect(code).toBe(1);
+    expect(output).toContain("still the placeholder");
+  });
 });
 
 describe("the federated graph is never accidentally committed", () => {
@@ -218,14 +252,44 @@ describe("only the tracked root artefacts are tracked", () => {
     expect(output).toContain("not one of the tracked root artefacts");
   });
 
-  test("a missing tracked artefact is a violation", async () => {
+  test("an untracked graph.json (required) is a violation", async () => {
     const root = fixture();
-    // Remove one of the four from the git index without deleting the file's
-    // sibling content, so the loop under test sees "not tracked" specifically.
-    Bun.spawnSync(["git", "rm", "-q", "--cached", "graphify-out/cost.json"], { cwd: root });
+    // Remove it from the git index without deleting the file, so the loop
+    // under test sees "not tracked" specifically.
+    Bun.spawnSync(["git", "rm", "-q", "--cached", "graphify-out/graph.json"], { cwd: root });
     const { code, output } = await run(root);
     expect(code).toBe(1);
-    expect(output).toContain("cost.json: shared artefact is not tracked");
+    expect(output).toContain("graph.json: shared artefact is not tracked");
+  });
+
+  test("untracked manifest.json and cost.json are accepted (optional, issue #534)", async () => {
+    const root = fixture();
+    Bun.spawnSync(["git", "rm", "-q", "--cached", "graphify-out/cost.json", "graphify-out/manifest.json"], {
+      cwd: root
+    });
+    const { code, output } = await run(root);
+    expect(output).toContain("OK — no violations.");
+    expect(code).toBe(0);
+  });
+
+  test("optional STATUS.md and the label sidecar may be tracked", async () => {
+    const root = fixture({
+      extra: {
+        "graphify-out/STATUS.md": "code only\n",
+        "graphify-out/.graphify_labels.json": "{}",
+        "graphify-out/.graphify_labels.json.sig": "x"
+      }
+    });
+    const { code, output } = await run(root);
+    expect(output).toContain("OK — no violations.");
+    expect(code).toBe(0);
+  });
+
+  test("another tracked dot-file is still a violation", async () => {
+    const root = fixture({ extra: { "graphify-out/.graphify_extract.json": "{}" } });
+    const { code, output } = await run(root);
+    expect(code).toBe(1);
+    expect(output).toContain("a dot-file is a build intermediate");
   });
 });
 

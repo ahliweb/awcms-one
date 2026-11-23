@@ -97,6 +97,8 @@ export const ROUTES = {
   accountReviews: "/akun/ulasan",
   /** Lands in S3 (issue #86's affiliate program). */
   accountAffiliate: "/akun/afiliasi",
+  /** `/akun/privasi` — the shopper's own data export and erasure (issue #529, ADR-0055). */
+  accountPrivacy: "/akun/privasi",
   /** Issue #115 (S3 of #33, contract #106 D8) — the signed-in shopper's own message inbox with the store. */
   accountMessages: "/akun/pesan",
   /** A single thread — `id` is percent-encoded, mirroring `accountOrder`'s own `?kode=` shape. */
@@ -194,6 +196,7 @@ export const ROUTE_GROUPS = {
   accountAddresses: "toko",
   accountReviews: "toko",
   accountAffiliate: "toko",
+  accountPrivacy: "toko",
   accountMessages: "toko",
   accountMessage: "toko",
   booking: "toko",

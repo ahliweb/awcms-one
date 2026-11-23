@@ -44,8 +44,9 @@ Community NAMING is separate from extraction and is also non-LLM here: `graphify
 | --- | --- | --- |
 | `graphify-out/graph.json` | root-owned graph, code-only AST | ✅ |
 | `graphify-out/GRAPH_REPORT.md` | audit report for the root graph | ✅ |
-| `graphify-out/manifest.json` | incremental-update state | ✅ |
-| `graphify-out/cost.json` | cumulative token cost across runs (`0`/`0` today) | ✅ |
+| `graphify-out/manifest.json` | incremental-update state; the staleness check reads it | ✅ here; optional to `audit:graf` (the skill's own table leaves it untracked) |
+| `graphify-out/cost.json` | cumulative token cost across runs (`0`/`0` today) | ✅ here; optional to `audit:graf` |
+| `graphify-out/STATUS.md`, `graphify-out/.graphify_labels.json{,.sig}` | code-only marker; curated community names | optional to `audit:graf` (absent here today) |
 | `graphify-out/cache/` | extraction cache, machine-specific | ❌ (root `.gitignore`) |
 | `graphify-out/.*` (markers, `.graphify_python`, …) | build intermediates | ❌ (root `.gitignore`) |
 | `graphify-out/graph.html` | visualisation | ❌ (root `.gitignore`) |
@@ -59,7 +60,7 @@ Community NAMING is separate from extraction and is also non-LLM here: `graphify
 
 ## What `bun run audit:graf` checks
 
-Modelled on `apps/cms/scripts/graph-artifacts-check.ts` — the same five questions over the root artefacts (only the tracked files are tracked, the report agrees with the graph, every community has a chosen name, exclusions hold, `.graphifyignore` still names `apps/cms`), plus two that only exist at a federated root: no node in the tracked graph has a `source_file` under `apps/cms/` (no duplicate extraction), and `apps/cms/graphify-out/` still tracks exactly its own four files (no root tooling has ever written into the subtree). See `packages/gerbang/audit-graf.mjs`'s own docblock for the full list and what is deliberately not checked, and `tests/audit-graf.test.mjs` for each check proven to go red on the defect it exists to catch.
+Modelled on `apps/cms/scripts/graph-artifacts-check.ts` — the same five questions over the root artefacts (only the tracked files are tracked, the report agrees with the graph, every community has a chosen name, exclusions hold, `.graphifyignore` still names `apps/cms`), plus two that only exist at a federated root: no node in the tracked graph has a `source_file` under `apps/cms/` (no duplicate extraction), and `apps/cms/graphify-out/` still tracks exactly its own four files (no root tooling has ever written into the subtree). Three of those checks are shaped for derived products (issue #534). **Tracked artefacts** are three explicit lists in `packages/gerbang/lib/graf-checks.mjs`, following the knowledge-graph skill's tracking table: `graph.json` and `GRAPH_REPORT.md` are required, `STATUS.md`, the label sidecar, `manifest.json` and `cost.json` are optional (tracked or not), and everything else is refused. **Code-only graphs**: when `graphify-out/STATUS.md` exists the graph is marked code-only (the skill's convention), and a hub-name fallback community label (a bare filename) is reported as a note instead of a failure; a placeholder, a missing name or a report/graph mismatch still fails, and a graph without `STATUS.md` claims to be complete and fails as before. **Subtree allow-list**: `SUBTREE_ALLOWLIST` in the same module (default empty, so the template behaves exactly as before) lists `{ prefix, reason }` paths under `apps/cms/` that a derived product owns and may extract into its root graph. One list drives the `.graphifyignore` check, the no-subtree-node check and the staleness candidates; a non-empty list requires `.graphifyignore` to default-deny `apps/cms/*` and re-include each prefix and its parent directories, and a node under `apps/cms/` outside the list still fails. `apps/cms/graphify-out` can never be listed. See `packages/gerbang/audit-graf.mjs`'s own docblock for the full list and what is deliberately not checked, and `tests/audit-graf.test.mjs` for each check proven to go red on the defect it exists to catch.
 
 ### Bounded content staleness (issue #186)
 
