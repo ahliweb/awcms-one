@@ -56,19 +56,99 @@ import { createHash } from "node:crypto";
 /** @typedef {{ rule: string, file: string, message: string }} Violation */
 
 /**
- * The graphify artefacts this repo tracks at the ROOT, and only these —
- * identical to `apps/cms`'s own list (`graph-artifacts-check.ts`,
- * `TRACKED_ARTIFACTS`), because the shape of the decision is the same:
- * shared output is named without a leading dot, while cache, dot-files,
- * dated copies, and `graph.html` each have their own reason to stay out of
- * history (see the root `.gitignore`'s own graphify section).
+ * The three explicit artefact lists of the root `graphify-out/`, following the
+ * knowledge-graph skill's tracking table (`.claude/skills/pengetahuan-ringkas/
+ * SKILL.md`, "Artefak: dilacak Git vs tidak") rather than one hard-coded set
+ * (issue #534). The skill's table says `manifest.json` and `cost.json` are NOT
+ * tracked, while this repository tracks them (the staleness check below reads
+ * `manifest.json`), so both are OPTIONAL: tracked or untracked is accepted, and
+ * a derived product that follows the table verbatim passes too.
+ *
+ *   - REQUIRED: must be tracked; the graph and its report are the shared output.
+ *   - OPTIONAL: may be tracked, may be absent from `git ls-files`.
+ *   - everything else is UNTRACKED by rule (cache, other dot-files, dated
+ *     copies, `graph.html`, `obsidian/`) and reported with its own reason.
  */
-export const TRACKED_ARTIFACTS = new Set([
-  "GRAPH_REPORT.md",
+export const REQUIRED_ARTIFACTS = new Set(["GRAPH_REPORT.md", "graph.json"]);
+export const OPTIONAL_ARTIFACTS = new Set([
+  ".graphify_labels.json",
+  ".graphify_labels.json.sig",
+  "STATUS.md",
   "cost.json",
-  "graph.json",
   "manifest.json"
 ]);
+
+/**
+ * The four files `ahliweb/awcms`'s own gate expects under
+ * `apps/cms/graphify-out/` — the SUBTREE's list, owned upstream, deliberately
+ * not the same thing as this repo's root lists above.
+ */
+export const TRACKED_ARTIFACTS = new Set(["GRAPH_REPORT.md", "cost.json", "graph.json", "manifest.json"]);
+
+/**
+ * Path prefixes a derived product owns INSIDE `apps/cms/` and may therefore
+ * extract into its ROOT graph (its own module, its own tests). Default EMPTY:
+ * with no entry every check behaves as it did before issue #534. One list, used
+ * by the `.graphifyignore` consistency check, the "no subtree node" check and
+ * the staleness candidates, so they cannot disagree.
+ *
+ * An entry is `{ prefix, reason }`: `prefix` is a repo-relative path under
+ * `apps/cms/` (a directory with or without a trailing slash, or a single file),
+ * `reason` says why the product owns it. Never `apps/cms/graphify-out` (the
+ * subtree's own graph) and never `apps/cms` itself. Adding an entry also needs
+ * `.graphifyignore` to default-deny `apps/cms/*` and re-include the prefix and
+ * each of its parent directories.
+ *
+ * @type {ReadonlyArray<{ prefix: string, reason: string }>}
+ */
+export const SUBTREE_ALLOWLIST = [];
+
+/** @param {string} prefix */
+function normaliseAllowPrefix(prefix) {
+  return prefix.replace(/^\/+/, "").replace(/\/+$/, "");
+}
+
+/**
+ * @param {string} filePath
+ * @param {ReadonlyArray<{ prefix: string }>} allowlist
+ */
+export function isSubtreeAllowlisted(filePath, allowlist = SUBTREE_ALLOWLIST) {
+  return allowlist.some((entry) => {
+    const prefix = normaliseAllowPrefix(entry.prefix);
+    return filePath === prefix || filePath.startsWith(`${prefix}/`);
+  });
+}
+
+/**
+ * Validates the allow-list itself: every entry sits under `apps/cms/`, is not
+ * the subtree's own graph directory, and carries a reason.
+ *
+ * @param {ReadonlyArray<{ prefix: string, reason: string }>} allowlist
+ * @returns {Violation[]}
+ */
+export function checkSubtreeAllowlist(allowlist = SUBTREE_ALLOWLIST) {
+  const violations = [];
+  const fail = (entry, message) =>
+    violations.push({
+      rule: "subtree-allowlist",
+      file: "packages/gerbang/lib/graf-checks.mjs",
+      message: `${JSON.stringify(entry.prefix)}: ${message}`
+    });
+
+  for (const entry of allowlist) {
+    const prefix = normaliseAllowPrefix(String(entry.prefix ?? ""));
+    if (!prefix.startsWith("apps/cms/") || prefix.split("/").includes("..")) {
+      fail(entry, "must be a path under apps/cms/ (never apps/cms itself)");
+    } else if (prefix === "apps/cms/graphify-out" || prefix.startsWith("apps/cms/graphify-out/")) {
+      fail(entry, "the subtree's own graph directory can never be allow-listed");
+    }
+    if (typeof entry.reason !== "string" || entry.reason.trim() === "") {
+      fail(entry, "has no reason — an allow-listed subtree path must say why the product owns it");
+    }
+  }
+
+  return violations;
+}
 
 /** @typedef {{ id?: string, community?: number|null, community_name?: string|null, source_file?: string }} GraphNode */
 /** @typedef {{ nodes: GraphNode[], links?: unknown[], built_at_commit?: string, directed?: boolean }} Graph */
@@ -114,7 +194,7 @@ export function checkTrackedArtifacts(trackedPaths) {
     // in here would report the same file twice under two different rules.
     if (rest.startsWith("combined/")) continue;
 
-    if (TRACKED_ARTIFACTS.has(rest)) continue;
+    if (REQUIRED_ARTIFACTS.has(rest) || OPTIONAL_ARTIFACTS.has(rest)) continue;
 
     const reason = rest.startsWith("cache/")
       ? "cache is machine-specific and never enters history"
@@ -124,7 +204,9 @@ export function checkTrackedArtifacts(trackedPaths) {
           ? "a dated copy is a full duplicate of the live artefact beside it"
           : rest === "graph.html"
             ? "graph.html stops being emitted above the viz node limit and then rots silently"
-            : "not one of the tracked root artefacts";
+            : rest.startsWith("obsidian/")
+              ? "the Obsidian vault is local and overwritten on every export"
+              : "not one of the tracked root artefacts";
 
     violations.push({
       rule: "tracked",
@@ -133,7 +215,7 @@ export function checkTrackedArtifacts(trackedPaths) {
     });
   }
 
-  for (const name of TRACKED_ARTIFACTS) {
+  for (const name of REQUIRED_ARTIFACTS) {
     if (!trackedPaths.includes(`${prefix}${name}`)) {
       violations.push({ rule: "tracked", file: `${prefix}${name}`, message: "shared artefact is not tracked" });
     }
@@ -224,11 +306,47 @@ export function reportedCommunityNames(report) {
 }
 
 /**
+ * `graphify-out/STATUS.md` marks a graph as code-only (the skill: "Bila
+ * STATUS.md ada, graf baru berisi kode saja"); without it the graph claims to
+ * be complete. Presence is the marker, so a code-only graph is never mistaken
+ * for a complete one by content parsing.
+ *
+ * @param {string | null} statusContents - `STATUS.md`, or `null` when absent
+ * @returns {{ codeOnly: boolean }}
+ */
+export function parseGraphStatus(statusContents) {
+  return { codeOnly: statusContents !== null && statusContents !== undefined };
+}
+
+/**
+ * Community-label violations. For a code-only graph, use
+ * {@link classifyCommunityLabels} to also get the hub-name fallbacks as notes.
+ *
  * @param {Graph} graph
  * @param {string} report
+ * @param {{ codeOnly?: boolean }} [options]
  * @returns {Violation[]}
  */
-export function checkCommunityLabels(graph, report) {
+export function checkCommunityLabels(graph, report, options = {}) {
+  return classifyCommunityLabels(graph, report, options).violations;
+}
+
+/**
+ * A code-only graph has hub-name fallbacks (a filename) instead of chosen
+ * labels. When `options.codeOnly` is set, that one finding, and a duplicate of
+ * such a name, is a NOTE; a missing name, a `Community N` placeholder and a
+ * report/graph mismatch still fail, and a graph that is not marked code-only
+ * fails for all of them exactly as before (issue #534).
+ *
+ * @param {Graph} graph
+ * @param {string} report
+ * @param {{ codeOnly?: boolean }} [options]
+ * @returns {{ violations: Violation[], notes: string[] }}
+ */
+export function classifyCommunityLabels(graph, report, options = {}) {
+  const codeOnly = options.codeOnly === true;
+  const notes = [];
+  const fallbackNames = new Set();
   const graphNames = new Map();
 
   for (const node of graph.nodes) {
@@ -237,7 +355,7 @@ export function checkCommunityLabels(graph, report) {
     if (!graphNames.has(community)) graphNames.set(community, node.community_name);
   }
 
-  if (graphNames.size === 0) return [];
+  if (graphNames.size === 0) return { violations: [], notes };
 
   const violations = [];
   const reportNames = reportedCommunityNames(report);
@@ -257,11 +375,13 @@ export function checkCommunityLabels(graph, report) {
         message: `community ${community} is still the placeholder "${name}"`
       });
     } else if (FILE_SUFFIX.test(name)) {
-      violations.push({
-        rule: "label",
-        file: graphFile,
-        message: `community ${community} is named "${name}" — that is a filename (hub-naming fallback), not a chosen name`
-      });
+      const message = `community ${community} is named "${name}" — that is a filename (hub-naming fallback), not a chosen name`;
+      if (codeOnly) {
+        fallbackNames.add(name);
+        notes.push(`${message}; accepted because graphify-out/STATUS.md marks the graph code-only`);
+      } else {
+        violations.push({ rule: "label", file: graphFile, message });
+      }
     }
 
     usedBy.set(name, [...(usedBy.get(name) ?? []), community]);
@@ -278,6 +398,7 @@ export function checkCommunityLabels(graph, report) {
 
   for (const [name, communities] of usedBy) {
     if (communities.length > 1) {
+      if (codeOnly && fallbackNames.has(name)) continue;
       violations.push({
         rule: "label",
         file: graphFile,
@@ -286,23 +407,26 @@ export function checkCommunityLabels(graph, report) {
     }
   }
 
-  return violations;
+  return { violations, notes };
 }
 
 // ---------------------------------------------------------------------------
 // 5. What is excluded stays excluded — AND apps/cms specifically is
 // ---------------------------------------------------------------------------
 
-/** @typedef {{ prefixes: string[], unenforced: string[] }} ParsedIgnore */
+/** @typedef {{ prefixes: string[], unenforced: string[], reincludes: string[] }} ParsedIgnore */
 
 /** @param {string} contents */
 export function parseGraphifyIgnore(contents) {
   const prefixes = [];
   const unenforced = [];
+  const reincludes = [];
 
   for (const line of contents.split("\n")) {
     const pattern = line.trim();
     if (!pattern || pattern.startsWith("#")) continue;
+
+    if (pattern.startsWith("!")) reincludes.push(pattern.slice(1).replace(/^\/+/, "").replace(/\/+$/, ""));
 
     if (pattern.startsWith("!") || /[*?[\]]/.test(pattern)) {
       unenforced.push(pattern);
@@ -312,7 +436,7 @@ export function parseGraphifyIgnore(contents) {
     prefixes.push(pattern.replace(/^\/+/, "").replace(/\/+$/, ""));
   }
 
-  return { prefixes, unenforced };
+  return { prefixes, unenforced, reincludes };
 }
 
 /**
@@ -322,10 +446,43 @@ export function parseGraphifyIgnore(contents) {
  * by design), the next `knowledge:graph:update` re-admits ~12700 nodes with
  * nobody's rebuild noticing until this gate is asked.
  *
+ * With a non-empty `allowlist` (issue #534) the plain `apps/cms/` entry cannot
+ * stay (gitignore cannot re-include below an excluded directory), so the file
+ * must instead default-deny `apps/cms/*` and re-include every allow-listed
+ * prefix and each parent directory of it below `apps/cms/`. With the default
+ * empty list the behaviour is unchanged.
+ *
  * @param {ParsedIgnore} ignore
+ * @param {ReadonlyArray<{ prefix: string }>} [allowlist]
  * @returns {Violation[]}
  */
-export function checkGraphifyIgnoreExcludesSubtree(ignore) {
+export function checkGraphifyIgnoreExcludesSubtree(ignore, allowlist = SUBTREE_ALLOWLIST) {
+  if (allowlist.length > 0) {
+    const violations = [];
+    const fail = (message) => violations.push({ rule: "subtree-excluded", file: ".graphifyignore", message });
+
+    if (ignore.prefixes.includes("apps/cms")) {
+      fail(
+        "excludes apps/cms/ wholesale, which cannot be re-included below — with a SUBTREE_ALLOWLIST use `apps/cms/*` plus `!` re-includes"
+      );
+    }
+    if (!ignore.unenforced.includes("apps/cms/*")) {
+      fail("does not default-deny `apps/cms/*` — the next root rebuild would extract the subtree beyond the allow-list");
+    }
+
+    const reincluded = new Set(ignore.reincludes);
+    for (const entry of allowlist) {
+      const parts = normaliseAllowPrefix(entry.prefix).split("/");
+      for (let depth = 3; depth <= parts.length; depth += 1) {
+        const dir = parts.slice(0, depth).join("/");
+        if (!reincluded.has(dir)) {
+          fail(`does not re-include \`${dir}/\` (needed for the allow-listed ${JSON.stringify(entry.prefix)})`);
+        }
+      }
+    }
+    return violations;
+  }
+
   if (ignore.prefixes.includes("apps/cms")) return [];
 
   if (ignore.unenforced.some((p) => p.includes("apps/cms"))) {
@@ -392,12 +549,19 @@ export function checkExclusionsHeld(graph, ignore) {
  * parse (a glob, a rename), which is exactly the silent-duplication failure
  * mode issue #11 names first.
  *
+ * A node under an allow-listed prefix ({@link SUBTREE_ALLOWLIST}, default
+ * empty) is the one exception; every other `apps/cms/` node still fails.
+ *
  * @param {Graph} graph
+ * @param {ReadonlyArray<{ prefix: string }>} [allowlist]
  * @returns {Violation[]}
  */
-export function checkNoSubtreeNodes(graph) {
+export function checkNoSubtreeNodes(graph, allowlist = SUBTREE_ALLOWLIST) {
   const offenders = graph.nodes.filter(
-    (node) => typeof node.source_file === "string" && node.source_file.startsWith("apps/cms/")
+    (node) =>
+      typeof node.source_file === "string" &&
+      node.source_file.startsWith("apps/cms/") &&
+      !isSubtreeAllowlisted(node.source_file, allowlist)
   );
 
   if (offenders.length === 0) return [];
@@ -477,7 +641,10 @@ export function manifestExtensions(manifest) {
  * Obsidian export changing `knowledge/generated/graphify/`, must never count
  * as the SOURCE drifting away from the graph that describes it.
  */
-const ALWAYS_OUT_OF_SCOPE_PREFIXES = ["apps/cms/", "graphify-out/", "knowledge/generated/"];
+const ALWAYS_OUT_OF_SCOPE_PREFIXES = ["graphify-out/", "knowledge/generated/"];
+
+/** `apps/cms/` is out of scope too, except for the allow-listed prefixes (issue #534). */
+const SUBTREE_PREFIX = "apps/cms/";
 
 /**
  * Every currently git-tracked path this gate considers a staleness
@@ -492,12 +659,13 @@ const ALWAYS_OUT_OF_SCOPE_PREFIXES = ["apps/cms/", "graphify-out/", "knowledge/g
  * @param {readonly string[]} ignorePrefixes - `ParsedIgnore.prefixes`
  * @returns {string[]} sorted
  */
-export function inScopeCandidates(trackedPaths, extensions, ignorePrefixes) {
+export function inScopeCandidates(trackedPaths, extensions, ignorePrefixes, allowlist = SUBTREE_ALLOWLIST) {
   const prefixes = [...ALWAYS_OUT_OF_SCOPE_PREFIXES, ...ignorePrefixes.map((prefix) => `${prefix}/`)];
 
   return trackedPaths
     .filter((filePath) => {
       if (filePath.endsWith(".id.md")) return false;
+      if (filePath.startsWith(SUBTREE_PREFIX) && !isSubtreeAllowlisted(filePath, allowlist)) return false;
       if (prefixes.some((prefix) => filePath === prefix.slice(0, -1) || filePath.startsWith(prefix))) return false;
 
       const dot = filePath.lastIndexOf(".");
@@ -531,10 +699,17 @@ export function inScopeCandidates(trackedPaths, extensions, ignorePrefixes) {
  * @param {readonly string[]} ignorePrefixes - `ParsedIgnore.prefixes`
  * @param {(filePath: string) => string | null} currentHash - current md5 of
  *   a path relative to the repo root, or `null` when unreadable
+ * @param {ReadonlyArray<{ prefix: string }>} [allowlist] - {@link SUBTREE_ALLOWLIST}
  * @returns {StalenessDiff}
  */
-export function diffManifestStaleness(manifest, trackedPaths, ignorePrefixes, currentHash) {
-  const candidates = inScopeCandidates(trackedPaths, manifestExtensions(manifest), ignorePrefixes);
+export function diffManifestStaleness(
+  manifest,
+  trackedPaths,
+  ignorePrefixes,
+  currentHash,
+  allowlist = SUBTREE_ALLOWLIST
+) {
+  const candidates = inScopeCandidates(trackedPaths, manifestExtensions(manifest), ignorePrefixes, allowlist);
   const candidateSet = new Set(candidates);
 
   const changed = [];
