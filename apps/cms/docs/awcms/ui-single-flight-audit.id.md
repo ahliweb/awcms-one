@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-single-flight-audit.md)
 
-<!-- i18n-source-hash: sha256:87af83475d4919bf5040698565b6d65e74600287596318eea7cb2b842c2ca3eb -->
+<!-- i18n-source-hash: sha256:22ba73f445e883af1ace5859385e1bec02cd83147984cbc973ae29d23cba5922 -->
 
 # Single flight secara bawaan: audit setiap form dan titik masuk mutasi
 
@@ -77,7 +77,7 @@ diklasifikasikan dilaporkan sebagai `none`, tidak pernah dibuang, dan fakta
 
 <!-- BEGIN GENERATED: single-flight-audit -->
 
-375 titik masuk di 118 berkas; 363 mengirim request yang mengubah data dan 12 tidak. Sebelum #1224 ke-363 itu dijaga `lockElement`/`mutateAndReload` pada 296, flag buatan sendiri pada 11, dan tidak ada sama sekali pada 56. Sesudahnya: 368 dari 375 dipasang lewat helper bersama (single flight secara bawaan); 7 sisanya adalah pengecualian terdaftar yang mempertahankan penjaganya sendiri yang sudah ditinjau.
+377 titik masuk di 118 berkas; 365 mengirim request yang mengubah data dan 12 tidak. Sebelum #1224 ke-365 itu dijaga `lockElement`/`mutateAndReload` pada 298, flag buatan sendiri pada 11, dan tidak ada sama sekali pada 56. Sesudahnya: 370 dari 377 dipasang lewat helper bersama (single flight secara bawaan); 7 sisanya adalah pengecualian terdaftar yang mempertahankan penjaganya sendiri yang sudah ditinjau.
 
 | Berkas                                             | Target                                         | Dipasang sebagai (kini) | Sebelum #1224                                                                                                                              | Sesudah #1224             | Idempotency-Key dikirim |
 | -------------------------------------------------- | ---------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- | ----------------------- |
@@ -454,6 +454,8 @@ diklasifikasikan dilaporkan sebagai `none`, tidak pernah dibuang, dan fakta
 | `src/pages/admin/whatsapp.astro`                   | `whatsapp-suppression-form`                    | onSubmit                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | —                       |
 | `src/pages/forgot-password.astro`                  | `forgot-form`                                  | onSubmit                | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                             | single-flight (helper)    | —                       |
 | `src/pages/login.astro`                            | `login-form`                                   | onSubmit                | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                             | single-flight (helper)    | —                       |
+| `src/pages/login.astro`                            | `enrol-form`                                   | onSubmit                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | —                       |
+| `src/pages/login.astro`                            | `mfa-form`                                     | onSubmit                | `lockElement`/`mutateAndReload`                                                                                                            | single-flight (helper)    | —                       |
 | `src/pages/register.astro`                         | `register-form`                                | onSubmit                | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                             | single-flight (helper)    | —                       |
 | `src/pages/reset-password.astro`                   | `reset-form`                                   | onSubmit                | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                             | single-flight (helper)    | —                       |
 

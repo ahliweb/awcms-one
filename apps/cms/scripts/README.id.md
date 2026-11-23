@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:bb60608431b88c13aff2333afcbb1745ae3445236c664ad889010a81a3352231 -->
+<!-- i18n-source-hash: sha256:2ca8e4419797dde4d82fc5c32ddd3f5b4e6d45250097e2c7d3b55e56a51441f0 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-190 target menjalankan berkas di `scripts/`; 68 di antaranya
+189 target menjalankan berkas di `scripts/`; 69 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -44,6 +44,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `api:body-limit:check`                    | `request-body-limit-check.ts`                  | ✅   |
 | `api:consumer-contract:check`             | `api-consumer-contract.ts`                     | ✅   |
 | `api:consumer-contract:generate`          | `api-consumer-contract.ts`                     | —    |
+| `api:contract:lint`                       | `api-contract-lint.ts`                         | ✅   |
 | `api:docs:check`                          | `api-docs-check.ts`                            | ✅   |
 | `api:docs:generate`                       | `api-docs-generate.ts`                         | —    |
 | `api:spec:check`                          | `api-spec-check.ts`                            | ✅   |
@@ -117,6 +118,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `db:work-class:generate`                  | `work-class-registry-generate.ts`              | —    |
 | `deps:audit:check`                        | `dependency-audit-check.ts`                    | ✅   |
 | `deps:freshness`                          | `dependency-freshness.ts`                      | —    |
+| `deps:held-back:check`                    | `dependency-held-back-check.ts`                | ✅   |
 | `deps:issues:sync`                        | `dependency-issue-sync.ts`                     | —    |
 | `deps:license:check`                      | `dependency-license-check.ts`                  | ✅   |
 | `deps:provider-changelog:check`           | `provider-changelog-check.ts`                  | ✅   |
@@ -164,9 +166,6 @@ terjadwal, atau oleh workflow CI tertentu.
 | `knowledge:obsidian:export`               | `knowledge-obsidian-sync.ts`                   | —    |
 | `logging:lint:check`                      | `logging-lint-check.ts`                        | ✅   |
 | `logs:audit:purge`                        | `audit-log-purge.ts`                           | —    |
-| `memory:docs:check`                       | `sync-agent-memory.ts`                         | ✅   |
-| `memory:docs:restore`                     | `sync-agent-memory.ts`                         | —    |
-| `memory:docs:sync`                        | `sync-agent-memory.ts`                         | —    |
 | `modules:compose:check`                   | `validate-module-composition.ts`               | ✅   |
 | `modules:composition:inventory:check`     | `module-composition-inventory-check.ts`        | ✅   |
 | `modules:composition:inventory:generate`  | `module-composition-inventory-generate.ts`     | —    |

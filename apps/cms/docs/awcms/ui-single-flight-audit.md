@@ -70,7 +70,7 @@ the reason.
 
 <!-- BEGIN GENERATED: single-flight-audit -->
 
-375 entry points in 118 files; 363 send a mutating request and 12 do not. Before #1224 those 363 were protected by `lockElement`/`mutateAndReload` in 296, by a hand-rolled flag in 11, and by nothing in 56. After: 368 of the 375 are bound through the shared helpers (single flight by default); the other 7 are listed exceptions that keep their own reviewed guard.
+377 entry points in 118 files; 365 send a mutating request and 12 do not. Before #1224 those 365 were protected by `lockElement`/`mutateAndReload` in 298, by a hand-rolled flag in 11, and by nothing in 56. After: 370 of the 377 are bound through the shared helpers (single flight by default); the other 7 are listed exceptions that keep their own reviewed guard.
 
 | File                                               | Target                                         | Bound as (now) | Before #1224                                                                                                                          | After #1224            | Idempotency-Key sent |
 | -------------------------------------------------- | ---------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | -------------------- |
@@ -447,6 +447,8 @@ the reason.
 | `src/pages/admin/whatsapp.astro`                   | `whatsapp-suppression-form`                    | onSubmit       | `lockElement`/`mutateAndReload`                                                                                                       | single-flight (helper) | —                    |
 | `src/pages/forgot-password.astro`                  | `forgot-form`                                  | onSubmit       | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                        | single-flight (helper) | —                    |
 | `src/pages/login.astro`                            | `login-form`                                   | onSubmit       | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                        | single-flight (helper) | —                    |
+| `src/pages/login.astro`                            | `enrol-form`                                   | onSubmit       | `lockElement`/`mutateAndReload`                                                                                                       | single-flight (helper) | —                    |
+| `src/pages/login.astro`                            | `mfa-form`                                     | onSubmit       | `lockElement`/`mutateAndReload`                                                                                                       | single-flight (helper) | —                    |
 | `src/pages/register.astro`                         | `register-form`                                | onSubmit       | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                        | single-flight (helper) | —                    |
 | `src/pages/reset-password.astro`                   | `reset-form`                                   | onSubmit       | direct submit: `lockElement`/`mutateAndReload` (`lockElement` + `submitButton.disabled` check)                                        | single-flight (helper) | —                    |
 
