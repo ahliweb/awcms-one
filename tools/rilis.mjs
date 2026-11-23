@@ -44,6 +44,12 @@ import {
   formatTag,
   highestBump
 } from "../packages/gerbang/lib/semver.mjs";
+import {
+  MIRRORS_CONFIG_PATH,
+  applyMirrorPlan,
+  loadMirrors,
+  planMirrors
+} from "../packages/gerbang/lib/version-mirrors.mjs";
 
 /**
  * Every git call goes through `packages/gerbang/lib/git.mjs`, which spawns
@@ -160,6 +166,22 @@ const origin = requestedLevel
 console.log(`${pkg.version} -> ${next}  (tag ${tag}, ${level} — ${origin})`);
 console.log(pending.length ? `Changesets waiting: ${pending.join(", ")}` : "No changesets waiting.");
 
+// -- Version mirrors (issue #536) ---------------------------------------------
+// Copies of the version that live where the root package.json cannot be read
+// (an image built from a subfolder alone). Declared in one file; the template
+// ships it empty, so with no mirrors nothing below changes. The rewrite is
+// PLANNED here, in memory, before anything is written: a mirror whose file or
+// pattern does not match refuses the release with the tree untouched, in the
+// preview as well as on --apply.
+let mirrorPlan;
+try {
+  mirrorPlan = planMirrors(".", loadMirrors("."), next);
+} catch (error) {
+  console.error(`Version mirrors (${MIRRORS_CONFIG_PATH}): ${error.message}`);
+  process.exit(1);
+}
+for (const m of mirrorPlan) console.log(`Version mirror: ${m.file}  ${m.from} -> ${next}`);
+
 if (!apply) {
   console.log("\nPreview only. Add --apply to write files.");
   process.exit(0);
@@ -237,13 +259,19 @@ for (const f of pending) fs.unlinkSync(`.changesets/${f}`);
 pkg.version = next;
 fs.writeFileSync("package.json", `${JSON.stringify(pkg, null, 2)}\n`);
 
+// Only after the root bump succeeded; `git add -A` below carries the mirrors
+// into the same release commit.
+applyMirrorPlan(".", mirrorPlan);
+
 // No lockfile field to touch here: `package-lock.json` used to store the
 // project version in two places, and both drifted silently whenever only
 // package.json was bumped. `bun.lock` records no version at all (only
 // workspace names and dependency ranges), so that entire class of defect
 // disappeared with the move to Bun — see `packages/gerbang/lib/lockfile.mjs`.
 
-console.log(`\nCHANGELOG.md and package.json updated to ${next}.`);
+console.log(
+  `\nCHANGELOG.md and package.json${mirrorPlan.length ? ` (and ${mirrorPlan.length} version mirror(s))` : ""} updated to ${next}.`
+);
 
 // -- Commit and tag ------------------------------------------------------------
 // Issue #225 part 2 (ADR-0023): publishing is no longer automatic on tag
