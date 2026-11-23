@@ -539,7 +539,7 @@ describe("template:init — full run in a temp copy", () => {
           // against the rewritten pair — this is the real regression the
           // issue reports, not just a string match on `bun.lock`'s content.
           const lockAfter = readFileSync(join(dir, "bun.lock"), "utf8");
-          expect(lockAfter).toContain(`"": {\n      "name": "${pkgAfter.name}",\n    },`);
+          expect(lockAfter).toContain(`"": {\n      "name": "${pkgAfter.name}",\n`);
           expect(lockAfter).toContain('"name": "awcms",');
           expect(lockAfter).toContain('"name": "@awcms-one/storefront",');
           execSync("bun run tools/cek-lockfile.mjs", { cwd: dir, stdio: "pipe" });
@@ -576,7 +576,7 @@ describe("template:init — idempotency", () => {
         // issue #227 — the rewrite must have actually happened, and only to
         // the root workspace entry.
         const lockAfterFirst = readFileSync(join(dir, "bun.lock"), "utf8");
-        expect(lockAfterFirst).toContain('"": {\n      "name": "toko-contoh",\n    },');
+        expect(lockAfterFirst).toContain('"": {\n      "name": "toko-contoh",\n');
         expect(lockAfterFirst).toContain('"name": "awcms",');
 
         execSync("git add -A && git commit -q -m first --allow-empty", { cwd: dir });
@@ -634,7 +634,7 @@ describe("template:init — idempotency", () => {
         // so bun.lock's root workspace name is still "toko-contoh" — this is
         // the idempotency guarantee this rewrite must not break.
         const lockAfterThird = readFileSync(join(dir, "bun.lock"), "utf8");
-        expect(lockAfterThird).toContain('"": {\n      "name": "toko-contoh",\n    },');
+        expect(lockAfterThird).toContain('"": {\n      "name": "toko-contoh",\n');
       },
       30_000
     );

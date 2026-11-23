@@ -1,6 +1,6 @@
 ---
 bump: minor
-type: feat
+type: structure
 impact: public
 ---
 
