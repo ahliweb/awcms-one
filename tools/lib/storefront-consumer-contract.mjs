@@ -199,8 +199,21 @@ const GENERIC = {
   }
 };
 
+/**
+ * Issue #570: the three optional-bearer toko-klien.ts calls clear the session on
+ * a 401 only when a bearer was sent (`denganPembersihanSesiBilaBearer`), so their
+ * evidence is that helper in toko-klien.ts, not akun-klien.ts's own wrapper.
+ */
+const SESSION_CLEARED_IF_BEARER = {
+  handling: "session-cleared",
+  evidence: { file: TOKO_CLIENT, token: 'bearerToken && error instanceof TokoApiError && error.code === "UNAUTHENTICATED"' }
+};
+
 /** Handling a page or a contract module adds on top of the generic one, keyed by `METHOD path|status`. */
 const SPECIFIC = {
+  "POST /orders|401": SESSION_CLEARED_IF_BEARER,
+  "POST /orders/{orderCode}/payment-gateway/sessions|401": SESSION_CLEARED_IF_BEARER,
+  "POST /reviews|401": SESSION_CLEARED_IF_BEARER,
   "POST /orders|409": {
     handling: "cart-refresh",
     evidence: { file: "apps/storefront/src/scripts/checkout.ts", token: 'error.code === "CART_CHANGED"' }

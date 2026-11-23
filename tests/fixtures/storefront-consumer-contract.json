@@ -1991,8 +1991,8 @@
           "status": 401,
           "handling": "session-cleared",
           "evidence": {
-            "file": "apps/storefront/src/lib/akun-klien.ts",
-            "token": "error.code === \"UNAUTHENTICATED\""
+            "file": "apps/storefront/src/lib/toko-klien.ts",
+            "token": "bearerToken && error instanceof TokoApiError && error.code === \"UNAUTHENTICATED\""
           }
         },
         {
@@ -2127,8 +2127,8 @@
           "status": 401,
           "handling": "session-cleared",
           "evidence": {
-            "file": "apps/storefront/src/lib/akun-klien.ts",
-            "token": "error.code === \"UNAUTHENTICATED\""
+            "file": "apps/storefront/src/lib/toko-klien.ts",
+            "token": "bearerToken && error instanceof TokoApiError && error.code === \"UNAUTHENTICATED\""
           }
         },
         {
@@ -2248,8 +2248,8 @@
           "status": 401,
           "handling": "session-cleared",
           "evidence": {
-            "file": "apps/storefront/src/lib/akun-klien.ts",
-            "token": "error.code === \"UNAUTHENTICATED\""
+            "file": "apps/storefront/src/lib/toko-klien.ts",
+            "token": "bearerToken && error instanceof TokoApiError && error.code === \"UNAUTHENTICATED\""
           }
         },
         {
