@@ -270,12 +270,10 @@ export const PENDING_UPSTREAM = {
  * be reported upstream). The entry is stale, and fails the gate, the moment the
  * bundle declares the body: remove it and regenerate so the body is frozen.
  */
-export const REQUEST_BODY_UNDECLARED = {
-  [`POST ${SF}/orders/{orderCode}/payment-proof/upload-sessions`]:
-    "the bundle declares only 404 and 503 and no requestBody; the consumer sends { phone, contentType, byteLength } (toko-klien.ts createPaymentProofUploadSession)",
-  [`POST ${SF}/orders/{orderCode}/payment-proof/upload-sessions/{sessionId}/finalize`]:
-    "the bundle declares only 404 and 503 and no requestBody; the consumer sends { phone, sha256 } (toko-klien.ts finalizePaymentProofUpload)"
-};
+// Empty since #571 declared the payment-proof upload-session and finalize
+// request bodies in the commerce OpenAPI fragment. A new entry needs a reason;
+// the gate fails once the bundle declares the body, so an entry cannot go stale.
+export const REQUEST_BODY_UNDECLARED = {};
 
 function negativesFor(method, path, statuses, no429, via) {
   const key = (status) => `${method} ${path}|${status}`;

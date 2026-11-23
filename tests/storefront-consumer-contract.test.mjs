@@ -404,8 +404,8 @@ describe("storefront browser-call contract: this repository", () => {
     assert.deepEqual(findUndeclaredQueryParams(bundle, BROWSER_OPERATIONS), []);
   });
 
-  test("the request bodies the bundle does not declare are named, with a reason (found by this slice)", () => {
-    assert.equal(Object.keys(REQUEST_BODY_UNDECLARED).length, 2);
+  test("the request bodies the bundle does not declare are named, with a reason (empty since #571)", () => {
+    assert.equal(Object.keys(REQUEST_BODY_UNDECLARED).length, 0);
     assert.deepEqual(findRequestBodyGaps(bundle), []);
     for (const key of Object.keys(REQUEST_BODY_UNDECLARED)) {
       const entry = BROWSER_OPERATIONS.find((candidate) => browserKey(candidate) === key);
@@ -557,14 +557,11 @@ describe("storefront browser-call contract: each check can fail", () => {
   test("a sent body the bundle does not declare is reported, and a stale exemption is reported once it does", () => {
     const missing = findRequestBodyGaps(mutated((b) => delete b.paths[`${SF}/account/push/subscriptions`].post.requestBody));
     assert.ok(missing.some((entry) => entry.includes("does not declare")), missing.join("\n"));
-    const stale = findRequestBodyGaps(
-      mutated((b) => {
-        b.paths[`${SF}/orders/{orderCode}/payment-proof/upload-sessions`].post.requestBody = {
-          required: true,
-          content: { "application/json": { schema: { type: "object" } } }
-        };
-      })
-    );
+    // The real list is empty since #571, so inject an exemption for a body the
+    // bundle declares: the gate must call it stale.
+    const stale = findRequestBodyGaps(bundle, BROWSER_OPERATIONS, {
+      [`POST ${SF}/orders/{orderCode}/payment-proof/upload-sessions`]: "synthetic exemption for the mutation test"
+    });
     assert.ok(stale.some((entry) => entry.includes("remove the entry and regenerate")), stale.join("\n"));
   });
 

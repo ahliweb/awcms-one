@@ -2466,10 +2466,7 @@
   "pendingUpstream": {
     "429": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
   },
-  "requestBodyUndeclared": {
-    "POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions": "the bundle declares only 404 and 503 and no requestBody; the consumer sends { phone, contentType, byteLength } (toko-klien.ts createPaymentProofUploadSession)",
-    "POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions/{sessionId}/finalize": "the bundle declares only 404 and 503 and no requestBody; the consumer sends { phone, sha256 } (toko-klien.ts finalizePaymentProofUpload)"
-  },
+  "requestBodyUndeclared": {},
   "paths": {
     "/api/v1/analytics/collect": {
       "post": {
@@ -3374,6 +3371,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       },
@@ -3384,12 +3384,17 @@
             "customerBearer": []
           }
         ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyOptional"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "$ref": "#/components/schemas/CommerceAccountAddressRequest"
               }
             }
           }
@@ -3440,6 +3445,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -3476,6 +3484,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       },
@@ -3547,6 +3558,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -3607,6 +3621,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -3660,6 +3677,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       },
@@ -3713,6 +3733,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -3776,6 +3799,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -3839,6 +3865,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       },
@@ -3847,6 +3876,11 @@
         "security": [
           {
             "customerBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyOptional"
           }
         ],
         "requestBody": {
@@ -3926,6 +3960,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4005,6 +4044,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -4026,6 +4068,9 @@
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyOptional"
           }
         ],
         "requestBody": {
@@ -4105,6 +4150,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4275,6 +4325,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -4479,6 +4532,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -4539,6 +4595,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -4605,6 +4664,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4620,6 +4684,11 @@
       "post": {
         "operationId": "verifyCommerceStorefrontAccountOtp",
         "security": [],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyOptional"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4706,6 +4775,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4813,6 +4887,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4896,6 +4975,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4979,6 +5063,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5089,6 +5178,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5123,6 +5217,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5183,6 +5282,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5290,6 +5394,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5335,6 +5444,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5391,6 +5505,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -5440,6 +5557,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       },
@@ -5521,6 +5641,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -5554,6 +5677,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -5646,6 +5772,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5689,6 +5820,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5761,6 +5897,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5843,6 +5984,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5946,6 +6092,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6013,6 +6164,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6117,6 +6273,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6193,6 +6354,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6252,6 +6418,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6349,6 +6520,11 @@
             }
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6407,6 +6583,11 @@
             "$ref": "#/components/responses/NotFound"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6430,6 +6611,9 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyOptional"
           }
         ],
         "requestBody": {
@@ -6486,6 +6670,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -6502,6 +6689,9 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyOptional"
           }
         ],
         "requestBody": {
@@ -6586,6 +6776,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -6695,6 +6888,9 @@
               }
             }
           },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
           "503": {
             "content": {
               "application/json": {
@@ -6721,6 +6917,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommercePaymentProofUploadSessionRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -6759,6 +6965,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommercePaymentProofFinalizeRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -6779,6 +6995,11 @@
       "post": {
         "operationId": "createCommerceStorefrontReview",
         "security": [],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyOptional"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -6871,6 +7092,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -7550,6 +7774,17 @@
         "name": "Idempotency-Key",
         "in": "header",
         "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "pattern": "^[!-~]{1,255}$"
+        }
+      },
+      "IdempotencyKeyOptional": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": false,
         "schema": {
           "type": "string",
           "minLength": 1,
@@ -8365,6 +8600,92 @@
           },
           "isDefault": {
             "type": "boolean"
+          }
+        }
+      },
+      "CommerceAccountAddressRequest": {
+        "type": "object",
+        "required": [
+          "label",
+          "recipientName",
+          "phone",
+          "provinceCode",
+          "provinceName",
+          "cityCode",
+          "cityName",
+          "districtCode",
+          "districtName",
+          "postalCode",
+          "street"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "recipientName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "provinceCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "provinceName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "cityCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "cityName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "districtCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "districtName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "postalCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10
+          },
+          "street": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "latitude": {
+            "type": "number",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1000
           }
         }
       },
@@ -9915,6 +10236,32 @@
                 "type": "string"
               }
             }
+          }
+        }
+      },
+      "CommercePaymentProofFinalizeRequest": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      },
+      "CommercePaymentProofUploadSessionRequest": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "byteLength": {
+            "type": "integer",
+            "minimum": 1
           }
         }
       },
