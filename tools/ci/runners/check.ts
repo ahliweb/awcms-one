@@ -11,8 +11,11 @@
  */
 import { join } from "node:path";
 import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
-import { run } from "../lib/exec.ts";
+import { describeFailure, run, stepBudgetMs } from "../lib/exec.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
+
+/** Per-step wall-clock budget (issue #532), scaled by LOCAL_CI_TIMEOUT_SCALE. The slowest step is the root `bun test` of the toko leg. */
+const STEP_BUDGET_MINUTES = 45;
 
 export type Profile = "toko" | "berita" | "landing";
 
@@ -69,13 +72,14 @@ export async function runCheckLeg(
     const result = await run(step.argv, {
       cwd,
       env: { ...process.env, ...step.env },
-      logFile: log(step.name)
+      logFile: log(step.name),
+      timeoutMs: stepBudgetMs(STEP_BUDGET_MINUTES)
     });
     if (result.exitCode !== 0) {
       return {
         context,
         ok: false,
-        summary: `${step.name} failed (exit ${result.exitCode})`,
+        summary: describeFailure(step.name, result),
         durationMs: performance.now() - start,
         evidenceDir
       };

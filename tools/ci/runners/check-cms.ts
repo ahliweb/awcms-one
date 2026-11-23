@@ -18,13 +18,21 @@
  */
 import { randomBytes } from "node:crypto";
 import { join } from "node:path";
-import { run, runOrThrow } from "../lib/exec.ts";
+import { describeFailure, run, runOrThrow, stepBudgetMs } from "../lib/exec.ts";
 import { freePort } from "../lib/net.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
 
 const POSTGRES_USER = "awcms";
 const POSTGRES_PASSWORD = "awcms_local_ci_password";
 const POSTGRES_DB = "awcms";
+
+/**
+ * Wall-clock budgets in minutes (issue #532), each multiplied by
+ * LOCAL_CI_TIMEOUT_SCALE. Deliberately generous - a healthy run on a slow
+ * machine must not trip them; they exist to end a HUNG step, not a slow one.
+ * The whole leg can therefore take at most ~165 minutes before it fails.
+ */
+const BUDGET_MINUTES = { dockerRun: 5, install: 20, quality: 60, migrate: 20, integration: 60 } as const;
 
 function skipCount(text: string): number {
   const match = /(\d+)\s+skip\s*$/m.exec(text.trim());
@@ -71,7 +79,7 @@ export async function runCheckCmsLeg(context: string, ctx: LegContext): Promise<
         `127.0.0.1:${port}:5432`,
         "postgres:18.6"
       ],
-      { logFile: log("docker-run") }
+      { logFile: log("docker-run"), timeoutMs: stepBudgetMs(BUDGET_MINUTES.dockerRun) }
     );
     containerStarted = true;
 
@@ -82,16 +90,18 @@ export async function runCheckCmsLeg(context: string, ctx: LegContext): Promise<
 
     const install = await run(["bun", "install", "--frozen-lockfile"], {
       cwd: worktreeRoot,
-      logFile: log("install")
+      logFile: log("install"),
+      timeoutMs: stepBudgetMs(BUDGET_MINUTES.install)
     });
-    if (install.exitCode !== 0) return fail(`bun install failed (exit ${install.exitCode})`);
+    if (install.exitCode !== 0) return fail(describeFailure("bun install", install));
 
     const quality = await run(["bun", "run", "check"], {
       cwd: cmsDir,
       env: { ...process.env, DATABASE_URL: "" },
-      logFile: log("quality")
+      logFile: log("quality"),
+      timeoutMs: stepBudgetMs(BUDGET_MINUTES.quality)
     });
-    if (quality.exitCode !== 0) return fail(`apps/cms bun run check failed (exit ${quality.exitCode})`);
+    if (quality.exitCode !== 0) return fail(describeFailure("apps/cms bun run check", quality));
     const before = skipCount(quality.stdout + quality.stderr);
 
     const databaseUrl = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@127.0.0.1:${port}/${POSTGRES_DB}`;
@@ -99,16 +109,18 @@ export async function runCheckCmsLeg(context: string, ctx: LegContext): Promise<
     const migrate = await run(["bun", "run", "db:migrate"], {
       cwd: cmsDir,
       env: { ...process.env, DATABASE_URL: databaseUrl },
-      logFile: log("migrate")
+      logFile: log("migrate"),
+      timeoutMs: stepBudgetMs(BUDGET_MINUTES.migrate)
     });
-    if (migrate.exitCode !== 0) return fail(`db:migrate failed (exit ${migrate.exitCode})`);
+    if (migrate.exitCode !== 0) return fail(describeFailure("db:migrate", migrate));
 
     const integration = await run(["bun", "test", "tests/integration/", "--timeout", "60000"], {
       cwd: cmsDir,
       env: { ...process.env, DATABASE_URL: databaseUrl },
-      logFile: log("integration")
+      logFile: log("integration"),
+      timeoutMs: stepBudgetMs(BUDGET_MINUTES.integration)
     });
-    if (integration.exitCode !== 0) return fail(`tests/integration/ failed (exit ${integration.exitCode})`);
+    if (integration.exitCode !== 0) return fail(describeFailure("tests/integration/", integration));
     const after = skipCount(integration.stdout + integration.stderr);
 
     if (!(after < before)) {
