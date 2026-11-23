@@ -59,7 +59,8 @@ The dotted "no link" edge is the central finding (F-01, F-02): the storefront's 
 | `tests/kontrak-arah-impor.test.mjs` | No file under `apps/cms/src` imports `apps/storefront`, `packages/kontrak` or an `@awcms-one/*` package. Run: 2 pass. | Anything about the other direction (that `packages/kontrak` imports only `domain/` files); the test says that is a per-PR review concern. |
 | `packages/kontrak` (`index.ts`, `katalog.ts`, `pesanan.ts`, `promosi.ts`) | 14 string-literal unions re-exported with `export type` from `apps/cms` `domain/*.ts`; no runtime value. A widened union becomes a storefront compile error at an exhaustive `switch`. | Any object shape. The docblocks state that DTO shapes are deliberately kept local to the storefront. |
 | `apps/cms` `api:spec:check` | OpenAPI paths and API route handlers agree (route parity); the exemption set is empty. | Response shapes, and routes outside `/api` (see F-07). |
-| `apps/cms` `api:consumer-contract:check` | The frozen slice that `awcms-astro` calls stays an additive subset of the bundle. | The storefront in this repository is not in that slice (F-01). |
+| `apps/cms` `api:consumer-contract:check` | The frozen slice that `awcms-astro` calls stays an additive subset of the bundle. | The storefront in this repository is not in that slice (F-01); see the next row for its build-time half. |
+| `tests/storefront-consumer-contract.test.mjs` with `tools/lib/storefront-consumer-contract.mjs` (issue #555, ADR-0058 D2) | The 20 operations `apps/storefront` reads while `astro build` runs, per profile, are frozen in `tests/fixtures/storefront-consumer-contract.json` with their transitive schemas and stay an additive subset of the committed bundle; the query parameters the storefront sends stay declared; a source scan of `apps/storefront/src` fails on a build-time read that is not in the slice. `GET /theming/{tenantCode}/tokens.css` is named as out of the bundle (F-07) with a reason; no schema is invented for it. Regenerate only with `bun run contract:storefront:generate --reason "<why>"`. | Browser calls (issue #556 extends the same file); which page group reaches which operation (the per-profile mapping is hand-reviewed, the source scan proves the set of operations and readers); a path assembled from an imported value; the `tokens.css` body. |
 | `apps/cms/tests/customer-bearer-body-boundary.test.ts` | Every `customerBearer` body operation in the OpenAPI is registered in the middleware or deliberately session-free. | The live session lookup, which is database-gated and was not executed here. |
 | `apps/cms/tests/commerce-cors.test.ts`, `commerce-storefront-idempotency.test.ts` | Preflight policy: no credentials header, origin echo, `idempotency-key` in the allowed list for routes that take it. | A real browser against the real routes (F-10). |
 | `apps/storefront/tests/*-kontrak.test.ts`, `toko-klien.test.ts`, `kirim-tunggal-kontrak.test.ts` | Client-side behaviour: envelope, `204`, `RATE_LIMITED` with `Retry-After`, single-flight, idempotency key reuse. | That the server sends what the client was tested against. |
@@ -237,6 +238,10 @@ These began as proposals. After the owner decisions of 20 November 2026 (section
 Limits the reader should keep in mind: database-backed behaviour was not executed; the fixture comparison and the `RATE_LIMITED` scan are throwaway static checks; the audit read a snapshot and PR #530 may change it.
 
 ## Changelog
+
+### 2026-11-24 (issue #555)
+
+- Section 3 gains the guard row for the frozen storefront slice of build-time reads (half of F-01; the browser-call half stays issue #556). F-07 is unchanged: the route is now named explicitly in the slice, and the upstream report stays open.
 
 ### 2026-11-20 (owner decisions)
 

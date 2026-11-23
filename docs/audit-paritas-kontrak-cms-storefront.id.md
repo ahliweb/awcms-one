@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](audit-paritas-kontrak-cms-storefront.md)
 
-<!-- i18n-source-hash: sha256:ace99f0692f02255d57167f7f1c1aa14895db3acb50fdd9a6d8c86da8d1fdb9c -->
+<!-- i18n-source-hash: sha256:2ca8b06b47c127d9792fe385c1e2d94dd0ec3b892633b7eb47beec6b85460bca -->
 
 # Audit paritas kontrak: CMS dan storefront, tiga profil (issue #547)
 
@@ -61,7 +61,8 @@ Sisi putus-putus "tanpa tautan" adalah temuan utama (F-01, F-02): tes dan end-to
 | `tests/kontrak-arah-impor.test.mjs` | Tidak ada berkas di `apps/cms/src` yang mengimpor `apps/storefront`, `packages/kontrak`, atau paket `@awcms-one/*`. Dijalankan: 2 lulus. | Arah sebaliknya (bahwa `packages/kontrak` hanya mengimpor berkas `domain/`); tes ini menyebut itu urusan tinjauan per PR. |
 | `packages/kontrak` (`index.ts`, `katalog.ts`, `pesanan.ts`, `promosi.ts`) | 14 union string-literal diekspor ulang dengan `export type` dari `domain/*.ts` milik `apps/cms`; tanpa nilai runtime. Union yang melebar menjadi galat kompilasi storefront pada `switch` yang menyeluruh. | Bentuk objek apa pun. Docblock menyatakan bentuk DTO sengaja dibiarkan lokal di storefront. |
 | `apps/cms` `api:spec:check` | Path OpenAPI dan handler rute API sepakat (paritas rute); himpunan pengecualian kosong. | Bentuk respons, dan rute di luar `/api` (lihat F-07). |
-| `apps/cms` `api:consumer-contract:check` | Irisan beku yang dipanggil `awcms-astro` tetap subset aditif dari bundel. | Storefront di repo ini tidak termasuk irisan itu (F-01). |
+| `apps/cms` `api:consumer-contract:check` | Irisan beku yang dipanggil `awcms-astro` tetap subset aditif dari bundel. | Storefront di repo ini tidak termasuk irisan itu (F-01); lihat baris berikut untuk separuh saat build-nya. |
+| `tests/storefront-consumer-contract.test.mjs` bersama `tools/lib/storefront-consumer-contract.mjs` (issue #555, ADR-0058 D2) | 20 operasi yang dibaca `apps/storefront` saat `astro build` berjalan, per profil, dibekukan di `tests/fixtures/storefront-consumer-contract.json` beserta skema transitifnya dan tetap subset aditif dari bundel yang di-commit; parameter query yang dikirim storefront tetap dideklarasikan; pemindaian sumber `apps/storefront/src` gagal bila ada pembacaan saat build yang tidak ada di irisan. `GET /theming/{tenantCode}/tokens.css` dinamai sebagai di luar bundel (F-07) beserta alasannya; tidak ada skema yang dikarang untuknya. Regenerasi hanya dengan `bun run contract:storefront:generate --reason "<alasan>"`. | Panggilan browser (issue #556 memperluas berkas yang sama); kelompok halaman mana yang mencapai operasi mana (pemetaan per profil ditinjau manual, pemindaian sumber membuktikan himpunan operasi dan pembacanya); path yang dirakit dari nilai hasil impor; isi `tokens.css`. |
 | `apps/cms/tests/customer-bearer-body-boundary.test.ts` | Setiap operasi `customerBearer` berbody di OpenAPI terdaftar di middleware atau sengaja bebas sesi. | Pencarian sesi langsung, yang bergantung database dan tidak dieksekusi di sini. |
 | `apps/cms/tests/commerce-cors.test.ts`, `commerce-storefront-idempotency.test.ts` | Kebijakan preflight: tanpa header kredensial, origin digaungkan, `idempotency-key` ada di daftar yang diizinkan untuk rute yang menerimanya. | Browser sungguhan terhadap rute sungguhan (F-10). |
 | `apps/storefront/tests/*-kontrak.test.ts`, `toko-klien.test.ts`, `kirim-tunggal-kontrak.test.ts` | Perilaku sisi klien: amplop, `204`, `RATE_LIMITED` dengan `Retry-After`, single-flight, pemakaian ulang kunci idempotensi. | Bahwa server mengirim apa yang dipakai klien saat diuji. |
@@ -239,6 +240,10 @@ Ini awalnya usulan. Setelah keputusan pemilik 20 November 2026 (bagian 8.1) ia d
 Batas yang perlu diingat pembaca: perilaku berbasis database tidak dieksekusi; perbandingan fixture dan pemindaian `RATE_LIMITED` adalah pemeriksaan statis sekali pakai; audit membaca satu snapshot dan PR #530 dapat mengubahnya.
 
 ## Changelog
+
+### 2026-11-24 (issue #555)
+
+- Bagian 3 mendapat baris guard untuk irisan beku storefront atas pembacaan saat build (separuh F-01; separuh panggilan browser tetap issue #556). F-07 tidak berubah: rute itu kini dinamai eksplisit di irisan, dan laporan upstream tetap terbuka.
 
 ### 2026-11-20 (keputusan pemilik)
 
