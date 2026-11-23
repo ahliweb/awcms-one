@@ -2,7 +2,7 @@
  * `bun run contract:storefront:check` / `contract:storefront:generate`.
  *
  * Freezes (generate) or verifies (check) the storefront's build-time reads
- * against the committed OpenAPI bundle. See
+ * (issue #555) and browser calls (issue #556) against the committed OpenAPI bundle. See
  * `tools/lib/storefront-consumer-contract.mjs` for the rule and its limits.
  *
  * Generating is a deliberate act: it overwrites the frozen fixture with the
@@ -16,6 +16,7 @@ import {
   BUNDLE_PATH,
   FIXTURE_PATH,
   buildFixture,
+  findResolvedPending,
   runChecks,
   serializeFixture
 } from "./lib/storefront-consumer-contract.mjs";
@@ -46,5 +47,11 @@ if (args.includes("--generate")) {
     for (const problem of problems) console.error(`  - ${problem}`);
     process.exit(1);
   }
-  console.log(`contract:storefront:check OK - ${frozen.operations.length} build-time operations still satisfied additively.`);
+  const build = frozen.operations.filter((entry) => entry.phase === "build").length;
+  const browser = frozen.operations.filter((entry) => entry.phase === "browser").length;
+  console.log(
+    `contract:storefront:check OK - ${build} build-time reads and ${browser} browser calls still satisfied ` +
+      "(responses additively, request bodies and parameters still accepted)."
+  );
+  for (const note of findResolvedPending(bundle)) console.log(`  note: ${note}`);
 }
