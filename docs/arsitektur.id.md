@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:0af32d6ee0c0840fbfe7e3a8aacee2b85c2785e5c11ad1c7e6dbccc25f728b2d -->
+<!-- i18n-source-hash: sha256:200f52d01775ea9f14f5f7aa3d401bb321d7f26acb46b8110c2ca5b6ccb8be17 -->
 
 # Arsitektur
 
@@ -138,7 +138,7 @@ Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md
 
 ## Penyedia eksternal: port dan outbox di dalam `commerce`, tidak pernah panggilan sinkron di jalur pesanan
 
-Increment 5 (epic [#33](https://github.com/ahliweb/awcms-one/issues/33)) menambahkan integrasi HTTP eksternal pertama milik `commerce` — agregator ongkos kurir (RajaOngkir), pengirim WhatsApp (Fonnte/Meta Cloud API), dan payment gateway (Midtrans Snap). [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) (D1) menetapkan bentuknya sekali, dan ketiganya mengikutinya: interface port kecil, satu atau lebih adapter yang dipilih lewat env var, adapter `log` untuk dev/CI, `withTimeout` plus `getProviderCircuitBreaker`, dan — untuk apa pun yang bergantung padanya jalur pesanan — tabel outbox sehingga panggilan penyedia tidak pernah terjadi di dalam transaksi basis data yang mengubah status pesanan (disiplin yang sama yang sudah ditetapkan [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) untuk konfirmasi pembayaran dan catatan kurir).
+Increment 5 (epic [#33](https://github.com/ahliweb/awcms-one/issues/33)) menambahkan integrasi HTTP eksternal pertama milik `commerce` — agregator ongkos kurir (RajaOngkir), pengirim WhatsApp (Fonnte/Meta Cloud API), dan payment gateway (Midtrans Snap). [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) (D1) menetapkan bentuknya sekali, dan ketiganya mengikutinya: interface port kecil, satu atau lebih adapter yang dipilih lewat env var, adapter `log` untuk dev/CI, `withTimeout` plus `getProviderCircuitBreaker`, dan — untuk apa pun yang bergantung padanya jalur pesanan — tabel outbox sehingga panggilan penyedia tidak pernah terjadi di dalam transaksi basis data yang mengubah status pesanan (disiplin yang sama yang sudah ditetapkan [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) untuk konfirmasi pembayaran dan catatan kurir). Apa yang terjadi saat provider mati adalah kebijakan terpisah per operasi dengan failover otomatis lintas provider mati secara default, dicatat di [ADR-0059](adr/0059-third-party-outages-are-handled-per-operation-with-automatic-cross-provider-failover-off-and-commerce-owns-its-provider-state.md); adapter kedua untuk sebuah port adalah pilihan deployment, bukan target failover.
 
 ```mermaid
 flowchart TB

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:a8be6697cdde02a2c65c3880234faae2aa2f44c0efc47f5fa1d55673f6e822de -->
+<!-- i18n-source-hash: sha256:94ad5771c251a665b6cfa8df6dda800778795d981a8c6938abc3906fa6144426 -->
 
 # Status
 
@@ -46,7 +46,7 @@ Program poin di dalam `commerce`, di balik `features.loyalty` (default **mati**)
 
 ## Integrasi eksternal (ADR-0017)
 
-Masing-masing adalah port penyedia + adapter + outbox milik `commerce`, mengikuti pola `email` — tidak pernah panggilan sinkron di jalur pesanan ([ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) D1): caching tarif kurir RajaOngkir, outbox WhatsApp (adapter Fonnte + Meta Cloud API) termasuk OTP WhatsApp, gateway pembayaran Midtrans Snap dengan intake webhook publik beralamat-token dan job `commerce:payments:reconcile`, POS (`orders.channel`, penjualan tunai), proyeksi laporan penjualan, kotak pesan pelanggan, dan kampanye marketing yang di-gate pada `marketing_consent_at`. Harga bertingkat (`price_level_1..4`) berlaku saat kuotasi. **Belum ada:** adapter gateway pembayaran Xendit dan pelacakan kurir, keduanya disebut sebagai tindak lanjut eksplisit di belakang port yang sudah dibangun.
+Masing-masing adalah port penyedia + adapter + outbox milik `commerce`, mengikuti pola `email` — tidak pernah panggilan sinkron di jalur pesanan ([ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) D1): caching tarif kurir RajaOngkir, outbox WhatsApp (adapter Fonnte + Meta Cloud API) termasuk OTP WhatsApp, gateway pembayaran Midtrans Snap dengan intake webhook publik beralamat-token dan job `commerce:payments:reconcile`, POS (`orders.channel`, penjualan tunai), proyeksi laporan penjualan, kotak pesan pelanggan, dan kampanye marketing yang di-gate pada `marketing_consent_at`. Harga bertingkat (`price_level_1..4`) berlaku saat kuotasi. **Belum ada:** adapter gateway pembayaran Xendit dan pelacakan kurir, keduanya disebut sebagai tindak lanjut eksplisit di belakang port yang sudah dibangun. **Kebijakan gangguan ([ADR-0059](adr/0059-third-party-outages-are-handled-per-operation-with-automatic-cross-provider-failover-off-and-commerce-owns-its-provider-state.md), issue #563):** per operasi, dengan failover otomatis lintas provider mati secara default; tidak ada yang berubah di runtime.
 
 ## Pembayaran: ledger alokasi append-only (ADR-0025)
 

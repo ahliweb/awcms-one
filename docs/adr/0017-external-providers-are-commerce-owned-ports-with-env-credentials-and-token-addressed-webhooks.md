@@ -5,6 +5,7 @@
 - **Status:** Accepted
 - **Date:** 19 September 2026
 - **Decision maker:** ahliweb
+- **Clarified by (24 November 2026, issue #563):** [ADR-0059](0059-third-party-outages-are-handled-per-operation-with-automatic-cross-provider-failover-off-and-commerce-owns-its-provider-state.md). Providers stay `commerce`-owned ports; having two adapters for one port (Fonnte and Meta, a future Xendit beside Midtrans) is a per-deployment selection and never automatic cross-provider failover, which is off by default. No decision here is reversed.
 - **Related:** [ADR-0010](0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md); `apps/cms`'s [ADR-0006](../../apps/cms/docs/adr/0006-offline-first-sync-outbox.md) (the ban on a provider call inside a DB transaction), [awcms ADR-0074](../../apps/cms/docs/adr/0074-push-delivery-is-a-second-outbox.md) (credentials per deployment, never per tenant); issues #33, #106, #107–#118
 
 ## Context

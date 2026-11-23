@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a6e8351f4a0ef348dfd04c933ee388ece912075c8aca29efedbab1f869db01a6 -->
+<!-- i18n-source-hash: sha256:35cf3b0cad5d7932b9a4659fff2d489c69f5bfb8cbfdcb4cc2d039e8b1982eb3 -->
 
 # Architecture Decision Records
 
@@ -76,6 +76,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0056](0056-crm-lead-link-confirms-a-prospect-as-a-commerce-customer-only-from-verified-commerce-facts.md)                              | Tautan lead CRM mengonfirmasi calon pelanggan sebagai pelanggan commerce hanya dari fakta commerce yang terverifikasi (orang mengonfirmasi dengan kedua izin, tanpa pencocokan kabur, konsumer penanda tidak bisa menjangkau CRM sehingga orang yang membalik, dua event pelanggan, penyimpanan buram)                                                       | Diusulkan                                                                                                                     |
 | [0057](0057-the-public-reading-preferences-panel-is-a-native-same-origin-component-not-a-third-party-overlay.md)                        | Panel preferensi baca publik adalah komponen native satu-origin (storefront, ketiga profil), bukan overlay pihak ketiga: preferensi tinggal di `localStorage`, CSP tidak berubah, preferensi OS adalah bawaan. Diamandemen 2026-11-19: uji kegunaan dengan pembaca nyata bukan gerbang repo ini, melainkan milik UAT tiap repo turunan                       | Accepted                                                                                                                      |
 | [0058](0058-contract-parity-fixtures-with-schema-check-consumer-slice-at-the-root-and-generic-gaps-go-upstream.md)                      | Paritas kontrak (keputusan pemilik 2026-11-20): fixture storefront mendapat pemeriksaan skema lebih dulu (mock hasil generasi hanya bila perlu); irisan consumer-contract storefront ada di `tests/` akar, bukan di subtree `apps/cms`; `429 RATE_LIMITED` dan header idempotency opsional dilaporkan ke upstream (awcms#1385), tidak ditambal di `apps/cms` | Accepted                                                                                                                      |
+| [0059](0059-third-party-outages-are-handled-per-operation-with-automatic-cross-provider-failover-off-and-commerce-owns-its-provider-state.md) | Gangguan pihak ketiga ditangani per operasi (kuotasi baca-saja, e-mail/WhatsApp, sesi pembayaran dan refund, webhook) dengan failover otomatis lintas provider MATI secara default; `commerce` memiliki aturan dan state Midtrans/RajaOngkir, upstream `awcms` memiliki kontrak, uji, dan metrik yang dapat dipakai ulang (ADR-0169 upstream menunda hub), consumer turunan memiliki adapter, kredensial, dan rollout-nya; memperjelas ADR-0017, tanpa perubahan runtime (issue #563) | Accepted |
 
 ## Mengapa penomoran dimulai dari 0001
 
