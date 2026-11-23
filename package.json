@@ -64,6 +64,9 @@
     "release:images": "bun tools/release/images.ts",
     "release:publish": "bun tools/release/publish.ts"
   },
+  "devDependencies": {
+    "ajv": "^8.20.0"
+  },
   "overrides": {
     "sharp": "^0.35.5",
     "shell-quote": "^1.12.0",
