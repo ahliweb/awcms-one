@@ -32,7 +32,10 @@ const POSTGRES_DB = "awcms";
  * machine must not trip them; they exist to end a HUNG step, not a slow one.
  * The whole leg can therefore take at most ~165 minutes before it fails.
  */
-const BUDGET_MINUTES = { dockerRun: 5, install: 20, quality: 60, migrate: 20, integration: 60 } as const;
+const BUDGET_MINUTES = { dockerRun: 5, install: 20, quality: 60, migrate: 20, integration: 180 } as const;
+// The integration suite is the long step: measured 60 to 114 min on this
+// machine in November 2026 (pr552, pr558, pr560, pr562), so its budget is
+// 180 min. Every other budget is several times its measured duration.
 
 function skipCount(text: string): number {
   const match = /(\d+)\s+skip\s*$/m.exec(text.trim());
