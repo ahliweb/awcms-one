@@ -135,10 +135,10 @@ export const EXCEPTIONS = [
   {
     id: "N-02",
     fixture: "blog-posts.json",
-    issue: "#554",
-    reviewBy: "2026-12-15",
+    issue: "ahliweb/awcms#1498",
+    reviewBy: "2027-02-28",
     reason:
-      "Upstream spec gap, to be reported to ahliweb/awcms: the provider emits title, caption, durationSeconds and sourceLabel on a videoNews node (VideoNewsBlockItem in apps/cms/src/modules/_shared/rendering/video-news-block-renderer.ts, validated and rendered by blog_content) and the storefront renders them (apps/storefront/src/lib/portable-text.ts), but PortableTextNode in the OpenAPI spec lists only provider and videoId for that type. The fixture is right and the spec under-declares; no spec change is possible here (apps/cms is upstream-owned).",
+      "Upstream spec gap, reported as ahliweb/awcms#1498 (remove this exception at the subtree sync that brings the fix): the provider emits title, caption, durationSeconds and sourceLabel on a videoNews node (VideoNewsBlockItem in apps/cms/src/modules/_shared/rendering/video-news-block-renderer.ts, validated and rendered by blog_content) and the storefront renders them (apps/storefront/src/lib/portable-text.ts), but PortableTextNode in the OpenAPI spec lists only provider and videoId for that type. The fixture is right and the spec under-declares; no spec change is possible here (apps/cms is upstream-owned).",
     matches: ["title", "caption", "durationSeconds", "sourceLabel"].map((property) => ({
       keyword: "unevaluatedProperties",
       instancePath: "^/data/posts/\\d+/bodyPortableText/\\d+$",
