@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:72fd1474921b0c554b37d88738f27e976c1a62ea4e06b3eb5948adf7313aeced -->
+<!-- i18n-source-hash: sha256:07cf2cfcf0bf03921cf9ef4b094a1d90addd4456f5ea873eda7f6bee83a55eea -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -239,6 +239,7 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 Sama untuk ketiga profil, dan diturunkan, bukan ditulis ulang ([ADR-0049](adr/0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.id.md), issue [#428](https://github.com/ahliweb/awcms-one/issues/428)):
 
 - **`/manifest.webmanifest`** punya `id` stabil (`/`), `scope` dan `start_url` (`/`), `display: standalone`, `name` dari identitas situs, `short_name` maksimal 12 karakter, dan petunjuk `categories` per profil (`toko` shopping, `berita` news, `landing` business).
+- **Build `landing` tidak butuh kredensial CMS** (isu [#535](https://github.com/ahliweb/awcms-one/issues/535)). Dengan `SITE_PROFILE=landing` dan `AWCMS_API_URL` tidak diatur, pembaca waktu-build yang dijangkau profil (`apps/storefront/src/lib/awcms/pages.ts`, `profil.ts`, `pemasaran.ts`, `media.ts`) mengembalikan nilai kosongnya tanpa panggilan jaringan (`apps/storefront/src/lib/awcms/tanpa-cms.ts`): tanpa halaman CMS, identitas situs dari bawaan waktu-build dan `SITE_NAME` / `SITE_DESCRIPTION`, pengaturan toko kosong, tanpa host media. `toko` dan `berita` tanpa `AWCMS_API_URL` tetap gagal dengan jelas, dan `landing` dengan URL membaca CMS seperti sebelumnya. `PUBLIC_AWCMS_ORIGIN` tetap wajib di setiap profil (ia juga `connect-src` CSP), dan Dockerfile mempertahankan mount rahasia `awcms_api_token` (berikan berkas kosong untuk image tanpa kredensial).
 - **Ikon PNG** (`/icons/icon-192.png`, `/icons/icon-512.png`, `/icons/icon-maskable-512.png`, `/apple-touch-icon.png`) dibuat saat build dari huruf pertama `SITE_NAME` dan warna primer tema. Keduanya sudah ada di daftar "Apa yang ditulis ulang" milik `template:init` (`DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`), sehingga **init tidak butuh target tulis-ulang baru dan tidak ada berkas ikon BjekMart yang terlupa**. Untuk memakai karya seni sungguhan, ganti endpoint di `apps/storefront/src/pages/icons/` dan `apple-touch-icon.png.ts`.
 - **Metadata iOS** (`apple-touch-icon`, `apple-mobile-web-app-*`, `mobile-web-app-capable`, `theme-color`) adalah markup statis di `BaseLayout.astro`.
 - **`/pasang-aplikasi`** adalah halaman bantuan opsional "Tambahkan ke Layar Utama di iPhone", **mati secara bawaan**. Setel `PUBLIC_INSTALL_HELP=1` (juga `true`, `on`, `yes`) saat build untuk menambah rute, tautan footer, dan satu skrip same-origin yang mendeteksi mode standalone. Saat mati, semuanya tidak ada (tanpa rute, tautan, skrip, atau entri sitemap) dan CSP sama di kedua kondisi. Halaman ini tidak pernah meminta izin notifikasi dan menyatakan bahwa tab browser tidak bisa menerima notifikasi setelah ditutup.

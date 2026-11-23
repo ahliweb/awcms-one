@@ -19,6 +19,7 @@
  * endpoint.
  */
 import { AwcmsApiError, awcmsGet } from "./client";
+import { buildsWithoutCms } from "./tanpa-cms";
 
 // ---------------------------------------------------------------------------
 // Store settings
@@ -320,6 +321,8 @@ let storeSettingsCache: Promise<StoreSettings> | undefined;
 export function getStoreSettings(): Promise<StoreSettings> {
   const path = "/api/v1/commerce/store-settings/public";
   storeSettingsCache ??= (async () => {
+    // Issue #535: no CMS on a landing build — the empty settings.
+    if (buildsWithoutCms()) return EMPTY_STORE_SETTINGS;
     try {
       return await awcmsGet<StoreSettings>(path);
     } catch (error) {
