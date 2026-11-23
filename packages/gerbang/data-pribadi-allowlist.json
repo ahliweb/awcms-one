@@ -1,0 +1,10 @@
+{
+  "$comment": "Allow-list for `bun run audit:data-pribadi`. One entry per false positive, each with a reason. `path` is an exact file, or a directory prefix ending in `/`; `line` (optional) pins one line; `category` is one of national-id, mobile-phone, email, file-share-link, tracked-data-file. An entry that covers no finding fails the gate. Never put the matched value in `reason`.",
+  "entries": [
+    {
+      "path": "apps/storefront/src/components/berita/FormBuletin.astro",
+      "category": "email",
+      "reason": "The newsletter form's input placeholder text (a generic hint text), not an address of anyone."
+    }
+  ]
+}
