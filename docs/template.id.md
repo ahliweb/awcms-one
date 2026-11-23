@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:72fd1474921b0c554b37d88738f27e976c1a62ea4e06b3eb5948adf7313aeced -->
+<!-- i18n-source-hash: sha256:a9c18b3d343ac980baab33116b9edf70dc9f464789acc80c46765824bf5da4bb -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -144,6 +144,10 @@ Artefak khusus BjekMart yang tidak dibutuhkan deployment turunan dan tidak sehar
 | Pin runtime dan metadata rilis | `version` di `package.json` menjadi `0.1.0`; `awcmsOne.templateVersion` mencatat versi template; `CHANGELOG.md` direset ke satu entri; `.changesets/*.md` dibersihkan (sekali saja) | Pin Bun (`packageManager`, `engines.bun`) diwarisi apa adanya; naikkan dengan sengaja. Changeset milik produk menua sejak hari ditulis (`audit:rilis` mengizinkan 20 berkas dan 14 hari), jadi rencanakan rilis pertama: [`.changesets/README.md`](../.changesets/README.id.md), [`rilis.md`](rilis.id.md) |
 | Tautan status dan branding | `apps/storefront/.env.example`: `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, `SITE_PROFILE` | [`status.md`](status.id.md) menyatakan keadaan awcms-one sendiri, bukan keadaan produk: tulis ulang. Periksa tautan kontak, advisory, dan dukungan di `SECURITY*` dan `SUPPORT*` |
 | Drift versi upstream | `awcmsOne.templateVersion` mencatat dari versi template mana repositori bermula | Repositori yang dibuat dari template tidak punya riwayat `apps/cms`. Catat ancestry sekali, jaga remote `awcms` hanya `main` dengan `--no-tags`, gabungkan setiap subtree sync dengan merge commit, dan atur repositori menjadi hanya-merge-commit sebelum sync pertama: "Panduan kompatibilitas dan upgrade" di bawah |
+
+### Mematikan grup leg CI
+
+Produk yang tidak lagi memerlukan satu grup penuh leg `local-ci/*` (misalnya grup `template`, yang menjalankan ulang `template:init` pada checkout sekali pakai dan tidak masuk akal setelah repositori diinisialisasi) mengedit **satu berkas**, `tools/ci/derived-product.ts`, dan tidak pernah tabel leg di `tools/ci/legs.ts`. Isi `DISABLED_LEG_GROUPS` dengan salah satu dari `"check"`, `"template"`, `"e2e"`, `"security"`; template mengirimkannya kosong, sehingga setiap leg berjalan. `LEGS` dan `LEG_CONTEXTS` lalu tidak memuat grup yang dimatikan, `bun run ci` dan `ci:pr` hanya menjalankan dan memposting context yang tersisa, dan `--leg <context>` (atau pintasan `ci:*`) untuk leg yang dimatikan berhenti dengan `Unknown leg context`. Nama grup yang tidak dikenal melempar galat saat impor. Mengubah check wajib branch protection produk menjadi himpunan yang tersisa tetap langkah manual; `tests/local-ci-legs.test.mjs` mengunci context template, jadi perbarui daftar terkunci itu dalam perubahan yang sama.
 
 ## Profil build
 
