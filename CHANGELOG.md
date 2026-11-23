@@ -2,6 +2,145 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.22.0] — 2026-11-24
+
+### ADR-0059: third-party outage and failover ownership
+
+Records, as documentation only, what `commerce` does when a third-party provider is down (issue #563). The policy is per operation (read-only shipping quote, e-mail and WhatsApp, payment session and refund, inbound webhooks), automatic cross-provider failover stays off by default, and an unknown financial outcome is settled by reconciliation or a human, never by another provider. Ownership is stated: `commerce` owns the Midtrans and RajaOngkir rules and state, upstream `awcms` owns reusable contracts, tests and metrics (its ADR-0169 defers the integration hub), and derived consumer repositories own their adapters, credentials, acceptance testing and rollout.
+
+- ADR-0059 clarifies ADR-0017 without reversing it; a pointer is added to ADR-0017, the ADR index, `docs/status.md` and `docs/arsitektur.md`, each with its Indonesian mirror.
+- No code, migration, OpenAPI path, environment variable, flag or service changes. Follow-up verification is tracked in #564, #565 and #566.
+
+### `audit:data-pribadi` — a personal-data scan gate for the git tree
+
+A new root gate, `bun run audit:data-pribadi` (issue #533), scans every git-tracked file for personal data that is usually pasted by accident into fixtures, snapshots, logs and issue text.
+
+- Five generic categories: a national-identity-number-shaped number, a mobile number, an e-mail address outside the placeholder domains, a cloud-drive link carrying a file id, and a tracked spreadsheet/CSV/archive/log/snapshot file.
+- Findings print as `path:line` under a category heading and **never the value**, so the gate cannot copy a leak into CI logs.
+- False positives live in `packages/gerbang/data-pribadi-allowlist.json`, one entry with a reason each; an entry that covers nothing fails the gate so the list cannot rot.
+- `apps/cms/**` (the upstream subtree) is skipped, except for sub-paths a derived product declares in `OWNED_SUBTREE_PATHS`. Patterns, placeholder domains and reserved prefixes are data in `packages/gerbang/lib/data-pribadi-config.mjs`, so a derived product tunes them without editing the scanner.
+- `--history` is an opt-in diagnostic over past commits' added lines; it is not part of CI and always exits 0.
+- Wired into `local-ci/check-toko` beside the other root audits.
+
+### audit:graf fits derived products: code-only graphs, tracking lists and a subtree allow-list
+
+`bun run audit:graf` assumed a document-and-code graph and a subtree that no derived product ever touches (issue #534). With the template's own tracked graph and no `STATUS.md`, behaviour is unchanged.
+
+- **Code-only graphs.** When `graphify-out/STATUS.md` exists, a hub-name fallback community label is reported as a note instead of a failure. A placeholder label, a missing name or a report/graph mismatch still fails, and a graph without `STATUS.md` fails for a fallback label exactly as before.
+- **Tracked artefacts follow the skill's table.** Three explicit lists in `packages/gerbang/lib/graf-checks.mjs`: `graph.json` and `GRAPH_REPORT.md` required; `STATUS.md`, the label sidecar, `manifest.json` and `cost.json` optional (so a product that leaves the last two untracked, as the skill's table says, passes); anything else refused.
+- **`SUBTREE_ALLOWLIST`** (default empty): `{ prefix, reason }` paths under `apps/cms/` a derived product owns and may extract into its root graph. One list drives the `.graphifyignore` check (default-deny `apps/cms/*` plus re-includes), the no-subtree-node check and the staleness candidates. The subtree's own graph directory can never be listed.
+
+### A derived product disables CI leg groups through one config file
+
+`tools/ci/legs.ts` kept one fixed table, so a repository derived from the template that did not run a group (for example the `template-*` legs, meaningless once initialised) had to edit the table itself and conflict at every template sync, with nothing pinning the set of posted contexts against its branch protection.
+
+- The inherited table is now `TEMPLATE_LEGS`; `LEGS` is that table minus the groups listed in the new `tools/ci/derived-product.ts` (`DISABLED_LEG_GROUPS`, empty in the template, so `LEGS` and `LEG_CONTEXTS` are unchanged there). An unknown group name throws.
+- A disabled leg is absent from `bun run ci` and `ci:pr`, and `--leg <context>` or a `ci:*` shortcut for it stops with `Unknown leg context`.
+- `tests/local-ci-legs.test.mjs` pins the template's exact contexts and a filtered configuration.
+- Documented in `docs/template.md` and `docs/alur-kerja-pengembangan.md`.
+
+### Commerce operations declare `429`, `Retry-After` and `Idempotency-Key` where their handlers apply them (#557)
+
+Upstream's contract-parity test (ahliweb/awcms#1385) wants the public contract to say `429` (with `Retry-After`) and the `Idempotency-Key` header exactly where a handler applies them. The `commerce` OpenAPI fragment now does, for about a hundred operations, each checked against its handler:
+
+- `429`: an operation whose handler rate-limits declares the shared `RateLimited` response (or `RateLimitedNoRetryAfter` where it sends no header); an operation that already declared an inline `429` keeps its description and gains the `Retry-After` header. `POST /commerce/orders/{id}/payments` and `POST /commerce/pos/orders` describe the stored-value lookup throttle they really answer.
+- `Idempotency-Key`: the required `IdempotencyKey` component on the owner operations whose handler requires the header (affiliate commissions, campaign send/cancel, gateway reconcile) and `IdempotencyKeyOptional` on the storefront operations where the key is optional (address create, order cancel, payment confirmation, review, conversation, message, OTP verify). The prose that said the shared component was "required, wider" is replaced.
+- `requireIdempotencyKey` in `expense-http.ts`, `documents-http.ts` and `booking-adapter-http.ts` is now a one-line forward instead of a bare `export { x } from`, so the static scan can see the header read of `register-http.ts`. No behaviour change.
+- `apps/cms/tests/support/commerce-contract-parity-exemptions.ts` shrinks from about 100 entries to one, `POST /commerce/quotations/{id}/convert`, whose limiter the scan reaches only through a stored-value tender branch that conversion never takes. `AGENTS.md` (and its mirror) record it.
+
+No runtime change. The bundle and the API reference are regenerated.
+
+### Commerce OpenAPI declares the payment-proof and saved-address request bodies (#571)
+
+`apps/cms/openapi/modules/commerce.openapi.yaml` now declares a `requestBody` on `POST .../orders/{orderCode}/payment-proof/upload-sessions` and its `finalize` operation (the shape the storefront client sends; optional, because both handlers answer `503 MEDIA_UNAVAILABLE` today and read no body), and a real `CommerceAccountAddressRequest` schema on `POST .../account/addresses`, derived from `validateAccountAddressInput` (required `label` and `postalCode`, the length bounds the validator enforces). The bundle and the API reference are regenerated. No runtime change.
+
+### Freeze the storefront's browser calls as a consumer contract
+
+Issue #556 extends the frozen consumer-contract slice of #555 (ADR-0058 D2, audit F-01) from the storefront's build-time reads to the operations it calls in the browser. `apps/cms` and `apps/storefront/tests/fixtures/` are untouched.
+
+- `tests/fixtures/storefront-consumer-contract.json` (schema version 2) gains 53 `phase: "browser"` operations from `apps/storefront/src/lib/**` and `src/scripts/**`: 49 `kirimPermintaan` calls, the three newsletter calls and the page-view beacon. Per profile: `toko` 53, `berita` 4, `landing` 1.
+- Responses keep the additive-superset rule. Request bodies and parameters follow the reverse rule: the provider must keep accepting what the storefront sends, so a new required field or parameter, a removed property or a narrowed type, enum, format or bound fails the gate.
+- Each browser operation records its auth, the query and header parameters it sends, its Idempotency-Key behaviour and its negative cases (`204`, `401`, `404`, `409`, `429`) with evidence in the storefront source. A `429` the bundle does not declare is marked pending upstream (awcms#1385, issue #557), not invented.
+- The source scan fails on a new `kirimPermintaan` call, a new direct transport, any other `fetch`, `sendBeacon` or `XMLHttpRequest` in the storefront source, and a bearer call that left the session-clearing wrapper.
+- The two payment-proof upload operations send a body that the bundle does not declare; they are named in `REQUEST_BODY_UNDECLARED`, and the gate fails when the bundle starts declaring it so the exemption cannot go stale.
+- Mutation tests prove each new check can fail. Docs: the audit report and `docs/pengujian.md` (with Indonesian mirrors).
+
+### Freeze the storefront's build-time reads as a consumer contract
+
+The storefront's build-time reads of the CMS were checked against nothing: a response change arriving in a subtree sync reached `astro build` before anyone saw it (audit F-01). Issue #555 freezes them (ADR-0058 D2, at the repository root, `apps/cms` untouched).
+
+- `tests/fixtures/storefront-consumer-contract.json` freezes the 20 operations the storefront reads while building, per profile (`toko` 20, `berita` 13, `landing` 5), with their transitive schemas. `tests/storefront-consumer-contract.test.mjs` (in the root `bun test`, so `local-ci/check-toko`) checks them against the committed OpenAPI bundle with the additive-superset rule of `api:consumer-contract:check`: the provider may add, never remove or narrow.
+- A source scan of `apps/storefront/src` fails when a new build-time read appears that is not in the slice, so the slice cannot drift silently. `GET /theming/{tenantCode}/tokens.css` is named as out of the bundle (audit F-07) with a reason; no schema is invented for it.
+- `bun run contract:storefront:check` runs the same checks; `bun run contract:storefront:generate --reason "<why>"` re-freezes deliberately, and the reason belongs in the PR.
+- Two differences from `apps/cms`'s script, on purpose: only the consumed methods are frozen, and documentation-only keys are ignored so rewording is not a contract change.
+- The format carries `phase: "build"` per operation so issue #556 can add browser calls to the same file.
+
+### Gate: storefront stub fixtures are judged against the OpenAPI response schemas
+
+Issue #553 (audit finding F-02, ADR-0058). Every file under `apps/storefront/tests/fixtures/awcms` is now validated against the matching response schema of the committed OpenAPI bundle (`apps/cms/openapi/`, read only) by `tests/fixture-skema-openapi.test.mjs`, which the root `bun test` of `local-ci/check-toko` runs. No database, no network, no build.
+
+- An explicit reviewed map (`tests/support/fixture-skema-mapa.mjs`) names the operation of each fixture; an unmapped fixture, or a mapped operation missing from the bundle, fails. Subset fixtures name the required fields they omit and why; lookup tables are judged as the responses the stub builds from them; stub configuration and the raw CSS file are listed as not-a-response with a reason.
+- An undeclared property is an error (the schemas rarely close their objects, so the gate closes them with `unevaluatedProperties`).
+- Known violations stay green only as dated, reasoned exceptions that point at #554 (F-03 to F-05) and fail once they match nothing or pass their review date (15 December 2026). The first run also found two violations the audit did not list: `own_work` in `media-objects.json` and four `videoNews` fields the spec does not declare in `blog-posts.json`; both are recorded as exceptions N-01 and N-02 for the owner to triage.
+- New root `devDependency`: `ajv@^8.20.0` (already in `bun.lock` transitively; `ajv/dist/2020` for the OpenAPI 3.1 bundle). The YAML bundle is parsed with Bun's built-in `Bun.YAML.parse`, so no YAML package is added.
+
+### The landing profile builds without CMS credentials
+
+A `SITE_PROFILE=landing` storefront build with `AWCMS_API_URL` unset no longer fails: one helper, `buildsWithoutCms()` (`apps/storefront/src/lib/awcms/tanpa-cms.ts`), answers true only for that combination, and the build-time readers the landing profile reaches return their empty value without a network call: the static page list (empty) and a single page (`null`), the site identity (defaults plus `SITE_NAME` / `SITE_DESCRIPTION`), the store settings (empty settings) and the media public origin (unconfigured). The page set is the profile's own pages and `/csp.json` is still derived.
+
+- No change for `toko` and `berita` (a missing `AWCMS_API_URL` still fails with the existing message) or for `landing` with a CMS configured; `client.ts` is untouched.
+- `PUBLIC_AWCMS_ORIGIN` stays required on every profile because it is also the CSP `connect-src`.
+- `apps/storefront/tests/tanpa-cms.test.ts` pins the helper and each reader's early return with every `fetch` forbidden.
+
+### A hung local-CI step now times out instead of hanging the run
+
+`tools/ci/lib/exec.ts` ran every step with no wall-clock limit, so one step that never ended (a container that never became healthy, a browser that never exited) hung `bun run ci` / `ci:pr` forever, held the run lock and left no status posted. The `check-cms` leg, the longest, was the most exposed.
+
+- `run()` takes an optional `timeoutMs`. On expiry the step's whole process group (it now leads its own group) gets `SIGTERM`, then `SIGKILL` after a grace period, and the result carries `timedOut`. A step with no budget behaves exactly as before.
+- Every runner passes a generous budget per step (for example 60 minutes each for `apps/cms`'s `bun run check` and its integration suite) and fails the leg with `<step> timed out after N s`. The leg still returns an outcome, so the `local-ci/*` failure status is posted, the lock is released and `check-cms` removes its container.
+- `LOCAL_CI_TIMEOUT_SCALE` multiplies every default for slow machines; it is documented in the root `.env.example`, and an invalid value is refused rather than read as "no limit".
+- The gitleaks step checks `timedOut` first: its exit code 124 would otherwise have been read as "no leaks" under its 0/1/2 convention.
+
+### Tests for unknown gateway and refund outcomes
+
+Issue #564 adds deterministic failure tests on real PostgreSQL (two tenants, FORCE RLS) for payment-gateway session creation, status polling, webhook settlement and gateway refunds, with zero-double-financial-effect invariants: timeouts before and after provider acceptance, lost acknowledgements, 429/5xx/malformed answers, concurrent duplicates, late paid webhooks after expiry, reordered and duplicate events, a crash after a refund provider accepted, and cross-tenant denial. One production fix: a Midtrans refund answered with `status_code` "202" ("Refund denied by the bank") was booked as succeeded, settling the refund leg and reversing the ledger for money the customer never received; now only "200" is succeeded, "201" pending, and every other code a failure.
+
+- `apps/cms/tests/support/fake-payment-gateway.ts` is a stateful fake provider that remembers what it did, so a test can tell "the caller saw a failure" from "the provider did nothing".
+- The Midtrans refund mapping fix (case K4) is covered by an active regression test. Three further reproduced cases are recorded as skipped tests (`RUN_KNOWN_DEFECTS=1` runs them) with follow-up issues, not fixed here: a provider-paid session is expired without asking the provider (K1), and a late `pending` webhook regresses a paid session, blocking a balance session (K2, K3).
+- `docs/pengujian.md` (and its Indonesian mirror) gains a short section on running them.
+
+### The release step can rewrite declared version mirrors
+
+An image built from a subfolder alone cannot read the root `package.json`, so a product version shown inside it needs its own copy, and a hand-edited copy drifts. `tools/rilis.mjs` now reads `tools/version-mirrors.json` (issue #536): each declared mirror is a file plus a regular expression with one capture group, and `--apply` rewrites the captured text to the new version after the root `package.json` bump, in the same release change.
+
+- The template ships an empty list, so its release flow and output are unchanged.
+- Every rewrite is planned in memory first, in the preview too. A missing file, a pattern that matches nothing or more than once, or a captured value that is not `X.Y.Z` refuses the release with the tree untouched.
+- `tests/version-mirrors.test.mjs` fails when a declared mirror differs from the root version. The logic lives in `packages/gerbang/lib/version-mirrors.mjs`; see [`docs/rilis.md`](docs/rilis.md).
+
+### A stale-bearer 401 on checkout, gateway session and review clears the stored session
+
+`createOrder`, `createGatewaySession` and `submitReview` send an optional bearer but sat outside the session-clearing path, so an expired token showed a generic error and stayed in `localStorage`, contrary to the bearer-session rule. Issue #570 routes a `401 UNAUTHENTICATED` of these three calls through the same clearing (`hapusSesi`) as the `akun-klien.ts` calls, only when a bearer was actually sent; guest checkout is unchanged.
+
+- Unit tests per call in `apps/storefront/tests/toko-klien-sesi-401.test.ts`: bearer plus 401 clears, no bearer plus 401 leaves the session, success unchanged.
+- The #556 consumer-contract slice now states `session-cleared` for the three 401 cases with evidence in `toko-klien.ts` (it pointed at `akun-klien.ts`, which these calls never went through); the fixture is regenerated.
+
+### Storefront fixtures and types follow the OpenAPI schema (F-03 to F-05)
+
+Issue #554, after the gate of #553. The stub fixtures and storefront types no longer claim what the provider does not send: `downloadLink` is gone from the products fixture and from `CommerceProduct`; `store-settings-public.json` gains `payment.tax.mode` and loses `shipping.courier` (the live route sends only `courierEnabled`, so the `courier?` type member goes too and the stub quotes every courier it has rates for); the regions fixture uses `regionType: "regency"`, which is what the provider emits for a city; `media-objects.json` uses `copyrightStatus: "owned"`.
+
+The exceptions F-03, F-04, F-05 and N-01 are deleted from the gate's map. N-02 (`videoNews` fields `title`, `caption`, `durationSeconds`, `sourceLabel`) stays as the one exception: the provider emits and the storefront renders them, so it is an upstream spec gap to be reported to `ahliweb/awcms`, not a fixture defect.
+
+### Sync `apps/cms` to upstream awcms `ff876138` (single-probe circuit breaker, contract lint, narrowed worker grants)
+
+The embedded `apps/cms` subtree moves from upstream `765e52c7` to `ff876138` (53 upstream commits, AWCMS v10.12.0 still), pulled with a merge commit. Upstream keeps 40 registered modules (41 here, with `commerce`) and ends at `sql/415`; no migration collides with this repo's `880`-`883` and `901`+ bands. No Bun change (`apps/cms` stays on `bun@1.4.4`).
+
+- Upstream: the circuit breaker reserves one half-open probe per call (`canAttempt` is gone, `tryAcquire`/`wouldAllowAttempt` replace it); `/login` gains the second-factor and pre-session MFA enrolment steps; the worker's `UPDATE` on `awcms_email_messages` is narrowed to the dispatcher's columns (`sql/415`); `api:contract:lint` (ajv) and a `nullable`-without-`type` hygiene gate join `bun run check`; `429`/`Retry-After`/`Idempotency-Key` must be declared where a handler applies them; the payroll look-alike registry, the delivery-queue health view, the typed third-party outcome taxonomy, the deployment brand token override and the held-back dependency register arrive.
+- `commerce` follows the breaker change: the Fonnte, Meta WhatsApp, Midtrans and RajaOngkir clients reserve the probe per call and release it in a `finally`, the WhatsApp and customer-push dispatch gates only peek, and the customer-push dispatcher defers a send the breaker refused (no attempt row, no retry spent) instead of booking it as a failed attempt.
+- `commerce`'s OpenAPI fragment declares six nullable `$ref` fields as `oneOf: [{ $ref }, { type: "null" }]`; they were silently not nullable under OpenAPI 3.1 and `api:contract:lint` rejected them.
+- One new standing divergence: about a hundred `commerce` operations do not yet declare `429`, `Retry-After` or `Idempotency-Key` where their handlers apply them (issue #557). They are pinned by exact name in `apps/cms/tests/support/commerce-contract-parity-exemptions.ts`, which must be empty again when #557 lands.
+- The client asset budget rises to 560,600 B (measured 560,462 B) for upstream's `/login` steps; `commerce` added no browser byte.
+- `AGENTS.md` (and its mirror) record the sync, the divergence and the lessons.
+
 ## [0.21.0] — 2026-11-24
 
 ### The Bun-only gate now covers scripts, the storefront profiles and the queue workers (#469 residuals)
