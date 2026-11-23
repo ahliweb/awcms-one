@@ -95,12 +95,12 @@ describe("the privacy requests", () => {
 
   test("hapusDataSaya: POST privacy/erasure with the code and the Idempotency-Key header", async () => {
     mockFetch(200, { success: true, data: { erased: true } });
-    const key = "0123456789abcdef0123";
-    await hapusDataSaya("654321", key);
+    const idempotency = "uji-privasi-hapus-0001";
+    await hapusDataSaya("654321", idempotency);
 
     expect(last?.url).toBe(`${BASE}/erasure`);
     expect(last?.init.method).toBe("POST");
-    expect(headersOf()["Idempotency-Key"]).toBe(key);
+    expect(headersOf()["Idempotency-Key"]).toBe(idempotency);
     expect(JSON.parse(String(last?.init.body))).toEqual({ code: "654321" });
   });
 
@@ -129,7 +129,7 @@ describe("the privacy requests", () => {
     });
     let caught: unknown;
     try {
-      await hapusDataSaya("654321", "0123456789abcdef0123");
+      await hapusDataSaya("654321", "uji-privasi-hapus-0002");
     } catch (error) {
       caught = error;
     }
