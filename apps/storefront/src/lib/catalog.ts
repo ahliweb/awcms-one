@@ -163,13 +163,9 @@ export type CommerceProductVariant = {
  * `ProductRecord` + the `images[]`/`variants[]` relations `ProductWithRelations`
  * adds — every field awcms's product GET routes actually return, verbatim.
  *
- * `downloadLink` is carried here because `toRecord()` still returns it as of
- * #23/PR #37 — but per the #26⇄#27 contract
- * (`commerce-public-read-models.md`, "Notes for the storefront (#27)"), it
- * is being REMOVED from the public DTO once #26 merges (a digital product's
- * download link must only be delivered after purchase, #29), and until then
- * **no page in this app reads it**. Grep for `.downloadLink` before adding
- * a page that would.
+ * `downloadLink` is NOT part of this type: the public product record never sends it
+ * (a digital product's download link is delivered only after purchase, and
+ * `toAdminRecord` adds it for admins only; audit F-03, issue #554).
  */
 export type CommerceProduct = {
   id: string;
@@ -208,8 +204,6 @@ export type CommerceProduct = {
   sizeChartDetails: unknown | null;
   serviceForm: ServiceFormField[] | null;
   subscriptionPeriod: SubscriptionPeriod | null;
-  /** ⚠ Never rendered — see this type's own docblock above. */
-  downloadLink: string | null;
   allowDp: boolean;
   allowFreeShipping: boolean;
   variantAttributes: VariantAttributeGroup[] | null;

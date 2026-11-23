@@ -79,8 +79,8 @@ export const POS_LOOKUP_MISS_WINDOW_MS = 15 * 60 * 1000;
 
 /**
  * ADR-0045 D19 (residual R3): a guest cannot be checked in while a balance is
- * owed unless the tenant says otherwise. Fail closed - and the OWNER confirms
- * this default before the issue merges. A tenant with no settings row reads it.
+ * owed unless the tenant says otherwise. Fail closed; the owner confirmed this
+ * default on 11 November 2026. A tenant with no settings row reads it.
  */
 export const DEFAULT_CHECK_IN_REQUIRES_SETTLEMENT = true;
 

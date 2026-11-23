@@ -1,0 +1,34 @@
+# awcms-one-deps-freshness.service — one run of the dependency freshness
+# report (issue #471, `bun run deps:freshness`, tools/deps-freshness.ts),
+# triggered weekly by awcms-one-deps-freshness.timer. A USER unit (installed
+# under ~/.config/systemd/user/, run as the operator's own account), like
+# awcms-one-ci-watch.service: no root, no access beyond the operator's shell.
+#
+# Not installed by this change: an operator installs it deliberately, on the
+# trusted host that runs local CI:
+#
+#   mkdir -p ~/.config/systemd/user
+#   cp tools/ci/systemd/awcms-one-deps-freshness.{service,timer} ~/.config/systemd/user/
+#   # Edit WorkingDirectory below to this checkout's real path first.
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now awcms-one-deps-freshness.timer
+#
+# The report reads public registries only (GET with a timeout, no token is
+# needed) and writes nothing into the checkout. `--strict` exits 1 unless the
+# report is a clean all-clear, so `systemctl --user --failed` (or the unit's
+# journal) is the weekly signal that something needs a decision; the Markdown
+# record of the last run is the file named below. See "Freshness report" in
+# docs/alur-kerja-pengembangan.md for what each disposition means.
+
+[Unit]
+Description=awcms-one dependency freshness report (weekly)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# EDIT THIS to the absolute path of your awcms-one checkout before installing.
+WorkingDirectory=%h/awcms-one
+ExecStartPre=/usr/bin/env mkdir -p %h/.local/state/awcms-one-deps
+ExecStart=/usr/bin/env bun run deps:freshness -- --strict --out-md %h/.local/state/awcms-one-deps/freshness-latest.md --out-json %h/.local/state/awcms-one-deps/freshness-latest.json
+TimeoutStartSec=900

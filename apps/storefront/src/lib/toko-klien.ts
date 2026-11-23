@@ -81,7 +81,7 @@ export type QuoteRequest = {
    * `undefined`/`null`/absent means "no destination known yet" — the CMS
    * (and this repo's own stub) then answers with the single disabled
    * `{available:false}` courier placeholder rather than real rates, exactly
-   * as it does when `shipping.courier.enabled` is off.
+   * as it does when `shipping.courierEnabled` is off.
    */
   destination?: { districtCode: string } | null;
 };
