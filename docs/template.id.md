@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:72fd1474921b0c554b37d88738f27e976c1a62ea4e06b3eb5948adf7313aeced -->
+<!-- i18n-source-hash: sha256:9057362100e1c6947168c74abddac3c9ee886f53bf05f6e5d54156055bfdfdd4 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -164,6 +164,7 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `404.astro` | shared | Setiap profil butuh halaman tidak-ditemukan |
 | `a11y-early.js.ts` | shared | Setiap profil membawa panel preferensi baca, yang skrip penerap-awalnya disajikan dari sini (sumber: `apps/storefront/src/lib/a11y-early.js`, tidak pernah `public/`) |
 | `akun/afiliasi.astro` | toko | Dashboard afiliasi commerce |
+| `akun/privasi.astro` | toko | Ekspor dan penghapusan data milik pembeli sendiri (issue #529) |
 | `akun/alamat.astro` | toko | Buku alamat commerce |
 | `akun/index.astro` | toko | Shell dashboard akun commerce |
 | `akun/pesanan.astro` | toko | Riwayat pesanan commerce |

@@ -499,6 +499,12 @@ describe("the module descriptor", () => {
         capability: "booking",
         providedBy: "booking",
         optional: true
+      },
+      // Issue #463 (ADR-0056 D2): the CRM lead link, through CrmLeadPort.
+      {
+        capability: "crm_lead",
+        providedBy: "crm_leads",
+        optional: true
       }
     ]);
   });

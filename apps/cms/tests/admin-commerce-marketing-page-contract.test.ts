@@ -35,6 +35,10 @@ const API_FIRST_COMMERCE_KEYS: ReadonlySet<string> = new Set([
   "commerce.commission_settings.manage",
   "commerce.commission_staff_links.read",
   "commerce.commission_staff_links.manage",
+  // Issue #463 (ADR-0056): the CRM lead link ships API-first, no screen yet.
+  "commerce.crm_lead_links.read",
+  "commerce.crm_lead_links.create",
+  "commerce.crm_lead_links.approve",
   // Issue #430: aggregate-only diagnostics; the admin screen is deferred (the
   // NOT_YET_SCREENED ledger entry names the reason).
   "commerce.customer_push.read"
