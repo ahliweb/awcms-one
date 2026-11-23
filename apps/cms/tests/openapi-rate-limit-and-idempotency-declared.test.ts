@@ -28,6 +28,25 @@ import path from "node:path";
 import { parse as parseYaml } from "yaml";
 
 import { stripComments } from "../scripts/lib/source-text";
+// awcms-one local divergence (issue #557): see the file's own docblock.
+import { COMMERCE_CONTRACT_PARITY_EXEMPTIONS as EXEMPT } from "./support/commerce-contract-parity-exemptions";
+
+/**
+ * awcms-one (issue #557): `found` is the set of operations that break a rule
+ * today. The exempt ones are removed from it, and an exemption that no longer
+ * breaks the rule is itself a failure (the list may only shrink).
+ */
+function withoutExempt(
+  found: string[],
+  exempt: readonly string[]
+): { unexpected: string[]; stale: string[] } {
+  const exemptSet = new Set(exempt);
+  const foundSet = new Set(found);
+  return {
+    unexpected: found.filter((k) => !exemptSet.has(k)),
+    stale: exempt.filter((k) => !foundSet.has(k))
+  };
+}
 
 const ROOT = path.resolve(import.meta.dir, "..");
 const ROUTES = path.join(ROOT, "src/pages/api/v1");
@@ -219,7 +238,9 @@ describe("rate limiting is declared where a handler applies it (#1385, F-09)", (
     const missing = limited
       .filter((h) => !h.op.responses?.["429"])
       .map((h) => h.key);
-    expect(missing).toEqual([]);
+    const { unexpected, stale } = withoutExempt(missing, EXEMPT.missing429);
+    expect(unexpected).toEqual([]);
+    expect(stale).toEqual([]);
   });
 
   test("a 429 whose handler sends Retry-After declares the header (a handler that never sends it must not claim it)", () => {
@@ -232,7 +253,12 @@ describe("rate limiting is declared where a handler applies it (#1385, F-09)", (
       if (sends && !declares) wrong.push(`${h.key}: sends, does not declare`);
       if (!sends && declares) wrong.push(`${h.key}: declares, never sends`);
     }
-    expect(wrong).toEqual([]);
+    const { unexpected, stale } = withoutExempt(
+      wrong,
+      EXEMPT.retryAfterUndeclared.map((k) => `${k}: sends, does not declare`)
+    );
+    expect(unexpected).toEqual([]);
+    expect(stale).toEqual([]);
   });
 
   test("the shared components exist and agree with each other", () => {
@@ -264,7 +290,9 @@ describe("Idempotency-Key is declared where a handler reads it (#1385, F-08)", (
     const missing = reading
       .filter((h) => !parameterRefs(h).some((r) => KEY_REFS.includes(r)))
       .map((h) => h.key);
-    expect(missing).toEqual([]);
+    const { unexpected, stale } = withoutExempt(missing, EXEMPT.keyUndeclared);
+    expect(unexpected).toEqual([]);
+    expect(stale).toEqual([]);
   });
 
   test("an operation that declares the header has a handler that reads it", () => {
@@ -272,7 +300,9 @@ describe("Idempotency-Key is declared where a handler reads it (#1385, F-08)", (
       .filter((h) => parameterRefs(h).some((r) => KEY_REFS.includes(r)))
       .filter((h) => !reaches(IDEMPOTENCY_READ, h.file, h.name))
       .map((h) => h.key);
-    expect(claims).toEqual([]);
+    const { unexpected, stale } = withoutExempt(claims, EXEMPT.keyUnread);
+    expect(unexpected).toEqual([]);
+    expect(stale).toEqual([]);
   });
 
   test("an operation that applies the key only in some cases uses the optional component", () => {

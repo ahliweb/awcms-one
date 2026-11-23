@@ -3244,9 +3244,9 @@ paths:
                         nullable: true
                       customer:
                         description: Present only for a `phone` lookup; `null` when no customer matches.
-                        nullable: true
-                        allOf:
+                        oneOf:
                           - $ref: "#/components/schemas/LoyaltyCustomerLookup"
+                          - type: "null"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -7506,9 +7506,9 @@ paths:
                       entitled:
                         type: boolean
                       entitlement:
-                        nullable: true
-                        allOf:
+                        oneOf:
                           - $ref: "#/components/schemas/CommerceEntitlement"
+                          - type: "null"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -8049,9 +8049,9 @@ paths:
                     type: object
                     properties:
                       affiliate:
-                        nullable: true
-                        allOf:
+                        oneOf:
                           - $ref: "#/components/schemas/Affiliate"
+                          - type: "null"
                         description: Extends `Affiliate` with a `link` and a `stats` object of `{referredOrders, pendingAmount, approvedAmount, paidAmount}`.
         "401":
           description: UNAUTHENTICATED.
@@ -17835,9 +17835,9 @@ components:
             - orphans
           properties:
             orphans:
-              nullable: true
-              allOf:
+              oneOf:
                 - $ref: "#/components/schemas/CommerceInventoryOrphanReport"
+                - type: "null"
     CommerceInventoryResync:
       allOf:
         - $ref: "#/components/schemas/CommerceInventoryReconciliation"
@@ -18876,9 +18876,9 @@ components:
           type: string
           nullable: true
         bundle:
-          nullable: true
-          allOf:
+          oneOf:
             - $ref: "#/components/schemas/CommerceBundle"
+            - type: "null"
           description: "Issue #290. The bundle's pricing and contents (no cost price, no stock counts); null for a standard product."
         images:
           type: array
@@ -25873,9 +25873,9 @@ components:
           type: integer
           nullable: true
         retainedSummary:
-          allOf:
+          oneOf:
             - $ref: "#/components/schemas/CommerceCustomerErasureSummary"
-          nullable: true
+            - type: "null"
         createdAt:
           type: string
           format: date-time
