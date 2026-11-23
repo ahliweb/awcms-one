@@ -5,7 +5,8 @@
  */
 import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
-import { LEGS, LEG_CONTEXTS, findLeg, legsInGroup } from "../tools/ci/legs.ts";
+import { LEGS, LEG_CONTEXTS, TEMPLATE_LEGS, filterDisabledGroups, findLeg, legsInGroup } from "../tools/ci/legs.ts";
+import { DISABLED_LEG_GROUPS } from "../tools/ci/derived-product.ts";
 
 const EXPECTED_CONTEXTS = [
   "local-ci/check-toko",
@@ -52,6 +53,45 @@ describe("tools/ci/legs.ts", () => {
   test("check-toko and template-root are the only 'primary' legs", () => {
     const primary = LEGS.filter((leg) => leg.primary).map((leg) => leg.context);
     assert.deepEqual(primary, ["local-ci/check-toko", "local-ci/template-root"]);
+  });
+});
+
+describe("tools/ci/derived-product.ts (issue #531)", () => {
+  test("the template ships an empty disabled-groups list, so LEGS is the inherited table", () => {
+    assert.deepEqual([...DISABLED_LEG_GROUPS], []);
+    assert.deepEqual(LEGS, TEMPLATE_LEGS);
+  });
+
+  test("a derived product that disables a group posts exactly the remaining contexts", () => {
+    const withoutTemplate = filterDisabledGroups(TEMPLATE_LEGS, ["template"]).map((leg) => leg.context);
+    assert.deepEqual(withoutTemplate, [
+      "local-ci/check-toko",
+      "local-ci/check-berita",
+      "local-ci/check-landing",
+      "local-ci/check-cms",
+      "local-ci/e2e-toko",
+      "local-ci/e2e-berita",
+      "local-ci/e2e-landing",
+      "local-ci/security"
+    ]);
+    const onlyCheckAndSecurity = filterDisabledGroups(TEMPLATE_LEGS, ["template", "e2e"]).map((leg) => leg.context);
+    assert.deepEqual(onlyCheckAndSecurity, [
+      "local-ci/check-toko",
+      "local-ci/check-berita",
+      "local-ci/check-landing",
+      "local-ci/check-cms",
+      "local-ci/security"
+    ]);
+  });
+
+  test("an unknown group name throws instead of silently disabling nothing", () => {
+    assert.throws(() => filterDisabledGroups(TEMPLATE_LEGS, ["templates"]), /unknown leg group "templates"/);
+  });
+
+  test("a disabled leg is rejected by name, as 'Unknown leg context'", async () => {
+    const source = await Bun.file(new URL("../tools/ci/lib/orchestrate.ts", import.meta.url)).text();
+    assert.match(source, /Unknown leg context: \$\{context\}/);
+    assert.match(source, /LEGS\.find\(\(l\) => l\.context === context\)/);
   });
 });
 

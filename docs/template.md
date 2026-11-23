@@ -140,6 +140,10 @@ BjekMart-only artefacts that a derived deployment does not need and should not c
 | Status and branding links | `apps/storefront/.env.example`: `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, `SITE_PROFILE` | [`status.md`](status.md) states awcms-one's own current state, not the product's: rewrite it. Check the contact, advisory and support links in `SECURITY*` and `SUPPORT*` |
 | Upstream version drift | `awcmsOne.templateVersion` records which template version the repository started from | A repository made from the template has no `apps/cms` history. Record the ancestry once, keep the `awcms` remote main-only with `--no-tags`, merge each subtree sync with a merge commit, and set the repository to merge-commit-only before the first sync: "Compatibility and upgrade guidance" below |
 
+### Turning off CI leg groups
+
+A product that no longer needs a whole group of `local-ci/*` legs (for example the `template` group, which re-runs `template:init` against a disposable checkout and makes no sense once the repository is initialised) edits **one file**, `tools/ci/derived-product.ts`, and never the leg table in `tools/ci/legs.ts`. Set `DISABLED_LEG_GROUPS` to any of `"check"`, `"template"`, `"e2e"`, `"security"`; the template ships it empty, so every leg runs. `LEGS` and `LEG_CONTEXTS` then omit the disabled group, `bun run ci` and `ci:pr` run and post only the remaining contexts, and `--leg <context>` (or a `ci:*` shortcut) for a disabled leg stops with `Unknown leg context`. An unknown group name throws on import. Changing the product's branch-protection required checks to the remaining set stays a manual step; `tests/local-ci-legs.test.mjs` pins the template's contexts, so update its pinned list in the same change.
+
 ## Build profiles
 
 `SITE_PROFILE` (read at build time by `apps/storefront/src/config/profil.ts`, [#137](https://github.com/ahliweb/awcms-one/issues/137)) selects which page groups a build includes. Full reasoning: [ADR-0018 D2/D3](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md).
