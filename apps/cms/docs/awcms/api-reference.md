@@ -15219,11 +15219,15 @@ Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exa
 - **operationId**: `createCommerceStorefrontPaymentProofUploadSession`
 - **Security**: none (public endpoint)
 
+The request body is the shape the storefront client already sends (`apps/storefront/src/lib/toko-klien.ts`), declared so the contract can be consumed; the handler reads no body today and answers `503` (or `404` for an unknown tenant) whatever it holds, so the body is optional.
+
 **Parameters**
 
 | Name        | In   | Required | Type   | Description |
 | ----------- | ---- | -------- | ------ | ----------- |
 | `orderCode` | path | yes      | string |             |
+
+**Request body** (optional): [`CommercePaymentProofUploadSessionRequest`](#schema-commercepaymentproofuploadsessionrequest)
 
 **Responses**
 
@@ -15237,12 +15241,16 @@ Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exa
 - **operationId**: `finalizeCommerceStorefrontPaymentProofUploadSession`
 - **Security**: none (public endpoint)
 
+The request body is the shape the storefront client already sends (`apps/storefront/src/lib/toko-klien.ts`); the handler reads no body today and answers `503` (or `404` for an unknown tenant) whatever it holds, so the body is optional.
+
 **Parameters**
 
 | Name        | In   | Required | Type   | Description |
 | ----------- | ---- | -------- | ------ | ----------- |
 | `orderCode` | path | yes      | string |             |
 | `sessionId` | path | yes      | string |             |
+
+**Request body** (optional): [`CommercePaymentProofFinalizeRequest`](#schema-commercepaymentprooffinalizerequest)
 
 **Responses**
 
@@ -16211,7 +16219,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same address within 1 hour replays the original `201` with `data.replayed: true` (no second address); the same key with another address is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat creates a second address (each create is serialised per customer, so the limit and the first-address default hold under concurrency).
 
-**Request body** (required): object
+**Request body** (required): [`CommerceAccountAddressRequest`](#schema-commerceaccountaddressrequest)
 
 **Responses**
 
@@ -26277,6 +26285,48 @@ Per-tenant comment configuration. Every numeric bound mirrors a CHECK constraint
 }
 ```
 
+### Schema: CommerceAccountAddressRequest
+
+`validateAccountAddressInput` (`domain/address-validation.ts`). The order-creation address shape plus a required `label`; unlike that snapshot, `postalCode` is required. Text fields are trimmed and a blank required one is `400 VALIDATION_ERROR`. Unknown properties are ignored.
+
+| Field           | Type   | Required | Nullable | Description |
+| --------------- | ------ | -------- | -------- | ----------- |
+| `label`         | string | yes      | no       |             |
+| `recipientName` | string | yes      | no       |             |
+| `phone`         | string | yes      | no       |             |
+| `provinceCode`  | string | yes      | no       |             |
+| `provinceName`  | string | yes      | no       |             |
+| `cityCode`      | string | yes      | no       |             |
+| `cityName`      | string | yes      | no       |             |
+| `districtCode`  | string | yes      | no       |             |
+| `districtName`  | string | yes      | no       |             |
+| `postalCode`    | string | yes      | no       |             |
+| `street`        | string | yes      | no       |             |
+| `latitude`      | number | no       | yes      |             |
+| `longitude`     | number | no       | yes      |             |
+| `notes`         | string | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "label": "string",
+  "recipientName": "string",
+  "phone": "string",
+  "provinceCode": "string",
+  "provinceName": "string",
+  "cityCode": "string",
+  "cityName": "string",
+  "districtCode": "string",
+  "districtName": "string",
+  "postalCode": "string",
+  "street": "string",
+  "latitude": 0,
+  "longitude": 0,
+  "notes": "string"
+}
+```
+
 ### Schema: CommerceAttributeAssignments
 
 | Field        | Type   | Required | Nullable | Description                                                                                                                                                                                    |
@@ -26974,6 +27024,44 @@ Issue #363 (ADR-0043). Spend whole loyalty points on this order. The ONLY figure
 ```json
 {
   "points": 1
+}
+```
+
+### Schema: CommercePaymentProofFinalizeRequest
+
+Reserved (Issue 29). The shape the storefront client sends for step 3 of a proof-of-payment upload. The route ignores the body today and always answers `503 MEDIA_UNAVAILABLE`.
+
+| Field    | Type   | Required | Nullable | Description                          |
+| -------- | ------ | -------- | -------- | ------------------------------------ |
+| `phone`  | string | no       | no       | The phone the order was placed with. |
+| `sha256` | string | no       | no       | Hex SHA-256 of the uploaded file.    |
+
+**Example**
+
+```json
+{
+  "phone": "string",
+  "sha256": "string"
+}
+```
+
+### Schema: CommercePaymentProofUploadSessionRequest
+
+Reserved (Issue 29). The shape the storefront client sends for step 1 of a proof-of-payment upload. The route ignores the body today and always answers `503 MEDIA_UNAVAILABLE`.
+
+| Field         | Type    | Required | Nullable | Description                          |
+| ------------- | ------- | -------- | -------- | ------------------------------------ |
+| `phone`       | string  | no       | no       | The phone the order was placed with. |
+| `contentType` | string  | no       | no       |                                      |
+| `byteLength`  | integer | no       | no       |                                      |
+
+**Example**
+
+```json
+{
+  "phone": "string",
+  "contentType": "image/jpeg",
+  "byteLength": 1
 }
 ```
 

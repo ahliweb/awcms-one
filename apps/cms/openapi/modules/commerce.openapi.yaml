@@ -6130,6 +6130,11 @@ paths:
       tags:
         - Commerce
       summary: Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today. See the module README for why.
+      description: >-
+        The request body is the shape the storefront client already sends
+        (`apps/storefront/src/lib/toko-klien.ts`), declared so the contract can
+        be consumed; the handler reads no body today and answers `503` (or `404`
+        for an unknown tenant) whatever it holds, so the body is optional.
       security: []
       parameters:
         - name: orderCode
@@ -6137,6 +6142,12 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommercePaymentProofUploadSessionRequest"
       responses:
         "503":
           description: Media upload is not available on this deployment.
@@ -6152,6 +6163,11 @@ paths:
       tags:
         - Commerce
       summary: Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today.
+      description: >-
+        The request body is the shape the storefront client already sends
+        (`apps/storefront/src/lib/toko-klien.ts`); the handler reads no body
+        today and answers `503` (or `404` for an unknown tenant) whatever it
+        holds, so the body is optional.
       security: []
       parameters:
         - name: orderCode
@@ -6164,6 +6180,12 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommercePaymentProofFinalizeRequest"
       responses:
         "503":
           description: Media upload is not available on this deployment.
@@ -7120,8 +7142,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              description: Same shape as `CommerceCreateOrderRequest.address`, plus a required `label` and a required (not optional) `postalCode`.
+              $ref: "#/components/schemas/CommerceAccountAddressRequest"
       responses:
         "201":
           description: Created. `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.
@@ -23043,6 +23064,99 @@ components:
                 type: integer
               withdrawn:
                 type: integer
+    CommercePaymentProofUploadSessionRequest:
+      type: object
+      description: Reserved (Issue 29). The shape the storefront client sends for step 1 of a proof-of-payment upload. The route ignores the body today and always answers `503 MEDIA_UNAVAILABLE`.
+      properties:
+        phone:
+          type: string
+          description: The phone the order was placed with.
+        contentType:
+          type: string
+          example: image/jpeg
+        byteLength:
+          type: integer
+          minimum: 1
+    CommercePaymentProofFinalizeRequest:
+      type: object
+      description: Reserved (Issue 29). The shape the storefront client sends for step 3 of a proof-of-payment upload. The route ignores the body today and always answers `503 MEDIA_UNAVAILABLE`.
+      properties:
+        phone:
+          type: string
+          description: The phone the order was placed with.
+        sha256:
+          type: string
+          description: Hex SHA-256 of the uploaded file.
+    CommerceAccountAddressRequest:
+      type: object
+      description: "`validateAccountAddressInput` (`domain/address-validation.ts`). The order-creation address shape plus a required `label`; unlike that snapshot, `postalCode` is required. Text fields are trimmed and a blank required one is `400 VALIDATION_ERROR`. Unknown properties are ignored."
+      required:
+        - label
+        - recipientName
+        - phone
+        - provinceCode
+        - provinceName
+        - cityCode
+        - cityName
+        - districtCode
+        - districtName
+        - postalCode
+        - street
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 100
+        recipientName:
+          type: string
+          minLength: 1
+          maxLength: 200
+        phone:
+          type: string
+          minLength: 1
+          maxLength: 30
+        provinceCode:
+          type: string
+          minLength: 1
+          maxLength: 20
+        provinceName:
+          type: string
+          minLength: 1
+          maxLength: 200
+        cityCode:
+          type: string
+          minLength: 1
+          maxLength: 20
+        cityName:
+          type: string
+          minLength: 1
+          maxLength: 200
+        districtCode:
+          type: string
+          minLength: 1
+          maxLength: 20
+        districtName:
+          type: string
+          minLength: 1
+          maxLength: 200
+        postalCode:
+          type: string
+          minLength: 1
+          maxLength: 10
+        street:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        latitude:
+          type: number
+          nullable: true
+        longitude:
+          type: number
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+          maxLength: 1000
     CommerceAccountAddress:
       type: object
       description: "Issue #91 (implemented, contract #86). One row of `awcms_commerce_customer_addresses`, reached through the account (bearer) rather than a one-off order snapshot — `label`/`postalCode` are always present (never null), unlike the order-creation `address` shape."
