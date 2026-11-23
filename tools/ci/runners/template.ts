@@ -12,7 +12,7 @@
  * the same port the way a fixed one would.
  */
 import { join } from "node:path";
-import { run } from "../lib/exec.ts";
+import { describeFailure, run, stepBudgetMs } from "../lib/exec.ts";
 import { freePort } from "../lib/net.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
 import type { Profile } from "./check.ts";
@@ -37,7 +37,12 @@ async function templateInit(worktreeRoot: string, profile: Profile, label: strin
       "owner@toko-contoh.id",
       "--yes"
     ],
-    { cwd: worktreeRoot, env: { ...process.env, TEMPLATE_INIT_TEST_SCOPE: "root" }, logFile }
+    {
+      cwd: worktreeRoot,
+      env: { ...process.env, TEMPLATE_INIT_TEST_SCOPE: "root" },
+      logFile,
+      timeoutMs: stepBudgetMs(15)
+    }
   );
 }
 
@@ -89,7 +94,7 @@ export async function runTemplateLeg(context: string, profile: Profile, ctx: Leg
   let stubProc: ReturnType<typeof Bun.spawn> | undefined;
 
   const init = await templateInit(worktreeRoot, profile, profile, log("template-init"));
-  if (init.exitCode !== 0) return fail(`template:init --profil ${profile} failed`);
+  if (init.exitCode !== 0) return fail(describeFailure(`template:init --profil ${profile}`, init));
 
   const port = await freePort();
   const stub = await startStub(storefrontDir, port, log("stub"));
@@ -107,16 +112,18 @@ export async function runTemplateLeg(context: string, profile: Profile, ctx: Leg
         SITE_URL: "http://localhost:4321",
         PUBLIC_AWCMS_ORIGIN: "https://cms.example.com"
       },
-      logFile: log("build")
+      logFile: log("build"),
+      timeoutMs: stepBudgetMs(30)
     });
-    if (build.exitCode !== 0) return fail(`build failed (exit ${build.exitCode})`);
+    if (build.exitCode !== 0) return fail(describeFailure("build", build));
 
     const assertDist = await run(["bun", "scripts/assert-profil-dist.ts"], {
       cwd: storefrontDir,
       env: { ...process.env, SITE_PROFILE: profile },
-      logFile: log("assert-profil-dist")
+      logFile: log("assert-profil-dist"),
+      timeoutMs: stepBudgetMs(10)
     });
-    if (assertDist.exitCode !== 0) return fail(`assert-profil-dist failed (exit ${assertDist.exitCode})`);
+    if (assertDist.exitCode !== 0) return fail(describeFailure("assert-profil-dist", assertDist));
 
     return {
       context,
@@ -143,12 +150,16 @@ export async function runTemplateRootLeg(context: string, ctx: LegContext): Prom
 
   const init = await templateInit(worktreeRoot, "toko", "Root Suite", log("template-init"));
   if (init.exitCode !== 0) {
-    return { context, ok: false, summary: "template:init --profil toko failed", durationMs: performance.now() - start, evidenceDir };
+    return { context, ok: false, summary: describeFailure("template:init --profil toko", init), durationMs: performance.now() - start, evidenceDir };
   }
 
-  const test = await run(["bun", "test"], { cwd: worktreeRoot, logFile: log("root-bun-test") });
+  const test = await run(["bun", "test"], {
+    cwd: worktreeRoot,
+    logFile: log("root-bun-test"),
+    timeoutMs: stepBudgetMs(45)
+  });
   if (test.exitCode !== 0) {
-    return { context, ok: false, summary: `root bun test failed (exit ${test.exitCode})`, durationMs: performance.now() - start, evidenceDir };
+    return { context, ok: false, summary: describeFailure("root bun test", test), durationMs: performance.now() - start, evidenceDir };
   }
 
   return { context, ok: true, summary: "template:init + full root bun test green", durationMs: performance.now() - start, evidenceDir };
