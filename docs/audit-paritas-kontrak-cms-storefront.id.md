@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](audit-paritas-kontrak-cms-storefront.md)
 
-<!-- i18n-source-hash: sha256:ace99f0692f02255d57167f7f1c1aa14895db3acb50fdd9a6d8c86da8d1fdb9c -->
+<!-- i18n-source-hash: sha256:42a52a65447594c6a132b11ebb8c071e88a9a4c6c4f86998101a2ce156aaf8fa -->
 
 # Audit paritas kontrak: CMS dan storefront, tiga profil (issue #547)
 
@@ -61,7 +61,8 @@ Sisi putus-putus "tanpa tautan" adalah temuan utama (F-01, F-02): tes dan end-to
 | `tests/kontrak-arah-impor.test.mjs` | Tidak ada berkas di `apps/cms/src` yang mengimpor `apps/storefront`, `packages/kontrak`, atau paket `@awcms-one/*`. Dijalankan: 2 lulus. | Arah sebaliknya (bahwa `packages/kontrak` hanya mengimpor berkas `domain/`); tes ini menyebut itu urusan tinjauan per PR. |
 | `packages/kontrak` (`index.ts`, `katalog.ts`, `pesanan.ts`, `promosi.ts`) | 14 union string-literal diekspor ulang dengan `export type` dari `domain/*.ts` milik `apps/cms`; tanpa nilai runtime. Union yang melebar menjadi galat kompilasi storefront pada `switch` yang menyeluruh. | Bentuk objek apa pun. Docblock menyatakan bentuk DTO sengaja dibiarkan lokal di storefront. |
 | `apps/cms` `api:spec:check` | Path OpenAPI dan handler rute API sepakat (paritas rute); himpunan pengecualian kosong. | Bentuk respons, dan rute di luar `/api` (lihat F-07). |
-| `apps/cms` `api:consumer-contract:check` | Irisan beku yang dipanggil `awcms-astro` tetap subset aditif dari bundel. | Storefront di repo ini tidak termasuk irisan itu (F-01). |
+| `apps/cms` `api:consumer-contract:check` | Irisan beku yang dipanggil `awcms-astro` tetap subset aditif dari bundel. | Storefront di repo ini tidak termasuk irisan itu (F-01); lihat baris berikut untuk separuh saat build-nya. |
+| `tests/storefront-consumer-contract.test.mjs` bersama `tools/lib/storefront-consumer-contract.mjs` (issue #555 dan #556, ADR-0058 D2) | 20 operasi yang dibaca `apps/storefront` saat `astro build` berjalan dan 53 yang dipanggilnya di browser, per profil, dibekukan di `tests/fixtures/storefront-consumer-contract.json` beserta skema transitifnya. Respons tetap subset aditif dari bundel yang di-commit; badan permintaan dan parameter mengikuti aturan kebalikannya (provider harus tetap menerima apa yang dikirim storefront: tanpa field atau parameter wajib baru, tanpa properti yang dihapus, tanpa tipe, enum, format, atau batas yang dipersempit). Tiap operasi browser mencatat autentikasinya, parameter query dan header yang dikirim, perilaku Idempotency-Key, dan kasus negatifnya (`204`, `401`, `404`, `409`, `429`), masing-masing dengan bukti di sumber storefront; `429` yang belum dideklarasikan bundel ditandai tertunda di upstream awcms#1385 (issue #557), tidak dikarang. Pemindaian sumber `apps/storefront/src` gagal pada pembacaan saat build, panggilan `kirimPermintaan`, transport langsung, atau `fetch`, `sendBeacon`, `XMLHttpRequest` lain yang tidak ada di irisan, dan pada panggilan bearer yang keluar dari pembungkus penghapus sesi. `GET /theming/{tenantCode}/tokens.css` dinamai sebagai di luar bundel (F-07) beserta alasannya; tidak ada skema yang dikarang untuknya. Regenerasi hanya dengan `bun run contract:storefront:generate --reason "<alasan>"`. | Kelompok halaman mana yang mencapai operasi mana (pemetaan per profil ditinjau manual, pemindaian sumber membuktikan himpunan operasi dan pembacanya); path yang dirakit dari nilai hasil impor; isi `tokens.css`; status mana yang ditangani sebuah halaman di luar satu token bukti per kasus; dua badan permintaan bukti pembayaran yang tidak dideklarasikan bundel (dinamai di `REQUEST_BODY_UNDECLARED`). |
 | `apps/cms/tests/customer-bearer-body-boundary.test.ts` | Setiap operasi `customerBearer` berbody di OpenAPI terdaftar di middleware atau sengaja bebas sesi. | Pencarian sesi langsung, yang bergantung database dan tidak dieksekusi di sini. |
 | `apps/cms/tests/commerce-cors.test.ts`, `commerce-storefront-idempotency.test.ts` | Kebijakan preflight: tanpa header kredensial, origin digaungkan, `idempotency-key` ada di daftar yang diizinkan untuk rute yang menerimanya. | Browser sungguhan terhadap rute sungguhan (F-10). |
 | `apps/storefront/tests/*-kontrak.test.ts`, `toko-klien.test.ts`, `kirim-tunggal-kontrak.test.ts` | Perilaku sisi klien: amplop, `204`, `RATE_LIMITED` dengan `Retry-After`, single-flight, pemakaian ulang kunci idempotensi. | Bahwa server mengirim apa yang dipakai klien saat diuji. |
@@ -239,6 +240,15 @@ Ini awalnya usulan. Setelah keputusan pemilik 20 November 2026 (bagian 8.1) ia d
 Batas yang perlu diingat pembaca: perilaku berbasis database tidak dieksekusi; perbandingan fixture dan pemindaian `RATE_LIMITED` adalah pemeriksaan statis sekali pakai; audit membaca satu snapshot dan PR #530 dapat mengubahnya.
 
 ## Changelog
+
+### 2026-11-24 (issue #556)
+
+- Berkas beku yang sama kini memuat `phase: "browser"` untuk operasi yang dipanggil storefront dari `apps/storefront/src/lib/**` dan `src/scripts/**` (F-01, separuh browser). Audit menghitung 41; sumbernya punya 49 titik panggil `kirimPermintaan` (37 di `akun-klien.ts`, 12 di `toko-klien.ts`) ditambah tiga panggilan newsletter dan beacon tampilan halaman, total 53, dan pemindaian menahan daftar itu tetap sesuai sumber. Per profil: `toko` 53, `berita` 4 (newsletter dan beacon), `landing` 1 (beacon); akun, keranjang, pesanan, booking, dan push hanya ada di `toko`.
+- Ditemukan saat membekukan, masing-masing dilaporkan di sini dan tidak ditambal: `POST .../orders/{orderCode}/payment-proof/upload-sessions` dan `finalize`-nya tidak mendeklarasikan badan permintaan di bundel padahal storefront mengirimnya (dinamai di `REQUEST_BODY_UNDECLARED`, akan dilaporkan ke upstream); `POST .../account/addresses` mendeklarasikan badannya hanya sebagai `{ type: object }`, sehingga aturan permintaan tidak punya pegangan di sana; `createOrder`, `createGatewaySession`, dan `submitReview` mengirim bearer opsional tetapi tidak berada di dalam pembungkus penghapus sesi, sehingga `401` dari bearer basi menampilkan galat generik dan membiarkan sesi tersimpan (bundel mendeklarasikan `401` untuk ketiganya). `429` tetap tertunda di upstream (awcms#1385, issue #557) untuk operasi yang handler-nya tidak dideklarasikan bundel: 26 dari 52 panggilan browser yang mencatat `429` (beacon tidak mencatatnya).
+
+### 2026-11-24 (issue #555)
+
+- Bagian 3 mendapat baris guard untuk irisan beku storefront atas pembacaan saat build (separuh F-01; separuh panggilan browser adalah entri #556 di atas). F-07 tidak berubah: rute itu kini dinamai eksplisit di irisan, dan laporan upstream tetap terbuka.
 
 ### 2026-11-20 (keputusan pemilik)
 

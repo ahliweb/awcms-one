@@ -2,6 +2,8 @@
 
 # AW Business Platform — Definition of Ready tracker
 
+> **Archived 11 November 2026:** the DoR was reached on 11 October 2026; delivery is assessed in the [DoD walkthrough](aw-business-platform-dod.md). The body below is a historical record and is not rewritten.
+
 Tracks epic [#280](https://github.com/ahliweb/awcms-one/issues/280) toward its Definition of Ready (DoR, epic §15). **Nothing is implemented from this epic until DoR is reached** — no module, migration, OpenAPI path or scaffold. Placement of each capability is decided in [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) (Accepted 8 October 2026 by owner decision O0, [#335](https://github.com/ahliweb/awcms-one/issues/335)); this page says what must exist, where it is produced, and what only the product owner can decide.
 
 "Upstream" means `ahliweb/awcms`; "here" means this repository (`ahliweb/awcms-one`). A generic capability is specified upstream and arrives here by subtree sync; the adapters, and the cross-domain specs that name commerce, are specified here ([ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)).

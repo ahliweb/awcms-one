@@ -161,6 +161,11 @@ export const COMMERCE_RETURN_RECORDED_EVENT_TYPE =
   "awcms.commerce.return.recorded";
 export const COMMERCE_REFUND_SETTLED_EVENT_TYPE =
   "awcms.commerce.refund.settled";
+/** Issue #463 (ADR-0056 D8) - customer facts a CRM adapter and downstream views build on. */
+export const COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE =
+  "awcms.commerce.customer.registered";
+export const COMMERCE_CUSTOMER_CONVERTED_EVENT_TYPE =
+  "awcms.commerce.customer.converted";
 /** Issue #432 (ADR-0048 Q4) - the store replied in a customer's inbox (conversation aggregate). */
 export const COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE =
   "awcms.commerce.conversation.store_replied";
@@ -669,6 +674,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "One refund leg of a return reached succeeded (Issue #287): the payment-ledger reversal is booked and the proportional compensations (loyalty points, affiliate commission, store credit) are applied. Producer: commerce/application/refund-settlement.ts, in the same transaction. Aggregate is the return; the payload carries ids, tender, destination, amount and how it settled (ledger / provider / offline / store_credit) - never a provider reference, name or phone."
+    },
+    {
+      eventType: COMMERCE_CUSTOMER_REGISTERED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A shopper completed the e-mail OTP registration and a commerce customer account was created (Issue #463, ADR-0056 D8). Producer: commerce/application/customer-account-store.ts's tryCreateAccountForCustomer, in the same transaction as the account row. Aggregate is the customer; the payload carries customerId and accountId only - never a name, e-mail or phone."
+    },
+    {
+      eventType: COMMERCE_CUSTOMER_CONVERTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A staff member confirmed a CRM lead as this commerce customer on verified commerce evidence (a confirmed registration or a paid order) and crm_leads recorded the conversion (Issue #463, ADR-0056 D8). Producer: commerce/application/crm-lead-link-directory.ts's linkLeadToCustomer, in the same transaction as the link row. Aggregate is the customer; the payload carries opaque ids, the evidence kind and the lead's first source kind and touch id - never a name, contact or note."
     },
     {
       eventType: COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE,

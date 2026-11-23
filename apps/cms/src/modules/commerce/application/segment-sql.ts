@@ -317,6 +317,7 @@ function nodePredicate(
 function eligibilityPredicate(tx: Bun.SQL, tenantId: string) {
   return tx`c.tenant_id = ${tenantId}
     AND c.deleted_at IS NULL
+    AND c.erased_at IS NULL
     AND c.status = 'active'
     AND c.phone <> ${POS_WALK_IN_CUSTOMER_SENTINEL_PHONE}`;
 }
