@@ -5,6 +5,61 @@
       "path": "apps/storefront/src/components/berita/FormBuletin.astro",
       "category": "email",
       "reason": "The newsletter form's input placeholder text (a generic hint text), not an address of anyone."
+    },
+    {
+      "path": "apps/storefront/src/config/site.ts",
+      "category": "email",
+      "reason": "The reference deployment's (BjekMart) published store contact, a public business contact, not a private individual's. It is the reference content `template:init` removes (tests/template-init.test.mjs asserts it is gone)."
+    },
+    {
+      "path": "apps/storefront/src/config/site.ts",
+      "category": "mobile-phone",
+      "reason": "The reference deployment's (BjekMart) published store contact, a public business contact, not a private individual's. It is the reference content `template:init` removes (tests/template-init.test.mjs asserts it is gone)."
+    },
+    {
+      "path": "tools/seed-data/contoh/borneojek-mart/marketing.json",
+      "category": "email",
+      "reason": "The reference deployment's (BjekMart) published store contact, a public business contact, not a private individual's. It is the reference content `template:init` removes (tests/template-init.test.mjs asserts it is gone)."
+    },
+    {
+      "path": "tools/seed-data/contoh/borneojek-mart/marketing.json",
+      "category": "mobile-phone",
+      "reason": "The reference deployment's (BjekMart) published store contact, a public business contact, not a private individual's. It is the reference content `template:init` removes (tests/template-init.test.mjs asserts it is gone)."
+    },
+    {
+      "path": "tools/seed-data/contoh/borneojek-mart/site-profile.json",
+      "category": "email",
+      "reason": "The reference deployment's (BjekMart) published store contact, a public business contact, not a private individual's. It is the reference content `template:init` removes (tests/template-init.test.mjs asserts it is gone)."
+    },
+    {
+      "path": "tools/seed-data/contoh/borneojek-mart/site-profile.json",
+      "category": "mobile-phone",
+      "reason": "The reference deployment's (BjekMart) published store contact, a public business contact, not a private individual's. It is the reference content `template:init` removes (tests/template-init.test.mjs asserts it is gone)."
+    },
+    {
+      "path": "apps/storefront/tests/fixtures/awcms/store-settings-public.json",
+      "category": "email",
+      "reason": "The stub fixture mirrors the reference deployment's published store contact (a public business contact) so the storefront renders it as it does live."
+    },
+    {
+      "path": "apps/storefront/tests/fixtures/awcms/store-settings-public.json",
+      "category": "mobile-phone",
+      "reason": "The stub fixture mirrors the reference deployment's published store contact (a public business contact) so the storefront renders it as it does live."
+    },
+    {
+      "path": "apps/storefront/tests/wa-fallback.test.ts",
+      "category": "mobile-phone",
+      "reason": "Asserts the WhatsApp fallback link built from the reference deployment's published store number (a public business contact)."
+    },
+    {
+      "path": "tests/template-init.test.mjs",
+      "category": "email",
+      "reason": "Asserts the reference deployment's published store contact is ABSENT after template:init; the value must appear to be asserted away."
+    },
+    {
+      "path": "tests/template-init.test.mjs",
+      "category": "mobile-phone",
+      "reason": "Asserts the reference deployment's published store contact is ABSENT after template:init; the value must appear to be asserted away."
     }
   ]
 }
