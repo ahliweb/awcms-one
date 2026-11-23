@@ -71,6 +71,14 @@ export const ALLOWED_DIRECT_BINDINGS: readonly {
     reason:
       "Enter inside a `contenteditable` block of the preview overlay: a standalone bundle with no `<form>`. A `saving` flag now ignores a second Enter while the PATCH is in flight (found by this audit); the PATCH also converges on retry."
   },
+  // awcms-one (issues #388, #528): the two `commerce` entries below are this
+  // repo's own, not upstream's. Every other commerce binding goes through
+  // onSubmit/onAction (see the `commerce-*` rows of
+  // docs/awcms/ui-single-flight-audit.md). On a subtree conflict keep this
+  // block. The front-desk entry retires if its lookup keydowns ever move
+  // behind a helper; the catalog-import entry retires if the Apply handler is
+  // ever rebound through `onAction` (the helper's release re-enables the
+  // spent button).
   {
     file: "src/lib/ui/front-desk-island.ts",
     count: 2,

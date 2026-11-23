@@ -617,7 +617,8 @@ export const GLOBAL_TABLE_FORBIDDEN_PRIVILEGES: Record<string, string[]> = {
   // never deleted, so 91k rows are never one wrong query away.
   awcms_idn_region_datasets: ["INSERT", "DELETE"],
   awcms_idn_admin_regions: ["INSERT", "UPDATE", "DELETE"],
-  // BPS population statistics (awcms-one ADR-0051, sql/882) — global for the same
+  // Population and area figures (awcms-one ADR-0051/ADR-0053, sql/882 + sql/883;
+  // the Kepmendagri decree since 883, BPS no longer) — global for the same
   // reason as the region tables. The request path is READ-ONLY on both: nothing
   // in a request imports, edits or activates population data (activation is the
   // `idn-population:activate` job, as `awcms_worker`), and no role may DELETE.
@@ -1828,8 +1829,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // itself is a request-path action on awcms_app, not this job's business.
   awcms_idn_region_datasets: ["SELECT", "INSERT", "UPDATE"],
   awcms_idn_admin_regions: ["SELECT", "INSERT"],
-  // idn_admin_regions — idn-population:import / :activate (sql/882, awcms-one
-  // ADR-0051). The import INSERTs one dataset row plus its statistics rows;
+  // idn_admin_regions — idn-population:import / :activate (sql/882 + sql/883,
+  // awcms-one ADR-0051/ADR-0053). The import INSERTs one dataset row plus its statistics rows;
   // activation UPDATEs the dataset row's status. Statistics rows are never
   // edited in place and nothing is ever DELETEd (a dataset is superseded).
   awcms_idn_population_datasets: ["SELECT", "INSERT", "UPDATE"],
@@ -2443,6 +2444,15 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // per line, the two reversers read them to void exactly those lines. Insert-
   // only (a guard trigger refuses UPDATE and DELETE for every role).
   awcms_commerce_commission_submissions: ["SELECT", "INSERT"],
+  // Issue #529 (sql/1066, ADR-0055): the shopper data-subject request evidence.
+  // The worker reads it only for the data-lifecycle engine's dry-run snapshot of
+  // the table's `delegated` descriptor; every write is the app role's.
+  awcms_commerce_customer_subject_requests: ["SELECT"],
+  // Issue #463 (sql/1069, ADR-0056 D5): the three CRM lead link flaggers read the
+  // links resting on an order; their UPDATE is column-only (see
+  // WORKER_COLUMN_GRANTS). The worker holds no privilege on the `crm_leads` tables
+  // (`awcms_crm_leads`, `awcms_crm_lead_conversions`; upstream sql/342), so it can flag a link and never reverse a conversion.
+  awcms_commerce_crm_lead_links: ["SELECT"],
   awcms_tenant_settings: ["SELECT"],
   // `awcms_tenant_modules` is deliberately NOT here: the worker reads exactly
   // (tenant_id, module_key, enabled), a COLUMN grant pinned in
@@ -2647,6 +2657,20 @@ export const WORKER_COLUMN_GRANTS: Record<
       "endpoint_ciphertext",
       "p256dh_key",
       "auth_secret_ciphertext"
+    ]
+  },
+  // sql/1069 (Issue #463, ADR-0056 D5): the three CRM lead link flaggers mark a
+  // `linked` link `reversal_pending` and say why and who raised it. NOT writable:
+  // lead_id, customer_id, order_id, the evidence, the conversion id and the
+  // `reversed_*` columns - a worker able to rewrite those could repoint a
+  // conversion; the guard trigger and the state CHECK bound the legal moves.
+  awcms_commerce_crm_lead_links: {
+    UPDATE: [
+      "state",
+      "reversal_cause",
+      "reversal_requested_at",
+      "reversal_actor_tenant_user_id",
+      "updated_at"
     ]
   },
   // sql/1061 (Issue #432, ADR-0048 section 3.5): the fan-out consumer INSERTs the
@@ -5840,7 +5864,7 @@ export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
   "awcms_idn_admin_regions.source_row_hash":
     "checksum of an imported public dataset row",
   "awcms_idn_population_stats.source_row_hash":
-    "checksum of an imported public statistics row (awcms-one ADR-0051)",
+    "checksum of an imported public population/area figure (awcms-one ADR-0053)",
   "awcms_newsletter_subscribers.consent_ip_hash":
     "keyed hash of the IP recorded as consent evidence; not a login secret",
   "awcms_omes_worker_nonces.nonce":

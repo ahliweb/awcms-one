@@ -1,0 +1,160 @@
+---
+/**
+ * `/akun/privasi` — the shopper's own data-subject rights, from the shopper's
+ * side (issue #529, ADR-0055; UU PDP 27/2022): download everything the store
+ * holds about them, or have it erased. Static like every other `/akun/*` page:
+ * `src/scripts/akun-privasi.ts` decides between the guest view and the member
+ * view from the stored session, then calls the three
+ * `…/account/privacy/*` endpoints through `src/lib/akun-klien.ts` (bearer, plus
+ * a fresh code mailed to the account, plus an `Idempotency-Key` for the
+ * erasure).
+ *
+ * The copy never says "everything is deleted": orders, payments, documents and
+ * ledgers are kept for the bookkeeping period and no longer identify the
+ * shopper (`PESAN_PENYIMPANAN` in `src/lib/privasi-kontrak.ts`). `noindex,
+ * follow`; the `/akun` prefix is already in `robots.txt`'s `Disallow` list.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../../lib/awcms/profil";
+import { ROUTES } from "../../../../config/routes";
+import { PESAN_PENYIMPANAN } from "../../../../lib/privasi-kontrak";
+import "../../../../styles/toko.css";
+import "../../../../styles/akun.css";
+
+const identity = await getSiteIdentity();
+const whatsappNumber = identity.whatsappNumber ?? "";
+
+/** The `/akun*` side navigation (issue #168) — see `akun/index.astro`'s own copy of this constant for why it is duplicated rather than factored into a shared partial. */
+const SIDENAV_ITEMS = [
+  { key: "ringkasan", href: ROUTES.account, label: "Ringkasan" },
+  { key: "pesanan", href: ROUTES.accountOrders, label: "Pesanan" },
+  { key: "alamat", href: ROUTES.accountAddresses, label: "Alamat" },
+  { key: "pesan", href: ROUTES.accountMessages, label: "Pesan" },
+  { key: "ulasan", href: ROUTES.accountReviews, label: "Ulasan" },
+  { key: "afiliasi", href: ROUTES.accountAffiliate, label: "Afiliasi" },
+  { key: "privasi", href: ROUTES.accountPrivacy, label: "Privasi" }
+] as const;
+const SIDENAV_ACTIVE = "privasi";
+---
+
+<BaseLayout title="Privasi dan Data Saya" description="Unduh atau hapus data pribadi Anda." canonicalPath="/akun/privasi">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <div class="container">
+    <div class="page-heading">
+      <h1>Privasi dan Data Saya</h1>
+      <p>Unduh salinan data Anda, atau minta kami menghapusnya.</p>
+    </div>
+
+    <div class="akun-layout">
+      <nav class="akun-sidenav" aria-label="Menu akun">
+        {
+          SIDENAV_ITEMS.map((item) => (
+            <a class="akun-sidenav-item" href={item.href} aria-current={item.key === SIDENAV_ACTIVE ? "page" : undefined}>
+              <span class="akun-sidenav-item-label">{item.label}</span>
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="akun-content" data-akun-privasi-root>
+        <noscript>
+          <div class="toko-banner toko-banner--info">
+            Halaman ini memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa meminta data Anda langsung melalui WhatsApp:
+            {whatsappNumber && (
+              <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+                Hubungi WhatsApp
+              </a>
+            )}
+          </div>
+        </noscript>
+
+        <div data-status class="toko-banner toko-banner--info" role="status" aria-live="polite" hidden></div>
+        <div data-submit-error class="toko-banner toko-banner--danger" role="alert" hidden>
+          <p data-submit-error-message></p>
+        </div>
+
+        <div data-guest-view class="akun-card" hidden>
+          <p>Masuk terlebih dahulu untuk mengunduh atau menghapus data Anda.</p>
+          <div class="akun-actions">
+            <a href={ROUTES.login} class="btn btn--primary btn--sm">Masuk</a>
+          </div>
+        </div>
+
+        <div data-member-view hidden>
+          <section class="akun-card" aria-labelledby="privasi-ekspor-judul">
+            <h2 id="privasi-ekspor-judul">Unduh data saya</h2>
+            <p>
+              Anda akan mendapat berkas JSON berisi data akun, alamat, pesanan, ulasan, pesan, poin, dan lainnya yang kami
+              simpan tentang Anda. Berkas dibuat saat diminta dan tidak disimpan oleh toko. Kami mengirim kode verifikasi ke e-mail akun Anda
+              terlebih dahulu.
+            </p>
+            <div class="toko-field">
+              <label for="privasi-ekspor-kode" class="field-label">Kode verifikasi (6 angka)</label>
+              <input
+                id="privasi-ekspor-kode"
+                type="text"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                data-privasi-ekspor-kode
+              />
+            </div>
+            <div class="akun-actions">
+              <button type="button" class="btn btn--secondary btn--sm" data-privasi-ekspor-kirim>Kirim kode ke e-mail</button>
+              <button type="button" class="btn btn--primary btn--sm" data-privasi-ekspor-unduh>Unduh data saya</button>
+            </div>
+          </section>
+
+          <section class="akun-card" aria-labelledby="privasi-hapus-judul">
+            <h2 id="privasi-hapus-judul">Hapus data saya</h2>
+            <p>
+              Data pribadi Anda dihapus atau dianonimkan: profil, alamat, daftar keinginan, sesi masuk, notifikasi, dan teks
+              yang Anda tulis. Anda akan keluar dari semua perangkat dan tidak bisa masuk lagi dengan akun ini.
+            </p>
+            <p data-privasi-penyimpanan>{PESAN_PENYIMPANAN}</p>
+            <p>
+              Penghapusan ditolak selama masih ada pesanan, pemesanan, pengembalian dana, saldo kartu hadiah atau kredit toko, atau komisi
+              afiliasi yang belum selesai. Penghapusan tidak dapat dibatalkan.
+            </p>
+            <div class="toko-field">
+              <label for="privasi-hapus-kode" class="field-label">Kode verifikasi (6 angka)</label>
+              <input
+                id="privasi-hapus-kode"
+                type="text"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                data-privasi-hapus-kode
+              />
+            </div>
+            <div class="toko-field">
+              <label class="field-label" for="privasi-hapus-paham">
+                <input id="privasi-hapus-paham" type="checkbox" data-privasi-hapus-paham />
+                Saya mengerti bahwa penghapusan ini tidak dapat dibatalkan.
+              </label>
+            </div>
+            <div class="akun-actions">
+              <button type="button" class="btn btn--secondary btn--sm" data-privasi-hapus-kirim>Kirim kode ke e-mail</button>
+              <button type="button" class="btn btn--primary btn--sm" data-privasi-hapus-jalankan>Hapus data saya</button>
+            </div>
+          </section>
+        </div>
+
+        <div data-done-view class="akun-card" hidden>
+          <h2>Data Anda telah dihapus</h2>
+          <p data-done-message></p>
+          <div class="akun-actions">
+            <a href={ROUTES.home} class="btn btn--primary btn--sm">Kembali ke beranda</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import "../../../../scripts/akun-privasi";
+  </script>
+</BaseLayout>

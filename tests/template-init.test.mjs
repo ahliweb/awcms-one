@@ -115,7 +115,8 @@ function listTrackedFiles() {
   // caps captured stdout at 1 MiB (`maxBuffer`) and dies with `ENOBUFS`
   // past it. The path list crossed that line when the BPS population
   // datasets (#497) landed: `main` sat at ~1.03 MB and one more province
-  // pushed every full-run test here into `ENOBUFS`.
+  // pushed every full-run test here into `ENOBUFS`. ADR-0053 removed those
+  // datasets again; the cap did not move, so neither does this call.
   return gitRunOrThrow(REPO_ROOT, "ls-files", "--cached", "--others", "--exclude-standard")
     .split("\n")
     .filter(Boolean)

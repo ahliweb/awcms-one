@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)
 
-<!-- i18n-source-hash: sha256:cc812877b1fff525d93aebc802c4f8eb0a84fb5071d85eb56e05edf090d75730 -->
+<!-- i18n-source-hash: sha256:8f3ece57f0e4b83c5c292bc0d9e8d1ad48b529489e8888b5e2e0479bff321fad -->
 
 # ADR-0047 — WhatsApp commerce pindah ke antrean upstream lewat router mode per tenant
 
@@ -94,4 +94,5 @@ B dipilih, dan runbook kini berakhir dengan instruksi yang sama untuk kedua perm
 
 - Fase 2 dapat dirilis dengan semua tenant di `legacy`; tidak ada yang teramati berubah sampai kolom sebuah tenant diatur.
 - Batas akhir ADR-0133 upstream `awcms` (adapter dihapus selambat-lambatnya pada rilis minor kedua setelah rilis yang pertama kali memuat mode `upstream`) dimulai dengan rilis perubahan ini.
+  - **Diubah oleh [ADR-0054](0054-the-adr-0133-whatsapp-legacy-path-backstop-moves-to-v0-22-0.md) (11 November 2026).** Batas itu jatuh tempo pada v0.19.0 (mode `upstream` pertama kali dirilis di v0.17.0) dan terlewat: kondisi akhirnya menyangkut tenant yang dimiliki produk turunan, bukan template ini. ADR-0054 memindahkan tanggalnya ke rilis minor kedua setelah v0.20.0, yaitu v0.22.0, dengan lima kondisi akhir yang sama dan tanpa perubahan kode atau tabel. Fase 4 (issue #394) tetap terbuka.
 - Dua layar admin, `commerce:whatsapp:dispatch`, dan `commerce:whatsapp:purge` tetap ada dan terus mengosongkan baris legacy.
