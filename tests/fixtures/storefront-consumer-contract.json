@@ -51,8 +51,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -194,8 +193,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -399,8 +397,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -434,8 +431,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -471,8 +467,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -508,8 +503,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -551,8 +545,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -596,8 +589,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -668,8 +660,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -711,8 +702,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -788,8 +778,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -823,8 +812,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -1264,8 +1252,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -1361,8 +1348,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -1404,8 +1390,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -1447,8 +1432,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -2059,8 +2043,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -2102,8 +2085,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -2153,8 +2135,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -2274,8 +2255,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     },
@@ -2440,8 +2420,7 @@
           "evidence": {
             "file": "apps/storefront/src/lib/toko-permintaan.ts",
             "token": "withRetryAfter("
-          },
-          "pending": "ahliweb/awcms#1385 (upstream spec); adoption in this repository: issue #557"
+          }
         }
       ]
     }

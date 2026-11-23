@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](audit-paritas-kontrak-cms-storefront.md)
 
-<!-- i18n-source-hash: sha256:90f8c5096658f90bab1330b8e299f3ac8d4bfd924d8be56f07b2d6859516420b -->
+<!-- i18n-source-hash: sha256:40d485469b52fdf0fdd4f29870303cbe19801c23bc2b25815ad20f3f201feea1 -->
 
 # Audit paritas kontrak: CMS dan storefront, tiga profil (issue #547)
 
@@ -240,6 +240,12 @@ Ini awalnya usulan. Setelah keputusan pemilik 20 November 2026 (bagian 8.1) ia d
 Batas yang perlu diingat pembaca: perilaku berbasis database tidak dieksekusi; perbandingan fixture dan pemindaian `RATE_LIMITED` adalah pemeriksaan statis sekali pakai; audit membaca satu snapshot dan PR #530 dapat mengubahnya.
 
 ## Changelog
+
+### 2026-11-24 (isu #557, #571, #570)
+
+- #571 mendeklarasikan body request operasi upload-session dan finalize bukti bayar serta skema nyata untuk pembuatan alamat tersimpan; `REQUEST_BODY_UNDECLARED` kini kosong.
+- #557 mendeklarasikan `429`, `Retry-After` dan `Idempotency-Key` pada operasi commerce yang handler-nya menerapkannya (daftar pengecualian paritas kontrak `apps/cms` turun dari 102 entri menjadi 1, `POST /api/v1/commerce/quotations/{id}/convert`, yang handler-nya tidak mungkin menjawab 429). 21 operasi browser kehilangan penanda 429 "pending upstream"; 5 tetap memilikinya (`GET`/`PATCH /account/me`, `POST /account/logout`, dan dua operasi bukti bayar), tempat storefront menangani 429 secara generik tetapi handler tidak menerapkan limiter.
+- #570: 401 karena bearer basi pada `createOrder`, `createGatewaySession` dan `submitReview` kini membersihkan sesi tersimpan.
 
 ### 2026-11-24 (F-03 sampai F-05, N-01, N-02 diselesaikan, issue #554)
 

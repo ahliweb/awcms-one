@@ -239,6 +239,12 @@ Limits the reader should keep in mind: database-backed behaviour was not execute
 
 ## Changelog
 
+### 2026-11-24 (issues #557, #571, #570)
+
+- #571 declared the request bodies of the payment-proof upload-session and finalize operations and a real schema for the saved-address create; `REQUEST_BODY_UNDECLARED` is now empty.
+- #557 declared `429`, `Retry-After` and `Idempotency-Key` on the commerce operations whose handlers apply them (the `apps/cms` contract-parity exemption list went from 102 entries to 1, `POST /api/v1/commerce/quotations/{id}/convert`, whose handler cannot answer 429). 21 browser operations lost their "pending upstream" 429 marker; 5 keep it (`GET`/`PATCH /account/me`, `POST /account/logout`, and the two payment-proof operations), where the storefront handles a 429 generically but the handler applies no limiter.
+- #570: a stale-bearer 401 on `createOrder`, `createGatewaySession` and `submitReview` now clears the stored session.
+
 ### 2026-11-24 (F-03 to F-05, N-01, N-02 resolved, issue #554)
 
 - F-03, F-04, F-05 and N-01 are fixed in the fixtures and the storefront types, and their exceptions are deleted from `tests/support/fixture-skema-mapa.mjs` (the gate proves it). N-01: the provider's `copyrightStatus` enum has `owned`, never `own_work`; the fixture now says `owned` and no code read the old value.
