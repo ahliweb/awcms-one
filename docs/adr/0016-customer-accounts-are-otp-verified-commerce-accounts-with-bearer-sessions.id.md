@@ -1,12 +1,13 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
 
-<!-- i18n-source-hash: sha256:13d91f2b61719b544cf639fbf5b083d7a76ab8fbfc6f705b0f0b92269df4c891 -->
+<!-- i18n-source-hash: sha256:7eb5ed58a7216a859d1941e7075d527e79e9ed47a047cf3ac45811f852d0dde9 -->
 
 # ADR-0016 — Akun pelanggan adalah akun `commerce` terverifikasi OTP dengan sesi bearer
 
 - **Status:** Diterima
 - **Tanggal:** 19 September 2026
 - **Pengambil keputusan:** ahliweb
+- **Pembaruan (14 November 2026, issue #529):** [ADR-0055](0055-commerce-customers-have-a-commerce-owned-subject-rights-flow-keyed-by-customer-id.md) membangun hak subjek data pembeli di atas ADR ini: D1 (akun tidak membawa id tenant-user, identitas, atau profil) persis alasan engine subject-data upstream tidak bisa menjangkau pembeli, sehingga alurnya milik commerce dan berkunci id pelanggan; D3 (bearer, tanpa cookie) tetap (tiga rute `privacy/*`, kode sekali pakai baru dengan tujuan sendiri, setiap sesi dicabut oleh penghapusan); tabel OTP pada D2 mendapat tujuan `subject_export` dan `subject_erasure`. Tidak ada keputusan di sini yang berubah.
 - **Terkait:** [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md), [ADR-0009](0009-guest-checkout-by-order-code-and-phone.id.md); issue #32, #86, #87–#93
 
 ## Konteks

@@ -2,6 +2,219 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.21.0] — 2026-11-24
+
+### The Bun-only gate now covers scripts, the storefront profiles and the queue workers (#469 residuals)
+
+The first #469 gate (`tests/bun-only-deployment-manifests.test.mjs`) covered the root compose files, Dockerfiles and `ops/` scripts and said "Refs", not "Closes", because four things were left out. They are covered now, and a runtime probe exists for the part a static test cannot reach.
+
+- `tests/bun-only-runtime-entrypoints.test.mjs` gates the `package.json` scripts of the root, `apps/storefront` and every `packages/*`: each command is `bun`, `cd`, `bash <file>` or `docker`; a bare package bin only runs as `bun --bun <bin>` (otherwise its node shebang starts Node); `bun run <name>` names a script that exists; no workspace selects Node through `engines.node`, `volta` or a Node `bin`.
+- The same file gates the storefront build and serve path for all three `SITE_PROFILE` values: the `serve` script, the `--target=bun` server bundle, every `apps/storefront/Dockerfile` stage on the pinned `oven/bun` image (its `ARG BUN_VERSION` default must equal the root `packageManager` pin), the `SITE_PROFILE` build under `bun run build`, and a CMD equal to the `serve` script.
+- The WhatsApp, Mailketing e-mail and Web Push queue workers (plus the commerce, Telegram and domain-event dispatchers) are checked as this repo deploys them: the `apps/cms` script and entry file, the generated crontab line, the `ops/run-job-compose.sh` routing, and the compose `jobs`/`jobs-app`/`migrate` services that build the `jobs` stage of `apps/cms/Dockerfile.production` down to the pinned `oven/bun` image. `apps/cms` is only read, never edited.
+- The pure scanners moved to `tests/support/bun-only-scan.mjs` so both gates share one set; `tests/bun-only-deployment-manifests.test.mjs` is otherwise unchanged.
+- `bun run deploy:smoke-bun` (`tools/deploy/smoke-bun-runtime.sh`) is an opt-in operator probe: it starts one throwaway container per image and asserts `process.versions.bun` equals the pin and the CMD of the server images starts with `bun`. It needs a Docker daemon and built or pulled images, so it is in no `local-ci/*` leg; `tests/deploy-smoke-bun-runtime.test.mjs` drives its logic against a stub `docker`.
+
+### Weekly systemd timer for the dependency freshness report; the Bun-only manifest gate skips nested agent worktrees
+
+- `tools/ci/systemd/awcms-one-deps-freshness.service` and `.timer` run `bun run deps:freshness -- --strict` every Monday at 06:00 on the trusted host (issue #471), writing the Markdown and JSON record to `~/.local/state/awcms-one-deps/`. A run that is not a clean all-clear leaves the unit failed, which is the weekly signal. An operator installs them like the `ci:watch` units; nothing is installed by this change.
+- `tests/bun-only-deployment-manifests.test.mjs` no longer walks `.claude/worktrees/`, the gitignored git worktrees that agent tooling creates inside the checkout. Each is a full copy of the repository, so a local run with such worktrees present failed on upstream's own Dockerfile and compose services under the copies, while CI's fresh checkout stayed green.
+
+### Epic #280: Definition of Done walkthrough
+
+Issue #397 asks for the epic's Definition of Done to be ticked with links. Ticking it blindly would overstate the state of the work, so the new walkthrough gives each of the 20 items a verdict (Met, Met for the template scope, Partial or Not met) with evidence links that resolve in this tree or the embedded upstream tree.
+
+- `docs/aw-business-platform-dod.md` (with its Indonesian mirror) lists the verdicts, what each Partial item lacks, and who owns the remainder: this repository, upstream `awcms`, or the derived product that deploys (ADR-0024). Seventeen items are Met or Met for the template scope; three are Partial (payroll rules, which are upstream design only; the WhatsApp legacy path, due by v0.22.0 under ADR-0054; and staging, UAT and production validation, which belong to the product that deploys).
+- Two new evidence pages close what was missing for items 14, 15 and 17: `docs/aw-business-platform-traceability.md` maps every PRD story to its tests and every threat-model control (C-01 to C-41) to its as-built status and regression test, and `docs/aw-business-platform-standards-map.md` maps the components built for the epic to OWASP ASVS, ISO/IEC 27001, PCI DSS and UU PDP with a gap register. Neither is a compliance claim. The largest gap they record, a shopper's data export and erasure path through `commerce`, is tracked as issue #529.
+- The threat model no longer says nothing is implemented, and `docs/status.md` no longer calls the epic architecture-only.
+- The DoR tracker carries an "Archived" note pointing to the walkthrough; its body is unchanged. The documentation index lists the three new pages.
+- No code, migration or setting changes.
+
+### Population and area from the Kepmendagri region decree; BPS removed
+
+The owner stopped the BPS source on 11 November 2026 ("terlalu banyak data yang diperlukan, gunakan Permendagri saja"): one "Dalam Angka" PDF per province, regency/city and district meant tens of thousands of downloads behind Cloudflare, about 39 MB of extracted CSV/JSON already in the repository with most of the country still missing, and hours per province. The figures the platform needs were already vendored and checksummed beside the region dump. [ADR-0053](docs/adr/0053-population-and-area-come-from-the-kepmendagri-region-decree-not-bps.md) supersedes [ADR-0051](docs/adr/0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.md).
+
+**Breaking for anyone who imported BPS figures:** after `bun run db:migrate`, every BPS dataset and figure is deleted, and the age group, religion, occupation, income and expenditure dimensions, the `ribu_jiwa`/`rupiah` units and all district/village figures no longer exist. Nothing in this repository read them (no API, no screen), but a derived application that queried `awcms_idn_population_datasets`/`awcms_idn_population_stats` directly loses them.
+
+- New migration `apps/cms/sql/883_awcms_idn_population_kepmendagri_source.sql` (next free in the `880`-`899` band is now `884`): deletes the BPS rows, replaces `sql/882`'s BPS-only CHECKs with ones for the decree source only, admits an `area` figure in `km2`, widens `value` to `numeric(14,3)` so BIG's three decimals are stored unrounded, and adds `source_files`. `sql/882` is unchanged.
+- `bun run idn-population:import` now reads the vendored `wilayah_penduduk.sql` (persons per Kepmendagri No 300.2.2-2138 Tahun 2025) and `wilayah_luas.sql` (area from Badan Informasi Geospasial) offline, after checking both against `manifest.json` and `checksums.sha256`, and writes one dataset: 552 provinces and regencies/cities, 2,208 figures (total, male, female, area). It takes no `--dataset`/`--all-pending` any more; re-running over identical bytes is a no-op. `bun run idn-population:activate` is unchanged.
+- To serve the figures: `bun run db:migrate`, then (with an active region dataset) `bun run idn-population:import -- --commit` and `bun run idn-population:activate -- --dataset <code> --commit`.
+- Removed: `apps/cms/data/idn-population/` (3,812 BPS datasets), the root `tools/bps-population/` pipeline, its tests and fixtures, and the `BPS_CACHE_DIR`/`BPS_ARCHIVE_REMOTE`/`pdftotext`/`rclone` needs that came with them. About 40 MB of tracked files leave the repository.
+
+### ADR-0054: the commerce WhatsApp legacy-path backstop moves to v0.22.0
+
+Upstream `awcms` ADR-0133 section 6 removes commerce's WhatsApp compatibility adapter and legacy path "no later than the second minor release of the downstream template after the one that first ships `upstream` mode", and requires a new ADR with a new date if the end conditions are not met by then. `upstream` mode and the guarded cutover first shipped in v0.17.0, so the backstop fell due at v0.19.0 and was missed. The conditions (every tenant in `upstream` mode, zero non-terminal legacy rows, retention elapsed, then removal and a final table drop) concern tenants that derived products own, not this template (ADR-0024), so they cannot be evidenced here.
+
+- [ADR-0054](docs/adr/0054-the-adr-0133-whatsapp-legacy-path-backstop-moves-to-v0-22-0.md) records the new date: removal no later than the second minor release after v0.20.0, v0.22.0, with the same five end conditions, the evidence the removal PR (issue #394) must carry, and the procedure a derived product follows before then (`bun run commerce:whatsapp:cutover` per tenant, drain the legacy queue). A miss of the new date needs another ADR, not a silent slip.
+- No code, migration, table or setting changes: every tenant keeps working in its current mode, and `legacy` stays the default. Operators of derived products should plan the per-tenant flip against v0.22.0.
+- ADR-0047 carries an "Amended by ADR-0054" note beside its backstop text; the ADR index lists the new record.
+
+### A versioned CRM KPI contract awaits owner sign-off before any projection code
+
+Issue #464, docs only. `docs/crm-kpi-contract.md` (with its Indonesian mirror) specifies the lead funnel from `crm_leads` stage categories, conversion from the verified commerce facts of #463, first-touch campaign attribution with a lookback, staff first-response SLA in business minutes, denominators, zero-denominator and small-cell suppression, the no-PII rule, formula-safe CSV exports, and a proposed set of response shapes that is deliberately **not** added to the OpenAPI document (route parity is untouched). Its section 11 is the owner sign-off checklist that gates every projection, route and dashboard. `docs/README.md` and `docs/status.md` link it and list the projections and the dashboard as not here yet. No code, migration, endpoint or screen changed.
+
+### A CRM prospect can be confirmed as a commerce customer, only from verified commerce facts
+
+Issue #463 (ADR-0056, proposed). `commerce` is now the customer authority for upstream `crm_leads` and reaches it through `CrmLeadPort` only (an optional `crm_lead` capability, one composition root in `src/lib/composition/`).
+
+- **Confirm**: `POST /api/v1/commerce/crm-lead-links` needs `commerce.crm_lead_links.create` **and** `crm_leads.conversions.approve` (the port checks nothing, so the route asks for both). The caller names the lead and the customer; the server reads the evidence: a registration whose e-mail the shopper proved by OTP, or a paid order of that customer. A guest row, an unpaid, deposit-only or cancelled order, another customer's order and an erased customer (for either evidence kind) or a fully returned order are refused (`409 CRM_EVIDENCE_NOT_VERIFIED`). Nothing is matched on phone, e-mail or handle, and no consumer converts anything. A replay returns the existing link and publishes nothing; the same evidence for another lead is `409`; another tenant's lead or customer is `404`.
+- **Reverse**: `POST /api/v1/commerce/crm-lead-links/{id}/reverse` (`commerce.crm_lead_links.approve`, high-risk, plus the CRM key) reverses the CRM conversion through the port. Three consumers (`order_cancelled`, `refund_settled` only when every line is fully returned, and `payment_reversed` only when the order is now `refunded`) flag a link `reversal_pending`; they run as the worker role, which holds no privilege on the `crm_leads` tables, so a person applies the reversal (the limit is stated in the ADR; a scheduled reconciler is a follow-up).
+- **Storage and events**: one table (`sql/1069`: opaque lead and conversion ids, RLS FORCE, guard trigger, never deleted, column-only worker update), three permissions (`sql/1070`, no screen yet), two versioned events (`awcms.commerce.customer.registered`, published for a verified registration only, and `awcms.commerce.customer.converted`, with the lead's first source), both ids only. The table is in the shopper export and erasure registry (exported, retained) and in the retention and subject-data descriptors.
+- **Not changed**: no new customer master, no change to segments or campaigns, no CRM table is read or granted from commerce.
+
+Both routes also honour `crm_leads`' own off switches (`503 CRM_LEADS_DISABLED`, `403 INTERACTIVE_SESSION_REQUIRED` for a machine credential, `409 CRM_LEADS_TENANT_DISABLED`) before calling the port. A port `replayed` with no commerce link is refused as `409 CRM_EVIDENCE_REUSED`.
+
+The DB-backed suite `commerce-crm-lead-link.integration.test.ts` passed 12 of 12 against a scratch PostgreSQL 16 and also runs through local CI.
+
+### Customer-bearer storefront account routes are reachable behind the body-authentication middleware
+
+`apps/cms`'s middleware refuses every body-carrying `/api/` request unless it holds a staff session or a machine credential (`refuseUnauthenticatedApiBody`). A shopper's `cs_` bearer session (ADR-0016) is neither, so the fifteen mutating `customerBearer` operations under `/api/v1/commerce/storefront/account/` (addresses, wishlist, profile `PATCH`, push subscriptions and preferences, conversations and messages, affiliate, logout) were answered `401 AUTH_REQUIRED` before their handlers ran. Handler-level tests and `api:spec:check` never saw it.
+
+- Declared in a new `CUSTOMER_BEARER_BODY_ENDPOINTS` registry (`api-body-auth-boundary.ts`), not in `SESSION_FREE_BODY_ENDPOINTS`: eight of those handlers read the body before their own session check, so exempting them would have opened body parsing to anonymous callers.
+- `middleware.ts` authenticates them with the new `refuseUnauthenticatedCustomerBody`: tenant resolved as the storefront routes do, a read-only live-session lookup (`findLiveCustomerSession`, split out of `requireCustomerSession`), `401 UNAUTHENTICATED` carrying the storefront CORS headers otherwise, so the browser can read the status and clear the stored session.
+- `apps/cms/tests/customer-bearer-body-boundary.test.ts` holds the registry equal to the OpenAPI `customerBearer` body operations and the route files; a new customer route that is neither registered nor session-free fails the test.
+- The DB-backed check (`commerce-customer-auth.integration.test.ts`, `findLiveCustomerSession`) is gated on `DATABASE_URL` and was not executed where this change was written.
+
+AGENTS.md records the new local divergence in `apps/cms`.
+
+### Shoppers can export and erase their personal data, and staff can on their behalf
+
+Issue #529 (ADR-0055). The upstream subject-data engine cannot bind a commerce customer (ADR-0016 D1: no tenant-user, identity or profile id), so `commerce` owns a subject-rights flow keyed by the customer id. Every customer-keyed descriptor keeps `unreachableBySubject`, and its rationale now names the flow.
+
+- **Shopper**: `/akun/privasi` (toko profile) and `POST /api/v1/commerce/storefront/account/privacy/{otp,export,erasure}`. A bearer session plus a fresh one-time code of its own purpose (`subject_export`, `subject_erasure`). The export is a versioned JSON bundle returned once and never stored (secrets redacted, an `unanswered` section, `Cache-Control: no-store`). The erasure needs an `Idempotency-Key`, deletes personal rows (sessions, codes, wishlists, addresses, campaign recipients, push data), anonymises the identity and the text the shopper wrote with per-row-unique sentinels, marks it `erased_at`, retains orders, documents, returns, refunds and both ledgers, and revokes every session. It is refused (`409 ERASURE_REFUSED`) while an order, booking, stored-value balance, refund or affiliate payout is open, without consuming the code.
+- **Staff**: a Privacy column and a requests panel on `/admin/commerce-customers`; `commerce.customer_subject_requests.{read,export,delete,approve}` (migration `sql/1068`); an erasure is maker/checker, each person with a fresh step-up.
+- **Storage**: `sql/1066` (the evidence table: counts and codes, immutable once decided, worker `SELECT` for the lifecycle dry-run), `sql/1067` (`erased_at`, the OTP purposes).
+- **Contract**: seven operations in `commerce.openapi.yaml`; the three storefront routes are in `CUSTOMER_BEARER_BODY_ENDPOINTS`. The admin client bundle grows (asset budget re-measured).
+- **Not settled**: counsel's confirmation of the retention legal bases and the owner's confirmation of the refusal rules (proposals in the ADR); the upstream descriptor-declared subject kind (text in the ADR's appendix A, not opened from here); WhatsApp message rows matched only by a phone value.
+
+The DB-backed integration suite (`commerce-customer-subject.integration.test.ts`) and the real-browser e2e (`akun-privasi.e2e.ts`) run through local CI only and were not executed where this change was written.
+
+Review refinements: the export no longer discloses staff stamps or the staff-typed reason of a request row; the data-request code mail has its own template naming its purpose; the privacy POST routes are rate limited per account; a retried `decide` by the same approver replays; the stored-value refusal also counts disabled accounts; and the e-mail copies in the `email` module's outbound log are named as not reached.
+
+Review follow-ups: an erasure now suspends the shopper's affiliate account so the public referral code stops earning; the shared POS walk-in customer is refused as `NOT_A_PERSON`; the retention projector no longer re-creates an erased shopper's row; every staff stamp is kept out of the export; concurrent requests with one `Idempotency-Key` serialise on an advisory lock; `/akun/privasi` reads a `401` after an ambiguous attempt as "erased".
+
+### Sync `apps/cms` to upstream awcms `f0182930` (six new modules, retired local divergences)
+
+The embedded `apps/cms` subtree moves from upstream `45a139fa` to `f0182930` (still AWCMS v10.11.0), pulled with a merge commit. Upstream now registers 40 modules (41 here, with `commerce`) and ends at `sql/394`; no migration collides with this repo's `880`-`883` and `901`+ bands.
+
+- New upstream modules, all inert or behind their own flags until an operator enables them: `website_engagement`, `social_publishing`, `crm_leads` (with `CrmLeadPort`), `crm_follow_up`, `telegram_engagement` and `omnichannel_inbox` (with operator screens). Also the Meta multi-WABA and StarSender WhatsApp senders on the one queue, multi-Mailketing accounts, the capacity and load-test tooling of ADR-0161, and the worker-callable Booking confirm and cancel (`sql/388`).
+- Four local divergences retire because upstream adopted them (ahliweb/awcms#1300, #1302, #1310): the data-lifecycle `::timestamptz` casts, the `numericText` CSV option, the numeric migration-order assertions and axe type alias, and the booking `TRUNCATE ... CASCADE` edits. The commerce refund-compensation table now sits in upstream's validated non-payroll table-name registry instead of a local export. The five commerce date-cursor lifecycle descriptors declare `cursorColumnType: "date"`, which upstream's engine now requires (they stay purge-only).
+- Operator note: a host that runs upstream's `run-job.sh` must redeploy it with the regenerated `awcms-jobs.env-global` and `awcms-jobs.env-scoped` (fail closed otherwise); the compose path is unaffected. Booking consumers still need the application role for `domain-events:dispatch` because their reservation READ is not covered by upstream's worker function (ADR-0045 note).
+- `AGENTS.md` (and its mirror) record the sync, the retired divergences and the lessons; `ADR-0045` carries a dated update on the worker path.
+
+### Cross-provider WhatsApp acceptance matrix and staging runbook (issue #466, template side)
+
+The template-side half of the tenant-configurable default WhatsApp provider acceptance work. No product code, migration or setting changes.
+
+- `tests/template-tanpa-starsender.test.mjs` proves the template never selects StarSender or ships a provider key: no env example or compose file sets `WHATSAPP_PROVIDER=starsender` or `WHATSAPP_STARSENDER_ENABLED=true`, `template:init` for each of the three build profiles leaves the same true, and the neutral seed profiles name no provider and no real number.
+- `apps/cms/tests/integration/commerce-whatsapp-sender-matrix.integration.test.ts` (needs `DATABASE_URL`) drives commerce's `upstream` mode through a mock provider: the sender is pinned on queued rows across a default switch, an unusable or switched-off default is refused with no reroute, another tenant's sender id is refused, and events and audit carry the masked recipient only. `apps/cms/tests/commerce-whatsapp-sender-matrix.test.ts` pins the pure side (a refusal is returned, commerce passes no sender and names no provider).
+- `docs/deployment.md` (and its Indonesian mirror) gains the staging runbook: StarSender risk acknowledgement, enrolment, token rotation, disable and rollback, manual Meta selection and fail-closed behaviour. Campaign multi-sender rows stay pending on #458.
+
+### Take the astro advisory fixes
+
+`bun audit --audit-level=low` reddened `local-ci/check-toko` and `local-ci/security` for every PR. Two astro advisories were behind it (a third, picomatch `GHSA-fc5q-39xc-vjpf`, was first mitigated here by a local patch and was then withdrawn upstream; see the 32863de8 sync changeset).
+
+- **astro `GHSA-mh32-jxcr-mh9f`** (low, XSS via attribute injection in dynamic tag names, `<=7.4.4`) and **`GHSA-r3h5-4585-7x3w`** (moderate, `@astrojs/node` image endpoint reads a case-variant sibling of the output directory, `<=11.1.11`) are closed by bumping within the major: `apps/storefront` now declares `astro` `^7.4.12` and `@astrojs/node` `^11.1.13`, and the root `bun.lock` resolves `astro@7.4.12` and `@astrojs/node@11.1.13` for the whole workspace.
+
+### A reading-preferences panel on every public page of every profile
+
+The storefront (`toko`, `berita` and `landing`) now carries a small floating button at the bottom-left that opens a "Pengaturan Aksesibilitas" panel (issue #539, ADR-0057). A visitor can choose a larger or extra-large text size, high contrast, monochrome, dyslexia-friendly text (a plain sans font with WCAG 1.4.12 spacing), underlined or highlighted links, and reduced motion, or reset everything. It is a set of display preferences, not an overlay: it never rewrites content, loads no third-party code, makes no request and claims no compliance. The choices live only in the visitor's `localStorage` (`awcms-a11y`) and are never sent to the server.
+
+- A new same-origin classic file `apps/storefront/src/pages/a11y-early.js.ts` applies the stored choices before first paint, so there is no flash; the CSP is unchanged (no inline script or style, no new origin).
+- With nothing stored, `prefers-reduced-motion` and the new `prefers-contrast: more` apply through CSS, so a visitor without JavaScript gets them too; high contrast is never applied under `forced-colors: active`.
+- The OS reduced-motion rule in `global.css` now stands down once the visitor has an explicit stored choice; the two smooth-scroll calls (`/produk`, `/cari` pagination) and the news ticker's pulse obey the choice.
+- At the largest text size, and with dyslexia spacing, on a 360 px phone the layout defects that appeared are fixed: the header search field, the newsletter form's grid column (footer and sidebar), the width of form controls, long unbreakable words and no-wrap buttons. The home slider's secondary button (1.48:1 text contrast, previously masked by the promotional popup in the old axe scan) now uses `--text-primary`. Nothing else changes for a visitor who never touches the panel.
+- Only felt while developing: new unit tests (`a11y-preferences`, `a11y-early`, `a11y-css`), build-smoke assertions on every page of every profile, and a Playwright suite (`a11y-panel.e2e.ts`) with axe scans of the panel; `docs/aksesibilitas.md` is updated to the real state. `apps/cms` is untouched and receives upstream's own version through the next ordinary subtree sync.
+
+### apps/cms synced from ahliweb/awcms main at f476fdbb (reading-preferences panel, six new modules)
+
+Brings 124 upstream commits as one merge commit on top of the picomatch branch (#541): the public reading-preferences panel (ahliweb/awcms#1369 and #1370, ADR-0166), the SLA test clock fix (#1372), six new modules (`crm_leads`, `crm_follow_up`, `omnichannel_inbox`, `social_publishing`, `telegram_engagement`, `website_engagement`), descriptor-declared e-mail categories and WhatsApp templates with a data-driven worker allow-list (#1361, ADR-0164, `sql/410`), brand-scoped WhatsApp message cancel and diagnostics (#1362), the append-only ledger hardening (#1344, #1348, #1360), the load-test harness, the license, SBOM and provider-changelog dependency gates, and the `astro` 7.4.12, `@astrojs/node` 11.1.13, `@playwright/test` 1.65.1 and `prettier` 3.10.1 ranges.
+
+Owner decisions of 2026-11-18 (ahliweb) that shaped it:
+
+- **Worker e-mail guard, "Option A".** `sql/1033` re-issued the guard function with a hard-coded body; on a fresh database it ran after upstream's table-driven `sql/410` and overwrote it (the `crm.follow_up_*` categories and their recipient and variable checks were lost), and on an existing database it left `derived.commerce_campaign` out of `awcms_email_worker_categories`. New `sql/1064` restores `sql/410`'s body and seeds the commerce row (`sql/1033` stays byte-identical), the commerce e-mail categories (`workerInsert` on the campaign one) and WhatsApp templates are declared in the commerce descriptor, the two side-effect imports of `email-dispatch.ts` and `whatsapp-dispatch.ts` are gone, `commerce-campaigns-dispatch.ts` installs the extension-point source, and `1033` and `1064` are the two reasoned entries of `GUARD_REISSUE_EXCEPTIONS` in upstream's re-issue gate. `commerce-worker-email-guard-order.test.ts` simulates the fresh and the existing migration order and replaces `commerce-email-worker-guard.test.ts`.
+- **Customer-bearer POST regression: the fix of PR #530 is ported.** Commit `a341509240` of that PR (cherry-picked with `-x`, author kept) authenticates the fifteen mutating `customerBearer` storefront account operations with a customer-session check before the body is parsed; the staff-only check refused every shopper's `cs_` token. `customer-bearer-named-routes.test.ts` pins `account/logout`, `addresses` and `push/subscriptions` by name, next to a staff-only body POST that still gets the staff check. Five public `security: []` commerce operations that upstream's parity gate found unreachable were added to `SESSION_FREE_BODY_ENDPOINTS` as well.
+- **Catalogue wording kept as upstream's.** 22 msgids existed in both lineages and were de-duplicated on `(msgctxt, msgid)` keeping upstream's; four read differently in Indonesian on commerce screens afterwards: `Channel` is now `Kanal` (was `Saluran`), `Conditions` is `Kondisi` (was `Syarat`), `Not sent` is `Tidak dikirim` (was `Tidak terkirim`), and `Could not save the change. Please try again.` is `Perubahan tidak dapat disimpan. Silakan coba lagi.` (was `Tidak dapat menyimpan perubahan. Silakan coba lagi.`).
+
+Other changes:
+
+- `apps/cms` now registers 41 modules (upstream's 40 plus `commerce`); every counting document says so. Upstream's migrations stop at `sql/414` and collide with neither this repo's `880`-`899` band nor the `commerce` band; `apps/cms` holds 425 migration files with `1064` and `1065`.
+- Upstream took four of this repo's former local divergences (the `AxeViolation` alias, the `numericText` CSV option, the `date`-cursor handling of the data-lifecycle engine, the numeric sort of migration names) and its parser-based `omes-control-execution-boundary.test.ts` replaces the grep-based test of the same name from #212. `commerce`'s one payroll-name exception is registered in upstream's own #1276 mechanism, and commerce's five date-cursor lifecycle descriptors declare `cursorColumnType: "date"`.
+- `commerce` adapts to `WhatsappDeliveryPort`'s four additive refusal reasons (`CONSENT_SCOPE_REQUIRED` maps to `RECIPIENT_SUPPRESSED`, the others to `TEMPLATE_UNAVAILABLE`), the mode-flip drain reads the whole tenant queue with an explicit `scopeKeys: null`, and the document e-mail suppression lookup passes its purpose (`transactional`).
+- Found by the `local-ci/check-cms` integration run against a real PostgreSQL (the static checks cannot see these): the worker's table-level `SELECT` on `awcms_tenant_modules` (`sql/1031`) collided with upstream's column-only pin of the same row (`sql/330`, L-5), so new `sql/1065` revokes it and grants `(tenant_id, module_key, enabled)` again, the customer-push dispatcher's module gate uses `resolveModuleEnabled`, and the pin matrix lists commerce's column-level `UPDATE (updated_at)` on `awcms_inventory_locations`; the campaign dispatcher's e-mail enqueue is now a worker-role twin, `email/application/direct-address-worker-enqueue.ts` (a new file, transactional categories only), because upstream's `enqueueDirectAddressEmail` writes the `purpose` column the worker's grant deliberately lacks; and the payroll catalog layer's suffix list gains `fk`, `not_null`, `tenant_isolation` and `append_only` so the objects of `awcms_commerce_refund_compensations` inherit its registered exception.
+- `tools/ci/gitleaks.toml` allowlists five exact upstream paths whose matches were each read and are not credentials (the omes-control compatibility `PIN.json` of fixture SHA-256 digests, and four test files with made-up app secrets and a template key); no pattern was broadened and no upstream file was edited to annotate them.
+- Generated files (catalogue, preview overlay, jobs env files and `run-job.sh`, OpenAPI bundle, API reference, work-class registry, composition, repo, scripts and PROJECT_STATE inventories, single-flight audit) were regenerated, not merged by hand; `asyncapi/awcms-domain-events.asyncapi.yaml` was merged block by block so both lineages' events are present. `APP_BUDGET_BYTES` is 552,000 B, measured 551,921 B on the merged build.
+- Four commerce rows were added to the provider register (Meta WhatsApp legacy sender, Fonnte, Midtrans, RajaOngkir) with `lastReview` `null`; the license gate reads the isolated-linker store and the root `bun.lock`.
+- Operator: six new scheduled jobs are in the generated crontab (`crm-follow-up:dispatch`, `email:senders:verify`, `omnichannel-inbox:sla`, `social-publishing:dispatch`, `social-publishing:retention:purge`, `telegram-engagement:dispatch`). `omnichannel-inbox:sla` and `email:senders:verify` run as `awcms_app` on purpose, so on the compose path they are routed to `jobs-app` (the pinned app-role set in `tests/compose-produksi.test.mjs` and `docs/deployment.md` now lists three); each does nothing until its flag is on. `social-publishing:dispatch` and `telegram-engagement:dispatch` run under their own database roles and key rings, see the generated `ops/awcms-jobs.env-scoped`. The new migrations `sql/325`-`414` and `1064` apply on `db:migrate`; a database that applied `sql/1033` earlier ends table-driven with the commerce row.
+- Root `bun.lock` follows the new `apps/cms` ranges.
+
+### Footer links meet the WCAG 2.2 minimum target size
+
+The footer links of every profile (`toko`, `berita`, `landing`) were about 20 px tall, below WCAG 2.2 SC 2.5.8 (Target Size, Minimum), for example "Pasang di Layar Utama" (issue #542). Each footer link is now at least 24 px tall, through a new `--target-min` token used by `.site-footer a` and `.footer-berita a`; the columns, wording and colours are unchanged and nothing moves for a visitor except slightly more room between lines of links.
+
+- The whole-page axe scan of every key page (`aksesibilitas.e2e.ts`) now uses the WCAG 2.2 AA tags and passes on all three profiles.
+- `docs/aksesibilitas.md` (and its Indonesian mirror) states the real state.
+- `apps/cms` is untouched.
+
+### apps/cms synced from ahliweb/awcms main at 32863de8; picomatch GHSA-fc5q-39xc-vjpf mitigation removed
+
+GitHub and OSV withdrew `GHSA-fc5q-39xc-vjpf` on 2026-11-18 (the maintainers: not a library vulnerability; the fix PR was closed unmerged and no release followed). `bun run deps:audit:check` in `apps/cms` then reported the exception as stale, which reddened `local-ci/check-cms` on every pull request. The owner decided (2026-11-19) to remove the mitigation entirely in all three repositories.
+
+- Subtree sync, two upstream commits (ahliweb/awcms#1373, #1374), one merge commit: upstream deletes its `patches/picomatch@*.patch`, the `patchedDependencies` field, `picomatch-local-patch.test.ts` and the audit exception, and the `apps/cms` list is `[]` again.
+- Root remnants removed in the same change: `patches/picomatch@4.0.7.patch` and `patches/picomatch@2.3.2.patch`, the root `patchedDependencies` (`package.json` and `bun.lock`), the root picomatch patch test, and the root audit exception (`tools/ci/dependency-audit-exceptions.json` is `[]`). Resolved `picomatch` versions are unchanged (the patch changed files, not versions).
+- AGENTS.md, SECURITY.md and `docs/alur-kerja-pengembangan.md` (and their Indonesian counterparts) describe the real state: both exception lists empty, no local picomatch patch.
+
+### apps/cms synced to ahliweb/awcms v10.12.0; UAT is not run in upstream repositories
+
+Owner decision of 2026-11-19: the upstream repositories (`awcms`, `awcms-astro`, `awcms-one`) run no UAT; UAT (step 14 of the development flow) is run in the implementing or derived project repositories, and this repository is treated as upstream (a template).
+
+- Subtree sync of `apps/cms` to `ahliweb/awcms` tag `v10.12.0` (`765e52c7aca35e91a57ed24fc04a035176a32c95`), four upstream commits, one merge commit. Upstream's own change is documentation only (its ADR-0166 amendment, the design-system note, the release commit); no code, migration or dependency change. Conflicts: only the generated section 2 table of `apps/cms/docs/PROJECT_STATE.md` and `.id.md` (this repo's counts kept, then regenerated and re-stamped).
+- ADR-0057 gains an amendment (the original text is untouched): usability testing of the reading-preferences panel with real readers is not a prerequisite of this repository's release-readiness gate; it belongs to the UAT of each derived repository that adopts the template. The decision itself is unchanged.
+- `docs/aksesibilitas.md` states the same, `AGENTS.md` records the rule next to the code-ownership rule, and the ADR index notes the amendment (English and Indonesian). The device UAT of customer Web Push (ADR-0048 D8) is a per-deployment activation gate and stays as written.
+
+### ADR-0058: owner decisions on contract parity (issue #547 follow-up)
+
+Adds ADR-0058 (with its Indonesian mirror and index rows) recording the owner's decisions of 20 November 2026: fixtures plus a schema check first, the storefront consumer-contract slice at the root `tests/` rather than in the `apps/cms` subtree, and `429 RATE_LIMITED` plus the optional idempotency header reported upstream (ahliweb/awcms#1385) instead of patched locally. Section 8.1 of the audit report now points at the ADR.
+
+The "why": the slice location and the upstream routing decide which repository carries the cost at every subtree sync, and a later reader should find that reasoning in one place. Backlog issues #553 to #557 exist and wait for gate 9; no code, schema, workflow or test changed.
+
+### The `local-ci/security` leg pins the CodeQL query pack to its CLI
+
+`tools/ci/runners/security.ts` downloaded `codeql/javascript-queries` without a version and analysed with an unversioned suite reference. On 2026-11-20 the registry's latest pack became 2.5.1, which is built for CodeQL CLI 2.27.5 and ships JSON-with-comments data extensions. The pinned CLI 2.27.1 rejects them ("Invalid data extension file", `codeql resolve extensions-by-pack` exit 2), so every PR's security leg failed for a reason unrelated to the code under review.
+
+- `CODEQL_JS_QUERY_PACK = "codeql/javascript-queries@2.5.0"` sits next to `CODEQL_CLI_VERSION` in `tools/ci/lib/codeql-cli.ts`; 2.5.0 is the newest pack that runs on CLI 2.27.1.
+- Both `codeql pack download` and the `database analyze` suite reference use the versioned name. The package cache keeps every version ever downloaded, and an unversioned reference resolves to the newest one there, so pinning only the download would not be enough.
+- Moving to a newer pack means bumping the CLI with it (and re-verifying its checksum), deliberately.
+
+### Research report: CMS and storefront contract parity across the three profiles (issue #547)
+
+Adds `docs/audit-paritas-kontrak-cms-storefront.md` (with its Indonesian mirror) and its index rows. The report is findings only: an evidence matrix of every operation the storefront calls for `toko`, `berita` and `landing`, a protocol that keeps TypeScript types apart from HTTP behaviour, sixteen classified findings against baseline `66b9985ad753d815ad8f85f6392487087f4a8e8f`, and the mock-versus-fixture ownership question.
+
+No code, schema, workflow, test or deployment changed. The "why" for a changeset anyway: the report's main finding is that the storefront's tests run against a hand-written stub that nothing compares with the OpenAPI document, and a later release note should be able to point at where that was first written down.
+
+### Footer column headings are visible in light mode
+
+In light mode the footer column headings ("Ikuti Kami", "Informasi", "Bantuan", "Kanal", the shop name) were `#0f172a` on a `#0f172a` background, a 1:1 contrast ratio, on `landing`, `toko` and the store-footer pages of `berita` (issue #551). `.site-footer-column h2` set `--text-primary` over the on-inverse colour that `.site-footer h2` already declares; the stray `color` is removed, so the headings use `--text-on-inverse` in both colour schemes.
+
+- The axe gate (`aksesibilitas.e2e.ts`) missed it because axe files identical-colour text under `incomplete` (`equalRatio`), not `violations`; the gate now fails on that case too.
+- A static test (`footer-kontras.test.ts`) fails when a footer rule colours text with a surface-side token.
+- `docs/aksesibilitas.md` (and its Indonesian mirror) records the gap. `apps/cms` is untouched.
+
+### The translation gate and stamper now see invalid and duplicate `i18n-source-hash` markers
+
+`MARKER_REGEX` only matched `<!-- i18n-source-hash: sha256:<64 hex> -->`, so a hand-written `<!-- i18n-source-hash: sha256:placeholder -->` line was invisible twice over: `docs:i18n:stamp` did not remove it (it stacked a second, real marker on top), and `audit:translation` did not notice it.
+
+- `docs:i18n:stamp` removes every marker-comment line whatever its value, then writes one valid marker. A line only counts when the whole line is the comment, so a mention of the marker in prose or inline code is left alone.
+- `audit:translation` fails a mirror with more than one marker, or with a marker whose value is not `sha256:<64 hex>`, and names the fix.
+- Tests in `tests/docs-i18n-checks.test.mjs` cover a placeholder dropped by the stamper, a duplicate rejected and an invalid marker rejected.
+- Sixteen mirrors under `docs/` lost a stray marker line (fifteen `sha256:placeholder`, one `sha256:0`) and the blank line beside it. `apps/cms` is untouched.
+
+### The local CI stops leaking CodeQL databases and postgres volumes
+
+`~/.local/state/awcms-one-ci/evidence` grew from about 26 GB to 71 GB in four days, and unnamed Docker volumes added another 12-15 GB every few days, until the operator's disk reached 92%. Two legs caused it.
+
+- `tools/ci/runners/security.ts` created the CodeQL database inside the evidence directory (about 1.2 GB per run) and never removed it. It is now removed in a `finally` as soon as analysis ends, pass or fail. The SARIF and the create/analyze logs remain as the evidence; the database is an intermediate and is not needed after the SARIF is written.
+- `tools/ci/runners/check-cms.ts` removed its `postgres:18.6` container with `docker rm -f`. That image declares `VOLUME /var/lib/postgresql`, so every run left an anonymous volume behind. It is now `docker rm -f -v`.
+
 ## [0.20.0] — 2026-11-11
 
 ### Booking-derived CRM segment rules (rule schema 2)

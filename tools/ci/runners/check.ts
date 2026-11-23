@@ -57,6 +57,7 @@ export async function runCheckLeg(
       { name: "audit-translation", argv: ["bun", "run", "audit:translation"] },
       { name: "audit-graf", argv: ["bun", "run", "audit:graf"] },
       { name: "audit-rilis", argv: ["bun", "run", "audit:rilis"] },
+      { name: "audit-data-pribadi", argv: ["bun", "run", "audit:data-pribadi"] },
       { name: "dependency-audit", argv: ["bun", "audit", "--audit-level=low", ...ignore.args] }
     );
   }
