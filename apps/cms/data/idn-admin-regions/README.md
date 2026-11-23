@@ -15,8 +15,8 @@ data/idn-admin-regions/
     └── db/
         ├── wilayah.sql       ← IMPORTED: 91,599 administrative regions
         ├── wilayah_pulau.sql ← vendored only (islands)
-        ├── wilayah_penduduk.sql ← vendored only (population)
-        └── wilayah_luas.sql  ← vendored only (area)
+        ├── wilayah_penduduk.sql ← read by the awcms-one embed only (population, awcms-one ADR-0053)
+        └── wilayah_luas.sql  ← read by the awcms-one embed only (area from BIG, awcms-one ADR-0053)
 ```
 
 ## Why the files are committed instead of downloaded

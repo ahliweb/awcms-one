@@ -115,10 +115,42 @@ unit-testable without waiting on real time.
 
 - **Closed → Open**: after `failureThreshold` (5) consecutive failures.
 - **Open → Half-open**: after `openDurationMs` (30 seconds) has elapsed since
-  the breaker opened, exactly one attempt is allowed through.
+  the breaker opened, exactly one attempt is allowed through. The attempt is
+  **reserved**: `tryAcquire(now)` returns a permit to the first caller and
+  `null` to every other caller until that probe reports back. (Issue #1409:
+  the old `canAttempt` only read the state, so every caller that asked before
+  the probe finished got through.)
 - **Half-open → Closed**: the attempt succeeds.
 - **Half-open → Open**: the attempt fails; the `openDurationMs` window
   restarts from the time of that failure.
+
+- **Probe lifecycle**: `recordSuccess`/`recordFailure` resolve the probe. A
+  call that ends with no verdict for the breaker (e.g. a per-message
+  rejection, a client-input error) calls `permit.release()` so the next
+  caller takes the probe. A probe that is never resolved at all expires after
+  `probeTimeoutMs` (default `openDurationMs`), so the breaker cannot stay
+  `half_open` forever.
+- **Reserve vs peek**: `tryAcquire` is for a caller that is about to make the
+  call. `wouldAllowAttempt(now)` is read-only (dispatcher gates, health
+  checks): it reserves nothing and guarantees nothing. The batch dispatchers
+  for WhatsApp, Telegram and push still only peek once per pass; the single
+  probe is held by their ADAPTERS instead (Fonnte, Meta Cloud, StarSender,
+  Telegram, Web Push, FCM): each `send` calls `tryAcquire` first and hands the
+  probe back in a `finally` when the call gave the breaker no verdict (a
+  credential problem, a dead subscription, a bad message, a throw). A refused
+  send returns `skipped: true` and nothing reaches the provider; the dispatcher
+  holds the row (WhatsApp: `retry_wait` for the sender-hold window; Telegram:
+  the row and the rest of the batch are released for 30 s; push: deferred for
+  30 s) with `retry_count` unchanged and no delivery attempt recorded. The key
+  is the adapter's own breaker key, so one WhatsApp sender's held probe never
+  skips another sender.
+- **Per process only**: the reservation lives in this process's memory (it is
+  atomic because the synchronous `tryAcquire` runs to completion on a single
+  JS thread). With several replicas each one admits its own probe;
+  single-flight across replicas is **not** claimed.
+- **Metrics**: unchanged and bounded. `provider_call_total`/
+  `provider_circuit_state` are emitted on recorded outcomes only, labelled by
+  provider family; a refused `tryAcquire` adds no series.
 
 One breaker instance is shared across the whole application (module-level
 singleton `getDatabaseCircuitBreaker()`), not per-request — so failures
@@ -136,7 +168,7 @@ withTenant(sql, tenantId, fn, {
 
 The flow:
 
-1. Check `circuitBreaker.canAttempt(now)` — if `false`, go straight to
+1. Check `circuitBreaker.tryAcquire(now)` — if `false`, go straight to
    `503 DATABASE_BUSY` + `Retry-After: 30` (skipping the queue entirely,
    fail-fast).
 2. `acquireWorkClassSlot(workClass, queueTimeoutMs)`:

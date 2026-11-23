@@ -9,11 +9,21 @@
 import { fail } from "../../_shared/api-response";
 import { requireCommerceFeatureForOwnerRoute } from "./commerce-feature-gate";
 
-export {
-  idempotencyErrorResponse,
-  readValidatedBody,
-  requireIdempotencyKey
-} from "./register-http";
+import { requireIdempotencyKey as requireRegisterIdempotencyKey } from "./register-http";
+export { idempotencyErrorResponse, readValidatedBody } from "./register-http";
+
+/**
+ * `requireIdempotencyKey` is defined here as a one-line forward, not re-exported:
+ * the contract-parity test (`tests/openapi-rate-limit-and-idempotency-declared.test.ts`,
+ * issue #557) follows a handler's call graph through declarations, and a bare
+ * `export { x } from` is not one, so the read of the header in `register-http.ts`
+ * would be invisible to it.
+ */
+export function requireIdempotencyKey(
+  request: Request
+): ReturnType<typeof requireRegisterIdempotencyKey> {
+  return requireRegisterIdempotencyKey(request);
+}
 
 /** `409 FEATURE_DISABLED` while the tenant's `expenses` feature is off, else `null`. */
 export function requireExpenseFeature(

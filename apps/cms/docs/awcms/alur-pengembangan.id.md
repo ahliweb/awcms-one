@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:d5e04f482b0233b978b54cc527a105816df8133bafb0ceb577d48939d92d8907 -->
+<!-- i18n-source-hash: sha256:1d2cebc7b1abcd57f456838f2e5a553ed19f2f6fe247197736485f99dc9fa9a6 -->
 
 # Alur pengembangan AWCMS
 
@@ -44,7 +44,7 @@ flowchart TD
   S112 --> S113[11.3 Integrasi + E2E]
   S113 --> S12[12 PR + Review + CI]
   S12 --> S13[13 Deploy Staging - TIDAK BERLAKU ADR-0083]
-  S13 --> S14[14 UAT Internal - TIDAK BERLAKU]
+  S13 --> S14[14 UAT Internal - TIDAK BERLAKU di sini, dijalankan di repo konsumen]
   S14 --> S15[15 Release Readiness / Go-No-Go]
   S15 --> S16[16 Deploy Produksi]
   S16 --> S17[17 Validasi Produksi]
@@ -167,7 +167,7 @@ masukan langsung bagi langkah 5 dan 8.
 
 | Bagian                               | Artefak                                                                                                                | Status                                                                                                                   |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Aturan desain, token, state          | [`14_ui_ux_design_system.md`](14_ui_ux_design_system.md), [`../../src/styles/tokens.css`](../../src/styles/tokens.css) | ada; menargetkan **WCAG 2.1 AA** (v2: 2.2 AA) — **celah**                                                                |
+| Aturan desain, token, state          | [`14_ui_ux_design_system.md`](14_ui_ux_design_system.md), [`../../src/styles/tokens.css`](../../src/styles/tokens.css) | ada; menargetkan **WCAG 2.2 AA** sejak 2026-11-20 (tag axe `wcag22aa` ditambahkan)                                       |
 | Arsitektur frontend                  | [`15_frontend_architecture_integration.md`](15_frontend_architecture_integration.md)                                   | ada                                                                                                                      |
 | Kontrak layar (contoh nyata)         | [`omnichannel-ui-ux-screen-contracts.md`](omnichannel-ui-ux-screen-contracts.md)                                       | ada, satu area produk, Proposed                                                                                          |
 | Prototipe                            | [`../../design/`](../../design/README.md) (`redesain-ui-ux-2026-10`)                                                   | ada, **hanya rujukan, belum diuji usabilitas**                                                                           |
@@ -267,7 +267,9 @@ ada dependensi yang terpasang untuknya. v2 mewajibkan mock dihasilkan dari
 kontrak, tidak pernah ditulis tangan, sehingga sebelum perkakasnya dipilih,
 langkah 11.1 terhadap mock kontrak tidak bisa dikerjakan seperti yang v2
 gambarkan. Memilih perkakas adalah keputusan tersendiri (menyentuh toolchain),
-bukan sesuatu yang diselesaikan dokumen ini. Yang paling dekat adalah
+bukan sesuatu yang diselesaikan dokumen ini. **Pilihannya kini sudah dibuat
+(pemilik, 2026-11-20): ADR-0167, opsi C′, generator di dalam repo dengan `ajv`
+dan tanpa server mock; diterima dan belum dibangun.** Yang paling dekat adalah
 `api:consumer-contract:generate|check`, yang membekukan irisan API publik yang
 dipanggil `awcms-astro`; itu snapshot konsumen **satu sisi**, bukan mock dan
 bukan verifikasi provider.
@@ -286,10 +288,12 @@ pass **kedua** atas keamanan dan privasi langkah 3 dilakukan setelah UI, data, d
 API punya bentuk. Cacat mengembalikan pekerjaan ke langkah yang memuatnya lalu
 melewati gerbang ini lagi, bukan lanjut dengan catatan.
 
-**Celah:** [`templates/definition-of-ready.md`](templates/definition-of-ready.md)
-belum diperluas dengan pemeriksaan v2 ini, sehingga yang dilihat orang yang
-mengisinya adalah template itu, bukan paragraf ini. Memperbaruinya (beserta
-cerminnya) adalah perubahan lanjutan.
+**Ditutup (issue #1378):** [`templates/definition-of-ready.md`](templates/definition-of-ready.md)
+kini memuat pemeriksaan v2 ini (§Pemeriksaan gerbang 9 yang ditambahkan alur v2),
+masing-masing dengan bukti yang bisa dibuka reviewer dan aturan N/A untuk
+perubahan tanpa layar. Yang masih membuat pemeriksaan itu belum bisa dipenuhi
+juga dicatat di sana: belum ada laporan usabilitas, template inventaris data per
+layar, dan generator mock.
 
 | Artefak                                                                                                | Peran                              |
 | ------------------------------------------------------------------------------------------------------ | ---------------------------------- |
@@ -359,10 +363,24 @@ izin.
   memanggil `listOffices`), dan hanya penulisannya yang menuju `/api/v1` dari
   browser. Model "frontend terhadap mock kontrak" karena itu lebih cocok untuk
   penulisan, island sisi klien, dan konsumen `awcms-astro` (yang repo-nya
-  memiliki 11.1-nya sendiri) daripada untuk pembacaan SSR. Bagaimana model ini
-  berlaku pada layar admin SSR adalah pertanyaan terbuka yang tidak dijawab ADR
-  ini; sebelum dijawab, perlakukan 11.1 di sini sebagai "layar bekerja terhadap
-  data uji di bawah gerbang yang sebenarnya", dan nyatakan itu di issue-nya.
+  memiliki 11.1-nya sendiri) daripada untuk pembacaan SSR.
+- **Aturan untuk layar admin SSR (keputusan pemilik, 2026-11-20; bukan lagi
+  pertanyaan terbuka).** Layar admin SISTEM dirender terhadap **fixture turunan
+  kontrak** (skema respons dan contohnya) **sebelum handler atau fungsi aplikasi
+  yang akan melayaninya ada**, dalam setiap state yang disebut irisan: loading,
+  kosong, galat, sukses, dan tanpa izin. Layar dengan demikian memakai bentuk read
+  model yang dinyatakan kontrak, handler yang menyusul (11.2) harus memenuhi apa
+  yang sudah ditampilkan layar, dan perbedaan kembali ke langkah 8 dan melewati
+  gerbang 9. Penulisan dan island sisi klien memanggil `/api/v1` dan berjalan
+  terhadap fixture yang sama. Merender terhadap fixture menunjukkan tata letak dan
+  state, **bukan otorisasi**: `loadAdminScreen`, pemeriksaan izin backend, dan RLS
+  tetap menegakkan akses dan diuji di 11.2.
+- **Sampai perkakasnya ada (ADR-0167, opsi C′, diterima dan belum dibangun),
+  nyatakan di issue.** Generator dan paket fixture masih backlog; irisan yang
+  mencapai 11.1 sebelum keduanya mendarat menyatakan bahwa 11.1 **tidak**
+  dikerjakan seperti yang v2 gambarkan, menyebut terhadap apa layar dirender
+  sebagai gantinya (misalnya data uji di bawah gerbang yang sebenarnya), dan
+  mencatatnya sebagai celah, bukan 11.1 selesai.
 
 ### 11.2 Backend memenuhi kontrak
 
@@ -466,13 +484,50 @@ alasan sah untuk meninjau ulang ADR-0083 kelak.
 Menghidupkannya kembali tetap keputusan tingkat ADR, bukan sesuatu yang bisa
 dibalik dokumen proses.
 
+### Cakupan dan prioritas pengecualian ini
+
+Baca langkah ini bersama alur generik, tanpa meregangkan salah satunya:
+
+- **Prioritas.** Alur generik (standar lintas-portofolio internal pemilik) adalah
+  aturan umum. **ADR repo ini yang sudah Accepted** dan memutuskan lain untuk
+  repo ini adalah pengecualiannya, dan ia menang **di sini**. Memberi `awcms`
+  tingkatan staging karena itu membutuhkan **keputusan arsitektur baru** yang
+  men-supersede ADR-0083. Ia tidak pernah dilakukan dengan mengedit dokumen
+  proses, menambah `ModuleDeploymentProfile`, atau mendirikan environment diam-diam.
+- **Yang tidak berlaku:** tingkatan staging untuk **reference deployment repo
+  ini** (satu-satunya deployment produksinya).
+- **Yang TIDAK dilarang:** repo konsumen atau turunan menjalankan environment
+  pra-produksinya sendiri. ADR-0083 §Konsekuensi menyatakan instalasi semacam itu
+  memakai `development`, atau deployment `production` kedua yang terikat kontrak
+  isolasi di [`environments.md`](environments.md); yang dihapus adalah **nama**
+  profil `staging` dari `ModuleDeploymentProfile` template ini, bukan gagasan
+  tingkatannya. Apakah sebuah repo konsumen memilikinya diputuskan di repo itu.
+- **Apa itu bukti lokal dan CI.** Basis data ephemeral CI, suite DB-gated, E2E
+  Playwright, dan `security:readiness` adalah bukti integrasi repo ini. Mereka
+  **bukan** deployment staging dan **bukan** UAT, dan tidak ada dokumen yang boleh
+  menyajikannya sebagai salah satunya.
+
 ## 14. UAT Internal / Pengujian Manusia — **TIDAK BERLAKU untuk repo ini**
 
 **Menjawab:** apakah yang dibangun benar-benar menyelesaikan pekerjaan
 penggunanya.
 
-Ia bergantung pada langkah 13, dan langkah 13 adalah keputusan untuk tidak ada.
-Jadi ini bukan celah yang menunggu diisi; ia konsekuensi yang sudah diputuskan.
+Langkah 14 bukan prasyarat rilis repo ini, dengan **dua alasan yang berdiri
+sendiri**, dan salah satunya sudah cukup:
+
+1. **ADR-0083.** Langkah 14 bergantung pada langkah 13, dan langkah 13 adalah
+   keputusan untuk tidak ada di sini. Ini konsekuensi yang sudah diputuskan, bukan
+   celah.
+2. **Repo upstream tidak menjalankan UAT** (standar lintas-portofolio internal
+   pemilik, DL-059). `awcms` adalah repo template/platform upstream; UAT manusia
+   dijalankan di **repo implementasi atau proyek** yang dibangun darinya, di
+   environment repo itu, dengan penguji dan bukti miliknya sendiri. Andai repo ini
+   punya environment staging pun, UAT tetap tidak dijalankan di sini.
+
+Gerbang 15 (§15) karena itu berjalan untuk `awcms` **tanpa UAT sebagai
+prasyarat**. Dokumen ini tidak mengklaim bukti UAT untuk template, dan UAT yang
+dilakukan di repo konsumen tidak menggantikan bukti CI dan integrasi repo ini
+maupun digantikan olehnya.
 
 Yang paling mendekati perannya adalah verifikasi produksi (langkah 17), dengan
 perbedaan yang harus dibaca jujur: **ia berjalan SESUDAH rilis, bukan
@@ -484,6 +539,11 @@ ADR-0083 untuk perubahan itu, bukan melewatkan langkah 17.
 ## 15. Release Readiness / Go–No-Go
 
 **Menjawab:** apakah ini aman dirilis, dan siapa yang mengatakan ya.
+
+Gerbang 15 di sini dijalankan **tanpa UAT langkah 14 sebagai prasyarat** (lihat
+§14); teks gerbang v2 "temuan usabilitas pada build nyata" hanya dipenuhi oleh
+langkah 17, sebagaimana dicatat
+[ADR-0156](../adr/0156-adopt-development-flow-v2-validated-ux-before-data-model-frontend-backend-integration-per-slice.id.md) §5.
 
 | Artefak                                                              | Peran                                |
 | -------------------------------------------------------------------- | ------------------------------------ |
@@ -551,13 +611,13 @@ Daftar ini ada di sini supaya tidak perlu diturunkan ulang. Perhatikan kolom
 terakhir: **celah dan keputusan bukan hal yang sama**, dan mencampurnya adalah
 bagaimana pekerjaan yang belum dikerjakan memperoleh rupa penilaian.
 
-| Langkah | Hal                           | Sifat                                      |
-| ------- | ----------------------------- | ------------------------------------------ |
-| 3       | Privacy analysis / DPIA       | **ditutup** 13 Agu 2026                    |
-| 9       | Definition of Ready umum      | **ditutup** 13 Agu 2026                    |
-| 13      | Deploy staging                | **keputusan** — ADR-0083, satu environment |
-| 14      | UAT internal                  | **keputusan** — konsekuensi langkah 13     |
-| 18      | Post-release review per rilis | **ditutup** 13 Agu 2026                    |
+| Langkah | Hal                           | Sifat                                                                                   |
+| ------- | ----------------------------- | --------------------------------------------------------------------------------------- |
+| 3       | Privacy analysis / DPIA       | **ditutup** 13 Agu 2026                                                                 |
+| 9       | Definition of Ready umum      | **ditutup** 13 Agu 2026                                                                 |
+| 13      | Deploy staging                | **keputusan** — ADR-0083, satu environment                                              |
+| 14      | UAT internal                  | **keputusan** — ADR-0083 (langkah 13), dan repo upstream tidak menjalankan UAT (DL-059) |
+| 18      | Post-release review per rilis | **ditutup** 13 Agu 2026                                                                 |
 
 Ditambahkan oleh v2 (ADR-0156, 30 Okt 2026). Setiap baris adalah **celah**, bukan
 keputusan: masing-masing membutuhkan issue sendiri, dan tidak satu pun ditutup
@@ -568,10 +628,10 @@ oleh ADR yang menyebutnya.
 | 2       | Bukti riset pengguna sebagai artefak                            | **celah**                                                |
 | 4       | Laporan uji usabilitas (`UXT-*`) dan prototipe yang sudah diuji | **celah**; `design/` hanya rujukan                       |
 | 4       | Template inventaris data per layar                              | **celah**                                                |
-| 4       | WCAG 2.2 AA (doc 14 menyebut 2.1 AA)                            | **celah** — `14_ui_ux_design_system.md` basi terhadap v2 |
+| 4       | WCAG 2.2 AA untuk admin                                         | **ditutup** (issue #1387): doc 14 dan tag axe ke 2.2 AA. |
 | 8       | Mock server / klien bertipe yang dihasilkan dari kontrak        | **celah** — tidak ada perkakas terpasang                 |
-| 9       | Pemeriksaan v2 baru di template Definition of Ready             | **celah**                                                |
-| 11.1    | Perkakas visual regression; model untuk layar admin SSR         | **celah** / pertanyaan terbuka                           |
+| 9       | Pemeriksaan v2 baru di template Definition of Ready             | **ditutup** (issue #1378)                                |
+| 11.1    | Visual regression; layar admin SSR terhadap fixture             | **celah**; aturan SSR diputuskan, perkakas menunggu      |
 | 11.3    | Uji kontrak dua sisi; baseline kinerja terhadap SLO             | **celah** (hanya snapshot sisi konsumen)                 |
 
 Celah yang tersisa setelah itu **ada di dalam** dokumen yang menutupnya, bukan

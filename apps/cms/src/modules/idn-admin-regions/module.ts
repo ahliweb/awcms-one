@@ -75,8 +75,10 @@ import {
  * be indirection with one implementation. No `events`: nothing subscribes to
  * region changes, and an unconsumed channel is a claim without a reader. No
  * `dataLifecycle`: these tables are versioned reference data, never purged by
- * age — a dataset is superseded, not aged out. The island/population/area dumps
- * are vendored but read by no code.
+ * age — a dataset is superseded, not aged out. The island dump is vendored but
+ * read by no code. The population and area dumps are read by the
+ * `idn-population:*` jobs below — a LOCAL addition of the awcms-one embed
+ * (awcms-one ADR-0053, `sql/882`/`sql/883`), not part of upstream's module.
  */
 export const idnAdminRegionsModule = defineModule({
   key: IDN_ADMIN_REGIONS_MODULE_KEY,
@@ -139,14 +141,14 @@ export const idnAdminRegionsModule = defineModule({
       schedule: {
         mode: "manual",
         because:
-          "Runs by hand after a reviewed BPS publication (a manifest JSON plus its extracted CSV) is added under `data/idn-population/datasets/`. A timer would re-parse unchanged files forever."
+          "Runs by hand after the region dataset is activated, and again only when the vendored population/area files change. A timer would re-parse unchanged files forever."
       },
       purpose:
-        "Import a BPS population publication (`--dataset <code>` or `--all-pending`) as a new dataset (status `validated`, never auto-activated), validating every region code against the ACTIVE region dataset and the figures' arithmetic consistency first (awcms-one ADR-0051). Dry-run by default: `--commit` is what writes. A CSV that fails validation records a `rejected` dataset row with the problems and writes no statistics; a manifest whose CSV checksum disagrees is refused and records nothing.",
+        "Import the population (total, male, female) and area figures of Kepmendagri No 300.2.2-2138 Tahun 2025 per province and regency/city from the vendored `db/wilayah_penduduk.sql` (persons, per the decree) and `db/wilayah_luas.sql` (area in km2 from Badan Informasi Geospasial) as a new dataset (status `validated`, never auto-activated), awcms-one ADR-0053. Both files are verified against `manifest.json` and `checksums.sha256` first; every code must resolve to a province or regency/city of the ACTIVE region dataset, pria + wanita must equal total, areas must be positive with at most three decimals, and regencies must add up to their province. Dry-run by default: `--commit` is what writes. Files that fail validation record a `rejected` dataset row with the problems and write no figures; a checksum mismatch is refused and records nothing; re-running over identical bytes is a no-op.",
       recommendedSchedule:
-        "manually, after a new publication file pair is reviewed and merged — not on a timer (the source is a repo file, not a feed)",
+        "on deploy after the region dataset is activated, and when the vendored population/area files change — not on a timer (the source is a repo file, not a feed)",
       environmentNotes:
-        "Pure PostgreSQL operation as `awcms_worker` (grants in `sql/882`) — no network egress; the file pairs ship inside the image. Requires an active region dataset. Runs from the `awcms-jobs` image (`ghcr.io/ahliweb/awcms-jobs`); the `runtime` image does not carry `scripts/`. Safe in offline/LAN deployments. Writes no `awcms_audit_events` row, for the reason given for `idn-regions:activate`: that table is tenant-scoped and this action is global. The evidence is the dataset row plus this command's own output.",
+        "Pure PostgreSQL operation as `awcms_worker` (grants in `sql/882`) — no network egress; the vendored files ship inside the image. Requires an active region dataset under the same decree. Runs from the `awcms-jobs` image (`ghcr.io/ahliweb/awcms-jobs`); the `runtime` image does not carry `scripts/`. Safe in offline/LAN deployments. Writes no `awcms_audit_events` row, for the reason given for `idn-regions:activate`: that table is tenant-scoped and this action is global. The evidence is the dataset row plus this command's own output.",
       safeInOfflineLan: true
     },
     {
@@ -157,7 +159,7 @@ export const idnAdminRegionsModule = defineModule({
           "A platform operator serves a reviewed population dataset deliberately. Automatic activation would publish figures nobody read."
       },
       purpose:
-        "Choose which imported population dataset is SERVED for its publication series and covered region (`--dataset <code|uuid>`); supersedes only the active dataset of the same series and region. Dry-run by default; `--commit` writes. Operator job only: there is no HTTP endpoint and no permission for it (awcms-one ADR-0051, same reasoning as ADR-0052).",
+        "Choose which imported population dataset is SERVED (`--dataset <code|uuid>`); supersedes the active dataset of the same series and covered region — since `sql/883` the one national Kepmendagri decree dataset. Dry-run by default; `--commit` writes. Operator job only: there is no HTTP endpoint and no permission for it (awcms-one ADR-0051/ADR-0053, same reasoning as ADR-0052).",
       recommendedSchedule:
         "manually, by a platform operator, after reviewing an imported dataset — never on a timer",
       environmentNotes:
@@ -237,7 +239,7 @@ export const idnAdminRegionsModule = defineModule({
       exportable: false,
       erasure: "retain_under_obligation",
       rationale:
-        "awcms-one ADR-0051 — one row per imported BPS population publication, naming the platform operator who imported and activated it. Global, so no single tenant may hand over or destroy it; the provenance of statistics every tenant may be shown is not one controller's to erase."
+        "awcms-one ADR-0053 — one row per imported Kepmendagri population/area dataset, naming the platform operator who imported and activated it. Global, so no single tenant may hand over or destroy it; the provenance of figures every tenant may be shown is not one controller's to erase."
     },
     {
       key: "idn_admin_regions.idn_population_stats",
@@ -249,7 +251,7 @@ export const idnAdminRegionsModule = defineModule({
       exportable: false,
       erasure: "retain_under_obligation",
       rationale:
-        "awcms-one ADR-0051 — published BPS aggregate statistics (counts and averages per region). Public, global, and about populations rather than individuals; small cells are withheld by `population-privacy.ts` on any read surface."
+        "awcms-one ADR-0053 — the decree's head counts (total and by sex) and BIG's area per province and regency/city. Public, global, and about populations and places rather than individuals: the smallest figure is a whole regency."
     }
   ],
   navigation: [

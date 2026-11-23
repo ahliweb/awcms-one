@@ -760,7 +760,7 @@ export async function dispatchWhatsappQueue(
   const correlationId = options.correlationId ?? crypto.randomUUID();
   const maxRetries = resolveWhatsappSendMaxRetries(env);
   const breaker = getProviderCircuitBreaker(WHATSAPP_CIRCUIT_BREAKER_KEY);
-  const breakerOpen = !breaker.canAttempt(now);
+  const breakerOpen = !breaker.wouldAllowAttempt(now);
 
   const result: DispatchWhatsappQueueResult = {
     claimed: 0,
@@ -878,7 +878,7 @@ export async function dispatchWhatsappQueue(
     let enforceQuota = false;
 
     if (laneSenderId !== null) {
-      if (!getProviderCircuitBreaker(lane.breakerKey).canAttempt(now)) {
+      if (!getProviderCircuitBreaker(lane.breakerKey).wouldAllowAttempt(now)) {
         summary.skipped = "breaker_open";
         continue;
       }
@@ -1104,7 +1104,9 @@ export async function dispatchWhatsappQueue(
     }
 
     // This sender's breaker only: another sender's failures never reach it.
-    if (!getProviderCircuitBreaker(lane.breakerKey).canAttempt(clock())) {
+    if (
+      !getProviderCircuitBreaker(lane.breakerKey).wouldAllowAttempt(clock())
+    ) {
       return { ok: false, kind: "hold", reason: "BREAKER_OPEN" };
     }
 
@@ -1581,6 +1583,24 @@ export async function dispatchWhatsappQueue(
       correlationId: messageCorrelationId,
       ...(serviceWindowOpen ? { serviceWindowOpen: true } : {})
     });
+
+    if (!sendResult.ok && sendResult.skipped) {
+      // The breaker refused the call (open, or its one half-open probe is held
+      // by another send): nothing reached the provider (Issue #1409). The row
+      // waits with its retry count UNCHANGED and no delivery attempt recorded,
+      // exactly like the gate's BREAKER_OPEN hold.
+      await holdMessage(
+        sql,
+        tenantId,
+        entry.id,
+        new Date(clock().getTime() + SENDER_HOLD_MS),
+        leaseUntil
+      );
+      result.held += 1;
+      summary.held += 1;
+
+      return;
+    }
 
     if (sendResult.ok) {
       await recordDeliveryAttempt(

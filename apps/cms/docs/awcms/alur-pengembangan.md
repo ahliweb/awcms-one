@@ -42,7 +42,7 @@ flowchart TD
   S112 --> S113[11.3 Integration + E2E]
   S113 --> S12[12 PR + Review + CI]
   S12 --> S13[13 Deploy Staging - NOT APPLICABLE ADR-0083]
-  S13 --> S14[14 Internal UAT - NOT APPLICABLE]
+  S13 --> S14[14 Internal UAT - NOT APPLICABLE here, runs in consumer repos]
   S14 --> S15[15 Release Readiness / Go-No-Go]
   S15 --> S16[16 Deploy Production]
   S16 --> S17[17 Production Validation]
@@ -162,7 +162,7 @@ destructive confirmation); **WCAG 2.2 AA** from design time; privacy in design
 
 | Part                              | Artifact                                                                                                               | Status                                                                                                                     |
 | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Design rules, tokens, states      | [`14_ui_ux_design_system.md`](14_ui_ux_design_system.md), [`../../src/styles/tokens.css`](../../src/styles/tokens.css) | exists; targets **WCAG 2.1 AA** (v2: 2.2 AA) — **gap**                                                                     |
+| Design rules, tokens, states      | [`14_ui_ux_design_system.md`](14_ui_ux_design_system.md), [`../../src/styles/tokens.css`](../../src/styles/tokens.css) | exists; targets **WCAG 2.2 AA** since 2026-11-20 (axe tag `wcag22aa` added)                                                |
 | Frontend architecture             | [`15_frontend_architecture_integration.md`](15_frontend_architecture_integration.md)                                   | exists                                                                                                                     |
 | Screen contracts (worked example) | [`omnichannel-ui-ux-screen-contracts.md`](omnichannel-ui-ux-screen-contracts.md)                                       | exists, one product area, Proposed                                                                                         |
 | Prototypes                        | [`../../design/`](../../design/README.md) (`redesain-ui-ux-2026-10`)                                                   | exists, **reference-only, not usability-tested**                                                                           |
@@ -261,7 +261,9 @@ consumer.
 dependency for it is installed. v2 requires the mock to be generated from the
 contract, never hand-written, so until tooling is chosen, step 11.1 against a
 contract mock cannot be done as v2 describes it. Choosing the tool is its own
-decision (it touches the toolchain), not something this document settles. The
+decision (it touches the toolchain), not something this document settles. **The
+choice has since been made (owner, 2026-11-20): ADR-0167, option C′, an in-repo
+generator with `ajv` and no mock server; it is accepted and not built yet.** The
 nearest thing that exists is `api:consumer-contract:generate|check`, which
 freezes the slice of the public API that `awcms-astro` calls; it is a
 **one-sided** consumer snapshot, not a mock and not a provider verification.
@@ -280,10 +282,11 @@ WCAG 2.2 AA; the mock is generated from the contract and runs its examples; and 
 have a shape. A defect sends the work back to the step that holds it and then
 through this gate again, not forward with a note.
 
-**Gap:** [`templates/definition-of-ready.md`](templates/definition-of-ready.md)
-has not yet been extended with these v2 checks, so the template, not this
-paragraph, is what the person filling it in sees. Updating it (and its mirror) is
-a follow-up change.
+**Closed (issue #1378):** [`templates/definition-of-ready.md`](templates/definition-of-ready.md)
+now carries these v2 checks (§Gate 9 checks added by flow v2), each with the
+evidence a reviewer can open and an N/A rule for a change with no screen. What
+the checks still cannot be satisfied with is recorded there too: no usability
+report, no per-screen inventory template, no mock generator.
 
 | Artifact                                                                                               | Role                               |
 | ------------------------------------------------------------------------------------------------------ | ---------------------------------- |
@@ -352,9 +355,23 @@ no-permission states.
   calls `listOffices`), and only their writes go to `/api/v1` from the browser.
   The "frontend against a mock of the contract" model therefore fits the writes,
   the client islands and the `awcms-astro` consumer (whose repo owns its own
-  11.1) better than it fits an SSR read. How the model applies to an SSR admin screen is an open question this
-  ADR does not answer; until it is answered, treat 11.1 here as "the screen
-  works against test data under the real gate", and say so in the issue.
+  11.1) better than it fits an SSR read.
+- **Rule for SSR admin screens (owner decision, 2026-11-20; no longer an open
+  question).** A SYSTEM admin screen is rendered against **fixtures derived from
+  the contract** (its response schemas and examples) **before the handler or
+  application function that will serve it exists**, in every state the slice
+  names: loading, empty, error, success and no-permission. The screen therefore
+  consumes the read-model shape the contract states, the later handler (11.2) has
+  to fulfil what the screen already shows, and a difference goes back to step 8
+  and through gate 9. Writes and client islands call `/api/v1` and run against the
+  same fixtures. Rendering against a fixture shows layout and states, **not
+  authorization**: `loadAdminScreen`, the backend permission checks and RLS still
+  enforce access, and are tested at 11.2.
+- **Until the tooling exists (ADR-0167, option C′, accepted and not built yet),
+  say so in the issue.** The generator and the fixtures pack are backlog; a slice
+  that reaches 11.1 before they land states that 11.1 was **not** carried out as v2
+  describes, names what the screen was rendered against instead (for example test
+  data under the real gate), and records it as a gap rather than as 11.1 done.
 
 ### 11.2 Backend fulfils the contract
 
@@ -459,13 +476,49 @@ reasons to revisit ADR-0083 later.
 Turning it back on remains an ADR-level decision, not something a process
 document can reverse.
 
+### Scope and precedence of this exception
+
+Read this step together with the generic flow, without stretching either:
+
+- **Precedence.** The generic flow (the owner's internal cross-portfolio standard)
+  is the general rule. An **accepted ADR of this repo** that decides otherwise
+  for this repo is the exception, and it wins **here**. Giving `awcms` a staging
+  tier therefore needs a **new architecture decision** that supersedes ADR-0083.
+  It is never done by editing a process document, adding a
+  `ModuleDeploymentProfile`, or standing up an environment quietly.
+- **What is not applicable:** a staging tier for **this repo's reference
+  deployment** (its single production deployment).
+- **What is NOT forbidden:** a consumer or derived repository running its own
+  pre-production environment. ADR-0083 §Consequences says such an installation
+  uses `development`, or a second `production` deployment bound by the isolation
+  contract in [`environments.md`](environments.md); what was removed is the
+  profile **name** `staging` from this template's `ModuleDeploymentProfile`, not
+  the idea of a tier. Whether a given consumer repo has one is decided in that
+  repo.
+- **What local and CI evidence is.** The ephemeral CI database, the DB-gated
+  suite, Playwright E2E and `security:readiness` are this repo's integration
+  evidence. They are **not** a staging deployment and **not** UAT, and no
+  document may present them as either.
+
 ## 14. Internal UAT / Human Testing — **NOT APPLICABLE to this repo**
 
 **Answers:** whether what was built actually gets the user's job done.
 
-It depends on step 13, and step 13 is a decision that it does not exist. So this
-is not a gap waiting to be filled; it is a consequence that has already been
-decided.
+Step 14 is not a release prerequisite of this repo, for **two independent
+reasons**, and either one is enough:
+
+1. **ADR-0083.** Step 14 depends on step 13, and step 13 is a decision that it
+   does not exist here. This is a consequence already decided, not a gap.
+2. **Upstream repos do not run UAT** (the owner's internal cross-portfolio
+   standard, DL-059). `awcms` is an upstream template/platform repo; human UAT
+   runs in the **implementation or project repo** built from it, on that repo's
+   environment, with its own testers and evidence. Even if this repo had a
+   staging environment, UAT would still not be run here.
+
+Gate 15 (§15) therefore runs for `awcms` **without UAT as a precondition**. This
+document does not claim UAT evidence for the template, and a UAT done in a
+consumer repo neither replaces this repo's CI and integration evidence nor is
+replaced by it.
 
 The closest thing to its role is production validation (step 17), with a
 difference that must be read honestly: **it runs AFTER release, not before.** For
@@ -483,6 +536,10 @@ change, the answer is to revisit ADR-0083 for that change, not to skip step 17.
 | [`production-preflight-runbook.md`](production-preflight-runbook.md) | preflight checklist                    |
 | `bun run security:readiness`                                         | verification against the REAL database |
 | [`resilience-dr-verification.md`](resilience-dr-verification.md)     | disaster recovery verification         |
+
+Gate 15 here is run **without a step-14 UAT as a precondition** (see §14); the
+"usability findings on a real build" text of the v2 gate is met by step 17 only,
+as [ADR-0156](../adr/0156-adopt-development-flow-v2-validated-ux-before-data-model-frontend-backend-integration-per-slice.md) §5 records.
 
 `security:readiness` is the only check on this list that runs queries against a
 real database — and it is the one that catches the class of failure invisible to
@@ -543,13 +600,13 @@ This list is here so it does not have to be re-derived. Note the last column:
 **a gap and a decision are not the same thing**, and mixing them is how work that
 has not been done acquires the appearance of a judgement.
 
-| Step | Item                            | Nature                                   |
-| ---- | ------------------------------- | ---------------------------------------- |
-| 3    | Privacy analysis / DPIA         | **closed** 13 Aug 2026                   |
-| 9    | General Definition of Ready     | **closed** 13 Aug 2026                   |
-| 13   | Deploy staging                  | **decision** — ADR-0083, one environment |
-| 14   | Internal UAT                    | **decision** — a consequence of step 13  |
-| 18   | Per-release post-release review | **closed** 13 Aug 2026                   |
+| Step | Item                            | Nature                                                                        |
+| ---- | ------------------------------- | ----------------------------------------------------------------------------- |
+| 3    | Privacy analysis / DPIA         | **closed** 13 Aug 2026                                                        |
+| 9    | General Definition of Ready     | **closed** 13 Aug 2026                                                        |
+| 13   | Deploy staging                  | **decision** — ADR-0083, one environment                                      |
+| 14   | Internal UAT                    | **decision** — ADR-0083 (step 13), and upstream repos do not run UAT (DL-059) |
+| 18   | Per-release post-release review | **closed** 13 Aug 2026                                                        |
 
 Added by v2 (ADR-0156, 30 Oct 2026). Every row is a **gap**, not a decision: each
 needs its own issue, and none of them is closed by the ADR that names it.
@@ -559,10 +616,10 @@ needs its own issue, and none of them is closed by the ADR that names it.
 | 2    | User-research evidence as an artifact                                | **gap**                                                   |
 | 4    | Usability-test report (`UXT-*`) and a prototype that has been tested | **gap**; `design/` is reference-only                      |
 | 4    | Per-screen data inventory template                                   | **gap**                                                   |
-| 4    | WCAG 2.2 AA (doc 14 says 2.1 AA)                                     | **gap** — `14_ui_ux_design_system.md` is stale against v2 |
+| 4    | WCAG 2.2 AA for the admin                                            | **closed** (issue #1387): doc 14 and axe tags target 2.2. |
 | 8    | Mock server / typed client generated from the contract               | **gap** — no tooling installed                            |
-| 9    | New v2 checks in the Definition of Ready template                    | **gap**                                                   |
-| 11.1 | Visual-regression tooling; model for SSR admin screens               | **gap** / open question                                   |
+| 9    | New v2 checks in the Definition of Ready template                    | **closed** (issue #1378)                                  |
+| 11.1 | Visual regression; SSR admin screens against fixtures                | **gap**; SSR rule decided 2026-11-20, tooling pending     |
 | 11.3 | Two-sided contract test; performance baseline against the SLOs       | **gap** (consumer-side snapshot only)                     |
 
 The gaps that remain after that are **inside** the documents that closed them,

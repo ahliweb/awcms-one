@@ -281,3 +281,22 @@ Entries also go **stale**: when the held version is no longer behind the registr
 something no longer true. Drift nobody has evaluated yet does not belong here (it is
 the backlog), and an advisory that cannot be fixed goes in
 `scripts/dependency-audit-exceptions.ts`.
+
+### Transitive holds (`transitive: true`)
+
+`bun outdated` lists **direct** dependencies only, so a plain entry for a transitive
+package would always read "no longer behind" and be reported stale. A transitive
+package held on purpose is therefore pinned to an exact version in `package.json`
+`overrides` **and** registered with `transitive: true` and a `releaseCondition`
+(what must be true to lift the pin). The register is the single source: this
+document does not list individual holds. Today: `@astrojs/compiler-rs` (Issue
+#1367; see [`deploy-coolify.md`](deploy-coolify.md) §"Build host: CPU without AVX").
+
+- **Offline gate** (`bun run deps:held-back:check`, part of `bun run check`): every
+  `overrides` entry with an _exact_ version must have a matching transitive entry;
+  every transitive entry must match an exact `overrides` pin and the version
+  `bun.lock` resolves. Range overrides (`^8.5.23`) are security floors, not holds,
+  and are ignored. A mismatch is red with a message naming the package.
+- **Weekly report** (`deps:freshness`, online): the latest version of a transitive
+  entry is read from the npm registry, and when a newer release exists the row says
+  "check whether the release condition is met".
