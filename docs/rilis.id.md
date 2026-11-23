@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](rilis.md)
 
-<!-- i18n-source-hash: sha256:4e7499fae3df23be8506d7b48dc46d9a3c4b9a95dbd0d54e8bced2a3ca9b6e2e -->
+<!-- i18n-source-hash: sha256:ad2a171a022ba5bf733137c6f526b7c0035a0c0e2c088e9db1aa27c30b086df1 -->
 
 # Runbook rilis
 
@@ -11,6 +11,24 @@ Jalur end-to-end dari changeset yang ditulis sampai image `apps/cms` yang ditand
 ### 1. `bun run release --apply --commit`
 
 Tidak berubah dari sebelum ADR ini (`tools/rilis.mjs`) — melipat `.changesets/*.md` yang menunggu ke `CHANGELOG.md`, menaikkan `package.json`, commit, dan tag `vX.Y.Z`. Pratinjau dulu tanpa `--apply`; tidak ada yang ditulis sebelum itu.
+
+**Cermin versi (issue #536).** Image yang dibangun dari satu subfolder saja tidak bisa membaca `package.json` root, jadi versi produk yang tampil di dalam aplikasi seperti itu butuh salinannya sendiri. Produk turunan mendeklarasikan setiap salinan di [`tools/version-mirrors.json`](../tools/version-mirrors.json); template mengirimkannya dengan daftar kosong, sehingga alur rilis di sini tidak berubah.
+
+```json
+{
+  "mirrors": [
+    {
+      "file": "<repo-relative path>",
+      "pattern": "PRODUCT_VERSION = \"([^\"]+)\""
+    }
+  ]
+}
+```
+
+- `pattern` adalah ekspresi reguler dengan **tepat satu capture group**; teks yang ditangkapnya adalah versi, dan hanya teks itu yang diganti.
+- Rilis merencanakan setiap penulisan ulang di memori sebelum menulis apa pun, baik di pratinjau maupun dengan `--apply`. Cermin yang berkasnya tidak ada, polanya tidak cocok atau cocok lebih dari sekali, atau teks tertangkapnya bukan `X.Y.Z`, menolak rilis dengan pesan yang menyebut cermin itu, dan tree dibiarkan tak tersentuh. Cermin tidak pernah dilewati diam-diam.
+- Hanya dengan `--apply`, dan hanya setelah kenaikan `package.json` root ditulis, cermin ditulis ulang, sehingga `--commit` memasukkannya ke commit rilis yang sama dengan tag.
+- `tests/version-mirrors.test.mjs` menggagalkan `bun test` root bila cermin yang dideklarasikan berbeda dari versi `package.json` root, sehingga suntingan tangan yang menyimpang tertangkap sebelum rilis berikutnya.
 
 ### 2. `git push && git push origin vX.Y.Z`
 
