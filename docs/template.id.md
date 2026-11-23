@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:9057362100e1c6947168c74abddac3c9ee886f53bf05f6e5d54156055bfdfdd4 -->
+<!-- i18n-source-hash: sha256:a46a5392aa05fc842ca23befd7fb7862e7708f0c38507cb7337e1af692b3c57f -->
 
 # Menggunakan awcms-one sebagai template
 

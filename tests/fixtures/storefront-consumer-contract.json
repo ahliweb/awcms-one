@@ -2530,6 +2530,9 @@
                 }
               }
             }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           }
         }
       }
@@ -3633,10 +3636,12 @@
                       "type": "object",
                       "properties": {
                         "affiliate": {
-                          "nullable": true,
-                          "allOf": [
+                          "oneOf": [
                             {
                               "$ref": "#/components/schemas/Affiliate"
+                            },
+                            {
+                              "type": "null"
                             }
                           ]
                         }
@@ -7279,6 +7284,11 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7318,6 +7328,11 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7357,6 +7372,11 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "429": {
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7509,6 +7529,14 @@
     }
   },
   "components": {
+    "headers": {
+      "RetryAfter": {
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
     "parameters": {
       "CorrelationId": {
         "name": "X-Correlation-ID",
@@ -7550,6 +7578,20 @@
         }
       },
       "NotFound": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "RateLimited": {
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/RetryAfter"
+          }
+        },
         "content": {
           "application/json": {
             "schema": {
@@ -10144,10 +10186,12 @@
             "nullable": true
           },
           "bundle": {
-            "nullable": true,
-            "allOf": [
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/CommerceBundle"
+              },
+              {
+                "type": "null"
               }
             ]
           },

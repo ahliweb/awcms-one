@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:dcdafbe38d0e6d32af09e52a6e19754a323325288f1d8224d70ef3d8e5ec69a7 -->
+<!-- i18n-source-hash: sha256:2cb6955c0d79f4db41512e28dcf68ff0ce0188b93879e0691ecd2350db7f8f45 -->
 
 # Pengujian
 

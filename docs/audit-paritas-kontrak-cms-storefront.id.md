@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](audit-paritas-kontrak-cms-storefront.md)
 
-<!-- i18n-source-hash: sha256:a0ed91ff596f3510d109aa3382af390d8ac88ef9c1d269c8fa15ee0dde3ef308 -->
+<!-- i18n-source-hash: sha256:90f8c5096658f90bab1330b8e299f3ac8d4bfd924d8be56f07b2d6859516420b -->
 
 # Audit paritas kontrak: CMS dan storefront, tiga profil (issue #547)
 
