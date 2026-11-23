@@ -56,6 +56,7 @@
  * id set) free rather than a silent second network round trip.
  */
 import { AwcmsApiError, awcmsGet } from "./client";
+import { buildsWithoutCms } from "./tanpa-cms";
 
 const MEDIA_OBJECTS_PATH = "/api/v1/media/objects";
 const MEDIA_PUBLIC_ORIGIN_PATH = "/api/v1/media/public-origin";
@@ -262,6 +263,8 @@ export function getMediaPublicOrigin(): Promise<MediaPublicOrigin> {
 }
 
 async function fetchMediaPublicOrigin(): Promise<MediaPublicOrigin> {
+  // Issue #535: no CMS on a landing build — no media host.
+  if (buildsWithoutCms()) return UNCONFIGURED;
   try {
     return await awcmsGet<MediaPublicOrigin>(MEDIA_PUBLIC_ORIGIN_PATH);
   } catch (error) {
