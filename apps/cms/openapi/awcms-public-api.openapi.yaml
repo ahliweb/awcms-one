@@ -11623,6 +11623,7 @@ paths:
           schema:
             type: string
             format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Approved.
@@ -11662,6 +11663,7 @@ paths:
           schema:
             type: string
             format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Paid.
@@ -11701,6 +11703,7 @@ paths:
           schema:
             type: string
             format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Voided.
@@ -13254,6 +13257,7 @@ paths:
           schema:
             type: string
             format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Campaign moved to `cancelled`.
@@ -13352,6 +13356,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "Issue #362. `SEGMENT_EVALUATION_BUSY` (retry after the `Retry-After` seconds) or `RATE_LIMITED` (previews are throttled per actor)."
           content:
             application/json:
@@ -13371,6 +13378,7 @@ paths:
           schema:
             type: string
             format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Campaign moved to `sending` (or `sent`, once every recipient row is dispatched).
@@ -13404,6 +13412,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "Issue #362. `SEGMENT_EVALUATION_BUSY`."
           content:
             application/json:
@@ -14793,6 +14804,9 @@ paths:
           description: "`CHANNEL_UNAVAILABLE` (the channel is not enabled on this deployment), `RECIPIENT_UNAVAILABLE` (the source names no usable recipient for the channel), `RECIPIENT_SUPPRESSED` or `TEMPLATE_UNAVAILABLE` (`details` is the recorded, not-enqueued delivery), `SOURCE_NOT_DELIVERABLE` (a cancelled quotation), `DOCUMENT_INTEGRITY_FAILURE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
           content: *a1
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "`DELIVERY_RATE_LIMITED` - too many requests for this source in the rolling window; `Retry-After` is in seconds."
           content: *a1
   /api/v1/commerce/documents:
@@ -17801,6 +17815,7 @@ paths:
           schema:
             type: string
             format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Checked (the session may or may not have changed status).
@@ -17961,6 +17976,15 @@ paths:
           $ref: "#/components/responses/NotFound"
         "409":
           description: "`IDEMPOTENCY_CONFLICT` (also a key reused against another order or with a different tender/amount), `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`), `ORDER_NOT_PAYABLE` (a cancelled or expired order) or `REGISTER_SESSION_CLOSING` (Issue #284: the POS sale's register session is counting/awaiting a supervisor, so the money would fall into no cash-up — retry once the close is decided)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: STORED_VALUE_LOOKUP_THROTTLED. The actor exceeded the stored-value (gift card / store credit) code lookup budget while resolving a stored-value tender; retry after the number of seconds in `Retry-After`.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           content:
             application/json:
               schema:
@@ -18577,6 +18601,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "`RATE_LIMITED`: too many lookups, or too many wrong guesses; `Retry-After` says when to try again."
           content:
             application/json:
@@ -18642,6 +18669,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "`STORED_VALUE_LOOKUP_THROTTLED`."
           content:
             application/json:
@@ -19007,6 +19037,15 @@ paths:
           $ref: "#/components/responses/NotFound"
         "409":
           description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`) or, with the `register` feature on (Issue #284), `REGISTER_SESSION_REQUIRED` (the register has no open session), `REGISTER_SESSION_CLOSING` or `NOT_SESSION_CASHIER`. `403` also covers `allowDue: true` without `commerce.pos_due.create` and, with `loyaltyRedemption` (Issue #363), a caller without `commerce.loyalty_redemptions.create`; `404` an unknown or other-tenant `registerId`. With `loyaltyRedemption`: `LOYALTY_REDEMPTION_UNAVAILABLE`, `LOYALTY_REDEMPTION_REQUIRES_CUSTOMER` (a walk-in sale has no account), `LOYALTY_REDEMPTION_EXCEEDS_LIMIT`, `LOYALTY_REDEMPTION_CUSTOMER_UNAVAILABLE` or `INSUFFICIENT_POINTS`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: STORED_VALUE_LOOKUP_THROTTLED. The actor exceeded the stored-value (gift card / store credit) code lookup budget while resolving a stored-value tender; retry after the number of seconds in `Retry-After`.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           content:
             application/json:
               schema:
@@ -21966,6 +22005,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "`SEGMENT_EVALUATION_BUSY`; `Retry-After` is set."
           content:
             application/json:
@@ -22040,6 +22082,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "`SEGMENT_EVALUATION_BUSY`; `Retry-After` is set."
           content:
             application/json:
@@ -22093,6 +22138,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "`SEGMENT_EVALUATION_BUSY` (too many evaluations running) or `RATE_LIMITED` (too many previews); `Retry-After` is set."
           content:
             application/json:
@@ -23160,14 +23208,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
     post:
       operationId: createCommerceStorefrontAccountAddress
       tags:
         - Commerce Accounts
       summary: "Issue #91 (implemented, contract #86). Add a saved address. Refused past 10 per account; the FIRST address ever saved becomes the default automatically."
-      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same address within 1 hour replays the original `201` with `data.replayed: true` (no second address); the same key with another address is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat creates a second address (each create is serialised per customer, so the limit and the first-address default hold under concurrency)."
+      description: "**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same address within 1 hour replays the original `201` with `data.replayed: true` (no second address); the same key with another address is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat creates a second address (each create is serialised per customer, so the limit and the first-address default hold under concurrency)."
       security:
         - customerBearer: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKeyOptional"
       requestBody:
         required: true
         content:
@@ -23205,6 +23257,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/addresses/{id}:
     patch:
       operationId: updateCommerceStorefrontAccountAddress
@@ -23253,6 +23307,8 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/RateLimited"
     delete:
       operationId: deleteCommerceStorefrontAccountAddress
       tags:
@@ -23278,6 +23334,8 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/addresses/{id}/default:
     post:
       operationId: setDefaultCommerceStorefrontAccountAddress
@@ -23318,6 +23376,8 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/affiliate:
     get:
       operationId: getCommerceStorefrontAccountAffiliate
@@ -23352,6 +23412,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
     post:
       operationId: enrolCommerceStorefrontAccountAffiliate
       tags:
@@ -23389,6 +23451,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/affiliate/commissions:
     get:
       operationId: listCommerceStorefrontAccountAffiliateCommissions
@@ -23432,6 +23496,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/conversations:
     get:
       operationId: listCommerceStorefrontAccountConversations
@@ -23474,14 +23540,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
     post:
       operationId: createCommerceStorefrontAccountConversation
       tags:
         - Commerce Accounts
       summary: "Issue #111 (contract #106 D8). Start a new conversation with the store, with its opening message. Subject 1-150 chars, message body 1-4000 chars."
-      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same subject and body within 1 hour replays the original `201` with `data.replayed: true` (no second thread or message, and the replay does not spend the per-account post limit); the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat opens a second thread."
+      description: "**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same subject and body within 1 hour replays the original `201` with `data.replayed: true` (no second thread or message, and the replay does not spend the per-account post limit); the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat opens a second thread."
       security:
         - customerBearer: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKeyOptional"
       requestBody:
         required: true
         content:
@@ -23534,6 +23604,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account.
           content:
             application/json:
@@ -23587,13 +23660,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/conversations/{id}/messages:
     post:
       operationId: createCommerceStorefrontAccountConversationMessage
       tags:
         - Commerce Accounts
       summary: "Issue #111 (contract #106 D8). Post a message on the account's own conversation. 409 CONVERSATION_CLOSED once the thread is closed — a customer never reopens their own thread (only a store reply does)."
-      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same conversation and text within 1 hour replays the original `201` with `data.replayed: true` (no second message, and the replay does not spend the per-account post limit); the same key for another conversation or text is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat posts the message twice."
+      description: "**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same conversation and text within 1 hour replays the original `201` with `data.replayed: true` (no second message, and the replay does not spend the per-account post limit); the same key for another conversation or text is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat posts the message twice."
       security:
         - customerBearer: []
       parameters:
@@ -23603,6 +23678,7 @@ paths:
           schema:
             type: string
             format: uuid
+        - $ref: "#/components/parameters/IdempotencyKeyOptional"
       requestBody:
         required: true
         content:
@@ -23654,6 +23730,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account.
           content:
             application/json:
@@ -23707,6 +23786,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/entitlements/check:
     get:
       operationId: checkCommerceStorefrontAccountEntitlement
@@ -23751,6 +23832,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/logout:
     post:
       operationId: logoutCommerceStorefrontAccount
@@ -23867,6 +23950,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/me:
     get:
       operationId: getCommerceStorefrontAccountMe
@@ -24004,6 +24089,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/orders/{orderCode}:
     get:
       operationId: getCommerceStorefrontAccountOrder
@@ -24044,6 +24131,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/otp/request:
     post:
       operationId: requestCommerceStorefrontAccountOtp
@@ -24093,6 +24182,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.
           content:
             application/json:
@@ -24109,8 +24201,10 @@ paths:
 
         **Double-submit safety (Issue #513).** The code is consumed atomically, so two concurrent verifies of one code never both succeed (the second is `401 OTP_INVALID`). A `register` whose e-mail already has an account is a login (never `PHONE_ALREADY_REGISTERED`); only a phone that belongs to a DIFFERENT e-mail's account is `409 PHONE_ALREADY_REGISTERED`.
 
-        **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Within 10 minutes the same key with the same request (purpose, e-mail or phone, code) answers `200` again with `data.replayed: true` and a FRESH session for the same account — no token is stored or read back; the key is stored only as a keyed hash. The same key with a different request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded, so a mistyped code can be retried under the same key.
+        **Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Within 10 minutes the same key with the same request (purpose, e-mail or phone, code) answers `200` again with `data.replayed: true` and a FRESH session for the same account — no token is stored or read back; the key is stored only as a keyed hash. The same key with a different request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded, so a mistyped code can be retried under the same key.
       security: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKeyOptional"
       requestBody:
         required: true
         content:
@@ -24168,6 +24262,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.
           content:
             application/json:
@@ -24239,6 +24336,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24295,6 +24395,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24351,6 +24454,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24398,6 +24504,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24471,6 +24580,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24514,6 +24626,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24587,6 +24702,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24612,6 +24730,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24645,6 +24766,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: RATE_LIMITED, with `Retry-After`.
           content:
             application/json:
@@ -24683,6 +24807,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/wishlist:
     get:
       operationId: listCommerceStorefrontAccountWishlist
@@ -24716,6 +24842,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
     put:
       operationId: replaceCommerceStorefrontAccountWishlist
       tags:
@@ -24770,6 +24898,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/account/wishlist/{productId}:
     delete:
       operationId: removeCommerceStorefrontAccountWishlistItem
@@ -24794,6 +24924,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/booking/availability:
     get:
       operationId: getCommerceStorefrontBookingAvailability
@@ -24862,6 +24994,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -24893,6 +25028,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -24944,6 +25082,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25001,6 +25142,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25071,6 +25215,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: "`RATE_LIMITED`, or `HOLD_LIMIT_EXCEEDED` from the Booking module."
           content:
             application/json:
@@ -25118,6 +25265,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25188,6 +25338,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25241,6 +25394,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25282,6 +25438,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25317,6 +25476,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25384,6 +25546,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited (per IP and per normalised phone).
           content:
             application/json:
@@ -25424,6 +25589,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/RetryAfter"
           description: Rate limited.
           content:
             application/json:
@@ -25438,7 +25606,7 @@ paths:
       description: |-
         Naturally idempotent: cancelling an order that is already `cancelled` answers `200` with the order as it is (no second transition, event or audit row), with or without a key; two concurrent cancels run one transition. Every other state the customer may not cancel from keeps `409 ORDER_NOT_CANCELLABLE`.
 
-        **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and reason within 1 hour replays with `data.replayed: true` (the order as it is now); the same key for another order, phone or reason is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome.
+        **Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and reason within 1 hour replays with `data.replayed: true` (the order as it is now); the same key for another order, phone or reason is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome.
       security: []
       parameters:
         - name: orderCode
@@ -25446,6 +25614,7 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: "#/components/parameters/IdempotencyKeyOptional"
       requestBody:
         required: true
         content:
@@ -25482,13 +25651,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/orders/{orderCode}/payment-confirmations:
     post:
       operationId: createCommerceStorefrontPaymentConfirmation
       tags:
         - Commerce
       summary: Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
-      description: "**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and confirmation within 1 hour replays the original `201` with the order as it is now and `data.replayed: true` (no second confirmation row); the same key for another order, phone or confirmation is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome. Only successes are recorded; nothing of the order is copied into the idempotency store. Without a key every submit records a confirmation."
+      description: "**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and confirmation within 1 hour replays the original `201` with the order as it is now and `data.replayed: true` (no second confirmation row); the same key for another order, phone or confirmation is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome. Only successes are recorded; nothing of the order is copied into the idempotency store. Without a key every submit records a confirmation."
       security: []
       parameters:
         - name: orderCode
@@ -25496,6 +25667,7 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: "#/components/parameters/IdempotencyKeyOptional"
       requestBody:
         required: true
         content:
@@ -25554,6 +25726,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions:
     post:
       operationId: createCommerceStorefrontPaymentGatewaySession
@@ -25636,6 +25810,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "503":
           description: GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out.
           content:
@@ -25780,6 +25956,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "502":
           description: Media storage is not configured for this deployment.
           content:
@@ -25796,8 +25974,10 @@ paths:
         Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too. Present and valid → ownership is checked against the signed-in account's OWN customer row instead of the orderCode+phone credential (`phone` is still validated for shape and still the per-phone rate limit's key); present and invalid/expired → `401 UNAUTHENTICATED`; absent entirely → the anonymous path is unchanged.
 
 
-        Issue #513 (unit C): the unique index per (customer, product, order) stops a duplicate review, but a retry used to answer `409 REVIEW_NOT_ALLOWED` for a review the shopper had just written. **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone, product, rating and text (and the same signed-in account, if any) within 1 hour replays the original `201` with the same review `id` and `data.replayed: true`; the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Without a key the unique index and its `409 REVIEW_NOT_ALLOWED` are unchanged.
+        Issue #513 (unit C): the unique index per (customer, product, order) stops a duplicate review, but a retry used to answer `409 REVIEW_NOT_ALLOWED` for a review the shopper had just written. **Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone, product, rating and text (and the same signed-in account, if any) within 1 hour replays the original `201` with the same review `id` and `data.replayed: true`; the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Without a key the unique index and its `409 REVIEW_NOT_ALLOWED` are unchanged.
       security: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKeyOptional"
       requestBody:
         required: true
         content:
@@ -25861,6 +26041,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/testimonials:
     get:
       operationId: listCommerceTestimonials
@@ -26525,6 +26707,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "429":
+          $ref: "#/components/responses/RateLimited"
   /api/v1/commerce/whatsapp/messages:
     get:
       operationId: listCommerceWhatsappMessages
