@@ -685,8 +685,7 @@ export const GLOBAL_TABLE_FORBIDDEN_PRIVILEGES: Record<string, string[]> = {
   // read-only at runtime for the strongest reason on this list: a runtime path
   // holding INSERT here could widen what the INSERT guard admits and no RLS
   // policy would object, there being no tenant column. The guard covers INSERT
-  // only: `awcms_worker` also holds a table-level UPDATE on awcms_email_messages
-  // (sql/022), a separate pre-existing gap. Adding a category is a migration. `awcms_worker` keeps SELECT (the guard
+  // only; its UPDATE is column-only since sql/415 (Issue #1364). Adding a category is a migration. `awcms_worker` keeps SELECT (the guard
   // trigger runs as the inserting role) and is keyed in `WORKER_ROLE_GRANTS`.
   awcms_email_worker_categories: ["INSERT", "UPDATE", "DELETE"]
 };
@@ -1637,7 +1636,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // dispatcher; `sql/1033` (Issue #377) revoked it again, because a table-level
   // INSERT undoes the column-scoped grant of `sql/302` (see the column matrix
   // below). The dispatcher's INSERT is that same ten-column grant.
-  awcms_email_messages: ["SELECT", "UPDATE", "DELETE"],
+  // UPDATE is column-only since sql/415 (Issue #1364): see WORKER_COLUMN_GRANTS.
+  awcms_email_messages: ["SELECT", "DELETE"],
   // SELECT added by `sql/127`: the insert carries `ON CONFLICT ON CONSTRAINT
   // …_unique_attempt DO NOTHING`, and PostgreSQL reads the arbiter to decide a
   // conflict — so INSERT alone raises `permission denied`. Proven in production
@@ -2735,6 +2735,18 @@ export const WORKER_COLUMN_GRANTS: Record<
     ]
   },
   awcms_email_messages: {
+    // sql/415 (Issue #1364): exactly what the dispatcher writes. Never the
+    // recipient, subject, variables, template or category; the sender snapshot
+    // and purpose are immutable for every role (sql/346).
+    UPDATE: [
+      "status",
+      "next_attempt_at",
+      "retry_count",
+      "last_error",
+      "sent_at",
+      "provider_name",
+      "provider_message_id"
+    ],
     INSERT: [
       "tenant_id",
       "correlation_id",

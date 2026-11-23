@@ -3,28 +3,30 @@
  *
  * The production defect these encode: the Node adapter derives `url.origin` from
  * its own listener, which speaks plain HTTP because Traefik terminates TLS, so
- * `https://awcms.ahlikoding.com/blog/ahliweb/feed.xml` returned
- * `<link>http://awcms.ahlikoding.com/…</link>` for every entry.
+ * `https://awcms.example.com/blog/contoh/feed.xml` returned
+ * `<link>http://awcms.example.com/…</link>` for every entry.
  *
  * The load-bearing case is `APP_URL` WITHOUT proxy trust: production sets
- * `APP_URL=https://awcms.ahlikoding.com` and does NOT set `PUBLIC_TRUST_PROXY`
+ * `APP_URL=https://awcms.example.com` and does NOT set `PUBLIC_TRUST_PROXY`
  * (verified on the running container). A fix that only worked when proxy trust
  * was enabled would have shipped and changed nothing, so that combination is
  * tested first and explicitly.
  */
 import { describe, expect, test } from "bun:test";
 import {
+  declaredSiteHost,
   declaredSiteScheme,
   resolveHostOrigin,
+  resolveRequestHost,
   resolveRequestOrigin,
   resolveSiteScheme
 } from "../src/lib/http/site-origin";
 import { scanSource } from "../scripts/site-origin-check";
 
-const URL_HTTP = new URL("http://awcms.ahlikoding.com/blog/ahliweb/feed.xml");
+const URL_HTTP = new URL("http://awcms.example.com/blog/contoh/feed.xml");
 
 function request(headers: Record<string, string> = {}): Request {
-  return new Request("http://awcms.ahlikoding.com/", { headers });
+  return new Request("http://awcms.example.com/", { headers });
 }
 
 describe("resolveRequestOrigin", () => {
@@ -33,9 +35,9 @@ describe("resolveRequestOrigin", () => {
     // the wrong reason, the feed regresses and nothing else notices.
     expect(
       resolveRequestOrigin(URL_HTTP, request(), {
-        APP_URL: "https://awcms.ahlikoding.com"
+        APP_URL: "https://awcms.example.com"
       } as NodeJS.ProcessEnv)
-    ).toBe("https://awcms.ahlikoding.com");
+    ).toBe("https://awcms.example.com");
   });
 
   test("keeps the REQUEST host, not APP_URL's host", () => {
@@ -45,7 +47,7 @@ describe("resolveRequestOrigin", () => {
     const url = new URL("http://tenant-two.example/blog/two");
     expect(
       resolveRequestOrigin(url, request(), {
-        APP_URL: "https://awcms.ahlikoding.com"
+        APP_URL: "https://awcms.example.com"
       } as NodeJS.ProcessEnv)
     ).toBe("https://tenant-two.example");
   });
@@ -60,7 +62,7 @@ describe("resolveRequestOrigin", () => {
           APP_URL: "http://localhost:4321"
         } as NodeJS.ProcessEnv
       )
-    ).toBe("https://awcms.ahlikoding.com");
+    ).toBe("https://awcms.example.com");
   });
 
   test("X-Forwarded-Proto is IGNORED when the proxy is not trusted", () => {
@@ -74,7 +76,7 @@ describe("resolveRequestOrigin", () => {
           APP_URL: "http://localhost:4321"
         } as NodeJS.ProcessEnv
       )
-    ).toBe("http://awcms.ahlikoding.com");
+    ).toBe("http://awcms.example.com");
   });
 
   test("X-Forwarded-Host is honoured when trusted", () => {
@@ -99,10 +101,10 @@ describe("resolveRequestOrigin", () => {
         request({ "x-forwarded-proto": "https,http" }),
         {
           PUBLIC_TRUST_PROXY: "true",
-          APP_URL: "https://awcms.ahlikoding.com"
+          APP_URL: "https://awcms.example.com"
         } as NodeJS.ProcessEnv
       )
-    ).toBe("https://awcms.ahlikoding.com"); // falls through to APP_URL
+    ).toBe("https://awcms.example.com"); // falls through to APP_URL
   });
 
   test("a multi-value X-Forwarded-Host falls back to the request host", () => {
@@ -115,7 +117,7 @@ describe("resolveRequestOrigin", () => {
           APP_URL: "https://x"
         } as NodeJS.ProcessEnv
       )
-    ).toBe("https://awcms.ahlikoding.com");
+    ).toBe("https://awcms.example.com");
   });
 
   test("with nothing declared it degrades to today's behaviour", () => {
@@ -123,7 +125,7 @@ describe("resolveRequestOrigin", () => {
     // last resort so a missing APP_URL degrades rather than 500s a public page.
     expect(
       resolveRequestOrigin(URL_HTTP, request(), {} as NodeJS.ProcessEnv)
-    ).toBe("http://awcms.ahlikoding.com");
+    ).toBe("http://awcms.example.com");
   });
 
   test("an unparseable APP_URL does not throw on the request path", () => {
@@ -131,13 +133,90 @@ describe("resolveRequestOrigin", () => {
       resolveRequestOrigin(URL_HTTP, request(), {
         APP_URL: "not a url"
       } as NodeJS.ProcessEnv)
-    ).toBe("http://awcms.ahlikoding.com");
+    ).toBe("http://awcms.example.com");
+  });
+});
+
+describe("host behind a proxy whose Host Astro does not trust (#1366)", () => {
+  // Astro 7 trusts Host/X-Forwarded-* only for `security.allowedDomains`, which
+  // AWCMS deliberately leaves unset (it would also make Astro believe a
+  // client-supplied X-Forwarded-For). So `url.host` is the listener's own
+  // `localhost:<port>` in a proxied deployment.
+  const LISTENER = new URL("http://localhost:4321/blog/contoh/feed.xml");
+  const ENV = { APP_URL: "https://awcms.example.com" } as NodeJS.ProcessEnv;
+
+  test("a loopback listener host is replaced by APP_URL's host", () => {
+    expect(resolveRequestOrigin(LISTENER, request(), ENV)).toBe(
+      "https://awcms.example.com"
+    );
+    expect(resolveRequestHost(LISTENER, request(), ENV)).toBe(
+      "awcms.example.com"
+    );
+  });
+
+  test("APP_URL's port is kept", () => {
+    expect(
+      resolveRequestHost(LISTENER, request(), {
+        APP_URL: "https://awcms.example:8443"
+      } as NodeJS.ProcessEnv)
+    ).toBe("awcms.example:8443");
+  });
+
+  test("dev: loopback APP_URL leaves the request host alone", () => {
+    expect(
+      resolveRequestHost(new URL("http://localhost:5000/"), request(), {
+        APP_URL: "http://localhost:4321"
+      } as NodeJS.ProcessEnv)
+    ).toBe("localhost:5000");
+  });
+
+  test("no APP_URL or an unparseable one: request host, never a throw", () => {
+    expect(resolveRequestHost(LISTENER, request(), {})).toBe("localhost:4321");
+    expect(
+      resolveRequestHost(LISTENER, request(), {
+        APP_URL: "not a url"
+      } as NodeJS.ProcessEnv)
+    ).toBe("localhost:4321");
+  });
+
+  test("a non-loopback request host is never overridden by APP_URL", () => {
+    expect(
+      resolveRequestHost(new URL("http://tenant-two.example/"), request(), ENV)
+    ).toBe("tenant-two.example");
+  });
+
+  test("trusted X-Forwarded-Host still wins", () => {
+    expect(
+      resolveRequestHost(
+        LISTENER,
+        request({ "x-forwarded-host": "tenant-two.example" }),
+        { ...ENV, PUBLIC_TRUST_PROXY: "true" }
+      )
+    ).toBe("tenant-two.example");
+  });
+
+  test("an untrusted X-Forwarded-Host is ignored", () => {
+    expect(
+      resolveRequestHost(
+        LISTENER,
+        request({ "x-forwarded-host": "evil.example" }),
+        ENV
+      )
+    ).toBe("awcms.example.com");
+  });
+
+  test("declaredSiteHost", () => {
+    expect(declaredSiteHost(ENV)).toBe("awcms.example.com");
+    expect(declaredSiteHost({})).toBeNull();
+    expect(
+      declaredSiteHost({ APP_URL: "ftp://x" } as NodeJS.ProcessEnv)
+    ).toBeNull();
   });
 });
 
 describe("declaredSiteScheme", () => {
   test.each([
-    ["https://awcms.ahlikoding.com", "https"],
+    ["https://awcms.example.com", "https"],
     ["http://localhost:4321", "http"],
     ["https://host:8443/path?q=1", "https"]
   ] as const)("%s -> %s", (appUrl, expected) => {
@@ -150,8 +229,8 @@ describe("declaredSiteScheme", () => {
     ["unset", undefined],
     ["empty", ""],
     ["whitespace", "   "],
-    ["not a url", "awcms.ahlikoding.com"],
-    ["a non-http scheme", "ftp://awcms.ahlikoding.com"]
+    ["not a url", "awcms.example.com"],
+    ["a non-http scheme", "ftp://awcms.example.com"]
   ])("%s -> null", (_name, appUrl) => {
     expect(
       declaredSiteScheme({ APP_URL: appUrl } as NodeJS.ProcessEnv)
@@ -163,7 +242,7 @@ describe("resolveHostOrigin", () => {
   test("uses the declared scheme with a server-derived host", () => {
     expect(
       resolveHostOrigin("tenant.example", undefined, {
-        APP_URL: "https://awcms.ahlikoding.com"
+        APP_URL: "https://awcms.example.com"
       } as NodeJS.ProcessEnv)
     ).toBe("https://tenant.example");
   });
@@ -183,9 +262,28 @@ describe("resolveSiteScheme without a request", () => {
   test("jobs and emails still get the declared scheme", () => {
     expect(
       resolveSiteScheme(undefined, {
-        APP_URL: "https://awcms.ahlikoding.com"
+        APP_URL: "https://awcms.example.com"
       } as NodeJS.ProcessEnv)
     ).toBe("https");
+  });
+});
+
+describe("site-origin:check: request host", () => {
+  test.each([
+    ["the auth footer defect", "const host = Astro.url.host;"],
+    ["a destructured url", "const label = url.host;"],
+    ["an interpolation", "const s = `site: ${context.url.host}`;"]
+  ])("catches %s", (_name, line) => {
+    const found = scanSource("src/components/X.astro", line);
+    expect(found).toHaveLength(1);
+    expect(found[0]?.rule).toBe("request-host");
+  });
+
+  test.each([
+    ["hostname (a comparison key)", "const h = url.hostname.toLowerCase();"],
+    ["a comment", "// was Astro.url.host"]
+  ])("does not flag %s", (_name, line) => {
+    expect(scanSource("src/components/X.astro", line)).toEqual([]);
   });
 });
 
@@ -205,7 +303,8 @@ describe("site-origin:check", () => {
       "the canonical defect",
       "canonicalUrl: `${url.origin}/blog/${tenantCode}`,"
     ],
-    ["an Astro component", "const self = `${Astro.url.origin}${path}`;"]
+    ["an Astro component", "const self = `${Astro.url.origin}${path}`;"],
+    ["a JSX-style attribute", '<a href={Astro.url.origin + "/x"}>x</a>']
   ])("catches %s", (_name, line) => {
     const found = scanSource("src/pages/blog/x.ts", line);
     expect(found).toHaveLength(1);

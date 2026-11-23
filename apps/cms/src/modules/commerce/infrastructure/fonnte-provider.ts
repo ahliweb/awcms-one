@@ -81,7 +81,14 @@ export function createFonnteWhatsappProvider(
     async send(message: WhatsappMessage): Promise<WhatsappDeliveryResult> {
       const attemptedAt = new Date();
 
-      if (!breaker.canAttempt(attemptedAt)) {
+      // awcms-one (the ff876138 sync, upstream #1409/#1416): `canAttempt` was removed from
+      // the circuit breaker. The send RESERVES the single half-open probe with
+      // `tryAcquire`, and `permit.release()` in the `finally` hands it back when the
+      // call gave the breaker no verdict (a rejected message, a misconfiguration);
+      // a recorded verdict has already moved the state, which makes it a no-op.
+      const permit = breaker.tryAcquire(attemptedAt);
+
+      if (!permit) {
         return {
           ok: false,
           error: "Fonnte circuit breaker is open; no attempt was made.",
@@ -90,65 +97,69 @@ export function createFonnteWhatsappProvider(
         };
       }
 
-      const formData = new URLSearchParams({
-        target: toFonnteTarget(message.toPhone),
-        message: message.body
-      });
-
       try {
-        const { response, rawBody } = await callSend(formData);
-
-        // 4xx (except 429) is a permanent rejection of THIS request — bad
-        // token, bad payload shape; 429/5xx are statements about the
-        // service.
-        if (!response.ok) {
-          if (response.status === 429 || response.status >= 500) {
-            breaker.recordFailure(attemptedAt);
-          }
-
-          return {
-            ok: false,
-            error: truncate(
-              `Fonnte API returned HTTP ${response.status}${rawBody ? `: ${rawBody}` : ""}`
-            ),
-            retryable: response.status === 429 || response.status >= 500
-          };
-        }
-
-        let parsed: FonnteSendResponse = {};
+        const formData = new URLSearchParams({
+          target: toFonnteTarget(message.toPhone),
+          message: message.body
+        });
 
         try {
-          parsed = JSON.parse(rawBody) as FonnteSendResponse;
-        } catch {
+          const { response, rawBody } = await callSend(formData);
+
+          // 4xx (except 429) is a permanent rejection of THIS request — bad
+          // token, bad payload shape; 429/5xx are statements about the
+          // service.
+          if (!response.ok) {
+            if (response.status === 429 || response.status >= 500) {
+              breaker.recordFailure(attemptedAt);
+            }
+
+            return {
+              ok: false,
+              error: truncate(
+                `Fonnte API returned HTTP ${response.status}${rawBody ? `: ${rawBody}` : ""}`
+              ),
+              retryable: response.status === 429 || response.status >= 500
+            };
+          }
+
+          let parsed: FonnteSendResponse = {};
+
+          try {
+            parsed = JSON.parse(rawBody) as FonnteSendResponse;
+          } catch {
+            breaker.recordFailure(attemptedAt);
+            return {
+              ok: false,
+              error: "Fonnte API returned a non-JSON response.",
+              retryable: true
+            };
+          }
+
+          if (parsed.status !== true) {
+            // Answered, in time, with a well-formed body — it is up. It just
+            // refused THIS message (bad number, quota, etc.) — never feeds
+            // the breaker, same split `mailketing-provider.ts` draws.
+            return {
+              ok: false,
+              error: truncate(parsed.reason ?? "Unknown error from Fonnte"),
+              retryable: false
+            };
+          }
+
+          breaker.recordSuccess(attemptedAt);
+          const providerMessageId = Array.isArray(parsed.id)
+            ? parsed.id[0]
+            : parsed.id;
+          return { ok: true, providerMessageId };
+        } catch (error) {
           breaker.recordFailure(attemptedAt);
-          return {
-            ok: false,
-            error: "Fonnte API returned a non-JSON response.",
-            retryable: true
-          };
+          const messageText =
+            error instanceof Error ? error.message : String(error);
+          return { ok: false, error: truncate(messageText), retryable: true };
         }
-
-        if (parsed.status !== true) {
-          // Answered, in time, with a well-formed body — it is up. It just
-          // refused THIS message (bad number, quota, etc.) — never feeds
-          // the breaker, same split `mailketing-provider.ts` draws.
-          return {
-            ok: false,
-            error: truncate(parsed.reason ?? "Unknown error from Fonnte"),
-            retryable: false
-          };
-        }
-
-        breaker.recordSuccess(attemptedAt);
-        const providerMessageId = Array.isArray(parsed.id)
-          ? parsed.id[0]
-          : parsed.id;
-        return { ok: true, providerMessageId };
-      } catch (error) {
-        breaker.recordFailure(attemptedAt);
-        const messageText =
-          error instanceof Error ? error.message : String(error);
-        return { ok: false, error: truncate(messageText), retryable: true };
+      } finally {
+        permit.release();
       }
     },
 

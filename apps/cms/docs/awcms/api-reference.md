@@ -82,13 +82,14 @@ echoed back in every response's `meta` object
 
 ### Standard parameters
 
-| Name             | Header/query                 | Required | Type   | Description                                                                                                                                                                                                     |
-| ---------------- | ---------------------------- | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CorrelationId`  | `X-Correlation-ID` (header)  | no       | string |                                                                                                                                                                                                                 |
-| `IdempotencyKey` | `Idempotency-Key` (header)   | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
-| `SyncNodeId`     | `X-AWCMS-Node-ID` (header)   | yes      | string | Node code identifying the calling sync node (auto-registers on first contact).                                                                                                                                  |
-| `SyncTimestamp`  | `X-AWCMS-Timestamp` (header) | yes      | string | ISO-8601 timestamp of the request, validated against the allowed skew (anti-replay).                                                                                                                            |
-| `SyncSignature`  | `X-AWCMS-Signature` (header) | yes      | string | HMAC-SHA256 signature over "<timestamp>.<body>".                                                                                                                                                                |
+| Name                     | Header/query                 | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------ | ---------------------------- | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CorrelationId`          | `X-Correlation-ID` (header)  | no       | string |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `IdempotencyKey`         | `Idempotency-Key` (header)   | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129).                                                                                                                                                                                                                                                                      |
+| `IdempotencyKeyOptional` | `Idempotency-Key` (header)   | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
+| `SyncNodeId`             | `X-AWCMS-Node-ID` (header)   | yes      | string | Node code identifying the calling sync node (auto-registers on first contact).                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `SyncTimestamp`          | `X-AWCMS-Timestamp` (header) | yes      | string | ISO-8601 timestamp of the request, validated against the allowed skew (anti-replay).                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `SyncSignature`          | `X-AWCMS-Signature` (header) | yes      | string | HMAC-SHA256 signature over "<timestamp>.<body>".                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ### Standard success envelope
 
@@ -135,12 +136,14 @@ check enforces this):
 
 **Standard error responses**:
 
-| Response       | Schema                                 | Description                 |
-| -------------- | -------------------------------------- | --------------------------- |
-| `BadRequest`   | [`ApiError`](#standard-error-envelope) | Validation error.           |
-| `Unauthorized` | [`ApiError`](#standard-error-envelope) | Missing or invalid session. |
-| `Forbidden`    | [`ApiError`](#standard-error-envelope) | Access denied by RBAC/ABAC. |
-| `NotFound`     | [`ApiError`](#standard-error-envelope) | Resource not found.         |
+| Response                  | Schema                                 | Description                                                                                                                            |
+| ------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `BadRequest`              | [`ApiError`](#standard-error-envelope) | Validation error.                                                                                                                      |
+| `Unauthorized`            | [`ApiError`](#standard-error-envelope) | Missing or invalid session.                                                                                                            |
+| `Forbidden`               | [`ApiError`](#standard-error-envelope) | Access denied by RBAC/ABAC.                                                                                                            |
+| `NotFound`                | [`ApiError`](#standard-error-envelope) | Resource not found.                                                                                                                    |
+| `RateLimited`             | [`ApiError`](#standard-error-envelope) | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                         |
+| `RateLimitedNoRetryAfter` | [`ApiError`](#standard-error-envelope) | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. |
 
 ### Request body size limits
 
@@ -349,11 +352,12 @@ Clears the delete stamps and records restored_at/restored_by. 404 when the id is
 
 **Responses**
 
-| Status | Description              | Schema                                 |
-| ------ | ------------------------ | -------------------------------------- |
-| 200    | Tenant bootstrapped.     | object                                 |
-| 400    | Validation error.        | [`ApiError`](#standard-error-envelope) |
-| 403    | Setup already completed. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Tenant bootstrapped.                                                                                           | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Setup already completed.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/setup/status` — Whether the one-time setup wizard has already run.
 
@@ -1642,11 +1646,12 @@ Every rejection — unknown client, non-allow-listed URI, a URI carrying a query
 
 **Responses**
 
-| Status | Description                                                                                                     | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | A one-time code, and the redirect_uri it is bound to.                                                           | object                                 |
-| 400    | The client and redirect_uri combination cannot be used (`HANDOFF_NOT_ALLOWED`), or the body is missing a field. | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A one-time code, and the redirect_uri it is bound to.                                                                                  | object                                 |
+| 400    | The client and redirect_uri combination cannot be used (`HANDOFF_NOT_ALLOWED`), or the body is missing a field.                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/session-handoff/redeem` — Spend a one-time handoff code and receive a session token (server-to-server).
 
@@ -1675,10 +1680,11 @@ The minted session inherits the assurance level the original login REACHED and n
 
 **Responses**
 
-| Status | Description                                                                                         | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | A session token for the human who authenticated.                                                    | object                                 |
-| 401    | The handoff could not be completed (`HANDOFF_REJECTED`) — one answer for every cause, deliberately. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A session token for the human who authenticated.                                                                                       | object                                 |
+| 401    | The handoff could not be completed (`HANDOFF_REJECTED`) — one answer for every cause, deliberately.                                    | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/session/switch` — Move the current session to another tenant the same human belongs to.
 
@@ -1943,14 +1949,15 @@ It changes no credential and clears no lockout counter: ending stray sessions pr
 
 **Responses**
 
-| Status | Description                                                   | Schema                                 |
-| ------ | ------------------------------------------------------------- | -------------------------------------- |
-| 302    | Login (or link) succeeded — redirect to the return path.      |                                        |
-| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                   | [`ApiError`](#standard-error-envelope) |
-| 409    | The provider account is already linked (SSO_ALREADY_LINKED).  | [`ApiError`](#standard-error-envelope) |
-| 502    | The provider could not be reached (SSO_PROVIDER_UNAVAILABLE). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 302    | Login (or link) succeeded — redirect to the return path.                                                                               |                                        |
+| 400    | Validation error.                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | The provider account is already linked (SSO_ALREADY_LINKED).                                                                           | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. | [`ApiError`](#standard-error-envelope) |
+| 502    | The provider could not be reached (SSO_PROVIDER_UNAVAILABLE).                                                                          | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/sso/{providerKey}/link` — Explicitly link an OIDC provider account to the caller's identity (authenticated + step-up required; never auto-links by email).
 
@@ -6025,9 +6032,10 @@ Gated by blog_content.institutions.purge. Requires a prior soft delete: the stat
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -7598,11 +7606,12 @@ PUBLIC, unauthenticated visit-ingest beacon. Resolves the tenant from the reques
 
 **Responses**
 
-| Status | Description                                                                | Schema                                 |
-| ------ | -------------------------------------------------------------------------- | -------------------------------------- |
-| 202    | Beacon accepted (recorded or intentionally ignored — never distinguished). | object                                 |
-| 400    | Validation error.                                                          | [`ApiError`](#standard-error-envelope) |
-| 413    | Request body exceeds the size limit (BODY_TOO_LARGE).                      | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 202    | Beacon accepted (recorded or intentionally ignored — never distinguished).                                     | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 413    | Request body exceeds the size limit (BODY_TOO_LARGE).                                                          | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/analytics/devices` — Browser + device-type breakdown
 
@@ -9557,10 +9566,11 @@ PUBLIC. De-duplicated per (comment, reporter ip hash, reason) by a database uniq
 
 **Responses**
 
-| Status | Description                                          | Schema                                 |
-| ------ | ---------------------------------------------------- | -------------------------------------- |
-| 200    | The report was accepted (or silently de-duplicated). | object                                 |
-| 400    | Validation error.                                    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The report was accepted (or silently de-duplicated).                                                           | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/comments/admin/{id}/archive` — Withdraw an approved comment from public view.
 
@@ -23008,10 +23018,11 @@ Requires `website_engagement.sources.manage` and a signed-in person. Rename, pau
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `X-Correlation-ID` | header | no       | string        |             |
-| `id`               | path   | yes      | string (uuid) |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------ | ------ | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `Idempotency-Key`  | header | no       | string        | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 **Request body** (required): [`WebsiteEngagementUpdateSource`](#schema-websiteengagementupdatesource)
 
@@ -28817,7 +28828,7 @@ sectionType cannot be changed after creation — omit it, do not send the old or
 | `source`         | enum(`self`, `supervisor`, `kiosk`, `import`)             | yes      | no       |                                                                                                                                                                                    |
 | `clientEventKey` | string                                                    | yes      | no       |                                                                                                                                                                                    |
 | `officeId`       | string (uuid)                                             | no       | no       |                                                                                                                                                                                    |
-| `positionSample` | [`HrPositionSample`](#schema-hrpositionsample)            | no       | yes      | Optional, `self` clock_in / clock_out only (any other source or kind -> 400). Evaluated by the server in the request and discarded (ADR-0138). `null` or absent is a declined fix. |
+| `positionSample` | [`HrPositionSample`](#schema-hrpositionsample) \\\| null  | no       | no       | Optional, `self` clock_in / clock_out only (any other source or kind -> 400). Evaluated by the server in the request and discarded (ADR-0138). `null` or absent is a declined fix. |
 
 **Example**
 
@@ -30628,15 +30639,15 @@ Enum values: `tax_id`, `business_id`, `payment_ref`, `contact_ref`, `other`.
 
 ### Schema: ProcurementLineInput
 
-| Field      | Type                                                           | Required | Nullable | Description                                                                                |
-| ---------- | -------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------ |
-| `itemType` | string                                                         | yes      | no       |                                                                                            |
-| `itemRef`  | string                                                         | yes      | no       | Opaque ledger reference, `A-Za-z0-9_.:-`, never credential-shaped.                         |
-| `sku`      | string                                                         | yes      | no       | Snapshot of the SKU.                                                                       |
-| `itemName` | string                                                         | yes      | no       | Snapshot of the item name.                                                                 |
-| `unitCode` | string                                                         | no       | no       | Unit of measure; defaults to `unit`. The ledger refuses a mismatch rather than converting. |
-| `quantity` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number | yes      | no       |                                                                                            |
-| `unitCost` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number | no       | yes      | Required for `receive` and `supplier_return` (the approval threshold is cost-based).       |
+| Field      | Type                                                                     | Required | Nullable | Description                                                                                |
+| ---------- | ------------------------------------------------------------------------ | -------- | -------- | ------------------------------------------------------------------------------------------ |
+| `itemType` | string                                                                   | yes      | no       |                                                                                            |
+| `itemRef`  | string                                                                   | yes      | no       | Opaque ledger reference, `A-Za-z0-9_.:-`, never credential-shaped.                         |
+| `sku`      | string                                                                   | yes      | no       | Snapshot of the SKU.                                                                       |
+| `itemName` | string                                                                   | yes      | no       | Snapshot of the item name.                                                                 |
+| `unitCode` | string                                                                   | no       | no       | Unit of measure; defaults to `unit`. The ledger refuses a mismatch rather than converting. |
+| `quantity` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number           | yes      | no       |                                                                                            |
+| `unitCost` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number \\\| null | no       | no       | Required for `receive` and `supplier_return` (the approval threshold is cost-based).       |
 
 **Example**
 

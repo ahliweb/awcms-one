@@ -548,11 +548,20 @@ async function prepareSend(
 
 type FinalOutcome =
   | { kind: "accepted" }
+  /**
+   * The provider's circuit breaker refused the send (open, or its single
+   * half-open probe is held): nothing reached the push service, so no attempt is
+   * recorded and no retry is spent (upstream Issue #1409).
+   */
+  | { kind: "deferred" }
   | { kind: "gone"; snippet: string }
   | { kind: "retry"; snippet: string | null; error: CustomerPushErrorCode }
   | { kind: "permanent"; snippet: string | null; error: CustomerPushErrorCode };
 
 type FinalizeResult = "sent" | "gone" | "retried" | "failed" | "lease_lost";
+
+/** `finalize` takes the outcomes that record an attempt; `deferred` never reaches it. */
+type SettledOutcome = Exclude<FinalOutcome, { kind: "deferred" }>;
 
 /**
  * One transaction: the attempt row (idempotent on `(message, attempt_no)`, which
@@ -566,7 +575,7 @@ async function finalize(
   deviceId: string,
   accountId: string,
   retryCount: number,
-  outcome: FinalOutcome,
+  outcome: SettledOutcome,
   now: Date,
   maxRetries: number,
   correlationId: string
@@ -735,6 +744,8 @@ async function attemptSend(
     correlationId
   });
 
+  if (!delivery.ok && delivery.skipped) return { kind: "deferred" };
+
   const classified = classifyProviderResult(delivery);
   switch (classified.kind) {
     case "accepted":
@@ -835,7 +846,11 @@ export async function dispatchCustomerPushForTenant(
   if (gate !== null) return { ...result, gated: gate };
 
   const breaker = getProviderCircuitBreaker(PUSH_CIRCUIT_BREAKER_KEY);
-  if (!breaker.canAttempt(clock())) {
+  // awcms-one (the ff876138 sync, upstream #1409): `canAttempt` was removed. A
+  // pass gate only reads the state (`wouldAllowAttempt`); the half-open probe is
+  // reserved per send, inside the upstream web-push provider, which answers a
+  // refused send with `skipped` (handled below).
+  if (!breaker.wouldAllowAttempt(clock())) {
     log("warning", "commerce.customer_push.dispatch.breaker_open", {
       tenantId,
       moduleKey: MODULE_KEY,
@@ -874,7 +889,7 @@ export async function dispatchCustomerPushForTenant(
 
     // A breaker that opened during this pass (a push service is failing) stops
     // the pass; the rest go back, unattempted, to be retried shortly.
-    if (!breaker.canAttempt(now)) {
+    if (!breaker.wouldAllowAttempt(now)) {
       result.breakerOpen = true;
       const remaining = claimed.slice(index).map((item) => item.id);
       await releaseUnsent(sql, tenantId, remaining, now);
@@ -908,6 +923,16 @@ export async function dispatchCustomerPushForTenant(
       now,
       correlationId
     );
+
+    if (outcome.kind === "deferred") {
+      // The breaker refused this one send: give the row back with no attempt row
+      // and the retry count unchanged, and let the pass go on (the gate above
+      // stops it when the breaker is genuinely open).
+      await releaseUnsent(sql, tenantId, [entry.id], clock());
+      result.breakerOpen = true;
+      result.released += 1;
+      continue;
+    }
 
     const settled = await finalize(
       sql,
