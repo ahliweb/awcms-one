@@ -30,7 +30,8 @@
  *   a payment reversed by hand during the call ..... "F7" (no over-refund)
  *   cross-tenant / BOLA ........................... "F8"
  *   real adapter: 200 / 201 / 406 / 5xx / timeout ... "H4".."H7"
- *   KNOWN DEFECT: 202 "refund denied by the bank" is booked as refunded "K4"
+ *   202 "refund denied by the bank" is a refusal, never a refund ... "K4"
+ *     (a defect this suite reproduced; fixed in the adapter, #564)
  */
 import {
   afterAll,
@@ -75,8 +76,6 @@ import {
 } from "./harness";
 
 const suite = integrationEnabled ? describe : describe.skip;
-/** Cases that reproduce a real defect: skipped by default, run with `RUN_KNOWN_DEFECTS=1`. */
-const knownDefect = process.env.RUN_KNOWN_DEFECTS ? test : test.skip;
 
 const TENANT_A = "56400000-0564-4000-8000-0000000000fa";
 const TENANT_B = "56400000-0564-4000-8000-0000000000fb";
@@ -727,17 +726,14 @@ suite(
       expect((await legRow(leg.refund.id)).status).toBe("failed");
     });
 
-    describe("KNOWN DEFECT (reproduced, not fixed here)", () => {
-      knownDefect(
-        "K4 Midtrans direct refund answers 202 'Refund denied by the bank'; the adapter books any 2xx other than 201 as 'succeeded', so a refund the bank DENIED settles the leg and the ledger",
-        async () => {
-          behaviour = { kind: "business", statusCode: "202" };
-          const leg = await gatewayRefundLeg();
-          const outcome = await exec(leg.ret.id, leg.refund.id, adapter());
-          expect(outcome.kind).not.toBe("settled");
-          expect(await reversals(leg.order.id)).toEqual([]);
-        }
-      );
+    test("K4 Midtrans direct refund answers 202 'Refund denied by the bank': the leg fails, nothing is settled and no reversal is booked", async () => {
+      behaviour = { kind: "business", statusCode: "202" };
+      const leg = await gatewayRefundLeg();
+      const outcome = await exec(leg.ret.id, leg.refund.id, adapter());
+      expect(outcome.kind).not.toBe("settled");
+      expect(await reversals(leg.order.id)).toEqual([]);
+      const row = await legRow(leg.refund.id);
+      expect(row.status).toBe("failed");
     });
   }
 );
