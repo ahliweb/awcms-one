@@ -2120,6 +2120,25 @@ export const READER_BUDGET_BYTES = 39_000;
  * nine admin scripts that now bind through the guard instead of their own
  * listeners. A measurement of the merged build rounded up to the next 100 B.
  *
+ * **The `f0182930` sync (14 November 2026, AWCMS v10.11.0 still) then raises it
+ * to 537,500 B**, MEASURED 537,376 B on the merged build (525,002 B at the
+ * `45a139fa` sync), a measurement and not a sum. Upstream's own constant moved
+ * 358,400 -> 370,720 B (+12,320 B: the channel-account connection manager, the
+ * omnichannel inbox operator screens and the other new modules' admin chrome),
+ * and the commerce lineage is +166,656 B over it, against +166,602 B at the
+ * previous sync (+54 B: the shared `AdminLayout` CSS bundle is not additive
+ * across lineages). `commerce` added no browser byte. 124 B of margin for the
+ * local/CI build difference.
+ *
+ * **Issue #529 (shopper data-subject rights) then raises it to 539,100 B**,
+ * MEASURED 539,032 B on the build (537,376 B at the `f0182930` sync, so +1,656 B):
+ * the customers screen gained the Privacy column's export and erasure-request
+ * actions, the data-subject requests panel with its approve and reject actions,
+ * the step-up and confirm dialogs it shares with the other commerce screens, and
+ * `lib/ui/commerce-subject-client.ts` (the export download). The new
+ * admin strings it needed are compiled into the shared catalogue. 68 B
+ * of margin for the local/CI build difference.
+ *
  * **The `f476fdbb` sync (124 upstream commits after `45a139fa`) then raises it
  * to 552,000 B**, MEASURED 551,921 B on the merged build (525,002 B at the
  * `45a139fa` sync): +26,919 B. Upstream's own constant moved over the same range
@@ -2133,8 +2152,18 @@ export const READER_BUDGET_BYTES = 39_000;
  * `AdminLayout` CSS bundle and the compiled catalogue, which are not additive
  * across lineages (the same effect the #260, #427 and `ab313273` syncs
  * recorded). A measurement of the merged build rounded up to the next 100 B.
+ *
+ * **This branch's merge of the `f476fdbb` sync (PR #543) into PR #530 then
+ * raises it to 553,700 B**, MEASURED 553,625 B on the merged build (551,921 B on
+ * #543's own build, so +1,704 B): the commerce lineage of #530 carries issue
+ * #529's customers-screen Privacy column, data-subject requests panel and
+ * `lib/ui/commerce-subject-client.ts` (+1,656 B when it landed on the
+ * `f0182930` build), and the remaining 48 B are the shared `AdminLayout` CSS
+ * bundle and compiled catalogue, not additive across lineages. The two
+ * paragraphs above are the two lineages that met here. 75 B of margin for the
+ * local/CI build difference.
  */
-export const APP_BUDGET_BYTES = 552_000;
+export const APP_BUDGET_BYTES = 553_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

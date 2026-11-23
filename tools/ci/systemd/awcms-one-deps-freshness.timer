@@ -1,0 +1,14 @@
+# awcms-one-deps-freshness.timer — fires awcms-one-deps-freshness.service
+# once a week. See that unit's own header for installation.
+
+[Unit]
+Description=Run the awcms-one dependency freshness report weekly
+
+[Timer]
+OnCalendar=Mon *-*-* 06:00:00
+# A host that was off at the scheduled time runs the report at next boot.
+Persistent=true
+RandomizedDelaySec=15min
+
+[Install]
+WantedBy=timers.target
