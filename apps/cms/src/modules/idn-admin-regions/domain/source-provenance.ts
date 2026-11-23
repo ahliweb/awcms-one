@@ -23,9 +23,10 @@ export const IDN_ADMIN_REGIONS_SOURCE_PATH =
 export const IDN_ADMIN_REGIONS_SOURCE_LICENSE = "MIT";
 
 /**
- * Repo-relative path of the ONE vendored file this module imports. The three
- * sibling files (islands/population/area) are vendored from the same commit but
- * read by nothing yet — see `data/idn-admin-regions/manifest.json`.
+ * Repo-relative path of the ONE vendored file this module's region import
+ * reads. The island sibling is read by nothing yet; the population and area
+ * siblings are read by the awcms-one embed's local `idn-population:import`
+ * (awcms-one ADR-0053) — see `data/idn-admin-regions/manifest.json`.
  */
 export const IDN_ADMIN_REGIONS_DUMP_PATH =
   "data/idn-admin-regions/upstream/cahyadsn-wilayah/db/wilayah.sql";
