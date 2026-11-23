@@ -249,7 +249,9 @@ export async function dispatchWhatsappQueue(
   const breaker = getProviderCircuitBreaker(
     `${CIRCUIT_BREAKER_KEY_PREFIX}-${providerKind}`
   );
-  const breakerOpen = !breaker.canAttempt(now);
+  // awcms-one (the ff876138 sync, upstream #1409): a pass gate only peeks; the
+  // provider reserves the half-open probe per send (`tryAcquire`).
+  const breakerOpen = !breaker.wouldAllowAttempt(now);
 
   const result: DispatchWhatsappQueueResult = {
     claimed: 0,

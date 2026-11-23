@@ -103,7 +103,14 @@ export function createRajaOngkirProvider(
   ): Promise<Response> {
     const now = new Date();
 
-    if (!breaker.canAttempt(now)) {
+    // awcms-one (the ff876138 sync, upstream #1409/#1416): `canAttempt` was removed from
+    // the circuit breaker. The send RESERVES the single half-open probe with
+    // `tryAcquire`, and `permit.release()` in the `finally` hands it back when the
+    // call gave the breaker no verdict (a rejected message, a misconfiguration);
+    // a recorded verdict has already moved the state, which makes it a no-op.
+    const permit = breaker.tryAcquire(now);
+
+    if (!permit) {
       throw new ShippingProviderCallFailedError(
         "commerce-rajaongkir circuit is open."
       );
@@ -126,6 +133,8 @@ export function createRajaOngkirProvider(
         breaker.recordFailure(new Date());
       }
       throw error;
+    } finally {
+      permit.release();
     }
   }
 
