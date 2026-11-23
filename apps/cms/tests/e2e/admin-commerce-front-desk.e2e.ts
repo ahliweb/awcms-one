@@ -24,7 +24,7 @@
  *   - a refused value is `aria-invalid` and tied to its message;
  *   - the tenant's check-in policy is followed: with the default (block) the
  *     check-in is unavailable while a balance is owed, and the reason is visible
- *     (residual R3 of PR #443 - the owner has not confirmed the default);
+ *     (residual R3 of PR #443, a default the owner confirmed on 11 November 2026);
  *   - nothing about the lookup is left in `localStorage` or `sessionStorage`, and
  *     the contact field is empty once the card is shown;
  *   - no raw browser dialog opens.

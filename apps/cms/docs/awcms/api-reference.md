@@ -10921,6 +10921,121 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 404    | Resource not found.                                                                        | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Which CRM leads were confirmed as commerce customers, newest first (at most 100): opaque ids, the evidence kind and the link state, never a name or contact. Optional filters `leadId`, `customerId`, `state`. Gated on `commerce.crm_lead_links.read`.
+
+- **operationId**: `listCommerceCrmLeadLinks`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                           | Description |
+| ------------ | ----- | -------- | ---------------------------------------------- | ----------- |
+| `leadId`     | query | no       | string (uuid)                                  |             |
+| `customerId` | query | no       | string (uuid)                                  |             |
+| `state`      | query | no       | enum(`linked`, `reversal_pending`, `reversed`) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The links.                  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Confirm that a CRM lead became this commerce customer, on a commerce fact the server verifies. Gated on `commerce.crm_lead_links.create` AND `crm_leads.conversions.approve` (the CRM port performs no access check, so both are enforced); audited at warning.
+
+- **operationId**: `createCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+The caller names the lead and the customer; nothing is matched on a phone, e-mail or social handle. The evidence is read from the database: `customer_registration` needs a live account with a verified e-mail, `paid_order` needs a paid, not cancelled order OF THAT customer (`orderId` required). The conversion is recorded in `crm_leads` through `CrmLeadPort` with an opaque customer reference and the evidence reference as the replay key, and `awcms.commerce.customer.converted` is published. A replay with the same evidence answers `200` with the existing link and publishes nothing; the same evidence naming another lead or customer is `409 CRM_EVIDENCE_REUSED`. A lead or customer of another tenant is the same `404` as a missing one. An erased customer, or an order whose every line was returned, is `409 CRM_EVIDENCE_NOT_VERIFIED`. This operation does NOT honour an `Idempotency-Key` header (ADR-0145 does not apply): the evidence reference is the idempotency key, so a replay is recognised from the evidence alone.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | A replay - the existing link, nothing published.                                                                                                                                                                                                                         | object                                 |
+| 201    | The new link.                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEADS_UNAVAILABLE`, `CRM_EVIDENCE_NOT_VERIFIED` (with `details.reason`), `CRM_LEAD_ALREADY_LINKED`, `CRM_EVIDENCE_REUSED` or `CRM_CONVERSION_REFUSED` (with `details.reason`, a `crm_leads` outcome such as `version_conflict`, `not_open` or `already_converted`). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links/{id}/reverse` — Issue #463 (ADR-0056). Reverse a confirmed lead-to-customer link: the CRM conversion is reversed through the port (a stamped reversal, never an edit of history) and the link becomes `reversed`, which is final. Gated on `commerce.crm_lead_links.approve` (a high-risk action) AND `crm_leads.conversions.approve`; audited at warning.
+
+- **operationId**: `reverseCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+Meant for a link a consumer flagged `reversal_pending` because the order its conversion rests on was cancelled or fully refunded (the consumers run as the worker role, which holds no CRM privilege, so they only flag). A person may also reverse a `linked` one. Reversing a reversed link is `409`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                                     | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reversed link.                                                                                              | object                                 |
+| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEAD_LINK_ALREADY_REVERSED`, `CRM_LEADS_UNAVAILABLE`, `CRM_CONVERSION_NOT_FOUND` or `CRM_EVIDENCE_REUSED`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `VALIDATION_ERROR` - the reversal request was rejected by `crm_leads` as invalid.                               | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/customer-subject-requests` — Issue #529 (ADR-0055 D3). The tenant's shopper data-subject requests, newest first, at most 100. Gated on `commerce.customer_subject_requests.read`.
+
+- **operationId**: `listCommerceCustomerSubjectRequests`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                                                      | Description |
+| ------------ | ----- | -------- | ------------------------------------------------------------------------- | ----------- |
+| `status`     | query | no       | enum(`disclosed`, `pending_approval`, `refused`, `rejected`, `completed`) |             |
+| `customerId` | query | no       | string (uuid)                                                             |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The requests.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customer-subject-requests/{id}/decide` — Issue #529 (ADR-0055 D3). The second person approves or rejects a pending erasure. Gated on `commerce.customer_subject_requests.approve` (high-risk), a fresh step-up and an `Idempotency-Key`; never the requester.
+
+- **operationId**: `decideCommerceCustomerSubjectRequest`
+- **Security**: bearerAuth + tenantHeader
+
+Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request that is not pending is `409 INVALID_STATE`, except that the same approver repeating the decision that already settled it (a retry after a lost response) gets the stored decision back with `200`; a shopper whose state changed since the request (a new order, say) is `409 ERASURE_REFUSED` and the request is recorded as refused.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------- | -------------------------------------- |
+| 200    | The decided request.                                          | object                                 |
+| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN`, `STEP_UP_REQUIRED` or `SEPARATION_OF_DUTIES`.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `INVALID_STATE`, `ERASURE_REFUSED` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/customers` — Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
 
 - **operationId**: `listCommerceCustomers`
@@ -10982,6 +11097,58 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-erasure` — Issue #529 (ADR-0055 D2/D3). Request the erasure of a shopper's personal data. Erases nothing: records a request a second person approves. Gated on `commerce.customer_subject_requests.delete` (high-risk), a fresh step-up and an `Idempotency-Key`.
+
+- **operationId**: `requestCommerceCustomerSubjectErasure`
+- **Security**: bearerAuth + tenantHeader
+
+Runs the precondition check first. `202` records a `pending_approval` request; `409 ERASURE_REFUSED` records a `refused` one (open order or booking, stored-value balance, unsettled refund, unpaid affiliate commission, or already erased). A stale step-up is `403 STEP_UP_REQUIRED` with nothing written. Body `{ "reason"?: string }`, at most 500 characters.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 202    | The pending request (or the same request, `replayed: true`).           | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN` or `STEP_UP_REQUIRED`.                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-export` — Issue #529 (ADR-0055 D3/D4). An administrator produces a shopper's data-subject export bundle on their behalf. Gated on `commerce.customer_subject_requests.export` (high-risk) and an `Idempotency-Key`.
+
+- **operationId**: `exportCommerceCustomerSubjectData`
+- **Security**: bearerAuth + tenantHeader
+
+The bundle is returned once with `Cache-Control: no-store` and never stored; the disclosure is audited at `critical` with counts only. A repeated key is `409 IDEMPOTENCY_REPLAYED` because the bundle is not kept to replay; use a new key to produce another.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The request id and the bundle. | object                                 |
+| 400    | Validation error.              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.            | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_REPLAYED`.        | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`.
 
@@ -12718,7 +12885,7 @@ The body is the register and explicit `tenders` (cash with change, QRIS, bank tr
 - **operationId**: `checkInCommercePosBookingReservation`
 - **Security**: bearerAuth + tenantHeader
 
-The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - the owner confirms the default): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only.
+The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - confirmed by the owner on 11 November 2026): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only.
 
 **Parameters**
 
@@ -14636,6 +14803,67 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/erasure` — Issue #529 (ADR-0055 D2/D3). The shopper's own erasure: anonymise the identity, delete personal rows, retain the ledgers, revoke every session.
+
+- **operationId**: `eraseCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "erasure"`) and a required `Idempotency-Key`. Body `{ "code": "123456" }`. On success every session of the account is revoked, so the next request with the old bearer is `401` and the storefront clears its stored session. The response names counts and the table families kept for bookkeeping, never content. It is refused (`409 ERASURE_REFUSED`, `details.refusals`) while an order is pending payment, paid, processing or shipped, a booking is active, a stored-value balance is above zero, a return or refund is unsettled or an affiliate commission is unpaid; the code is not consumed by a refusal. A repeated key answers the stored result only for a REFUSED attempt (the same `409 ERASURE_REFUSED`). After a completed erasure every session is revoked, so a retry gets `401` before the key is looked at; that `401` tells the client the erasure went through. Rate limited per account (`429`), because a refusal is recorded and audited before the code is consumed.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The erasure ran.                                                       | object                                 |
+| 400    | `OTP_INVALID`, `IDEMPOTENCY_KEY_REQUIRED` or a malformed body.         | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/export` — Issue #529 (ADR-0055 D4). The shopper's own data-subject export: a versioned JSON bundle of everything the store holds about them. Not stored.
+
+- **operationId**: `exportCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session AND a fresh one-time code from `privacy/otp` (`type: "export"`). Body `{ "code": "123456" }`. The bundle is returned once with `Cache-Control: no-store` and is never stored; the disclosure is audited with counts only. Secrets (token and code hashes, client address hashes, push endpoints and keys, provider payloads) are redacted, and `unanswered` names what could not be matched to the customer. Every code failure is one generic `400 OTP_INVALID`. The code is single use, so the request carries no `Idempotency-Key`.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                            | Schema                                 |
+| ------ | ------------------------------------------------------ | -------------------------------------- |
+| 200    | The export bundle.                                     | object                                 |
+| 400    | `OTP_INVALID` (any code failure), or a malformed body. | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                       | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/otp` — Issue #529 (ADR-0055 D3). Mail a fresh one-time code to the account's own e-mail address for a data-subject `export` or `erasure`.
+
+- **operationId**: `requestCommerceStorefrontAccountPrivacyOtp`
+- **Security**: customerBearer
+
+The second proof a shopper's data-subject request needs on top of the bearer session. Body `{ "type": "export" | "erasure" }`. Rate limited per IP and per account; a repeat inside the resend window is a no-op success. The code is single use and of its own purpose, so a sign-in code never authorises a request. Body cap 8 KiB.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                           | Schema                                 |
+| ------ | ------------------------------------- | -------------------------------------- |
+| 200    | The code was sent (or is still live). | object                                 |
+| 400    | Validation error.                     | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                      | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.     | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/booking/availability` — Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437), or that is not an active, undeleted resource of the tenant in the offering's mode (a link naming none, and a bound resource since retired - Issue #448) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached.
 
@@ -27267,29 +27495,29 @@ Every field of CommerceSliderCreateInput, all optional.
 
 The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
 
-| Field                       | Type                   | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --------------------------- | ---------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`             | enum(`1`)              | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `storeName`                 | string                 | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `tagline`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `logoMediaObjectId`         | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `faviconMediaObjectId`      | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `address`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `phone`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `whatsapp`                  | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `email`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `mapsEmbedUrl`              | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `faqs`                      | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `social`                    | object                 | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `customerLevels`            | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `shipping`                  | object                 | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                               |
-| `payment`                   | object                 | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule.              |
-| `promoSection`              | object                 | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `meta`                      | object                 | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `affiliateCommissionRate`   | string                 | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                                           |
-| `taxMode`                   | enum(`flat`, `engine`) | no       | no       | Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling.                                                                                                                                                                                                           |
-| `taxProfileCode`            | string                 | no       | no       | Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `checkinRequiresSettlement` | boolean                | no       | no       | Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default is a recommendation the owner confirms. |
+| Field                       | Type                   | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------------------------- | ---------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`             | enum(`1`)              | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `storeName`                 | string                 | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `tagline`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `logoMediaObjectId`         | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `faviconMediaObjectId`      | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `address`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `phone`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `whatsapp`                  | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `email`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `mapsEmbedUrl`              | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `faqs`                      | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `social`                    | object                 | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `customerLevels`            | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `shipping`                  | object                 | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                                               |
+| `payment`                   | object                 | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule.                              |
+| `promoSection`              | object                 | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `meta`                      | object                 | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `affiliateCommissionRate`   | string                 | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                                                           |
+| `taxMode`                   | enum(`flat`, `engine`) | no       | no       | Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling.                                                                                                                                                                                                                           |
+| `taxProfileCode`            | string                 | no       | no       | Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `checkinRequiresSettlement` | boolean                | no       | no       | Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default (block) was confirmed by the owner on 11 November 2026. |
 
 **Example**
 
@@ -32482,7 +32710,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (119)
+### Channels (121)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -32527,6 +32755,8 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
 - `awcms.commerce.booking_reservation.rescheduled` — A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all (same length). Producer: `commerce/application/booking-reschedule.ts`'s `rescheduleBookingReservation`, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`, `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`, `supplementOrderId`, `returnId` - never a customer name/phone, a payment reference or the actor.
 - `awcms.commerce.conversation.store_replied` — A staff reply was stored in a customer conversation (Issue #432, ADR-0048 Q4). Producer: `commerce/application/conversation-directory.ts`'s `postStoreReply`, in the same transaction as the stored message. Aggregate: the conversation (`commerce.conversation`). Payload: `conversationId` only - never the subject, the body or the customer. Consumed by the customer Web Push enqueuer (`commerce.customer_push_enqueuer`, purpose `support_replies`).
+- `awcms.commerce.customer.converted` — A staff member confirmed a CRM lead as this commerce customer on verified commerce evidence and `crm_leads` recorded the conversion (Issue #463, ADR-0056 D8). Producer: `commerce/application/crm-lead-link-directory.ts`'s `linkLeadToCustomer`, in the same transaction as the link row and the conversion. Never published from a message receipt, a fuzzy match or an unconfirmed manual conversion. Aggregate: the customer (`commerce.customer`). Payload: `linkId`, `customerId`, `leadId`, `conversionId`, `evidenceKind` (`customer_registration` | `paid_order`), `orderId` (paid order only), `firstSourceKind` and `firstTouchId` (the lead's first source touch, for source attribution) - opaque ids and codes, never a name, contact or note. `privacyClass: pseudonymous`. Idempotency: one event per link; a replayed confirmation (same evidence) publishes nothing. The reversal of a conversion is `crm_leads`' own `awcms.crm_leads.lead.conversion_reversed`.
+- `awcms.commerce.customer.registered` — A shopper completed the e-mail OTP registration and a commerce customer account was created (Issue #463, ADR-0056 D8). Producer: `commerce/application/customer-account-store.ts`'s `tryCreateAccountForCustomer`, in the same transaction as the account row. A guest checkout does NOT publish it: only a verified registration is a registration fact. Aggregate: the customer (`commerce.customer`). Payload: `customerId` and `accountId` only - never a name, e-mail or phone. `privacyClass: pseudonymous`. Idempotency: one event per account row (the account is unique per customer); correlation id as on every domain event.
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.

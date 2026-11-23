@@ -43,8 +43,8 @@
       "sha256": "b0b6b9dc70fa6a4fdb9e05bf00ec549ed8f6cf0bb82f6407281dfac674b10447",
       "bytes": 34429,
       "role": "raw-upstream-sql",
-      "importedBy": null,
-      "decreeReference": null,
+      "importedBy": "idn_admin_regions.population",
+      "decreeReference": "Kepmendagri No 300.2.2-2138 Tahun 2025",
       "upstreamLastEdit": "2025-07-04 07:58:13"
     },
     {
@@ -52,15 +52,17 @@
       "sha256": "3ffd506eaabaa2bfa101fb24c5e40582cf9548be38adba53a561d0ed7478c043",
       "bytes": 26322,
       "role": "raw-upstream-sql",
-      "importedBy": null,
+      "importedBy": "idn_admin_regions.population",
       "decreeReference": "Kepmendagri No 300.2.2-2138 Tahun 2025",
+      "areaSourceReference": "Badan Informasi Geospasial, Surat Deputi Bidang Informasi Geospasial Dasar Nomor B-16.10/DIGD-BIG/IGD.04.04/12/2024, 16 Desember 2024",
       "upstreamLastEdit": "2025-07-06 15:09:55"
     }
   ],
   "notes": [
     "Every sha256/bytes value here is verified against the real file on disk by tests/idn-admin-regions-vendor-manifest.test.ts, and every non-null decreeReference must appear verbatim in that file's own header — so a silently swapped dataset fails the build instead of being served as if it were this one.",
-    "decreeReference is recorded PER FILE, read from each file's own header, because upstream does not ship one decree for the whole dataset: db/wilayah.sql (the only file this module imports) cites Kepmendagri 300.2.2-2138/2025 while db/wilayah_pulau.sql cites 300.2.2-2430/2025. db/wilayah_penduduk.sql's header names no decree number at all, so it is null rather than guessed.",
-    "importedBy names the module whose code actually reads the file. Only db/wilayah.sql is read today; the other three are vendored from the SAME upstream commit so a future island/population/area feature does not have to guess which version matches the imported hierarchy.",
+    "decreeReference is recorded PER FILE, read from each file's own header, because upstream does not ship one decree for the whole dataset: db/wilayah.sql, db/wilayah_penduduk.sql and db/wilayah_luas.sql cite Kepmendagri 300.2.2-2138/2025 while db/wilayah_pulau.sql cites 300.2.2-2430/2025. db/wilayah_penduduk.sql wraps the reference across two header lines, so it is compared with whitespace folded (awcms-one corrected an earlier note here that said this header names no decree at all).",
+    "db/wilayah_luas.sql's codes follow the decree, but its AREA figures come from Badan Informasi Geospasial (areaSourceReference, also read from the file's own header). The area is BIG's, never attributed to Kemendagri.",
+    "importedBy names the code that actually reads the file: idn_admin_regions for db/wilayah.sql, and idn_admin_regions.population for db/wilayah_penduduk.sql and db/wilayah_luas.sql (awcms-one ADR-0053, `bun run idn-population:import`, a local addition of the awcms-one embed). db/wilayah_pulau.sql is read by nothing; it is vendored from the SAME upstream commit so a future island feature does not have to guess which version matches the imported hierarchy.",
     "Upstream db/ also contains wilayah_level_1_2.sql (a larger province/regency dataset with coordinates/elevation/timezone/boundaries) and an archive/ folder of superseded prior-year datasets. Neither is vendored; adding one is a deliberate new entry here, never an assumption that it is already present.",
     "This is GLOBAL reference data, not tenant-scoped — see ADR-0046 and src/modules/idn-admin-regions/README.md."
   ]
