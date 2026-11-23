@@ -92,6 +92,8 @@ AWCMS_API_URL=http://localhost:4310 AWCMS_API_TOKEN=stub-token \
 
 `apps/storefront/scripts/stub-awcms.mjs` melayani setiap endpoint yang dipanggil aplikasi ini, termasuk mesin-status commerce-storefront (kutip → buat pesanan → lacak → konfirmasi pembayaran → batalkan) dari fixture di `tests/fixtures/awcms/`. Jika halaman Anda memanggil endpoint baru, perluas stub dan fixture-nya dalam perubahan yang sama — halaman yang satu-satunya bukti kebenarannya adalah "berhasil dikompilasi" belumlah terbukti.
 
+**Fixture baru atau yang diubah di `apps/storefront/tests/fixtures/awcms/` dinilai terhadap skema respons OpenAPI** oleh `tests/fixture-skema-openapi.test.mjs` (issue #553): tambahkan barisnya ke `tests/support/fixture-skema-mapa.mjs` dalam perubahan yang sama (operasi, jenis, alasan), dan jangan melonggarkan pemeriksaan agar fixture lolos - subset yang disengaja menyebut field wajib yang ia lewatkan, pelanggaran yang diketahui adalah pengecualian bertanggal yang menunjuk issue perbaikannya.
+
 ```bash
 bun run check         # astro check — error tipe
 bun test               # dari root repo — setiap unit/build-smoke/route test storefront berjalan di sini

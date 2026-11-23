@@ -42,7 +42,7 @@ export const LEGS: readonly LegDefinition[] = [
     profile: "toko",
     primary: true,
     description:
-      "apps/storefront type-check + profile smoke (toko) — plus root bun test, audit:dokumen, audit:translation, audit:graf, audit:rilis, bun audit"
+      "apps/storefront type-check + profile smoke (toko) — plus root bun test (including the fixture-vs-OpenAPI schema gate), audit:dokumen, audit:translation, audit:graf, audit:rilis, bun audit"
   },
   {
     context: "local-ci/check-berita",

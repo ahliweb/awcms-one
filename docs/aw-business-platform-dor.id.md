@@ -1,8 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-dor.md)
 
-<!-- i18n-source-hash: sha256:a18502a460fe1aca7b767af7b14992ac72778b42ffdb28b264f3189ae5515b21 -->
+<!-- i18n-source-hash: sha256:963ddccde530830d7943b2492758508190a4c1155fe5bc6c9b4d038640d8100b -->
 
 # AW Business Platform — pelacak Definition of Ready
+
+> **Diarsipkan 11 November 2026:** DoR tercapai pada 11 Oktober 2026; pengiriman hasil dinilai di [penelusuran DoD](aw-business-platform-dod.id.md). Isi di bawah adalah catatan historis dan tidak ditulis ulang.
 
 Melacak epik [#280](https://github.com/ahliweb/awcms-one/issues/280) menuju Definition of Ready (DoR, epik §15). **Tidak ada yang diimplementasikan dari epik ini sampai DoR tercapai** — tanpa modul, migrasi, jalur OpenAPI, atau scaffold. Penempatan setiap kapabilitas diputuskan di [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) (Diterima 8 Oktober 2026 lewat keputusan pemilik O0, [#335](https://github.com/ahliweb/awcms-one/issues/335)); halaman ini menyatakan apa yang harus ada, di mana ia dihasilkan, dan apa yang hanya dapat diputuskan pemilik produk.
 

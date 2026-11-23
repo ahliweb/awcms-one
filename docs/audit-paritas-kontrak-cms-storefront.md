@@ -238,6 +238,10 @@ Limits the reader should keep in mind: database-backed behaviour was not execute
 
 ## Changelog
 
+### 2026-11-24 (gate for F-02 landed, issue #553)
+
+- The fixture-versus-schema gate of Issue A now exists: `tests/fixture-skema-openapi.test.mjs` with the map and the dated exceptions in `tests/support/fixture-skema-mapa.mjs`, run by the root `bun test` (`local-ci/check-toko`). All 24 fixture files are mapped: 11 clean responses, 3 responses that violate the schema (F-03 to F-05) and are carried as exceptions, 4 declared subsets, 2 lookup tables and 4 not-a-response files. F-03, F-04 and F-05 are recorded as exceptions that point at #554 and are reviewed by 15 December 2026; the gate fails when one no longer matches, so #554 must delete them. The first run found two violations this audit did not list (exceptions N-01: `own_work` in `media-objects.json`; N-02: `videoNews` fields the spec does not declare, in `blog-posts.json`). Findings and baseline of the audit are otherwise unchanged.
+
 ### 2026-11-20 (owner decisions)
 
 - Section 8.1 now records the three owner decisions of 20 November 2026 and points to ADR-0058; section 8.2 notes the backlog issues #553 to #557. Findings and baseline unchanged.
