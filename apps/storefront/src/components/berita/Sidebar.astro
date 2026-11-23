@@ -433,8 +433,13 @@ const hrefFor = (post: PostSummary): string =>
     color: var(--text-on-inverse-muted);
   }
 
+  /* `minmax(0, 1fr)`, not the implicit `auto` track (issue #539): an `auto`
+     track grows to the e-mail field's intrinsic width, which scales with the
+     reader's text size and letter-spacing, and pushed the card past a 360px
+     phone at the reading-preferences panel's extra-large size. */
   .sisi-buletin :global(.buletin-form--sidebar) {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
   }
 

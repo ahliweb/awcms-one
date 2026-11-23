@@ -32,11 +32,11 @@
  *     replaces — a deliberate scope decision (see that file's own comment),
  *     not a gap introduced here.
  */
-import { existsSync, mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
 import { partitionHighSeverityFindings, parseBaseline } from "../lib/baseline.ts";
-import { ensureCodeqlCli } from "../lib/codeql-cli.ts";
+import { CODEQL_JS_QUERY_PACK, ensureCodeqlCli } from "../lib/codeql-cli.ts";
 import { run, runOrThrow } from "../lib/exec.ts";
 import { parseSarifFindings } from "../lib/sarif.ts";
 import { stateRoot } from "../lib/state-dir.ts";
@@ -70,42 +70,54 @@ export async function runSecurityLeg(
   // which vendors them) — `codeql/javascript-queries` is downloaded once
   // from GitHub's own package registry and cached under this CLI's own
   // default package cache (~/.codeql/packages), so a re-run does not
-  // re-fetch it. Referencing the suite by its PACKAGE-QUALIFIED name below
+  // re-fetch it. Both commands name the pack WITH its pinned version: the
+  // cache keeps every version ever downloaded, and an unversioned reference
+  // resolves to the newest one there, whatever CLI it needs.
+  // Referencing the suite by its PACKAGE-QUALIFIED name below
   // (rather than a bare "javascript-security-extended.qls", which the CLI
   // cannot resolve on its own) is what actually finds it afterwards.
-  const packDownload = await run([codeqlExecutable, "pack", "download", "codeql/javascript-queries"], {
+  const packDownload = await run([codeqlExecutable, "pack", "download", CODEQL_JS_QUERY_PACK], {
     logFile: log("codeql-pack-download")
   });
   if (packDownload.exitCode !== 0) return fail(`codeql pack download failed (exit ${packDownload.exitCode})`);
 
-  const create = await run(
-    [
-      codeqlExecutable,
-      "database",
-      "create",
-      dbPath,
-      "--language=javascript-typescript",
-      "--source-root",
-      worktreeRoot,
-      "--overwrite"
-    ],
-    { logFile: log("codeql-database-create") }
-  );
-  if (create.exitCode !== 0) return fail(`codeql database create failed (exit ${create.exitCode})`);
+  // The database (~1.2 GB per run) is an intermediate, not evidence — the
+  // SARIF and the create/analyze logs are what this leg keeps. Left in
+  // evidenceDir it filled the operator's disk at ~1.2 GB per security run,
+  // so it is removed as soon as analysis ends, pass or fail.
+  let analyze: Awaited<ReturnType<typeof run>>;
+  try {
+    const create = await run(
+      [
+        codeqlExecutable,
+        "database",
+        "create",
+        dbPath,
+        "--language=javascript-typescript",
+        "--source-root",
+        worktreeRoot,
+        "--overwrite"
+      ],
+      { logFile: log("codeql-database-create") }
+    );
+    if (create.exitCode !== 0) return fail(`codeql database create failed (exit ${create.exitCode})`);
 
-  const analyze = await run(
-    [
-      codeqlExecutable,
-      "database",
-      "analyze",
-      dbPath,
-      "--format=sarif-latest",
-      `--output=${sarifPath}`,
-      "--sarif-add-snippets",
-      "codeql/javascript-queries:codeql-suites/javascript-security-extended.qls"
-    ],
-    { logFile: log("codeql-database-analyze") }
-  );
+    analyze = await run(
+      [
+        codeqlExecutable,
+        "database",
+        "analyze",
+        dbPath,
+        "--format=sarif-latest",
+        `--output=${sarifPath}`,
+        "--sarif-add-snippets",
+        `${CODEQL_JS_QUERY_PACK}:codeql-suites/javascript-security-extended.qls`
+      ],
+      { logFile: log("codeql-database-analyze") }
+    );
+  } finally {
+    rmSync(dbPath, { recursive: true, force: true });
+  }
   if (analyze.exitCode !== 0 || !existsSync(sarifPath)) {
     return fail(`codeql database analyze failed (exit ${analyze.exitCode})`);
   }

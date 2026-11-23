@@ -108,10 +108,10 @@ describe("build smoke: astro build against the stub CMS (issue #93's own page)",
         const baseLayoutScriptCount = (
           homeHtml.match(/BaseLayout\.astro_astro_type_script_index_\d+_lang/g) ?? []
         ).length;
-        // Three: `afiliasi-tangkap` (issue #93, new), `analitik`, `ga-init`
-        // — the same three `<script>` blocks `BaseLayout.astro`'s own body
-        // declares.
-        expect(baseLayoutScriptCount).toBe(3);
+        // Four: `afiliasi-tangkap` (issue #93), `analitik`, `ga-init` and
+        // `a11y-panel` (issue #539) — the same four `<script>` blocks
+        // `BaseLayout.astro`'s own body declares.
+        expect(baseLayoutScriptCount).toBe(4);
 
         const assetDir = join(distClient, "_astro");
         const bundledScripts = readdirSync(assetDir).filter((name) => name.endsWith(".js"));

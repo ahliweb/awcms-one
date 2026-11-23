@@ -18,6 +18,15 @@ import { run, runOrThrow } from "./exec.ts";
 /** Pinned at the version current when this leg was written (2026-09) — bump deliberately, re-verify the checksum from the release's own `.checksum.txt` asset, never take it on faith from a mirror. */
 export const CODEQL_CLI_VERSION = "2.27.1";
 export const CODEQL_CLI_SHA256 = "6ad2cead390cecf62dd59ae7ffd673d216902a9c00975ce107a362464a8b891e";
+/**
+ * The query pack is pinned to the CLI above, not left at "latest". A pack is
+ * built against a minimum CLI (`buildMetadata.cliVersion` in its qlpack.yml):
+ * `codeql/javascript-queries` 2.5.1 (published 2026-11-20) needs CLI 2.27.5 and
+ * ships JSON-with-comments data extensions that CLI 2.27.1 rejects with
+ * "Invalid data extension file", which turned every security leg red. 2.5.0 is
+ * the newest pack that runs on 2.27.1. Bump both together, deliberately.
+ */
+export const CODEQL_JS_QUERY_PACK = "codeql/javascript-queries@2.5.0";
 const DOWNLOAD_URL = `https://github.com/github/codeql-cli-binaries/releases/download/v${CODEQL_CLI_VERSION}/codeql-linux64.zip`;
 
 export function codeqlCacheDir(stateRoot: string): string {

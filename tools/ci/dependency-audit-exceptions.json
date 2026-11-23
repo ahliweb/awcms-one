@@ -1,9 +1,1 @@
-[
-  {
-    "advisory": "GHSA-fc5q-39xc-vjpf",
-    "packageName": "picomatch",
-    "reason": "ReDoS through single-branch repeated extglobs (<=4.0.7) with no patched release (first_patched_version null on 2026-11-18; upstream fixes are still unmerged PRs). Mitigated, not merely accepted: patches/picomatch@4.0.7.patch and patches/picomatch@2.3.2.patch (package.json patchedDependencies) force opts.noextglob = true in lib/parse.js, so extglob syntax is matched literally and the vulnerable parser path is unreachable; the advisory proof-of-concept patterns run in milliseconds after the patch. Exposure was already low: every picomatch pattern here comes from repo or dependency configuration (astro/vite/tinyglobby filters, changesets), never from a visitor. bun audit matches by version, so it still reports 4.0.7 and 2.3.2 and must be told to ignore the advisory. Remove this entry and both patches once picomatch publishes a fixed release.",
-    "owner": "unggul (owner decision via dialog, 2026-11-18)",
-    "reviewDate": "2026-12-18"
-  }
-]
+[]

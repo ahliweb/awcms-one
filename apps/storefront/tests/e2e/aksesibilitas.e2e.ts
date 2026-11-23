@@ -6,7 +6,7 @@
  *
  * Every one of this profile's key pages (`profil-halaman.ts`, itself driven
  * by `src/config/profil.ts`'s own group composition) is scanned for WCAG
- * 2.1 A/AA violations — `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa` tags only,
+ * 2.2 A/AA violations — `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa`/`wcag22aa` tags only,
  * never axe's broader "best practice" rule set, which is a style opinion,
  * not a deterministic pass/fail a CI gate can own. A `serious`/`critical`
  * violation fails the test; `minor`/`moderate` ones are attached to the
@@ -26,16 +26,27 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { ACTIVE_PROFILE, KEY_PAGES } from "./profil-halaman";
 
-const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
+const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 const FAILING_IMPACT = new Set(["serious", "critical"]);
 
 for (const keyPage of KEY_PAGES) {
-  test(`${ACTIVE_PROFILE}/${keyPage.name} (${keyPage.path}) has no serious/critical WCAG 2.1 A/AA violations`, async ({
+  test(`${ACTIVE_PROFILE}/${keyPage.name} (${keyPage.path}) has no serious/critical WCAG 2.2 A/AA violations`, async ({
     page
   }, testInfo) => {
     await page.goto(keyPage.path);
 
     const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+
+    // Text whose colour equals its background (a 1:1 ratio, invisible text) is
+    // never filed by axe under `violations`: it cannot judge the ratio, so the
+    // node lands in `incomplete` with message key `equalRatio` (issue #551: the
+    // footer headings were `#0f172a` on `#0f172a` and this gate stayed green).
+    const invisibleText = results.incomplete
+      .filter((rule) => rule.id === "color-contrast")
+      .flatMap((rule) => rule.nodes)
+      .filter((node) => node.any.some((check) => (check.data as { messageKey?: string } | null)?.messageKey === "equalRatio"))
+      .map((node) => node.target.join(" "));
+    expect(invisibleText, `Text with the same colour as its background on ${keyPage.path}`).toEqual([]);
 
     const serious = results.violations.filter((violation) => FAILING_IMPACT.has(violation.impact ?? ""));
     const other = results.violations.filter((violation) => !FAILING_IMPACT.has(violation.impact ?? ""));
@@ -63,6 +74,6 @@ for (const keyPage of KEY_PAGES) {
       )
       .join("\n");
 
-    expect(serious, `Serious/critical WCAG 2.1 A/AA violations on ${keyPage.path}:\n${summary}`).toHaveLength(0);
+    expect(serious, `Serious/critical WCAG 2.2 A/AA violations on ${keyPage.path}:\n${summary}`).toHaveLength(0);
   });
 }

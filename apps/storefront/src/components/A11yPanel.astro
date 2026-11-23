@@ -1,0 +1,148 @@
+---
+/**
+ * The public reading-preferences panel (issue #539, ADR-0057) — a floating
+ * button and a non-modal dialog that let a visitor choose how THIS site is
+ * displayed to them: text size, high contrast, monochrome, dyslexia-friendly
+ * text, underlined or highlighted links, reduced motion.
+ *
+ * What it is NOT: an accessibility overlay. It never rewrites content, never
+ * injects ARIA, never claims the site conforms to anything and loads no third-
+ * party code. The site's own markup must already meet WCAG 2.2 AA; this panel
+ * is a supplement for visitors whose needs the browser and OS do not already
+ * cover. Choices stay in the visitor's `localStorage` (key `awcms-a11y`, see
+ * `src/lib/a11y-preferences.ts`) and are never sent anywhere.
+ *
+ * ## Markup rules
+ *
+ * - **Progressive enhancement.** Both the button and the dialog are rendered
+ *   `hidden`; `src/scripts/a11y-panel.ts` reveals the button once it runs. With
+ *   JavaScript off nothing here is visible or focusable, and the OS media
+ *   queries (`prefers-contrast`, `prefers-reduced-motion`) still apply through
+ *   `src/styles/a11y.css`.
+ * - **A non-modal `role="dialog"`**, labelled by its heading and described by
+ *   its one-line summary, deliberately WITHOUT `aria-modal`: the page behind
+ *   stays reachable so a visitor can watch a preference take effect.
+ * - **Every control carries a real name.** The six switches are native
+ *   `<button role="switch" aria-checked>` whose accessible name is the label
+ *   text and whose description is the muted line under it
+ *   (`aria-labelledby`/`aria-describedby`), each row one >=44px target; the text
+ *   size is a native radio group (`<fieldset>`/`<legend>`) styled as a
+ *   segmented control.
+ * - **No inline `style=""` and no inline script** — `style-src 'self'` and
+ *   `script-src 'self'` (server/penyaji.mjs) forbid both; all presentation is
+ *   in `src/styles/a11y.css`.
+ *
+ * UI copy is Indonesian, like the rest of this storefront (`<html lang="id">`).
+ */
+import { SWITCH_KEYS, TEXT_SIZES, type SwitchKey, type TextSize } from "../lib/a11y-preferences";
+
+interface Props {
+  /** The site name shown in the panel's eyebrow, e.g. "BjekMart · Ramah baca". */
+  siteName: string;
+}
+
+const { siteName } = Astro.props;
+
+const TEXT_LABELS: Record<TextSize, string> = {
+  normal: "Normal",
+  large: "Besar",
+  "x-large": "Sangat besar"
+};
+
+const SWITCH_COPY: Record<SwitchKey, { label: string; description?: string }> = {
+  contrast: { label: "Kontras tinggi", description: "Perjelas perbedaan teks, garis, dan foto" },
+  mono: { label: "Mode monokrom", description: "Tampilan hitam-putih" },
+  dyslexia: { label: "Teks ramah disleksia", description: "Huruf sans bersih dengan spasi lebar" },
+  underline: { label: "Garis bawah semua tautan" },
+  highlight: { label: "Sorot tautan kontras tinggi", description: "Tandai tautan dengan warna kuning" },
+  motion: { label: "Kurangi gerakan", description: "Hentikan animasi dan teks berjalan" }
+};
+---
+
+<div class="a11y" data-a11y-root>
+  <button
+    type="button"
+    class="a11y__fab"
+    id="a11y-fab"
+    aria-label="Pengaturan aksesibilitas"
+    aria-expanded="false"
+    aria-controls="a11y-panel"
+    hidden
+    data-a11y-fab
+  >
+    <svg class="a11y__icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="10.25" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+      <circle cx="12" cy="6.9" r="1.6" fill="currentColor"></circle>
+      <path
+        d="M6.6 9.7h10.8M12 9.7v4.2M12 13.9l-2.5 4.4M12 13.9l2.5 4.4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+    <span class="visually-hidden">Pengaturan aksesibilitas</span>
+  </button>
+
+  <div
+    class="a11y__panel"
+    id="a11y-panel"
+    role="dialog"
+    aria-labelledby="a11y-title"
+    aria-describedby="a11y-summary"
+    hidden
+    data-a11y-panel
+  >
+    <div class="a11y__header">
+      <div class="a11y__heading">
+        <p class="a11y__eyebrow">{siteName} &middot; Ramah baca</p>
+        <h2 class="a11y__title" id="a11y-title" tabindex="-1" data-a11y-title>Pengaturan Aksesibilitas</h2>
+        <p class="a11y__summary" id="a11y-summary">Sesuaikan tampilan situs agar nyaman dibaca.</p>
+      </div>
+      <button type="button" class="a11y__close" aria-label="Tutup pengaturan aksesibilitas" data-a11y-close>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="a11y__body">
+      <fieldset class="a11y__group">
+        <legend class="a11y__legend">Ukuran teks</legend>
+        <div class="a11y__segments">
+          {TEXT_SIZES.map((size) => (
+            <label class="a11y__segment">
+              <input type="radio" name="a11y-text" value={size} class="a11y__radio" data-a11y-size={size} />
+              <span class="a11y__segment-face">{TEXT_LABELS[size]}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div class="a11y__switches">
+        {SWITCH_KEYS.map((key) => (
+          <button
+            type="button"
+            role="switch"
+            aria-checked="false"
+            class="a11y__switch"
+            aria-labelledby={`a11y-${key}-label`}
+            aria-describedby={SWITCH_COPY[key].description ? `a11y-${key}-desc` : undefined}
+            data-a11y-switch={key}
+          >
+            <span class="a11y__switch-text">
+              <span class="a11y__switch-label" id={`a11y-${key}-label`}>{SWITCH_COPY[key].label}</span>
+              {SWITCH_COPY[key].description && (
+                <span class="a11y__switch-desc" id={`a11y-${key}-desc`}>{SWITCH_COPY[key].description}</span>
+              )}
+            </span>
+            <span class="a11y__track" aria-hidden="true"><span class="a11y__knob"></span></span>
+          </button>
+        ))}
+      </div>
+
+      <button type="button" class="a11y__reset" data-a11y-reset>Reset ke standar</button>
+      <p class="a11y__note">Tersimpan hanya di perangkat ini, tidak dikirim ke server.</p>
+    </div>
+  </div>
+</div>

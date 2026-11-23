@@ -386,10 +386,19 @@
   50% { opacity: 0.35; }
 }
 
+/* Issue #539: the pulse also stops for an explicit "Kurangi gerakan" choice in
+   the reading-preferences panel. `a11y.css`'s universal reduce-motion rule
+   already covers it; this names the one animation in this file so it is
+   never forgotten here. The OS setting applies only while nothing is stored
+   (`data-a11y-user`), so an explicit "off" in the panel really is off. */
 @media (prefers-reduced-motion: reduce) {
-  .ticker-berita__titik {
+  :root:not([data-a11y-user]) .ticker-berita__titik {
     animation: none;
   }
+}
+
+html[data-a11y-motion="reduce"] .ticker-berita__titik {
+  animation: none;
 }
 
 /* One line, ellipsis rather than the horizontal scroll this list used
@@ -462,6 +471,13 @@
   margin-bottom: 0.35rem;
 }
 
+.footer-berita a {
+  display: inline-flex;
+  align-items: center;
+  /* WCAG 2.2 SC 2.5.8 (issue #542): see `.site-footer a` in `global.css`. */
+  min-block-size: var(--target-min);
+}
+
 .footer-berita__kontak {
   display: flex;
   flex-direction: column;
@@ -497,6 +513,10 @@
  */
 .footer-berita__buletin form {
   display: grid;
+  /* `minmax(0, 1fr)`, not the implicit `auto` track (issue #539): see the same
+     rule in `Sidebar.astro` — the e-mail field's intrinsic width otherwise
+     widens the column past a 360px phone at extra-large text. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.5rem;
   margin-block: 0.5rem 0.75rem;
 }

@@ -141,6 +141,11 @@ describe("profil build smoke: every profile builds against the stub CMS and ship
         if (profile === "berita") expect(home).toContain('class="nav-berita');
         if (profile === "landing") expect(home).toContain('id="landing-heading"');
         expect(home).toContain('href="#konten"');
+
+        // --- reading preferences: the early-apply file ships as a plain file, byte for byte
+        expect(exists("a11y-early.js")).toBe(true);
+        expect(readDistText("a11y-early.js")).toContain('localStorage.getItem("awcms-a11y")');
+
         expect(home).toContain('<main id="konten">');
 
         // --- every page: internal links stay inside the profile and resolve; no inline script/style
@@ -163,6 +168,19 @@ describe("profil build smoke: every profile builds against the stub CMS and ship
           }
           expect(markupOnly).not.toMatch(/<style[\s>]/i);
           expect(html).not.toMatch(/\sstyle="/i);
+
+          // Reading-preferences panel (issue #539, ADR-0057): on every page of every profile.
+          // The early-apply file is a same-origin classic blocking script (no defer/async/module)
+          // placed before the first stylesheet; the button and the dialog are server-rendered
+          // `hidden`, so a visitor without JavaScript never meets them.
+          const earlyTag = /<script src="\/a11y-early\.js"><\/script>/.exec(html);
+          expect(earlyTag === null ? `${page}: no early-apply script` : "ok").toBe("ok");
+          const firstStylesheet = html.search(/<link[^>]+rel="stylesheet"/);
+          if (earlyTag && firstStylesheet !== -1) expect(earlyTag.index).toBeLessThan(firstStylesheet);
+          expect(/<button[^>]*\shidden[^>]*data-a11y-fab/.test(html) ? "ok" : `${page}: floating button not rendered hidden`).toBe("ok");
+          expect(/<div[^>]*\shidden[^>]*data-a11y-panel/.test(html) ? "ok" : `${page}: panel not rendered hidden`).toBe("ok");
+          expect(html).toContain('role="dialog"');
+          expect(html).not.toContain("aria-modal");
         }
         expect(excludedHits).toEqual([]);
         expect(dead).toEqual([]);
