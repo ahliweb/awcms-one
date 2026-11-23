@@ -51,6 +51,32 @@ describe("tools/ci/lib/exec.ts wall-clock timeout (issue #532)", () => {
     expect(await waitGone(childPid)).toBe(true);
   });
 
+  test("a SIGTERM to the orchestrator is forwarded to a running budgeted step's group", async () => {
+    // A tiny orchestrator: runs a budgeted step that prints its child's PID
+    // to a file, then waits. Killing the orchestrator must not orphan it.
+    const dir = mkdtempSync(join(tmpdir(), "local-ci-fwd-"));
+    try {
+      const pidFile = join(dir, "child.pid");
+      const script = join(dir, "orchestrator.ts");
+      const execPath = join(import.meta.dir, "..", "tools", "ci", "lib", "exec.ts");
+      await Bun.write(
+        script,
+        `import { run } from ${JSON.stringify(execPath)};\n` +
+          `await run(["sh", "-c", "sleep 60 & echo $! > ${pidFile}; wait"], { timeoutMs: 60_000 });\n`,
+      );
+      const orchestrator = Bun.spawn(["bun", script], { stdout: "ignore", stderr: "ignore" });
+      const end = Date.now() + 5000;
+      while (!existsSync(pidFile) && Date.now() < end) await new Promise((r) => setTimeout(r, 25));
+      const childPid = Number(readFileSync(pidFile, "utf8").trim());
+      expect(alive(childPid)).toBe(true);
+      orchestrator.kill("SIGTERM");
+      await orchestrator.exited;
+      expect(await waitGone(childPid)).toBe(true);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   test("a step that finishes within budget is unaffected", async () => {
     const result = await run(
       ["sh", "-c", "echo hello; echo oops >&2; exit 3"],

@@ -85,6 +85,31 @@ function signalGroup(pid: number, signal: NodeJS.Signals): void {
 }
 
 /**
+ * Process groups of budgeted steps that are still running. A detached step
+ * no longer shares the terminal's foreground group, so a Ctrl-C (SIGINT) or
+ * a SIGTERM/SIGHUP sent to `bun run ci` would otherwise leave it running
+ * after the orchestrator is gone. The forwarders below pass the signal on to
+ * every live group, then re-raise it so the orchestrator still dies the
+ * default way; on a normal exit any survivor is killed.
+ */
+const liveGroups = new Set<number>();
+let forwardersInstalled = false;
+
+function installSignalForwarders(): void {
+  if (forwardersInstalled) return;
+  forwardersInstalled = true;
+  for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"] as const) {
+    process.once(signal, () => {
+      for (const pid of liveGroups) signalGroup(pid, signal === "SIGHUP" ? "SIGTERM" : signal);
+      process.kill(process.pid, signal);
+    });
+  }
+  process.once("exit", () => {
+    for (const pid of liveGroups) signalGroup(pid, "SIGKILL");
+  });
+}
+
+/**
  * Run a command (argv array) to completion, capturing its output.
  *
  * @param {string[]} argv - `argv[0]` is the executable, never a shell string
@@ -103,6 +128,11 @@ export async function run(argv: string[], options: RunOptions = {}): Promise<Run
     detached: hasBudget
   });
 
+  if (hasBudget) {
+    installSignalForwarders();
+    liveGroups.add(proc.pid);
+  }
+
   let timedOut = false;
   let killTimer: ReturnType<typeof setTimeout> | undefined;
   const termTimer = hasBudget
@@ -120,6 +150,7 @@ export async function run(argv: string[], options: RunOptions = {}): Promise<Run
   // The leader may exit on SIGTERM while a child ignores it: sweep the group
   // so no descendant outlives a timed-out step.
   if (timedOut) signalGroup(proc.pid, "SIGKILL");
+  liveGroups.delete(proc.pid);
 
   let stdout = "";
   let stderr = "";
