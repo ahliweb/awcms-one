@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](audit-paritas-kontrak-cms-storefront.md)
 
-<!-- i18n-source-hash: sha256:ace99f0692f02255d57167f7f1c1aa14895db3acb50fdd9a6d8c86da8d1fdb9c -->
+<!-- i18n-source-hash: sha256:79943781168056e9a0e0291fefd2ba1fa1e776d971e87cba0a6f30907ae8afa2 -->
 
 # Audit paritas kontrak: CMS dan storefront, tiga profil (issue #547)
 
@@ -239,6 +239,10 @@ Ini awalnya usulan. Setelah keputusan pemilik 20 November 2026 (bagian 8.1) ia d
 Batas yang perlu diingat pembaca: perilaku berbasis database tidak dieksekusi; perbandingan fixture dan pemindaian `RATE_LIMITED` adalah pemeriksaan statis sekali pakai; audit membaca satu snapshot dan PR #530 dapat mengubahnya.
 
 ## Changelog
+
+### 2026-11-24 (gerbang untuk F-02 mendarat, issue #553)
+
+- Gerbang fixture-terhadap-skema dari Issue A kini ada: `tests/fixture-skema-openapi.test.mjs` dengan peta dan pengecualian bertanggal di `tests/support/fixture-skema-mapa.mjs`, dijalankan oleh `bun test` root (`local-ci/check-toko`). Seluruh 24 berkas fixture terpetakan: 11 respons bersih, 3 respons yang melanggar skema (F-03 sampai F-05) dan dibawa sebagai pengecualian, 4 subset yang dinyatakan, 2 tabel pencarian, dan 4 berkas bukan-respons. F-03, F-04 dan F-05 dicatat sebagai pengecualian yang menunjuk #554 dan ditinjau paling lambat 15 Desember 2026; gerbang gagal bila salah satunya tidak lagi cocok, sehingga #554 harus menghapusnya. Eksekusi pertama menemukan dua pelanggaran yang tidak tercantum di audit ini (pengecualian N-01: `own_work` di `media-objects.json`; N-02: field `videoNews` yang tidak dideklarasikan spesifikasi, di `blog-posts.json`). Temuan dan baseline audit selebihnya tidak berubah.
 
 ### 2026-11-20 (keputusan pemilik)
 

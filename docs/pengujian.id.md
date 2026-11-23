@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:7df3c913f3bf31fe586255a65c4a01612bf4be16817d7c7ec459160d3d769db4 -->
+<!-- i18n-source-hash: sha256:5010426d45ff45638e0eedd39ffd2d60200f1ad026738fb8348a95de389ee909 -->
 
 # Pengujian
 
@@ -9,6 +9,8 @@ Tiga tingkat, masing-masing dimiliki workspace berbeda, dijalankan oleh dua job 
 ## 1. Root gate suite (`bun test` dari root repo)
 
 Tidak butuh basis data, tidak butuh build, dan tidak butuh jaringan di luar `bun install`. Mengecualikan `apps/cms/**` sepenuhnya lewat `[test] pathIgnorePatterns` milik `bunfig.toml` (CI memanggil `bun test` telanjang, dan flag pada `bun run test` diam-diam tidak akan berlaku pada pemanggilan telanjang itu). Mencakup gate milik-root repositori ini sendiri (audit dokumentasi, pemeriksaan artefak knowledge-graph, konvensi changeset/rilis, pemeriksaan pin-toolchain, [`tests/kontrak-arah-impor.test.mjs`](../tests/kontrak-arah-impor.test.mjs)) **plus setiap tes unit, build-smoke, dan rute milik `apps/storefront` sendiri** — `apps/storefront` tidak punya skrip `test` sendiri; berkas `tests/*.test.ts`-nya berjalan sebagai bagian dari pemanggilan `bun test` root yang sama ini, di seluruh workspace.
+
+Issue #553 menambahkan [`tests/fixture-skema-openapi.test.mjs`](../tests/fixture-skema-openapi.test.mjs), gerbang yang menilai setiap fixture stub di `apps/storefront/tests/fixtures/awcms` terhadap skema respons OpenAPI yang sesuai dari bundel yang ter-commit (`apps/cms/openapi/`, hanya dibaca; Ajv 2020 plus parser YAML bawaan Bun; tanpa basis data dan jaringan). Peta yang ditinjau dan pengecualian bertanggal ada di `tests/support/fixture-skema-mapa.mjs`, aturannya di `tests/support/fixture-skema.mjs`. Fixture baru butuh satu baris di peta dalam perubahan yang sama; properti yang tidak dideklarasikan adalah galat; subset menyebut field wajib yang ia lewatkan; pelanggaran yang diketahui adalah pengecualian yang menunjuk issue perbaikannya, gagal bila tidak lagi cocok, dan gagal setelah tanggal tinjauannya. Lihat [`audit-paritas-kontrak-cms-storefront.md`](audit-paritas-kontrak-cms-storefront.md) (F-02, bagian 8.2).
 
 Dua tambahan increment 6 juga hidup di sini: [`tests/seed-profil.test.mjs`](../tests/seed-profil.test.mjs) (issue #139 — validasi schema/no-PII/aset dan `--dry-run` untuk keempat profil `tools/seed-cms.ts`) dan [`tests/template-init.test.mjs`](../tests/template-init.test.mjs) (issue #138 — rencana dry-run `template:init`, run penuh nyata per profil di salinan sementara, idempotensi, penolakan working tree kotor, kode keluar flag yang hilang). Yang kedua **melewati dirinya sendiri begitu `package.json.name !== "awcms-one"`**, dicetak sebagai satu baris SKIPPED yang jelas — tanpa guard itu, `bun test` akhir yang dijalankan sebuah run `template:init` akan menemukan dan menjalankan ulang tes full-run-nya sendiri di dalam repositori yang baru saja diinisialisasinya, yang langkah salinan-sementaranya kemudian tersedak pada `git ls-files` yang masih mendaftar path yang sudah dihapus langkah penghapusan run yang sama. Lihat [`docs/template.md`](template.id.md) untuk apa yang sebenarnya ditegaskan tes setiap alat.
 

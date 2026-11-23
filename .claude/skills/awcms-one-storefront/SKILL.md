@@ -95,6 +95,8 @@ AWCMS_API_URL=http://localhost:4310 AWCMS_API_TOKEN=stub-token \
 
 `apps/storefront/scripts/stub-awcms.mjs` serves every endpoint this app calls, including the storefront-commerce state machine (quote → create order → track → confirm payment → cancel) from fixtures under `tests/fixtures/awcms/`. If your page calls a new endpoint, extend the stub and its fixtures in the same change — a page whose only proof of correctness is "it compiled" is not proven.
 
+**A new or changed fixture under `apps/storefront/tests/fixtures/awcms/` is judged against the OpenAPI response schema** by `tests/fixture-skema-openapi.test.mjs` (issue #553): add its line to `tests/support/fixture-skema-mapa.mjs` in the same change (operation, kind, reason), and do not loosen the check to make a fixture pass - a deliberate subset names the required fields it omits, a known violation is a dated exception that points at its fixing issue.
+
 ```bash
 bun run check         # astro check — type errors, checks every profile's src/profil/** too
 bun test               # from the repo root — every storefront unit/build-smoke/route test runs here (SITE_PROFILE=toko, the default)
