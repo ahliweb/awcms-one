@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:bbb307ff495f7db8bf1146088ce60af7f42037018e2e7b603132b68521f099ae -->
+<!-- i18n-source-hash: sha256:db0b60f8e74444f887577bc4d73ecbc082f1b3b8f006a7a40aca28e45b536c35 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -287,7 +287,7 @@ Kode repo ini sendiri — `packages/gerbang/`, `tools/`, `tests/`, beserta ident
 
 ## Orchestrator & Agent (model AI)
 
-> Standar lintas-portofolio dari [`ahliweb/personal-coding`](https://github.com/ahliweb/personal-coding/blob/main/docs/tingkatan-model-ai-claude-openai.md) (docs/tingkatan-model-ai-claude-openai.md, snapshot 2026-10-28). Harga, effort, dan lini model dipelihara di sana — jangan disalin ke repo ini.
+> Standar lintas-portofolio internal tentang tingkatan model AI (snapshot 2026-10-28). Harga, effort, dan lini model dipelihara di standar internal itu — jangan disalin ke repo ini.
 
 Pekerjaan yang perlu dipecah ke beberapa agent memakai pola **orchestrator → agent**. Orchestrator memecah pekerjaan, membagi tugas, mengatur ketergantungan, lalu memeriksa dan menyatukan hasil; agent mengerjakan satu bagian yang sudah dibatasi.
 
