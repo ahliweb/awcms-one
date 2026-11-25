@@ -180,9 +180,28 @@ function makeTempCopy() {
   return dir;
 }
 
+/**
+ * Removes one temp copy and PROVES it is gone (issue #592). Under `bun test`
+ * (Bun 1.4.4) with `TMPDIR` on a disk filesystem, `rmSync(…, { recursive,
+ * force })` was observed to return without an error while leaving the whole
+ * ~13.9k-file copy in place — five of the six copies per run, ~38 GB across
+ * four days on the shared local-CI host; on tmpfs it removed them all. The
+ * mechanism inside Bun is not proven, so instead of trusting the call this
+ * checks the result, falls back to `rm -rf`, and throws if the tree still
+ * survives — a leak now fails the suite instead of passing silently.
+ */
+function removeTempCopy(dir) {
+  rmSync(dir, { recursive: true, force: true });
+  if (!existsSync(dir)) return;
+  const fallback = Bun.spawnSync(["rm", "-rf", "--", dir]);
+  if (existsSync(dir)) {
+    throw new Error(`could not remove temp copy ${dir} (rmSync left it in place; rm -rf exited ${fallback.exitCode})`);
+  }
+}
+
 afterEach(() => {
   while (tempDirs.length) {
-    rmSync(tempDirs.pop(), { recursive: true, force: true });
+    removeTempCopy(tempDirs.pop());
   }
 });
 
