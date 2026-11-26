@@ -310,7 +310,7 @@ export function createNewsMediaR2Client(
     async headObject(objectKey) {
       const attemptedAt = new Date();
 
-      if (!breaker.canAttempt(attemptedAt)) {
+      if (!breaker.tryAcquire(attemptedAt)) {
         return {
           ok: false,
           error: "News media R2 circuit breaker is open; skipping attempt."
@@ -350,7 +350,7 @@ export function createNewsMediaR2Client(
     async getObject(objectKey, maxBytes) {
       const attemptedAt = new Date();
 
-      if (!breaker.canAttempt(attemptedAt)) {
+      if (!breaker.tryAcquire(attemptedAt)) {
         return {
           ok: false,
           error: "News media R2 circuit breaker is open; skipping attempt."
@@ -382,7 +382,7 @@ export function createNewsMediaR2Client(
     async listObjects({ prefix, continuationToken, maxKeys }) {
       const attemptedAt = new Date();
 
-      if (!breaker.canAttempt(attemptedAt)) {
+      if (!breaker.tryAcquire(attemptedAt)) {
         return {
           ok: false,
           error: "News media R2 circuit breaker is open; skipping attempt."
@@ -424,7 +424,7 @@ export function createNewsMediaR2Client(
     async deleteObject(objectKey) {
       const attemptedAt = new Date();
 
-      if (!breaker.canAttempt(attemptedAt)) {
+      if (!breaker.tryAcquire(attemptedAt)) {
         return {
           ok: false,
           error: "News media R2 circuit breaker is open; skipping attempt."

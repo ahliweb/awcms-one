@@ -657,3 +657,38 @@ export function ubahPreferensiPush(
     )
   );
 }
+
+// ---------------------------------------------------------------------------
+// Issue #529 (ADR-0055 D3) - the shopper's OWN data-subject rights. Bearer-only
+// (wrapped in `denganPembersihanSesi`, so a `401` clears the stored session),
+// each call needs a fresh one-time code mailed to the account by `mintaKodePrivasi`.
+// The export bundle is returned ONCE and is never stored by the store; this
+// client never keeps it either: the caller hands it to the browser as a file.
+// An erasure answers `409 ERASURE_REFUSED` (an ordinary `TokoApiError`, its
+// `details.refusals` read by `privasi-kontrak.ts`) while something is still open.
+// ---------------------------------------------------------------------------
+
+const PRIVASI_BASE = "/account/privacy";
+
+export type JenisPermintaanPrivasi = "export" | "erasure";
+
+/** `POST …/account/privacy/otp` - mails a fresh code for an export or an erasure to the account's own address. */
+export function mintaKodePrivasi(jenis: JenisPermintaanPrivasi): Promise<{ sent: true; expiresInSeconds: number }> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<{ sent: true; expiresInSeconds: number }>(`${PRIVASI_BASE}/otp`, "POST", { type: jenis }, authHeader())
+  );
+}
+
+/** `POST …/account/privacy/export` - the whole bundle, as the raw body (`privasi-kontrak.ts` reads what it needs). `400 OTP_INVALID` for ANY code failure. */
+export function eksporDataSaya(code: string): Promise<{ bundle: unknown }> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<{ bundle: unknown }>(`${PRIVASI_BASE}/export`, "POST", { code }, authHeader())
+  );
+}
+
+/** `POST …/account/privacy/erasure` - needs an `Idempotency-Key`, generated once per attempt by the page and reused on a retry. */
+export function hapusDataSaya(code: string, idempotencyKey: string): Promise<unknown> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(`${PRIVASI_BASE}/erasure`, "POST", { code }, { ...authHeader(), ...kunciHeader(idempotencyKey) })
+  );
+}

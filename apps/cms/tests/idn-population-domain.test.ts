@@ -1,774 +1,567 @@
 /**
- * Unit tests for the pure population-statistics domain (awcms-one ADR-0051):
- * the CSV parser, the validation + consistency checks, and small-cell
- * suppression. No database, no filesystem.
+ * Unit tests for the Kepmendagri population importer (awcms-one ADR-0053),
+ * without a database: the strict dump parser, the typed row readers, the
+ * validation and mapping onto regions (including the float-truncated-code
+ * repair), the provenance verification of the source files, and one run over
+ * the REAL vendored files against the REAL vendored region dump.
  */
-import { describe, expect, test } from "bun:test";
+import { rm } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
+import { afterAll, describe, expect, test } from "bun:test";
 
 import {
-  parsePopulationCsv,
-  POPULATION_CSV_HEADER
-} from "../src/modules/idn-admin-regions/domain/population-csv";
-import { parsePopulationManifest } from "../src/modules/idn-admin-regions/domain/population-manifest";
+  planPopulationImport,
+  PopulationImportError,
+  readPopulationSources,
+  type ActiveRegionDataset
+} from "../src/modules/idn-admin-regions/application/population-import";
 import {
-  isSmallCell,
-  suppressSmallCells
-} from "../src/modules/idn-admin-regions/domain/population-privacy";
+  parseValueDump,
+  readTupleLine
+} from "../src/modules/idn-admin-regions/domain/population-dump-parser";
 import {
-  doubledToleranceCents,
-  validatePopulationRecords,
-  type PopulationValidationResult
+  AREA_DUMP_EXPECTATION,
+  AREA_SOURCE_TABLE,
+  derivePopulationDatasetCode,
+  headerCites,
+  POPULATION_DECREE_REFERENCE,
+  POPULATION_DUMP_EXPECTATION,
+  POPULATION_SOURCE_TABLE,
+  readAreaRows,
+  readPopulationRows
+} from "../src/modules/idn-admin-regions/domain/population-source";
+import {
+  areaToThousandths,
+  buildPopulationFigures,
+  floatTruncationCandidate,
+  type RegionFact
 } from "../src/modules/idn-admin-regions/domain/population-validation";
+import { normalizeRegionRow } from "../src/modules/idn-admin-regions/domain/region-normalization";
+import { parseWilayahDump } from "../src/modules/idn-admin-regions/domain/wilayah-dump-parser";
+import {
+  FIXTURE_REGION_ROWS,
+  readFixture,
+  stageSources,
+  type StageOptions
+} from "./fixtures/idn-population/stage-sources";
 
-const HEADER = POPULATION_CSV_HEADER.join(",");
+const FIXTURE_REGIONS = new Map<string, RegionFact>(
+  FIXTURE_REGION_ROWS.map((row) => [
+    row.code,
+    { level: row.code.split(".").length, name: row.name }
+  ])
+);
 
-/** Region dataset: province 62 with two regencies, one of which has two districts. */
-const REGIONS = new Map<string, number>([
-  ["62", 1],
-  ["62.01", 2],
-  ["62.71", 2],
-  ["62.71.01", 3],
-  ["62.71.02", 3],
-  ["11", 1]
-]);
+const roots: string[] = [];
+afterAll(async () => {
+  for (const root of roots) await rm(root, { recursive: true, force: true });
+});
 
-type Cell = {
-  code: string;
-  dim?: string;
-  cat?: string;
-  sex?: string;
-  value: string | number;
-  unit?: string;
-  year?: number;
-  basis?: string;
-  universe?: string;
-  table?: string;
-  note?: string;
-  label?: string;
-  level?: number;
-};
-
-function line(cell: Cell): string {
-  return [
-    cell.code,
-    cell.level ?? cell.code.split(".").length,
-    `Region ${cell.code}`,
-    cell.dim ?? "total",
-    cell.cat ?? "total",
-    cell.sex ?? "",
-    cell.value,
-    cell.unit ?? "jiwa",
-    cell.year ?? 2025,
-    cell.basis ?? "projection",
-    cell.universe ?? "total_population",
-    cell.table ?? "T1",
-    "10",
-    cell.note ?? "",
-    cell.label ?? ""
-  ].join(",");
+async function stage(options: StageOptions = {}): Promise<string> {
+  const root = await stageSources(options);
+  roots.push(root);
+  return root;
 }
 
-function run(
-  cells: Cell[],
-  options: { coverage?: string } = {}
-): PopulationValidationResult {
-  const parsed = parsePopulationCsv([HEADER, ...cells.map(line)].join("\n"));
-  expect(parsed.errors).toEqual([]);
-  return validatePopulationRecords(parsed.records, {
-    regionLevels: REGIONS,
-    coverageRegionCode: options.coverage ?? "62"
+function figuresOf(
+  populationText: string,
+  areaText: string,
+  regions: ReadonlyMap<string, RegionFact> = FIXTURE_REGIONS
+) {
+  const population = readPopulationRows(
+    parseValueDump(populationText, POPULATION_DUMP_EXPECTATION)
+  );
+  const area = readAreaRows(parseValueDump(areaText, AREA_DUMP_EXPECTATION));
+  expect([...population.errors, ...area.errors]).toEqual([]);
+  return buildPopulationFigures({
+    population: {
+      rows: population.rows,
+      sourceTable: POPULATION_SOURCE_TABLE,
+      referenceYear: 2025
+    },
+    area: {
+      rows: area.rows,
+      sourceTable: AREA_SOURCE_TABLE,
+      referenceYear: 2024
+    },
+    regions
   });
 }
 
-describe("parsePopulationCsv", () => {
-  test("parses a well-formed file with LF, CRLF and a BOM", () => {
-    const body = `${HEADER}\n${line({ code: "62", value: 5 })}\n`;
-    for (const text of [body, body.replaceAll("\n", "\r\n"), `﻿${body}`]) {
-      const result = parsePopulationCsv(text);
-      expect(result.errors).toEqual([]);
-      expect(result.records).toHaveLength(1);
-      expect(result.records[0]?.region_code).toBe("62");
-      expect(result.records[0]?.lineNumber).toBe(2);
-    }
-  });
-
-  test("handles quoted fields with commas, doubled quotes and newlines", () => {
-    const row = `62,1,"Provinsi, ""Uji""",total,total,,5,jiwa,2025,projection,total_population,"T 1\nbis",10,,`;
-    const result = parsePopulationCsv(
-      `${HEADER}\n${row}\n${line({ code: "11", value: 1 })}`
-    );
-    expect(result.errors).toEqual([]);
-    expect(result.records[0]?.source_region_name).toBe('Provinsi, "Uji"');
-    expect(result.records[0]?.source_table).toBe("T 1\nbis");
-    expect(result.records[1]?.lineNumber).toBe(4);
-  });
-
-  test("rejects a wrong header, a short row and an unclosed quote", () => {
-    expect(parsePopulationCsv("a,b\n1,2").errors[0]).toMatch(
-      /header must be exactly/
-    );
-    expect(parsePopulationCsv("").errors[0]).toMatch(/empty/);
-    const short = parsePopulationCsv(`${HEADER}\n62,1,x`);
-    expect(short.errors[0]).toMatch(/expected 15 fields, found 3/);
-    expect(parsePopulationCsv(`${HEADER}\n62,"x`).errors.join()).toMatch(
-      /never closed/
-    );
-  });
-
-  test("ignores blank lines", () => {
-    const result = parsePopulationCsv(
-      `${HEADER}\n\n${line({ code: "62", value: 1 })}\n\n`
-    );
-    expect(result.errors).toEqual([]);
-    expect(result.records).toHaveLength(1);
-  });
-});
-
-describe("validatePopulationRecords: field rules", () => {
-  test("accepts a valid row and stores the published digits as text", () => {
-    const result = run([{ code: "62", value: "288.5", unit: "ribu_jiwa" }]);
-    expect(result.errors).toEqual([]);
-    expect(result.rows[0]?.value).toBe("288.50");
-    expect(result.rows[0]?.unit).toBe("ribu_jiwa");
-  });
-
-  test("keeps ribu_jiwa and jiwa apart: 2.84 ribu is never read as 2840", () => {
-    const ribu = run([{ code: "62", value: "2.84", unit: "ribu_jiwa" }]);
-    const jiwa = run([{ code: "62", value: "2840" }]);
-    expect(ribu.rows[0]?.value).toBe("2.84");
-    expect(jiwa.rows[0]?.value).toBe("2840.00");
-    // And a fractional jiwa is refused instead of being rounded.
-    expect(run([{ code: "62", value: "2.84" }]).errors.join()).toMatch(
-      /whole number/
-    );
-  });
-
-  test("rejects malformed values, enums and years", () => {
-    const bad = run([
-      { code: "62", value: '"1,5"' },
-      { code: "62.01", value: "-3", dim: "sex", cat: "laki_laki" },
-      { code: "62.71", value: 1, dim: "bogus" },
-      {
-        code: "62.71.01",
-        value: 1,
-        basis: "guess",
-        dim: "sex",
-        cat: "perempuan"
-      },
-      { code: "62.71.02", value: 1, year: 1900 }
-    ]);
-    const text = bad.errors.join("\n");
-    expect(text).toMatch(/value "1,5"/);
-    expect(text).toMatch(/value "-3"/);
-    expect(text).toMatch(/dimension "bogus"/);
-    expect(text).toMatch(/figure_basis "guess"/);
-    expect(text).toMatch(/reference_year "1900"/);
-  });
-
-  test("region_level must match the code and the active region dataset", () => {
-    expect(run([{ code: "62.71", value: 1, level: 1 }]).errors.join()).toMatch(
-      /does not match the shape/
-    );
-    expect(run([{ code: "62.09", value: 1 }]).errors.join()).toMatch(
-      /absent from the active region dataset: 62\.09/
-    );
-    const wrongLevel = new Map(REGIONS).set("62.71", 3);
-    const parsed = parsePopulationCsv(
-      [HEADER, line({ code: "62.71", value: 1 })].join("\n")
-    );
-    const result = validatePopulationRecords(parsed.records, {
-      regionLevels: wrongLevel,
-      coverageRegionCode: "62"
-    });
-    expect(result.errors.join()).toMatch(
-      /is level 3 in the active region dataset, not 2/
-    );
-  });
-
-  test("every code must lie inside the covered region", () => {
-    expect(run([{ code: "11", value: 1 }]).errors.join()).toMatch(
-      /outside the covered region 62/
-    );
-    expect(
-      run([{ code: "62.71", value: 1 }], { coverage: "62.71" }).errors
-    ).toEqual([]);
-    // '62.7' style prefix confusion: 62.71 is not inside 62.7
-    expect(
-      run([{ code: "62.71", value: 1 }], { coverage: "62.7" }).errors.join()
-    ).toMatch(/outside/);
-  });
-
-  test("sex must be empty for total and sex dimensions; categories follow the dimension", () => {
-    const text = run([
-      { code: "62", value: 1, dim: "total", sex: "laki_laki" },
-      { code: "62.01", value: 1, dim: "age_group", cat: "young" },
-      { code: "62.71", value: 1, dim: "religion", cat: "pagan" },
-      { code: "62.71.01", value: 1, dim: "sex", cat: "total" }
-    ]).errors.join("\n");
-    expect(text).toMatch(/sex must be empty for dimension total/);
-    expect(text).toMatch(/category "young" for age_group/);
-    expect(text).toMatch(/category "pagan" for religion/);
-    expect(text).toMatch(/category "total" for sex/);
-  });
-
-  test("category keys may end in + after a digit, in any segment; label and key length are bounded", () => {
-    const income = (cat: string, label = ""): Cell => ({
-      code: "62",
-      dim: "income",
-      cat,
-      value: 1000,
-      unit: "rupiah",
-      universe: "employees",
-      basis: "survey_estimate",
-      label
-    });
-    expect(run([income("kelompok_umur/60+")]).errors).toEqual([]);
-    expect(run([income("kelompok_umur/25-29")]).errors).toEqual([]);
-    expect(
-      run([{ code: "62", dim: "age_group", cat: "75+", value: 1 }]).errors
-    ).toEqual([]);
-    expect(run([income("kelompok_umur/60+x")]).errors.join()).toMatch(
-      /must be/
-    );
-    expect(run([income("kelompok_umur/a+")]).errors.join()).toMatch(/must be/);
-    expect(
-      run([
-        { code: "62", dim: "occupation", cat: "a".repeat(81), value: 1 }
-      ]).errors.join()
-    ).toMatch(/longer than 80/);
-    expect(
-      run([{ code: "62", dim: "occupation", cat: "a".repeat(80), value: 1 }])
-        .errors
-    ).toEqual([]);
-
-    const labelled = run([
-      {
-        code: "62",
-        dim: "occupation",
-        cat: "pertanian",
-        value: 1,
-        label: '"Pertanian, Kehutanan, dan ""Perikanan"""'
-      }
-    ]);
-    expect(labelled.errors).toEqual([]);
-    expect(labelled.rows[0]?.categoryLabel).toBe(
-      'Pertanian, Kehutanan, dan "Perikanan"'
-    );
-    expect(run([{ code: "62", value: 1 }]).rows[0]?.categoryLabel).toBeNull();
-    expect(
-      run([
-        {
-          code: "62",
-          dim: "occupation",
-          cat: "x",
-          value: 1,
-          label: "y".repeat(501)
-        }
-      ]).errors.join()
-    ).toMatch(/category_label is longer than 500/);
-  });
-
-  test("nil note only on zero; duplicate keys are named by line", () => {
-    expect(run([{ code: "62", value: 0, note: "nil" }]).errors).toEqual([]);
-    expect(run([{ code: "62", value: 3, note: "nil" }]).errors.join()).toMatch(
-      /only valid on a value of 0/
-    );
-    const dup = run([
-      { code: "62", value: 1 },
-      { code: "62", value: 2 }
-    ]);
-    expect(dup.errors.join()).toMatch(/line 3: duplicates line 2/);
-  });
-
-  test("rupiah belongs to income/expenditure only, with their universes", () => {
-    const ok = run([
-      {
-        code: "62",
-        dim: "income",
-        cat: "total",
-        value: 3500000,
-        unit: "rupiah",
-        universe: "employees",
-        basis: "survey_estimate"
-      },
-      {
-        code: "62",
-        dim: "expenditure",
-        cat: "kelompok_komoditas/makanan",
-        value: 900000,
-        unit: "rupiah",
-        universe: "per_capita",
-        basis: "survey_estimate"
-      }
-    ]);
-    expect(ok.errors).toEqual([]);
-    const text = run([
-      { code: "62", value: 5, unit: "rupiah" },
-      {
-        code: "62.01",
-        dim: "income",
-        cat: "total",
-        value: 5,
-        unit: "jiwa",
-        universe: "employees"
-      },
-      { code: "62.71", dim: "income", cat: "total", value: 5, unit: "rupiah" }
-    ]).errors.join("\n");
-    expect(text).toMatch(
-      /unit rupiah is only valid for income and expenditure/
-    );
-    expect(text).toMatch(/income must be in rupiah/);
-    expect(text).toMatch(/income must use universe employees/);
-  });
-});
-
-describe("validatePopulationRecords: consistency checks", () => {
-  test("sex parts must equal the total (jiwa is exact)", () => {
-    const base: Cell[] = [
-      { code: "62", value: 100 },
-      { code: "62", dim: "sex", cat: "laki_laki", value: 55 }
-    ];
-    const good = run([
-      ...base,
-      { code: "62", dim: "sex", cat: "perempuan", value: 45 }
-    ]);
-    expect(good.errors).toEqual([]);
-    expect(good.report.checksRun.sex_sum).toBe(1);
-
-    const bad = run([
-      ...base,
-      { code: "62", dim: "sex", cat: "perempuan", value: 44 }
-    ]);
-    expect(bad.errors.join()).toMatch(
-      /sex_sum failed.*add up to 99\.00 but 100\.00/
-    );
-  });
-
-  test("ribu_jiwa tolerance is 0.005 x (parts + 1): edge cases", () => {
-    // Two parts + the total: tolerance 0.015 -> 1 hundredth passes, 2 fail.
-    expect(doubledToleranceCents("ribu_jiwa", 2)).toBe(3);
-    expect(doubledToleranceCents("jiwa", 2)).toBe(0);
-    const cells = (female: string): Cell[] => [
-      { code: "62", value: "10.00", unit: "ribu_jiwa" },
-      {
-        code: "62",
-        dim: "sex",
-        cat: "laki_laki",
-        value: "5.00",
-        unit: "ribu_jiwa"
-      },
-      {
-        code: "62",
-        dim: "sex",
-        cat: "perempuan",
-        value: female,
-        unit: "ribu_jiwa"
-      }
-    ];
-    expect(run(cells("5.01")).errors).toEqual([]); // diff 0.01 <= 0.015
-    expect(run(cells("4.99")).errors).toEqual([]);
-    expect(run(cells("5.02")).errors.join()).toMatch(/sex_sum failed/); // diff 0.02 > 0.015
-    // Three parts: tolerance 0.02 -> 0.02 passes, 0.03 fails.
-    const three = (extra: string): Cell[] => [
-      { code: "62", value: "10.00", unit: "ribu_jiwa" },
-      ...["islam", "kristen", "katolik", "hindu", "buddha", "khonghucu"].map(
-        (cat, index): Cell => ({
-          code: "62",
-          dim: "religion",
-          cat,
-          unit: "ribu_jiwa",
-          value: index === 0 ? extra : "1.00"
-        })
-      )
-    ];
-    // 6 parts: tolerance 0.035. islam = 5.03 -> sum 10.03, diff 0.03 passes; 5.04 fails.
-    expect(run(three("5.03")).errors).toEqual([]);
-    expect(run(three("5.04")).errors.join()).toMatch(/religion_sum failed/);
-  });
-
-  test("age bands add up to the total, and to each sex's figure", () => {
-    const cells: Cell[] = [
-      { code: "62", value: 100 },
-      { code: "62", dim: "sex", cat: "laki_laki", value: 60 },
-      { code: "62", dim: "sex", cat: "perempuan", value: 40 },
-      { code: "62", dim: "age_group", cat: "0-14", value: 30 },
-      { code: "62", dim: "age_group", cat: "15-64", value: 60 },
-      { code: "62", dim: "age_group", cat: "65+", value: 10 },
-      {
-        code: "62",
-        dim: "age_group",
-        cat: "0-14",
-        sex: "laki_laki",
-        value: 20
-      },
-      {
-        code: "62",
-        dim: "age_group",
-        cat: "15-64",
-        sex: "laki_laki",
-        value: 35
-      },
-      { code: "62", dim: "age_group", cat: "65+", sex: "laki_laki", value: 5 }
-    ];
-    const result = run(cells);
-    expect(result.errors).toEqual([]);
-    expect(result.report.checksRun.age_group_sum).toBe(1);
-    expect(result.report.checksRun.age_group_by_sex_sum).toBe(1);
-
-    cells[8] = { ...cells[8]!, value: 6 };
-    expect(run(cells).errors.join()).toMatch(
-      /\[laki_laki\]: age_group_by_sex_sum failed/
-    );
-  });
-
-  test("an age band table with a missing band is SKIPPED, not failed and not filled", () => {
-    const result = run([
-      { code: "62", value: 100 },
-      { code: "62", dim: "age_group", cat: "0-14", value: 30 },
-      { code: "62", dim: "age_group", cat: "65+", value: 10 }
-    ]);
-    expect(result.errors).toEqual([]);
-    expect(result.report.checksRun.age_group_sum).toBe(0);
-    expect(result.report.checksSkipped.age_group_sum).toBe(1);
-    expect(result.report.skippedSamples.join()).toMatch(/age_group_sum/);
-  });
-
-  test("a missing total or missing sex skips the sex check", () => {
-    const noTotal = run([
-      { code: "62", dim: "sex", cat: "laki_laki", value: 5 },
-      { code: "62", dim: "sex", cat: "perempuan", value: 5 }
-    ]);
-    expect(noTotal.report.checksSkipped.sex_sum).toBe(1);
-    const noFemale = run([
-      { code: "62", value: 10 },
-      { code: "62", dim: "sex", cat: "laki_laki", value: 5 }
-    ]);
-    expect(noFemale.report.checksSkipped.sex_sum).toBe(1);
-    expect(noFemale.errors).toEqual([]);
-  });
-
-  test("religion sum needs all six core religions", () => {
-    const religions = [
-      "islam",
-      "kristen",
-      "katolik",
-      "hindu",
-      "buddha",
-      "khonghucu"
-    ];
-    const full = (islam: number): Cell[] => [
-      { code: "62", value: 100 },
-      ...religions.map((cat, index): Cell => ({
-        code: "62",
-        dim: "religion",
-        cat,
-        value: index === 0 ? islam : 10
-      }))
-    ];
-    expect(run(full(50)).errors).toEqual([]);
-    expect(run(full(49)).errors.join()).toMatch(/religion_sum failed/);
-    // kepercayaan on top of the six counts toward the sum.
-    expect(
-      run([
-        ...full(45),
-        { code: "62", dim: "religion", cat: "kepercayaan", value: 5 }
-      ]).errors
-    ).toEqual([]);
-    const partial = run([
-      { code: "62", value: 100 },
-      { code: "62", dim: "religion", cat: "islam", value: 90 }
-    ]);
-    expect(partial.errors).toEqual([]);
-    expect(partial.report.checksSkipped.religion_sum).toBe(1);
-  });
-
-  test("children add up to the parent, only when every child region is published", () => {
-    const parent: Cell = { code: "62", value: 100 };
-    const good = run([
-      parent,
-      { code: "62.01", value: 60 },
-      { code: "62.71", value: 40 }
-    ]);
-    expect(good.errors).toEqual([]);
-    expect(good.report.checksRun.children_sum).toBe(1);
-
-    const bad = run([
-      parent,
-      { code: "62.01", value: 60 },
-      { code: "62.71", value: 41 }
-    ]);
-    expect(bad.errors.join()).toMatch(
-      /children_sum failed.*add up to 101\.00 but 100\.00/
-    );
-
-    const missingChild = run([parent, { code: "62.01", value: 60 }]);
-    expect(missingChild.errors).toEqual([]);
-    expect(missingChild.report.checksSkipped.children_sum).toBe(1);
-    expect(missingChild.report.skippedSamples.join()).toMatch(
-      /1 of 2 child regions/
-    );
-
-    // A parent with nothing published beneath it is not a check at all.
-    const leaf = run([parent]);
-    expect(leaf.report.checksRun.children_sum).toBe(0);
-    expect(leaf.report.checksSkipped.children_sum).toBe(0);
-  });
-
-  test("children are compared only within the same measure and table", () => {
-    const result = run([
-      { code: "62", value: 100 },
-      { code: "62.01", value: 60, table: "T2" },
-      { code: "62.71", value: 999, table: "T2" }
-    ]);
-    // Parent in T1 has no children in T1: nothing compared, nothing failed.
-    expect(result.errors).toEqual([]);
-    expect(result.report.checksRun.children_sum).toBe(0);
-  });
-
-  test("sums are never mixed across reference years or figure bases", () => {
-    const result = run([
-      { code: "62", value: 100, year: 2025 },
-      { code: "62.01", value: 60, year: 2025 },
-      { code: "62.71", value: 40, year: 2024 }
-    ]);
-    expect(result.errors).toEqual([]);
-    expect(result.report.checksSkipped.children_sum).toBe(1);
-  });
-
-  test("each table keeps its own total: an age or religion table checks against ITS total", () => {
-    const religions = [
-      "islam",
-      "kristen",
-      "katolik",
-      "hindu",
-      "buddha",
-      "khonghucu"
-    ];
-    const cells = (islam: number): Cell[] => [
-      { code: "62", value: 100, table: "T1" },
-      { code: "62", value: 100, table: "T2" },
-      ...religions.map((cat, index): Cell => ({
-        code: "62",
-        dim: "religion",
-        cat,
-        value: index === 0 ? islam : 10,
-        table: "T2"
-      }))
-    ];
-    const good = run(cells(50));
-    expect(good.errors).toEqual([]);
-    expect(good.report.checksRun.religion_sum).toBe(1);
-    expect(good.report.checksSkipped.religion_sum).toBe(0);
-    expect(good.report.warningCount).toBe(0);
-    expect(run(cells(49)).errors.join()).toMatch(/religion_sum failed/);
-  });
-
-  test("the same figure in two tables is a WARNING when they disagree, never an error", () => {
-    const agree = run([
-      { code: "62", value: 100, table: "T1" },
-      { code: "62", value: 100, table: "T2" }
-    ]);
-    expect(agree.errors).toEqual([]);
-    expect(agree.report.warningCount).toBe(0);
-
-    const differ = run([
-      { code: "62", value: 100, table: "T1" },
-      { code: "62", value: 101, table: "T2" }
-    ]);
-    expect(differ.errors).toEqual([]);
-    expect(differ.report.warningCount).toBe(1);
-    expect(differ.report.warnings[0]).toMatch(
-      /T1 says 100\.00 but T2 says 101\.00/
-    );
-
-    // ribu_jiwa: one hundredth is within rounding, two are not.
-    const ribu = (b: string) =>
-      run([
-        { code: "62", value: "10.00", unit: "ribu_jiwa", table: "T1" },
-        { code: "62", value: b, unit: "ribu_jiwa", table: "T2" }
-      ]).report.warningCount;
-    expect(ribu("10.01")).toBe(0);
-    expect(ribu("10.02")).toBe(1);
-  });
-
-  test("one table may print the same figure under two bases", () => {
-    const result = run([
-      { code: "62", value: 100, basis: "projection" },
-      { code: "62", value: 98, basis: "registration" }
-    ]);
-    expect(result.errors).toEqual([]);
-    // Different bases are never compared against each other.
-    expect(result.report.warningCount).toBe(0);
-  });
-
-  test("a repeated key inside ONE table is still a duplicate", () => {
-    const result = run([
-      { code: "62", value: 1, table: "T1" },
-      { code: "62", value: 1, table: "T1" }
-    ]);
-    expect(result.errors.join()).toMatch(/duplicates line 2/);
-  });
-
-  test("rupiah rows are never summed", () => {
-    const income = (code: string, value: number): Cell => ({
-      code,
-      dim: "income",
-      cat: "total",
-      value,
-      unit: "rupiah",
-      universe: "employees",
-      basis: "survey_estimate"
-    });
-    // The regencies' averages do not add up to the province's, and must not be asked to.
-    const result = run([
-      income("62", 3_000_000),
-      income("62.01", 2_000_000),
-      income("62.71", 4_000_000)
-    ]);
-    expect(result.errors).toEqual([]);
-    expect(result.report.checksRun.children_sum).toBe(0);
-    expect(result.report.checksSkipped.children_sum).toBe(0);
-  });
-
-  test("consistency checks do not run on a file that already has field errors", () => {
-    const result = run([
-      { code: "62", value: 100 },
-      { code: "62.01", value: 1 },
-      { code: "62.71", value: "x" }
-    ]);
-    expect(result.errors.join()).not.toMatch(/children_sum/);
-  });
-});
-
-describe("parsePopulationManifest", () => {
-  const valid = {
-    datasetCode: "bps-6200-dalam-angka-2026",
-    publicationSeries: "provinsi_dalam_angka",
-    coverageRegionCode: "62",
-    coverageRegionLevel: 1,
-    publicationTitle: "T",
-    publisherName: "BPS",
-    publisherDomain: "6200",
-    publisherWebsite: "https://kalteng.bps.go.id",
-    attribution:
-      "Data diperoleh dari situs web resmi BPS (https://kalteng.bps.go.id).",
-    catalogueNumber: null,
-    publicationNumber: null,
-    issn: null,
-    publicationYear: 2026,
-    releaseDate: "2026-02-27",
-    publicationUrl: "https://kalteng.bps.go.id/x",
-    sourceFileSha256: "a".repeat(64),
-    sourceFileBytes: 10,
-    termsOfUse: "terms",
-    csvSha256: "b".repeat(64)
-  };
-
-  test("accepts a complete manifest and ignores extra fields", () => {
-    const result = parsePopulationManifest({
-      ...valid,
-      tablesUsed: [],
-      knownGaps: ["x"]
-    });
-    expect(result.ok).toBe(true);
-  });
-
-  test("names every problem", () => {
-    const result = parsePopulationManifest({
-      ...valid,
-      publisherWebsite: "https://example.com",
-      publicationSeries: "nope",
-      coverageRegionLevel: 2,
-      csvSha256: "XYZ",
-      attribution: "no site named here"
-    });
-    expect(result.ok).toBe(false);
-    if (!result.ok) {
-      const text = result.errors.join("\n");
-      expect(text).toMatch(/publisherWebsite must be the https/);
-      expect(text).toMatch(/publicationSeries must be one of/);
-      expect(text).toMatch(/coverageRegionLevel does not match/);
-      expect(text).toMatch(/csvSha256 must be 64/);
-    }
-    expect(parsePopulationManifest([]).ok).toBe(false);
-  });
-
-  test("the attribution must name the official website", () => {
-    const result = parsePopulationManifest({
-      ...valid,
-      attribution: "official BPS website"
-    });
-    expect(result.ok).toBe(false);
-  });
-});
-
-describe("small-cell suppression", () => {
-  const cell = (overrides: Partial<Parameters<typeof isSmallCell>[0]>) => ({
-    dimension: "total",
-    regionLevel: 2,
-    unit: "jiwa",
-    value: 50,
+function fixtureRegionDataset(
+  overrides: Partial<ActiveRegionDataset> = {}
+): ActiveRegionDataset {
+  return {
+    regionDatasetId: "00000000-0000-0000-0000-000000000001",
+    datasetCode: "fixture-regions",
+    decreeReference: POPULATION_DECREE_REFERENCE,
+    regions: new Map(FIXTURE_REGIONS),
     ...overrides
-  });
+  };
+}
 
-  test("religion cells under 10 are withheld at any level", () => {
-    for (const regionLevel of [1, 2, 3, 4]) {
-      expect(
-        isSmallCell(cell({ dimension: "religion", regionLevel, value: 9 }))
-      ).toBe(true);
-      expect(
-        isSmallCell(cell({ dimension: "religion", regionLevel, value: 10 }))
-      ).toBe(false);
-    }
-  });
+describe("parseValueDump", () => {
+  test("reads the fixture dumps: header, DDL and split INSERT statements", async () => {
+    const population = parseValueDump(
+      await readFixture("wilayah_penduduk.sql"),
+      POPULATION_DUMP_EXPECTATION
+    );
+    expect(population.unparsed).toEqual([]);
+    expect(population.tuples).toHaveLength(5);
+    expect(population.insertStatementCount).toBe(1);
 
-  test("every dimension under 10 is withheld at village level only", () => {
-    expect(
-      isSmallCell(cell({ dimension: "age_group", regionLevel: 4, value: 0 }))
-    ).toBe(true);
-    expect(
-      isSmallCell(cell({ dimension: "age_group", regionLevel: 3, value: 0 }))
-    ).toBe(false);
-    expect(
-      isSmallCell(cell({ dimension: "total", regionLevel: 4, value: 9 }))
-    ).toBe(true);
-  });
-
-  test("ribu_jiwa and rupiah are never suppressed", () => {
-    expect(
-      isSmallCell(
-        cell({ dimension: "religion", unit: "ribu_jiwa", value: 0.5 })
-      )
-    ).toBe(false);
-    expect(
-      isSmallCell(
-        cell({ dimension: "income", regionLevel: 4, unit: "rupiah", value: 3 })
-      )
-    ).toBe(false);
-  });
-
-  test("suppressSmallCells keeps every cell, nulls the withheld ones and flags them", () => {
-    const out = suppressSmallCells([
-      { ...cell({ dimension: "religion", value: 3 }), id: "a" },
-      { ...cell({ value: 3 }), id: "b" }
+    const area = parseValueDump(
+      await readFixture("wilayah_luas.sql"),
+      AREA_DUMP_EXPECTATION
+    );
+    expect(area.unparsed).toEqual([]);
+    expect(area.tuples).toHaveLength(4);
+    expect(area.insertStatementCount).toBe(2);
+    expect(area.tuples[0]?.values).toEqual([
+      { kind: "string", text: "62.0" },
+      { kind: "string", text: "Provinsi Uji" },
+      { kind: "number", text: "153.564" }
     ]);
-    expect(out).toEqual([
-      {
-        dimension: "religion",
-        regionLevel: 2,
-        unit: "jiwa",
-        value: null,
-        id: "a",
-        suppressed: true
-      },
-      {
-        dimension: "total",
-        regionLevel: 2,
-        unit: "jiwa",
-        value: 3,
-        id: "b",
-        suppressed: false
-      }
+  });
+
+  test("an INSERT naming other columns, or columns in another order, is refused", () => {
+    const text = [
+      "INSERT INTO wilayah_penduduk(kode, nama, wanita, pria, total)",
+      "VALUES",
+      "('11','Aceh','1','2','3');"
+    ].join("\n");
+    const result = parseValueDump(text, POPULATION_DUMP_EXPECTATION);
+    expect(result.tuples).toEqual([]);
+    expect(result.unparsed.map((p) => p.reason).join()).toMatch(
+      /expected wilayah_penduduk\(kode, nama, pria, wanita, total\)/
+    );
+    // ...and its tuple, now outside any accepted INSERT, is refused too.
+    expect(result.unparsed.map((p) => p.reason).join()).toMatch(
+      /outside an INSERT/
+    );
+  });
+
+  test("unknown lines, wrong value counts, bare words and an unfinished INSERT are all errors", () => {
+    const text = [
+      "INSERT INTO wilayah_luas(kode,nama,luas)",
+      "VALUES",
+      "('11','Aceh'),",
+      "('12','Sumut',abc),",
+      "this is not sql",
+      "('13','Sumbar',1.5),"
+    ].join("\n");
+    const result = parseValueDump(text, AREA_DUMP_EXPECTATION);
+    const reasons = result.unparsed.map((p) => `${p.lineNumber}:${p.reason}`);
+    expect(reasons).toEqual([
+      "3:expected 3 values (kode, nama, luas), found 2",
+      '4:unquoted value "abc" is neither a number nor NULL',
+      "5:unrecognised line",
+      "6:the file ends inside an INSERT statement"
+    ]);
+    expect(result.tuples).toHaveLength(1);
+  });
+
+  test("quoted strings keep commas, parentheses and escaped quotes", () => {
+    expect(readTupleLine("('11','Ma\\'rang, (x)','1'),")).toEqual({
+      ok: true,
+      values: [
+        { kind: "string", text: "11" },
+        { kind: "string", text: "Ma'rang, (x)" },
+        { kind: "string", text: "1" }
+      ],
+      terminator: ","
+    });
+    expect(readTupleLine("('O''Brien',NULL);")).toEqual({
+      ok: true,
+      values: [{ kind: "string", text: "O'Brien" }, { kind: "null" }],
+      terminator: ";"
+    });
+    expect(readTupleLine("('x','y')")).toMatchObject({ ok: false });
+  });
+});
+
+describe("typed rows", () => {
+  test("population counts must be quoted whole numbers", () => {
+    const text = [
+      "INSERT INTO wilayah_penduduk(kode, nama, pria, wanita, total)",
+      "VALUES",
+      "('11','Aceh','1.5','2','3'),",
+      "('12','Sumut',1,'2','3'),",
+      "('1x','Bad','1','2','3');"
+    ].join("\n");
+    const { rows, errors } = readPopulationRows(
+      parseValueDump(text, POPULATION_DUMP_EXPECTATION)
+    );
+    expect(rows).toEqual([]);
+    expect(errors).toEqual([
+      'line 3: pria must be a whole number, found "1.5"',
+      "line 4: pria must be a quoted string",
+      'line 5: kode "1x" is not a dotted numeric code'
+    ]);
+  });
+
+  test("an area must be a bare number and a name is required", () => {
+    const text = [
+      "INSERT INTO wilayah_luas(kode,nama,luas)",
+      "VALUES",
+      "('11',NULL,1.5),",
+      "('12','Sumut','7');"
+    ].join("\n");
+    const { rows, errors } = readAreaRows(
+      parseValueDump(text, AREA_DUMP_EXPECTATION)
+    );
+    expect(rows).toEqual([]);
+    expect(errors).toEqual([
+      "line 3: nama is missing",
+      "line 4: luas must be a bare number"
+    ]);
+  });
+});
+
+describe("buildPopulationFigures", () => {
+  test("the fixture maps cleanly: four figures per region, the national row checked and skipped", async () => {
+    const result = figuresOf(
+      await readFixture("wilayah_penduduk.sql"),
+      await readFixture("wilayah_luas.sql")
+    );
+    expect(result.errors).toEqual([]);
+    expect(result.report.rowCount).toBe(16);
+    expect(result.report.countsByDimension).toEqual({
+      total: 4,
+      sex: 8,
+      area: 4
+    });
+    expect(result.report.countsByLevel).toEqual({ "1": 4, "2": 12 });
+    expect(result.report.checksRun).toEqual({
+      sex_sum: 5,
+      national_sum: 1,
+      children_sum_population: 1,
+      children_sum_area: 1,
+      completeness: 8
+    });
+    expect(result.report.skipped).toEqual([
+      expect.objectContaining({
+        code: "0",
+        sourceTable: POPULATION_SOURCE_TABLE
+      })
+    ]);
+    expect(
+      result.report.codeRepairs.map((r) => [r.sourceCode, r.code])
+    ).toEqual([
+      ["62.0", "62"],
+      ["62.1", "62.10"]
+    ]);
+    // The abbreviated "Kab" is a warning, never an error, and is stored verbatim.
+    expect(result.report.warningCount).toBe(1);
+    expect(result.report.warnings[0]).toMatch(/Kab Uji Sepuluh/);
+
+    const province = result.rows.filter((row) => row.regionCode === "62");
+    expect(
+      province.map((row) => [row.dimension, row.category, row.value, row.unit])
+    ).toEqual([
+      ["total", "total", "1000", "jiwa"],
+      ["sex", "laki_laki", "520", "jiwa"],
+      ["sex", "perempuan", "480", "jiwa"],
+      ["area", "total", "153.564", "km2"]
+    ]);
+    const area = province.find((row) => row.dimension === "area");
+    expect(area).toMatchObject({
+      figureBasis: "geospatial_calculation",
+      universe: "region_area",
+      referenceYear: 2024,
+      sourceTable: AREA_SOURCE_TABLE,
+      sourceRegionName: "Provinsi Uji"
+    });
+    const total = province.find((row) => row.dimension === "total");
+    expect(total).toMatchObject({
+      figureBasis: "decree",
+      universe: "total_population",
+      referenceYear: 2025,
+      sourceTable: POPULATION_SOURCE_TABLE
+    });
+  });
+
+  test("pria + wanita must equal total, exactly", async () => {
+    const result = figuresOf(
+      (await readFixture("wilayah_penduduk.sql")).replace(
+        "'160','140','300'",
+        "'160','141','300'"
+      ),
+      await readFixture("wilayah_luas.sql")
+    );
+    expect(result.errors.join("\n")).toMatch(
+      /line 31: sex_sum failed for 62\.01 .*pria 160 \+ wanita 141 = 301, total 300/
+    );
+  });
+
+  test("an unknown kode is an error, and a duplicate is named by line", async () => {
+    const population = (await readFixture("wilayah_penduduk.sql")).replace(
+      "('62.71','Kota Uji Dua','260','240','500');",
+      "('62.71','Kota Uji Dua','260','240','500'),\n('62.99','Kota Hilang','1','1','2'),\n('62.01','Kabupaten Uji Satu','160','140','300');"
+    );
+    const result = figuresOf(population, await readFixture("wilayah_luas.sql"));
+    const errors = result.errors.join("\n");
+    expect(errors).toMatch(
+      /kode "62\.99" \("Kota Hilang"\) is not a province or regency\/city of the active region dataset/
+    );
+    expect(errors).toMatch(/kode 62\.01 is a duplicate of line 31/);
+    // Aggregate checks do not pile noise onto a file whose codes are wrong.
+    expect(result.report.checksSkipped.join()).toMatch(
+      /completeness, children_sum_population, national_sum/
+    );
+  });
+
+  test("the float-truncation repair needs the witness name, and never shadows a literal code", async () => {
+    const wrongName = (await readFixture("wilayah_luas.sql")).replace(
+      "('62.1','Kabupaten Uji Sepuluh',40.064)",
+      "('62.1','Kabupaten Lain',40.064)"
+    );
+    expect(
+      figuresOf(
+        await readFixture("wilayah_penduduk.sql"),
+        wrongName
+      ).errors.join()
+    ).toMatch(
+      /the name "Kabupaten Lain" does not match 62\.10's official name/
+    );
+
+    const collision = (await readFixture("wilayah_luas.sql")).replace(
+      "('62.71','Kota Uji Dua',13.0);",
+      "('62.71','Kota Uji Dua',13.0),\n('62.10','Kabupaten Uji Sepuluh',40.064);"
+    );
+    expect(
+      figuresOf(
+        await readFixture("wilayah_penduduk.sql"),
+        collision
+      ).errors.join()
+    ).toMatch(/62\.10 also appears literally in the same file/);
+
+    expect(floatTruncationCandidate("11.1")).toBe("11.10");
+    expect(floatTruncationCandidate("31.0")).toBe("31");
+    expect(floatTruncationCandidate("11.01")).toBeNull();
+    expect(floatTruncationCandidate("1.1")).toBeNull();
+  });
+
+  test("an area is positive with at most three decimals; it is never rounded", async () => {
+    const fourDecimals = (await readFixture("wilayah_luas.sql")).replace(
+      "13.0",
+      "13.0001"
+    );
+    expect(
+      figuresOf(
+        await readFixture("wilayah_penduduk.sql"),
+        fourDecimals
+      ).errors.join()
+    ).toMatch(
+      /luas 13\.0001 for 62\.71 must be a positive number with at most three decimals/
+    );
+
+    const zero = (await readFixture("wilayah_luas.sql")).replace(
+      "13.0",
+      "0.000"
+    );
+    expect(
+      figuresOf(await readFixture("wilayah_penduduk.sql"), zero).errors.join()
+    ).toMatch(/luas for 62\.71 must be greater than zero/);
+
+    expect(areaToThousandths("1851.615")).toBe(1851615n);
+    expect(areaToThousandths("125.0")).toBe(125000n);
+    expect(areaToThousandths("7")).toBe(7000n);
+  });
+
+  test("children must add up to their province, and provinces to the national row", async () => {
+    const population = (await readFixture("wilayah_penduduk.sql")).replace(
+      "('0','INDONESIA','520','480','1000')",
+      "('0','INDONESIA','521','480','1001')"
+    );
+    const area = (await readFixture("wilayah_luas.sql")).replace(
+      "153.564",
+      "153.565"
+    );
+    const errors = figuresOf(population, area).errors.join("\n");
+    expect(errors).toMatch(/national_sum failed: the provinces add up to 1000/);
+    expect(errors).toMatch(
+      /children_sum_area failed for province 62: its regencies\/cities add up to 153\.564 km2, the province row says 153\.565 km2/
+    );
+
+    const child = (await readFixture("wilayah_penduduk.sql")).replace(
+      "'260','240','500'",
+      "'261','240','501'"
+    );
+    expect(
+      figuresOf(child, await readFixture("wilayah_luas.sql")).errors.join()
+    ).toMatch(/children_sum_population failed for province 62/);
+  });
+
+  test("every level-1/2 region of the active dataset needs a figure in both files", async () => {
+    const regions = new Map(FIXTURE_REGIONS);
+    regions.set("62.72", { level: 2, name: "Kota Uji Tiga" });
+    const errors = figuresOf(
+      await readFixture("wilayah_penduduk.sql"),
+      await readFixture("wilayah_luas.sql"),
+      regions
+    ).errors.join("\n");
+    expect(errors).toMatch(
+      /region 62\.72 \("Kota Uji Tiga"\) of the active region dataset has no population row/
+    );
+    expect(errors).toMatch(
+      /region 62\.72 \("Kota Uji Tiga"\) of the active region dataset has no area row/
+    );
+  });
+});
+
+describe("readPopulationSources and planPopulationImport", () => {
+  test("a self-consistent tree verifies, and the plan derives its code from both digests", async () => {
+    const root = await stage();
+    const sources = await readPopulationSources(root);
+    expect(sources.files.population.figures).toEqual(["total", "sex"]);
+    expect(sources.files.area.origin).toMatch(/Badan Informasi Geospasial/);
+
+    const plan = planPopulationImport(sources, fixtureRegionDataset());
+    expect(plan.errors).toEqual([]);
+    expect(plan.rows).toHaveLength(16);
+    expect(plan.datasetCode).toBe(
+      derivePopulationDatasetCode(
+        sources.files.population.sha256,
+        sources.files.area.sha256
+      )
+    );
+    expect(plan.datasetCode).toMatch(
+      /^kepmendagri-300\.2\.2-2138-2025-[0-9a-f]{8}-[0-9a-f]{8}$/
+    );
+  });
+
+  test("a file whose bytes disagree with manifest.json is refused, naming the file", async () => {
+    const root = await stage({ tamper: "area" });
+    const error = await readPopulationSources(root).catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(PopulationImportError);
+    const problems = (error as PopulationImportError).problems.join("\n");
+    expect(problems).toMatch(
+      /Checksum mismatch for upstream\/cahyadsn-wilayah\/db\/wilayah_luas\.sql: manifest\.json records/
+    );
+    expect(problems).toMatch(
+      /Size mismatch for upstream\/cahyadsn-wilayah\/db\/wilayah_luas\.sql/
+    );
+  });
+
+  test("checksums.sha256 is checked too, not only the manifest", async () => {
+    const root = await stage({ staleChecksumsLine: "population" });
+    const error = await readPopulationSources(root).catch((e: unknown) => e);
+    expect((error as PopulationImportError).problems.join()).toMatch(
+      /checksums\.sha256 records f{64}/
+    );
+  });
+
+  test("a header that no longer cites the decree, or a manifest that does not mark the file, is refused", async () => {
+    const population = (await readFixture("wilayah_penduduk.sql")).replace(
+      "No 300.2.2-2138 Tahun 2025",
+      "No 300.2.2-9999 Tahun 2026"
+    );
+    const root = await stage({
+      population,
+      populationEntry: { importedBy: null }
+    });
+    const problems = await readPopulationSources(root).catch(
+      (e: unknown) => (e as PopulationImportError).problems
+    );
+    expect(problems).toEqual(
+      expect.arrayContaining([
+        expect.stringMatching(/importedBy "idn_admin_regions\.population"/),
+        expect.stringMatching(
+          /its header no longer cites "Kepmendagri No 300\.2\.2-2138 Tahun 2025"/
+        )
+      ])
+    );
+  });
+
+  test("a region dataset under another decree is an error, not a silent comparison", async () => {
+    const sources = await readPopulationSources(await stage());
+    const plan = planPopulationImport(
+      sources,
+      fixtureRegionDataset({
+        decreeReference: "Kepmendagri No 100.1.1-6117 Tahun 2022"
+      })
+    );
+    expect(plan.errors.join()).toMatch(
+      /cites "Kepmendagri No 100\.1\.1-6117 Tahun 2022"; the population and area files cite/
+    );
+  });
+});
+
+describe("the REAL vendored files against the REAL vendored region dump", () => {
+  test("verify, parse and validate with no error: 552 regions, 2,208 figures, 5 repairs", async () => {
+    const root = process.cwd();
+    const sources = await readPopulationSources(root);
+    expect(
+      headerCites(sources.text.population, POPULATION_DECREE_REFERENCE)
+    ).toBe(true);
+
+    const dump = parseWilayahDump(
+      await readFile(
+        path.join(
+          root,
+          "data/idn-admin-regions/upstream/cahyadsn-wilayah/db/wilayah.sql"
+        ),
+        "utf8"
+      )
+    );
+    const regions = new Map<string, RegionFact>();
+    for (const row of dump.rows) {
+      if (row.code.split(".").length > 2) continue;
+      const region = normalizeRegionRow(row);
+      regions.set(region.code, {
+        level: region.level,
+        name: region.officialName
+      });
+    }
+    expect(regions.size).toBe(552);
+
+    const plan = planPopulationImport(sources, {
+      regionDatasetId: "00000000-0000-0000-0000-000000000002",
+      datasetCode: "real",
+      decreeReference: POPULATION_DECREE_REFERENCE,
+      regions
+    });
+    expect(plan.errors).toEqual([]);
+    expect(plan.datasetCode).toBe(
+      "kepmendagri-300.2.2-2138-2025-b0b6b9dc-3ffd506e"
+    );
+    expect(plan.report.rowCount).toBe(2208);
+    expect(plan.report.countsByDimension).toEqual({
+      total: 552,
+      sex: 1104,
+      area: 552
+    });
+    expect(plan.report.countsByLevel).toEqual({ "1": 152, "2": 2056 });
+    expect(
+      plan.report.codeRepairs.map((r) => `${r.sourceCode}->${r.code}`)
+    ).toEqual([
+      "11.1->11.10",
+      "12.1->12.10",
+      "12.2->12.20",
+      "14.1->14.10",
+      "31.0->31"
+    ]);
+    expect(plan.report.skipped.map((s) => s.code)).toEqual(["0"]);
+    expect(plan.report.warningCount).toBe(4);
+    expect(plan.report.checksRun).toEqual({
+      sex_sum: 553,
+      national_sum: 1,
+      children_sum_population: 38,
+      children_sum_area: 38,
+      completeness: 1104
+    });
+
+    const jakarta = plan.rows.filter((row) => row.regionCode === "31");
+    expect(
+      jakarta.map((row) => `${row.dimension}/${row.category}=${row.value}`)
+    ).toEqual([
+      "total/total=11038216",
+      "sex/laki_laki=5537335",
+      "sex/perempuan=5500881",
+      "area/total=661.53"
     ]);
   });
 });

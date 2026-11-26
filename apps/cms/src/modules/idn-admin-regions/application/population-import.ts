@@ -1,56 +1,116 @@
 /**
- * Import pipeline for BPS population statistics (awcms-one ADR-0051). Runs as
- * the `awcms_worker` role from `bun run idn-population:import`, never from a
- * request: the source is a repo file pair (manifest JSON + extracted CSV), not an
- * upload.
+ * Import pipeline for the Kepmendagri population and area figures (awcms-one
+ * ADR-0053, superseding ADR-0051's BPS pipeline). Runs as the `awcms_worker`
+ * role from `bun run idn-population:import`, never from a request: the source is
+ * two vendored repo files, read offline, not an upload or a download.
  *
- * Same shape as `dataset-import.ts`: `plan…` reads, checks and validates and
+ * Same shape as `dataset-import.ts`: `plan…` reads, verifies and validates and
  * touches no database write; `commit…` takes that exact plan and writes it in one
  * transaction. The dry run and the real run are one code path.
  *
- * ## Provenance is checked, not trusted
+ * ## Provenance is checked, not trusted — before a figure is read
  *
- * The manifest records the sha256 of the CSV. If the bytes on disk differ, the
- * dataset's recorded origin would be fiction, so the plan REFUSES (it does not
- * write a `rejected` row: a manifest that disagrees with its own file is an
- * operator/extraction mistake, not a data-quality finding about the publication).
+ * `data/idn-admin-regions/manifest.json` and `checksums.sha256` record the
+ * sha256 and size of both files. The plan recomputes them from the bytes on
+ * disk and REFUSES on any disagreement, and it refuses when a file's header no
+ * longer cites the decree (or, for the area file, BIG's letter) the dataset row
+ * would claim. A refusal records nothing: a file that disagrees with its own
+ * record is an operator/vendoring mistake, not a data-quality finding.
  *
  * ## Validation failures are recorded
  *
- * A CSV that parses but fails validation is recorded as its own `rejected`
- * dataset row carrying the problems, with zero statistics rows — so the failure
- * is visible in the database, not only in one shell's output.
+ * Files that verify but fail validation are recorded as a `rejected` dataset
+ * row carrying the problems, with zero statistics rows, so the failure is
+ * visible in the database and not only in one shell's output.
  */
 import { createHash } from "node:crypto";
-import { readdir, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-import { parsePopulationCsv } from "../domain/population-csv";
+import { parseValueDump } from "../domain/population-dump-parser";
 import {
-  parsePopulationManifest,
-  type PopulationDatasetManifest
-} from "../domain/population-manifest";
+  AREA_DUMP_EXPECTATION,
+  AREA_FILE_PATH,
+  AREA_LETTER_NUMBER,
+  AREA_REFERENCE_YEAR,
+  AREA_SOURCE_REFERENCE,
+  AREA_SOURCE_TABLE,
+  derivePopulationDatasetCode,
+  foldWhitespace,
+  headerCites,
+  POPULATION_ATTRIBUTION,
+  POPULATION_CHECKSUMS_PATH,
+  POPULATION_COVERAGE_REGION_CODE,
+  POPULATION_COVERAGE_REGION_LEVEL,
+  POPULATION_DATA_DIR,
+  POPULATION_DECREE_REFERENCE,
+  POPULATION_DUMP_EXPECTATION,
+  POPULATION_FILE_PATH,
+  POPULATION_IMPORTED_BY,
+  POPULATION_PUBLICATION_SERIES,
+  POPULATION_PUBLICATION_TITLE,
+  POPULATION_PUBLICATION_YEAR,
+  POPULATION_PUBLISHER_NAME,
+  POPULATION_REFERENCE_YEAR,
+  POPULATION_SOURCE_TABLE,
+  POPULATION_SOURCE_TYPE,
+  POPULATION_TERMS_OF_USE,
+  populationPublicationUrl,
+  readAreaRows,
+  readPopulationRows
+} from "../domain/population-source";
 import {
-  validatePopulationRecords,
-  type PopulationRow,
-  type PopulationValidationReport
+  buildPopulationFigures,
+  type PopulationFigure,
+  type PopulationValidationReport,
+  type RegionFact
 } from "../domain/population-validation";
-
-/** Where the dataset pairs live, relative to `apps/cms`. */
-export const IDN_POPULATION_DATASETS_DIR = "data/idn-population/datasets";
+import { IDN_ADMIN_REGIONS_SOURCE_REPOSITORY } from "../domain/source-provenance";
 
 const INSERT_BATCH_SIZE = 5000;
-/** Sentinel for SQL NULL inside `tx.array(...)` — see dataset-import.ts for why. */
-const NULL_SENTINEL = "";
 /** Validation errors kept in `validation_summary` and shown by the CLI. */
 const ERROR_SAMPLE_LIMIT = 50;
 
+/** The provenance of one source file, as stored in `source_files`. */
+export type PopulationSourceFile = {
+  role: "population" | "area";
+  path: string;
+  sha256: string;
+  bytes: number;
+  upstreamRepository: string;
+  upstreamCommit: string;
+  upstreamLastEdit: string | null;
+  /** Who the figures this file supplied belong to. */
+  origin: string;
+  /** The decree the file's region codes follow. */
+  codesFollow: string;
+  /** The dimensions this file supplied. */
+  figures: string[];
+};
+
+/** Both files, verified, with their text. */
+export type VerifiedPopulationSources = {
+  upstreamCommit: string;
+  files: { population: PopulationSourceFile; area: PopulationSourceFile };
+  text: { population: string; area: string };
+};
+
+/** The active region dataset the codes are validated against. */
+export type ActiveRegionDataset = {
+  regionDatasetId: string;
+  datasetCode: string;
+  /** `source_reference` of the region dataset (the decree its file cites), or null. */
+  decreeReference: string | null;
+  /** Level-1/2 regions only. */
+  regions: Map<string, RegionFact>;
+};
+
 export type PopulationImportPlan = {
-  manifest: PopulationDatasetManifest;
-  csvPath: string;
-  csvSha256: string;
-  rows: PopulationRow[];
-  /** Blocking validation problems. Non-empty: record a rejection, write no statistics. */
+  datasetCode: string;
+  sources: PopulationSourceFile[];
+  upstreamCommit: string;
+  rows: PopulationFigure[];
+  /** Blocking problems. Non-empty: record a rejection, write no statistics. */
   errors: string[];
   report: PopulationValidationReport;
   regionDatasetId: string;
@@ -68,6 +128,8 @@ export type PopulationImportResult = {
   datasetCode: string;
   rowCount: number;
   status: "validated";
+  /** True when a `rejected` row of the same code was promoted rather than a new row inserted. */
+  promotedFromRejected: boolean;
 };
 
 export type PopulationRejectionResult = {
@@ -77,7 +139,7 @@ export type PopulationRejectionResult = {
   inserted: boolean;
 };
 
-/** The manifest could not be used at all (missing, malformed, or disagreeing with its CSV). Nothing is recorded. */
+/** The files could not be used at all (missing, or disagreeing with their record). Nothing is recorded. */
 export class PopulationImportError extends Error {
   constructor(
     message: string,
@@ -88,140 +150,285 @@ export class PopulationImportError extends Error {
   }
 }
 
+/** The same bytes are already imported (and not as a rejection). Re-importing is a no-op. */
+export class PopulationAlreadyImportedError extends Error {
+  constructor(
+    readonly datasetCode: string,
+    readonly status: string
+  ) {
+    super(
+      `dataset ${datasetCode} is already imported (status ${status}) — nothing to do (re-importing identical bytes is a no-op by design).`
+    );
+    this.name = "PopulationAlreadyImportedError";
+  }
+}
+
 function sha256(bytes: Uint8Array): string {
   return createHash("sha256").update(bytes).digest("hex");
 }
 
-/** Dataset codes that have a `<code>.json` + `<code>.csv` pair under `datasetsDir`, sorted. */
-export async function listPendingDatasetCodes(
+type ManifestEntry = {
+  path?: unknown;
+  sha256?: unknown;
+  bytes?: unknown;
+  importedBy?: unknown;
+  decreeReference?: unknown;
+  upstreamLastEdit?: unknown;
+};
+
+/**
+ * Reads both files and verifies them against `manifest.json` AND
+ * `checksums.sha256` (sha256 and size), checks the manifest marks them as read
+ * by this importer, and checks each header still cites the decree (and, for
+ * the area file, BIG's letter). Every problem is collected; any problem refuses.
+ */
+export async function readPopulationSources(
   rootDir: string = process.cwd()
-): Promise<string[]> {
-  const entries = await readdir(
-    path.join(rootDir, IDN_POPULATION_DATASETS_DIR)
+): Promise<VerifiedPopulationSources> {
+  const dataDir = path.join(rootDir, POPULATION_DATA_DIR);
+  const problems: string[] = [];
+
+  let manifest: {
+    upstream?: { repository?: unknown; commit?: unknown };
+    files?: ManifestEntry[];
+  };
+  let checksumsText: string;
+  try {
+    manifest = JSON.parse(
+      await readFile(path.join(dataDir, "manifest.json"), "utf8")
+    );
+    checksumsText = await readFile(
+      path.join(dataDir, POPULATION_CHECKSUMS_PATH),
+      "utf8"
+    );
+  } catch {
+    throw new PopulationImportError(
+      `${POPULATION_DATA_DIR}/manifest.json and ${POPULATION_DATA_DIR}/${POPULATION_CHECKSUMS_PATH} must both exist and the manifest must be valid JSON.`
+    );
+  }
+
+  const upstreamCommit =
+    typeof manifest.upstream?.commit === "string"
+      ? manifest.upstream.commit
+      : "";
+  if (!/^[0-9a-f]{40}$/.test(upstreamCommit)) {
+    problems.push("manifest.json upstream.commit must be a 40-hex commit sha.");
+  }
+  if (manifest.upstream?.repository !== IDN_ADMIN_REGIONS_SOURCE_REPOSITORY) {
+    problems.push(
+      `manifest.json upstream.repository must be ${IDN_ADMIN_REGIONS_SOURCE_REPOSITORY}.`
+    );
+  }
+
+  const checksumDir = path.posix.dirname(POPULATION_CHECKSUMS_PATH);
+  const recorded = new Map(
+    checksumsText
+      .split("\n")
+      .filter((line) => line.trim().length > 0)
+      .map((line) => {
+        const [digest, file] = line.trim().split(/\s+/);
+        return [`${checksumDir}/${file ?? ""}`, digest ?? ""];
+      })
   );
-  const json = new Set(
-    entries.filter((name) => name.endsWith(".json")).map((n) => n.slice(0, -5))
-  );
-  return entries
-    .filter((name) => name.endsWith(".csv"))
-    .map((name) => name.slice(0, -4))
-    .filter((code) => json.has(code))
-    .sort();
+
+  async function verify(
+    filePath: string,
+    role: "population" | "area"
+  ): Promise<{ file: PopulationSourceFile; text: string } | null> {
+    const entry = (manifest.files ?? []).find((f) => f.path === filePath);
+    if (!entry) {
+      problems.push(`manifest.json has no entry for ${filePath}.`);
+      return null;
+    }
+    if (entry.importedBy !== POPULATION_IMPORTED_BY) {
+      problems.push(
+        `manifest.json must record importedBy "${POPULATION_IMPORTED_BY}" for ${filePath}.`
+      );
+    }
+    let bytes: Buffer;
+    try {
+      bytes = await readFile(path.join(dataDir, filePath));
+    } catch {
+      problems.push(`${POPULATION_DATA_DIR}/${filePath} does not exist.`);
+      return null;
+    }
+    const digest = sha256(bytes);
+    if (digest !== entry.sha256) {
+      problems.push(
+        `Checksum mismatch for ${filePath}: manifest.json records ${String(entry.sha256)}, the file on disk is ${digest}.`
+      );
+    }
+    if (recorded.get(filePath) !== digest) {
+      problems.push(
+        `Checksum mismatch for ${filePath}: checksums.sha256 records ${recorded.get(filePath) ?? "nothing"}, the file on disk is ${digest}.`
+      );
+    }
+    if (entry.bytes !== bytes.byteLength) {
+      problems.push(
+        `Size mismatch for ${filePath}: manifest.json records ${String(entry.bytes)} bytes, the file on disk is ${bytes.byteLength}.`
+      );
+    }
+    const text = bytes.toString("utf8");
+    if (!headerCites(text, POPULATION_DECREE_REFERENCE)) {
+      problems.push(
+        `${filePath}: its header no longer cites "${POPULATION_DECREE_REFERENCE}".`
+      );
+    }
+    if (
+      typeof entry.decreeReference !== "string" ||
+      foldWhitespace(entry.decreeReference) !==
+        foldWhitespace(POPULATION_DECREE_REFERENCE)
+    ) {
+      problems.push(
+        `manifest.json must record decreeReference "${POPULATION_DECREE_REFERENCE}" for ${filePath}.`
+      );
+    }
+    if (role === "area" && !headerCites(text, AREA_LETTER_NUMBER)) {
+      problems.push(
+        `${filePath}: its header no longer cites BIG's letter ${AREA_LETTER_NUMBER}.`
+      );
+    }
+
+    return {
+      file: {
+        role,
+        path: filePath,
+        sha256: digest,
+        bytes: bytes.byteLength,
+        upstreamRepository: IDN_ADMIN_REGIONS_SOURCE_REPOSITORY,
+        upstreamCommit,
+        upstreamLastEdit:
+          typeof entry.upstreamLastEdit === "string"
+            ? entry.upstreamLastEdit
+            : null,
+        origin:
+          role === "population"
+            ? POPULATION_DECREE_REFERENCE
+            : AREA_SOURCE_REFERENCE,
+        codesFollow: POPULATION_DECREE_REFERENCE,
+        figures: role === "population" ? ["total", "sex"] : ["area"]
+      },
+      text
+    };
+  }
+
+  const population = await verify(POPULATION_FILE_PATH, "population");
+  const area = await verify(AREA_FILE_PATH, "area");
+
+  if (problems.length > 0 || !population || !area) {
+    throw new PopulationImportError(
+      "The vendored population/area files disagree with their provenance record; nothing was read or recorded.",
+      problems
+    );
+  }
+
+  return {
+    upstreamCommit,
+    files: { population: population.file, area: area.file },
+    text: { population: population.text, area: area.text }
+  };
 }
 
-/** The active region dataset's id and a code -> level map of its regions. */
-export async function loadActiveRegionLevels(
+/** The active region dataset: its id, decree and level-1/2 regions. */
+export async function loadActiveRegionDataset(
   sql: Bun.SQL | Bun.TransactionSQL
-): Promise<{ regionDatasetId: string; levels: Map<string, number> }> {
+): Promise<ActiveRegionDataset> {
   const active = (await sql`
-    SELECT id FROM awcms_idn_region_datasets WHERE status = 'active' LIMIT 1
-  `) as { id: string }[];
-  const regionDatasetId = active[0]?.id;
-  if (!regionDatasetId) {
+    SELECT id, dataset_code, source_reference
+    FROM awcms_idn_region_datasets WHERE status = 'active' LIMIT 1
+  `) as { id: string; dataset_code: string; source_reference: string | null }[];
+  const dataset = active[0];
+  if (!dataset) {
     throw new PopulationImportError(
       "There is no ACTIVE region dataset to validate region codes against. Import and activate one first (`bun run idn-regions:import`, `bun run idn-regions:activate`)."
     );
   }
   const regions = (await sql`
-    SELECT code, level FROM awcms_idn_admin_regions WHERE dataset_id = ${regionDatasetId}
-  `) as { code: string; level: number }[];
+    SELECT code, level, official_name FROM awcms_idn_admin_regions
+    WHERE dataset_id = ${dataset.id} AND level <= 2
+  `) as { code: string; level: number; official_name: string }[];
   return {
-    regionDatasetId,
-    levels: new Map(
-      regions.map((region) => [region.code, Number(region.level)])
+    regionDatasetId: dataset.id,
+    datasetCode: dataset.dataset_code,
+    decreeReference: dataset.source_reference,
+    regions: new Map(
+      regions.map((region) => [
+        region.code,
+        { level: Number(region.level), name: region.official_name }
+      ])
     )
   };
 }
 
-/** Reads the pair, verifies the checksum, parses and validates. Touches no database. */
-export async function planPopulationImport(options: {
-  datasetCode: string;
-  regionDatasetId: string;
-  regionLevels: ReadonlyMap<string, number>;
-  rootDir?: string;
-}): Promise<PopulationImportPlan> {
-  const rootDir = options.rootDir ?? process.cwd();
-  const base = path.join(
-    rootDir,
-    IDN_POPULATION_DATASETS_DIR,
-    options.datasetCode
+/** Parses, maps and validates verified sources against a region dataset. Touches no database. */
+export function planPopulationImport(
+  sources: VerifiedPopulationSources,
+  regionDataset: ActiveRegionDataset
+): PopulationImportPlan {
+  const errors: string[] = [];
+
+  if (
+    regionDataset.decreeReference === null ||
+    foldWhitespace(regionDataset.decreeReference) !==
+      foldWhitespace(POPULATION_DECREE_REFERENCE)
+  ) {
+    errors.push(
+      `The active region dataset ${regionDataset.datasetCode} cites ${regionDataset.decreeReference === null ? "no decree" : `"${regionDataset.decreeReference}"`}; the population and area files cite "${POPULATION_DECREE_REFERENCE}". Their codes are only comparable under the same decree.`
+    );
+  }
+
+  const populationDump = parseValueDump(
+    sources.text.population,
+    POPULATION_DUMP_EXPECTATION
+  );
+  const areaDump = parseValueDump(sources.text.area, AREA_DUMP_EXPECTATION);
+  for (const [table, dump] of [
+    [POPULATION_SOURCE_TABLE, populationDump],
+    [AREA_SOURCE_TABLE, areaDump]
+  ] as const) {
+    for (const problem of dump.unparsed) {
+      errors.push(
+        `${table} line ${problem.lineNumber}: ${problem.reason}${problem.content ? `: ${problem.content.slice(0, 120)}` : ""}`
+      );
+    }
+    if (dump.tuples.length === 0 && dump.unparsed.length === 0) {
+      errors.push(`${table} has no data rows.`);
+    }
+  }
+
+  const populationRows = readPopulationRows(populationDump);
+  const areaRows = readAreaRows(areaDump);
+  errors.push(
+    ...populationRows.errors.map((e) => `${POPULATION_SOURCE_TABLE} ${e}`),
+    ...areaRows.errors.map((e) => `${AREA_SOURCE_TABLE} ${e}`)
   );
 
-  let manifestText: string;
-  let csvBytes: Buffer;
-  try {
-    manifestText = await readFile(`${base}.json`, "utf8");
-    csvBytes = await readFile(`${base}.csv`);
-  } catch {
-    throw new PopulationImportError(
-      `Dataset ${options.datasetCode}: ${IDN_POPULATION_DATASETS_DIR}/${options.datasetCode}.json and .csv must both exist.`
-    );
-  }
-
-  let decoded: unknown;
-  try {
-    decoded = JSON.parse(manifestText);
-  } catch {
-    throw new PopulationImportError(
-      `Dataset ${options.datasetCode}: the manifest is not valid JSON.`
-    );
-  }
-
-  const parsedManifest = parsePopulationManifest(decoded);
-  if (!parsedManifest.ok) {
-    throw new PopulationImportError(
-      `Dataset ${options.datasetCode}: the manifest is invalid.`,
-      parsedManifest.errors
-    );
-  }
-  const manifest = parsedManifest.manifest;
-
-  const problems: string[] = [];
-  if (manifest.datasetCode !== options.datasetCode) {
-    problems.push(
-      `datasetCode "${manifest.datasetCode}" does not match the file name "${options.datasetCode}".`
-    );
-  }
-  if (
-    manifest.csvPath !== null &&
-    path.basename(manifest.csvPath) !== `${options.datasetCode}.csv`
-  ) {
-    problems.push(
-      `csvPath "${manifest.csvPath}" does not name ${options.datasetCode}.csv.`
-    );
-  }
-  const csvSha256 = sha256(csvBytes);
-  if (csvSha256 !== manifest.csvSha256) {
-    problems.push(
-      `Checksum mismatch for ${options.datasetCode}.csv: the manifest records ${manifest.csvSha256}, the file on disk is ${csvSha256}.`
-    );
-  }
-  if (problems.length > 0) {
-    throw new PopulationImportError(
-      `Dataset ${options.datasetCode}: the manifest and its CSV disagree.`,
-      problems
-    );
-  }
-
-  const parsed = parsePopulationCsv(csvBytes.toString("utf8"));
-  const validation = validatePopulationRecords(parsed.records, {
-    regionLevels: options.regionLevels,
-    coverageRegionCode: manifest.coverageRegionCode
+  const validation = buildPopulationFigures({
+    population: {
+      rows: populationRows.rows,
+      sourceTable: POPULATION_SOURCE_TABLE,
+      referenceYear: POPULATION_REFERENCE_YEAR
+    },
+    area: {
+      rows: areaRows.rows,
+      sourceTable: AREA_SOURCE_TABLE,
+      referenceYear: AREA_REFERENCE_YEAR
+    },
+    regions: regionDataset.regions
   });
-
-  const errors = [...parsed.errors, ...validation.errors];
-  if (parsed.errors.length === 0 && parsed.records.length === 0) {
-    errors.push("The CSV has a header but no data rows.");
-  }
+  errors.push(...validation.errors);
 
   return {
-    manifest,
-    csvPath: `${IDN_POPULATION_DATASETS_DIR}/${options.datasetCode}.csv`,
-    csvSha256,
+    datasetCode: derivePopulationDatasetCode(
+      sources.files.population.sha256,
+      sources.files.area.sha256
+    ),
+    sources: [sources.files.population, sources.files.area],
+    upstreamCommit: sources.upstreamCommit,
     rows: validation.rows,
     errors,
     report: validation.report,
-    regionDatasetId: options.regionDatasetId
+    regionDatasetId: regionDataset.regionDatasetId
   };
 }
 
@@ -234,11 +441,34 @@ function summaryOf(plan: PopulationImportPlan): PopulationValidationSummary {
   };
 }
 
+function rowHash(row: PopulationFigure): string {
+  return createHash("sha256")
+    .update(
+      [
+        row.sourceTable,
+        row.regionCode,
+        row.dimension,
+        row.category,
+        row.value,
+        row.unit,
+        row.referenceYear,
+        row.universe
+      ].join("|")
+    )
+    .digest("hex");
+}
+
 /**
- * Writes one plan as a new dataset (`validated`, never `active`) and all its
- * statistics rows, in the caller's transaction. Refuses a plan that failed
- * validation, and a dataset code that is already present (the unique index
- * answers that, and the caller reports it).
+ * Writes one plan as a dataset (`validated`, never `active`) and all its
+ * figures, in the caller's transaction. Refuses a plan that failed validation.
+ *
+ * A dataset code that already exists is refused with
+ * {@link PopulationAlreadyImportedError} — identical bytes are a no-op — with
+ * one exception: a `rejected` row of the same code (the same bytes failed
+ * against an earlier region dataset) is PROMOTED to `validated`, keeping the
+ * earlier rejection inside `validation_summary.previousRejection`. The worker
+ * holds no DELETE, so without this an operator could never import those bytes
+ * once the region dataset was fixed.
  */
 export async function commitPopulationImport(
   tx: Bun.TransactionSQL,
@@ -251,96 +481,91 @@ export async function commitPopulationImport(
       plan.errors
     );
   }
-  const m = plan.manifest;
 
-  const inserted = (await tx`
+  const written = (await tx`
     INSERT INTO awcms_idn_population_datasets
-      (dataset_code, publication_series, coverage_region_code,
+      (dataset_code, source_type, publication_series, coverage_region_code,
        coverage_region_level, publication_title, publisher_name,
-       publisher_domain, publisher_website, attribution, catalogue_number,
-       publication_number, issn, publication_year, release_date,
-       publication_url, source_file_sha256, source_file_bytes, csv_sha256,
-       terms_of_use, region_dataset_id, row_count, status, validation_summary,
-       created_by)
+       publisher_website, attribution, publication_year, publication_url,
+       source_files, terms_of_use, region_dataset_id, row_count, status,
+       validation_summary, created_by)
     VALUES
-      (${m.datasetCode}, ${m.publicationSeries}, ${m.coverageRegionCode},
-       ${m.coverageRegionLevel}, ${m.publicationTitle}, ${m.publisherName},
-       ${m.publisherDomain}, ${m.publisherWebsite}, ${m.attribution},
-       ${m.catalogueNumber}, ${m.publicationNumber}, ${m.issn},
-       ${m.publicationYear}, ${m.releaseDate}, ${m.publicationUrl},
-       ${m.sourceFileSha256}, ${m.sourceFileBytes}, ${plan.csvSha256},
-       ${m.termsOfUse}, ${plan.regionDatasetId}, ${plan.rows.length},
-       'validated', ${summaryOf(plan)}, ${options.importedBy ?? null})
-    RETURNING id
-  `) as { id: string }[];
+      (${plan.datasetCode}, ${POPULATION_SOURCE_TYPE},
+       ${POPULATION_PUBLICATION_SERIES}, ${POPULATION_COVERAGE_REGION_CODE},
+       ${POPULATION_COVERAGE_REGION_LEVEL}, ${POPULATION_PUBLICATION_TITLE},
+       ${POPULATION_PUBLISHER_NAME}, NULL, ${POPULATION_ATTRIBUTION},
+       ${POPULATION_PUBLICATION_YEAR},
+       ${populationPublicationUrl(plan.upstreamCommit)},
+       ${plan.sources}::jsonb, ${POPULATION_TERMS_OF_USE},
+       ${plan.regionDatasetId}, ${plan.rows.length}, 'validated',
+       ${summaryOf(plan)}::jsonb, ${options.importedBy ?? null})
+    ON CONFLICT (dataset_code) DO UPDATE
+      SET source_files = EXCLUDED.source_files,
+          region_dataset_id = EXCLUDED.region_dataset_id,
+          row_count = EXCLUDED.row_count,
+          status = 'validated',
+          validation_summary = EXCLUDED.validation_summary
+            || jsonb_build_object(
+                 'previousRejection',
+                 awcms_idn_population_datasets.validation_summary
+               ),
+          created_at = now(),
+          created_by = EXCLUDED.created_by
+      WHERE awcms_idn_population_datasets.status = 'rejected'
+    RETURNING id, (xmax = 0) AS inserted
+  `) as { id: string; inserted: boolean }[];
 
-  const datasetId = inserted[0]?.id;
-  if (!datasetId) {
-    throw new PopulationImportError("Dataset row insert returned no id.");
+  const row = written[0];
+  if (!row) {
+    const existing = (await tx`
+      SELECT status FROM awcms_idn_population_datasets
+      WHERE dataset_code = ${plan.datasetCode}
+    `) as { status: string }[];
+    throw new PopulationAlreadyImportedError(
+      plan.datasetCode,
+      existing[0]?.status ?? "unknown"
+    );
   }
 
   for (let offset = 0; offset < plan.rows.length; offset += INSERT_BATCH_SIZE) {
     const chunk = plan.rows.slice(offset, offset + INSERT_BATCH_SIZE);
-    const text = (pick: (row: PopulationRow) => string) =>
+    const text = (pick: (figure: PopulationFigure) => string) =>
       tx.array(chunk.map(pick), "text");
 
     await tx`
       INSERT INTO awcms_idn_population_stats
         (dataset_id, region_code, region_level, source_region_name, dimension,
          category, sex, value, unit, reference_year, figure_basis, universe,
-         source_table, source_page, value_note, category_label,
-             source_row_hash)
-      SELECT ${datasetId}, t.region_code, t.region_level::smallint,
-             t.source_region_name, t.dimension, t.category,
-             NULLIF(t.sex, ''), t.value::numeric(14, 2), t.unit,
-             t.reference_year::smallint, t.figure_basis, t.universe,
-             t.source_table, NULLIF(t.source_page, '')::integer,
-             NULLIF(t.value_note, ''), NULLIF(t.category_label, ''),
-             t.source_row_hash
+         source_table, source_row_hash)
+      SELECT ${row.id}, t.region_code, t.region_level::smallint,
+             t.source_region_name, t.dimension, t.category, NULL,
+             t.value::numeric(14, 3), t.unit, t.reference_year::smallint,
+             t.figure_basis, t.universe, t.source_table, t.source_row_hash
       FROM unnest(
         ${text((r) => r.regionCode)},
         ${text((r) => String(r.regionLevel))},
         ${text((r) => r.sourceRegionName)},
         ${text((r) => r.dimension)},
         ${text((r) => r.category)},
-        ${text((r) => r.sex ?? NULL_SENTINEL)},
         ${text((r) => r.value)},
         ${text((r) => r.unit)},
         ${text((r) => String(r.referenceYear))},
         ${text((r) => r.figureBasis)},
         ${text((r) => r.universe)},
         ${text((r) => r.sourceTable)},
-        ${text((r) => (r.sourcePage === null ? NULL_SENTINEL : String(r.sourcePage)))},
-        ${text((r) => r.valueNote ?? NULL_SENTINEL)},
-        ${text((r) => r.categoryLabel ?? NULL_SENTINEL)},
-        ${text((r) =>
-          createHash("sha256")
-            .update(
-              [
-                r.regionCode,
-                r.dimension,
-                r.category,
-                r.sex ?? "",
-                r.value,
-                r.unit,
-                r.referenceYear,
-                r.universe
-              ].join("|")
-            )
-            .digest("hex")
-        )}
+        ${text(rowHash)}
       ) AS t(region_code, region_level, source_region_name, dimension,
-             category, sex, value, unit, reference_year, figure_basis, universe,
-             source_table, source_page, value_note, category_label,
-             source_row_hash)
+             category, value, unit, reference_year, figure_basis, universe,
+             source_table, source_row_hash)
     `;
   }
 
   return {
-    datasetId,
-    datasetCode: m.datasetCode,
+    datasetId: row.id,
+    datasetCode: plan.datasetCode,
     rowCount: plan.rows.length,
-    status: "validated"
+    status: "validated",
+    promotedFromRejected: !row.inserted
   };
 }
 
@@ -349,7 +574,7 @@ export async function commitPopulationImport(
  * zero statistics rows. Takes the plain pooled client on purpose, exactly like
  * `recordRejectedImport` in dataset-import.ts: the row must commit by itself,
  * never inside a transaction that is about to be abandoned. Re-running the same
- * bad CSV refreshes the summary instead of colliding.
+ * bad files refreshes the summary instead of colliding.
  */
 export async function recordRejectedPopulationImport(
   sql: Bun.SQL,
@@ -361,30 +586,27 @@ export async function recordRejectedPopulationImport(
       "recordRejectedPopulationImport called with a plan that passed validation — call commitPopulationImport instead."
     );
   }
-  const m = plan.manifest;
-  const summary = summaryOf(plan);
 
   const rows = (await sql`
     INSERT INTO awcms_idn_population_datasets
-      (dataset_code, publication_series, coverage_region_code,
+      (dataset_code, source_type, publication_series, coverage_region_code,
        coverage_region_level, publication_title, publisher_name,
-       publisher_domain, publisher_website, attribution, catalogue_number,
-       publication_number, issn, publication_year, release_date,
-       publication_url, source_file_sha256, source_file_bytes, csv_sha256,
-       terms_of_use, region_dataset_id, row_count, status, validation_summary,
-       created_by)
+       publisher_website, attribution, publication_year, publication_url,
+       source_files, terms_of_use, region_dataset_id, row_count, status,
+       validation_summary, created_by)
     VALUES
-      (${m.datasetCode}, ${m.publicationSeries}, ${m.coverageRegionCode},
-       ${m.coverageRegionLevel}, ${m.publicationTitle}, ${m.publisherName},
-       ${m.publisherDomain}, ${m.publisherWebsite}, ${m.attribution},
-       ${m.catalogueNumber}, ${m.publicationNumber}, ${m.issn},
-       ${m.publicationYear}, ${m.releaseDate}, ${m.publicationUrl},
-       ${m.sourceFileSha256}, ${m.sourceFileBytes}, ${plan.csvSha256},
-       ${m.termsOfUse}, ${plan.regionDatasetId}, 0, 'rejected', ${summary},
+      (${plan.datasetCode}, ${POPULATION_SOURCE_TYPE},
+       ${POPULATION_PUBLICATION_SERIES}, ${POPULATION_COVERAGE_REGION_CODE},
+       ${POPULATION_COVERAGE_REGION_LEVEL}, ${POPULATION_PUBLICATION_TITLE},
+       ${POPULATION_PUBLISHER_NAME}, NULL, ${POPULATION_ATTRIBUTION},
+       ${POPULATION_PUBLICATION_YEAR},
+       ${populationPublicationUrl(plan.upstreamCommit)},
+       ${plan.sources}::jsonb, ${POPULATION_TERMS_OF_USE},
+       ${plan.regionDatasetId}, 0, 'rejected', ${summaryOf(plan)}::jsonb,
        ${options.importedBy ?? null})
     ON CONFLICT (dataset_code) DO UPDATE
       SET validation_summary = EXCLUDED.validation_summary,
-          csv_sha256 = EXCLUDED.csv_sha256,
+          region_dataset_id = EXCLUDED.region_dataset_id,
           created_at = now()
       WHERE awcms_idn_population_datasets.status = 'rejected'
     RETURNING id, dataset_code, (xmax = 0) AS inserted
@@ -404,7 +626,7 @@ export async function recordRejectedPopulationImport(
   // run). Report it untouched rather than overwrite a good dataset.
   const existing = (await sql`
     SELECT id, dataset_code FROM awcms_idn_population_datasets
-    WHERE dataset_code = ${m.datasetCode}
+    WHERE dataset_code = ${plan.datasetCode}
   `) as { id: string; dataset_code: string }[];
   const found = existing[0];
   if (!found) {
@@ -420,12 +642,14 @@ export async function recordRejectedPopulationImport(
   };
 }
 
-/** Dataset codes already present in the database (any status). */
-export async function listImportedDatasetCodes(
-  sql: Bun.SQL | Bun.TransactionSQL
-): Promise<Set<string>> {
+/** The status of a dataset code already present in the database, or null. */
+export async function findPopulationDatasetStatus(
+  sql: Bun.SQL | Bun.TransactionSQL,
+  datasetCode: string
+): Promise<string | null> {
   const rows = (await sql`
-    SELECT dataset_code FROM awcms_idn_population_datasets
-  `) as { dataset_code: string }[];
-  return new Set(rows.map((row) => row.dataset_code));
+    SELECT status FROM awcms_idn_population_datasets
+    WHERE dataset_code = ${datasetCode}
+  `) as { status: string }[];
+  return rows[0]?.status ?? null;
 }

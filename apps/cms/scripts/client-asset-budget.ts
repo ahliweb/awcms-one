@@ -81,6 +81,12 @@
 import { readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
+import {
+  BRAND_OVERRIDE_FILE,
+  parseBrandOverride,
+  renderBrandOverrideCss
+} from "../src/lib/ui/brand-token-override";
+
 const CLIENT_DIST = "dist/client";
 
 /**
@@ -1542,6 +1548,34 @@ export const READER_BUDGET_BYTES = 39_000;
  * — and the panel markup itself. The layout is the only app-surface page that
  * renders the panel; every other public page is a reader-surface route, whose
  * weight is in `READER_BUDGET_BYTES`. Margin 141 B, as above.
+ *
+ * **Raised for Issue #1365** (the `/login` second-factor step): +2,625 B
+ * (385,460 -> 388,085), measured 387,945 B on a clean build. The cost is the
+ * code form on the sign-in page (one more `<form>`, nine server-rendered
+ * messages as `data-msg-*` attributes), the step's client logic in the login
+ * script and the pure helpers in `src/lib/ui/login-mfa-client.ts` (shared
+ * lifecycle stays in `admin-form-client.ts`, so nothing is duplicated per
+ * screen), and a few rules in `auth.css`. A person with a TOTP factor could not
+ * sign in through the page at all before this. Margin 140 B, as above.
+ *
+ * **Raised for Issue #1425** (the `/login` pre-session enrolment step): +4,270 B
+ * (388,085 -> 392,355), measured 392,215 B on a clean build. The cost is the
+ * enrolment form and the recovery-code panel on the sign-in page (seven
+ * server-rendered sentences), the step's client logic in the login script, the
+ * four small helpers in `src/lib/ui/login-mfa-client.ts`, the QR encoder now
+ * reached from the login script (it is the SAME `src/lib/qr/qr-code.ts` and
+ * `src/lib/ui/enrolment-qr.ts` that `/admin/account` uses — made addressable by
+ * an optional `targets` argument rather than copied), and a few rules in
+ * `auth.css`. A person whose tenant requires a second factor and who has none
+ * was locked out of the page before this (the code was shown as "sign in
+ * failed" with a correct password). Margin 140 B, as above.
+ *
+ * This gate sums EVERY emitted file, so it cannot see who loads what. The QR
+ * encoder is a separate chunk (`enrolment-qr.*.js`, 6,405 B) fetched by a
+ * dynamic `import()` only once `MFA_ENROLLMENT_REQUIRED` arrives: a normal
+ * sign-in downloads the login script alone (7,036 B), not the encoder. The
+ * total rises a little more than the code it adds because a split chunk costs
+ * its own import glue.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -2120,6 +2154,25 @@ export const READER_BUDGET_BYTES = 39_000;
  * nine admin scripts that now bind through the guard instead of their own
  * listeners. A measurement of the merged build rounded up to the next 100 B.
  *
+ * **The `f0182930` sync (14 November 2026, AWCMS v10.11.0 still) then raises it
+ * to 537,500 B**, MEASURED 537,376 B on the merged build (525,002 B at the
+ * `45a139fa` sync), a measurement and not a sum. Upstream's own constant moved
+ * 358,400 -> 370,720 B (+12,320 B: the channel-account connection manager, the
+ * omnichannel inbox operator screens and the other new modules' admin chrome),
+ * and the commerce lineage is +166,656 B over it, against +166,602 B at the
+ * previous sync (+54 B: the shared `AdminLayout` CSS bundle is not additive
+ * across lineages). `commerce` added no browser byte. 124 B of margin for the
+ * local/CI build difference.
+ *
+ * **Issue #529 (shopper data-subject rights) then raises it to 539,100 B**,
+ * MEASURED 539,032 B on the build (537,376 B at the `f0182930` sync, so +1,656 B):
+ * the customers screen gained the Privacy column's export and erasure-request
+ * actions, the data-subject requests panel with its approve and reject actions,
+ * the step-up and confirm dialogs it shares with the other commerce screens, and
+ * `lib/ui/commerce-subject-client.ts` (the export download). The new
+ * admin strings it needed are compiled into the shared catalogue. 68 B
+ * of margin for the local/CI build difference.
+ *
  * **The `f476fdbb` sync (124 upstream commits after `45a139fa`) then raises it
  * to 552,000 B**, MEASURED 551,921 B on the merged build (525,002 B at the
  * `45a139fa` sync): +26,919 B. Upstream's own constant moved over the same range
@@ -2133,8 +2186,32 @@ export const READER_BUDGET_BYTES = 39_000;
  * `AdminLayout` CSS bundle and the compiled catalogue, which are not additive
  * across lineages (the same effect the #260, #427 and `ab313273` syncs
  * recorded). A measurement of the merged build rounded up to the next 100 B.
+ *
+ * **This branch's merge of the `f476fdbb` sync (PR #543) into PR #530 then
+ * raises it to 553,700 B**, MEASURED 553,625 B on the merged build (551,921 B on
+ * #543's own build, so +1,704 B): the commerce lineage of #530 carries issue
+ * #529's customers-screen Privacy column, data-subject requests panel and
+ * `lib/ui/commerce-subject-client.ts` (+1,656 B when it landed on the
+ * `f0182930` build), and the remaining 48 B are the shared `AdminLayout` CSS
+ * bundle and compiled catalogue, not additive across lineages. The two
+ * paragraphs above are the two lineages that met here. 75 B of margin for the
+ * local/CI build difference.
+ *
+ * **The `ff876138` sync (upstream `765e52c7` to `ff876138`) then raises it to
+ * 560,600 B**, MEASURED 560,462 B on the merged build (553,625 B before it, so
+ * +6,837 B). Upstream's own constant moved 385,460 -> 392,355 B (+6,895 B) for
+ * the `/login` second-factor step (ahliweb/awcms#1365, #1423) and the
+ * pre-session enrolment step (#1425, #1474: the form and recovery-code panel on
+ * the sign-in page, the login script's step logic, `lib/ui/login-mfa-client.ts`
+ * and the QR encoder chunk, now reachable from `/login`): that is the whole
+ * delta, and `commerce` added no browser byte. The measurement sits 58 B BELOW
+ * the sum of the two lineages' figures because the shared `AdminLayout` CSS
+ * bundle and the compiled catalogue are not additive across lineages (the same
+ * effect the #260, #427 and `ab313273` syncs recorded). A measurement of the
+ * merged build, rounded up to the next 100 B plus a 100 B margin for the
+ * local/CI build difference.
  */
-export const APP_BUDGET_BYTES = 552_000;
+export const APP_BUDGET_BYTES = 560_600;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
@@ -2350,6 +2427,65 @@ export async function measureClientAssets(root: string): Promise<Measurement> {
     totalBytes: files.reduce((sum, file) => sum + file.bytes, 0),
     files
   };
+}
+
+/**
+ * Deployment brand override (#1355) is DEPLOYMENT DATA, not upstream code
+ * growth. The budgets measure the latter, so the bytes the override adds are
+ * not counted: the carrier stylesheets (those holding the shipped token
+ * block) are reduced by the exact byte length of the CSS the build transform
+ * appended (`renderBrandOverrideCss`, deterministic). That length is an upper
+ * bound of what survives minification, so at most the minifier's saving on the
+ * override (well under 1 kB) is forgiven in addition. The override's size is
+ * itself bounded by the token allow-list + 7-char hex values (asserted in
+ * tests/client-asset-budget.test.ts). No override file = no adjustment.
+ */
+export function discountBrandOverride(
+  measurement: Measurement,
+  carrierPaths: ReadonlySet<string>,
+  overrideBytes: number
+): Measurement {
+  if (overrideBytes <= 0 || carrierPaths.size === 0) return measurement;
+
+  const files = measurement.files.map((file) =>
+    carrierPaths.has(file.path.split(path.sep).join("/"))
+      ? { ...file, bytes: Math.max(0, file.bytes - overrideBytes) }
+      : file
+  );
+
+  return {
+    totalBytes: files.reduce((sum, file) => sum + file.bytes, 0),
+    files
+  };
+}
+
+async function brandOverrideDiscount(
+  measurement: Measurement
+): Promise<Measurement> {
+  if (!(await Bun.file(BRAND_OVERRIDE_FILE).exists())) return measurement;
+
+  const override = parseBrandOverride(
+    JSON.parse(await Bun.file(BRAND_OVERRIDE_FILE).text()),
+    await Bun.file("src/styles/tokens.css").text()
+  );
+  const overrideBytes = Buffer.byteLength(renderBrandOverrideCss(override));
+  const carriers = new Set<string>();
+
+  for (const file of measurement.files) {
+    const normalised = file.path.split(path.sep).join("/");
+
+    if (
+      normalised.startsWith("_astro/") &&
+      normalised.endsWith(".css") &&
+      (await Bun.file(path.join(CLIENT_DIST, file.path)).text()).includes(
+        "--color-primary-strong:"
+      )
+    ) {
+      carriers.add(normalised);
+    }
+  }
+
+  return discountBrandOverride(measurement, carriers, overrideBytes);
 }
 
 export function evaluateBudget(
@@ -2568,7 +2704,10 @@ async function main(): Promise<void> {
     throw error;
   }
 
-  const report = evaluateBudget(measurement, budget);
+  const report = evaluateBudget(
+    await brandOverrideDiscount(measurement),
+    budget
+  );
 
   if (!report.ok) {
     for (const line of formatFailure(report, measurement, budget)) {
