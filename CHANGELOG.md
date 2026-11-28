@@ -2,6 +2,153 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.21.0] — 2026-11-28
+
+### Customer-bearer storefront account routes are reachable behind the body-authentication middleware
+
+`apps/cms`'s middleware refuses every body-carrying `/api/` request unless it holds a staff session or a machine credential (`refuseUnauthenticatedApiBody`). A shopper's `cs_` bearer session (ADR-0016) is neither, so the fifteen mutating `customerBearer` operations under `/api/v1/commerce/storefront/account/` (addresses, wishlist, profile `PATCH`, push subscriptions and preferences, conversations and messages, affiliate, logout) were answered `401 AUTH_REQUIRED` before their handlers ran. Handler-level tests and `api:spec:check` never saw it.
+
+- Declared in a new `CUSTOMER_BEARER_BODY_ENDPOINTS` registry (`api-body-auth-boundary.ts`), not in `SESSION_FREE_BODY_ENDPOINTS`: eight of those handlers read the body before their own session check, so exempting them would have opened body parsing to anonymous callers.
+- `middleware.ts` authenticates them with the new `refuseUnauthenticatedCustomerBody`: tenant resolved as the storefront routes do, a read-only live-session lookup (`findLiveCustomerSession`, split out of `requireCustomerSession`), `401 UNAUTHENTICATED` carrying the storefront CORS headers otherwise, so the browser can read the status and clear the stored session.
+- `apps/cms/tests/customer-bearer-body-boundary.test.ts` holds the registry equal to the OpenAPI `customerBearer` body operations and the route files; a new customer route that is neither registered nor session-free fails the test.
+- The DB-backed check (`commerce-customer-auth.integration.test.ts`, `findLiveCustomerSession`) is gated on `DATABASE_URL` and was not executed where this change was written.
+
+AGENTS.md records the new local divergence in `apps/cms`.
+
+### Take the astro advisory fixes
+
+`bun audit --audit-level=low` reddened `local-ci/check-toko` and `local-ci/security` for every PR. Two astro advisories were behind it (a third, picomatch `GHSA-fc5q-39xc-vjpf`, was first mitigated here by a local patch and was then withdrawn upstream; see the 32863de8 sync changeset).
+
+- **astro `GHSA-mh32-jxcr-mh9f`** (low, XSS via attribute injection in dynamic tag names, `<=7.4.4`) and **`GHSA-r3h5-4585-7x3w`** (moderate, `@astrojs/node` image endpoint reads a case-variant sibling of the output directory, `<=11.1.11`) are closed by bumping within the major: `apps/storefront` now declares `astro` `^7.4.12` and `@astrojs/node` `^11.1.13`, and the root `bun.lock` resolves `astro@7.4.12` and `@astrojs/node@11.1.13` for the whole workspace.
+
+### A reading-preferences panel on every public page of every profile
+
+The storefront (`toko`, `berita` and `landing`) now carries a small floating button at the bottom-left that opens a "Pengaturan Aksesibilitas" panel (issue #539, ADR-0057). A visitor can choose a larger or extra-large text size, high contrast, monochrome, dyslexia-friendly text (a plain sans font with WCAG 1.4.12 spacing), underlined or highlighted links, and reduced motion, or reset everything. It is a set of display preferences, not an overlay: it never rewrites content, loads no third-party code, makes no request and claims no compliance. The choices live only in the visitor's `localStorage` (`awcms-a11y`) and are never sent to the server.
+
+- A new same-origin classic file `apps/storefront/src/pages/a11y-early.js.ts` applies the stored choices before first paint, so there is no flash; the CSP is unchanged (no inline script or style, no new origin).
+- With nothing stored, `prefers-reduced-motion` and the new `prefers-contrast: more` apply through CSS, so a visitor without JavaScript gets them too; high contrast is never applied under `forced-colors: active`.
+- The OS reduced-motion rule in `global.css` now stands down once the visitor has an explicit stored choice; the two smooth-scroll calls (`/produk`, `/cari` pagination) and the news ticker's pulse obey the choice.
+- At the largest text size, and with dyslexia spacing, on a 360 px phone the layout defects that appeared are fixed: the header search field, the newsletter form's grid column (footer and sidebar), the width of form controls, long unbreakable words and no-wrap buttons. The home slider's secondary button (1.48:1 text contrast, previously masked by the promotional popup in the old axe scan) now uses `--text-primary`. Nothing else changes for a visitor who never touches the panel.
+- Only felt while developing: new unit tests (`a11y-preferences`, `a11y-early`, `a11y-css`), build-smoke assertions on every page of every profile, and a Playwright suite (`a11y-panel.e2e.ts`) with axe scans of the panel; `docs/aksesibilitas.md` is updated to the real state. `apps/cms` is untouched and receives upstream's own version through the next ordinary subtree sync.
+
+### apps/cms synced from ahliweb/awcms main at f476fdbb (reading-preferences panel, six new modules)
+
+Brings 124 upstream commits as one merge commit on top of the picomatch branch (#541): the public reading-preferences panel (ahliweb/awcms#1369 and #1370, ADR-0166), the SLA test clock fix (#1372), six new modules (`crm_leads`, `crm_follow_up`, `omnichannel_inbox`, `social_publishing`, `telegram_engagement`, `website_engagement`), descriptor-declared e-mail categories and WhatsApp templates with a data-driven worker allow-list (#1361, ADR-0164, `sql/410`), brand-scoped WhatsApp message cancel and diagnostics (#1362), the append-only ledger hardening (#1344, #1348, #1360), the load-test harness, the license, SBOM and provider-changelog dependency gates, and the `astro` 7.4.12, `@astrojs/node` 11.1.13, `@playwright/test` 1.65.1 and `prettier` 3.10.1 ranges.
+
+Owner decisions of 2026-11-18 (ahliweb) that shaped it:
+
+- **Worker e-mail guard, "Option A".** `sql/1033` re-issued the guard function with a hard-coded body; on a fresh database it ran after upstream's table-driven `sql/410` and overwrote it (the `crm.follow_up_*` categories and their recipient and variable checks were lost), and on an existing database it left `derived.commerce_campaign` out of `awcms_email_worker_categories`. New `sql/1064` restores `sql/410`'s body and seeds the commerce row (`sql/1033` stays byte-identical), the commerce e-mail categories (`workerInsert` on the campaign one) and WhatsApp templates are declared in the commerce descriptor, the two side-effect imports of `email-dispatch.ts` and `whatsapp-dispatch.ts` are gone, `commerce-campaigns-dispatch.ts` installs the extension-point source, and `1033` and `1064` are the two reasoned entries of `GUARD_REISSUE_EXCEPTIONS` in upstream's re-issue gate. `commerce-worker-email-guard-order.test.ts` simulates the fresh and the existing migration order and replaces `commerce-email-worker-guard.test.ts`.
+- **Customer-bearer POST regression: the fix of PR #530 is ported.** Commit `a341509240` of that PR (cherry-picked with `-x`, author kept) authenticates the fifteen mutating `customerBearer` storefront account operations with a customer-session check before the body is parsed; the staff-only check refused every shopper's `cs_` token. `customer-bearer-named-routes.test.ts` pins `account/logout`, `addresses` and `push/subscriptions` by name, next to a staff-only body POST that still gets the staff check. Five public `security: []` commerce operations that upstream's parity gate found unreachable were added to `SESSION_FREE_BODY_ENDPOINTS` as well.
+- **Catalogue wording kept as upstream's.** 22 msgids existed in both lineages and were de-duplicated on `(msgctxt, msgid)` keeping upstream's; four read differently in Indonesian on commerce screens afterwards: `Channel` is now `Kanal` (was `Saluran`), `Conditions` is `Kondisi` (was `Syarat`), `Not sent` is `Tidak dikirim` (was `Tidak terkirim`), and `Could not save the change. Please try again.` is `Perubahan tidak dapat disimpan. Silakan coba lagi.` (was `Tidak dapat menyimpan perubahan. Silakan coba lagi.`).
+
+Other changes:
+
+- `apps/cms` now registers 41 modules (upstream's 40 plus `commerce`); every counting document says so. Upstream's migrations stop at `sql/414` and collide with neither this repo's `880`-`899` band nor the `commerce` band; `apps/cms` holds 425 migration files with `1064` and `1065`.
+- Upstream took four of this repo's former local divergences (the `AxeViolation` alias, the `numericText` CSV option, the `date`-cursor handling of the data-lifecycle engine, the numeric sort of migration names) and its parser-based `omes-control-execution-boundary.test.ts` replaces the grep-based test of the same name from #212. `commerce`'s one payroll-name exception is registered in upstream's own #1276 mechanism, and commerce's five date-cursor lifecycle descriptors declare `cursorColumnType: "date"`.
+- `commerce` adapts to `WhatsappDeliveryPort`'s four additive refusal reasons (`CONSENT_SCOPE_REQUIRED` maps to `RECIPIENT_SUPPRESSED`, the others to `TEMPLATE_UNAVAILABLE`), the mode-flip drain reads the whole tenant queue with an explicit `scopeKeys: null`, and the document e-mail suppression lookup passes its purpose (`transactional`).
+- Found by the `local-ci/check-cms` integration run against a real PostgreSQL (the static checks cannot see these): the worker's table-level `SELECT` on `awcms_tenant_modules` (`sql/1031`) collided with upstream's column-only pin of the same row (`sql/330`, L-5), so new `sql/1065` revokes it and grants `(tenant_id, module_key, enabled)` again, the customer-push dispatcher's module gate uses `resolveModuleEnabled`, and the pin matrix lists commerce's column-level `UPDATE (updated_at)` on `awcms_inventory_locations`; the campaign dispatcher's e-mail enqueue is now a worker-role twin, `email/application/direct-address-worker-enqueue.ts` (a new file, transactional categories only), because upstream's `enqueueDirectAddressEmail` writes the `purpose` column the worker's grant deliberately lacks; and the payroll catalog layer's suffix list gains `fk`, `not_null`, `tenant_isolation` and `append_only` so the objects of `awcms_commerce_refund_compensations` inherit its registered exception.
+- `tools/ci/gitleaks.toml` allowlists five exact upstream paths whose matches were each read and are not credentials (the omes-control compatibility `PIN.json` of fixture SHA-256 digests, and four test files with made-up app secrets and a template key); no pattern was broadened and no upstream file was edited to annotate them.
+- Generated files (catalogue, preview overlay, jobs env files and `run-job.sh`, OpenAPI bundle, API reference, work-class registry, composition, repo, scripts and PROJECT_STATE inventories, single-flight audit) were regenerated, not merged by hand; `asyncapi/awcms-domain-events.asyncapi.yaml` was merged block by block so both lineages' events are present. `APP_BUDGET_BYTES` is 552,000 B, measured 551,921 B on the merged build.
+- Four commerce rows were added to the provider register (Meta WhatsApp legacy sender, Fonnte, Midtrans, RajaOngkir) with `lastReview` `null`; the license gate reads the isolated-linker store and the root `bun.lock`.
+- Operator: six new scheduled jobs are in the generated crontab (`crm-follow-up:dispatch`, `email:senders:verify`, `omnichannel-inbox:sla`, `social-publishing:dispatch`, `social-publishing:retention:purge`, `telegram-engagement:dispatch`). `omnichannel-inbox:sla` and `email:senders:verify` run as `awcms_app` on purpose, so on the compose path they are routed to `jobs-app` (the pinned app-role set in `tests/compose-produksi.test.mjs` and `docs/deployment.md` now lists three); each does nothing until its flag is on. `social-publishing:dispatch` and `telegram-engagement:dispatch` run under their own database roles and key rings, see the generated `ops/awcms-jobs.env-scoped`. The new migrations `sql/325`-`414` and `1064` apply on `db:migrate`; a database that applied `sql/1033` earlier ends table-driven with the commerce row.
+- Root `bun.lock` follows the new `apps/cms` ranges.
+
+### Footer links meet the WCAG 2.2 minimum target size
+
+The footer links of every profile (`toko`, `berita`, `landing`) were about 20 px tall, below WCAG 2.2 SC 2.5.8 (Target Size, Minimum), for example "Pasang di Layar Utama" (issue #542). Each footer link is now at least 24 px tall, through a new `--target-min` token used by `.site-footer a` and `.footer-berita a`; the columns, wording and colours are unchanged and nothing moves for a visitor except slightly more room between lines of links.
+
+- The whole-page axe scan of every key page (`aksesibilitas.e2e.ts`) now uses the WCAG 2.2 AA tags and passes on all three profiles.
+- `docs/aksesibilitas.md` (and its Indonesian mirror) states the real state.
+- `apps/cms` is untouched.
+
+### apps/cms synced from ahliweb/awcms main at 32863de8; picomatch GHSA-fc5q-39xc-vjpf mitigation removed
+
+GitHub and OSV withdrew `GHSA-fc5q-39xc-vjpf` on 2026-11-18 (the maintainers: not a library vulnerability; the fix PR was closed unmerged and no release followed). `bun run deps:audit:check` in `apps/cms` then reported the exception as stale, which reddened `local-ci/check-cms` on every pull request. The owner decided (2026-11-19) to remove the mitigation entirely in all three repositories.
+
+- Subtree sync, two upstream commits (ahliweb/awcms#1373, #1374), one merge commit: upstream deletes its `patches/picomatch@*.patch`, the `patchedDependencies` field, `picomatch-local-patch.test.ts` and the audit exception, and the `apps/cms` list is `[]` again.
+- Root remnants removed in the same change: `patches/picomatch@4.0.7.patch` and `patches/picomatch@2.3.2.patch`, the root `patchedDependencies` (`package.json` and `bun.lock`), the root picomatch patch test, and the root audit exception (`tools/ci/dependency-audit-exceptions.json` is `[]`). Resolved `picomatch` versions are unchanged (the patch changed files, not versions).
+- AGENTS.md, SECURITY.md and `docs/alur-kerja-pengembangan.md` (and their Indonesian counterparts) describe the real state: both exception lists empty, no local picomatch patch.
+
+### apps/cms synced to ahliweb/awcms v10.12.0; UAT is not run in upstream repositories
+
+Owner decision of 2026-11-19: the upstream repositories (`awcms`, `awcms-astro`, `awcms-one`) run no UAT; UAT (step 14 of the development flow) is run in the implementing or derived project repositories, and this repository is treated as upstream (a template).
+
+- Subtree sync of `apps/cms` to `ahliweb/awcms` tag `v10.12.0` (`765e52c7aca35e91a57ed24fc04a035176a32c95`), four upstream commits, one merge commit. Upstream's own change is documentation only (its ADR-0166 amendment, the design-system note, the release commit); no code, migration or dependency change. Conflicts: only the generated section 2 table of `apps/cms/docs/PROJECT_STATE.md` and `.id.md` (this repo's counts kept, then regenerated and re-stamped).
+- ADR-0057 gains an amendment (the original text is untouched): usability testing of the reading-preferences panel with real readers is not a prerequisite of this repository's release-readiness gate; it belongs to the UAT of each derived repository that adopts the template. The decision itself is unchanged.
+- `docs/aksesibilitas.md` states the same, `AGENTS.md` records the rule next to the code-ownership rule, and the ADR index notes the amendment (English and Indonesian). The device UAT of customer Web Push (ADR-0048 D8) is a per-deployment activation gate and stays as written.
+
+### ADR-0058: owner decisions on contract parity (issue #547 follow-up)
+
+Adds ADR-0058 (with its Indonesian mirror and index rows) recording the owner's decisions of 20 November 2026: fixtures plus a schema check first, the storefront consumer-contract slice at the root `tests/` rather than in the `apps/cms` subtree, and `429 RATE_LIMITED` plus the optional idempotency header reported upstream (ahliweb/awcms#1385) instead of patched locally. Section 8.1 of the audit report now points at the ADR.
+
+The "why": the slice location and the upstream routing decide which repository carries the cost at every subtree sync, and a later reader should find that reasoning in one place. Backlog issues #553 to #557 exist and wait for gate 9; no code, schema, workflow or test changed.
+
+### The `local-ci/security` leg pins the CodeQL query pack to its CLI
+
+`tools/ci/runners/security.ts` downloaded `codeql/javascript-queries` without a version and analysed with an unversioned suite reference. On 2026-11-20 the registry's latest pack became 2.5.1, which is built for CodeQL CLI 2.27.5 and ships JSON-with-comments data extensions. The pinned CLI 2.27.1 rejects them ("Invalid data extension file", `codeql resolve extensions-by-pack` exit 2), so every PR's security leg failed for a reason unrelated to the code under review.
+
+- `CODEQL_JS_QUERY_PACK = "codeql/javascript-queries@2.5.0"` sits next to `CODEQL_CLI_VERSION` in `tools/ci/lib/codeql-cli.ts`; 2.5.0 is the newest pack that runs on CLI 2.27.1.
+- Both `codeql pack download` and the `database analyze` suite reference use the versioned name. The package cache keeps every version ever downloaded, and an unversioned reference resolves to the newest one there, so pinning only the download would not be enough.
+- Moving to a newer pack means bumping the CLI with it (and re-verifying its checksum), deliberately.
+
+### Research report: CMS and storefront contract parity across the three profiles (issue #547)
+
+Adds `docs/audit-paritas-kontrak-cms-storefront.md` (with its Indonesian mirror) and its index rows. The report is findings only: an evidence matrix of every operation the storefront calls for `toko`, `berita` and `landing`, a protocol that keeps TypeScript types apart from HTTP behaviour, sixteen classified findings against baseline `66b9985ad753d815ad8f85f6392487087f4a8e8f`, and the mock-versus-fixture ownership question.
+
+No code, schema, workflow, test or deployment changed. The "why" for a changeset anyway: the report's main finding is that the storefront's tests run against a hand-written stub that nothing compares with the OpenAPI document, and a later release note should be able to point at where that was first written down.
+
+### Footer column headings are visible in light mode
+
+In light mode the footer column headings ("Ikuti Kami", "Informasi", "Bantuan", "Kanal", the shop name) were `#0f172a` on a `#0f172a` background, a 1:1 contrast ratio, on `landing`, `toko` and the store-footer pages of `berita` (issue #551). `.site-footer-column h2` set `--text-primary` over the on-inverse colour that `.site-footer h2` already declares; the stray `color` is removed, so the headings use `--text-on-inverse` in both colour schemes.
+
+- The axe gate (`aksesibilitas.e2e.ts`) missed it because axe files identical-colour text under `incomplete` (`equalRatio`), not `violations`; the gate now fails on that case too.
+- A static test (`footer-kontras.test.ts`) fails when a footer rule colours text with a surface-side token.
+- `docs/aksesibilitas.md` (and its Indonesian mirror) records the gap. `apps/cms` is untouched.
+
+### The translation gate and stamper now see invalid and duplicate `i18n-source-hash` markers
+
+`MARKER_REGEX` only matched `<!-- i18n-source-hash: sha256:<64 hex> -->`, so a hand-written `<!-- i18n-source-hash: sha256:placeholder -->` line was invisible twice over: `docs:i18n:stamp` did not remove it (it stacked a second, real marker on top), and `audit:translation` did not notice it.
+
+- `docs:i18n:stamp` removes every marker-comment line whatever its value, then writes one valid marker. A line only counts when the whole line is the comment, so a mention of the marker in prose or inline code is left alone.
+- `audit:translation` fails a mirror with more than one marker, or with a marker whose value is not `sha256:<64 hex>`, and names the fix.
+- Tests in `tests/docs-i18n-checks.test.mjs` cover a placeholder dropped by the stamper, a duplicate rejected and an invalid marker rejected.
+- Sixteen mirrors under `docs/` lost a stray marker line (fifteen `sha256:placeholder`, one `sha256:0`) and the blank line beside it. `apps/cms` is untouched.
+
+### The local CI stops leaking CodeQL databases and postgres volumes
+
+`~/.local/state/awcms-one-ci/evidence` grew from about 26 GB to 71 GB in four days, and unnamed Docker volumes added another 12-15 GB every few days, until the operator's disk reached 92%. Two legs caused it.
+
+- `tools/ci/runners/security.ts` created the CodeQL database inside the evidence directory (about 1.2 GB per run) and never removed it. It is now removed in a `finally` as soon as analysis ends, pass or fail. The SARIF and the create/analyze logs remain as the evidence; the database is an intermediate and is not needed after the SARIF is written.
+- `tools/ci/runners/check-cms.ts` removed its `postgres:18.6` container with `docker rm -f`. That image declares `VOLUME /var/lib/postgresql`, so every run left an anonymous volume behind. It is now `docker rm -f -v`.
+
+### Research note: AI-assisted design and specification evidence (issue #596)
+
+Adds `docs/research-ai-assisted-design-evidence-2026-11-28.md` (with its Indonesian mirror) and its index rows. The note is a research proposal: a rapid review of public sources, a boundary for the template, a proposed evidence contract and a proposed lifecycle coordination mapping. References that could not be verified are marked as such.
+
+No code, schema, workflow, test, dependency or deployment changed, and the note approves no gate. The "why" for a changeset anyway: it follows the precedent of the contract parity audit (#547), so a later release note can point at where this evidence question was first written down.
+
+### Research: commerce bounded contexts and upstream architecture fitness (issue #601)
+
+Adds `docs/research-commerce-bounded-contexts.md` (with its Indonesian mirror) and an index section in `docs/README.md` and its mirror. The document is proposed research only: a candidate logical context map for commerce, the module layout it must start from (the embedded `apps/cms` registers more modules than ADR-0008 describes), and a proposed adoption workflow. Its references were checked on 2026-11-28; three DOI links could not be opened and are marked as not verified.
+
+No code, schema, workflow, test, dependency or deployment changed, and no ADR is amended. The "why" for a changeset anyway: a later release note should be able to point at where the module-layout mismatch with ADR-0008 was first written down.
+
+### Research note: independent intelligence capabilities for the template (issue #598)
+
+Adds `docs/research/independent-intelligence-reference-2026-11-28.md` (with its Indonesian mirror) and its index rows. The note is a research proposal: original-capability requirements, a licence admission register, a reference register with the verification status of each entry, and proposed safety and acceptance tests. Nothing is approved and no dependency is admitted; references that could not be verified are marked as such.
+
+No code, schema, workflow, test, dependency or deployment changed, and the note approves no gate. The "why" for a changeset anyway: it follows the precedent of the contract parity audit (#547), so a later release note can point at where this question was first written down.
+
+### The `local-ci/security` leg runs OpenGrep instead of CodeQL
+
+CodeQL is no longer run anywhere in the portfolio, public repositories included (owner decision of 2026-11-27, internal cross-portfolio standard DL-098): the repositories created from this template are usually private, where the CodeQL terms forbid the CLI without a paid GitHub Advanced Security licence. Since then the leg could not run, so `local-ci/security` could not be posted green for any PR (issue #603). [ADR-0060](docs/adr/0060-sast-with-opengrep-replaces-codeql-in-the-security-leg.md) records the decision and the blind spots it accepts.
+
+- The leg runs OpenGrep `v2.1.0` (`opengrep_linux_x86`, sha256-pinned, downloaded to a `.part` file and verified before use, re-verified from the cache), gitleaks and `bun audit` (both unchanged). The context name stays `local-ci/security`.
+- Rules: 203 `.yaml`/`.yml` rules under `javascript/` and `typescript/` vendored from `opengrep/opengrep-rules` at `f1d2b562b414783763fd02a6ed2736eaed622efa`, with the upstream `LICENSE` and `tools/ci/sast/rules.lock` (git blob id per file, checked by `tests/local-ci-opengrep.test.mjs`). That directory keeps its own licence (Commons Clause over LGPL-2.1), not the repository's MIT.
+- The gate fails only on an ERROR finding outside `tools/ci/security-baseline.json` (rule id + path); WARNING and INFO are counted, not gated. Offline scan (`--disable-version-check`, `SEMGREP_SEND_METRICS=off`, no `--metrics`), `--jobs` from `CI_LOKAL_CPUS` (default 5), no upload to code scanning.
+- The adoption baseline was generated once on the CI server with `bun tools/ci/cli/sast-baseline.ts` at commit `3ab6849` (OpenGrep `v2.1.0`, 8771 files, 278 s): 27 ERROR findings in 21 (rule id, path) entries, 1250 WARNING and 770 INFO counted only. Every entry is recorded as a pre-existing finding that is not yet triaged; `BASELINE_CEILING` in `tests/local-ci-baseline.test.mjs` is 21, and the baseline only shrinks from here. The CodeQL-era entries (CodeQL rule ids) are gone; their reasoning stays in `SECURITY.md`.
+- Removed: `.github/codeql/codeql-config.yml`, the `codeql-cli.ts` and `sarif.ts` modules under `tools/ci/lib/` (with the CLI and query-pack pins), the SARIF upload and the `--upload-sarif` option of `bun run ci`. The local-CI token needs `statuses:write` only.
+
 ## [0.20.0] — 2026-11-11
 
 ### Booking-derived CRM segment rules (rule schema 2)
