@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:b60b64c9a095ae3f13be0eeea5507f67a7db083d928dfc97afe50914ae803eec -->
+<!-- i18n-source-hash: sha256:e461a968271ff0f3e6796700c0903f2b390fd752d1449ddab23939a3889771d5 -->
 
 # Kebijakan Keamanan
 
@@ -83,7 +83,7 @@ Sejak increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 
 **Di mana temuan muncul.** Di laporan bukti leg `local-ci/security` (`opengrep-results.json`, laporan JSON OpenGrep di direktori bukti run) dan di pesan kegagalan leg, tidak pernah di tab Security GitHub. Leg gagal hanya pada temuan berseverity ERROR yang tidak ada di `tools/ci/security-baseline.json` (dicocokkan lewat id aturan dan path); temuan WARNING dan INFO dihitung, tidak menggerbangi. Sebuah temuan bukan laporan cacat itu sendiri; ia adalah titik awal yang wajib dibaca ulang terhadap baris yang ditandai sebelum tindakan apa pun diambil.
 
-**Baseline hanya menyusut.** Ia dibuat sekali, saat adopsi, dari satu scan penuh yang dijalankan di server CI (`bun tools/ci/cli/sast-baseline.ts`, ADR-0060 D4); sampai saat itu `tools/ci/sast/ADOPTION-BASELINE-PENDING` ada, baseline bernilai `[]`, dan leg gagal tertutup. Setiap entri hasil generate lalu ditriase: temuan yang tampak seperti bug keamanan sungguhan diperbaiki atau dieskalasi, tidak pernah dibiarkan di baseline agar gerbang lolos, dan temuan yang diterima mendapat hasil triasenya sebagai `reason`. Entri baru di kemudian hari adalah edit tangan beralasan, ditinjau di PR-nya bersama kenaikan `BASELINE_CEILING` (`tests/local-ci-baseline.test.mjs`); tidak ada alat maupun agent yang menambah entri untuk meloloskan perubahannya sendiri. Satu baris yang sengaja diterima boleh memakai komentar inline `nosemgrep: <id-aturan>`, dengan id aturan lengkap dan alasan pada baris yang sama; penekanan tanpa id aturan tidak diterima.
+**Baseline hanya menyusut.** Ia dibuat sekali, saat adopsi, dari satu scan penuh yang dijalankan di server CI (`bun tools/ci/cli/sast-baseline.ts`, ADR-0060 D4), dan penanda tunggu sekali-pakai dihapus bersamanya. Setiap entri hasil generate lalu ditriase: temuan yang tampak seperti bug keamanan sungguhan diperbaiki atau dieskalasi, tidak pernah dibiarkan di baseline agar gerbang lolos, dan temuan yang diterima mendapat hasil triasenya sebagai `reason`. Entri baru di kemudian hari adalah edit tangan beralasan, ditinjau di PR-nya bersama kenaikan `BASELINE_CEILING` (`tests/local-ci-baseline.test.mjs`); tidak ada alat maupun agent yang menambah entri untuk meloloskan perubahannya sendiri. Satu baris yang sengaja diterima boleh memakai komentar inline `nosemgrep: <id-aturan>`, dengan id aturan lengkap dan alasan pada baris yang sama; penekanan tanpa id aturan tidak diterima.
 
 **Titik buta dibanding CodeQL.** OpenGrep adalah pencocokan pola dan taint pada pohon sintaks, bukan dataflow seluruh program, sehingga menemukan lebih sedikit aliran antar-prosedur dan hasil bersih lebih lemah sebagai bukti daripada hasil bersih CodeQL dahulu. Aturannya salinan beku dan terpin dari aturan JavaScript/TypeScript `opengrep/opengrep-rules` (lihat `tools/ci/sast/rules/README.md`, yang juga menyatakan lisensi direktori itu sendiri); berkas `.astro` tidak dipindai; tidak ada siklus hidup alert (dismiss/reopen) dan tidak ada tampilan tab Security. Daftar lengkap ada di ADR-0060.
 
