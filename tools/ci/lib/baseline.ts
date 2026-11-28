@@ -1,18 +1,18 @@
 /**
- * baseline.ts — matching a CodeQL SARIF result against the committed
- * security baseline, `tools/ci/security-baseline.json`.
+ * baseline.ts — matching an OpenGrep finding against the committed security
+ * baseline, `tools/ci/security-baseline.json`.
  *
- * The file is seeded once, with this repository's ALREADY-dismissed GitHub
- * code-scanning alerts (each entry's `reason` quotes that alert's own
- * dismissal comment — `gh api repos/ahliweb/awcms-one/code-scanning/alerts`),
- * not left empty: a first local run reproduced exactly those findings, and
- * re-litigating a decision this repository already made once, in a second
- * place, would be busywork rather than triage. It grows further only when a
- * maintainer explicitly triages a genuinely NEW finding and records why it
- * is accepted — never edited to silence a fresh, unseen one. The `security`
- * leg fails on any result whose `security-severity >= 7.0` unless it
- * matches an entry here by `ruleId` + `path` exactly.
+ * The baseline records findings that were TRIAGED once and accepted, each
+ * with a reason (a real triage, not a bulk silence). It may only shrink: the
+ * leg fails on any ERROR-severity finding that does not match an entry by
+ * `ruleId` + `path` exactly, and `tests/local-ci-baseline.test.mjs` refuses a
+ * baseline larger than its recorded ceiling, so adding an entry takes a
+ * visible, reviewed change to that ceiling together with a recorded decision.
+ * A finding that looks like a genuine security bug is fixed or escalated, never
+ * baselined to make the gate pass.
  */
+
+export type Severity = "ERROR" | "WARNING" | "INFO";
 
 export interface BaselineEntry {
   ruleId: string;
@@ -23,8 +23,9 @@ export interface BaselineEntry {
 export interface SecurityFinding {
   ruleId: string;
   path: string;
-  severity: number;
+  severity: Severity;
   message: string;
+  line?: number;
 }
 
 /** Parse and validate `security-baseline.json`'s content. Every entry must carry a non-empty `reason` — an entry without one is a defect in the baseline file itself, not a permissive default. */
@@ -56,23 +57,24 @@ export function isBaselined(finding: SecurityFinding, baseline: readonly Baselin
 }
 
 /**
- * Split findings with `security-severity >= 7.0` into those the baseline
- * excuses and those that must fail the leg.
+ * Split ERROR-severity findings into those the baseline excuses and those
+ * that must fail the leg. WARNING and INFO findings never block.
  */
-export function partitionHighSeverityFindings(
+export function partitionBlockingFindings(
   findings: readonly SecurityFinding[],
-  baseline: readonly BaselineEntry[],
-  threshold = 7.0
-): { blocking: SecurityFinding[]; baselined: SecurityFinding[] } {
+  baseline: readonly BaselineEntry[]
+): { blocking: SecurityFinding[]; baselined: SecurityFinding[]; advisory: SecurityFinding[] } {
   const blocking: SecurityFinding[] = [];
   const baselined: SecurityFinding[] = [];
+  const advisory: SecurityFinding[] = [];
   for (const finding of findings) {
-    if (finding.severity < threshold) continue;
-    if (isBaselined(finding, baseline)) {
+    if (finding.severity !== "ERROR") {
+      advisory.push(finding);
+    } else if (isBaselined(finding, baseline)) {
       baselined.push(finding);
     } else {
       blocking.push(finding);
     }
   }
-  return { blocking, baselined };
+  return { blocking, baselined, advisory };
 }

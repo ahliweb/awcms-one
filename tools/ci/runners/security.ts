@@ -2,43 +2,38 @@
  * runners/security.ts — the `local-ci/security` leg, in place of
  * `.github/workflows/codeql.yml`.
  *
- * Three checks: the CodeQL CLI itself (javascript-typescript,
- * build-mode none, `security-extended`, this repo's own
- * `.github/codeql/codeql-config.yml`, which stays where it is), gitleaks
- * (a container image pinned BY DIGEST, never a moving tag), and
- * `bun audit`. Fails closed on an analysis/extraction error; fails on any
- * SARIF result with `security-severity >= 7.0` unless it matches
- * `tools/ci/security-baseline.json` by ruleId + path.
+ * Three checks: a SAST scan with OpenGrep (JS/TS, rules vendored at a pinned
+ * commit, see `lib/opengrep-cli.ts`), gitleaks (a container image pinned BY
+ * DIGEST, never a moving tag), and `bun audit`. CodeQL is NOT used and must not
+ * be reintroduced here (ADR-0060; internal cross-portfolio standard DL-098).
+ * Fails closed when the scanner cannot be fetched/verified, exits non-zero,
+ * reports an engine error, produces no report, or scans zero files; fails on
+ * any ERROR-severity finding not in `tools/ci/security-baseline.json`
+ * (ruleId + path); and fails while the one-time adoption baseline has not been
+ * generated (`lib/sast-baseline.ts`).
  *
- * ## Honest blind spots — this is not GHAS-equivalent
+ * ## Honest blind spots — this is not CodeQL- or GHAS-equivalent
  *
- *   - `.astro` files have no CodeQL extractor — same limit
- *     `.github/workflows/codeql.yml`'s own comment states; this scan
- *     covers JS/TS only, exactly like that workflow did.
- *   - `--sarif-add-baseline-file-info`/GitHub's own SARIF-upload dedup,
- *     autofix suggestions, and the Security tab's own alert lifecycle
- *     (dismissed/reopened state, `gh api .../code-scanning/alerts`) have no
- *     local equivalent here — `--upload-sarif` posts the SARIF to GitHub's
- *     code-scanning endpoint for that (optional, off by default), but this
- *     leg's own pass/fail never depends on that upload succeeding.
- *   - Path-exclusion parity with `codeql-config.yml`'s `paths-ignore` is
- *     approximate: the raw CLI (unlike `codeql-action`, which turns that
- *     file into a generated query suite) is given the config file's own
- *     `--source-root` scope but does not re-implement `codeql-action`'s own
- *     path-filter compilation step. A future iteration can close this gap;
- *     until then a finding under an excluded path is possible here that
- *     GHAS itself would have filtered.
- *   - No `security-and-quality` queries, matching the workflow this
- *     replaces — a deliberate scope decision (see that file's own comment),
- *     not a gap introduced here.
+ *   - OpenGrep is pattern/taint matching on the syntax tree, not CodeQL's
+ *     whole-program dataflow: it finds fewer inter-procedural flows, so a
+ *     clean run is weaker evidence than a clean CodeQL run was.
+ *   - The rules are the vendored JS/TS subset of opengrep-rules (a frozen,
+ *     pinned snapshot, no updates until deliberately bumped). Rule quality is
+ *     uneven and some rules target frameworks this repo does not use.
+ *   - `.astro` files are not scanned (the same limit CodeQL had); JS/TS only.
+ *   - Only ERROR findings block; WARNING/INFO ones are counted and kept in the
+ *     evidence report, not gated.
+ *   - No GitHub code-scanning upload and no alert lifecycle: the scan result
+ *     lives in this leg's evidence directory only.
  */
-import { existsSync, mkdirSync, rmSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
-import { partitionHighSeverityFindings, parseBaseline } from "../lib/baseline.ts";
-import { CODEQL_JS_QUERY_PACK, ensureCodeqlCli } from "../lib/codeql-cli.ts";
-import { run, runOrThrow } from "../lib/exec.ts";
-import { parseSarifFindings } from "../lib/sarif.ts";
+import { partitionBlockingFindings, parseBaseline } from "../lib/baseline.ts";
+import { run } from "../lib/exec.ts";
+import { SAST_BASELINE_PATH, ensureOpengrepCli, opengrepScanArgs, opengrepScanEnv } from "../lib/opengrep-cli.ts";
+import { parseOpengrepReport } from "../lib/opengrep-json.ts";
+import { adoptionBaselinePending } from "../lib/sast-baseline.ts";
 import { stateRoot } from "../lib/state-dir.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
 
@@ -47,93 +42,62 @@ const GITLEAKS_IMAGE =
 
 export async function runSecurityLeg(
   context: string,
-  ctx: LegContext,
-  options: { uploadSarif?: boolean } = {}
+  ctx: LegContext
 ): Promise<LegOutcome> {
   const start = performance.now();
   const { worktreeRoot, evidenceDir } = ctx;
   const log = (name: string) => join(evidenceDir, `${name}.log`);
   const root = stateRoot();
 
-  // ---- 1. CodeQL ---------------------------------------------------------
-  let codeqlExecutable: string;
+  // ---- 1. SAST (OpenGrep) ------------------------------------------------
+  let opengrep: string;
   try {
-    codeqlExecutable = await ensureCodeqlCli(root);
+    opengrep = await ensureOpengrepCli(root);
   } catch (error) {
-    return fail(`CodeQL CLI setup failed: ${(error as Error).message}`);
+    return fail(`OpenGrep setup failed: ${(error as Error).message}`);
   }
 
-  const dbPath = join(evidenceDir, "codeql-db");
-  const sarifPath = join(evidenceDir, "codeql-results.sarif");
-
-  // The CLI bundle ships no pre-installed query packs (unlike codeql-action,
-  // which vendors them) — `codeql/javascript-queries` is downloaded once
-  // from GitHub's own package registry and cached under this CLI's own
-  // default package cache (~/.codeql/packages), so a re-run does not
-  // re-fetch it. Both commands name the pack WITH its pinned version: the
-  // cache keeps every version ever downloaded, and an unversioned reference
-  // resolves to the newest one there, whatever CLI it needs.
-  // Referencing the suite by its PACKAGE-QUALIFIED name below
-  // (rather than a bare "javascript-security-extended.qls", which the CLI
-  // cannot resolve on its own) is what actually finds it afterwards.
-  const packDownload = await run([codeqlExecutable, "pack", "download", CODEQL_JS_QUERY_PACK], {
-    logFile: log("codeql-pack-download")
+  // The report is the leg's evidence (kept); the engine writes nothing else here.
+  const reportPath = join(evidenceDir, "opengrep-results.json");
+  const scan = await run([opengrep, ...opengrepScanArgs(reportPath)], {
+    cwd: worktreeRoot,
+    env: opengrepScanEnv(),
+    logFile: log("opengrep-scan")
   });
-  if (packDownload.exitCode !== 0) return fail(`codeql pack download failed (exit ${packDownload.exitCode})`);
+  // Exit 0 = scan completed (findings are read from the report, not the exit
+  // code); anything else is an engine failure.
+  if (scan.exitCode !== 0 || !existsSync(reportPath)) {
+    return fail(`opengrep scan failed (exit ${scan.exitCode})`);
+  }
 
-  // The database (~1.2 GB per run) is an intermediate, not evidence — the
-  // SARIF and the create/analyze logs are what this leg keeps. Left in
-  // evidenceDir it filled the operator's disk at ~1.2 GB per security run,
-  // so it is removed as soon as analysis ends, pass or fail.
-  let analyze: Awaited<ReturnType<typeof run>>;
+  let summary: ReturnType<typeof parseOpengrepReport>;
+  let baseline: ReturnType<typeof parseBaseline>;
   try {
-    const create = await run(
-      [
-        codeqlExecutable,
-        "database",
-        "create",
-        dbPath,
-        "--language=javascript-typescript",
-        "--source-root",
-        worktreeRoot,
-        "--overwrite"
-      ],
-      { logFile: log("codeql-database-create") }
-    );
-    if (create.exitCode !== 0) return fail(`codeql database create failed (exit ${create.exitCode})`);
-
-    analyze = await run(
-      [
-        codeqlExecutable,
-        "database",
-        "analyze",
-        dbPath,
-        "--format=sarif-latest",
-        `--output=${sarifPath}`,
-        "--sarif-add-snippets",
-        `${CODEQL_JS_QUERY_PACK}:codeql-suites/javascript-security-extended.qls`
-      ],
-      { logFile: log("codeql-database-analyze") }
-    );
-  } finally {
-    rmSync(dbPath, { recursive: true, force: true });
+    summary = parseOpengrepReport(await Bun.file(reportPath).text());
+    baseline = parseBaseline(await Bun.file(join(worktreeRoot, SAST_BASELINE_PATH)).text());
+  } catch (error) {
+    return fail(`opengrep report or security baseline unreadable: ${(error as Error).message}`);
   }
-  if (analyze.exitCode !== 0 || !existsSync(sarifPath)) {
-    return fail(`codeql database analyze failed (exit ${analyze.exitCode})`);
+  if (summary.fatalErrors.length > 0) {
+    return fail(`opengrep reported ${summary.fatalErrors.length} engine error(s): ${summary.fatalErrors.slice(0, 3).join("; ")}`);
   }
+  if (summary.scannedFiles === 0) return fail("opengrep scanned 0 files (scope or rules misconfigured)");
 
-  const sarifText = await Bun.file(sarifPath).text();
-  const findings = parseSarifFindings(sarifText);
-  const baselineText = await Bun.file(join(worktreeRoot, "tools", "ci", "security-baseline.json")).text();
-  const baseline = parseBaseline(baselineText);
-  const { blocking, baselined } = partitionHighSeverityFindings(findings, baseline);
+  const { blocking, baselined, advisory } = partitionBlockingFindings(summary.findings, baseline);
+
+  if (adoptionBaselinePending(worktreeRoot)) {
+    return fail(
+      `SAST adoption baseline not generated yet (${blocking.length} ERROR finding(s) in ${summary.scannedFiles} files): ` +
+        "run `bun tools/ci/cli/sast-baseline.ts` once on the CI server and commit its result (ADR-0060 D4)"
+    );
+  }
 
   if (blocking.length > 0) {
     const detail = blocking
       .slice(0, 5)
-      .map((f) => `${f.ruleId} @ ${f.path} (severity ${f.severity})`)
+      .map((f) => `${f.ruleId} @ ${f.path}${f.line ? `:${f.line}` : ""}`)
       .join("; ");
-    return fail(`${blocking.length} CodeQL finding(s) >= severity 7.0 not in the baseline: ${detail}`);
+    return fail(`${blocking.length} OpenGrep ERROR finding(s) not in the baseline: ${detail}`);
   }
 
   // ---- 2. gitleaks (pinned by digest) ------------------------------------
@@ -185,51 +149,15 @@ export async function runSecurityLeg(
   });
   if (audit.exitCode !== 0) return fail(`bun audit failed (exit ${audit.exitCode})`);
 
-  // ---- optional: upload SARIF to GitHub code scanning --------------------
-  if (options.uploadSarif) {
-    // Left to the CLI entrypoint, which has the repo/token/sha context this
-    // runner deliberately does not carry — see cli/ci.ts's `--upload-sarif`.
-  }
-
   return {
     context,
     ok: true,
-    summary: `CodeQL (0 blocking, ${baselined.length} baselined) + gitleaks + bun audit green`,
+    summary: `OpenGrep ${summary.scannedFiles} files (0 blocking, ${baselined.length} baselined, ${advisory.length} advisory) + gitleaks + bun audit green`,
     durationMs: performance.now() - start,
     evidenceDir
   };
 
   function fail(summary: string): LegOutcome {
     return { context, ok: false, summary, durationMs: performance.now() - start, evidenceDir };
-  }
-}
-
-/** Gzip+base64 a SARIF file and POST it to GitHub's code-scanning SARIF-upload endpoint. */
-export async function uploadSarif(params: {
-  sarifPath: string;
-  owner: string;
-  repo: string;
-  commitSha: string;
-  ref: string;
-  token: string;
-}): Promise<void> {
-  const { sarifPath, owner, repo, commitSha, ref, token } = params;
-  const raw = await Bun.file(sarifPath).arrayBuffer();
-  const gzipped = Bun.gzipSync(new Uint8Array(raw));
-  const base64 = Buffer.from(gzipped).toString("base64");
-
-  const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/code-scanning/sarifs`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ commit_sha: commitSha, ref, sarif: base64 })
-  });
-  if (!response.ok) {
-    const body = await response.text().catch(() => "");
-    throw new Error(`SARIF upload failed: ${response.status} ${body.slice(0, 500)}`);
   }
 }

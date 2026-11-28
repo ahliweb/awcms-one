@@ -106,7 +106,7 @@ export const LEGS: readonly LegDefinition[] = [
   {
     context: "local-ci/security",
     group: "security",
-    description: "CodeQL CLI (javascript-typescript, security-extended) + gitleaks (pinned by digest) + bun audit"
+    description: "OpenGrep SAST (JS/TS, vendored rules, ERROR gate + baseline) + gitleaks (pinned by digest) + bun audit"
   }
 ];
 

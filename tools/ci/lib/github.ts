@@ -93,6 +93,6 @@ export function resolveToken(env: Record<string, string | undefined> = process.e
   throw new Error(
     "No GitHub token available: LOCAL_CI_GITHUB_TOKEN is unset and `gh auth token` " +
       "failed. Run `gh auth login`, or set LOCAL_CI_GITHUB_TOKEN to a token with " +
-      "`statuses:write` (and `security-events:write` for --upload-sarif)."
+      "`statuses:write`."
   );
 }

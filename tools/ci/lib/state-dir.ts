@@ -1,6 +1,6 @@
 /**
  * state-dir.ts — where local CI keeps its own state: locks, per-(repo, PR,
- * SHA, CI-definition) results, evidence (logs, SARIF, Playwright reports),
+ * SHA, CI-definition) results, evidence (logs, scan reports, Playwright reports),
  * and the watcher's records.
  *
  * Never under the repo (ADR-0021 D6): a disposable worktree is deleted after
@@ -25,7 +25,7 @@ export function lockFilePath(env?: Record<string, string | undefined>): string {
   return join(stateRoot(env), "watch.lock");
 }
 
-/** Subdirectory for a given run's evidence (logs, SARIF, Playwright reports, screenshots). */
+/** Subdirectory for a given run's evidence (logs, scan reports, Playwright reports, screenshots). */
 export function evidenceDir(runId: string, env?: Record<string, string | undefined>): string {
   return join(stateRoot(env), "evidence", runId);
 }
