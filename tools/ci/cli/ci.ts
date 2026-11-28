@@ -10,21 +10,16 @@
  *   --leg <name>       Run only this leg (repeatable). Defaults to all twelve.
  *   --report           Post `local-ci/*` commit statuses for HEAD's SHA.
  *   --keep             Do not remove any leg's disposable worktree afterwards.
- *   --upload-sarif     After a `security` leg run, upload its SARIF to
- *                      GitHub's code-scanning endpoint for HEAD's SHA.
  */
-import { join } from "node:path";
 import { randomBytes } from "node:crypto";
 import { gitRunOrThrow } from "../../../packages/gerbang/lib/git.mjs";
 import { resolveRepo, resolveToken } from "../lib/github.ts";
 import { orchestrate } from "../lib/orchestrate.ts";
-import { uploadSarif } from "../runners/security.ts";
 
 function parseArgs(argv: string[]) {
   const legs: string[] = [];
   let report = false;
   let keep = false;
-  let uploadSarifFlag = false;
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--leg") {
       legs.push(argv[++i]);
@@ -32,16 +27,14 @@ function parseArgs(argv: string[]) {
       report = true;
     } else if (argv[i] === "--keep") {
       keep = true;
-    } else if (argv[i] === "--upload-sarif") {
-      uploadSarifFlag = true;
     }
   }
-  return { legs, report, keep, uploadSarifFlag };
+  return { legs, report, keep };
 }
 
 async function main() {
   const repoRoot = process.cwd();
-  const { legs, report, keep, uploadSarifFlag } = parseArgs(process.argv.slice(2));
+  const { legs, report, keep } = parseArgs(process.argv.slice(2));
   const sha = gitRunOrThrow(repoRoot, "rev-parse", "HEAD").trim();
   const runId = `ci-${sha.slice(0, 12)}-${randomBytes(3).toString("hex")}`;
 
@@ -73,17 +66,6 @@ async function main() {
     }
     process.exitCode = failed ? 1 : 0;
 
-    if (uploadSarifFlag) {
-      const securityOutcome = outcomes.find((o) => o.context === "local-ci/security");
-      const sarifPath = securityOutcome?.evidenceDir ? join(securityOutcome.evidenceDir, "codeql-results.sarif") : undefined;
-      if (sarifPath) {
-        const repo = resolveRepo(repoRoot);
-        await uploadSarif({ sarifPath, owner: repo.owner, repo: repo.repo, commitSha: sha, ref: "refs/heads/main", token: resolveToken() });
-        console.log("local-ci: SARIF uploaded to GitHub code scanning");
-      } else {
-        console.warn("local-ci: --upload-sarif given but no security leg SARIF was produced");
-      }
-    }
   } finally {
     cleanup();
   }

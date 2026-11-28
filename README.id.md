@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8f3ee26d0c0acc1f6021ffd245af5575911c93b84938493de2009f0e9f8d6ede -->
+<!-- i18n-source-hash: sha256:aae2e725c49af53d528d625a2539be2f8eb2d0c945f0851f89493753e9ea46c2 -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -141,7 +141,7 @@ PostgreSQL hidup dan tersedia ada untuk pengembangan lokal dan CI (`compose.yaml
 | `bun test` | Rangkaian tes gerbang akar — `tests/*.test.mjs` — plus tes unit/build-smoke/route milik `apps/storefront` sendiri |
 | `local-ci/check-cms` | Rangkaian `bun run check` ~53 langkah `apps/cms` sendiri, lalu rangkaian `tests/integration/`-nya terhadap PostgreSQL hidup yang termigrasi sungguhan |
 
-`local-ci/security` (analisis `security-extended` milik CLI CodeQL, gitleaks, dan `bun audit`) juga berjalan sebagai bagian `bun run ci`/`ci:pr` — lihat "Local CI: dua belas leg" di `docs/alur-kerja-pengembangan.md` untuk alasan CLI dijalankan langsung alih-alih lewat `codeql-action`. Build/publish image dan publikasi rilis tidak lagi dipicu CI sama sekali: `bun run release:images -- --publish` (image `runtime`/`jobs` milik `apps/cms` ke GHCR dengan SBOM dan provenance) dan `bun run release:publish` (GitHub Release dari bagian `CHANGELOG.md` sebuah versi yang di-tag) keduanya dijalankan dengan tangan dari server rilis terpercaya — lihat [`docs/rilis.md`](docs/rilis.id.md). Lihat [`docs/README.md`](docs/README.id.md) untuk indeks dokumentasi lengkap.
+`local-ci/security` (SAST OpenGrep, gitleaks, dan `bun audit`; CodeQL tidak dijalankan, lihat [ADR-0060](docs/adr/0060-sast-with-opengrep-replaces-codeql-in-the-security-leg.id.md)) juga berjalan sebagai bagian `bun run ci`/`ci:pr` — lihat "Local CI: dua belas leg" di `docs/alur-kerja-pengembangan.md` untuk isi pemeriksaan leg itu. Build/publish image dan publikasi rilis tidak lagi dipicu CI sama sekali: `bun run release:images -- --publish` (image `runtime`/`jobs` milik `apps/cms` ke GHCR dengan SBOM dan provenance) dan `bun run release:publish` (GitHub Release dari bagian `CHANGELOG.md` sebuah versi yang di-tag) keduanya dijalankan dengan tangan dari server rilis terpercaya — lihat [`docs/rilis.md`](docs/rilis.id.md). Lihat [`docs/README.md`](docs/README.id.md) untuk indeks dokumentasi lengkap.
 
 ## Bahasa
 

@@ -1,8 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)
 
-<!-- i18n-source-hash: sha256:57ddf608779ba0354cfd345e82adb5e5b818553aef5dbd15a5c1dd4c8819be13 -->
+<!-- i18n-source-hash: sha256:49dcbda74a1b77fba32dba0b2fe99d8fcfb06625f0cd0c50e25b44c4fd4e7552 -->
 
 # ADR-0021 — Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak
+
+**Digantikan sebagian oleh [ADR-0060](0060-sast-with-opengrep-replaces-codeql-in-the-security-leg.id.md):** D7 di bawah menggambarkan leg `local-ci/security` yang menjalankan CLI CodeQL, dan alternatif yang ditolak menolak leg yang hanya memakai Semgrep. CodeQL tidak lagi dijalankan di mana pun (keputusan pemilik 27 November 2026, standar lintas-portofolio internal DL-098), sehingga leg kini menjalankan OpenGrep dengan aturan tersalin dan terpin di samping gitleaks dan `bun audit` yang tidak berubah; `--upload-sarif` dan `.github/codeql/codeql-config.yml` sudah tidak ada, dan kredensial status hanya butuh `statuses:write`. Bagian lain ADR ini, nol GitHub Actions dengan status `local-ci/*` ber-SHA-eksak, tetap berlaku tanpa perubahan.
 
 - **Status:** Diterima
 - **Tanggal:** 26 September 2026

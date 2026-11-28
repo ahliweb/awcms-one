@@ -1,6 +1,6 @@
 /**
  * redact.ts — scrub tokens and DSN passwords out of local-ci evidence
- * (leg logs, SARIF payloads, watcher records) before anything is written to
+ * (leg logs, scan reports, watcher records) before anything is written to
  * the state directory or printed.
  *
  * Reuses the shared root redactor, `packages/gerbang/lib/redact.mjs`
@@ -17,7 +17,7 @@ import { redactText } from "../../../packages/gerbang/lib/redact.mjs";
 
 /**
  * Redact anything that looks like a secret from a block of text meant to be
- * written to a log file, a SARIF upload body, or stdout.
+ * written to a log file or stdout.
  *
  * @param {string} text
  * @returns {string}
