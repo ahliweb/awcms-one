@@ -48,8 +48,9 @@
  * are unchanged by that split — see `toko-permintaan.ts`'s own docblock.
  */
 import type { KetersediaanMenginap, KuotaBooking, TawaranBooking } from "./booking-kontrak";
+import { hapusSesi } from "./akun-sesi";
 import { kunciHeader } from "./kunci-idempotensi";
-import { kirimPermintaan } from "./toko-permintaan";
+import { kirimPermintaan, TokoApiError } from "./toko-permintaan";
 export { TokoApiError } from "./toko-permintaan";
 export type { ValidationErrorDetail } from "./toko-permintaan";
 
@@ -81,7 +82,7 @@ export type QuoteRequest = {
    * `undefined`/`null`/absent means "no destination known yet" — the CMS
    * (and this repo's own stub) then answers with the single disabled
    * `{available:false}` courier placeholder rather than real rates, exactly
-   * as it does when `shipping.courier.enabled` is off.
+   * as it does when `shipping.courierEnabled` is off.
    */
   destination?: { districtCode: string } | null;
 };
@@ -344,6 +345,24 @@ export type ReviewRequest = {
   body: string;
 };
 
+/**
+ * Issue #570: the optional-bearer calls (`createOrder`, `createGatewaySession`,
+ * `submitReview`) clear the stored session on `401 UNAUTHENTICATED` exactly like
+ * `akun-klien.ts`'s `denganPembersihanSesi`, but ONLY when a bearer was actually
+ * sent. A guest call (no bearer) that is refused is not about any stored session
+ * and must leave it untouched; the error is rethrown unchanged in both cases.
+ */
+async function denganPembersihanSesiBilaBearer<T>(bearerToken: string | undefined, panggil: () => Promise<T>): Promise<T> {
+  try {
+    return await panggil();
+  } catch (error) {
+    if (bearerToken && error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+      hapusSesi();
+    }
+    throw error;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // One function per endpoint (commerce-storefront-endpoints.md)
 // ---------------------------------------------------------------------------
@@ -366,11 +385,8 @@ export function quoteCart(input: QuoteRequest): Promise<CartQuote> {
  * the created order is bound to that account.
  */
 export function createOrder(input: CreateOrderRequest, bearerToken?: string): Promise<Order> {
-  return kirimPermintaan<Order>(
-    "/orders",
-    "POST",
-    input,
-    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+  return denganPembersihanSesiBilaBearer(bearerToken, () =>
+    kirimPermintaan<Order>("/orders", "POST", input, bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined)
   );
 }
 
@@ -451,11 +467,13 @@ export function createGatewaySession(
   const body: Record<string, string> = {};
   if (phone) body.phone = phone;
   if (purpose && purpose !== "full") body.purpose = purpose;
-  return kirimPermintaan<GatewaySession>(
-    `/orders/${encodeURIComponent(orderCode)}/payment-gateway/sessions`,
-    "POST",
-    body,
-    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+  return denganPembersihanSesiBilaBearer(bearerToken, () =>
+    kirimPermintaan<GatewaySession>(
+      `/orders/${encodeURIComponent(orderCode)}/payment-gateway/sessions`,
+      "POST",
+      body,
+      bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+    )
   );
 }
 
@@ -484,11 +502,13 @@ export function cancelOrder(
  * `/akun/ulasan`.
  */
 export function submitReview(input: ReviewRequest, bearerToken?: string): Promise<{ id: string; status: string }> {
-  return kirimPermintaan<{ id: string; status: string }>(
-    "/reviews",
-    "POST",
-    input,
-    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+  return denganPembersihanSesiBilaBearer(bearerToken, () =>
+    kirimPermintaan<{ id: string; status: string }>(
+      "/reviews",
+      "POST",
+      input,
+      bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+    )
   );
 }
 

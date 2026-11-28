@@ -1,12 +1,13 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)
 
-<!-- i18n-source-hash: sha256:77f8a6ad37b7471adeef4399cee2e5e5b7255918f8cd2298b2bb0333d52f9c8c -->
+<!-- i18n-source-hash: sha256:0a57e47ec8209fa9ae1fb222e5892babd22ff1e5737b0ec22ba6dd0df092a5d8 -->
 
 # ADR-0017 — Provider eksternal adalah port milik `commerce`, dengan kredensial per-deployment dari env dan webhook beralamat token
 
 - **Status:** Diterima
 - **Tanggal:** 19 September 2026
 - **Pengambil keputusan:** ahliweb
+- **Diperjelas oleh (24 November 2026, issue #563):** [ADR-0059](0059-third-party-outages-are-handled-per-operation-with-automatic-cross-provider-failover-off-and-commerce-owns-its-provider-state.md). Provider tetap port milik `commerce`; memiliki dua adapter untuk satu port (Fonnte dan Meta, Xendit kelak di samping Midtrans) adalah pemilihan per deployment dan bukan failover otomatis lintas provider, yang mati secara default. Tidak ada keputusan di sini yang dibalik.
 - **Terkait:** [ADR-0010](0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md); `apps/cms`'s [ADR-0006](../../apps/cms/docs/adr/0006-offline-first-sync-outbox.md) (larangan memanggil provider di dalam transaksi DB), [awcms ADR-0074](../../apps/cms/docs/adr/0074-push-delivery-is-a-second-outbox.md) (kredensial per deployment, tidak pernah per tenant); issue #33, #106, #107–#118
 
 ## Konteks

@@ -92,6 +92,14 @@ describe("money in cents", () => {
     expect(formatMoney("abc", "id-ID", "IDR")).toBe("—");
     expect(formatMoney("700000.00", "id-ID", "IDR")).toContain("700.000");
   });
+
+  test("the cents are always shown, whatever the runtime's currency data says", () => {
+    // Pinned, not left to CLDR: an engine that gives the rupiah no minor unit
+    // would print 700.000 and round 1250.50 up to 1.251.
+    expect(formatMoney("700000.00", "id-ID", "IDR")).toContain("700.000,00");
+    expect(formatMoney("700000", "en", "IDR")).toContain("700,000.00");
+    expect(formatMoney("1250.50", "en", "IDR")).toContain("1,250.50");
+  });
 });
 
 describe("buildLookupBody", () => {

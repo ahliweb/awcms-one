@@ -7,7 +7,7 @@
  * gets a worktree to itself; see `lib/orchestrate.ts`'s own header comment).
  *
  * Flags:
- *   --leg <name>       Run only this leg (repeatable). Defaults to all twelve.
+ *   --leg <name>       Run only this leg (repeatable). Defaults to every leg in `LEGS` (twelve in the template).
  *   --report           Post `local-ci/*` commit statuses for HEAD's SHA.
  *   --keep             Do not remove any leg's disposable worktree afterwards.
  *   --upload-sarif     After a `security` leg run, upload its SARIF to
@@ -17,6 +17,7 @@ import { join } from "node:path";
 import { randomBytes } from "node:crypto";
 import { gitRunOrThrow } from "../../../packages/gerbang/lib/git.mjs";
 import { resolveRepo, resolveToken } from "../lib/github.ts";
+import { LEGS } from "../legs.ts";
 import { orchestrate } from "../lib/orchestrate.ts";
 import { uploadSarif } from "../runners/security.ts";
 
@@ -45,7 +46,7 @@ async function main() {
   const sha = gitRunOrThrow(repoRoot, "rev-parse", "HEAD").trim();
   const runId = `ci-${sha.slice(0, 12)}-${randomBytes(3).toString("hex")}`;
 
-  console.log(`local-ci: running ${legs.length > 0 ? legs.join(", ") : "all 12 legs"} against ${sha}`);
+  console.log(`local-ci: running ${legs.length > 0 ? legs.join(", ") : `all ${LEGS.length} legs`} against ${sha}`);
 
   const reportOptions = report
     ? { repo: resolveRepo(repoRoot), sha, token: resolveToken() }

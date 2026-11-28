@@ -14,6 +14,8 @@
  * sequence").
  */
 
+import { DISABLED_LEG_GROUPS } from "./derived-product.ts";
+
 export type LegGroup = "check" | "template" | "e2e" | "security";
 
 export interface LegDefinition {
@@ -30,19 +32,19 @@ export interface LegDefinition {
 }
 
 /**
- * The twelve legs, in the exact order `.github/workflows/*.yml` defined
+ * The inherited table: the twelve legs, in the exact order `.github/workflows/*.yml` defined
  * them across `ci.yml`, `template-init-smoke.yml`, `e2e.yml`, and
  * `codeql.yml`. Order matters only for the default run's own progress
  * output — every leg is independent and `--leg` may select any subset.
  */
-export const LEGS: readonly LegDefinition[] = [
+export const TEMPLATE_LEGS: readonly LegDefinition[] = [
   {
     context: "local-ci/check-toko",
     group: "check",
     profile: "toko",
     primary: true,
     description:
-      "apps/storefront type-check + profile smoke (toko) — plus root bun test, audit:dokumen, audit:translation, audit:graf, audit:rilis, bun audit"
+      "apps/storefront type-check + profile smoke (toko) — plus root bun test (including the fixture-vs-OpenAPI schema gate), audit:dokumen, audit:translation, audit:graf, audit:rilis, bun audit"
   },
   {
     context: "local-ci/check-berita",
@@ -109,6 +111,31 @@ export const LEGS: readonly LegDefinition[] = [
     description: "CodeQL CLI (javascript-typescript, security-extended) + gitleaks (pinned by digest) + bun audit"
   }
 ];
+
+export const LEG_GROUPS: readonly LegGroup[] = ["check", "template", "e2e", "security"];
+
+/**
+ * `table` without the legs of the `disabled` groups. Throws on a name that is
+ * not a group, so a typo in `derived-product.ts` cannot silently disable nothing.
+ */
+export function filterDisabledGroups(
+  table: readonly LegDefinition[],
+  disabled: readonly string[]
+): readonly LegDefinition[] {
+  for (const group of disabled) {
+    if (!(LEG_GROUPS as readonly string[]).includes(group)) {
+      throw new Error(`tools/ci/derived-product.ts: unknown leg group "${group}". Known: ${LEG_GROUPS.join(", ")}`);
+    }
+  }
+  return table.filter((leg) => !disabled.includes(leg.group));
+}
+
+/**
+ * The legs this repository runs and posts: the inherited table minus the
+ * groups `tools/ci/derived-product.ts` disables (none in the template, so
+ * this is then exactly {@link TEMPLATE_LEGS}).
+ */
+export const LEGS: readonly LegDefinition[] = filterDisabledGroups(TEMPLATE_LEGS, DISABLED_LEG_GROUPS);
 
 /** Every `local-ci/*` context, in leg-table order — the flat list a branch-protection change or a doc reads. */
 export const LEG_CONTEXTS: readonly string[] = LEGS.map((leg) => leg.context);

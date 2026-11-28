@@ -139,7 +139,14 @@ export function createMetaWhatsappProvider(
     async send(message: WhatsappMessage): Promise<WhatsappDeliveryResult> {
       const attemptedAt = new Date();
 
-      if (!breaker.canAttempt(attemptedAt)) {
+      // awcms-one (the ff876138 sync, upstream #1409/#1416): `canAttempt` was removed from
+      // the circuit breaker. The send RESERVES the single half-open probe with
+      // `tryAcquire`, and `permit.release()` in the `finally` hands it back when the
+      // call gave the breaker no verdict (a rejected message, a misconfiguration);
+      // a recorded verdict has already moved the state, which makes it a no-op.
+      const permit = breaker.tryAcquire(attemptedAt);
+
+      if (!permit) {
         return {
           ok: false,
           error: "Meta WhatsApp circuit breaker is open; no attempt was made.",
@@ -148,68 +155,72 @@ export function createMetaWhatsappProvider(
         };
       }
 
-      const built = buildPayload(message, config.otpTemplateName);
-
-      if (!built.ok) {
-        // A deployment's own misconfiguration (no template name) — never a
-        // statement about Meta's service, so the breaker is untouched.
-        return { ok: false, error: built.error, retryable: false };
-      }
-
       try {
-        const { response, rawBody } = await callSend(built.payload);
+        const built = buildPayload(message, config.otpTemplateName);
 
-        let parsed: MetaSendResponse = {};
+        if (!built.ok) {
+          // A deployment's own misconfiguration (no template name) — never a
+          // statement about Meta's service, so the breaker is untouched.
+          return { ok: false, error: built.error, retryable: false };
+        }
 
         try {
-          parsed = rawBody ? (JSON.parse(rawBody) as MetaSendResponse) : {};
-        } catch {
+          const { response, rawBody } = await callSend(built.payload);
+
+          let parsed: MetaSendResponse = {};
+
+          try {
+            parsed = rawBody ? (JSON.parse(rawBody) as MetaSendResponse) : {};
+          } catch {
+            if (!response.ok) {
+              if (response.status === 429 || response.status >= 500) {
+                breaker.recordFailure(attemptedAt);
+              }
+              return {
+                ok: false,
+                error: truncate(`Meta API returned HTTP ${response.status}`),
+                retryable: response.status === 429 || response.status >= 500
+              };
+            }
+            breaker.recordFailure(attemptedAt);
+            return {
+              ok: false,
+              error: "Meta API returned a non-JSON response.",
+              retryable: true
+            };
+          }
+
           if (!response.ok) {
+            // 429/5xx are statements about the service; every other 4xx (bad
+            // number, unapproved template, malformed payload) is about THIS
+            // message.
             if (response.status === 429 || response.status >= 500) {
               breaker.recordFailure(attemptedAt);
             }
+
             return {
               ok: false,
-              error: truncate(`Meta API returned HTTP ${response.status}`),
+              error: truncate(
+                parsed.error?.message ??
+                  `Meta API returned HTTP ${response.status}`
+              ),
               retryable: response.status === 429 || response.status >= 500
             };
           }
+
+          breaker.recordSuccess(attemptedAt);
+          return {
+            ok: true,
+            providerMessageId: parsed.messages?.[0]?.id
+          };
+        } catch (error) {
           breaker.recordFailure(attemptedAt);
-          return {
-            ok: false,
-            error: "Meta API returned a non-JSON response.",
-            retryable: true
-          };
+          const messageText =
+            error instanceof Error ? error.message : String(error);
+          return { ok: false, error: truncate(messageText), retryable: true };
         }
-
-        if (!response.ok) {
-          // 429/5xx are statements about the service; every other 4xx (bad
-          // number, unapproved template, malformed payload) is about THIS
-          // message.
-          if (response.status === 429 || response.status >= 500) {
-            breaker.recordFailure(attemptedAt);
-          }
-
-          return {
-            ok: false,
-            error: truncate(
-              parsed.error?.message ??
-                `Meta API returned HTTP ${response.status}`
-            ),
-            retryable: response.status === 429 || response.status >= 500
-          };
-        }
-
-        breaker.recordSuccess(attemptedAt);
-        return {
-          ok: true,
-          providerMessageId: parsed.messages?.[0]?.id
-        };
-      } catch (error) {
-        breaker.recordFailure(attemptedAt);
-        const messageText =
-          error instanceof Error ? error.message : String(error);
-        return { ok: false, error: truncate(messageText), retryable: true };
+      } finally {
+        permit.release();
       }
     },
 

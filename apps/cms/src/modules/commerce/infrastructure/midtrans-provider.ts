@@ -121,7 +121,14 @@ export function createMidtransProvider(
   ): Promise<Response> {
     const now = new Date();
 
-    if (!breaker.canAttempt(now)) {
+    // awcms-one (the ff876138 sync, upstream #1409/#1416): `canAttempt` was removed from
+    // the circuit breaker. The send RESERVES the single half-open probe with
+    // `tryAcquire`, and `permit.release()` in the `finally` hands it back when the
+    // call gave the breaker no verdict (a rejected message, a misconfiguration);
+    // a recorded verdict has already moved the state, which makes it a no-op.
+    const permit = breaker.tryAcquire(now);
+
+    if (!permit) {
       throw new PaymentGatewayProviderCallFailedError(
         "commerce-midtrans circuit is open."
       );
@@ -144,6 +151,8 @@ export function createMidtransProvider(
         breaker.recordFailure(new Date());
       }
       throw error;
+    } finally {
+      permit.release();
     }
   }
 
@@ -246,8 +255,9 @@ export function createMidtransProvider(
      * works for cards and the e-wallets alike and de-duplicates on
      * `refund_key`, so a retry of the same leg can never refund twice. The
      * HTTP layer is guarded like every other call here (timeout + circuit
-     * breaker); a business refusal arrives as HTTP 200 with a non-2xx
-     * `status_code` in the body and is reported as `failed` with a SHORT
+     * breaker); a business refusal arrives as HTTP 200 with a `status_code`
+     * other than "200"/"201" in the body (a 4xx, or a 2xx such as "202"
+     * "Refund denied by the bank") and is reported as `failed` with a SHORT
      * machine code - the raw provider message never leaves this adapter.
      */
     async refund(
@@ -286,7 +296,13 @@ export function createMidtransProvider(
         body.refund_chargeback_id !== undefined
           ? String(body.refund_chargeback_id)
           : (body.refund_key ?? input.refundKey);
-      if (/^2\d\d$/.test(code)) {
+      // Only "200" is an approved refund and "201" an accepted, still-pending
+      // one. Every other code - including other 2xx codes such as "202"
+      // ("Refund denied by the bank") - is a refusal: booking it as
+      // succeeded would settle the leg and reverse the ledger for money the
+      // customer never received (issue #564, case K4). An undocumented
+      // success code therefore fails safe to an operator reconciliation.
+      if (code === "200" || code === "201") {
         return {
           status: code === "201" ? "pending" : "succeeded",
           providerRefundId,

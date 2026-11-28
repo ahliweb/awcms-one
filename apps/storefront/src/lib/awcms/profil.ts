@@ -58,6 +58,7 @@
  *     live; it throws, exactly as `catalog.ts`'s fetches do.
  */
 import { AwcmsApiError, awcmsGet } from "./client";
+import { buildsWithoutCms } from "./tanpa-cms";
 import { readEnv } from "../env";
 import { DEFAULT_IDENTITY } from "../../config/site";
 
@@ -213,6 +214,9 @@ export function getSiteIdentity(): Promise<SiteIdentity> {
 }
 
 async function fetchSiteIdentity(): Promise<SiteIdentity> {
+  // Issue #535: no CMS on a landing build — env and defaults apply.
+  if (buildsWithoutCms()) return mergeSiteIdentity(EMPTY_PAYLOAD);
+
   let payload: ComposedSiteIdentity;
 
   try {

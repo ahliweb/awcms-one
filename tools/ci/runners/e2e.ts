@@ -8,7 +8,7 @@
  */
 import { cpSync, existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
-import { run } from "../lib/exec.ts";
+import { describeFailure, run, stepBudgetMs } from "../lib/exec.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
 import type { Profile } from "./check.ts";
 
@@ -24,13 +24,14 @@ export async function runE2eLeg(context: string, profile: Profile, ctx: LegConte
   // root for the whole workspace before Playwright itself is touched.
   const bunInstall = await run(["bun", "install", "--frozen-lockfile"], {
     cwd: worktreeRoot,
-    logFile: join(evidenceDir, "bun-install.log")
+    logFile: join(evidenceDir, "bun-install.log"),
+    timeoutMs: stepBudgetMs(20)
   });
   if (bunInstall.exitCode !== 0) {
     return {
       context,
       ok: false,
-      summary: `bun install failed (exit ${bunInstall.exitCode})`,
+      summary: describeFailure("bun install", bunInstall),
       durationMs: performance.now() - start,
       evidenceDir
     };
@@ -40,13 +41,14 @@ export async function runE2eLeg(context: string, profile: Profile, ctx: LegConte
   // needs root this host does not grant.
   const install = await run(["bun", "--bun", "playwright", "install", "chromium"], {
     cwd: storefrontDir,
-    logFile: join(evidenceDir, "playwright-install.log")
+    logFile: join(evidenceDir, "playwright-install.log"),
+    timeoutMs: stepBudgetMs(20)
   });
   if (install.exitCode !== 0) {
     return {
       context,
       ok: false,
-      summary: `playwright install chromium failed (exit ${install.exitCode})`,
+      summary: describeFailure("playwright install chromium", install),
       durationMs: performance.now() - start,
       evidenceDir
     };
@@ -59,7 +61,8 @@ export async function runE2eLeg(context: string, profile: Profile, ctx: LegConte
       SITE_PROFILE: profile,
       E2E_SCREENSHOT_DIR: "test-results/screenshots"
     },
-    logFile: join(evidenceDir, "playwright-test.log")
+    logFile: join(evidenceDir, "playwright-test.log"),
+    timeoutMs: stepBudgetMs(60)
   });
 
   for (const [source, destName] of [
@@ -78,7 +81,7 @@ export async function runE2eLeg(context: string, profile: Profile, ctx: LegConte
     summary:
       test.exitCode === 0
         ? `Playwright e2e green (SITE_PROFILE=${profile})`
-        : `Playwright e2e failed (exit ${test.exitCode}) — report in ${evidenceDir}`,
+        : `${describeFailure("Playwright e2e", test)} — report in ${evidenceDir}`,
     durationMs: performance.now() - start,
     evidenceDir
   };

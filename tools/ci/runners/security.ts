@@ -37,7 +37,7 @@ import { join } from "node:path";
 import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
 import { partitionHighSeverityFindings, parseBaseline } from "../lib/baseline.ts";
 import { CODEQL_JS_QUERY_PACK, ensureCodeqlCli } from "../lib/codeql-cli.ts";
-import { run, runOrThrow } from "../lib/exec.ts";
+import { describeFailure, run, runOrThrow, stepBudgetMs } from "../lib/exec.ts";
 import { parseSarifFindings } from "../lib/sarif.ts";
 import { stateRoot } from "../lib/state-dir.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
@@ -77,9 +77,10 @@ export async function runSecurityLeg(
   // (rather than a bare "javascript-security-extended.qls", which the CLI
   // cannot resolve on its own) is what actually finds it afterwards.
   const packDownload = await run([codeqlExecutable, "pack", "download", CODEQL_JS_QUERY_PACK], {
-    logFile: log("codeql-pack-download")
+    logFile: log("codeql-pack-download"),
+    timeoutMs: stepBudgetMs(10)
   });
-  if (packDownload.exitCode !== 0) return fail(`codeql pack download failed (exit ${packDownload.exitCode})`);
+  if (packDownload.exitCode !== 0) return fail(describeFailure("codeql pack download", packDownload));
 
   // The database (~1.2 GB per run) is an intermediate, not evidence — the
   // SARIF and the create/analyze logs are what this leg keeps. Left in
@@ -98,9 +99,9 @@ export async function runSecurityLeg(
         worktreeRoot,
         "--overwrite"
       ],
-      { logFile: log("codeql-database-create") }
+      { logFile: log("codeql-database-create"), timeoutMs: stepBudgetMs(60) }
     );
-    if (create.exitCode !== 0) return fail(`codeql database create failed (exit ${create.exitCode})`);
+    if (create.exitCode !== 0) return fail(describeFailure("codeql database create", create));
 
     analyze = await run(
       [
@@ -113,13 +114,13 @@ export async function runSecurityLeg(
         "--sarif-add-snippets",
         `${CODEQL_JS_QUERY_PACK}:codeql-suites/javascript-security-extended.qls`
       ],
-      { logFile: log("codeql-database-analyze") }
+      { logFile: log("codeql-database-analyze"), timeoutMs: stepBudgetMs(60) }
     );
   } finally {
     rmSync(dbPath, { recursive: true, force: true });
   }
   if (analyze.exitCode !== 0 || !existsSync(sarifPath)) {
-    return fail(`codeql database analyze failed (exit ${analyze.exitCode})`);
+    return fail(describeFailure("codeql database analyze", analyze));
   }
 
   const sarifText = await Bun.file(sarifPath).text();
@@ -160,8 +161,10 @@ export async function runSecurityLeg(
       "--report-path=/repo/.gitleaks-report.json",
       "--exit-code=2"
     ],
-    { logFile: log("gitleaks") }
+    { logFile: log("gitleaks"), timeoutMs: stepBudgetMs(20) }
   );
+  // A timeout reports exit 124, which the 0/1/2 convention below would read as "not 1 or 2", i.e. clean.
+  if (gitleaks.timedOut) return fail(describeFailure("gitleaks", gitleaks));
   // gitleaks own convention: exit 0 = clean, 1 = error, our chosen 2 = leaks found.
   if (gitleaks.exitCode === 1) return fail("gitleaks failed to run (exit 1)");
   const reportInWorktree = join(worktreeRoot, ".gitleaks-report.json");
@@ -181,9 +184,10 @@ export async function runSecurityLeg(
   }
   const audit = await run(["bun", "audit", "--audit-level=low", ...ignore.args], {
     cwd: worktreeRoot,
-    logFile: log("bun-audit")
+    logFile: log("bun-audit"),
+    timeoutMs: stepBudgetMs(10)
   });
-  if (audit.exitCode !== 0) return fail(`bun audit failed (exit ${audit.exitCode})`);
+  if (audit.exitCode !== 0) return fail(describeFailure("bun audit", audit));
 
   // ---- optional: upload SARIF to GitHub code scanning --------------------
   if (options.uploadSarif) {

@@ -82,13 +82,14 @@ echoed back in every response's `meta` object
 
 ### Standard parameters
 
-| Name             | Header/query                 | Required | Type   | Description                                                                                                                                                                                                     |
-| ---------------- | ---------------------------- | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CorrelationId`  | `X-Correlation-ID` (header)  | no       | string |                                                                                                                                                                                                                 |
-| `IdempotencyKey` | `Idempotency-Key` (header)   | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
-| `SyncNodeId`     | `X-AWCMS-Node-ID` (header)   | yes      | string | Node code identifying the calling sync node (auto-registers on first contact).                                                                                                                                  |
-| `SyncTimestamp`  | `X-AWCMS-Timestamp` (header) | yes      | string | ISO-8601 timestamp of the request, validated against the allowed skew (anti-replay).                                                                                                                            |
-| `SyncSignature`  | `X-AWCMS-Signature` (header) | yes      | string | HMAC-SHA256 signature over "<timestamp>.<body>".                                                                                                                                                                |
+| Name                     | Header/query                 | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------ | ---------------------------- | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CorrelationId`          | `X-Correlation-ID` (header)  | no       | string |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `IdempotencyKey`         | `Idempotency-Key` (header)   | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129).                                                                                                                                                                                                                                                                      |
+| `IdempotencyKeyOptional` | `Idempotency-Key` (header)   | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
+| `SyncNodeId`             | `X-AWCMS-Node-ID` (header)   | yes      | string | Node code identifying the calling sync node (auto-registers on first contact).                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `SyncTimestamp`          | `X-AWCMS-Timestamp` (header) | yes      | string | ISO-8601 timestamp of the request, validated against the allowed skew (anti-replay).                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `SyncSignature`          | `X-AWCMS-Signature` (header) | yes      | string | HMAC-SHA256 signature over "<timestamp>.<body>".                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ### Standard success envelope
 
@@ -135,12 +136,14 @@ check enforces this):
 
 **Standard error responses**:
 
-| Response       | Schema                                 | Description                 |
-| -------------- | -------------------------------------- | --------------------------- |
-| `BadRequest`   | [`ApiError`](#standard-error-envelope) | Validation error.           |
-| `Unauthorized` | [`ApiError`](#standard-error-envelope) | Missing or invalid session. |
-| `Forbidden`    | [`ApiError`](#standard-error-envelope) | Access denied by RBAC/ABAC. |
-| `NotFound`     | [`ApiError`](#standard-error-envelope) | Resource not found.         |
+| Response                  | Schema                                 | Description                                                                                                                            |
+| ------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `BadRequest`              | [`ApiError`](#standard-error-envelope) | Validation error.                                                                                                                      |
+| `Unauthorized`            | [`ApiError`](#standard-error-envelope) | Missing or invalid session.                                                                                                            |
+| `Forbidden`               | [`ApiError`](#standard-error-envelope) | Access denied by RBAC/ABAC.                                                                                                            |
+| `NotFound`                | [`ApiError`](#standard-error-envelope) | Resource not found.                                                                                                                    |
+| `RateLimited`             | [`ApiError`](#standard-error-envelope) | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                         |
+| `RateLimitedNoRetryAfter` | [`ApiError`](#standard-error-envelope) | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. |
 
 ### Request body size limits
 
@@ -349,11 +352,12 @@ Clears the delete stamps and records restored_at/restored_by. 404 when the id is
 
 **Responses**
 
-| Status | Description              | Schema                                 |
-| ------ | ------------------------ | -------------------------------------- |
-| 200    | Tenant bootstrapped.     | object                                 |
-| 400    | Validation error.        | [`ApiError`](#standard-error-envelope) |
-| 403    | Setup already completed. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Tenant bootstrapped.                                                                                           | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Setup already completed.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/setup/status` — Whether the one-time setup wizard has already run.
 
@@ -1642,11 +1646,12 @@ Every rejection — unknown client, non-allow-listed URI, a URI carrying a query
 
 **Responses**
 
-| Status | Description                                                                                                     | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | A one-time code, and the redirect_uri it is bound to.                                                           | object                                 |
-| 400    | The client and redirect_uri combination cannot be used (`HANDOFF_NOT_ALLOWED`), or the body is missing a field. | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A one-time code, and the redirect_uri it is bound to.                                                                                  | object                                 |
+| 400    | The client and redirect_uri combination cannot be used (`HANDOFF_NOT_ALLOWED`), or the body is missing a field.                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/session-handoff/redeem` — Spend a one-time handoff code and receive a session token (server-to-server).
 
@@ -1675,10 +1680,11 @@ The minted session inherits the assurance level the original login REACHED and n
 
 **Responses**
 
-| Status | Description                                                                                         | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | A session token for the human who authenticated.                                                    | object                                 |
-| 401    | The handoff could not be completed (`HANDOFF_REJECTED`) — one answer for every cause, deliberately. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A session token for the human who authenticated.                                                                                       | object                                 |
+| 401    | The handoff could not be completed (`HANDOFF_REJECTED`) — one answer for every cause, deliberately.                                    | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/session/switch` — Move the current session to another tenant the same human belongs to.
 
@@ -1943,14 +1949,15 @@ It changes no credential and clears no lockout counter: ending stray sessions pr
 
 **Responses**
 
-| Status | Description                                                   | Schema                                 |
-| ------ | ------------------------------------------------------------- | -------------------------------------- |
-| 302    | Login (or link) succeeded — redirect to the return path.      |                                        |
-| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                   | [`ApiError`](#standard-error-envelope) |
-| 409    | The provider account is already linked (SSO_ALREADY_LINKED).  | [`ApiError`](#standard-error-envelope) |
-| 502    | The provider could not be reached (SSO_PROVIDER_UNAVAILABLE). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 302    | Login (or link) succeeded — redirect to the return path.                                                                               |                                        |
+| 400    | Validation error.                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | The provider account is already linked (SSO_ALREADY_LINKED).                                                                           | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget. This operation's handler does not send `Retry-After`; use your own backoff. | [`ApiError`](#standard-error-envelope) |
+| 502    | The provider could not be reached (SSO_PROVIDER_UNAVAILABLE).                                                                          | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/sso/{providerKey}/link` — Explicitly link an OIDC provider account to the caller's identity (authenticated + step-up required; never auto-links by email).
 
@@ -6025,9 +6032,10 @@ Gated by blog_content.institutions.purge. Requires a prior soft delete: the stat
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -7598,11 +7606,12 @@ PUBLIC, unauthenticated visit-ingest beacon. Resolves the tenant from the reques
 
 **Responses**
 
-| Status | Description                                                                | Schema                                 |
-| ------ | -------------------------------------------------------------------------- | -------------------------------------- |
-| 202    | Beacon accepted (recorded or intentionally ignored — never distinguished). | object                                 |
-| 400    | Validation error.                                                          | [`ApiError`](#standard-error-envelope) |
-| 413    | Request body exceeds the size limit (BODY_TOO_LARGE).                      | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 202    | Beacon accepted (recorded or intentionally ignored — never distinguished).                                     | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 413    | Request body exceeds the size limit (BODY_TOO_LARGE).                                                          | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/analytics/devices` — Browser + device-type breakdown
 
@@ -9557,10 +9566,11 @@ PUBLIC. De-duplicated per (comment, reporter ip hash, reason) by a database uniq
 
 **Responses**
 
-| Status | Description                                          | Schema                                 |
-| ------ | ---------------------------------------------------- | -------------------------------------- |
-| 200    | The report was accepted (or silently de-duplicated). | object                                 |
-| 400    | Validation error.                                    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The report was accepted (or silently de-duplicated).                                                           | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/comments/admin/{id}/archive` — Withdraw an approved comment from public view.
 
@@ -10543,9 +10553,10 @@ Issue #362: `segmentId` attaches (re-pins) a segment as the whole audience and c
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -10591,9 +10602,10 @@ Issue #362: a campaign whose audience is a segment is checked when it is ENQUEUE
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -10921,6 +10933,121 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 404    | Resource not found.                                                                        | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Which CRM leads were confirmed as commerce customers, newest first (at most 100): opaque ids, the evidence kind and the link state, never a name or contact. Optional filters `leadId`, `customerId`, `state`. Gated on `commerce.crm_lead_links.read`.
+
+- **operationId**: `listCommerceCrmLeadLinks`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                           | Description |
+| ------------ | ----- | -------- | ---------------------------------------------- | ----------- |
+| `leadId`     | query | no       | string (uuid)                                  |             |
+| `customerId` | query | no       | string (uuid)                                  |             |
+| `state`      | query | no       | enum(`linked`, `reversal_pending`, `reversed`) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The links.                  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links` — Issue #463 (ADR-0056). Confirm that a CRM lead became this commerce customer, on a commerce fact the server verifies. Gated on `commerce.crm_lead_links.create` AND `crm_leads.conversions.approve` (the CRM port performs no access check, so both are enforced); audited at warning.
+
+- **operationId**: `createCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+The caller names the lead and the customer; nothing is matched on a phone, e-mail or social handle. The evidence is read from the database: `customer_registration` needs a live account with a verified e-mail, `paid_order` needs a paid, not cancelled order OF THAT customer (`orderId` required). The conversion is recorded in `crm_leads` through `CrmLeadPort` with an opaque customer reference and the evidence reference as the replay key, and `awcms.commerce.customer.converted` is published. A replay with the same evidence answers `200` with the existing link and publishes nothing; the same evidence naming another lead or customer is `409 CRM_EVIDENCE_REUSED`. A lead or customer of another tenant is the same `404` as a missing one. An erased customer, or an order whose every line was returned, is `409 CRM_EVIDENCE_NOT_VERIFIED`. This operation does NOT honour an `Idempotency-Key` header (ADR-0145 does not apply): the evidence reference is the idempotency key, so a replay is recognised from the evidence alone.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | A replay - the existing link, nothing published.                                                                                                                                                                                                                         | object                                 |
+| 201    | The new link.                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEADS_UNAVAILABLE`, `CRM_EVIDENCE_NOT_VERIFIED` (with `details.reason`), `CRM_LEAD_ALREADY_LINKED`, `CRM_EVIDENCE_REUSED` or `CRM_CONVERSION_REFUSED` (with `details.reason`, a `crm_leads` outcome such as `version_conflict`, `not_open` or `already_converted`). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/crm-lead-links/{id}/reverse` — Issue #463 (ADR-0056). Reverse a confirmed lead-to-customer link: the CRM conversion is reversed through the port (a stamped reversal, never an edit of history) and the link becomes `reversed`, which is final. Gated on `commerce.crm_lead_links.approve` (a high-risk action) AND `crm_leads.conversions.approve`; audited at warning.
+
+- **operationId**: `reverseCommerceCrmLeadLink`
+- **Security**: bearerAuth + tenantHeader
+
+Meant for a link a consumer flagged `reversal_pending` because the order its conversion rests on was cancelled or fully refunded (the consumers run as the worker role, which holds no CRM privilege, so they only flag). A person may also reverse a `linked` one. Reversing a reversed link is `409`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                                     | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reversed link.                                                                                              | object                                 |
+| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `CRM_LEAD_LINK_ALREADY_REVERSED`, `CRM_LEADS_UNAVAILABLE`, `CRM_CONVERSION_NOT_FOUND` or `CRM_EVIDENCE_REUSED`. | [`ApiError`](#standard-error-envelope) |
+| 422    | `VALIDATION_ERROR` - the reversal request was rejected by `crm_leads` as invalid.                               | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/customer-subject-requests` — Issue #529 (ADR-0055 D3). The tenant's shopper data-subject requests, newest first, at most 100. Gated on `commerce.customer_subject_requests.read`.
+
+- **operationId**: `listCommerceCustomerSubjectRequests`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                                                      | Description |
+| ------------ | ----- | -------- | ------------------------------------------------------------------------- | ----------- |
+| `status`     | query | no       | enum(`disclosed`, `pending_approval`, `refused`, `rejected`, `completed`) |             |
+| `customerId` | query | no       | string (uuid)                                                             |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The requests.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customer-subject-requests/{id}/decide` — Issue #529 (ADR-0055 D3). The second person approves or rejects a pending erasure. Gated on `commerce.customer_subject_requests.approve` (high-risk), a fresh step-up and an `Idempotency-Key`; never the requester.
+
+- **operationId**: `decideCommerceCustomerSubjectRequest`
+- **Security**: bearerAuth + tenantHeader
+
+Body `{ "decision": "approve" | "reject" }`. Approving runs the erasure in this transaction. The requester is `403 SEPARATION_OF_DUTIES`; a request that is not pending is `409 INVALID_STATE`, except that the same approver repeating the decision that already settled it (a retry after a lost response) gets the stored decision back with `200`; a shopper whose state changed since the request (a new order, say) is `409 ERASURE_REFUSED` and the request is recorded as refused.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------- | -------------------------------------- |
+| 200    | The decided request.                                          | object                                 |
+| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN`, `STEP_UP_REQUIRED` or `SEPARATION_OF_DUTIES`.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `INVALID_STATE`, `ERASURE_REFUSED` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/customers` — Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
 
 - **operationId**: `listCommerceCustomers`
@@ -10982,6 +11109,58 @@ A sale already reported keeps the accrual it produced. Retiring an already-retir
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-erasure` — Issue #529 (ADR-0055 D2/D3). Request the erasure of a shopper's personal data. Erases nothing: records a request a second person approves. Gated on `commerce.customer_subject_requests.delete` (high-risk), a fresh step-up and an `Idempotency-Key`.
+
+- **operationId**: `requestCommerceCustomerSubjectErasure`
+- **Security**: bearerAuth + tenantHeader
+
+Runs the precondition check first. `202` records a `pending_approval` request; `409 ERASURE_REFUSED` records a `refused` one (open order or booking, stored-value balance, unsettled refund, unpaid affiliate commission, or already erased). A stale step-up is `403 STEP_UP_REQUIRED` with nothing written. Body `{ "reason"?: string }`, at most 500 characters.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 202    | The pending request (or the same request, `replayed: true`).           | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN` or `STEP_UP_REQUIRED`.                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/customers/{id}/subject-export` — Issue #529 (ADR-0055 D3/D4). An administrator produces a shopper's data-subject export bundle on their behalf. Gated on `commerce.customer_subject_requests.export` (high-risk) and an `Idempotency-Key`.
+
+- **operationId**: `exportCommerceCustomerSubjectData`
+- **Security**: bearerAuth + tenantHeader
+
+The bundle is returned once with `Cache-Control: no-store` and never stored; the disclosure is audited at `critical` with counts only. A repeated key is `409 IDEMPOTENCY_REPLAYED` because the bundle is not kept to replay; use a new key to produce another.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The request id and the bundle. | object                                 |
+| 400    | Validation error.              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.            | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_REPLAYED`.        | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`.
 
@@ -12374,9 +12553,10 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -12436,6 +12616,7 @@ The order row is locked for the write, so two concurrent final payments cannot o
 | 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
 | 409    | `IDEMPOTENCY_CONFLICT` (also a key reused against another order or with a different tender/amount), `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`), `ORDER_NOT_PAYABLE` (a cancelled or expired order) or `REGISTER_SESSION_CLOSING` (Issue #284: the POS sale's register session is counting/awaiting a supervisor, so the money would fall into no cash-up — retry once the close is decided). | [`ApiError`](#standard-error-envelope) |
+| 429    | STORED_VALUE_LOOKUP_THROTTLED. The actor exceeded the stored-value (gift card / store credit) code lookup budget while resolving a stored-value tender; retry after the number of seconds in `Retry-After`.                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/orders/{id}/payments/{paymentId}/reversals` — Issue #285 (ADR-0025). Records a compensating reversal of (part of) a succeeded payment — the ledger is append-only, so a refund or a corrected entry is a NEW row, never an edit. Gated on `commerce.payments.revoke` (the platform's high-risk verb); requires `Idempotency-Key`.
 
@@ -12718,7 +12899,7 @@ The body is the register and explicit `tenders` (cash with change, QRIS, bank tr
 - **operationId**: `checkInCommercePosBookingReservation`
 - **Security**: bearerAuth + tenantHeader
 
-The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - the owner confirms the default): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only.
+The POS writes no reservation state: the transition is `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy `checkinRequiresSettlement` (default ON, residual R3 - confirmed by the owner on 11 November 2026): while a balance is owed on the order's ledger the answer is `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is written; with the policy OFF the check-in proceeds and the audit row says the balance was waived. The body is the register only.
 
 **Parameters**
 
@@ -12828,6 +13009,7 @@ The 201 carries `payments` (every ledger row — one per tender, for the receipt
 | 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`) or, with the `register` feature on (Issue #284), `REGISTER_SESSION_REQUIRED` (the register has no open session), `REGISTER_SESSION_CLOSING` or `NOT_SESSION_CASHIER`. `403` also covers `allowDue: true` without `commerce.pos_due.create` and, with `loyaltyRedemption` (Issue #363), a caller without `commerce.loyalty_redemptions.create`; `404` an unknown or other-tenant `registerId`. With `loyaltyRedemption`: `LOYALTY_REDEMPTION_UNAVAILABLE`, `LOYALTY_REDEMPTION_REQUIRES_CUSTOMER` (a walk-in sale has no account), `LOYALTY_REDEMPTION_EXCEEDS_LIMIT`, `LOYALTY_REDEMPTION_CUSTOMER_UNAVAILABLE` or `INSUFFICIENT_POINTS`. | [`ApiError`](#standard-error-envelope) |
+| 429    | STORED_VALUE_LOOKUP_THROTTLED. The actor exceeded the stored-value (gift card / store credit) code lookup budget while resolving a stored-value tender; retry after the number of seconds in `Retry-After`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 
@@ -14637,6 +14819,67 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `POST /api/v1/commerce/storefront/account/privacy/erasure` — Issue #529 (ADR-0055 D2/D3). The shopper's own erasure: anonymise the identity, delete personal rows, retain the ledgers, revoke every session.
+
+- **operationId**: `eraseCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session, a fresh one-time code from `privacy/otp` (`type: "erasure"`) and a required `Idempotency-Key`. Body `{ "code": "123456" }`. On success every session of the account is revoked, so the next request with the old bearer is `401` and the storefront clears its stored session. The response names counts and the table families kept for bookkeeping, never content. It is refused (`409 ERASURE_REFUSED`, `details.refusals`) while an order is pending payment, paid, processing or shipped, a booking is active, a stored-value balance is above zero, a return or refund is unsettled or an affiliate commission is unpaid; the code is not consumed by a refusal. A repeated key answers the stored result only for a REFUSED attempt (the same `409 ERASURE_REFUSED`). After a completed erasure every session is revoked, so a retry gets `401` before the key is looked at; that `401` tells the client the erasure went through. Rate limited per account (`429`), because a refusal is recorded and audited before the code is consumed.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The erasure ran.                                                       | object                                 |
+| 400    | `OTP_INVALID`, `IDEMPOTENCY_KEY_REQUIRED` or a malformed body.         | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `ERASURE_REFUSED` (with `details.refusals`) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/export` — Issue #529 (ADR-0055 D4). The shopper's own data-subject export: a versioned JSON bundle of everything the store holds about them. Not stored.
+
+- **operationId**: `exportCommerceStorefrontAccountData`
+- **Security**: customerBearer
+
+Needs the bearer session AND a fresh one-time code from `privacy/otp` (`type: "export"`). Body `{ "code": "123456" }`. The bundle is returned once with `Cache-Control: no-store` and is never stored; the disclosure is audited with counts only. Secrets (token and code hashes, client address hashes, push endpoints and keys, provider payloads) are redacted, and `unanswered` names what could not be matched to the customer. Every code failure is one generic `400 OTP_INVALID`. The code is single use, so the request carries no `Idempotency-Key`.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                            | Schema                                 |
+| ------ | ------------------------------------------------------ | -------------------------------------- |
+| 200    | The export bundle.                                     | object                                 |
+| 400    | `OTP_INVALID` (any code failure), or a malformed body. | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                       | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/privacy/otp` — Issue #529 (ADR-0055 D3). Mail a fresh one-time code to the account's own e-mail address for a data-subject `export` or `erasure`.
+
+- **operationId**: `requestCommerceStorefrontAccountPrivacyOtp`
+- **Security**: customerBearer
+
+The second proof a shopper's data-subject request needs on top of the bearer session. Body `{ "type": "export" | "erasure" }`. Rate limited per IP and per account; a repeat inside the resend window is a no-op success. The code is single use and of its own purpose, so a sign-in code never authorises a request. Body cap 8 KiB.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                           | Schema                                 |
+| ------ | ------------------------------------- | -------------------------------------- |
+| 200    | The code was sent (or is still live). | object                                 |
+| 400    | Validation error.                     | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                      | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.     | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/storefront/booking/availability` — Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437), or that is not an active, undeleted resource of the tenant in the offering's mode (a link naming none, and a bound resource since retired - Issue #448) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached.
 
 - **operationId**: `getCommerceStorefrontBookingAvailability`
@@ -14906,13 +15149,14 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 Naturally idempotent: cancelling an order that is already `cancelled` answers `200` with the order as it is (no second transition, event or audit row), with or without a key; two concurrent cancels run one transition. Every other state the customer may not cancel from keeps `409 ORDER_NOT_CANCELLABLE`.
 
-**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and reason within 1 hour replays with `data.replayed: true` (the order as it is now); the same key for another order, phone or reason is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome.
+**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and reason within 1 hour replays with `data.replayed: true` (the order as it is now); the same key for another order, phone or reason is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome.
 
 **Parameters**
 
-| Name        | In   | Required | Type   | Description |
-| ----------- | ---- | -------- | ------ | ----------- |
-| `orderCode` | path | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `orderCode`       | path   | yes      | string |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `Idempotency-Key` | header | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
 
 **Request body** (required): object
 
@@ -14923,19 +15167,21 @@ Naturally idempotent: cancelling an order that is already `cancelled` answers `2
 | 200    | Order cancelled, or already cancelled (the same answer). `data.replayed` is `true` when the answer replays an earlier success for the same `Idempotency-Key`.                                                      | object                                 |
 | 404    | Resource not found.                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
 | 409    | ORDER_NOT_CANCELLABLE, IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request), or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed. | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                                                                                                     | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-confirmations` — Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
 
 - **operationId**: `createCommerceStorefrontPaymentConfirmation`
 - **Security**: none (public endpoint)
 
-**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and confirmation within 1 hour replays the original `201` with the order as it is now and `data.replayed: true` (no second confirmation row); the same key for another order, phone or confirmation is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome. Only successes are recorded; nothing of the order is copied into the idempotency store. Without a key every submit records a confirmation.
+**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone and confirmation within 1 hour replays the original `201` with the order as it is now and `data.replayed: true` (no second confirmation row); the same key for another order, phone or confirmation is `409 IDEMPOTENCY_CONFLICT` and never answers the stored outcome. Only successes are recorded; nothing of the order is copied into the idempotency store. Without a key every submit records a confirmation.
 
 **Parameters**
 
-| Name        | In   | Required | Type   | Description |
-| ----------- | ---- | -------- | ------ | ----------- |
-| `orderCode` | path | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `orderCode`       | path   | yes      | string |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `Idempotency-Key` | header | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
 
 **Request body** (required): object
 
@@ -14947,6 +15193,7 @@ Naturally idempotent: cancelling an order that is already `cancelled` answers `2
 | 400    | Validation error.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                                                                              | [`ApiError`](#standard-error-envelope) |
 | 409    | ORDER_NOT_PAYABLE (the order is not pending_payment), or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request). | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                                   | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions` — Issue #106 (ADR-0017 D3; implemented by #110). Create a hosted payment-gateway session (Midtrans Snap) for a `pending_payment` order whose `paymentMethod` is `gateway`. Anonymous, identified by `phone` — or an optional `customerBearer`, matching the rest of this anonymous surface (Issue #91's own optional-bearer pattern).
 
@@ -14974,6 +15221,7 @@ Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exa
 | 401    | UNAUTHENTICATED — an Authorization header was present but not a live session.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
 | 409    | `PAYMENT_NOT_APPLICABLE` — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`; or `ORDER_PARTIALLY_SETTLED` (Issue #285, ADR-0025) — money has already been received against the order, so a hosted checkout (which charges the whole total) is neither created nor handed back; `details.outstanding` carries the balance, to be settled with a manual tender. Issue #379 (ADR-0041): `PURPOSE_NOT_ALLOWED` — the order's state does not admit the requested `purpose` (`details.allowed` lists what it does admit); `SESSION_IN_PROGRESS` — another payment session for the order is still live (a different purpose, or an amount a payment since made stale) and must be paid or expire first. | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
 | 503    | GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions` — Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today. See the module README for why.
@@ -14981,11 +15229,15 @@ Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exa
 - **operationId**: `createCommerceStorefrontPaymentProofUploadSession`
 - **Security**: none (public endpoint)
 
+The request body is the shape the storefront client already sends (`apps/storefront/src/lib/toko-klien.ts`), declared so the contract can be consumed; the handler reads no body today and answers `503` (or `404` for an unknown tenant) whatever it holds, so the body is optional.
+
 **Parameters**
 
 | Name        | In   | Required | Type   | Description |
 | ----------- | ---- | -------- | ------ | ----------- |
 | `orderCode` | path | yes      | string |             |
+
+**Request body** (optional): [`CommercePaymentProofUploadSessionRequest`](#schema-commercepaymentproofuploadsessionrequest)
 
 **Responses**
 
@@ -14999,12 +15251,16 @@ Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exa
 - **operationId**: `finalizeCommerceStorefrontPaymentProofUploadSession`
 - **Security**: none (public endpoint)
 
+The request body is the shape the storefront client already sends (`apps/storefront/src/lib/toko-klien.ts`); the handler reads no body today and answers `503` (or `404` for an unknown tenant) whatever it holds, so the body is optional.
+
 **Parameters**
 
 | Name        | In   | Required | Type   | Description |
 | ----------- | ---- | -------- | ------ | ----------- |
 | `orderCode` | path | yes      | string |             |
 | `sessionId` | path | yes      | string |             |
+
+**Request body** (optional): [`CommercePaymentProofFinalizeRequest`](#schema-commercepaymentprooffinalizerequest)
 
 **Responses**
 
@@ -15020,7 +15276,13 @@ Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exa
 
 Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too. Present and valid → ownership is checked against the signed-in account's OWN customer row instead of the orderCode+phone credential (`phone` is still validated for shape and still the per-phone rate limit's key); present and invalid/expired → `401 UNAUTHENTICATED`; absent entirely → the anonymous path is unchanged.
 
-Issue #513 (unit C): the unique index per (customer, product, order) stops a duplicate review, but a retry used to answer `409 REVIEW_NOT_ALLOWED` for a review the shopper had just written. **Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone, product, rating and text (and the same signed-in account, if any) within 1 hour replays the original `201` with the same review `id` and `data.replayed: true`; the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Without a key the unique index and its `409 REVIEW_NOT_ALLOWED` are unchanged.
+Issue #513 (unit C): the unique index per (customer, product, order) stops a duplicate review, but a retry used to answer `409 REVIEW_NOT_ALLOWED` for a review the shopper had just written. **Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same order code, phone, product, rating and text (and the same signed-in account, if any) within 1 hour replays the original `201` with the same review `id` and `data.replayed: true`; the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Without a key the unique index and its `409 REVIEW_NOT_ALLOWED` are unchanged.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Idempotency-Key` | header | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
 
 **Request body** (required): object
 
@@ -15033,6 +15295,7 @@ Issue #513 (unit C): the unique index per (customer, product, order) stops a dup
 | 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91).                                                  | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                                                                        | [`ApiError`](#standard-error-envelope) |
 | 409    | REVIEW_NOT_ALLOWED, or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different request).                             | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                             | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/testimonials` — List testimonials (Issue 26). Keyset-paginated, newest first. Gated on testimonials.read.
 
@@ -15345,11 +15608,12 @@ Anonymous by definition — a provider callback carries no session. Replay-prote
 
 **Responses**
 
-| Status | Description                                                                  | Schema                                 |
-| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Always, for a verified event — new, deduplicated, or replayed alike.         | object                                 |
-| 401    | Bad or missing provider signature.                                           | [`ApiError`](#standard-error-envelope) |
-| 404    | Unknown `endpointToken`, or a `provider` value the token was not minted for. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Always, for a verified event — new, deduplicated, or replayed alike.                                           | object                                 |
+| 401    | Bad or missing provider signature.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown `endpointToken`, or a `provider` value the token was not minted for.                                   | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/work-orders` — Issue #286 (ADR-0029). Lists work orders, newest first. Gated on `commerce.work_orders.read`.
 
@@ -15960,20 +16224,27 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description              | Schema                                 |
-| ------ | ------------------------ | -------------------------------------- |
-| 200    | The account's addresses. | object                                 |
-| 401    | UNAUTHENTICATED.         | [`ApiError`](#standard-error-envelope) |
-| 403    | ACCOUNT_BLOCKED.         | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The account's addresses.                                                                                       | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/addresses` — Issue #91 (implemented, contract #86). Add a saved address. Refused past 10 per account; the FIRST address ever saved becomes the default automatically.
 
 - **operationId**: `createCommerceStorefrontAccountAddress`
 - **Security**: customerBearer
 
-**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same address within 1 hour replays the original `201` with `data.replayed: true` (no second address); the same key with another address is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat creates a second address (each create is serialised per customer, so the limit and the first-address default hold under concurrency).
+**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same address within 1 hour replays the original `201` with `data.replayed: true` (no second address); the same key with another address is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat creates a second address (each create is serialised per customer, so the limit and the first-address default hold under concurrency).
 
-**Request body** (required): object
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Idempotency-Key` | header | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
+
+**Request body** (required): [`CommerceAccountAddressRequest`](#schema-commerceaccountaddressrequest)
 
 **Responses**
 
@@ -15983,6 +16254,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 400    | Validation error.                                                                                                                              | [`ApiError`](#standard-error-envelope) |
 | 401    | UNAUTHENTICATED.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
 | 409    | ADDRESS_LIMIT_REACHED (already 10 saved addresses), or IDEMPOTENCY_CONFLICT (the `Idempotency-Key` was already used with a different address). | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                                 | [`ApiError`](#standard-error-envelope) |
 
 ### `PATCH /api/v1/commerce/storefront/account/addresses/{id}` — Issue #91 (implemented, contract #86). Update a saved address. Never touches isDefault (see the /default sub-route).
 
@@ -15999,12 +16271,13 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description         | Schema                                 |
-| ------ | ------------------- | -------------------------------------- |
-| 200    | Updated.            | object                                 |
-| 400    | Validation error.   | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.    | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Updated.                                                                                                       | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `DELETE /api/v1/commerce/storefront/account/addresses/{id}` — Issue #91 (implemented, contract #86). Remove a saved address. Deleting the default promotes the most-recently-created remaining one.
 
@@ -16019,11 +16292,12 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description         | Schema                                 |
-| ------ | ------------------- | -------------------------------------- |
-| 204    | Removed.            |                                        |
-| 401    | UNAUTHENTICATED.    | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 204    | Removed.                                                                                                       |                                        |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/addresses/{id}/default` — Issue #91 (implemented, contract #86). Mark a saved address as the account's default.
 
@@ -16038,11 +16312,12 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description              | Schema                                 |
-| ------ | ------------------------ | -------------------------------------- |
-| 200    | Now the default address. | object                                 |
-| 401    | UNAUTHENTICATED.         | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.      | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Now the default address.                                                                                       | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/affiliate` — Issue #86 (design only). This account's affiliate enrolment and stats, or null if not enrolled (D5).
 
@@ -16051,10 +16326,11 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                    | Schema                                 |
-| ------ | ------------------------------ | -------------------------------------- |
-| 200    | The account's affiliate state. | object                                 |
-| 401    | UNAUTHENTICATED.               | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The account's affiliate state.                                                                                 | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/affiliate` — Issue #92 (contract #86 D5). Enrol the account in the affiliate program. Requires the program enabled tenant-wide. Idempotent — a second call returns the same row.
 
@@ -16068,6 +16344,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 201    | Enrolled (or already enrolled — idempotent).                                                                      | object                                 |
 | 401    | UNAUTHENTICATED.                                                                                                  | [`ApiError`](#standard-error-envelope) |
 | 409    | AFFILIATE_PROGRAM_DISABLED — `storeSettings.affiliateCommissionRate` is null, or the account is already enrolled. | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.    | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/affiliate/commissions` — Issue #92 (contract #86 D5). This account's own commission ledger, keyset-paginated.
 
@@ -16082,10 +16359,11 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                            | Schema                                 |
-| ------ | -------------------------------------- | -------------------------------------- |
-| 200    | One page of the account's commissions. | object                                 |
-| 401    | UNAUTHENTICATED.                       | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of the account's commissions.                                                                         | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/conversations` — Issue #111 (contract #106 D8). The account's own conversations with the store, newest first.
 
@@ -16100,17 +16378,24 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                | Schema                                 |
-| ------ | -------------------------- | -------------------------------------- |
-| 200    | One page of conversations. | object                                 |
-| 401    | UNAUTHENTICATED.           | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of conversations.                                                                                     | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/conversations` — Issue #111 (contract #106 D8). Start a new conversation with the store, with its opening message. Subject 1-150 chars, message body 1-4000 chars.
 
 - **operationId**: `createCommerceStorefrontAccountConversation`
 - **Security**: customerBearer
 
-**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same subject and body within 1 hour replays the original `201` with `data.replayed: true` (no second thread or message, and the replay does not spend the per-account post limit); the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat opens a second thread.
+**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same subject and body within 1 hour replays the original `201` with `data.replayed: true` (no second thread or message, and the replay does not spend the per-account post limit); the same key with another request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat opens a second thread.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Idempotency-Key` | header | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
 
 **Request body** (required): object
 
@@ -16137,24 +16422,26 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                                                                                  | Schema                                 |
-| ------ | -------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | The conversation and its messages.                                                           | object                                 |
-| 401    | UNAUTHENTICATED.                                                                             | [`ApiError`](#standard-error-envelope) |
-| 404    | Unknown conversation, or one belonging to another account — the same neutral 404 either way. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The conversation and its messages.                                                                             | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown conversation, or one belonging to another account — the same neutral 404 either way.                   | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/conversations/{id}/messages` — Issue #111 (contract #106 D8). Post a message on the account's own conversation. 409 CONVERSATION_CLOSED once the thread is closed — a customer never reopens their own thread (only a store reply does).
 
 - **operationId**: `createCommerceStorefrontAccountConversationMessage`
 - **Security**: customerBearer
 
-**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same conversation and text within 1 hour replays the original `201` with `data.replayed: true` (no second message, and the replay does not spend the per-account post limit); the same key for another conversation or text is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat posts the message twice.
+**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Same key with the same conversation and text within 1 hour replays the original `201` with `data.replayed: true` (no second message, and the replay does not spend the per-account post limit); the same key for another conversation or text is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded. The key is scoped per tenant, per route and per account. Without a key a repeat posts the message twice.
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------ | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `Idempotency-Key` | header | no       | string        | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
 
 **Request body** (required): object
 
@@ -16183,10 +16470,11 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                             | Schema                                 |
-| ------ | --------------------------------------- | -------------------------------------- |
-| 200    | One page of the account's entitlements. | object                                 |
-| 401    | UNAUTHENTICATED.                        | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of the account's entitlements.                                                                        | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/entitlements/check` — Issue #267 (IRMbyDUS). Entitlement-check for the calling customer + a given productId. Read live on every call — no cache — so a revoke is reflected on the very next check.
 
@@ -16201,11 +16489,12 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                                                             | Schema                                 |
-| ------ | ----------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Whether the calling customer holds an active entitlement for productId. | object                                 |
-| 400    | Validation error.                                                       | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.                                                        | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Whether the calling customer holds an active entitlement for productId.                                        | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/logout` — Issue #89 (implemented, contract #86). Revoke the presented bearer session (D3).
 
@@ -16235,13 +16524,14 @@ Each history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` 
 
 **Responses**
 
-| Status | Description                                 | Schema                                 |
-| ------ | ------------------------------------------- | -------------------------------------- |
-| 200    | Balance, earn rule and one page of history. | object                                 |
-| 400    | Validation error.                           | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.                            | [`ApiError`](#standard-error-envelope) |
-| 403    | ACCOUNT_BLOCKED.                            | [`ApiError`](#standard-error-envelope) |
-| 404    | Loyalty is not enabled for this store.      | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Balance, earn rule and one page of history.                                                                    | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Loyalty is not enabled for this store.                                                                         | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). The signed-in customer account (D1).
 
@@ -16286,10 +16576,11 @@ Each history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` 
 
 **Responses**
 
-| Status | Description                       | Schema                                 |
-| ------ | --------------------------------- | -------------------------------------- |
-| 200    | One page of the account's orders. | object                                 |
-| 401    | UNAUTHENTICATED.                  | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of the account's orders.                                                                              | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/orders/{orderCode}` — Issue #91 (implemented, contract #86). Order detail for an account-owned order — no phone needed (ownership is the bearer, D3); ownership and historyFrom are both enforced inside the query. Same shape as the anonymous tracking endpoint.
 
@@ -16309,6 +16600,7 @@ Each history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` 
 | 200    | The order.                                                                                                                                         | object                                 |
 | 401    | UNAUTHENTICATED.                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
 | 404    | Unknown order code, one not owned by this account, or one that predates historyFrom — the same neutral 404 (contract's existing anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.                                     | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/otp/request` — Issue #89 (implemented, contract #86). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016).
 
@@ -16339,7 +16631,13 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 
 **Double-submit safety (Issue #513).** The code is consumed atomically, so two concurrent verifies of one code never both succeed (the second is `401 OTP_INVALID`). A `register` whose e-mail already has an account is a login (never `PHONE_ALREADY_REGISTERED`); only a phone that belongs to a DIFFERENT e-mail's account is `409 PHONE_ALREADY_REGISTERED`.
 
-**Optional `Idempotency-Key` header** (documented here rather than as a parameter, because the shared `IdempotencyKey` parameter component is a required, wider header): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Within 10 minutes the same key with the same request (purpose, e-mail or phone, code) answers `200` again with `data.replayed: true` and a FRESH session for the same account — no token is stored or read back; the key is stored only as a keyed hash. The same key with a different request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded, so a mistyped code can be retried under the same key.
+**Optional `Idempotency-Key` header** (declared as the shared `IdempotencyKeyOptional` parameter; commerce accepts only the narrower shape): an opaque value of 16 to 128 characters of `A-Z a-z 0-9 _ -` (`crypto.randomUUID()` per user attempt, kept for retries of that attempt, rotated after a definitive answer); any other value is `400 IDEMPOTENCY_KEY_INVALID`. Within 10 minutes the same key with the same request (purpose, e-mail or phone, code) answers `200` again with `data.replayed: true` and a FRESH session for the same account — no token is stored or read back; the key is stored only as a keyed hash. The same key with a different request is `409 IDEMPOTENCY_CONFLICT`. Only successes are recorded, so a mistyped code can be retried under the same key.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Idempotency-Key` | header | no       | string | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
 
 **Request body** (required): [`OtpVerify`](#schema-otpverify)
 
@@ -16361,10 +16659,11 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 
 **Responses**
 
-| Status | Description            | Schema                                 |
-| ------ | ---------------------- | -------------------------------------- |
-| 200    | The account's reviews. | object                                 |
-| 401    | UNAUTHENTICATED.       | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The account's reviews.                                                                                         | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/wishlist` — Issue #91 (implemented, contract #86). The account's saved products — published, non-deleted products only.
 
@@ -16373,10 +16672,11 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 
 **Responses**
 
-| Status | Description      | Schema                                 |
-| ------ | ---------------- | -------------------------------------- |
-| 200    | The wishlist.    | object                                 |
-| 401    | UNAUTHENTICATED. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The wishlist.                                                                                                  | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `PUT /api/v1/commerce/storefront/account/wishlist` — Issue #91 (implemented, contract #86). Union-merge a set of product ids into the wishlist, max 200 (never removes existing entries — a client wanting removal calls DELETE per item). Returns the merged, authoritative list.
 
@@ -16387,12 +16687,13 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 
 **Responses**
 
-| Status | Description                                       | Schema                                 |
-| ------ | ------------------------------------------------- | -------------------------------------- |
-| 200    | The wishlist after the merge.                     | object                                 |
-| 400    | Validation error.                                 | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.                                  | [`ApiError`](#standard-error-envelope) |
-| 409    | WISHLIST_LIMIT_REACHED — already 200 saved items. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The wishlist after the merge.                                                                                  | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | WISHLIST_LIMIT_REACHED — already 200 saved items.                                                              | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `DELETE /api/v1/commerce/storefront/account/wishlist/{productId}` — Issue #91 (implemented, contract #86). Remove one product from the wishlist.
 
@@ -16407,10 +16708,11 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 
 **Responses**
 
-| Status | Description                               | Schema                                 |
-| ------ | ----------------------------------------- | -------------------------------------- |
-| 204    | Removed (or already absent — idempotent). |                                        |
-| 401    | UNAUTHENTICATED.                          | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 204    | Removed (or already absent — idempotent).                                                                      |                                        |
+| 401    | UNAUTHENTICATED.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/products/{productId}/download` — Issue a short-lived presigned download URL for a purchased product's protected content (Issue #268, IRMbyDUS).
 
@@ -16439,6 +16741,7 @@ Missing entitlement → `403 ENTITLEMENT_REQUIRED`, with NO `url` field anywhere
 | 403    | ACCOUNT_BLOCKED, or ENTITLEMENT_REQUIRED (no active entitlement for this product — the body never carries a url). | [`ApiError`](#standard-error-envelope) |
 | 404    | This product has no protected content to download.                                                                | [`ApiError`](#standard-error-envelope) |
 | 409    | The product's protected-media link is misconfigured (points at a non-private or non-downloadable object).         | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED. The caller exceeded this operation's budget; retry after the number of seconds in `Retry-After`.    | [`ApiError`](#standard-error-envelope) |
 | 502    | Media storage is not configured for this deployment.                                                              | [`ApiError`](#standard-error-envelope) |
 
 ## Commerce Affiliates
@@ -16472,9 +16775,10 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -16493,9 +16797,10 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -16514,9 +16819,10 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -22780,10 +23086,11 @@ Requires `website_engagement.sources.manage` and a signed-in person. Rename, pau
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `X-Correlation-ID` | header | no       | string        |             |
-| `id`               | path   | yes      | string (uuid) |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------ | ------ | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `Idempotency-Key`  | header | no       | string        | Deduplicates a retried HTTP request on an operation that applies the key only in some cases (the operation's description says which; where the key is not applied the header is ignored). Same bound as `IdempotencyKey`: 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs. When the operation needs the key and it is absent the refusal is `400 IDEMPOTENCY_REQUIRED` (ADR-0129 §2). |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 **Request body** (required): [`WebsiteEngagementUpdateSource`](#schema-websiteengagementupdatesource)
 
@@ -26038,6 +26345,48 @@ Per-tenant comment configuration. Every numeric bound mirrors a CHECK constraint
 }
 ```
 
+### Schema: CommerceAccountAddressRequest
+
+`validateAccountAddressInput` (`domain/address-validation.ts`). The order-creation address shape plus a required `label`; unlike that snapshot, `postalCode` is required. Text fields are trimmed and a blank required one is `400 VALIDATION_ERROR`. Unknown properties are ignored.
+
+| Field           | Type   | Required | Nullable | Description |
+| --------------- | ------ | -------- | -------- | ----------- |
+| `label`         | string | yes      | no       |             |
+| `recipientName` | string | yes      | no       |             |
+| `phone`         | string | yes      | no       |             |
+| `provinceCode`  | string | yes      | no       |             |
+| `provinceName`  | string | yes      | no       |             |
+| `cityCode`      | string | yes      | no       |             |
+| `cityName`      | string | yes      | no       |             |
+| `districtCode`  | string | yes      | no       |             |
+| `districtName`  | string | yes      | no       |             |
+| `postalCode`    | string | yes      | no       |             |
+| `street`        | string | yes      | no       |             |
+| `latitude`      | number | no       | yes      |             |
+| `longitude`     | number | no       | yes      |             |
+| `notes`         | string | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "label": "string",
+  "recipientName": "string",
+  "phone": "string",
+  "provinceCode": "string",
+  "provinceName": "string",
+  "cityCode": "string",
+  "cityName": "string",
+  "districtCode": "string",
+  "districtName": "string",
+  "postalCode": "string",
+  "street": "string",
+  "latitude": 0,
+  "longitude": 0,
+  "notes": "string"
+}
+```
+
 ### Schema: CommerceAttributeAssignments
 
 | Field        | Type   | Required | Nullable | Description                                                                                                                                                                                    |
@@ -26738,6 +27087,44 @@ Issue #363 (ADR-0043). Spend whole loyalty points on this order. The ONLY figure
 }
 ```
 
+### Schema: CommercePaymentProofFinalizeRequest
+
+Reserved (Issue 29). The shape the storefront client sends for step 3 of a proof-of-payment upload. The route ignores the body today and always answers `503 MEDIA_UNAVAILABLE`.
+
+| Field    | Type   | Required | Nullable | Description                          |
+| -------- | ------ | -------- | -------- | ------------------------------------ |
+| `phone`  | string | no       | no       | The phone the order was placed with. |
+| `sha256` | string | no       | no       | Hex SHA-256 of the uploaded file.    |
+
+**Example**
+
+```json
+{
+  "phone": "string",
+  "sha256": "string"
+}
+```
+
+### Schema: CommercePaymentProofUploadSessionRequest
+
+Reserved (Issue 29). The shape the storefront client sends for step 1 of a proof-of-payment upload. The route ignores the body today and always answers `503 MEDIA_UNAVAILABLE`.
+
+| Field         | Type    | Required | Nullable | Description                          |
+| ------------- | ------- | -------- | -------- | ------------------------------------ |
+| `phone`       | string  | no       | no       | The phone the order was placed with. |
+| `contentType` | string  | no       | no       |                                      |
+| `byteLength`  | integer | no       | no       |                                      |
+
+**Example**
+
+```json
+{
+  "phone": "string",
+  "contentType": "image/jpeg",
+  "byteLength": 1
+}
+```
+
 ### Schema: CommercePopupCreateInput
 
 | Field           | Type                                               | Required | Nullable | Description                                                                                   |
@@ -27267,29 +27654,29 @@ Every field of CommerceSliderCreateInput, all optional.
 
 The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
 
-| Field                       | Type                   | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --------------------------- | ---------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`             | enum(`1`)              | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `storeName`                 | string                 | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `tagline`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `logoMediaObjectId`         | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `faviconMediaObjectId`      | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `address`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `phone`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `whatsapp`                  | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `email`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `mapsEmbedUrl`              | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `faqs`                      | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `social`                    | object                 | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `customerLevels`            | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `shipping`                  | object                 | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                               |
-| `payment`                   | object                 | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule.              |
-| `promoSection`              | object                 | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `meta`                      | object                 | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `affiliateCommissionRate`   | string                 | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                                           |
-| `taxMode`                   | enum(`flat`, `engine`) | no       | no       | Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling.                                                                                                                                                                                                           |
-| `taxProfileCode`            | string                 | no       | no       | Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `checkinRequiresSettlement` | boolean                | no       | no       | Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default is a recommendation the owner confirms. |
+| Field                       | Type                   | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------------------------- | ---------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`             | enum(`1`)              | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `storeName`                 | string                 | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `tagline`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `logoMediaObjectId`         | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `faviconMediaObjectId`      | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `address`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `phone`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `whatsapp`                  | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `email`                     | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `mapsEmbedUrl`              | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `faqs`                      | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `social`                    | object                 | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `customerLevels`            | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `shipping`                  | object                 | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                                               |
+| `payment`                   | object                 | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule.                              |
+| `promoSection`              | object                 | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `meta`                      | object                 | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `affiliateCommissionRate`   | string                 | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                                                           |
+| `taxMode`                   | enum(`flat`, `engine`) | no       | no       | Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling.                                                                                                                                                                                                                           |
+| `taxProfileCode`            | string                 | no       | no       | Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `checkinRequiresSettlement` | boolean                | no       | no       | Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default (block) was confirmed by the owner on 11 November 2026. |
 
 **Example**
 
@@ -28589,7 +28976,7 @@ sectionType cannot be changed after creation — omit it, do not send the old or
 | `source`         | enum(`self`, `supervisor`, `kiosk`, `import`)             | yes      | no       |                                                                                                                                                                                    |
 | `clientEventKey` | string                                                    | yes      | no       |                                                                                                                                                                                    |
 | `officeId`       | string (uuid)                                             | no       | no       |                                                                                                                                                                                    |
-| `positionSample` | [`HrPositionSample`](#schema-hrpositionsample)            | no       | yes      | Optional, `self` clock_in / clock_out only (any other source or kind -> 400). Evaluated by the server in the request and discarded (ADR-0138). `null` or absent is a declined fix. |
+| `positionSample` | [`HrPositionSample`](#schema-hrpositionsample) \\\| null  | no       | no       | Optional, `self` clock_in / clock_out only (any other source or kind -> 400). Evaluated by the server in the request and discarded (ADR-0138). `null` or absent is a declined fix. |
 
 **Example**
 
@@ -30400,15 +30787,15 @@ Enum values: `tax_id`, `business_id`, `payment_ref`, `contact_ref`, `other`.
 
 ### Schema: ProcurementLineInput
 
-| Field      | Type                                                           | Required | Nullable | Description                                                                                |
-| ---------- | -------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------ |
-| `itemType` | string                                                         | yes      | no       |                                                                                            |
-| `itemRef`  | string                                                         | yes      | no       | Opaque ledger reference, `A-Za-z0-9_.:-`, never credential-shaped.                         |
-| `sku`      | string                                                         | yes      | no       | Snapshot of the SKU.                                                                       |
-| `itemName` | string                                                         | yes      | no       | Snapshot of the item name.                                                                 |
-| `unitCode` | string                                                         | no       | no       | Unit of measure; defaults to `unit`. The ledger refuses a mismatch rather than converting. |
-| `quantity` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number | yes      | no       |                                                                                            |
-| `unitCost` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number | no       | yes      | Required for `receive` and `supplier_return` (the approval threshold is cost-based).       |
+| Field      | Type                                                                     | Required | Nullable | Description                                                                                |
+| ---------- | ------------------------------------------------------------------------ | -------- | -------- | ------------------------------------------------------------------------------------------ |
+| `itemType` | string                                                                   | yes      | no       |                                                                                            |
+| `itemRef`  | string                                                                   | yes      | no       | Opaque ledger reference, `A-Za-z0-9_.:-`, never credential-shaped.                         |
+| `sku`      | string                                                                   | yes      | no       | Snapshot of the SKU.                                                                       |
+| `itemName` | string                                                                   | yes      | no       | Snapshot of the item name.                                                                 |
+| `unitCode` | string                                                                   | no       | no       | Unit of measure; defaults to `unit`. The ledger refuses a mismatch rather than converting. |
+| `quantity` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number           | yes      | no       |                                                                                            |
+| `unitCost` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number \\\| null | no       | no       | Required for `receive` and `supplier_return` (the approval threshold is cost-based).       |
 
 **Example**
 
@@ -32482,7 +32869,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (119)
+### Channels (121)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -32527,6 +32914,8 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
 - `awcms.commerce.booking_reservation.rescheduled` — A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all (same length). Producer: `commerce/application/booking-reschedule.ts`'s `rescheduleBookingReservation`, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`, `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`, `supplementOrderId`, `returnId` - never a customer name/phone, a payment reference or the actor.
 - `awcms.commerce.conversation.store_replied` — A staff reply was stored in a customer conversation (Issue #432, ADR-0048 Q4). Producer: `commerce/application/conversation-directory.ts`'s `postStoreReply`, in the same transaction as the stored message. Aggregate: the conversation (`commerce.conversation`). Payload: `conversationId` only - never the subject, the body or the customer. Consumed by the customer Web Push enqueuer (`commerce.customer_push_enqueuer`, purpose `support_replies`).
+- `awcms.commerce.customer.converted` — A staff member confirmed a CRM lead as this commerce customer on verified commerce evidence and `crm_leads` recorded the conversion (Issue #463, ADR-0056 D8). Producer: `commerce/application/crm-lead-link-directory.ts`'s `linkLeadToCustomer`, in the same transaction as the link row and the conversion. Never published from a message receipt, a fuzzy match or an unconfirmed manual conversion. Aggregate: the customer (`commerce.customer`). Payload: `linkId`, `customerId`, `leadId`, `conversionId`, `evidenceKind` (`customer_registration` | `paid_order`), `orderId` (paid order only), `firstSourceKind` and `firstTouchId` (the lead's first source touch, for source attribution) - opaque ids and codes, never a name, contact or note. `privacyClass: pseudonymous`. Idempotency: one event per link; a replayed confirmation (same evidence) publishes nothing. The reversal of a conversion is `crm_leads`' own `awcms.crm_leads.lead.conversion_reversed`.
+- `awcms.commerce.customer.registered` — A shopper completed the e-mail OTP registration and a commerce customer account was created (Issue #463, ADR-0056 D8). Producer: `commerce/application/customer-account-store.ts`'s `tryCreateAccountForCustomer`, in the same transaction as the account row. A guest checkout does NOT publish it: only a verified registration is a registration fact. Aggregate: the customer (`commerce.customer`). Payload: `customerId` and `accountId` only - never a name, e-mail or phone. `privacyClass: pseudonymous`. Idempotency: one event per account row (the account is unique per customer); correlation id as on every domain event.
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.

@@ -23,13 +23,19 @@
  * gate needs that the model does not, plus two that exist only at a
  * federated root:
  *
- *   1. Only the tracked root artefacts (`graph.json`, `GRAPH_REPORT.md`,
- *      `manifest.json`, `cost.json`) are tracked under `graphify-out/`.
+ *   1. Under `graphify-out/`, `graph.json` and `GRAPH_REPORT.md` are tracked
+ *      (required); `STATUS.md`, the label sidecar, `manifest.json` and
+ *      `cost.json` may be (optional, per the knowledge-graph skill's tracking
+ *      table); anything else is not (issue #534).
  *   2. `GRAPH_REPORT.md`'s Summary line agrees with `graph.json`'s own counts.
  *   3. Every community has a name somebody chose — not a placeholder, not a
- *      bare filename, not shared with another community.
+ *      bare filename, not shared with another community. A graph that
+ *      `graphify-out/STATUS.md` marks code-only gets its hub-name fallbacks
+ *      reported as notes instead (issue #534).
  *   4. `.graphifyignore` still excludes `apps/cms` by a plain, enforceable
- *      entry (not only a glob).
+ *      entry (not only a glob) — or, when a derived product lists paths in
+ *      `SUBTREE_ALLOWLIST` (default empty), default-denies `apps/cms/*` and
+ *      re-includes exactly those (issue #534).
  *   5. What is excluded stays excluded — `checkExclusionsHeld` — AND, more
  *      directly, **no node in the tracked graph has a `source_file` under
  *      `apps/cms/`** (`checkNoSubtreeNodes`) — the federation's central
@@ -102,8 +108,11 @@ import path from "node:path";
 
 import { gitLines, gitRun } from "./lib/git.mjs";
 import {
+  SUBTREE_ALLOWLIST,
   checkCombinedGraphUntracked,
-  checkCommunityLabels,
+  checkSubtreeAllowlist,
+  classifyCommunityLabels,
+  parseGraphStatus,
   checkExclusionsHeld,
   checkGraphifyIgnoreExcludesSubtree,
   checkNoSubtreeNodes,
@@ -175,6 +184,17 @@ if (subtreeTrackedOutput !== null) {
   reporter.note(`subtree: ${subtreeTracked.length} file(s) tracked under apps/cms/${OUTPUT_DIR}/`);
 }
 
+for (const v of checkSubtreeAllowlist(SUBTREE_ALLOWLIST)) reporter.violation(v.rule, v.file, v.message);
+if (SUBTREE_ALLOWLIST.length > 0) {
+  reporter.note(`subtree allow-list: ${SUBTREE_ALLOWLIST.map((entry) => entry.prefix).join(", ")}`);
+}
+
+const statusPath = path.join(outputDir, "STATUS.md");
+const status = parseGraphStatus(existsSync(statusPath) ? readFileSync(statusPath, "utf8") : null);
+if (status.codeOnly) {
+  reporter.note(`status: ${OUTPUT_DIR}/STATUS.md marks the graph code-only — hub-name fallbacks are notes, not failures`);
+}
+
 const graphPath = path.join(outputDir, "graph.json");
 const reportPath = path.join(outputDir, "GRAPH_REPORT.md");
 const ignorePath = path.join(ROOT, ".graphifyignore");
@@ -206,14 +226,16 @@ if (graph) {
   const counts = graphCounts(graph);
   reporter.note(`graph: ${counts.nodes} nodes, ${counts.edges} edges, ${counts.communities} communities`);
 
-  for (const v of checkNoSubtreeNodes(graph)) reporter.violation(v.rule, v.file, v.message);
+  for (const v of checkNoSubtreeNodes(graph, SUBTREE_ALLOWLIST)) reporter.violation(v.rule, v.file, v.message);
 
   if (!existsSync(reportPath)) {
     reporter.violation("artifact", `${OUTPUT_DIR}/GRAPH_REPORT.md`, "absent even though graph.json exists");
   } else {
     const report = readFileSync(reportPath, "utf8");
     for (const v of checkReportAgreesWithGraph(graph, report)) reporter.violation(v.rule, v.file, v.message);
-    for (const v of checkCommunityLabels(graph, report)) reporter.violation(v.rule, v.file, v.message);
+    const labels = classifyCommunityLabels(graph, report, { codeOnly: status.codeOnly });
+    for (const v of labels.violations) reporter.violation(v.rule, v.file, v.message);
+    for (const note of labels.notes) reporter.note(`label: ${note}`);
   }
 
   if (!ignoreExists) {
@@ -223,7 +245,7 @@ if (graph) {
       "does not exist — without it, the next root rebuild would duplicate-extract apps/cms/"
     );
   } else {
-    for (const v of checkGraphifyIgnoreExcludesSubtree(ignore)) reporter.violation(v.rule, v.file, v.message);
+    for (const v of checkGraphifyIgnoreExcludesSubtree(ignore, SUBTREE_ALLOWLIST)) reporter.violation(v.rule, v.file, v.message);
     for (const v of checkExclusionsHeld(graph, ignore)) reporter.violation(v.rule, v.file, v.message);
     reporter.note(
       `exclusions: ${ignore.prefixes.length} entr(ies) enforced` +
@@ -288,13 +310,19 @@ if (!existsSync(manifestPath)) {
     } else {
       const trackedRepo = gitLines(trackedRepoOutput);
       const ignorePrefixes = ignore?.prefixes ?? [];
-      const diff = diffManifestStaleness(manifest, trackedRepo, ignorePrefixes, (filePath) => {
-        try {
-          return md5Hex(readFileSync(path.join(ROOT, filePath)));
-        } catch {
-          return null;
-        }
-      });
+      const diff = diffManifestStaleness(
+        manifest,
+        trackedRepo,
+        ignorePrefixes,
+        (filePath) => {
+          try {
+            return md5Hex(readFileSync(path.join(ROOT, filePath)));
+          } catch {
+            return null;
+          }
+        },
+        SUBTREE_ALLOWLIST
+      );
 
       for (const v of checkStaleness(diff, MAX_STALE_FILES)) reporter.violation(v.rule, v.file, v.message);
 

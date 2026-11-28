@@ -23,6 +23,7 @@
  * common case the way `site-profile`/`theming` gaps are.
  */
 import { AwcmsApiError, awcmsGet } from "./client";
+import { buildsWithoutCms } from "./tanpa-cms";
 
 export type StaticPageSummary = {
   title: string;
@@ -69,6 +70,8 @@ export function listStaticPages(): Promise<StaticPageSummary[]> {
 }
 
 async function fetchStaticPageList(): Promise<StaticPageSummary[]> {
+  // Issue #535: a landing build with no CMS has no CMS pages.
+  if (buildsWithoutCms()) return [];
   try {
     const { pages } = await awcmsGet<{ pages: StaticPageSummary[] }>(
       "/api/v1/blog/pages/public"
@@ -106,6 +109,7 @@ export function getStaticPage(slug: string): Promise<StaticPageDetail | null> {
 }
 
 async function fetchStaticPage(slug: string): Promise<StaticPageDetail | null> {
+  if (buildsWithoutCms()) return null;
   try {
     return await awcmsGet<StaticPageDetail>(
       `/api/v1/blog/pages/public/${encodeURIComponent(slug)}`

@@ -249,6 +249,13 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "commerce.commission_settings.read",
   "commerce.commission_staff_links.manage",
   "commerce.commission_staff_links.read",
+  // commerce CRM lead link (3) — ADR-0056 / Issue #463. API-first (OpenAPI, no
+  // screen): a lead-to-customer link is confirmed and reversed through the three
+  // routes; a staff screen is the recorded follow-up. The keys leave this list
+  // when a screen claims them.
+  "commerce.crm_lead_links.approve",
+  "commerce.crm_lead_links.create",
+  "commerce.crm_lead_links.read",
   // commerce customer Web Push (1) — ADR-0048 / Issue #430. API-first: the
   // aggregate diagnostics read (`GET /api/v1/commerce/customer-push/diagnostics`)
   // ships without a screen; ADR-0048 lists "a staff UI for customer devices"

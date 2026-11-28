@@ -10,6 +10,24 @@ The end-to-end path from a written changeset to a signed, published `apps/cms` i
 
 Unchanged from before this ADR (`tools/rilis.mjs`) — folds the waiting `.changesets/*.md` into `CHANGELOG.md`, bumps `package.json`, commits, and tags `vX.Y.Z`. Preview it first without `--apply`; nothing is written until then.
 
+**Version mirrors (issue #536).** An image built from a subfolder alone cannot read the root `package.json`, so a product version shown inside such an application needs its own copy. A derived product declares each copy in [`tools/version-mirrors.json`](../tools/version-mirrors.json); the template ships it with an empty list, so the release flow here is unchanged.
+
+```json
+{
+  "mirrors": [
+    {
+      "file": "<repo-relative path>",
+      "pattern": "PRODUCT_VERSION = \"([^\"]+)\""
+    }
+  ]
+}
+```
+
+- `pattern` is a regular expression with **exactly one capture group**; the text it captures is the version, and only that text is replaced.
+- The release plans every rewrite in memory before it writes anything, in the preview as well as with `--apply`. A mirror whose file is missing, whose pattern matches nothing or more than once, or whose captured text is not `X.Y.Z` refuses the release with a message naming it, and the tree is left untouched. A mirror is never silently skipped.
+- Only with `--apply`, and only after the root `package.json` bump is written, are the mirrors rewritten, so `--commit` puts them in the same release commit as the tag.
+- `tests/version-mirrors.test.mjs` fails the root `bun test` when a declared mirror differs from the root `package.json` version, so a hand edit that drifts is caught before the next release.
+
 ### 2. `git push && git push origin vX.Y.Z`
 
 The tag push is what everything downstream keys off. Push it to `origin` before running either of the next two steps — both refuse to run against a tag that has not reached `origin`.
