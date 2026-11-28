@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:0579bdbbc3b8cddbfb7ea3886fd57999b105608f7dd8cebf04981991a0c54a1f -->
+<!-- i18n-source-hash: sha256:5093d0d2c37747d7a06be47c57972a0f24f1257cb8e11ec27aedf3e324debdf1 -->
 
 # Dokumentasi
 
@@ -31,6 +31,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md)               | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama                                                                                                |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md)     | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280                                                                                                                 |
 | [`audit-paritas-kontrak-cms-storefront.md`](audit-paritas-kontrak-cms-storefront.id.md) | Laporan riset (issue #547): matriks bukti kontrak `apps/cms` ke `apps/storefront` untuk tiga profil build, protokol yang memisahkan tipe TypeScript dari perilaku HTTP, enam belas temuan terklasifikasi, dan kepemilikan mock terhadap fixture. Hanya temuan; bukan gerbang. |
+| [`research-ai-assisted-design-evidence-2026-11-28.md`](research-ai-assisted-design-evidence-2026-11-28.id.md) | Usulan riset (issue #596): bagaimana bukti desain dan spesifikasi berbantuan AI dapat melayani tiga profil build, dengan batas, kontrak bukti, dan usulan koordinasi siklus hidup. Hanya usulan; bukan gerbang, bukan implementasi. |
 | [`booking-ux-flows.md`](booking-ux-flows.id.md)                                       | Spesifikasi desain (belum dibangun) alur pemesanan menginap di storefront, pembayaran uang muka, tampilan pembatalan dan pengembalian dana, dan check-in kasir, dengan aturan aksesibilitas, 360px, dan profil build        |
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md) | Usulan (belum dimigrasi) ERD dan kamus data tabel adapter booking-commerce, dan aturan bahwa pelanggan diturunkan lewat pesanan                                                                                             |
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.id.md)           | Usulan (belum terdaftar) matriks RBAC / ABAC / RLS untuk peran sisi commerce yang menyentuh booking, dan siapa yang boleh menimpa refund hasil hitung kebijakan                                                             |
