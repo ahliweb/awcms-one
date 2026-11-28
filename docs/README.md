@@ -33,6 +33,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.md) | Proposed (not migrated) ERD and data dictionary for the booking-commerce adapter tables, and the rule that the customer is derived through the order                                                                                                       |
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.md)           | Proposed (not registered) RBAC / ABAC / RLS matrix for the commerce-side roles that touch bookings, and who may override a policy-computed refund                                                                                                          |
 | [`booking-commerce-adapter-contracts.md`](booking-commerce-adapter-contracts.md)   | Draft (not in the live spec) OpenAPI and AsyncAPI contracts for the booking-commerce adapter: hold-to-order, deposit sessions, cancellation quote and confirm, refund override, reschedule, no-show, POS check-in, and the events consumed and emitted     |
+| [`research/independent-intelligence-reference-2026-11-28.md`](research/independent-intelligence-reference-2026-11-28.md) | Research proposal (issue #598): independent, original-capability research for a generic intelligence dashboard in the template, with a licence admission register, a reference register with verification status, and proposed safety tests. Proposed only; no gate, no dependency, no implementation. |
 
 ## CRM Omnichannel requirements standard
 

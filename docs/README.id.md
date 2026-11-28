@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:0579bdbbc3b8cddbfb7ea3886fd57999b105608f7dd8cebf04981991a0c54a1f -->
+<!-- i18n-source-hash: sha256:f838fae4a30091cf3f041645593b0d84ca0f8ea545a121db8f9efb4994156f94 -->
 
 # Dokumentasi
 
@@ -35,6 +35,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md) | Usulan (belum dimigrasi) ERD dan kamus data tabel adapter booking-commerce, dan aturan bahwa pelanggan diturunkan lewat pesanan                                                                                             |
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.id.md)           | Usulan (belum terdaftar) matriks RBAC / ABAC / RLS untuk peran sisi commerce yang menyentuh booking, dan siapa yang boleh menimpa refund hasil hitung kebijakan                                                             |
 | [`booking-commerce-adapter-contracts.md`](booking-commerce-adapter-contracts.id.md)   | Draf kontrak OpenAPI dan AsyncAPI (belum live) adapter booking-commerce, termasuk event yang dikonsumsi dan diterbitkan                                                                                                     |
+| [`research/independent-intelligence-reference-2026-11-28.md`](research/independent-intelligence-reference-2026-11-28.id.md) | Usulan riset (issue #598): riset kapabilitas orisinal yang independen untuk dasbor intelligence generik di template, dengan register penerimaan lisensi, register rujukan beserta status verifikasi, dan uji keselamatan yang diusulkan. Hanya usulan; bukan gerbang, bukan dependensi, bukan implementasi. |
 
 ## Standar kebutuhan CRM Omnichannel
 
