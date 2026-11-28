@@ -1,52 +1,107 @@
 [
   {
-    "ruleId": "js/file-system-race",
-    "path": "tools/rilis.mjs",
-    "reason": "won't fix (GitHub code-scanning alert #11): tools/rilis.mjs is single-user, maintainer-run local release tooling with no trust boundary between the check and the write; the TOCTOU window is not exploitable here."
+    "ruleId": "javascript.browser.security.insecure-document-method",
+    "path": "apps/cms/design/redesain-ui-ux-2026-10/support.js",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 470); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/file-system-race",
-    "path": "tools/knowledge-graph-update.mjs",
-    "reason": "won't fix (GitHub code-scanning alert #10): tools/knowledge-graph-update.mjs is single-user, maintainer-run local tooling with no trust boundary between the check and the write; the TOCTOU window is not exploitable here."
+    "ruleId": "javascript.browser.security.insecure-innerhtml",
+    "path": "apps/cms/design/redesain-ui-ux-2026-10/support.js",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 470); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/file-system-race",
-    "path": "tests/knowledge-no-subtree-write.test.mjs",
-    "reason": "used in tests (GitHub code-scanning alert #9): tests/knowledge-no-subtree-write.test.mjs's hashTree/fixture race is inside a test's own temp-directory setup, not production code."
+    "ruleId": "javascript.browser.security.insecure-document-method",
+    "path": "apps/cms/public/js/blog-preview-overlay.js",
+    "reason": "pre-existing finding at adoption 2026-11-28 (lines 6, 6); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/reflected-xss",
-    "path": "apps/storefront/tests/penyaji-bayangan-html.test.ts",
-    "reason": "used in tests (GitHub code-scanning alert #8): the stub server echoes the request URL on purpose inside a unit test, to assert what the adapter saw; it is never served to a real client."
+    "ruleId": "javascript.browser.security.insecure-innerhtml",
+    "path": "apps/cms/public/js/blog-preview-overlay.js",
+    "reason": "pre-existing finding at adoption 2026-11-28 (lines 6, 6); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/insufficient-password-hash",
-    "path": "apps/cms/src/lib/auth/oauth-state-token.ts",
-    "reason": "false positive (GitHub code-scanning alerts #6/#7): computePkceChallengeS256 implements RFC 7636 \u00a74.2, which mandates SHA-256 for the PKCE S256 code_challenge (not a password hash); hashOAuthState hashes a 256-bit CSPRNG state token (randomBytes(32)), not a user-chosen password \u2014 a slow KDF buys nothing against a high-entropy random input."
+    "ruleId": "javascript.node-crypto.security.gcm-no-tag-length",
+    "path": "apps/cms/src/lib/auth/mfa-secret-crypto.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 79); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/insufficient-password-hash",
-    "path": "apps/cms/src/lib/auth/mfa-challenge-token.ts",
-    "reason": "false positive (GitHub code-scanning alert #5): hashChallengeToken hashes a 256-bit CSPRNG challenge token (randomBytes(32)), not a user-chosen password; a slow KDF buys nothing against a high-entropy random input."
+    "ruleId": "javascript.node-crypto.security.gcm-no-tag-length",
+    "path": "apps/cms/src/lib/auth/sso-credential-crypto.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 80); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/incomplete-url-substring-sanitization",
-    "path": "apps/storefront/tests/profil-build-smoke.test.ts",
-    "reason": "false positive (GitHub code-scanning alert #4): uses Array.includes to check membership in a fixed CSP source list, not substring sanitization of a URL."
+    "ruleId": "javascript.node-crypto.security.gcm-no-tag-length",
+    "path": "apps/cms/src/lib/security/field-encryption.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 349); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/clear-text-logging",
-    "path": "tools/seed-cms.ts",
-    "reason": "won't fix (GitHub code-scanning alert #3): prints the generated owner password once, explicitly labelled SHOWN ONCE and not stored by the script, for the local dev operator who needs it; this is a local dev seed tool, not a production logging path."
+    "ruleId": "javascript.node-crypto.security.gcm-no-tag-length",
+    "path": "apps/cms/src/lib/security/secure-url-params.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 113); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/insufficient-password-hash",
-    "path": "apps/cms/src/modules/channel-accounts/application/connection-directory.ts",
-    "reason": "false positive (upstream awcms code-scanning alert 200, already dismissed there): publicValueDigest takes a tagged SHA-256 of PUBLIC, non-secret values (this deployment's own OAuth redirect URI and the granted scope names) as an equality fingerprint to compare a callback with the flow that started it; it is not a password or credential hash, and no slow KDF buys anything for a public value."
+    "ruleId": "javascript.browser.security.insecure-document-method",
+    "path": "apps/cms/src/lib/ui/blog-preview-overlay.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (lines 242, 326); not yet triaged: fix it, or replace this reason with the triage"
   },
   {
-    "ruleId": "js/incomplete-multi-character-sanitization",
-    "path": "apps/cms/tests/commerce-front-desk-contract.test.ts",
-    "reason": "used in tests: the contract test strips HTML comments from this repo's own .astro source before asserting what the markup contains; the input is a checked-in file read by the test itself, and the output is never rendered or served."
+    "ruleId": "javascript.browser.security.insecure-innerhtml",
+    "path": "apps/cms/src/lib/ui/blog-preview-overlay.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (lines 242, 326); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "javascript.node-crypto.security.gcm-no-tag-length",
+    "path": "apps/cms/src/modules/comments/domain/subscriber-crypto.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 110); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "typescript.lang.correctness.useless-ternary",
+    "path": "apps/cms/src/modules/commerce/domain/returns.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 156); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "typescript.lang.correctness.useless-ternary",
+    "path": "apps/cms/src/modules/hr-commission/domain/hr-commission-decimal.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 148); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "typescript.lang.correctness.useless-ternary",
+    "path": "apps/cms/src/modules/tax/domain/decimal.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 228); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "typescript.lang.correctness.useless-ternary",
+    "path": "apps/cms/tests/commerce-tax-adapter.test.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 190); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "typescript.lang.correctness.useless-ternary",
+    "path": "apps/cms/tests/omes-control-repository-progress-poller.test.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 342); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "typescript.lang.correctness.useless-ternary",
+    "path": "apps/storefront/src/lib/booking-kontrak.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 349); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "javascript.browser.security.insecure-document-method",
+    "path": "apps/storefront/src/scripts/produk-index-klien.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (lines 78, 103); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "javascript.browser.security.insecure-innerhtml",
+    "path": "apps/storefront/src/scripts/produk-index-klien.ts",
+    "reason": "pre-existing finding at adoption 2026-11-28 (lines 78, 103); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "javascript.browser.security.insecure-document-method",
+    "path": "design/redesain-ui-ux-2026-10/support.js",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 470); not yet triaged: fix it, or replace this reason with the triage"
+  },
+  {
+    "ruleId": "javascript.browser.security.insecure-innerhtml",
+    "path": "design/redesain-ui-ux-2026-10/support.js",
+    "reason": "pre-existing finding at adoption 2026-11-28 (line 470); not yet triaged: fix it, or replace this reason with the triage"
   }
 ]
