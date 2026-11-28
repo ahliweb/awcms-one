@@ -286,7 +286,7 @@ This repository's own code — `packages/gerbang/`, `tools/`, `tests/`, and thei
 
 ## Orchestrator & agents (AI models)
 
-> Portfolio-wide standard from [`ahliweb/personal-coding`](https://github.com/ahliweb/personal-coding/blob/main/docs/tingkatan-model-ai-claude-openai.md) (docs/tingkatan-model-ai-claude-openai.md, snapshot 2026-10-28). Prices, effort levels and model lines are maintained there — do not copy them into this repository.
+> Internal cross-portfolio standard on AI model tiers (snapshot 2026-10-28). Prices, effort levels and model lines are maintained in that internal standard — do not copy them into this repository.
 
 Work that needs splitting across several agents uses the **orchestrator → agent** pattern. The orchestrator breaks the work down, assigns tasks, manages dependencies, then checks and integrates the results; an agent carries out one bounded part.
 
