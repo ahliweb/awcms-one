@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:0579bdbbc3b8cddbfb7ea3886fd57999b105608f7dd8cebf04981991a0c54a1f -->
+<!-- i18n-source-hash: sha256:32ef86331f6521b294f4d1de66e38fb317f950e36cdda93ef5b40bea888a20b0 -->
 
 # Dokumentasi
 
@@ -59,3 +59,7 @@ Bahasa Inggris di jalur telanjang adalah sumber yang otoritatif; Bahasa Indonesi
 ## Referensi arsitektur percakapan CarikBot (riset saja)
 
 [Kajian konsep CarikBot](carikbot-conversation-reference.id.md) dan [English source](carikbot-conversation-reference.md) menjelaskan desain flow/menu/form, batas fitur yang sudah ada dengan usulan, keamanan, pengujian, dan kepemilikan. Belum ada engine chatbot atau API produksi baru yang diimplementasikan.
+
+## Riset bounded context commerce (riset saja)
+
+[Bounded context commerce dan kecocokan arsitektur upstream](research-commerce-bounded-contexts.id.md) adalah dokumen riset **usulan** (issue [#601](https://github.com/ahliweb/awcms-one/issues/601)): peta konteks logis kandidat untuk commerce, hubungannya dengan tata letak modul upstream, dan alur adopsi yang diusulkan. Dokumen ini tidak memutuskan batas modul, tidak mengubah ADR, dan tidak menambah perubahan runtime, migrasi, maupun deployment. Kontrol arsitektur generik tetap di repo upstream.
