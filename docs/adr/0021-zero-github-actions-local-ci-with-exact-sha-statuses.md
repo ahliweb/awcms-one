@@ -2,6 +2,8 @@
 
 # ADR-0021 — Zero GitHub Actions: local CI with exact-SHA commit statuses
 
+**Superseded in part by [ADR-0060](0060-sast-with-opengrep-replaces-codeql-in-the-security-leg.md):** D7 below describes the `local-ci/security` leg running the CodeQL CLI, and the rejected alternatives turn down a Semgrep-only leg. CodeQL is no longer run anywhere (owner decision of 27 November 2026, internal cross-portfolio standard DL-098), so the leg now runs OpenGrep with vendored, pinned rules beside the unchanged gitleaks and `bun audit`; `--upload-sarif` and `.github/codeql/codeql-config.yml` are gone, and the status credential needs `statuses:write` only. The rest of this ADR, zero GitHub Actions with exact-SHA `local-ci/*` statuses, stands unchanged.
+
 - **Status:** Accepted
 - **Date:** 26 September 2026
 - **Decision maker:** ahliweb

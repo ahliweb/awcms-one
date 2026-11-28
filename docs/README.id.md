@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:0579bdbbc3b8cddbfb7ea3886fd57999b105608f7dd8cebf04981991a0c54a1f -->
+<!-- i18n-source-hash: sha256:1febc78728adf52fa18caf055992c761fcab233eb060a459081008786b3f8819 -->
 
 # Dokumentasi
 
@@ -31,10 +31,12 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md)               | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama                                                                                                |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md)     | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280                                                                                                                 |
 | [`audit-paritas-kontrak-cms-storefront.md`](audit-paritas-kontrak-cms-storefront.id.md) | Laporan riset (issue #547): matriks bukti kontrak `apps/cms` ke `apps/storefront` untuk tiga profil build, protokol yang memisahkan tipe TypeScript dari perilaku HTTP, enam belas temuan terklasifikasi, dan kepemilikan mock terhadap fixture. Hanya temuan; bukan gerbang. |
+| [`research-ai-assisted-design-evidence-2026-11-28.md`](research-ai-assisted-design-evidence-2026-11-28.id.md) | Usulan riset (issue #596): bagaimana bukti desain dan spesifikasi berbantuan AI dapat melayani tiga profil build, dengan batas, kontrak bukti, dan usulan koordinasi siklus hidup. Hanya usulan; bukan gerbang, bukan implementasi. |
 | [`booking-ux-flows.md`](booking-ux-flows.id.md)                                       | Spesifikasi desain (belum dibangun) alur pemesanan menginap di storefront, pembayaran uang muka, tampilan pembatalan dan pengembalian dana, dan check-in kasir, dengan aturan aksesibilitas, 360px, dan profil build        |
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md) | Usulan (belum dimigrasi) ERD dan kamus data tabel adapter booking-commerce, dan aturan bahwa pelanggan diturunkan lewat pesanan                                                                                             |
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.id.md)           | Usulan (belum terdaftar) matriks RBAC / ABAC / RLS untuk peran sisi commerce yang menyentuh booking, dan siapa yang boleh menimpa refund hasil hitung kebijakan                                                             |
 | [`booking-commerce-adapter-contracts.md`](booking-commerce-adapter-contracts.id.md)   | Draf kontrak OpenAPI dan AsyncAPI (belum live) adapter booking-commerce, termasuk event yang dikonsumsi dan diterbitkan                                                                                                     |
+| [`research/independent-intelligence-reference-2026-11-28.md`](research/independent-intelligence-reference-2026-11-28.id.md) | Usulan riset (issue #598): riset kapabilitas orisinal yang independen untuk dasbor intelligence generik di template, dengan register penerimaan lisensi, register rujukan beserta status verifikasi, dan uji keselamatan yang diusulkan. Hanya usulan; bukan gerbang, bukan dependensi, bukan implementasi. |
 
 ## Standar kebutuhan CRM Omnichannel
 
@@ -59,3 +61,7 @@ Bahasa Inggris di jalur telanjang adalah sumber yang otoritatif; Bahasa Indonesi
 ## Referensi arsitektur percakapan CarikBot (riset saja)
 
 [Kajian konsep CarikBot](carikbot-conversation-reference.id.md) dan [English source](carikbot-conversation-reference.md) menjelaskan desain flow/menu/form, batas fitur yang sudah ada dengan usulan, keamanan, pengujian, dan kepemilikan. Belum ada engine chatbot atau API produksi baru yang diimplementasikan.
+
+## Riset bounded context commerce (riset saja)
+
+[Bounded context commerce dan kecocokan arsitektur upstream](research-commerce-bounded-contexts.id.md) adalah dokumen riset **usulan** (issue [#601](https://github.com/ahliweb/awcms-one/issues/601)): peta konteks logis kandidat untuk commerce, hubungannya dengan tata letak modul upstream, dan alur adopsi yang diusulkan. Dokumen ini tidak memutuskan batas modul, tidak mengubah ADR, dan tidak menambah perubahan runtime, migrasi, maupun deployment. Kontrol arsitektur generik tetap di repo upstream.

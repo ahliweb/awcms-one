@@ -16,7 +16,7 @@
  * "Build profiles and the template mechanism"). Every leg that ran
  * afterwards in that same worktree — `e2e-toko`, `security` — then executed
  * against an already-template-initialized, no-longer-representative copy
- * of the repository: `e2e-toko` failed outright, and `security`'s CodeQL
+ * of the repository: `e2e-toko` failed outright, and `security`'s SAST
  * scan picked up stray `dist/` build output several EARLIER legs had left
  * behind in the same tree. One worktree per leg is the fix: `git worktree
  * add` is cheap (it shares this repo's own object store), so paying that

@@ -12,8 +12,9 @@
 # credential. `bun run audit:dokumen`-style hand-editing (adding one entry
 # per finding, forever) would fight the same noise on every future prose
 # edit; excluding entire generated/fixture SURFACES here instead is the
-# same choice `.github/codeql/codeql-config.yml`'s `paths-ignore` already
-# made for CodeQL, applied to gitleaks by its own native mechanism.
+# same choice the SAST scan's own exclude list (`SAST_EXCLUDES` in
+# `tools/ci/lib/opengrep-cli.ts`) makes, applied to gitleaks by its own native
+# mechanism.
 #
 # This file extends gitleaks' own default rule set (`useDefault = true`)
 # rather than replacing it — nothing here narrows what counts as a secret,
@@ -52,8 +53,8 @@ paths = [
 
   # A legacy crawl-index text dump (URLs and hashes from the Wayback
   # Machine CDX API), vendored reference data with no logic of its own —
-  # same class of exclusion as codeql-config.yml's own "vendored reference/
-  # sample datasets".
+  # same class of exclusion as the SAST scan's own `apps/cms/data` entry
+  # (vendored reference/sample datasets).
   '''apps/cms/data/seputarborneo-legacy/.*''',
 
   # This module's own contract fixtures deliberately name INVALID example

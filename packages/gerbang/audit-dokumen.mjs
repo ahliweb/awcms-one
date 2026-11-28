@@ -531,6 +531,14 @@ const EXCLUDED_PATHS = new Map([
     }
   ],
   [
+    "tools/ci/lib/codeql-cli.ts",
+    {
+      reason:
+        "issue #603 (ADR-0060) removed this file when the local-ci/security leg moved from CodeQL to OpenGrep; the older release note that pinned its query pack still names it as history.",
+      onlyIn: [".changesets/2026-11-20-ci-pin-codeql-query-pack.md", "CHANGELOG.md"]
+    }
+  ],
+  [
     "tools/out/seputarborneo/posts.ndjson",
     {
       reason:
