@@ -59,3 +59,7 @@ English at the bare path is the authoritative source; Indonesian at `<name>.id.m
 ## CarikBot conversation architecture reference (research only)
 
 [CarikBot concept evaluation](carikbot-conversation-reference.md) and [Bahasa Indonesia](carikbot-conversation-reference.id.md) document flow/menu/form ideas, current-versus-proposed status, provider boundaries, privacy risks, tests and cross-repository ownership. No chatbot engine or production API is added by this documentation.
+
+## Commerce bounded contexts research (research only)
+
+[Commerce bounded contexts and upstream architecture fitness](research-commerce-bounded-contexts.md) is a **proposed** research document (issue [#601](https://github.com/ahliweb/awcms-one/issues/601)): a candidate logical context map for commerce, how it relates to the upstream module layout, and a proposed adoption workflow. It decides no module boundary, changes no ADR, and adds no runtime, migration or deployment change. Generic architecture controls stay in the upstream repository.
