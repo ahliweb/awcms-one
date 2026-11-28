@@ -1,9 +1,9 @@
 # Independent intelligence capability research
 
 ## Metadata
-- Version: v1.1.0
+- Version: v1.2.0
 - Last updated: 2026-11-28
-- Changeset: PHYLEX follow-up, license and professional evidence validation; original concept only.
+- Changeset: independent reconstruction, original bounded design and evidence.
 - Status: research/reference only; no product code, no approved dependency, no Gate 9/15 decision.
 - Tracker: #598
 - Evidence: main branch blob snapshots AGENTS c6ed72f8b5a2; docs/template.md 29ed1fea28a0 (not HEAD commit). Full code, migration, issue status and CI audit still pending.
@@ -55,6 +55,15 @@ SEC-001 verified asset and signed scope grant; expiry/revocation and recheck bef
 ### Local research deliverables (#598)
 Evaluate product-owned security dashboard and report mocks with all three SITE_PROFILEs; public SSG only deliberately approved aggregates. No scanner, tenant production data, secret, shared API/runtime or security-report service in template. Generic foundation via AWCMS and tested subtree merge commit; no new profile or SSR without ADR. Test template:init, existing local-ci checks, contracts, private report exclusion from build outputs and consumer upgrade/rollback. Consumer owns authorization, assessment workers, storage, UAT and deployment; upstream UAT N/A.
 
+## Independent reconstruction decision — 2026-11-28 (v1.2.0)
+Owner direction: use original capabilities, not unapproved dependencies. This supersedes earlier HOLD-as-candidate for testssl.sh (GPL-2.0, https://github.com/testssl/testssl.sh), Wazuh (engine AGPL-3.0-or-later, mixed manager/shared libs, https://github.com/wazuh/wazuh/blob/main/README.md), MVT (custom MVT License 1.1, consent, https://github.com/mvt-project/mvt/blob/main/LICENSE). Do not install, link, vendor, port, translate, copy source/structure/UI/rules/templates/IOCs/datasets, use as oracle or reverse engineer these products or PHYLEX. GPL/AGPL are not commercial bans; independent implementation is a business/architecture choice, not a legal exemption. Preserve informed non-coerced device-owner consent regardless of implementation. ZAP/Nuclei remain unapproved candidates; no dependency admission. Public functional descriptions + independent standards only; contributor provenance/attestation, source register, independent requirements, reviewer, similarity and dependency/SBOM checks, pin version/SHA/license/notice/patent/data terms/exit plan; no formal clean-room or compliance claim. UU 28/2014 art.41 https://www.wipo.int/wipolex/en/legislation/details/15600; review other IP and contracts. No restricted material in agent prompts.
+### Independent standards and scope
+RFC 9846 (July 2026) obsoletes RFC 8446 https://www.rfc-editor.org/info/rfc9846/ ; BCP 195 RFC 9325 updated by 9852/10015 https://www.rfc-editor.org/info/bcp195/ ; RFC 9525 service identity https://www.rfc-editor.org/rfc/rfc9525.html ; NIST 800-52r2 https://csrc.nist.gov/pubs/sp/800/52/r2/final . Use approved runtime TLS APIs, never new crypto; negotiated version/chain/identity/expiry only, unknown not pass. TLS1.2 observation not BCP compliance; no parity/exploit probes. Denning (1987) https://doi.org/10.1109/TSE.1987.232894 ; NIST 800-92 https://csrc.nist.gov/pubs/sp/800/92/final (r1 draft), 800-137 https://csrc.nist.gov/pubs/sp/800/137/final ; 800-53r5 release 5.2.0 AU-6/SI-7/SI-4 https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final ; RFC 5424 https://www.rfc-editor.org/info/rfc5424/ ; OTel data model https://opentelemetry.io/docs/specs/otel/logs/data-model/ reference only. NIST 800-124r2 https://csrc.nist.gov/pubs/sp/800/124/r2/final ; 800-101r1 https://csrc.nist.gov/pubs/sp/800/101/r1/final scope boundary, not forensic acquisition. NIST SSDF 1.1 final https://csrc.nist.gov/pubs/sp/800/218/final ; 1.2 IPD not final. Map previous ISO/IEC 27001/27002/27005/27017:2026/27018:2025/27701:2025/27034/15408, 20000-1, 42001, 27035/27037 and ISO 22301; evidence not certification. UU PDP, UU ITE, PP 71/2019, purpose/retention/consent and legal review. 
+Provisional IDs: IND-01 TLS posture (consumer worker), IND-02 host metadata (OMES), IND-03 event normalization/correlation (AWCMS contract/OMES summaries), IND-04 integrity evidence (OMES), IND-05 mobile posture (product discovery), IND-06 risk/evidence/cases (AWCMS/consumer). No full SIEM/XDR/forensics or spyware detection claim. Explicit scoped grant, expiry/revocation, independent worker, synthetic data, no unauthorized I/O or private data, no actions without approval. Local offline reference spike on Node v22.16.0 had 19/19 synthetic tests; no Bun, CI, actual TLS, devices, RLS or production tests. Covers pure decisions on supplied observations, not implementation evidence for this repository. Reconcile CAP/REQ, source provenance, ADR and Gate 9/15; no new product code or deployment. 
+### Local requirements and acceptance (proposed)
+IND-01/06: reusable mock posture/report UI, approved contracts only; no scanner, engine, collector or new dependency in template. Consumer-owned backend, scope, workers, secrets, UAT and backup; upstream generic foundation via subtree merge commit. Verify template:init, all profiles, SSG privacy and regression. No new profile or SSR without ADR.
+
 ## Changelog
+- v1.2.0 (2026-11-28): independent reconstruction replacing unapproved components; proposed local acceptance.
 - v1.1.0 (2026-11-28): PHYLEX product-site evidence, license dispositions, risk methodology and local research criteria.
 - v1.0.0 (2026-11-28): initial research, local ownership and controls.
